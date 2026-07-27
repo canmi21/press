@@ -1,0 +1,18 @@
+{
+  // Schema is fetched over HTTP rather than from ./node_modules, because oxlint is
+  // installed through mise (see mise.toml) and there is no local install to point at.
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc"],
+  "categories": {
+    "correctness": "error"
+  },
+  "rules": {
+    // Formatting belongs to oxfmt, so the linter does not police it. Verified: oxfmt
+    // rewrites U+00A0 to a plain space on its own, which makes this rule pure
+    // duplication. See spec/lint-format.md.
+    "no-irregular-whitespace": "off"
+  },
+  "env": {
+    "builtin": true
+  }
+}

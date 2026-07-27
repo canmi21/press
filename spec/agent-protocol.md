@@ -52,3 +52,17 @@ the next session's view of this project and is invisible to every other agent. I
 The test to apply before calling it done: a fresh agent with zero memory of this project,
 starting from `CLAUDE.md` alone, must be able to recover the project's constraints and work
 correctly. If it could not, the selfcheck is not finished.
+
+## Unprompted selfcheck
+
+The user will not keep asking for this. Adding a tool, adding a config file, or settling a
+convention triggers the same review on its own:
+
+- Does a future agent need a rule to use this correctly, or is the config file
+  self-explanatory?
+- Did resolving this require a judgement that is invisible in the resulting file? Judgements
+  leave no trace unless written down -- a config value looks arbitrary six months later.
+- Does an existing `spec/` file now contradict what was just added?
+
+Write the rule in the same change as the tool. A tool that lands without its rule is a tool
+the next agent will misuse.

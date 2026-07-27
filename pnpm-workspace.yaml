@@ -1,0 +1,13 @@
+# Supply-chain delay: a version must have been public for at least 24 hours before it
+# can be installed. Most npm compromises are caught and yanked well inside that window.
+# The unit is minutes. Applies to transitive dependencies too.
+minimumReleaseAge: 1440
+
+# Exempt only packages where waiting a day costs more than it protects: toolchain and
+# type packages that get bumped constantly and are read at build time, not shipped.
+# Keep this list short -- every entry is an accepted risk.
+minimumReleaseAgeExclude:
+  - '@cloudflare/workers-types'
+  - '@types/node'
+  - vite
+  - wrangler

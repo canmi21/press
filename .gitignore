@@ -1,0 +1,30 @@
+# Everything here is reproducible from source: dependencies, build output,
+# caches, and generated code. Nothing generated is ever committed.
+
+# Dependencies
+node_modules/
+
+# Build output
+build/
+dist/
+target/
+.svelte-kit/
+
+# Caches
+.wrangler/
+.turbo/
+*.tsbuildinfo
+
+# Generated sources
+worker-configuration.d.ts
+
+# Test and coverage output
+coverage/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store

@@ -35,12 +35,20 @@ See [spec/voice.md](spec/voice.md).
 its own convention wins locally: Rust source files use underscores. Identifiers inside code
 always follow the language's own convention. See [spec/naming.md](spec/naming.md).
 
+**Lint vs format** -- a linter owns semantics, a formatter owns layout. Whatever the formatter
+rewrites, the linter must not report; disable the overlap on the linter side. Holds for every
+language. See [spec/lint-format.md](spec/lint-format.md).
+
 ## Toolchain
 
 Version control is jj (Jujutsu), colocated with git -- use `jj`, not `git`. Bookmarks do not
-advance on their own. Tool versions are owned by mise; see `mise.toml`. Default stacks are
-Rust + Cargo for binaries and applications, TypeScript + pnpm + Svelte for web.
+advance on their own. Pushing is the user's to run; do not offer it. mise owns every tool
+version, linters and formatters included; see `mise.toml`. Default stacks are Rust + Cargo for
+binaries and applications, TypeScript + pnpm + Svelte for web.
 See [spec/toolchain.md](spec/toolchain.md).
+
+Indentation is tabs at width 2 in every language, YAML excepted. `.editorconfig` is the source
+of truth.
 
 ## Index
 
@@ -50,4 +58,5 @@ See [spec/toolchain.md](spec/toolchain.md).
 | Voice and communication | [spec/voice.md](spec/voice.md) |
 | Commit conventions | [spec/commits.md](spec/commits.md) |
 | Naming conventions | [spec/naming.md](spec/naming.md) |
+| Linting and formatting | [spec/lint-format.md](spec/lint-format.md) |
 | Toolchain and default stacks | [spec/toolchain.md](spec/toolchain.md) |

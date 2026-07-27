@@ -1,0 +1,16 @@
+# rustfmt defaults, with two exceptions that are load-bearing rather than stylistic.
+
+# rustfmt does not infer the edition from Cargo.toml when invoked directly, and its
+# built-in default is still 2015. Without this, formatting silently uses the wrong
+# grammar.
+edition = "2024"
+
+# Default is "Auto". .editorconfig pins end_of_line = lf, and rustfmt does not read
+# .editorconfig, so this has to be stated here to keep the two in agreement.
+newline_style = "Unix"
+
+# Tabs at width 2, matching .editorconfig's [*] section. rustfmt's own defaults are
+# 4 spaces with no hard tabs, so both keys are required to bring it in line; rustfmt
+# does not read .editorconfig itself.
+hard_tabs = true
+tab_spaces = 2
