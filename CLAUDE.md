@@ -39,6 +39,19 @@ always follow the language's own convention. See [spec/naming.md](spec/naming.md
 rewrites, the linter must not report; disable the overlap on the linter side. Holds for every
 language. See [spec/lint-format.md](spec/lint-format.md).
 
+## Layout
+
+```
+spec/   rules      libs/   libraries, any language      apps/   deployables, any language
+data/   assets, in the tree but never in git            projs/  reserved, not created yet
+```
+
+A directory under `libs/` is a namespace, not a language choice -- one name, one thing, even
+when a Rust core and a TypeScript wrapper live inside it. `pnpm-workspace.yaml` globs;
+`Cargo.toml` lists members by hand because a glob there breaks every cargo command the moment
+a TypeScript-only directory appears. Name for responsibility, never for deployment shape or
+product. See [spec/architecture.md](spec/architecture.md).
+
 ## Toolchain
 
 Version control is jj (Jujutsu), colocated with git -- use `jj`, not `git`. Bookmarks do not
@@ -55,6 +68,7 @@ of truth.
 | Topic | File |
 | --- | --- |
 | Cold start, decision authority, selfcheck | [spec/agent-protocol.md](spec/agent-protocol.md) |
+| Layout, workspaces, data | [spec/architecture.md](spec/architecture.md) |
 | Voice and communication | [spec/voice.md](spec/voice.md) |
 | Commit conventions | [spec/commits.md](spec/commits.md) |
 | Naming conventions | [spec/naming.md](spec/naming.md) |

@@ -1,3 +1,10 @@
+# Globs are safe here: pnpm only picks up directories that contain a package.json and
+# ignores the rest, so Rust-only libraries under libs/ are simply invisible to it. Cargo
+# has no such tolerance, which is why Cargo.toml lists its members by hand instead.
+packages:
+  - libs/*
+  - apps/*
+
 # Supply-chain delay: a version must have been public for at least 24 hours before it
 # can be installed. Most npm compromises are caught and yanked well inside that window.
 # The unit is minutes. Applies to transitive dependencies too.

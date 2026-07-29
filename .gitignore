@@ -1,6 +1,12 @@
 # Everything here is reproducible from source: dependencies, build output,
 # caches, and generated code. Nothing generated is ever committed.
 
+# Data lives in the tree but never in git: photos and other binary assets, synced to R2
+# and backed up to the NAS. The directory itself is tracked so a fresh clone has the
+# mount point. See spec/architecture.md -- backup ignores are NOT these ignores.
+data/*
+!data/.gitkeep
+
 # Dependencies
 node_modules/
 

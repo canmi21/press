@@ -1,0 +1,19 @@
+[workspace]
+resolver = "3"
+
+# Members are listed explicitly rather than globbed. A glob over `libs/*` or `apps/*`
+# fails hard the moment a TypeScript-only directory appears there -- Cargo errors on any
+# matched directory without a Cargo.toml, and that breaks every cargo command in the
+# repo. Listing crates by hand costs one line per Rust crate and makes adding a
+# TypeScript library a no-op on this side.
+members = []
+
+[workspace.package]
+edition = "2024"
+license = "MIT"
+
+[workspace.lints.clippy]
+# Formatting belongs to rustfmt; see spec/lint-format.md.
+correctness = "deny"
+suspicious = "deny"
+complexity = "warn"
