@@ -54,6 +54,11 @@ product. See [spec/architecture.md](spec/architecture.md).
 
 ## Toolchain
 
+**The user's shell is fish.** Any command written for them to run must be fish syntax --
+`set -gx X y`, not `export X=y`; `$(cmd)` is not fish. Commands an agent runs through its own
+tool go through that tool's shell instead, which is usually not fish, so the two are written
+differently on purpose.
+
 Version control is jj (Jujutsu), colocated with git -- use `jj`, not `git`. Bookmarks do not
 advance on their own. Pushing is the user's to run; do not offer it. mise owns every tool
 version, linters and formatters included; see `mise.toml`. Default stacks are Rust + Cargo for

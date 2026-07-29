@@ -1,5 +1,22 @@
 # Toolchain
 
+## Shell
+
+The user's interactive shell is **fish**, configured in `~/.config/fish/config.fish`.
+
+This matters in two directions, and they are opposite:
+
+- **A command written for the user to run** must be fish syntax. `set -gx KEY value`, not
+  `export KEY=value`. Command substitution is `(cmd)`, not `$(cmd)`.
+- **A command an agent runs through its own tooling** goes through that tool's shell, which
+  on this machine is zsh, so it must be POSIX syntax. Writing fish syntax there fails with a
+  parse error, and writing bash syntax into a fish snippet fails the same way in reverse.
+
+Two more platform facts that cost time when forgotten: this is macOS, so `sed` is BSD sed
+and does not support `\b` word boundaries -- use `perl -pi -e` for word-boundary replaces.
+And mise activation is directory-scoped and shell-based, so a command run from a shell
+without mise sees none of the pinned versions.
+
 ## Version control
 
 jj (Jujutsu), colocated with git -- `.jj` and `.git` sit side by side in the repo root. Use
@@ -47,6 +64,25 @@ Three consequences worth knowing:
 
 Prefer the mise registry short name (`oxlint`) over a backend-qualified one (`npm:oxlint`);
 both resolve to the same package, and the short form keeps `mise.toml` readable.
+
+### The one exception: hook scripts
+
+`.claude/hooks/` is deliberately outside mise's reach. Those scripts use `#!/usr/bin/env
+python3` and nothing beyond the standard library.
+
+The reason is the failure mode. mise activation is shell-scoped, and a hook is launched by
+the agent harness rather than by an interactive shell. If a hook's interpreter came from
+mise and mise were not active, the hook would fail to start -- and a hook that fails to
+start enforces nothing while looking exactly like a hook that passed. Silent
+non-enforcement is worse than no enforcement, because it is believed.
+
+Verified: the commit hook runs unchanged on macOS's system Python 3.9.6 and on the current
+Homebrew and mise builds, because it touches only `json`, `re`, `shlex`, `subprocess`, and
+`os`. Version pinning would buy nothing here and would cost the guarantee that it always
+starts.
+
+This exception covers hook scripts only. Everything a human or an agent invokes on purpose
+still belongs in `mise.toml`.
 
 ## Dependency policy
 
