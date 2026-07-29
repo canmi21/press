@@ -91,6 +91,12 @@ workspace globs.
 else imports from it. This covers third-party endpoints too, not just our own hosts -- a CDN
 we forward images through is as much a URL as a domain we own.
 
+The URL map is grouped by role:
+
+- `apps`: deployable things in this repo, with development and production entries.
+- `internal`: domains the repo owner controls, but that are not apps in this repo.
+- `external`: third-party endpoints and hostnames.
+
 Nothing outside that library may contain a literal `http://`, `https://`, `localhost:`, or a
 bare hostname. Not app code, not a library, not a stylesheet, not a spec document.
 
@@ -105,6 +111,10 @@ Colors follow the same shape at a smaller scale: OKLCH values are declared in
 `libs/tokens` and consumed by name. The rule covers the design system that the site's own UI
 and theme are built from; a palette mirrored from an external convention keeps whatever
 format that convention ships.
+
+`robots.txt` follows the same shared-base shape, not a single shared file. `libs/urls`
+exports the minimal common definition and a helper that appends site-specific rules such as
+disallowed paths and sitemap entries. Each site owns its own additions.
 
 ## Data
 

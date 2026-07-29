@@ -1,18 +1,7 @@
 /*
- * Rendering contract for SVG diagrams written in Claude's authoring convention: the text
- * ranks (.t/.ts/.th), the primitives (.box, .node, .arr, .leader), and the named palette
- * (.c-purple, .c-teal, ...). This library is a vendor boundary -- it exists to render one
- * external tool's output, which is why it carries that tool's name.
- *
- * The .svg-canvas class and every selector below belong to the vendor, not to us. Renaming
- * them would break the contract with the markup, so they stay exactly as they are. Only the
- * library name was ours to choose, and `canvas` is deliberately left free for a real canvas
- * library later.
- *
- * Colors are hex because that is what the convention ships. The OKLCH rule covers the design
- * system in @canmi/tokens, not a palette we are only mirroring. See spec/naming.md.
- *
- * Namespacing under .svg-canvas keeps these rules off every other SVG on the page.
+ * Styling for SVG diagrams using Claude's .svg-canvas convention.
+ * The selectors and hex palette mirror that markup contract; OKLCH tokens only cover our
+ * native UI and theme.
  */
 
 .svg-canvas {

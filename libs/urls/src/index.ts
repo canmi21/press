@@ -1,48 +1,76 @@
 export const URLS = {
-	development: {
-		web: 'http://localhost:26511',
-		api: 'http://localhost:26512',
-		res: 'http://localhost:26516',
-		home: 'http://localhost:26518',
-		app: 'https://canmi.app',
-		dev: 'https://canmi.dev',
-		prod: 'https://ffoni.com',
+	apps: {
+		development: {
+			web: 'http://localhost:26511',
+			api: 'http://localhost:26512',
+			cdn: 'http://localhost:26516',
+		},
+		production: {
+			web: 'https://canmi.net',
+			api: 'https://api.ffoni.com',
+			cdn: 'https://cdn.ffoni.com',
+		},
 	},
-	production: {
-		web: 'https://canmi.net',
-		api: 'https://api.ffoni.com',
-		res: 'https://cdn.ffoni.com',
-		home: 'https://ill.li',
+	internal: {
 		app: 'https://canmi.app',
 		dev: 'https://canmi.dev',
 		prod: 'https://ffoni.com',
+		ill: 'https://ill.li',
+	},
+	external: {
+		github: {
+			web: 'https://github.com',
+			raw: 'https://raw.githubusercontent.com',
+			avatars: 'https://avatars.githubusercontent.com',
+			cdn: 'https://cdn.jsdelivr.net/gh',
+		},
+		robotstxt: 'https://www.robotstxt.org/robotstxt.html',
 	},
 } as const;
 
-export type AppName = keyof typeof URLS.development;
-export type UrlMap = {
-	readonly web: string;
-	readonly api: string;
-	readonly res: string;
-	readonly home: string;
-	readonly app: string;
-	readonly dev: string;
-	readonly prod: string;
-};
+export type UrlEnvironment = keyof typeof URLS.apps;
+export type AppName = keyof typeof URLS.apps.development;
+export type UrlMap = (typeof URLS.apps)[UrlEnvironment];
 
 export function pickUrls(isDev: boolean): UrlMap {
-	return isDev ? URLS.development : URLS.production;
+	return isDev ? URLS.apps.development : URLS.apps.production;
 }
 
 export function isDevHost(hostname: string): boolean {
 	return hostname === 'localhost' || hostname === '127.0.0.1';
 }
 
-export const robotsTxt = `# https://www.robotstxt.org/robotstxt.html
-User-agent: *
-Disallow: /@/
-Disallow: /cgi-bin/
-Disallow: /cdn-cgi/
+export const robotsTxtBase = [`# ${URLS.external.robotstxt}`, 'User-agent: *'] as const;
 
-Sitemap: ${URLS.production.web}/sitemap.xml
-`;
+export type RobotsTxtOptions = {
+	allow?: readonly string[];
+	disallow?: readonly string[];
+	sitemap?: string | readonly string[] | null;
+};
+
+export function robotsTxt(options: RobotsTxtOptions = {}): string {
+	const lines = [...robotsTxtBase];
+
+	for (const path of options.allow ?? []) {
+		lines.push(`Allow: ${path}`);
+	}
+
+	for (const path of options.disallow ?? []) {
+		lines.push(`Disallow: ${path}`);
+	}
+
+	const sitemaps = toList(options.sitemap);
+	if (sitemaps.length > 0) {
+		lines.push('');
+		for (const sitemap of sitemaps) {
+			lines.push(`Sitemap: ${sitemap}`);
+		}
+	}
+
+	return `${lines.join('\n')}\n`;
+}
+
+function toList(value: string | readonly string[] | null | undefined): readonly string[] {
+	if (!value) return [];
+	return Array.isArray(value) ? value : [value];
+}

@@ -1,15 +1,24 @@
+import { URLS } from '@canmi/urls';
 import { describe, expect, it } from 'vitest';
 import { imgsrc } from './index';
 
+const prodCdn = URLS.apps.production.cdn;
+const devCdn = URLS.apps.development.cdn;
+const github = URLS.external.github;
+
 describe('imgsrc', () => {
 	describe('hash filename', () => {
-		it('rewrites bare filename to cdn.canmi.net/image', () => {
-			expect(imgsrc('abc123.png')).toBe('https://cdn.canmi.net/image/abc123.png');
+		it('rewrites bare filename to the production CDN image path', () => {
+			expect(imgsrc('abc123.png')).toBe(`${prodCdn}/image/abc123.png`);
 		});
 
 		it('rewrites a 64-char hex hash', () => {
 			const hash = '3f7dcc6f50caafa3667d680a0a5592ae6ca14440216c72b138606ae5465eac17';
-			expect(imgsrc(`${hash}.png`)).toBe(`https://cdn.canmi.net/image/${hash}.png`);
+			expect(imgsrc(`${hash}.png`)).toBe(`${prodCdn}/image/${hash}.png`);
+		});
+
+		it('uses the development CDN when requested', () => {
+			expect(imgsrc('abc123.png', { isDev: true })).toBe(`${devCdn}/image/abc123.png`);
 		});
 	});
 
@@ -23,34 +32,37 @@ describe('imgsrc', () => {
 
 	describe('plain url passthrough', () => {
 		it('unknown https host', () => {
-			expect(imgsrc('https://example.com/x.png')).toBe('https://example.com/x.png');
+			const input = `${URLS.internal.app}/x.png`;
+			expect(imgsrc(input)).toBe(input);
 		});
 
 		it('unknown http host', () => {
-			expect(imgsrc('http://example.com/x.png')).toBe('http://example.com/x.png');
+			const input = `${URLS.apps.development.api}/x.png`;
+			expect(imgsrc(input)).toBe(input);
 		});
 
 		it('malformed url passthrough', () => {
-			expect(imgsrc('https://not a url')).toBe('https://not a url');
+			const input = `${URLS.internal.app} not a url`;
+			expect(imgsrc(input)).toBe(input);
 		});
 	});
 
-	describe('github: scheme → jsdelivr', () => {
+	describe('github: scheme to GitHub CDN', () => {
 		it('without @ref uses default branch', () => {
 			expect(imgsrc('github:innei/shiro/apps/web/public/innei-dark.svg')).toBe(
-				'https://cdn.jsdelivr.net/gh/innei/shiro/apps/web/public/innei-dark.svg',
+				`${github.cdn}/innei/shiro/apps/web/public/innei-dark.svg`,
 			);
 		});
 
 		it('with @ref pins the commit', () => {
 			expect(imgsrc('github:innei/shiro/apps/web/public/innei-dark.svg@90ef7b8')).toBe(
-				'https://cdn.jsdelivr.net/gh/innei/shiro@90ef7b8/apps/web/public/innei-dark.svg',
+				`${github.cdn}/innei/shiro@90ef7b8/apps/web/public/innei-dark.svg`,
 			);
 		});
 
 		it('with @ref accepts branch names', () => {
 			expect(imgsrc('github:innei/shiro/icon.svg@main')).toBe(
-				'https://cdn.jsdelivr.net/gh/innei/shiro@main/icon.svg',
+				`${github.cdn}/innei/shiro@main/icon.svg`,
 			);
 		});
 
@@ -62,28 +74,28 @@ describe('imgsrc', () => {
 
 	describe('github:avatar: scheme', () => {
 		it('numeric id without size', () => {
-			expect(imgsrc('github:avatar:72544151')).toBe('https://cdn.ffoni.com/github/avatar/72544151');
+			expect(imgsrc('github:avatar:72544151')).toBe(`${prodCdn}/github/avatar/72544151`);
 		});
 
 		it('numeric id with @size', () => {
 			expect(imgsrc('github:avatar:72544151@192')).toBe(
-				'https://cdn.ffoni.com/github/avatar/72544151?width=192',
+				`${prodCdn}/github/avatar/72544151?width=192`,
 			);
 		});
 
 		it('username via @ prefix', () => {
-			expect(imgsrc('github:avatar:@canmi21')).toBe('https://cdn.ffoni.com/github/avatar/canmi21');
+			expect(imgsrc('github:avatar:@canmi21')).toBe(`${prodCdn}/github/avatar/canmi21`);
 		});
 
 		it('username with @size', () => {
 			expect(imgsrc('github:avatar:@canmi21@192')).toBe(
-				'https://cdn.ffoni.com/github/avatar/canmi21?width=192',
+				`${prodCdn}/github/avatar/canmi21?width=192`,
 			);
 		});
 
-		it('respects custom resUrl', () => {
-			expect(imgsrc('github:avatar:72544151@192', { resUrl: 'http://localhost:26516' })).toBe(
-				'http://localhost:26516/github/avatar/72544151?width=192',
+		it('respects custom cdnUrl', () => {
+			expect(imgsrc('github:avatar:72544151@192', { cdnUrl: devCdn })).toBe(
+				`${devCdn}/github/avatar/72544151?width=192`,
 			);
 		});
 
@@ -101,55 +113,51 @@ describe('imgsrc', () => {
 	});
 
 	describe('plain url rewrite for known github surfaces', () => {
-		it('avatars.githubusercontent.com → res /github/avatar/<id>', () => {
-			expect(imgsrc('https://avatars.githubusercontent.com/u/72544151?v=4')).toBe(
-				'https://cdn.ffoni.com/github/avatar/72544151',
-			);
+		it('avatars URL rewrites to CDN avatar route', () => {
+			expect(imgsrc(`${github.avatars}/u/72544151?v=4`)).toBe(`${prodCdn}/github/avatar/72544151`);
 		});
 
-		it('avatars URL respects custom resUrl', () => {
+		it('avatars URL respects custom cdnUrl', () => {
 			expect(
-				imgsrc('https://avatars.githubusercontent.com/u/72544151', {
-					resUrl: 'http://localhost:26516',
+				imgsrc(`${github.avatars}/u/72544151`, {
+					cdnUrl: devCdn,
 				}),
-			).toBe('http://localhost:26516/github/avatar/72544151');
+			).toBe(`${devCdn}/github/avatar/72544151`);
 		});
 
 		it('avatars URL preserves ?s=N as ?width=N', () => {
-			expect(imgsrc('https://avatars.githubusercontent.com/u/72544151?s=192')).toBe(
-				'https://cdn.ffoni.com/github/avatar/72544151?width=192',
+			expect(imgsrc(`${github.avatars}/u/72544151?s=192`)).toBe(
+				`${prodCdn}/github/avatar/72544151?width=192`,
 			);
 		});
 
 		it('avatars URL drops other query params but keeps ?s=N', () => {
-			expect(imgsrc('https://avatars.githubusercontent.com/u/72544151?v=4&s=64')).toBe(
-				'https://cdn.ffoni.com/github/avatar/72544151?width=64',
+			expect(imgsrc(`${github.avatars}/u/72544151?v=4&s=64`)).toBe(
+				`${prodCdn}/github/avatar/72544151?width=64`,
 			);
 		});
 
-		it('raw.githubusercontent.com → jsdelivr', () => {
-			expect(
-				imgsrc(
-					'https://raw.githubusercontent.com/innei/shiro/90ef7b8/apps/web/public/innei-dark.svg',
-				),
-			).toBe('https://cdn.jsdelivr.net/gh/innei/shiro@90ef7b8/apps/web/public/innei-dark.svg');
-		});
-
-		it('github.com /raw/ link → jsdelivr', () => {
-			expect(imgsrc('https://github.com/innei/shiro/raw/main/apps/web/public/innei-dark.svg')).toBe(
-				'https://cdn.jsdelivr.net/gh/innei/shiro@main/apps/web/public/innei-dark.svg',
+		it('raw GitHub content URL rewrites to GitHub CDN', () => {
+			expect(imgsrc(`${github.raw}/innei/shiro/90ef7b8/apps/web/public/innei-dark.svg`)).toBe(
+				`${github.cdn}/innei/shiro@90ef7b8/apps/web/public/innei-dark.svg`,
 			);
 		});
 
-		it('github.com /blob/ link → jsdelivr', () => {
-			expect(
-				imgsrc('https://github.com/innei/shiro/blob/main/apps/web/public/innei-dark.svg'),
-			).toBe('https://cdn.jsdelivr.net/gh/innei/shiro@main/apps/web/public/innei-dark.svg');
+		it('GitHub raw link rewrites to GitHub CDN', () => {
+			expect(imgsrc(`${github.web}/innei/shiro/raw/main/apps/web/public/innei-dark.svg`)).toBe(
+				`${github.cdn}/innei/shiro@main/apps/web/public/innei-dark.svg`,
+			);
 		});
 
-		it('jsdelivr URL passthrough (already canonical)', () => {
-			const u = 'https://cdn.jsdelivr.net/gh/innei/shiro@main/apps/web/public/innei-dark.svg';
-			expect(imgsrc(u)).toBe(u);
+		it('GitHub blob link rewrites to GitHub CDN', () => {
+			expect(imgsrc(`${github.web}/innei/shiro/blob/main/apps/web/public/innei-dark.svg`)).toBe(
+				`${github.cdn}/innei/shiro@main/apps/web/public/innei-dark.svg`,
+			);
+		});
+
+		it('GitHub CDN URL passthrough when already canonical', () => {
+			const input = `${github.cdn}/innei/shiro@main/apps/web/public/innei-dark.svg`;
+			expect(imgsrc(input)).toBe(input);
 		});
 	});
 });

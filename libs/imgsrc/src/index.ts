@@ -1,32 +1,41 @@
-import { URLS } from '@canmi/urls';
+import { isDevHost, pickUrls, URLS } from '@canmi/urls';
 
-const IMAGE_CDN_PREFIX = 'https://cdn.canmi.net/image';
-const JSDELIVR_PREFIX = 'https://cdn.jsdelivr.net/gh';
 const GITHUB_AVATAR_SCHEME = 'github:avatar:';
 const GITHUB_SCHEME = 'github:';
 
 export type Options = {
-	resUrl?: string;
+	cdnUrl?: string;
+	isDev?: boolean;
 };
 
 export function imgsrc(input: string, opts: Options = {}): string {
-	const resUrl = opts.resUrl ?? URLS.production.res;
+	const cdnUrl = opts.cdnUrl ?? pickUrls(opts.isDev ?? isCurrentDevHost()).cdn;
 
 	if (input.startsWith('data:')) return input;
-	if (input.startsWith(GITHUB_AVATAR_SCHEME)) return resolveGithubAvatar(input, resUrl);
+	if (input.startsWith(GITHUB_AVATAR_SCHEME)) return resolveGithubAvatar(input, cdnUrl);
 	if (input.startsWith(GITHUB_SCHEME)) return resolveGithubScheme(input);
-	if (input.startsWith('http://') || input.startsWith('https://')) {
-		return rewriteIfKnown(input, resUrl);
-	}
-	return `${IMAGE_CDN_PREFIX}/${input}`;
+	if (hasWebScheme(input)) return rewriteIfKnown(input, cdnUrl);
+	return `${cdnUrl}/image/${input}`;
 }
 
-function resolveGithubAvatar(input: string, resUrl: string): string {
+function isCurrentDevHost(): boolean {
+	const location = (globalThis as { location?: { hostname?: string } }).location;
+	return typeof location?.hostname === 'string' && isDevHost(location.hostname);
+}
+
+function hasWebScheme(input: string): boolean {
+	const schemeEnd = input.indexOf(':');
+	if (schemeEnd < 0) return false;
+	const scheme = input.slice(0, schemeEnd).toLowerCase();
+	return scheme === 'http' || scheme === 'https';
+}
+
+function resolveGithubAvatar(input: string, cdnUrl: string): string {
 	const rest = input.slice(GITHUB_AVATAR_SCHEME.length);
 	const parsed = parseAvatarRef(rest);
 	if (!parsed) return input;
 	const query = parsed.size ? `?width=${parsed.size}` : '';
-	return `${resUrl}/github/avatar/${parsed.idOrName}${query}`;
+	return `${cdnUrl}/github/avatar/${parsed.idOrName}${query}`;
 }
 
 function parseAvatarRef(rest: string): { idOrName: string; size: string | null } | null {
@@ -53,11 +62,10 @@ function resolveGithubScheme(input: string): string {
 	const parts = pathPart.split('/');
 	if (parts.length < 3) return input;
 	const [owner, repo, ...pathBits] = parts;
-	const refSuffix = ref ? `@${ref}` : '';
-	return `${JSDELIVR_PREFIX}/${owner}/${repo}${refSuffix}/${pathBits.join('/')}`;
+	return toGithubCdn(owner, repo, ref, pathBits);
 }
 
-function rewriteIfKnown(input: string, resUrl: string): string {
+function rewriteIfKnown(input: string, cdnUrl: string): string {
 	let url: URL;
 	try {
 		url = new URL(input);
@@ -65,30 +73,40 @@ function rewriteIfKnown(input: string, resUrl: string): string {
 		return input;
 	}
 
-	if (url.hostname === 'avatars.githubusercontent.com') {
+	if (url.origin === URLS.external.github.avatars) {
 		const match = url.pathname.match(/^\/u\/(\d+)/);
 		if (match) {
 			const size = url.searchParams.get('s');
 			const query = size ? `?width=${size}` : '';
-			return `${resUrl}/github/avatar/${match[1]}${query}`;
+			return `${cdnUrl}/github/avatar/${match[1]}${query}`;
 		}
 	}
 
-	if (url.hostname === 'raw.githubusercontent.com') {
+	if (url.origin === URLS.external.github.raw) {
 		const parts = url.pathname.split('/').filter(Boolean);
 		if (parts.length >= 4) {
 			const [owner, repo, ref, ...pathBits] = parts;
-			return `${JSDELIVR_PREFIX}/${owner}/${repo}@${ref}/${pathBits.join('/')}`;
+			return toGithubCdn(owner, repo, ref, pathBits);
 		}
 	}
 
-	if (url.hostname === 'github.com') {
+	if (url.origin === URLS.external.github.web) {
 		const parts = url.pathname.split('/').filter(Boolean);
 		if (parts.length >= 5 && (parts[2] === 'raw' || parts[2] === 'blob')) {
 			const [owner, repo, , ref, ...pathBits] = parts;
-			return `${JSDELIVR_PREFIX}/${owner}/${repo}@${ref}/${pathBits.join('/')}`;
+			return toGithubCdn(owner, repo, ref, pathBits);
 		}
 	}
 
 	return input;
+}
+
+function toGithubCdn(
+	owner: string,
+	repo: string,
+	ref: string | null,
+	pathBits: readonly string[],
+): string {
+	const refSuffix = ref ? `@${ref}` : '';
+	return `${URLS.external.github.cdn}/${owner}/${repo}${refSuffix}/${pathBits.join('/')}`;
 }

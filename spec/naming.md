@@ -66,15 +66,16 @@ This rule and the "name for responsibility" rule in
 product, domain, deployment shape, supplier -- never gets carved into the part that is
 expensive to change.
 
-**The inverse also holds: a vendor's thing must not squat on a generic name.** `libs/claude-svg`
+**The inverse also holds: a vendor's thing must not squat on a generic name.** `libs/svg-canvas`
 styles SVG diagrams written in Claude's authoring convention. It was briefly `libs/canvas`,
 which was wrong in the opposite direction from the usual mistake -- a vendor-specific
-boundary had taken the name a real, general canvas library will want. Vendor code gets the
-vendor's name; the generic name stays free for the thing that earns it.
+boundary had taken the name a real, general canvas library will want. A precise convention
+name such as `svg-canvas` is fine; the generic `canvas` name stays free for the thing that
+earns it.
 
-Inside that library the vendor's own selectors (`.svg-canvas`, `.c-purple`) are left
-untouched, because they are the contract with the vendor's markup. The library name was the
-only part we owned.
+Inside that library the convention's own selectors (`.svg-canvas`, `.c-purple`) are left
+untouched, because they are the contract with the markup. The library name was the only part
+we owned.
 
 Worked example from this repo: the commit hook is `.claude/hooks/commit.py`, not
 `jj-commit.py`. Validating a commit message is not a jj-specific job; it would survive a move
