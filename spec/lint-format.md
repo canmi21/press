@@ -12,10 +12,10 @@ re-triggers the formatter. Deleting the overlap is the only stable arrangement.
 
 ## Assignment
 
-| Language | Formatter (layout) | Linter (semantics) |
-| --- | --- | --- |
-| TypeScript, JavaScript, Svelte | oxfmt | oxlint |
-| Rust | rustfmt | clippy |
+| Language                       | Formatter (layout) | Linter (semantics) |
+| ------------------------------ | ------------------ | ------------------ |
+| TypeScript, JavaScript, Svelte | oxfmt              | oxlint             |
+| Rust                           | rustfmt            | clippy             |
 
 All four are installed and versioned by mise; see [toolchain.md](toolchain.md).
 

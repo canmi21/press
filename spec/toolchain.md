@@ -35,11 +35,15 @@ mise owns every tool, not just language runtimes. Linters, formatters, and CLIs 
 globally, and do not add a developer tool as a `devDependencies` entry when mise can carry it.
 One manifest, one answer to "what version is this".
 
-Two consequences worth knowing:
+Three consequences worth knowing:
 
 - mise activation is directory-scoped, so these versions resolve only inside this repo.
 - Tools installed via mise have no `node_modules` presence, so JSON `$schema` keys must point
   at a hosted URL rather than a local path. `.oxlintrc.json` does this.
+- A mise-installed tool cannot load a plugin that lives in `node_modules`. oxfmt's `svelte`
+  option needs to resolve `svelte/compiler`, so it stays out of `.oxfmtrc.json` until an app
+  actually depends on svelte. Enabling it early does not fail quietly -- it aborts the whole
+  format run. The same trap waits for any other plugin-shaped option.
 
 Prefer the mise registry short name (`oxlint`) over a backend-qualified one (`npm:oxlint`);
 both resolve to the same package, and the short form keeps `mise.toml` readable.
@@ -55,10 +59,10 @@ accepted risk, justified only when the wait costs more than it protects.
 
 ## Default stacks
 
-| Area | Stack |
-| --- | --- |
-| Binaries and applications | Rust + Cargo |
-| Web | TypeScript + pnpm + Svelte |
+| Area                      | Stack                      |
+| ------------------------- | -------------------------- |
+| Binaries and applications | Rust + Cargo               |
+| Web                       | TypeScript + pnpm + Svelte |
 
 These are defaults, not a whitelist. Reaching outside them is a structural decision and
 belongs to the user -- see [agent-protocol.md](agent-protocol.md).

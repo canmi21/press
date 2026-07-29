@@ -1,0 +1,8 @@
+{
+	"name": "@canmi/canvas",
+	"private": true,
+	"type": "module",
+	"exports": {
+		"./style.css": "./src/style.css"
+	}
+}

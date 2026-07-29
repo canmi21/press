@@ -65,12 +65,12 @@ of truth.
 
 ## Index
 
-| Topic | File |
-| --- | --- |
+| Topic                                     | File                                             |
+| ----------------------------------------- | ------------------------------------------------ |
 | Cold start, decision authority, selfcheck | [spec/agent-protocol.md](spec/agent-protocol.md) |
-| Layout, workspaces, data | [spec/architecture.md](spec/architecture.md) |
-| Voice and communication | [spec/voice.md](spec/voice.md) |
-| Commit conventions | [spec/commits.md](spec/commits.md) |
-| Naming conventions | [spec/naming.md](spec/naming.md) |
-| Linting and formatting | [spec/lint-format.md](spec/lint-format.md) |
-| Toolchain and default stacks | [spec/toolchain.md](spec/toolchain.md) |
+| Layout, workspaces, data                  | [spec/architecture.md](spec/architecture.md)     |
+| Voice and communication                   | [spec/voice.md](spec/voice.md)                   |
+| Commit conventions                        | [spec/commits.md](spec/commits.md)               |
+| Naming conventions                        | [spec/naming.md](spec/naming.md)                 |
+| Linting and formatting                    | [spec/lint-format.md](spec/lint-format.md)       |
+| Toolchain and default stacks              | [spec/toolchain.md](spec/toolchain.md)           |

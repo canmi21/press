@@ -19,7 +19,7 @@ projs/      Reserved for large standalone projects. Not created yet.
 
 ## One name, one thing
 
-A directory under `libs/` is a namespace, not a language choice. `libs/imgsolve` is imgsolve
+A directory under `libs/` is a namespace, not a language choice. `libs/imgsrc` is imgsrc
 -- whether that is a Cargo crate, a TypeScript package, or a Rust core with a TypeScript
 wrapper around it is an implementation detail living inside.
 
@@ -30,6 +30,20 @@ libraries by language at the top level would tear that library in half.
 The same applies to `apps/`. A Rust binary and a SvelteKit site sit side by side, named for
 what they do.
 
+## Libraries export source
+
+A TypeScript library's `exports` point at `./src/*.ts`, not at a built `dist/`. There is no
+build step, no `dist/`, and no `prepare` script to run before the repo works.
+
+This is the whole point of the repo. A library that must be built before it can be used is a
+library with a publishing ritual attached, and that ritual is exactly what stops code from
+accumulating. Consumers here are bundlers -- Vite, the Workers runtime, esbuild -- and they
+compile TypeScript directly.
+
+The constraint: this holds only while every consumer bundles. A consumer that runs raw
+Node against the package would need a build. If that day comes, add the build to that one
+library rather than reinstating it everywhere.
+
 ## Workspace wiring
 
 The two package managers disagree about strictness, and the layout has to respect that.
@@ -39,7 +53,7 @@ directories containing a `package.json`; Rust-only directories are invisible to 
 Rust library requires no pnpm change.
 
 **Cargo does not glob.** `Cargo.toml` lists members by hand. Cargo errors on any
-glob-matched directory that has no `Cargo.toml`, and that error breaks *every* cargo command
+glob-matched directory that has no `Cargo.toml`, and that error breaks _every_ cargo command
 in the repo, not just the one crate. Verified: with `members = ["libs/*"]` plus an `exclude`
 list, adding one TypeScript library and forgetting to exclude it takes the whole workspace
 down. With explicit members, new TypeScript libraries have no effect at all.
@@ -80,11 +94,11 @@ clone still has the mount point. It syncs to R2 and is backed up to the NAS.
 **Backup ignores are not git ignores.** The two sets overlap but are not the same, and one
 file cannot serve both:
 
-| Path | git | backup |
-| --- | --- | --- |
-| `data/` | ignored | **included** |
-| `target/`, `node_modules/`, `dist/` | ignored | ignored |
-| source | tracked | included |
+| Path                                | git     | backup       |
+| ----------------------------------- | ------- | ------------ |
+| `data/`                             | ignored | **included** |
+| `target/`, `node_modules/`, `dist/` | ignored | ignored      |
+| source                              | tracked | included     |
 
 Using `.gitignore` to drive backups silently drops every photo. Using the backup list to
 drive git commits gigabytes of build output. Each needs its own file.

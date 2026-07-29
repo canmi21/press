@@ -1,0 +1,78 @@
+:root {
+	color-scheme: light dark;
+	--color-page: oklch(0.987 0 0);
+	--color-border: oklch(0.917 0 0);
+	--color-border-strong: oklch(0.867 0 0);
+	--color-text: oklch(0.2 0 0);
+	--color-text-soft: oklch(0.521 0 0);
+	--color-text-strong: oklch(0.157 0 0);
+	--color-ink: oklch(0.241 0 0);
+	--color-paper: oklch(1 0 0);
+	--color-paper-hover: oklch(0.962 0 0);
+	--color-selection: oklch(0.97 0.09 105 / 0.7);
+	/* Auxiliary (a11y) color — the focus-ring blue, ~Tailwind blue-500. */
+	--color-accent: oklch(0.623 0.214 259.815);
+
+	/* Default focus ring: a page-colored 2px gap + a 2px accent ring, sized in rem
+	   so they scale with the root font. Override any of these vars on an element
+	   (inline style or a utility) to fine-tune a specific control. */
+	--focus-ring-width: 0.125rem;
+	--focus-ring-offset: 0.125rem;
+	--focus-ring-radius: 0.125rem;
+	--focus-ring-color: var(--color-accent);
+	--focus-ring-gap: var(--color-page);
+}
+
+html {
+	background: var(--color-page);
+	color: var(--color-text);
+}
+
+::selection {
+	background-color: var(--color-selection);
+}
+
+/* Keyboard focus, site-wide. Drop the UA outline but keep a transparent one so a
+   ring still shows under forced-colors; the box-shadow draws our gap + accent
+   ring (gap on top, accent behind, so the accent reads as a clean band). Kept in
+   the base layer so a `rounded-*` utility on the element still wins and the ring
+   follows the element's larger radius — bare elements get the default 2px corner. */
+@layer base {
+	:focus-visible {
+		outline: var(--focus-ring-width) solid transparent;
+		outline-offset: var(--focus-ring-offset);
+		border-radius: var(--focus-ring-radius);
+		box-shadow:
+			0 0 0 var(--focus-ring-offset) var(--focus-ring-gap),
+			0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--focus-ring-color);
+	}
+}
+
+.dark,
+[data-theme='dark'] {
+	color-scheme: dark;
+	--color-page: oklch(0.178 0 0);
+	--color-border: oklch(0.241 0 0);
+	--color-border-strong: oklch(0.291 0 0);
+	--color-text: oklch(0.878 0 0);
+	--color-text-soft: oklch(0.587 0 0);
+	--color-text-strong: oklch(0.937 0 0);
+	--color-ink: oklch(0.892 0 0);
+	--color-paper: oklch(0.157 0 0);
+	--color-paper-hover: oklch(0.213 0 0);
+	--color-selection: oklch(0.51 0.064 191 / 0.5);
+}
+
+@theme inline {
+	--color-page: var(--color-page);
+	--color-border: var(--color-border);
+	--color-border-strong: var(--color-border-strong);
+	--color-text: var(--color-text);
+	--color-text-soft: var(--color-text-soft);
+	--color-text-strong: var(--color-text-strong);
+	--color-ink: var(--color-ink);
+	--color-paper: var(--color-paper);
+	--color-paper-hover: var(--color-paper-hover);
+	--color-selection: var(--color-selection);
+	--color-accent: var(--color-accent);
+}

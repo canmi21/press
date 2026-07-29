@@ -20,11 +20,11 @@ No uppercase, no spaces, no underscores by default.
 When a language has an established convention of its own, that convention wins for source
 files in that language. The default above applies to everything else in the repo.
 
-| Language | Source file naming | Example |
-| --- | --- | --- |
-| Rust | Underscores, matching the module name | `user_profile.rs` |
-| Python | Underscores, matching the module name | `user_profile.py` |
-| Go | Underscores where a separator is needed | `user_profile.go` |
+| Language | Source file naming                      | Example           |
+| -------- | --------------------------------------- | ----------------- |
+| Rust     | Underscores, matching the module name   | `user_profile.rs` |
+| Python   | Underscores, matching the module name   | `user_profile.py` |
+| Go       | Underscores where a separator is needed | `user_profile.go` |
 
 Rust file naming is independent of crate naming. A crate is still `my-crate` with a hyphen in
 `Cargo.toml`; only its source files use underscores, because a module name is a Rust

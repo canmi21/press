@@ -1,0 +1,9 @@
+{
+	"name": "@canmi/tokens",
+	"private": true,
+	"type": "module",
+	"exports": {
+		"./colors.css": "./src/colors.css",
+		"./fonts.css": "./src/fonts.css"
+	}
+}

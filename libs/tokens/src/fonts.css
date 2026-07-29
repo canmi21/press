@@ -1,0 +1,129 @@
+@font-face {
+	font-family: 'Ioskeley Mono';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('__RES_URL__/fonts/IoskeleyMono-Regular-latin.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+	font-family: 'Ioskeley Mono';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('__RES_URL__/fonts/IoskeleyMono-Regular-latin-ext.woff2') format('woff2');
+	unicode-range:
+		U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+		U+A720-A7FF;
+}
+
+@font-face {
+	font-family: 'Ioskeley Mono';
+	font-style: italic;
+	font-weight: 400;
+	font-display: swap;
+	src: url('__RES_URL__/fonts/IoskeleyMono-Italic-latin.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+	font-family: 'Ioskeley Mono';
+	font-style: italic;
+	font-weight: 400;
+	font-display: swap;
+	src: url('__RES_URL__/fonts/IoskeleyMono-Italic-latin-ext.woff2') format('woff2');
+	unicode-range:
+		U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+		U+A720-A7FF;
+}
+
+@font-face {
+	font-family: 'Ioskeley Mono';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('__RES_URL__/fonts/IoskeleyMono-Bold-latin.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+	font-family: 'Ioskeley Mono';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('__RES_URL__/fonts/IoskeleyMono-Bold-latin-ext.woff2') format('woff2');
+	unicode-range:
+		U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+		U+A720-A7FF;
+}
+
+@font-face {
+	font-family: 'Ioskeley Mono';
+	font-style: italic;
+	font-weight: 700;
+	font-display: swap;
+	src: url('__RES_URL__/fonts/IoskeleyMono-BoldItalic-latin.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+	font-family: 'Ioskeley Mono';
+	font-style: italic;
+	font-weight: 700;
+	font-display: swap;
+	src: url('__RES_URL__/fonts/IoskeleyMono-BoldItalic-latin-ext.woff2') format('woff2');
+	unicode-range:
+		U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+		U+A720-A7FF;
+}
+
+@font-face {
+	font-family: 'HarmonyOS Sans SC';
+	src: local('HarmonyOS Sans SC');
+	size-adjust: 95%;
+}
+
+@font-face {
+	font-family: 'Microsoft YaHei';
+	src: local('Microsoft YaHei');
+	size-adjust: 94%;
+}
+
+@font-face {
+	font-family: 'WenQuanYi Micro Hei';
+	src: local('WenQuanYi Micro Hei');
+	size-adjust: 95%;
+}
+
+body {
+	font-family:
+		'Inter',
+		'PingFang SC',
+		'HarmonyOS Sans SC',
+		'Noto Sans SC',
+		'Microsoft YaHei',
+		'WenQuanYi Micro Hei',
+		ui-sans-serif,
+		system-ui,
+		-apple-system,
+		BlinkMacSystemFont,
+		sans-serif;
+}
+
+code,
+pre {
+	font-family: 'Ioskeley Mono', ui-monospace, monospace;
+}
+
+.font-baskerville {
+	font-family: 'Libre Baskerville', Georgia, serif;
+}

@@ -19,18 +19,18 @@ already makes the area clear.
 
 ## Types
 
-| Type | Use for |
-| --- | --- |
-| `feat` | New user-facing capability |
-| `fix` | Bug fix |
-| `docs` | Documentation only |
-| `refactor` | Behavior-preserving restructure |
-| `perf` | Performance work |
-| `test` | Tests only |
-| `build` | Build system, dependencies, toolchain |
-| `ci` | CI configuration |
-| `chore` | Everything else, including repo bootstrap |
-| `revert` | Reverting a previous commit |
+| Type       | Use for                                   |
+| ---------- | ----------------------------------------- |
+| `feat`     | New user-facing capability                |
+| `fix`      | Bug fix                                   |
+| `docs`     | Documentation only                        |
+| `refactor` | Behavior-preserving restructure           |
+| `perf`     | Performance work                          |
+| `test`     | Tests only                                |
+| `build`    | Build system, dependencies, toolchain     |
+| `ci`       | CI configuration                          |
+| `chore`    | Everything else, including repo bootstrap |
+| `revert`   | Reverting a previous commit               |
 
 ## Subject line
 
