@@ -61,7 +61,7 @@ fixing a malformed message never requires an amend dance.
 
 ## Enforcement
 
-`.claude/hooks/jj-commit.sh` runs before any `jj commit` or `jj describe` and does two
+`.claude/hooks/commit.py` runs before any `jj commit` or `jj describe` and does two
 things: it runs `jj fix` so the content being committed is already formatted, then it checks
 the message. A malformed message is refused with the specific reason, which the agent reads
 and corrects on the spot.

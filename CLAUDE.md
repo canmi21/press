@@ -33,7 +33,8 @@ See [spec/voice.md](spec/voice.md).
 
 **Naming** -- Files and directories are lowercase English, hyphens allowed. A language with
 its own convention wins locally: Rust source files use underscores. Identifiers inside code
-always follow the language's own convention. See [spec/naming.md](spec/naming.md).
+always follow the language's own convention. Vendor names stay at the binding edge -- name a
+module for what it does, not for who supplies it. See [spec/naming.md](spec/naming.md).
 
 **Lint vs format** -- a linter owns semantics, a formatter owns layout. Whatever the formatter
 rewrites, the linter must not report; disable the overlap on the linter side. Holds for every

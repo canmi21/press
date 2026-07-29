@@ -85,7 +85,7 @@ def main() -> int:
 
 	problems = [p for message in messages_in(command) for p in problems_with(message)]
 	if problems:
-		print("Commit message rejected by .claude/hooks/jj-commit.py:\n", file=sys.stderr)
+		print("Commit message rejected by .claude/hooks/commit.py:\n", file=sys.stderr)
 		for problem in problems:
 			print(f"  - {problem}\n", file=sys.stderr)
 		print(

@@ -36,6 +36,41 @@ Some frameworks assign meaning to a filename. Follow the framework -- a renamed 
 stops working. Examples: `Cargo.toml`, `Dockerfile`, `README.md`, `CLAUDE.md`, Next.js
 `[slug]/page.tsx`.
 
+## Vendor names stay at the edge
+
+Name things for what they do, not for who supplies them. A vendor name belongs only in the
+thin layer that binds to that vendor. Everywhere else -- the module names, the directories,
+the types, the functions -- use the objective description of the technology or the function
+being performed.
+
+`apps/cdn` is a CDN whether Cloudflare, Fastly, or a box in a closet serves it. Naming it
+`apps/r2` or `apps/cloudflare` would describe the current bill, not the job.
+
+**Why.** A vendor name scattered through a codebase is a bet that the vendor is permanent,
+and that bet has no upside. When it loses you get the worst of both: either a rename that
+touches every layer, or a name that now lies -- an `r2.ts` that talks to S3. And even while
+the bet is still good, the name carries less information than the alternative, because at
+the point of use you want to know what a module _does_, not who invoices for it.
+
+**Where a vendor name is correct.** Three places, all of them the boundary:
+
+- Files the vendor defines. `wrangler.jsonc` is wrangler's file; renaming it breaks it.
+- Dependency identifiers. `@cloudflare/workers-types` names a real package.
+- The single adapter module that speaks the vendor's protocol and exposes your interface.
+
+**The test.** If the vendor were replaced tomorrow, how many names would have to change?
+One. If the answer is more, the vendor has leaked past the boundary.
+
+This rule and the "name for responsibility" rule in
+[architecture.md](architecture.md) are the same instinct at two scales: the volatile fact --
+product, domain, deployment shape, supplier -- never gets carved into the part that is
+expensive to change.
+
+Worked example from this repo: the commit hook is `.claude/hooks/commit.py`, not
+`jj-commit.py`. Validating a commit message is not a jj-specific job; it would survive a move
+to another VCS untouched. The `jj-` prefix named the current supplier of the commits, which
+is exactly the information the filename did not need.
+
 ## Inside code
 
 Identifiers follow the language's own convention with no interference from this document:
