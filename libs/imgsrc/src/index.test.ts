@@ -143,6 +143,15 @@ describe('imgsrc', () => {
 			);
 		});
 
+		it('rewrites an http GitHub URL, not only https', () => {
+			// Matching on url.origin instead of url.hostname silently passed these through,
+			// because the origin carries the scheme and the URL map stores the https form.
+			const insecure = github.raw.replace('https://', 'http://');
+			expect(imgsrc(`${insecure}/innei/shiro/90ef7b8/apps/web/public/innei-dark.svg`)).toBe(
+				`${github.cdn}/innei/shiro@90ef7b8/apps/web/public/innei-dark.svg`,
+			);
+		});
+
 		it('GitHub raw link rewrites to GitHub CDN', () => {
 			expect(imgsrc(`${github.web}/innei/shiro/raw/main/apps/web/public/innei-dark.svg`)).toBe(
 				`${github.cdn}/innei/shiro@main/apps/web/public/innei-dark.svg`,

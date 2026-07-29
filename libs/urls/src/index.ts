@@ -1,21 +1,22 @@
 export const URLS = {
 	apps: {
 		development: {
-			web: 'http://localhost:26511',
+			site: 'http://localhost:26511',
 			api: 'http://localhost:26512',
 			cdn: 'http://localhost:26516',
 		},
 		production: {
-			web: 'https://canmi.net',
+			site: 'https://canmi.net',
 			api: 'https://api.ffoni.com',
 			cdn: 'https://cdn.ffoni.com',
 		},
 	},
+	// Domains owned here but not built here. `infra` is the apex that api and cdn hang off;
+	// `link` currently redirects to the site rather than serving content of its own.
 	internal: {
 		app: 'https://canmi.app',
-		dev: 'https://canmi.dev',
-		prod: 'https://ffoni.com',
-		ill: 'https://ill.li',
+		infra: 'https://ffoni.com',
+		link: 'https://ill.li',
 	},
 	external: {
 		github: {

@@ -13,18 +13,26 @@ describe('pickUrls', () => {
 
 describe('URLS', () => {
 	it('keeps apps, internal domains, and external endpoints separate', () => {
-		expect(URLS.apps.production).toHaveProperty('web');
+		expect(URLS.apps.production).toHaveProperty('site');
 		expect(URLS.apps.production).toHaveProperty('api');
 		expect(URLS.apps.production).toHaveProperty('cdn');
 		expect(URLS.internal).toHaveProperty('app');
-		expect(URLS.internal).toHaveProperty('dev');
-		expect(URLS.internal).toHaveProperty('prod');
+		expect(URLS.internal).toHaveProperty('infra');
+		expect(URLS.internal).toHaveProperty('link');
 		expect(URLS.external.github).toHaveProperty('cdn');
 	});
 
 	it('does not keep discarded app slots', () => {
 		expect('res' in URLS.apps.production).toBe(false);
 		expect('home' in URLS.apps.production).toBe(false);
+		expect('web' in URLS.apps.production).toBe(false);
+	});
+
+	it('does not keep retired domains', () => {
+		// canmi.dev is not being renewed, and `prod` was renamed to `infra` because it read
+		// as a sibling of apps.production while meaning something unrelated.
+		expect('dev' in URLS.internal).toBe(false);
+		expect('prod' in URLS.internal).toBe(false);
 	});
 });
 

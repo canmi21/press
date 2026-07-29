@@ -1,15 +1,24 @@
-import { isDevHost, pickUrls, URLS } from '@canmi/urls';
+import { pickUrls, URLS } from '@canmi/urls';
 
 const GITHUB_AVATAR_SCHEME = 'github:avatar:';
 const GITHUB_SCHEME = 'github:';
 
 export type Options = {
 	cdnUrl?: string;
+	/**
+	 * Selects the development CDN. Defaults to false, so server and browser always agree.
+	 *
+	 * Do not infer this from `globalThis.location`: that global is absent during SSR and
+	 * present in the browser, so the same image would resolve to the production CDN on the
+	 * server and the local one on the client -- a silent hydration mismatch that only appears
+	 * in development. The caller knows the answer, so the caller passes it. In SvelteKit that
+	 * is `dev` from `$app/environment`.
+	 */
 	isDev?: boolean;
 };
 
 export function imgsrc(input: string, opts: Options = {}): string {
-	const cdnUrl = opts.cdnUrl ?? pickUrls(opts.isDev ?? isCurrentDevHost()).cdn;
+	const cdnUrl = opts.cdnUrl ?? pickUrls(opts.isDev ?? false).cdn;
 
 	if (input.startsWith('data:')) return input;
 	if (input.startsWith(GITHUB_AVATAR_SCHEME)) return resolveGithubAvatar(input, cdnUrl);
@@ -18,9 +27,11 @@ export function imgsrc(input: string, opts: Options = {}): string {
 	return `${cdnUrl}/image/${input}`;
 }
 
-function isCurrentDevHost(): boolean {
-	const location = (globalThis as { location?: { hostname?: string } }).location;
-	return typeof location?.hostname === 'string' && isDevHost(location.hostname);
+// Match on hostname rather than origin: the input is whatever a user pasted, and an
+// `http://` GitHub link points at the same host as its `https://` form. Comparing origins
+// would silently pass those through unrewritten.
+function hostOf(url: string): string {
+	return new URL(url).hostname;
 }
 
 function hasWebScheme(input: string): boolean {
@@ -73,7 +84,7 @@ function rewriteIfKnown(input: string, cdnUrl: string): string {
 		return input;
 	}
 
-	if (url.origin === URLS.external.github.avatars) {
+	if (url.hostname === hostOf(URLS.external.github.avatars)) {
 		const match = url.pathname.match(/^\/u\/(\d+)/);
 		if (match) {
 			const size = url.searchParams.get('s');
@@ -82,7 +93,7 @@ function rewriteIfKnown(input: string, cdnUrl: string): string {
 		}
 	}
 
-	if (url.origin === URLS.external.github.raw) {
+	if (url.hostname === hostOf(URLS.external.github.raw)) {
 		const parts = url.pathname.split('/').filter(Boolean);
 		if (parts.length >= 4) {
 			const [owner, repo, ref, ...pathBits] = parts;
@@ -90,7 +101,7 @@ function rewriteIfKnown(input: string, cdnUrl: string): string {
 		}
 	}
 
-	if (url.origin === URLS.external.github.web) {
+	if (url.hostname === hostOf(URLS.external.github.web)) {
 		const parts = url.pathname.split('/').filter(Boolean);
 		if (parts.length >= 5 && (parts[2] === 'raw' || parts[2] === 'blob')) {
 			const [owner, repo, , ref, ...pathBits] = parts;
