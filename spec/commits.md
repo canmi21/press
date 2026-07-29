@@ -58,3 +58,26 @@ jj commit -m "feat: add token refresh"     # describe, then start a new change
 
 In jj a message is not frozen at commit time -- `jj describe` rewrites it at any point, so
 fixing a malformed message never requires an amend dance.
+
+## Enforcement
+
+`.claude/hooks/jj-commit.sh` runs before any `jj commit` or `jj describe` and does two
+things: it runs `jj fix` so the content being committed is already formatted, then it checks
+the message. A malformed message is refused with the specific reason, which the agent reads
+and corrects on the spot.
+
+The hook lives at the agent-harness layer rather than in jj, because jj offers no hook point
+at all: it has no commit hook, and it explicitly refuses aliases that shadow built-in
+commands (verified -- `jj` prints `Cannot define an alias that overrides the built-in
+command 'commit'`). The moment a message is written is inside the agent's tool call, so that
+is where the check has to sit.
+
+What this does not cover, and why the rules above still have to be read rather than merely
+enforced:
+
+- Only Claude Code. Codex, opencode, and any other harness need their own equivalent.
+- Only the `-m` form. `jj commit` with no message opens an editor, which the hook cannot see.
+- Not a human typing in a terminal.
+
+Enforcement is a fast feedback loop, not a fence. The rules hold whether or not something is
+watching.

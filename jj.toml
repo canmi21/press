@@ -11,18 +11,18 @@
 [fix.tools.oxfmt]
 command = ["oxfmt", "--stdin-filepath=$path"]
 patterns = [
-  "glob:'**/*.ts'",
-  "glob:'**/*.tsx'",
-  "glob:'**/*.mts'",
-  "glob:'**/*.cts'",
-  "glob:'**/*.js'",
-  "glob:'**/*.mjs'",
-  "glob:'**/*.cjs'",
-  "glob:'**/*.jsx'",
-  "glob:'**/*.css'",
-  "glob:'**/*.json'",
-  "glob:'**/*.jsonc'",
-  "glob:'**/*.md'",
+	"glob:'**/*.ts'",
+	"glob:'**/*.tsx'",
+	"glob:'**/*.mts'",
+	"glob:'**/*.cts'",
+	"glob:'**/*.js'",
+	"glob:'**/*.mjs'",
+	"glob:'**/*.cjs'",
+	"glob:'**/*.jsx'",
+	"glob:'**/*.css'",
+	"glob:'**/*.json'",
+	"glob:'**/*.jsonc'",
+	"glob:'**/*.md'",
 ]
 
 [fix.tools.rustfmt]

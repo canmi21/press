@@ -19,6 +19,21 @@ re-triggers the formatter. Deleting the overlap is the only stable arrangement.
 
 All four are installed and versioned by mise; see [toolchain.md](toolchain.md).
 
+## Formatting is applied, never negotiated
+
+Formatting is written, not checked. `jj fix` pipes changed files through oxfmt and rustfmt
+and rewrites the revisions in place -- history included, not just the working copy. There is
+no "check formatting" step to pass and nothing for an agent to decide.
+
+So: **never hand-format, never argue with the formatter, never turn a rule off to make a
+file pass.** If the formatter and the linter want different bytes, that is a broken
+configuration, not a judgement call. Fix the config and record why, per the section below.
+An agent that finds itself reasoning about whitespace has already gone wrong.
+
+Because `jj fix` repairs history rather than guarding a commit, formatting can never be
+"too late" here. A badly formatted commit from last week is one `jj fix -s` away from
+correct.
+
 ## Baseline
 
 Start from each tool's own default configuration. Deviate only to resolve a real conflict or
