@@ -85,6 +85,27 @@ Which domain an app answers on is not stable. That mapping belongs in a typed ma
 library, where changing it is a one-line edit instead of a rename plus every import plus the
 workspace globs.
 
+### Every URL is declared once
+
+`libs/urls` is the only place a URL, hostname, or dev port may be written down. Everything
+else imports from it. This covers third-party endpoints too, not just our own hosts -- a CDN
+we forward images through is as much a URL as a domain we own.
+
+Nothing outside that library may contain a literal `http://`, `https://`, `localhost:`, or a
+bare hostname. Not app code, not a library, not a stylesheet, not a spec document.
+
+The measure this exists to protect: **moving a domain costs one edit to one file.** Every
+literal written elsewhere adds one more place that has to be found, and the ones that get
+missed do not fail loudly -- they keep resolving to the old host until someone notices the
+traffic. This has already happened here once: a `cdn.canmi.net` literal survived inside a
+library long after that host stopped being part of the URL map, invisible because nothing
+referenced it by name.
+
+Colors follow the same shape at a smaller scale: OKLCH values are declared in
+`libs/tokens` and consumed by name. The rule covers the design system that the site's own UI
+and theme are built from; a palette mirrored from an external convention keeps whatever
+format that convention ships.
+
 ## Data
 
 `data/` holds photos and other binary assets. It sits in the tree so agents and local tools

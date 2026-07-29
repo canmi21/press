@@ -1,5 +1,5 @@
 {
-	"name": "@canmi/canvas",
+	"name": "@canmi/claude-svg",
 	"private": true,
 	"type": "module",
 	"exports": {
