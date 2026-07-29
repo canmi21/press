@@ -6,7 +6,7 @@ export const URLS = {
 		home: 'http://localhost:26518',
 		app: 'https://canmi.app',
 		dev: 'https://canmi.dev',
-		prod: 'https://ffoni.com'
+		prod: 'https://ffoni.com',
 	},
 	production: {
 		web: 'https://canmi.net',
@@ -15,8 +15,8 @@ export const URLS = {
 		home: 'https://ill.li',
 		app: 'https://canmi.app',
 		dev: 'https://canmi.dev',
-		prod: 'https://ffoni.com'
-	}
+		prod: 'https://ffoni.com',
+	},
 } as const;
 
 export type AppName = keyof typeof URLS.development;

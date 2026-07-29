@@ -27,8 +27,18 @@
 		// rewrites U+00A0 to a plain space on its own, which makes this rule pure
 		// duplication. See spec/lint-format.md.
 		"no-irregular-whitespace": "off",
-		"unicorn/require-module-specifiers": "off",
-		"import/no-unassigned-import": "off"
+
+		// Side-effect imports are load-bearing here: `import '@canmi/tokens/colors.css'`
+		// is how every app pulls in styles. Verified: with this rule on, oxlint reports
+		// each one of them. Turning it off is not a preference, it is required by the
+		// Vite + Tailwind setup.
+		"import/no-unassigned-import": "off",
+
+		// Redundant rather than wrong. Verified: with this off, `import {} from './x'`
+		// is still caught by import/no-empty-named-blocks, which is active. Two rules
+		// reporting one defect is the same duplication problem as lint overlapping fmt,
+		// so the narrower one stays off. See spec/lint-format.md.
+		"unicorn/require-module-specifiers": "off"
 	},
 	"env": {
 		"builtin": true

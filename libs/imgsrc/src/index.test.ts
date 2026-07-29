@@ -38,19 +38,19 @@ describe('imgsrc', () => {
 	describe('github: scheme → jsdelivr', () => {
 		it('without @ref uses default branch', () => {
 			expect(imgsrc('github:innei/shiro/apps/web/public/innei-dark.svg')).toBe(
-				'https://cdn.jsdelivr.net/gh/innei/shiro/apps/web/public/innei-dark.svg'
+				'https://cdn.jsdelivr.net/gh/innei/shiro/apps/web/public/innei-dark.svg',
 			);
 		});
 
 		it('with @ref pins the commit', () => {
 			expect(imgsrc('github:innei/shiro/apps/web/public/innei-dark.svg@90ef7b8')).toBe(
-				'https://cdn.jsdelivr.net/gh/innei/shiro@90ef7b8/apps/web/public/innei-dark.svg'
+				'https://cdn.jsdelivr.net/gh/innei/shiro@90ef7b8/apps/web/public/innei-dark.svg',
 			);
 		});
 
 		it('with @ref accepts branch names', () => {
 			expect(imgsrc('github:innei/shiro/icon.svg@main')).toBe(
-				'https://cdn.jsdelivr.net/gh/innei/shiro@main/icon.svg'
+				'https://cdn.jsdelivr.net/gh/innei/shiro@main/icon.svg',
 			);
 		});
 
@@ -67,7 +67,7 @@ describe('imgsrc', () => {
 
 		it('numeric id with @size', () => {
 			expect(imgsrc('github:avatar:72544151@192')).toBe(
-				'https://cdn.ffoni.com/github/avatar/72544151?width=192'
+				'https://cdn.ffoni.com/github/avatar/72544151?width=192',
 			);
 		});
 
@@ -77,13 +77,13 @@ describe('imgsrc', () => {
 
 		it('username with @size', () => {
 			expect(imgsrc('github:avatar:@canmi21@192')).toBe(
-				'https://cdn.ffoni.com/github/avatar/canmi21?width=192'
+				'https://cdn.ffoni.com/github/avatar/canmi21?width=192',
 			);
 		});
 
 		it('respects custom resUrl', () => {
 			expect(imgsrc('github:avatar:72544151@192', { resUrl: 'http://localhost:26516' })).toBe(
-				'http://localhost:26516/github/avatar/72544151?width=192'
+				'http://localhost:26516/github/avatar/72544151?width=192',
 			);
 		});
 
@@ -103,47 +103,47 @@ describe('imgsrc', () => {
 	describe('plain url rewrite for known github surfaces', () => {
 		it('avatars.githubusercontent.com → res /github/avatar/<id>', () => {
 			expect(imgsrc('https://avatars.githubusercontent.com/u/72544151?v=4')).toBe(
-				'https://cdn.ffoni.com/github/avatar/72544151'
+				'https://cdn.ffoni.com/github/avatar/72544151',
 			);
 		});
 
 		it('avatars URL respects custom resUrl', () => {
 			expect(
 				imgsrc('https://avatars.githubusercontent.com/u/72544151', {
-					resUrl: 'http://localhost:26516'
-				})
+					resUrl: 'http://localhost:26516',
+				}),
 			).toBe('http://localhost:26516/github/avatar/72544151');
 		});
 
 		it('avatars URL preserves ?s=N as ?width=N', () => {
 			expect(imgsrc('https://avatars.githubusercontent.com/u/72544151?s=192')).toBe(
-				'https://cdn.ffoni.com/github/avatar/72544151?width=192'
+				'https://cdn.ffoni.com/github/avatar/72544151?width=192',
 			);
 		});
 
 		it('avatars URL drops other query params but keeps ?s=N', () => {
 			expect(imgsrc('https://avatars.githubusercontent.com/u/72544151?v=4&s=64')).toBe(
-				'https://cdn.ffoni.com/github/avatar/72544151?width=64'
+				'https://cdn.ffoni.com/github/avatar/72544151?width=64',
 			);
 		});
 
 		it('raw.githubusercontent.com → jsdelivr', () => {
 			expect(
 				imgsrc(
-					'https://raw.githubusercontent.com/innei/shiro/90ef7b8/apps/web/public/innei-dark.svg'
-				)
+					'https://raw.githubusercontent.com/innei/shiro/90ef7b8/apps/web/public/innei-dark.svg',
+				),
 			).toBe('https://cdn.jsdelivr.net/gh/innei/shiro@90ef7b8/apps/web/public/innei-dark.svg');
 		});
 
 		it('github.com /raw/ link → jsdelivr', () => {
 			expect(imgsrc('https://github.com/innei/shiro/raw/main/apps/web/public/innei-dark.svg')).toBe(
-				'https://cdn.jsdelivr.net/gh/innei/shiro@main/apps/web/public/innei-dark.svg'
+				'https://cdn.jsdelivr.net/gh/innei/shiro@main/apps/web/public/innei-dark.svg',
 			);
 		});
 
 		it('github.com /blob/ link → jsdelivr', () => {
 			expect(
-				imgsrc('https://github.com/innei/shiro/blob/main/apps/web/public/innei-dark.svg')
+				imgsrc('https://github.com/innei/shiro/blob/main/apps/web/public/innei-dark.svg'),
 			).toBe('https://cdn.jsdelivr.net/gh/innei/shiro@main/apps/web/public/innei-dark.svg');
 		});
 
