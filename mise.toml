@@ -18,8 +18,8 @@ description = "Lint the workspace"
 run = "oxlint ."
 
 [tasks.verify]
-description = "Everything a change has to pass: types, lint, tests"
-depends = ["check", "lint", "test"]
+description = "Everything a change has to pass: types, lint, tests, cross-references"
+depends = ["check", "lint", "test", "links"]
 
 [tools]
 node = "latest"

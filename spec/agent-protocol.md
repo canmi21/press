@@ -17,6 +17,32 @@ The test for a spec sentence: if someone changed the code, would this sentence n
 If yes, it is describing implementation and belongs in a comment next to that code. If it
 would still be true, it is a decision and belongs here.
 
+## One fact, one home, linked from everywhere else
+
+Nothing is written down twice. Every fact has exactly one home, and everything that needs it
+links there.
+
+| Layer         | Holds                     | Points at                        |
+| ------------- | ------------------------- | -------------------------------- |
+| `CLAUDE.md`   | one line per topic        | the full `spec/*.md`             |
+| `spec/*.md`   | the decision and why      | the code file that implements it |
+| code comments | why this line is this way | back to `spec/*.md` for the rule |
+
+Spec and code are not two descriptions of one thing -- they are **one description with two
+halves**. Spec holds the decision, code holds the implementation, and each names the other so a
+reader can cross the gap in one hop. A spec file that restates what the code does will drift
+away from it; a code comment that re-argues a decision makes the decision editable in two
+places, and then it is editable in neither.
+
+When you catch yourself writing something that already exists elsewhere, delete it and link
+instead. The duplicate is not redundancy, it is a second thing to keep in sync, and it will
+lose sync.
+
+`mise run links` checks that the links resolve -- markdown links in docs, and `spec/*.md`
+citations in code. It is part of `mise run verify`, because a reference that points nowhere
+fails silently: nothing breaks, the reader just follows a dead path. It deliberately ignores
+path-shaped strings in prose, since the rules use invented names as examples on purpose.
+
 Spec exists to be the place an argument gets settled. When code, an agent, or a later opinion
 disagrees about how something should work, this is the reference that decides it -- which only
 works if it carries the _why_. A rule with no recorded reason loses every argument against a

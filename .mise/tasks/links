@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+#MISE description="Check that every spec <-> code cross-reference resolves"
+"""Validate the cross-reference graph between spec/ and the code.
+
+Two things are checked, chosen because both are objective. A markdown link that points at a
+missing file is always a defect, and so is a code comment citing a spec file that does not
+exist. Both break silently on rename -- nothing fails, the reader just follows a dead path.
+
+Deliberately NOT checked: path-shaped strings in prose. The rules use invented names as
+examples on purpose (`apps/r2`, `user-profile.ts`, `libs/canvas` as a name that was rejected),
+and a check that flags those would be wrong far more often than right. Illustrations stay in
+inline code; real references are markdown links, which is what makes them checkable.
+
+Run with --json to emit the pair graph instead of validating; the commit hook uses that to
+notice when one side of a pair moved without the other.
+"""
+
+import json
+import pathlib
+import re
+import sys
+
+ROOT = pathlib.Path(__file__).resolve().parents[2]
+DOC_GLOBS = ("spec/*.md", "CLAUDE.md")
+CODE_SUFFIXES = {".ts", ".py", ".css", ".toml", ".json", ".jsonc", ".yaml", ".yml"}
+SKIP_DIRS = {"node_modules", ".jj", ".git", "dist", "build", "target", "data"}
+
+MD_LINK = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
+SPEC_REF = re.compile(r"spec/[a-z-]+\.md")
+
+
+def docs() -> list[pathlib.Path]:
+	found: list[pathlib.Path] = []
+	for pattern in DOC_GLOBS:
+		found.extend(sorted(ROOT.glob(pattern)))
+	return found
+
+
+def code_files() -> list[pathlib.Path]:
+	return [
+		p
+		for p in ROOT.rglob("*")
+		if p.is_file() and p.suffix in CODE_SUFFIXES and not SKIP_DIRS & set(p.parts)
+	]
+
+
+def read(path: pathlib.Path) -> str:
+	try:
+		return path.read_text()
+	except (OSError, UnicodeDecodeError):
+		return ""
+
+
+def dead_doc_links() -> list[str]:
+	dead = []
+	for doc in docs():
+		for match in MD_LINK.finditer(read(doc)):
+			target = match.group(1)
+			if target.startswith(("http://", "https://", "#", "mailto:")):
+				continue
+			if not (doc.parent / target.split("#")[0]).exists():
+				dead.append(f"{doc.relative_to(ROOT)} -> {target}")
+	return dead
+
+
+def pair_graph() -> dict[str, list[str]]:
+	"""spec file -> the code files that cite it."""
+	graph: dict[str, list[str]] = {}
+	for path in code_files():
+		rel = str(path.relative_to(ROOT))
+		for spec in sorted(set(SPEC_REF.findall(read(path)))):
+			graph.setdefault(spec, []).append(rel)
+	return graph
+
+
+def main() -> int:
+	graph = pair_graph()
+
+	if "--json" in sys.argv:
+		print(json.dumps(graph))
+		return 0
+
+	problems = [f"dead link: {d}" for d in dead_doc_links()]
+	problems += [
+		f"missing spec cited by {cited}: {spec}"
+		for spec, cited in sorted(graph.items())
+		if not (ROOT / spec).exists()
+		for cited in [", ".join(cited)]
+	]
+
+	if problems:
+		print("Cross-reference check failed:\n", file=sys.stderr)
+		for problem in problems:
+			print(f"  {problem}", file=sys.stderr)
+		return 1
+
+	linked = sum(len(v) for v in graph.values())
+	print(f"cross-references OK: {len(docs())} docs, {linked} code -> spec citations")
+	return 0
+
+
+if __name__ == "__main__":
+	sys.exit(main())

@@ -12,6 +12,12 @@ and a gate that fires on false positives gets worked around rather than heeded. 
 whether a decision was made is the agent's job -- this only makes sure the question is asked
 while the reasoning is still in context.
 
+A narrower signal was tried here and cut. Pairing each changed file with the spec files its
+comments cite looks sharper, but it fires on every edit to any file that merely mentions a
+rule for background -- which is most edits. Citation is not co-evolution. The pair graph is
+still built, in .mise/tasks/links, where it backs a check that has no false positives at all:
+a reference pointing at a file that does not exist is unambiguously broken.
+
 Dependencies are limited to the standard library, for the reason given in spec/toolchain.md.
 """
 
@@ -51,25 +57,25 @@ def main() -> int:
 	if not paths:
 		return 0
 
-	touched_rules = any(p.startswith(RULE_PATHS) for p in paths)
-	if touched_rules:
+	if any(p.startswith(RULE_PATHS) for p in paths):
 		return 0
+
+	lines = [
+		f"Committed `{subject.strip()}` without touching spec/ or CLAUDE.md.",
+		"If this change settled a question -- chose one option over another, accepted a "
+		"tradeoff, added a tool, established a convention -- record the decision and its "
+		"reasoning now, while it is still in context. Put it in the commit itself rather than a "
+		"follow-up, so the rule and the change it came from stay together. If it settled "
+		"nothing, say so briefly and move on. spec/agent-protocol.md defines what belongs in "
+		"spec and what belongs in a code comment instead.",
+	]
 
 	print(
 		json.dumps(
 			{
 				"hookSpecificOutput": {
 					"hookEventName": "PostToolUse",
-					"additionalContext": (
-						f"Just committed `{subject.strip()}` without touching spec/ or CLAUDE.md.\n"
-						f"If this change settled a question -- picked one option over another, "
-						f"accepted a tradeoff, added a tool, or established a convention -- record "
-						f"the decision and its reasoning now, while it is still in context. "
-						f"Amend the same commit with `jj describe` or add to it directly; a "
-						f"follow-up commit separates the rule from the change it came from.\n"
-						f"If it settled nothing, say so briefly and move on. See "
-						f"spec/agent-protocol.md for what belongs in spec and what does not."
-					),
+					"additionalContext": "\n".join(lines),
 				}
 			}
 		)
