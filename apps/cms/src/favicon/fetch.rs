@@ -4,9 +4,14 @@ use std::sync::OnceLock;
 use std::time::Duration;
 
 const TIMEOUT: Duration = Duration::from_secs(5);
-/// Only the head is ever read, and a page that buries its icon links past this is
-/// misconfigured. The cap matters because some sites stream megabytes of inlined markup.
-const HTML_LIMIT: usize = 100_000;
+/// How much of a page is parsed. Only the head is ever read, and a page that buries its icon
+/// links past this is misconfigured.
+const HTML_PARSE_LIMIT: usize = 100_000;
+/// How much is read off the wire before giving up. Separate from the parse limit because
+/// ureq's `limit` *rejects* an oversized body rather than truncating it, so using the parse
+/// limit here discards every page larger than it -- which is how GitHub's homepage silently
+/// fell through to /favicon.ico and lost its dark variant.
+const HTML_READ_LIMIT: usize = 5_000_000;
 /// Generous for an icon; the point is to refuse a mislabelled video, not to be strict.
 const ICON_LIMIT: usize = 2_000_000;
 
@@ -40,12 +45,25 @@ pub fn html(domain: &str) -> Option<String> {
 	if !content_type.to_lowercase().contains("text/html") {
 		return None;
 	}
-	response
+	let body = response
 		.body_mut()
 		.with_config()
-		.limit(HTML_LIMIT as u64)
+		.limit(HTML_READ_LIMIT as u64)
 		.read_to_string()
-		.ok()
+		.ok()?;
+	Some(truncate_on_char_boundary(body, HTML_PARSE_LIMIT))
+}
+
+fn truncate_on_char_boundary(mut body: String, limit: usize) -> String {
+	if body.len() <= limit {
+		return body;
+	}
+	let mut end = limit;
+	while end > 0 && !body.is_char_boundary(end) {
+		end -= 1;
+	}
+	body.truncate(end);
+	body
 }
 
 pub fn bytes(url: &str) -> Option<Fetched> {
@@ -172,6 +190,29 @@ mod tests {
 			"application/octet-stream"
 		);
 		assert_eq!(extension_for("application/octet-stream"), None);
+	}
+
+	#[test]
+	fn truncates_a_long_body_instead_of_discarding_it() {
+		// ureq's own limit rejects rather than truncates. Relying on it dropped every page
+		// over the limit, which is how GitHub's homepage lost its dark icon.
+		let body = "a".repeat(200);
+		assert_eq!(truncate_on_char_boundary(body, 100).len(), 100);
+	}
+
+	#[test]
+	fn never_splits_a_multibyte_character() {
+		// Cutting at a fixed byte offset in the middle of a character would panic on
+		// truncate; a page of CJK text hits this immediately.
+		let body = "中".repeat(10); // 3 bytes each
+		let out = truncate_on_char_boundary(body, 10);
+		assert_eq!(out.chars().count(), 3);
+		assert_eq!(out.len(), 9);
+	}
+
+	#[test]
+	fn leaves_a_short_body_alone() {
+		assert_eq!(truncate_on_char_boundary("short".into(), 100), "short");
 	}
 
 	#[test]

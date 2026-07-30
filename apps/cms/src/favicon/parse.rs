@@ -14,14 +14,6 @@ pub enum Tone {
 }
 
 impl Tone {
-	pub fn parse(raw: &str) -> Option<Self> {
-		match raw {
-			"dark" => Some(Self::Dark),
-			"light" => Some(Self::Light),
-			_ => None,
-		}
-	}
-
 	pub fn suffix(self) -> &'static str {
 		match self {
 			Self::Dark => "dark",
@@ -60,7 +52,7 @@ pub fn parse_head(html: &str) -> Head {
 	for element in document.select(selector("link")) {
 		let attrs = element.value();
 		let rel = attrs.attr("rel").unwrap_or_default().to_lowercase();
-		if !rel.contains("icon") {
+		if !rel.contains("icon") || is_not_a_favicon(&rel) {
 			continue;
 		}
 		let Some(href) = attrs.attr("href").filter(|h| !h.is_empty()) else {
@@ -102,6 +94,18 @@ pub fn max_declared_size(sizes: Option<&str>) -> Option<u32> {
 		.captures_iter(sizes)
 		.filter_map(|c| c[1].parse::<u32>().ok())
 		.max()
+}
+
+/// Rels that contain the word "icon" but are not the site's favicon.
+///
+/// `mask-icon` is Safari's pinned-tab silhouette: monochrome by definition, and picked over
+/// the real icon by any rule that prefers vectors. `fluid-icon` is a desktop-app icon. Both
+/// are the wrong picture, and both are common enough that GitHub ships them side by side with
+/// its actual favicon.
+fn is_not_a_favicon(rel: &str) -> bool {
+	rel
+		.split_whitespace()
+		.any(|part| part == "mask-icon" || part == "fluid-icon")
 }
 
 fn is_svg(link: &IconLink) -> bool {
@@ -258,6 +262,26 @@ mod tests {
 		</head>"#;
 		let hrefs: Vec<_> = parse_head(html).links.into_iter().map(|l| l.href).collect();
 		assert_eq!(hrefs, vec!["/a.ico", "/b.png"]);
+	}
+
+	#[test]
+	fn rejects_rels_that_merely_contain_the_word_icon() {
+		// GitHub ships all three side by side. mask-icon is a monochrome silhouette and
+		// happens to be SVG, so a rule that prefers vectors picks it over the real favicon.
+		let html = r##"<head>
+			<link rel="fluid-icon" href="/fluidicon.png">
+			<link rel="mask-icon" href="/pinned.svg" color="#000">
+			<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+		</head>"##;
+		let hrefs: Vec<_> = parse_head(html).links.into_iter().map(|l| l.href).collect();
+		assert_eq!(hrefs, vec!["/favicon.svg"]);
+	}
+
+	#[test]
+	fn keeps_apple_touch_icon() {
+		// Unlike mask-icon this is a real, full-colour icon and worth having as a fallback.
+		let html = r#"<head><link rel="apple-touch-icon" href="/a.png"></head>"#;
+		assert_eq!(parse_head(html).links.len(), 1);
 	}
 
 	#[test]
