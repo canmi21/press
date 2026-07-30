@@ -15,6 +15,7 @@
 
 	"observability": { "logs": { "enabled": true } },
 	"placement": { "mode": "smart" },
+	// Custom domains only; see apps/cdn for the reasoning.
 	"workers_dev": false,
 	"preview_urls": false,
 }

@@ -66,18 +66,23 @@ including for the sops you would use to repair it. Call sops by absolute path wh
 runs first in `verify` because it is the only check there guarding something irreversible: a
 plaintext credential reaching the remote is not undone by deleting the file.
 
-## Workers are checked before they are promoted
+## Workers answer on custom domains only
 
-A worker gets `preview_urls` when everything it serves is public anyway, so a version can be
-uploaded, opened, and verified before it takes the custom domain. Without it a deploy is the
-first moment the code meets production, which is a poor time to discover a wrong binding.
+`workers_dev` and `preview_urls` are off everywhere. Every generated hostname is another route
+to the same worker, reached without whatever sits in front of the custom domain, and nobody
+watches those addresses.
 
-A worker that can reach anything private keeps them off, because a preview URL is a second
-route to the same code that no custom-domain protection sits in front of.
+The cost is real and accepted: there is no URL to open between uploading a version and
+promoting it, so a deploy is the first time the code meets production. What replaces that
+check is `wrangler dev`, which runs the same code against the same bindings, plus the fact
+that a worker with no route configured serves nothing until a domain is pointed at it by
+hand.
 
-Deploying over an existing worker of the same name replaces it in place and keeps its routes
-and custom domains attached, so replacing one is not a matter of deleting it first. Nothing is
-deleted until the thing meant to supersede it has been verified serving real traffic.
+That last point is what makes replacing a worker safe. A first deploy under a new name is
+inert -- it creates the worker and attracts no traffic. Deploying over an existing worker of
+the same name replaces it in place and keeps its routes and custom domains attached, so
+replacing one never requires deleting it first. Nothing is deleted until whatever supersedes
+it has been seen serving real traffic.
 
 ## Dev ports are pinned
 

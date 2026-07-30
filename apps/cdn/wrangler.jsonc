@@ -43,14 +43,8 @@
 
 	"observability": { "logs": { "enabled": true } },
 	"placement": { "mode": "smart" },
+	// Custom domains only. Every generated hostname is another route to the same worker that
+	// nothing in front of the custom domain guards, and one nobody is watching.
 	"workers_dev": false,
-
-	// Per-version preview URLs, so `wrangler versions upload` can be checked before anything
-	// is promoted to the custom domain. Without this a deploy is the first time the code meets
-	// production, which is a poor moment to discover a wrong binding.
-	//
-	// It costs nothing here that the custom domain does not already: every byte this worker
-	// serves is public by construction. A worker holding anything private would weigh this
-	// differently -- see apps/api, where it stays off.
-	"preview_urls": true,
+	"preview_urls": false,
 }
