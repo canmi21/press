@@ -17,6 +17,24 @@ and does not support `\b` word boundaries -- use `perl -pi -e` for word-boundary
 And mise activation is directory-scoped and shell-based, so a command run from a shell
 without mise sees none of the pinned versions.
 
+## Dev ports are pinned
+
+Every dev server binds a fixed port and **fails when that port is taken**. Vite gets
+`strictPort: true`; anything else refuses to fall back. Auto-incrementing to the next free
+port is never acceptable.
+
+The reason is not tidiness. A tool that drifts to the next port starts a second instance
+silently, and a second instance of something that writes to `data/` means two processes
+fetching and overwriting in the same directory. The port collision is the cheapest mutex
+available -- the operating system provides it for free, and it fails loudly at the only moment
+anyone can act on it.
+
+A port both a TypeScript tool and a Rust binary need is declared in `mise.toml` under `[env]`,
+not in `libs/urls`. The single-source rule asks for one place to edit, not one particular
+file, and a TypeScript library cannot be read by a Rust process -- putting a cross-language
+fact there would force the duplication the rule exists to prevent. URLs only the TypeScript
+side resolves still belong in [architecture.md](architecture.md)'s URL map.
+
 ## Version control
 
 jj (Jujutsu), colocated with git -- `.jj` and `.git` sit side by side in the repo root. Use
