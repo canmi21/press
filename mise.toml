@@ -63,7 +63,11 @@ run = "pnpm exec wrangler deploy"
 [tasks.deploy-cdn]
 description = "Deploy the CDN worker"
 dir = "apps/cdn"
-run = "pnpm exec wrangler deploy"
+# `--env=""` names the top-level environment explicitly. Defining any environment at all makes
+# wrangler refuse to guess, and the one it would be guessing between here is production and
+# the dev config that mounts data/public as assets -- picking wrong would upload every file in
+# it alongside the worker.
+run = 'pnpm exec wrangler deploy --env=""'
 
 [tasks.dev-api]
 description = "Run the API worker"
