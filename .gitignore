@@ -1,11 +1,14 @@
 # Everything here is reproducible from source: dependencies, build output,
 # caches, and generated code. Nothing generated is ever committed.
 
-# Data lives in the tree but never in git: photos and other binary assets, synced to R2
-# and backed up to the NAS. The directory itself is tracked so a fresh clone has the
-# mount point. See spec/architecture.md -- backup ignores are NOT these ignores.
-data/*
-!data/.gitkeep
+# Data lives in the tree but never in git. Git holds code; content -- photos, fetched
+# favicons, drafts -- lives here and is mirrored to R2 or backed up separately. Only the
+# empty skeleton is tracked, so a fresh clone has the directories to put things in.
+# See spec/architecture.md; git ignores, sync filters, and backup lists are three
+# different sets and are not to be shared.
+data/**
+!data/**/
+!data/**/.gitkeep
 
 # Dependencies
 node_modules/

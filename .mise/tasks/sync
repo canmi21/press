@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+#MISE description="Mirror data/public to the R2 bucket (dry run unless --live)"
+set -euo pipefail
+
+# The publication gate. Whether a file reaches the internet is decided here and nowhere else.
+#
+# What makes it fail closed is the SOURCE path, not the filter file: rclone is pointed at
+# data/public and can never see anything else under data/. A directory added later --
+# raw originals, exports, scratch -- is excluded because it was never in scope, with no rule
+# needed and none to forget. The filter only drops junk that lands inside data/public itself.
+#
+# Structuring it this way rather than as "sync data/ minus a denylist" is deliberate. The two
+# failure modes are not symmetric: miss a denylist rule and a draft is published silently,
+# with nothing to notice; get this wrong and a file merely fails to appear, which shows up the
+# first time you look for it.
+#
+# `sync` rather than `copy`: the bucket is a mirror, so deleting locally has to delete
+# remotely. That also makes a wrong SOURCE path destructive -- hence the guard below and the
+# dry run by default.
+
+SOURCE="$(cd "$(dirname "$0")/../.." && pwd)/data/public"
+REMOTE="${R2_REMOTE:-}"
+
+if [ ! -d "$SOURCE" ]; then
+	echo "refusing to sync: $SOURCE does not exist" >&2
+	echo "an empty or wrong source would delete the entire bucket" >&2
+	exit 1
+fi
+
+if [ -z "$REMOTE" ]; then
+	echo "set R2_REMOTE to the rclone destination, for example:" >&2
+	echo "  set -gx R2_REMOTE r2:my-bucket" >&2
+	echo "credentials belong in rclone's own config, never in this repo" >&2
+	exit 1
+fi
+
+MODE=(--dry-run)
+if [ "${1:-}" = "--live" ]; then
+	MODE=()
+fi
+
+rclone sync "$SOURCE" "$REMOTE" \
+	--filter-from "$(dirname "$0")/sync.filter" \
+	--track-renames \
+	--progress \
+	"${MODE[@]}"

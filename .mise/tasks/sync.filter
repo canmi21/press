@@ -1,0 +1,14 @@
+# rclone filter for the data/public mirror. Read top to bottom; first match wins.
+#
+# The source is already data/public, so this only has to drop the things that live
+# alongside real content: editor and OS leftovers, and the skeleton marker git needs.
+# Anything not matched here is published.
+
+- .gitkeep
+- .DS_Store
+- ._*
+- .Spotlight-V100/**
+- .Trashes/**
+- Thumbs.db
+- *.tmp
+- *.partial

@@ -134,14 +134,67 @@ file is not the same job as mapping URLs, even though it consumes them.
 
 ## Data
 
-`data/` holds photos and other binary assets. It sits in the tree so agents and local tools
-can reach it, and is excluded from git wholesale; only `.gitkeep` is tracked, so a fresh
-clone still has the mount point. It syncs to R2 and is backed up to the NAS.
+Git holds code. `data/` holds everything else -- photos, fetched favicons, drafts -- and none
+of it is ever committed. Only the empty skeleton is tracked so a fresh clone has somewhere to
+put things.
 
-**Backup ignores are not git ignores, and one file cannot serve both.** The sets overlap on
-build output and caches, which neither wants, but they disagree on exactly the content that
-matters: `data/` is excluded from git and is the most important thing in the backup.
+```
+data/
+  public/   mirrored to R2, 1:1 with the bucket layout
+  draft/    never leaves this machine
+```
 
-Driving backups from `.gitignore` therefore drops every photo, silently. Driving git from the
-backup list commits gigabytes of build output. Each needs its own list; `.gitignore` is git's
-and is not to be reused for anything else.
+**The local directory is the source of truth, not a cache of one.** It is R2 laid out as
+plain files, which is why local development reads it directly rather than emulating R2. The
+bucket is a mirror of `data/public`, and mirroring runs one way: local writes, the cloud
+follows. Nothing in the cloud writes back.
+
+That invariant is what keeps the sync trivial, and it is fragile -- a single worker that
+writes into the mirror would make the cloud authoritative for those bytes and force real
+conflict resolution. Anything the cloud authors (comments, counters, anything a visitor
+produces) gets its own storage, outside the mirror, and is cloud-authoritative there.
+
+**R2 is never publicly accessible.** Every read goes through a worker, so cache headers,
+routing, and access are decided in code rather than by a bucket setting. Public access would
+also be a second, invisible way to reach the same bytes.
+
+### Publication is a path, not a rule
+
+`mise run sync` mirrors `data/public` and nothing else. What makes that safe is the source
+path: rclone is pointed at `data/public` and cannot see the rest of `data/`. A directory added
+later is excluded because it was never in scope -- no rule to write, none to forget.
+
+The alternative, syncing `data/` minus a denylist, fails in the worse direction. Miss a rule
+there and a draft is published silently; miss one here and a file merely fails to appear,
+which is visible the moment you look for it. Between a silent irreversible failure and a loud
+harmless one, the structure should make the loud one the only option.
+
+The mirror uses `sync`, not `copy`, so deleting locally deletes remotely. That makes a wrong
+source path destructive, which is why the task refuses to run without an explicit destination
+and dry-runs unless told `--live`.
+
+### Assets are prepared locally, never in CI
+
+A local build fetches whatever it is missing -- remote favicons, image variants -- and writes
+it into `data/public` for the next sync. A CI build does neither; it compiles what is already
+there.
+
+The split exists because CI has no writable source of truth. If it fetched, the result would
+live only in the deployed artifact, and `data/` would no longer be complete. A reference whose
+asset has not been synced yet degrades to a placeholder at request time rather than failing
+the build -- one missing image is not a reason to block a release.
+
+### Three ignore lists, no sharing
+
+| List   | Question it answers        | Lives in                                     |
+| ------ | -------------------------- | -------------------------------------------- |
+| git    | is this code?              | `.gitignore`                                 |
+| sync   | should the world see this? | the source path of `mise run sync`           |
+| backup | would losing this hurt?    | whatever backs up `data/`, outside this repo |
+
+They disagree on exactly the content that matters. `data/` is git's least wanted and backup's
+most wanted. `data/draft` is worth backing up and must never publish. Build output is unwanted
+by all three.
+
+So no list is ever derived from another. Driving backups from `.gitignore` silently drops
+every photo; driving sync from the backup list publishes the drafts.
