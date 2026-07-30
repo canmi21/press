@@ -47,6 +47,24 @@ run = "cargo test --workspace"
 description = "Lint the Rust crates"
 run = "cargo clippy --workspace --all-targets"
 
+# wrangler is a devDependency of each worker rather than a mise tool, because it participates
+# in the npm resolution model -- so it is never on $PATH and always needs `pnpm exec`. These
+# wrap that, since "which incantation reaches wrangler" is not worth remembering.
+[tasks.cf-login]
+description = "Authenticate wrangler with Cloudflare (interactive)"
+dir = "apps/api"
+run = "pnpm exec wrangler login"
+
+[tasks.deploy-api]
+description = "Deploy the API worker"
+dir = "apps/api"
+run = "pnpm exec wrangler deploy"
+
+[tasks.deploy-cdn]
+description = "Deploy the CDN worker"
+dir = "apps/cdn"
+run = "pnpm exec wrangler deploy"
+
 [tasks.dev-api]
 description = "Run the API worker"
 dir = "apps/api"
