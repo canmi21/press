@@ -72,8 +72,20 @@ commands (verified -- `jj` prints `Cannot define an alias that overrides the bui
 command 'commit'`). The moment a message is written is inside the agent's tool call, so that
 is where the check has to sit.
 
-What this does not cover, and why the rules above still have to be read rather than merely
-enforced:
+`.claude/hooks/spec-check.py` runs _after_ the commit lands and asks the question the diff
+cannot: was a decision made here that nobody wrote down? It fires when a `feat`, `refactor`,
+`build`, or `perf` commit touched no rules, and injects a reminder to record the reasoning
+while it is still in context.
+
+It deliberately does not block. Many commits of those types settle nothing, and a gate that
+fires on false positives gets routed around instead of read. Judging whether a decision was
+actually made is the agent's job; the hook only guarantees the question gets asked at the one
+moment when the answer is still cheap to write -- before the conversation that produced it is
+gone. Bug fixes are excluded on purpose: a fix records its cause at the regression test, not
+in the rules.
+
+What all of this does not cover, and why the rules above still have to be read rather than
+merely enforced:
 
 - Only Claude Code. Codex, opencode, and any other harness need their own equivalent.
 - Only the `-m` form. `jj commit` with no message opens an editor, which the hook cannot see.

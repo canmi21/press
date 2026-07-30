@@ -3,6 +3,26 @@
 How an agent operates in this repo: how to start, who decides what, and how to keep this
 ruleset trustworthy over time.
 
+## What spec is for
+
+`spec/` records **decisions and the reasoning behind them**. It is not documentation of the
+code, and it does not restate implementation.
+
+- **Write down**: what was decided, why, what the alternative was, and what it costs. Anything
+  a future reader could not recover by reading the source.
+- **Leave out**: how a function is written, what a config file currently contains, anything
+  the code already states plainly. Point at the file instead of copying it.
+
+The test for a spec sentence: if someone changed the code, would this sentence need editing?
+If yes, it is describing implementation and belongs in a comment next to that code. If it
+would still be true, it is a decision and belongs here.
+
+Spec exists to be the place an argument gets settled. When code, an agent, or a later opinion
+disagrees about how something should work, this is the reference that decides it -- which only
+works if it carries the _why_. A rule with no recorded reason loses every argument against a
+plausible-sounding alternative, because nobody can tell whether it was considered or just
+inherited.
+
 ## Cold start
 
 Starting a conversation with no context about this project:

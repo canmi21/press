@@ -1,0 +1,53 @@
+# Code conventions
+
+## Type checking is not optional
+
+`tsconfig.json` runs `strict` plus `noUncheckedIndexedAccess`. Both are deliberate, and the
+second one is the expensive one, so it needs its reason on the record.
+
+`noUncheckedIndexedAccess` makes every array index and every destructured element
+`T | undefined`. That is annoying exactly where code is doing something unproven, which is the
+point. When it was first switched on here it immediately found three places where a length
+check and a destructure sat next to each other with nothing connecting them, plus a narrowing
+bug where `Array.isArray` left a `readonly` array unnarrowed in the false branch -- all in code
+that passed its whole test suite.
+
+The rule it implies: **guard against the values the code uses, not against a count.**
+`if (parts.length >= 5)` proves nothing to a reader or a compiler about `parts[3]`. Destructure
+first, then guard on the names. Never reach for `!` or a cast to silence this class of error --
+the error is describing a real gap, and silencing it keeps the gap while removing the warning.
+
+## Tests
+
+Colocated with source as `src/*.test.ts`, run by vitest from the repo root.
+
+Test the decisions, not the syntax. What earns a test here: the branch that used to be wrong,
+the input shape that comes from outside, the invariant that a future refactor could quietly
+break. A test that restates the implementation line by line only makes the implementation
+harder to change.
+
+When a bug is found, the fix and a test that would have caught it land together, with the
+cause noted at the assertion. A regression test whose reason is not written down gets deleted
+by whoever next finds it confusing.
+
+## Nothing is committed unverified
+
+`mise run verify` -- types, lint, tests -- passes before a commit is made. The commit hook
+formats automatically, so formatting is never the thing that fails; what is left are the three
+checks that a human or an agent can actually get wrong.
+
+This exists because both of the other guarantees are weaker than they look. Tests only cover
+what someone thought to test, and the type checker only sees what it is pointed at. Running
+them is the cheap part; the expensive part is discovering months later which commit broke
+something that nothing was watching.
+
+## Comments
+
+A comment explains a **why** that the code cannot state: the alternative that was rejected, the
+constraint from outside, the trap that looks like a bug but is not. Never restate what the
+line does.
+
+The specific comment worth writing more often than feels natural: the one next to a value that
+looks arbitrary. A config number, a strictness flag, a rule turned off. Those are the ones a
+future reader will "clean up" unless the reason is sitting right there. Larger decisions go in
+`spec/` instead -- see [agent-protocol.md](agent-protocol.md) for which is which.

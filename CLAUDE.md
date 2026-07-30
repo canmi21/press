@@ -79,4 +79,5 @@ of truth.
 | Commit conventions                        | [spec/commits.md](spec/commits.md)               |
 | Naming conventions                        | [spec/naming.md](spec/naming.md)                 |
 | Linting and formatting                    | [spec/lint-format.md](spec/lint-format.md)       |
+| Type checking, tests, comments            | [spec/code.md](spec/code.md)                     |
 | Toolchain and default stacks              | [spec/toolchain.md](spec/toolchain.md)           |
