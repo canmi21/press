@@ -5,6 +5,17 @@ packages:
   - libs/*
   - apps/*
 
+# A package listed here may run arbitrary code during install. pnpm blocks that by default,
+# and the default is right -- an install script is the shortest path from a compromised
+# package to a compromised machine, and it runs before anybody reads a line of the code.
+#
+# These two are allowed because they cannot work otherwise: both ship a platform-specific
+# native binary that the install step fetches and unpacks. Nothing goes in this list to make a
+# warning go away.
+allowBuilds:
+  esbuild: true
+  workerd: true
+
 # Supply-chain delay: a version must have been public for at least 24 hours before it
 # can be installed. Most npm compromises are caught and yanked well inside that window.
 # The unit is minutes. Applies to transitive dependencies too.

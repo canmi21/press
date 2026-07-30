@@ -1,0 +1,33 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "cdn",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-07-30",
+	"compatibility_flags": ["nodejs_compat"],
+
+	// Everything this worker serves comes from here. The bucket mirrors data/public one to
+	// one, so a key is the same string as the path under data/public.
+	"r2_buckets": [
+		{
+			"binding": "PUBLIC",
+			"bucket_name": "public",
+		},
+	],
+
+	// `dev --remote` reads the real bucket rather than a local simulation. There is one store,
+	// so there is no second copy to drift, and no branch in the code for which one it is
+	// talking to. The cost is that changes need `mise run sync` before dev sees them, which is
+	// the same trip they take to production.
+	//
+	// The port also appears in libs/urls as the development CDN URL. wrangler cannot read a
+	// TypeScript library, so the number is written twice on purpose.
+	"dev": {
+		"port": 26516,
+		"inspector_port": 26517,
+	},
+
+	"observability": { "logs": { "enabled": true } },
+	"placement": { "mode": "smart" },
+	"workers_dev": false,
+	"preview_urls": false,
+}

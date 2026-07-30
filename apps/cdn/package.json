@@ -1,0 +1,19 @@
+{
+	"name": "@canmi/cdn",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "wrangler dev --remote",
+		"deploy": "wrangler deploy",
+		"build": "wrangler deploy --dry-run --outdir=dist"
+	},
+	"dependencies": {
+		"@canmi/robots": "workspace:*",
+		"@canmi/urls": "workspace:*",
+		"hono": "^4.10.7"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^5.20260730.1",
+		"wrangler": "^4.115.0"
+	}
+}
