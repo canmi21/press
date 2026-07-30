@@ -184,6 +184,19 @@ live only in the deployed artifact, and `data/` would no longer be complete. A r
 asset has not been synced yet degrades to a placeholder at request time rather than failing
 the build -- one missing image is not a reason to block a release.
 
+### Caching is the worker's job now
+
+The old CDN served these files through a static-assets binding and set their cache policy in
+a `_headers` file: `/fonts/*` for one year, `immutable`. That file has no equivalent once a
+worker reads from R2, so the policy has to be reasserted in worker code or it is silently lost
+-- the assets keep working while being re-fetched on every visit.
+
+The trap inside the old policy is worth keeping in view. Those font filenames carry no content
+hash: `IoskeleyMono-Regular-latin.woff2` is a stable name. Declaring it `immutable` for a year
+promises that the bytes at that name never change, so re-subsetting the font requires a new
+filename. Whatever replaces `_headers` inherits that promise, or breaks it for everyone
+holding a cached copy.
+
 ### Three ignore lists, no sharing
 
 | List   | Question it answers        | Lives in                                     |
