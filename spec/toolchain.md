@@ -36,6 +36,21 @@ again means rediscovering them one failure at a time.
 Only genuinely secret values go in. Facts like `RCLONE_CONFIG_R2_TYPE = "s3"` stay in
 `mise.toml`, so a diff of the encrypted file always means a credential actually changed.
 
+### Tokens are scoped to one bucket
+
+An R2 API token is created for a single bucket, not for the account. The sync task runs
+`rclone sync`, which deletes whatever the source does not have, so a token that can reach a
+second bucket makes a mistyped remote destructive there too.
+
+Scoping is the same move as leaving a private bucket unbound from any worker: the boundary
+holds because the credential cannot cross it, not because whoever typed the command was
+careful. Pulling data out of an old bucket therefore uses a separate read-only token -- read
+access is all that job needs, and it cannot damage the only copy of anything.
+
+This is visible in normal use: `rclone lsd r2:` returns 403 because listing buckets is an
+account-level operation the token deliberately lacks. Naming the bucket works; enumerating
+them does not.
+
 ### Three things that will bite
 
 **JSON, not dotenv.** mise parses a `.env` as plain dotenv before looking for sops metadata
