@@ -17,6 +17,29 @@ The rule it implies: **guard against the values the code uses, not against a cou
 first, then guard on the names. Never reach for `!` or a cast to silence this class of error --
 the error is describing a real gap, and silencing it keeps the gap while removing the warning.
 
+## Dependency budgets differ by destination
+
+Where the code runs decides how much a dependency is allowed to cost.
+
+|                                        | Optimise for            | Budget                                               |
+| -------------------------------------- | ----------------------- | ---------------------------------------------------- |
+| Runs locally (CLI, CMS, build tooling) | correctness, then speed | dependency count and binary size are not constraints |
+| Ships to the edge or a browser         | payload                 | every dependency is argued for                       |
+
+A local binary is never downloaded by anyone. Its compile time is paid once per change by the
+one machine that builds it, and its size is paid never. Picking a weaker library there to save
+megabytes trades a real correctness risk for a saving nobody experiences.
+
+Deployed code is the opposite, and the same problem can deserve opposite answers in the two
+places. The favicon resolver is the worked example: the Worker version parsed HTML with
+regexes because a Worker has a bundle budget, and the local port uses a real HTML5 tokenizer
+because it does not. Measured on adversarial input, the regex approach silently picked up a
+commented-out `<link>`, a `<link>` inside a `<script>` string, and left `&amp;` undecoded --
+three wrong icons, none of which announce themselves.
+
+So when a dependency looks heavy, the question is not "is this too big" but **"who pays for
+this size, and what does refusing it cost instead?"**
+
 ## Tests
 
 Colocated with source as `src/*.test.ts`, run by vitest from the repo root.

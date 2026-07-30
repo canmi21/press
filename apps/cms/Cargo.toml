@@ -8,3 +8,19 @@ license.workspace = true
 workspace = true
 
 [dependencies]
+# Blocking HTTP with no async runtime behind it. A local tool fetching a handful of icons has
+# nothing to gain from tokio, and the compile time and binary size are the price of admission.
+# If parallelism is ever needed here, threads are enough.
+ureq = "3"
+# A real HTML5 tokenizer, not the regexes the upstream worker used. That choice was forced by
+# a Worker's bundle budget, and this runs locally, so the constraint is gone. Measured against
+# adversarial input, regex matching picked up a commented-out <link>, a <link> written inside a
+# <script> string, and left `&amp;` undecoded in the href -- three wrong icons, all silent.
+# `tl` is far lighter and got two of those three wrong as well. scraper got all of them right.
+scraper = "0.24"
+# For `sizes="16x16 32x32"` and the prefers-color-scheme media query. Small, and clearer than
+# hand-rolled splitting.
+regex = "1"
+# Resolving a possibly-relative href against the page it came from is the one piece of URL
+# handling worth not writing by hand.
+url = "2"
