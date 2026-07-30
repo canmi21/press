@@ -71,8 +71,10 @@ function resolveGithubScheme(input: string): string {
 	const pathPart = atIdx >= 0 ? rest.slice(0, atIdx) : rest;
 	const ref = atIdx >= 0 ? rest.slice(atIdx + 1) : null;
 	const parts = pathPart.split('/');
-	if (parts.length < 3) return input;
 	const [owner, repo, ...pathBits] = parts;
+	// The length check and the destructure cannot be connected by the type checker, so the
+	// guard is written against the values it actually uses rather than against the count.
+	if (!owner || !repo || pathBits.length === 0) return input;
 	return toGithubCdn(owner, repo, ref, pathBits);
 }
 
@@ -94,17 +96,16 @@ function rewriteIfKnown(input: string, cdnUrl: string): string {
 	}
 
 	if (url.hostname === hostOf(URLS.external.github.raw)) {
-		const parts = url.pathname.split('/').filter(Boolean);
-		if (parts.length >= 4) {
-			const [owner, repo, ref, ...pathBits] = parts;
+		const [owner, repo, ref, ...pathBits] = url.pathname.split('/').filter(Boolean);
+		if (owner && repo && ref && pathBits.length > 0) {
 			return toGithubCdn(owner, repo, ref, pathBits);
 		}
 	}
 
 	if (url.hostname === hostOf(URLS.external.github.web)) {
 		const parts = url.pathname.split('/').filter(Boolean);
-		if (parts.length >= 5 && (parts[2] === 'raw' || parts[2] === 'blob')) {
-			const [owner, repo, , ref, ...pathBits] = parts;
+		const [owner, repo, kind, ref, ...pathBits] = parts;
+		if (owner && repo && ref && pathBits.length > 0 && (kind === 'raw' || kind === 'blob')) {
 			return toGithubCdn(owner, repo, ref, pathBits);
 		}
 	}

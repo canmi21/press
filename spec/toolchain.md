@@ -65,7 +65,26 @@ Three consequences worth knowing:
 Prefer the mise registry short name (`oxlint`) over a backend-qualified one (`npm:oxlint`);
 both resolve to the same package, and the short form keeps `mise.toml` readable.
 
-### The one exception: hook scripts
+### The JavaScript toolchain lives in package.json
+
+`typescript`, `vite`, and `vitest` are root `devDependencies`, not mise tools. mise's registry
+carries none of them, and that is the right outcome rather than a gap:
+
+- `vitest` is imported by the test files themselves (`import { it } from 'vitest'`), so it has
+  to be resolvable from `node_modules`. A binary on `$PATH` cannot satisfy an import.
+- `typescript` is looked up out of `node_modules` by editors, language servers, and vite.
+- `vite` is what vitest runs on, and every web app will depend on it directly.
+
+The general rule behind the exception: **a tool belongs to the package manager whose
+resolution model it participates in.** oxlint and oxfmt read files and write files, so mise
+carries them. Anything the code itself imports, or that another JS tool resolves by module
+name, belongs in `package.json`.
+
+Task entry points stay in mise regardless of where the tool lives -- `mise run test`,
+`mise run check`, `mise run lint`, and `mise run verify` (all three at once). One place to look
+for "how do I run this", whichever ecosystem the underlying binary came from.
+
+### The other exception: hook scripts
 
 `.claude/hooks/` is deliberately outside mise's reach. Those scripts use `#!/usr/bin/env
 python3` and nothing beyond the standard library.

@@ -5,6 +5,22 @@
 # directory, so it applies here and nowhere else.
 JJ_CONFIG = "{{env.HOME}}/.config/jj/config.toml:{{config_root}}/jj.toml"
 
+[tasks.test]
+description = "Run every test in the workspace"
+run = "pnpm exec vitest run"
+
+[tasks.check]
+description = "Type check every workspace package"
+run = "pnpm exec tsc --noEmit"
+
+[tasks.lint]
+description = "Lint the workspace"
+run = "oxlint ."
+
+[tasks.verify]
+description = "Everything a change has to pass: types, lint, tests"
+depends = ["check", "lint", "test"]
+
 [tools]
 node = "latest"
 rust = "stable"

@@ -1,0 +1,21 @@
+{
+	// Type checking only. Libraries export .ts straight from src and consumers bundle it,
+	// so nothing here ever emits JavaScript. See spec/architecture.md.
+	"compilerOptions": {
+		"target": "es2023",
+		"lib": ["es2023", "dom"],
+		"module": "preserve",
+		"moduleResolution": "bundler",
+		"moduleDetection": "force",
+		"strict": true,
+		"noUncheckedIndexedAccess": true,
+		"noImplicitOverride": true,
+		"noFallthroughCasesInSwitch": true,
+		"verbatimModuleSyntax": true,
+		"isolatedModules": true,
+		"skipLibCheck": true,
+		"noEmit": true
+	},
+	"include": ["libs/**/*.ts", "apps/**/*.ts", "*.ts"],
+	"exclude": ["**/node_modules", "**/dist", "**/build", "data"]
+}

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { isDevHost, pickUrls, robotsTxt, robotsTxtBase, URLS } from './index';
+import { isDevHost, pickUrls, URLS } from './index';
 
 describe('pickUrls', () => {
 	it('returns development app URLs when isDev=true', () => {
@@ -46,7 +46,7 @@ describe('isDevHost', () => {
 	});
 
 	it('rejects production hosts', () => {
-		expect(isDevHost(hostname(URLS.apps.production.web))).toBe(false);
+		expect(isDevHost(hostname(URLS.apps.production.site))).toBe(false);
 		expect(isDevHost(hostname(URLS.apps.production.api))).toBe(false);
 		expect(isDevHost(hostname(URLS.apps.production.cdn))).toBe(false);
 	});
@@ -54,26 +54,6 @@ describe('isDevHost', () => {
 	it('rejects empty and arbitrary strings', () => {
 		expect(isDevHost('')).toBe(false);
 		expect(isDevHost('localhost.evil.com')).toBe(false);
-	});
-});
-
-describe('robotsTxt', () => {
-	it('returns the shared base without site additions', () => {
-		expect(robotsTxt()).toBe(`${robotsTxtBase.join('\n')}\n`);
-	});
-
-	it('appends site-specific rules and sitemap entries', () => {
-		expect(
-			robotsTxt({
-				disallow: ['/@/', '/private/'],
-				sitemap: `${URLS.apps.production.web}/sitemap.xml`,
-			}),
-		).toBe(`${robotsTxtBase.join('\n')}
-Disallow: /@/
-Disallow: /private/
-
-Sitemap: ${URLS.apps.production.web}/sitemap.xml
-`);
 	});
 });
 

@@ -112,9 +112,11 @@ Colors follow the same shape at a smaller scale: OKLCH values are declared in
 and theme are built from; a palette mirrored from an external convention keeps whatever
 format that convention ships.
 
-`robots.txt` follows the same shared-base shape, not a single shared file. `libs/urls`
-exports the minimal common definition and a helper that appends site-specific rules such as
-disallowed paths and sitemap entries. Each site owns its own additions.
+`robots.txt` follows the same shared-base shape, and lives in `libs/robots` rather than in
+`libs/urls`. It exports the minimal common definition plus a helper that appends site-specific
+rules -- disallowed paths, sitemap entries -- so each site owns its additions while a change to
+the shared policy reaches all of them at once. It sits in its own library because generating a
+file is not the same job as mapping URLs, even though it consumes them.
 
 ## Data
 
