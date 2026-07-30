@@ -36,6 +36,16 @@ again means rediscovering them one failure at a time.
 Only genuinely secret values go in. Facts like `RCLONE_CONFIG_R2_TYPE = "s3"` stay in
 `mise.toml`, so a diff of the encrypted file always means a credential actually changed.
 
+**A value the browser must have cannot be a secret.** Anything compiled into a client bundle
+-- an analytics token, a Sentry DSN, a publishable API key -- is readable from devtools by
+anyone who loads the page. Storing it encrypted does not hide it; it only hides from the
+reader of this repository that it is already public. Those go in `libs/urls` or plain config,
+labelled for what they are.
+
+The same credential can be secret elsewhere. The API worker's Sentry DSN is a different
+project that never reaches a browser, so it stays a wrangler secret. What decides is exposure,
+not the kind of thing it is.
+
 ### Tokens are scoped to one bucket
 
 An R2 API token is created for a single bucket, not for the account. The sync task runs
