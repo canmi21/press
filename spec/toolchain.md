@@ -66,6 +66,19 @@ including for the sops you would use to repair it. Call sops by absolute path wh
 runs first in `verify` because it is the only check there guarding something irreversible: a
 plaintext credential reaching the remote is not undone by deleting the file.
 
+## Workers are checked before they are promoted
+
+A worker gets `preview_urls` when everything it serves is public anyway, so a version can be
+uploaded, opened, and verified before it takes the custom domain. Without it a deploy is the
+first moment the code meets production, which is a poor time to discover a wrong binding.
+
+A worker that can reach anything private keeps them off, because a preview URL is a second
+route to the same code that no custom-domain protection sits in front of.
+
+Deploying over an existing worker of the same name replaces it in place and keeps its routes
+and custom domains attached, so replacing one is not a matter of deleting it first. Nothing is
+deleted until the thing meant to supersede it has been verified serving real traffic.
+
 ## Dev ports are pinned
 
 Every dev server binds a fixed port and **fails when that port is taken**. Vite gets
