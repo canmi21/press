@@ -22,6 +22,11 @@ RCLONE_CONFIG_R2_TYPE = "s3"
 RCLONE_CONFIG_R2_PROVIDER = "Cloudflare"
 RCLONE_CONFIG_R2_REGION = "auto"
 
+# The bucket mirrors data/public, and is named `public` so the two paths read the same
+# segment for segment: data/public/favicon/x.svg <-> r2:public/favicon/x.svg. A different
+# name would add a translation step for a reader to get wrong.
+R2_REMOTE = "r2:public"
+
 [tasks.test]
 description = "Run every test in the workspace"
 run = "pnpm exec vitest run"
