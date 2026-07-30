@@ -38,7 +38,7 @@ When you catch yourself writing something that already exists elsewhere, delete 
 instead. The duplicate is not redundancy, it is a second thing to keep in sync, and it will
 lose sync.
 
-`mise run links` checks that the links resolve -- markdown links in docs, and `spec/*.md`
+`mise run refs` checks that the links resolve -- markdown links in docs, and `spec/*.md`
 citations in code. It is part of `mise run verify`, because a reference that points nowhere
 fails silently: nothing breaks, the reader just follows a dead path. It deliberately ignores
 path-shaped strings in prose, since the rules use invented names as examples on purpose.

@@ -15,7 +15,7 @@ while the reasoning is still in context.
 A narrower signal was tried here and cut. Pairing each changed file with the spec files its
 comments cite looks sharper, but it fires on every edit to any file that merely mentions a
 rule for background -- which is most edits. Citation is not co-evolution. The pair graph is
-still built, in .mise/tasks/links, where it backs a check that has no false positives at all:
+still built, in .mise/tasks/refs, where it backs a check that has no false positives at all:
 a reference pointing at a file that does not exist is unambiguously broken.
 
 Dependencies are limited to the standard library, for the reason given in spec/toolchain.md.

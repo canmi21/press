@@ -1,18 +1,28 @@
 #!/usr/bin/env python3
-#MISE description="Check that every spec <-> code cross-reference resolves"
-"""Validate the cross-reference graph between spec/ and the code.
+#MISE description="Check that references resolve and that URLs live in one place"
+"""Validate how this repo refers to things: to its own files, and to hosts.
 
-Two things are checked, chosen because both are objective. A markdown link that points at a
-missing file is always a defect, and so is a code comment citing a spec file that does not
-exist. Both break silently on rename -- nothing fails, the reader just follows a dead path.
+Three checks, all chosen because they are objective rather than stylistic:
+
+1. A markdown link in a doc points at a file that exists.
+2. A `spec/*.md` cited from code exists.
+3. No URL the running system resolves is written outside `libs/urls`.
+
+The first two break silently on rename -- nothing fails, the reader just follows a dead path.
+The third is the enforcement half of the single-source rule in spec/architecture.md, which was
+prose-only until this check existed, and prose-only rules are followed until the first time
+somebody is in a hurry.
 
 Deliberately NOT checked: path-shaped strings in prose. The rules use invented names as
 examples on purpose (`apps/r2`, `user-profile.ts`, `libs/canvas` as a name that was rejected),
 and a check that flags those would be wrong far more often than right. Illustrations stay in
 inline code; real references are markdown links, which is what makes them checkable.
 
-Run with --json to emit the pair graph instead of validating; the commit hook uses that to
-notice when one side of a pair moved without the other.
+Also not flagged as URLs: comments, markdown links, and `$schema` keys. The first two are
+citations that no software resolves. The third has to be a URL precisely because these tools
+are installed through mise and have no `node_modules` to point at -- see spec/toolchain.md.
+
+Run with --json to emit the pair graph instead of validating.
 """
 
 import json
@@ -27,6 +37,10 @@ SKIP_DIRS = {"node_modules", ".jj", ".git", "dist", "build", "target", "data"}
 
 MD_LINK = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 SPEC_REF = re.compile(r"spec/[a-z-]+\.md")
+URL = re.compile(r"https?://[^\s\"'`)\],;]+")
+COMMENT = re.compile(r"^\s*(//|#|\*|/\*)")
+URL_HOME = "libs/urls/"
+URL_EXEMPT = ('"$schema"',)
 
 
 def docs() -> list[pathlib.Path]:
@@ -63,6 +77,21 @@ def dead_doc_links() -> list[str]:
 	return dead
 
 
+def stray_urls() -> list[str]:
+	"""URLs written outside libs/urls that something other than a reader would resolve."""
+	stray = []
+	for path in code_files():
+		rel = str(path.relative_to(ROOT))
+		if rel.startswith(URL_HOME):
+			continue
+		for number, line in enumerate(read(path).splitlines(), 1):
+			if COMMENT.match(line) or any(token in line for token in URL_EXEMPT):
+				continue
+			for match in URL.finditer(line):
+				stray.append(f"{rel}:{number} {match.group(0)}")
+	return stray
+
+
 def pair_graph() -> dict[str, list[str]]:
 	"""spec file -> the code files that cite it."""
 	graph: dict[str, list[str]] = {}
@@ -87,15 +116,20 @@ def main() -> int:
 		if not (ROOT / spec).exists()
 		for cited in [", ".join(cited)]
 	]
+	problems += [
+		f"URL outside {URL_HOME}: {u}  (declare it there, or make it a comment if it is a"
+		f" citation -- see spec/architecture.md)"
+		for u in stray_urls()
+	]
 
 	if problems:
-		print("Cross-reference check failed:\n", file=sys.stderr)
+		print("Reference check failed:\n", file=sys.stderr)
 		for problem in problems:
 			print(f"  {problem}", file=sys.stderr)
 		return 1
 
 	linked = sum(len(v) for v in graph.values())
-	print(f"cross-references OK: {len(docs())} docs, {linked} code -> spec citations")
+	print(f"references OK: {len(docs())} docs, {linked} code -> spec citations, URLs single-sourced")
 	return 0
 
 

@@ -97,15 +97,22 @@ The URL map is grouped by role:
 - `internal`: domains the repo owner controls, but that are not apps in this repo.
 - `external`: third-party endpoints and hostnames.
 
-Nothing outside that library may contain a literal `http://`, `https://`, `localhost:`, or a
-bare hostname **that the running system resolves**. Not app code, not a library, not a
-stylesheet, not a config file, not a spec document.
+**The test: who resolves this URL?**
 
-What this does not cover: citations. A markdown link to an external standard, or a `# see <url>`
-comment, is a reference for a reader and never resolved by the software. Those stay where they
-are useful. The distinction is whether changing the URL would change behaviour -- if moving a
-host silently breaks something, it belongs in `libs/urls`; if it only breaks a reader's
-curiosity, it does not.
+- _The software_ -- it is fetched, linked against, or served from. It goes in `libs/urls`, with
+  no exceptions for app code, libraries, stylesheets, or config.
+- _A person reading_ -- a link to a standard, a `# see <url>` note. It stays where it is useful.
+  Nothing breaks if it rots except somebody's curiosity.
+
+The earlier version of this rule banned every `https://` outside the library, full stop. That
+was wrong on the day it was written: this spec cites four external standards, so the rule was
+already broken four times by the document stating it. A rule nobody can follow is not a strict
+rule, it is a dead one -- it gets ignored wholesale rather than in the one place it should be.
+
+`mise run refs` enforces the first case and skips the second, treating comments, markdown
+links, and `$schema` keys as citations. `$schema` has to be a URL here precisely because these
+tools come from mise and there is no `node_modules` to point at -- see
+[toolchain.md](toolchain.md).
 
 The measure this exists to protect: **moving a domain costs one edit to one file.** Every
 literal written elsewhere adds one more place that has to be found, and the ones that get

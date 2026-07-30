@@ -19,7 +19,7 @@ run = "oxlint ."
 
 [tasks.verify]
 description = "Everything a change has to pass: types, lint, tests, cross-references"
-depends = ["check", "lint", "test", "links"]
+depends = ["check", "lint", "test", "refs"]
 
 [tools]
 node = "latest"
