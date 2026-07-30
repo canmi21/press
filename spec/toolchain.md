@@ -17,6 +17,40 @@ and does not support `\b` word boundaries -- use `perl -pi -e` for word-boundary
 And mise activation is directory-scoped and shell-based, so a command run from a shell
 without mise sees none of the pinned versions.
 
+## Secrets
+
+Credentials live in `secrets.json`, encrypted with [sops](https://getsops.io) to an
+[age](https://age-encryption.org) key and **committed that way**. mise decrypts it on entering
+the directory, so every tool reads the values from the environment and nothing keeps a second
+copy. `.sops.yaml` names the recipient public key, which is safe to commit -- it encrypts and
+cannot decrypt.
+
+The private key lives at `~/.config/sops/age/keys.txt`, outside the repo, and belongs in a
+password manager as well. Losing it costs a round of credential rotation, not the repo.
+
+Committing the ciphertext rather than gitignoring a plaintext `.env` is what makes a fresh
+machine reproducible: restore one key, clone, and every credential the project needs is
+already there. A gitignored `.env` leaves no record of _which_ secrets exist, so setting up
+again means rediscovering them one failure at a time.
+
+Only genuinely secret values go in. Facts like `RCLONE_CONFIG_R2_TYPE = "s3"` stay in
+`mise.toml`, so a diff of the encrypted file always means a credential actually changed.
+
+### Three things that will bite
+
+**JSON, not dotenv.** mise parses a `.env` as plain dotenv before looking for sops metadata
+and fails on the age block. JSON puts that metadata under a `sops` key it recognises.
+
+**No empty placeholders.** sops leaves `""` untouched, and mise then rejects the whole file
+because a value lacks the `ENC[` prefix. Write `"unset"` instead of `""`.
+
+**The circular trap.** A broken `secrets.json` makes `mise exec` fail in this directory --
+including for the sops you would use to repair it. Call sops by absolute path when fixing it.
+
+`mise run secrets` refuses any file `.sops.yaml` claims that is not actually encrypted, and
+runs first in `verify` because it is the only check there guarding something irreversible: a
+plaintext credential reaching the remote is not undone by deleting the file.
+
 ## Dev ports are pinned
 
 Every dev server binds a fixed port and **fails when that port is taken**. Vite gets

@@ -1,0 +1,12 @@
+# Which files sops encrypts, and to whom.
+#
+# The recipient is an age *public* key. It can encrypt and cannot decrypt, so committing it
+# is the point -- anyone with the repo can add a secret, only the holder of the private key
+# can read one back.
+#
+# JSON rather than dotenv is deliberate and not cosmetic: mise parses a `.env` as plain
+# dotenv before it looks for sops metadata, and chokes on the age block. In JSON the metadata
+# sits under a `sops` key that mise recognises. See spec/toolchain.md.
+creation_rules:
+  - path_regex: secrets\.json$
+    age: age1xzcpcdwvddywenmcdr6phshd0mjvjs9k78nk20s66x0g4d8079asntsfce

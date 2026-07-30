@@ -10,6 +10,18 @@ JJ_CONFIG = "{{env.HOME}}/.config/jj/config.toml:{{config_root}}/jj.toml"
 # Pinned, never auto-incremented; see spec/toolchain.md.
 CMS_PORT = "26521"
 
+# Credentials, decrypted by mise on entering the directory. The file is committed encrypted;
+# only the age private key opens it. See spec/toolchain.md for the key setup and for why this
+# is JSON rather than a dotenv.
+_.file = "secrets.json"
+
+# rclone is configured entirely through the environment, so there is no rclone.conf holding a
+# second copy of anything. Only the parts that are actually secret live in secrets.json; these
+# three are public facts about which service it is.
+RCLONE_CONFIG_R2_TYPE = "s3"
+RCLONE_CONFIG_R2_PROVIDER = "Cloudflare"
+RCLONE_CONFIG_R2_REGION = "auto"
+
 [tasks.test]
 description = "Run every test in the workspace"
 run = "pnpm exec vitest run"
@@ -32,7 +44,7 @@ run = "cargo clippy --workspace --all-targets"
 
 [tasks.verify]
 description = "Everything a change has to pass, across both languages"
-depends = ["check", "lint", "test", "refs", "lint-rust", "test-rust"]
+depends = ["secrets", "check", "lint", "test", "refs", "lint-rust", "test-rust"]
 
 [tools]
 node = "latest"
