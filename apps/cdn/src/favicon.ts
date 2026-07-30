@@ -1,8 +1,5 @@
-import type { R2Bucket } from '@cloudflare/workers-types';
 import { Hono } from 'hono';
-import { findOne, read } from './store';
-
-type Bindings = { PUBLIC: R2Bucket };
+import { type Bindings, findOne, read, toResponse } from './store';
 
 /**
  * Serving favicons that the local CMS already fetched and synced.
@@ -36,13 +33,15 @@ export function isValidHostname(value: string): boolean {
 /**
  * Which stored variants to try, in order.
  *
- * Asking for a tone that was never stored falls back to the other one rather than failing:
- * the site has an icon, and showing it in the wrong shade is better than showing nothing.
- * Most sites only ever have `light`, so a strict reading would 404 almost every dark request.
+ * Naming a tone means that tone or nothing. No silent substitution: a caller that asked for
+ * dark and received light has no way to know it happened, and would draw a light icon on a
+ * dark surface believing it had the right one. A 404 hands the choice back.
+ *
+ * With no tone named, either variant will do, so whichever exists is returned.
  */
 export function candidates(tone: string | undefined): readonly string[] {
-	if (tone === 'dark') return ['dark', 'light'];
-	if (tone === 'light') return ['light', 'dark'];
+	if (tone === 'dark') return ['dark'];
+	if (tone === 'light') return ['light'];
 	return ['light', 'dark'];
 }
 
@@ -57,21 +56,18 @@ favicon.get('/:domain', async (c) => {
 	// `??` short-circuits, so the second variant is only looked up when the first is absent.
 	// That ordering is the whole point -- fetching both in parallel would cost two bucket
 	// requests on every hit to save latency on the rarer miss.
-	const found =
-		(await lookup(c.env.PUBLIC, domain, first)) ?? (await lookup(c.env.PUBLIC, domain, second));
+	const found = (await lookup(c.env, domain, first)) ?? (await lookup(c.env, domain, second));
 
 	if (!found) {
 		return c.json({ error: 'not found' }, 404);
 	}
-	return new Response(found.body, {
-		headers: { 'Content-Type': found.contentType, ETag: found.etag },
-	});
+	return toResponse(found);
 });
 
-async function lookup(bucket: R2Bucket, domain: string, variant: string | undefined) {
+async function lookup(env: Bindings, domain: string, variant: string | undefined) {
 	if (!variant) return null;
-	const key = await findOne(bucket, `favicon/${domain}/${variant}.`);
-	return key ? read(bucket, key) : null;
+	const key = await findOne(env, `favicon/${domain}/${variant}.`);
+	return key ? read(env, key) : null;
 }
 
 export default favicon;

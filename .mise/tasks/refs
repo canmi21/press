@@ -41,6 +41,10 @@ URL = re.compile(r"https?://[^\s\"'`)\],;]+")
 COMMENT = re.compile(r"^\s*(//|#|\*|/\*)")
 URL_HOME = "libs/urls/"
 URL_EXEMPT = ('"$schema"',)
+# RFC 2606 reserves .invalid so that it can never resolve. A URL on such a host is a syntactic
+# placeholder for an API that demands an absolute URL, never an endpoint, so it cannot be the
+# thing this check exists to find.
+URL_UNRESOLVABLE = re.compile(r"https?://[^/\s]*\.invalid(?:[/:?#]|$)")
 
 
 def docs() -> list[pathlib.Path]:
@@ -88,6 +92,8 @@ def stray_urls() -> list[str]:
 			if COMMENT.match(line) or any(token in line for token in URL_EXEMPT):
 				continue
 			for match in URL.finditer(line):
+				if URL_UNRESOLVABLE.match(match.group(0)):
+					continue
 				stray.append(f"{rel}:{number} {match.group(0)}")
 	return stray
 

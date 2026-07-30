@@ -30,20 +30,19 @@ describe('isValidHostname', () => {
 });
 
 describe('candidates', () => {
-	it('puts the requested tone first', () => {
-		expect(candidates('dark')[0]).toBe('dark');
-		expect(candidates('light')[0]).toBe('light');
+	it('honours a named tone exactly, with no substitute', () => {
+		// Returning the other shade would be invisible to the caller, which would then draw a
+		// light icon on a dark surface believing it had asked for and received the right one.
+		expect(candidates('dark')).toEqual(['dark']);
+		expect(candidates('light')).toEqual(['light']);
 	});
 
-	it('still offers the other tone as a fallback', () => {
-		// Almost no site ships a dark variant, so refusing to fall back would 404 nearly
-		// every dark request even though a perfectly good icon is sitting in the bucket.
-		expect(candidates('dark')).toContain('light');
-		expect(candidates('light')).toContain('dark');
+	it('accepts either variant when no tone is named', () => {
+		expect(candidates(undefined)).toEqual(['light', 'dark']);
 	});
 
-	it('defaults to light when no tone is asked for', () => {
-		expect(candidates(undefined)[0]).toBe('light');
+	it('treats an unrecognised tone as no tone', () => {
+		expect(candidates('sepia')).toEqual(['light', 'dark']);
 	});
 });
 

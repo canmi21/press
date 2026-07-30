@@ -1,14 +1,11 @@
 import { robotsTxt } from '@canmi/robots';
 import { URLS, isDevHost, pickUrls } from '@canmi/urls';
-import type { R2Bucket } from '@cloudflare/workers-types';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { cacheControl } from './cache';
 import favicon from './favicon';
 import github from './github';
-import { read } from './store';
-
-type Bindings = { PUBLIC: R2Bucket };
+import { type Bindings, read, toResponse } from './store';
 
 const app = new Hono<{ Bindings: Bindings }>();
 
@@ -46,13 +43,11 @@ app.get('/*', async (c) => {
 	if (!key || key.includes('..')) {
 		return c.json({ error: 'not found' }, 404);
 	}
-	const found = await read(c.env.PUBLIC, key);
+	const found = await read(c.env, key);
 	if (!found) {
 		return c.json({ error: 'not found' }, 404);
 	}
-	return new Response(found.body, {
-		headers: { 'Content-Type': found.contentType, ETag: found.etag },
-	});
+	return toResponse(found);
 });
 
 export default app;

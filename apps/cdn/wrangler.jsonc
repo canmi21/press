@@ -2,7 +2,9 @@
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "cdn",
 	"main": "src/index.ts",
-	"compatibility_date": "2026-07-30",
+	// Must not exceed what the installed workerd supports, which lags the calendar. Setting
+	// this to "today" fails to start with a date mismatch rather than anything descriptive.
+	"compatibility_date": "2026-07-29",
 	"compatibility_flags": ["nodejs_compat"],
 
 	// Everything this worker serves comes from here. The bucket mirrors data/public one to
@@ -14,16 +16,29 @@
 		},
 	],
 
-	// `dev --remote` reads the real bucket rather than a local simulation. There is one store,
-	// so there is no second copy to drift, and no branch in the code for which one it is
-	// talking to. The cost is that changes need `mise run sync` before dev sees them, which is
-	// the same trip they take to production.
-	//
 	// The port also appears in libs/urls as the development CDN URL. wrangler cannot read a
 	// TypeScript library, so the number is written twice on purpose.
 	"dev": {
 		"port": 26516,
 		"inspector_port": 26517,
+	},
+
+	// Development reads data/public itself, because the local tree is the source of truth and
+	// dev should read the source rather than a copy. It lives under `env.dev` so that a plain
+	// `wrangler deploy` never sees it -- otherwise deploying would upload every photo in
+	// data/public alongside the worker, which is precisely what R2 exists to avoid.
+	//
+	// `run_worker_first` matters more than it looks. Without it wrangler answers asset requests
+	// before the worker runs, so routing and cache headers are simply skipped and dev serves
+	// `max-age=0` where production serves a year. Measured: that is exactly what happened.
+	"env": {
+		"dev": {
+			"assets": {
+				"directory": "../../data/public",
+				"binding": "ASSETS",
+				"run_worker_first": true,
+			},
+		},
 	},
 
 	"observability": { "logs": { "enabled": true } },

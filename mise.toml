@@ -47,6 +47,11 @@ run = "cargo test --workspace"
 description = "Lint the Rust crates"
 run = "cargo clippy --workspace --all-targets"
 
+[tasks.dev-cdn]
+description = "Run the CDN worker against data/public"
+dir = "apps/cdn"
+run = "pnpm run dev"
+
 [tasks.verify]
 description = "Everything a change has to pass, across both languages"
 depends = ["secrets", "check", "lint", "test", "refs", "lint-rust", "test-rust"]
