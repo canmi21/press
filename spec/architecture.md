@@ -109,6 +109,13 @@ was wrong on the day it was written: this spec cites four external standards, so
 already broken four times by the document stating it. A rule nobody can follow is not a strict
 rule, it is a dead one -- it gets ignored wholesale rather than in the one place it should be.
 
+Names RFC 2606 reserves -- `.test`, `.example`, `.invalid`, `.localhost`, `example.com` and
+its siblings -- are exempt as well, and for a stronger reason than convention: the standard
+guarantees they never resolve. A placeholder an API needs because it demands an absolute URL,
+or a hostname a test supplies precisely so it gets rejected, cannot become a real endpoint by
+accident. Exempting them as a class is what stops the check from accumulating one-off
+exceptions.
+
 `mise run refs` enforces the first case and skips the second, treating comments, markdown
 links, and `$schema` keys as citations. `$schema` has to be a URL here precisely because these
 tools come from mise and there is no `node_modules` to point at -- see

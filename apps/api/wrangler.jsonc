@@ -1,0 +1,20 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "api",
+	"main": "src/index.ts",
+	// Must not exceed what the installed workerd supports, which lags the calendar.
+	"compatibility_date": "2026-07-29",
+	"compatibility_flags": ["nodejs_compat"],
+
+	// The port also appears in libs/urls as the development API URL. wrangler cannot read a
+	// TypeScript library, so the number is written twice on purpose.
+	"dev": {
+		"port": 26512,
+		"inspector_port": 26513,
+	},
+
+	"observability": { "logs": { "enabled": true } },
+	"placement": { "mode": "smart" },
+	"workers_dev": false,
+	"preview_urls": false,
+}
