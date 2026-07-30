@@ -22,33 +22,22 @@ without mise sees none of the pinned versions.
 jj (Jujutsu), colocated with git -- `.jj` and `.git` sit side by side in the repo root. Use
 `jj` for everyday work; reach for `git` only where jj has no equivalent.
 
-Remote `origin` is <https://github.com/canmi21/workspace.git>, default branch `main`.
+The remote is `origin` and the default branch is `main`; the URL lives in git's own config,
+not here, because a URL written into a spec document is a second place for it to go stale.
 
-jj has no branches, only bookmarks, and bookmarks do not advance on their own. `jj commit`
-leaves `main` where it was; move it explicitly:
-
-```bash
-jj bookmark move main --to @-
-jj git push -b main
-```
+jj has no branches, only bookmarks, and **bookmarks do not advance on their own**. `jj commit`
+leaves `main` where it was, so moving it is a separate, deliberate step (`jj bookmark move`).
+Auto-advance is available as an opt-in jj config -- `experimental-advance-branches`, still named
+for branches from before the rename -- and is deliberately not enabled. A bookmark that only
+moves when told to is a bookmark whose position means something.
 
 Pushing is the user's to run. Do not offer it at the end of a task and do not ask whether to
-push -- the user handles it. Commit and move the bookmark; stop there.
-
-To get git-like auto-advance instead, enable it in config:
-
-```toml
-[experimental-advance-branches]
-enabled-branches = ["glob:*"]
-```
-
-The key is still named `branches` rather than `bookmarks` -- a leftover from before jj renamed
-the concept.
+push. Commit and move the bookmark; stop there.
 
 ## Tool versions
 
-mise owns every tool, not just language runtimes. Linters, formatters, and CLIs go in
-`mise.toml` too -- currently node, rust, pnpm, jj, oxlint, oxfmt. Do not install a tool
+mise owns every tool, not just language runtimes. Linters, formatters, and CLIs belong in
+`mise.toml` alongside the runtimes -- read that file for the current set. Do not install a tool
 globally, and do not add a developer tool as a `devDependencies` entry when mise can carry it.
 One manifest, one answer to "what version is this".
 
@@ -80,9 +69,10 @@ resolution model it participates in.** oxlint and oxfmt read files and write fil
 carries them. Anything the code itself imports, or that another JS tool resolves by module
 name, belongs in `package.json`.
 
-Task entry points stay in mise regardless of where the tool lives -- `mise run test`,
-`mise run check`, `mise run lint`, and `mise run verify` (all three at once). One place to look
-for "how do I run this", whichever ecosystem the underlying binary came from.
+Task entry points stay in mise regardless of where the tool lives, so there is one place to
+look for "how do I run this" whichever ecosystem the binary came from. `mise tasks` lists them;
+`mise run verify` is the one a change has to pass. Tasks are defined in `mise.toml`, except
+where a task needs real logic, which goes in `.mise/tasks/` as an executable file.
 
 ### The other exception: hook scripts
 

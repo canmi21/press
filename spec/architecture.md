@@ -98,7 +98,14 @@ The URL map is grouped by role:
 - `external`: third-party endpoints and hostnames.
 
 Nothing outside that library may contain a literal `http://`, `https://`, `localhost:`, or a
-bare hostname. Not app code, not a library, not a stylesheet, not a spec document.
+bare hostname **that the running system resolves**. Not app code, not a library, not a
+stylesheet, not a config file, not a spec document.
+
+What this does not cover: citations. A markdown link to an external standard, or a `# see <url>`
+comment, is a reference for a reader and never resolved by the software. Those stay where they
+are useful. The distinction is whether changing the URL would change behaviour -- if moving a
+host silently breaks something, it belongs in `libs/urls`; if it only breaks a reader's
+curiosity, it does not.
 
 The measure this exists to protect: **moving a domain costs one edit to one file.** Every
 literal written elsewhere adds one more place that has to be found, and the ones that get
@@ -124,14 +131,10 @@ file is not the same job as mapping URLs, even though it consumes them.
 can reach it, and is excluded from git wholesale; only `.gitkeep` is tracked, so a fresh
 clone still has the mount point. It syncs to R2 and is backed up to the NAS.
 
-**Backup ignores are not git ignores.** The two sets overlap but are not the same, and one
-file cannot serve both:
+**Backup ignores are not git ignores, and one file cannot serve both.** The sets overlap on
+build output and caches, which neither wants, but they disagree on exactly the content that
+matters: `data/` is excluded from git and is the most important thing in the backup.
 
-| Path                                | git     | backup       |
-| ----------------------------------- | ------- | ------------ |
-| `data/`                             | ignored | **included** |
-| `target/`, `node_modules/`, `dist/` | ignored | ignored      |
-| source                              | tracked | included     |
-
-Using `.gitignore` to drive backups silently drops every photo. Using the backup list to
-drive git commits gigabytes of build output. Each needs its own file.
+Driving backups from `.gitignore` therefore drops every photo, silently. Driving git from the
+backup list commits gigabytes of build output. Each needs its own list; `.gitignore` is git's
+and is not to be reused for anything else.

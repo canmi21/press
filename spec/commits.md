@@ -47,6 +47,34 @@ Optional. Wrap at 96 characters. Explain why, not what -- the diff already shows
 
 English only, no exceptions. See [voice.md](voice.md).
 
+## Co-authorship
+
+An assistant that **participated in the design** gets a trailer. One that merely typed out an
+instruction does not.
+
+| The user's request                                            | Trailer |
+| ------------------------------------------------------------- | ------- |
+| "update the dependency", "rename this file", "change X to Y"  | no      |
+| "how should we do X", "what's wrong here", a problem to solve | yes     |
+
+The line to draw is authorship, not effort. When the user decided what to do and the assistant
+executed it, the assistant wrote no part of the decision and claiming co-authorship
+misattributes it. When the user brought a question and the assistant shaped the answer, leaving
+the trailer off hides who did that shaping -- which matters later, when someone wants to know
+how much scrutiny a change received.
+
+```
+Co-Authored-By: Claude Opus-5 <noreply@anthropic.com>
+Co-Authored-By: Codex GPT-5 <codex@openai.com>
+```
+
+Claude models use the first address, GPT models the second. Fill in the actual model short name
+rather than copying the example -- the point of the trailer is to record which model, so a stale
+version defeats it. Only these two addresses are used; a new vendor needs a decision here
+first.
+
+Applies going forward only. Earlier commits are not rewritten to add trailers.
+
 ## Tooling
 
 Version control is jj, colocated with git:

@@ -31,6 +31,15 @@ LIMIT = 96
 SUBCOMMANDS = {"commit", "describe", "desc", "ci"}
 SEPARATORS = {"&&", ";", "||", "|"}
 
+# Whether an assistant co-authored a change is a judgement no script can make, so only the
+# shape is checked here: if a trailer is present at all, it has to be one of the two agreed
+# forms. See spec/commits.md for when to add one.
+COAUTHOR = re.compile(r"^Co-Authored-By:", re.IGNORECASE)
+COAUTHOR_OK = re.compile(
+	r"^Co-Authored-By: (?:Claude [A-Za-z0-9.-]+ <noreply@anthropic\.com>"
+	r"|Codex [A-Za-z0-9.-]+ <codex@openai\.com>)$"
+)
+
 
 def messages_in(command: str) -> list[str]:
 	"""Every -m value attached to a commit/describe subcommand in a shell command line."""
@@ -69,6 +78,16 @@ def problems_with(message: str) -> list[str]:
 		found.append(f"{subject!r}\n    subject must not end with a period")
 	if len(subject) > LIMIT:
 		found.append(f"{subject!r}\n    subject is {len(subject)} chars, limit is {LIMIT}")
+
+	for line in message.splitlines()[1:]:
+		trailer = line.strip()
+		if COAUTHOR.match(trailer) and not COAUTHOR_OK.match(trailer):
+			found.append(
+				f"{trailer!r}\n"
+				f"    malformed co-author trailer. Expected exactly one of:\n"
+				f"      Co-Authored-By: Claude <Model>-<Version> <noreply@anthropic.com>\n"
+				f"      Co-Authored-By: Codex <Model>-<Version> <codex@openai.com>"
+			)
 	return found
 
 
