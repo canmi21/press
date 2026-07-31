@@ -33,7 +33,7 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 DOC_GLOBS = ("spec/*.md", "CLAUDE.md")
 CODE_SUFFIXES = {".ts", ".py", ".css", ".toml", ".json", ".jsonc", ".yaml", ".yml"}
-SKIP_DIRS = {"node_modules", ".jj", ".git", "dist", "build", "target", "data"}
+SKIP_DIRS = {"node_modules", ".jj", ".git", "dist", "build", "target", "data", ".svelte-kit", ".wrangler"}
 
 MD_LINK = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 SPEC_REF = re.compile(r"spec/[a-z-]+\.md")
@@ -50,6 +50,10 @@ URL_UNRESOLVABLE = re.compile(
 	r"https?://(?:[^/\s]*\.)?(?:test|example|invalid|localhost)(?:[/:?#]|$)"
 	r"|https?://(?:[^/\s]*\.)?example\.(?:com|net|org)(?:[/:?#]|$)"
 )
+# An XML namespace is an identifier that the specification explicitly does not require to be
+# dereferenceable, and changing one changes the document's meaning rather than where it points.
+# Treating these as endpoints would demand they be declared alongside hosts we actually call.
+XML_NAMESPACE = re.compile(r"xmlns(?::[\w-]+)?\s*=|schemaLocation")
 
 
 def docs() -> list[pathlib.Path]:
@@ -95,6 +99,8 @@ def stray_urls() -> list[str]:
 			continue
 		for number, line in enumerate(read(path).splitlines(), 1):
 			if COMMENT.match(line) or any(token in line for token in URL_EXEMPT):
+				continue
+			if XML_NAMESPACE.search(line):
 				continue
 			for match in URL.finditer(line):
 				if URL_UNRESOLVABLE.match(match.group(0)):

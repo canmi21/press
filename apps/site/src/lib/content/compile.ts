@@ -1,3 +1,4 @@
+import { URLS } from '@canmi/urls';
 import { toHtml } from 'hast-util-to-html';
 import { toHast } from 'mdast-util-to-hast';
 import { toString as mdastToString } from 'mdast-util-to-string';
@@ -14,9 +15,9 @@ import type { Block, Compiled, CompiledPage, InlineSegment, PageBlock, TocEntry 
 import type { TextDirective } from 'mdast-util-directive';
 import type { Heading, Image as MdImage, Paragraph, Root, RootContent } from 'mdast';
 
-// Mirrors the host in image.svelte so feed/markdown image URLs resolve the same
-// way the rendered page does.
-const IMAGE_CDN = 'https://cdn.canmi.net/image/';
+// Feed and markdown targets need absolute image URLs, and they must resolve the same way the
+// rendered page does. Both now read the host from libs/urls rather than each spelling it out.
+const IMAGE_CDN = `${URLS.apps.production.cdn}/image/`;
 
 const parser = unified()
 	.use(remarkParse)
@@ -40,11 +41,11 @@ const SOCIAL: Record<
 	{ href: (handle: string) => string; follow?: (handle: string) => string; newTab: boolean }
 > = {
 	twitter: {
-		href: (h) => `https://x.com/${h}`,
-		follow: (h) => `https://twitter.com/intent/follow?screen_name=${h}`,
+		href: (h) => `${URLS.external.social.x}/${h}`,
+		follow: (h) => `${URLS.external.social.twitterIntent}?screen_name=${h}`,
 		newTab: true,
 	},
-	github: { href: (h) => `https://github.com/${h}`, newTab: true },
+	github: { href: (h) => `${URLS.external.github.web}/${h}`, newTab: true },
 	email: { href: (h) => `mailto:${h}`, newTab: false },
 };
 
@@ -109,7 +110,10 @@ function proseHtml(node: RootContent): string {
 								'decoration-border',
 								'underline-offset-4',
 							],
-							...(newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {}),
+							// hast stores space-separated token lists as arrays. Writing this as one
+							// string produced `rel="noopener,noreferrer"` in the output, which is a
+							// single unrecognised token and so left the link unprotected.
+							...(newTab ? { target: '_blank', rel: ['noopener', 'noreferrer'] } : {}),
 						},
 						children,
 					};

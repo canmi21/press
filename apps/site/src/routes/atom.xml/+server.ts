@@ -34,7 +34,7 @@ export const GET: RequestHandler = async () => {
 			{ href: `${SITE}/atom.xml`, rel: 'self' },
 			{ href: `${SITE}/`, rel: 'alternate' },
 		],
-		generator: { text: 'feedsmith', uri: 'https://feedsmith.dev' },
+		generator: { text: 'feedsmith', uri: URLS.external.feedsmith },
 		entries: prepared.map(({ lang: _lang, ...rest }) => rest),
 	});
 

@@ -17,5 +17,8 @@
 		"noEmit": true
 	},
 	"include": ["libs/**/*.ts", "apps/**/*.ts", "*.ts"],
-	"exclude": ["**/node_modules", "**/dist", "**/build", "data"]
+	// apps/site checks itself with svelte-check instead. SvelteKit generates the `$lib`
+	// aliases and the `*.svelte` module types into .svelte-kit/tsconfig.json, so anything
+	// reading only this file sees a project missing half its declarations.
+	"exclude": ["**/node_modules", "**/dist", "**/build", "data", "apps/site"]
 }

@@ -79,9 +79,14 @@ description = "Run the CDN worker against data/public"
 dir = "apps/cdn"
 run = "pnpm run dev"
 
+[tasks.check-site]
+description = "Type check the site, which needs SvelteKit's generated declarations"
+dir = "apps/site"
+run = "pnpm run check"
+
 [tasks.verify]
 description = "Everything a change has to pass, across both languages"
-depends = ["secrets", "check", "lint", "test", "refs", "lint-rust", "test-rust"]
+depends = ["secrets", "check", "check-site", "lint", "test", "refs", "lint-rust", "test-rust"]
 
 [tools]
 node = "latest"

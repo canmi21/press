@@ -7,7 +7,7 @@
 		"build": "vite build",
 		"preview": "wrangler dev",
 		"deploy": "wrangler deploy",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --tsgo"
 	},
 	"dependencies": {
 		"@canmi/imgsrc": "workspace:*",
@@ -41,12 +41,14 @@
 		"@tailwindcss/vite": "^4.3.3",
 		"@types/mdast": "^4.0.4",
 		"@types/node": "^26.1.2",
+		"@typescript/native": "npm:typescript@^7.0.2",
 		"mdast-util-directive": "^3.1.0",
 		"mdast-util-frontmatter": "^2.0.1",
 		"mdast-util-gfm": "^3.1.0",
 		"svelte": "^5.56.8",
 		"svelte-check": "^4.7.4",
 		"tailwindcss": "^4.3.3",
+		"typescript": "^6.0.3",
 		"vite": "^8.1.5",
 		"wrangler": "^4.115.0"
 	}

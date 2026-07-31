@@ -1,10 +1,11 @@
 <script lang="ts">
+	import { URLS } from '@canmi/urls';
 	let {
 		src,
 		alt = '',
 		el = $bindable()
 	}: { src: string; alt?: string; el?: HTMLImageElement } = $props();
-	const imgSrc = $derived(`https://cdn.canmi.net/image/${src}`);
+	const imgSrc = $derived(`${URLS.apps.production.cdn}/image/${src}`);
 </script>
 
 <img
