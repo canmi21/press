@@ -18,6 +18,10 @@ static MARKDOWN_IMAGE: LazyLock<Regex> =
 static LINKCARD: LazyLock<Regex> =
 	LazyLock::new(|| Regex::new(r"::linkcard\{([^}]*)\}").expect("static pattern"));
 
+/// An image directive, which names an asset the same way but asks for it cropped.
+static IMAGE_DIRECTIVE: LazyLock<Regex> =
+	LazyLock::new(|| Regex::new(r"::image\{([^}]*)\}").expect("static pattern"));
+
 /// One `name="value"` pair inside a directive.
 static ATTRIBUTE: LazyLock<Regex> =
 	LazyLock::new(|| Regex::new(r#"(\w+)="([^"]*)""#).expect("static pattern"));
@@ -158,6 +162,18 @@ fn collect(file: &Path, text: &str, into: &mut Scan) {
 		push_image(file, &capture[1], into);
 	}
 
+	// Cropping is presentation and changes nothing about which asset is wanted, so this reads
+	// only the src. Missing it would be worse than cosmetic: an asset referenced solely by a
+	// cropped directive would look unreferenced, and `cms gc` would delete it.
+	for directive in IMAGE_DIRECTIVE.captures_iter(text) {
+		if let Some((_, src)) = attributes(&directive[1])
+			.iter()
+			.find(|(key, _)| key == "src")
+		{
+			push_image(file, src, into);
+		}
+	}
+
 	for card in LINKCARD.captures_iter(text) {
 		let attributes = attributes(&card[1]);
 		let get = |name: &str| attributes.iter().find(|(k, _)| k == name).map(|(_, v)| v);
@@ -289,6 +305,26 @@ mod tests {
 			found.favicons[0].source.as_deref(),
 			Some("https://avatars.githubusercontent.com/u/1?v=4")
 		);
+	}
+
+	#[test]
+	fn an_image_directive_names_an_asset_like_any_other() {
+		// Only the src matters here. If this were missed, an image used solely in cropped form
+		// would read as unreferenced and be swept.
+		let found = scan_text(r#"::image{src="shot.png" ratio="16:9" align="top" alt="a thing"}"#);
+		assert_eq!(found.images.len(), 1);
+		assert_eq!(found.images[0].value, "shot.png");
+	}
+
+	#[test]
+	fn a_cropped_reference_counts_as_the_same_asset() {
+		// The same picture shown cropped in one article and whole in another is one asset, and
+		// its content id has nothing to do with how any page frames it.
+		let found = scan_text(
+			"![](44b6081deaf0242ca3bf83d62a3b6c95.avif)\n\
+			 ::image{src=\"44b6081deaf0242ca3bf83d62a3b6c95.avif\" ratio=\"1:1\"}",
+		);
+		assert_eq!(found.cids().len(), 1);
 	}
 
 	#[test]

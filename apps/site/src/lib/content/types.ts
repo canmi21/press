@@ -27,7 +27,19 @@ export type Block =
 			alt: string;
 			width?: number;
 			height?: number;
+			/** The image's own aspect ratio, as derived. Not what it is displayed at. */
 			ratio?: string;
+			/**
+			 * A ratio to crop the displayed image to, as `16 / 9` ready for CSS.
+			 *
+			 * Cropping is presentation, so it is done by the browser with `object-fit` rather
+			 * than by producing another object. A stored variant per ratio and alignment would
+			 * multiply the bucket and, worse, make a content id mean "this image as shown here"
+			 * instead of "this image".
+			 */
+			crop?: string;
+			/** `object-position` for that crop. Absent means centred. */
+			align?: string;
 			preview?: string;
 			srcset?: string;
 	  };

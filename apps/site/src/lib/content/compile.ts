@@ -183,6 +183,39 @@ function imageOf(node: RootContent): MdImage | null {
 	return null;
 }
 
+/** Widescreen, because the reason to crop at all is usually to make a row of images agree. */
+const DEFAULT_CROP = '16 / 9';
+
+/** Everything `object-position` is allowed to be here. Centred unless told otherwise. */
+const ALIGNMENTS = ['center', 'top', 'bottom', 'left', 'right'] as const;
+
+/**
+ * `W:H` as a CSS `aspect-ratio`.
+ *
+ * Malformed input throws rather than falling back. A silent default would render a crop
+ * nobody asked for, and a typo in a ratio is invisible in a way a missing image is not --
+ * the page still looks deliberate.
+ */
+function cropRatio(value: string | null | undefined, url: string): string {
+	if (value == null) return DEFAULT_CROP;
+	const match = /^(\d+(?:\.\d+)?):(\d+(?:\.\d+)?)$/.exec(value.trim());
+	if (!match || Number(match[1]) <= 0 || Number(match[2]) <= 0) {
+		throw new Error(`::image ratio must be W:H with positive numbers, got "${value}": ${url}`);
+	}
+	return `${match[1]} / ${match[2]}`;
+}
+
+function cropAlign(value: string | null | undefined, url: string): string | undefined {
+	if (value == null) return undefined;
+	const wanted = value.trim().toLowerCase();
+	if (!(ALIGNMENTS as readonly string[]).includes(wanted)) {
+		throw new Error(
+			`::image align must be one of ${ALIGNMENTS.join(', ')}, got "${value}": ${url}`,
+		);
+	}
+	return wanted === 'center' ? undefined : wanted;
+}
+
 export async function compile(raw: string, url: string): Promise<Compiled> {
 	const tree = parser.parse(raw) as Root;
 	let meta: ArticleMeta | undefined;
@@ -239,6 +272,27 @@ export async function compile(raw: string, url: string): Promise<Compiled> {
 			blocks.push({ type: 'linkcard', ...card, ...resolveAsset(card.src) });
 			feed.push(`<p><a href="${card.url}">${escapeHtml(card.title)}</a></p>`);
 			md.push(`[${card.title}](${card.url})`);
+			continue;
+		}
+
+		// `::image` is the cropped presentation of an asset. Plain `![]()` stays uncropped, so
+		// writing this directive is itself the request to crop -- which is why the defaults
+		// here are a ratio and an alignment rather than "no change".
+		if (node.type === 'leafDirective' && node.name === 'image') {
+			const attrs = node.attributes ?? {};
+			const src = attrs.src ?? '';
+			const alt = attrs.alt ?? '';
+			const crop = cropRatio(attrs.ratio, url);
+			const align = cropAlign(attrs.align, url);
+			const absolute = `${IMAGE_CDN}/image/${src}`;
+
+			blocks.push({ type: 'image', src, alt, crop, align, ...resolveAsset(src) });
+			// The crop does not survive into the feed or the markdown target, and should not:
+			// neither runs a layout, and a crop is how a page shows an image rather than
+			// anything the image says.
+			feed.push(`<p><img src="${absolute}" alt="${escapeHtml(alt)}" /></p>`);
+			md.push(`![${alt}](${absolute})`);
+			if (alt) text.push(alt);
 			continue;
 		}
 

@@ -26,6 +26,8 @@
 			height={block.height}
 			preview={block.preview}
 			srcset={block.srcset}
+			crop={block.crop}
+			align={block.align}
 		/>
 	{:else if block.type === 'linkcard'}
 		<LinkCard

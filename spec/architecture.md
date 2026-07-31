@@ -317,6 +317,25 @@ is recorded in the manifest rather than inferred, because re-deriving has to rep
 was published, and comparing the top variant against the source would guess wrong for every
 image that sits below the cap, where the two are the same size for an unrelated reason.
 
+### Cropping is presentation, so the browser does it
+
+`![](cid.ext)` shows the whole image. `::image{src=...}` shows it cropped, defaulting to 16:9
+and centred, with `ratio` and `align` to say otherwise. Writing the directive is itself the
+request to crop, which is why its defaults are a shape rather than "no change".
+
+It is done with `aspect-ratio` and `object-fit`, never by storing another object. A variant per
+ratio and alignment would multiply the bucket, and would make a content id mean "this image as
+shown here" instead of "this image" -- which would take the addressing model with it, because
+`cms gc` reaches assets through the ids articles name. The cost is that the hidden part of the
+image is still downloaded; that is the cheaper of the two.
+
+A crop does not reach the feed or the markdown target. Neither runs a layout, and how a page
+frames an image is not something the image says.
+
+The scanner reads `::image` for its `src` alone. Missing that would be worse than cosmetic: an
+asset referenced only in cropped form would look unreferenced, and the next sweep would delete
+it.
+
 ### A hash in the name buys a year
 
 Cache lifetime follows one rule everywhere: **a name carrying a content hash is cached for a
