@@ -12,6 +12,7 @@ mod check;
 mod favicon;
 mod gc;
 mod image;
+mod opengraph;
 mod paths;
 mod port;
 mod refs;
@@ -23,6 +24,7 @@ fn main() -> ExitCode {
 		Some("favicon") => fetch_favicons(&args[1..]),
 		Some("image") => process_images(&args[1..]),
 		Some("check") => check_assets(),
+		Some("og") => render_cards(&args[1..]),
 		Some("alt") => describe_images(&args[1..]),
 		Some("gc") => collect_garbage(&args[1..]),
 		Some(other) => {
@@ -219,6 +221,64 @@ fn describe_images(args: &[String]) -> ExitCode {
 	}
 }
 
+/// Render one OpenGraph card per article.
+///
+/// Nothing references these: the page emits `/opengraph/{slug}.png` and no article writes the
+/// URL down, so there is no reference to rewrite and the slug is the name.
+fn render_cards(args: &[String]) -> ExitCode {
+	let force = args.iter().any(|arg| arg == "--force");
+
+	let root = match paths::repo_root() {
+		Ok(root) => root,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
+	};
+
+	// The site name on the card comes from the same file the pages read it from, under the
+	// key those pages use: `name`, not `title`. An article has a title; the site has a name.
+	let config = root.join("apps").join("site").join("site.config.yaml");
+	let site = std::fs::read_to_string(&config)
+		.ok()
+		.and_then(|text| {
+			text
+				.lines()
+				.find_map(|line| line.strip_prefix("name:"))
+				.map(|value| value.trim().trim_matches('"').trim_matches('\'').to_owned())
+		})
+		.unwrap_or_default();
+
+	let outcome = match opengraph::run(
+		&root,
+		&root.join("data").join("public"),
+		&root.join("contents"),
+		&site,
+		force,
+	) {
+		Ok(outcome) => outcome,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
+	};
+
+	for (slug, error) in &outcome.failed {
+		eprintln!("fail  {slug}: {error}");
+	}
+	println!(
+		"{} rendered, {} already present, {} failed",
+		outcome.rendered,
+		outcome.skipped,
+		outcome.failed.len()
+	);
+	if outcome.failed.is_empty() {
+		ExitCode::SUCCESS
+	} else {
+		ExitCode::FAILURE
+	}
+}
+
 /// Report what the articles reference and `data/public` cannot answer for.
 ///
 /// Always succeeds. This is a report, and a report that can fail a build is a gate wearing a
@@ -389,6 +449,7 @@ fn usage() {
 	eprintln!("  favicon [--force] [domain...]");
 	eprintln!("                              collect the icons the linkcards need");
 	eprintln!("  alt [--force] [--limit N]   describe assets that have no description yet");
+	eprintln!("  og [--force]                render an OpenGraph card per article");
 	eprintln!("  check                       list referenced assets that are not present");
 	eprintln!("  gc [--live]                 drop published assets no article asks for");
 }

@@ -367,6 +367,35 @@ led to -- the favicon did, and that is `aria-hidden` -- so the domain is added t
 with the new-tab warning that `:link` directives already emit. That last one was an
 inconsistency rather than a new decision.
 
+### A card is named by its slug, and that is the exception
+
+Every other published asset is named by a hash of its bytes. An OpenGraph card is not:
+`cms og` writes `opengraph/{slug}.png`, mirroring the article tree, and the page emits that
+URL from its own route. Nothing stores a reference, so there is nothing to rewrite and no id
+to look up -- the address follows from where the article sits.
+
+The cost is that the name is mutable, and the cache rule already prices it: no hash means a
+week rather than a year, which is also what X caches a card for. An edited title takes that
+long to circulate, and that is the accepted trade rather than an oversight.
+
+PNG, not AVIF, against the rule that says store the newest format. The consumers here are
+crawlers for X, Slack and Discord, and they do not read AVIF. When the format a thing is
+stored in is decided by software nobody here controls, the rule bends to the reader.
+
+The CDN's `robots.txt` disallows everything and allows `/opengraph/`. Those same crawlers read
+it before fetching an `og:image`, so a blanket disallow makes the card a page advertises the
+one thing nobody can fetch.
+
+### The title is sized to fit one line
+
+A card's title is shaped at 96px and stepped down until it occupies a single line, stopping at
+56px and wrapping below that. Measured, never estimated: where a CJK title breaks has no
+relation to its character count, so the only way to know whether a size fits is to lay it out
+and look. The same measurement decides where the band below it starts.
+
+The bottom band is aligned right because X draws the domain over the bottom left of every card
+it renders. Anything placed there is covered by somebody else's chrome.
+
 ### The manifest has versions, and only one is current
 
 `assets.json` and every published record carry a version. Raising it means migrating the file
@@ -395,6 +424,23 @@ frames an image is not something the image says.
 The scanner reads `::image` for its `src` alone. Missing that would be worse than cosmetic: an
 asset referenced only in cropped form would look unreferenced, and the next sweep would delete
 it.
+
+### A font is kept twice, on purpose
+
+`data/fonts` holds the whole TTF and is never published; `data/public/fonts/{family}` holds
+the subset the web loads. That is the same shape as images -- originals outside the published
+tree, derived things inside -- and here the two copies are not redundant but different modes
+of use.
+
+A browser wants the smallest slice that covers the page, so a 24MB CJK face is split into
+hundreds of chunks by `unicode-range` and a reader fetches a handful. `cms og` wants the
+opposite: a title may contain any character, and a subset cannot answer for one it does not
+have.
+
+The stylesheets live in `libs/fonts`, apart from the colour tokens. They are a different kind
+of fact -- what a family is and where its files are, rather than what the site looks like --
+and the CJK sheet alone is 75KB gzipped, which nothing should import until the site actually
+sets that family.
 
 ### A hash in the name buys a year
 

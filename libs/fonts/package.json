@@ -1,0 +1,9 @@
+{
+	"name": "@canmi/fonts",
+	"private": true,
+	"type": "module",
+	"exports": {
+		"./mono.css": "./src/mono.css",
+		"./wenkai.css": "./src/wenkai.css"
+	}
+}

@@ -9,7 +9,7 @@ import { defineConfig } from 'vite';
 import { parse as parseYaml } from 'yaml';
 
 const SITE_CONFIG = fileURLToPath(new URL('./site.config.yaml', import.meta.url));
-const ASSETS = fileURLToPath(new URL('../../assets.json', import.meta.url));
+const ASSETS = fileURLToPath(new URL('../../data/assets.json', import.meta.url));
 
 // Built-in 301s, kept out of site.config.yaml because they are product behaviour rather than
 // configuration: feed aliases and the favicon redirect to the CDN.
@@ -97,7 +97,7 @@ export default defineConfig(({ mode }) => {
 				},
 			},
 			{
-				// The font stylesheet in @canmi/tokens carries a placeholder rather than a
+				// The font stylesheets in @canmi/fonts carry a placeholder rather than a
 				// host, because which CDN answers depends on the mode and a library cannot
 				// know that. See spec/architecture.md on where URLs are declared.
 				name: 'replace-cdn-url',

@@ -3,7 +3,6 @@
 	"private": true,
 	"type": "module",
 	"exports": {
-		"./colors.css": "./src/colors.css",
-		"./fonts.css": "./src/fonts.css"
+		"./colors.css": "./src/colors.css"
 	}
 }

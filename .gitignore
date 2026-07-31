@@ -9,6 +9,10 @@
 data/**
 !data/**/
 !data/**/.gitkeep
+# The one exception, and it earns it: the merged manifest is what lets a build resolve every
+# image without a single byte of `data/` being present, so it has to travel with the code
+# rather than with the assets it describes. Everything else here is bytes; this is a record.
+!data/assets.json
 
 # Dependencies
 node_modules/

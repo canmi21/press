@@ -12,6 +12,9 @@
 </script>
 
 <script lang="ts">
+	import { dev } from '$app/environment';
+	import { page } from '$app/state';
+	import { pickUrls } from '@canmi/urls';
 	import BookOpenText from '@lucide/svelte/icons/book-open-text';
 	import Type from '@lucide/svelte/icons/type';
 	import type { Snippet } from 'svelte';
@@ -19,6 +22,19 @@
 	import Toc from '$lib/toc.svelte';
 
 	let { meta, chars, children }: { meta: ArticleMeta; chars: number; children: Snippet } = $props();
+
+	const urls = pickUrls(dev);
+
+	/**
+	 * The card for this article, at a URL nothing had to be told.
+	 *
+	 * `cms og` writes one card per article under the same path the article has, so the address
+	 * follows from the route and no reference is stored anywhere. The cost is that the name is
+	 * mutable -- an edited title reuses this URL -- which is why the CDN serves these for a
+	 * week rather than a year. See spec/architecture.md.
+	 */
+	const card = $derived(`${urls.cdn}/opengraph${page.url.pathname.replace(/\/$/, '')}.png`);
+	const canonical = $derived(new URL(page.url.pathname, urls.site).href);
 
 	// Pin UTC so the shown day matches the authored frontmatter date everywhere it
 	// renders, mirroring the article list (see article-card.svelte).
@@ -35,6 +51,24 @@
 <svelte:head>
 	<title>{meta.title}: {meta.subtitle}</title>
 	<meta name="description" content={meta.description} />
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content={meta.title} />
+	<meta property="og:description" content={meta.description} />
+	<meta property="og:url" content={canonical} />
+	<meta property="og:image" content={card} />
+	<!-- Stated because a crawler that reserves the box before fetching draws it right. -->
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content={meta.title} />
+	<meta property="article:published_time" content={meta.created} />
+
+	<!-- `summary_large_image` is what makes X render the card at full width rather than as a
+	     thumbnail beside the text, which is the only shape this layout is drawn for. -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={meta.title} />
+	<meta name="twitter:description" content={meta.description} />
+	<meta name="twitter:image" content={card} />
 </svelte:head>
 
 <main class="min-h-screen bg-page text-text">

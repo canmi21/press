@@ -4,7 +4,7 @@
 	import { URLS, pickUrls } from '@canmi/urls';
 	import { site } from '$lib/site';
 	import '../styles/app.css';
-	import '@canmi/tokens/fonts.css';
+	import '@canmi/fonts/mono.css';
 
 	const cdn = pickUrls(dev).cdn;
 	const canonical = $derived(`${URLS.apps.production.site}${page.url.pathname}`);

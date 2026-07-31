@@ -12,9 +12,12 @@ use crate::refs::{self, Scan};
 use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 
-/// Where the merged manifest is committed. Articles reference images by content id, and this
-/// is what lets a build resolve one without the images being present at all.
-pub const MERGED: &str = "assets.json";
+/// Where the merged manifest is committed, relative to the repository root.
+///
+/// Inside `data/` because it describes what is there, and tracked anyway because a build
+/// resolves every image from it without a byte of `data/` being present. It is the one file
+/// under that directory git keeps -- see .gitignore, which says why.
+pub const MERGED: &str = "data/assets.json";
 
 #[derive(Debug, Default)]
 pub struct Outcome {

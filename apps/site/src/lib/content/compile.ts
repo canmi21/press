@@ -28,8 +28,21 @@ const parser = unified()
 
 const stringifier = unified().use(remarkStringify, { bullet: '-', fences: true }).use(remarkGfm);
 
+/**
+ * Escape a value for either HTML text or a double-quoted attribute.
+ *
+ * Quotes are escaped because some of these land in `alt="..."`, and a description that
+ * mentions a path or a window title routinely contains one -- 15 of the 24 written so far do.
+ * Without this the attribute simply ends early, which is malformed output today and an
+ * injection point the moment any of this text stops being ours.
+ */
 function escapeHtml(value: string): string {
-	return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+	return value
+		.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;')
+		.replace(/'/g, '&#39;');
 }
 
 // DLC directives extend markdown with display-only semantics that compile

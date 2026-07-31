@@ -36,6 +36,18 @@ Some frameworks assign meaning to a filename. Follow the framework -- a renamed 
 stops working. Examples: `Cargo.toml`, `Dockerfile`, `README.md`, `CLAUDE.md`, Next.js
 `[slug]/page.tsx`.
 
+## Asset directories are singular; infrastructure is plural
+
+Under `data/`, a directory holding addressable resources is named in the singular:
+`image/`, `opengraph/`, `favicon/`, `meta/`, and `video/` or `audio/` when they arrive. Each
+entry is a thing a reader asks for by name, and the directory reads as the type of that one
+thing -- `image/{cid}.avif` is _an_ image.
+
+`fonts/` is plural, and the exception is the rule working rather than breaking. Fonts are not
+resources anyone requests individually; they are one self-hosted set the site loads as a
+whole, closer to a dependency than to content. The plural marks that difference at a glance,
+so a directory name says which kind of thing is inside before anything is opened.
+
 ## Vendor names stay at the edge
 
 Name things for what they do, not for who supplies them. A vendor name belongs only in the

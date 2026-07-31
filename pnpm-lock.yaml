@@ -82,6 +82,9 @@ importers:
 
   apps/site:
     dependencies:
+      '@canmi/fonts':
+        specifier: workspace:*
+        version: link:../../libs/fonts
       '@canmi/imgsrc':
         specifier: workspace:*
         version: link:../../libs/imgsrc
@@ -200,6 +203,8 @@ importers:
       wrangler:
         specifier: ^4.115.0
         version: 4.115.0(@cloudflare/workers-types@5.20260730.1)
+
+  libs/fonts: {}
 
   libs/imgsrc:
     dependencies:

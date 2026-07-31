@@ -10,6 +10,7 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --tsgo"
 	},
 	"dependencies": {
+		"@canmi/fonts": "workspace:*",
 		"@canmi/imgsrc": "workspace:*",
 		"@canmi/robots": "workspace:*",
 		"@canmi/urls": "workspace:*",
