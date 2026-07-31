@@ -1,3 +1,4 @@
+import { robotsTxt } from '@canmi/robots';
 import { Hono } from 'hono';
 import { describe, expect, it } from 'vitest';
 import { cacheControl } from './cache';
@@ -91,5 +92,24 @@ describe('cacheControl', () => {
 	it('never overrides a header a route set deliberately', async () => {
 		const res = await app.request('/preset');
 		expect(res.headers.get('Cache-Control')).toBe('no-store');
+	});
+});
+
+describe('robots policy', () => {
+	// The change this guards was written once and silently lost to a bad patch, and nothing
+	// noticed until a card failed to appear. What a crawler is allowed to fetch is worth an
+	// assertion rather than a reading of the source.
+	const text = robotsTxt({ allow: ['/opengraph/'], disallow: ['/'] });
+
+	it('lets crawlers reach the cards a page advertises', () => {
+		expect(text).toContain('Allow: /opengraph/');
+	});
+
+	it('still keeps everything else out', () => {
+		expect(text).toContain('Disallow: /');
+	});
+
+	it('allows before it disallows, which is the order that decides', () => {
+		expect(text.indexOf('Allow: /opengraph/')).toBeLessThan(text.indexOf('Disallow: /'));
 	});
 });
