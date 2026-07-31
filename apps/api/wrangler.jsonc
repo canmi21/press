@@ -23,6 +23,22 @@
 		"inspector_port": 26513,
 	},
 
+	// Development reads data/public directly, the same way apps/cdn does and for the same
+	// reason: the local tree is the source of truth. Without this the simulated bucket is empty
+	// and every metadata lookup is a 404 until `--remote` reaches the real one, which makes
+	// local work depend on something already having been published.
+	//
+	// Under `env.dev` so a plain deploy never uploads data/public alongside the worker.
+	"env": {
+		"dev": {
+			"assets": {
+				"directory": "../../data/public",
+				"binding": "ASSETS",
+				"run_worker_first": true,
+			},
+		},
+	},
+
 	"observability": { "logs": { "enabled": true } },
 	"placement": { "mode": "smart" },
 	// Custom domains only; see apps/cdn for the reasoning.

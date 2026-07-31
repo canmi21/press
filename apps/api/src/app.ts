@@ -1,5 +1,5 @@
 import { robotsTxt } from '@canmi/robots';
-import type { R2Bucket } from '@cloudflare/workers-types';
+import type { Bindings } from '@canmi/store';
 import { URLS, isDevHost, pickUrls } from '@canmi/urls';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
@@ -14,8 +14,6 @@ import image from './image';
  * Alongside the asset metadata endpoint it carries the redirects and robots policy that any
  * host answering on a domain has to have.
  */
-type Bindings = { PUBLIC?: R2Bucket };
-
 const app = new Hono<{ Bindings: Bindings }>();
 
 app.use(

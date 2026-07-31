@@ -9,6 +9,7 @@
 	},
 	"dependencies": {
 		"@canmi/robots": "workspace:*",
+		"@canmi/store": "workspace:*",
 		"@canmi/urls": "workspace:*",
 		"hono": "^4.10.7"
 	},

@@ -1,0 +1,11 @@
+{
+	"name": "@canmi/store",
+	"private": true,
+	"type": "module",
+	"exports": {
+		".": "./src/index.ts"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^5.20260730.1"
+	}
+}

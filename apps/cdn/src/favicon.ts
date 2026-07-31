@@ -1,5 +1,5 @@
 import { Hono } from 'hono';
-import { type Bindings, findOne, read, toResponse } from './store';
+import { type Bindings, findOne, read, toResponse } from '@canmi/store';
 
 /**
  * Serving favicons that the local CMS already fetched and synced.

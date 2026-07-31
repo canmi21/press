@@ -2,7 +2,6 @@ import { Hono } from 'hono';
 import { describe, expect, it } from 'vitest';
 import { cacheControl } from './cache';
 import { candidates, isValidHostname } from './favicon';
-import { contentTypeFor } from './store';
 
 describe('isValidHostname', () => {
 	it('accepts an ordinary hostname', () => {
@@ -43,18 +42,6 @@ describe('candidates', () => {
 
 	it('treats an unrecognised tone as no tone', () => {
 		expect(candidates('sepia')).toEqual(['light', 'dark']);
-	});
-});
-
-describe('contentTypeFor', () => {
-	it('maps the formats actually stored', () => {
-		expect(contentTypeFor('favicon/a.com/light.svg')).toBe('image/svg+xml');
-		expect(contentTypeFor('favicon/a.com/dark.ico')).toBe('image/x-icon');
-		expect(contentTypeFor('fonts/x.woff2')).toBe('font/woff2');
-	});
-
-	it('falls back rather than guessing', () => {
-		expect(contentTypeFor('unknown')).toBe('application/octet-stream');
 	});
 });
 

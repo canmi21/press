@@ -6,7 +6,7 @@ import { cacheControl } from './cache';
 import favicon from './favicon';
 import image from './image';
 import github from './github';
-import { type Bindings, read, toResponse } from './store';
+import { type Bindings, read, toResponse } from '@canmi/store';
 
 const app = new Hono<{ Bindings: Bindings }>();
 

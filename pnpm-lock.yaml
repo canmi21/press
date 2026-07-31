@@ -26,6 +26,9 @@ importers:
       '@canmi/robots':
         specifier: workspace:*
         version: link:../../libs/robots
+      '@canmi/store':
+        specifier: workspace:*
+        version: link:../../libs/store
       '@canmi/urls':
         specifier: workspace:*
         version: link:../../libs/urls
@@ -48,6 +51,9 @@ importers:
       '@canmi/robots':
         specifier: workspace:*
         version: link:../../libs/robots
+      '@canmi/store':
+        specifier: workspace:*
+        version: link:../../libs/store
       '@canmi/urls':
         specifier: workspace:*
         version: link:../../libs/urls
@@ -194,6 +200,12 @@ importers:
       '@canmi/urls':
         specifier: workspace:*
         version: link:../urls
+
+  libs/store:
+    devDependencies:
+      '@cloudflare/workers-types':
+        specifier: ^5.20260730.1
+        version: 5.20260730.1
 
   libs/svg-canvas: {}
 

@@ -87,6 +87,23 @@ without a single line of its code changing.
 and let the growth force it rather than predicting it. Four apps do not need a taxonomy;
 `api` and `cdn` announce themselves as infrastructure without a parent directory saying so.
 
+## Extraction threshold
+
+Code moves into `libs/` when it acquires a second consumer, not when someone predicts one.
+A library written for a single caller is a guess about what the second caller will need, and
+the guess is made at the moment least is known. Waiting means the shared shape is derived from
+two real uses instead of one real use and one imagined one.
+
+The counterpart matters as much: once the second consumer exists, extract rather than copy.
+`apps/api` read its metadata straight out of R2 while `apps/cdn` read the same bucket through
+a store that also knew how to read `data/public`, so the API had no local development at all
+-- every lookup was a 404 until `--remote` reached a bucket that only production writes. The
+copy was not a duplicated function, it was a capability one side silently lacked.
+
+Extraction is also the moment to write the tests that only make sense for shared code. A
+private helper is covered by its one caller; a library is not, because the behaviour each
+consumer depends on is no longer visible from any single one of them.
+
 ## Where volatile facts live
 
 Directory structure is the skeleton: expensive to change, so it may only carry stable facts.

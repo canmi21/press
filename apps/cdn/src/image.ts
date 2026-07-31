@@ -1,5 +1,5 @@
 import { Hono } from 'hono';
-import { type Bindings, read, toResponse } from './store';
+import { type Bindings, read, toResponse } from '@canmi/store';
 
 /**
  * Serving content-addressed assets.
