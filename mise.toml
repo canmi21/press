@@ -91,3 +91,9 @@ jj = "latest"
 oxlint = "latest"
 oxfmt = "latest"
 rclone = "latest"
+
+[tasks.gc]
+description = "Compact the jj and git object stores"
+# Run when you want to, not on every commit: both walk the whole repository, and paying that
+# on each of a dozen commits an hour buys nothing. git also does this itself via gc.auto.
+run = ["jj util gc", "git gc"]

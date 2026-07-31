@@ -1,0 +1,261 @@
+//! Deriving everything an article needs from one original image.
+//!
+//! The original never leaves this machine by default. What gets published are the derived
+//! variants, each addressed by the hash of its own bytes, so a key can never denote different
+//! content than it did before. See spec/architecture.md.
+
+pub mod encode;
+pub mod ladder;
+pub mod manifest;
+
+use encode::Format;
+use fast_image_resize::images::Image as FirImage;
+use fast_image_resize::{PixelType, ResizeOptions, Resizer};
+use image::DynamicImage;
+use ladder::Size;
+
+/// Edge length of the inline placeholder decoded from the thumbhash.
+const PREVIEW_EDGE: u32 = 32;
+
+/// A content id: BLAKE3 truncated to 128 bits, hex encoded.
+///
+/// Truncation leaves roughly 64-bit collision resistance, which is far more than addressing
+/// a lifetime of personal assets needs and deliberately not a tamper-evidence claim. Unrelated
+/// to an IPFS CID, which is a structured multihash rather than a bare digest.
+pub fn cid(bytes: &[u8]) -> String {
+	let digest = blake3::hash(bytes);
+	digest.to_hex()[..32].to_string()
+}
+
+#[derive(Debug, Clone)]
+pub struct Variant {
+	pub cid: String,
+	pub bytes: Vec<u8>,
+	pub width: u32,
+	pub height: u32,
+	pub format: Format,
+}
+
+#[derive(Debug)]
+pub struct Derived {
+	/// Content id of the original bytes, and the identity of the asset as a whole.
+	pub cid: String,
+	pub width: u32,
+	pub height: u32,
+	/// Thumbhash bytes, 19 of them for any image.
+	pub thumb: Vec<u8>,
+	/// The thumbhash decoded and re-encoded small, ready to inline as a data URI.
+	pub preview: Vec<u8>,
+	pub variants: Vec<Variant>,
+}
+
+#[derive(Debug)]
+pub enum Error {
+	Decode,
+	Encode(encode::Error),
+	Preview,
+}
+
+impl std::fmt::Display for Error {
+	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+		match self {
+			Self::Decode => write!(f, "not a readable image"),
+			Self::Encode(error) => write!(f, "{error}"),
+			Self::Preview => write!(f, "could not build the placeholder"),
+		}
+	}
+}
+
+/// Everything published for one original: its identity, its placeholder, and one variant per
+/// size and format.
+pub fn derive(original: &[u8]) -> Result<Derived, Error> {
+	let image = image::load_from_memory(original).map_err(|_| Error::Decode)?;
+	let size = Size::new(image.width(), image.height());
+	let formats = encode::formats_for(&image);
+
+	let mut variants = Vec::new();
+	for target in ladder::ladder(size) {
+		let resized = resize(&image, target);
+		for &format in &formats {
+			let bytes = encode::encode(&resized, format).map_err(Error::Encode)?;
+			variants.push(Variant {
+				cid: cid(&bytes),
+				width: target.width,
+				height: target.height,
+				format,
+				bytes,
+			});
+		}
+	}
+
+	let (thumb, preview) = placeholder(&image)?;
+	Ok(Derived {
+		cid: cid(original),
+		width: size.width,
+		height: size.height,
+		thumb,
+		preview,
+		variants,
+	})
+}
+
+fn resize(image: &DynamicImage, target: Size) -> DynamicImage {
+	if target.width == image.width() && target.height == image.height() {
+		return image.clone();
+	}
+	let mut destination = FirImage::new(target.width, target.height, PixelType::U8x4);
+	if Resizer::new()
+		.resize(image, &mut destination, &ResizeOptions::new())
+		.is_err()
+	{
+		return image.clone();
+	}
+	image::RgbaImage::from_raw(target.width, target.height, destination.into_vec())
+		.map(DynamicImage::ImageRgba8)
+		.unwrap_or_else(|| image.clone())
+}
+
+/// The thumbhash and a tiny image decoded from it.
+///
+/// Both are kept: the hash is the compact canonical form, and the decoded image is what gets
+/// inlined into an article so a page paints its placeholder with no request, no decoder
+/// script, and no dependence on JavaScript having run.
+fn placeholder(image: &DynamicImage) -> Result<(Vec<u8>, Vec<u8>), Error> {
+	// thumbhash reads a small input by design; anything larger is wasted work.
+	let small = resize(
+		image,
+		Size::new(image.width(), image.height()).scaled_to_long_edge(100),
+	);
+	let rgba = small.to_rgba8();
+	let thumb =
+		thumbhash::rgba_to_thumb_hash(rgba.width() as usize, rgba.height() as usize, rgba.as_raw());
+
+	let (width, height, pixels) =
+		thumbhash::thumb_hash_to_rgba(&thumb).map_err(|_| Error::Preview)?;
+	let decoded = image::RgbaImage::from_raw(width as u32, height as u32, pixels)
+		.map(DynamicImage::ImageRgba8)
+		.ok_or(Error::Preview)?;
+	let scaled = resize(
+		&decoded,
+		Size::new(decoded.width(), decoded.height()).scaled_to_long_edge(PREVIEW_EDGE),
+	);
+	let preview = encode::encode(&scaled, Format::Webp).map_err(Error::Encode)?;
+	Ok((thumb, preview))
+}
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+	use image::{Rgba, RgbaImage};
+
+	fn photo(width: u32, height: u32) -> Vec<u8> {
+		let mut buffer = RgbaImage::new(width, height);
+		let mut state: u32 = 0x9e37_79b9;
+		for pixel in buffer.pixels_mut() {
+			state = state.wrapping_mul(1_664_525).wrapping_add(1_013_904_223);
+			let [r, g, b, _] = state.to_le_bytes();
+			*pixel = Rgba([r, g, b, 255]);
+		}
+		let mut out = Vec::new();
+		DynamicImage::ImageRgba8(buffer)
+			.write_to(&mut std::io::Cursor::new(&mut out), image::ImageFormat::Png)
+			.expect("encode fixture");
+		out
+	}
+
+	#[test]
+	fn a_cid_is_thirty_two_hex_characters() {
+		let value = cid(b"anything");
+		assert_eq!(value.len(), 32);
+		assert!(value.chars().all(|c| c.is_ascii_hexdigit()));
+	}
+
+	#[test]
+	fn identical_bytes_give_identical_cids() {
+		// This is what makes a key immutable by construction rather than by promise.
+		assert_eq!(cid(b"same"), cid(b"same"));
+		assert_ne!(cid(b"same"), cid(b"other"));
+	}
+
+	#[test]
+	fn rejects_something_that_is_not_an_image() {
+		assert!(matches!(derive(b"not an image"), Err(Error::Decode)));
+	}
+
+	#[test]
+	fn derives_every_tier_below_the_original_plus_the_original() {
+		let derived = derive(&photo(1500, 1000)).expect("derive");
+		let mut widths: Vec<u32> = derived.variants.iter().map(|v| v.width).collect();
+		widths.sort_unstable();
+		widths.dedup();
+		assert_eq!(widths, vec![640, 1280, 1500]);
+	}
+
+	#[test]
+	fn offers_both_lossy_formats_at_every_tier() {
+		// Format support is a property of the browser, not of the tier. Giving only the
+		// largest tier AVIF would deny it to phones, which need the saving most.
+		let derived = derive(&photo(1500, 1000)).expect("derive");
+		for width in [640, 1280, 1500] {
+			let at_tier: Vec<encode::Format> = derived
+				.variants
+				.iter()
+				.filter(|v| v.width == width)
+				.map(|v| v.format)
+				.collect();
+			assert!(
+				at_tier.contains(&encode::Format::Avif),
+				"no avif at {width}"
+			);
+			assert!(
+				at_tier.contains(&encode::Format::Webp),
+				"no webp at {width}"
+			);
+		}
+	}
+
+	#[test]
+	fn keeps_the_aspect_ratio_of_a_portrait_original() {
+		let derived = derive(&photo(600, 1200)).expect("derive");
+		for variant in &derived.variants {
+			assert!(variant.height > variant.width, "orientation flipped");
+		}
+	}
+
+	#[test]
+	fn re_encodes_a_small_image_without_resizing_it() {
+		let derived = derive(&photo(200, 150)).expect("derive");
+		for variant in &derived.variants {
+			assert_eq!((variant.width, variant.height), (200, 150));
+		}
+	}
+
+	#[test]
+	fn every_variant_is_addressed_by_its_own_bytes() {
+		let derived = derive(&photo(700, 500)).expect("derive");
+		for variant in &derived.variants {
+			assert_eq!(variant.cid, cid(&variant.bytes));
+		}
+		// The asset id is the original's hash, never a variant's.
+		assert!(derived.variants.iter().all(|v| v.cid != derived.cid));
+	}
+
+	#[test]
+	fn produces_a_placeholder_small_enough_to_inline() {
+		let derived = derive(&photo(1500, 1000)).expect("derive");
+		// Thumbhash length is not fixed: the payload carries more or fewer coefficients
+		// depending on the aspect ratio and whether alpha is present. What matters is that it
+		// stays small enough to sit in a manifest without thought, so the bound is asserted
+		// rather than a value that happened to come out of one image.
+		assert!(
+			(16..=32).contains(&derived.thumb.len()),
+			"thumbhash is {} bytes",
+			derived.thumb.len()
+		);
+		assert!(
+			derived.preview.len() < 1024,
+			"preview is {} bytes, too large to inline",
+			derived.preview.len()
+		);
+	}
+}

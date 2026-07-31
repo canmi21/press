@@ -8,6 +8,7 @@
 use std::process::ExitCode;
 
 mod favicon;
+mod image;
 mod paths;
 mod port;
 

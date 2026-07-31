@@ -17,10 +17,33 @@ ureq = "3"
 # adversarial input, regex matching picked up a commented-out <link>, a <link> written inside a
 # <script> string, and left `&amp;` undecoded in the href -- three wrong icons, all silent.
 # `tl` is far lighter and got two of those three wrong as well. scraper got all of them right.
-scraper = "0.24"
+scraper = "0.27"
 # For `sizes="16x16 32x32"` and the prefers-color-scheme media query. Small, and clearer than
 # hand-rolled splitting.
 regex = "1"
 # Resolving a possibly-relative href against the page it came from is the one piece of URL
 # handling worth not writing by hand.
 url = "2"
+
+# Content addressing. BLAKE3 truncated to 128 bits, which leaves roughly 64-bit collision
+# resistance -- ample for addressing personal assets, and deliberately not a tamper-evidence
+# claim. See spec/architecture.md.
+blake3 = "1"
+# Decoding whatever was handed to us, and encoding PNG where lossy formats are the wrong tool.
+image = "0.25"
+# SIMD resampling. Measurably better than the `image` crate's own filters at this size.
+fast_image_resize = { version = "6", features = ["image"] }
+# AVIF, via rav1e. Pure Rust and slow; both are acceptable for a local one-off per image.
+ravif = "0.13"
+rgb = "0.8"
+# WebP, via libwebp. A C dependency, which a local tool can afford -- see spec/code.md.
+webp = "0.3"
+# The compact placeholder that gets compiled into an article so a page paints before any
+# image request is made.
+thumbhash = "0.1"
+# The manifest, which is read by the site build and by the metadata API.
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+# Timestamps. Only ever formatted as ISO 8601 in UTC, so the record means the same thing on
+# any machine that reads it.
+jiff = "0.2"

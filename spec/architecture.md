@@ -191,6 +191,28 @@ live only in the deployed artifact, and `data/` would no longer be complete. A r
 asset has not been synced yet degrades to a placeholder at request time rather than failing
 the build -- one missing image is not a reason to block a release.
 
+### Assets are addressed by their content
+
+Every published asset -- an original and each variant derived from it -- is stored under the
+hash of its own bytes, BLAKE3 truncated to 128 bits. The identity of a whole asset is its
+original's hash; a variant is a separate object with a separate one.
+
+This is what makes long caching safe without a promise to keep. The fonts above are cached for
+a year under names carrying no hash, so "these bytes never change" is a rule someone has to
+remember. A content-addressed key cannot denote different bytes than it did before, because
+changing the bytes changes the key. Re-encoding at a new quality produces a new object rather
+than a redefinition of an old one.
+
+The relationships -- which variants belong to which asset, their sizes and formats -- live in
+the manifest, not in the key layout. The store answers "give me these bytes"; the manifest
+answers "which bytes do I want". Deriving one from the other would mean encoding relationships
+into paths, which is how a rename becomes a migration.
+
+The truncation to 128 bits leaves roughly 64-bit collision resistance. That is far beyond what
+addressing a lifetime of personal assets requires, and is deliberately not a tamper-evidence
+claim. It is also unrelated to an IPFS CID, which is a structured multihash rather than a bare
+digest.
+
 ### Caching is the worker's job now
 
 The old CDN served these files through a static-assets binding and set their cache policy in
