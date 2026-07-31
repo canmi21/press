@@ -6,6 +6,16 @@
 	"compatibility_date": "2026-07-29",
 	"compatibility_flags": ["nodejs_compat"],
 
+	// Read-only here: the API answers questions about assets and never writes one. The bucket
+	// is the same one the CDN serves, because a record and the bytes it describes are produced
+	// together and should not be able to drift apart.
+	"r2_buckets": [
+		{
+			"binding": "PUBLIC",
+			"bucket_name": "public",
+		},
+	],
+
 	// The port also appears in libs/urls as the development API URL. wrangler cannot read a
 	// TypeScript library, so the number is written twice on purpose.
 	"dev": {

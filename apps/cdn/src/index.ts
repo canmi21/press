@@ -4,6 +4,7 @@ import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { cacheControl } from './cache';
 import favicon from './favicon';
+import image from './image';
 import github from './github';
 import { type Bindings, read, toResponse } from './store';
 
@@ -34,6 +35,7 @@ app.get('/', (c) => {
 app.get('/robots.txt', (c) => c.text(robotsTxt({ disallow: ['/'] })));
 
 app.route('/favicon', favicon);
+app.route('/image', image);
 app.route('/github', github);
 
 // Everything else is a direct key lookup: fonts, the site's own icons, whatever else lands in
