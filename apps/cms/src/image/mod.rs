@@ -70,13 +70,13 @@ impl std::fmt::Display for Error {
 
 /// Everything published for one original: its identity, its placeholder, and one variant per
 /// size and format.
-pub fn derive(original: &[u8]) -> Result<Derived, Error> {
+pub fn derive(original: &[u8], keep_original: bool) -> Result<Derived, Error> {
 	let image = image::load_from_memory(original).map_err(|_| Error::Decode)?;
 	let size = Size::new(image.width(), image.height());
 	let formats = encode::formats_for(&image);
 
 	let mut variants = Vec::new();
-	for target in ladder::ladder(size) {
+	for target in ladder::ladder(size, keep_original) {
 		let resized = resize(&image, target);
 		for &format in &formats {
 			let bytes = encode::encode(&resized, format).map_err(Error::Encode)?;
@@ -181,12 +181,12 @@ mod tests {
 
 	#[test]
 	fn rejects_something_that_is_not_an_image() {
-		assert!(matches!(derive(b"not an image"), Err(Error::Decode)));
+		assert!(matches!(derive(b"not an image", false), Err(Error::Decode)));
 	}
 
 	#[test]
 	fn derives_every_tier_below_the_original_plus_the_original() {
-		let derived = derive(&photo(1500, 1000)).expect("derive");
+		let derived = derive(&photo(1500, 1000), false).expect("derive");
 		let mut widths: Vec<u32> = derived.variants.iter().map(|v| v.width).collect();
 		widths.sort_unstable();
 		widths.dedup();
@@ -197,7 +197,7 @@ mod tests {
 	fn stores_one_format_per_tier() {
 		// Only AVIF is kept. A browser without it gets a conversion at the edge, which costs
 		// one transformation rather than a second permanent copy of every image.
-		let derived = derive(&photo(1500, 1000)).expect("derive");
+		let derived = derive(&photo(1500, 1000), false).expect("derive");
 		for width in [640, 1280, 1500] {
 			let at_tier: Vec<encode::Format> = derived
 				.variants
@@ -215,7 +215,7 @@ mod tests {
 
 	#[test]
 	fn keeps_the_aspect_ratio_of_a_portrait_original() {
-		let derived = derive(&photo(600, 1200)).expect("derive");
+		let derived = derive(&photo(600, 1200), false).expect("derive");
 		for variant in &derived.variants {
 			assert!(variant.height > variant.width, "orientation flipped");
 		}
@@ -223,7 +223,7 @@ mod tests {
 
 	#[test]
 	fn re_encodes_a_small_image_without_resizing_it() {
-		let derived = derive(&photo(200, 150)).expect("derive");
+		let derived = derive(&photo(200, 150), false).expect("derive");
 		for variant in &derived.variants {
 			assert_eq!((variant.width, variant.height), (200, 150));
 		}
@@ -231,7 +231,7 @@ mod tests {
 
 	#[test]
 	fn every_variant_is_addressed_by_its_own_bytes() {
-		let derived = derive(&photo(700, 500)).expect("derive");
+		let derived = derive(&photo(700, 500), false).expect("derive");
 		for variant in &derived.variants {
 			assert_eq!(variant.cid, cid(&variant.bytes));
 		}
@@ -241,7 +241,7 @@ mod tests {
 
 	#[test]
 	fn produces_a_placeholder_small_enough_to_inline() {
-		let derived = derive(&photo(1500, 1000)).expect("derive");
+		let derived = derive(&photo(1500, 1000), false).expect("derive");
 		// Thumbhash length is not fixed: the payload carries more or fewer coefficients
 		// depending on the aspect ratio and whether alpha is present. What matters is that it
 		// stays small enough to sit in a manifest without thought, so the bound is asserted

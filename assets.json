@@ -1,6 +1,6 @@
 {
 	"version": 1,
-	"generated": "2026-07-31T07:09:27.218561Z",
+	"generated": "2026-07-31T13:44:31.356548Z",
 	"assets": {
 		"12faaa76365814de1195d6bdf1e5ba05": {
 			"type": "image",
@@ -16,6 +16,7 @@
 				"ratio": "638:353",
 				"bytes": 79505
 			},
+			"original": false,
 			"variants": {
 				"453ac9e9c1a9bc49ca54a3371bdb09d8": {
 					"mime": "image/avif",
@@ -47,6 +48,7 @@
 				"ratio": "529:296",
 				"bytes": 1475413
 			},
+			"original": false,
 			"variants": {
 				"02db6233a596927e8e15099d65d98073": {
 					"mime": "image/avif",
@@ -92,6 +94,7 @@
 				"ratio": "122:75",
 				"bytes": 63223
 			},
+			"original": false,
 			"variants": {
 				"4f54c76d3f8f75b6544b60f74c7e5d70": {
 					"mime": "image/avif",
@@ -123,6 +126,7 @@
 				"ratio": "638:353",
 				"bytes": 66938
 			},
+			"original": false,
 			"variants": {
 				"994d007381f04c8b9baa9412b350c1a6": {
 					"mime": "image/avif",
@@ -154,6 +158,7 @@
 				"ratio": "822:467",
 				"bytes": 3460937
 			},
+			"original": false,
 			"variants": {
 				"03060f7ecf5162b0adfa170da667aa45": {
 					"mime": "image/avif",
@@ -192,6 +197,7 @@
 				"ratio": "676:375",
 				"bytes": 162487
 			},
+			"original": false,
 			"variants": {
 				"c9f5dc6c7325e4aa0af70038d7420144": {
 					"mime": "image/avif",
@@ -230,6 +236,7 @@
 				"ratio": "589:301",
 				"bytes": 1505579
 			},
+			"original": false,
 			"variants": {
 				"ce54bb42041ad5dfcaa189fd61fc9f71": {
 					"mime": "image/avif",
@@ -275,6 +282,7 @@
 				"ratio": "166:93",
 				"bytes": 371024
 			},
+			"original": false,
 			"variants": {
 				"2fb3e70a014a8e7dc56108ab72128df4": {
 					"mime": "image/avif",
@@ -320,6 +328,7 @@
 				"ratio": "1046:579",
 				"bytes": 2464864
 			},
+			"original": false,
 			"variants": {
 				"22e2b10faa035949a8163222bb72f6f1": {
 					"mime": "image/avif",
@@ -365,6 +374,7 @@
 				"ratio": "639:356",
 				"bytes": 76898
 			},
+			"original": false,
 			"variants": {
 				"940b33cbc888007bf301d6fee6109a09": {
 					"mime": "image/png",
@@ -396,6 +406,7 @@
 				"ratio": "670:441",
 				"bytes": 194346
 			},
+			"original": false,
 			"variants": {
 				"11aff4751923d2b584f49f59c1f9e61b": {
 					"mime": "image/avif",
@@ -434,6 +445,7 @@
 				"ratio": "267:164",
 				"bytes": 37710
 			},
+			"original": false,
 			"variants": {
 				"8d8ecdd7e001ef6894c77301c8012ca0": {
 					"mime": "image/png",
@@ -465,6 +477,7 @@
 				"ratio": "638:357",
 				"bytes": 619149
 			},
+			"original": false,
 			"variants": {
 				"89749fa22f8ec6600fd3af0f285c70dc": {
 					"mime": "image/avif",
@@ -496,6 +509,7 @@
 				"ratio": "88:49",
 				"bytes": 6584874
 			},
+			"original": false,
 			"variants": {
 				"196dbe58f1ae4e99945ef5eca03a1b75": {
 					"mime": "image/avif",
@@ -541,6 +555,7 @@
 				"ratio": "406:255",
 				"bytes": 3873038
 			},
+			"original": false,
 			"variants": {
 				"132184fa6cb475bbec4b85ebeb476fbc": {
 					"mime": "image/avif",
@@ -579,6 +594,7 @@
 				"ratio": "521:200",
 				"bytes": 1793560
 			},
+			"original": false,
 			"variants": {
 				"26e6201af82b4e4f978eb4a4525e0412": {
 					"mime": "image/avif",
@@ -624,6 +640,7 @@
 				"ratio": "639:353",
 				"bytes": 2357729
 			},
+			"original": false,
 			"variants": {
 				"9e8fa0537094d4442bed2a3fb590b2e9": {
 					"mime": "image/avif",
@@ -655,6 +672,7 @@
 				"ratio": "159:89",
 				"bytes": 878081
 			},
+			"original": false,
 			"variants": {
 				"027e6d27ac5f40dd55d172ef14fbe795": {
 					"mime": "image/avif",
@@ -686,6 +704,7 @@
 				"ratio": "97:59",
 				"bytes": 236273
 			},
+			"original": false,
 			"variants": {
 				"60e6e9a51528ccf4b96ab1fe46f49f09": {
 					"mime": "image/avif",
@@ -731,6 +750,7 @@
 				"ratio": "637:353",
 				"bytes": 417887
 			},
+			"original": false,
 			"variants": {
 				"ad4a608d8ded9e7ead3dcad841f25be0": {
 					"mime": "image/avif",
@@ -762,6 +782,7 @@
 				"ratio": "166:93",
 				"bytes": 371673
 			},
+			"original": false,
 			"variants": {
 				"24dff89e29a9ada1144545c4bd0f1139": {
 					"mime": "image/avif",
@@ -807,6 +828,7 @@
 				"ratio": "638:355",
 				"bytes": 362129
 			},
+			"original": false,
 			"variants": {
 				"04b86c0895d716b7f562562bf80a6a54": {
 					"mime": "image/avif",
@@ -838,6 +860,7 @@
 				"ratio": "209:117",
 				"bytes": 5183885
 			},
+			"original": false,
 			"variants": {
 				"2e06ce90d2f14702e94255f3bbeced81": {
 					"mime": "image/avif",
@@ -883,6 +906,7 @@
 				"ratio": "525:292",
 				"bytes": 2381302
 			},
+			"original": false,
 			"variants": {
 				"412b7cec1962d1dfbd1fd384265d990c": {
 					"mime": "image/avif",

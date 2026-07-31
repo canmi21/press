@@ -217,6 +217,41 @@ live only in the deployed artifact, and `data/` would no longer be complete. A r
 asset has not been synced yet degrades to a placeholder at request time rather than failing
 the build -- one missing image is not a reason to block a release.
 
+### Articles decide which assets exist
+
+`cms` reads `contents/`, never a directory listing. What to derive, what to fetch, what is
+missing and what is no longer wanted are all answers to one question: which assets do the
+articles reference. Something nothing links to is not an asset, it is a leftover.
+
+An image reference is its own state. It either names a file -- looked for under `data/image`,
+where originals are kept and never published -- or it is `{cid}.{ext}`, a content id and the
+format that was actually produced. `cms image` turns the first into the second, and that
+rewrite is the record that the work is done. No log beside the article can drift from it,
+because there is no log. The extension is corrected on later runs too: it is a claim about
+what the CDN will serve, and an asset stored as PNG must not be referenced as AVIF.
+
+A linkcard's `favicon` attribute is the opposite -- an instruction to the collector, naming
+where a site's icon should come from when its own is not wanted. `cms favicon` resolves it
+into that domain's slot, and the page always draws `/favicon/{domain}`. So the attribute is
+never rewritten: it is the only record of where the icon came from, and destroying it would
+make the choice unrepeatable.
+
+### Missing assets are reported, never fatal
+
+Writing an article before importing its picture is a normal state to be in. `cms check` lists
+what is absent and always exits zero; a report that can fail a build is a gate wearing a
+report's name, and teaches everyone to skip it.
+
+Severity carries the difference. A missing image leaves a visible hole, so it is a warning. A
+missing icon leaves a linkcard that still reads correctly, so it is information. A report
+where everything is urgent is a report nobody reads.
+
+Deletion is the one thing that never happens as a side effect. `cms gc` is dry by default and
+`mise run gc` only reports, because deriving an asset can be repeated until it is right while
+deleting one changes what R2 serves on the next sync. It is recoverable in practice -- the
+originals are still in `data/image` and a content id is enough to rebuild from -- but that is
+a fact about this repository rather than a property of the command, so it waits to be asked.
+
 ### Assets are addressed by their content
 
 Every published asset -- an original and each variant derived from it -- is stored under the
@@ -238,6 +273,19 @@ The truncation to 128 bits leaves roughly 64-bit collision resistance. That is f
 addressing a lifetime of personal assets requires, and is deliberately not a tamper-evidence
 claim. It is also unrelated to an IPFS CID, which is a structured multihash rather than a bare
 digest.
+
+### Variants stop where the layout does
+
+An image is published at 640, 1280 and 1920 on its long edge, and no further. Nothing on the
+site renders wider, so pixels above the cap are weight every reader pays for and nobody sees.
+An original below the cap is its own top rung; upscaling is never done.
+
+`cms image --original` adds one more rung at the original resolution for the images where the
+detail is the point -- a photograph rather than a screenshot of some text. It is still AVIF
+and still lossy, so "original" means the full frame rather than the original file. The choice
+is recorded in the manifest rather than inferred, because re-deriving has to reproduce what
+was published, and comparing the top variant against the source would guess wrong for every
+image that sits below the cap, where the two are the same size for an unrelated reason.
 
 ### The extension asks for a format
 

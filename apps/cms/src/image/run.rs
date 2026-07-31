@@ -1,7 +1,14 @@
-//! The `cms image` command: originals in, published variants and manifests out.
+//! The `cms image` command: what the articles ask for, derived and published.
+//!
+//! Articles drive this, not the contents of a directory. A reference is either finished --
+//! `{cid}.{ext}`, a content id and the format it resolved to -- or it still names a file, in
+//! which case that file is looked for under `data/image`, derived, published, and the
+//! reference rewritten to what it became. Rewriting is what records that the work is done, so
+//! the state lives in the article rather than in a log beside it.
 
 use super::manifest::{self, Media, Merged};
 use super::{derive, store};
+use crate::refs::{self, Scan};
 use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 
@@ -9,30 +16,43 @@ use std::path::{Path, PathBuf};
 /// is what lets a build resolve one without the images being present at all.
 pub const MERGED: &str = "assets.json";
 
+#[derive(Debug, Default)]
 pub struct Outcome {
 	pub processed: usize,
 	pub skipped: usize,
+	pub rewritten: usize,
 	pub failed: Vec<(PathBuf, String)>,
-	/// Original filename stem to content id, for rewriting references that still name a file.
-	pub renamed: BTreeMap<String, String>,
+	/// References naming a file that is not under `data/image`.
+	///
+	/// Not an error: an article may be written before its picture is dropped in, and stopping
+	/// the run would leave every other image unprocessed for the sake of one that is late.
+	pub missing: Vec<String>,
 }
 
-/// Process every original under `originals`, publishing into `public` and merging into
-/// `repo/assets.json`.
-///
-/// An asset already present in the merged manifest is skipped unless `force`: deriving is
-/// minutes of CPU, and the content id proves nothing changed.
-pub fn run(repo: &Path, originals: &Path, public: &Path, force: bool) -> std::io::Result<Outcome> {
+pub struct Options<'a> {
+	pub force: bool,
+	pub keep_original: bool,
+	/// Files named on the command line. Empty means "whatever the articles ask for".
+	pub only: &'a [PathBuf],
+}
+
+/// Derive and publish everything the articles reference, then rewrite the references.
+pub fn run(
+	repo: &Path,
+	originals: &Path,
+	public: &Path,
+	articles: &Path,
+	options: &Options<'_>,
+) -> std::io::Result<Outcome> {
 	let merged_path = repo.join(MERGED);
 	let mut merged = load(&merged_path);
-	let mut outcome = Outcome {
-		processed: 0,
-		skipped: 0,
-		failed: Vec::new(),
-		renamed: BTreeMap::new(),
-	};
+	let mut outcome = Outcome::default();
+	let scan = refs::scan(articles)?;
 
-	for path in sources(originals)? {
+	// What the article wrote, mapped to what it should say now.
+	let mut rewrites: BTreeMap<String, String> = BTreeMap::new();
+
+	for (reference, path) in wanted(&scan, originals, public, &merged, options, &mut outcome) {
 		let bytes = match std::fs::read(&path) {
 			Ok(bytes) => bytes,
 			Err(error) => {
@@ -42,21 +62,46 @@ pub fn run(repo: &Path, originals: &Path, public: &Path, force: bool) -> std::io
 		};
 
 		let id = super::cid(&bytes);
-		if let Some(stem) = path.file_stem().and_then(|s| s.to_str()) {
-			outcome.renamed.insert(stem.to_owned(), id.clone());
-		}
+		let previous = merged.assets.get(&id);
+		// A recorded choice outlives the flag: re-deriving after a sweep must reproduce what
+		// was published, not whatever was typed on the command line this time.
+		let keep = options.keep_original || previous.is_some_and(|media| media.original);
 
-		if !force && merged.assets.contains_key(&id) {
+		if !options.force && previous.is_some() && published(public, previous) {
 			outcome.skipped += 1;
+			if let Some(target) = reference.as_deref() {
+				note(&mut rewrites, target, &id, previous);
+			}
 			continue;
 		}
 
-		match publish(&bytes, &path, public, merged.assets.get(&id)) {
+		match publish(&bytes, &path, public, previous, keep) {
 			Ok(media) => {
+				if let Some(target) = reference.as_deref() {
+					note(&mut rewrites, target, &id, Some(&media));
+				}
 				merged.assets.insert(id, media);
 				outcome.processed += 1;
 			}
 			Err(error) => outcome.failed.push((path, error)),
+		}
+	}
+
+	// A finished reference can still name the wrong format: an article written when the
+	// pipeline stored PNG, or an asset re-derived into something else since. The extension is
+	// a claim about what the CDN will serve, so it is corrected from the manifest without
+	// deriving anything.
+	for image in &scan.images {
+		let Some((cid, _)) = image.resolved() else {
+			continue;
+		};
+		if let Some(name) = merged
+			.assets
+			.get(cid)
+			.and_then(|media| resolved_name(cid, media))
+			&& name != image.value
+		{
+			rewrites.insert(image.value.clone(), name);
 		}
 	}
 
@@ -69,7 +114,119 @@ pub fn run(repo: &Path, originals: &Path, public: &Path, force: bool) -> std::io
 		)
 		.as_bytes(),
 	)?;
+
+	outcome.rewritten = rewrite_references(articles, &rewrites)?;
 	Ok(outcome)
+}
+
+/// Every original to look at this run, paired with the reference that asked for it.
+///
+/// Files named on the command line have no reference to rewrite -- they are being imported
+/// ahead of the article that will use them, and `--original` is how that is declared.
+fn wanted(
+	scan: &Scan,
+	originals: &Path,
+	public: &Path,
+	merged: &Merged,
+	options: &Options<'_>,
+	outcome: &mut Outcome,
+) -> Vec<(Option<String>, PathBuf)> {
+	if !options.only.is_empty() {
+		return options
+			.only
+			.iter()
+			.map(|path| (None, path.clone()))
+			.collect();
+	}
+
+	let mut found: Vec<(Option<String>, PathBuf)> = Vec::new();
+
+	for image in scan.unresolved() {
+		let candidate = originals.join(&image.value);
+		if candidate.is_file() {
+			found.push((Some(image.value.clone()), candidate));
+		} else {
+			outcome.missing.push(image.value.clone());
+		}
+	}
+
+	// A finished reference whose variants are gone -- swept, or never published on this
+	// machine. The original is found by hashing, because the id is the hash.
+	let unpublished: Vec<String> = scan
+		.cids()
+		.into_iter()
+		.filter(|cid| !published(public, merged.assets.get(cid)))
+		.collect();
+	if !unpublished.is_empty() {
+		let by_id = originals_by_id(originals);
+		for cid in unpublished {
+			match by_id.get(&cid) {
+				Some(path) => found.push((None, path.clone())),
+				None => outcome.missing.push(cid),
+			}
+		}
+	}
+
+	found
+}
+
+/// Content id of every original on hand, so a swept asset can be rebuilt from its id alone.
+fn originals_by_id(originals: &Path) -> BTreeMap<String, PathBuf> {
+	sources(originals)
+		.unwrap_or_default()
+		.into_iter()
+		.filter_map(|path| {
+			let bytes = std::fs::read(&path).ok()?;
+			Some((super::cid(&bytes), path))
+		})
+		.collect()
+}
+
+/// Whether every variant a record claims is actually on disk.
+///
+/// The manifest alone is not evidence: after a sweep it still lists assets whose bytes are
+/// gone, and trusting it would leave articles pointing at nothing.
+fn published(public: &Path, media: Option<&Media>) -> bool {
+	let Some(media) = media else {
+		return false;
+	};
+	media
+		.variants
+		.iter()
+		.all(|(cid, record)| store::variant_path(public, cid, extension_of(&record.mime)).is_file())
+}
+
+/// What an article should call this asset: its content id and the format it resolved to.
+///
+/// The largest variant decides the extension. It is the one an article without a srcset falls
+/// back to, and every rung of a ladder shares its format.
+fn resolved_name(cid: &str, media: &Media) -> Option<String> {
+	let extension = media
+		.variants
+		.values()
+		.max_by_key(|record| record.width)
+		.map(|record| extension_of(&record.mime))?;
+	Some(format!("{cid}.{extension}"))
+}
+
+fn note(
+	rewrites: &mut BTreeMap<String, String>,
+	reference: &str,
+	cid: &str,
+	media: Option<&Media>,
+) {
+	if let Some(name) = media.and_then(|media| resolved_name(cid, media)) {
+		rewrites.insert(reference.to_owned(), name);
+	}
+}
+
+fn extension_of(mime: &str) -> &'static str {
+	match mime {
+		"image/png" => "png",
+		"image/webp" => "webp",
+		"image/jpeg" => "jpg",
+		_ => "avif",
+	}
 }
 
 fn publish(
@@ -77,14 +234,16 @@ fn publish(
 	path: &Path,
 	public: &Path,
 	previous: Option<&Media>,
+	keep_original: bool,
 ) -> Result<Media, String> {
-	let derived = derive(bytes).map_err(|error| error.to_string())?;
+	let derived = derive(bytes, keep_original).map_err(|error| error.to_string())?;
 	let mime = mime_of(path);
 	let media = manifest::media_for(
 		&derived,
 		mime,
 		bytes.len() as u64,
 		previous.map(|media| media.created.as_str()),
+		keep_original,
 	);
 
 	for variant in &derived.variants {
@@ -153,47 +312,38 @@ fn mime_of(path: &Path) -> &'static str {
 	}
 }
 
-/// Replace old filename references in articles with the content ids they now resolve to.
+/// Point every rewritten reference at what it became.
 ///
-/// Returns how many references changed. Matching on the stem rather than the whole filename
-/// so a reference keeps working whether or not it carried an extension.
+/// Returns how many references changed. Whole-value matching, not substring: a filename like
+/// `a.png` occurs inside plenty of prose, and replacing it there would corrupt the text.
 pub fn rewrite_references(
 	articles: &Path,
-	renamed: &BTreeMap<String, String>,
+	rewrites: &BTreeMap<String, String>,
 ) -> std::io::Result<usize> {
+	if rewrites.is_empty() {
+		return Ok(0);
+	}
 	let mut changed = 0;
-	for path in markdown_under(articles)? {
+	for path in refs::markdown_under(articles)? {
 		let original = std::fs::read_to_string(&path)?;
 		let mut text = original.clone();
-		for (old, new) in renamed {
-			if old == new || !text.contains(old.as_str()) {
+		for (old, new) in rewrites {
+			if old == new {
 				continue;
 			}
-			changed += text.matches(old.as_str()).count();
-			text = text.replace(old.as_str(), new);
+			for (from, to) in [
+				(format!("]({old})"), format!("]({new})")),
+				(format!("src=\"{old}\""), format!("src=\"{new}\"")),
+			] {
+				changed += text.matches(&from).count();
+				text = text.replace(&from, &to);
+			}
 		}
 		if text != original {
 			std::fs::write(&path, text)?;
 		}
 	}
 	Ok(changed)
-}
-
-fn markdown_under(directory: &Path) -> std::io::Result<Vec<PathBuf>> {
-	let mut found = Vec::new();
-	if !directory.is_dir() {
-		return Ok(found);
-	}
-	for entry in std::fs::read_dir(directory)?.filter_map(Result::ok) {
-		let path = entry.path();
-		if path.is_dir() {
-			found.extend(markdown_under(&path)?);
-		} else if path.extension().and_then(|e| e.to_str()) == Some("md") {
-			found.push(path);
-		}
-	}
-	found.sort();
-	Ok(found)
 }
 
 #[cfg(test)]
@@ -237,23 +387,45 @@ mod tests {
 	fn rewrites_references_across_nested_articles() {
 		let root = temp("rewrite");
 		std::fs::create_dir_all(root.join("deep")).expect("dir");
-		std::fs::write(root.join("a.md"), "![](oldhash.png) and ![](oldhash.png)").expect("write");
-		std::fs::write(root.join("deep/b.md"), "<img src=\"oldhash.png\">").expect("write");
+		std::fs::write(root.join("a.md"), "![](shot.png) and ![](shot.png)").expect("write");
+		std::fs::write(
+			root.join("deep/b.md"),
+			r#"::linkcard{src="shot.png" url="https://a.com"}"#,
+		)
+		.expect("write");
 
-		let mut renamed = BTreeMap::new();
-		renamed.insert("oldhash".to_owned(), "newcid".to_owned());
-		let changed = rewrite_references(&root, &renamed).expect("rewrite");
+		let mut rewrites = BTreeMap::new();
+		rewrites.insert("shot.png".to_owned(), "newcid.avif".to_owned());
+		let changed = rewrite_references(&root, &rewrites).expect("rewrite");
 
 		assert_eq!(changed, 3);
 		assert!(
 			std::fs::read_to_string(root.join("a.md"))
 				.unwrap()
-				.contains("newcid.png")
+				.contains("](newcid.avif)")
 		);
 		assert!(
 			std::fs::read_to_string(root.join("deep/b.md"))
 				.unwrap()
-				.contains("newcid.png")
+				.contains(r#"src="newcid.avif""#)
+		);
+		std::fs::remove_dir_all(&root).ok();
+	}
+
+	#[test]
+	fn leaves_prose_alone_that_merely_mentions_a_filename() {
+		// "shot.png" is a perfectly ordinary thing to write in a sentence. A substring replace
+		// would silently edit the text of the article.
+		let root = temp("prose");
+		std::fs::write(root.join("a.md"), "I saved it as shot.png last week.").expect("write");
+		let mut rewrites = BTreeMap::new();
+		rewrites.insert("shot.png".to_owned(), "newcid.avif".to_owned());
+
+		assert_eq!(rewrite_references(&root, &rewrites).expect("rewrite"), 0);
+		assert!(
+			std::fs::read_to_string(root.join("a.md"))
+				.unwrap()
+				.contains("shot.png")
 		);
 		std::fs::remove_dir_all(&root).ok();
 	}
@@ -262,9 +434,56 @@ mod tests {
 	fn leaves_an_article_alone_when_nothing_matches() {
 		let root = temp("nomatch");
 		std::fs::write(root.join("a.md"), "no images here").expect("write");
-		let mut renamed = BTreeMap::new();
-		renamed.insert("oldhash".to_owned(), "newcid".to_owned());
-		assert_eq!(rewrite_references(&root, &renamed).expect("rewrite"), 0);
+		let mut rewrites = BTreeMap::new();
+		rewrites.insert("shot.png".to_owned(), "newcid.avif".to_owned());
+		assert_eq!(rewrite_references(&root, &rewrites).expect("rewrite"), 0);
 		std::fs::remove_dir_all(&root).ok();
+	}
+
+	#[test]
+	fn the_largest_variant_decides_the_extension() {
+		let mut variants = BTreeMap::new();
+		variants.insert(
+			"small".to_owned(),
+			manifest::VariantRecord {
+				mime: "image/avif".into(),
+				width: 640,
+				height: 360,
+				quality: 0.68,
+				bytes: 1,
+			},
+		);
+		variants.insert(
+			"large".to_owned(),
+			manifest::VariantRecord {
+				mime: "image/png".into(),
+				width: 1920,
+				height: 1080,
+				quality: 1.0,
+				bytes: 2,
+			},
+		);
+		let media = manifest::Media {
+			kind: "image".into(),
+			created: "2026-07-31T00:00:00Z".into(),
+			updated: "2026-07-31T00:00:00Z".into(),
+			blake3: "44b6081deaf0242ca3bf83d62a3b6c95".into(),
+			thumbhash: String::new(),
+			preview: String::new(),
+			source: manifest::Source {
+				mime: "image/png".into(),
+				width: 1920,
+				height: 1080,
+				ratio: "16:9".into(),
+				bytes: 3,
+			},
+			original: false,
+			variants,
+		};
+
+		assert_eq!(
+			resolved_name("44b6081deaf0242ca3bf83d62a3b6c95", &media).as_deref(),
+			Some("44b6081deaf0242ca3bf83d62a3b6c95.png")
+		);
 	}
 }

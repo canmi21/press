@@ -6,9 +6,6 @@
 /// Widths offered when an image is large enough to fill them.
 pub const TIERS: [u32; 3] = [640, 1280, 1920];
 
-/// Below this, lossy coding is the wrong tool: see `is_flat` in the encoder module.
-pub const SMALL_EDGE: u32 = 256;
-
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Size {
 	pub width: u32,
@@ -50,22 +47,35 @@ fn scale(value: u32, factor: f64) -> u32 {
 
 /// The sizes to produce for an image, largest last.
 ///
-/// Contains every tier the original can fill without being enlarged, plus the original size
-/// itself as the top rung. Upscaling is never done: it invents detail and costs bytes to
-/// carry it.
+/// Every tier the original can fill without being enlarged. Upscaling is never done: it
+/// invents detail and costs bytes to carry it.
 ///
 /// An image smaller than the lowest tier yields exactly one size -- its own -- so it is
 /// re-encoded rather than resized. There is nothing to gain from a 200px image at 640px.
-pub fn ladder(original: Size) -> Vec<Size> {
+///
+/// An image that outgrows the largest tier is capped there, because no layout on the site
+/// asks for more and the pixels above the cap are paid for by every reader. `keep_original`
+/// overrides that for the images where the detail is the point -- a photograph rather than a
+/// screenshot of some text. It adds one more rung at the original resolution, still AVIF and
+/// still lossy, so "original" here means the full frame rather than the original file.
+pub fn ladder(original: Size, keep_original: bool) -> Vec<Size> {
 	let long = original.long_edge();
 	let mut sizes: Vec<Size> = TIERS
 		.into_iter()
 		.filter(|&tier| tier < long)
 		.map(|tier| original.scaled_to_long_edge(tier))
 		.collect();
-	sizes.push(original);
+
+	// Below the cap the original is the top rung, and there is no separate full-resolution
+	// variant to ask for -- the largest tier already is it.
+	if long <= CAP || keep_original {
+		sizes.push(original);
+	}
 	sizes
 }
+
+/// The largest tier. An original above this is only kept when asked for by name.
+const CAP: u32 = TIERS[TIERS.len() - 1];
 
 #[cfg(test)]
 mod tests {
@@ -100,43 +110,60 @@ mod tests {
 		assert_eq!(small.scaled_to_long_edge(1920), small);
 	}
 
-	#[test]
-	fn offers_every_tier_the_original_can_fill() {
-		let widths: Vec<u32> = ladder(Size::new(2400, 1600))
+	fn rungs(size: Size, keep_original: bool) -> Vec<u32> {
+		ladder(size, keep_original)
 			.into_iter()
 			.map(|s| s.long_edge())
-			.collect();
-		assert_eq!(widths, vec![640, 1280, 1920, 2400]);
+			.collect()
 	}
 
 	#[test]
-	fn stops_below_the_original_and_ends_at_it() {
-		let widths: Vec<u32> = ladder(Size::new(1500, 1000))
-			.into_iter()
-			.map(|s| s.long_edge())
-			.collect();
-		assert_eq!(widths, vec![640, 1280, 1500]);
+	fn caps_an_oversized_original_at_the_largest_tier() {
+		// Nothing on the site renders wider than 1920, so the rest is weight every reader pays
+		// for and nobody sees.
+		assert_eq!(rungs(Size::new(2400, 1600), false), vec![640, 1280, 1920]);
+	}
+
+	#[test]
+	fn keeps_the_full_frame_only_when_asked() {
+		assert_eq!(
+			rungs(Size::new(2400, 1600), true),
+			vec![640, 1280, 1920, 2400]
+		);
+	}
+
+	#[test]
+	fn adds_no_rung_for_an_original_already_under_the_cap() {
+		// The top rung is the original either way, so the flag has nothing to add and must not
+		// produce the same size twice.
+		assert_eq!(rungs(Size::new(1500, 1000), false), vec![640, 1280, 1500]);
+		assert_eq!(rungs(Size::new(1500, 1000), true), vec![640, 1280, 1500]);
 	}
 
 	#[test]
 	fn a_portrait_ladder_is_measured_on_height() {
-		let sizes = ladder(Size::new(1000, 2000));
+		// The cap applies to the long edge, so a tall image is capped on its height and stays
+		// narrower than the tier number suggests.
+		let sizes = ladder(Size::new(1000, 2000), false);
 		assert_eq!(sizes.first().copied(), Some(Size::new(320, 640)));
-		assert_eq!(sizes.last().copied(), Some(Size::new(1000, 2000)));
+		assert_eq!(sizes.last().copied(), Some(Size::new(960, 1920)));
+
+		let kept = ladder(Size::new(1000, 2000), true);
+		assert_eq!(kept.last().copied(), Some(Size::new(1000, 2000)));
 	}
 
 	#[test]
 	fn an_image_below_the_lowest_tier_yields_only_itself() {
 		// Re-encoded, not resized. Offering it at 640 would upscale a 200px image.
-		assert_eq!(ladder(Size::new(200, 150)), vec![Size::new(200, 150)]);
+		assert_eq!(
+			ladder(Size::new(200, 150), false),
+			vec![Size::new(200, 150)]
+		);
 	}
 
 	#[test]
 	fn an_image_exactly_on_a_tier_is_not_duplicated() {
-		let widths: Vec<u32> = ladder(Size::new(1280, 720))
-			.into_iter()
-			.map(|s| s.long_edge())
-			.collect();
-		assert_eq!(widths, vec![640, 1280]);
+		assert_eq!(rungs(Size::new(1280, 720), false), vec![640, 1280]);
+		assert_eq!(rungs(Size::new(1920, 1080), false), vec![640, 1280, 1920]);
 	}
 }

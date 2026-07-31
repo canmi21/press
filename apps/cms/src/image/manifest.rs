@@ -40,6 +40,13 @@ pub struct Media {
 	/// the hash so an article needs no decoder script to paint it.
 	pub preview: String,
 	pub source: Source,
+	/// Whether this asset carries a variant at the original's own resolution.
+	///
+	/// Recorded rather than inferred so re-deriving reproduces what was published. Comparing
+	/// the top variant against the source would guess wrong for every image that happens to
+	/// sit below the cap, where the two are the same size for an unrelated reason.
+	#[serde(default)]
+	pub original: bool,
 	/// Keyed by each variant's own content id, exactly as the asset is keyed by the
 	/// original's. Every stored object is addressed the same way.
 	pub variants: BTreeMap<String, VariantRecord>,
@@ -125,6 +132,7 @@ pub fn media_for(
 	source_mime: &str,
 	source_bytes: u64,
 	created: Option<&str>,
+	keep_original: bool,
 ) -> Media {
 	let timestamp = now();
 	Media {
@@ -145,6 +153,7 @@ pub fn media_for(
 			ratio: ratio_of(derived.width, derived.height),
 			bytes: source_bytes,
 		},
+		original: keep_original,
 		variants: derived
 			.variants
 			.iter()
@@ -209,6 +218,7 @@ mod tests {
 					ratio: ratio_of(2356, 1204),
 					bytes: 6_612_480,
 				},
+				original: false,
 				variants: BTreeMap::new(),
 			},
 		};

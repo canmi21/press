@@ -37,6 +37,59 @@ impl std::fmt::Display for Error {
 	}
 }
 
+/// Every extension an icon can be stored under; see `extension_for`.
+const EXTENSIONS: [&str; 4] = ["svg", "png", "jpg", "ico"];
+
+/// The stored icon for a domain and tone, if one was collected.
+///
+/// A named tone is answered exactly or not at all, matching how the worker resolves it: a
+/// card that asked for the dark icon and got the light one would draw a light silhouette on a
+/// light surface, which is worse than the icon being absent. An unnamed tone takes whichever
+/// exists.
+pub fn stored(root: &Path, domain: &str, tone: Option<&str>) -> Option<PathBuf> {
+	let directory = root.join("favicon").join(domain);
+	let tones: &[&str] = match tone {
+		Some("dark") => &["dark"],
+		Some("light") => &["light"],
+		_ => &["light", "dark"],
+	};
+	tones.iter().find_map(|name| {
+		EXTENSIONS
+			.iter()
+			.map(|extension| directory.join(format!("{name}.{extension}")))
+			.find(|path| path.is_file())
+	})
+}
+
+/// Store one named icon as this domain's, taking the article's word for where it lives.
+///
+/// Used when a linkcard names its own icon: the site being linked to may have no usable
+/// favicon, or the author may want the avatar rather than the site mark. Resolving it into the
+/// domain's own slot is what lets the page go on rendering `/favicon/{domain}` and the article
+/// go on carrying the source URL, with neither needing to know about the other.
+pub fn store_named(root: &Path, domain: &str, source: &str, force: bool) -> Result<Stored, Error> {
+	let directory = root.join("favicon").join(domain);
+	if !force && directory.is_dir() {
+		return Ok(Stored {
+			written: Vec::new(),
+			skipped: true,
+		});
+	}
+
+	let icon = fetch::bytes(source).ok_or(Error::NotResolved)?;
+	let extension = fetch::extension_for(&icon.content_type).ok_or(Error::NotResolved)?;
+
+	std::fs::create_dir_all(&directory).map_err(Error::Write)?;
+	// Written as the light icon because that is what an unnamed tone resolves to first, and a
+	// chosen icon should answer the common request rather than the qualified one.
+	let path = directory.join(format!("{}.{extension}", Tone::Light.suffix()));
+	std::fs::write(&path, &icon.bytes).map_err(Error::Write)?;
+	Ok(Stored {
+		written: vec![path],
+		skipped: false,
+	})
+}
+
 /// Fetch every variant a site offers and store them, unless the domain was already checked.
 ///
 /// Resolving all tones in one pass rather than once per tone: the tones are decided by a

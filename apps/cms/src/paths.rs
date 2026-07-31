@@ -19,11 +19,11 @@ impl std::fmt::Display for NotFound {
 	}
 }
 
-pub fn data_public() -> Result<PathBuf, NotFound> {
-	Ok(repo_root()?.join("data").join("public"))
-}
-
-/// The repository root, found by the same walk.
+/// The repository root, found by looking for `data/public` above the working directory.
+///
+/// Every command joins its own paths onto this rather than being handed one of them: the
+/// article tree, the originals and the published tree are all siblings, and a command that
+/// only knew about `data/public` could not read the articles that decide what belongs there.
 pub fn repo_root() -> Result<PathBuf, NotFound> {
 	let start = std::env::current_dir().map_err(|_| NotFound)?;
 	find_upwards(&start)

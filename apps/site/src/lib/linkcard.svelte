@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
-	import { imgsrc } from '@canmi/imgsrc';
 	import { pickUrls } from '@canmi/urls';
 	import Image from '$lib/image.svelte';
 	import ArrowUpRight from '@lucide/svelte/icons/arrow-up-right';
@@ -10,20 +9,26 @@
 		url: string;
 		title: string;
 		tone?: 'light' | 'dark';
+		/**
+		 * Where `cms favicon` should take this site's icon from.
+		 *
+		 * Accepted and ignored here on purpose. It is an instruction to the collector, which
+		 * resolves it into the domain's own slot under `data/public/favicon`, so by the time a
+		 * page renders the answer is already at `/favicon/{domain}` and reading the attribute
+		 * again would send the browser to somebody else's origin for a copy we hold.
+		 */
 		favicon?: string;
 		width?: number;
 		height?: number;
 		preview?: string;
 		srcset?: string;
 	};
-	let { src, url, title, tone, favicon, width, height, preview, srcset }: Props = $props();
+	let { src, url, title, tone, width, height, preview, srcset }: Props = $props();
 
 	const cdnUrl = pickUrls(dev).cdn;
 	const domain = $derived(new URL(url).hostname);
 	const faviconSrc = $derived(
-		favicon
-			? imgsrc(favicon, { cdnUrl })
-			: `${cdnUrl}/favicon/${domain}${tone ? `?tone=${tone}` : ''}`
+		`${cdnUrl}/favicon/${domain}${tone ? `?tone=${tone}` : ''}`,
 	);
 
 	let imgEl = $state<HTMLImageElement | undefined>();
