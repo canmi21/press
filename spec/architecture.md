@@ -382,9 +382,17 @@ PNG, not AVIF, against the rule that says store the newest format. The consumers
 crawlers for X, Slack and Discord, and they do not read AVIF. When the format a thing is
 stored in is decided by software nobody here controls, the rule bends to the reader.
 
-The CDN's `robots.txt` disallows everything and allows `/opengraph/`. Those same crawlers read
-it before fetching an `og:image`, so a blanket disallow makes the card a page advertises the
-one thing nobody can fetch.
+The CDN's `robots.txt` forbids nothing, and two failed attempts is why. `Disallow: /` was
+right in principle -- a CDN has nothing worth indexing, and its URLs in results compete with
+the pages embedding them -- but crawlers read that file before fetching an `og:image`, so it
+hid the one thing a page advertises. Carving out `Allow: /opengraph/` did not help either:
+Twitterbot implements the original 1994 draft of the format, which has no `Allow` directive at
+all, so it reads the disallow and never sees the exception.
+
+A per-agent block would work and would mean tracking which crawler parses which decade of the
+format, forever. What was being protected was mild and the bandwidth is not ours to ration, so
+the policy stops being clever. An empty `Disallow:` is the one spelling every parser agrees
+means "all of it".
 
 ### The title is sized to fit one line
 

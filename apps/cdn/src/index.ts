@@ -30,16 +30,26 @@ app.get('/', (c) => {
 	return c.redirect(`${urls.site}/?ref=cdn`, 302);
 });
 
-// A CDN has nothing worth indexing, and its URLs appearing in results would compete with the
-// pages that embed them. OpenGraph cards are the exception: X and Slack read robots.txt
-// before fetching an og:image, so a blanket disallow hides the one thing a page advertises.
+// Nothing here is disallowed, and the previous two attempts explain why.
+//
+// `Disallow: /` was right in principle -- a CDN has nothing worth indexing, and its URLs in
+// search results compete with the pages that embed them. But OpenGraph cards have to be
+// fetched by crawlers, so an exception was added as `Allow: /opengraph/`, and X still refused
+// it. Twitterbot implements the original 1994 robots.txt draft, which has no `Allow` at all:
+// it reads the disallow, never sees the exception, and skips the image.
+//
+// A per-agent block would work, but it would mean guessing which crawlers parse which decade
+// of the format and revisiting that list forever. The thing being protected was mild -- some
+// image URLs ranking on their own -- and the bandwidth is not ours to ration. So the policy
+// stops being clever: everything is fetchable, and the file exists to say so rather than to
+// leave crawlers guessing.
 //
 // Served with a short life of its own. The default for an unhashed path here is a week, which
 // is far too long for the file that says what a crawler may do -- a policy correction should
 // circulate in minutes.
 app.get('/robots.txt', (c) => {
 	c.header('Cache-Control', BRIEFLY);
-	return c.text(robotsTxt({ allow: ['/opengraph/'], disallow: ['/'] }));
+	return c.text(robotsTxt({ disallow: [''] }));
 });
 
 app.route('/favicon', favicon);

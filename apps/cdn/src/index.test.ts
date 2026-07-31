@@ -96,20 +96,20 @@ describe('cacheControl', () => {
 });
 
 describe('robots policy', () => {
-	// The change this guards was written once and silently lost to a bad patch, and nothing
-	// noticed until a card failed to appear. What a crawler is allowed to fetch is worth an
-	// assertion rather than a reading of the source.
-	const text = robotsTxt({ allow: ['/opengraph/'], disallow: ['/'] });
+	// This was written once and silently lost to a bad patch, and nothing noticed until a card
+	// failed to appear. What a crawler may fetch is worth an assertion rather than a reading.
+	const text = robotsTxt({ disallow: [''] });
 
-	it('lets crawlers reach the cards a page advertises', () => {
-		expect(text).toContain('Allow: /opengraph/');
+	it('forbids nothing', () => {
+		// An empty Disallow is the format's way of saying "all of it", and it is the only way
+		// every crawler agrees on: Twitterbot implements the 1994 draft, which has no `Allow`,
+		// so an exception carved out of `Disallow: /` is invisible to exactly the client that
+		// most needs it.
+		expect(text).toContain('Disallow:');
+		expect(text).not.toContain('Disallow: /');
 	});
 
-	it('still keeps everything else out', () => {
-		expect(text).toContain('Disallow: /');
-	});
-
-	it('allows before it disallows, which is the order that decides', () => {
-		expect(text.indexOf('Allow: /opengraph/')).toBeLessThan(text.indexOf('Disallow: /'));
+	it('still answers, rather than 404ing and leaving it open to interpretation', () => {
+		expect(text).toContain('User-agent: *');
 	});
 });
