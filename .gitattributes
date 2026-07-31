@@ -1,0 +1,17 @@
+# What GitHub should not read as something anybody wrote.
+#
+# `linguist-generated` does two useful things at once: it drops the file from the language
+# breakdown, and it collapses the diff by default. Both are right for output -- a review has
+# nothing to say about it, and a language bar that reports it is describing the tool rather
+# than the repository.
+#
+# Marked precisely rather than by directory. `libs/fonts/src/mono.css` is hand-kept alongside
+# the generated sheet and still counts; so does every other stylesheet here. The point is to
+# stop one 5,257-line artefact from drowning out the 729 lines of CSS that were written.
+
+# cn-font-split output: 318 @font-face rules, one per unicode-range chunk.
+libs/fonts/src/wenkai.css linguist-generated=true
+
+# Written by `cms image`, and tracked only because a build resolves every image from it
+# without a byte of data/ present. It is a record, not source.
+data/assets.json linguist-generated=true
