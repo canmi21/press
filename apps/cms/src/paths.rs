@@ -20,8 +20,20 @@ impl std::fmt::Display for NotFound {
 }
 
 pub fn data_public() -> Result<PathBuf, NotFound> {
+	Ok(repo_root()?.join("data").join("public"))
+}
+
+/// The repository root, found by the same walk.
+pub fn repo_root() -> Result<PathBuf, NotFound> {
 	let start = std::env::current_dir().map_err(|_| NotFound)?;
-	find_upwards(&start).ok_or(NotFound)
+	find_upwards(&start)
+		.and_then(|public| {
+			public
+				.parent()
+				.and_then(Path::parent)
+				.map(Path::to_path_buf)
+		})
+		.ok_or(NotFound)
 }
 
 fn find_upwards(start: &Path) -> Option<PathBuf> {

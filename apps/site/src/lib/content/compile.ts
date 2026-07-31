@@ -9,6 +9,7 @@ import remarkParse from 'remark-parse';
 import remarkStringify from 'remark-stringify';
 import { unified } from 'unified';
 import { parse as parseYaml, stringify as stringifyYaml } from 'yaml';
+import { resolve as resolveAsset } from '$lib/assets';
 import { highlight } from '$lib/server/highlight';
 import type { ArticleMeta } from '$lib/article.svelte';
 import type { Block, Compiled, CompiledPage, InlineSegment, PageBlock, TocEntry } from './types';
@@ -232,7 +233,10 @@ export async function compile(raw: string, url: string): Promise<Compiled> {
 			const tone: 'light' | 'dark' | undefined =
 				attrs.tone === 'dark' ? 'dark' : attrs.tone === 'light' ? 'light' : undefined;
 			const card = { src: attrs.src ?? '', url: attrs.url ?? '', title: attrs.title ?? '', tone };
-			blocks.push({ type: 'linkcard', ...card });
+			// A card's cover is an asset like any other, so it gets the same variants and
+			// placeholder. Resolving here rather than in the component keeps the manifest --
+			// every base64 preview in it -- out of the client bundle.
+			blocks.push({ type: 'linkcard', ...card, ...resolveAsset(card.src) });
 			feed.push(`<p><a href="${card.url}">${escapeHtml(card.title)}</a></p>`);
 			md.push(`[${card.title}](${card.url})`);
 			continue;
@@ -260,7 +264,10 @@ export async function compile(raw: string, url: string): Promise<Compiled> {
 		if (image) {
 			const alt = image.alt ?? '';
 			const absolute = `${IMAGE_CDN}${image.url}`;
-			blocks.push({ type: 'image', src: image.url, alt });
+			// Feed and markdown get one plain URL, because neither can express a srcset and
+			// both are read by things that will not run a layout.
+			const resolved = resolveAsset(image.url);
+			blocks.push({ type: 'image', src: image.url, alt, ...resolved });
 			feed.push(`<p><img src="${absolute}" alt="${escapeHtml(alt)}" /></p>`);
 			md.push(`![${alt}](${absolute})`);
 			if (alt) text.push(alt);

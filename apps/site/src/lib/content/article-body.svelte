@@ -19,9 +19,25 @@
 	{:else if block.type === 'code'}
 		<CodeBlock lang={block.lang} html={block.html} />
 	{:else if block.type === 'image'}
-		<Image src={block.src} alt={block.alt} />
+		<Image
+			src={block.src}
+			alt={block.alt}
+			width={block.width}
+			height={block.height}
+			preview={block.preview}
+			srcset={block.srcset}
+		/>
 	{:else if block.type === 'linkcard'}
-		<LinkCard src={block.src} url={block.url} title={block.title} tone={block.tone} />
+		<LinkCard
+			src={block.src}
+			url={block.url}
+			title={block.title}
+			tone={block.tone}
+			width={block.width}
+			height={block.height}
+			preview={block.preview}
+			srcset={block.srcset}
+		/>
 	{:else if block.type === 'placeholder'}
 		<Placeholder kind={block.kind} meta={block.meta} />
 	{:else if block.type === 'svgCanvas'}

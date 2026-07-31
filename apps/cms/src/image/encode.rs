@@ -12,7 +12,8 @@ use image::DynamicImage;
 /// bytes between q52 and q68 was small enough that one setting for both is worth the
 /// simplicity of having no content classifier to be wrong.
 const AVIF_QUALITY: f32 = 68.0;
-/// Only ever reached by a browser without AVIF, so it is tuned for safety over size.
+/// Not a stored format. Used only for the inline placeholder, which is a few hundred bytes
+/// and has to decode in anything that can render a page at all.
 const WEBP_QUALITY: f32 = 80.0;
 /// rav1e trades encode time for size. 6 is the middle; this runs once per image locally.
 const AVIF_SPEED: u8 = 6;
@@ -74,15 +75,18 @@ impl std::fmt::Display for Error {
 	}
 }
 
-/// Which formats to emit for an image, in the order a browser should prefer them.
+/// Which format an image is stored as.
 ///
-/// Flat-colour images get PNG alone: it is both smaller and exact for them, and offering a
-/// lossy alternative would only invite a browser to choose the worse one.
+/// One per image, and AVIF unless the content is palette art. Older browsers are served by
+/// converting at the edge rather than by keeping a second copy of everything: Cloudflare
+/// counts a format conversion once per image regardless of how many formats it hands out, so
+/// the fallback costs one transformation rather than a permanent duplicate of the whole
+/// library. See spec/architecture.md.
 pub fn formats_for(image: &DynamicImage) -> Vec<Format> {
 	if is_flat_colour(image) {
 		vec![Format::Png]
 	} else {
-		vec![Format::Avif, Format::Webp]
+		vec![Format::Avif]
 	}
 }
 
@@ -170,11 +174,8 @@ mod tests {
 	}
 
 	#[test]
-	fn sends_continuous_tone_to_the_lossy_pair() {
-		assert_eq!(
-			formats_for(&noisy(64, 64)),
-			vec![Format::Avif, Format::Webp]
-		);
+	fn sends_continuous_tone_to_avif_alone() {
+		assert_eq!(formats_for(&noisy(64, 64)), vec![Format::Avif]);
 	}
 
 	#[test]

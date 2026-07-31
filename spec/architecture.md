@@ -222,6 +222,26 @@ addressing a lifetime of personal assets requires, and is deliberately not a tam
 claim. It is also unrelated to an IPFS CID, which is a structured multihash rather than a bare
 digest.
 
+### The extension asks for a format
+
+Only AVIF is stored. `/image/{cid}.avif` is served straight from the bucket; any other
+extension is a request to convert that same object, which the worker satisfies through
+Cloudflare's image transformations.
+
+Cloudflare counts a conversion once per image regardless of how many formats it ends up
+serving, so the whole fallback chain costs one transformation rather than a second and third
+copy of the library. Storage would be nearly free either way -- what a stored fallback really
+costs is the sync, the derive time, and a second thing to keep consistent.
+
+No `?format=` parameter, because the extension already says which format is wanted and two
+spellings of one request fragment the cache key. It also caps the exposure: only a size that
+was derived exists as an object, so nobody can burn the monthly transformation quota by
+asking for arbitrary dimensions.
+
+The failure mode to remember is that exceeding the quota does not degrade -- new conversions
+return an error while already-cached ones keep serving. That is why the request path a browser
+takes by default is the stored AVIF, and conversion is only ever the fallback.
+
 ### Caching is the worker's job now
 
 The old CDN served these files through a static-assets binding and set their cache policy in

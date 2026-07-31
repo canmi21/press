@@ -30,7 +30,7 @@ Rust 设计中，LLVM 其实有点偷懒，但也选的很好，不像 Go 一样
 
 所以本质上，编译慢的很大一部分时间不是花在 Rust 自己的前端而是花在了 LLVM 这个"重型后端"上。那么问题来了，有没有可能丢掉它嘛，~~答案是有的喵~~，有一个叫做 Cranelift 的后端就是一个为了这个需求做的。它最早是 Cretonne，2016 年启动，由 [Bytecode Alliance](https://bytecodealliance.org) 开发，最初是为 [Wasmtime](https://github.com/bytecodealliance/wasmtime) 包的饺子，才设计的代码生成后端；后被 Rust 官方收编作为可选的 codegen 后端。
 
-::linkcard{src="19451bcbb997b8495d39da14131d0286af34c6541720573cd06545167617e2b2.png" url="https://github.com/bytecodealliance/wasmtime/tree/main/cranelift" title="A low-level retargetable code generator." tone="dark"}
+::linkcard{src="3f34360a5eb3c9ec303ca1035cc2453b.png" url="https://github.com/bytecodealliance/wasmtime/tree/main/cranelift" title="A low-level retargetable code generator." tone="dark"}
 
 那所以 Cranelift 到底应该快在哪呢，最好的阶段就是开发时期，这个时候也许你根本不需要接近完美的、极限优化执行效率的机器码，也许我们只需要一个快速的反馈而已，只要这个不是那么好的机器码和 LLVM 正经算出来的机器码语意等价就行了，早期的 Cranelift 其实做不到，因为有很多 Edge Case，虽然现在还是有，但是已经改善了很多了，现在出现 Cranelift 可以跑但是 LLVM 坏掉的概率差不多和你写 rust 触发 rustc ICE 差不多了。LLVM 为了生成极致优化的机器码，会跑几十个优化 pass，比如循环展开、向量化、常量传播、消除死代码之类的…… 很多很多，一层一层磨，而 Cranelift 的设计哲学完全不同，它大幅削减了这些优化步骤，只做最基本的寄存器分配和指令选择，用一趟线性扫描就完成代码生成，不反复迭代。同时它的 IR 设计也更轻量，是专门为快速从上层 IR 翻译到机器码设计的，不像 LLVM IR 那样承载着几十年的通用化包袱。
 
@@ -138,9 +138,9 @@ LTO（Link-Time Optimization）是另外一个很吃内存和编译性能的东�
 
 但是这个也不是无解，其实可以用 cfg 选后端，Cranelift 模式下给 `ring` 来编译就好了。在按照上述描述配置好 dev 和 release profile 后，就可以简单跑一下 CLI 的编译对比，在这个情况下，开发至少比发布快 3倍，这还都是冷编译，没有增量的情况下；并且使用 O0 和关闭 LTO，dev profile 在后续的增量更新中都应该比 release 快几十倍不止。因为 LTO 之类的魔法实际上是通过拍平各个 crate 的边界得来的，那么都变成一个整体后，修改一处代码，当前一起都要重新编译不能被正确增量更新。
 
-![](44b6081deaf0242ca3bf83d62a3b6c95e59f61b36451640b8544ccd60c8fc78d.png)
+![](cbc260f16e936f977570f8fb391f48e2.png)
 
-![](51c50b801dfb31ac8a4bfb87c9207674c31b82d9bdbeae78a9da2612815a9d31.png)
+![](5104d3b6f735fbe76558681b4d37e8ce.png)
 
 综合结果看下来这两玩意其实差不不大，谈不上质变但是绝对能明显感知，主要原因是 Apple Silicon 太猛了，M 系列芯片的单核性能、内存带宽都强的离谱，编译这种重计算+重 I/O 的任务刚好吃到这些优势。如果用 Linux 跑跑通常来说差距会更大，但是如果一台 macbook 刷 Asahi Linux 之类的肯定是 Linux 赢。
 
@@ -154,7 +154,7 @@ linker = "clang"
 rustflags = ["-C", "link-arg=-fuse-ld=mold"]
 ```
 
-![](95afe816370ff0e755029a432aba63f02ff5ad67fab4e64bc4e95a9ed5db05db.png)
+![](7d3a80a688fa627e4f3577f69b320867.png)
 
 提升还是很明显的，但是很遗憾 macOS 上只有 sold 这个商业项目，但是好消息是 macOS 上的 lld or Apple 自带的 ld64 本身已经不慢了，尤其是 Xcode 15 之后那个新链接器，速度提升超级明显，不过这个玩意唯一的不好就是 macOS 无人值守 CI 和更新后每次都要 sudo Accept 一个条款，导致我好几次 CI 定时任务挂掉。
 

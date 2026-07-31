@@ -17,3 +17,16 @@ license = "MIT"
 correctness = "deny"
 suspicious = "deny"
 complexity = "warn"
+
+# Our own crates compile at opt-level 0 so an edit-build cycle stays short, while every
+# dependency is built at 3 and then cached. Nearly all the work in a dev run happens inside
+# rav1e and fast_image_resize, so this is most of release performance for none of the
+# recompilation cost.
+#
+# Not opt-level "z": that optimises for size, and a size-optimised AVIF encoder is a slower
+# one. Size is not a constraint for a binary nobody downloads -- see spec/code.md.
+[profile.dev]
+opt-level = 0
+
+[profile.dev.package."*"]
+opt-level = 3

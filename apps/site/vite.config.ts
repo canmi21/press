@@ -9,6 +9,7 @@ import { defineConfig } from 'vite';
 import { parse as parseYaml } from 'yaml';
 
 const SITE_CONFIG = fileURLToPath(new URL('./site.config.yaml', import.meta.url));
+const ASSETS = fileURLToPath(new URL('../../assets.json', import.meta.url));
 
 // Built-in 301s, kept out of site.config.yaml because they are product behaviour rather than
 // configuration: feed aliases and the favicon redirect to the CDN.
@@ -85,6 +86,20 @@ export default defineConfig(({ mode }) => {
 						return code.replaceAll('__CDN_URL__', urls.cdn);
 					}
 					return null;
+				},
+			},
+			{
+				// The asset manifest, baked in so an article can carry its own placeholders and
+				// variant list. The images themselves are not in the repository, which is
+				// exactly why this file is: a CI build has the manifest and needs nothing else.
+				name: 'virtual-assets',
+				resolveId(id: string) {
+					return id === 'virtual:assets' ? '\0virtual:assets' : null;
+				},
+				load(id: string) {
+					if (id !== '\0virtual:assets') return null;
+					this.addWatchFile(ASSETS);
+					return `export const assets = ${readFileSync(ASSETS, 'utf8')};`;
 				},
 			},
 			{

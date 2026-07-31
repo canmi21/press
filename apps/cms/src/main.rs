@@ -17,6 +17,7 @@ fn main() -> ExitCode {
 	match args.first().map(String::as_str) {
 		Some("port") => print_port(),
 		Some("favicon") => fetch_favicons(&args[1..]),
+		Some("image") => process_images(&args[1..]),
 		Some(other) => {
 			eprintln!("unknown command: {other}");
 			usage();
@@ -97,10 +98,65 @@ fn fetch_favicons(args: &[String]) -> ExitCode {
 	ExitCode::SUCCESS
 }
 
+/// Derive published variants and manifests from every original in data/image.
+///
+/// `--rewrite` additionally updates articles that still reference an image by its old
+/// filename, which is what the move from one hash function to another needs.
+fn process_images(args: &[String]) -> ExitCode {
+	let force = args.iter().any(|a| a == "--force");
+	let rewrite = args.iter().any(|a| a == "--rewrite");
+
+	let root = match paths::repo_root() {
+		Ok(root) => root,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
+	};
+	let originals = root.join("data").join("image");
+	let public = root.join("data").join("public");
+
+	let outcome = match image::run::run(&root, &originals, &public, force) {
+		Ok(outcome) => outcome,
+		Err(error) => {
+			eprintln!("could not write: {error}");
+			return ExitCode::FAILURE;
+		}
+	};
+
+	for (path, error) in &outcome.failed {
+		eprintln!("fail  {}: {error}", path.display());
+	}
+	println!(
+		"{} derived, {} unchanged, {} failed",
+		outcome.processed,
+		outcome.skipped,
+		outcome.failed.len()
+	);
+
+	if rewrite {
+		match image::run::rewrite_references(&root.join("contents"), &outcome.renamed) {
+			Ok(0) => println!("no article references needed updating"),
+			Ok(count) => println!("rewrote {count} article references"),
+			Err(error) => {
+				eprintln!("could not rewrite articles: {error}");
+				return ExitCode::FAILURE;
+			}
+		}
+	}
+
+	if outcome.failed.is_empty() {
+		ExitCode::SUCCESS
+	} else {
+		ExitCode::FAILURE
+	}
+}
+
 fn usage() {
 	eprintln!("usage: cms <command>");
 	eprintln!();
 	eprintln!("commands:");
 	eprintln!("  port                       print the port the web UI will bind");
 	eprintln!("  favicon <domain-or-url>... fetch icons into data/public/favicon");
+	eprintln!("  image [--force] [--rewrite]  derive variants from data/image");
 }

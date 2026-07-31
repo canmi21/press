@@ -9,9 +9,28 @@ export type Block =
 	| { type: 'heading'; depth: number; slug: string; text: string }
 	| { type: 'code'; lang: string; html: string; code: string }
 	| { type: 'svgCanvas'; svg: string; title: string }
-	| { type: 'linkcard'; src: string; url: string; title: string; tone?: 'light' | 'dark' }
+	| {
+			type: 'linkcard';
+			src: string;
+			url: string;
+			title: string;
+			tone?: 'light' | 'dark';
+			width?: number;
+			height?: number;
+			preview?: string;
+			srcset?: string;
+	  }
 	| { type: 'placeholder'; kind: string; meta: Record<string, string> }
-	| { type: 'image'; src: string; alt: string };
+	| {
+			type: 'image';
+			src: string;
+			alt: string;
+			width?: number;
+			height?: number;
+			ratio?: string;
+			preview?: string;
+			srcset?: string;
+	  };
 
 export type TocEntry = { slug: string; text: string; depth: number };
 

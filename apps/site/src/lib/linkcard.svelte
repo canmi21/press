@@ -11,8 +11,12 @@
 		title: string;
 		tone?: 'light' | 'dark';
 		favicon?: string;
+		width?: number;
+		height?: number;
+		preview?: string;
+		srcset?: string;
 	};
-	let { src, url, title, tone, favicon }: Props = $props();
+	let { src, url, title, tone, favicon, width, height, preview, srcset }: Props = $props();
 
 	const cdnUrl = pickUrls(dev).cdn;
 	const domain = $derived(new URL(url).hostname);
@@ -90,7 +94,7 @@
 				? 'group-hover:brightness-110'
 				: ''}"
 	>
-		<Image {src} alt="" bind:el={imgEl} />
+		<Image {src} alt="" {width} {height} {preview} {srcset} bind:el={imgEl} />
 	</div>
 	<div class="absolute right-12 bottom-3 left-3 flex items-center gap-2">
 		<img src={faviconSrc} alt="" aria-hidden="true" loading="lazy" class="h-4 w-4 shrink-0" />

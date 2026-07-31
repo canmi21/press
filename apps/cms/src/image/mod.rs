@@ -7,6 +7,8 @@
 pub mod encode;
 pub mod ladder;
 pub mod manifest;
+pub mod run;
+pub mod store;
 
 use encode::Format;
 use fast_image_resize::images::Image as FirImage;
@@ -192,9 +194,9 @@ mod tests {
 	}
 
 	#[test]
-	fn offers_both_lossy_formats_at_every_tier() {
-		// Format support is a property of the browser, not of the tier. Giving only the
-		// largest tier AVIF would deny it to phones, which need the saving most.
+	fn stores_one_format_per_tier() {
+		// Only AVIF is kept. A browser without it gets a conversion at the edge, which costs
+		// one transformation rather than a second permanent copy of every image.
 		let derived = derive(&photo(1500, 1000)).expect("derive");
 		for width in [640, 1280, 1500] {
 			let at_tier: Vec<encode::Format> = derived
@@ -203,13 +205,10 @@ mod tests {
 				.filter(|v| v.width == width)
 				.map(|v| v.format)
 				.collect();
-			assert!(
-				at_tier.contains(&encode::Format::Avif),
-				"no avif at {width}"
-			);
-			assert!(
-				at_tier.contains(&encode::Format::Webp),
-				"no webp at {width}"
+			assert_eq!(
+				at_tier,
+				vec![encode::Format::Avif],
+				"wrong formats at {width}"
 			);
 		}
 	}
