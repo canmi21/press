@@ -50,3 +50,4 @@ jiff = "0.2"
 base64 = "0.23.0"
 claude-codes = "2.1.166"
 tokio = { version = "1.53.1", features = ["rt-multi-thread", "macros"] }
+indicatif = "0.18.6"

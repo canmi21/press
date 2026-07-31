@@ -1,11 +1,11 @@
 {
 	"version": 2,
-	"generated": "2026-07-31T20:09:37.394535Z",
+	"generated": "2026-07-31T20:21:56.233079Z",
 	"assets": {
 		"12faaa76365814de1195d6bdf1e5ba05": {
 			"type": "image",
 			"created": "2026-07-31T07:08:46.024963Z",
-			"updated": "2026-07-31T20:09:01.302541Z",
+			"updated": "2026-07-31T20:21:56.232998Z",
 			"blake3": "12faaa76365814de1195d6bdf1e5ba05",
 			"thumbhash": "yPcBBIA4mIeNeIeAfIqHcH0I5w==",
 			"preview": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAADwAgCdASogABIAPm0ylkekIyIhKAgAgA2JaQAARXDkAAD++LTm8XAAAAA=",
@@ -16,7 +16,7 @@
 				"ratio": "638:353",
 				"bytes": 79505
 			},
-			"description": "This is a screenshot of the Hexo blog framework's homepage, in dark mode with a top navigation bar listing Docs, API, News, Plugins, Themes, and About, alongside a search box and a language selector set to English. The hero section reads \"A fast, simple & powerful blog framework\" above an install command, `npm install hexo-cli -g`, next to a badge row showing 41k GitHub stars, 5k forks, 212k downloads/month, and a follow link for @hexojs on X. Below that, a release timeline lists four version entries — Hexo 8.1.0 (2025-10-26), 8.0.0 (2025-09-16), 7.3.0 (2024-07-02), and 7.2.0 (2024-04-17) — and the page begins a features section with \"Blazing Fast\" and \"Markdown Support\" headings just visible at the bottom edge.",
+			"description": "This is a screenshot of the Hexo project's homepage, a dark-themed site with a hexagonal \"H\" logo and a top nav for Docs, API, News, Plugins, Themes, and About. The hero headline reads \"A fast, simple & powerful blog framework\" above a terminal-style install command, `npm install hexo-cli -g`, flanked by badges showing 41k GitHub stars, 5k forks, 212k downloads per month, and a follow count for @hexojs on X. Below that sits a release timeline listing versions 8.1.0 (2025-10-26), 8.0.0 (2025-09-16), 7.3.0 (2024-07-02), and 7.2.0 (2024-04-17), and the page begins transitioning into a features section highlighting \"Blazing Fast\" and \"Markdown Support.\" The image is evidence of Hexo's current release cadence and community adoption metrics as displayed on its official site.",
 			"original": false,
 			"variants": {
 				"453ac9e9c1a9bc49ca54a3371bdb09d8": {
@@ -118,7 +118,7 @@
 		"2722532798307eb9c03d89e2343c2cda": {
 			"type": "image",
 			"created": "2026-07-31T07:09:01.458831Z",
-			"updated": "2026-07-31T07:09:01.458831Z",
+			"updated": "2026-07-31T20:16:43.086122Z",
 			"blake3": "2722532798307eb9c03d89e2343c2cda",
 			"thumbhash": "PAgCBIDZateik2u8cMQwCgyjwA==",
 			"preview": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAADwAgCdASogABIAPm0ylkekIqIhKAgAgA2JaQAAQnjkAAD++iqnDyAAAAA=",
@@ -129,6 +129,7 @@
 				"ratio": "638:353",
 				"bytes": 66938
 			},
+			"description": "A screenshot of a marketing landing page for a product called Typeless, with a bird-like logo and top navigation links for Manifesto, Pricing, and About, plus a black \"Download for macOS\" button in the corner. The large centered headline reads \"Speak, don't type\" in bold black-and-gray text, followed by a paragraph explaining that speaking naturally lets Typeless \"turn your words into polished messages, emails, and documents\" that read as if carefully typed, in real time, and \"4x faster than typing.\" Below the text sits a second, pill-shaped black \"Download for macOS\" call-to-action button, centered on an otherwise plain white background. The page is evidence of a dictation-to-text macOS app being promoted with a speed and polish claim over traditional typing.",
 			"original": false,
 			"variants": {
 				"994d007381f04c8b9baa9412b350c1a6": {
@@ -150,7 +151,7 @@
 		"2acad555d6fe7cbcd5b153ce945585a0": {
 			"type": "image",
 			"created": "2026-07-31T07:08:14.790939Z",
-			"updated": "2026-07-31T07:08:14.790939Z",
+			"updated": "2026-07-31T20:16:43.086168Z",
 			"blake3": "2acad555d6fe7cbcd5b153ce945585a0",
 			"thumbhash": "mQgKDIAYhohwqnh3iImvYQIQjg==",
 			"preview": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAADwBACdASogABIAPm00lUekIyIhKAgAgA2JZQDE2BEdCV839OsGCITc0J9+t9AmHQAA/vV6B4tNZbs39B+d3uFdSheCY3vf/TilS5r2Gu85pAGk/nwUQwl/zgyLR6OwduKOSAAA",
@@ -161,6 +162,7 @@
 				"ratio": "822:467",
 				"bytes": 3460937
 			},
+			"description": "A photograph taken along a paved footpath cutting through a park or residential courtyard, with weeds and grass sprouting through cracks in the worn concrete. Thick, somewhat overgrown shrubs and bamboo-like hedges line both sides, flanked by trees with white-painted trunks on the right and a leafless tree and a rusted, roofless metal pergola structure in the middle distance. Beyond a low fence and railing on the left stands a tan multi-story building, its windows partly obscured by bare branches, while soft, hazy daylight suggests an overcast morning or late afternoon. The neglected pavement and untrimmed vegetation suggest a lightly maintained green space within an older apartment complex or institutional compound.",
 			"original": false,
 			"variants": {
 				"03060f7ecf5162b0adfa170da667aa45": {
@@ -189,7 +191,7 @@
 		"3f34360a5eb3c9ec303ca1035cc2453b": {
 			"type": "image",
 			"created": "2026-07-31T07:08:16.888864Z",
-			"updated": "2026-07-31T07:08:16.888864Z",
+			"updated": "2026-07-31T20:16:43.086169Z",
 			"blake3": "3f34360a5eb3c9ec303ca1035cc2453b",
 			"thumbhash": "/PcFBICDp6h5dod/dnaFkGQKSw==",
 			"preview": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAABwBACdASogABIAPm0ulUakIqIhKAqogA2JaQDNwBEcymPrRzEIOvHiMnVzwAD+/Yc6aEd7ZEZMRndYsE3FoNv5TeLlAFBnXQkAAA==",
@@ -200,6 +202,7 @@
 				"ratio": "676:375",
 				"bytes": 162487
 			},
+			"description": "A screenshot of the Bytecode Alliance's documentation page for Cranelift, with a top navigation bar linking to Documentation, API Reference, Contributing, Chat, and a GitHub icon. Below a large \"Cranelift\" heading, the body text describes it as a fast, secure, relatively simple, and innovative compiler backend written in Rust that compiles intermediate representations into executable machine code, used by the Wasmtime WebAssembly virtual machine for JIT and AOT compilation and experimentally as a Rust compiler backend. It goes on to state that Cranelift currently supports x86-64, aarch64 (ARM64), s390x (IBM Z), and riscv64 platforms, is retargetable, and welcomes further ISA contributions, and notes it is actively maintained for running sandboxed untrusted code with close-to-native performance, following Wasmtime's release and security policies. The page serves as evidence of Cranelift's project scope, supported architectures, and its role within the Bytecode Alliance ecosystem.",
 			"original": false,
 			"variants": {
 				"c9f5dc6c7325e4aa0af70038d7420144": {
@@ -228,7 +231,7 @@
 		"4a1d25650b1262d916f6571208a32764": {
 			"type": "image",
 			"created": "2026-07-31T07:09:14.861506Z",
-			"updated": "2026-07-31T07:09:14.861506Z",
+			"updated": "2026-07-31T20:16:43.08617Z",
 			"blake3": "4a1d25650b1262d916f6571208a32764",
 			"thumbhash": "ywcGBICCDGyHeHjAR3mDhiBpCA==",
 			"preview": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAAAwBACdASogABIAPmUkkEWkIiGb/VQAQAZEtLGfAB4NijRPbSpQeH1XcwAA/vlswz/l/zQougpXAv85MHNuX7vrKKbHC3ChzaxOtOt9LXyi+nSDytqHSOYvKRQAQAAA",
@@ -239,6 +242,7 @@
 				"ratio": "589:301",
 				"bytes": 1505579
 			},
+			"description": "This is a screenshot of a personal developer's homepage, dark-themed, with navigation links across the top reading 首页, 文稿, 手记, 时光, 思考, and 更多, alongside a small circular avatar icon on the left and a profile icon on the right. The main content introduces the site owner with \"Hi, I'm Innei\" followed by a waving hand emoji, then \"A NodeJS Full Stack <Developer />\" and the tagline \"An independent developer coding with love,\" accompanied by a row of eight social/contact icons below (including what appear to be Bilibili, NetEase Music, GitHub, email, RSS, Telegram, and X/Twitter). On the right side floats a large circular portrait of an anime-style girl with light lavender-white hair, a pink bow, and grey eyes, set against a pale blue background, while pink flower petals drift across the dark backdrop of the whole page. At the bottom, a small line of Chinese text reads a quote about the power of feeling teaching one to elevate life through responsibility, attributed to \"your four inner powers.\"",
 			"original": false,
 			"variants": {
 				"ce54bb42041ad5dfcaa189fd61fc9f71": {
@@ -274,7 +278,7 @@
 		"5104d3b6f735fbe76558681b4d37e8ce": {
 			"type": "image",
 			"created": "2026-07-31T07:08:38.102946Z",
-			"updated": "2026-07-31T07:08:38.102946Z",
+			"updated": "2026-07-31T20:16:43.086172Z",
 			"blake3": "5104d3b6f735fbe76558681b4d37e8ce",
 			"thumbhash": "xPcFBICfaWWGenh9hnsQiQiBeA==",
 			"preview": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAABQBACdASogABIAPm0wkkakIyGhKA1QgA2JaQAALnX9CWV1YBWWiFBASzwAAP77Fb6rWAeenFr1wxzdN5MsvKfmyKiLGEB345CDYmEDAAA=",
@@ -285,6 +289,7 @@
 				"ratio": "166:93",
 				"bytes": 371024
 			},
+			"description": "A terminal screenshot shows the tail end of a Cargo build log for a Rust workspace called \"seam\", titled `~/C/P/seam` with the shell running under user `canmi` on branch `main`. Dozens of dependency crates compile in sequence (console, reqwest, clap, tokio-tungstenite, notify, indicatif, and others), followed by the project's own crates — seam-codegen, seam-server-axum, seam-skeleton, seam-injector-wasm, seam-engine-wasm, seam-cli, all at version 0.5.38 — and several example backends (github-dashboard-axum, i18n-demo-axum, markdown-demo-rust, demo-server-rust). The log ends with `Finished \\`dev\\` profile [unoptimized + debuginfo] target(s) in 19.23s`, indicating a successful debug build of the whole workspace including its example applications.",
 			"original": false,
 			"variants": {
 				"2fb3e70a014a8e7dc56108ab72128df4": {
@@ -320,7 +325,7 @@
 		"5898c4f0bf6412e9323eca7b85c75365": {
 			"type": "image",
 			"created": "2026-07-31T07:08:44.413963Z",
-			"updated": "2026-07-31T07:08:44.413963Z",
+			"updated": "2026-07-31T20:16:43.086172Z",
 			"blake3": "5898c4f0bf6412e9323eca7b85c75365",
 			"thumbhash": "GQgKBIAoZnd/dneJiIiogIJXCA==",
 			"preview": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAAAQBACdASogABIAPmkqkEWkIqGYBgBABoS0gAApRYIMKCZXRejKq/VFTAD+3YwxS1vPDLxPnC6C4jQeNTSNWuXpEEzI2JZi6wUJgAAA",
@@ -331,6 +336,7 @@
 				"ratio": "1046:579",
 				"bytes": 2464864
 			},
+			"description": "A photograph taken indoors, likely in a parking garage or utility corridor, showing a rough concrete wall with a wall-mounted fire hydrant cabinet on the left, labeled \"消火栓 / FIRE HYDRANT\" in red text on white, alongside exposed pipes and a small wall-mounted exhaust vent above it. Painted in dripping red characters across the lower band of the wall is the warning \"消防通道严禁停车\" (fire lane, parking strictly prohibited), the paint runs suggesting it was applied by hand with a brush or roller rather than printed. The bare concrete floor, unfinished walls, and utility fittings indicate this is a service or basement area where the sign serves as evidence of an active effort to keep the fire access route clear of parked vehicles.",
 			"original": false,
 			"variants": {
 				"22e2b10faa035949a8163222bb72f6f1": {
@@ -366,7 +372,7 @@
 		"5c33f853b73251e594e7c0eaca0a5709": {
 			"type": "image",
 			"created": "2026-07-31T07:08:18.933532Z",
-			"updated": "2026-07-31T07:08:18.933532Z",
+			"updated": "2026-07-31T20:16:43.086173Z",
 			"blake3": "5c33f853b73251e594e7c0eaca0a5709",
 			"thumbhash": "AggCBIAHlWpui1VifXUAAAAAAA==",
 			"preview": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAADwAgCdASogABIAPm0ylkekIqIhKAgAgA2JaQAAQnjkAAD++u/HDyAAAAA=",
@@ -377,6 +383,7 @@
 				"ratio": "639:356",
 				"bytes": 76898
 			},
+			"description": "This is a screenshot of the Next.js homepage, dark-themed with a triangular logo and a top nav listing Showcase, Docs, Blog, Templates, Enterprise, a search bar, and Deploy and Learn buttons. The hero section reads \"The React Framework for the Web,\" followed by subtext explaining that Next.js is used by some of the world's largest companies to build high-quality web applications with React components. Below that sit two buttons, \"Get Started\" and \"Learn Next.js,\" and a terminal-style command line reading \"npx create-next-app@latest,\" evidencing the site's role as the framework's official marketing and onboarding landing page.",
 			"original": false,
 			"variants": {
 				"940b33cbc888007bf301d6fee6109a09": {
@@ -398,7 +405,7 @@
 		"6da637a66b48711354532477ac3f2014": {
 			"type": "image",
 			"created": "2026-07-31T07:08:07.490003Z",
-			"updated": "2026-07-31T07:08:07.490003Z",
+			"updated": "2026-07-31T20:16:43.086173Z",
 			"blake3": "6da637a66b48711354532477ac3f2014",
 			"thumbhash": "PggCBYDuoedap4d/lmW5hQRpOqCm",
 			"preview": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAADwAgCdASogABcAPm0ylkekIqIhKAgAgA2JaQAAQnjkAAD++s8TDyAAAAA=",
@@ -409,6 +416,7 @@
 				"ratio": "670:441",
 				"bytes": 194346
 			},
+			"description": "This is a screenshot mockup promoting a blog theme, showing a \"Nlvi\" wordmark logo with a coral underline on the left, paired with two overlapping browser-window previews of a site built with the Hexo static-site generator. Both preview panes display the same demo post dated 2013-12-27, titled \"Elements,\" with placeholder Lorem Ipsum text and a full stack of typographic samples: headings 1 through 6 in descending size, a paragraph section with styled links, bold and italic text, underlines, and a blockquote, followed by a three-column table with \"Table Header 1/2/3\" and \"Division\" rows. The top navigation bar reads \"ARTICLE, ARCHIVES, TAGS, ABOUT\" alongside a search icon, indicating this is a style-guide or theme-demo page meant to showcase how HTML elements render within the Hexo theme.",
 			"original": false,
 			"variants": {
 				"11aff4751923d2b584f49f59c1f9e61b": {
@@ -437,7 +445,7 @@
 		"7d3a80a688fa627e4f3577f69b320867": {
 			"type": "image",
 			"created": "2026-07-31T07:09:02.238104Z",
-			"updated": "2026-07-31T07:09:02.238104Z",
+			"updated": "2026-07-31T20:16:43.086174Z",
 			"blake3": "7d3a80a688fa627e4f3577f69b320867",
 			"thumbhash": "PAgGBIL5ZvZ7dnd8loLApCdECQ==",
 			"preview": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAACwBACdASogABIAPmUokUWkIqGYBgBABkSzgGR6kAGBpA+X5fNSBtmY3dp9txUAAP7+lO3CF0VKYqQsvxUNh6zRqucsqpuoCa5csc4Bro9pTxmdl7TE0irtES7uEURq9ePgd3r/AAA=",
@@ -448,6 +456,7 @@
 				"ratio": "267:164",
 				"bytes": 37710
 			},
+			"description": "This is a bar chart comparing link times across four linkers -- GNU ld 2.42, GNU gold 2.38, LLVM lld 19.0.0, and mold 2.4.0 -- on three programs of increasing binary size: MySQL 8.3 (0.47 GiB), Clang 19.0 (1.56 GiB), and Chromium 124 (1.35 GiB), with time to link in seconds on the vertical axis. GNU ld takes about 11 seconds on MySQL and roughly 42 seconds on Clang but has no bar for Chromium, GNU gold rises from about 7.5 seconds to 33 seconds to 27 seconds across the three, while LLVM lld and mold stay far lower throughout, with lld around 2, 5, and 6 seconds and mold consistently under 2 seconds. The chart is evidence that mold and LLVM lld scale far better with binary size than the traditional GNU ld and gold linkers, whose link times grow much more steeply as the program being linked gets larger.",
 			"original": false,
 			"variants": {
 				"8d8ecdd7e001ef6894c77301c8012ca0": {
@@ -469,7 +478,7 @@
 		"8acf126a993024efcb5d4db159659d40": {
 			"type": "image",
 			"created": "2026-07-31T07:08:25.817905Z",
-			"updated": "2026-07-31T07:08:25.817905Z",
+			"updated": "2026-07-31T20:16:43.086175Z",
 			"blake3": "8acf126a993024efcb5d4db159659d40",
 			"thumbhash": "BQgGDIQIlol0eXh1jHpg1wVHrQ==",
 			"preview": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAACQBACdASogABIAPm0skUWkIqGYBABABsSygF+cEPAouNB4a3onibLRvmyl0wAA/v5Kaek8iVYAG0AGn8zBan0T9H5k+Oez8WVv0n8VYS70eZGWZ1VxeZN2ju+40STj9n+udgAA",
@@ -480,6 +489,7 @@
 				"ratio": "638:357",
 				"bytes": 619149
 			},
+			"description": "A screenshot of the Vercel marketing homepage on a black background, with a top navigation bar reading Products, Resources, Solutions, Enterprise, and Pricing, plus Ask AI, Log In, and Sign Up buttons beside the triangular Vercel logo. Beneath it, a large heading reads \"Build and deploy on the AI Cloud,\" followed by the subtext \"Vercel provides the developer tools and cloud infrastructure to build, scale, and secure a faster, more personalized web,\" and two buttons labeled \"Start Deploying\" and \"Get a Demo.\" The lower half is dominated by a glowing, faceted triangular prism rendered in a wireframe mesh style, radiating blue, green, orange, and red light across a grid backdrop, evidently a stylized 3D re-imagining of the Vercel logo used as hero art.",
 			"original": false,
 			"variants": {
 				"89749fa22f8ec6600fd3af0f285c70dc": {
@@ -501,7 +511,7 @@
 		"8d32cfe9437f0bba72819263799a99ca": {
 			"type": "image",
 			"created": "2026-07-31T07:08:53.021527Z",
-			"updated": "2026-07-31T07:08:53.021527Z",
+			"updated": "2026-07-31T20:16:43.086176Z",
 			"blake3": "8d32cfe9437f0bba72819263799a99ca",
 			"thumbhash": "XegFDIJPiYZ8d4dnmYiSf/kDVg==",
 			"preview": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAACwAwCdASogABIAPm0wk0ckIqGhKAqogA2JZQC7ACnwIz7zblqi2AD92Qo2Fv41KkZf+4K9uNxOm4jQmz3FOrSo3erm40nZsQlEDmMs435AjRU49gFe2AAA",
@@ -512,6 +522,7 @@
 				"ratio": "88:49",
 				"bytes": 6584874
 			},
+			"description": "A photograph, taken outdoors looking straight down at a patch of lawn where green grass blades push up through a scattering of dry, brittle brown and beige leaves and thatch. A couple of curled reddish-brown leaves sit near the center of the frame, flanked by two thin pale twigs bending upward through the vegetation, with a bit of white plastic debris visible at the lower left edge. The lighting is soft and even, consistent with an overcast day or diffuse daylight, and the image reads as an unremarkable close-up snapshot of ground cover rather than a staged or documentary shot of anything in particular.",
 			"original": false,
 			"variants": {
 				"196dbe58f1ae4e99945ef5eca03a1b75": {
@@ -547,7 +558,7 @@
 		"917811350fbfc7af291fce7bd549ef3e": {
 			"type": "image",
 			"created": "2026-07-31T07:09:20.789224Z",
-			"updated": "2026-07-31T07:09:20.789224Z",
+			"updated": "2026-07-31T20:16:43.086176Z",
 			"blake3": "917811350fbfc7af291fce7bd549ef3e",
 			"thumbhash": "lggOBIAIpHdqioeNdodYAHMA1g==",
 			"preview": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAAAQBQCdASogABIAPm0wlkakIyIhKAqogA2JZwAHjIhxwLOw0hAZv4LHdd1R/yuiBbLAAP7vZoqU1+jibj4dLvQQMMbJbquf0l0uQ0TaEb4N5fLXD9yvtOyn9eKHT0BdR6awVvm4xHXjS5EuujgAAA==",
@@ -558,6 +569,7 @@
 				"ratio": "406:255",
 				"bytes": 3873038
 			},
+			"description": "A photograph taken along a weathered wooden boardwalk that runs beneath a series of rusted metal pergola frames, their trellis tops long since stripped of any climbing plants and left bare against the sky. Dense bamboo and overgrown shrubs crowd both sides of the path, their leaves catching daylight while the wood planks below show gaps, warping, and patches of moss or sprouting weeds pushing up between the boards. In the distance the walkway continues past bare-branched winter trees toward what looks like a pond or open clearing, with a cluster of residential high-rises visible above the greenery on the upper left. The overall impression is of an abandoned or neglected park walkway, reclaimed by vegetation after a period of disuse.",
 			"original": false,
 			"variants": {
 				"132184fa6cb475bbec4b85ebeb476fbc": {
@@ -586,7 +598,7 @@
 		"a10408f6aebb21591eed99bdacd7c1e5": {
 			"type": "image",
 			"created": "2026-07-31T07:08:11.685853Z",
-			"updated": "2026-07-31T07:08:11.685853Z",
+			"updated": "2026-07-31T20:16:43.086177Z",
 			"blake3": "a10408f6aebb21591eed99bdacd7c1e5",
 			"thumbhash": "GwgOA4Cad4d/d4eIVnBiLQU=",
 			"preview": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAADwAgCdASogAA4ALk02m02hJCQkBABMS0gGN6IapAgUAAD+7araCtUPbNvC/QwdCtWxjjj5fIRucurk6le6OGggFRqwAA==",
@@ -597,6 +609,7 @@
 				"ratio": "521:200",
 				"bytes": 1793560
 			},
+			"description": "A photograph taken from an elevated riverside promenade, looking out over a wide, calm expanse of grayish-brown river water under an overcast, hazy sky. Two street lamps and a metal railing line the foreground walkway, while a dense mat of dark floating debris or algae hugs the near shoreline, spreading out in an irregular band before giving way to open water. In the far distance, faint vertical reflections suggest the pillars of a bridge or elevated structure, with a small red-and-dark boat or buoy barely visible near the horizon. The murky water and drifting clutter near the shore point to poor water quality or accumulated pollution along this stretch of the river.",
 			"original": false,
 			"variants": {
 				"26e6201af82b4e4f978eb4a4525e0412": {
@@ -632,7 +645,7 @@
 		"a46df6030a9b1ba3f0af95e1a2196850": {
 			"type": "image",
 			"created": "2026-07-31T07:09:16.086626Z",
-			"updated": "2026-07-31T07:09:16.086626Z",
+			"updated": "2026-07-31T20:16:43.086177Z",
 			"blake3": "a46df6030a9b1ba3f0af95e1a2196850",
 			"thumbhash": "2AgGFICXipcVl4mfZKhwrgdY0w==",
 			"preview": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAADQBACdASogABIAPm0ukkWkIqGYBABABsSxgFtkEPdySDccfPccQDQVZ0EyDe0KAAD+vfk9YcyzONGThuIAfZfdVO7INzH1fcHec9VfqWhCIhx/796V9UitIPAIqBreI+8WawAA",
@@ -643,6 +656,7 @@
 				"ratio": "639:353",
 				"bytes": 2357729
 			},
+			"description": "It's a photograph taken outdoors, looking down at a low, dense hedge of small-leaved shrubs planted along a street or sidewalk, with a granite curb running diagonally from the lower left toward the upper right and a paved road visible in the bottom-left corner. The hedge shows fresh light-green new growth on darker woody branches, with a tree trunk base visible near the top edge and a strip of mulched or bare brown ground beyond the shrubs. Bright, direct sunlight casts sharp shadows across the leaves and curb, suggesting the photo was taken around midday.",
 			"original": false,
 			"variants": {
 				"9e8fa0537094d4442bed2a3fb590b2e9": {
@@ -664,7 +678,7 @@
 		"a853e69c33ee2c50ed9125ff947b2d49": {
 			"type": "image",
 			"created": "2026-07-31T07:09:17.290358Z",
-			"updated": "2026-07-31T07:09:17.290358Z",
+			"updated": "2026-07-31T20:16:43.086178Z",
 			"blake3": "a853e69c33ee2c50ed9125ff947b2d49",
 			"thumbhash": "YPsGDIIGpkdibXZleGb5l53PmQ==",
 			"preview": "data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAAAwBQCdASogABIAPm0wkUakIyGhKA1QgA2JQBOmZobm2AXwADyEV7JekHlZ0Rtd/h73AAD+3Mu/jJTRjZHjEA2P/5gjGWLxD/+rQ/E2eQZ+TiS0Zs9R/o7dzD8ofIdxLZs14SITuvJWrnGn2QnUFloI41SDRRgWAUAAAA==",
@@ -675,6 +689,7 @@
 				"ratio": "159:89",
 				"bytes": 878081
 			},
+			"description": "This is a screenshot of a marketing website's hero section, rendered on a warm orange gradient background with a subtle dotted texture. A navigation bar spans the top with links for Products, Solutions, Resources, and Pricing, plus Login and Start building buttons on the right. The headline reads \"Everything we learned from powering 20% of the Internet — yours by default,\" followed by subtext identifying the company as Cloudflare and describing it as an \"AI Cloud with compute, AI inference, and storage\" that lets users \"ship applications instead of managing infrastructure,\" with a second Start building call-to-action button centered below.",
 			"original": false,
 			"variants": {
 				"027e6d27ac5f40dd55d172ef14fbe795": {
@@ -696,7 +711,7 @@
 		"a904d61e5006b602f7c6efd236911d78": {
 			"type": "image",
 			"created": "2026-07-31T07:09:00.494314Z",
-			"updated": "2026-07-31T07:09:00.494314Z",
+			"updated": "2026-07-31T20:16:43.086179Z",
 			"blake3": "a904d61e5006b602f7c6efd236911d78",
 			"thumbhash": "w/cBBICsWUWMeHiGd393iH8IGA==",
 			"preview": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAADwAgCdASogABIAPm0ylkekIyIhKAgAgA2JaQAARXDkAAD++sQXSzAAAAA=",
@@ -707,6 +722,7 @@
 				"ratio": "97:59",
 				"bytes": 236273
 			},
+			"description": "A screenshot of a terminal or app window displaying a dark-themed data table titled with a truncated path ending in \"roject,\" listing daily model usage across dated rows from 2026-03-03 to 2026-03-13, with columns for the models used (combinations of haiku-4-5, opus-4-6, and sonnet-4-6), several numeric usage columns growing into the billions, and a final dollar-cost column ranging from about $97.92 to $1,765.56 per day. The highest cost and token counts appear on 2026-03-09 (over 3.27 billion in the largest column, $1,765.56), while 2026-03-12 shows a sharp drop to $97.92, suggesting a partial or anomalous day. This appears to be evidence of AI API usage and billing tracking, likely from a cost-monitoring dashboard for a software project.",
 			"original": false,
 			"variants": {
 				"60e6e9a51528ccf4b96ab1fe46f49f09": {
@@ -742,7 +758,7 @@
 		"c4297c3fd885b805484659786e1fb561": {
 			"type": "image",
 			"created": "2026-07-31T07:08:54.080758Z",
-			"updated": "2026-07-31T07:08:54.080758Z",
+			"updated": "2026-07-31T20:16:43.086179Z",
 			"blake3": "c4297c3fd885b805484659786e1fb561",
 			"thumbhash": "7PcNBICmuJiPhnWXd2BYcIgChw==",
 			"preview": "data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAACwBACdASogABIAPm0sk0akIiGhMBgIAIANiWkAAC52UiiESjvkobdO3ds5MXAAAP75ryO2bRcw8MhlqHVHA2PXzSzvr7LhQu9FL4MxcOzm9iUyBkKGR/3pPFcPdtvLy2Kh3zgxiZdYynW690RlHsQAAAA=",
@@ -753,6 +769,7 @@
 				"ratio": "637:353",
 				"bytes": 417887
 			},
+			"description": "A screenshot of the Remix framework website, with the Remix logo top-left and a navigation bar linking to Blog, Jam, Store, and V2 Docs top-right. The centered headline reads \"Remix 3 is under active development,\" subtitled \"A new full stack framework built on Web APIs,\" and below it sits an illustration of a car-shaped object draped in a black cloth cover, with the Remix arrow logo and a rainbow-striped diagonal band peeking through where the fabric drapes over its hood. The car-under-a-sheet imagery evokes a product unveiling or teaser, signaling that Remix 3 is a forthcoming release still being built.",
 			"original": false,
 			"variants": {
 				"ad4a608d8ded9e7ead3dcad841f25be0": {
@@ -774,7 +791,7 @@
 		"cbc260f16e936f977570f8fb391f48e2": {
 			"type": "image",
 			"created": "2026-07-31T07:08:24.519146Z",
-			"updated": "2026-07-31T07:08:24.519146Z",
+			"updated": "2026-07-31T20:16:43.08618Z",
 			"blake3": "cbc260f16e936f977570f8fb391f48e2",
 			"thumbhash": "xPcFBICPaWWGenh8h3sgiQiBeA==",
 			"preview": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAABwBACdASogABIAPm0skkYkIqGhKA1QgA2JaQAALnX9Ejy6WqhYi8H+BqNpGAD++5ESwNxEBNkQdA+H71X336FgRWcAi1iXlVUnWAAA",
@@ -785,6 +802,7 @@
 				"ratio": "166:93",
 				"bytes": 371673
 			},
+			"description": "This is a screenshot of a terminal window titled \"~/C/P/seam\" showing the tail end of a `cargo build --release` run for a project called \"seam.\" The scroll lists dozens of dependency crates compiling in sequence — walkdir, rand, tungstenite, sha2, toml, notify, rquickjs, clap and others — followed by the project's own workspace members such as seam-codegen, seam-skeleton, seam-injector-wasm, seam-engine-wasm, seam-server, seam-server-axum, seam-cli, and several example backends (demo-server-rust, github-dashboard-axum, markdown-demo-rust, i18n-demo-axum). The final lines confirm success: \"Finished `release` profile [optimized] target(s) in 1m 05s,\" followed by an idle shell prompt reading `canmi@xyy ~/C/P/seam (main)>`. It is evidence of a clean, complete release build of a multi-crate Rust monorepo with WASM and Axum server components.",
 			"original": false,
 			"variants": {
 				"24dff89e29a9ada1144545c4bd0f1139": {
@@ -820,7 +838,7 @@
 		"ccab92399398f1642024732cc1097abe": {
 			"type": "image",
 			"created": "2026-07-31T07:08:17.941643Z",
-			"updated": "2026-07-31T07:08:17.941643Z",
+			"updated": "2026-07-31T20:16:43.08618Z",
 			"blake3": "ccab92399398f1642024732cc1097abe",
 			"thumbhash": "N/gFBICFdbUgVIcbcVhnmrB/6Q==",
 			"preview": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAABQBACdASogABIAPm0skkWkIqGYBABABsS0gAAlJtUQhVhTBCmvd7/ZVxRwAP7F5d825rwIZi60AGdL1BDLtEhzImO+s2PLaZcMZlTfhUwWG1MLpAAAAA==",
@@ -831,6 +849,7 @@
 				"ratio": "638:355",
 				"bytes": 362129
 			},
+			"description": "A screenshot of a personal blog homepage shows a sidebar with an anime-style avatar, the name \"小汐\", a \"主页\" link, and \"所有文章/友链/关于我\" navigation along with GitHub and other social icons, sitting beside a feed of pinned posts. The top post, dated 2023-01-29 and tagged \"置顶\" (pinned), is titled \"PD-METER-R4\" with the note \"正在开发，相较于R3优化布局，更换主控，增加少量新功能\" (in development, layout optimized versus R3, main controller replaced, a few new features added), illustrated by two photos of a green PCB labeled \"USBC-R4 SAKURA\" showing its component side and its bare reverse side on a fabric backdrop. Below it, a second post titled \"WORX-BAT-Charger\" dated 2023-02-14 begins, cut off at the bottom of the frame. The image serves as evidence of an ongoing hardware project documenting iterative revisions of a USB-C PD (power delivery) measurement device.",
 			"original": false,
 			"variants": {
 				"04b86c0895d716b7f562562bf80a6a54": {
@@ -852,7 +871,7 @@
 		"d4fb6031c436599353a6a90fdd99792c": {
 			"type": "image",
 			"created": "2026-07-31T07:08:32.438724Z",
-			"updated": "2026-07-31T07:08:32.438724Z",
+			"updated": "2026-07-31T20:16:43.086181Z",
 			"blake3": "d4fb6031c436599353a6a90fdd99792c",
 			"thumbhash": "pBgGBICqeYXknZb5aopfw5oIeg==",
 			"preview": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAwBACdASogABIAPm0skkakIiGhMBgIAIANiWcAAC1zlY6FkM19yqkOdKgA/vUDro+Jyu3BmMFLBNE2v9JdLeR7ZO8+92A/2+2vdcKZIwprmHPMXg+VRI25CYAAAA==",
@@ -863,6 +882,7 @@
 				"ratio": "209:117",
 				"bytes": 5183885
 			},
+			"description": "A close-up photograph of a weathered wooden boardwalk or dock, shot from a low angle looking down the length of the planks as they recede into the distance. The gray, sun-bleached boards show heavy wear -- splintered edges, protruding rusty nail heads, and several boards cracked or broken through, with tufts of green grass and dead leaves pushing up through the gaps on the left side. The overall condition points to long-term outdoor exposure and neglect, suggesting the structure is due for repair or replacement.",
 			"original": false,
 			"variants": {
 				"2e06ce90d2f14702e94255f3bbeced81": {
@@ -898,7 +918,7 @@
 		"ff309d022981d9168fca9e5e9b7291e4": {
 			"type": "image",
 			"created": "2026-07-31T07:09:08.636245Z",
-			"updated": "2026-07-31T07:09:08.636245Z",
+			"updated": "2026-07-31T20:16:43.086182Z",
 			"blake3": "ff309d022981d9168fca9e5e9b7291e4",
 			"thumbhash": "o/cNDIB/aXh1iHd4eHf6ZLNPRg==",
 			"preview": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAABQBACdASogABIAPmEmj0WkJCEb/VQAQAYEsoBgbhCR2I7xaPBE4+iYZv8AAP7oRMqY0zSXn7lVuLV6An+kCh8P6mTzvpnX6vxK/Kp4KVXznbOh5gYCXlS4DIgAAA==",
@@ -909,6 +929,7 @@
 				"ratio": "525:292",
 				"bytes": 2381302
 			},
+			"description": "A photograph taken looking straight up into the sky, dominated by scattered wisps and clusters of white cumulus fragments against a hazy blue-gray backdrop. The clouds cluster more densely toward the upper left, thinning to open sky in the center and right, while the silhouetted, leafy branches of a tree cut into the frame along the right edge, their dark foliage backlit by the overcast light. The soft, diffuse illumination suggests a bright but sun-obscured day, with the upward angle and tree branch giving the shot the feel of a casual, ground-level nature snapshot rather than a staged composition.",
 			"original": false,
 			"variants": {
 				"412b7cec1962d1dfbd1fd384265d990c": {

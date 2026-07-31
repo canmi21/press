@@ -200,6 +200,18 @@ fn describe_images(args: &[String]) -> ExitCode {
 		outcome.deferred,
 		outcome.failed.len()
 	);
+	if outcome.described > 0 {
+		let spent = outcome.spent;
+		println!(
+			"{} in ({} fresh, {} cached, {} written), {} out, ${:.2}",
+			spent.total_in(),
+			spent.input,
+			spent.cache_read,
+			spent.cache_written,
+			spent.output,
+			spent.usd
+		);
+	}
 	if outcome.failed.is_empty() {
 		ExitCode::SUCCESS
 	} else {

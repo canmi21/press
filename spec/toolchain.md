@@ -94,6 +94,20 @@ the same name replaces it in place and keeps its routes and custom domains attac
 replacing one never requires deleting it first. Nothing is deleted until whatever supersedes
 it has been seen serving real traffic.
 
+## Deploying is a consequence of pushing
+
+Cloudflare builds from the connected repository, so a push is what ships. Nobody runs a deploy
+by hand as the normal path, and an agent runs one neither by hand nor on request -- pushing is
+the user's, and so is everything downstream of it.
+
+The `deploy-*` tasks stay as a fallback for the case where the platform's build is broken or a
+worker has to be created before its settings exist. Using one means production now holds
+something no commit accounts for, which is worth doing knowingly and not by habit.
+
+Two things follow from CI holding the build. It compiles what is in git and derives nothing --
+see [architecture.md](architecture.md) -- and the toolchain has to be pinned in files CI can
+read, because `mise.toml` is not one of them.
+
 ## Dev ports are pinned
 
 Every dev server binds a fixed port and **fails when that port is taken**. Vite gets

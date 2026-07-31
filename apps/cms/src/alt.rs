@@ -11,6 +11,7 @@
 
 use crate::image::manifest::{Media, Merged};
 use claude_codes::{AsyncClient, ClaudeModel, ClaudeOutput, cli::ClaudeCliBuilder};
+use indicatif::{ProgressBar, ProgressStyle};
 use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 
@@ -47,8 +48,34 @@ fn prompt(path: &Path) -> String {
 	)
 }
 
+/// What one call spent. Summed across a batch so a run can be priced afterwards.
+#[derive(Debug, Default, Clone, Copy)]
+pub struct Spend {
+	pub input: u64,
+	pub output: u64,
+	pub cache_read: u64,
+	pub cache_written: u64,
+	pub usd: f64,
+}
+
+impl Spend {
+	fn add(&mut self, other: Spend) {
+		self.input += other.input;
+		self.output += other.output;
+		self.cache_read += other.cache_read;
+		self.cache_written += other.cache_written;
+		self.usd += other.usd;
+	}
+
+	/// Everything the model was shown, however it was billed.
+	pub fn total_in(self) -> u64 {
+		self.input + self.cache_read + self.cache_written
+	}
+}
+
 #[derive(Debug, Default)]
 pub struct Outcome {
+	pub spent: Spend,
 	pub described: usize,
 	/// Assets that already had a description and were not asked about again.
 	pub skipped: usize,
@@ -110,7 +137,7 @@ fn originals_by_id(originals: &Path) -> BTreeMap<String, PathBuf> {
 }
 
 /// Ask the CLI to describe one image.
-async fn describe(path: &Path) -> Result<String, String> {
+async fn describe(path: &Path) -> Result<(String, Spend), String> {
 	// No prompt on the builder: the client speaks to the CLI over a stream, and the question
 	// goes through `query`. Setting both would put the CLI in one-shot mode and leave the
 	// stream waiting for an answer to a question it had already been given.
@@ -146,7 +173,19 @@ async fn describe(path: &Path) -> Result<String, String> {
 	if text.is_empty() {
 		return Err("the model returned nothing".to_owned());
 	}
-	Ok(text)
+
+	// Cache reads and writes are counted apart from fresh input because they are billed
+	// differently and, on a batch like this, dominate: the system prompt is identical every
+	// time, so most of what the model sees it has seen before.
+	let usage = message.usage.as_ref();
+	let spend = Spend {
+		input: usage.map_or(0, |u| u64::from(u.input_tokens)),
+		output: usage.map_or(0, |u| u64::from(u.output_tokens)),
+		cache_read: usage.map_or(0, |u| u64::from(u.cache_read_input_tokens)),
+		cache_written: usage.map_or(0, |u| u64::from(u.cache_creation_input_tokens)),
+		usd: message.total_cost_usd,
+	};
+	Ok((text, spend))
 }
 
 /// Describe every asset that has no description yet, and record what came back.
@@ -170,10 +209,18 @@ pub async fn run(
 		..Outcome::default()
 	};
 
+	// A call takes tens of seconds and there is nothing to read while it does, so silence for
+	// several minutes is indistinguishable from a hang.
+	let bar = ProgressBar::new(todo.len() as u64);
+	bar.set_style(
+		ProgressStyle::with_template("  {bar:32} {pos}/{len}  {msg}")
+			.unwrap_or_else(|_| ProgressStyle::default_bar()),
+	);
+
 	// Bounded rather than unbounded: the point of the limit is that it holds.
 	let mut queue = todo.into_iter();
 	let mut running = Vec::new();
-	let mut results: Vec<(String, Result<String, String>)> = Vec::new();
+	let mut results: Vec<(String, Result<(String, Spend), String>)> = Vec::new();
 
 	loop {
 		while running.len() < PARALLEL {
@@ -192,11 +239,14 @@ pub async fn run(
 			Ok(result) => results.push(result),
 			Err(error) => results.push((String::new(), Err(error.to_string()))),
 		}
+		bar.inc(1);
 	}
+	bar.finish_and_clear();
 
 	for (cid, result) in results {
 		match result {
-			Ok(text) => {
+			Ok((text, spend)) => {
+				outcome.spent.add(spend);
 				if let Some(media) = merged.assets.get_mut(&cid) {
 					media.description = Some(text);
 					media.updated = crate::image::manifest::now();
