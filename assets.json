@@ -1,11 +1,11 @@
 {
-	"version": 1,
-	"generated": "2026-07-31T13:44:31.356548Z",
+	"version": 2,
+	"generated": "2026-07-31T20:09:37.394535Z",
 	"assets": {
 		"12faaa76365814de1195d6bdf1e5ba05": {
 			"type": "image",
 			"created": "2026-07-31T07:08:46.024963Z",
-			"updated": "2026-07-31T07:08:46.024963Z",
+			"updated": "2026-07-31T20:09:01.302541Z",
 			"blake3": "12faaa76365814de1195d6bdf1e5ba05",
 			"thumbhash": "yPcBBIA4mIeNeIeAfIqHcH0I5w==",
 			"preview": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAADwAgCdASogABIAPm0ylkekIyIhKAgAgA2JaQAARXDkAAD++LTm8XAAAAA=",
@@ -16,6 +16,7 @@
 				"ratio": "638:353",
 				"bytes": 79505
 			},
+			"description": "This is a screenshot of the Hexo blog framework's homepage, in dark mode with a top navigation bar listing Docs, API, News, Plugins, Themes, and About, alongside a search box and a language selector set to English. The hero section reads \"A fast, simple & powerful blog framework\" above an install command, `npm install hexo-cli -g`, next to a badge row showing 41k GitHub stars, 5k forks, 212k downloads/month, and a follow link for @hexojs on X. Below that, a release timeline lists four version entries — Hexo 8.1.0 (2025-10-26), 8.0.0 (2025-09-16), 7.3.0 (2024-07-02), and 7.2.0 (2024-04-17) — and the page begins a features section with \"Blazing Fast\" and \"Markdown Support\" headings just visible at the bottom edge.",
 			"original": false,
 			"variants": {
 				"453ac9e9c1a9bc49ca54a3371bdb09d8": {
@@ -37,7 +38,7 @@
 		"13d5b6bcd2b0dce847951d4e3faf89ca": {
 			"type": "image",
 			"created": "2026-07-31T07:09:27.215478Z",
-			"updated": "2026-07-31T07:09:27.215478Z",
+			"updated": "2026-07-31T20:09:01.30263Z",
 			"blake3": "13d5b6bcd2b0dce847951d4e3faf89ca",
 			"thumbhash": "IwgSFIKJlXd/h4d6h5d5gHkHeA==",
 			"preview": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAACwBACdASogABIAPl0mjkWjoiGb9AA4BcSzgE6AGSFtwamhFPwaGVXJEhEkHFcAAP78OBdQFoL8TBAzokdXXWCiY3ibBC2Vwk3cw/mhJwurB2Jm8H0NwlmA5NtYJgbd7ZBM65FEmxsAx1QA",
@@ -48,6 +49,7 @@
 				"ratio": "529:296",
 				"bytes": 1475413
 			},
+			"description": "A photograph shows a dark-colored laptop, screen off and reflecting a rippled purplish sheen, perched open on top of a stone or concrete pillar overlooking a wide, muddy-brown river. The far bank holds a hazy skyline of low-rise buildings, cranes, and a cable-stayed structure with a red mast, all softened by overcast, misty daylight. To the right a metal railing runs along a paved embankment, and a small boat with a red marker floats alone on the water toward the left. The overall scene reads as a casual outdoor photo of a laptop set against a riverside city backdrop, likely taken to showcase the device's design against a scenic, moody backdrop.",
 			"original": false,
 			"variants": {
 				"02db6233a596927e8e15099d65d98073": {
@@ -83,7 +85,7 @@
 		"18dc4b33f21890aa9042955b67ac346d": {
 			"type": "image",
 			"created": "2026-07-31T07:08:45.035035Z",
-			"updated": "2026-07-31T07:08:45.035035Z",
+			"updated": "2026-07-31T20:09:37.394499Z",
 			"blake3": "18dc4b33f21890aa9042955b67ac346d",
 			"thumbhash": "xvcFBIBqVleFiIhwiIZjzxn0Pg==",
 			"preview": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAABQBACdASogABIAPm0ukkakIqGhMBgIAIANiWkAAC51oNmmMkznsYLLpwjAAP7+Wc+ZUJbC/Ew5tdXekVsF6+0WApIdsRYv5PCfr8FkYDP0AAAA",
@@ -94,6 +96,7 @@
 				"ratio": "122:75",
 				"bytes": 63223
 			},
+			"description": "This is a screenshot of an iPhone Settings screen showing the SIMs section, with two eSIM entries both toggled on: \"Travel - CMHK\" labeled T1, and \"Travel - Hutchison HK\" labeled T2, the latter displaying a partially blurred Hong Kong phone number starting with +852 51 and ending in 77. A blue \"Add eSIM\" link sits below the two entries, indicating the phone is dual-SIM with two Hong Kong carrier eSIMs active, likely set up for travel.",
 			"original": false,
 			"variants": {
 				"4f54c76d3f8f75b6544b60f74c7e5d70": {

@@ -78,10 +78,25 @@ def read(path: pathlib.Path) -> str:
 		return ""
 
 
+def without_code(text: str) -> str:
+	"""Blank out fenced blocks and inline code, keeping line structure intact.
+
+	A doc that documents markdown syntax writes things like `![](cid.ext)` inside backticks.
+	Those are examples of a link, not links, and reading them as targets makes the spec unable
+	to describe the very format this repository uses without tripping its own gate.
+	"""
+	text = FENCE.sub(lambda m: "\n" * m.group(0).count("\n"), text)
+	return INLINE_CODE.sub(lambda m: " " * len(m.group(0)), text)
+
+
+FENCE = re.compile(r"```.*?```", re.S)
+INLINE_CODE = re.compile(r"`[^`\n]+`")
+
+
 def dead_doc_links() -> list[str]:
 	dead = []
 	for doc in docs():
-		for match in MD_LINK.finditer(read(doc)):
+		for match in MD_LINK.finditer(without_code(read(doc))):
 			target = match.group(1)
 			if target.startswith(("http://", "https://", "#", "mailto:")):
 				continue

@@ -11,12 +11,18 @@
 
 use super::encode::Format;
 use super::{Derived, Variant};
+use base64::Engine as _;
+use base64::engine::general_purpose::STANDARD;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
 /// Bumped when the shape changes, so a reader can tell rather than guess. The first change
 /// without one is the one that corrupts silently.
-pub const VERSION: u32 = 1;
+///
+/// 1. The original shape.
+/// 2. Assets carry a `description`, so alt text travels with the image rather than with each
+///    article that happens to reference it.
+pub const VERSION: u32 = 2;
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct Document {
@@ -40,6 +46,14 @@ pub struct Media {
 	/// the hash so an article needs no decoder script to paint it.
 	pub preview: String,
 	pub source: Source,
+	/// What this image shows, written for someone who cannot see it.
+	///
+	/// Held with the asset rather than with a reference, because it describes the picture and
+	/// not the place it appears. An article that wants different wording for its own context
+	/// overrides it; every other reference gets this for free, including the ones written
+	/// years later. Filled by `cms alt`.
+	#[serde(default, skip_serializing_if = "Option::is_none")]
+	pub description: Option<String>,
 	/// Whether this asset carries a variant at the original's own resolution.
 	///
 	/// Recorded rather than inferred so re-deriving reproduces what was published. Comparing
@@ -81,6 +95,24 @@ pub struct Merged {
 	pub assets: BTreeMap<String, Media>,
 }
 
+/// Bring a manifest read from disk up to the current shape, in place.
+///
+/// Returns whether anything moved, so a caller knows to republish the per-asset records that
+/// were written under the old shape. One-way and one-time: the upgraded file is written back,
+/// so there is never a v1 reader to keep working. Two readers for two shapes is how a format
+/// stops having a current version at all.
+///
+/// A field added with `#[serde(default)]` is already correct by the time this runs -- the
+/// version number is the part that has to be said out loud, because the next migration needs
+/// to know where it is starting from.
+pub fn migrate(merged: &mut Merged) -> bool {
+	if merged.version >= VERSION {
+		return false;
+	}
+	merged.version = VERSION;
+	true
+}
+
 pub fn ratio_of(width: u32, height: u32) -> String {
 	let divisor = gcd(width, height).max(1);
 	format!("{}:{}", width / divisor, height / divisor)
@@ -92,27 +124,6 @@ fn gcd(a: u32, b: u32) -> u32 {
 
 pub fn now() -> String {
 	jiff::Timestamp::now().to_string()
-}
-
-fn base64(bytes: &[u8]) -> String {
-	const ALPHABET: &[u8; 64] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-	let mut out = String::with_capacity(bytes.len().div_ceil(3) * 4);
-	for chunk in bytes.chunks(3) {
-		let b = [
-			chunk[0],
-			*chunk.get(1).unwrap_or(&0),
-			*chunk.get(2).unwrap_or(&0),
-		];
-		let n = (u32::from(b[0]) << 16) | (u32::from(b[1]) << 8) | u32::from(b[2]);
-		for i in 0..4 {
-			if i <= chunk.len() {
-				out.push(ALPHABET[((n >> (18 - i * 6)) & 0x3f) as usize] as char);
-			} else {
-				out.push('=');
-			}
-		}
-	}
-	out
 }
 
 fn record(variant: &Variant) -> VariantRecord {
@@ -140,12 +151,13 @@ pub fn media_for(
 		created: created.unwrap_or(&timestamp).to_owned(),
 		updated: timestamp,
 		blake3: derived.cid.clone(),
-		thumbhash: base64(&derived.thumb),
+		thumbhash: STANDARD.encode(&derived.thumb),
 		preview: format!(
 			"data:{};base64,{}",
 			Format::Webp.mime(),
-			base64(&derived.preview)
+			STANDARD.encode(&derived.preview)
 		),
+		description: None,
 		source: Source {
 			mime: source_mime.to_owned(),
 			width: derived.width,
@@ -186,14 +198,6 @@ mod tests {
 	}
 
 	#[test]
-	fn encodes_base64_with_padding() {
-		assert_eq!(base64(b"a"), "YQ==");
-		assert_eq!(base64(b"ab"), "YWI=");
-		assert_eq!(base64(b"abc"), "YWJj");
-		assert_eq!(base64(b"hello world"), "aGVsbG8gd29ybGQ=");
-	}
-
-	#[test]
 	fn timestamps_are_iso_8601_in_utc() {
 		let value = now();
 		assert!(value.ends_with('Z'), "not UTC: {value}");
@@ -211,6 +215,7 @@ mod tests {
 				blake3: "44b6081deaf0242ca3bf83d62a3b6c95".into(),
 				thumbhash: "1QcSHQRnh493".into(),
 				preview: "data:image/webp;base64,UklGRh4".into(),
+				description: None,
 				source: Source {
 					mime: "image/png".into(),
 					width: 2356,

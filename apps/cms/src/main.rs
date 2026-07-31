@@ -7,6 +7,7 @@
 
 use std::process::ExitCode;
 
+mod alt;
 mod check;
 mod favicon;
 mod gc;
@@ -22,6 +23,7 @@ fn main() -> ExitCode {
 		Some("favicon") => fetch_favicons(&args[1..]),
 		Some("image") => process_images(&args[1..]),
 		Some("check") => check_assets(),
+		Some("alt") => describe_images(&args[1..]),
 		Some("gc") => collect_garbage(&args[1..]),
 		Some(other) => {
 			eprintln!("unknown command: {other}");
@@ -129,6 +131,82 @@ fn fetch_favicons(args: &[String]) -> ExitCode {
 	ExitCode::SUCCESS
 }
 
+/// Describe every asset that has no description yet.
+///
+/// The description is written into the manifest, so it belongs to the picture rather than to
+/// whichever article happened to be open when it was generated. Every reference inherits it,
+/// including ones written later.
+fn describe_images(args: &[String]) -> ExitCode {
+	let force = args.iter().any(|arg| arg == "--force");
+	let limit = args
+		.iter()
+		.position(|arg| arg == "--limit")
+		.and_then(|at| args.get(at + 1))
+		.and_then(|value| value.parse::<usize>().ok());
+
+	let root = match paths::repo_root() {
+		Ok(root) => root,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
+	};
+	let originals = root.join("data").join("image");
+	let public = root.join("data").join("public");
+	let merged_path = root.join(image::run::MERGED);
+	let mut merged = image::run::load(&merged_path);
+
+	// A runtime only for this command. Everything else here is a local file walk that gains
+	// nothing from one; this is the single place where the work is waiting on somebody else.
+	let runtime = match tokio::runtime::Runtime::new() {
+		Ok(runtime) => runtime,
+		Err(error) => {
+			eprintln!("could not start a runtime: {error}");
+			return ExitCode::FAILURE;
+		}
+	};
+	let outcome = runtime.block_on(alt::run(&mut merged, &originals, force, limit));
+
+	for (cid, error) in &outcome.failed {
+		eprintln!("fail  {cid}: {error}");
+	}
+	// Reported rather than fatal: an asset whose original is gone can still be served, it just
+	// cannot be looked at again.
+	for cid in &outcome.unreadable {
+		eprintln!("warn  no original on hand for {cid}");
+	}
+
+	if outcome.described > 0 {
+		merged.generated = image::manifest::now();
+		let json = serde_json::to_string_pretty(&merged).unwrap_or_default();
+		if let Err(error) = image::store::write(&merged_path, format!("{json}\n").as_bytes()) {
+			eprintln!("could not write the manifest: {error}");
+			return ExitCode::FAILURE;
+		}
+		// The published record carries the description too, so the metadata API answers with it
+		// without the site having to be rebuilt first.
+		for (cid, media) in &merged.assets {
+			if let Err(error) = image::run::republish(&public, cid, media) {
+				eprintln!("could not publish {cid}: {error}");
+				return ExitCode::FAILURE;
+			}
+		}
+	}
+
+	println!(
+		"{} described, {} already had one, {} left by --limit, {} failed",
+		outcome.described,
+		outcome.skipped,
+		outcome.deferred,
+		outcome.failed.len()
+	);
+	if outcome.failed.is_empty() {
+		ExitCode::SUCCESS
+	} else {
+		ExitCode::FAILURE
+	}
+}
+
 /// Report what the articles reference and `data/public` cannot answer for.
 ///
 /// Always succeeds. This is a report, and a report that can fail a build is a gate wearing a
@@ -142,7 +220,11 @@ fn check_assets() -> ExitCode {
 		}
 	};
 
-	let gaps = match check::report(&root.join("data").join("public"), &root.join("contents")) {
+	let gaps = match check::report(
+		&root,
+		&root.join("data").join("public"),
+		&root.join("contents"),
+	) {
 		Ok(gaps) => gaps,
 		Err(error) => {
 			eprintln!("could not read articles: {error}");
@@ -294,6 +376,7 @@ fn usage() {
 	eprintln!("                              derive what the articles reference, then rewrite them");
 	eprintln!("  favicon [--force] [domain...]");
 	eprintln!("                              collect the icons the linkcards need");
+	eprintln!("  alt [--force] [--limit N]   describe assets that have no description yet");
 	eprintln!("  check                       list referenced assets that are not present");
 	eprintln!("  gc [--live]                 drop published assets no article asks for");
 }

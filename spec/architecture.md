@@ -317,6 +317,35 @@ is recorded in the manifest rather than inferred, because re-deriving has to rep
 was published, and comparing the top variant against the source would guess wrong for every
 image that sits below the cap, where the two are the same size for an unrelated reason.
 
+### A description belongs to the image
+
+Alt text is held in the manifest, on the asset, not on the reference. It describes the
+picture, and the picture is the same picture wherever it appears -- so one description written
+once is inherited by every reference, including the ones written years later. An article that
+needs different wording for its own context overrides it; nothing else has to say anything.
+
+`cms alt` fills them by handing the work to the local `claude` CLI rather than to the API.
+That binary is a whole agent with a Read tool of its own, so naming a path in the prompt is
+enough: there is no multimodal request to assemble, no image to encode, and no key to hold. It
+is slower and dearer per call, and neither matters for a batch that runs once per imported
+picture.
+
+The framing in the prompt is the instruction that matters. "Describe this image" produces a
+caption -- a label naming the subject. Asking for what someone who cannot see it would need
+produces what is actually useful: what kind of image it is, what it contains, and what it is
+evidence of. `--limit` exists because each call costs real money, and finding out the prompt
+is wrong should be cheap.
+
+### The manifest has versions, and only one is current
+
+`assets.json` and every published record carry a version. Raising it means migrating the file
+in place and writing it back, never teaching the reader a second shape -- two readers for two
+shapes is how a format stops having a current version at all.
+
+A migration republishes records from the merged manifest rather than re-deriving. The pixels
+did not change; only the record did, and spending minutes of AV1 encoding to alter a field
+would be paying for an answer already on disk.
+
 ### Cropping is presentation, so the browser does it
 
 `![](cid.ext)` shows the whole image. `::image{src=...}` shows it cropped, defaulting to 16:9

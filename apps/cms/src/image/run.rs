@@ -21,6 +21,8 @@ pub struct Outcome {
 	pub processed: usize,
 	pub skipped: usize,
 	pub rewritten: usize,
+	/// Records rewritten because the manifest moved to a newer shape.
+	pub migrated: usize,
 	pub failed: Vec<(PathBuf, String)>,
 	/// References naming a file that is not under `data/image`.
 	///
@@ -48,6 +50,16 @@ pub fn run(
 	let mut merged = load(&merged_path);
 	let mut outcome = Outcome::default();
 	let scan = refs::scan(articles)?;
+
+	// Records published under an older shape are rewritten from the merged manifest, which
+	// already holds everything they contain. Re-deriving to fix a version number would spend
+	// minutes of CPU to produce identical pixels.
+	if manifest::migrate(&mut merged) {
+		for (cid, media) in &merged.assets {
+			republish(public, cid, media)?;
+			outcome.migrated += 1;
+		}
+	}
 
 	// What the article wrote, mapped to what it should say now.
 	let mut rewrites: BTreeMap<String, String> = BTreeMap::new();
@@ -262,7 +274,21 @@ fn publish(
 	Ok(media)
 }
 
-fn load(path: &Path) -> Merged {
+/// Write one asset's record again from what the merged manifest already says.
+///
+/// Used by the migration and by `cms alt`, both of which change a record without touching a
+/// single pixel. Re-deriving to publish a changed field would spend minutes producing bytes
+/// that are already correct.
+pub fn republish(public: &Path, cid: &str, media: &Media) -> std::io::Result<()> {
+	let document = manifest::Document {
+		version: manifest::VERSION,
+		media: media.clone(),
+	};
+	let json = serde_json::to_string_pretty(&document).unwrap_or_default();
+	store::write(&store::meta_path(public, cid), json.as_bytes())
+}
+
+pub fn load(path: &Path) -> Merged {
 	std::fs::read_to_string(path)
 		.ok()
 		.and_then(|text| serde_json::from_str(&text).ok())
@@ -477,6 +503,7 @@ mod tests {
 				ratio: "16:9".into(),
 				bytes: 3,
 			},
+			description: None,
 			original: false,
 			variants,
 		};

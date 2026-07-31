@@ -34,12 +34,13 @@ pub struct Gap {
 }
 
 /// Everything an article references that `data/public` cannot answer for.
-pub fn report(public: &Path, articles: &Path) -> std::io::Result<Vec<Gap>> {
+pub fn report(repo: &Path, public: &Path, articles: &Path) -> std::io::Result<Vec<Gap>> {
 	let scan = refs::scan(articles)?;
-	Ok(gaps(&scan, public))
+	let merged = image::run::load(&repo.join(image::run::MERGED));
+	Ok(gaps(&scan, public, &merged))
 }
 
-fn gaps(scan: &Scan, public: &Path) -> Vec<Gap> {
+fn gaps(scan: &Scan, public: &Path, merged: &image::manifest::Merged) -> Vec<Gap> {
 	let mut found = Vec::new();
 
 	for image in scan.unresolved() {
@@ -56,6 +57,22 @@ fn gaps(scan: &Scan, public: &Path) -> Vec<Gap> {
 				level: Level::Warn,
 				what: cid,
 				detail: "referenced but not published".to_owned(),
+			});
+		}
+	}
+
+	// An image with no description is served correctly and read badly. That is a gap in what
+	// the page says rather than in what it can show, so it sits below a missing image.
+	for cid in scan.cids() {
+		if merged
+			.assets
+			.get(&cid)
+			.is_some_and(crate::alt::wants_description)
+		{
+			found.push(Gap {
+				level: Level::Info,
+				what: cid,
+				detail: "no description -- run cms alt".to_owned(),
 			});
 		}
 	}
@@ -105,7 +122,7 @@ mod tests {
 			::linkcard{url="https://a.com"}"#,
 		);
 
-		let found = report(&root.join("public"), &root.join("contents")).expect("report");
+		let found = report(&root, &root.join("public"), &root.join("contents")).expect("report");
 		let image = found
 			.iter()
 			.find(|gap| gap.what == "shot.png")
@@ -126,7 +143,7 @@ mod tests {
 		std::fs::create_dir_all(meta.parent().expect("parent")).expect("dir");
 		std::fs::write(&meta, b"{}").expect("write");
 
-		let found = report(&root.join("public"), &root.join("contents")).expect("report");
+		let found = report(&root, &root.join("public"), &root.join("contents")).expect("report");
 		assert!(found.is_empty(), "{found:?}");
 		std::fs::remove_dir_all(&root).ok();
 	}
@@ -138,7 +155,7 @@ mod tests {
 		let root = temp("swept");
 		article(&root, "![](44b6081deaf0242ca3bf83d62a3b6c95.avif)");
 
-		let found = report(&root.join("public"), &root.join("contents")).expect("report");
+		let found = report(&root, &root.join("public"), &root.join("contents")).expect("report");
 		assert_eq!(found.len(), 1);
 		assert_eq!(found[0].level, Level::Warn);
 		std::fs::remove_dir_all(&root).ok();

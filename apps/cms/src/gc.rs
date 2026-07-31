@@ -201,6 +201,7 @@ mod tests {
 				ratio: "16:9".into(),
 				bytes: 1,
 			},
+			description: None,
 			original: false,
 			variants,
 		}
