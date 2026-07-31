@@ -75,10 +75,9 @@ fn fetch_favicons(args: &[String]) -> ExitCode {
 	};
 	let public = root.join("data").join("public");
 
-	// (domain, where its icon should come from)
-	let wanted: Vec<(String, Option<String>)> = if inputs.is_empty() {
+	let wanted: Vec<refs::Wanted> = if inputs.is_empty() {
 		match refs::scan(&root.join("contents")) {
-			Ok(scan) => scan.domains(),
+			Ok(scan) => scan.wanted(),
 			Err(error) => {
 				eprintln!("could not read articles: {error}");
 				return ExitCode::FAILURE;
@@ -87,7 +86,11 @@ fn fetch_favicons(args: &[String]) -> ExitCode {
 	} else {
 		favicon::host::normalise(inputs)
 			.into_iter()
-			.map(|host| (host, None))
+			.map(|domain| refs::Wanted {
+				domain,
+				source: None,
+				tone: None,
+			})
 			.collect()
 	};
 
@@ -99,9 +102,10 @@ fn fetch_favicons(args: &[String]) -> ExitCode {
 	// One unreachable site must not abandon the rest: a run over an article's links should
 	// collect what it can and report the gaps, not stop at the first dead domain.
 	let mut failed = 0;
-	for (host, source) in &wanted {
-		let result = match source {
-			Some(url) => favicon::store_named(&public, host, url, force),
+	for icon in &wanted {
+		let host = &icon.domain;
+		let result = match &icon.source {
+			Some(url) => favicon::store_named(&public, host, url, icon.tone.as_deref(), force),
 			None => favicon::store(&public, host, force),
 		};
 		match result {

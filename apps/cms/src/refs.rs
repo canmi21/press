@@ -69,6 +69,16 @@ fn is_external(value: &str) -> bool {
 	lowered.starts_with("http://") || lowered.starts_with("https://") || lowered.starts_with("data:")
 }
 
+/// A domain an article links to, and what the article said about its icon.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Wanted {
+	pub domain: String,
+	/// Where the icon should come from, when an article named a source.
+	pub source: Option<String>,
+	/// Which shade that source is the icon for.
+	pub tone: Option<String>,
+}
+
 #[derive(Debug, Default)]
 pub struct Scan {
 	pub images: Vec<ImageRef>,
@@ -107,19 +117,26 @@ impl Scan {
 			.collect()
 	}
 
-	/// The domains to collect from, each with an override if any article named one.
-	pub fn domains(&self) -> Vec<(String, Option<String>)> {
-		let mut found: Vec<(String, Option<String>)> = Vec::new();
+	/// The domains to collect from, each with whatever an article said about its icon.
+	pub fn wanted(&self) -> Vec<Wanted> {
+		let mut found: Vec<Wanted> = Vec::new();
 		for icon in &self.favicons {
-			match found.iter_mut().find(|(domain, _)| domain == &icon.domain) {
+			let named = Wanted {
+				domain: icon.domain.clone(),
+				source: icon.source.clone(),
+				// Only meaningful alongside a source: it says which shade that icon *is*, not
+				// which shade the card happens to render against.
+				tone: icon.source.as_ref().and(icon.tone.clone()),
+			};
+			match found.iter_mut().find(|found| found.domain == icon.domain) {
 				// An override wins over the default wherever it appears, so one article naming
 				// the icon for a site settles it for every other article linking there.
-				Some((_, source)) if source.is_none() => source.clone_from(&icon.source),
+				Some(existing) if existing.source.is_none() => *existing = named,
 				Some(_) => {}
-				None => found.push((icon.domain.clone(), icon.source.clone())),
+				None => found.push(named),
 			}
 		}
-		found.sort();
+		found.sort_by(|a, b| a.domain.cmp(&b.domain));
 		found
 	}
 }
@@ -304,12 +321,25 @@ mod tests {
 			::linkcard{url="https://a.com" favicon="https://cdn.example/a.svg"}"#,
 		);
 		assert_eq!(
-			found.domains(),
-			vec![(
-				"a.com".to_owned(),
-				Some("https://cdn.example/a.svg".to_owned())
-			)]
+			found.wanted(),
+			vec![Wanted {
+				domain: "a.com".to_owned(),
+				source: Some("https://cdn.example/a.svg".to_owned()),
+				tone: None,
+			}]
 		);
+	}
+
+	#[test]
+	fn a_tone_qualifies_the_icon_a_card_names_and_nothing_else() {
+		// Alongside a source the tone says which shade that file *is*. Alone it only says what
+		// the card renders against, which is no instruction to the collector.
+		let named =
+			scan_text(r#"::linkcard{url="https://a.com" tone="dark" favicon="https://x/i.png"}"#);
+		assert_eq!(named.wanted()[0].tone.as_deref(), Some("dark"));
+
+		let plain = scan_text(r#"::linkcard{url="https://a.com" tone="dark"}"#);
+		assert_eq!(plain.wanted()[0].tone, None);
 	}
 
 	#[test]

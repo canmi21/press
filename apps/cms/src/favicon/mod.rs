@@ -67,7 +67,15 @@ pub fn stored(root: &Path, domain: &str, tone: Option<&str>) -> Option<PathBuf> 
 /// favicon, or the author may want the avatar rather than the site mark. Resolving it into the
 /// domain's own slot is what lets the page go on rendering `/favicon/{domain}` and the article
 /// go on carrying the source URL, with neither needing to know about the other.
-pub fn store_named(root: &Path, domain: &str, source: &str, force: bool) -> Result<Stored, Error> {
+/// `tone` is the shade the article said this icon *is*. Naming one stores it there alone;
+/// naming none means the icon is simply the site's, and it goes under both.
+pub fn store_named(
+	root: &Path,
+	domain: &str,
+	source: &str,
+	tone: Option<&str>,
+	force: bool,
+) -> Result<Stored, Error> {
 	let directory = root.join("favicon").join(domain);
 	if !force && directory.is_dir() {
 		return Ok(Stored {
@@ -80,12 +88,20 @@ pub fn store_named(root: &Path, domain: &str, source: &str, force: bool) -> Resu
 	let extension = fetch::extension_for(&icon.content_type).ok_or(Error::NotResolved)?;
 
 	std::fs::create_dir_all(&directory).map_err(Error::Write)?;
-	// Written as the light icon because that is what an unnamed tone resolves to first, and a
-	// chosen icon should answer the common request rather than the qualified one.
-	let path = directory.join(format!("{}.{extension}", Tone::Light.suffix()));
-	std::fs::write(&path, &icon.bytes).map_err(Error::Write)?;
+	let tones: &[Tone] = match tone {
+		Some("dark") => &[Tone::Dark],
+		Some("light") => &[Tone::Light],
+		_ => &[Tone::Light, Tone::Dark],
+	};
+
+	let mut written = Vec::new();
+	for tone in tones {
+		let path = directory.join(format!("{}.{extension}", tone.suffix()));
+		std::fs::write(&path, &icon.bytes).map_err(Error::Write)?;
+		written.push(path);
+	}
 	Ok(Stored {
-		written: vec![path],
+		written,
 		skipped: false,
 	})
 }
@@ -110,14 +126,32 @@ pub fn store(root: &Path, domain: &str, force: bool) -> Result<Stored, Error> {
 	}
 
 	std::fs::create_dir_all(&directory).map_err(Error::Write)?;
+
+	// A site that publishes one icon publishes it for every context: the browser draws that
+	// same file on light and dark chrome alike, and an icon meant for only one of them is
+	// something a site has to go out of its way to declare. Storing it under both tones
+	// records that rather than guessing at it -- the worker never substitutes, so otherwise a
+	// card asking for the dark icon of a single-icon site gets nothing at all.
+	//
+	// Measured: remix.run and www.typeless.com both publish exactly one, and remix.run's is an
+	// SVG carrying its own opaque backdrop, which is what makes it legible either way.
+	let single = variants.len() == 1;
+
 	let mut written = Vec::new();
 	for (tone, icon) in variants {
 		let Some(extension) = fetch::extension_for(&icon.content_type) else {
 			continue;
 		};
-		let path = directory.join(format!("{}.{extension}", tone.suffix()));
-		std::fs::write(&path, &icon.bytes).map_err(Error::Write)?;
-		written.push(path);
+		let tones: &[Tone] = if single {
+			&[Tone::Light, Tone::Dark]
+		} else {
+			std::slice::from_ref(&tone)
+		};
+		for tone in tones {
+			let path = directory.join(format!("{}.{extension}", tone.suffix()));
+			std::fs::write(&path, &icon.bytes).map_err(Error::Write)?;
+			written.push(path);
+		}
 	}
 
 	if written.is_empty() {

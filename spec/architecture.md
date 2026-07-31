@@ -236,6 +236,16 @@ into that domain's slot, and the page always draws `/favicon/{domain}`. So the a
 never rewritten: it is the only record of where the icon came from, and destroying it would
 make the choice unrepeatable.
 
+Alongside that attribute, `tone` says which shade the named icon _is_. On its own it only says
+what the card renders against, which is no instruction to the collector at all.
+
+A site that publishes one icon publishes it for every context, so it is stored under both
+tones. The browser draws that same file on light and dark chrome alike, and an icon meant for
+only one of them is something a site goes out of its way to declare. This is recording a fact
+rather than substituting: the worker still answers a named tone exactly or not at all, because
+a light silhouette on a light surface is worse than a missing icon. The collector knows the
+site has one icon; the worker only knows which files exist.
+
 ### Missing assets are reported, never fatal
 
 Writing an article before importing its picture is a normal state to be in. `cms check` lists

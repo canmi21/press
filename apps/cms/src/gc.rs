@@ -62,7 +62,8 @@ pub fn plan(repo: &Path, public: &Path, articles: &Path) -> std::io::Result<Swee
 	// Icons are swept by domain rather than by content: the directory existing is the record
 	// that the domain was checked, so removing one file inside it would claim the site was
 	// asked and had no icon.
-	let wanted_domains: BTreeSet<String> = scan.domains().into_iter().map(|(d, _)| d).collect();
+	let wanted_domains: BTreeSet<String> =
+		scan.wanted().into_iter().map(|icon| icon.domain).collect();
 	for directory in directories_under(&public.join("favicon"))? {
 		let name = directory
 			.file_name()
