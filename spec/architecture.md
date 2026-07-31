@@ -336,6 +336,19 @@ produces what is actually useful: what kind of image it is, what it contains, an
 evidence of. `--limit` exists because each call costs real money, and finding out the prompt
 is wrong should be cheap.
 
+### The description is baked in beside the placeholder
+
+The build inlines an image's description the same way it inlines its thumbhash: both belong to
+the picture, both come from the manifest, and neither should be repeated in the article that
+happens to reference it. An article written before any description existed picks one up on the
+next build, without being edited.
+
+Writing `alt` overrides it for one page's context. The two syntaxes differ in what they can
+express, and the difference is real: markdown has no way to say "decorative", so `![](x)`
+parses to an empty alt meaning unwritten and nothing else. A directive can say it, so
+`::image{alt=""}` is a decision and is left alone. A linkcard's cover is decorative by
+construction -- the title it illustrates is right beside it.
+
 ### The manifest has versions, and only one is current
 
 `assets.json` and every published record carry a version. Raising it means migrating the file

@@ -9,7 +9,7 @@ import remarkParse from 'remark-parse';
 import remarkStringify from 'remark-stringify';
 import { unified } from 'unified';
 import { parse as parseYaml, stringify as stringifyYaml } from 'yaml';
-import { resolve as resolveAsset } from '$lib/assets';
+import { type Resolved, resolve as resolveAsset } from '$lib/assets';
 import { highlight } from '$lib/server/highlight';
 import type { ArticleMeta } from '$lib/article.svelte';
 import type { Block, Compiled, CompiledPage, InlineSegment, PageBlock, TocEntry } from './types';
@@ -183,6 +183,29 @@ function imageOf(node: RootContent): MdImage | null {
 	return null;
 }
 
+/**
+ * What an image is described as, preferring what the article said.
+ *
+ * The manifest's description belongs to the picture and is written once, so an article that
+ * says nothing still gets one -- including articles written before any description existed,
+ * which pick it up on the next build. Writing `alt` overrides that for one page's context.
+ *
+ * The two syntaxes differ in what they can express, and the difference is real rather than
+ * pedantic. Markdown has no way to say "decorative": `![](x)` parses to an empty alt, which
+ * means unwritten and nothing else. A directive can say it, so `alt=""` there is a choice and
+ * is left alone, while an absent attribute falls back like the markdown form.
+ */
+function altFor(written: string | null | undefined, resolved: Resolved | null): string {
+	if (written != null && written !== '') return written;
+	return resolved?.description ?? '';
+}
+
+/** The directive form, where an explicit empty alt is a decision rather than an omission. */
+function altForDirective(written: string | null | undefined, resolved: Resolved | null): string {
+	if (written != null) return written;
+	return resolved?.description ?? '';
+}
+
 /** Widescreen, because the reason to crop at all is usually to make a row of images agree. */
 const DEFAULT_CROP = '16 / 9';
 
@@ -281,12 +304,13 @@ export async function compile(raw: string, url: string): Promise<Compiled> {
 		if (node.type === 'leafDirective' && node.name === 'image') {
 			const attrs = node.attributes ?? {};
 			const src = attrs.src ?? '';
-			const alt = attrs.alt ?? '';
 			const crop = cropRatio(attrs.ratio, url);
 			const align = cropAlign(attrs.align, url);
 			const absolute = `${IMAGE_CDN}/image/${src}`;
+			const resolved = resolveAsset(src);
+			const alt = altForDirective(attrs.alt, resolved);
 
-			blocks.push({ type: 'image', src, alt, crop, align, ...resolveAsset(src) });
+			blocks.push({ type: 'image', src, alt, crop, align, ...resolved });
 			// The crop does not survive into the feed or the markdown target, and should not:
 			// neither runs a layout, and a crop is how a page shows an image rather than
 			// anything the image says.
@@ -316,11 +340,11 @@ export async function compile(raw: string, url: string): Promise<Compiled> {
 
 		const image = imageOf(node);
 		if (image) {
-			const alt = image.alt ?? '';
 			const absolute = `${IMAGE_CDN}${image.url}`;
 			// Feed and markdown get one plain URL, because neither can express a srcset and
 			// both are read by things that will not run a layout.
 			const resolved = resolveAsset(image.url);
+			const alt = altFor(image.alt, resolved);
 			blocks.push({ type: 'image', src: image.url, alt, ...resolved });
 			feed.push(`<p><img src="${absolute}" alt="${escapeHtml(alt)}" /></p>`);
 			md.push(`![${alt}](${absolute})`);

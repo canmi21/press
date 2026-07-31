@@ -24,6 +24,17 @@ export type Resolved = {
 	height: number;
 	ratio: string;
 	preview: string;
+	/**
+	 * What the image shows, from the manifest.
+	 *
+	 * Baked in at build time for the same reason the placeholder is: it belongs to the picture,
+	 * so every article referencing it inherits the same words without repeating them, and a
+	 * description written after the article still reaches it on the next build.
+	 *
+	 * Absent for an asset nobody has described yet. That is a gap `cms check` reports, not
+	 * something to paper over with the filename.
+	 */
+	description?: string;
 };
 
 /** Strip any extension an article wrote, leaving the content id. */
@@ -64,5 +75,6 @@ export function resolve(reference: string): Resolved | null {
 		height: asset.source.height,
 		ratio: asset.source.ratio,
 		preview: asset.preview,
+		description: asset.description,
 	};
 }
