@@ -13,9 +13,18 @@ library earns after it stabilises, not a precondition for using it.
 spec/       Rules. Start at CLAUDE.md, which indexes this directory.
 libs/       Libraries, any language.
 apps/       Deployable things, any language.
+contents/   Articles. Tracked, because prose is revised and wants diffs.
 data/       Binary assets. In the tree, never in git.
 projs/      Reserved for large standalone projects. Not created yet.
 ```
+
+Articles sit at the root rather than inside the site that renders them, and in git rather
+than in `data/`, because they are neither code nor an asset: they are source text that gets
+reviewed and rewritten. What makes them git's is the same thing that makes code git's --
+someone will want to know when a sentence changed and what it said before, and no backup
+answers that. The images they reference are a different matter and live in `data/`, which is
+why moving articles out of the app cost nothing: the bytes that would bloat a repository were
+never in it.
 
 ## One name, one thing
 

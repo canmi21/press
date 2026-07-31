@@ -1,0 +1,53 @@
+{
+	"name": "@canmi/site",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "wrangler dev",
+		"deploy": "wrangler deploy",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
+	},
+	"dependencies": {
+		"@canmi/imgsrc": "workspace:*",
+		"@canmi/robots": "workspace:*",
+		"@canmi/urls": "workspace:*",
+		"@chenglou/pretext": "^0.0.8",
+		"@lucide/svelte": "^1.27.0",
+		"@sentry/sveltekit": "^10.69.0",
+		"feedsmith": "^2.9.6",
+		"hast-util-to-html": "^9.0.5",
+		"hono": "^4.12.32",
+		"mdast-util-to-hast": "^13.2.1",
+		"mdast-util-to-string": "^4.0.0",
+		"motion": "^12.43.0",
+		"remark-directive": "^4.0.0",
+		"remark-frontmatter": "^5.0.0",
+		"remark-gfm": "^4.0.1",
+		"remark-parse": "^11.0.0",
+		"remark-stringify": "^11.0.0",
+		"shiki": "^4.3.1",
+		"unified": "^11.0.5",
+		"yaml": "^2.9.0"
+	},
+	"devDependencies": {
+		"@canmi/svg-canvas": "workspace:*",
+		"@canmi/tokens": "workspace:*",
+		"@cloudflare/workers-types": "^5.20260730.1",
+		"@sveltejs/adapter-cloudflare": "^7.2.9",
+		"@sveltejs/kit": "^2.70.1",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
+		"@tailwindcss/vite": "^4.3.3",
+		"@types/mdast": "^4.0.4",
+		"@types/node": "^26.1.2",
+		"mdast-util-directive": "^3.1.0",
+		"mdast-util-frontmatter": "^2.0.1",
+		"mdast-util-gfm": "^3.1.0",
+		"svelte": "^5.56.8",
+		"svelte-check": "^4.7.4",
+		"tailwindcss": "^4.3.3",
+		"vite": "^8.1.5",
+		"wrangler": "^4.115.0"
+	}
+}

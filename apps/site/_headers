@@ -1,0 +1,8 @@
+# Plain text carries no in-band charset, and Cloudflare serves static .txt as
+# text/plain with none, so non-ASCII would decode as a legacy locale encoding
+# (UTF-8 bytes read as Windows-1252). Pin UTF-8 for every static .txt: llms.txt,
+# llms-full.txt, robots.txt and any future one. Other formats are self-describing
+# (html meta, xml prolog) or default to UTF-8 (css, js); .md is worker-served so
+# _headers does not apply.
+/*.txt
+  Content-Type: text/plain; charset=utf-8

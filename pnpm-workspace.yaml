@@ -9,10 +9,11 @@ packages:
 # and the default is right -- an install script is the shortest path from a compromised
 # package to a compromised machine, and it runs before anybody reads a line of the code.
 #
-# These two are allowed because they cannot work otherwise: both ship a platform-specific
-# native binary that the install step fetches and unpacks. Nothing goes in this list to make a
-# warning go away.
+# These are allowed because they cannot work otherwise: each ships a platform-specific native
+# binary that the install step fetches and unpacks. Nothing goes in this list to make a warning
+# go away.
 allowBuilds:
+  '@sentry/cli': true
   esbuild: true
   workerd: true
 

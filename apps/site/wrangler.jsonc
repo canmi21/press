@@ -1,0 +1,29 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "site",
+	"main": ".svelte-kit/cloudflare/_worker.js",
+	// Must not exceed what the installed workerd supports, which lags the calendar.
+	"compatibility_date": "2026-07-29",
+	"compatibility_flags": ["nodejs_compat"],
+
+	// Written by the SvelteKit Cloudflare adapter: the prerendered pages and client bundle.
+	// Unrelated to data/public, which the CDN worker serves from R2.
+	"assets": {
+		"directory": ".svelte-kit/cloudflare",
+		"binding": "ASSETS",
+	},
+
+	// `vite dev` on 26511 is the development server, and is what libs/urls records. This port
+	// is for `wrangler dev`, which exercises the built worker instead.
+	"dev": {
+		"port": 26514,
+		"inspector_port": 26515,
+	},
+
+	"observability": { "logs": { "enabled": true, "invocation_logs": true } },
+	"placement": { "mode": "smart" },
+
+	// Custom domains only; see apps/cdn for the reasoning.
+	"workers_dev": false,
+	"preview_urls": false,
+}

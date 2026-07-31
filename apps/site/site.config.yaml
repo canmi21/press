@@ -1,0 +1,25 @@
+# Site identity, baked in at build via the `virtual:site` module (see
+# vite.config.ts). Hexo-style single config: change rarely, e.g. when standing
+# the site up somewhere new. Not environment variables — compiled to a plain
+# object, never shipped as env. URLs/ports live in libs/urls, not here.
+
+name: サボり記
+tagline: One developer's journey through code, circuits, pixels — and life in between.
+
+author:
+  name: Canmi
+  email: t@canmi.net
+
+feed:
+  id: tag:canmi.net,2023:atom
+  followDescription: feedId:259981957098517504+userId:125528261992773632
+
+# Extra static 301 redirects (from: to), baked into the Cloudflare _redirects
+# file at build (see vite.config.ts). Built-in redirects (feed aliases, favicon)
+# are hardcoded in vite.config.ts and not configured here — this list is only
+# for site-specific moves like legacy article paths.
+redirects:
+  /posts/note/less-than-an-hour: /mirror/less-than-an-hour
+  /posts/milestone/less-is-more: /milestone/less-is-more
+  /posts/development/rust-build-config-cranelift-profile-optimization: /development/rust-cargo-cranelift-tuning
+  /posts/architecture/compile-time-rendering: /architecture/compile-time-rendering
