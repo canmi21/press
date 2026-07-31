@@ -36,6 +36,29 @@ const commitHash = (() => {
 // Sitemap <lastmod> for routes like "/" that have no article of their own to date from.
 const buildTime = new Date().toISOString();
 
+/**
+ * The Sentry upload credential, if this build is allowed to proceed without one.
+ *
+ * Locally it is decrypted from `secrets.json` by mise, and a build without it is fine: the
+ * maps are of no use to anyone on this machine anyway.
+ *
+ * In CI its absence is fatal. That build is going to be deployed, and skipping the upload
+ * silently means every stack trace it ever produces is minified -- discovered weeks later,
+ * while trying to read an error that no longer maps to any source. CI has no age private key,
+ * so `secrets.json` cannot supply it there; it comes from the platform's own encrypted build
+ * variables instead. See spec/architecture.md.
+ */
+function sentryToken(): string | undefined {
+	const token = process.env.SENTRY_AUTH_TOKEN;
+	if (!token && process.env.CI) {
+		throw new Error(
+			'SENTRY_AUTH_TOKEN is unset in CI. Add it as an encrypted build variable, or the ' +
+				'deployed worker will report every error without a usable stack trace.',
+		);
+	}
+	return token;
+}
+
 export default defineConfig(({ mode }) => {
 	const urls = mode === 'production' ? URLS.apps.production : URLS.apps.development;
 	return {
@@ -44,10 +67,7 @@ export default defineConfig(({ mode }) => {
 			sentrySvelteKit({
 				org: 'canmi',
 				project: 'canmi',
-				// Build-time credential, decrypted from secrets.json by mise. Absent, the
-				// upload is skipped and the build still succeeds -- which is what a local
-				// build without the key should do.
-				authToken: process.env.SENTRY_AUTH_TOKEN,
+				authToken: sentryToken(),
 				telemetry: false,
 				// Maps are uploaded to Sentry and then deleted, so the deployed worker carries
 				// none. Paired with `sourcemap: 'hidden'` below, which emits them without the
