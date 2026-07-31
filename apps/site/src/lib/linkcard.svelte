@@ -22,8 +22,12 @@
 		height?: number;
 		preview?: string;
 		srcset?: string;
+		/** What the cover shows, from the manifest. See the markup for where it goes. */
+		description?: string;
 	};
-	let { src, url, title, tone, width, height, preview, srcset }: Props = $props();
+	let { src, url, title, tone, width, height, preview, srcset, description }: Props = $props();
+
+	const describedBy = $props.id();
 
 	const cdnUrl = pickUrls(dev).cdn;
 	const domain = $derived(new URL(url).hostname);
@@ -91,7 +95,29 @@
 	});
 </script>
 
-<a href={url} target="_blank" rel="noopener noreferrer" class="group relative isolate block">
+<!--
+	The cover keeps `alt=""` deliberately, and this is the one decision here worth arguing.
+
+	Everything inside an anchor becomes part of the link's accessible name. Putting an
+	800-character description there would make the link announce as the whole screenshot before
+	saying where it goes, and a reader tabbing through links would have to sit through it every
+	time. A link's name should identify its destination and stop.
+
+	So the description is offered as a *description* instead: `aria-describedby` points at the
+	hidden text below, which a screen reader announces after the name and lets the reader skip.
+	The content is available without being in the way.
+
+	The name itself gains the domain and the new-tab warning. "Hexo: A fast, simple & powerful
+	blog framework" never said it went to hexo.io -- the favicon carries that visually and is
+	`aria-hidden`, so without this the destination was sighted-only.
+-->
+<a
+	href={url}
+	target="_blank"
+	rel="noopener noreferrer"
+	aria-describedby={description ? describedBy : undefined}
+	class="group relative isolate block"
+>
 	<div
 		class="card-media transition duration-200 {hoverTint === 'black'
 			? 'group-hover:brightness-90'
@@ -106,13 +132,19 @@
 		<span class="truncate text-sm font-medium {tone === 'dark' ? 'text-black' : 'text-white'}">
 			{title}
 		</span>
+		<span class="sr-only">, {domain}, opens in new tab</span>
 	</div>
 	<ArrowUpRight
+		aria-hidden="true"
 		class="absolute right-3 bottom-3 h-4 w-4 {tone === 'dark' ? 'text-black' : 'text-white'} {tone
 			? ''
 			: 'mix-blend-difference'}"
 	/>
 </a>
+{#if description}
+	<!-- Outside the anchor on purpose: inside, it would join the name it is meant to follow. -->
+	<span id={describedBy} class="sr-only">{description}</span>
+{/if}
 
 <style>
 	/* The card image already carries a 2px border, so the focus ring lands right on

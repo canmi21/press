@@ -349,6 +349,24 @@ parses to an empty alt meaning unwritten and nothing else. A directive can say i
 `::image{alt=""}` is a decision and is left alone. A linkcard's cover is decorative by
 construction -- the title it illustrates is right beside it.
 
+### A link's name says where it goes; everything else is a description
+
+Everything inside an anchor becomes part of the link's accessible name, so what goes there is
+a budget rather than a place to be thorough. A linkcard's cover keeps `alt=""` even though a
+description exists for it: an 800-character alt would make the link announce the whole
+screenshot before saying its destination, and a reader tabbing through links would sit through
+that every time.
+
+The description is offered through `aria-describedby` instead, from an element outside the
+anchor. A screen reader announces it after the name and lets the reader skip it, so the
+content is available without being in the way. Inside the anchor it would join the very name
+it is meant to follow.
+
+The name itself has to carry what the visuals carry. A card's title never said which site it
+led to -- the favicon did, and that is `aria-hidden` -- so the domain is added there, along
+with the new-tab warning that `:link` directives already emit. That last one was an
+inconsistency rather than a new decision.
+
 ### The manifest has versions, and only one is current
 
 `assets.json` and every published record carry a version. Raising it means migrating the file

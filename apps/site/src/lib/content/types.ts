@@ -19,6 +19,8 @@ export type Block =
 			height?: number;
 			preview?: string;
 			srcset?: string;
+			/** What the cover shows. Offered as the link's description, never as its name. */
+			description?: string;
 	  }
 	| { type: 'placeholder'; kind: string; meta: Record<string, string> }
 	| {

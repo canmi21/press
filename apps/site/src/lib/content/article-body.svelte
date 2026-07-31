@@ -39,6 +39,7 @@
 			height={block.height}
 			preview={block.preview}
 			srcset={block.srcset}
+			description={block.description}
 		/>
 	{:else if block.type === 'placeholder'}
 		<Placeholder kind={block.kind} meta={block.meta} />
