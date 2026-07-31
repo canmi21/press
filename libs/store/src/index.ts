@@ -54,6 +54,9 @@ async function readFromAssets(assets: Fetcher, key: string): Promise<Found | nul
 	return {
 		body: response.body as unknown as ReadableStream,
 		contentType: response.headers.get('content-type') ?? contentTypeFor(key),
+		// No validator, deliberately. Measured: wrangler's asset fetcher sends no ETag of its
+		// own, and synthesising one here would let a browser hold a file that is being edited
+		// on disk. Development should always answer with what the tree currently says.
 	};
 }
 

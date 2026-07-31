@@ -1,5 +1,20 @@
 import { describe, expect, it } from 'vitest';
-import { keyFor, parseName } from './image';
+import { keyFor, parseName, validatorFor } from './image';
+
+describe('validatorFor', () => {
+	it('distinguishes the formats one id serves', () => {
+		// A tag shared across formats would let a cache answer a WebP request with the AVIF
+		// bytes it already holds, which is a corrupt image rather than a slow one.
+		const cid = '44b6081deaf0242ca3bf83d62a3b6c95';
+		expect(validatorFor(cid, 'avif')).not.toBe(validatorFor(cid, 'webp'));
+	});
+
+	it('is quoted, as an entity tag has to be', () => {
+		expect(validatorFor('44b6081deaf0242ca3bf83d62a3b6c95', 'avif')).toBe(
+			'"44b6081deaf0242ca3bf83d62a3b6c95.avif"',
+		);
+	});
+});
 
 describe('keyFor', () => {
 	it('fans out over the first four characters', () => {

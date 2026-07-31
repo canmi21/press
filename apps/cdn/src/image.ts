@@ -47,11 +47,19 @@ image.get('/:name', async (c) => {
 	}
 	const { cid, extension } = parsed;
 
+	// Answered before the bucket is touched. The id is a hash of the bytes, so a client
+	// holding this tag holds these bytes; nothing on the far side could change that, and
+	// reading the object to confirm it would only prove what the URL already stated.
+	const tag = validatorFor(cid, extension);
+	if (c.req.header('If-None-Match') === tag) {
+		return new Response(null, { status: 304, headers: { ETag: tag } });
+	}
+
 	// A flat-colour original is stored as PNG rather than AVIF, so both are direct lookups
 	// before anything is converted.
 	const stored = await read(c.env, keyFor(cid, extension));
 	if (stored) {
-		return toResponse(stored);
+		return withValidator(toResponse(stored), cid, extension);
 	}
 
 	const target = CONVERTIBLE[extension];
@@ -66,8 +74,36 @@ image.get('/:name', async (c) => {
 		return c.json({ error: 'not found' }, 404);
 	}
 
-	return convert(new URL(c.req.url), cid, target);
+	return withValidator(await convert(new URL(c.req.url), cid, target), cid, extension);
 });
+
+/**
+ * Give a response a validator derived from what it is, not from when it was made.
+ *
+ * The id is a hash of the bytes, so it already is the strongest ETag available: it cannot go
+ * stale, and it costs nothing to produce. A timestamp would have to be read from the metadata
+ * record, which is a second lookup per image request to learn something the URL already says.
+ *
+ * The extension is part of it because one id serves four formats, and a validator shared
+ * between them would let a cache answer a WebP request with the AVIF it already holds.
+ *
+ * This matters most in development, where the local file store supplies no validator at all
+ * and responses would otherwise carry none.
+ */
+function withValidator(response: Response, cid: string, extension: string): Response {
+	if (!response.ok) return response;
+	const headers = new Headers(response.headers);
+	// Overwritten rather than deferred to: R2 supplies its own ETag for the stored object,
+	// which would answer a `.webp` request with the AVIF object's tag and disagree with what
+	// the 304 path above compares against.
+	headers.set('ETag', validatorFor(cid, extension));
+	return new Response(response.body, { status: response.status, headers });
+}
+
+/** One id serves four formats, so the format is part of what the tag identifies. */
+export function validatorFor(cid: string, extension: string): string {
+	return `"${cid}.${extension}"`;
+}
 
 /**
  * Re-encode a stored object through Cloudflare's image transformations.
