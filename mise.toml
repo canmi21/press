@@ -55,6 +55,14 @@ description = "Authenticate wrangler with Cloudflare (interactive)"
 dir = "apps/api"
 run = "pnpm exec wrangler login"
 
+[tasks.deploy-site]
+description = "Build and deploy the site worker"
+dir = "apps/site"
+# Two steps because the adapter writes the worker that wrangler then uploads, and the build is
+# also where source maps go to Sentry. Cloudflare will run the same two commands once the repo
+# is connected; this is the same path, run from here.
+run = ["pnpm run build", "pnpm exec wrangler deploy"]
+
 [tasks.deploy-api]
 description = "Deploy the API worker"
 dir = "apps/api"

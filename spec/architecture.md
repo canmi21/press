@@ -262,6 +262,26 @@ deleting one changes what R2 serves on the next sync. It is recoverable in pract
 originals are still in `data/image` and a content id is enough to rebuild from -- but that is
 a fact about this repository rather than a property of the command, so it waits to be asked.
 
+### A CI build must be able to build from git alone
+
+The site builds from `assets.json`, `contents/` and `site.config.yaml` -- all committed --
+and never reads `data/`. That is what the merged manifest is for: it carries every dimension,
+srcset and placeholder, so a page renders correctly with not one image byte present. A
+checkout is a complete build input.
+
+The consequence is a rule: **CI compiles, it never derives.** No `cms` command runs there.
+`cms image` would write into a `data/` that vanishes with the container, and it could not read
+the originals in any case.
+
+Two things a CI build needs that a local one gets for free, so both are pinned rather than
+resolved:
+
+- `packageManager` and `.node-version`, because `mise.toml` does not apply outside this
+  machine and the lockfile is only readable by a pnpm new enough to know its format.
+- `SENTRY_AUTH_TOKEN`, from the platform's own encrypted build variables. `secrets.json` is
+  committed but sops-encrypted, and CI holds no age private key -- so the local path through
+  mise cannot work there, and the two routes to the same variable stay separate on purpose.
+
 ### Assets are addressed by their content
 
 Every published asset -- an original and each variant derived from it -- is stored under the
