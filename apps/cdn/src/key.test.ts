@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { keyFor, parseName, validatorFor } from './image';
+import { keyFor, parseName, validatorFor } from './key';
 
 describe('validatorFor', () => {
 	it('distinguishes the formats one id serves', () => {

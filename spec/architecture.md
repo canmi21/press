@@ -297,6 +297,44 @@ is recorded in the manifest rather than inferred, because re-deriving has to rep
 was published, and comparing the top variant against the source would guess wrong for every
 image that sits below the cap, where the two are the same size for an unrelated reason.
 
+### A hash in the name buys a year
+
+Cache lifetime follows one rule everywhere: **a name carrying a content hash is cached for a
+year and marked `immutable`, but only on a 2xx. Anything else is cached for five minutes.**
+
+The year is an observation, not a promise. Changing the bytes changes the hash and therefore
+the URL, so a hashed name cannot come to mean anything else and nobody has to remember to bust
+it. `/fonts/` is kept for a year too and is the exception that shows the difference: those
+filenames carry no hash, so re-subsetting a font has to produce a new filename or every reader
+holds the old one for a year.
+
+Errors get five minutes rather than nothing. A missing favicon is requested on every page
+view, and without any caching each one is a full trip to the origin. Five rather than a year
+because an error is a statement about right now -- the asset it refers to may be published a
+minute later, and a year-long 404 would outlive its own reason.
+
+A route that stores its own response has to stamp the header before storing it, which is
+earlier than the middleware runs. So the value is one exported constant that both use, rather
+than two spellings that agree until they do not.
+
+### Formats are produced here, not at the edge
+
+Cloudflare's image transformations cannot read AVIF below an Enterprise plan, and even there
+the source is capped at 1200px while these variants go to 1920. The format chosen for storage
+is the one format that pipeline cannot open. Measured: an AVIF source returns
+`ERROR 9520: Original image has unsupported format` where the identical request against a PNG
+source succeeds.
+
+So the CDN decodes and re-encodes in the worker, using WASM codecs. That removes the plan
+tier, the monthly quota and the dimension ceiling together, and the cost is bounded because
+the extension is the entire request -- there is no size parameter to vary, so a caller cannot
+invent work. Results are held in the edge cache, so the decode is paid once per colo rather
+than once per reader.
+
+Only the decoders for what is stored and the encoders for what is asked for. The AVIF
+_encoder_ is deliberately absent: 1.1MB compressed against 332KB for the decoder, and
+`cms image` already produces AVIF locally where the time costs nothing.
+
 ### The extension asks for a format
 
 Only AVIF is stored. `/image/{cid}.avif` is served straight from the bucket; any other
