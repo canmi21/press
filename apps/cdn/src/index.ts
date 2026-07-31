@@ -1,5 +1,5 @@
 import { robotsTxt } from '@canmi/robots';
-import { URLS, isDevHost, pickUrls } from '@canmi/urls';
+import { isDevHost, pickUrls } from '@canmi/urls';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { BRIEFLY, cacheControl } from './cache';
@@ -10,19 +10,14 @@ import { type Bindings, read, toResponse } from '@canmi/store';
 
 const app = new Hono<{ Bindings: Bindings }>();
 
-app.use(
-	'*',
-	cors({
-		origin: [
-			URLS.apps.production.site,
-			URLS.apps.development.site,
-			URLS.internal.app,
-			URLS.internal.infra,
-			URLS.internal.link,
-		],
-		allowMethods: ['GET', 'HEAD', 'OPTIONS'],
-	}),
-);
+// Any origin may read from the CDN. Everything it serves is already public -- an allowlist
+// only decided which page could draw a picture anyone can fetch by URL, so it protected
+// nothing and broke embedding, which is what a CDN is for. The methods stay read-only, so
+// "any origin" grants exactly what a GET already grants.
+//
+// The API is the opposite and stays restricted: it answers about state, and there the origin
+// is the difference between a reader and a caller.
+app.use('*', cors({ origin: '*', allowMethods: ['GET', 'HEAD', 'OPTIONS'] }));
 app.use('*', cacheControl);
 
 app.get('/', (c) => {

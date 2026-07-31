@@ -199,22 +199,16 @@ function imageOf(node: RootContent): MdImage | null {
 /**
  * What an image is described as, preferring what the article said.
  *
- * The manifest's description belongs to the picture and is written once, so an article that
+ * The manifest's description belongs to the picture and is written once, so a directive that
  * says nothing still gets one -- including articles written before any description existed,
- * which pick it up on the next build. Writing `alt` overrides that for one page's context.
+ * which pick it up on the next build. Writing `alt` overrides it for one page's context, and
+ * an explicit `alt=""` means decorative and is honoured.
  *
- * The two syntaxes differ in what they can express, and the difference is real rather than
- * pedantic. Markdown has no way to say "decorative": `![](x)` parses to an empty alt, which
- * means unwritten and nothing else. A directive can say it, so `alt=""` there is a choice and
- * is left alone, while an absent attribute falls back like the markdown form.
+ * There used to be a second rule here for markdown images, which cannot express "decorative"
+ * at all: `![](x)` parses to an empty alt meaning only "unwritten". Local images all go
+ * through the directive now, so that distinction has nothing left to describe.
  */
 function altFor(written: string | null | undefined, resolved: Resolved | null): string {
-	if (written != null && written !== '') return written;
-	return resolved?.description ?? '';
-}
-
-/** The directive form, where an explicit empty alt is a decision rather than an omission. */
-function altForDirective(written: string | null | undefined, resolved: Resolved | null): string {
 	if (written != null) return written;
 	return resolved?.description ?? '';
 }
@@ -321,7 +315,7 @@ export async function compile(raw: string, url: string): Promise<Compiled> {
 			const align = cropAlign(attrs.align, url);
 			const absolute = `${IMAGE_CDN}/image/${src}`;
 			const resolved = resolveAsset(src);
-			const alt = altForDirective(attrs.alt, resolved);
+			const alt = altFor(attrs.alt, resolved);
 
 			blocks.push({ type: 'image', src, alt, crop, align, ...resolved });
 			// The crop does not survive into the feed or the markdown target, and should not:

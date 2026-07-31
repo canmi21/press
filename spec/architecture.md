@@ -416,9 +416,17 @@ would be paying for an answer already on disk.
 
 ### Cropping is presentation, so the browser does it
 
-`![](cid.ext)` shows the whole image. `::image{src=...}` shows it cropped, defaulting to 16:9
-and centred, with `ratio` and `align` to say otherwise. Writing the directive is itself the
-request to crop, which is why its defaults are a shape rather than "no change".
+`::image{src=...}` is how an article names one of its own images. It crops to 16:9, centred,
+with `ratio` and `align` to say otherwise. Markdown's `![]()` is left to external images,
+which have no manifest entry and nothing to inherit.
+
+One syntax, because a default only holds where writing the thing is itself a decision.
+`![]()` is what a hand reaches for without choosing, so giving it an opinionated crop would
+have been deciding for the author; a directive has to be typed on purpose, and there the
+default reads as "you said nothing else, so this". The first version of this rule kept both
+and made the directive opt-in, which optimised for not editing existing articles and paid for
+it with two permanent code paths and two rules for alt text -- markdown cannot express
+"decorative" at all, so `alt=""` meant one thing in a directive and another in an image.
 
 It is done with `aspect-ratio` and `object-fit`, never by storing another object. A variant per
 ratio and alignment would multiply the bucket, and would make a content id mean "this image as

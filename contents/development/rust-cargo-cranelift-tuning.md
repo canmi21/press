@@ -138,9 +138,9 @@ LTO（Link-Time Optimization）是另外一个很吃内存和编译性能的东�
 
 但是这个也不是无解，其实可以用 cfg 选后端，Cranelift 模式下给 `ring` 来编译就好了。在按照上述描述配置好 dev 和 release profile 后，就可以简单跑一下 CLI 的编译对比，在这个情况下，开发至少比发布快 3倍，这还都是冷编译，没有增量的情况下；并且使用 O0 和关闭 LTO，dev profile 在后续的增量更新中都应该比 release 快几十倍不止。因为 LTO 之类的魔法实际上是通过拍平各个 crate 的边界得来的，那么都变成一个整体后，修改一处代码，当前一起都要重新编译不能被正确增量更新。
 
-![](cbc260f16e936f977570f8fb391f48e2.avif)
+::image{src="cbc260f16e936f977570f8fb391f48e2.avif"}
 
-![](5104d3b6f735fbe76558681b4d37e8ce.avif)
+::image{src="5104d3b6f735fbe76558681b4d37e8ce.avif"}
 
 综合结果看下来这两玩意其实差不不大，谈不上质变但是绝对能明显感知，主要原因是 Apple Silicon 太猛了，M 系列芯片的单核性能、内存带宽都强的离谱，编译这种重计算+重 I/O 的任务刚好吃到这些优势。如果用 Linux 跑跑通常来说差距会更大，但是如果一台 macbook 刷 Asahi Linux 之类的肯定是 Linux 赢。
 
@@ -154,7 +154,7 @@ linker = "clang"
 rustflags = ["-C", "link-arg=-fuse-ld=mold"]
 ```
 
-![](7d3a80a688fa627e4f3577f69b320867.png)
+::image{src="7d3a80a688fa627e4f3577f69b320867.png"}
 
 提升还是很明显的，但是很遗憾 macOS 上只有 sold 这个商业项目，但是好消息是 macOS 上的 lld or Apple 自带的 ld64 本身已经不慢了，尤其是 Xcode 15 之后那个新链接器，速度提升超级明显，不过这个玩意唯一的不好就是 macOS 无人值守 CI 和更新后每次都要 sudo Accept 一个条款，导致我好几次 CI 定时任务挂掉。
 
