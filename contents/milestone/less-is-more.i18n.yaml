@@ -65,3 +65,2788 @@ segments:
       seconds: 17.4341515
       tokens: 18510
       review: false
+  016e6cfa28b6f4b9669d435ac27d78f1:
+    de-DE:
+      text: Dann kam das KI-Zeitalter, und die Angst hat sich verdoppelt.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346367Z
+      seconds: 6.195712292
+      tokens: 15914
+      review: false
+    en-US:
+      text: Then the AI era arrived, and anxiety doubled.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346367Z
+      seconds: 6.195712292
+      tokens: 15914
+      review: false
+    es-ES:
+      text: Entonces llegó la era de la IA, y la ansiedad se duplicó.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346367Z
+      seconds: 6.195712292
+      tokens: 15914
+      review: false
+    fr-FR:
+      text: Puis l'ère de l'IA est arrivée, et l'anxiété a doublé.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346367Z
+      seconds: 6.195712292
+      tokens: 15914
+      review: false
+    ja-JP:
+      text: そして AI 時代がやって来て、不安は倍増した。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346367Z
+      seconds: 6.195712292
+      tokens: 15914
+      review: false
+    ko-KR:
+      text: 그리하여 AI 시대가 찾아왔고, 불안이 두 배가 되었다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346367Z
+      seconds: 6.195712292
+      tokens: 15914
+      review: false
+    zh-CN:
+      text: 然后 AI 时代来了，焦虑又翻了一倍
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346367Z
+      seconds: 6.195712292
+      tokens: 15914
+      review: false
+    zh-TW:
+      text: 然後 AI 時代來了，焦慮又翻了一倍
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346367Z
+      seconds: 6.195712292
+      tokens: 15914
+      review: false
+  03a7b723b0bf91095124a7d8c7cf04c7:
+    de-DE:
+      text: "T990H6ECU8OK9BSETJCC7BA7I5VPPDVS  \nSeltsamerweise hat die Qualität nach dem Loslassen nicht nachgelassen. Ich denke, das liegt wahrscheinlich daran, dass die früheren „古法“-Programmierzeiten nicht umsonst waren; bereits in der GPT‑2‑Ära habe ich angefangen, KI zu benutzen, doch damals schrieb ich noch jede Zeile Code gewissenhaft und verstand jedes Konzept. Diese Erfahrung hat mir ein Fundament gegeben, und eher als später Vibe Coding zu bezeichnen, sollte man von Context Coding sprechen; das nötige Urteilsvermögen ist noch vorhanden, und das Loslassen hat nicht zu niedrigen Fehlern oder Unfällen geführt."
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346376Z
+      seconds: 15.652916666
+      tokens: 18290
+      review: false
+    en-US:
+      text: "T990H6ECU8OK9BSETJCC7BA7I5VPPDVS  \nStrangely, the quality didn't degrade after letting go. I think this is probably because those “古法” programming days weren't wasted; as early as the GPT‑2 era I started using AI, but back then I was still honestly writing every line of code and understanding every concept. That experience gave me a foundation, and rather than saying it was later Vibe Coding, it's more like Context Coding; the necessary judgment is still there, and letting go hasn't led to any low‑level mistakes or accidents."
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346376Z
+      seconds: 15.652916666
+      tokens: 18290
+      review: false
+    es-ES:
+      text: "T990H6ECU8OK9BSETJCC7BA7I5VPPDVS  \nCuriosamente, la calidad no empeoró después de soltar el control. Supongo que se debe a que esos días de programación « 古法 » no fueron en vano; ya en la era de GPT‑2 comencé a usar IA, pero entonces todavía escribía cada línea de código con dedicación y comprendía cada concepto. Esa experiencia me dio una base, y más que llamarlo Vibe Coding después, debería llamarse Context Coding; la capacidad de juicio necesaria sigue ahí, y dejar ir no provocó errores básicos ni accidentes."
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346376Z
+      seconds: 15.652916666
+      tokens: 18290
+      review: false
+    fr-FR:
+      text: "T990H6ECU8OK9BSETJCC7BA7I5VPPDVS  \nÉtrangement, la qualité ne s’est pas détériorée après avoir laissé aller. Je pense que c’est probablement parce que les jours de programmation « 古法 » n’ont pas été vains ; dès l’époque GPT‑2, j’ai commencé à utiliser l’IA, mais à l’époque je rédigeais chaque ligne de code avec soin et comprenais chaque concept. Cette expérience m’a donné une base, et plutôt que d’appeler cela Vibe Coding, on pourrait parler de Context Coding ; le jugement nécessaire est toujours présent, et le fait de lâcher prise n’a pas entraîné d’erreurs basiques ni d’accidents."
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346376Z
+      seconds: 15.652916666
+      tokens: 18290
+      review: false
+    ja-JP:
+      text: "T990H6ECU8OK9BSETJCC7BA7I5VPPDVS  \n不思議なことに、手放した後でも品質は低下しなかった。これはおそらく、以前の「古法」プログラミングの日々が無駄ではなかったからだと思う。GPT‑2 の時代からすでに AI を使い始めていたが、その頃はまだ一行一行を書き、すべての概念を理解しようとしていた。その経験が基盤となり、後の Vibe Coding と呼ぶよりむしろ Context Coding と呼んだ方が適切で、必要な判断力は依然として残っており、手放したからといって低レベルのミスや事故が起きたわけではない。"
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346376Z
+      seconds: 15.652916666
+      tokens: 18290
+      review: false
+    ko-KR:
+      text: "T990H6ECU8OK9BSETJCC7BA7I5VPPDVS  \n이상하게도, 손을 놓은 뒤에도 품질이 나빠지지 않았다. 이는 아마도 이전의 “古法” 프로그래밍 시절이 헛되지 않았기 때문이라고 생각한다. GPT‑2 시절부터 이미 AI를 사용하기 시작했지만, 그때는 여전히 모든 코드를 한 줄씩 성실히 작성하고 모든 개념을 이해하려고 했다. 그 경험이 토대가 되었고, 이후의 Vibe Coding이라기보다 Context Coding이라고 부르는 것이 맞으며, 필요한 판단력은 여전히 남아 있고, 손을 놓았다고 해서 저급한 실수나 사고가 발생한 것은 아니다."
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346376Z
+      seconds: 15.652916666
+      tokens: 18290
+      review: false
+    zh-CN:
+      text: "T990H6ECU8OK9BSETJCC7BA7I5VPPDVS  \n奇怪的是，放手之后质量并没有变差。我想这大概是因为之前那些\"古法\"编程的日子没有白费；早在 GPT-2 时代我就开始用 AI 了，但那时候我还在老老实实地写每一行代码、理解每一个概念。那段经历给了我底子，与其说后来 Vibe Coding 不如说是 Context Coding，该有的判断力还在，并没有因为放手就出什么低级错误或者说是事故。"
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346376Z
+      seconds: 15.652916666
+      tokens: 18290
+      review: false
+    zh-TW:
+      text: "T990H6ECU8OK9BSETJCC7BA7I5VPPDVS  \n奇怪的是，放手之後品質並沒有變差。我想這大概是因為之前那些「古法」程式設計的日子沒有白費；早在 GPT-2 時代我就開始使用 AI 了，但那時候我還在老老實實地寫每一行程式碼、理解每一個概念。那段經驗給了我底子，與其說後來 Vibe Coding 不如說是 Context Coding，該有的判斷力還在，並沒有因為放手就出什麼低階錯誤或是事故。"
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346376Z
+      seconds: 15.652916666
+      tokens: 18290
+      review: false
+  0718215ea97d512da49fb3554686b339:
+    de-DE:
+      text: „Wollen“ zu sagen ist eigentlich nicht ganz exakt, es ist eher eine Obsession. In den frühen Tagen, als ich noch weder Front‑End‑ noch Back‑End‑Code schreiben konnte und keine Embedded‑Programmierung kannte, entstand das Verlangen. Ich bastelte noch mit Elektronik und stieß zufällig auf [@ushio](https://github.com/sakura-ushio)s B‑Station‑Video und Webseite, fand es so spannend, dass ich es selbst ausprobieren wollte. Anschließend verbrachte ich etwa ein halbes Jahr damit, von Grund auf C und ein bisschen JS/CSS zu lernen, und baute mit Hexet einen statischen Blog, den ich auf GitHub Pages bereitstellte – so entstand mein kleines eigenes Eckchen.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346435Z
+      seconds: 12.032307791
+      tokens: 17275
+      review: false
+    en-US:
+      text: Saying “want” isn’t quite accurate; it’s more like an obsession. It started back when, in the early days, I didn’t know how to write front‑end or back‑end code, nor embedded code. I was still tinkering with electronics, and by chance I saw [@ushio](https://github.com/sakura-ushio)’s Bilibili video and website, and thought it was fun, so I wanted to try it too. Later I spent about half a year learning from scratch to write C and a bit of JS/CSS, and using Hexet I set up a static blog hosted on GitHub Pages, which can be considered my own little corner of the world.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346435Z
+      seconds: 12.032307791
+      tokens: 17275
+      review: false
+    es-ES:
+      text: Decir “querer” no es del todo exacto, es más bien una obsesión. En los primeros tiempos, cuando aún no sabía programar front‑end ni back‑end y tampoco código embebido, surgió esa necesidad. Estaba jugando con electrónica y, por casualidad, descubrí el video de B‑Station y el sitio web de [@ushio](https://github.com/sakura-ushio); me pareció muy divertido y quise probarlo también. Después pasé medio año aprendiendo desde cero C y un poco de JS/CSS, y usando Hexet creé un blog estático que desplegué en GitHub Pages, lo que puede considerarse mi pequeño espacio propio.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346435Z
+      seconds: 12.032307791
+      tokens: 17275
+      review: false
+    fr-FR:
+      text: Dire « vouloir » n’est pas tout à fait exact, c’est plutôt une obsession. Au début, je ne savais pas écrire de code front‑end ou back‑end, ni de code embarqué, et c’est à cette époque que cela a commencé. Je bricolais encore avec l’électronique et, par hasard, j’ai découvert la vidéo B‑Station et le site de [@ushio](https://github.com/sakura-ushio); cela m’a paru très amusant et j’ai voulu essayer moi‑même. J’ai ensuite passé environ six mois à apprendre le C et un peu de JS/CSS depuis zéro, et avec Hexet j’ai monté un blog statique hébergé sur GitHub Pages, ce qui peut être considéré comme mon petit coin de paradis.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346435Z
+      seconds: 12.032307791
+      tokens: 17275
+      review: false
+    ja-JP:
+      text: 「欲しい」と言うのは実は正確ではなく、むしろ執念に近い。最初はフロントエンドやバックエンド、組み込みコードさえ書けなかった頃に芽生えた。まだ電子工作をしていて、たまたま[@ushio](https://github.com/sakura-ushio)のBilibili動画とサイトを見つけ、面白そうだと思って自分もやってみたくなった。その後、半年ほどかけてゼロからC言語と少しのJS/CSSを書けるようになり、Hexetで静的ブログを作ってGitHub Pagesにデプロイした。これで自分だけの小さな世界ができた。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346435Z
+      seconds: 12.032307791
+      tokens: 17275
+      review: false
+    ko-KR:
+      text: ‘원한다’는 표현은 정확하지 않고, 오히려 집착에 가깝다. 초기에는 프론트엔드·백엔드 코드를 쓰지도 못하고, 임베디드 코드조차 작성하지 못했을 때부터 이런 감정이 생겼다. 그때 전자공학을 만지작거리며 우연히 [@ushio](https://github.com/sakura-ushio)의 B站 동영상과 웹사이트를 보게 되었고, 재미있다고 느껴 나도 해보고 싶었다. 이후 약 반년 동안 기초부터 C와 약간의 JS/CSS를 배우고, Hexet을 이용해 정적 블로그를 만들어 GitHub Pages에 배포했다. 이렇게 나만의 작은 공간을 갖게 되었다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346435Z
+      seconds: 12.032307791
+      tokens: 17275
+      review: false
+    zh-CN:
+      text: 说“想”其实不太准确，更像是一个执念。早期我还不会写前后端，也不会写嵌入式代码，那时还在玩电子，偶然间看到[@ushio](https://github.com/sakura-ushio)的 B 站视频和网站，觉得很好玩，于是也想尝试。后来花了小半年时间，从零学会了写 C 和一点点 JS/CSS，用 Hexet 搭建了一个静态博客，部署在 Github Pages 上，也算是拥有了自己的小天地。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346435Z
+      seconds: 12.032307791
+      tokens: 17275
+      review: false
+    zh-TW:
+      text: 說「想」其實不太準確，更像是一種執念。早期我還不會寫前後端，也不會寫嵌入式程式碼，當時還在玩電子，偶然間看到[@ushio](https://github.com/sakura-ushio)的 B 站影片和網站，覺得很好玩，我也想試試看。後來花了半年左右的時間，從零學會寫 C 和一點點 JS/CSS，使用 Hexet 搭建了一個靜態部落格，部署在 GitHub Pages 上，也算是擁有了自己的小天地。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.346435Z
+      seconds: 12.032307791
+      tokens: 17275
+      review: false
+  10a6be685d67b9d197263f044f2ae2e9:
+    de-DE:
+      text: |-
+        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
+        ::linkcard{src="8acf126a993024efcb5d4db159659d40.avif" url="https://vercel.com" title="Vercel"}
+        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.34644Z
+      seconds: 7.685564125
+      tokens: 16562
+      review: false
+    en-US:
+      text: |-
+        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
+        ::linkcard{src="8acf126a993024efcb5d4db159659d40.avif" url="https://vercel.com" title="Vercel"}
+        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.34644Z
+      seconds: 7.685564125
+      tokens: 16562
+      review: false
+    es-ES:
+      text: |-
+        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
+        ::linkcard{src="8acf126a993024efcb5d4db159659d40.avif" url="https://vercel.com" title="Vercel"}
+        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.34644Z
+      seconds: 7.685564125
+      tokens: 16562
+      review: false
+    fr-FR:
+      text: |-
+        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
+        ::linkcard{src="8acf126a993024efcb5d4db159659d40.avif" url="https://vercel.com" title="Vercel"}
+        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.34644Z
+      seconds: 7.685564125
+      tokens: 16562
+      review: false
+    ja-JP:
+      text: |-
+        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
+        ::linkcard{src="8acf126a993024efcb5d4db159659d40.avif" url="https://vercel.com" title="Vercel"}
+        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.34644Z
+      seconds: 7.685564125
+      tokens: 16562
+      review: false
+    ko-KR:
+      text: |-
+        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
+        ::linkcard{src="8acf126a993024efcb5d4db159659d40.avif" url="https://vercel.com" title="Vercel"}
+        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.34644Z
+      seconds: 7.685564125
+      tokens: 16562
+      review: false
+    zh-CN:
+      text: |-
+        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
+        ::linkcard{src="8acf126a993024efcb5d4db159659d40.avif" url="https://vercel.com" title="Vercel"}
+        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.34644Z
+      seconds: 7.685564125
+      tokens: 16562
+      review: false
+    zh-TW:
+      text: |-
+        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
+        ::linkcard{src="8acf126a993024efcb5d4db159659d40.avif" url="https://vercel.com" title="Vercel"}
+        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:43.34644Z
+      seconds: 7.685564125
+      tokens: 16562
+      review: false
+  1436607ae993428b426301492efa5785:
+    de-DE:
+      text: Seitdem lässt es sich nicht mehr stoppen.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:49.542949Z
+      seconds: 6.174527208
+      tokens: 15810
+      review: false
+    en-US:
+      text: Since then, it hasn't been able to stop.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:49.542949Z
+      seconds: 6.174527208
+      tokens: 15810
+      review: false
+    es-ES:
+      text: Desde entonces no puede detenerse.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:49.542949Z
+      seconds: 6.174527208
+      tokens: 15810
+      review: false
+    fr-FR:
+      text: Depuis, cela ne s’arrête plus.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:49.542949Z
+      seconds: 6.174527208
+      tokens: 15810
+      review: false
+    ja-JP:
+      text: それ以来、止まらなくなった。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:49.542949Z
+      seconds: 6.174527208
+      tokens: 15810
+      review: false
+    ko-KR:
+      text: 그 이후로 멈출 수 없게 되었다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:49.542949Z
+      seconds: 6.174527208
+      tokens: 15810
+      review: false
+    zh-CN:
+      text: 从那之后就停不下来。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:49.542949Z
+      seconds: 6.174527208
+      tokens: 15810
+      review: false
+    zh-TW:
+      text: 從那之後就停不下來了。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:49.542949Z
+      seconds: 6.174527208
+      tokens: 15810
+      review: false
+  24142222e9959eef92eba10eeb3c19aa:
+    de-DE:
+      text: '## Außer Kontrolle {#out-of-control}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.001133Z
+      seconds: 5.781241125
+      tokens: 15794
+      review: false
+    en-US:
+      text: '## Out of Control {#out-of-control}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.001133Z
+      seconds: 5.781241125
+      tokens: 15794
+      review: false
+    es-ES:
+      text: '## Fuera de control {#out-of-control}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.001133Z
+      seconds: 5.781241125
+      tokens: 15794
+      review: false
+    fr-FR:
+      text: '## Hors de contrôle {#out-of-control}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.001133Z
+      seconds: 5.781241125
+      tokens: 15794
+      review: false
+    ja-JP:
+      text: '## 制御不能 {#out-of-control}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.001133Z
+      seconds: 5.781241125
+      tokens: 15794
+      review: false
+    ko-KR:
+      text: '## 통제불능 {#out-of-control}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.001133Z
+      seconds: 5.781241125
+      tokens: 15794
+      review: false
+    zh-CN:
+      text: '## 失控 {#out-of-control}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.001133Z
+      seconds: 5.781241125
+      tokens: 15794
+      review: false
+    zh-TW:
+      text: '## 失控 {#out-of-control}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.001133Z
+      seconds: 5.781241125
+      tokens: 15794
+      review: false
+  24765af22f2e9a85fc27f072c1f9316a:
+    de-DE:
+      text: Damals hatte ich tatsächlich nicht das Gefühl, vom Kurs abzukommen. Vane? Auf jeden Fall muss der Blog später bereitgestellt werden, also braucht man wohl einen Reverse‑Proxy. Seam? Da ich früher oder später das Full‑Stack‑Entwickeln in Angriff nehmen muss, könnte ich genauso gut zuerst das Framework meiner Vorstellung fertigstellen. Jeder Schritt hat einen Grund, jeder Schritt ist „irgendwann nützlich“. Das Problem ist jedoch, dass „irgendwann“ nie kommt, weil ich nie wirklich begonnen habe…
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.002529Z
+      seconds: 16.475818542
+      tokens: 18662
+      review: false
+    en-US:
+      text: I actually didn't feel like I was going off track at the time. Vane? Anyway, the blog will need to be deployed later, so I must have a reverse proxy. Seam? Since I’ll eventually have to write full‑stack code, I might as well get the framework I envision set up first. Every step has a reason, and each step is "something I'll need later." But the problem is, "later" never arrives, because I never actually start...
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.002529Z
+      seconds: 16.475818542
+      tokens: 18662
+      review: false
+    es-ES:
+      text: En ese momento, en realidad no sentía que me estuviera desviando. ¿Vane? De todos modos, el blog tendrá que desplegarse más adelante, así que necesitaré un proxy inverso. ¿Seam? Dado que tarde o temprano tendré que escribir una aplicación full‑stack, mejor montar primero el framework que imagino. Cada paso tiene una razón, cada paso es « útil en el futuro ». Pero el problema es que « en el futuro » nunca llega, porque nunca he empezado…
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.002529Z
+      seconds: 16.475818542
+      tokens: 18662
+      review: false
+    fr-FR:
+      text: À l'époque, je ne pensais vraiment pas que je m'écartais. Vane ? De toute façon, le blog devra être déployé plus tard, il faut donc un reverse proxy. Seam ? Vu que je finirai par écrire du full‑stack, autant mettre en place dès maintenant le framework que j'imagine. Chaque étape a une raison, chaque étape est « utile plus tard ». Mais le problème, c’est que « plus tard » n’arrive jamais, parce que je n’ai jamais commencé…
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.002529Z
+      seconds: 16.475818542
+      tokens: 18662
+      review: false
+    ja-JP:
+      text: その時、実際には自分が逸れているとは全く思っていなかった。Vane？とにかく、ブログは将来デプロイしなければならないので、リバースプロキシは必須だろう。Seam？結局フルスタックを書かなければならない時が来るので、理想とするフレームワークを先に整えておこう。すべてのステップには理由があり、すべてが「後で使える」ことになる。でも問題は、「後で」は決して来ないということだ。なぜなら、私は一度も実際に始めていないから…
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.002529Z
+      seconds: 16.475818542
+      tokens: 18662
+      review: false
+    ko-KR:
+      text: 그때 나는 실제로 내가 길을 잃고 있다고는 전혀 느끼지 못했다. Vane? 어쨌든 블로그는 나중에 배포해야 하니 역방향 프록시가 필요할 것이다. Seam? 결국 언젠가 풀스택을 작성해야 하니 내가 이상적인 프레임워크를 먼저 구축하는 것이 낫다. 모든 단계마다 이유가 있고, 모든 단계는 '나중에 쓸 수 있다'는 것이다. 하지만 문제는 '나중에'가 절대 오지 않는다는 점이다. 나는 한 번도 실제로 시작하지 않았기 때문이다…
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.002529Z
+      seconds: 16.475818542
+      tokens: 18662
+      review: false
+    zh-CN:
+      text: 我当时其实并不不觉得自己在跑偏。Vane？反正博客以后也要部署，总得有个反向代理吧。Seam？反正迟早要写全栈，不如先把我理想中的框架搞好。每一步都有理由，每一步都是"以后用得上"。但问题是，"以后"永远不会来，因为我从未开始...
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.002529Z
+      seconds: 16.475818542
+      tokens: 18662
+      review: false
+    zh-TW:
+      text: 我當時其實並不不覺得自己在跑偏。Vane？反正部落格以後也要部署，總得有個反向代理吧。Seam？反正遲早要寫全棧，不如先把我理想中的框架搞好。每一步都有理由，每一步都是"以後用得上"。但問題是，"以後"永遠不會來，因為我從未開始...
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.002529Z
+      seconds: 16.475818542
+      tokens: 18662
+      review: false
+  3f9a6599c6088b5128387feefbb4c4d3:
+    de-DE:
+      text: 'Der Kern des Rückgriffs auf das Ingenieurwesen lautet: „Make it function, make it correct, then make it exceptional.“ Ich habe endlich den richtigen Kurs gefunden und es functional gemacht. Ist mein aktueller Blog schlicht? Ja, schlicht. Unvollständig? Tatsächlich unvollständig. Aber besser als gar nichts. Wenn du nicht einmal einen Release‑Tag hast und ständig an etwas arbeitest, das „vielleicht nötig“ ist, dabei einer unsichtbaren Perfektion nachjagst, bleibt am Ende nichts greifbar. Das ist kein Kompromiss, sondern ein technisches Abwägen. So oder so, ich habe es mir gefallen lassen. Also habe ich losgelassen. Ich fixiere mich nicht mehr auf jedes Detail und habe stattdessen das Haus verlassen. In meinem Handy‑Album gibt es seit langem kein Outdoor‑Foto mehr, also habe ich spontan ein Bild vom Straßenrand geschossen – ich war schon ewig nicht mehr draußen.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.003822Z
+      seconds: 12.980220333
+      tokens: 17470
+      review: false
+    en-US:
+      text: 'The essence of returning to engineering is: “Make it function, make it correct, then make it exceptional.” I finally got on the right track and made it functional. Is my current blog simplistic? Yes, simplistic. Incomplete? Indeed incomplete. But it’s still better than nothing. If you don’t even have a launch line and keep working on something that’s “maybe needed,” constantly chasing an invisible perfection, you’ll end up with nothing to show. This isn’t a compromise; it’s an engineering trade‑off. Anyway, I’ve come to terms with it. So I’ve let go. No longer obsessing over a single detail, I stepped outside. My phone’s gallery hasn’t had an outdoor photo in ages, so I casually snapped a shot of the roadside—haven’t been out for a long time.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.003822Z
+      seconds: 12.980220333
+      tokens: 17470
+      review: false
+    es-ES:
+      text: 'La esencia de volver a la ingeniería es: “Make it function, make it correct, then make it exceptional.” Finalmente encontré el camino correcto y lo hice functional. ¿Mi blog es sencillo? Sí, sencillo. ¿Incompleto? Sí, incompleto. Pero sigue siendo mejor que nada. Si ni siquiera tienes una versión en línea y sigues trabajando en algo que es “quizá necesario”, persiguiendo una perfección invisible, acabarás sin nada que mostrar. No es una concesión, es una elección de ingeniería. En fin, lo he aceptado. Así que lo he aceptado. Ya no me aferro a un detalle y, en cambio, salí. Mi galería del móvil lleva mucho tiempo sin fotos al aire libre, así que tomé rápidamente una foto del borde de la carretera—hace mucho que no salgo.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.003822Z
+      seconds: 12.980220333
+      tokens: 17470
+      review: false
+    fr-FR:
+      text: 'L’essence du retour à l’ingénierie est : « Make it function, make it correct, then make it exceptional. ». J’ai enfin repris le bon chemin et l’ai rendu functional. Mon blog est‑il rudimentaire ? Oui, il l’est. Incomplet ? Effectivement incomplet. Mais cela vaut mieux que rien. Si vous n’avez même pas de mise en ligne et que vous continuez à travailler sur ce qui est « peut‑être nécessaire », en poursuivant une perfection invisible, vous finirez par n’avoir rien à présenter. Ce n’est pas un compromis, c’est un compromis d’ingénierie. Quoi qu’il en soit, j’ai fini par l’accepter. Donc je l’ai accepté. Je ne suis plus obsédé par un détail, j’ai plutôt quitté la maison. Mon album photo n’a pas eu de photo en plein air depuis longtemps, alors j’ai rapidement pris une photo du bord de la route — cela fait longtemps que je ne suis pas sorti.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.003822Z
+      seconds: 12.980220333
+      tokens: 17470
+      review: false
+    ja-JP:
+      text: エンジニアリングの本質は「Make it function, make it correct, then make it exceptional.」ということです。やっと正しい軌道に乗り、functional にしました。今のブログは質素ですか？ 質素です。不完全ですか？ 確かに不完全です。でも、何もないよりはマシです。もしリリースすらできずに「もしかしたら必要かもしれない」ものを作り続け、見えない完璧を追い求めていたら、最終的に何も提示できません。これは妥協ではなく、エンジニアリング上の取捨です。とにかく、私は納得しました。だから、もう細部にこだわらず、外に出ました。スマホのアルバムにはしばらくアウトドアの写真がなく、路肩をさっと撮ったら――ずいぶん長い間外出してませんでした。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.003822Z
+      seconds: 12.980220333
+      tokens: 17470
+      review: false
+    ko-KR:
+      text: 엔지니어링의 본질은 “Make it function, make it correct, then make it exceptional.”입니다. 나는 마침내 올바른 길을 찾아 functional하게 만들었습니다. 현재 블로그가 소박한가요? 소박합니다. 완전하지 않은가요? 확실히 완전하지 않습니다. 하지만 전혀 없는 것보다는 낫습니다. 만약 출시조차 없고 “아마 필요할지도” 하는 것을 계속 만들면서 보이지 않는 완벽을 추구한다면 결국 아무것도 내놓지 못하게 됩니다. 이는 타협이 아니라 엔지니어링상의 선택입니다. 어쨌든 나는 마음을 열었습니다. 그래서 마음을 열었습니다. 이제는 하나의 세부 사항에 집착하지 않고 밖으로 나갔습니다. 휴대폰 앨범에 야외 사진이 오래 없었기에 길가를 즉흥적으로 찍었는데, 정말 오랜만에 밖에 나왔습니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.003822Z
+      seconds: 12.980220333
+      tokens: 17470
+      review: false
+    zh-CN:
+      text: 回归工程的本质：「Make it function, make it correct, then make it exceptional.」我终于走上了正轨，让它 functional 了。现在的博客简陋吗？简陋。不完整吗？确实不完整。但总比没有好。如果你连上线都没有，一直在做那个“也许需要”的东西，一直在追求看不见的完美，最后什么都拿不出来。这不是妥协，而是工程上的取舍，反正我已经想开了。所以我想开了。不再执着于细节，反而走出了门。手机相册里已经很久没有户外的照片了，随手拍了一下路边的——已经很久没出门了。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.003822Z
+      seconds: 12.980220333
+      tokens: 17470
+      review: false
+    zh-TW:
+      text: 回歸工程的本質：「Make it function, make it correct, then make it exceptional.」我終於走上了正軌，讓它 functional 了。現在的部落格簡陋嗎？簡陋。不完整嗎？確實不完整。但總比沒有好。如果你連上線都沒有，一直在做那個「也許需要」的東西，一直在追求看不見的完美，最後什麼都拿不出來。這不是妥協，而是工程上的取捨，反正我已經想開了。所以我想開了。不再為一個細節執著，反而走出了門。手機相簿裡已經很久沒有戶外的照片了，隨手拍了一下路邊的——已經很久沒出門了。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.003822Z
+      seconds: 12.980220333
+      tokens: 17470
+      review: false
+  4846d4b9b85bb3f2152d082cf4a7947e:
+    de-DE:
+      text: |-
+        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
+        ::image{src="a46df6030a9b1ba3f0af95e1a2196850.avif"}
+        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.005094Z
+      seconds: 25.358763125
+      tokens: 16502
+      review: false
+    en-US:
+      text: |-
+        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
+        ::image{src="a46df6030a9b1ba3f0af95e1a2196850.avif"}
+        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.005094Z
+      seconds: 25.358763125
+      tokens: 16502
+      review: false
+    es-ES:
+      text: |-
+        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
+        ::image{src="a46df6030a9b1ba3f0af95e1a2196850.avif"}
+        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.005094Z
+      seconds: 25.358763125
+      tokens: 16502
+      review: false
+    fr-FR:
+      text: |-
+        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
+        ::image{src="a46df6030a9b1ba3f0af95e1a2196850.avif"}
+        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.005094Z
+      seconds: 25.358763125
+      tokens: 16502
+      review: false
+    ja-JP:
+      text: |-
+        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
+        ::image{src="a46df6030a9b1ba3f0af95e1a2196850.avif"}
+        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.005094Z
+      seconds: 25.358763125
+      tokens: 16502
+      review: false
+    ko-KR:
+      text: |-
+        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
+        ::image{src="a46df6030a9b1ba3f0af95e1a2196850.avif"}
+        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.005094Z
+      seconds: 25.358763125
+      tokens: 16502
+      review: false
+    zh-CN:
+      text: |-
+        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
+        ::image{src="a46df6030a9b1ba3f0af95e1a2196850.avif"}
+        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.005094Z
+      seconds: 25.358763125
+      tokens: 16502
+      review: false
+    zh-TW:
+      text: |-
+        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
+        ::image{src="a46df6030a9b1ba3f0af95e1a2196850.avif"}
+        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:25:59.005094Z
+      seconds: 25.358763125
+      tokens: 16502
+      review: false
+  551935a9c558349b95fc6fe2d3ca8486:
+    de-DE:
+      text: '## Fehlschlag {#failure}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:04.784641Z
+      seconds: 5.694925667
+      tokens: 15658
+      review: false
+    en-US:
+      text: '## Failure {#failure}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:04.784641Z
+      seconds: 5.694925667
+      tokens: 15658
+      review: false
+    es-ES:
+      text: '## Fallo {#failure}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:04.784641Z
+      seconds: 5.694925667
+      tokens: 15658
+      review: false
+    fr-FR:
+      text: '## Échec {#failure}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:04.784641Z
+      seconds: 5.694925667
+      tokens: 15658
+      review: false
+    ja-JP:
+      text: '## 失敗 {#failure}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:04.784641Z
+      seconds: 5.694925667
+      tokens: 15658
+      review: false
+    ko-KR:
+      text: '## 실패 {#failure}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:04.784641Z
+      seconds: 5.694925667
+      tokens: 15658
+      review: false
+    zh-CN:
+      text: '## 失败 {#failure}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:04.784641Z
+      seconds: 5.694925667
+      tokens: 15658
+      review: false
+    zh-TW:
+      text: '## 失敗 {#failure}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:04.784641Z
+      seconds: 5.694925667
+      tokens: 15658
+      review: false
+  5af675f22d8da3b89b77d585a86bb166:
+    de-DE:
+      text: '## Überengineering {#over-engineering}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:15.481056Z
+      seconds: 6.967637042
+      tokens: 16305
+      review: false
+    en-US:
+      text: '## Over‑engineering {#over-engineering}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:15.481056Z
+      seconds: 6.967637042
+      tokens: 16305
+      review: false
+    es-ES:
+      text: '## Sobreingeniería {#over-engineering}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:15.481056Z
+      seconds: 6.967637042
+      tokens: 16305
+      review: false
+    fr-FR:
+      text: '## Sur‑ingénierie {#over-engineering}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:15.481056Z
+      seconds: 6.967637042
+      tokens: 16305
+      review: false
+    ja-JP:
+      text: '## 過度エンジニアリング {#over-engineering}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:15.481056Z
+      seconds: 6.967637042
+      tokens: 16305
+      review: false
+    ko-KR:
+      text: '## 과도한 엔지니어링 {#over-engineering}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:15.481056Z
+      seconds: 6.967637042
+      tokens: 16305
+      review: false
+    zh-CN:
+      text: '## 过度工程 {#over-engineering}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:15.481056Z
+      seconds: 6.967637042
+      tokens: 16305
+      review: false
+    zh-TW:
+      text: '## 過度工程 {#over-engineering}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:15.481056Z
+      seconds: 6.967637042
+      tokens: 16305
+      review: false
+  6b07c9db881e076bad87307a05bdbc06:
+    de-DE:
+      text: '## Ursprung {#back-to-origin}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:15.483092Z
+      seconds: 5.364727334
+      tokens: 15597
+      review: false
+    en-US:
+      text: '## Origin {#back-to-origin}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:15.483092Z
+      seconds: 5.364727334
+      tokens: 15597
+      review: false
+    es-ES:
+      text: '## Origen {#back-to-origin}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:15.483092Z
+      seconds: 5.364727334
+      tokens: 15597
+      review: false
+    fr-FR:
+      text: '## Origine {#back-to-origin}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:15.483092Z
+      seconds: 5.364727334
+      tokens: 15597
+      review: false
+    ja-JP:
+      text: '## 原点 {#back-to-origin}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:15.483092Z
+      seconds: 5.364727334
+      tokens: 15597
+      review: false
+    ko-KR:
+      text: '## 원점 {#back-to-origin}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:15.483092Z
+      seconds: 5.364727334
+      tokens: 15597
+      review: false
+    zh-CN:
+      text: '## 原点 {#back-to-origin}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:15.483092Z
+      seconds: 5.364727334
+      tokens: 15597
+      review: false
+    zh-TW:
+      text: '## 原點 {#back-to-origin}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:15.483092Z
+      seconds: 5.364727334
+      tokens: 15597
+      review: false
+  7ee9767101581747f4ff96ad967dabb1:
+    de-DE:
+      text: Am ironischsten ist, dass diese Dinge eigentlich erst nach dem Start eines Blogs erledigt werden sollten – dabei gleichzeitig festgehalten. Stattdessen wurde der Blog immer wieder aufgegeben, Ideen häuften sich, und es gab keinen Ort, sie zu dokumentieren. Einerseits verurteilt mich mein Inneres; ich hatte versprochen, Vane fertigzustellen, aber ich konnte es nicht und musste aufhören. Auf der anderen Seite überkommt mich ein wachsendes Gefühl der Hilflosigkeit, je weiter ich mich entferne. Ich erinnere mich stets, was ich tun will, schaffe es aber einfach nicht. Wenn ich darüber nachdenke, merke ich, dass ich schon lange nicht mehr gesessen habe, um etwas zu schreiben. Im Rückblick deutet all das auf dasselbe hin – übermäßiges Engineering.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.366731Z
+      seconds: 19.890401541
+      tokens: 19855
+      review: false
+    en-US:
+      text: The most ironic thing is that these things were supposed to be done while recording after starting a blog. But the blog kept getting abandoned, ideas kept piling up, and there was nowhere to record them. On one side my inner self was condemning; I promised to finish Vane, but couldn’t, so I stopped. On the other side is a growing feeling of helplessness as I drift further away. I always remember what I want to do, but I just can’t bring it to life. Thinking carefully, I realize I haven’t sat down to write anything for a long time. Looking back now, all of this points to the same thing—over‑engineering.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.366731Z
+      seconds: 19.890401541
+      tokens: 19855
+      review: false
+    es-ES:
+      text: 'Lo más irónico es que estas cosas debían hacerse después de crear un blog, registrándolas mientras se trabajaba en ellas. Pero el blog fue abandonado una y otra vez, las ideas se fueron acumulando y no había ningún lugar donde anotarlas. Por un lado mi interior me reprocha; prometí terminar Vane, pero no pude, tuve que detenerme. Por otro lado siento una creciente impotencia a medida que me alejo cada vez más. Siempre recuerdo lo que quiero hacer, pero simplemente no lo consigo. Si lo pienso bien, hace mucho que no me siento a escribir nada. Al mirar atrás, todo apunta a lo mismo: el sobre‑ingeniería.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.366731Z
+      seconds: 19.890401541
+      tokens: 19855
+      review: false
+    fr-FR:
+      text: Le plus ironique, c’est que ces choses auraient dû être réalisées en même temps que le blog, en les consignant au fur et à mesure. Mais le blog a été abandonné à plusieurs reprises, les idées se sont multipliées et il n’y avait nulle part où les enregistrer. D’un côté, mon intérieur me réprimande ; j’avais promis de terminer Vane, mais je n’ai pas pu, j’ai dû m’arrêter. De l’autre, un sentiment d’impuissance grandit à mesure que je m’éloigne. Je me souviens toujours de ce que je veux faire, mais je n’y parviens pas. En y réfléchissant, je réalise que cela fait longtemps que je ne me suis pas assis pour écrire quoi que ce soit. En y repensant maintenant, tout cela pointe vers la même chose — le sur‑ingénierie.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.366731Z
+      seconds: 19.890401541
+      tokens: 19855
+      review: false
+    ja-JP:
+      text: 最も皮肉なことは、これらのことはブログを始めた後に、記録しながら実行すべきだったということです。しかし、ブログは何度も放棄され、アイデアはどんどん増えていくのに、記録できる場所がありませんでした。一方では自分の内面が非難しています；Vane を完成させると約束したのにできず、止めました。もう一方では、遠ざかるにつれて無力感が増すのを感じます。やりたいことは常に覚えているのに、実現できません。よく考えると、かなり長い間、何かを書き下ろすために座っていなかったことに気づきます。今振り返ると、すべては同じもの――過剰なエンジニアリングに指し示しています。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.366731Z
+      seconds: 19.890401541
+      tokens: 19855
+      review: false
+    ko-KR:
+      text: 가장 아이러니한 점은, 이 일들은 원래 블로그를 시작한 뒤에 기록하면서 진행해야 했다는 것입니다. 그런데 블로그는 계속해서 포기되었고, 아이디어는 점점 늘어났지만 그것들을 기록할 곳이 없었습니다. 한편으로는 내면에서 비난하고 있습니다; Vane을 완성하기로 약속했지만 할 수 없었고 멈추었습니다. 또 다른 한편에서는 점점 멀어지는 무력감을 느낍니다. 나는 무엇을 해야 할지 늘 기억하지만, 실현하지 못합니다. 곰곰히 생각해보면, 나는 꽤 오랫동안 앉아서 뭔가를 쓰지 않았다는 것을 깨닫게 됩니다. 지금 돌아보면, 이 모든 것이 같은 문제—과도한 엔지니어링을 가리키고 있습니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.366731Z
+      seconds: 19.890401541
+      tokens: 19855
+      review: false
+    zh-CN:
+      text: 最讽刺的是，这些东西本来都应该是有了博客之后，边记录边做的。结果博客鸽了又鸽，想法越来越多，却没有一个地方能记录它们。一边是内心在谴责；说好了 Vane 要做完，就不能，停另一边是越做越远的无力感。我一直都记得我要做什么，但就是做不出来。仔细想想我其实已经很久都没有坐下来写过什么东西了，现在回头看，这一切都指向同一个东西——过度工程。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.366731Z
+      seconds: 19.890401541
+      tokens: 19855
+      review: false
+    zh-TW:
+      text: 最具諷刺意味的是，這些東西本來應該是在有了部落格之後，一邊記錄一邊完成的。結果部落格一再草草收場，想法越來越多，卻找不到地方記錄它們。一方面內心在譴責；說好要完成 Vane，卻做不到，只好停下；另一方面則是越做越遠的無力感。我一直記得自己想做什麼，但就是做不出來。仔細想想，我其實已經很久沒坐下來寫什麼東西了，現在回頭看，這一切都指向同一件事——過度工程。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.366731Z
+      seconds: 19.890401541
+      tokens: 19855
+      review: false
+  90837a7b3a5f5bfd3df633d264d75a1a:
+    de-DE:
+      text: Ist diese Antwort sarkastisch? Sehr sarkastisch. Denn bevor ich dieses „einfache“ Ziel erreichte, habe ich einen kompletten Umweg gemacht. Ich hatte einst vor, alles selbst zu hosten, also musste ich den Server verwalten, mit Docker experimentieren und Container managen, daher schrieb ich Canopy als Verwaltungs‑Panel, Lazycert zur Zertifikatsverwaltung, Vane als Reverse‑Proxy und Twig für Ressourcen‑Monitoring‑Hooks. Eine Menge Projekte nur, um einen alten Müll‑Server zu bedienen.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.368741Z
+      seconds: 12.405827
+      tokens: 17752
+      review: false
+    en-US:
+      text: Is this answer sarcastic? Very sarcastic. Because before reaching this "simple" endpoint, I went around a full circle of detours. I once planned to self‑host, so I had to manage the server, tinker with Docker, handle containers, so I wrote Canopy as a management panel, wrote Lazycert to manage certificates, wrote Vane as a reverse proxy, and wrote Twig for resource‑monitoring hooks. A bunch of projects just to serve a junk server.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.368741Z
+      seconds: 12.405827
+      tokens: 17752
+      review: false
+    es-ES:
+      text: ¿Esta respuesta es sarcástica? Muy sarcástica. Porque antes de llegar a este punto “simple”, di una vuelta completa dando rodeos. En su momento planeé montar todo por mi cuenta, por lo que tuve que administrar el servidor, trastear con Docker y gestionar los contenedores, así que escribí Canopy como panel de gestión, Lazycert para los certificados, Vane como proxy inverso y Twig para los puntos de monitoreo de recursos. Un montón de proyectos, solo para atender a un servidor de chatarra.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.368741Z
+      seconds: 12.405827
+      tokens: 17752
+      review: false
+    fr-FR:
+      text: Cette réponse est‑elle sarcastique ? Très sarcastique. Parce qu’avant d’atteindre cette « simple » destination, j’ai fait tout un détour. J’avais prévu de tout héberger moi‑même, il fallait donc gérer le serveur, bidouiller Docker, gérer les conteneurs, alors j’ai écrit Canopy comme panneau d’administration, Lazycert pour la gestion des certificats, Vane comme proxy inverse, et Twig pour les points d’injection de surveillance des ressources. Une pile de projets, uniquement pour servir un serveur poubelle.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.368741Z
+      seconds: 12.405827
+      tokens: 17752
+      review: false
+    ja-JP:
+      text: この答えは皮肉ですか？ とても皮肉です。なぜなら、この「シンプル」な終点に到達する前に、一周回って遠回りをしたからです。かつて自前で構築しようと計画したので、サーバーの管理や Docker のいじり、コンテナの管理が必要になり、そこで管理パネルとして Canopy を、証明書管理のために Lazycert を、リバースプロキシとして Vane を、リソース監視のフックとして Twig を書きました。一揃いのプロジェクトは、結局ジャンクサーバーを世話するためだけのものでした。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.368741Z
+      seconds: 12.405827
+      tokens: 17752
+      review: false
+    ko-KR:
+      text: 이 답변은 빈정거리는 건가요? 아주 빈정거립니다. 이 “간단한” 끝점에 도달하기 전에 나는 한 바퀴를 돌아서 우회했습니다. 한때 자체 구축을 계획했기에 서버 관리, Docker 파헤치기, 컨테이너 관리가 필요했고, 그래서 관리 패널로 Canopy를, 인증서 관리를 위해 Lazycert를, 역방향 프록시로 Vane을, 리소스 모니터링 훅으로 Twig을 작성했습니다. 한 무더기의 프로젝트는 결국 쓰레기 서버를 위해서였습니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.368741Z
+      seconds: 12.405827
+      tokens: 17752
+      review: false
+    zh-CN:
+      text: 这个答案讽刺吗？太讽刺了。因为在到达这个"简单"的终点之前，我走了一整圈弯路。曾经计划自建，所以要管服务器、折腾 Docker、管容器，于是写了 Canopy 做管理面板，写了 Lazycert 管证书，写了 Vane 做反向代理，写了 Twig 做资源监控埋点。一堆项目，就为了伺候一台垃圾服务器。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.368741Z
+      seconds: 12.405827
+      tokens: 17752
+      review: false
+    zh-TW:
+      text: 這個答案諷刺嗎？太諷刺了。因為在到達這個「簡單」的終點之前，我走了一整圈彎路。曾經計畫自建，所以要管伺服器、折騰 Docker、管容器，於是寫了 Canopy 做管理面板，寫了 Lazycert 管證書，寫了 Vane 做反向代理，寫了 Twig 做資源監控埋點。一堆專案，就為了伺候一台垃圾伺服器。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.368741Z
+      seconds: 12.405827
+      tokens: 17752
+      review: false
+  943bc9082d74c7867db730a57a3c5d75:
+    de-DE:
+      text: Das Tempo der KI‑Ära ist zu schnell. Modelle werden nacheinander iteriert, neue Technologien tauchen ebenfalls nacheinander auf, und ich werde immer ängstlicher, als ob ein Stillstand bedeuten würde, überholt zu werden. In meinem verrücktesten Moment schrieb ich an einem Tag 16 kleine Programme; ein Tag an Tokens konnte etwa 1.900 USD verbrennen ~~(ungefähr im Februar)~~, und ich war fast am Ende. Doch was das alles zum Stillstand brachte, war kein Erwachen, sondern reine Erschöpfung. Bei dem immer schneller werdenden Rhythmus drückte das letzte Strohhalm‑Glas nach unten, und ich fühlte plötzlich Erleichterung, ließ los, gab den Kampf auf; so ist das eigentlich ziemlich gut.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.370789Z
+      seconds: 20.32490825
+      tokens: 19699
+      review: false
+    en-US:
+      text: AI era's rhythm is too fast. Models iterate one after another, new technologies keep emerging in waves, and I become increasingly anxious, as if stopping would mean being overtaken. At my craziest, I wrote 16 small pieces of code in a day; a day's worth of tokens could scorch $1.9k USD ~~(around February)~~, and I was nearly exhausted. But what halted all this wasn't any epiphany, just plain fatigue. In an ever‑tightening pace, the last straw finally fell, and I felt a sense of release, opened up, gave up the struggle; in this way, it's actually quite good.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.370789Z
+      seconds: 20.32490825
+      tokens: 19699
+      review: false
+    es-ES:
+      text: El ritmo de la era de la IA es demasiado rápido. Los modelos se iteran uno tras otro, nuevas tecnologías aparecen una tras otra, y cada vez estoy más ansioso, como si detenerme significara ser superado. En mi momento más loco escribí 16 pequeños fragmentos de código en un día; los tokens podían quemar 1,9 k USD en un día ~~(aproximadamente en febrero)~~, y estaba al borde del colapso. Pero lo que hizo que todo se detuviera no fue alguna revelación, simplemente el cansancio puro. En un ritmo cada vez más acelerado, la última paja cayó y, al contrario, me sentí aliviado, me abrí, abandoné la lucha; de esa forma, está bastante bien.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.370789Z
+      seconds: 20.32490825
+      tokens: 19699
+      review: false
+    fr-FR:
+      text: Le rythme de l’ère de l’IA est trop rapide. Les modèles s’enchaînent les uns après les autres, de nouvelles technologies émergent continuellement, et je deviens de plus en plus anxieux, comme si s’arrêter signifiait être dépassé. Au plus fou, j’ai écrit 16 petits morceaux de code en un jour ; les tokens pouvaient brûler 1 900 $ USD en une journée ~~(vers février)~~, et j’étais sur le point de perdre la tête. Mais ce qui a tout arrêté n’était pas une illumination, simplement la fatigue pure. Dans ce rythme toujours plus pressé, la dernière paille a fini par me faire céder, et j’ai ressenti un soulagement, me suis ouvert, j’ai abandonné la lutte ; ainsi, c’est en fait assez bien.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.370789Z
+      seconds: 20.32490825
+      tokens: 19699
+      review: false
+    ja-JP:
+      text: AI時代のリズムは速すぎる。モデルは次々にイテレーションされ、新技術が次々と出てくる。止まってしまうと追い抜かれるようで、ますます不安になる。最も狂っていたときは、一日に16個の小さなコードを書き、Tokenは一日で約1.9千米ドルを燃やすことができ（~~(大体2月頃だと考えられる)~~）、人はほぼ疲れ果てていた。しかし、すべてを止めさせたのは何かの悟りではなく、単なる疲労だった。ますます速くなるペースの中で、最後の一本の藁が落ち、逆に解放感を得て、心が開き、諦めた；こうして、結局はかなり良いことだ。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.370789Z
+      seconds: 20.32490825
+      tokens: 19699
+      review: false
+    ko-KR:
+      text: AI 시대의 리듬이 너무 빠릅니다. 모델이 하나씩 연속으로 반복되고, 새로운 기술이 연속으로 나타나면서 점점 불안해집니다. 멈추면 추월당할 것 같은 느낌이 듭니다. 가장 미쳤을 때 하루에 16개의 작은 코드를 작성했고, 토큰은 하루에 약 1,900 USD를 소모할 수 있었습니다 ~~(대략 2월쯤)~~, 몸이 거의 지쳤습니다. 하지만 이 모든 것을 멈추게 만든 것은 어떤 깨달음이 아니라 단순한 피로였습니다. 점점 빨라지는 리듬 속에서 마지막 짚이 내려오자 저는 오히려 안도감을 느꼈고, 마음을 열었으며, 포기했습니다; 이렇게 하면 오히려 좋기도 합니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.370789Z
+      seconds: 20.32490825
+      tokens: 19699
+      review: false
+    zh-CN:
+      text: AI 时代的节奏太快了。模型一个接一个迭代，新技术一轮接一轮冒出来，我越来越焦虑，好像停下来就要被超越。最疯的时候一天写 16个 小时代码，Token 一天就能烧 $1.9k USD ~~(大概2月的时候吧)~~，人快废了。但让这一切停下来的不是什么顿悟，就是单纯的累了。在越来越紧的节奏下，最后一根稻草压下来，我反而释然了，想开了，摆烂了；这样，也挺好的。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.370789Z
+      seconds: 20.32490825
+      tokens: 19699
+      review: false
+    zh-TW:
+      text: AI 時代的節奏太快了。模型一個接一個迭代，新技術一輪接一輪冒出來，我越來越焦慮，好像停下來就要被超越。最瘋的時候一天寫 16 個小時代碼，Token 一天就能燒 $1.9k USD ~~(大概 2 月的時候吧)~~，人快廢了。但讓這一切停下來的不是什麼頓悟，就是單純的累了。在越來越緊的節奏下，最後一根稻草壓下來，我反而釋然了，想開了，擺爛了；這樣，也挺好的。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.370789Z
+      seconds: 20.32490825
+      tokens: 19699
+      review: false
+  9566ed40af060ec2841b1342a8b37c7a:
+    de-DE:
+      text: Das war das Jahr 2024, ~~dann 24, 25, 26 Jahre bis jetzt~~
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.37286Z
+      seconds: 7.665875458
+      tokens: 16365
+      review: false
+    en-US:
+      text: That was the year 2024, ~~then 24, 25, 26 years up to now~~
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.37286Z
+      seconds: 7.665875458
+      tokens: 16365
+      review: false
+    es-ES:
+      text: Eso fue en el año 2024, ~~luego 24, 25, 26 años hasta ahora~~
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.37286Z
+      seconds: 7.665875458
+      tokens: 16365
+      review: false
+    fr-FR:
+      text: C'était l'année 2024, ~~puis 24, 25, 26 ans jusqu'à présent~~
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.37286Z
+      seconds: 7.665875458
+      tokens: 16365
+      review: false
+    ja-JP:
+      text: それは2024年でした、~~そして24、25、26年が現在まで~~
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.37286Z
+      seconds: 7.665875458
+      tokens: 16365
+      review: false
+    ko-KR:
+      text: 그것은 2024년이었고, ~~그 후 24, 25, 26년이 현재까지~~
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.37286Z
+      seconds: 7.665875458
+      tokens: 16365
+      review: false
+    zh-CN:
+      text: 那是 2024 年，~~然后 24、25、26 年到现在~~
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.37286Z
+      seconds: 7.665875458
+      tokens: 16365
+      review: false
+    zh-TW:
+      text: 那是 2024 年，~~然後 24、25、26 年到現在~~
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:24.37286Z
+      seconds: 7.665875458
+      tokens: 16365
+      review: false
+  980b053f0b14f93a70ff6fc01aa3405f:
+    de-DE:
+      text: 'Aber das ist nur die Spitze des Eisbergs. Nachdem ich React entdeckt hatte, ging ich von der Steinzeit von Hexo und Vanilla JS über zu Next.js 13 Page Router, wandte mich dann Vue zu, studierte SPA‑Routing, verstand das index.html‑Fallback und erstellte unzählige neue Projekte. Ich kaufte einen Server, bastelte an Docker, Nginx, NAS; fand 1Panel unschön und schrieb das Canopy‑Panel selbst, erforschte NAS‑Speicher-Arrays und schrieb RFS. Beim SSL‑Handling machte die heimische Umgebung mit acme.sh so viel Ärger, dass ich einen Reverse‑Proxy in Rust schrieb: Vane & Lazyacme. Was ursprünglich ein dreistündiges, 800‑Zeilen‑“Müllprojekt” war, entwickelte sich nach der Ermutigung eines Freundes zu vier Monaten Arbeit, in die ich HTTP/3, Zero‑Copy, das Layer‑Modell und die Flow‑Engine stopfte. Später kam noch Seam dazu, ein Full‑Stack‑Framework, das ebenfalls ein Albtraum ist – darüber später mehr.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.26011Z
+      seconds: 14.636281584
+      tokens: 18279
+      review: false
+    en-US:
+      text: "But that's just the tip of the iceberg. After discovering React, I went from the Stone Age of Hexo and Vanilla JS all the way to Next.js 13 Page Router, then turned to Vue, studied SPA routing, understood the index.html fallback, and created countless new projects. I bought a server, tinkered with Docker, Nginx, NAS; finding 1Panel ugly, I hand‑wrote the Canopy panel, explored NAS storage arrays and wrote RFS. Dealing with SSL, the domestic environment made acme.sh so frustrating that I resorted to writing a reverse proxy in Rust: Vane & Lazyacme. What started as an eight‑hundred‑line junk project written in three hours one night turned, after a friend's encouragement, into four months of work, stuffing in HTTP/3, Zero‑Copy, the Layer model, and the Flow engine. Later there is also Seam, a full‑stack framework that is another nightmare—more on that later."
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.26011Z
+      seconds: 14.636281584
+      tokens: 18279
+      review: false
+    es-ES:
+      text: 'Pero eso es solo la punta del iceberg. Tras descubrir React, pasé de la era de piedra de Hexo y Vanilla JS a Next.js 13 Page Router, luego me volqué a Vue, estudié el enrutamiento SPA, comprendí el fallback de index.html y creé innumerables proyectos nuevos. Compré un servidor, jugué con Docker, Nginx, NAS; al considerar feo a 1Panel, escribí a mano el panel Canopy, investigué arreglos de almacenamiento NAS y escribí RFS. Al manejar SSL, el entorno local hacía que acme.sh fuera tan frustrante que terminé escribiendo un proxy inverso en Rust: Vane & Lazyacme. Lo que empezó como un proyecto de ocho‑cientos líneas escrito en tres horas una noche se transformó, tras el impulso de un amigo, en cuatro meses de trabajo, empaquetando HTTP/3, Zero‑Copy, el modelo Layer y el motor Flow. Más adelante está también Seam, un framework full‑stack que es otro verdadero quebradero de cabeza; lo dejaré para otra ocasión.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.26011Z
+      seconds: 14.636281584
+      tokens: 18279
+      review: false
+    fr-FR:
+      text: 'Mais ce n’est que la partie visible de l’iceberg. Après avoir découvert React, je suis passé de l’époque primitive avec Hexo et Vanilla JS à Next.js 13 Page Router, puis je me suis tourné vers Vue, étudié le routage SPA, compris le fallback index.html, et créé d’innombrables projets. J’ai acheté un serveur, bricolé avec Docker, Nginx, NAS ; trouvant 1Panel inesthétique, j’ai écrit moi‑même le panneau Canopy, exploré les matrices de stockage NAS et développé RFS. En gérant le SSL, l’environnement local rendait acme.sh si pénible que j’ai fini par écrire un reverse‑proxy en Rust : Vane & Lazyacme. Ce qui était au départ un projet « junk » de 800 lignes réalisé en trois heures un soir est devenu, après les encouragements d’un ami, quatre mois de travail, y intégrant HTTP/3, Zero‑Copy, le modèle Layer et le moteur Flow. Plus tard, il y a aussi Seam, un framework full‑stack qui est également un vrai cauchemar — j’en parlerai plus tard.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.26011Z
+      seconds: 14.636281584
+      tokens: 18279
+      review: false
+    ja-JP:
+      text: しかし、これは氷山の一角に過ぎません。React を見た後、石器時代の Hexo と Vanilla JS から Next.js 13 Page Router まで一直線に進み、そこから Vue に手を伸ばし、SPA ルーティングを研究し、index.html のフォールバックを理解し、無数のプロジェクトを新規作成しました。サーバーを購入し、Docker、Nginx、NAS をいじり、1Panel が見苦しいと感じて Canopy パネルを手書きし、NAS のストレージアレイを調査して RFS を書きました。SSL の設定では国内環境に悩まされ、acme.sh が手に負えなくなったため、Rust でリバースプロキシ（Vane & Lazyacme）を書きました。元々は一晩で三時間書いた800行ほどのゴミコードでしたが、友人に誘われて四か月かけて HTTP/3、Zero‑Copy、Layer モデル、Flow エンジンをすべて詰め込みました。その後、Seam という全スタックフレームワークもありますが、これもまた厄介なものです。続きはまた今度。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.26011Z
+      seconds: 14.636281584
+      tokens: 18279
+      review: false
+    ko-KR:
+      text: 하지만 이것은 빙산의 일각에 불과합니다. React를 접한 뒤, 석기 시대의 Hexo와 Vanilla JS에서 시작해 Next.js 13 Page Router까지 오르며, 그 후 Vue를 살펴보고 SPA 라우팅을 연구하고 index.html 폴백을 이해하며 프로젝트를 무수히 새로 만들었습니다. 서버를 구매하고 Docker, Nginx, NAS를 만지작거리다 1Panel이 별로라 생각해 Canopy 패널을 직접 손으로 코딩했고 NAS 스토리지 어레이를 연구해 RFS를 작성했습니다. SSL을 설정하면서 국내 환경에 맞서다 보니 acme.sh가 너무 번거로워 Rust로 역방향 프록시(Vane & Lazyacme)를 만들게 되었습니다. 원래는 밤에 3시간 동안 만든 800줄짜리 쓰레기 코드였지만, 친구의 격려로 4개월 동안 개발하며 HTTP/3, Zero‑Copy, Layer 모델, Flow 엔진을 모두 넣었습니다. 나중에 Seam이라는 풀스택 프레임워크도 있는데, 이것도 또 다른 함정이라 나중에 이야기하겠습니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.26011Z
+      seconds: 14.636281584
+      tokens: 18279
+      review: false
+    zh-CN:
+      text: 但这只是冰山一角。看到 React 之后，我从石器时代的 Hexo 和 Vanilla JS 一路走到了 Next.js 13 Page Router，又拐去看 Vue、研究 SPA 路由、理解 index.html fallback，项目新建了无数次。买了服务器，折腾 Docker、Nginx、NAS，嫌 1Panel 丑手写了 Canopy 面板 研究 NAS 存储阵列写了 RFS，搞 SSL 被国内环境折磨的 acme.sh 抽风逼到用 Rust 写了个反向代理：Vane & Lazyacme，本来只是一个晚上三小时写出来的八百行垃圾，结果群友一怂恿，写了四个月，HTTP/3、Zero-Copy、Layer 模型、Flow 引擎全往里塞。后面还有 Seam，一个全栈框架，也是天坑，以后再说吧。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.26011Z
+      seconds: 14.636281584
+      tokens: 18279
+      review: false
+    zh-TW:
+      text: 但這只是冰山一角。看到 React 之後，我從石器時代的 Hexo 和 Vanilla JS 一路走到了 Next.js 13 Page Router，又拐去看 Vue、研究 SPA 路由、理解 index.html fallback，專案新建了無數次。買了伺服器，折騰 Docker、Nginx、NAS，嫌 1Panel 醜手寫了 Canopy 面板 研究 NAS 儲存陣列寫了 RFS，搞 SSL 被國內環境折磨的 acme.sh 抽風逼到用 Rust 寫了個反向代理：Vane & Lazyacme，本來只是一个晚上三小時寫出來的八百行垃圾，結果群友一怂恿，寫了四個月，HTTP/3、Zero‑Copy、Layer 模型、Flow 引擎全往裡塞。後面還有 Seam，一個全棧框架，也是天坑，以後再說吧。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.26011Z
+      seconds: 14.636281584
+      tokens: 18279
+      review: false
+  98b470be75ff6650b1e7b5e7cdc8791b:
+    de-DE:
+      text: '## Weniger ist mehr {#less-is-more}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.262381Z
+      seconds: 6.280585084
+      tokens: 15830
+      review: false
+    en-US:
+      text: '## Less is more {#less-is-more}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.262381Z
+      seconds: 6.280585084
+      tokens: 15830
+      review: false
+    es-ES:
+      text: '## Menos es más {#less-is-more}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.262381Z
+      seconds: 6.280585084
+      tokens: 15830
+      review: false
+    fr-FR:
+      text: '## Moins, c’est plus {#less-is-more}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.262381Z
+      seconds: 6.280585084
+      tokens: 15830
+      review: false
+    ja-JP:
+      text: '## 少ないほど多い {#less-is-more}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.262381Z
+      seconds: 6.280585084
+      tokens: 15830
+      review: false
+    ko-KR:
+      text: '## 적을수록 풍부하다 {#less-is-more}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.262381Z
+      seconds: 6.280585084
+      tokens: 15830
+      review: false
+    zh-CN:
+      text: '## 少即是多 {#less-is-more}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.262381Z
+      seconds: 6.280585084
+      tokens: 15830
+      review: false
+    zh-TW:
+      text: '## 少即是多 {#less-is-more}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.262381Z
+      seconds: 6.280585084
+      tokens: 15830
+      review: false
+  9b3c3ea302ecdb63c26e09738b202a95:
+    de-DE:
+      text: Anfangs wollte ich nur einen Licht‑Dunkel‑Umschalter zum Hexo‑Theme [Nlvi](https://github.com/colmugx/hexo-theme-nlvi) von [@colmugx](https://x.com/colmugx) hinzufügen. Ich habe schnell ein Dark‑Reader‑ähnliches JavaScript reingehauen – es sah hässlich aus und entsprach nicht meinen Vorstellungen. Danach habe ich CSS @media gelernt, dann zu einem JS‑SPA‑Umschalter gewechselt, TailwindCSS‑.dark‑Klasse ausprobiert, SSR mit next‑theme verwendet und schließlich ein eigens geschriebenes Cookie + Head‑Sync‑Inline‑Skript eingesetzt, um das FOUC‑Flackern zu beheben. Ich habe dabei vier‑fünf verschiedene Lösungen ausprobiert.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.697887Z
+      seconds: 15.927672
+      tokens: 18401
+      review: false
+    en-US:
+      text: At first I just wanted to add a light‑dark toggle to [@colmugx](https://x.com/colmugx)’s Hexo theme [Nlvi](https://github.com/colmugx/hexo-theme-nlvi). I slapped together a Dark Reader‑style JavaScript snippet – it looked ugly and I wasn’t happy with it. Then I learned CSS @media, moved on to a JS SPA toggle, tried TailwindCSS’s .dark class, then SSR with next‑theme, and finally hand‑crafted a Cookie + Head‑Sync inline script to fix the FOUC flicker. I ended up trying four or five different solutions.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.697887Z
+      seconds: 15.927672
+      tokens: 18401
+      review: false
+    es-ES:
+      text: Al principio solo quería añadir un interruptor claro/oscuro al tema Hexo [Nlvi](https://github.com/colmugx/hexo-theme-nlvi) de [@colmugx](https://x.com/colmugx). Pegué un JavaScript al estilo Dark Reader, quedó feo y no me satisfizo. Después aprendí CSS @media, pasé a un cambio SPA con JS, probé la clase .dark de TailwindCSS, luego el SSR con next‑theme y, al final, armé manualmente un script inline de Cookie + Head Sync para eliminar el parpadeo FOUC. Terminé probando entre cuatro y cinco soluciones.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.697887Z
+      seconds: 15.927672
+      tokens: 18401
+      review: false
+    fr-FR:
+      text: Au départ, je voulais simplement ajouter un bascule clair/sombre au thème Hexo [Nlvi](https://github.com/colmugx/hexo-theme-nlvi) de [@colmugx](https://x.com/colmugx). J’ai bourré un petit script JavaScript à la Dark Reader – c’était moche et je n’étais pas satisfait. Ensuite, j’ai appris le CSS @media, je suis passé à un bascule SPA en JS, j’ai testé la classe .dark de TailwindCSS, puis le SSR avec next‑theme, et enfin j’ai bricolé un script inline Cookie + Head Sync pour éliminer le scintillement FOUC. J’ai fini par essayer quatre ou cinq solutions différentes.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.697887Z
+      seconds: 15.927672
+      tokens: 18401
+      review: false
+    ja-JP:
+      text: 最初は、[@colmugx](https://x.com/colmugx) の Hexo テーマ [Nlvi](https://github.com/colmugx/hexo-theme-nlvi) にライト／ダーク切り替えを追加したかっただけです。Dark Reader の JavaScript を適当に貼り付けましたが、見た目が悪く、満足できませんでした。その後 CSS @media を学び、次に JS SPA の切り替え、TailwindCSS の .dark クラス、さらに SSR の next-theme、最後に Cookie と Head Sync Inline スクリプトを手作業で組み合わせて FOUC のちらつきを解消しました。結局、４、５通りの案を試しました。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.697887Z
+      seconds: 15.927672
+      tokens: 18401
+      review: false
+    ko-KR:
+      text: 처음에는 [@colmugx](https://x.com/colmugx)님의 Hexo 테마 [Nlvi](https://github.com/colmugx/hexo-theme-nlvi)에 라이트‑다크 토글만 넣고 싶었습니다. Dark Reader 스타일의 JavaScript 코드를 얕게 넣었지만, 보기 흉하고 만족스럽지 않았죠. 이후 CSS @media를 배우고, JS SPA 토글로 넘어가고, TailwindCSS의 .dark 클래스를 사용해보고, SSR next‑theme을 시도한 뒤, 마지막으로 Cookie와 Head Sync Inline 스크립트를 직접 손으로 만들어 FOUC 깜빡임을 해결했습니다. 총 네‑다섯 가지 방법을 써 보았습니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.697887Z
+      seconds: 15.927672
+      tokens: 18401
+      review: false
+    zh-CN:
+      text: 一开始只是想给 [@colmugx](https://x.com/colmugx) Hexo 主题 [Nlvi](https://github.com/colmugx/hexo-theme-nlvi) 加个深浅色切换，用 Dark Reader 的 JS 糊了一个，丑，不满意。然后学 CSS @media，再到 JS SPA 切换，TailwindCSS .dark class, 再到 SSR next-theme，最后手搓 Cookie + Head Sync Inline 脚本解决 FOUC 闪烁，我折腾了四五种方案。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.697887Z
+      seconds: 15.927672
+      tokens: 18401
+      review: false
+    zh-TW:
+      text: 一開始只是想給 [@colmugx](https://x.com/colmugx) Hexo 主題 [Nlvi](https://github.com/colmugx/hexo-theme-nlvi) 加個深淺色切換，用 Dark Reader 的 JS 糊了一個，醜，不滿意。然後學 CSS @media，再到 JS SPA 切換，TailwindCSS .dark class, 再到 SSR next-theme，最後手搓 Cookie + Head Sync Inline 腳本解決 FOUC 閃爍，我折騰了四五種方案。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.697887Z
+      seconds: 15.927672
+      tokens: 18401
+      review: false
+  a1ddce9aae8d974e6904aa33b0d78d57:
+    de-DE:
+      text: |-
+        ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo: Ein schnelles, einfaches und leistungsstarkes Blog-Framework."}
+        再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
+        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
+        ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
+        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.699539Z
+      seconds: 17.747182167
+      tokens: 18781
+      review: false
+    en-US:
+      text: |-
+        ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo: A fast, simple & powerful blog framework."}
+        再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
+        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
+        ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
+        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.699539Z
+      seconds: 17.747182167
+      tokens: 18781
+      review: false
+    es-ES:
+      text: |-
+        ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo: un framework de blogs rápido, sencillo y potente."}
+        再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
+        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
+        ::linkcard{src="ccab92399398f1642024732cc1097abe.avavif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
+        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.699539Z
+      seconds: 17.747182167
+      tokens: 18781
+      review: false
+    fr-FR:
+      text: |-
+        ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo : un framework de blog rapide, simple et puissant."}
+        再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
+        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
+        ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
+        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.699539Z
+      seconds: 17.747182167
+      tokens: 18781
+      review: false
+    ja-JP:
+      text: |-
+        ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo：高速でシンプルかつ強力なブログフレームワーク。"}
+        再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
+        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
+        ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
+        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.699539Z
+      seconds: 17.747182167
+      tokens: 18781
+      review: false
+    ko-KR:
+      text: |-
+        ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo: 빠르고 간단하며 강력한 블로그 프레임워크."}
+        再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
+        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
+        ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
+        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.699539Z
+      seconds: 17.747182167
+      tokens: 18781
+      review: false
+    zh-CN:
+      text: |-
+        ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo：一个快速、简洁且功能强大的博客框架。"}
+        再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
+        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
+        ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
+        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.699539Z
+      seconds: 17.747182167
+      tokens: 18781
+      review: false
+    zh-TW:
+      text: |-
+        ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo：一個快速、簡潔且功能強大的部落格框架。"}
+        再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
+        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
+        ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
+        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:44.699539Z
+      seconds: 17.747182167
+      tokens: 18781
+      review: false
+  a3f7d18cba4720ead4bdd82c365ffb82:
+    de-DE:
+      text: Stiller Wald
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:58.898044Z
+      seconds: 5.482663917
+      tokens: 16054
+      review: false
+    en-US:
+      text: Quiet Forest
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:58.898044Z
+      seconds: 5.482663917
+      tokens: 16054
+      review: false
+    es-ES:
+      text: Bosque tranquilo
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:58.898044Z
+      seconds: 5.482663917
+      tokens: 16054
+      review: false
+    fr-FR:
+      text: Forêt calme
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:58.898044Z
+      seconds: 5.482663917
+      tokens: 16054
+      review: false
+    ja-JP:
+      text: 静かな森
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:58.898044Z
+      seconds: 5.482663917
+      tokens: 16054
+      review: false
+    ko-KR:
+      text: 조용한 숲
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:58.898044Z
+      seconds: 5.482663917
+      tokens: 16054
+      review: false
+    zh-CN:
+      text: 宁静的森林
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:58.898044Z
+      seconds: 5.482663917
+      tokens: 16054
+      review: false
+    zh-TW:
+      text: 寧靜的森林
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:58.898044Z
+      seconds: 5.482663917
+      tokens: 16054
+      review: false
+  a7d26083a0ab33e3fbeef827290eedc1:
+    de-DE:
+      text: 'Der Speicher ist genauso. Da ich Object Storage zu teuer finde, wollte ich die Festplatten meines eigenen Servers nutzen und schrieb RFS, ein VFS für atomare Deduplizierung und Zusammenführung einzelner Dateien, revivierte sogar das Registrierungs‑Konzept der 80er‑90er Jahre und mountete es schließlich über FUSE. Das Ergebnis: Ich habe noch mehr Zeit damit verbracht, ein nicht besonders gutes Rad zu bauen, der Server lief ein Jahr lang leer, es war ein komplett verlustreiches Geschäft.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:58.899536Z
+      seconds: 13.558828833
+      tokens: 17979
+      review: false
+    en-US:
+      text: Storage is the same. I find object storage expensive, so I wanted to use the hard drives of my own server, and wrote RFS, a kind of VFS for atomic deduplication and merging of single files, even revived the registry concept from the 80s‑90s, and finally mounted it via FUSE. The result? I spent even more time building a less‑than‑ideal wheel, the server sat idle for a year, and it was a completely loss‑making business.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:58.899536Z
+      seconds: 13.558828833
+      tokens: 17979
+      review: false
+    es-ES:
+      text: El almacenamiento es igual. Como me parece caro el almacenamiento de objetos, quise usar los discos duros de mi propio servidor, así que escribí RFS, un VFS para la deduplicación atómica y la fusión de archivos únicos, incluso reviviendo el concepto de registro de los años 80‑90, y finalmente lo monté a través de FUSE. ¿El resultado? Pasé más tiempo construyendo una rueda que no era muy buena, el servidor estuvo inactivo durante un año, y fue un negocio completamente perdedor.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:58.899536Z
+      seconds: 13.558828833
+      tokens: 17979
+      review: false
+    fr-FR:
+      text: Le stockage est similaire. Je trouve le stockage d’objets trop cher, alors j’ai voulu utiliser les disques durs de mon propre serveur, et j’ai donc écrit RFS, un VFS permettant une déduplication atomique et la fusion de fichiers uniques, voire ressuscitant le concept de registre des années 80‑90, avant de le monter via FUSE. Le résultat ? J’ai passé encore plus de temps à fabriquer une roue pas très efficace, le serveur est resté inactif pendant un an, c’est devenu une affaire totalement déficitaire.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:58.899536Z
+      seconds: 13.558828833
+      tokens: 17979
+      review: false
+    ja-JP:
+      text: ストレージも同様です。オブジェクトストレージが高いのが嫌で、自分のサーバーのハードディスクを使いたくなり、RFSというVFSを書きました。単一ファイルの原子的な重複排除と統合のためのもので、80〜90年代のレジストリ概念さえ復活させ、最終的にFUSEでマウントしました。その結果、あまり良くないホイールを作るのにさらに時間を費やし、サーバーは一年間ほぼ稼働せず、完全に赤字のビジネスになってしまいました。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:58.899536Z
+      seconds: 13.558828833
+      tokens: 17979
+      review: false
+    ko-KR:
+      text: 스토리지는 마찬가지입니다. 객체 스토리지가 비싸다고 생각해서 내 서버의 하드디스크를 사용하고 싶었고, 그래서 RFS라는 VFS를 만들었습니다. 이는 단일 파일을 원자적으로 중복 제거하고 병합하기 위한 것이며, 80~90년대의 레지스트리 개념까지 부활시켰고, 마지막으로 FUSE를 통해 마운트했습니다. 그 결과, 별로 좋지 않은 휠을 만드는 데 더 많은 시간을 들였고, 서버는 1년 동안 빈 채로 돌아갔으며, 완전히 적자 사업이었습니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:58.899536Z
+      seconds: 13.558828833
+      tokens: 17979
+      review: false
+    zh-CN:
+      text: 存储也是一样。我嫌对象存储贵，想用自己服务器的硬盘，于是写了 RFS 一种 vfs 为了原子去重合并单文件，甚至复活了 80-90年代 的注册表理念，最后还通过 FUSE 挂载起来了。结果呢，花了更多时间造了一个不那么好的轮子，服务器还空跑了一年，完全就是彻底的亏本生意。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:58.899536Z
+      seconds: 13.558828833
+      tokens: 17979
+      review: false
+    zh-TW:
+      text: 存儲也是一樣。我嫌對象存儲貴，想用自己伺服器的硬碟，於是寫了 RFS 一種 vfs 為了原子去重合併單文件，甚至復活了 80‑90年代 的註冊表理念，最後還透過 FUSE 掛載起來了。結果呢，花了更多時間造了一個不那麼好的輪子，伺服器還空跑了一年，完全就是徹底的虧本生意。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:26:58.899536Z
+      seconds: 13.558828833
+      tokens: 17979
+      review: false
+  aec1797236cdd7822690c065263deb93:
+    de-DE:
+      text: Zu sagen „想开了“ ist eigentlich nicht präzise; ich bin einfach müde.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:00.627419Z
+      seconds: 6.149565042
+      tokens: 15823
+      review: false
+    en-US:
+      text: Saying “想开了” is actually inaccurate; it’s because I’m tired.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:00.627419Z
+      seconds: 6.149565042
+      tokens: 15823
+      review: false
+    es-ES:
+      text: Decir "想开了" en realidad no es preciso; es que estoy cansado/a.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:00.627419Z
+      seconds: 6.149565042
+      tokens: 15823
+      review: false
+    fr-FR:
+      text: Dire « 想开了 » n’est pas exact ; c’est simplement que je suis fatigué·e.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:00.627419Z
+      seconds: 6.149565042
+      tokens: 15823
+      review: false
+    ja-JP:
+      text: 「想开了」と言うのは実際には正確ではなく、私が疲れているからだ。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:00.627419Z
+      seconds: 6.149565042
+      tokens: 15823
+      review: false
+    ko-KR:
+      text: '"想开了"라고 말하는 것은 실제로 정확하지 않으며, 내가 피곤해서다.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:00.627419Z
+      seconds: 6.149565042
+      tokens: 15823
+      review: false
+    zh-CN:
+      text: 说"想开了"其实不准确，是我累了。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:00.627419Z
+      seconds: 6.149565042
+      tokens: 15823
+      review: false
+    zh-TW:
+      text: 說"想開了"其實不準確，是我累了。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:00.627419Z
+      seconds: 6.149565042
+      tokens: 15823
+      review: false
+  b1bc5b37ff66a410010322be52c0979a:
+    de-DE:
+      text: Später habe ich auch React (~~Remix~~) Router Loader, den Next.js 15 App Router und RSC gelernt, aber zu diesem Zeitpunkt war mein Alltag bereits sehr hektisch, ich hatte kaum Zeit zum Programmieren und bekam nicht einmal die Chance für einen vierten Misserfolg. Rückblickend musste ich feststellen, dass meine Seite von Next.js 13 zu Next.js 15 migriert wurde; gerade als die Migration abgeschlossen war und die Seite noch nicht live ging, erschien Next.js 16 beta‑1.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:02.45153Z
+      seconds: 12.459323
+      tokens: 17410
+      review: false
+    en-US:
+      text: Later, I also learned React (~~Remix~~) Router Loader, Next.js 15 App Router, and RSC, but at that point my daily life was already very busy, I didn’t have much time to code, and I didn’t even get the chance for a fourth failure. Looking back now, my site went from Next.js 13 to Next.js 15; I had just finished the migration and hadn’t launched yet when Next.js 16 beta‑1 was released.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:02.45153Z
+      seconds: 12.459323
+      tokens: 17410
+      review: false
+    es-ES:
+      text: Más tarde también aprendí React (~~Remix~~) Router Loader, Next.js 15 App Router y RSC, pero en ese momento mi vida diaria ya estaba muy ocupada, apenas tenía tiempo para programar y ni siquiera tuve la oportunidad de fallar por cuarta vez. Ahora que lo recuerdo, mi sitio pasó de Next.js 13 a Next.js 15; acababa de terminar la migración y, antes de lanzarlo, salió Next.js 16 beta‑1.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:02.45153Z
+      seconds: 12.459323
+      tokens: 17410
+      review: false
+    fr-FR:
+      text: Plus tard, j’ai aussi appris React (~~Remix~~) Router Loader, le Next.js 15 App Router et RSC, mais à ce moment-là, mon quotidien était déjà très chargé, je n’avais guère de temps pour coder et je n’ai même pas eu l’occasion d’échouer une quatrième fois. En y repensant, mon site est passé de Next.js 13 à Next.js 15 ; j’avais à peine fini la migration et, avant même de le mettre en ligne, Next.js 16 beta‑1 était déjà sorti.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:02.45153Z
+      seconds: 12.459323
+      tokens: 17410
+      review: false
+    ja-JP:
+      text: 後にReact（~~Remix~~）Router LoaderやNext.js 15 App Router、RSCも学びましたが、その頃は日常がとても忙しく、コードを書く時間がほとんどなく、4回目の失敗する機会すらありませんでした。今振り返ると、私のサイトはNext.js 13からNext.js 15へと移行し、移行が終わったばかりでまだ公開していないうちに、Next.js 16 beta‑1が出てしまいました。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:02.45153Z
+      seconds: 12.459323
+      tokens: 17410
+      review: false
+    ko-KR:
+      text: 그 후에 React(~~Remix~~) Router Loader, Next.js 15 App Router, RSC 등을 배우게 되었지만, 그때는 일상이 이미 매우 바빠서 코딩할 시간이 거의 없었고, 네 번째 실패를 할 기회조차 없었습니다. 돌아보니 제 사이트는 Next.js 13에서 Next.js 15로 옮겨졌고, 마이그레이션을 막 끝내고 아직 배포되지 않았을 때 Next.js 16 beta‑1이 출시되었습니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:02.45153Z
+      seconds: 12.459323
+      tokens: 17410
+      review: false
+    zh-CN:
+      text: 后来又学了 React(~~Remix~~) Router Loader、Next.js 15 App Router、RSC，但这时候日常已经很忙了，没什么时间写代码，倒也没机会第四次失败。现在想起来，我的网站从 Next.js 13 写到了 Next.js 15 ，前脚刚迁移完成，还没上线，Next.js 16 beta-1 就出了。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:02.45153Z
+      seconds: 12.459323
+      tokens: 17410
+      review: false
+    zh-TW:
+      text: 後來又學了 React(~~Remix~~) Router Loader、Next.js 15 App Router、RSC，但這時候日常已經很忙了，沒什麼時間寫程式，倒也沒機會第四次失敗。現在想起來，我的網站從 Next.js 13 寫到了 Next.js 15，前腳剛遷移完成，還沒上線，Next.js 16 beta-1 就出了。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:02.45153Z
+      seconds: 12.459323
+      tokens: 17410
+      review: false
+  b674eb6b25c4ee3aed166b037ba95e10:
+    de-DE:
+      text: |-
+        91HPJYDNC8RHC54FFSXCK39E3JYIJDMW
+        Ich habe begonnen loszulassen. Ich habe die Dinge, an denen ich einst festgehalten habe, aufgegeben, gelernt, bei Bedarf zu stoppen, und das Morgen erledige ich morgen. Vane nicht fertig? Erst mal liegen lassen. Seam ist noch weit entfernt? Später erledigen. Der Blog ist nicht perfekt? Erst einmal veröffentlichen. Beginne komplett mit Vibe Coding; wenn es kein Problem gibt, ignoriere es, bei Problemen kümmere ich mich später darum.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:04.385761Z
+      seconds: 16.386939667
+      tokens: 18848
+      review: false
+    en-US:
+      text: |-
+        91HPJYDNC8RHC54FFSXCK39E3JYIJDMW
+        I started to let go. I gave up the things I once clung to, learned to stop at the right moment, and to deal with tomorrow's matters tomorrow. Vane not finished? Leave it for now. Seam still far from done? Do it later. Blog not perfect? Launch it first. Begin fully with Vibe Coding; if there’s no problem, ignore it, and if there is, address it later.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:04.385761Z
+      seconds: 16.386939667
+      tokens: 18848
+      review: false
+    es-ES:
+      text: |-
+        91HPJYDNC8RHC54FFSXCK39E3JYIJDMW
+        He empezado a soltar. He dejado atrás las cosas a las que antes me aferraba, he aprendido a detenerme a tiempo, y lo de mañana lo dejo para mañana. ¿Vane no está terminado? Lo dejo por ahora. ¿Seam todavía está lejos? Lo haré después. ¿El blog no es perfecto? Primero lo pongo en línea. Empieza a hacer Vibe Coding por completo; si no hay problema no lo toques, si lo hay, lo abordarás después.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:04.385761Z
+      seconds: 16.386939667
+      tokens: 18848
+      review: false
+    fr-FR:
+      text: |-
+        91HPJYDNC8RHC54FFSXCK39E3JYIJDMW
+        J’ai commencé à lâcher prise. J’ai abandonné les choses auxquelles j’étais autrefois accro, appris à m’arrêter au bon moment, et à remettre à demain ce qui peut attendre. Vane n’est pas terminé ? On le laisse de côté pour l’instant. Seam est encore loin d’être fini ? On y reviendra plus tard. Le blog n’est pas parfait ? On le publie d’abord. Commencez à faire du Vibe Coding à fond ; s’il n’y a pas de problème, on ne s’en occupe pas, sinon on en parlera plus tard.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:04.385761Z
+      seconds: 16.386939667
+      tokens: 18848
+      review: false
+    ja-JP:
+      text: |-
+        91HPJYDNC8RHC54FFSXCK39E3JYIJDMW
+        私は手放し始めた。かつて執着していたものを手放し、ほどほどに止めることを学び、明日のことは明日やる。Vane がまだ終わっていない？まずは放っておく。Seam はまだ遠い？後でやる。ブログは完璧でなくても？まずは公開する。完全に Vibe Coding を始め、問題がなければ放置し、問題があれば後で対処する。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:04.385761Z
+      seconds: 16.386939667
+      tokens: 18848
+      review: false
+    ko-KR:
+      text: |-
+        91HPJYDNC8RHC54FFSXCK39E3JYIJDMW
+        나는 놓기 시작했다. 예전마다 고집하던 것을 포기하고, 적당한 시점에 멈추는 법을 배우며, 내일 일은 내일에 말한다. Vane 아직 안 됐어? 일단 놔두자. Seam 아직 멀었어? 나중에 하자. 블로그가 완벽하지 않아? 먼저 올리자. 완전히 Vibe Coding을 시작하고, 문제가 없으면 신경 쓰지 않고, 문제가 있으면 나중에 이야기한다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:04.385761Z
+      seconds: 16.386939667
+      tokens: 18848
+      review: false
+    zh-CN:
+      text: |-
+        91HPJYDNC8RHC54FFSXCK39E3JYIJDMW
+        我开始放手。放弃曾经执着的东西，学会点到为止，明天的事明天再说。Vane 没做完？先放着。Seam 还差很远？以后再来。博客不完美？先上线。开始完全 Vibe Coding，没问题就不管，有问题再说。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:04.385761Z
+      seconds: 16.386939667
+      tokens: 18848
+      review: false
+    zh-TW:
+      text: |-
+        91HPJYDNC8RHC54FFSXCK39E3JYIJDMW
+        我開始放手。放棄曾經執著的東西，學會點到為止，明天的事明天再說。Vane 沒做完？先放著。Seam 還差很遠？以後再來。部落格不完美？先上線。開始完全 Vibe Coding，沒問題就不管，有問題再說。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:04.385761Z
+      seconds: 16.386939667
+      tokens: 18848
+      review: false
+  b813388f5221a9659beaae2d7bc57e4f:
+    de-DE:
+      text: Später entdeckte ich die kleine Website von [@Innei](https://twitter.com/__oQuery). Das Design ist sehr fein verarbeitet und die Funktionen sind umfassend. Beim ersten Blick wollte ich sie sofort haben und habe sogar gesponsert. Obwohl ich sie später nicht benutzt habe, bereue ich das ausgegebene Geld nicht, weil ich den React-Quellcode kennengelernt habe – das fühlte sich an wie das erste Mal, als ich C sah. Es ist nur Code, nichts Großes. Ich bin mir sicher, dass ich eines Tages selbst einen schreiben werde.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:12.461866Z
+      seconds: 15.086480625
+      tokens: 18221
+      review: false
+    en-US:
+      text: Later on, I came across [@Innei](https://twitter.com/__oQuery)’s little site; its design is exquisite and its features are comprehensive. At that moment, I looked at it and wanted it immediately, even sponsored it. Although I didn’t end up using it later, I don’t regret spending the money because I got to touch the React source code, which was just like when I first saw C—just code, nothing spectacular. I’m sure that someday I’ll write my own.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:12.461866Z
+      seconds: 15.086480625
+      tokens: 18221
+      review: false
+    es-ES:
+      text: 'Después, descubrí el pequeño sitio de [@Innei](https://twitter.com/__oQuery); su diseño es muy refinado y sus funciones están muy completas. En el momento lo miré y me lo quise al instante, incluso lo patrociné. Aunque luego no lo utilicé, no me arrepiento del dinero gastado porque pude acceder al código fuente de React, lo que me recordó a la primera vez que vi C: al fin y al cabo es solo código, nada de gran cosa. Estoy seguro de que algún día escribiré el mío propio.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:12.461866Z
+      seconds: 15.086480625
+      tokens: 18221
+      review: false
+    fr-FR:
+      text: 'Plus tard, j’ai découvert le petit site de [@Innei](https://twitter.com/__oQuery) : son design est très soigné et ses fonctionnalités très complètes. En le voyant, j’ai tout de suite eu envie de l’obtenir, au point même de le soutenir financièrement. Même si je ne l’ai jamais réellement utilisé, je ne regrette pas cet argent dépensé, car cela m’a permis d’explorer le code source de React, ce qui m’a rappelé la première fois où j’ai découvert le langage C. Ce n’est « juste » du code, rien de plus. Un jour, je suis convaincu que j’écrirai le mien.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:12.461866Z
+      seconds: 15.086480625
+      tokens: 18221
+      review: false
+    ja-JP:
+      text: その後、[@Innei](https://twitter.com/__oQuery) の小さなサイトを見つけました。デザインはとても精巧で、機能も充実しています。その瞬間、ひと目見ただけで欲しくなり、実際にスポンサーとして支援しました。後に使うことはなかったものの、支払ったお金を後悔はしていません。React のソースコードに触れたことで、最初に C を見たときと同じ感覚になりました。コードはコードですから、大したことではありません。いつか自分で書く日が来ると信じています。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:12.461866Z
+      seconds: 15.086480625
+      tokens: 18221
+      review: false
+    ko-KR:
+      text: 그 후에 [@Innei](https://twitter.com/__oQuery)님의 작은 사이트를 보게 됐습니다. 디자인이 아주 정교하고 기능도 완벽했어요. 그때 한눈에 보고 바로 갖고 싶었고, 심지어 후원까지 했습니다. 나중에 사용하지는 않았지만, 돈을 쓴 것을 후회하지는 않아요. React 소스 코드를 접하게 되어 처음 C를 봤을 때와 같은 느낌이었거든요. 코드는 그저 코드일 뿐, 큰 일이 아닙니다. 언젠가 제가 직접 하나 만들 날이 올 거라고 믿어요.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:12.461866Z
+      seconds: 15.086480625
+      tokens: 18221
+      review: false
+    zh-CN:
+      text: 再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨，因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:12.461866Z
+      seconds: 15.086480625
+      tokens: 18221
+      review: false
+    zh-TW:
+      text: 之後，我看到了 [@Innei](https://twitter.com/__oQuery) 的小站，設計很精緻、功能也很完整，當時我看了一眼就想要，甚至還贊助支持了，雖然後來沒用上，但這筆錢花得不後悔，因為我接觸到了 React 原始碼，就像我最初看到 C 時一樣，不過只是程式碼而已，沒什麼大不了的，總有一天我要自己寫一個。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:12.461866Z
+      seconds: 15.086480625
+      tokens: 18221
+      review: false
+  b859d93e20d231f4aa7278f613c464c0:
+    de-DE:
+      text: 'Die endgültige Lösung ist überraschend einfach: All in Cloudflare. R2‑Objektspeicher, D1 Edge‑Datenbank, KV für Caching, Worker führt SSR aus, alles ist serverlos, es gibt keinen Server.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:12.464972Z
+      seconds: 9.345514042
+      tokens: 16437
+      review: false
+    en-US:
+      text: 'The final solution is actually very simple: All in Cloudflare. R2 object storage, D1 Edge database, KV for caching, Worker runs SSR, everything is serverless, no servers.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:12.464972Z
+      seconds: 9.345514042
+      tokens: 16437
+      review: false
+    es-ES:
+      text: 'La solución final es en realidad muy sencilla: All in Cloudflare. Almacenamiento de objetos R2, base de datos D1 Edge, KV para caché, Worker ejecuta SSR, todo es serverless, no hay servidores.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:12.464972Z
+      seconds: 9.345514042
+      tokens: 16437
+      review: false
+    fr-FR:
+      text: 'La solution finale est en fait très simple : All in Cloudflare. Stockage d’objets R2, base de données D1 Edge, KV pour le cache, Worker exécute le SSR, tout est sans serveur, il n’y a pas de serveur.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:12.464972Z
+      seconds: 9.345514042
+      tokens: 16437
+      review: false
+    ja-JP:
+      text: 最終的なソリューションはむしろとてもシンプルです：All in Cloudflare。R2 オブジェクトストレージ、D1 Edge データベース、KV をキャッシュに使用し、Worker が SSR を実行、すべてサーバーレスで、サーバーはありません。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:12.464972Z
+      seconds: 9.345514042
+      tokens: 16437
+      review: false
+    ko-KR:
+      text: '최종 솔루션은 오히려 매우 간단합니다: All in Cloudflare. R2 객체 스토리지, D1 Edge 데이터베이스, KV를 캐시로 사용하고, Worker가 SSR을 실행합니다. 모두 서버리스이며 서버가 없습니다.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:12.464972Z
+      seconds: 9.345514042
+      tokens: 16437
+      review: false
+    zh-CN:
+      text: 最终的方案反而很简单：All in Cloudflare。R2 对象存储、D1 Edge 数据库、KV 做缓存、Worker 跑 SSR，全部 Serverless，没有服务器。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:12.464972Z
+      seconds: 9.345514042
+      tokens: 16437
+      review: false
+    zh-TW:
+      text: 最終的方案反而很簡單：All in Cloudflare。R2 物件存儲、D1 Edge 資料庫、KV 做快取、Worker 跑 SSR，全部 Serverless，沒有伺服器。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:12.464972Z
+      seconds: 9.345514042
+      tokens: 16437
+      review: false
+  b87e4e0d776ff8cd521563a327de034f:
+    de-DE:
+      text: 'Ein Blog erfordert eigentlich keinen Reverse‑Proxy und kein eigens entwickeltes Framework. Trotzdem habe ich damals diese Dinge als Vorbedingungen angesehen und sie als die immer blockierende, aber scheinbar vernünftige Begründung benutzt – obwohl sie nie solche waren. Die einzige wahre Voraussetzung ist nur eine: Setz dich hin und schreibe den ersten Beitrag.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:14.9145Z
+      seconds: 10.401999875
+      tokens: 16877
+      review: false
+    en-US:
+      text: 'Doing a blog actually doesn’t require a reverse proxy, nor a custom framework. Yet at that time I treated them as prerequisites, as that forever‑blocking but reasonable excuse, but they never were. The only real prerequisite is just one: sit down and write the first article.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:14.9145Z
+      seconds: 10.401999875
+      tokens: 16877
+      review: false
+    es-ES:
+      text: 'Hacer un blog en realidad no requiere un proxy inverso ni un framework propio. Sin embargo, en aquel momento los consideraba como condiciones previas, como una excusa siempre bloqueante pero razonable, aunque nunca lo fueron. La única condición previa real es una sola: sentarte y escribir el primer artículo.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:14.9145Z
+      seconds: 10.401999875
+      tokens: 16877
+      review: false
+    fr-FR:
+      text: "Créer un blog ne nécessite en réalité ni proxy inverse, ni framework maison. Pourtant, à l'époque, je les considérais comme des conditions préalables, comme une excuse toujours bloquante mais apparemment raisonnable, alors qu'elles ne l'étaient jamais. La seule vraie condition préalable est simple : asseyez‑vous et écrivez votre premier article."
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:14.9145Z
+      seconds: 10.401999875
+      tokens: 16877
+      review: false
+    ja-JP:
+      text: ブログを書くこと自体はリバースプロキシも自作フレームワークも必要ありませんでした。当時の私はそれらを前提条件とみなし、永遠にブロックされる合理的な理由として挙げていましたが、実際にはそうではありませんでした。実際の唯一の前提条件はただ一つです：座って最初の記事を書き上げることです。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:14.9145Z
+      seconds: 10.401999875
+      tokens: 16877
+      review: false
+    ko-KR:
+      text: '블로그를 작성하는 데 실제로는 역방향 프록시도, 자체 프레임워크도 필요하지 않습니다. 하지만 그 당시 나는 그것들을 전제조건으로 여기며, 영원히 차단되지만 합리적인 이유라고 생각했지만, 실제로는 그렇지 않았습니다. 진정한 전제조건은 단 하나뿐입니다: 앉아서 첫 번째 글을 써 내려가는 것.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:14.9145Z
+      seconds: 10.401999875
+      tokens: 16877
+      review: false
+    zh-CN:
+      text: 做博客实际上不需要一个反向代理，不需要一个自研框架。而当时的我把它们当成了前置条件，作为了那个永远 Blocking 但是却合理的理由，但它们从来都不是。真正的前置条件只有一个：坐下来，把第一篇文章写出来。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:14.9145Z
+      seconds: 10.401999875
+      tokens: 16877
+      review: false
+    zh-TW:
+      text: 做部落格實際上不需要一個反向代理，不需要一個自研框架。而當時的我把它們當成了前置條件，作為了那個永遠 Blocking 但是卻合理的理由，但它們從來都不是。真正的前置條件只有一個：坐下來，把第一篇文章寫出來。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:14.9145Z
+      seconds: 10.401999875
+      tokens: 16877
+      review: false
+  b99b9fcffe3b3af02b601b9e4b16d415:
+    de-DE:
+      text: |-
+        GGUJ4QZJI6AU0WXR8NB5CIL2D1M6OI0F
+        Ich habe über diesen Blog zwei Jahre nachgedacht.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:20.776082Z
+      seconds: 7.646229541
+      tokens: 16264
+      review: false
+    en-US:
+      text: |-
+        GGUJ4QZJI6AU0WXR8NB5CIL2D1M6OI0F
+        I’ve been thinking about this blog for two years.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:20.776082Z
+      seconds: 7.646229541
+      tokens: 16264
+      review: false
+    es-ES:
+      text: |-
+        GGUJ4QZJI6AU0WXR8NB5CIL2D1M6OI0F
+        He pensado en este blog durante dos años.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:20.776082Z
+      seconds: 7.646229541
+      tokens: 16264
+      review: false
+    fr-FR:
+      text: |-
+        GGUJ4QZJI6AU0WXR8NB5CIL2D1M6OI0F
+        J’ai réfléchi à ce blog pendant deux ans.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:20.776082Z
+      seconds: 7.646229541
+      tokens: 16264
+      review: false
+    ja-JP:
+      text: |-
+        GGUJ4QZJI6AU0WXR8NB5CIL2D1M6OI0F
+        このブログについて、2年間考えていました。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:20.776082Z
+      seconds: 7.646229541
+      tokens: 16264
+      review: false
+    ko-KR:
+      text: |-
+        GGUJ4QZJI6AU0WXR8NB5CIL2D1M6OI0F
+        이 블로그에 대해 두 해 동안 생각했습니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:20.776082Z
+      seconds: 7.646229541
+      tokens: 16264
+      review: false
+    zh-CN:
+      text: |-
+        GGUJ4QZJI6AU0WXR8NB5CIL2D1M6OI0F
+        这个博客，我想了两年
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:20.776082Z
+      seconds: 7.646229541
+      tokens: 16264
+      review: false
+    zh-TW:
+      text: |-
+        GGUJ4QZJI6AU0WXR8NB5CIL2D1M6OI0F
+        這個部落格，我想了兩年.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:20.776082Z
+      seconds: 7.646229541
+      tokens: 16264
+      review: false
+  baeb6d1f711284a0d340870e787b4ae3:
+    de-DE:
+      text: ::linkcard{src="c4297c3fd885b805484659786e1fb561.avif" url="https://remix.run" title="Remix" tone="dark"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.552326Z
+      seconds: 6.994072625
+      tokens: 16588
+      review: false
+    en-US:
+      text: ::linkcard{src="c4297c3fd885b805484659786e1fb561.avif" url="https://remix.run" title="Remix" tone="dark"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.552326Z
+      seconds: 6.994072625
+      tokens: 16588
+      review: false
+    es-ES:
+      text: ::linkcard{src="c4297c3fd885b805484659786e1fb561.avif" url="https://remix.run" title="Remix" tone="dark"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.552326Z
+      seconds: 6.994072625
+      tokens: 16588
+      review: false
+    fr-FR:
+      text: ::linkcard{src="c4297c3fd885b805484659786e1fb561.avif" url="https://remix.run" title="Remix" tone="dark"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.552326Z
+      seconds: 6.994072625
+      tokens: 16588
+      review: false
+    ja-JP:
+      text: ::linkcard{src="c4297c3fd885b805484659786e1fb561.avif" url="https://remix.run" title="Remix" tone="dark"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.552326Z
+      seconds: 6.994072625
+      tokens: 16588
+      review: false
+    ko-KR:
+      text: ::linkcard{src="c4297c3fd885b805484659786e1fb561.avif" url="https://remix.run" title="Remix" tone="dark"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.552326Z
+      seconds: 6.994072625
+      tokens: 16588
+      review: false
+    zh-CN:
+      text: ::linkcard{src="c4297c3fd885b805484659786e1fb561.avif" url="https://remix.run" title="Remix" tone="dark"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.552326Z
+      seconds: 6.994072625
+      tokens: 16588
+      review: false
+    zh-TW:
+      text: ::linkcard{src="c4297c3fd885b805484659786e1fb561.avif" url="https://remix.run" title="Remix" tone="dark"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.552326Z
+      seconds: 6.994072625
+      tokens: 16588
+      review: false
+  c7bdf4b88695030bffb497401ba760b6:
+    de-DE:
+      text: '## Loslassen {#letting-go}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.555952Z
+      seconds: 6.6692230420000005
+      tokens: 15942
+      review: false
+    en-US:
+      text: '## Letting go {#letting-go}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.555952Z
+      seconds: 6.6692230420000005
+      tokens: 15942
+      review: false
+    es-ES:
+      text: '## Dejar ir {#letting-go}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.555952Z
+      seconds: 6.6692230420000005
+      tokens: 15942
+      review: false
+    fr-FR:
+      text: '## Lâcher prise {#letting-go}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.555952Z
+      seconds: 6.6692230420000005
+      tokens: 15942
+      review: false
+    ja-JP:
+      text: '## 手放す {#letting-go}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.555952Z
+      seconds: 6.6692230420000005
+      tokens: 15942
+      review: false
+    ko-KR:
+      text: '## 놓아버리기 {#letting-go}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.555952Z
+      seconds: 6.6692230420000005
+      tokens: 15942
+      review: false
+    zh-CN:
+      text: '## 放手吧 {#letting-go}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.555952Z
+      seconds: 6.6692230420000005
+      tokens: 15942
+      review: false
+    zh-TW:
+      text: '## 放手吧 {#letting-go}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.555952Z
+      seconds: 6.6692230420000005
+      tokens: 15942
+      review: false
+  cac47bdc754803865501f9720ad6297b:
+    de-DE:
+      text: 'Das erste Mal war noch zur Zeit des Next.js 13 Page Router. Damals verstand ich kaum, was eine SPA ist, und die Konzepte SSR, SSG, ISR waren mir völlig unbekannt, aber weil andere sagten, SSR sei gut, wollte ich es ebenfalls verwenden. Während ich schrieb, stellte ich fest, dass ich nicht verstand, welche Probleme diese Architekturen lösen sollten, und ich kam nicht weiter. Später wechselte ich zu einer reinen Vue 2‑SPA. Warum Vue? Ehrlich gesagt gefiel mir der Name, er wirkte neu, also probierte ich es aus. Das hielt nicht lange. Beim dritten Mal kehrte ich zu React zurück, begann mit einfachem JSX, lernte TypeScript, beherrschte TSX, verstand den Unterschied zwischen CJS und ESM, verliebte mich in reaktive Programmierung und nutzte Lucide, Framer Motion, Radix UI – Bibliotheken, ohne die ich jetzt nicht mehr auskomme – dieses Mal sah es endlich nach einem funktionierenden Ansatz aus. Trotzdem scheiterte ich, weil ich im Kern nur nachahmte: Ich nahm, was andere benutzten, es wirkte zwar korrekt, aber ich verstand nicht, warum es so gemacht werden sollte. Hinzu kamen die Halluzinationen der KI; man konnte ein MVP zum Laufen bringen, aber beim Scale‑Up war alles voller Fallen.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.559478Z
+      seconds: 25.491117708
+      tokens: 21235
+      review: false
+    en-US:
+      text: The first time was back when it was still Next.js 13 Page Router. At that time I barely understood what a SPA was, and I had no clue about concepts like SSR, SSG, ISR, but because others said SSR was good, I wanted to use it too. As I kept writing, I realized I didn’t understand what problems these architectures were solving, and I couldn’t continue. Later I switched to a pure Vue 2 SPA. Why Vue? Honestly, I thought the name sounded nice, it was new, so I gave it a try. It didn’t last long. The third time I returned to React, starting from plain JSX, learned TypeScript, mastered TSX, understood the difference between CJS and ESM, fell in love with reactive programming, and started using Lucide, Framer Motion, Radix UI—libraries I now can’t live without—this time finally it looked somewhat right. But I still failed, because fundamentally I was just copying—using whatever others used, which only looked right on the surface, while I didn’t truly understand why. On top of that, with AI hallucinations, many things could be cobbled together into an MVP, but when scaling up, it was all pitfalls.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.559478Z
+      seconds: 25.491117708
+      tokens: 21235
+      review: false
+    es-ES:
+      text: 'La primera vez fue cuando todavía estaba el Next.js 13 Page Router. En ese momento apenas entendía qué era una SPA, y los conceptos SSR, SSG, ISR no los tenía claros en absoluto, pero como los demás decían que el SSR era bueno, yo también quise usarlo. A medida que escribía, descubrí que realmente no comprendía qué problemas resolvían esas arquitecturas y no podía seguir. Después cambié a una SPA pura con Vue 2. ¿Por qué Vue? La verdad es que me gustó el nombre, parecía nuevo, así que lo probé. No duró mucho. La tercera vez volví a React, empezando con JSX simple, aprendí TypeScript, dominé TSX, entendí la diferencia entre CJS y ESM, me enamoré de la programación reactiva y comencé a usar Lucide, Framer Motion, Radix UI, bibliotecas de las que ahora no puedo prescindir; esta vez finalmente tenía algo con forma. Pero aun así fracasé, porque en esencia solo estaba imitando: tomaba lo que otros usaban, parecía estar bien, pero en realidad no entendía por qué se hacía de esa manera. Además, con las alucinaciones de la IA, se podía montar un MVP, pero al escalar todo era una mina de problemas.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.559478Z
+      seconds: 25.491117708
+      tokens: 21235
+      review: false
+    fr-FR:
+      text: "La première fois était à l'époque du Next.js 13 Page Router. À ce moment-là je ne comprenais même pas ce qu'était une SPA, et les concepts SSR, SSG, ISR me étaient totalement inconnus, mais comme les autres disaient que le SSR était bon, j’ai voulu l’utiliser aussi. Au fil de l’écriture, je me suis rendu compte que je ne comprenais pas quels problèmes ces architectures résolvaient, et je n’ai plus pu poursuivre. Ensuite, je suis passé à une SPA pure avec Vue 2. Pourquoi Vue ? Honnêtement, le nom me plaisait, il était nouveau, alors je l’ai essayé. Ça n’a pas duré longtemps. La troisième fois, je suis revenu à React, en partant du simple JSX, j’ai appris TypeScript, maîtrisé le TSX, compris la différence entre CJS et ESM, je suis tombé amoureux du paradigme réactif et j’ai commencé à utiliser Lucide, Framer Motion, Radix UI, des bibliothèques dont je ne peux plus me passer — cette fois, ça ressemblait enfin à quelque chose de cohérent. Mais j’ai quand même échoué, car en réalité je ne faisais qu’imiter : je prenais ce que les autres utilisaient, cela semblait correct en apparence, mais je ne comprenais pas pourquoi cela devait être fait ainsi. En plus, avec les hallucinations de l’IA, on pouvait faire fonctionner un MVP, mais lors du passage à l’échelle, c’était un champ de mines."
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.559478Z
+      seconds: 25.491117708
+      tokens: 21235
+      review: false
+    ja-JP:
+      text: 最初はまだ Next.js 13 Page Router の頃でした。その頃は SPA が何かほとんど分からず、SSR、SSG、ISR といった概念も全く理解できていませんでしたが、他の人が SSR が良いと言うので私も使ってみたくなりました。書き進めていくうちに、これらのアーキテクチャがどんな問題を解決しようとしているのか全く理解できていないことに気づき、続けることができなくなりました。その後、Vue 2 の純粋な SPA に切り替えましたが、なぜ Vue を選んだかと言うと、正直に言うと名前がかっこよくて、新しかったので試してみたからです。長くは続きませんでした。三度目は React に戻り、シンプルな JSX から始め、TypeScript を学び、TSX も使えるようになり、CJS と ESM の違いを理解し、リアクティブプログラミングに恋をし、Lucide、Framer Motion、Radix UI など、今や手放せないライブラリを使い始めました――今回ようやく形が見えてきた感覚です。しかし結局失敗しました。根本的に私はただ模倣していただけで、他人が使うものをそのまま取り入れ、見た目はそれっぽくても、なぜそうするのか全く理解していなかったからです。さらに AI の幻覚に加えて、多くのものを MVP として動かすことはできましたが、スケールアップするとすべてが落とし穴だらけでした。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.559478Z
+      seconds: 25.491117708
+      tokens: 21235
+      review: false
+    ko-KR:
+      text: 처음은 아직 Next.js 13 Page Router 시절이었어요. 그때 나는 SPA가 무엇인지 겨우 이해했고, SSR, SSG, ISR 같은 개념은 전혀 몰랐지만, 다른 사람들이 SSR이 좋다고 하길래 나도 써야겠다고 했죠. 코드를 작성하면서 이 아키텍처들이 어떤 문제를 해결하려는 건지 전혀 이해하지 못한다는 것을 깨닫고 더 이상 진행할 수 없었어요. 그 뒤에 Vue 2 순수 SPA로 전향했는데, 왜 Vue를 선택했냐고요? 솔직히 말하면 이름이 멋져 보이고, 새로워 보여서 한번 시도해 본 거예요. 오래 가지도 못했어요. 세 번째는 React로 돌아와서, 순수 JSX부터 시작해 TypeScript를 배우고 TSX도 다루게 되었으며, CJS와 ESM의 차이를 이해하고 Reactive에 빠졌어요. 이후 Lucide, Framer Motion, Radix UI 같은 이제는 없으면 안 되는 라이브러리들을 사용했죠—이번엔 드디어 뭔가 형태가 잡힌 느낌이었어요. 하지만 여전히 실패했어요. 본질적으로 나는 남들이 쓰는 걸 그대로 베끼는 것에 불과했거든요. 겉으로는 괜찮아 보였지만, 왜 그렇게 해야 하는지 전혀 이해하지 못했어요. 게다가 AI의 환상적인 도움으로 많은 것을 MVP 수준으로는 구현할 수 있었지만, 스케일업 단계에서는 온통 함정이었어요.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.559478Z
+      seconds: 25.491117708
+      tokens: 21235
+      review: false
+    zh-CN:
+      text: 第一次还是 Next.js 13 Page Router 那会。那时候我蒙懂 SPA 是什么，SSR、SSG、ISR 这些概念一个都不清楚，但看别人说 SSR 好，那我也要用。结果写着写着发现自己根本不理解这些架构在解决什么问题，做不下去了。后来呢，转 Vue 2 纯 SPA，为什么选 Vue？说来惭愧，觉得名字好听，反正也新，试试呗。也没撑多久。第三次回到 React，从单 JSX 开始，学了 TypeScript，会了 TSX，理解了 CJS 和 ESM 的区别，爱上了 Reactive，用上了 Lucide、Framer Motion、Radix UI 这些日后离不开的库——这次终于像点样子了。但我还是失败了，因为本质上我只是在模仿，别人用什么我就拿来用，看起来像那么回事，实际上根本不理解为什么要这样做。再加上 AI 的幻觉加持，很多东西都能跑起来一个 MVP，但 Scale Up 的时候全是坑。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.559478Z
+      seconds: 25.491117708
+      tokens: 21235
+      review: false
+    zh-TW:
+      text: 第一次還是 Next.js 13 Page Router 那會。那時候我蒙懂 SPA 是什麼，SSR、SSG、ISR 這些概念一個都不清楚，但看別人說 SSR 好，那我也要用。結果寫著寫著發現自己根本不理解這些架構在解決什麼問題，做不下去了。後來呢，轉 Vue 2 純 SPA，為什麼選 Vue？說來慚愧，覺得名字好聽，反正也新，試試呗。也沒撐多久。第三次回到 React，從單 JSX 開始，學了 TypeScript，會了 TSX，理解了 CJS 和 ESM 的區別，愛上了 Reactive，用上了 Lucide、Framer Motion、Radix UI 這些日後離不開的庫——這次終於像點樣子了。但我還是失敗了，因為本質上我只是在模仿，別人用什麼我就拿來用，看起來像那麼回事，實際上根本不理解為什麼要這樣做。再加上 AI 的幻覺加持，很多東西都能跑起來一個 MVP，但 Scale Up 的時候全是坑。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:27.559478Z
+      seconds: 25.491117708
+      tokens: 21235
+      review: false
+  d0affcbc050f4326676bcaea16ecfa14:
+    de-DE:
+      text: '::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo: Ein schnelles, einfaches & leistungsstarkes Blog-Framework."}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:28.428806Z
+      seconds: 7.462195541
+      tokens: 16509
+      review: false
+    en-US:
+      text: '::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo: A fast, simple & powerful blog framework."}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:28.428806Z
+      seconds: 7.462195541
+      tokens: 16509
+      review: false
+    es-ES:
+      text: '::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo: Un framework de blog rápido, sencillo y potente."}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:28.428806Z
+      seconds: 7.462195541
+      tokens: 16509
+      review: false
+    fr-FR:
+      text: '::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo : un framework de blog rapide, simple & puissant."}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:28.428806Z
+      seconds: 7.462195541
+      tokens: 16509
+      review: false
+    ja-JP:
+      text: ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo：高速でシンプル、かつパワフルなブログフレームワーク。"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:28.428806Z
+      seconds: 7.462195541
+      tokens: 16509
+      review: false
+    ko-KR:
+      text: '::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo: 빠르고 간단하며 강력한 블로그 프레임워크."}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:28.428806Z
+      seconds: 7.462195541
+      tokens: 16509
+      review: false
+    zh-CN:
+      text: ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo：快速、简洁且强大的博客框架。"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:28.428806Z
+      seconds: 7.462195541
+      tokens: 16509
+      review: false
+    zh-TW:
+      text: ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo：快速、簡潔且強大的部落格框架。"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:28.428806Z
+      seconds: 7.462195541
+      tokens: 16509
+      review: false
+  d8a34f9704461233cc03c6aeabc67fbf:
+    de-DE:
+      text: ::image{src="a904d61e5006b602f7c6efd236911d78.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:34.548881Z
+      seconds: 5.112404083
+      tokens: 15875
+      review: false
+    en-US:
+      text: ::image{src="a904d61e5006b602f7c6efd236911d78.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:34.548881Z
+      seconds: 5.112404083
+      tokens: 15875
+      review: false
+    es-ES:
+      text: ::image{src="a904d61e5006b602f7c6efd236911d78.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:34.548881Z
+      seconds: 5.112404083
+      tokens: 15875
+      review: false
+    fr-FR:
+      text: ::image{src="a904d61e5006b602f7c6efd236911d78.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:34.548881Z
+      seconds: 5.112404083
+      tokens: 15875
+      review: false
+    ja-JP:
+      text: ::image{src="a904d61e5006b602f7c6efd236911d78.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:34.548881Z
+      seconds: 5.112404083
+      tokens: 15875
+      review: false
+    ko-KR:
+      text: ::image{src="a904d61e5006b602f7c6efd236911d78.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:34.548881Z
+      seconds: 5.112404083
+      tokens: 15875
+      review: false
+    zh-CN:
+      text: ::image{src="a904d61e5006b602f7c6efd236911d78.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:34.548881Z
+      seconds: 5.112404083
+      tokens: 15875
+      review: false
+    zh-TW:
+      text: ::image{src="a904d61e5006b602f7c6efd236911d78.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:34.548881Z
+      seconds: 5.112404083
+      tokens: 15875
+      review: false
+  d903812efddba5a98bbe4e5992f9de2a:
+    de-DE:
+      text: ::linkcard{src="5c33f853b73251e594e7c0eaca0a5709.png" url="https://vercel.com" title="Vercel"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:34.552144Z
+      seconds: 6.322604042
+      tokens: 16343
+      review: false
+    en-US:
+      text: ::linkcard{src="5c33f853b73251e594e7c0eaca0a5709.png" url="https://vercel.com" title="Vercel"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:34.552144Z
+      seconds: 6.322604042
+      tokens: 16343
+      review: false
+    es-ES:
+      text: ::linkcard{src="5c33f853b73251e594e7c0eaca0a5709.png" url="https://vercel.com" title="Vercel"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:34.552144Z
+      seconds: 6.322604042
+      tokens: 16343
+      review: false
+    fr-FR:
+      text: ::linkcard{src="5c33f853b73251e594e7c0eaca0a5709.png" url="https://vercel.com" title="Vercel"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:34.552144Z
+      seconds: 6.322604042
+      tokens: 16343
+      review: false
+    ja-JP:
+      text: ::linkcard{src="5c33f853b73251e594e7c0eaca0a5709.png" url="https://vercel.com" title="Vercel"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:34.552144Z
+      seconds: 6.322604042
+      tokens: 16343
+      review: false
+    ko-KR:
+      text: ::linkcard{src="5c33f853b73251e594e7c0eaca0a5709.png" url="https://vercel.com" title="Vercel"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:34.552144Z
+      seconds: 6.322604042
+      tokens: 16343
+      review: false
+    zh-CN:
+      text: ::linkcard{src="5c33f853b73251e594e7c0eaca0a5709.png" url="https://vercel.com" title="Vercel"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:34.552144Z
+      seconds: 6.322604042
+      tokens: 16343
+      review: false
+    zh-TW:
+      text: ::linkcard{src="5c33f853b73251e594e7c0eaca0a5709.png" url="https://vercel.com" title="Vercel"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:34.552144Z
+      seconds: 6.322604042
+      tokens: 16343
+      review: false
+  e8f82735606f2fb8d14c78303c5bd343:
+    de-DE:
+      text: All das frühere Durcheinander hat mir das nötige Kapital verschafft, jetzt loszulassen.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.05697Z
+      seconds: 21.041633792
+      tokens: 16119
+      review: false
+    en-US:
+      text: All the previous struggles gave me the capital to let go now.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.05697Z
+      seconds: 21.041633792
+      tokens: 16119
+      review: false
+    es-ES:
+      text: Todas las luchas anteriores me dieron el capital para poder soltar ahora.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.05697Z
+      seconds: 21.041633792
+      tokens: 16119
+      review: false
+    fr-FR:
+      text: Tous les tracas précédents m'ont donné le capital de pouvoir lâcher prise maintenant.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.05697Z
+      seconds: 21.041633792
+      tokens: 16119
+      review: false
+    ja-JP:
+      text: これまでのすべての苦労が、今、手放すための資本を与えてくれた。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.05697Z
+      seconds: 21.041633792
+      tokens: 16119
+      review: false
+    ko-KR:
+      text: 이전의 모든 고생이 지금 놓아버릴 수 있는 자본을 주었다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.05697Z
+      seconds: 21.041633792
+      tokens: 16119
+      review: false
+    zh-CN:
+      text: 是之前所有的折腾，给了我现在放手的资本
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.05697Z
+      seconds: 21.041633792
+      tokens: 16119
+      review: false
+    zh-TW:
+      text: 是之前所有的折騰，給了我現在放手的資本
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.05697Z
+      seconds: 21.041633792
+      tokens: 16119
+      review: false
+  eebb522aa683c3b83f31a18dcb0f6649:
+    de-DE:
+      text: Eigentlich wurde der Blog nicht unberührt gelassen, im Gegenteil, ich habe es dreimal gemacht.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.061931Z
+      seconds: 6.9393725
+      tokens: 15852
+      review: false
+    en-US:
+      text: Actually, the blog hasn't been untouched; quite the opposite, I've done it three times.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.061931Z
+      seconds: 6.9393725
+      tokens: 15852
+      review: false
+    es-ES:
+      text: En realidad, el blog no está sin tocar; al contrario, lo he hecho tres veces.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.061931Z
+      seconds: 6.9393725
+      tokens: 15852
+      review: false
+    fr-FR:
+      text: En réalité, le blog n'est pas resté inactif ; au contraire, je l'ai fait trois fois.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.061931Z
+      seconds: 6.9393725
+      tokens: 15852
+      review: false
+    ja-JP:
+      text: 実はブログは手をつけていないわけではなく、むしろ3回やっています。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.061931Z
+      seconds: 6.9393725
+      tokens: 15852
+      review: false
+    ko-KR:
+      text: 사실 블로그는 손대지 않은 것이 아니라, 오히려 세 번 했습니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.061931Z
+      seconds: 6.9393725
+      tokens: 15852
+      review: false
+    zh-CN:
+      text: 其实博客不是没动过，恰恰相反，我做了三次
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.061931Z
+      seconds: 6.9393725
+      tokens: 15852
+      review: false
+    zh-TW:
+      text: 其實部落格不是沒動過，恰恰相反，我做了三次
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.061931Z
+      seconds: 6.9393725
+      tokens: 15852
+      review: false
+  f2d7d48b5ea2d57bf00e313e6085b0cd:
+    de-DE:
+      text: Ich habe diesen Satz unzählige Male gehört, aber es dauerte zwei Jahre, bis ich seine wahre Bedeutung wirklich verstand.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.066267Z
+      seconds: 7.126938584
+      tokens: 16081
+      review: false
+    en-US:
+      text: I've heard this sentence countless times, but it took me two years to truly understand its meaning.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.066267Z
+      seconds: 7.126938584
+      tokens: 16081
+      review: false
+    es-ES:
+      text: He escuchado esta frase innumerables veces, pero me tomó dos años comprender verdaderamente su significado.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.066267Z
+      seconds: 7.126938584
+      tokens: 16081
+      review: false
+    fr-FR:
+      text: J'ai entendu cette phrase d'innombrables fois, mais il m'a fallu deux ans pour en saisir réellement le sens.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.066267Z
+      seconds: 7.126938584
+      tokens: 16081
+      review: false
+    ja-JP:
+      text: この言葉は何度も聞いたことがありますが、実際に意味を理解するのに二年かかりました。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.066267Z
+      seconds: 7.126938584
+      tokens: 16081
+      review: false
+    ko-KR:
+      text: 이 문장을 무수히 들어왔지만, 진정으로 그 의미를 이해하는 데는 두 해가 걸렸습니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.066267Z
+      seconds: 7.126938584
+      tokens: 16081
+      review: false
+    zh-CN:
+      text: 这句话我听过无数遍，但花了两年才真正理解它的含义。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.066267Z
+      seconds: 7.126938584
+      tokens: 16081
+      review: false
+    zh-TW:
+      text: 這句話我聽過無數遍，但花了兩年才真正理解它的含義。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.066267Z
+      seconds: 7.126938584
+      tokens: 16081
+      review: false
+  f97e2651068c28acc08f8e6ab86bb317:
+    de-DE:
+      text: ::linkcard{src="6da637a66b48711354532477ac3f2014.avif" url="https://github.com/colmugx/hexo-theme-nlvi" title="🎨 Ein einfaches Theme für Hexo." tone="dark"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.070616Z
+      seconds: 8.015166791
+      tokens: 16759
+      review: false
+    en-US:
+      text: ::linkcard{src="6da637a66b48711354532477ac3f2014.avif" url="https://github.com/colmugx/hexo-theme-nlvi" title="🎨 A simple theme for hexo." tone="dark"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.070616Z
+      seconds: 8.015166791
+      tokens: 16759
+      review: false
+    es-ES:
+      text: ::linkcard{src="6da637a66b48711354532477ac3f2014.avif" url="https://github.com/colmugx/hexo-theme-nlvi" title="🎨 Un tema sencillo para Hexo." tone="dark"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.070616Z
+      seconds: 8.015166791
+      tokens: 16759
+      review: false
+    fr-FR:
+      text: ::linkcard{src="6da637a66b48711354532477ac3f2014.avif" url="https://github.com/colmugx/hexo-theme-nlvi" title="🎨 Un thème simple pour Hexo." tone="dark"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.070616Z
+      seconds: 8.015166791
+      tokens: 16759
+      review: false
+    ja-JP:
+      text: ::linkcard{src="6da637a66b48711354532477ac3f2014.avif" url="https://github.com/colmugx/hexo-theme-nlvi" title="🎨 Hexo 用のシンプルなテーマ。" tone="dark"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.070616Z
+      seconds: 8.015166791
+      tokens: 16759
+      review: false
+    ko-KR:
+      text: ::linkcard{src="6da637a66b48711354532477ac3f2014.avif" url="https://github.com/colmugx/hexo-theme-nlvi" title="🎨 Hexo용 간단한 테마입니다." tone="dark"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.070616Z
+      seconds: 8.015166791
+      tokens: 16759
+      review: false
+    zh-CN:
+      text: ::linkcard{src="6da637a66b48711354532477ac3f2014.avif" url="https://github.com/colmugx/hexo-theme-nlvi" title="🎨 一个简约的 Hexo 主题。" tone="dark"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.070616Z
+      seconds: 8.015166791
+      tokens: 16759
+      review: false
+    zh-TW:
+      text: ::linkcard{src="6da637a66b48711354532477ac3f2014.avif" url="https://github.com/colmugx/hexo-theme-nlvi" title="🎨 一個簡潔的 Hexo 主題。" tone="dark"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:27:53.070616Z
+      seconds: 8.015166791
+      tokens: 16759
+      review: false
+  fa9a3a29d0ffcead3aef8d7578108257:
+    de-DE:
+      text: ::linkcard{src="a853e69c33ee2c50ed9125ff947b2d49.avif" url="https://workers.cloudflare.com" title="Cloudflare Worker" tone="light"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:14.105932Z
+      seconds: 6.998716125
+      tokens: 16150
+      review: false
+    en-US:
+      text: ::linkcard{src="a853e69c33ee2c50ed9125ff947b2d49.avif" url="https://workers.cloudflare.com" title="Cloudflare Worker" tone="light"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:14.105932Z
+      seconds: 6.998716125
+      tokens: 16150
+      review: false
+    es-ES:
+      text: ::linkcard{src="a853e69c33ee2c50ed9125ff947b2d49.avif" url="https://workers.cloudflare.com" title="Cloudflare Worker" tone="light"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:14.105932Z
+      seconds: 6.998716125
+      tokens: 16150
+      review: false
+    fr-FR:
+      text: ::linkcard{src="a853e69c33ee2c50ed9125ff947b2d49.avif" url="https://workers.cloudflare.com" title="Cloudflare Worker" tone="light"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:14.105932Z
+      seconds: 6.998716125
+      tokens: 16150
+      review: false
+    ja-JP:
+      text: ::linkcard{src="a853e69c33ee2c50ed9125ff947b2d49.avif" url="https://workers.cloudflare.com" title="Cloudflare Worker" tone="light"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:14.105932Z
+      seconds: 6.998716125
+      tokens: 16150
+      review: false
+    ko-KR:
+      text: ::linkcard{src="a853e69c33ee2c50ed9125ff947b2d49.avif" url="https://workers.cloudflare.com" title="Cloudflare Worker" tone="light"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:14.105932Z
+      seconds: 6.998716125
+      tokens: 16150
+      review: false
+    zh-CN:
+      text: ::linkcard{src="a853e69c33ee2c50ed9125ff947b2d49.avif" url="https://workers.cloudflare.com" title="Cloudflare Worker" tone="light"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:14.105932Z
+      seconds: 6.998716125
+      tokens: 16150
+      review: false
+    zh-TW:
+      text: ::linkcard{src="a853e69c33ee2c50ed9125ff947b2d49.avif" url="https://workers.cloudflare.com" title="Cloudflare Worker" tone="light"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:14.105932Z
+      seconds: 6.998716125
+      tokens: 16150
+      review: false
+  ffb2a6a34cb5ebc79cbf51e93c1f9641:
+    de-DE:
+      text: 'Am Ende drehte ich mich im Kreis und landete wieder bei Serverless. Das Konzept von Vercel ist gut, aber ich mag Next.js nicht; außerdem steckt bei Vercel zu viel „Magie“, und das Middleware‑Design, das im Voraus kompiliert wird, um am Edge zu laufen, führt letztlich zu einer Zersplitterung und sogar zu mehreren CVEs. Es wäre besser, alles auf dem Origin‑Server zu betreiben. Cloudflare Workers hingegen sind großartig und erreichen ein extremes Szenario: Produkte unter 10 MB werden zu WASM kompiliert und können echte Geschäftslogik am Edge ausführen – genau das, was ich will. Abgesehen von den Kosten gibt es kaum Nachteile – obwohl man das nicht wirklich als Nachteil bezeichnen kann, denn gesparte Zeit ist Geld.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:14.111657Z
+      seconds: 16.593084083
+      tokens: 18584
+      review: false
+    en-US:
+      text: 'Finally, after going around in circles, I’m back to serverless. Vercel’s concept is good, but I don’t like Next.js; moreover, Vercel has too much “magic,” and the middleware design that pre‑compiles to run on the Edge ends up fragmented, even causing a few CVEs. It would be better to have everything on the origin. On the other hand, Cloudflare Workers are great, achieving another extreme: products under 10 MB compiled to WASM can run real business logic on the Edge, which is exactly what I want. Apart from the cost, there are essentially no drawbacks—though it’s not really a drawback, since the time saved is money.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:14.111657Z
+      seconds: 16.593084083
+      tokens: 18584
+      review: false
+    es-ES:
+      text: 'Al final, después de dar muchas vueltas, termino volviendo al serverless. El concepto de Vercel es bueno, pero no me gusta Next.js; además, Vercel tiene demasiada “magia” y el diseño del middleware que se compila por adelantado para ejecutarse en el Edge termina fragmentado, incluso provocando varios CVE. Sería mejor que todo estuviera en el origen. Por otro lado, Cloudflare Workers es excelente, alcanzando otro extremo: compilar productos de menos de 10 MB a WASM permite ejecutar lógica de negocio real en el Edge, que es justo lo que quiero. Aparte del gasto, no tiene verdaderos defectos, aunque técnicamente no es un defecto, ya que el tiempo ahorrado equivale a dinero.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:14.111657Z
+      seconds: 16.593084083
+      tokens: 18584
+      review: false
+    fr-FR:
+      text: 'En fin de compte, après un long détour, je reviens au serverless. Le concept de Vercel est bon, mais je n’aime pas Next.js ; de plus, Vercel recourt à trop de « magie », et le design du middleware pré‑compilé pour s’exécuter sur l’Edge finit par être fragmenté, voire à l’origine de plusieurs CVE. Il vaudrait mieux tout centraliser sur l’origine. En revanche, Cloudflare Workers est excellent : il atteint un autre extrême en compilant des produits de moins de 10 Mo en WASM, capables d’exécuter la véritable logique métier sur l’Edge, exactement ce que je recherche. En dehors du coût, il n’y a vraiment aucun inconvénient – même si ce n’est pas vraiment un défaut, car le temps économisé représente de l’argent.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:14.111657Z
+      seconds: 16.593084083
+      tokens: 18584
+      review: false
+    ja-JP:
+      text: 結局、いろいろ回りくねって最終的に Serverless に戻ってきました。Vercel のコンセプトは良いですが、Next.js は好きではありません。さらに、Vercel の「魔法」が多すぎて、Edge で実行するために事前にコンパイルするミドルウェア設計は結局分断され、いくつかの CVE さえ発生しました。すべてをオリジンにまとめた方が良いでしょう。一方、Cloudflare Workers は非常に優れており、10 MB 未満の成果物を WASM にコンパイルして Edge 上で実際のビジネスロジックを実行できるという別の極端なアプローチを実現しています。これこそが私が望むものです。費用以外に欠点はほとんどありませんが、時間を節約すればそれはすなわちお金になるので、実質的な欠点とは言えません。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:14.111657Z
+      seconds: 16.593084083
+      tokens: 18584
+      review: false
+    ko-KR:
+      text: 결국 여러 차례 돌아서 다시 Serverless 로 돌아왔습니다. Vercel 의 개념은 좋지만 Next.js 는 마음에 들지 않습니다. 또한 Vercel 은 마법이 너무 많고, Edge 에서 실행되도록 미리 컴파일하는 미들웨어 설계는 결국 파편화되고 몇몇 CVE 가 발생하기까지 했습니다. 모든 것을 원본 서버에 모아두는 것이 더 나을 것 같습니다. 반면 Cloudflare Workers 는 매우 훌륭합니다. 10 MB 이하의 결과물을 WASM 으로 컴파일해 Edge 에서 실제 비즈니스 로직을 실행할 수 있는 또 다른 극단을 구현했으며, 이것이 제가 원하던 것입니다. 비용을 제외하고는 큰 단점이 없으며, 이는 사실상 단점이 아니라 절약된 시간이 곧 돈이기 때문입니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:14.111657Z
+      seconds: 16.593084083
+      tokens: 18584
+      review: false
+    zh-CN:
+      text: 最后绕了一大圈，还是回到了 Serverless，Vercel 的概念好，但我不喜欢 Next.js；而且 Vercel 的魔法太多了，还有就是那个中间件设计的提前编译跑 Edge 上，最后还是割裂，甚至出了几个 CVE，还不如要么全部源站一起。而 Cloudflare Worker 就很好，达到了另外一种极端，小于 10MB 的产物编译成 WASM，Edge 上能跑真正的业务逻辑，这才是我想要的。除了费钱以外没什么缺点——但说起来也不算缺点，毕竟省下的时间就是钱。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:14.111657Z
+      seconds: 16.593084083
+      tokens: 18584
+      review: false
+    zh-TW:
+      text: 最後繞了一大圈，還是回到了 Serverless，Vercel 的概念不錯，但我不喜歡 Next.js；而且 Vercel 的魔法太多了，還有那個中間件設計提前編譯跑在 Edge 上，最後仍然割裂，甚至出了幾個 CVE，還不如把所有東西都放在源站一起。相較之下 Cloudflare Worker 就很好，達到了另一種極端，小於 10 MB 的產物編譯成 WASM，能在 Edge 上執行真正的業務邏輯，這正是我想要的。除了花錢之外沒什麼缺點──但說起來也不算缺點，畢竟省下的時間就是錢。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:14.111657Z
+      seconds: 16.593084083
+      tokens: 18584
+      review: false

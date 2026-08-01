@@ -9,11 +9,52 @@
 	const cdn = pickUrls(dev).cdn;
 	const canonical = $derived(`${URLS.apps.production.site}${page.url.pathname}`);
 	let { children } = $props();
+
+	/**
+	 * A JSON-LD block, safe to drop into markup.
+	 *
+	 * Every `<` in the payload becomes `\u003c`, and the closing tag is assembled rather than
+	 * written, so no `</script` sequence exists anywhere here. A tokenizer scanning for one does
+	 * not care that it sits inside a string, and neither case stays hypothetical once this data
+	 * includes text written by something other than us.
+	 */
+	function ldJson(data: unknown): string {
+		const json = JSON.stringify(data).replaceAll('<', String.raw`\u003c`);
+		return `<script type="application/ld+json">${json}</${'script'}>`;
+	}
+
+	/**
+	 * Structured data for the site itself.
+	 *
+	 * Built from the same config the visible chrome reads, so there is no second copy of the
+	 * site's name to fall out of step. An article adds its own `Article` node; this one says
+	 * what the site is, which no page has to repeat.
+	 */
+	const website = {
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: site.name,
+		description: site.tagline,
+		url: URLS.apps.production.site,
+		author: {
+			'@type': 'Person',
+			name: site.author.name,
+			...(site.author.x ? { url: `${URLS.external.social.x}/${site.author.x}` } : {}),
+		},
+	};
 </script>
 
 <svelte:head>
 	<link rel="preconnect" href={cdn} crossorigin="anonymous" />
 	<link rel="canonical" href={canonical} />
+	<!-- Site-wide, so it sits here rather than being repeated by every page that has a card. -->
+	<meta property="og:site_name" content={site.name} />
+	{#if site.author.x}
+		<meta name="twitter:site" content="@{site.author.x}" />
+		<meta name="twitter:creator" content="@{site.author.x}" />
+	{/if}
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -- escaped by ldJson above -->
+	{@html ldJson(website)}
 	<link rel="alternate" type="application/atom+xml" href="/atom.xml" title={site.name} />
 	<link rel="llms" type="text/markdown" href="/llms.txt" />
 	<link rel="icon" type="image/png" sizes="96x96" href="{cdn}/favicon-96x96.png" />

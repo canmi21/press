@@ -135,6 +135,13 @@ was wrong on the day it was written: this spec cites four external standards, so
 already broken four times by the document stating it. A rule nobody can follow is not a strict
 rule, it is a dead one -- it gets ignored wholesale rather than in the one place it should be.
 
+An identity is not an address. A social handle, an email local part, a feed's tag URI --
+these say who someone is, and they live in `site.config.yaml` beside the author's name. What
+`libs/urls` owns is where to reach them. The two compose: `URLS.external.social.x` plus the
+handle is the profile URL, assembled at the point of use rather than stored a second time as
+a whole. Putting the handle in the URL library would make the library the owner of a fact
+about a person, and the config the owner of nothing.
+
 Names RFC 2606 reserves -- `.test`, `.example`, `.invalid`, `.localhost`, `example.com` and
 its siblings -- are exempt as well, and for a stronger reason than convention: the standard
 guarantees they never resolve. A placeholder an API needs because it demands an absolute URL,

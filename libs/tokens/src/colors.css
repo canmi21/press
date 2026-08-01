@@ -1,3 +1,5 @@
+/* The page colours below are also written as `theme-color` meta tags in apps/site/app.html,
+   because a meta tag cannot read a CSS variable. Changing one means changing the other. */
 :root {
 	color-scheme: light dark;
 	--color-page: oklch(0.987 0 0);
