@@ -1,219 +1,310 @@
 version: 1
 media:
   12faaa76365814de1195d6bdf1e5ba05:
+    category: screenshot
     description:
       en-US:
-        text: |-
-          This is a screenshot of the Hexo project's homepage, a dark-themed site with a hexagonal "H" logo and a top nav for Docs, API, News, Plugins, Themes, and About. The hero headline reads "A fast, simple & powerful blog framework" above a terminal-style install command, `npm install hexo-cli -g`, flanked by badges showing 41k GitHub stars, 5k forks, 212k downloads per month, and a follow count for @hexojs on X. Below that sits a release timeline listing versions 8.1.0 (2025-10-26), 8.0.0 (2025-09-16), 7.3.0 (2024-07-02), and 7.2.0 (2024-04-17), and the page begins transitioning into a features section highlighting "Blazing Fast" and "Markdown Support." The image is evidence of Hexo's current release cadence and community adoption metrics as displayed on its official site.
+        text: This is a screenshot of the Hexo project's homepage, a dark-themed site with a hexagonal "H" logo and a top nav for Docs, API, News, Plugins, Themes, and About. The hero headline reads "A fast, simple & powerful blog framework" above a terminal-style install command, `npm install hexo-cli -g`, flanked by badges showing 41k GitHub stars, 5k forks, 212k downloads per month, and a follow count for @hexojs on X. Below that sits a release timeline listing versions 8.1.0 (2025-10-26), 8.0.0 (2025-09-16), 7.3.0 (2024-07-02), and 7.2.0 (2024-04-17), and the page begins transitioning into a features section highlighting "Blazing Fast" and "Markdown Support." The image is evidence of Hexo's current release cadence and community adoption metrics as displayed on its official site.
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:21:56.232998Z
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - hexo
+    - browser
+    - blog-framework
+    - homepage
+    - npm
   13d5b6bcd2b0dce847951d4e3faf89ca:
+    category: photograph
     description:
       en-US:
-        text: |-
-          A photograph shows a dark-colored laptop, screen off and reflecting a rippled purplish sheen, perched open on top of a stone or concrete pillar overlooking a wide, muddy-brown river. The far bank holds a hazy skyline of low-rise buildings, cranes, and a cable-stayed structure with a red mast, all softened by overcast, misty daylight. To the right a metal railing runs along a paved embankment, and a small boat with a red marker floats alone on the water toward the left. The overall scene reads as a casual outdoor photo of a laptop set against a riverside city backdrop, likely taken to showcase the device's design against a scenic, moody backdrop.
+        text: A photograph shows a dark-colored laptop, screen off and reflecting a rippled purplish sheen, perched open on top of a stone or concrete pillar overlooking a wide, muddy-brown river. The far bank holds a hazy skyline of low-rise buildings, cranes, and a cable-stayed structure with a red mast, all softened by overcast, misty daylight. To the right a metal railing runs along a paved embankment, and a small boat with a red marker floats alone on the water toward the left. The overall scene reads as a casual outdoor photo of a laptop set against a riverside city backdrop, likely taken to showcase the device's design against a scenic, moody backdrop.
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:09:01.30263Z
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - laptop
+    - macbook
+    - river
+    - cityscape
   18dc4b33f21890aa9042955b67ac346d:
+    category: screenshot
     description:
       en-US:
-        text: |-
-          This is a screenshot of an iPhone Settings screen showing the SIMs section, with two eSIM entries both toggled on: "Travel - CMHK" labeled T1, and "Travel - Hutchison HK" labeled T2, the latter displaying a partially blurred Hong Kong phone number starting with +852 51 and ending in 77. A blue "Add eSIM" link sits below the two entries, indicating the phone is dual-SIM with two Hong Kong carrier eSIMs active, likely set up for travel.
+        text: 'This is a screenshot of an iPhone Settings screen showing the SIMs section, with two eSIM entries both toggled on: "Travel - CMHK" labeled T1, and "Travel - Hutchison HK" labeled T2, the latter displaying a partially blurred Hong Kong phone number starting with +852 51 and ending in 77. A blue "Add eSIM" link sits below the two entries, indicating the phone is dual-SIM with two Hong Kong carrier eSIMs active, likely set up for travel.'
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:09:37.394499Z
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - ios
+    - esim
+    - hong-kong
+    - cellular
   2722532798307eb9c03d89e2343c2cda:
+    category: screenshot
     description:
       en-US:
-        text: |-
-          A screenshot of a marketing landing page for a product called Typeless, with a bird-like logo and top navigation links for Manifesto, Pricing, and About, plus a black "Download for macOS" button in the corner. The large centered headline reads "Speak, don't type" in bold black-and-gray text, followed by a paragraph explaining that speaking naturally lets Typeless "turn your words into polished messages, emails, and documents" that read as if carefully typed, in real time, and "4x faster than typing." Below the text sits a second, pill-shaped black "Download for macOS" call-to-action button, centered on an otherwise plain white background. The page is evidence of a dictation-to-text macOS app being promoted with a speed and polish claim over traditional typing.
+        text: A screenshot of a marketing landing page for a product called Typeless, with a bird-like logo and top navigation links for Manifesto, Pricing, and About, plus a black "Download for macOS" button in the corner. The large centered headline reads "Speak, don't type" in bold black-and-gray text, followed by a paragraph explaining that speaking naturally lets Typeless "turn your words into polished messages, emails, and documents" that read as if carefully typed, in real time, and "4x faster than typing." Below the text sits a second, pill-shaped black "Download for macOS" call-to-action button, centered on an otherwise plain white background. The page is evidence of a dictation-to-text macOS app being promoted with a speed and polish claim over traditional typing.
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.086122Z
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - browser
+    - homepage
+    - macos
+    - speech-to-text
   2acad555d6fe7cbcd5b153ce945585a0:
+    category: photograph
     description:
       en-US:
-        text: |-
-          A photograph taken along a paved footpath cutting through a park or residential courtyard, with weeds and grass sprouting through cracks in the worn concrete. Thick, somewhat overgrown shrubs and bamboo-like hedges line both sides, flanked by trees with white-painted trunks on the right and a leafless tree and a rusted, roofless metal pergola structure in the middle distance. Beyond a low fence and railing on the left stands a tan multi-story building, its windows partly obscured by bare branches, while soft, hazy daylight suggests an overcast morning or late afternoon. The neglected pavement and untrimmed vegetation suggest a lightly maintained green space within an older apartment complex or institutional compound.
+        text: A photograph taken along a paved footpath cutting through a park or residential courtyard, with weeds and grass sprouting through cracks in the worn concrete. Thick, somewhat overgrown shrubs and bamboo-like hedges line both sides, flanked by trees with white-painted trunks on the right and a leafless tree and a rusted, roofless metal pergola structure in the middle distance. Beyond a low fence and railing on the left stands a tan multi-story building, its windows partly obscured by bare branches, while soft, hazy daylight suggests an overcast morning or late afternoon. The neglected pavement and untrimmed vegetation suggest a lightly maintained green space within an older apartment complex or institutional compound.
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.086168Z
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - cityscape
+    - footpath
+    - garden
+    - shrubs
   3f34360a5eb3c9ec303ca1035cc2453b:
+    category: screenshot
     description:
       en-US:
-        text: |-
-          A screenshot of the Bytecode Alliance's documentation page for Cranelift, with a top navigation bar linking to Documentation, API Reference, Contributing, Chat, and a GitHub icon. Below a large "Cranelift" heading, the body text describes it as a fast, secure, relatively simple, and innovative compiler backend written in Rust that compiles intermediate representations into executable machine code, used by the Wasmtime WebAssembly virtual machine for JIT and AOT compilation and experimentally as a Rust compiler backend. It goes on to state that Cranelift currently supports x86-64, aarch64 (ARM64), s390x (IBM Z), and riscv64 platforms, is retargetable, and welcomes further ISA contributions, and notes it is actively maintained for running sandboxed untrusted code with close-to-native performance, following Wasmtime's release and security policies. The page serves as evidence of Cranelift's project scope, supported architectures, and its role within the Bytecode Alliance ecosystem.
+        text: A screenshot of the Bytecode Alliance's documentation page for Cranelift, with a top navigation bar linking to Documentation, API Reference, Contributing, Chat, and a GitHub icon. Below a large "Cranelift" heading, the body text describes it as a fast, secure, relatively simple, and innovative compiler backend written in Rust that compiles intermediate representations into executable machine code, used by the Wasmtime WebAssembly virtual machine for JIT and AOT compilation and experimentally as a Rust compiler backend. It goes on to state that Cranelift currently supports x86-64, aarch64 (ARM64), s390x (IBM Z), and riscv64 platforms, is retargetable, and welcomes further ISA contributions, and notes it is actively maintained for running sandboxed untrusted code with close-to-native performance, following Wasmtime's release and security policies. The page serves as evidence of Cranelift's project scope, supported architectures, and its role within the Bytecode Alliance ecosystem.
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.086169Z
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - browser
+    - cranelift
+    - bytecode-alliance
+    - rust
+    - webassembly
   4a1d25650b1262d916f6571208a32764:
+    category: screenshot
     description:
       en-US:
-        text: |-
-          This is a screenshot of a personal developer's homepage, dark-themed, with navigation links across the top reading 首页, 文稿, 手记, 时光, 思考, and 更多, alongside a small circular avatar icon on the left and a profile icon on the right. The main content introduces the site owner with "Hi, I'm Innei" followed by a waving hand emoji, then "A NodeJS Full Stack <Developer />" and the tagline "An independent developer coding with love," accompanied by a row of eight social/contact icons below (including what appear to be Bilibili, NetEase Music, GitHub, email, RSS, Telegram, and X/Twitter). On the right side floats a large circular portrait of an anime-style girl with light lavender-white hair, a pink bow, and grey eyes, set against a pale blue background, while pink flower petals drift across the dark backdrop of the whole page. At the bottom, a small line of Chinese text reads a quote about the power of feeling teaching one to elevate life through responsibility, attributed to "your four inner powers."
+        text: This is a screenshot of a personal developer's homepage, dark-themed, with navigation links across the top reading 首页, 文稿, 手记, 时光, 思考, and 更多, alongside a small circular avatar icon on the left and a profile icon on the right. The main content introduces the site owner with "Hi, I'm Innei" followed by a waving hand emoji, then "A NodeJS Full Stack <Developer />" and the tagline "An independent developer coding with love," accompanied by a row of eight social/contact icons below (including what appear to be Bilibili, NetEase Music, GitHub, email, RSS, Telegram, and X/Twitter). On the right side floats a large circular portrait of an anime-style girl with light lavender-white hair, a pink bow, and grey eyes, set against a pale blue background, while pink flower petals drift across the dark backdrop of the whole page. At the bottom, a small line of Chinese text reads a quote about the power of feeling teaching one to elevate life through responsibility, attributed to "your four inner powers."
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.08617Z
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - homepage
+    - blog-framework
+    - hexo
   5104d3b6f735fbe76558681b4d37e8ce:
+    category: screenshot
     description:
       en-US:
-        text: |-
-          A terminal screenshot shows the tail end of a Cargo build log for a Rust workspace called "seam", titled `~/C/P/seam` with the shell running under user `canmi` on branch `main`. Dozens of dependency crates compile in sequence (console, reqwest, clap, tokio-tungstenite, notify, indicatif, and others), followed by the project's own crates — seam-codegen, seam-server-axum, seam-skeleton, seam-injector-wasm, seam-engine-wasm, seam-cli, all at version 0.5.38 — and several example backends (github-dashboard-axum, i18n-demo-axum, markdown-demo-rust, demo-server-rust). The log ends with `Finished \\`dev\\` profile [unoptimized + debuginfo] target(s) in 19.23s`, indicating a successful debug build of the whole workspace including its example applications.
+        text: A terminal screenshot shows the tail end of a Cargo build log for a Rust workspace called "seam", titled `~/C/P/seam` with the shell running under user `canmi` on branch `main`. Dozens of dependency crates compile in sequence (console, reqwest, clap, tokio-tungstenite, notify, indicatif, and others), followed by the project's own crates — seam-codegen, seam-server-axum, seam-skeleton, seam-injector-wasm, seam-engine-wasm, seam-cli, all at version 0.5.38 — and several example backends (github-dashboard-axum, i18n-demo-axum, markdown-demo-rust, demo-server-rust). The log ends with `Finished \\`dev\\` profile [unoptimized + debuginfo] target(s) in 19.23s`, indicating a successful debug build of the whole workspace including its example applications.
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.086172Z
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - terminal
+    - rust
+    - cargo
+    - macos
   5898c4f0bf6412e9323eca7b85c75365:
+    category: photograph
     description:
       en-US:
-        text: |-
-          A photograph taken indoors, likely in a parking garage or utility corridor, showing a rough concrete wall with a wall-mounted fire hydrant cabinet on the left, labeled "消火栓 / FIRE HYDRANT" in red text on white, alongside exposed pipes and a small wall-mounted exhaust vent above it. Painted in dripping red characters across the lower band of the wall is the warning "消防通道严禁停车" (fire lane, parking strictly prohibited), the paint runs suggesting it was applied by hand with a brush or roller rather than printed. The bare concrete floor, unfinished walls, and utility fittings indicate this is a service or basement area where the sign serves as evidence of an active effort to keep the fire access route clear of parked vehicles.
+        text: A photograph taken indoors, likely in a parking garage or utility corridor, showing a rough concrete wall with a wall-mounted fire hydrant cabinet on the left, labeled "消火栓 / FIRE HYDRANT" in red text on white, alongside exposed pipes and a small wall-mounted exhaust vent above it. Painted in dripping red characters across the lower band of the wall is the warning "消防通道严禁停车" (fire lane, parking strictly prohibited), the paint runs suggesting it was applied by hand with a brush or roller rather than printed. The bare concrete floor, unfinished walls, and utility fittings indicate this is a service or basement area where the sign serves as evidence of an active effort to keep the fire access route clear of parked vehicles.
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.086172Z
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - fire-hydrant
+    - garage
+    - wall
+    - sign
   5c33f853b73251e594e7c0eaca0a5709:
+    category: screenshot
     description:
       en-US:
-        text: |-
-          This is a screenshot of the Next.js homepage, dark-themed with a triangular logo and a top nav listing Showcase, Docs, Blog, Templates, Enterprise, a search bar, and Deploy and Learn buttons. The hero section reads "The React Framework for the Web," followed by subtext explaining that Next.js is used by some of the world's largest companies to build high-quality web applications with React components. Below that sit two buttons, "Get Started" and "Learn Next.js," and a terminal-style command line reading "npx create-next-app@latest," evidencing the site's role as the framework's official marketing and onboarding landing page.
+        text: This is a screenshot of the Next.js homepage, dark-themed with a triangular logo and a top nav listing Showcase, Docs, Blog, Templates, Enterprise, a search bar, and Deploy and Learn buttons. The hero section reads "The React Framework for the Web," followed by subtext explaining that Next.js is used by some of the world's largest companies to build high-quality web applications with React components. Below that sit two buttons, "Get Started" and "Learn Next.js," and a terminal-style command line reading "npx create-next-app@latest," evidencing the site's role as the framework's official marketing and onboarding landing page.
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.086173Z
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - browser
+    - homepage
+    - react
   6da637a66b48711354532477ac3f2014:
+    category: artwork
     description:
       en-US:
-        text: |-
-          This is a screenshot mockup promoting a blog theme, showing a "Nlvi" wordmark logo with a coral underline on the left, paired with two overlapping browser-window previews of a site built with the Hexo static-site generator. Both preview panes display the same demo post dated 2013-12-27, titled "Elements," with placeholder Lorem Ipsum text and a full stack of typographic samples: headings 1 through 6 in descending size, a paragraph section with styled links, bold and italic text, underlines, and a blockquote, followed by a three-column table with "Table Header 1/2/3" and "Division" rows. The top navigation bar reads "ARTICLE, ARCHIVES, TAGS, ABOUT" alongside a search icon, indicating this is a style-guide or theme-demo page meant to showcase how HTML elements render within the Hexo theme.
+        text: 'This is a screenshot mockup promoting a blog theme, showing a "Nlvi" wordmark logo with a coral underline on the left, paired with two overlapping browser-window previews of a site built with the Hexo static-site generator. Both preview panes display the same demo post dated 2013-12-27, titled "Elements," with placeholder Lorem Ipsum text and a full stack of typographic samples: headings 1 through 6 in descending size, a paragraph section with styled links, bold and italic text, underlines, and a blockquote, followed by a three-column table with "Table Header 1/2/3" and "Division" rows. The top navigation bar reads "ARTICLE, ARCHIVES, TAGS, ABOUT" alongside a search icon, indicating this is a style-guide or theme-demo page meant to showcase how HTML elements render within the Hexo theme.'
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.086173Z
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - hexo
+    - blog-framework
+    - homepage
+    - responsive-design
   7d3a80a688fa627e4f3577f69b320867:
+    category: diagram
     description:
       en-US:
-        text: |-
-          This is a bar chart comparing link times across four linkers -- GNU ld 2.42, GNU gold 2.38, LLVM lld 19.0.0, and mold 2.4.0 -- on three programs of increasing binary size: MySQL 8.3 (0.47 GiB), Clang 19.0 (1.56 GiB), and Chromium 124 (1.35 GiB), with time to link in seconds on the vertical axis. GNU ld takes about 11 seconds on MySQL and roughly 42 seconds on Clang but has no bar for Chromium, GNU gold rises from about 7.5 seconds to 33 seconds to 27 seconds across the three, while LLVM lld and mold stay far lower throughout, with lld around 2, 5, and 6 seconds and mold consistently under 2 seconds. The chart is evidence that mold and LLVM lld scale far better with binary size than the traditional GNU ld and gold linkers, whose link times grow much more steeply as the program being linked gets larger.
+        text: 'This is a bar chart comparing link times across four linkers -- GNU ld 2.42, GNU gold 2.38, LLVM lld 19.0.0, and mold 2.4.0 -- on three programs of increasing binary size: MySQL 8.3 (0.47 GiB), Clang 19.0 (1.56 GiB), and Chromium 124 (1.35 GiB), with time to link in seconds on the vertical axis. GNU ld takes about 11 seconds on MySQL and roughly 42 seconds on Clang but has no bar for Chromium, GNU gold rises from about 7.5 seconds to 33 seconds to 27 seconds across the three, while LLVM lld and mold stay far lower throughout, with lld around 2, 5, and 6 seconds and mold consistently under 2 seconds. The chart is evidence that mold and LLVM lld scale far better with binary size than the traditional GNU ld and gold linkers, whose link times grow much more steeply as the program being linked gets larger.'
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.086174Z
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - linker
+    - benchmark
+    - rust
+    - mold
+    - cargo
   8acf126a993024efcb5d4db159659d40:
+    category: screenshot
     description:
       en-US:
-        text: |-
-          A screenshot of the Vercel marketing homepage on a black background, with a top navigation bar reading Products, Resources, Solutions, Enterprise, and Pricing, plus Ask AI, Log In, and Sign Up buttons beside the triangular Vercel logo. Beneath it, a large heading reads "Build and deploy on the AI Cloud," followed by the subtext "Vercel provides the developer tools and cloud infrastructure to build, scale, and secure a faster, more personalized web," and two buttons labeled "Start Deploying" and "Get a Demo." The lower half is dominated by a glowing, faceted triangular prism rendered in a wireframe mesh style, radiating blue, green, orange, and red light across a grid backdrop, evidently a stylized 3D re-imagining of the Vercel logo used as hero art.
+        text: A screenshot of the Vercel marketing homepage on a black background, with a top navigation bar reading Products, Resources, Solutions, Enterprise, and Pricing, plus Ask AI, Log In, and Sign Up buttons beside the triangular Vercel logo. Beneath it, a large heading reads "Build and deploy on the AI Cloud," followed by the subtext "Vercel provides the developer tools and cloud infrastructure to build, scale, and secure a faster, more personalized web," and two buttons labeled "Start Deploying" and "Get a Demo." The lower half is dominated by a glowing, faceted triangular prism rendered in a wireframe mesh style, radiating blue, green, orange, and red light across a grid backdrop, evidently a stylized 3D re-imagining of the Vercel logo used as hero art.
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.086175Z
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - browser
+    - homepage
+    - vercel
+    - responsive-design
   8d32cfe9437f0bba72819263799a99ca:
+    category: photograph
     description:
       en-US:
-        text: |-
-          A photograph, taken outdoors looking straight down at a patch of lawn where green grass blades push up through a scattering of dry, brittle brown and beige leaves and thatch. A couple of curled reddish-brown leaves sit near the center of the frame, flanked by two thin pale twigs bending upward through the vegetation, with a bit of white plastic debris visible at the lower left edge. The lighting is soft and even, consistent with an overcast day or diffuse daylight, and the image reads as an unremarkable close-up snapshot of ground cover rather than a staged or documentary shot of anything in particular.
+        text: A photograph, taken outdoors looking straight down at a patch of lawn where green grass blades push up through a scattering of dry, brittle brown and beige leaves and thatch. A couple of curled reddish-brown leaves sit near the center of the frame, flanked by two thin pale twigs bending upward through the vegetation, with a bit of white plastic debris visible at the lower left edge. The lighting is soft and even, consistent with an overcast day or diffuse daylight, and the image reads as an unremarkable close-up snapshot of ground cover rather than a staged or documentary shot of anything in particular.
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.086176Z
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - grass
+    - garden
+    - fallen-leaves
   917811350fbfc7af291fce7bd549ef3e:
+    category: photograph
     description:
       en-US:
-        text: |-
-          A photograph taken along a weathered wooden boardwalk that runs beneath a series of rusted metal pergola frames, their trellis tops long since stripped of any climbing plants and left bare against the sky. Dense bamboo and overgrown shrubs crowd both sides of the path, their leaves catching daylight while the wood planks below show gaps, warping, and patches of moss or sprouting weeds pushing up between the boards. In the distance the walkway continues past bare-branched winter trees toward what looks like a pond or open clearing, with a cluster of residential high-rises visible above the greenery on the upper left. The overall impression is of an abandoned or neglected park walkway, reclaimed by vegetation after a period of disuse.
+        text: A photograph taken along a weathered wooden boardwalk that runs beneath a series of rusted metal pergola frames, their trellis tops long since stripped of any climbing plants and left bare against the sky. Dense bamboo and overgrown shrubs crowd both sides of the path, their leaves catching daylight while the wood planks below show gaps, warping, and patches of moss or sprouting weeds pushing up between the boards. In the distance the walkway continues past bare-branched winter trees toward what looks like a pond or open clearing, with a cluster of residential high-rises visible above the greenery on the upper left. The overall impression is of an abandoned or neglected park walkway, reclaimed by vegetation after a period of disuse.
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.086176Z
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - garden
+    - footpath
+    - shrubs
+    - cityscape
   a10408f6aebb21591eed99bdacd7c1e5:
+    category: photograph
     description:
       en-US:
-        text: |-
-          A photograph taken from an elevated riverside promenade, looking out over a wide, calm expanse of grayish-brown river water under an overcast, hazy sky. Two street lamps and a metal railing line the foreground walkway, while a dense mat of dark floating debris or algae hugs the near shoreline, spreading out in an irregular band before giving way to open water. In the far distance, faint vertical reflections suggest the pillars of a bridge or elevated structure, with a small red-and-dark boat or buoy barely visible near the horizon. The murky water and drifting clutter near the shore point to poor water quality or accumulated pollution along this stretch of the river.
+        text: A photograph taken from an elevated riverside promenade, looking out over a wide, calm expanse of grayish-brown river water under an overcast, hazy sky. Two street lamps and a metal railing line the foreground walkway, while a dense mat of dark floating debris or algae hugs the near shoreline, spreading out in an irregular band before giving way to open water. In the far distance, faint vertical reflections suggest the pillars of a bridge or elevated structure, with a small red-and-dark boat or buoy barely visible near the horizon. The murky water and drifting clutter near the shore point to poor water quality or accumulated pollution along this stretch of the river.
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.086177Z
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - river
+    - footpath
+    - wall
   a46df6030a9b1ba3f0af95e1a2196850:
+    category: photograph
     description:
       en-US:
-        text: |-
-          It's a photograph taken outdoors, looking down at a low, dense hedge of small-leaved shrubs planted along a street or sidewalk, with a granite curb running diagonally from the lower left toward the upper right and a paved road visible in the bottom-left corner. The hedge shows fresh light-green new growth on darker woody branches, with a tree trunk base visible near the top edge and a strip of mulched or bare brown ground beyond the shrubs. Bright, direct sunlight casts sharp shadows across the leaves and curb, suggesting the photo was taken around midday.
+        text: It's a photograph taken outdoors, looking down at a low, dense hedge of small-leaved shrubs planted along a street or sidewalk, with a granite curb running diagonally from the lower left toward the upper right and a paved road visible in the bottom-left corner. The hedge shows fresh light-green new growth on darker woody branches, with a tree trunk base visible near the top edge and a strip of mulched or bare brown ground beyond the shrubs. Bright, direct sunlight casts sharp shadows across the leaves and curb, suggesting the photo was taken around midday.
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.086177Z
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - shrubs
+    - garden
+    - footpath
+    - curb
   a853e69c33ee2c50ed9125ff947b2d49:
+    category: screenshot
     description:
       en-US:
-        text: |-
-          This is a screenshot of a marketing website's hero section, rendered on a warm orange gradient background with a subtle dotted texture. A navigation bar spans the top with links for Products, Solutions, Resources, and Pricing, plus Login and Start building buttons on the right. The headline reads "Everything we learned from powering 20% of the Internet — yours by default," followed by subtext identifying the company as Cloudflare and describing it as an "AI Cloud with compute, AI inference, and storage" that lets users "ship applications instead of managing infrastructure," with a second Start building call-to-action button centered below.
+        text: This is a screenshot of a marketing website's hero section, rendered on a warm orange gradient background with a subtle dotted texture. A navigation bar spans the top with links for Products, Solutions, Resources, and Pricing, plus Login and Start building buttons on the right. The headline reads "Everything we learned from powering 20% of the Internet — yours by default," followed by subtext identifying the company as Cloudflare and describing it as an "AI Cloud with compute, AI inference, and storage" that lets users "ship applications instead of managing infrastructure," with a second Start building call-to-action button centered below.
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.086178Z
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - browser
+    - homepage
+    - responsive-design
   a904d61e5006b602f7c6efd236911d78:
+    category: screenshot
     description:
       en-US:
-        text: |-
-          A screenshot of a terminal or app window displaying a dark-themed data table titled with a truncated path ending in "roject," listing daily model usage across dated rows from 2026-03-03 to 2026-03-13, with columns for the models used (combinations of haiku-4-5, opus-4-6, and sonnet-4-6), several numeric usage columns growing into the billions, and a final dollar-cost column ranging from about $97.92 to $1,765.56 per day. The highest cost and token counts appear on 2026-03-09 (over 3.27 billion in the largest column, $1,765.56), while 2026-03-12 shows a sharp drop to $97.92, suggesting a partial or anomalous day. This appears to be evidence of AI API usage and billing tracking, likely from a cost-monitoring dashboard for a software project.
+        text: A screenshot of a terminal or app window displaying a dark-themed data table titled with a truncated path ending in "roject," listing daily model usage across dated rows from 2026-03-03 to 2026-03-13, with columns for the models used (combinations of haiku-4-5, opus-4-6, and sonnet-4-6), several numeric usage columns growing into the billions, and a final dollar-cost column ranging from about $97.92 to $1,765.56 per day. The highest cost and token counts appear on 2026-03-09 (over 3.27 billion in the largest column, $1,765.56), while 2026-03-12 shows a sharp drop to $97.92, suggesting a partial or anomalous day. This appears to be evidence of AI API usage and billing tracking, likely from a cost-monitoring dashboard for a software project.
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.086179Z
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - macos
+    - terminal
+    - benchmark
   c4297c3fd885b805484659786e1fb561:
     description:
       en-US:
-        text: |-
-          A screenshot of the Remix framework website, with the Remix logo top-left and a navigation bar linking to Blog, Jam, Store, and V2 Docs top-right. The centered headline reads "Remix 3 is under active development," subtitled "A new full stack framework built on Web APIs," and below it sits an illustration of a car-shaped object draped in a black cloth cover, with the Remix arrow logo and a rainbow-striped diagonal band peeking through where the fabric drapes over its hood. The car-under-a-sheet imagery evokes a product unveiling or teaser, signaling that Remix 3 is a forthcoming release still being built.
+        text: A screenshot of the Remix framework website, with the Remix logo top-left and a navigation bar linking to Blog, Jam, Store, and V2 Docs top-right. The centered headline reads "Remix 3 is under active development," subtitled "A new full stack framework built on Web APIs," and below it sits an illustration of a car-shaped object draped in a black cloth cover, with the Remix arrow logo and a rainbow-striped diagonal band peeking through where the fabric drapes over its hood. The car-under-a-sheet imagery evokes a product unveiling or teaser, signaling that Remix 3 is a forthcoming release still being built.
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.086179Z
@@ -223,8 +314,7 @@ media:
   cbc260f16e936f977570f8fb391f48e2:
     description:
       en-US:
-        text: |-
-          This is a screenshot of a terminal window titled "~/C/P/seam" showing the tail end of a `cargo build --release` run for a project called "seam." The scroll lists dozens of dependency crates compiling in sequence — walkdir, rand, tungstenite, sha2, toml, notify, rquickjs, clap and others — followed by the project's own workspace members such as seam-codegen, seam-skeleton, seam-injector-wasm, seam-engine-wasm, seam-server, seam-server-axum, seam-cli, and several example backends (demo-server-rust, github-dashboard-axum, markdown-demo-rust, i18n-demo-axum). The final lines confirm success: "Finished `release` profile [optimized] target(s) in 1m 05s," followed by an idle shell prompt reading `canmi@xyy ~/C/P/seam (main)>`. It is evidence of a clean, complete release build of a multi-crate Rust monorepo with WASM and Axum server components.
+        text: 'This is a screenshot of a terminal window titled "~/C/P/seam" showing the tail end of a `cargo build --release` run for a project called "seam." The scroll lists dozens of dependency crates compiling in sequence — walkdir, rand, tungstenite, sha2, toml, notify, rquickjs, clap and others — followed by the project''s own workspace members such as seam-codegen, seam-skeleton, seam-injector-wasm, seam-engine-wasm, seam-server, seam-server-axum, seam-cli, and several example backends (demo-server-rust, github-dashboard-axum, markdown-demo-rust, i18n-demo-axum). The final lines confirm success: "Finished `release` profile [optimized] target(s) in 1m 05s," followed by an idle shell prompt reading `canmi@xyy ~/C/P/seam (main)>`. It is evidence of a clean, complete release build of a multi-crate Rust monorepo with WASM and Axum server components.'
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.08618Z
@@ -234,8 +324,7 @@ media:
   ccab92399398f1642024732cc1097abe:
     description:
       en-US:
-        text: |-
-          A screenshot of a personal blog homepage shows a sidebar with an anime-style avatar, the name "小汐", a "主页" link, and "所有文章/友链/关于我" navigation along with GitHub and other social icons, sitting beside a feed of pinned posts. The top post, dated 2023-01-29 and tagged "置顶" (pinned), is titled "PD-METER-R4" with the note "正在开发，相较于R3优化布局，更换主控，增加少量新功能" (in development, layout optimized versus R3, main controller replaced, a few new features added), illustrated by two photos of a green PCB labeled "USBC-R4 SAKURA" showing its component side and its bare reverse side on a fabric backdrop. Below it, a second post titled "WORX-BAT-Charger" dated 2023-02-14 begins, cut off at the bottom of the frame. The image serves as evidence of an ongoing hardware project documenting iterative revisions of a USB-C PD (power delivery) measurement device.
+        text: A screenshot of a personal blog homepage shows a sidebar with an anime-style avatar, the name "小汐", a "主页" link, and "所有文章/友链/关于我" navigation along with GitHub and other social icons, sitting beside a feed of pinned posts. The top post, dated 2023-01-29 and tagged "置顶" (pinned), is titled "PD-METER-R4" with the note "正在开发，相较于R3优化布局，更换主控，增加少量新功能" (in development, layout optimized versus R3, main controller replaced, a few new features added), illustrated by two photos of a green PCB labeled "USBC-R4 SAKURA" showing its component side and its bare reverse side on a fabric backdrop. Below it, a second post titled "WORX-BAT-Charger" dated 2023-02-14 begins, cut off at the bottom of the frame. The image serves as evidence of an ongoing hardware project documenting iterative revisions of a USB-C PD (power delivery) measurement device.
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.08618Z
@@ -245,8 +334,7 @@ media:
   d4fb6031c436599353a6a90fdd99792c:
     description:
       en-US:
-        text: |-
-          A close-up photograph of a weathered wooden boardwalk or dock, shot from a low angle looking down the length of the planks as they recede into the distance. The gray, sun-bleached boards show heavy wear -- splintered edges, protruding rusty nail heads, and several boards cracked or broken through, with tufts of green grass and dead leaves pushing up through the gaps on the left side. The overall condition points to long-term outdoor exposure and neglect, suggesting the structure is due for repair or replacement.
+        text: A close-up photograph of a weathered wooden boardwalk or dock, shot from a low angle looking down the length of the planks as they recede into the distance. The gray, sun-bleached boards show heavy wear -- splintered edges, protruding rusty nail heads, and several boards cracked or broken through, with tufts of green grass and dead leaves pushing up through the gaps on the left side. The overall condition points to long-term outdoor exposure and neglect, suggesting the structure is due for repair or replacement.
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.086181Z
@@ -256,8 +344,7 @@ media:
   ff309d022981d9168fca9e5e9b7291e4:
     description:
       en-US:
-        text: |-
-          A photograph taken looking straight up into the sky, dominated by scattered wisps and clusters of white cumulus fragments against a hazy blue-gray backdrop. The clouds cluster more densely toward the upper left, thinning to open sky in the center and right, while the silhouetted, leafy branches of a tree cut into the frame along the right edge, their dark foliage backlit by the overcast light. The soft, diffuse illumination suggests a bright but sun-obscured day, with the upward angle and tree branch giving the shot the feel of a casual, ground-level nature snapshot rather than a staged composition.
+        text: A photograph taken looking straight up into the sky, dominated by scattered wisps and clusters of white cumulus fragments against a hazy blue-gray backdrop. The clouds cluster more densely toward the upper left, thinning to open sky in the center and right, while the silhouetted, leafy branches of a tree cut into the frame along the right edge, their dark foliage backlit by the overcast light. The soft, diffuse illumination suggests a bright but sun-obscured day, with the upward angle and tree branch giving the shot the feel of a casual, ground-level nature snapshot rather than a staged composition.
         provider: anthropic
         model: claude-sonnet-5
         at: 2026-07-31T20:16:43.086182Z

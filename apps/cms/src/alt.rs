@@ -9,9 +9,9 @@
 //! dearer per call than the raw API, neither of which matters for a batch that runs once per
 //! imported picture.
 
+use crate::i18n::runner::{self, Refusal, Runner};
 use crate::image::manifest::Merged;
 use crate::media::{self, Entry};
-use claude_codes::{AsyncClient, ClaudeModel, ClaudeOutput, cli::ClaudeCliBuilder};
 use indicatif::{ProgressBar, ProgressStyle};
 use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
@@ -28,10 +28,6 @@ pub const PARALLEL: usize = 4;
 /// One language out of the model, then translated like anything else. Asking for eight at
 /// once would mean eight looks at the same picture, and the picture does not change.
 const SOURCE_LOCALE: &str = "en-US";
-
-/// Sonnet: this is description, not reasoning, and the ceiling on quality here is how
-/// carefully the picture is read rather than how hard it is thought about.
-const MODEL: ClaudeModel = ClaudeModel::Sonnet;
 
 /// What the model is asked for.
 ///
@@ -149,60 +145,32 @@ fn originals_by_id(originals: &Path) -> BTreeMap<String, PathBuf> {
 		.collect()
 }
 
-/// Ask the CLI to describe one image.
-async fn describe(path: &Path) -> Result<(String, Spend), String> {
-	// No prompt on the builder: the client speaks to the CLI over a stream, and the question
-	// goes through `query`. Setting both would put the CLI in one-shot mode and leave the
-	// stream waiting for an answer to a question it had already been given.
-	let builder = ClaudeCliBuilder::new()
-		.model(MODEL.cli_arg())
-		// Reading a file is the entire job. Granting more would let a description turn into an
-		// edit, and this command runs unattended over a whole library.
-		.allowed_tools(["Read"]);
-
-	let mut client = AsyncClient::from_builder(builder)
-		.await
-		.map_err(|error| error.to_string())?;
-	let outputs = client
-		.query(&prompt(path))
-		.await
-		.map_err(|error| error.to_string())?;
-	let _ = client.shutdown().await;
-
-	// The result message is the CLI's own verdict on the turn, so it is read instead of the
-	// assistant text: it says whether the run failed, which prose never would.
-	let result = outputs.iter().find_map(|output| match output {
-		ClaudeOutput::Result(message) => Some(message),
-		_ => None,
-	});
-	let Some(message) = result else {
-		return Err("the CLI ended without a result".to_owned());
-	};
-	if message.is_error {
-		return Err(format!("{:?}", message.subtype));
-	}
-
-	let text = message.result.clone().unwrap_or_default().trim().to_owned();
+/// Ask an agent to describe one image.
+///
+/// Through the shared runner, so `--model` picks who answers and the same allowance handling
+/// applies here as everywhere else. The provider and model recorded afterwards come from what
+/// actually ran rather than from a constant in this file.
+async fn describe(runner: Runner, path: &Path) -> Result<(String, Spend, String), Refusal> {
+	let answer = runner::ask(runner, &prompt(path), runner.model_for_vision()).await?;
+	let text = answer.text.trim().to_owned();
 	if text.is_empty() {
-		return Err("the model returned nothing".to_owned());
+		return Err(Refusal::Failed("the model returned nothing".to_owned()));
 	}
-
-	// Cache reads and writes are counted apart from fresh input because they are billed
-	// differently and, on a batch like this, dominate: the system prompt is identical every
-	// time, so most of what the model sees it has seen before.
-	let usage = message.usage.as_ref();
 	let spend = Spend {
-		input: usage.map_or(0, |u| u64::from(u.input_tokens)),
-		output: usage.map_or(0, |u| u64::from(u.output_tokens)),
-		cache_read: usage.map_or(0, |u| u64::from(u.cache_read_input_tokens)),
-		cache_written: usage.map_or(0, |u| u64::from(u.cache_creation_input_tokens)),
-		usd: message.total_cost_usd,
+		// The runner reports one total; the split by billing class is only available from
+		// Claude's envelope, and inventing zeros for the rest would read as measurement.
+		input: answer.tokens,
+		output: 0,
+		cache_read: 0,
+		cache_written: 0,
+		usd: answer.usd,
 	};
-	Ok((text, spend))
+	Ok((text, spend, answer.model))
 }
 
 /// Describe every asset that has no description yet, and record what came back.
 pub async fn run(
+	runner: Runner,
 	merged: &Merged,
 	described: &mut media::Media,
 	originals: &Path,
@@ -234,14 +202,17 @@ pub async fn run(
 	// Bounded rather than unbounded: the point of the limit is that it holds.
 	let mut queue = todo.into_iter();
 	let mut running = Vec::new();
-	let mut results: Vec<(String, Result<(String, Spend), String>)> = Vec::new();
+	type Finished = (String, Result<(String, Spend, String), Refusal>);
+	let mut results: Vec<Finished> = Vec::new();
 
 	loop {
 		while running.len() < PARALLEL {
 			let Some((cid, path)) = queue.next() else {
 				break;
 			};
-			running.push(tokio::spawn(async move { (cid, describe(&path).await) }));
+			running.push(tokio::spawn(
+				async move { (cid, describe(runner, &path).await) },
+			));
 		}
 		if running.is_empty() {
 			break;
@@ -251,7 +222,7 @@ pub async fn run(
 		let finished = running.remove(0);
 		match finished.await {
 			Ok(result) => results.push(result),
-			Err(error) => results.push((String::new(), Err(error.to_string()))),
+			Err(error) => results.push((String::new(), Err(Refusal::Failed(error.to_string())))),
 		}
 		bar.inc(1);
 	}
@@ -259,7 +230,7 @@ pub async fn run(
 
 	for (cid, result) in results {
 		match result {
-			Ok((text, spend)) => {
+			Ok((text, spend, model)) => {
 				outcome.spent.add(spend);
 				let entry = described.media.entry(cid).or_insert_with(Entry::default);
 				// Written under the source locale the article is authored in. `cms i18n` fills
@@ -268,8 +239,8 @@ pub async fn run(
 					SOURCE_LOCALE.to_owned(),
 					crate::i18n::store::Translation {
 						text,
-						provider: "anthropic".to_owned(),
-						model: crate::i18n::model::normalise("claude-sonnet-5"),
+						provider: runner.provider().to_owned(),
+						model,
 						at: crate::image::manifest::now(),
 						seconds: 0.0,
 						tokens: spend.total_in() + spend.output,
@@ -278,7 +249,7 @@ pub async fn run(
 				);
 				outcome.described += 1;
 			}
-			Err(error) => outcome.failed.push((cid, error)),
+			Err(error) => outcome.failed.push((cid, error.to_string())),
 		}
 	}
 	outcome

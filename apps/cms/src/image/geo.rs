@@ -82,8 +82,12 @@ pub struct Gazetteer {
 	regions: HashMap<String, String>,
 	/// `US.NC.183` to the county's name.
 	subregions: HashMap<String, String>,
-	/// Postal areas, when that file has been fetched.
-	postal: Option<RTree<Postal>>,
+	/// Postal areas, built the first time a photograph turns out to have a position.
+	///
+	/// Fourteen seconds for 1.8 million points, and most imports are screenshots with no GPS
+	/// at all. Paying that before knowing whether anything will ask is the cost of a guess.
+	postal: std::cell::OnceCell<Option<RTree<Postal>>>,
+	root: std::path::PathBuf,
 	finder: tzf_rs::DefaultFinder,
 }
 
@@ -107,6 +111,7 @@ impl Gazetteer {
 	/// Read the gazetteer, or `None` when it has not been fetched.
 	pub fn open(repo: &Path) -> Option<Self> {
 		let root = repo.join(DIRECTORY);
+		let root_for_later = root.clone();
 		let cities = std::fs::read_to_string(root.join("cities500.txt")).ok()?;
 
 		let mut countries = HashMap::new();
@@ -190,9 +195,40 @@ impl Gazetteer {
 			countries,
 			regions,
 			subregions,
-			postal,
+			postal: std::cell::OnceCell::new(),
+			root: root_for_later,
 			finder: tzf_rs::DefaultFinder::new(),
 		})
+	}
+
+	/// The postal index, read on first use.
+	///
+	/// By far the largest file here, and only ever needed by an image that recorded where it
+	/// was taken. Absent, postal codes are simply missing -- the same state as before it was
+	/// fetched.
+	fn postal(&self) -> Option<&RTree<Postal>> {
+		self
+			.postal
+			.get_or_init(|| {
+				let text = std::fs::read_to_string(self.root.join("postal.txt")).ok()?;
+				let points: Vec<Postal> = text
+					.lines()
+					.filter_map(|line| {
+						let f: Vec<&str> = line.split('\t').collect();
+						if f.len() < 11 {
+							return None;
+						}
+						Some(Postal {
+							lat: f[9].parse().ok()?,
+							lon: f[10].parse().ok()?,
+							code: f[1].to_owned(),
+							country: f[0].to_owned(),
+						})
+					})
+					.collect();
+				Some(RTree::bulk_load(points))
+			})
+			.as_ref()
 	}
 
 	/// The address for a position, as far as the data can say.
@@ -221,8 +257,7 @@ impl Gazetteer {
 		// Found by position, then checked against the country the town is in: a code is not
 		// unique on its own, and the nearest point to a border could belong to the other side.
 		let postal_code = self
-			.postal
-			.as_ref()
+			.postal()
 			.and_then(|tree| tree.nearest_neighbor([lon, lat]))
 			.filter(|found| found.country == place.country)
 			.map(|found| found.code.clone());

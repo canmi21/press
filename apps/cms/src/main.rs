@@ -9,6 +9,7 @@ use std::process::ExitCode;
 
 mod alt;
 mod check;
+mod classify;
 mod favicon;
 mod gc;
 mod i18n;
@@ -18,6 +19,7 @@ mod opengraph;
 mod paths;
 mod port;
 mod refs;
+mod tags;
 
 fn main() -> ExitCode {
 	let args: Vec<String> = std::env::args().skip(1).collect();
@@ -27,6 +29,7 @@ fn main() -> ExitCode {
 		Some("image") => process_images(&args[1..]),
 		Some("check") => check_assets(),
 		Some("og") => render_cards(&args[1..]),
+		Some("tag") => classify_images(&args[1..]),
 		Some("i18n") => translate_articles(&args[1..]),
 		Some("alt") => describe_images(&args[1..]),
 		Some("gc") => collect_garbage(&args[1..]),
@@ -148,6 +151,12 @@ fn describe_images(args: &[String]) -> ExitCode {
 		.position(|arg| arg == "--limit")
 		.and_then(|at| args.get(at + 1))
 		.and_then(|value| value.parse::<usize>().ok());
+	let runner = args
+		.iter()
+		.position(|arg| arg == "--model")
+		.and_then(|at| args.get(at + 1))
+		.and_then(|name| i18n::runner::Runner::parse(name))
+		.unwrap_or(i18n::runner::DEFAULT);
 
 	let root = match paths::repo_root() {
 		Ok(root) => root,
@@ -171,7 +180,14 @@ fn describe_images(args: &[String]) -> ExitCode {
 			return ExitCode::FAILURE;
 		}
 	};
-	let outcome = runtime.block_on(alt::run(&merged, &mut described, &originals, force, limit));
+	let outcome = runtime.block_on(alt::run(
+		runner,
+		&merged,
+		&mut described,
+		&originals,
+		force,
+		limit,
+	));
 
 	for (cid, error) in &outcome.failed {
 		eprintln!("fail  {cid}: {error}");
@@ -229,7 +245,7 @@ fn translate_articles(args: &[String]) -> ExitCode {
 		.and_then(|value| value.parse::<usize>().ok());
 
 	let mut only: Vec<std::path::PathBuf> = Vec::new();
-	let mut runner = i18n::runner::Runner::Claude;
+	let mut runner = i18n::runner::DEFAULT;
 	let mut skip = false;
 	for (at, arg) in args.iter().enumerate() {
 		if skip {
@@ -366,6 +382,71 @@ fn render_cards(args: &[String]) -> ExitCode {
 		outcome.skipped,
 		outcome.failed.len()
 	);
+	if outcome.failed.is_empty() {
+		ExitCode::SUCCESS
+	} else {
+		ExitCode::FAILURE
+	}
+}
+
+/// Give every asset a category and a handful of tags.
+fn classify_images(args: &[String]) -> ExitCode {
+	let force = args.iter().any(|arg| arg == "--force");
+	let limit = args
+		.iter()
+		.position(|arg| arg == "--limit")
+		.and_then(|at| args.get(at + 1))
+		.and_then(|value| value.parse::<usize>().ok());
+	let runner = args
+		.iter()
+		.position(|arg| arg == "--model")
+		.and_then(|at| args.get(at + 1))
+		.and_then(|name| i18n::runner::Runner::parse(name))
+		.unwrap_or(i18n::runner::DEFAULT);
+
+	let root = match paths::repo_root() {
+		Ok(root) => root,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
+	};
+	let runtime = match tokio::runtime::Runtime::new() {
+		Ok(runtime) => runtime,
+		Err(error) => {
+			eprintln!("could not start a runtime: {error}");
+			return ExitCode::FAILURE;
+		}
+	};
+	let outcome = match runtime.block_on(classify::run(&root, runner, force, limit)) {
+		Ok(outcome) => outcome,
+		Err(error) => {
+			eprintln!("could not write: {error}");
+			return ExitCode::FAILURE;
+		}
+	};
+
+	for (cid, error) in &outcome.failed {
+		eprintln!("fail  {cid}: {error}");
+	}
+	for cid in &outcome.unreadable {
+		eprintln!("warn  no original on hand for {cid}");
+	}
+	if !outcome.minted.is_empty() {
+		println!("new tags: {}", outcome.minted.join(", "));
+	}
+	if let Some(reason) = &outcome.exhausted {
+		println!("stopped: {reason}");
+	}
+	println!(
+		"{} classified, {} already done, {} failed",
+		outcome.classified,
+		outcome.skipped,
+		outcome.failed.len()
+	);
+	if outcome.classified > 0 {
+		println!("{} tokens, ${:.2}", outcome.tokens, outcome.usd);
+	}
 	if outcome.failed.is_empty() {
 		ExitCode::SUCCESS
 	} else {
@@ -542,10 +623,13 @@ fn usage() {
 	eprintln!("                              derive what the articles reference, then rewrite them");
 	eprintln!("  favicon [--force] [domain...]");
 	eprintln!("                              collect the icons the linkcards need");
-	eprintln!("  alt [--force] [--limit N]   describe assets that have no description yet");
+	eprintln!("  alt [--model M] [--force] [--limit N]");
+	eprintln!("                              describe assets that have no description yet");
 	eprintln!("  og [--force]                render an OpenGraph card per article");
 	eprintln!("  i18n [--model claude|gemini|gpt-oss] [--force] [--limit N] [article...]");
 	eprintln!("                              translate article segments into every locale");
+	eprintln!("  tag [--model M] [--force] [--limit N]");
+	eprintln!("                              give each asset a category and tags");
 	eprintln!("  check                       list referenced assets that are not present");
 	eprintln!("  gc [--live]                 drop published assets no article asks for");
 }

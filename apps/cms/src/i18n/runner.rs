@@ -21,6 +21,13 @@ pub enum Runner {
 	GptOss,
 }
 
+/// Which agent runs when a command is given no `--model`.
+///
+/// The open-weight one. Nothing here needs the strongest model available -- describing a
+/// picture and naming what is in it are reading tasks -- and a default that spends the most
+/// expensive allowance is a default that gets overridden every time.
+pub const DEFAULT: Runner = Runner::GptOss;
+
 impl Runner {
 	pub fn parse(name: &str) -> Option<Self> {
 		match name.trim().to_ascii_lowercase().as_str() {
@@ -59,6 +66,19 @@ impl Runner {
 			},
 			// One size offered, so every tier is the same string. Named per tier anyway, so
 			// that adding a second is a table edit rather than a restructure.
+			Self::GptOss => "gpt-oss-120b-medium",
+		}
+	}
+
+	/// The model for a task that involves looking at an image.
+	///
+	/// No tiering here. Reading a picture is the whole of the work and there is no structural
+	/// signal to route on -- a photograph and a screenshot are equally a look, unlike a
+	/// heading and a paragraph, which differ in what they can lose.
+	pub fn model_for_vision(self) -> &'static str {
+		match self {
+			Self::Claude => "sonnet",
+			Self::Gemini => "gemini-3.6-flash-high",
 			Self::GptOss => "gpt-oss-120b-medium",
 		}
 	}
@@ -107,10 +127,9 @@ pub async fn ask(runner: Runner, prompt: &str, model: &str) -> Result<Answer, Re
 }
 
 async fn claude(prompt: &str, model: &str) -> Result<Answer, Refusal> {
-	let builder = ClaudeCliBuilder::new()
-		.model(model)
-		// Nothing is read and nothing is written; the whole task is in the prompt.
-		.allowed_tools(Vec::<String>::new());
+	// Read, and nothing else. Some tasks name an image for the agent to open; none of them
+	// have any business writing, and this runs unattended over a whole library.
+	let builder = ClaudeCliBuilder::new().model(model).allowed_tools(["Read"]);
 
 	let mut client = AsyncClient::from_builder(builder)
 		.await

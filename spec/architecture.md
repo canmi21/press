@@ -423,6 +423,33 @@ again in CI; 249ms for a 4032x2268 frame is nothing against the AV1 encode that 
 the primary image is taken. A phone's HEIC may also hold a depth map, a gain map and the
 frames of a live photo, and none of those are wanted yet.
 
+### A category is closed; a tag is not
+
+Five categories -- photograph, screenshot, diagram, document, artwork -- and a distinction that
+can be drawn with a tag never earns a sixth. A terminal capture, a browser capture and an
+editor capture are all screenshots, and letting each become a kind of its own would grow that
+list once for every application that exists. The category says what sort of thing it is; tags
+say what is in it.
+
+Tags are raw names: lower case, digits, hyphens. What a reader sees lives in `data/tags.yaml`,
+per locale, so a brand keeps its capitals and a common noun gets translated without touching a
+single image. The constraint is the point -- `TypeScript`, `typescript` and `type-script`
+would otherwise be three tags for one thing, and care at the point of writing does not prevent
+that forever.
+
+Both answers come from one request, because they are one look at one picture. Asking
+separately would pay twice for the same glance and let the two disagree; a `screenshot` tagged
+`landscape` is a contradiction only a second request can produce.
+
+The existing tags go into the prompt in full, and images are classified one at a time rather
+than in parallel. A model shown nothing invents `terminal-window` beside `terminal` and `cli`
+beside both, and telling it to be consistent achieves nothing when it has nothing to be
+consistent with. Four running at once would each name the same thing before any could see the
+others.
+
+A malformed tag is dropped, never repaired. Turning `shell terminal` into `shell-terminal`
+invents a name nobody chose, which then competes with `terminal` forever.
+
 ### A card is named by its slug, and that is the exception
 
 Every other published asset is named by a hash of its bytes. An OpenGraph card is not:

@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"created": "2026-08-01T22:12:59.501555Z",
-	"updated": "2026-08-01T22:15:39.817202Z",
+	"updated": "2026-08-01T22:21:21.109551Z",
 	"media": {
 		"12faaa76365814de1195d6bdf1e5ba05": {
 			"type": "image",
@@ -376,7 +376,7 @@
 		"6da637a66b48711354532477ac3f2014": {
 			"type": "image",
 			"created": "2026-07-31T07:08:07.490003Z",
-			"updated": "2026-07-31T20:16:43.086173Z",
+			"updated": "2026-08-01T22:20:52.07249Z",
 			"blake3": "6da637a66b48711354532477ac3f2014",
 			"thumbhash": "PggCBYDuoedap4d/lmW5hQRpOqCm",
 			"source": {
@@ -386,6 +386,7 @@
 				"ratio": "670:441",
 				"bytes": 194346
 			},
+			"metadata": {},
 			"variants": {
 				"11aff4751923d2b584f49f59c1f9e61b": {
 					"mime": "image/avif",
@@ -702,7 +703,7 @@
 		"b5951446d4de92d1b15b929938562f02": {
 			"type": "image",
 			"created": "2026-08-01T21:56:39.552999Z",
-			"updated": "2026-08-01T22:12:59.498919Z",
+			"updated": "2026-08-01T22:21:21.108714Z",
 			"blake3": "b5951446d4de92d1b15b929938562f02",
 			"thumbhash": "XxgGJIb1uns9hXmveHgLUqUwRg==",
 			"source": {
