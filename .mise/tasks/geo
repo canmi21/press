@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+#MISE description="Fetch the offline gazetteer used to name where a photograph was taken"
+set -euo pipefail
+
+# 39MB of text, outside git like the photographs it describes. Absent, addresses are simply
+# missing -- the same state as an image whose EXIF carried no position -- so this is a thing
+# to run once rather than a dependency of any build.
+#
+# A task rather than a line in mise.toml because these are URLs a program resolves, and the
+# rule that they live in libs/urls exists so there is one spelling of each. A shell script
+# cannot import a TypeScript library, so single-sourcing them there would move the text
+# without removing the second copy. The same reasoning the dev ports are written twice under.
+# See spec/architecture.md.
+BASE="https://download.geonames.org/export/dump"
+TARGET="$(cd "$(dirname "$0")/../.." && pwd)/data/geo"
+
+mkdir -p "$TARGET"
+cd "$TARGET"
+
+for name in cities500.zip admin1CodesASCII.txt countryInfo.txt; do
+	echo "  fetching $name"
+	curl -sSL -O "$BASE/$name"
+done
+
+unzip -oq cities500.zip
+rm -f cities500.zip
+echo "  $(wc -l < cities500.txt | tr -d ' ') settlements, $(du -sh . | cut -f1) on disk"

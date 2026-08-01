@@ -1,6 +1,6 @@
 {
 	"version": 3,
-	"generated": "2026-08-01T21:51:21.741322Z",
+	"generated": "2026-08-01T22:00:43.377175Z",
 	"assets": {
 		"12faaa76365814de1195d6bdf1e5ba05": {
 			"type": "image",
@@ -695,6 +695,85 @@
 					"height": 389,
 					"quality": 0.68,
 					"bytes": 26902
+				}
+			}
+		},
+		"b5951446d4de92d1b15b929938562f02": {
+			"type": "image",
+			"created": "2026-08-01T21:56:39.552999Z",
+			"updated": "2026-08-01T22:00:43.376268Z",
+			"blake3": "b5951446d4de92d1b15b929938562f02",
+			"thumbhash": "XxgGJIb1uns9hXmveHgLUqUwRg==",
+			"source": {
+				"mime": "image/heic",
+				"width": 4032,
+				"height": 2268,
+				"ratio": "16:9",
+				"bytes": 1144225
+			},
+			"metadata": {
+				"captured": "2026-07-30T12:41:56.851-04:00",
+				"camera": {
+					"model": "iPhone 17 Pro",
+					"manufacturer": "Apple"
+				},
+				"lens": {
+					"model": "iPhone 17 Pro back triple camera 6.765mm f/1.78",
+					"manufacturer": "Apple",
+					"focal_length": 6.76,
+					"focal_length_35mm": 48,
+					"f_number": 1.78
+				},
+				"exposure": {
+					"time": "1/121",
+					"iso": 100,
+					"bias_ev": 0.0,
+					"mode": "auto exposure",
+					"program": "normal program",
+					"metering": "pattern",
+					"white_balance": "auto white balance",
+					"flash": false
+				},
+				"location": {
+					"latitude": 35.903,
+					"longitude": -78.8978,
+					"altitude": 80.84,
+					"accuracy": 5.36,
+					"direction": 151.55
+				},
+				"address": {
+					"continent": "North America",
+					"country": "United States",
+					"country_code": "US",
+					"region": "North Carolina",
+					"city": "Durham",
+					"timezone": "America/New_York"
+				},
+				"software": "26.6",
+				"color_space": "uncalibrated",
+				"orientation": 1
+			},
+			"variants": {
+				"1ed2da9fca4984e951f8343fab84a492": {
+					"mime": "image/avif",
+					"width": 1280,
+					"height": 720,
+					"quality": 0.68,
+					"bytes": 44797
+				},
+				"74cf2c0959d9a77e2cd04725035bccb1": {
+					"mime": "image/avif",
+					"width": 1920,
+					"height": 1080,
+					"quality": 0.68,
+					"bytes": 84960
+				},
+				"e0a1efff9946b65643f2627f1edebda3": {
+					"mime": "image/avif",
+					"width": 640,
+					"height": 360,
+					"quality": 0.68,
+					"bytes": 14453
 				}
 			}
 		},

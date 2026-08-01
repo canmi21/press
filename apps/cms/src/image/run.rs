@@ -53,6 +53,9 @@ pub fn run(
 	let mut merged = load(&merged_path);
 	let mut outcome = Outcome::default();
 	let scan = refs::scan(articles)?;
+	// Opened once for the whole run, and absent when the data has not been fetched -- which
+	// reads the same as a photograph carrying no position.
+	let gazetteer = super::geo::Gazetteer::open(repo);
 
 	// Records published under an older shape are rewritten from the merged manifest, which
 	// already holds everything they contain. Re-deriving to fix a version number would spend
@@ -98,7 +101,7 @@ pub fn run(
 			continue;
 		}
 
-		match publish(&bytes, &path, public, previous, keep) {
+		match publish(&bytes, &path, public, previous, keep, gazetteer.as_ref()) {
 			Ok(media) => {
 				if let Some(target) = reference.as_deref() {
 					note(&mut rewrites, target, &id, Some(&media));
@@ -258,12 +261,22 @@ fn publish(
 	public: &Path,
 	previous: Option<&Media>,
 	keep_original: bool,
+	gazetteer: Option<&super::geo::Gazetteer>,
 ) -> Result<Media, String> {
 	let derived = derive(bytes, keep_original).map_err(|error| error.to_string())?;
 	let mime = mime_of(path);
 	// Read once, at import. The published variants are stripped, so this is the only place the
 	// camera's account of the picture survives.
-	let metadata = super::exif::read(bytes);
+	let mut metadata = super::exif::read(bytes);
+	// The address is the one part not read from the file: it is looked up from the position,
+	// which is why it is filled here rather than in the reader.
+	if let Some(found) = metadata.as_mut()
+		&& let Some(location) = found.location.clone()
+		&& let (Some(lat), Some(lon)) = (location.latitude, location.longitude)
+		&& let Some(gazetteer) = gazetteer
+	{
+		found.address = gazetteer.lookup(lat, lon);
+	}
 	let media = manifest::media_for(
 		&derived,
 		mime,
@@ -348,6 +361,7 @@ fn mime_of(path: &Path) -> &'static str {
 		"webp" => "image/webp",
 		"avif" => "image/avif",
 		"gif" => "image/gif",
+		"heic" | "heif" => "image/heic",
 		_ => "application/octet-stream",
 	}
 }

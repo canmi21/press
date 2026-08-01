@@ -6,6 +6,7 @@
 
 pub mod encode;
 pub mod exif;
+pub mod geo;
 pub mod ladder;
 pub mod manifest;
 pub mod run;
@@ -62,10 +63,47 @@ impl std::fmt::Display for Error {
 	}
 }
 
+/// Decode whatever was handed over.
+///
+/// The `image` crate covers everything but HEIC, which is HEVC inside a HEIF container --
+/// the same container AVIF uses with a different codec inside, so support for one says
+/// nothing about the other. That path goes through a pure-Rust decoder rather than bindings
+/// to libheif: this runs on one machine and in CI, and a system library is a thing to install
+/// in both. Measured at 249ms for a 4032x2268 frame, which is nothing against the AV1 encode
+/// that follows.
+///
+/// Only the primary image. An iPhone HEIC may also carry a depth map, gain map and the frames
+/// of a live photo; none of those are wanted yet.
+fn load(original: &[u8]) -> Result<DynamicImage, Error> {
+	if is_heic(original) {
+		let out = heic::DecoderConfig::new()
+			.decode(original, heic::PixelLayout::Rgba8)
+			.map_err(|_| Error::Decode)?;
+		return image::RgbaImage::from_raw(out.width, out.height, out.data)
+			.map(DynamicImage::ImageRgba8)
+			.ok_or(Error::Decode);
+	}
+	image::load_from_memory(original).map_err(|_| Error::Decode)
+}
+
+/// Whether this is HEIF carrying HEVC, by its `ftyp` brand.
+///
+/// Read from the container rather than the filename: the extension is whatever the file was
+/// called when it arrived, and `data/image` holds files named by hash.
+fn is_heic(bytes: &[u8]) -> bool {
+	if bytes.len() < 12 || &bytes[4..8] != b"ftyp" {
+		return false;
+	}
+	matches!(
+		&bytes[8..12],
+		b"heic" | b"heix" | b"hevc" | b"hevx" | b"heim" | b"heis" | b"hevm" | b"hevs" | b"mif1"
+	)
+}
+
 /// Everything published for one original: its identity, its placeholder, and one variant per
 /// size and format.
 pub fn derive(original: &[u8], keep_original: bool) -> Result<Derived, Error> {
-	let image = image::load_from_memory(original).map_err(|_| Error::Decode)?;
+	let image = load(original)?;
 	let size = Size::new(image.width(), image.height());
 	let formats = encode::formats_for(&image);
 

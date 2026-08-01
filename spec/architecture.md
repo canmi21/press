@@ -388,6 +388,32 @@ led to -- the favicon did, and that is `aria-hidden` -- so the domain is added t
 with the new-tab warning that `:link` directives already emit. That last one was an
 inconsistency rather than a new decision.
 
+### Where a photograph was taken is worked out offline
+
+`cms image` reads EXIF once at import, because the original may not be on hand later and the
+published variants carry none of it -- a reader downloads pixels and nothing else. Nothing in
+that block is trusted about the _file_: EXIF describes what the sensor did, and one sample
+reports 4032x3024 for a frame that is 4032x2268 on disk. Dimensions and ratio come from
+decoding. Orientation is the exception and must be read, or every derived image comes out
+turned.
+
+The address is the one part not in the file. It is looked up from the coordinates against
+GeoNames' `cities500` in `data/geo`, indexed into an R-tree, with the timezone from the
+polygon the point actually falls in rather than from the nearest town. Offline deliberately: a
+geocoding service would make importing a photograph depend on somebody else's uptime, rate
+limit and terms, for a fact that never changes once written.
+
+`district`, `subregion` and `postal_code` stay absent. That dataset records settlements, not
+neighbourhoods or postal areas, and deriving either from the nearest town would state
+something the source never claimed.
+
+HEIC decodes through a pure-Rust decoder rather than bindings to libheif. It is HEVC inside a
+HEIF container -- the same container AVIF uses, with a different codec, so support for one
+says nothing about the other. A system library would be a thing to install on this machine and
+again in CI; 249ms for a 4032x2268 frame is nothing against the AV1 encode that follows. Only
+the primary image is taken. A phone's HEIC may also hold a depth map, a gain map and the
+frames of a live photo, and none of those are wanted yet.
+
 ### A card is named by its slug, and that is the exception
 
 Every other published asset is named by a hash of its bytes. An OpenGraph card is not:
