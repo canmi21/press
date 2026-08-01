@@ -65,3 +65,198 @@ segments:
       seconds: 7.846257667
       tokens: 33411
       review: false
+  08c8b56ae0db900da6578e071dd20e62:
+    de-DE:
+      text: 'Wenn man es so betrachtet, ist **CTR** im Wesentlichen der Idealfall von **PPR (Partial Prerendering)**: Alles, was sich cachen lässt, wird vollständig zur Compile-Zeit gerendert, mit null Laufzeit-Overhead — nur der Teil der Daten, der sich tatsächlich ändert, verursacht Kosten. Was unterscheidet sich also vom PPR von `React 19.2`? Die Antwort ist, dass ich gründlicher, aggressiver bin `PPR` Selbst im Idealfall, in dem alle statischen Teile bereits gecacht sind und nur ein kleines Stück dynamischer Inhalt aktualisiert werden muss, muss React trotzdem noch einmal `renderToReadableStream()` durchlaufen, selbst wenn sich der dynamische Inhalt nur um eine einfache Zeichenkette ändert — und das ist kein geringer Aufwand.'
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:29:57.186859Z
+      seconds: 45.612404167
+      tokens: 38589
+      review: false
+    en-US:
+      text: "Looking at it this way, **CTR** is essentially the most ideal case of **PPR (Partial Prerendering)**: everything cacheable is fully rendered at compile time, with zero runtime overhead — only the bit of data that actually changes carries any cost. So what's different from `React 19.2`'s PPR? The answer is that I'm more thorough, more aggressive `PPR` Even in the most ideal case, where all the static parts are already cached and only a small piece of dynamic content needs updating, React still has to rerun `renderToReadableStream()` even if that dynamic content is just a simple string change — and that cost is not small."
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:29:57.186859Z
+      seconds: 45.612404167
+      tokens: 38589
+      review: false
+    es-ES:
+      text: 'Entendido así, **CTR** es esencialmente el caso ideal de **PPR (Partial Prerendering)**: todo lo que se puede cachear se renderiza por completo en tiempo de compilación, con cero sobrecarga en tiempo de ejecución — solo el pequeño fragmento de datos que realmente cambia tiene algún coste. Entonces, ¿en qué se diferencia del PPR de `React 19.2`? La respuesta es que soy más radical, más agresivo `PPR` Incluso en el caso más ideal, donde todas las partes estáticas ya están cacheadas y solo hace falta actualizar un pequeño fragmento de contenido dinámico, aunque ese contenido dinámico sea solo un simple cambio de cadena de texto, React todavía tiene que volver a ejecutar `renderToReadableStream()`, y ese coste no es pequeño.'
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:29:57.186859Z
+      seconds: 45.612404167
+      tokens: 38589
+      review: false
+    fr-FR:
+      text: "En comprenant les choses ainsi, **CTR** est essentiellement le cas idéal de **PPR (Partial Prerendering)** : tout ce qui peut être mis en cache est entièrement rendu au moment de la compilation, avec un surcoût d'exécution nul — seule la petite portion de données qui change réellement a un coût. Alors, qu'est-ce qui diffère du PPR de `React 19.2` ? La réponse est que je suis plus radical, plus agressif `PPR` Même dans le cas le plus idéal, où toutes les parties statiques sont déjà mises en cache et où seul un petit fragment de contenu dynamique doit être mis à jour, même si ce contenu dynamique n'est qu'une simple chaîne de caractères qui change, React doit quand même réexécuter `renderToReadableStream()`, et ce coût n'est pas négligeable."
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:29:57.186859Z
+      seconds: 45.612404167
+      tokens: 38589
+      review: false
+    ja-JP:
+      text: こう理解すると、**CTR** は本質的に **PPR(Partial Prerendering)** の最も理想的なケースだと言える。キャッシュ可能なものはすべてコンパイル時にレンダリングされ、ランタイムのオーバーヘッドはゼロ、実際に変化するわずかなデータだけにコストがかかる。では `React 19.2` の PPR と何が違うのか？答えは、私の方がより徹底的で、より積極的だということだ `PPR` たとえ最も理想的な場合であっても、静的な部分がすべてキャッシュされていて、更新が必要なのはごく小さな動的コンテンツだけだとしても、その動的コンテンツが単純な文字列の変化に過ぎなくても、React はやはりもう一度 `renderToReadableStream()` を実行し直さなければならず、そのコストは決して小さくない。
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:29:57.186859Z
+      seconds: 45.612404167
+      tokens: 38589
+      review: false
+    ko-KR:
+      text: 이렇게 이해하고 보면, **CTR**은 본질적으로 **PPR(Partial Prerendering)**의 가장 이상적인 경우다. 캐시할 수 있는 모든 것이 컴파일 타임에 완전히 렌더링되어 런타임 오버헤드가 제로이고, 실제로 변화하는 그 작은 데이터만 비용이 든다. 그럼 `React 19.2`의 PPR과 다른 점은 무엇일까? 답은 내가 더 철저하고 더 과감하다는 것이다 `PPR` 설령 가장 이상적인 경우라 해도, 모든 정적 부분이 캐시되어 있고 업데이트해야 할 동적 콘텐츠가 아주 작은 일부분뿐이라 해도, 그 동적 콘텐츠가 단순히 문자열 하나가 바뀐 것에 불과하더라도, React는 여전히 `renderToReadableStream()`를 다시 한번 실행해야 하며, 그 비용은 결코 작지 않다.
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:29:57.186859Z
+      seconds: 45.612404167
+      tokens: 38589
+      review: false
+    zh-CN:
+      text: 这样理解下来，**CTR** 本质上就是 **PPR(Partial Prerendering)** 最理想的情况，所有能缓存的东西全部在编译期渲染完了，零运行时开销，只有真正变化的那一点数据才有成本。那和 `React 19.2` 的 PPR 不同的是什么呢？答案是我更彻底，更激进 `PPR` 就算在最理想的情况下，所有静态部分都缓存好了，只有一小段动态内容需要更新，但哪怕这个动态内容只是一个简单的字符串变了，React 还是得重新跑一遍 `renderToReadableStream()`，这个代价是不小的。
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:29:57.186859Z
+      seconds: 45.612404167
+      tokens: 38589
+      review: false
+    zh-TW:
+      text: 這樣理解下來，**CTR** 本質上就是 **PPR(Partial Prerendering)** 最理想的情況，所有能快取的東西全部在編譯期渲染完了，零執行期開銷，只有真正變化的那一點資料才有成本。那和 `React 19.2` 的 PPR 不同的是什麼呢？答案是我更徹底，更激進 `PPR` 就算在最理想的情況下，所有靜態部分都快取好了，只有一小段動態內容需要更新，但哪怕這個動態內容只是一個簡單的字串變了，React 還是得重新跑一遍 `renderToReadableStream()`，這個代價是不小的。
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:29:57.186859Z
+      seconds: 45.612404167
+      tokens: 38589
+      review: false
+  0d08f4664451ce6255d7aa6b19a628ec:
+    de-DE:
+      text: '## Der Missbrauch von SSR {#abused-ssr}'
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-08-01T01:29:57.18681Z
+      seconds: 20.320847708
+      tokens: 24977
+      review: false
+    en-US:
+      text: '## Abused SSR {#abused-ssr}'
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-08-01T01:29:57.18681Z
+      seconds: 20.320847708
+      tokens: 24977
+      review: false
+    es-ES:
+      text: '## El abuso de SSR {#abused-ssr}'
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-08-01T01:29:57.18681Z
+      seconds: 20.320847708
+      tokens: 24977
+      review: false
+    fr-FR:
+      text: "## L'abus de SSR {#abused-ssr}"
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-08-01T01:29:57.18681Z
+      seconds: 20.320847708
+      tokens: 24977
+      review: false
+    ja-JP:
+      text: '## SSR の乱用 {#abused-ssr}'
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-08-01T01:29:57.18681Z
+      seconds: 20.320847708
+      tokens: 24977
+      review: false
+    ko-KR:
+      text: '## SSR의 남용 {#abused-ssr}'
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-08-01T01:29:57.18681Z
+      seconds: 20.320847708
+      tokens: 24977
+      review: false
+    zh-CN:
+      text: '## 被滥用的 SSR {#abused-ssr}'
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-08-01T01:29:57.18681Z
+      seconds: 20.320847708
+      tokens: 24977
+      review: false
+    zh-TW:
+      text: '## 被濫用的 SSR {#abused-ssr}'
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-08-01T01:29:57.18681Z
+      seconds: 20.320847708
+      tokens: 24977
+      review: false
+  0e1434b80402c02fdc8b7a74be1e70ae:
+    de-DE:
+      text: 'An diesem Punkt haben Sie vielleicht schon erkannt, dass diese `slot` **"typisierte Slots"** sind. Was die serverseitige Laufzeitumgebung jetzt tun muss, wird extrem einfach: die echten Daten holen und in diese Lücken einsetzen, reine Zeichenkettenersetzung. Es braucht überhaupt kein `renderToString()`, keine JavaScript-Laufzeitumgebung, kein `vDOM`. Jede Sprache, die **HTML**-Kommentare parsen und **Zeichenkettenersetzung** durchführen kann, kann als Backend dienen -- Rust, Go, TypeScript, alle funktionieren. Deshalb ist es ein Protokoll und kein Framework.'
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:29:57.186884Z
+      seconds: 37.790576166
+      tokens: 37447
+      review: false
+    en-US:
+      text: 'By this point you may have already realized that these `slot` are **"typed slots"**. At this stage, what the server-side runtime needs to do becomes extremely simple: take the real data and fill it into these holes, pure string replacement. No `renderToString()` is needed at all, no JavaScript runtime, no `vDOM`. Any language capable of parsing **HTML** comments and doing **string replacement** can serve as the backend -- Rust, Go, TypeScript, all work. That''s why this is a protocol rather than a framework.'
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:29:57.186884Z
+      seconds: 37.790576166
+      tokens: 37447
+      review: false
+    es-ES:
+      text: 'Llegados a este punto, quizás ya te hayas dado cuenta de que estos `slot` son **"espacios con tipo"**. En este momento, lo que el runtime del servidor tiene que hacer se vuelve extremadamente simple: tomar los datos reales y rellenar esos huecos, una pura sustitución de cadenas. No se necesita `renderToString()` en absoluto, no se necesita un runtime de JavaScript, no se necesita `vDOM`. Cualquier lenguaje capaz de analizar comentarios **HTML** y hacer **sustitución de cadenas** puede servir de backend -- Rust, Go, TypeScript, todos funcionan. Por eso es un protocolo y no un framework.'
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:29:57.186884Z
+      seconds: 37.790576166
+      tokens: 37447
+      review: false
+    fr-FR:
+      text: "À ce stade, vous avez peut-être déjà compris que ces `slot` sont des **« emplacements typés »**. À partir de là, ce que le runtime côté serveur doit faire devient extrêmement simple : récupérer les données réelles et les insérer dans ces trous, une pure substitution de chaînes. Aucun besoin de `renderToString()`, aucun besoin de runtime JavaScript, aucun besoin de `vDOM`. N'importe quel langage capable d'analyser des commentaires **HTML** et de faire de la **substitution de chaînes** peut servir de backend -- Rust, Go, TypeScript, tous conviennent. C'est pour cela que c'est un protocole et non un framework."
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:29:57.186884Z
+      seconds: 37.790576166
+      tokens: 37447
+      review: false
+    ja-JP:
+      text: ここまで来ると、これらの `slot` が **「型付きスロット」** であることに気づいたかもしれません。この時点で、サーバーサイドランタイムがすべきことは極めてシンプルになります。実データを取得して、これらの穴に値を埋め込む、純粋な文字列置換です。`renderToString()` はまったく不要で、JavaScript ランタイムも不要、`vDOM` も不要です。**HTML** コメントを解析でき、**文字列置換**ができる言語なら何でもバックエンドになれます。Rust、Go、TypeScript、どれでも構いません。だからこそこれはフレームワークではなくプロトコルなのです。
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:29:57.186884Z
+      seconds: 37.790576166
+      tokens: 37447
+      review: false
+    ko-KR:
+      text: 여기까지 오면 이 `slot` 들이 **"타입이 표시된 슬롯"** 이라는 것을 눈치채셨을 겁니다. 이제 서버 런타임이 해야 할 일은 극도로 단순해집니다. 실제 데이터를 가져와서 이 구멍들에 값을 채워 넣는, 순수한 문자열 치환입니다. `renderToString()` 이 전혀 필요 없고, JavaScript 런타임도 필요 없고, `vDOM` 도 필요 없습니다. **HTML** 주석을 파싱하고 **문자열 치환**을 할 수 있는 언어라면 무엇이든 백엔드가 될 수 있습니다. Rust, Go, TypeScript 모두 가능합니다. 이것이 바로 이것이 프레임워크가 아니라 프로토콜인 이유입니다.
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:29:57.186884Z
+      seconds: 37.790576166
+      tokens: 37447
+      review: false
+    zh-CN:
+      text: 到这一步你可能已经看出来了这些 `slot` 就是 **"有类型标记的插槽"**。这个时候服务端运行时要做的事情变得极其简单，那就拿到真实数据，往这些孔里填值，纯粹的字符串替换。完全不需要 `renderToString()`，不需要 JavaScript 运行时，不需要 `vDOM`。任何能解析 **HTML** 注释、能做**字符串替换**的语言都能当后端，Rust、Go、TypeScript 都行，这就是为什么它是一个协议而不是一个框架。
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:29:57.186884Z
+      seconds: 37.790576166
+      tokens: 37447
+      review: false
+    zh-TW:
+      text: 到這一步你可能已經看出來了這些 `slot` 就是 **「有類型標記的插槽」**。這個時候伺服端執行時要做的事情變得極其簡單，那就拿到真實資料，往這些孔裡填值，純粹的字串替換。完全不需要 `renderToString()`，不需要 JavaScript 執行時，不需要 `vDOM`。任何能解析 **HTML** 註解、能做**字串替換**的語言都能當後端，Rust、Go、TypeScript 都行，這就是為什麼它是一個協定而不是一個框架。
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:29:57.186884Z
+      seconds: 37.790576166
+      tokens: 37447
+      review: false

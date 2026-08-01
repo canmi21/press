@@ -195,11 +195,25 @@ fn preview(source: &str) -> String {
 }
 
 /// Translate every article under `articles`.
-pub async fn run(articles: &Path, limit: Option<usize>, force: bool) -> std::io::Result<Outcome> {
+pub async fn run(
+	articles: &Path,
+	only: &[std::path::PathBuf],
+	limit: Option<usize>,
+	force: bool,
+) -> std::io::Result<Outcome> {
 	let mut outcome = Outcome::default();
 	let mut budget = limit.unwrap_or(usize::MAX);
 
 	for path in crate::refs::markdown_under(articles)? {
+		// Named articles narrow the run. Retranslating one edited piece should not mean walking
+		// everything before it in the tree.
+		if !only.is_empty()
+			&& !only
+				.iter()
+				.any(|wanted| path.ends_with(wanted) || &path == wanted)
+		{
+			continue;
+		}
 		if budget == 0 {
 			break;
 		}
@@ -251,10 +265,6 @@ pub async fn run(articles: &Path, limit: Option<usize>, force: bool) -> std::io:
 
 		let mut queue = todo.into_iter();
 		let mut running: Vec<tokio::task::JoinHandle<(String, Result<_, String>)>> = Vec::new();
-		let mut done: Vec<(
-			String,
-			Result<(Vec<(String, Translation)>, u64, f64), String>,
-		)> = Vec::new();
 
 		loop {
 			while running.len() < PARALLEL {
@@ -272,16 +282,14 @@ pub async fn run(articles: &Path, limit: Option<usize>, force: bool) -> std::io:
 			if running.is_empty() {
 				break;
 			}
-			match running.remove(0).await {
-				Ok(result) => done.push(result),
-				Err(error) => done.push((String::new(), Err(error.to_string()))),
-			}
-			progress.inc(1);
-		}
-		progress.finish_and_clear();
 
-		let mut wrote = false;
-		for (id, result) in done {
+			let finished = match running.remove(0).await {
+				Ok(result) => result,
+				Err(error) => (String::new(), Err(error.to_string())),
+			};
+			progress.inc(1);
+
+			let (id, result) = finished;
 			match result {
 				Ok((entries, tokens, usd)) => {
 					let slot = sidecar.segments.entry(id).or_default();
@@ -291,15 +299,16 @@ pub async fn run(articles: &Path, limit: Option<usize>, force: bool) -> std::io:
 					}
 					outcome.tokens += tokens;
 					outcome.usd += usd;
-					wrote = true;
+					// Written the moment it arrives. Every segment cost real money, and keeping a
+					// run's worth in memory means one interrupt throws all of it away -- which is
+					// exactly what happened the first time this ran for real.
+					sidecar.version = store::VERSION;
+					store::save(&sidecar_path, &sidecar)?;
 				}
 				Err(error) => outcome.failed.push((id, error)),
 			}
 		}
-		if wrote {
-			sidecar.version = store::VERSION;
-			store::save(&sidecar_path, &sidecar)?;
-		}
+		progress.finish_and_clear();
 	}
 	Ok(outcome)
 }

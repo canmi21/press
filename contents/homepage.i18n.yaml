@@ -1,0 +1,132 @@
+version: 1
+segments:
+  2eb073034a23d61eb025f3f22e403d5f:
+    de-DE:
+      text: Ich hoffe, dass irgendwann jemand auf etwas blickt, das ich gemacht habe, und denkt, :t[ja, :t[das ist gute Arbeit.]{font=baskerville italic}]{nowrap} Derzeit in North Carolina. Findet mich auf :link[Twitter]{to=canmi21}, :link[GitHub]{to=canmi21}, oder schreibt mir eine :link[E-Mail]{to=t@ffoni.com}.
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:31:33.316505Z
+      seconds: 37.499952125
+      tokens: 37265
+      review: false
+    en-US:
+      text: I hope someday someone looks at something I made and thinks, :t[yeah :t[that's good work.]{font=baskerville italic}]{nowrap} Currently in North Carolina. Find me on :link[Twitter]{to=canmi21}, :link[GitHub]{to=canmi21}, or drop me an :link[email]{to=t@ffoni.com}.
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:31:33.316505Z
+      seconds: 37.499952125
+      tokens: 37265
+      review: false
+    es-ES:
+      text: Espero que algún día alguien mire algo que he hecho y piense, :t[sí, :t[eso es un buen trabajo.]{font=baskerville italic}]{nowrap} Actualmente en Carolina del Norte. Encuéntrame en :link[Twitter]{to=canmi21}, :link[GitHub]{to=canmi21}, o mándame un :link[correo]{to=t@ffoni.com}.
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:31:33.316505Z
+      seconds: 37.499952125
+      tokens: 37265
+      review: false
+    fr-FR:
+      text: J'espère qu'un jour quelqu'un regardera quelque chose que j'ai fait et pensera, :t[ouais, :t[c'est du bon boulot.]{font=baskerville italic}]{nowrap} Actuellement en Caroline du Nord. Trouvez-moi sur :link[Twitter]{to=canmi21}, :link[GitHub]{to=canmi21}, ou envoyez-moi un :link[e-mail]{to=t@ffoni.com}.
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:31:33.316505Z
+      seconds: 37.499952125
+      tokens: 37265
+      review: false
+    ja-JP:
+      text: いつか誰かが自分の作ったものを見て、:t[そう、:t[これはいい仕事だ。]{font=baskerville italic}]{nowrap} と思ってくれたらいいと思う。現在ノースカロライナ州在住。:link[Twitter]{to=canmi21}や:link[GitHub]{to=canmi21}で見つけてもらえるし、:link[メール]{to=t@ffoni.com}を送ってくれてもいい。
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:31:33.316505Z
+      seconds: 37.499952125
+      tokens: 37265
+      review: false
+    ko-KR:
+      text: 언젠가 누군가 내가 만든 것을 보고 :t[그래, :t[이거 잘 만들었네.]{font=baskerville italic}]{nowrap} 라고 생각해 주길 바란다. 현재 노스캐롤라이나에 살고 있다. :link[Twitter]{to=canmi21}, :link[GitHub]{to=canmi21}에서 나를 찾거나 :link[이메일]{to=t@ffoni.com}을 보내도 좋다.
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:31:33.316505Z
+      seconds: 37.499952125
+      tokens: 37265
+      review: false
+    zh-CN:
+      text: 我希望有一天,有人看着我做的东西会想::t[没错,:t[这活儿做得漂亮。]{font=baskerville italic}]{nowrap} 目前住在北卡罗来纳州。可以在 :link[Twitter]{to=canmi21}、:link[GitHub]{to=canmi21} 上找到我,或者给我发一封 :link[邮件]{to=t@ffoni.com}。
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:31:33.316505Z
+      seconds: 37.499952125
+      tokens: 37265
+      review: false
+    zh-TW:
+      text: 我希望有一天,有人看著我做的東西會想::t[沒錯,:t[這活兒做得漂亮。]{font=baskerville italic}]{nowrap} 目前住在北卡羅來納州。可以在 :link[Twitter]{to=canmi21}、:link[GitHub]{to=canmi21} 上找到我,或者給我發一封 :link[郵件]{to=t@ffoni.com}。
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:31:33.316505Z
+      seconds: 37.499952125
+      tokens: 37265
+      review: false
+  454688a59e895fc34c3efacf1ba58881:
+    de-DE:
+      text: Ich baue Dinge. Software, Hardware und gelegentlich etwas Seltsames dazwischen. :t[Vor allem :t[Frontend-Design]{color=text}]{nowrap} und :t[Backend-Systeme,]{nowrap} dazu nebenbei etwas eingebettete digitale Schaltungstechnik. Ich :t[lege Wert auf Handwerkskunst]{font=baskerville italic} bei Software- und Interface-Qualität.
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:31:33.316506Z
+      seconds: 44.6040025
+      tokens: 37577
+      review: false
+    en-US:
+      text: I build things. Software, hardware, and the occasional weird thing in between. :t[Mostly :t[frontend design]{color=text}]{nowrap} and :t[backend systems,]{nowrap} with some embedded digital circuit work on the side. I :t[care about craft]{font=baskerville italic} software and interface quality.
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:31:33.316506Z
+      seconds: 44.6040025
+      tokens: 37577
+      review: false
+    es-ES:
+      text: Construyo cosas. Software, hardware, y de vez en cuando algo raro entre medias. :t[Sobre todo :t[diseño frontend]{color=text}]{nowrap} y :t[sistemas backend,]{nowrap} además de algo de electrónica digital embebida como afición. Me :t[importa el buen oficio]{font=baskerville italic} en la calidad del software y la interfaz.
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:31:33.316506Z
+      seconds: 44.6040025
+      tokens: 37577
+      review: false
+    fr-FR:
+      text: Je construis des choses. Logiciel, matériel, et parfois un truc bizarre entre les deux. :t[Surtout du :t[design frontend]{color=text}]{nowrap} et des :t[systèmes backend,]{nowrap} avec un peu de circuits numériques embarqués à côté. Je :t[tiens au savoir-faire]{font=baskerville italic} dans la qualité du logiciel et de l'interface.
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:31:33.316506Z
+      seconds: 44.6040025
+      tokens: 37577
+      review: false
+    ja-JP:
+      text: 私はものを作ります。ソフトウェア、ハードウェア、そしてたまにその中間にある奇妙な何か。:t[主に :t[フロントエンドデザイン]{color=text}]{nowrap} と :t[バックエンドシステム,]{nowrap} 趣味で組み込みのデジタル回路にも少し手を出します。私は:t[クラフトを大切にする]{font=baskerville italic}ソフトウェアとインターフェースの品質にこだわっています。
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:31:33.316506Z
+      seconds: 44.6040025
+      tokens: 37577
+      review: false
+    ko-KR:
+      text: 저는 무언가를 만듭니다. 소프트웨어, 하드웨어, 그리고 가끔은 그 중간 어딘가에 있는 이상한 것들도요. :t[주로 :t[프런트엔드 디자인]{color=text}]{nowrap} 과 :t[백엔드 시스템,]{nowrap} 취미로 임베디드 디지털 회로 작업도 조금 합니다. 저는 소프트웨어와 인터페이스 품질에 있어 :t[장인정신을 중요하게 생각합니다]{font=baskerville italic}.
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:31:33.316506Z
+      seconds: 44.6040025
+      tokens: 37577
+      review: false
+    zh-CN:
+      text: 我制作各种东西。软件、硬件,偶尔也做一些介于两者之间的怪东西。:t[主要是 :t[前端设计]{color=text}]{nowrap} 和 :t[后端系统,]{nowrap} 业余还搞一些嵌入式数字电路。我:t[注重工艺]{font=baskerville italic}的软件与界面品质。
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:31:33.316506Z
+      seconds: 44.6040025
+      tokens: 37577
+      review: false
+    zh-TW:
+      text: 我製作各種東西。軟體、硬體,偶爾也做一些介於兩者之間的怪東西。:t[主要是 :t[前端設計]{color=text}]{nowrap} 和 :t[後端系統,]{nowrap} 業餘還會做一些嵌入式數位電路方面的工作。我:t[注重工藝]{font=baskerville italic}的軟體與介面品質。
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:31:33.316506Z
+      seconds: 44.6040025
+      tokens: 37577
+      review: false

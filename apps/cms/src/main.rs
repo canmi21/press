@@ -235,6 +235,20 @@ fn translate_articles(args: &[String]) -> ExitCode {
 		.and_then(|at| args.get(at + 1))
 		.and_then(|value| value.parse::<usize>().ok());
 
+	let mut only: Vec<std::path::PathBuf> = Vec::new();
+	let mut skip = false;
+	for arg in args {
+		if skip {
+			skip = false;
+			continue;
+		}
+		match arg.as_str() {
+			"--force" => {}
+			"--limit" => skip = true,
+			other => only.push(std::path::PathBuf::from(other)),
+		}
+	}
+
 	let root = match paths::repo_root() {
 		Ok(root) => root,
 		Err(error) => {
@@ -250,7 +264,7 @@ fn translate_articles(args: &[String]) -> ExitCode {
 			return ExitCode::FAILURE;
 		}
 	};
-	let outcome = match runtime.block_on(i18n::run(&root.join("contents"), limit, force)) {
+	let outcome = match runtime.block_on(i18n::run(&root.join("contents"), &only, limit, force)) {
 		Ok(outcome) => outcome,
 		Err(error) => {
 			eprintln!("could not write: {error}");
@@ -511,7 +525,8 @@ fn usage() {
 	eprintln!("                              collect the icons the linkcards need");
 	eprintln!("  alt [--force] [--limit N]   describe assets that have no description yet");
 	eprintln!("  og [--force]                render an OpenGraph card per article");
-	eprintln!("  i18n [--force] [--limit N]  translate article segments into every locale");
+	eprintln!("  i18n [--force] [--limit N] [article...]");
+	eprintln!("                              translate article segments into every locale");
 	eprintln!("  check                       list referenced assets that are not present");
 	eprintln!("  gc [--live]                 drop published assets no article asks for");
 }
