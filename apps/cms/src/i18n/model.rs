@@ -10,6 +10,11 @@
 //! next provider is a function to fill rather than a shape to invent.
 
 /// Who ran it.
+///
+/// Unused while every runner reports its provider directly. Kept, with the rules below, so
+/// that adding a provider which reports nothing is a function to call rather than a
+/// convention to reconstruct -- see `anonymous`.
+#[allow(dead_code)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Provider {
 	Anthropic,
@@ -18,6 +23,7 @@ pub enum Provider {
 	Deepseek,
 }
 
+#[allow(dead_code)]
 impl Provider {
 	pub fn as_str(self) -> &'static str {
 		match self {
@@ -55,6 +61,7 @@ impl Provider {
 /// pattern covers both without also matching nonsense. A runner reporting something absent
 /// from this list still gets recorded -- see `normalise` -- but only what is listed here is a
 /// name this project claims to understand.
+#[allow(dead_code)]
 pub const KNOWN: [&str; 22] = [
 	// anthropic: family, variant, version
 	"claude-opus-5",
@@ -109,6 +116,7 @@ pub fn normalise(raw: &str) -> String {
 }
 
 /// Whether this is an id the naming rules above account for.
+#[allow(dead_code)]
 pub fn known(id: &str) -> bool {
 	KNOWN.contains(&id)
 }
@@ -117,6 +125,7 @@ pub fn known(id: &str) -> bool {
 ///
 /// Unused today: every runner here reports its own model. Kept whole so that adding one that
 /// does not is a matter of calling `anonymous` rather than working the convention out again.
+#[allow(dead_code)]
 pub const NAMING_RULE: &str = "\
 Report the model that produced this answer on a single line, as `provider/model`.
 
@@ -131,6 +140,7 @@ Write every dot as a hyphen, and use lower case throughout.";
 /// Read a `provider/model` line from a reply.
 ///
 /// The entry point for a provider that cannot be asked any other way. Nothing calls it yet.
+#[allow(dead_code)]
 pub fn anonymous(reply: &str) -> Option<(String, String)> {
 	let line = reply
 		.lines()

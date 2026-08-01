@@ -14,9 +14,23 @@ spec/       Rules. Start at CLAUDE.md, which indexes this directory.
 libs/       Libraries, any language.
 apps/       Deployable things, any language.
 contents/   Articles. Tracked, because prose is revised and wants diffs.
-data/       Binary assets. In the tree, never in git.
+data/       Assets and the records describing them. Bytes stay out of git; records go in.
 projs/      Reserved for large standalone projects. Not created yet.
 ```
+
+### What `data/` keeps out of git
+
+Not the directory -- the kind of thing. **Text that means something goes in; bytes and bulk
+stay out.** `data/metadata.json`, `data/media.yaml` and `data/tags.yaml` are records: a build
+resolves every image from the first without one image being present, and the other two hold
+descriptions that cost money and tags a person curates. Photographs, derived variants, fonts
+and a geocoding database are bytes, and no diff of them says anything.
+
+The rule was first written as "`data/` is never in git", which held until it needed a third
+exception. Three exceptions mean the line was drawn around the wrong thing: the directory
+groups assets with the records about them, and it is the records that git wants. So
+`.gitignore` there is an allowlist, and the question to ask of a new file is whether reading
+its diff would ever tell anyone anything.
 
 Articles sit at the root rather than inside the site that renders them, and in git rather
 than in `data/`, because they are neither code nor an asset: they are source text that gets
@@ -271,7 +285,7 @@ a fact about this repository rather than a property of the command, so it waits 
 
 ### A CI build must be able to build from git alone
 
-The site builds from `assets.json`, `contents/` and `site.config.yaml` -- all committed --
+The site builds from `data/metadata.json`, `contents/` and `site.config.yaml` -- all committed --
 and never reads `data/`. That is what the merged manifest is for: it carries every dimension,
 srcset and placeholder, so a page renders correctly with not one image byte present. A
 checkout is a complete build input.
@@ -413,7 +427,7 @@ it renders. Anything placed there is covered by somebody else's chrome.
 
 ### The manifest has versions, and only one is current
 
-`assets.json` and every published record carry a version. Raising it means migrating the file
+`data/metadata.json` and every published record carry a version. Raising it means migrating the file
 in place and writing it back, never teaching the reader a second shape -- two readers for two
 shapes is how a format stops having a current version at all.
 

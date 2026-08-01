@@ -17,7 +17,7 @@ use std::path::{Path, PathBuf};
 /// Inside `data/` because it describes what is there, and tracked anyway because a build
 /// resolves every image from it without a byte of `data/` being present. It is the one file
 /// under that directory git keeps -- see .gitignore, which says why.
-pub const MERGED: &str = "data/assets.json";
+pub const MERGED: &str = "data/metadata.json";
 
 #[derive(Debug, Default)]
 pub struct Outcome {
@@ -78,9 +78,17 @@ pub fn run(
 
 		let id = super::cid(&bytes);
 		let previous = merged.assets.get(&id);
-		// A recorded choice outlives the flag: re-deriving after a sweep must reproduce what
-		// was published, not whatever was typed on the command line this time.
-		let keep = options.keep_original || previous.is_some_and(|media| media.original);
+		// The published variants already answer this: a rung at exactly the source's width can
+		// only exist because the full frame was kept. Below the cap the top rung is the source
+		// either way, so there is nothing to infer and nothing that could be inferred wrong.
+		let keep = options.keep_original
+			|| previous.is_some_and(|media| {
+				media
+					.variants
+					.values()
+					.any(|record| record.width == media.source.width)
+					&& media.source.width > super::ladder::TIERS[super::ladder::TIERS.len() - 1]
+			});
 
 		if !options.force && previous.is_some() && published(public, previous) {
 			outcome.skipped += 1;
@@ -253,12 +261,15 @@ fn publish(
 ) -> Result<Media, String> {
 	let derived = derive(bytes, keep_original).map_err(|error| error.to_string())?;
 	let mime = mime_of(path);
+	// Read once, at import. The published variants are stripped, so this is the only place the
+	// camera's account of the picture survives.
+	let metadata = super::exif::read(bytes);
 	let media = manifest::media_for(
 		&derived,
 		mime,
 		bytes.len() as u64,
 		previous.map(|media| media.created.as_str()),
-		keep_original,
+		metadata,
 	);
 
 	for variant in &derived.variants {
@@ -498,7 +509,6 @@ mod tests {
 			updated: "2026-07-31T00:00:00Z".into(),
 			blake3: "44b6081deaf0242ca3bf83d62a3b6c95".into(),
 			thumbhash: String::new(),
-			preview: String::new(),
 			source: manifest::Source {
 				mime: "image/png".into(),
 				width: 1920,
@@ -506,8 +516,7 @@ mod tests {
 				ratio: "16:9".into(),
 				bytes: 3,
 			},
-			description: None,
-			original: false,
+			metadata: None,
 			variants,
 		};
 

@@ -36,11 +36,11 @@ pub struct Gap {
 /// Everything an article references that `data/public` cannot answer for.
 pub fn report(repo: &Path, public: &Path, articles: &Path) -> std::io::Result<Vec<Gap>> {
 	let scan = refs::scan(articles)?;
-	let merged = image::run::load(&repo.join(image::run::MERGED));
-	Ok(gaps(&scan, public, &merged))
+	let described = crate::media::load(&crate::media::path_for(repo));
+	Ok(gaps(&scan, public, &described))
 }
 
-fn gaps(scan: &Scan, public: &Path, merged: &image::manifest::Merged) -> Vec<Gap> {
+fn gaps(scan: &Scan, public: &Path, described: &crate::media::Media) -> Vec<Gap> {
 	let mut found = Vec::new();
 
 	for image in scan.unresolved() {
@@ -64,11 +64,7 @@ fn gaps(scan: &Scan, public: &Path, merged: &image::manifest::Merged) -> Vec<Gap
 	// An image with no description is served correctly and read badly. That is a gap in what
 	// the page says rather than in what it can show, so it sits below a missing image.
 	for cid in scan.cids() {
-		if merged
-			.assets
-			.get(&cid)
-			.is_some_and(crate::alt::wants_description)
-		{
+		if crate::alt::wants_description(described, &cid) {
 			found.push(Gap {
 				level: Level::Info,
 				what: cid,
@@ -143,8 +139,12 @@ mod tests {
 		std::fs::create_dir_all(meta.parent().expect("parent")).expect("dir");
 		std::fs::write(&meta, b"{}").expect("write");
 
+		// One gap remains and should: the bytes are published, but nothing has described them.
+		// That is what `cms alt` is for, and it is information rather than a hole in the page.
 		let found = report(&root, &root.join("public"), &root.join("contents")).expect("report");
-		assert!(found.is_empty(), "{found:?}");
+		assert_eq!(found.len(), 1);
+		assert_eq!(found[0].level, Level::Info);
+		assert!(found[0].detail.contains("description"));
 		std::fs::remove_dir_all(&root).ok();
 	}
 
@@ -155,9 +155,14 @@ mod tests {
 		let root = temp("swept");
 		article(&root, "![](44b6081deaf0242ca3bf83d62a3b6c95.avif)");
 
+		// Two now: the record is gone, and nothing has described the asset either. Only the
+		// first is a warning -- a missing record leaves a hole, a missing description does not.
 		let found = report(&root, &root.join("public"), &root.join("contents")).expect("report");
-		assert_eq!(found.len(), 1);
-		assert_eq!(found[0].level, Level::Warn);
+		assert_eq!(found.len(), 2);
+		assert_eq!(
+			found.iter().filter(|gap| gap.level == Level::Warn).count(),
+			1
+		);
 		std::fs::remove_dir_all(&root).ok();
 	}
 }

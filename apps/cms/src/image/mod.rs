@@ -5,6 +5,7 @@
 //! content than it did before. See spec/architecture.md.
 
 pub mod encode;
+pub mod exif;
 pub mod ladder;
 pub mod manifest;
 pub mod run;
@@ -15,9 +16,6 @@ use fast_image_resize::images::Image as FirImage;
 use fast_image_resize::{PixelType, ResizeOptions, Resizer};
 use image::DynamicImage;
 use ladder::Size;
-
-/// Edge length of the inline placeholder decoded from the thumbhash.
-const PREVIEW_EDGE: u32 = 32;
 
 /// A content id: BLAKE3 truncated to 128 bits, hex encoded.
 ///
@@ -46,8 +44,6 @@ pub struct Derived {
 	pub height: u32,
 	/// Thumbhash bytes, 19 of them for any image.
 	pub thumb: Vec<u8>,
-	/// The thumbhash decoded and re-encoded small, ready to inline as a data URI.
-	pub preview: Vec<u8>,
 	pub variants: Vec<Variant>,
 }
 
@@ -55,7 +51,6 @@ pub struct Derived {
 pub enum Error {
 	Decode,
 	Encode(encode::Error),
-	Preview,
 }
 
 impl std::fmt::Display for Error {
@@ -63,7 +58,6 @@ impl std::fmt::Display for Error {
 		match self {
 			Self::Decode => write!(f, "not a readable image"),
 			Self::Encode(error) => write!(f, "{error}"),
-			Self::Preview => write!(f, "could not build the placeholder"),
 		}
 	}
 }
@@ -90,13 +84,14 @@ pub fn derive(original: &[u8], keep_original: bool) -> Result<Derived, Error> {
 		}
 	}
 
-	let (thumb, preview) = placeholder(&image)?;
+	// Only the hash is kept. The decoded form the site inlines is produced at build time from
+	// this, so storing one here would be the same picture written twice.
+	let thumb = placeholder(&image)?;
 	Ok(Derived {
 		cid: cid(original),
 		width: size.width,
 		height: size.height,
 		thumb,
-		preview,
 		variants,
 	})
 }
@@ -122,27 +117,22 @@ fn resize(image: &DynamicImage, target: Size) -> DynamicImage {
 /// Both are kept: the hash is the compact canonical form, and the decoded image is what gets
 /// inlined into an article so a page paints its placeholder with no request, no decoder
 /// script, and no dependence on JavaScript having run.
-fn placeholder(image: &DynamicImage) -> Result<(Vec<u8>, Vec<u8>), Error> {
+/// The compact hash a page paints before any image arrives.
+///
+/// Only the hash. It used to also return a decoded, re-encoded copy for inlining, which the
+/// site build now produces from this -- one picture, one stored form.
+fn placeholder(image: &DynamicImage) -> Result<Vec<u8>, Error> {
 	// thumbhash reads a small input by design; anything larger is wasted work.
 	let small = resize(
 		image,
 		Size::new(image.width(), image.height()).scaled_to_long_edge(100),
 	);
 	let rgba = small.to_rgba8();
-	let thumb =
-		thumbhash::rgba_to_thumb_hash(rgba.width() as usize, rgba.height() as usize, rgba.as_raw());
-
-	let (width, height, pixels) =
-		thumbhash::thumb_hash_to_rgba(&thumb).map_err(|_| Error::Preview)?;
-	let decoded = image::RgbaImage::from_raw(width as u32, height as u32, pixels)
-		.map(DynamicImage::ImageRgba8)
-		.ok_or(Error::Preview)?;
-	let scaled = resize(
-		&decoded,
-		Size::new(decoded.width(), decoded.height()).scaled_to_long_edge(PREVIEW_EDGE),
-	);
-	let preview = encode::encode(&scaled, Format::Webp).map_err(Error::Encode)?;
-	Ok((thumb, preview))
+	Ok(thumbhash::rgba_to_thumb_hash(
+		rgba.width() as usize,
+		rgba.height() as usize,
+		rgba.as_raw(),
+	))
 }
 
 #[cfg(test)]
@@ -251,10 +241,7 @@ mod tests {
 			"thumbhash is {} bytes",
 			derived.thumb.len()
 		);
-		assert!(
-			derived.preview.len() < 1024,
-			"preview is {} bytes, too large to inline",
-			derived.preview.len()
-		);
+		// The decoded form the site inlines is no longer produced here, so there is nothing
+		// else to assert: the hash is the whole output.
 	}
 }

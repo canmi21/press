@@ -11,7 +11,6 @@ declare module 'virtual:assets' {
 				updated: string;
 				blake3: string;
 				thumbhash: string;
-				preview: string;
 				/** Written by `cms alt`; absent until an asset has been described. */
 				description?: string;
 				source: { mime: string; width: number; height: number; ratio: string; bytes: number };

@@ -9,7 +9,8 @@
 //! dearer per call than the raw API, neither of which matters for a batch that runs once per
 //! imported picture.
 
-use crate::image::manifest::{Media, Merged};
+use crate::image::manifest::Merged;
+use crate::media::{self, Entry};
 use claude_codes::{AsyncClient, ClaudeModel, ClaudeOutput, cli::ClaudeCliBuilder};
 use indicatif::{ProgressBar, ProgressStyle};
 use std::collections::BTreeMap;
@@ -21,6 +22,12 @@ use std::path::{Path, PathBuf};
 /// about politeness and rate limits rather than local resources. Four keeps a batch of two
 /// dozen under a couple of minutes without arriving as a burst.
 pub const PARALLEL: usize = 4;
+
+/// The locale a generated description is written in.
+///
+/// One language out of the model, then translated like anything else. Asking for eight at
+/// once would mean eight looks at the same picture, and the picture does not change.
+const SOURCE_LOCALE: &str = "en-US";
 
 /// Sonnet: this is description, not reasoning, and the ceiling on quality here is how
 /// carefully the picture is read rather than how hard it is thought about.
@@ -96,14 +103,20 @@ pub struct Outcome {
 /// `data/image` holds whatever names the files arrived under.
 fn pending(
 	merged: &Merged,
+	described: &media::Media,
 	originals: &Path,
 	force: bool,
 ) -> (Vec<(String, PathBuf)>, Vec<String>) {
 	let wanted: Vec<&String> = merged
 		.assets
-		.iter()
-		.filter(|(_, media)| force || media.description.is_none())
-		.map(|(cid, _)| cid)
+		.keys()
+		.filter(|cid| {
+			force
+				|| described
+					.media
+					.get(*cid)
+					.is_none_or(|entry| entry.description.is_empty())
+		})
 		.collect();
 	if wanted.is_empty() {
 		return (Vec::new(), Vec::new());
@@ -190,12 +203,13 @@ async fn describe(path: &Path) -> Result<(String, Spend), String> {
 
 /// Describe every asset that has no description yet, and record what came back.
 pub async fn run(
-	merged: &mut Merged,
+	merged: &Merged,
+	described: &mut media::Media,
 	originals: &Path,
 	force: bool,
 	limit: Option<usize>,
 ) -> Outcome {
-	let (mut todo, unreadable) = pending(merged, originals, force);
+	let (mut todo, unreadable) = pending(merged, described, originals, force);
 	let wanted = todo.len();
 	// Each call costs real money, so a whole library should be something asked for rather than
 	// the only option. Trying two first is how you find out the prompt is wrong for cheap.
@@ -247,11 +261,22 @@ pub async fn run(
 		match result {
 			Ok((text, spend)) => {
 				outcome.spent.add(spend);
-				if let Some(media) = merged.assets.get_mut(&cid) {
-					media.description = Some(text);
-					media.updated = crate::image::manifest::now();
-					outcome.described += 1;
-				}
+				let entry = described.media.entry(cid).or_insert_with(Entry::default);
+				// Written under the source locale the article is authored in. `cms i18n` fills
+				// the rest from here, through the same pipeline a paragraph goes through.
+				entry.description.insert(
+					SOURCE_LOCALE.to_owned(),
+					crate::i18n::store::Translation {
+						text,
+						provider: "anthropic".to_owned(),
+						model: crate::i18n::model::normalise("claude-sonnet-5"),
+						at: crate::image::manifest::now(),
+						seconds: 0.0,
+						tokens: spend.total_in() + spend.output,
+						review: false,
+					},
+				);
+				outcome.described += 1;
 			}
 			Err(error) => outcome.failed.push((cid, error)),
 		}
@@ -260,8 +285,11 @@ pub async fn run(
 }
 
 /// Whether this asset still wants a description.
-pub fn wants_description(media: &Media) -> bool {
-	media.description.is_none()
+pub fn wants_description(described: &media::Media, cid: &str) -> bool {
+	described
+		.media
+		.get(cid)
+		.is_none_or(|entry| entry.description.is_empty())
 }
 
 #[cfg(test)]
@@ -280,32 +308,54 @@ mod tests {
 
 	#[test]
 	fn an_asset_with_a_description_is_not_pending() {
-		let mut merged = Merged {
+		let merged = Merged {
 			version: crate::image::manifest::VERSION,
 			generated: crate::image::manifest::now(),
-			assets: BTreeMap::new(),
+			assets: BTreeMap::from([(
+				"a".to_owned(),
+				crate::image::manifest::media_for(
+					&crate::image::Derived {
+						cid: "a".into(),
+						width: 1,
+						height: 1,
+						thumb: Vec::new(),
+						variants: Vec::new(),
+					},
+					"image/png",
+					1,
+					None,
+					None,
+				),
+			)]),
 		};
-		let mut media = crate::image::manifest::media_for(
-			&crate::image::Derived {
-				cid: "a".into(),
-				width: 1,
-				height: 1,
-				thumb: Vec::new(),
-				preview: Vec::new(),
-				variants: Vec::new(),
-			},
-			"image/png",
-			1,
-			None,
-			false,
-		);
-		assert!(wants_description(&media));
-		media.description = Some("a thing".into());
-		assert!(!wants_description(&media));
 
-		merged.assets.insert("a".into(), media);
+		// The manifest no longer carries this. Whether an asset has been described is a
+		// question for media.yaml, which is the point of them being separate files.
+		let mut described = crate::media::Media::default();
+		assert!(wants_description(&described, "a"));
+
+		described.media.insert(
+			"a".to_owned(),
+			crate::media::Entry {
+				description: BTreeMap::from([(
+					"en-US".to_owned(),
+					crate::i18n::store::Translation {
+						text: "a thing".into(),
+						provider: "anthropic".into(),
+						model: "claude-sonnet-5".into(),
+						at: "2026-08-01T00:00:00Z".into(),
+						seconds: 0.0,
+						tokens: 0,
+						review: false,
+					},
+				)]),
+				..crate::media::Entry::default()
+			},
+		);
+		assert!(!wants_description(&described, "a"));
+
 		// Nothing pending, so the originals directory is never even read.
-		let (todo, missing) = pending(&merged, Path::new("/nowhere"), false);
+		let (todo, missing) = pending(&merged, &described, Path::new("/nowhere"), false);
 		assert!(todo.is_empty());
 		assert!(missing.is_empty());
 	}

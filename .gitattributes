@@ -3,4 +3,4 @@ libs/fonts/src/wenkai.css linguist-generated=true
 
 # Written by `cms image`, and tracked only because a build resolves every image from it
 # without a byte of data/ present. It is a record, not source.
-data/assets.json linguist-generated=true
+data/metadata.json linguist-generated=true

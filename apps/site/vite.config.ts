@@ -9,7 +9,7 @@ import { defineConfig } from 'vite';
 import { parse as parseYaml } from 'yaml';
 
 const SITE_CONFIG = fileURLToPath(new URL('./site.config.yaml', import.meta.url));
-const ASSETS = fileURLToPath(new URL('../../data/assets.json', import.meta.url));
+const ASSETS = fileURLToPath(new URL('../../data/metadata.json', import.meta.url));
 
 // Built-in 301s, kept out of site.config.yaml because they are product behaviour rather than
 // configuration: feed aliases and the favicon redirect to the CDN.

@@ -10,7 +10,7 @@
 
 use super::model;
 use super::segment::Kind;
-use claude_codes::{AsyncClient, ClaudeModel, ClaudeOutput, cli::ClaudeCliBuilder};
+use claude_codes::{AsyncClient, ClaudeOutput, cli::ClaudeCliBuilder};
 
 /// Which agent a run uses.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -100,7 +100,7 @@ impl std::fmt::Display for Refusal {
 
 pub async fn ask(runner: Runner, prompt: &str, model: &str) -> Result<Answer, Refusal> {
 	if runner.uses_agy() {
-		agy(runner, prompt, model).await
+		agy(prompt, model).await
 	} else {
 		claude(prompt, model).await
 	}
@@ -231,7 +231,7 @@ fn classify(message: &str) -> Refusal {
 	}
 }
 
-async fn agy(runner: Runner, prompt: &str, model: &str) -> Result<Answer, Refusal> {
+async fn agy(prompt: &str, model: &str) -> Result<Answer, Refusal> {
 	let output = tokio::process::Command::new("agy")
 		.arg("--print")
 		.arg(prompt)
@@ -282,15 +282,6 @@ async fn agy(runner: Runner, prompt: &str, model: &str) -> Result<Answer, Refusa
 		// or visibly absent.
 		usd: 0.0,
 	})
-}
-
-/// The Claude enum, for callers that still want it typed.
-pub fn claude_model(name: &str) -> ClaudeModel {
-	match name {
-		"haiku" => ClaudeModel::Haiku,
-		"opus" => ClaudeModel::Opus,
-		_ => ClaudeModel::Sonnet,
-	}
 }
 
 #[cfg(test)]

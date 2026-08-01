@@ -13,6 +13,7 @@ mod favicon;
 mod gc;
 mod i18n;
 mod image;
+mod media;
 mod opengraph;
 mod paths;
 mod port;
@@ -157,8 +158,9 @@ fn describe_images(args: &[String]) -> ExitCode {
 	};
 	let originals = root.join("data").join("image");
 	let public = root.join("data").join("public");
-	let merged_path = root.join(image::run::MERGED);
-	let mut merged = image::run::load(&merged_path);
+	let merged = image::run::load(&root.join(image::run::MERGED));
+	let described_path = media::path_for(&root);
+	let mut described = media::load(&described_path);
 
 	// A runtime only for this command. Everything else here is a local file walk that gains
 	// nothing from one; this is the single place where the work is waiting on somebody else.
@@ -169,7 +171,7 @@ fn describe_images(args: &[String]) -> ExitCode {
 			return ExitCode::FAILURE;
 		}
 	};
-	let outcome = runtime.block_on(alt::run(&mut merged, &originals, force, limit));
+	let outcome = runtime.block_on(alt::run(&merged, &mut described, &originals, force, limit));
 
 	for (cid, error) in &outcome.failed {
 		eprintln!("fail  {cid}: {error}");
@@ -180,22 +182,13 @@ fn describe_images(args: &[String]) -> ExitCode {
 		eprintln!("warn  no original on hand for {cid}");
 	}
 
-	if outcome.described > 0 {
-		merged.generated = image::manifest::now();
-		let json = serde_json::to_string_pretty(&merged).unwrap_or_default();
-		if let Err(error) = image::store::write(&merged_path, format!("{json}\n").as_bytes()) {
-			eprintln!("could not write the manifest: {error}");
-			return ExitCode::FAILURE;
-		}
-		// The published record carries the description too, so the metadata API answers with it
-		// without the site having to be rebuilt first.
-		for (cid, media) in &merged.assets {
-			if let Err(error) = image::run::republish(&public, cid, media) {
-				eprintln!("could not publish {cid}: {error}");
-				return ExitCode::FAILURE;
-			}
-		}
+	if outcome.described > 0
+		&& let Err(error) = media::save(&described_path, &described)
+	{
+		eprintln!("could not write media.yaml: {error}");
+		return ExitCode::FAILURE;
 	}
+	let _ = public;
 
 	println!(
 		"{} described, {} already had one, {} left by --limit, {} failed",
@@ -454,7 +447,7 @@ fn collect_garbage(args: &[String]) -> ExitCode {
 		println!("drop  {}", shown.display());
 	}
 	for cid in &sweep.entries {
-		println!("drop  {} from assets.json", cid);
+		println!("drop  {} from metadata.json", cid);
 	}
 	println!(
 		"{} objects, {} manifest entries, {:.1} MiB",

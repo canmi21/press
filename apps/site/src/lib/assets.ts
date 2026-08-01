@@ -1,3 +1,4 @@
+import { previewFor } from '$lib/server/placeholder';
 import { URLS } from '@canmi/urls';
 import { assets } from 'virtual:assets';
 
@@ -74,7 +75,7 @@ export function resolve(reference: string): Resolved | null {
 		width: asset.source.width,
 		height: asset.source.height,
 		ratio: asset.source.ratio,
-		preview: asset.preview,
+		preview: previewFor(asset.thumbhash),
 		description: asset.description,
 	};
 }

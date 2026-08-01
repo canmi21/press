@@ -45,7 +45,7 @@ language. See [spec/lint-format.md](spec/lint-format.md).
 ```
 spec/   rules      libs/   libraries, any language      apps/   deployables, any language
 contents/  articles, tracked because prose wants diffs  projs/  reserved, not created yet
-data/   assets, in the tree but never in git
+data/   assets, plus the records about them: bytes stay out of git, records go in
 ```
 
 A directory under `libs/` is a namespace, not a language choice -- one name, one thing, even

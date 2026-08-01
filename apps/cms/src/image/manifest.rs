@@ -9,7 +9,6 @@
 //! originals live outside git, so a manually corrected manifest would be a claim nothing can
 //! check.
 
-use super::encode::Format;
 use super::{Derived, Variant};
 use base64::Engine as _;
 use base64::engine::general_purpose::STANDARD;
@@ -22,7 +21,9 @@ use std::collections::BTreeMap;
 /// 1. The original shape.
 /// 2. Assets carry a `description`, so alt text travels with the image rather than with each
 ///    article that happens to reference it.
-pub const VERSION: u32 = 2;
+/// 3. `description` moves out to `data/media.yaml`, `preview` and `original` are dropped, and
+///    what the camera recorded arrives as `metadata`.
+pub const VERSION: u32 = 3;
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct Document {
@@ -41,26 +42,19 @@ pub struct Media {
 	/// The original's content id, and the identity of the asset.
 	pub blake3: String,
 	/// Base64 thumbhash: the compact canonical placeholder.
+	///
+	/// The only form kept. A decoded copy used to sit beside it, which was the same picture
+	/// written twice -- the build can decode this once and inline the result, and a second
+	/// stored form is a second thing to keep in step.
 	pub thumbhash: String,
-	/// The same placeholder decoded and re-encoded tiny, ready to inline. Carried alongside
-	/// the hash so an article needs no decoder script to paint it.
-	pub preview: String,
 	pub source: Source,
-	/// What this image shows, written for someone who cannot see it.
+	/// What the camera recorded, read from the original at import.
 	///
-	/// Held with the asset rather than with a reference, because it describes the picture and
-	/// not the place it appears. An article that wants different wording for its own context
-	/// overrides it; every other reference gets this for free, including the ones written
-	/// years later. Filled by `cms alt`.
+	/// Absent when extraction never ran; present and empty when it ran and the file had
+	/// nothing, which is what every screenshot answers. See the module in `image::exif` for
+	/// why that distinction is carried by the container rather than by nulls.
 	#[serde(default, skip_serializing_if = "Option::is_none")]
-	pub description: Option<String>,
-	/// Whether this asset carries a variant at the original's own resolution.
-	///
-	/// Recorded rather than inferred so re-deriving reproduces what was published. Comparing
-	/// the top variant against the source would guess wrong for every image that happens to
-	/// sit below the cap, where the two are the same size for an unrelated reason.
-	#[serde(default)]
-	pub original: bool,
+	pub metadata: Option<super::exif::Metadata>,
 	/// Keyed by each variant's own content id, exactly as the asset is keyed by the
 	/// original's. Every stored object is addressed the same way.
 	pub variants: BTreeMap<String, VariantRecord>,
@@ -143,7 +137,7 @@ pub fn media_for(
 	source_mime: &str,
 	source_bytes: u64,
 	created: Option<&str>,
-	keep_original: bool,
+	metadata: Option<super::exif::Metadata>,
 ) -> Media {
 	let timestamp = now();
 	Media {
@@ -152,12 +146,6 @@ pub fn media_for(
 		updated: timestamp,
 		blake3: derived.cid.clone(),
 		thumbhash: STANDARD.encode(&derived.thumb),
-		preview: format!(
-			"data:{};base64,{}",
-			Format::Webp.mime(),
-			STANDARD.encode(&derived.preview)
-		),
-		description: None,
 		source: Source {
 			mime: source_mime.to_owned(),
 			width: derived.width,
@@ -165,7 +153,7 @@ pub fn media_for(
 			ratio: ratio_of(derived.width, derived.height),
 			bytes: source_bytes,
 		},
-		original: keep_original,
+		metadata,
 		variants: derived
 			.variants
 			.iter()
@@ -214,8 +202,6 @@ mod tests {
 				updated: "2026-07-30T13:14:52Z".into(),
 				blake3: "44b6081deaf0242ca3bf83d62a3b6c95".into(),
 				thumbhash: "1QcSHQRnh493".into(),
-				preview: "data:image/webp;base64,UklGRh4".into(),
-				description: None,
 				source: Source {
 					mime: "image/png".into(),
 					width: 2356,
@@ -223,7 +209,7 @@ mod tests {
 					ratio: ratio_of(2356, 1204),
 					bytes: 6_612_480,
 				},
-				original: false,
+				metadata: None,
 				variants: BTreeMap::new(),
 			},
 		};

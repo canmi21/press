@@ -1,18 +1,21 @@
 # Everything here is reproducible from source: dependencies, build output,
 # caches, and generated code. Nothing generated is ever committed.
 
-# Data lives in the tree but never in git. Git holds code; content -- photos, fetched
-# favicons, drafts -- lives here and is mirrored to R2 or backed up separately. Only the
-# empty skeleton is tracked, so a fresh clone has the directories to put things in.
-# See spec/architecture.md; git ignores, sync filters, and backup lists are three
-# different sets and are not to be shared.
+# data/ holds assets and the records describing them. The bytes stay out of git -- photos,
+# derived variants, fonts, a geocoding database -- and are mirrored to R2 or backed up
+# separately; the records go in. The empty skeleton is tracked so a fresh clone has the
+# directories to put things in. See spec/architecture.md; git ignores, sync filters, and
+# backup lists are three different sets and are not to be shared.
 data/**
 !data/**/
 !data/**/.gitkeep
-# The one exception, and it earns it: the merged manifest is what lets a build resolve every
-# image without a single byte of `data/` being present, so it has to travel with the code
-# rather than with the assets it describes. Everything else here is bytes; this is a record.
-!data/assets.json
+# An allowlist, not exceptions. What `data/` keeps out of git is bytes, not the directory:
+# photographs, derived variants, fonts and a geocoding database say nothing in a diff. These
+# three are records -- a build resolves every image from the first without one being present,
+# and the others hold descriptions that cost money and tags a person curates.
+!data/metadata.json
+!data/media.yaml
+!data/tags.yaml
 
 # Dependencies
 node_modules/

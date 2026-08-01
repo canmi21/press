@@ -193,7 +193,6 @@ mod tests {
 			updated: "2026-07-31T00:00:00Z".into(),
 			blake3: String::new(),
 			thumbhash: String::new(),
-			preview: String::new(),
 			source: Source {
 				mime: "image/png".into(),
 				width: 640,
@@ -201,8 +200,7 @@ mod tests {
 				ratio: "16:9".into(),
 				bytes: 1,
 			},
-			description: None,
-			original: false,
+			metadata: None,
 			variants,
 		}
 	}
@@ -227,7 +225,7 @@ mod tests {
 			assets,
 		};
 		// Through the same writer production uses, which creates the parent. The manifest sits
-		// at `data/assets.json` now, so a bare write lands in a directory that is not there.
+		// at `data/metadata.json` now, so a bare write lands in a directory that is not there.
 		crate::image::store::write(
 			&root.join(MERGED),
 			serde_json::to_string(&merged).expect("json").as_bytes(),
