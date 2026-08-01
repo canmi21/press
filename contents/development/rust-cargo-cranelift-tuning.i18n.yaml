@@ -1691,65 +1691,69 @@ segments:
       tokens: 14922
       review: false
   8972ab2a06f2e872c59e5822ca3c56f5:
+    de-DE:
+      text: Obwohl diese nützlichen Konfigurationen dir dabei helfen, Dev‑ und Release‑Profile schnell zu unterscheiden, werden ihre Vorteile mit wachsenden Projektdateien immer deutlicher. Trotzdem empfehle ich, eine CI‑Pipeline einzurichten, die den Rust Stable LLVM‑Build ausführt, am besten zusammen mit allen deinen Tests. So musst du lokal nicht mehr zu einer Nightly‑Rust-Version wechseln, Edge Cases können dich nicht mehr überraschen, und beim Pushen werden mögliche Probleme von der CI abgefangen. Das ist momentan das angenehmste DX‑Setup; das war's für jetzt, beim nächsten Mal, wenn ich Zeit habe, schaue ich wieder drüber.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554732Z
+      seconds: 11.590998541
+      tokens: 17094
+      review: false
     en-US:
-      text: Finally, while these handy configurations can help you quickly distinguish between the dev and release profiles—a benefit that will become even more obvious as your codebase grows—I still recommend setting up a CI pipeline to run the Rust Stable LLVM Build, ideally along with all your tests. This way, you won't need to switch from your local nightly Rust, edge cases won't trip you up, and any issues will be caught by CI as soon as you push. This is currently the most comfortable DX mode. That's all for this time, and I'll catch you again next time I'm free!
-      provider: google
-      model: gemini-3-6-flash-high
-      at: 2026-08-01T01:49:04.642884Z
-      seconds: 7.26682525
-      tokens: 14563
+      text: Although these handy configurations can help you quickly distinguish between dev and release profiles, their benefits become increasingly obvious as the project code grows. However, I still recommend adding a CI job to run the Rust Stable LLVM build, preferably together with all your tests. This way you won’t need to switch to a nightly Rust locally, Edge Cases won’t bite you, and any problems will be caught by CI when you push. This is currently the most comfortable DX setup; that’s all for now, I’ll explore more next time when I have time.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554732Z
+      seconds: 11.590998541
+      tokens: 17094
       review: false
     es-ES:
-      text: Por último, aunque estas prácticas configuraciones pueden ayudarte a diferenciar rápidamente entre el profile de dev y el de release —algo que será cada vez más evidente a medida que crezca el código del proyecto—, te recomiendo configurar una CI para ejecutar Rust Stable LLVM Build, idealmente junto con tus distintas pruebas. De este modo, no tendrás que cambiar de versión local de nightly Rust, los Edge Cases no te pillarán por sorpresa y cualquier problema será bloqueado por la CI al hacer push. Este es actualmente el modo DX más cómodo. Eso es todo por esta vez, ¡volveremos en la próxima oportunidad!
-      provider: google
-      model: gemini-3-6-flash-high
-      at: 2026-08-01T01:49:04.642884Z
-      seconds: 7.26682525
-      tokens: 14563
+      text: Aunque estas configuraciones útiles pueden ayudarte a distinguir rápidamente entre los perfiles dev y release, sus beneficios se hacen cada vez más evidentes a medida que el código del proyecto crece. Sin embargo, sigo recomendando añadir una tarea de CI que ejecute el Rust Stable LLVM Build, preferiblemente junto con todas tus pruebas. De este modo no tendrás que cambiar a una versión nightly de Rust localmente, los Edge Cases no te atraparán y cualquier problema será bloqueado por la CI al hacer push. Este es, por ahora, el modo DX más cómodo; eso es todo por ahora, la próxima vez que tenga tiempo volveré a ello.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554732Z
+      seconds: 11.590998541
+      tokens: 17094
       review: false
     fr-FR:
-      text: Enfin, bien que ces configurations pratiques puissent vous aider à distinguer rapidement le profile dev et release – ce qui deviendra d'autant plus évident au fur et à mesure que le code du projet s'étoffera –, je vous recommande tout de même de mettre en place une CI pour lancer le Rust Stable LLVM Build, idéalement combinée avec vos différents tests. De cette façon, vous n'aurez pas besoin de basculer de votre version locale nightly de Rust, les Edge Cases ne vous piégeront pas, et tout problème sera intercepté par la CI lors du push. C'est actuellement le mode DX le plus confortable. C'est tout pour cette fois, à la prochaine quand j'aurai un moment !
-      provider: google
-      model: gemini-3-6-flash-high
-      at: 2026-08-01T01:49:04.642884Z
-      seconds: 7.26682525
-      tokens: 14563
+      text: Même si ces configurations pratiques permettent de différencier rapidement les profils dev et release, leurs avantages deviennent de plus en plus évidents à mesure que le code du projet s’étend. Cela dit, je recommande toujours d’ajouter un job CI pour exécuter le Rust Stable LLVM Build, idéalement en l’associant à l’ensemble de vos tests. Ainsi, vous n’aurez plus besoin de basculer vers un Rust nightly en local, les Edge Cases ne vous piègeront pas et tout problème sera intercepté par la CI lors du push. C’est actuellement le mode DX le plus confortable ; c’est tout pour le moment, je reviendrai dessus la prochaine fois que j’aurai du temps.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554732Z
+      seconds: 11.590998541
+      tokens: 17094
       review: false
     ja-JP:
-      text: |-
-        最後に、これらの便利な設定は dev プロファイルと release プロファイルを素早く区別するのに役立ち、プロジェクトのコードが増えるにつれてそのメリットはますます顕著になりますが、やはり Rust Stable LLVM Build を実行する CI をもう一つ作成し、各種テストも一緒に走らせることをお勧めします。そうすればローカルで nightly の Rust を切り替える必要もなくなり、Edge Case にハマることもなく、push した際に問題があれば CI でブロックされます。これが現状最も快適な DX モードです。それでは今回はここまでにして、また時間がある時に続きを書きたいと思います。
-
-        ⟦de-DE⟧:
-        Schließlich können diese nützlichen Konfigurationen zwar helfen, schnell zwischen dem dev- und release-Profile zu unterscheiden – was bei wachsendem Projektcode nur noch offensichtlicher wird –, aber ich empfehle dennoch, ein zusätzliches CI einzurichten, um den Rust Stable LLVM Build auszuführen, am besten zusammen mit Ihren verschiedenen Tests. Auf diese Weise müssen Sie lokal nicht von nightly Rust wechseln, Edge Cases können Ihnen nichts anhaben, und Probleme werden beim Push direkt vom CI abgefangen. Das ist derzeit der komfortabelste DX-Modus. Das war's für dieses Mal, beim nächsten Mal geht es weiter!
-      provider: google
-      model: gemini-3-6-flash-high
-      at: 2026-08-01T01:49:04.642884Z
-      seconds: 7.26682525
-      tokens: 14563
+      text: これらの便利な設定は dev と release プロファイルをすばやく区別するのに役立ちますが、プロジェクトのコードが増えるにつれてその効果はますます明らかになります。しかし、それでも Rust Stable LLVM ビルドを実行する CI を追加し、できればすべてのテストも一緒に走らせることをお勧めします。これによりローカルで nightly Rust に切り替える必要がなくなり、エッジケースにも悩まされず、プッシュ時に問題があれば CI がブロックしてくれます。現在、これが最も快適な DX 方式です。今回はここまでです。また時間があるときに続きます。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554732Z
+      seconds: 11.590998541
+      tokens: 17094
       review: false
     ko-KR:
-      text: 마지막으로 이러한 유용한 설정들이 dev와 release profile을 빠르게 구분하는 데 도움을 주며, 프로젝트 코드가 늘어날수록 그 효과는 더욱 분명해지지만, 저는 여전히 Rust Stable LLVM Build를 실행하는 CI를 추가하고 다양한 테스트와 함께 실행하는 것을 권장합니다. 이렇게 하면 로컬에서 nightly Rust를 전환할 필요가 없고, Edge Case에 걸릴 일도 없으며, push 시 문제가 발생하더라도 CI에서 걸러집니다. 이것이 현재 가장 편안한 DX 모드입니다. 그럼 이번에는 여기까지 하고, 다음에 시간이 날 때 다시 찾아뵙겠습니다.
-      provider: google
-      model: gemini-3-6-flash-high
-      at: 2026-08-01T01:49:04.642884Z
-      seconds: 7.26682525
-      tokens: 14563
+      text: 이러한 유용한 설정은 dev와 release 프로파일을 빠르게 구분하는 데 도움이 되지만, 프로젝트 코드가 커질수록 그 효과는 점점 더 뚜렷해집니다. 그렇지만 저는 여전히 Rust Stable LLVM 빌드를 실행하는 CI를 추가하고, 가능한 한 모든 테스트도 함께 실행하도록 권장합니다. 이렇게 하면 로컬에서 nightly Rust로 전환할 필요가 없고, Edge Case도 문제를 일으키지 않으며, 푸시할 때 문제가 있으면 CI가 차단해 줍니다. 현재 이것이 가장 편리한 DX 환경이며, 이번은 여기까지입니다. 다음에 시간이 날 때 다시 살펴보겠습니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554732Z
+      seconds: 11.590998541
+      tokens: 17094
       review: false
     zh-CN:
       text: 最后这些好用的配置虽然可以帮助你快速区分 dev 和 release profile，在项目代码上来后只会越来越明显，但是我还是建议你多写一个 CI 来跑 Rust Stable LLVM Build，最好再加上你的各种测试一起跑，这样本地 nightly 的 rust 也不用切换了，Edge Case 也坑不到你，push 上去有问题就被 CI 拦了，这样就是目前最舒服的 DX 模式了；那这次就说到这里了，下次有空再摸吧
-      provider: google
-      model: gemini-3-6-flash-high
-      at: 2026-08-01T01:49:04.642884Z
-      seconds: 7.26682525
-      tokens: 14563
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554732Z
+      seconds: 11.590998541
+      tokens: 17094
       review: false
     zh-TW:
-      text: 最後這些好用的設定雖然可以幫助你快速區分 dev 和 release profile，在專案程式碼增加後只會越來越明顯，但我還是建議你多寫一個 CI 來跑 Rust Stable LLVM Build，最好再加上你的各種測試一起跑，這樣本地 nightly 的 rust 也不用切換了，Edge Case 也坑不到你，push 上去有問題就被 CI 攔了，這樣就是目前最舒服的 DX 模式了；那這次就說到這裡了，下次有空再摸吧
-      provider: google
-      model: gemini-3-6-flash-high
-      at: 2026-08-01T01:49:04.642884Z
-      seconds: 7.26682525
-      tokens: 14563
+      text: 最後這些好用的配置雖然可以幫助你快速區分 dev 和 release profile，在專案代碼上來後只會越來越明顯，但是我還是建議你多寫一個 CI 來跑 Rust Stable LLVM Build，最好再加上你的各種測試一起跑，這樣本地 nightly 的 rust 也不用切換了，Edge Case 也坑不到你，push 上去有問題就被 CI 攔了，這樣就是目前最舒服的 DX 模式了；那這次就說到這裡了，下次有空再摸吧
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554732Z
+      seconds: 11.590998541
+      tokens: 17094
       review: false
   8b26dd6ee82e31c3df3d10f8d575647d:
     de-DE:
@@ -1815,4 +1819,1638 @@ segments:
       at: 2026-08-01T01:49:04.64682Z
       seconds: 4.753844
       tokens: 12746
+      review: false
+  8f107e6c4908d70a5555730342bbba94:
+    de-DE:
+      text: 'Ich mag Rust schon seit langer Zeit; seine Vorteile sind offensichtlich, und seine Nachteile sind ebenso klar. Es bietet Speicher‑Safety ohne GC, 零成本抽象, 并发安全, vermutlich das beste Werkzeug‑Chain und 配套外围建设, eine enorme Abdeckung (von Web 云服务器 bis zu 单片机). Außerdem ist das Fehlerbehandlungskonzept hervorragend. Die Nachteile: eine steile Lernkurve? Schwierigkeit, Ownership, Borrow und ähnliche Modellbeschränkungen zu verstehen; und das Schreiben von Code ist langsam?'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554734Z
+      seconds: 22.817701
+      tokens: 18924
+      review: false
+    en-US:
+      text: 'I have liked Rust for a long time; its advantages are obvious, and its disadvantages are equally clear. It offers memory Safety without GC, 零成本抽象, 并发安全, arguably the best 工具链 and 配套外围建设, an extensive coverage range (from Web 云服务器 down to 单片机), and its error‑handling design is excellent. As for the downsides: a steep learning curve? Difficulty understanding Ownership, Borrow and similar model constraints; and writing code can be slow?'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554734Z
+      seconds: 22.817701
+      tokens: 18924
+      review: false
+    es-ES:
+      text: 'Me gusta Rust desde hace mucho tiempo; sus ventajas son evidentes y sus desventajas también lo son. Ofrece seguridad de memoria sin GC, 零成本抽象, 并发安全, probablemente la mejor 工具链 y 配套外围建设 disponible actualmente, una cobertura enorme (desde servidores Web en la nube hasta microcontroladores), y su diseño de manejo de errores es excelente. En cuanto a sus desventajas: ¿una curva de aprendizaje pronunciada? Dificultad para comprender Ownership, Borrow y restricciones de modelo similares; y escribir código resulta lento.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554734Z
+      seconds: 22.817701
+      tokens: 18924
+      review: false
+    fr-FR:
+      text: J’aime Rust depuis longtemps ; ses points forts sont évidents, tout comme ses points faibles. Il offre une sécurité mémoire sans GC, 零成本抽象, 并发安全, probablement le meilleur 工具链 et 配套外围建设 du moment, une couverture impressionnante (des serveurs cloud Web aux microcontrôleurs), et une conception de la gestion des erreurs excellente. Les inconvénients ? Une courbe d’apprentissage abrupte, la difficulté à comprendre Ownership, Borrow et d’autres contraintes de modèle, et le fait d’écrire du code est lent.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554734Z
+      seconds: 22.817701
+      tokens: 18924
+      review: false
+    ja-JP:
+      text: 私は Rust が好きで、かなり前からです。その利点は明らかで、欠点も同様にはっきりしています。メモリ Safe が GC を必要とせず、零成本抽象、并发安全、ほぼ現段階で最高のツールチェーンと配套外围建设があり、広範なカバレッジ（Web 云服务器から単片機まで）を誇り、エラーハンドリング設計も非常に優れています。欠点としては、学習曲線が急で、Ownership、Borrow などのモデル制約を理解しにくいこと、そしてコードを書くのが遅いことですか？
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554734Z
+      seconds: 22.817701
+      tokens: 18924
+      review: false
+    ko-KR:
+      text: 나는 Rust를 오래전부터 좋아했습니다. 그 장점은 명확하고 단점도 역시 분명합니다. 메모리 Safe, GC 없이, 零成本抽象, 并发安全, 현재 단계에서 가장 좋은 工具链와 配套外围建设, 넓은覆盖面(웹 云服务器부터 단片기까지), 그리고 오류 처리 설계도 매우 훌륭합니다. 단점은 학습 곡선이 가파르고, Ownership, Borrow 같은 모델 제약을 이해하기 어렵고, 코딩 속도가 느리다는 점입니다?
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554734Z
+      seconds: 22.817701
+      tokens: 18924
+      review: false
+    zh-CN:
+      text: 我喜欢 Rust 已经很久了，它的优点很明显，同时缺点也很明显。内存 Safe 无需 GC、零成本抽象、并发安全、几乎现阶段最好的工具链和配套外围建设、超强的覆盖面(上到 Web 云服务器，下到单片机)，还有错误处理设计非常好。缺点嘛，学习陡峭？难以理解 Ownship，Borrow 之类的模型约束；写起来很慢？
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554734Z
+      seconds: 22.817701
+      tokens: 18924
+      review: false
+    zh-TW:
+      text: 我喜歡 Rust 已經很久了，它的優點很明顯，同時缺點也很明顯。內存 Safe 無需 GC、零成本抽象、並發安全、幾乎現階段最好的工具鏈和配套外圍建設、超強的覆蓋面(上到 Web 雲伺服器，下到單片機)，還有錯誤處理設計非常好。缺點嘛，學習陡峭？難以理解 Ownship，Borrow 之類的模型約束；寫起來很慢？
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554734Z
+      seconds: 22.817701
+      tokens: 18924
+      review: false
+  932ed4fb81fe3ff80b0d225149714615:
+    de-DE:
+      text: LTO（Link‑Time Optimization）ist ein weiteres Feature, das sehr viel Speicher und Kompilier‑Performance beansprucht, und die meisten Projekte empfehlen, es für Release‑Builds zu aktivieren. Bei einer normalen Kompilierung wird jedes Crate unabhängig optimiert, und das Backend kann die Aufrufbeziehungen zwischen den Crates nicht sehen, sodass bestimmte Cross‑Crate‑Inlinings und Dead‑Code‑Eliminierungen nicht möglich sind – ein sehr häufiges Szenario. LTO bricht diese Grenze, indem der Optimierer beim Linken den IR aller Crates erhält und eine globale Optimierung durchführt. Aber setzen Sie jedoch niemals gedankenlos `lto = true` im Profil, denn das lässt Ihre Rust‑Kompilierung so langsam werden, dass Sie das Leben hinterfragen; fügen Sie es einfach nur hinzu, wenn Sie das Release‑Profil verwenden.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554736Z
+      seconds: 16.972507917
+      tokens: 18543
+      review: false
+    en-US:
+      text: LTO (Link‑Time Optimization) is another thing that consumes a lot of memory and compilation performance, and it’s something most projects recommend enabling for Release builds. In a normal compilation, each crate is optimized independently, and the compiler backend can’t see the call relationships between crates, so certain cross‑crate inlining and dead‑code elimination can’t be performed, a situation that occurs very often; LTO breaks this boundary by giving the optimizer access to the IR of all crates at link time for a global optimization pass. However, never mindlessly add `lto = true` in the profile, as that will make your Rust compilation so slow you’ll question life; just make sure to add it when using a release profile.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554736Z
+      seconds: 16.972507917
+      tokens: 18543
+      review: false
+    es-ES:
+      text: LTO (Link‑Time Optimization) es otra característica que consume mucha memoria y rendimiento de compilación, y la mayoría de los proyectos recomiendan habilitarla en las compilaciones Release. En una compilación normal, cada crate se optimiza de forma independiente y el backend del compilador no ve las relaciones de llamada entre crates, lo que impide ciertos inlinings entre crates y la eliminación de código muerto, una situación muy frecuente. LTO rompe esta barrera proporcionando al optimizador, en tiempo de enlace, el IR de todos los crates para realizar una optimización global. Pero nunca añadas `lto = true` sin pensar al perfil, ya que eso hará que la compilación de Rust sea tan lenta que llegarás a dudar de la vida; simplemente añádelo cuando uses el perfil Release.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554736Z
+      seconds: 16.972507917
+      tokens: 18543
+      review: false
+    fr-FR:
+      text: LTO (Link‑Time Optimization) est une autre fonctionnalité qui consomme énormément de mémoire et de performances de compilation, et la plupart des projets recommandent de l’activer pour les builds Release. En compilation normale, chaque crate est optimisé indépendamment, le backend du compilateur ne voit pas les relations d’appel entre les crates, ce qui empêche certains inlinings inter‑crate et l’élimination du code mort – un scénario très fréquent. LTO brise cette limite en donnant à l’optimiseur, lors de l’édition de liens, l’IR de tous les crates afin d’effectuer une optimisation globale. Mais ne placez jamais `lto = true` de façon irréfléchie dans le profil, cela ralentira votre compilation Rust au point de douter de votre existence ; ajoutez‑le simplement lorsque vous utilisez le profil Release.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554736Z
+      seconds: 16.972507917
+      tokens: 18543
+      review: false
+    ja-JP:
+      text: LTO（Link‑Time Optimization）は、メモリとコンパイル性能を大量に消費するもう一つの機能で、ほとんどのプロジェクトが Release ビルド時に有効にすることを推奨しています。通常のコンパイルでは、各 crate が独立して最適化され、コンパイラのバックエンドは crate 間の呼び出し関係を把握できないため、クロス crate のインライン化やデッドコード除去ができません。このようなケースは非常に多く、LTO はリンク時にすべての crate の IR を取得してこの境界を打ち破り、グローバルな最適化を行います。ただし、profile に無造作に `lto = true` を付けるのはやめてください。これをすると Rust のコンパイルが遅くなりすぎて人生に疑問を抱くほどです。release profile を使用する際にだけ付けるようにしましょう。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554736Z
+      seconds: 16.972507917
+      tokens: 18543
+      review: false
+    ko-KR:
+      text: LTO(Link‑Time Optimization)는 메모리와 컴파일 성능을 많이 잡아먹는 또 다른 요소이며, 대부분의 프로젝트에서 Release 빌드 시 활성화하는 것이 권장됩니다. 일반 컴파일에서는 각 crate가 독립적으로 최적화되고, 컴파일러 백엔드는 crate 간 호출 관계를 알 수 없으므로 일부 크로스‑crate 인라인 및 죽은 코드 제거가 불가능한데, 이런 경우가 매우 많습니다. LTO는 링크 단계에서 모든 crate의 IR을 받아 이 경계를 깨고 전역 최적화를 수행합니다. 하지만 프로파일에 무분별하게 `lto = true`을 붙이는 것은 절대 금물입니다. 그렇게 하면 Rust 컴파일 속도가 너무 느려져 인생을 회의하게 되니, Release 프로파일을 사용할 때만 붙이도록 하세요.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554736Z
+      seconds: 16.972507917
+      tokens: 18543
+      review: false
+    zh-CN:
+      text: LTO（Link‑Time Optimization）是另一项非常占用内存和编译性能的技术，而且在大多数项目的 Release 构建时都推荐开启。正常编译时，每个 crate 是独立优化的，编译后端看不到 crate 之间的调用关系，导致某些跨 crate 的内联和死代码消除无法完成，这种情况非常常见；LTO 通过在链接时获取所有 crate 的 IR，打破这一边界，进行全局优化。但是千万不要在 profile 上无脑挂 `lto = true`，这会让你的 Rust 编译慢到怀疑人生，只需在使用 release profile 时挂上即可。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554736Z
+      seconds: 16.972507917
+      tokens: 18543
+      review: false
+    zh-TW:
+      text: LTO（Link‑Time Optimization）是另一項非常佔用記憶體與編譯效能的功能，而且大多數專案在 Release 時都建議開啟。正常編譯時，每個 crate 會獨立優化，編譯後端看不到 crate 之間的呼叫關係，某些跨 crate 的內聯與死碼消除做不到，這種情況相當常見；LTO 便是打破這個界限，讓優化器在連結時取得所有 crate 的 IR，進行全域最佳化。但千萬不要在 profile 上無腦掛 `lto = true`，這會讓你的 Rust 編譯變得慢到懷疑人生，只要在使用 release profile 時掛上即可。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554736Z
+      seconds: 16.972507917
+      tokens: 18543
+      review: false
+  936b48773d2eb41c764e9bbe3a422b59:
+    de-DE:
+      text: |-
+        3TU3ZCT21B43U2VUZTN706LF2BMZZUYF
+        ::placeholder{kind="github" repo="canmi21/seam" align="left" ref="a7f34cb47df324c84de7725296c9ef539e05b791"}
+        3TU3ZCT21B43U2VUZTN706LF2BMZZUYF
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554735Z
+      seconds: 8.734656375
+      tokens: 16407
+      review: false
+    en-US:
+      text: |-
+        3TU3ZCT21B43U2VUZTN706LF2BMZZUYF
+        ::placeholder{kind="github" repo="canmi21/seam" align="left" ref="a7f34cb47df324c84de7725296c9ef539e05b791"}
+        3TU3ZCT21B43U2VUZTN706LF2BMZZUYF
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554735Z
+      seconds: 8.734656375
+      tokens: 16407
+      review: false
+    es-ES:
+      text: |-
+        3TU3ZCT21B43U2VUZTN706LF2BMZZUYF
+        ::placeholder{kind="github" repo="canmi21/seam" align="left" ref="a7f34cb47df324c84de7725296c9ef539e05b791"}
+        3TU3ZCT21B43U2VUZTN706LF2BMZZUYF
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554735Z
+      seconds: 8.734656375
+      tokens: 16407
+      review: false
+    fr-FR:
+      text: |-
+        3TU3ZCT21B43U2VUZTN706LF2BMZZUYF
+        ::placeholder{kind="github" repo="canmi21/seam" align="left" ref="a7f34cb47df324c84de7725296c9ef539e05b791"}
+        3TU3ZCT21B43U2VUZTN706LF2BMZZUYF
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554735Z
+      seconds: 8.734656375
+      tokens: 16407
+      review: false
+    ja-JP:
+      text: |-
+        3TU3ZCT21B43U2VUZTN706LF2BMZZUYF
+        ::placeholder{kind="github" repo="canmi21/seam" align="left" ref="a7f34cb47df324c84de7725296c9ef539e05b791"}
+        3TU3ZCT21B43U2VUZTN706LF2BMZZUYF
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554735Z
+      seconds: 8.734656375
+      tokens: 16407
+      review: false
+    ko-KR:
+      text: |-
+        3TU3ZCT21B43U2VUZTN706LF2BMZZUYF
+        ::placeholder{kind="github" repo="canmi21/seam" align="left" ref="a7f34cb47df324c84de7725296c9ef539e05b791"}
+        3TU3ZCT21B43U2VUZTN706LF2BMZZUYF
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554735Z
+      seconds: 8.734656375
+      tokens: 16407
+      review: false
+    zh-CN:
+      text: |-
+        3TU3ZCT21B43U2VUZTN706LF2BMZZUYF
+        ::placeholder{kind="github" repo="canmi21/seam" align="left" ref="a7f34cb47df324c84de7725296c9ef539e05b791"}
+        3TU3ZCT21B43U2VUZTN706LF2BMZZUYF
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554735Z
+      seconds: 8.734656375
+      tokens: 16407
+      review: false
+    zh-TW:
+      text: |-
+        3TU3ZCT21B43U2VUZTN706LF2BMZZUYF
+        ::placeholder{kind="github" repo="canmi21/seam" align="left" ref="a7f34cb47df324c84de7725296c9ef539e05b791"}
+        3TU3ZCT21B43U2VUZTN706LF2BMZZUYF
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:05.554735Z
+      seconds: 8.734656375
+      tokens: 16407
+      review: false
+  975836895270d632940b9810067ef218:
+    de-DE:
+      text: Also gibt es im dev‑Profil nicht viel zu sagen; man kann debuginfo nicht einfach strippen, sonst kann man `gdb` / `lldb` nicht normal debuggen und im Backtrace erscheinen keine sinnvollen Funktionsnamen. Beachte jedoch, dass beim Packen unter ArchLinux standardmäßig strip ausgeführt wird, was mit uns kollidiert, weil wir bereits vorher strippen und später Fehler auftreten können. Wenn du ein AUR‑Paket schreibst, kannst du diesen Schritt explizit überspringen.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:17.151738Z
+      seconds: 12.4530755
+      tokens: 17698
+      review: false
+    en-US:
+      text: So there’s not much to say in the dev profile; you can’t just strip the debuginfo, otherwise you won’t be able to use `gdb` / `lldb` for normal debugging and the backtrace won’t show any meaningful function names. However, note that ArchLinux applies strip by default when packaging, which creates a small friction with us because we have already stripped it, potentially causing errors later. When writing an AUR package, you can explicitly skip this step.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:17.151738Z
+      seconds: 12.4530755
+      tokens: 17698
+      review: false
+    es-ES:
+      text: Así que en el perfil de desarrollo no hay mucho que decir; no puedes simplemente strippear debuginfo, porque entonces no podrías usar `gdb` / `lldb` para depurar normalmente y la backtrace no mostrará nombres de función útiles. Sin embargo, ten en cuenta que al empaquetar en ArchLinux se hace strip de forma predeterminada, lo que choca un poco con nosotros ya que ya lo hemos strippeado, lo que podría provocar errores más adelante. Si estás creando un paquete AUR, puedes prestar atención a omitir explícitamente este paso.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:17.151738Z
+      seconds: 12.4530755
+      tokens: 17698
+      review: false
+    fr-FR:
+      text: Donc, sous le profil dev, il n’y a pas grand-chose à dire ; on ne peut pas simplement strip les debuginfo, sinon `gdb` / `lldb` ne pourront plus être débogués normalement et la backtrace ne contiendra aucun nom de fonction utile. Notez cependant que lors de l’empaquetage sous ArchLinux, le strip est appliqué par défaut, ce qui crée un léger frottement avec nous puisqu’on l’a déjà stripé, ce qui peut entraîner des erreurs ultérieures. Lors de la rédaction d’un paquet AUR, pensez à sauter explicitement cette étape.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:17.151738Z
+      seconds: 12.4530755
+      tokens: 17698
+      review: false
+    ja-JP:
+      text: なので dev profile では特に言うことはありません、debuginfo を strip することはできませんよね、そうすると `gdb` / `lldb` を通常通りデバッグできず、backtrace に意味のある関数名も表示されません。ただし、ArchLinux でパッケージ化する際にはデフォルトで strip が行われますが、ここでは私たちがすでに strip してしまっているため、少し摩擦があります。その結果、後でエラーが出る可能性があります。AUR を作成する際にはこのステップを明示的にスキップすることに注意してください。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:17.151738Z
+      seconds: 12.4530755
+      tokens: 17698
+      review: false
+    ko-KR:
+      text: 그래서 dev profile에서는 별다를 말할 것이 없어요, debuginfo를 strip 할 수는 없잖아요, 그러면 `gdb` / `lldb`을 정상적으로 디버깅할 수 없고 backtrace에서도 의미 있는 함수명을 볼 수 없습니다. 하지만 ArchLinux에서 패키징할 때 기본적으로 strip이 적용되는데, 여기서는 우리가 이미 strip을 했기 때문에 약간 충돌이 있습니다. 그 결과 나중에 오류가 발생할 수 있습니다. AUR을 작성할 때는 이 단계를 명시적으로 건너뛰는 것을 고려하십시오.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:17.151738Z
+      seconds: 12.4530755
+      tokens: 17698
+      review: false
+    zh-CN:
+      text: 所以 dev profile 下没什么好说的，你总不能 strip 掉 debuginfo 吧，那样你就没法用 `gdb` / `lldb` 正常调试了，backtrace 里也看不到有意义的函数名。但是注意，ArchLinux 打包的时候会默认帮助你 strip，但是这里就会和我们有一点小摩擦，那就是我们已经 strip 掉了，后面可能会报错。这个如果写 AUR 的时候可以注意一下显式跳过这一步。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:17.151738Z
+      seconds: 12.4530755
+      tokens: 17698
+      review: false
+    zh-TW:
+      text: 所以 dev profile 下沒什麼好說的，你總不能 strip 掉 debuginfo 吧，那樣你就沒法用 `gdb` / `lldb` 正常調試了，backtrace 裡也看不到有意義的函數名。但是注意，ArchLinux 打包的時候會預設幫你 strip，但是這裡就會和我們有一點小摩擦，那就是我們已經 strip 掉了，後面可能會報錯。這個如果寫 AUR 的時候可以注意一下顯式跳過這一步。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:17.151738Z
+      seconds: 12.4530755
+      tokens: 17698
+      review: false
+  977ff184355d7deda86d0a8c3077ed8c:
+    de-DE:
+      text: Für guten Code sollte man Tests für einen korrekten Pfad und mindestens einen fehlerhaften Pfad abdecken. Sobald ein fehlerhafter Pfad abgedeckt ist, kann man den Fall testen, dass ein Err zurückgegeben wird, ein Fallback‑Logik schreiben und dadurch natürlich `thiserror` auflisten oder `anyhow` abfangen und die Log‑Einträge glätten. Kurz gesagt zwingt dein Code dich, Mechanismen für diese Situationen zu implementieren; wenn du diese Ebene erreicht hast, ist `panic` für dich überflüssig – man kann es als „theoretisch unmöglich“ interpretieren, aber das bleibt ebenfalls nur theoretisch. In der realen Welt gibt es OS‑Fehler, Speicherfehler, durch kosmische Strahlung verursachte Bit‑Flip‑Einzelereignisse, seltsame Überläufe … Man kann diese Fälle niemals vollständig abdecken. Warum also auf panic verzichten? Weil diese Situationen zu 90 % nicht durch deinen Code verursacht werden. Der Kern von `panic` ist, dass Rust beim Auftreten den Aufruf‑Stack zurückverfolgt, frameweise die Destruktoren (drop) aufruft und Ressourcen freigibt. Dafür muss der Compiler zusätzliche `unwind`‑Tabellen erzeugen, die dir helfen, logische Fehler in deiner Geschäftslogik zu finden. Wenn die Fehler größtenteils nicht deine Schuld sind, hat diese Information kaum Wert, sie vergrößert zudem das Artefakt und belastet den Linker – das Abschalten ist die richtige Lösung. Sobald dein Code ausreichend getestet und du zuversichtlich bist, kannst du `panic = abort` konfigurieren.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.375846Z
+      seconds: 31.068704625
+      tokens: 22841
+      review: false
+    en-US:
+      text: So for good code, you should cover tests for one kind of happy path and at least one kind of error path. Covering just one error path is enough to test the case where an Err is returned, allowing you to write fallback logic, and thus you can naturally `thiserror` enumerate or `anyhow` intercept and flatten log records. In short, your code forces you to implement mechanisms to handle these situations; if you have achieved this layer, `panic` becomes useless for you—it can be understood as “theoretically impossible”, but even that is only theoretical. In the real world there are OS errors, memory errors, cosmic‑ray single‑bit flips, weird overflows… You can never cover all of these cases. So why avoid panic? Because these situations are mostly not your code's fault—about 90 % of the time they aren’t caused by you. The essence of `panic` is that when it occurs, Rust walks back up the call stack frame by frame, invoking each frame’s destructor (drop) to clean up resources. This process requires the compiler to generate extra `unwind` tables, which help you locate logical errors in your business code. If the errors are mostly not yours, what value does that information have? It also inflates the binary size and adds work for the linker—turning it off is the right solution. Once your code is well‑tested and you’re confident, you can configure `panic = abort`.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.375846Z
+      seconds: 31.068704625
+      tokens: 22841
+      review: false
+    es-ES:
+      text: Para un código de calidad, debes cubrir una prueba del camino feliz y al menos una prueba de camino de error. Con esa única ruta de error basta para probar el caso en que se devuelve un Err, escribir lógica de fallback y, de forma natural, `thiserror` enumerar o `anyhow` interceptar y aplanar los registros de impresión. En resumen, tu código te obliga a crear mecanismos para manejar esas situaciones; si has llegado a este nivel, `panic` ya no tiene utilidad – puede interpretarse como “teóricamente imposible”, aunque también es solo teoría. En el mundo real existen errores del SO, errores de memoria, inversiones de bits por rayos cósmicos, extraños desbordamientos… Nunca podrás cubrir todos esos casos. Entonces, ¿por qué evitar el panic? Porque esas situaciones en su mayoría no son culpa de tu código, alrededor del 90 % no provienen de ti. La esencia de `panic` es que, al ocurrir, Rust recorre la pila de llamadas, llamando a los destructores (drop) de cada marco para liberar recursos. Este proceso requiere que el compilador genere tablas adicionales `unwind`, lo que ayuda a localizar errores lógicos en tu lógica de negocio. Si los errores son mayormente externos, esa información tiene poco valor, además aumenta el tamaño del binario y la carga del enlazador – desactivarlo es la solución correcta. Cuando tu código está bien probado y tienes confianza, puedes configurar `panic = abort`.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.375846Z
+      seconds: 31.068704625
+      tokens: 22841
+      review: false
+    fr-FR:
+      text: Pour un code de bonne qualité, il faut couvrir un test de chemin heureux et au moins un test de chemin d’erreur. Avec cette unique route d’erreur, il suffit de tester le cas où un Err est renvoyé, d’écrire une logique de secours, et ainsi on peut naturellement `thiserror` énumérer ou `anyhow` intercepter et aplatir les enregistrements de journal. En résumé, votre code vous oblige à mettre en place des mécanismes pour gérer ces situations ; si vous avez atteint ce niveau, `panic` devient inutile pour vous – on peut le voir comme « théoriquement impossible », mais cela reste théorique. Dans le monde réel, il existe des erreurs d’OS, des erreurs mémoire, des inversions de bits dues aux rayons cosmiques, des dépassements étranges… Vous ne pourrez jamais couvrir tous ces cas. Alors pourquoi éviter le panic ? Parce que ces situations sont pour la plupart hors de votre responsabilité – environ 90 % ne sont pas causées par votre code. L’essence de `panic` est que, lorsqu’il survient, Rust remonte la pile d’appels, appelant chaque destructeur (drop) de chaque cadre pour libérer les ressources. Ce processus nécessite que le compilateur génère des tables supplémentaires `unwind`, qui vous aident à repérer les erreurs logiques de votre logique métier. Si les erreurs sont majoritairement externes, cette information a peu de valeur, elle gonfle aussi la taille du binaire et alourdit le travail du linker – la désactiver est la bonne solution. Une fois que votre code est bien testé et que vous avez confiance, vous pouvez configurer `panic = abort`.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.375846Z
+      seconds: 31.068704625
+      tokens: 22841
+      review: false
+    ja-JP:
+      text: 良いコードに対しては、1つの正常系テストと少なくとも1つのエラー系テストをカバーすべきです。そのエラー系テストは、Err が返されるケースをテストできれば十分で、フォールバックロジックを書き、自然に `thiserror` 列挙あるいは `anyhow` でインターセプトしてログを平坦化できます。要するに、コードはこれらの状況を処理する仕組みを書かせることになります。この層まで実装できていれば、`panic` はあなたにとって不要です—「理論上は不可能」と解釈できますが、それも理論上の話です。実際の世界では OS エラー、メモリエラー、宇宙線による単一ビット反転、奇妙なオーバーフローなどが存在します… すべてを網羅することは不可能です。ではなぜ panic を避けるのか？ それらの状況は大半がコードの問題ではなく、90% はあなたのコードが原因ではありません。`panic` の本質は、発生時に Rust が呼び出しスタックを遡り、各フレームのデストラクタ（drop）を順に呼び出してリソースを解放することです。このプロセスにはコンパイラが余分な `unwind` テーブルを生成する必要があり、ビジネスロジックのエラー箇所を特定する手助けになります。エラーがほとんど自分のものではないなら、その情報に価値はありませんし、バイナリサイズも増え、リンク作業も増えるのでオフにするのが正解です。コードのテストが十分で自信があるなら、`panic = abort` を設定すると良いでしょう。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.375846Z
+      seconds: 31.068704625
+      tokens: 22841
+      review: false
+    ko-KR:
+      text: 좋은 코드라면 올바른 경로에 대한 테스트 1가지와 최소 하나의 오류 경로에 대한 테스트를 포함해야 합니다. 오류 경로는 하나만 커버하면 Err가 반환되는 상황을 테스트할 수 있어 fallback 로직을 작성할 수 있고, 자연스럽게 `thiserror` 열거하거나 `anyhow` 로 인터셉트해 로그를 평탄화할 수 있습니다. 요컨대, 코드는 이러한 상황을 처리하는 메커니즘을 강제로 작성하게 합니다. 이 단계까지 구현했다면 `panic` 은 필요 없게 되는데, 이를 “이론적으로 불가능”이라고 이해할 수 있지만 이것도 이론에 불과합니다. 실제 세계에는 OS 오류, 메모리 오류, 우주선량에 의한 단일 비트 플립, 기이한 오버플로우 등이 존재합니다… 이런 경우를 모두 커버할 수는 없습니다. 그렇다면 왜 panic을 피해야 할까요? 이러한 상황은 대부분 여러분의 코드 문제와는 관계가 없으며, 90 % 정도는 여러분의 코드가 원인이 아닙니다. `panic` 의 본질은 발생 시 Rust가 호출 스택을 거꾸로 따라가면서 각 프레임의 소멸자(drop)를 호출해 자원을 정리한다는 것입니다. 이 과정에는 컴파일러가 추가적인 `unwind` 테이블을 생성해야 하는데, 이는 비즈니스 로직 오류 지점을 찾는 데 도움을 줍니다. 오류가 대부분 여러분의 것이 아니라면 그 정보는 가치가 없으며, 바이너리 크기도 늘리고 링커 작업량도 증가시킵니다—비활성화하는 것이 정답입니다. 코드를 충분히 테스트하고 자신감이 있다면 `panic = abort` 를 설정해 보세요.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.375846Z
+      seconds: 31.068704625
+      tokens: 22841
+      review: false
+    zh-CN:
+      text: 那么对于好的代码来说，就应该覆盖 1类正确路径的测试 和 至少一种错误路径的测试，而这一类的错误路径只要覆盖一个就可以测试被 Err 返回的情况，就可以写 fallback 逻辑，就自然的可以 `thiserror` 枚举 or `anyhow` 拦截拍平打印记录。总之就是你的代码会迫使你写出处理这些情况的机制，如果做到了这一层的话，`panic` 对你来说就没用了，可以理解为"理论上不可能"，但是仅仅也是理论上，实际世界里面还有 OS 错误，内存错误，宇宙射线单电子 bit 反转，奇奇怪怪的溢出... 你永远不可能覆盖满这种情况，那为什么不要 panic 呢，那是因为这些情况其实都大概率，90% 的概率不是你的代码问题，`panic` 的本质就是发生时，Rust 会沿着调用栈一层层往回走，逐个调用每一帧里的析构函数（drop），清理资源。这个过程需要编译器生成额外的 `unwind` 表，就是给你找出你业务逻辑错误的地方，如果错误本身都大概率不是你的，这个信息有什么价值，存在还会增加编译产物的体积，也会给链接器增加工作量，关掉才是正解；你的代码测试到位了，足够自信建议配置 `panic = abort`。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.375846Z
+      seconds: 31.068704625
+      tokens: 22841
+      review: false
+    zh-TW:
+      text: 因此，對於優質的程式碼而言，應該覆蓋一類正確路徑的測試與至少一種錯誤路徑的測試，而只要覆蓋此類錯誤路徑中的一個，即可測試 Err 被返回的情況，從而編寫 fallback 邏輯，自然可以 `thiserror` 列舉或 `anyhow` 截取並平攤列印記錄。總之，你的程式碼會迫使你為這些情況寫出處理機制；如果已經做到這一層，`panic` 對你就沒用了，可以理解為「理論上不可能」，但這僅止於理論。實際世界中仍有 OS 錯誤、記憶體錯誤、宇宙射線單電子位元翻轉、各種奇怪的溢位…… 這些情況永遠不可能全部覆蓋。那為什麼不使用 panic 呢？因為這些情況大多不是你的程式碼問題，約有 90% 的機率不是由你造成的。`panic` 的本質在於發生時，Rust 會沿著呼叫堆疊逐層回溯，依序呼叫每一幀的析構函式（drop）以釋放資源。這個過程需要編譯器產生額外的 `unwind` 表格，協助你找出業務邏輯錯誤的地方。如果錯誤本身大多不是你的，那這資訊的價值何在？它也會增加編譯產物大小，並給連結器帶來額外工作量，關閉才是正解；當你的程式碼測試到位且足夠自信時，建議設定 `panic = abort`。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.375846Z
+      seconds: 31.068704625
+      tokens: 22841
+      review: false
+  97df4075d878ac7b8a6b12e70ee5b037:
+    de-DE:
+      text: 'Im Kern liegt also ein großer Teil der langen Kompilierzeit nicht am Rust‑Frontend, sondern am LLVM‑„schweren Backend“. Das wirft die Frage auf: Kann man es entfernen? ~~Die Antwort lautet ja, miau~~. Es gibt ein Backend namens Cranelift, das genau für diesen Bedarf entwickelt wurde. Es begann als Cretonne, 2016 ins Leben gerufen, entwickelt von der [Bytecode Alliance](https://bytecodealliance.org). Ursprünglich wurde es als Code‑Generierungs‑Backend für das Wasmtime‑Paket konzipiert; später hat das Rust‑Team es als optionales Codegen‑Backend übernommen.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.378904Z
+      seconds: 13.234966792
+      tokens: 17855
+      review: false
+    en-US:
+      text: 'So essentially, a large portion of the slow compilation time isn’t spent on Rust’s own front‑end but on LLVM, this “heavyweight back‑end.” That raises the question: is it possible to drop it? ~~The answer is yes, meow~~. There is a back‑end called Cranelift that was created for exactly this need. It originally started as Cretonne, launched in 2016, developed by the [Bytecode Alliance](https://bytecodealliance.org). It was initially designed as the code‑generation back‑end for the Wasmtime package; later the Rust team adopted it as an optional codegen back‑end.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.378904Z
+      seconds: 13.234966792
+      tokens: 17855
+      review: false
+    es-ES:
+      text: 'En esencia, gran parte del tiempo de compilación lenta no se dedica al front‑end propio de Rust sino al back‑end “pesado” de LLVM. Entonces surge la pregunta: ¿es posible eliminarlo? ~~La respuesta es sí, miau~~. Existe un back‑end llamado Cranelift que se creó precisamente para esta necesidad. Comenzó como Cretonne, lanzado en 2016 y desarrollado por la [Bytecode Alliance](https://bytecodealliance.org). Inicialmente se diseñó como el back‑end de generación de código del paquete Wasmtime; posteriormente, el equipo oficial de Rust lo adoptó como un back‑end de generación de código opcional.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.378904Z
+      seconds: 13.234966792
+      tokens: 17855
+      review: false
+    fr-FR:
+      text: 'En substance, une grande partie du temps de compilation lent n’est pas consacré au front‑end propre à Rust, mais à LLVM, ce « back‑end lourd ». La question qui se pose alors : est‑il possible de s’en débarrasser ? ~~La réponse est oui, miaou~~. Il existe un back‑end appelé Cranelift, créé spécifiquement pour ce besoin. Il a d’abord été connu sous le nom de Cretonne, lancé en 2016, développé par la [Bytecode Alliance](https://bytecodealliance.org). Il a été initialement conçu comme le back‑end de génération de code du paquet Wasmtime ; plus tard, l’équipe Rust l’a adopté comme back‑end de génération de code optionnel.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.378904Z
+      seconds: 13.234966792
+      tokens: 17855
+      review: false
+    ja-JP:
+      text: 本質的に、コンパイルが遅い時間の大部分は Rust のフロントエンドではなく、LLVM という「重量級バックエンド」に費やされています。そこで問題です：これを取り除くことは可能か？ ~~答えは「はい、にゃん」~~。そのために作られたバックエンドが Cranelift です。もとは Cretonne と呼ばれ、2016 年に開始され、[Bytecode Alliance](https://bytecodealliance.org) によって開発されました。当初は [Wasmtime](https://github.com/bytecodealliance/wasmtime) パッケージ用のコード生成バックエンドとして設計され、後に Rust 公式に採用され、オプションのコードジェンバックエンドとなりました。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.378904Z
+      seconds: 13.234966792
+      tokens: 17855
+      review: false
+    ko-KR:
+      text: '본질적으로, 컴파일이 느린 시간의 대부분은 Rust 자체 프론트엔드가 아니라 LLVM이라는 “무거운 백엔드”에 소비됩니다. 여기서 질문이 나온다: 이를 없앨 수 있을까? ~~답은 있다, 냥~~. 이 요구를 위해 만들어진 백엔드가 Cranelift이다. 이는 원래 Cretonne이라는 이름으로 2016년에 시작돼 [Bytecode Alliance](https://bytecodealliance.org) 가 개발했으며, 처음에는 [Wasmtime](https://github.com/bytecodealliance/wasmtime) 패키지를 위한 코드 생성 백엔드로 설계되었습니다; 이후 Rust 공식 팀이 채택해 선택적 codegen 백엔드로 사용하고 있습니다.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.378904Z
+      seconds: 13.234966792
+      tokens: 17855
+      review: false
+    zh-CN:
+      text: 所以本质上，编译慢的很大一部分时间不是花在 Rust 自己的前端而是花在了 LLVM 这个"重型后端"上。那么问题来了，有没有可能丢掉它嘛，~~答案是有的喵~~，有一个叫做 Cranelift 的后端就是一个为了这个需求做的。它最早是 Cretonne，2016 年启动，由 [Bytecode Alliance](https://bytecodealliance.org) 开发，最初是为 [Wasmtime](https://github.com/bytecodealliance/wasmtime) 包的饺子，才设计的代码生成后端；后被 Rust 官方收编作为可选的 codegen 后端。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.378904Z
+      seconds: 13.234966792
+      tokens: 17855
+      review: false
+    zh-TW:
+      text: 所以本質上，編譯慢的很大一部分時間不是花在 Rust 自己的前端而是花在了 LLVM 這個"重型後端"上。那麼問題來了，有沒有可能丟掉它嘛，~~答案是有的喵~~，有一個叫做 Cranelift 的後端就是一個為了這個需求做的。它最早是 Cretonne，2016 年啟動，由 [Bytecode Alliance](https://bytecodealliance.org) 開發，最初是為 [Wasmtime](https://github.com/bytecodealliance/wasmtime) 包的餃子，才設計的程式碼生成後端；後被 Rust 官方收編作為可選的 codegen 後端。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.378904Z
+      seconds: 13.234966792
+      tokens: 17855
+      review: false
+  9ac95fea36915a75d53d391209946f4e:
+    de-DE:
+      text: |-
+        VDMARH7YYCMWX61KUYBMG2HWUYH24KYS
+        Dieses Repository ist tatsächlich ein Monorepo mit vielen Unterprojekten, doch darin lassen sich zwei typische Beispiele herausfiltern. Zunächst ein Blick auf das Skeleton‑Paket: Seine Merkmale sind offensichtlich – ein großer Codeumfang bei fast keinen Abhängigkeiten, wodurch es den höchsten Anteil an Code‑Generierung im gesamten Projekt ausmacht und sich hervorragend für Cranelift eignet. Darüber hinaus ist das Paket sehr „clean“, wobei „clean“ hier bedeutet, dass es rein aus sicherem Rust besteht.
+        VDMARH7YYCMWX61KUYBMG2HWUYH24KYS
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.381903Z
+      seconds: 20.42616175
+      tokens: 19544
+      review: false
+    en-US:
+      text: |-
+        VDMARH7YYCMWX61KUYBMG2HWUYH24KYS
+        This repository is actually a monorepo with many subprojects, but two typical examples can be identified within it. First, looking at the Skeleton package, its characteristics are obvious: it has a large amount of code and very few dependencies, making it the highest proportion of codegen in the whole project, which makes it well suited for Cranelift to shine. Additionally, this package is also very clean, with “clean” meaning it is pure Safe Rust.
+        VDMARH7YYCMWX61KUYBMG2HWUYH24KYS
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.381903Z
+      seconds: 20.42616175
+      tokens: 19544
+      review: false
+    es-ES:
+      text: |-
+        VDMARH7YYCMWX61KUYBMG2HWUYH24KYS
+        Este repositorio es en realidad un monorepo con muchos subproyectos, pero dentro se pueden identificar dos ejemplos típicos. Primero, al mirar el paquete Skeleton, sus características son evidentes: tiene una gran cantidad de código y muy pocas dependencias, lo que lo convierte en la mayor proporción de generación de código (codegen) del proyecto completo, siendo muy adecuado para que Cranelift se desempeñe. Además, este paquete también es muy limpio, y «limpio» aquí significa que está escrito en Rust puro y seguro.
+        VDMARH7YYCMWX61KUYBMG2HWUYH24KYS
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.381903Z
+      seconds: 20.42616175
+      tokens: 19544
+      review: false
+    fr-FR:
+      text: |-
+        VDMARH7YYCMWX61KUYBMG2HWUYH24KYS
+        Ce dépôt est en réalité un monorepo contenant de nombreux sous‑projets, mais on peut y identifier deux exemples typiques. Tout d’abord, examinons le paquet Skeleton : ses caractéristiques sont évidentes – un volume de code important avec très peu de dépendances, ce qui en fait la plus grande part de codegen du projet entier, le rendant idéal pour Cranelift. De plus, ce paquet est très « clean », le terme « clean » signifiant ici du Rust purement Safe.
+        VDMARH7YYCMWX61KUYBMG2HWUYH24KYS
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.381903Z
+      seconds: 20.42616175
+      tokens: 19544
+      review: false
+    ja-JP:
+      text: |-
+        VDMARH7YYCMWX61KUYBMG2HWUYH24KYS
+        このリポジトリは実際には多くのサブプロジェクトを持つ monorepo ですが、その中から 2 つの典型的な例を見つけることができます。まず Skeleton パッケージを見ると、その特徴は明らかです。コード量が多く、依存関係が極めて少ないため、プロジェクト全体の codegen の比率が最も高く、Cranelift が活躍するのに非常に適しています。また、このパッケージは「クリーン」でもあり、クリーンとは純粋な Safe Rust であることを指します。
+        VDMARH7YYCMWX61KUYBMG2HWUYH24KYS
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.381903Z
+      seconds: 20.42616175
+      tokens: 19544
+      review: false
+    ko-KR:
+      text: |-
+        VDMARH7YYCMWX61KUYBMG2HWUYH24KYS
+        이 저장소는 실제로 많은 하위 프로젝트를 포함한 monorepo이며, 그 안에서 두 가지 전형적인 예를 찾아볼 수 있습니다. 먼저 Skeleton 패키지를 살펴보면 특징이 명확합니다. 코드 양이 많고 의존성이 거의 없어 전체 프로젝트 중 codegen 비중이 가장 높으며, 이는 Cranelift가 뛰어난 성능을 발휘하기에 적합합니다. 또한 이 패키지는 매우 깔끔한데, 여기서 깔끔함은 순수 Safe Rust로 이루어졌다는 뜻입니다.
+        VDMARH7YYCMWX61KUYBMG2HWUYH24KYS
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.381903Z
+      seconds: 20.42616175
+      tokens: 19544
+      review: false
+    zh-CN:
+      text: |-
+        VDMARH7YYCMWX61KUYBMG2HWUYH24KYS
+        这个仓库实际上是一个有很多子项目的 monorepo，但是其中可以找出2个典型的例子，首先看看 Skeleton 这个包特点就很明显，代码量大，依赖极少，这个包会是整个项目里面 codegen 占比最高的，这个就会很适合 Cranelift 发挥，另外就是这个包也很干净，干净指的是纯 Safe Rust。
+        VDMARH7YYCMWX61KUYBMG2HWUYH24KYS
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.381903Z
+      seconds: 20.42616175
+      tokens: 19544
+      review: false
+    zh-TW:
+      text: |-
+        VDMARH7YYCMWX61KUYBMG2HWUYH24KYS
+        這個倉庫實際上是一個有很多子項目的 monorepo，但是其中可以找出 2 個典型的例子，首先看看 Skeleton 這個包特點就很明顯，代碼量大，依賴極少，這個包會是整個項目裡面 codegen 佔比最高的，這個就會很適合 Cranelift 發揮，另外就是這個包也很乾淨，乾淨指的是純 Safe Rust。
+        VDMARH7YYCMWX61KUYBMG2HWUYH24KYS
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:28.381903Z
+      seconds: 20.42616175
+      tokens: 19544
+      review: false
+  9dab696ffc64d93b04b1da52a4226ecf:
+    de-DE:
+      text: '## Optimierungsstufe {#opt-level}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:29.611251Z
+      seconds: 5.357299334
+      tokens: 15679
+      review: false
+    en-US:
+      text: '## Optimization Level {#opt-level}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:29.611251Z
+      seconds: 5.357299334
+      tokens: 15679
+      review: false
+    es-ES:
+      text: '## Nivel de optimización {#opt-level}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:29.611251Z
+      seconds: 5.357299334
+      tokens: 15679
+      review: false
+    fr-FR:
+      text: "## Niveau d'optimisation {#opt-level}"
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:29.611251Z
+      seconds: 5.357299334
+      tokens: 15679
+      review: false
+    ja-JP:
+      text: '## 最適化レベル {#opt-level}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:29.611251Z
+      seconds: 5.357299334
+      tokens: 15679
+      review: false
+    ko-KR:
+      text: '## 최적화 수준 {#opt-level}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:29.611251Z
+      seconds: 5.357299334
+      tokens: 15679
+      review: false
+    zh-CN:
+      text: '## 优化等级 {#opt-level}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:29.611251Z
+      seconds: 5.357299334
+      tokens: 15679
+      review: false
+    zh-TW:
+      text: '## 優化等級 {#opt-level}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:29.611251Z
+      seconds: 5.357299334
+      tokens: 15679
+      review: false
+  9f059c827d113b5922837414055cc9cb:
+    de-DE:
+      text: Seit langem hielten wir dies für einen Nachteil von Rust, doch tatsächlich lassen sich die ersten beiden Probleme durch das Trainieren von Denken und Erkenntnis lösen. Die langsame Kompiliergeschwindigkeit hingegen bremst meinen Arbeitsablauf kontinuierlich aus. Vor einigen Jahren schien das noch in Ordnung zu sein; bevor KI die Szene eroberte, hatte ich Geduld und schrieb oft Algorithmen oder Features bis in die frühen Morgenstunden. Aber jetzt? Ich kann kaum behaupten, dass ich unverändert geblieben bin. Ich bin völlig ungeduldig geworden, habe keine Lust mehr, darüber nachzudenken, wie man Rust‑Code schreibt, und kann die lange Fortschrittsanzeige von Cargo nicht abwarten, besonders wenn der ld‑Teil keinerlei Fortschritt zeigt und einfach hängen bleibt – das ist wirklich unangenehm.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.452095Z
+      seconds: 16.278023417
+      tokens: 18764
+      review: false
+    en-US:
+      text: For a long time we have considered this a drawback of Rust, but in fact the first two can be solved by training our thinking and cognition. However, the slow compilation speed has continuously slowed down my workflow. A few years ago this seemed fine; before AI swept over, I had patience and would often write an algorithm or a feature until the early morning. But now? I can hardly say I haven't changed. I have become completely impatient, not wanting to think about how to write Rust code, unable to wait for Cargo’s long progress bar, especially when the ld stage shows no progress and just stalls—it’s truly uncomfortable.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.452095Z
+      seconds: 16.278023417
+      tokens: 18764
+      review: false
+    es-ES:
+      text: Durante mucho tiempo hemos considerado esto como una desventaja de Rust, pero en realidad los dos primeros problemas se pueden resolver entrenando el pensamiento y la cognición. En cambio, la lentitud de la compilación ha estado frenando continuamente mi flujo de trabajo. Hace algunos años parecía estar bien; antes de que la IA se apoderara de todo, tenía paciencia y a menudo escribía un algoritmo o una función hasta altas horas de la madrugada. ¿Y ahora? Me cuesta decir que no he cambiado; he perdido toda la paciencia, no quiero pensar cómo escribir código Rust y no puedo esperar la larga barra de progreso de Cargo, sobre todo cuando la fase ld no muestra progreso y se queda atascada, lo cual es realmente incómodo.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.452095Z
+      seconds: 16.278023417
+      tokens: 18764
+      review: false
+    fr-FR:
+      text: Depuis longtemps, nous considérons cela comme une faiblesse de Rust, mais en réalité les deux premiers problèmes peuvent être résolus en entraînant notre réflexion et notre cognition. En revanche, la lenteur de la compilation freine constamment mon flux de travail. Il y a quelques années, cela semblait acceptable ; avant que l’IA ne s’impose, j’avais de la patience et je passais souvent des algorithmes ou des fonctionnalités jusqu’au petit matin. Mais aujourd’hui ? Je peine à dire que je n’ai pas changé. Je suis devenu complètement impatient, je n’ai plus envie de réfléchir à la façon d’écrire du code Rust, je ne peux plus attendre la longue barre de progression de Cargo, surtout lorsque l’étape ld n’affiche aucune progression et se bloque — c’est vraiment désagréable.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.452095Z
+      seconds: 16.278023417
+      tokens: 18764
+      review: false
+    ja-JP:
+      text: 長い間、私たちはこれを Rust の欠点だと考えてきましたが、実は最初の二つは思考と認知を鍛えることで解決できます。しかし、コンパイル速度の遅さは私の作業フローをずっと遅くしています。数年前まではこれでも良かったのですが、AI が席巻する前は忍耐力があり、アルゴリズムや機能を深夜まで書き続けていました。しかし今はどうでしょうか？変わらなかったとは言い難く、全く忍耐力がなくなり、Rust のコードを書き方を考える気にもなれず、Cargo の長い進行バーを待つことさえできません。特に ld の段階で進捗が表示されずに止まってしまうのは本当に辛いです。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.452095Z
+      seconds: 16.278023417
+      tokens: 18764
+      review: false
+    ko-KR:
+      text: 오랫동안 우리는 이것을 Rust의 단점이라고 생각해 왔지만, 실제로 앞의 두 문제는 사고와 인지를 훈련함으로써 해결할 수 있습니다. 하지만 컴파일 속도가 느린 것은 계속해서 내 작업 흐름을 늦추고 있습니다. 몇 년 전만 해도 괜찮았는데, AI가 퍼오기 전에는 인내심이 있었고 알고리즘이나 기능을 새벽까지 작성하곤 했습니다. 그런데 지금은요? 변하지 않았다고 말하기 어렵고, 전혀 인내심이 사라졌습니다. Rust 코드를 어떻게 쓰는지 고민하고 싶지도 않고, Cargo의 긴 진행 표시줄을 기다릴 수도 없습니다. 특히 ld 단계에서 진행이 전혀 보이지 않고 멈춰버리는 상황은 정말 힘듭니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.452095Z
+      seconds: 16.278023417
+      tokens: 18764
+      review: false
+    zh-CN:
+      text: 长久以来，我们都认为这是 Rust 的缺点，但是实际上前两者都是可以通过锻炼思维和认知来解决的，而编译速度慢却一直拖慢着我的工作流，这一切在早几年似乎很好，AI 席卷而来之前我可有的就是耐心，常常一个算法一个功能写到凌晨，可，现在呢？我很难说我没有变，我开始变得一点都没有耐心了，一点都不想思考 Rust 代码怎么写，一点都等不了 Cargo 那个漫长的进度条，尤其是 ld 部分还没有进度，每次就干卡着，这真的很难受。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.452095Z
+      seconds: 16.278023417
+      tokens: 18764
+      review: false
+    zh-TW:
+      text: 長久以來，我們都認為這是 Rust 的缺點，但是實際上前兩者都是可以透過鍛鍊思維和認知來解決的，而編譯速度慢卻一直拖慢著我的工作流，這一切在早幾年似乎很好，AI 席卷而來之前我可有的就是耐心，常常一個演算法一個功能寫到凌晨，可，現在呢？我很難說我沒有變，我開始變得一點都沒有耐心了，一點都不想思考 Rust 代碼怎麼寫，一點都等不了 Cargo 那個漫長的進度條，尤其是 ld 部分還沒有進度，每次就干卡著，這真的很難受。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.452095Z
+      seconds: 16.278023417
+      tokens: 18764
+      review: false
+  9f7ee025dc7baa3234873cf0497ef03d:
+    de-DE:
+      text: '## Debug‑Symbole entfernen {#strip-debug-symbols}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.458074Z
+      seconds: 5.557260625
+      tokens: 15880
+      review: false
+    en-US:
+      text: '## Remove Debug Symbols {#strip-debug-symbols}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.458074Z
+      seconds: 5.557260625
+      tokens: 15880
+      review: false
+    es-ES:
+      text: '## Eliminar símbolos de depuración {#strip-debug-symbols}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.458074Z
+      seconds: 5.557260625
+      tokens: 15880
+      review: false
+    fr-FR:
+      text: '## Supprimer les symboles de débogage {#strip-debug-symbols}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.458074Z
+      seconds: 5.557260625
+      tokens: 15880
+      review: false
+    ja-JP:
+      text: '## デバッグシンボルを削除 {#strip-debug-symbols}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.458074Z
+      seconds: 5.557260625
+      tokens: 15880
+      review: false
+    ko-KR:
+      text: '## 디버그 심볼 제거 {#strip-debug-symbols}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.458074Z
+      seconds: 5.557260625
+      tokens: 15880
+      review: false
+    zh-CN:
+      text: '## 干掉调试符号 {#strip-debug-symbols}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.458074Z
+      seconds: 5.557260625
+      tokens: 15880
+      review: false
+    zh-TW:
+      text: '## 去除除錯符號 {#strip-debug-symbols}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.458074Z
+      seconds: 5.557260625
+      tokens: 15880
+      review: false
+  a86e40caebe198f200cc55a4030eb4fa:
+    de-DE:
+      text: |-
+        D54ZT5SLB1FE5G4RXB33Z7M9XW7IHUUH
+        ::image{src="cbc260f16e936f977570f8fb391f48e2.avif"}
+        D54ZT5SLB1FE5G4RXB33Z7M9XW7IHUUH
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.463099Z
+      seconds: 6.967298458
+      tokens: 16272
+      review: false
+    en-US:
+      text: |-
+        D54ZT5SLB1FE5G4RXB33Z7M9XW7IHUUH
+        ::image{src="cbc260f16e936f977570f8fb391f48e2.avif"}
+        D54ZT5SLB1FE5G4RXB33Z7M9XW7IHUUH
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.463099Z
+      seconds: 6.967298458
+      tokens: 16272
+      review: false
+    es-ES:
+      text: |-
+        D54ZT5SLB1FE5G4RXB33Z7M9XW7IHUUH
+        ::image{src="cbc260f16e936f977570f8fb391f48e2.avif"}
+        D54ZT5SLB1FE5G4RXB33Z7M9XW7IHUUH
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.463099Z
+      seconds: 6.967298458
+      tokens: 16272
+      review: false
+    fr-FR:
+      text: |-
+        D54ZT5SLB1FE5G4RXB33Z7M9XW7IHUUH
+        ::image{src="cbc260f16e936f977570f8fb391f48e2.avif"}
+        D54ZT5SLB1FE5G4RXB33Z7M9XW7IHUUH
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.463099Z
+      seconds: 6.967298458
+      tokens: 16272
+      review: false
+    ja-JP:
+      text: |-
+        D54ZT5SLB1FE5G4RXB33Z7M9XW7IHUUH
+        ::image{src="cbc260f16e936f977570f8fb391f48e2.avif"}
+        D54ZT5SLB1FE5G4RXB33Z7M9XW7IHUUH
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.463099Z
+      seconds: 6.967298458
+      tokens: 16272
+      review: false
+    ko-KR:
+      text: |-
+        D54ZT5SLB1FE5G4RXB33Z7M9XW7IHUUH
+        ::image{src="cbc260f16e936f977570f8fb391f48e2.avif"}
+        D54ZT5SLB1FE5G4RXB33Z7M9XW7IHUUH
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.463099Z
+      seconds: 6.967298458
+      tokens: 16272
+      review: false
+    zh-CN:
+      text: |-
+        D54ZT5SLB1FE5G4RXB33Z7M9XW7IHUUH
+        ::image{src="cbc260f16e936f977570f8fb391f48e2.avif"}
+        D54ZT5SLB1FE5G4RXB33Z7M9XW7IHUUH
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.463099Z
+      seconds: 6.967298458
+      tokens: 16272
+      review: false
+    zh-TW:
+      text: |-
+        D54ZT5SLB1FE5G4RXB33Z7M9XW7IHUUH
+        ::image{src="cbc260f16e936f977570f8fb391f48e2.avif"}
+        D54ZT5SLB1FE5G4RXB33Z7M9XW7IHUUH
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.463099Z
+      seconds: 6.967298458
+      tokens: 16272
+      review: false
+  a94383d7cb9c5055fea17b7235acdae7:
+    de-DE:
+      text: In diesem Projekt beträgt der Rust‑Teil etwa 32 K SCoL Rust, ohne die Größe der Abhängigkeiten.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.467977Z
+      seconds: 5.96067475
+      tokens: 15826
+      review: false
+    en-US:
+      text: In this project, the Rust portion is roughly 32K SCoL Rust, not including the size of dependencies.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.467977Z
+      seconds: 5.96067475
+      tokens: 15826
+      review: false
+    es-ES:
+      text: En este proyecto, la parte de Rust es aproximadamente 32 K SCoL Rust, sin contar el tamaño de las dependencias.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.467977Z
+      seconds: 5.96067475
+      tokens: 15826
+      review: false
+    fr-FR:
+      text: Dans ce projet, la partie Rust représente environ 32 K SCoL Rust, hors taille des dépendances.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.467977Z
+      seconds: 5.96067475
+      tokens: 15826
+      review: false
+    ja-JP:
+      text: このプロジェクトの Rust 部分は、依存関係のサイズを除き、約 32K SCoL Rust です。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.467977Z
+      seconds: 5.96067475
+      tokens: 15826
+      review: false
+    ko-KR:
+      text: 이 프로젝트의 Rust 부분은 의존성 크기를 제외하고 대략 32K SCoL Rust 입니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.467977Z
+      seconds: 5.96067475
+      tokens: 15826
+      review: false
+    zh-CN:
+      text: 这个项目里面 Rust 的部分差不多有 32K SCoL Rust，不包含依赖体积。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.467977Z
+      seconds: 5.96067475
+      tokens: 15826
+      review: false
+    zh-TW:
+      text: 這個項目裡面 Rust 的部分差不多有 32K SCoL Rust，不包含依賴體積。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:17:59.467977Z
+      seconds: 5.96067475
+      tokens: 15826
+      review: false
+  b3f35dd0746c98618a6638583b5fcc63:
+    de-DE:
+      text: ::image{src="7d3a80a688fa627e4f3577f69b320867.png"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.73776Z
+      seconds: 5.027274125
+      tokens: 15870
+      review: false
+    en-US:
+      text: ::image{src="7d3a80a688fa627e4f3577f69b320867.png"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.73776Z
+      seconds: 5.027274125
+      tokens: 15870
+      review: false
+    es-ES:
+      text: ::image{src="7d3a80a688fa627e4f3577f69b320867.png"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.73776Z
+      seconds: 5.027274125
+      tokens: 15870
+      review: false
+    fr-FR:
+      text: ::image{src="7d3a80a688fa627e4f3577f69b320867.png"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.73776Z
+      seconds: 5.027274125
+      tokens: 15870
+      review: false
+    ja-JP:
+      text: ::image{src="7d3a80a688fa627e4f3577f69b320867.png"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.73776Z
+      seconds: 5.027274125
+      tokens: 15870
+      review: false
+    ko-KR:
+      text: ::image{src="7d3a80a688fa627e4f3577f69b320867.png"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.73776Z
+      seconds: 5.027274125
+      tokens: 15870
+      review: false
+    zh-CN:
+      text: ::image{src="7d3a80a688fa627e4f3577f69b320867.png"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.73776Z
+      seconds: 5.027274125
+      tokens: 15870
+      review: false
+    zh-TW:
+      text: ::image{src="7d3a80a688fa627e4f3577f69b320867.png"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.73776Z
+      seconds: 5.027274125
+      tokens: 15870
+      review: false
+  b87af62581612d6464cf0aac366905a9:
+    de-DE:
+      text: ::placeholder{kind="cargo" crate="seam-skeleton"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.743285Z
+      seconds: 7.584238708
+      tokens: 31167
+      review: false
+    en-US:
+      text: ::placeholder{kind="cargo" crate="seam-skeleton"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.743285Z
+      seconds: 7.584238708
+      tokens: 31167
+      review: false
+    es-ES:
+      text: ::placeholder{kind="cargo" crate="seam-skeleton"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.743285Z
+      seconds: 7.584238708
+      tokens: 31167
+      review: false
+    fr-FR:
+      text: ::placeholder{kind="cargo" crate="seam-skeleton"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.743285Z
+      seconds: 7.584238708
+      tokens: 31167
+      review: false
+    ja-JP:
+      text: ::placeholder{kind="cargo" crate="seam-skeleton"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.743285Z
+      seconds: 7.584238708
+      tokens: 31167
+      review: false
+    ko-KR:
+      text: ::placeholder{kind="cargo" crate="seam-skeleton"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.743285Z
+      seconds: 7.584238708
+      tokens: 31167
+      review: false
+    zh-CN:
+      text: ::placeholder{kind="cargo" crate="seam-skeleton"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.743285Z
+      seconds: 7.584238708
+      tokens: 31167
+      review: false
+    zh-TW:
+      text: ::placeholder{kind="cargo" crate="seam-skeleton"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.743285Z
+      seconds: 7.584238708
+      tokens: 31167
+      review: false
+  bf8af9bda87a0ee239ae9723aa619fed:
+    de-DE:
+      text: Übrigens, bitte verwenden Sie zig überhaupt nicht; das zbuild von nightly Rust hat derzeit erhebliche Probleme. Wenn Sie Kreuzkompilierung benötigen und der Host Linux x86 ist, empfehlen wir [cross](https://github.com/cross-rs/cross). Das Bauen in Docker funktioniert hervorragend und liefert eine vollständige Umgebung. Wenn Sie glibc bevorzugen, ist das ebenfalls gut, weil glibc nur rückwärtskompatibel ist. Üblicherweise kompiliert man gegen die glibc‑Version einer großen Debian‑Veröffentlichung (z. B. Debian‑2). Andernfalls führt eine zu neue glibc dazu, dass viele Maschinen nicht laufen; das liegt nicht an einem neuen Feature, sondern einfach daran, dass man anhand des Versionsstrings prüft und Sie damit ärgert. Ist der Host mac, nutzen Sie bitte das native rustup `target + cargo build --release `.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.748408Z
+      seconds: 17.491262208
+      tokens: 19092
+      review: false
+    en-US:
+      text: By the way, don't use zig at all; the nightly Rust's zbuild currently has big problems. When you need cross‑compilation and the host is Linux x86, we recommend [cross](https://github.com/cross-rs/cross). Using Docker to build works great and provides a full environment. If you prefer glibc, that also works fine, because glibc only maintains backward compatibility. Usually you compile against the glibc version of a major Debian release (e.g., Debian‑2). Otherwise a too‑new glibc will make many machines unable to run; this isn’t because a new feature was used, just because the version string is being checked to annoy you. If the host is mac, please use the native rustup `target + cargo build --release `.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.748408Z
+      seconds: 17.491262208
+      tokens: 19092
+      review: false
+    es-ES:
+      text: Por cierto, no use zig bajo ningún caso; el zbuild de nightly Rust tiene actualmente serios problemas. Cuando necesita compilación cruzada y el host es Linux x86, recomendamos [cross](https://github.com/cross-rs/cross). Compilar con Docker brinda un entorno completo y funciona muy bien. Si prefiere glibc, también sirve perfectamente, ya que glibc solo mantiene compatibilidad hacia atrás. Normalmente se compila contra la versión de glibc de una versión mayor de Debian (por ejemplo, Debian‑2). De lo contrario, una glibc demasiado nueva hará que muchas máquinas no funcionen; no se debe a una nueva característica, sino simplemente a que se verifica la cadena de versión para fastidiarle. Si el host es mac, use rustup nativo `target + cargo build --release `.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.748408Z
+      seconds: 17.491262208
+      tokens: 19092
+      review: false
+    fr-FR:
+      text: Au fait, n’utilisez surtout pas zig ; le zbuild de nightly Rust pose actuellement de gros problèmes. Si vous avez besoin de compilation croisée et que l’hôte est Linux x86, nous recommandons [cross](https://github.com/cross-rs/cross). Le faire avec Docker fournit un environnement complet et très pratique. Si vous préférez glibc, cela fonctionne également très bien, car glibc ne garantit que la rétro‑compatibilité. En pratique, on compile avec la version de glibc d’une version majeure de Debian (par ex. Debian‑2). Sinon, une glibc trop récente rendra de nombreuses machines inopérantes ; ce n’est pas à cause d’une nouvelle fonctionnalité, mais simplement parce que le simple contrôle de la chaîne de version vous agace. Si l’hôte est un mac, utilisez rustup natif `target + cargo build --release `.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.748408Z
+      seconds: 17.491262208
+      tokens: 19092
+      review: false
+    ja-JP:
+      text: 'ちなみに、zig は絶対に使わないでください。nightly Rust の zbuild は現在大きな問題があります。クロスコンパイルが必要で、ホストが Linux x86 の場合は、[cross](https://github.com/cross-rs/cross) を推奨します。Docker を使ってビルドすれば環境がすべて揃い、とても便利です。glibc が好きならそれも問題ありません。glibc は下位互換しか保証しないため、一般的には Debian のメジャーリリース（例: Debian‑2）の glibc バージョンでコンパイルします。新しすぎる glibc は多くのマシンで動かなくなるためです。これは新機能を使ったからではなく、単にバージョン文字列を判定して苛立たせるためです。ホストが mac の場合は rustup のネイティブ版を使用してください `target + cargo build --release `。'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.748408Z
+      seconds: 17.491262208
+      tokens: 19092
+      review: false
+    ko-KR:
+      text: '덧붙여서 zig는 절대 사용하지 마세요. nightly Rust의 zbuild가 현재 큰 문제를 가지고 있습니다. 교차 컴파일이 필요하고 호스트가 Linux x86인 경우에는 [cross](https://github.com/cross-rs/cross)를 권장합니다. Docker를 활용해 빌드하면 환경이 모두 갖춰져 매우 편리합니다. glibc를 선호한다면 그것도 좋습니다. glibc는 하위 호환만 보장하기 때문에 일반적으로 Debian 주요 버전(예: Debian‑2)의 glibc 버전으로 컴파일합니다. 너무 최신 glibc는 많은 머신이 실행되지 않게 만들 수 있습니다. 이는 새로운 기능을 사용했기 때문이 아니라 단순히 버전 문자열을 판단해 여러분을 화나게 하려는 것입니다. 호스트가 mac인 경우에는 rustup을 원래대로 사용하십시오 `target + cargo build --release `.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.748408Z
+      seconds: 17.491262208
+      tokens: 19092
+      review: false
+    zh-CN:
+      text: 顺便说一下，千万别用 zig，nightly Rust 上的 zbuild 目前问题非常大。需要交叉编译且 host 为 Linux x86 时，推荐使用 [cross](https://github.com/cross-rs/cross)。配合 Docker 编译非常方便，环境完整。如果你喜欢 glibc，这也是很好的选择，因为 glibc 只能向后兼容。通常会根据 Debian 大版本（例如 Debian‑2）的 glibc 版本来编译，否则过新的 glibc 会导致大量机器跑不动；这并不是因为用了新特性，而只是单纯地通过判断字符串版本来让你烦恼。host 为 mac 时请使用 rustup 原生 `target + cargo build --release `。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.748408Z
+      seconds: 17.491262208
+      tokens: 19092
+      review: false
+    zh-TW:
+      text: 順帶一提，千萬別使用 zig，nightly Rust 上的 zbuild 目前問題相當嚴重。需要交叉編譯且 host 為 Linux x86 時，建議使用 [cross](https://github.com/cross-rs/cross)。配合 Docker 進行編譯非常好，環境完整。如果你偏好 glibc，這也是不錯的選擇，因為 glibc 只能向後相容。一般會依照 Debian 大版本（例如 Debian‑2）的 glibc 版本來編譯，否則太新的 glibc 會讓大量機器跑不動；這並不是因為用了新功能，而純粹是透過判斷字串版本來讓你煩惱。host 為 mac 時請使用 rustup 原生 `target + cargo build --release `.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.748408Z
+      seconds: 17.491262208
+      tokens: 19092
+      review: false
+  c26cd7334110d7d7418db67f768ed852:
+    de-DE:
+      text: 'In Rusts Design ist LLVM zwar etwas nachlässig, aber die Wahl ist gut; im Gegensatz zu Go, das den Prozess der Code‑Generierung selbst verwaltet, ist es sehr vorteilhaft, die ausgereiften Optimierungen des großen LLVM‑Ökosystems zu nutzen. Der gesamte Rust‑Kompilierungsablauf lässt sich grob folgendermaßen beschreiben: Der Quellcode wird zunächst lexikalisch analysiert und syntaktisch geparst, wodurch ein AST entsteht. Anschließend erfolgt die Makroexpansion und das Herabstufen des HIR, wodurch das Ganze abgeflacht wird. Dann folgen die regulären Typprüfungen und ein wenig Borrow‑Checking, schließlich wird MIR erzeugt – bis zu diesem Punkt arbeitet das Frontend des Rust‑Compilers. Die Aufgaben nach MIR werden an LLVM übergeben, zum Beispiel die Übersetzung von MIR in LLVM‑IR, das Durchlaufen der LLVM‑Optimierungspässe (von O0 bis O3) und schließlich die Erzeugung des Ziel‑Maschinencodes, der vom Linker zu einer ausführbaren BIN‑Datei zusammengefügt wird.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.753111Z
+      seconds: 20.244391333
+      tokens: 20082
+      review: false
+    en-US:
+      text: |-
+        In Rust's design, LLVM is a bit lazy, but it’s a good choice; unlike Go, which maintains its own machine‑code generation process, letting LLVM’s large ecosystem handle mature optimizations works very well. The overall Rust compilation flow can be roughly described as follows: the source code first undergoes lexical⟦en-US⟧
+        In Rust's design, LLVM is a bit lazy, but it’s a good choice; unlike Go, which maintains its own machine‑code generation process, letting LLVM’s large ecosystem handle mature optimizations works very well. The overall Rust compilation flow can be roughly described as follows: the source code first undergoes lexical analysis and parsing to produce an AST, then macro expansion and HIR lowering flatten it. Next come the usual type checks and a small amount of borrow checking, finally generating MIR; up to this point, everything is handled by the Rust compiler’s front end. After MIR, the work is handed to LLVM, which translates MIR into LLVM IR, runs its series of optimization passes (ranging from O0 to O3), and finally emits machine code for the target platform, which the linker then assembles into an executable BIN file.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.753111Z
+      seconds: 20.244391333
+      tokens: 20082
+      review: false
+    es-ES:
+      text: 'En el diseño de Rust, LLVM es un poco holgazán, pero la elección es buena; a diferencia de Go, que mantiene su propio proceso de generación de código máquina, delegar en el amplio ecosistema de LLVM para aprovechar optimizaciones maduras funciona muy bien. El flujo completo de compilación de Rust se puede describir aproximadamente de la siguiente manera: el código fuente primero pasa por un análisis léxico y sintáctico que genera un AST, luego se realiza la expansión de macros y la degradación del HIR que lo aplanaana. Después se llevan a cabo las comprobaciones de tipos habituales y una ligera verificación de préstamos, generándose finalmente el MIR; hasta aquí, todo lo maneja el front‑end del compilador Rust. Lo que ocurre después del MIR se entrega a LLVM, por ejemplo, traduciendo MIR a LLVM IR, ejecutando su serie de pases de optimización (desde O0 hasta O3), y finalmente generando el código máquina para la plataforma objetivo, que luego el enlazador combina en un archivo ejecutable BIN.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.753111Z
+      seconds: 20.244391333
+      tokens: 20082
+      review: false
+    fr-FR:
+      text: 'Dans la conception de Rust, LLVM est un peu paresseux, mais c’est un bon choix ; contrairement à Go qui maintient lui‑même le processus de génération du code machine, confier les optimisations matures à l’écosystème vaste d’LLVM fonctionne très bien. Le flux de compilation de Rust peut être décrit grossièrement ainsi : le code source subit d’abord une analyse lexicale puis syntaxique pour produire un AST, suivi d’une expansion des macros et d’un déclassement du HIR qui le aplatit. Ensuite, on effectue les vérifications de types classiques ainsi qu’un léger contrôle d’emprunt, pour finalement générer le MIR ; jusqu’à ce point, tout est géré par le front‑end du compilateur Rust. Après le MIR, le travail est confié à LLVM, qui traduit le MIR en LLVM IR, exécute une série de passes d’optimisation (de O0 à O3), puis produit le code machine de la plateforme cible, lequel est ensuite lié pour former un fichier exécutable BIN.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.753111Z
+      seconds: 20.244391333
+      tokens: 20082
+      review: false
+    ja-JP:
+      text: Rust の設計では、LLVM はやや手抜きな面がありますが、選択は適切です。Go のように独自で機械コード生成プロセスを維持するのとは異なり、LLVM の大規模なエコシステムに成熟した最適化を任せるのは非常に有益です。Rust のコンパイルフローは大まかに次のようになります。ソースコードはまず字句解析と構文解析を行い、AST を生成します。その後、マクロ展開と HIR の降格でフラット化されます。続いて通常の型チェックと少量の借用チェックが行われ、最終的に MIR が生成されます。ここまではすべて Rust コンパイラのフロントエンドが担当します。MIR 以降の処理は LLVM に委ねられ、例えば MIR を LLVM IR に変換し、LLVM が O0 から O3 までの最適化パスを実行します。最後にターゲットプラットフォーム向けの機械コードが生成され、リンカがそれを結合して実行可能な BIN ファイルにします。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.753111Z
+      seconds: 20.244391333
+      tokens: 20082
+      review: false
+    ko-KR:
+      text: Rust 설계에서는 LLVM이 다소 게으른 면이 있지만, 선택 자체는 훌륭합니다. Go처럼 자체적으로 머신코드 생성 과정을 유지하는 것과 달리, LLVM의 방대한 생태계에 성숙한 최적화를 맡기는 것이 매우 좋습니다. Rust 전체 컴파일 흐름은 대략 다음과 같습니다. 소스 코드를 먼저 렉시컬 분석과 구문 분석하여 AST를 생성하고, 매크로 전개와 HIR 낮추기를 통해 평탄화합니다. 그 다음 일반적인 타입 검사와 약간의 빌림 검사(borrow checking)를 거쳐 최종적으로 MIR을 생성합니다. 여기까지는 모두 Rust 컴파일러 프론트엔드가 담당합니다. MIR 이후의 작업은 LLVM에 맡기는데, 예를 들어 MIR을 LLVM IR로 변환하고 LLVM이 O0에서 O3까지의 최적화 패스를 실행합니다. 마지막으로 목표 플랫폼의 머신코드를 생성하고, 링커가 이를 결합해 실행 가능한 BIN 파일을 만듭니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.753111Z
+      seconds: 20.244391333
+      tokens: 20082
+      review: false
+    zh-CN:
+      text: 在 Rust 的设计中，LLVM 虽然有点偷懒，但选择它是明智的，区别于 Go 自己维护生成机器码的过程，让 LLVM 这个庞大的生态来负责成熟的优化实际上效果很好。Rust 的整体编译流程大致如下：源码先进行词法分析和语法分析生成 AST，然后经过宏展开和 HIR 降级平坦化；接着进行常规的类型检查以及少量的借用检查，最终生成 MIR。到这里为止，都是 Rust 编译器前端在工作。MIR 之后的工作交给 LLVM，例如将 MIR 翻译成 LLVM IR，随后 LLVM 运行一遍其优化 pass（从 O0 到 O3 不等），最后生成目标平台的机器码，再交给链接器拼装成可执行的 BIN 文件。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.753111Z
+      seconds: 20.244391333
+      tokens: 20082
+      review: false
+    zh-TW:
+      text: 在 Rust 的設計中，LLVM 雖然有點偷懶，但選擇它是明智的，與 Go 自行維護產生機器碼的過程不同，讓 LLVM 這個龐大的生態系統來負責成熟的最佳化實際上效果很好。Rust 的整體編譯流程大致如下：原始碼先進行詞彙分析與語法分析，產生 AST，接著經過巨集展開與 HIR 降階平坦化。之後執行一般的型別檢查以及少量的借用檢查，最終產生 MIR；到此為止，全部由 Rust 編譯器的前端負責。MIR 之後的工作交給 LLVM，例如將 MIR 轉譯成 LLVM IR，接著 LLVM 執行一系列的最佳化 pass（從 O0 到 O3 不等），最後產生目標平台的機器碼，交給連結器拼湊成可執行的 BIN 檔案。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:15.753111Z
+      seconds: 20.244391333
+      tokens: 20082
+      review: false
+  dc16e19413a7b7b643f868855c8b7038:
+    de-DE:
+      text: 'Zusätzlich gibt es einen kleinen Trick: `Cargo.toml` kann tatsächlich unterschiedliche Optimierungsstufen für Abhängigkeiten und den eigenen Code festlegen.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:20.775177Z
+      seconds: 6.374542083
+      tokens: 16221
+      review: false
+    en-US:
+      text: "Additionally, there's a small tip: `Cargo.toml` can actually set different optimization levels for dependencies and your own code."
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:20.775177Z
+      seconds: 6.374542083
+      tokens: 16221
+      review: false
+    es-ES:
+      text: 'Además, hay un pequeño truco: `Cargo.toml` en realidad puede establecer diferentes niveles de optimización para las dependencias y tu propio código.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:20.775177Z
+      seconds: 6.374542083
+      tokens: 16221
+      review: false
+    fr-FR:
+      text: "En outre, il existe une petite astuce : `Cargo.toml` peut en fait définir des niveaux d'optimisation différents pour les dépendances et votre propre code."
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:20.775177Z
+      seconds: 6.374542083
+      tokens: 16221
+      review: false
+    ja-JP:
+      text: さらに、`Cargo.toml` という小技があります。実は依存関係と自分のコードに異なる最適化レベルを設定できます。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:20.775177Z
+      seconds: 6.374542083
+      tokens: 16221
+      review: false
+    ko-KR:
+      text: 또 하나의 작은 팁은 `Cargo.toml` 로, 실제로 의존성 및 자신의 코드에 서로 다른 최적화 수준을 설정할 수 있다는 것입니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:20.775177Z
+      seconds: 6.374542083
+      tokens: 16221
+      review: false
+    zh-CN:
+      text: 另外还有一个小技巧就是 `Cargo.toml` 其实可以给依赖和自己的代码设置不同的优化等级：
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:20.775177Z
+      seconds: 6.374542083
+      tokens: 16221
+      review: false
+    zh-TW:
+      text: 另外還有一個小技巧就是 `Cargo.toml` 其實可以給依賴和自己的程式碼設定不同的優化等級：
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:20.775177Z
+      seconds: 6.374542083
+      tokens: 16221
+      review: false
+  df450b1d2c8872c348fe90704c844906:
+    de-DE:
+      text: All das Gerede ist sinnlos; schauen wir uns tatsächlich die Verbesserungen durch diese Kombinationen an. Hier nehme ich ein kleines Spielzeugprojekt, das ich vor ein paar Monaten gemacht habe, als Beispiel.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:23.336912Z
+      seconds: 9.820896541
+      tokens: 16660
+      review: false
+    en-US:
+      text: All that talk is pointless; let's actually see the gains from these combinations. Here, I’ll take a small toy project I built a few months ago as an example.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:23.336912Z
+      seconds: 9.820896541
+      tokens: 16660
+      review: false
+    es-ES:
+      text: Tantas palabras son inútiles; veamos realmente las mejoras obtenidas con estas combinaciones. Aquí tomaremos como referencia un pequeño proyecto de juguete que hice hace unos meses.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:23.336912Z
+      seconds: 9.820896541
+      tokens: 16660
+      review: false
+    fr-FR:
+      text: Tout ce discours est inutile ; voyons réellement les améliorations obtenues grâce à ces combinaisons. Ici, je prends un petit projet ludique que j’ai réalisé il y a quelques mois comme référence.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:23.336912Z
+      seconds: 9.820896541
+      tokens: 16660
+      review: false
+    ja-JP:
+      text: そんなに話すのは無駄です。実際にこれらの組み合わせから得られる向上を見てみましょう。ここでは、数か月前に作った小さな玩具プロジェクトを参考にします。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:23.336912Z
+      seconds: 9.820896541
+      tokens: 16660
+      review: false
+    ko-KR:
+      text: 그렇게 많이 말해도 소용없다. 실제로 이 조합들에서 얻은 향상을 살펴보자. 여기서는 몇 달 전에 만든 작은 장난감 프로젝트를 예시로 사용한다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:23.336912Z
+      seconds: 9.820896541
+      tokens: 16660
+      review: false
+    zh-CN:
+      text: 那么多说无益，实际来看看这一些组合下来的提升吧，这里拿一个我前几个月做的小玩具项目做为参考
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:23.336912Z
+      seconds: 9.820896541
+      tokens: 16660
+      review: false
+    zh-TW:
+      text: 那麼多說無益，實際來看看這些組合下的提升吧，這裡拿一個我前幾個月做的小玩具專案作為參考.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:23.336912Z
+      seconds: 9.820896541
+      tokens: 16660
+      review: false
+  e546e7e012bf42735634f55a842f5026:
+    de-DE:
+      text: '## Linkzeit-Optimierung {#link-time-optimization}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:33.243368Z
+      seconds: 5.716836291
+      tokens: 16104
+      review: false
+    en-US:
+      text: '## Link-time Optimization {#link-time-optimization}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:33.243368Z
+      seconds: 5.716836291
+      tokens: 16104
+      review: false
+    es-ES:
+      text: '## Optimización en tiempo de enlace {#link-time-optimization}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:33.243368Z
+      seconds: 5.716836291
+      tokens: 16104
+      review: false
+    fr-FR:
+      text: "## Optimisation à l'édition des liens {#link-time-optimization}"
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:33.243368Z
+      seconds: 5.716836291
+      tokens: 16104
+      review: false
+    ja-JP:
+      text: '## リンクタイム最適化 {#link-time-optimization}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:33.243368Z
+      seconds: 5.716836291
+      tokens: 16104
+      review: false
+    ko-KR:
+      text: '## 링크 타임 최적화 {#link-time-optimization}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:33.243368Z
+      seconds: 5.716836291
+      tokens: 16104
+      review: false
+    zh-CN:
+      text: '## 链接段优化 {#link-time-optimization}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:33.243368Z
+      seconds: 5.716836291
+      tokens: 16104
+      review: false
+    zh-TW:
+      text: '## 連結段優化 {#link-time-optimization}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:33.243368Z
+      seconds: 5.716836291
+      tokens: 16104
+      review: false
+  f03f713488e8914a4e63da46f8da7fd8:
+    de-DE:
+      text: Aber bei einem echten Release sollte man im Allgemeinen `codegen-units = 1` verwenden, eine extreme Einstellung; nur so lässt sich das Ergebnis maximal optimieren. Schließlich nutzt man Rust – es ist doch selbstverständlich, dass man die Kompilierzeit gegen die Laufzeitleistung eintauscht.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:36.007462Z
+      seconds: 9.5536455
+      tokens: 16874
+      review: false
+    en-US:
+      text: But in a real Release, you should generally use `codegen-units = 1`, an extreme option; only this way can the product achieve maximal optimization. After all, you’re using Rust—trading compilation time for runtime performance is only natural.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:36.007462Z
+      seconds: 9.5536455
+      tokens: 16874
+      review: false
+    es-ES:
+      text: Pero en una Release real, normalmente deberías usar `codegen-units = 1`, una opción extrema; solo así el producto puede lograr la máxima optimización. Después de todo, estás usando Rust, ¿no es lógico intercambiar tiempo de compilación por rendimiento en tiempo de ejecución?
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:36.007462Z
+      seconds: 9.5536455
+      tokens: 16874
+      review: false
+    fr-FR:
+      text: 'Cependant, dans une vraie version Release, il faut généralement utiliser `codegen-units = 1`, un paramètre extrême ; ce n’est qu’ainsi que le produit pourra être optimisé au maximum. Après tout, vous utilisez Rust : échanger le temps de compilation contre des performances d’exécution est tout à fait normal.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:36.007462Z
+      seconds: 9.5536455
+      tokens: 16874
+      review: false
+    ja-JP:
+      text: しかし実際の Release では、通常 `codegen-units = 1` のような極端なオプションを使用すべきです。そうしなければ、生成物の最適化を最大限に引き出すことはできません。結局のところ Rust を使っているわけですから、コンパイル時間を犠牲にして実行時性能を得るのは当然のことです。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:36.007462Z
+      seconds: 9.5536455
+      tokens: 16874
+      review: false
+    ko-KR:
+      text: 하지만 실제 Release에서는 일반적으로 `codegen-units = 1`와 같은 극단적인 옵션을 사용해야 합니다. 이렇게 해야만 제품이 최적화를 최대화할 수 있습니다. 결국 Rust를 사용하고 있으니 컴파일 시간을 희생해 런타임 성능을 얻는 것이 당연하지 않나요.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:36.007462Z
+      seconds: 9.5536455
+      tokens: 16874
+      review: false
+    zh-CN:
+      text: 但是在真实的 Release 下，一般来说都应该使用 `codegen-units = 1` 这样一个极端的参数，只有这样才能让产物得到最大化的优化，毕竟你都用 Rust 了，编译时间换运行时性能难道不是理所当然的嘛。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:36.007462Z
+      seconds: 9.5536455
+      tokens: 16874
+      review: false
+    zh-TW:
+      text: 但是在真實的 Release 下，一般來說都應該使用 `codegen-units = 1` 這樣一個極端的參數，只有這樣才能讓產物得到最大化的優化，畢竟你都用 Rust 了，編譯時間換執行時效能難道不是理所當然的嘛。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:36.007462Z
+      seconds: 9.5536455
+      tokens: 16874
+      review: false
+  f431cfd98af980adfd9c279f26cf0ff0:
+    de-DE:
+      text: Betrachten wir außerdem `codegen-units`. Dabei handelt es sich um einen Parameter, der steuert, in wie viele kleinste Einheiten der Compiler ein Crate für die parallele Verarbeitung im Backend aufteilt. Standardmäßig sind das im Debug‑Modus 256 Einheiten und im Release‑Modus 16 Einheiten. Je größer die Zahl, desto höher die Parallelität und desto schneller die Kompilierung – weil mehrere CPU‑Kerne gleichzeitig für die Code‑Generierung im Backend genutzt werden können. Der Nachteil ist jedoch eine schlechtere Optimierung, da jede Einheit unabhängig optimiert wird; LLVM (oder Cranelift) hat dadurch einen kleineren Kontext, und Möglichkeiten für Inline‑ und Optimierungen über Einheiten hinweg sinken.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:36.014923Z
+      seconds: 15.966015084
+      tokens: 18533
+      review: false
+    en-US:
+      text: Additionally, let’s discuss `codegen-units`. This is actually a parameter that controls how many smallest units the compiler splits a crate into for the backend to process in parallel. By default, debug mode uses 256 units and release mode uses 16 units. The larger the number, the higher the parallelism and the faster the compilation—because multiple CPU cores can be used simultaneously to run backend code generation. The trade‑off is poorer optimization, as each unit is optimized independently; LLVM (or Cranelift) sees a smaller context, so cross‑unit inlining and optimization opportunities are reduced.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:36.014923Z
+      seconds: 15.966015084
+      tokens: 18533
+      review: false
+    es-ES:
+      text: Hablemos también de `codegen-units`. De hecho, es un parámetro que controla cuántas unidades mínimas divide el compilador a un crate para que el backend las procese en paralelo. Por defecto, en modo debug son 256 unidades y en modo release son 16. Cuanto mayor es el número, mayor es el paralelismo y más rápida la compilación, ya que se pueden usar varios núcleos de CPU simultáneamente para la generación de código del backend. Pero el coste es una menor efectividad de la optimización, porque cada unidad se optimiza de forma independiente; LLVM (o Cranelift) ve un contexto más reducido, lo que reduce las oportunidades de inline y de optimización entre unidades.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:36.014923Z
+      seconds: 15.966015084
+      tokens: 18533
+      review: false
+    fr-FR:
+      text: Parlons également de `codegen-units`. Il s’agit en fait d’un paramètre qui contrôle le nombre d’unités les plus petites dans lesquelles le compilateur découpe un crate pour que le backend les traite en parallèle. Par défaut, en mode debug, il y en a 256, et en mode release, 16. Plus le nombre est grand, plus le degré de parallélisme est élevé et plus la compilation est rapide — car plusieurs cœurs CPU peuvent être exploités simultanément pour la génération de code du backend. Le coût est une optimisation moindre, car chaque unité est optimisée indépendamment ; LLVM (ou Cranelift) voit un contexte plus restreint, ce qui réduit les opportunités d’inlining et d’optimisation entre les unités.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:36.014923Z
+      seconds: 15.966015084
+      tokens: 18533
+      review: false
+    ja-JP:
+      text: さらに `codegen-units` について説明します。これは実際には、コンパイラがクレートをバックエンドが並列に処理できる最小単位にいくつに分割するかを制御するパラメータです。デフォルトでは、debug モードでは 256 個、release モードでは 16 個です。数値が大きいほど並列度が上がり、コンパイルが速くなります――複数の CPU コアを同時に利用してバックエンドのコード生成を行えるからです。ただし、代償として最適化効果が低下します。各単位は独立して最適化されるため、LLVM（または Cranelift）が見るコンテキストが小さくなり、単位間のインライン化や最適化の機会が減少します。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:36.014923Z
+      seconds: 15.966015084
+      tokens: 18533
+      review: false
+    ko-KR:
+      text: 또한 `codegen-units`에 대해 설명하겠습니다. 이것은 실제로 컴파일러가 crate를 백엔드가 병렬 처리할 최소 단위로 몇 개로 나눌지를 제어하는 매개변수입니다. 기본값으로 디버그 모드에서는 256개, 릴리스 모드에서는 16개입니다. 숫자가 클수록 병렬도가 높아져 컴파일 속도가 빨라집니다—여러 CPU 코어를 동시에 사용해 백엔드 코드 생성을 수행할 수 있기 때문입니다. 그러나 그 대가로 최적화 효과가 감소합니다. 각 단위가 독립적으로 최적화되므로 LLVM(또는 Cranelift)이 보는 컨텍스트가 작아지고, 단위 간 인라인 및 최적화 기회가 줄어듭니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:36.014923Z
+      seconds: 15.966015084
+      tokens: 18533
+      review: false
+    zh-CN:
+      text: 另外说说 `codegen-units`，这其实就是一个控制编译器把 crate 拆成多少个最小单元给后端并行处理的参数，默认情况下，debug 模式是 256 个，release 模式是 16 个。数字越大，并行度越高，编译越快——因为可以同时利用多个 CPU 核心来跑后端代码生成。但代价是优化效果变差，因为每个单元是独立优化的，LLVM（or Cranelift）看到的上下文变小了，跨单元的内联和优化机会就少了。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:36.014923Z
+      seconds: 15.966015084
+      tokens: 18533
+      review: false
+    zh-TW:
+      text: 另外說說 `codegen-units`，這其實就是一個控制編譯器把 crate 拆成多少個最小單元給後端並行處理的參數，預設情況下，debug 模式是 256 個，release 模式是 16 個。數字越大，並行度越高，編譯越快——因為可以同時利用多個 CPU 核心來跑後端程式碼生成。但代價是優化效果變差，因為每個單元是獨立優化的，LLVM（or Cranelift）看到的上下文變小了，跨單元的內聯和優化機會就少了。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:18:36.014923Z
+      seconds: 15.966015084
+      tokens: 18533
+      review: false
+  f94ebe5d401d712c0a99f0bd41ab9190:
+    de-DE:
+      text: '## Zusammenfassung {#summary}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165801Z
+      seconds: 4.522455875
+      tokens: 15926
+      review: false
+    en-US:
+      text: '## Summary {#summary}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165801Z
+      seconds: 4.522455875
+      tokens: 15926
+      review: false
+    es-ES:
+      text: '## Resumen {#summary}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165801Z
+      seconds: 4.522455875
+      tokens: 15926
+      review: false
+    fr-FR:
+      text: '## Résumé {#summary}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165801Z
+      seconds: 4.522455875
+      tokens: 15926
+      review: false
+    ja-JP:
+      text: '## 要約 {#summary}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165801Z
+      seconds: 4.522455875
+      tokens: 15926
+      review: false
+    ko-KR:
+      text: '## 요약 {#summary}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165801Z
+      seconds: 4.522455875
+      tokens: 15926
+      review: false
+    zh-CN:
+      text: '## 总结 {#summary}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165801Z
+      seconds: 4.522455875
+      tokens: 15926
+      review: false
+    zh-TW:
+      text: '## 總結 {#summary}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165801Z
+      seconds: 4.522455875
+      tokens: 15926
+      review: false
+  fc378fc4acb44e74349676a38089c534:
+    de-DE:
+      text: '## UPX ist ein schlechtes Ding {#upx-considered-harmful}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165819Z
+      seconds: 5.59071225
+      tokens: 16009
+      review: false
+    en-US:
+      text: '## UPX is a Bad Thing {#upx-considered-harmful}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165819Z
+      seconds: 5.59071225
+      tokens: 16009
+      review: false
+    es-ES:
+      text: '## UPX es algo malo {#upx-considered-harmful}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165819Z
+      seconds: 5.59071225
+      tokens: 16009
+      review: false
+    fr-FR:
+      text: '## UPX est une mauvaise chose {#upx-considered-harmful}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165819Z
+      seconds: 5.59071225
+      tokens: 16009
+      review: false
+    ja-JP:
+      text: '## UPX は悪いものです {#upx-considered-harmful}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165819Z
+      seconds: 5.59071225
+      tokens: 16009
+      review: false
+    ko-KR:
+      text: '## UPX는 나쁜 것 입니다 {#upx-considered-harmful}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165819Z
+      seconds: 5.59071225
+      tokens: 16009
+      review: false
+    zh-CN:
+      text: '## UPX 是个坏东西 {#upx-considered-harmful}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165819Z
+      seconds: 5.59071225
+      tokens: 16009
+      review: false
+    zh-TW:
+      text: '## UPX 是個壞東西 {#upx-considered-harmful}'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165819Z
+      seconds: 5.59071225
+      tokens: 16009
+      review: false
+  ff317262076663bb2d98caaad83893c9:
+    de-DE:
+      text: Das ist jedoch nicht unlösbar; man kann tatsächlich mit `cfg` das Backend auswählen und im Cranelift‑Modus `ring` an den Compiler übergeben. Nachdem man die dev‑ und release‑Profile wie oben beschrieben konfiguriert hat, kann man einfach einen CLI‑Kompilierungsvergleich durchführen. In diesem Fall ist die Entwicklung mindestens dreimal so schnell wie das Release, selbst bei Kaltkompilierung ohne inkrementelle Builds; und bei Verwendung von O0 und deaktiviertem LTO sollte das dev‑Profil bei nachfolgenden inkrementellen Updates um ein Vielfaches schneller sein als das Release. Da LTO‑artige Magie tatsächlich durch das Flachlegen der Grenzen einzelner Crates entsteht, wird beim Zusammenführen alles zu einer Einheit, und eine Codeänderung zwingt die komplette Rekompilierung, wodurch korrekte inkrementelle Updates verhindert werden.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165883Z
+      seconds: 16.634642666
+      tokens: 18823
+      review: false
+    en-US:
+      text: However, this is not unsolvable; you can actually select the backend with `cfg` and, in Cranelift mode, pass `ring` to the compiler. After configuring the dev and release profiles as described above, you can simply run a CLI compilation comparison. In this case, development is at least three times faster than release, even with cold compilation and no incremental builds; and using O0 and disabling LTO, the dev profile should be dozens of times faster than release in subsequent incremental updates. Because LTO‑type magic actually works by flattening the boundaries of each crate, once everything becomes a single unit, changing a piece of code forces the entire project to be recompiled, preventing proper incremental updates.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165883Z
+      seconds: 16.634642666
+      tokens: 18823
+      review: false
+    es-ES:
+      text: Sin embargo, no es insoluble; en realidad puedes usar `cfg` para seleccionar el backend y, en modo Cranelift, pasar `ring` al compilador. Después de configurar los perfiles dev y release como se describió anteriormente, basta con ejecutar una comparación de compilación con la CLI. En este caso, el desarrollo es al menos tres veces más rápido que la publicación, incluso con compilación en frío y sin compilación incremental; y usando O0 y desactivando LTO, el perfil dev debería ser decenas de veces más rápido que release en actualizaciones incrementales posteriores. Porque la magia del tipo LTO en realidad se logra aplanando los límites de cada crate; una vez que todo se convierte en una única unidad, cambiar una línea de código obliga a recompilar todo, lo que impide una actualización incremental adecuada.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165883Z
+      seconds: 16.634642666
+      tokens: 18823
+      review: false
+    fr-FR:
+      text: Cependant, ce n’est pas insoluble ; on peut effectivement sélectionner le backend avec `cfg` et, en mode Cranelift, passer `ring` au compilateur. Après avoir configuré les profils dev et release comme indiqué ci‑dessus, il suffit d’exécuter une comparaison de compilation via la CLI. Dans ce cas, le profil de développement est au moins trois fois plus rapide que le profil de publication, même en compilation à froid sans incrémentalité ; et en utilisant O0 et en désactivant LTO, le profil dev devrait être des dizaines de fois plus rapide que le release lors des mises à jour incrémentielles ultérieures. En effet, la « magie » du type LTO consiste essentiellement à aplatir les frontières entre les crates ; une fois que tout se fusionne en une seule unité, modifier une ligne de code oblige à recompiler tout le projet, empêchant ainsi une mise à jour incrémentielle correcte.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165883Z
+      seconds: 16.634642666
+      tokens: 18823
+      review: false
+    ja-JP:
+      text: しかし、これは解けないわけではなく、実際には `cfg` でバックエンドを選択し、Cranelift モードでは `ring` をコンパイラに渡すだけで済みます。上述の通りに dev と release のプロファイルを設定したら、CLI のコンパイル比較を簡単に実行できます。このケースでは、開発ビルドはリリースビルドより少なくとも 3 倍速く、しかもコールドコンパイルでインクリメンタルがない状態です；さらに O0 を使用し LTO を無効にすれば、dev プロファイルは今後のインクリメンタル更新でリリースより何十倍も速くなるはずです。LTO などの魔法は実際には各 crate の境界を平坦化することで実現されており、すべてが一体になるとコードの一箇所を変更しただけで全体が再コンパイルされ、正しくインクリメンタル更新できなくなります。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165883Z
+      seconds: 16.634642666
+      tokens: 18823
+      review: false
+    ko-KR:
+      text: 하지만 이것이 해결 불가능한 것은 아닙니다. 실제로 `cfg`로 백엔드를 선택하고 Cranelift 모드에서는 `ring`을 컴파일러에 전달하면 됩니다. 위에 설명한 대로 dev와 release 프로파일을 설정한 뒤, 간단히 CLI 컴파일 비교를 실행할 수 있습니다. 이 경우 개발 빌드는 릴리즈보다 최소 3배 빠르며, 이는 모두 콜드 컴파일이며 증분 빌드가 없는 상황입니다; 또한 O0를 사용하고 LTO를 비활성화하면, dev 프로파일은 이후 증분 업데이트에서 릴리즈보다 수십 배 더 빠를 것입니다. LTO와 같은 매직은 실제로 각 crate의 경계를 평탄화함으로써 작동하므로, 모두 하나의 전체가 되면 코드 한 곳을 수정하는 것만으로도 전체를 다시 컴파일해야 하며, 올바른 증분 업데이트가 불가능해집니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165883Z
+      seconds: 16.634642666
+      tokens: 18823
+      review: false
+    zh-CN:
+      text: 但是这个也不是无解，其实可以用 cfg 选后端，Cranelift 模式下给 `ring` 来编译就好了。在按照上述描述配置好 dev 和 release profile 后，就可以简单跑一下 CLI 的编译对比，在这个情况下，开发至少比发布快 3倍，这还都是冷编译，没有增量的情况下；并且使用 O0 和关闭 LTO，dev profile 在后续的增量更新中都应该比 release 快几十倍不止。因为 LTO 之类的魔法实际上是通过拍平各个 crate 的边界得来的，那么都变成一个整体后，修改一处代码，当前一起都要重新编译不能被正确增量更新。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165883Z
+      seconds: 16.634642666
+      tokens: 18823
+      review: false
+    zh-TW:
+      text: 但是這也不是無解，其實可以用 cfg 選後端，Cranelift 模式下給 `ring` 來編譯就好了。在按照上述描述配置好 dev 和 release profile 後，就可以簡單跑一下 CLI 的編譯對比，在這個情況下，開發至少比發布快 3 倍，這還都是冷編譯，沒有增量的情況下；並且使用 O0 和關閉 LTO，dev profile 在後續的增量更新中都應該比 release 快幾十倍不止。因為 LTO 之類的魔法實際上是透過拍平各個 crate 的邊界得來的，那麼都變成一個整體後，修改一處程式碼，當前一起都要重新編譯無法被正確增量更新。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:21.165883Z
+      seconds: 16.634642666
+      tokens: 18823
       review: false

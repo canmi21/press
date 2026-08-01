@@ -84,12 +84,16 @@ pub enum Refusal {
 	Failed(String),
 	/// There is no point asking again: the allowance is spent until it resets.
 	Exhausted(String),
+	/// Too fast, not too much. The capacity comes back on its own in seconds.
+	Throttled(String),
 }
 
 impl std::fmt::Display for Refusal {
 	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
 		match self {
-			Self::Failed(reason) | Self::Exhausted(reason) => write!(f, "{reason}"),
+			Self::Failed(reason) | Self::Exhausted(reason) | Self::Throttled(reason) => {
+				write!(f, "{reason}")
+			}
 		}
 	}
 }
@@ -169,14 +173,62 @@ struct AgyUsage {
 	total_tokens: u64,
 }
 
-/// Whether a refusal means the allowance is gone rather than the request being bad.
+/// How long until the runner says it will work again.
 ///
-/// Matched on the message because that is the only place the distinction appears: the exit
-/// code is 1 either way, and the envelope's status is `ERROR` for both a spent quota and a
-/// malformed request.
-fn is_exhausted(message: &str) -> bool {
+/// The reset is the only thing that separates the two refusals worth telling apart, and both
+/// spell it the same way: `Resets in 0s`, `Resets in 167h29m42s`.
+fn resets_in(message: &str) -> Option<std::time::Duration> {
+	let at = message.to_ascii_lowercase().find("resets in ")? + "resets in ".len();
+	let tail: String = message[at..]
+		.chars()
+		.take_while(|c| c.is_ascii_alphanumeric())
+		.collect();
+
+	let mut seconds = 0u64;
+	let mut value = 0u64;
+	for c in tail.chars() {
+		match c {
+			'0'..='9' => value = value * 10 + u64::from(c as u8 - b'0'),
+			'h' => {
+				seconds += value * 3600;
+				value = 0;
+			}
+			'm' => {
+				seconds += value * 60;
+				value = 0;
+			}
+			's' => {
+				seconds += value;
+				value = 0;
+			}
+			_ => return None,
+		}
+	}
+	Some(std::time::Duration::from_secs(seconds))
+}
+
+/// Anything coming back sooner than this is congestion rather than a spent allowance.
+///
+/// The two look alike -- exit code 1, status ERROR, a sentence about capacity -- and only the
+/// reset separates them. Minutes mean the runner is asking to be asked again; hours mean the
+/// account is out until it is not.
+const BRIEF: std::time::Duration = std::time::Duration::from_secs(15 * 60);
+
+fn classify(message: &str) -> Refusal {
 	let lower = message.to_ascii_lowercase();
-	lower.contains("quota") || lower.contains("rate limit") || lower.contains("resets in")
+	let capacity = lower.contains("quota")
+		|| lower.contains("rate limit")
+		|| lower.contains("capacity")
+		|| lower.contains("resets in");
+	if !capacity {
+		return Refusal::Failed(message.to_owned());
+	}
+	// "retryable" is the provider saying so itself, and a short reset says the same thing.
+	if lower.contains("retryable") || resets_in(message).is_some_and(|d| d < BRIEF) {
+		Refusal::Throttled(message.to_owned())
+	} else {
+		Refusal::Exhausted(message.to_owned())
+	}
 }
 
 async fn agy(runner: Runner, prompt: &str, model: &str) -> Result<Answer, Refusal> {
@@ -217,11 +269,7 @@ async fn agy(runner: Runner, prompt: &str, model: &str) -> Result<Answer, Refusa
 		} else {
 			envelope.error.clone()
 		};
-		return Err(if is_exhausted(&reason) {
-			Refusal::Exhausted(reason)
-		} else {
-			Refusal::Failed(reason)
-		});
+		return Err(classify(&reason));
 	}
 
 	Ok(Answer {
@@ -290,6 +338,33 @@ mod tests {
 			model::normalise(Runner::Gemini.model_for(Kind::Heading, 0)),
 			"gemini-3-6-flash-medium"
 		);
+	}
+
+	#[test]
+	fn a_reset_time_is_read_from_the_message() {
+		use std::time::Duration;
+		assert_eq!(resets_in("Resets in 0s."), Some(Duration::from_secs(0)));
+		assert_eq!(resets_in("Resets in 90s."), Some(Duration::from_secs(90)));
+		assert_eq!(
+			resets_in("Resets in 167h29m42s."),
+			Some(Duration::from_secs(167 * 3600 + 29 * 60 + 42))
+		);
+		assert_eq!(resets_in("no reset mentioned"), None);
+	}
+
+	#[test]
+	fn congestion_and_a_spent_allowance_are_told_apart() {
+		// They look alike: exit 1, status ERROR, a sentence about capacity. Only the reset
+		// separates them, and getting it wrong means either giving up an hour early or
+		// hammering a dead account for the rest of the week.
+		let busy = "Encountered retryable error from model provider: You have exhausted your \
+		            capacity on this model. Resets in 0s.";
+		let spent = "Individual quota reached. Please upgrade your subscription to increase \
+		             your limits. Resets in 167h29m42s.";
+		assert!(matches!(classify(busy), Refusal::Throttled(_)));
+		assert!(matches!(classify(spent), Refusal::Exhausted(_)));
+		// Anything not about capacity stays an ordinary failure.
+		assert!(matches!(classify("malformed request"), Refusal::Failed(_)));
 	}
 
 	#[test]

@@ -25,6 +25,14 @@ pub const PARALLEL: usize = 4;
 /// only ever have been an estimate.
 const ATTEMPTS: usize = 3;
 
+/// Where the backoff starts, and how far it is allowed to grow.
+///
+/// Throttling is not counted against `ATTEMPTS`: nothing was wrong with the request, the
+/// runner was simply busy. Waiting and asking again is the whole response, so the only limit
+/// is the allowance itself.
+const BACKOFF_START: std::time::Duration = std::time::Duration::from_secs(5);
+const BACKOFF_MAX: std::time::Duration = std::time::Duration::from_secs(120);
+
 #[derive(Debug, Default)]
 pub struct Outcome {
 	pub translated: usize,
@@ -49,7 +57,10 @@ async fn translate(
 	let clock = std::time::Instant::now();
 	let mut last = Refusal::Failed(String::new());
 
-	for attempt in 0..ATTEMPTS {
+	let mut attempt = 0usize;
+	let mut backoff = BACKOFF_START;
+
+	while attempt < ATTEMPTS {
 		let text = prompt::build(item, &masked.text, before.as_deref(), after.as_deref());
 		let wanted = runner.model_for(item.kind, attempt);
 		let answer = match runner::ask(runner, &text, wanted).await {
@@ -57,8 +68,16 @@ async fn translate(
 			// No point trying a stronger model against an allowance that is gone; it is the
 			// same account either way. Stop and say so.
 			Err(Refusal::Exhausted(reason)) => return Err(Refusal::Exhausted(reason)),
+			// Busy, not spent. Wait and ask the same question again -- this does not consume
+			// an attempt, because nothing was wrong with the request.
+			Err(Refusal::Throttled(_)) => {
+				tokio::time::sleep(backoff).await;
+				backoff = (backoff * 2).min(BACKOFF_MAX);
+				continue;
+			}
 			Err(error) => {
 				last = error;
+				attempt += 1;
 				continue;
 			}
 		};
@@ -73,6 +92,7 @@ async fn translate(
 
 		if kept.is_empty() {
 			last = Refusal::Failed("no locale survived marker validation".to_owned());
+			attempt += 1;
 			continue;
 		}
 

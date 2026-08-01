@@ -1,0 +1,67 @@
+version: 1
+segments:
+  00524fa758f97a14d9aa0d6286d1b12b:
+    de-DE:
+      text: Wenn ich auf die Umwege zurückblicke, die ich früher genommen habe, bereue ich das? Nein, ich bereue es nicht. Manchmal versteht man etwas nie, wenn man es nicht selbst ausprobiert. Vor allem im Zeitalter der KI gibt es praktisch keine Chance mehr, den alten Weg, den ich damals ging, nachzuvollziehen; zu viele Arbeitsabläufe haben sich bereits geändert. Außerdem ist dieses Projekt [Taki](https://github.com/canmi21/taki), zu 100 % KI‑Programmierung, aber das bedeutet nicht, dass es nicht langfristig gepflegt werden kann, noch dass es keinen menschlichen Touch hat. Eigentlich ist es egal, ob KI beteiligt ist oder nicht; außerdem liebe ich nicht das reine Schreiben von Code, sondern das Bauen von etwas…
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:37.809386Z
+      seconds: 17.4341515
+      tokens: 18510
+      review: false
+    en-US:
+      text: Looking back at the detours I took before, do I regret them? No, I don’t. Some things, if you don’t try them yourself, you may never understand them. Moreover, in the AI era, trying to follow the old path I once took is basically no longer possible; too many workflows have already changed. Also, this project is [Taki](https://github.com/canmi21/taki), 100% AI coding, but that doesn’t mean it can’t be maintained long‑term, nor that it lacks a human touch. Actually, whether AI is present or not doesn’t matter; besides, what I love isn’t the act of writing code itself, but building something…
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:37.809386Z
+      seconds: 17.4341515
+      tokens: 18510
+      review: false
+    es-ES:
+      text: Al mirar atrás los desvíos que tomé antes, ¿lo lamento? No, no lo lamento. Algunas cosas, si no las intentas tú mismo, quizás nunca las entenderás. Más aún, en la era de la IA, intentar seguir el camino antiguo que yo recorría ya no es prácticamente posible; demasiados flujos de trabajo ya se han transformado. Además, este proyecto es [Taki](https://github.com/canmi21/taki), 100 % codificación con IA, pero eso no significa que no pueda mantenerse a largo plazo, ni que carezca de un toque humano. En realidad, si hay IA o no no es importante; además, lo que me gusta no es tanto escribir código en sí, sino crear algo…
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:37.809386Z
+      seconds: 17.4341515
+      tokens: 18510
+      review: false
+    fr-FR:
+      text: En repensant aux détours que j’ai pris auparavant, est‑ce que je le regrette ? Non, je ne le regrette pas. Certaines choses, si vous ne les essayez pas vous‑même, resteront peut‑être incompréhensibles pour toujours. D’autant plus qu’à l’ère de l’IA, essayer de suivre le vieux chemin que je parcourais autrefois n’est plus vraiment possible ; de nombreux flux de travail ont déjà changé. En outre, ce projet est [Taki](https://github.com/canmi21/taki), 100 % de codage assisté par IA, mais cela ne signifie pas qu’il ne peut pas être maintenu sur le long terme, ni qu’il manque de chaleur humaine. En réalité, la présence ou non d’IA n’a pas d’importance, et de plus, ce que j’aime n’est pas tant d’écrire du code en soi, mais de construire quelque chose…
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:37.809386Z
+      seconds: 17.4341515
+      tokens: 18510
+      review: false
+    ja-JP:
+      text: 振り返って、以前通った遠回りを後悔しますか？後悔しません。自分で試さなければ、一生理解できないこともあります。さらに、AI 時代において、昔私が歩んだ道をたどろうとしても、ほとんど機会がなくなっています。多くのワークフローがすでに変わってしまいました。また、このプロジェクトは [Taki](https://github.com/canmi21/taki) で、100% AI コーディングですが、長期的にメンテナンスできないというわけでもなく、人味がないというわけでもありません。実際、AI があるかないかは重要ではなく、むしろ私が好きなのはコードを書くことそのものではなく、何かを作り上げることです…
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:37.809386Z
+      seconds: 17.4341515
+      tokens: 18510
+      review: false
+    ko-KR:
+      text: 과거에 걸었던 우회로를 되돌아볼 때, 후회하시나요? 전혀 후회하지 않습니다. 스스로 시도해 보지 않으면 영원히 이해 못 할 수도 있습니다. 더구나 AI 시대에 저는 예전의 길을 걷는 것이 거의 불가능해졌습니다. 너무 많은 워크플로가 이미 바뀌었거든요. 또한 이 프로젝트는 [Taki](https://github.com/canmi21/taki)이며, 100% AI 코딩이지만 장기적으로 유지 관리할 수 없다는 뜻은 아니며, 인간적인 느낌이 없다는 뜻도 아닙니다. 실제로 AI가 있든 없든 중요하지 않으며, 제가 좋아하는 것은 코드 자체를 쓰는 것이 아니라 무언가를 구축하는 것입니다...
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:37.809386Z
+      seconds: 17.4341515
+      tokens: 18510
+      review: false
+    zh-CN:
+      text: 回头看之前走的弯路，后悔吗？不后悔。有些事你不自己试试，也许永远想不明白。更何况在 AI 时代，想走我当年的老路已经基本没有机会了，太多工作流已经被改变。另外这个项目是 [Taki](https://github.com/canmi21/taki)，100% AI Coding，但这不意味着不能长期维护，不意味着没有人味。其实有没有 AI 不重要，再说了，我喜欢的也不是写代码本身，而是 Building 一个东西...
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:37.809386Z
+      seconds: 17.4341515
+      tokens: 18510
+      review: false
+    zh-TW:
+      text: 回頭看之前走的彎路，後悔嗎？不後悔。有些事你不自己試試，也許永遠想不明白。更何況在 AI 時代，想走我當年的老路已經基本沒有機會了，太多工作流已經被改變。另外這個專案是 [Taki](https://github.com/canmi21/taki)，100% AI Coding，但這不意味著不能長期維護，不意味著沒有人味。其實有沒有 AI 不重要，再說了，我喜歡的也不是寫程式本身，而是 Building 一個東西...
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:20:37.809386Z
+      seconds: 17.4341515
+      tokens: 18510
+      review: false
