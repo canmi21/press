@@ -1,0 +1,1818 @@
+version: 1
+segments:
+  00a31e806c22ce9ccd5ca5cf17461a89:
+    de-DE:
+      text: '## MUSL {#musl}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:47:44.65539Z
+      seconds: 4.563227667
+      tokens: 12657
+      review: false
+    en-US:
+      text: '## MUSL {#musl}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:47:44.65539Z
+      seconds: 4.563227667
+      tokens: 12657
+      review: false
+    es-ES:
+      text: '## MUSL {#musl}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:47:44.65539Z
+      seconds: 4.563227667
+      tokens: 12657
+      review: false
+    fr-FR:
+      text: '## MUSL {#musl}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:47:44.65539Z
+      seconds: 4.563227667
+      tokens: 12657
+      review: false
+    ja-JP:
+      text: '## MUSL {#musl}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:47:44.65539Z
+      seconds: 4.563227667
+      tokens: 12657
+      review: false
+    ko-KR:
+      text: '## MUSL {#musl}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:47:44.65539Z
+      seconds: 4.563227667
+      tokens: 12657
+      review: false
+    zh-CN:
+      text: '## MUSL {#musl}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:47:44.65539Z
+      seconds: 4.563227667
+      tokens: 12657
+      review: false
+    zh-TW:
+      text: '## MUSL {#musl}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:47:44.65539Z
+      seconds: 4.563227667
+      tokens: 12657
+      review: false
+  0ab50562ac7ea4bf26e4e95e0cb715c1:
+    de-DE:
+      text: 'Ich persönlich bin ein riesiger Fan von MUSL und hasse GNU glibc wirklich, aber für die Entwicklung empfehle ich dir trotzdem, `x86_64-unknown-linux-gnu` zu verwenden. Warum? Weil es schnell ist. Der größte Pluspunkt von MUSL ist, dass es vollständig statisch verlinkte Binärdateien erzeugen kann – ohne von irgendwelchen dynamischen Bibliotheken auf dem System abzuhängen. Das Kompilierte lässt sich auf jede beliebige Linux-Maschine kopieren und ausführen, was es besonders für Container und Embedded-Systeme geeignet macht. Wo es jedoch langsam ist, liegt es ebenfalls am statischen Verlinken: Da der Linker alles zusammenpacken muss, ist der Arbeitsaufwand in der Link-Phase deutlich größer als beim dynamischen Verlinken.'
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655422Z
+      seconds: 10.132111709
+      tokens: 16610
+      review: false
+    en-US:
+      text: "I personally am a big fan of MUSL and really dislike GNU glibc, but for development, I still recommend you use `x86_64-unknown-linux-gnu`. Why? Because it's fast. MUSL's biggest selling point is its ability to generate fully statically linked binaries—without depending on any dynamic libraries on the system, whatever you compile can be copied to any Linux machine and run right away, making it especially suitable for containers and embedded systems. However, its slowness also comes from static linking: since the linker needs to bundle everything in, the workload during the linking phase is significantly greater than with dynamic linking."
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655422Z
+      seconds: 10.132111709
+      tokens: 16610
+      review: false
+    es-ES:
+      text: 'Personalmente soy un gran fan de MUSL y detesto GNU glibc, pero para el desarrollo sigo recomendándote usar `x86_64-unknown-linux-gnu`. ¿Por qué? Porque es rápido. El mayor atractivo de MUSL es que puede generar binarios completamente enlazados estáticamente: sin depender de ninguna biblioteca dinámica del sistema, lo que compilas se puede copiar a cualquier máquina Linux y ejecutar, siendo ideal para contenedores y sistemas embebidos. Sin embargo, su lentitud también se debe al enlazado estático: como el enlazador necesita empaquetarlo todo, la carga de trabajo en la fase de enlazado es bastante mayor que con el enlazado dinámico.'
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655422Z
+      seconds: 10.132111709
+      tokens: 16610
+      review: false
+    fr-FR:
+      text: "Je suis moi-même un grand fan de MUSL et je déteste vraiment GNU glibc, mais pour le développement, je vous recommande tout de même d'utiliser `x86_64-unknown-linux-gnu`. Pourquoi ? Parce que c'est rapide. Le plus grand atout de MUSL est de pouvoir générer des exécutables entièrement liés statiquement — sans dépendre d'aucune bibliothèque dynamique sur le système, ce qui est compilé peut être copié sur n'importe quelle machine Linux et s'exécuter directement, ce qui convient particulièrement aux conteneurs et à l'embarqué. Mais sa lenteur provient également du liage statique : comme l'éditeur de liens doit tout empaqueter, la charge de travail durant la phase de liage est bien plus importante qu'avec le liage dynamique."
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655422Z
+      seconds: 10.132111709
+      tokens: 16610
+      review: false
+    ja-JP:
+      text: 私自身は MUSL ファンで GNU glibc が大嫌いですが、開発にはやはり `x86_64-unknown-linux-gnu` の使用をおすすめします。なぜなら、速いからです。MUSL の最大の売りは、完全な静的リンクのバイナリを生成できることです。システム上の動的ライブラリに一切依存せず、ビルドしたものを任意の Linux マシンにコピーするだけで動作するため、コンテナや組み込みに最適です。しかし、遅いのもまた静的リンクが原因です。リンカーがすべてをパッケージングする必要があるため、リンク段階の作業量は動的リンクよりもかなり大きくなります。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655422Z
+      seconds: 10.132111709
+      tokens: 16610
+      review: false
+    ko-KR:
+      text: 저는 개인적으로 MUSL 덕후이고 GNU glibc를 정말 싫어하지만, 개발할 때는 그래도 `x86_64-unknown-linux-gnu` 사용을 추천합니다. 왜냐하면 빠르기 때문입니다. MUSL의 가장 큰 장점은 완전한 정적 링크 바이너리를 생성할 수 있다는 것입니다. 시스템의 어떠한 동적 라이브러리에도 의존하지 않아, 컴파일된 결과물을 어떤 Linux 머신에든 복사하면 바로 실행할 수 있어서 컨테이너와 임베디드에 특히 적합합니다. 하지만 느린 이유 역시 정적 링크에 있습니다. 링커가 모든 것을 포함하여 패키징해야 하므로, 링크 단계의 작업량이 동적 링크보다 훨씬 큽니다.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655422Z
+      seconds: 10.132111709
+      tokens: 16610
+      review: false
+    zh-CN:
+      text: 我本人是一个 MUSL 厨，非常讨厌 GNU glibc，但是开发我还是推荐你使用 `x86_64-unknown-linux-gnu`。为什么呢，因为快。MUSL 最大的卖点是能生成完全静态链接的二进制——不依赖系统上的任何动态库，编译出来的东西拷到任何 Linux 机器上就能跑，特别适合容器和嵌入式。但是慢也慢在静态链接，因为链接器需要把所有东西都打包进去，链接阶段的工作量比动态链接大不少。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655422Z
+      seconds: 10.132111709
+      tokens: 16610
+      review: false
+    zh-TW:
+      text: 我本人是一個 MUSL 廚，非常討厭 GNU glibc，但是開發我還是推薦你使用 `x86_64-unknown-linux-gnu`。為什麼呢，因為快。MUSL 最大的賣點是能生成完全靜態連結的二進位檔——不依賴系統上的任何動態庫，編譯出來的東西拷到任何 Linux 機器上就能跑，特別適合容器和嵌入式。但是慢也慢在靜態連結，因為連結器需要把所有東西都打包進去，連結階段的工作量比動態連結大不少。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655422Z
+      seconds: 10.132111709
+      tokens: 16610
+      review: false
+  0f01aca1b9a9cb57f08a05c7403d77bd:
+    de-DE:
+      text: Unter Linux nutzt Rust standardmäßig GNU ld (bfd) – ja, genau den ältesten und langsamsten. Da es single-threaded ist und Symbolauflösung sowie Relokation seriell scannend verarbeitet, bremst es bei größeren Projekten spürbar aus. Unter Linux können Sie das von [@Rui Ueyama](https://github.com/rui314) geschriebene [mold](https://github.com/rui314/mold) ausprobieren; die Konfiguration ist sehr einfach und erfordert nur das Hinzufügen einer Zeile in `.cargo/config.toml`.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655455Z
+      seconds: 8.448554
+      tokens: 15469
+      review: false
+    en-US:
+      text: On Linux, Rust defaults to using GNU ld (bfd)—yes, that oldest and slowest one. Being single-threaded and processing both symbol resolution and relocation via serial scanning, it noticeably drags down performance once the project gets large. On Linux, you can try [mold](https://github.com/rui314/mold) written by [@Rui Ueyama](https://github.com/rui314); configuring it is super simple, just a matter of adding a single line inside `.cargo/config.toml`.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655455Z
+      seconds: 8.448554
+      tokens: 15469
+      review: false
+    es-ES:
+      text: 'En Linux, Rust usa por defecto GNU ld (bfd); sí, el más antiguo y lento de todos. Es monohilo y procesa la resolución de símbolos y la relocalización mediante un escaneo secuencial, por lo que frena claramente el rendimiento cuando el proyecto crece. En Linux, puedes probar [mold](https://github.com/rui314/mold), escrito por [@Rui Ueyama](https://github.com/rui314). Su configuración es facilísima: solo hay que añadir una línea dentro de `.cargo/config.toml`.'
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655455Z
+      seconds: 8.448554
+      tokens: 15469
+      review: false
+    fr-FR:
+      text: "Sous Linux, Rust utilise par défaut GNU ld (bfd) — oui, exactement le plus ancien et le plus lent. Étant mono-threadé et traitant la résolution de symboles ainsi que la réallocation par balayage sériel, il ralentit nettement les projets lorsqu'ils deviennent volumineux. Sous Linux, vous pouvez essayer [mold](https://github.com/rui314/mold), écrit par [@Rui Ueyama](https://github.com/rui314) : la configuration est très simple, il suffit d'ajouter une ligne dans `.cargo/config.toml`."
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655455Z
+      seconds: 8.448554
+      tokens: 15469
+      review: false
+    ja-JP:
+      text: Linux では、Rust はデフォルトで GNU ld (bfd) を使用します。そう、あの最も古く最も遅い奴です。シングルスレッドであり、シンボル解決と再配置をシリアルにスキャンして処理するため、プロジェクトが大きくなると明らかに足を引っ張るようになります。Linux では [@Rui Ueyama](https://github.com/rui314) 氏が作成した [mold](https://github.com/rui314/mold) を試してみるとよいでしょう。設定は非常に簡単で、`.cargo/config.toml` に 1 行追加するだけです。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655455Z
+      seconds: 8.448554
+      tokens: 15469
+      review: false
+    ko-KR:
+      text: Linux에서 Rust는 기본적으로 GNU ld(bfd)를 사용합니다. 맞습니다, 가장 오래되고 가장 느린 바로 그것입니다. 싱글 스레드인데다 심볼 해석과 재배치가 모두 직렬 스캔으로 처리되어 프로젝트가 커지면 확연히 발목을 잡게 됩니다. Linux에서는 [@Rui Ueyama](https://github.com/rui314) 님이 작성한 [mold](https://github.com/rui314/mold)를 사용해 볼 수 있으며, 설정도 매우 간단하여 `.cargo/config.toml` 안에 한 줄만 추가하면 됩니다.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655455Z
+      seconds: 8.448554
+      tokens: 15469
+      review: false
+    zh-CN:
+      text: 在 Linux 上，Rust 默认用的是 GNU ld（bfd），对，就是那个最老最慢的那个。单线程并且处理符号解析和重定位都是串行扫描，项目一大就明显拖后腿了，Linux 上可以试试 [@Rui Ueyama](https://github.com/rui314) 写的 [mold](https://github.com/rui314/mold) 配置起来很简单`.cargo/config.toml` 里面加一行的事情。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655455Z
+      seconds: 8.448554
+      tokens: 15469
+      review: false
+    zh-TW:
+      text: 在 Linux 上，Rust 預設使用的是 GNU ld（bfd），對，就是那個最老最慢的。單執行緒且處理符號解析與重定位都是串行掃描，專案一大就明顯拖後腿了。Linux 上可以試試 [@Rui Ueyama](https://github.com/rui314) 寫的 [mold](https://github.com/rui314/mold)，設定起來非常簡單，只是在 `.cargo/config.toml` 裡加一行的事。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655455Z
+      seconds: 8.448554
+      tokens: 15469
+      review: false
+  15480aefffe4c21385656ad5c1bac7ab:
+    de-DE:
+      text: 'Wo liegt also eigentlich das Problem? Die Antwort ist im Grunde sehr einfach: LLVM ist eine sehr schwere Infrastruktur – in Produktionsumgebungen ist dieses Gewicht richtig, denn Kompilierungszeit gegen Ausführungszeit einzutauschen ist eine hervorragende Philosophie –, und sie schlägt die Brücke für das darüberliegende Rust sowie eine ganze Reihe anderer Sprachen wie C, C++ und Swift. Das bedeutet, dass ihre Optimierungspipeline darauf ausgelegt ist, „optimalen Maschinencode zu generieren“, und nicht darauf, „die Kompilierung schnell einzuschließen“. Diese dutzenden Optimierungs-Passes im release-Modus einmal durchzulaufen, ist extrem zeitaufwendig; selbst im debug-Modus unter O0 muss LLVM dennoch den gesamten Prozess der IR-Generierung und Maschinencodegenerierung durchlaufen, und dieser Prozess selbst ist keineswegs leichtgewichtig. Hinzukommt, dass Rusts Monomorphisierung von Generics zur Kompilierzeit riesige Mengen an Code auflöst, sodass das an LLVM übergebene IR-Volumen weit größer ist, als es der Quellcode vermuten lässt, wodurch die von LLVM zu verarbeitende Arbeitsmenge natürlicherweise drastisch anschwillt.'
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655489Z
+      seconds: 14.137127917
+      tokens: 20307
+      review: false
+    en-US:
+      text: 'So where exactly does the problem lie? The answer is actually quite simple: LLVM is a heavy infrastructure—being heavy is right in a production environment, as trading compilation time for execution time is a great philosophy—and it bridges upper-level Rust as well as a whole host of languages like C, C++, and Swift. This means its optimization pipeline is designed for "generating optimal machine code," not for "completing compilation quickly." Running those dozens of optimization passes once in release mode is extremely time-consuming; even at O0 in debug mode, LLVM still has to complete the full pipeline of IR generation and machine code generation, a process that itself is far from lightweight. On top of that, Rust''s generic monomorphization expands a massive amount of code at compile time, so the volume of IR handed to LLVM is vastly larger than your source code appears, and the workload LLVM has to process naturally inflates accordingly.'
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655489Z
+      seconds: 14.137127917
+      tokens: 20307
+      review: false
+    es-ES:
+      text: '¿Dónde está exactamente el problema entonces? La respuesta es en realidad muy sencilla: LLVM es una infraestructura muy pesada —y ser pesada es lo correcto en entornos de producción, ya que cambiar tiempo de compilación por tiempo de ejecución es una excelente filosofía—, y sirve de puente para el Rust de nivel superior, así como para un gran número de lenguajes como C, C++ y Swift. Esto significa que su tubería de optimización está diseñada para "generar el código máquina óptimo", y no para "completar la compilación rápidamente". Ejecutar esas docenas de pases de optimización en modo release consume muchísimo tiempo; incluso en modo debug con O0, LLVM todavía tiene que recorrer todo el proceso de generación de IR y generación de código máquina, y este proceso en sí no es nada ligero. A esto se suma que la monomorfización de genéricos en Rust despliega una gran cantidad de código en tiempo de compilación, por lo que el volumen de IR entregado a LLVM es mucho mayor de lo que parece en el código fuente, y la carga de trabajo que LLVM debe procesar aumenta naturalmente en consecuencia.'
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655489Z
+      seconds: 14.137127917
+      tokens: 20307
+      review: false
+    fr-FR:
+      text: "Alors, où se situe exactement le problème ? La réponse est en réalité très simple : LLVM est une infrastructure très lourde — et être lourde est une bonne chose en environnement de production, car échanger du temps de compilation contre du temps d'exécution est une excellente philosophie —, et elle sert de pont pour Rust au niveau supérieur, ainsi que pour toute une foule de langages comme C, C++ et Swift. Cela signifie que son pipeline d'optimisation est conçu pour « générer un code machine optimal » et non pour « achever rapidement la compilation ». Exécuter ces dizaines de passes d'optimisation en mode release est extrêmement chronophage ; même en mode debug à O0, LLVM doit toujours parcourir l'ensemble du processus de génération d'IR et de code machine, un processus qui n'a rien de léger en soi. De plus, la monomorphisation des génériques de Rust développe une quantité massive de code au moment de la compilation, de sorte que le volume d'IR transmis à LLVM est bien plus grand que ce que laisse penser le code source, et la charge de travail que LLVM doit traiter augmente naturellement en conséquence."
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655489Z
+      seconds: 14.137127917
+      tokens: 20307
+      review: false
+    ja-JP:
+      text: では一体どこに問題があるのでしょうか。答えは実はとてもシンプルです。LLVMは非常に重厚なインフラストラクチャであり、本番環境において重厚であることは正しく、コンパイル時間を削って実行時間を稼ぐというのは素晴らしい哲学です。LLVMは上位のRustをはじめ、C、C++、Swiftといった数多くの言語をブリッジしています。これは、その最適化パイプラインが「最適なマシンコードの生成」のために設計されているのであり、「コンパイルを迅速に完了させる」ために設計されているわけではないことを意味します。releaseモードで数十もの最適化passを一通り実行するのは極めて時間がかかりますし、debugモードのO0であっても、LLVMはIR生成からマシンコード生成に至るプロセス全体を通過しなければならず、このプロセス自体が決して軽量ではありません。さらに、Rustのジェネリクス単相化によってコンパイル時に大量のコードが展開されるため、LLVMに渡されるIRの量はソースコードの見かけよりも遥かに大きくなり、LLVMが処理すべき作業量も自ずと膨れ上がるのです。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655489Z
+      seconds: 14.137127917
+      tokens: 20307
+      review: false
+    ko-KR:
+      text: 그렇다면 대체 문제는 어디에 있는 걸까요? 답은 사실 매우 간단합니다. LLVM은 매우 무거운 인프라스트럭처이며, 프로덕션 환경에서 무겁다는 것은 옳습니다. 컴파일 시간을 바쳐 실행 시간을 얻는 것은 훌륭한 철학입니다. LLVM은 상위의 Rust뿐만 아니라 C, C++, Swift 등 수많은 언어를 이어주는 다리 역할을 합니다. 이는 LLVM의 최적화 파이프라인이 '빠른 컴파일 완료'가 아니라 '최적의 머신코드 생성'을 위해 설계되었음을 의미합니다. release 모드에서 수십 개의 최적화 pass를 한 번 돌리는 것은 엄청난 시간이 소요되며, debug 모드의 O0일지라도 LLVM은 IR 생성과 머신코드 생성의 전 과정을 그대로 거쳐야 하고, 이 과정 자체도 결코 가볍지 않습니다. 여기에 더해 Rust의 제네릭 단일화가 컴파일 시점에 엄청난 양의 코드를 전개하기 때문에, LLVM에 전달되는 IR의 양은 소스 코드에서 보이는 것보다 훨씬 커지며, LLVM이 처리해야 할 작업량도 자연스럽게 함께 부풀어 오르게 됩니다.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655489Z
+      seconds: 14.137127917
+      tokens: 20307
+      review: false
+    zh-CN:
+      text: 那么到底问题出在哪呢，答案其实已经很简单了，LLVM 是一个很重的基础设施，重在生产环境下是对的，编译时间换执行时间是很好的哲学，它桥接了上层 Rust，还有 C、C++、Swift 等一大堆语言。这意味着它的优化管线是为“生成最优机器码”设计的，而不是为“快速完成编译”设计的。那几十个优化 pass 在 release 模式下跑一遍是非常耗时的，即便是 debug 模式下的 O0，LLVM 依然要走完 IR 生成和机器码生成的全流程，而这个流程本身就不轻量。再加上 Rust 的泛型单态化会在编译期展开大量代码，交给 LLVM 的 IR 体量远比你源码看起来的要大得多，LLVM 要处理的工作量自然也随之膨胀。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655489Z
+      seconds: 14.137127917
+      tokens: 20307
+      review: false
+    zh-TW:
+      text: 那麼到底問題出在哪裡呢？答案其實已經很簡單了。LLVM 是一個很重型的基礎設施，重型在生產環境下是正確的，用編譯時間換取執行時間是非常好的哲學，它銜接了上層 Rust，以及 C、C++、Swift 等一大堆語言。這意味著它的最佳化管線是為「產生最優機器碼」而設計的，而不是為「快速完成編譯」而設計的。那數十個最佳化 pass 在 release 模式下執行一遍非常耗時，即便是 debug 模式下的 O0，LLVM 依然要走完 IR 產生和機器碼產生的完整流程，而這個流程本身就並不輕量。再加上 Rust 的泛型單態化會在編譯期展開大量程式碼，交給 LLVM 的 IR 體量遠比你原始碼看起來的要大得多，LLVM 需要處理的工作量自然也隨之膨脹。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:44.655489Z
+      seconds: 14.137127917
+      tokens: 20307
+      review: false
+  16d5a7d88341168965926e5fafdc5c42:
+    de-DE:
+      text: 'Wo also sollte Cranelift eigentlich schnell sein? Die beste Phase ist die Entwicklungszeit. Zu diesem Zeitpunkt braucht man vielleicht gar keinen nahezu perfekten, auf maximale Ausführungseffizienz optimierten Maschinencode; vielleicht brauchen wir einfach nur schnelles Feedback, solange dieser nicht ganz so tolle Maschinencode semantisch äquivalent zu dem sauber von LLVM generierten Maschinencode ist. In der Anfangszeit konnte Cranelift das eigentlich nicht leisten, weil es viele Edge Cases gab. Obwohl es sie immer noch gibt, hat es sich mittlerweile stark verbessert. Mittlerweile ist die Wahrscheinlichkeit, dass Cranelift läuft, aber LLVM fehlschlägt, ungefähr so groß wie das Auslösen eines rustc ICE beim Schreiben von Rust. Um extrem optimierten Maschinencode zu generieren, führt LLVM Dutzende von Optimierungs-Passes aus, wie z. B. Schleifenentfaltung, Vektorisierung, Konstantenpropagation, Eliminierung von totem Code und so weiter ... sehr, sehr viele, Schicht für Schicht geschliffen. Die Designphilosophie von Cranelift ist dagegen völlig anders: Es reduziert diese Optimierungsschritte drastisch, führt nur die grundlegendste Registerbelegung und Befehlsauswahl durch und schließt die Codegenerierung in einem einzigen linearen Scan ohne wiederholte Iterationen ab. Gleichzeitig ist das IR-Design schlanker und speziell für die schnelle Übersetzung von höherer IR in Maschinencode konzipiert, anstatt wie LLVM IR die Altlasten jahrzehntelanger Generalisierung mit sich herumzuschleppen.'
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:49.219722Z
+      seconds: 13.287706208
+      tokens: 19672
+      review: false
+    en-US:
+      text: "So where should Cranelift actually be fast? The ideal stage is during development. At this time, you might not need near-perfect machine code that is maximally optimized for execution efficiency at all; maybe we just need fast feedback, as long as this not-so-great machine code is semantically equivalent to the machine code properly generated by LLVM. In its early days, Cranelift couldn't really achieve this because there were plenty of Edge Cases. While there are still some now, it has improved significantly. Nowadays, the probability of Cranelift working while LLVM breaks is roughly similar to triggering a rustc ICE when writing Rust. To generate maximally optimized machine code, LLVM runs dozens of optimization passes, such as loop unrolling, vectorization, constant propagation, dead code elimination, and many, many more, grinding through layer by layer. Cranelift’s design philosophy is completely different: it drastically cuts down on these optimization steps, performing only the most basic register allocation and instruction selection, completing code generation in a single linear scan without repeated iterations. At the same time, its IR design is much more lightweight, specifically tailored for rapidly translating higher-level IR into machine code, unlike LLVM IR which carries decades of generalization baggage."
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:49.219722Z
+      seconds: 13.287706208
+      tokens: 19672
+      review: false
+    es-ES:
+      text: 'Entonces, ¿dónde debería ser rápido Cranelift exactamente? La mejor etapa es durante la fase de desarrollo. En este punto, tal vez no necesites en absoluto un código máquina casi perfecto y optimizado al límite para la eficiencia de ejecución; tal vez solo necesitemos una retroalimentación rápida, siempre y cuando este código máquina no tan bueno sea semánticamente equivalente al código máquina generado adecuadamente por LLVM. En sus inicios, Cranelift no podía lograr esto realmente debido a la gran cantidad de Edge Cases. Aunque todavía existen algunos, ha mejorado muchísimo, y ahora la probabilidad de que Cranelift funcione pero LLVM falle es prácticamente la misma que la de provocar un rustc ICE al escribir código en Rust. Para generar un código máquina extremadamente optimizado, LLVM ejecuta docenas de pases de optimización, como desenrollado de bucles, vectorización, propagación de constantes, eliminación de código muerto y muchos, muchos más, puliendo capa por capa. La filosofía de diseño de Cranelift es completamente diferente: reduce drásticamente estos pasos de optimización, realizando solo la asignación de registros y la selección de instrucciones más básicas, y completando la generación de código en un solo escaneo lineal sin iteraciones repetidas. Al mismo tiempo, el diseño de su IR es más ligero, pensado específicamente para traducir rápidamente el IR de nivel superior a código máquina, a diferencia del IR de LLVM, que arrastra décadas de carga de generalización.'
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:49.219722Z
+      seconds: 13.287706208
+      tokens: 19672
+      review: false
+    fr-FR:
+      text: "Alors, où Cranelift est-il censé être rapide ? La meilleure phase est pendant le développement. À ce stade, vous n'avez peut-être absolument pas besoin d'un code machine quasi parfait et extrêmement optimisé pour l'efficacité d'exécution ; peut-être avons-nous simplement besoin d'un retour rapide, tant que ce code machine pas si formidable est sémantiquement équivalent au code machine proprement généré par LLVM. À ses débuts, Cranelift n'y arrivait pas vraiment en raison de nombreux Edge Cases. Même s'il y en a encore aujourd'hui, la situation s'est nettement améliorée : la probabilité que Cranelift fonctionne alors qu'LLVM échoue est désormais à peu près la même que celle de déclencher un rustc ICE en écrivant du Rust. Pour générer un code machine extrêmement optimisé, LLVM exécute des dizaines de passes d'optimisation, comme le déroulage de boucles, la vectorisation, la propagation de constantes, l'élimination de code mort, et bien d'autres encore... énormément d'étapes polies couche après couche. La philosophie de conception de Cranelift est totalement différente : il réduit considérablement ces étapes d'optimisation pour ne conserver que l'allocation de registres et la sélection d'instructions les plus basiques, accomplissant la génération de code en un seul balayage linéaire, sans itérations répétées. De plus, sa conception IR est plus légère, spécifiquement pensée pour traduire rapidement l'IR de niveau supérieur en code machine, contrairement à LLVM IR qui traîne des décennies de fardeau de généralisation."
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:49.219722Z
+      seconds: 13.287706208
+      tokens: 19672
+      review: false
+    ja-JP:
+      text: では、Cranelift は一体どこで速くあるべきなのでしょうか？ 最高のフェーズはまさに開発時です。この段階では、実行効率が極限まで最適化された完璧に近いマシン語などおそらく必要なく、単に素早いフィードバックが得られれば十分かもしれません。このそこまで出来の良くないマシン語が、LLVM の正当な計算によるマシン語と意味的に等価でありさえすればいいのです。初期の Cranelift は多くの Edge Case が存在したため実際にはそれができませんでした。今でもまだ残ってはいるもののかなり改善されており、現在 Cranelift で動くのに LLVM で壊れる確率は、Rust を書いていて rustc ICE を引き起こす確率とほぼ同等です。LLVM は極限まで最適化されたマシン語を生成するために、ループ展開、ベクトル化、定数伝播、死にコード消去といった数十もの最適化 pass を走らせます…… かなり多くの処理を一層一層じっくり磨き上げるのです。一方で Cranelift の設計思想は全く異なり、これらの最適化ステップを大幅に削減して、最も基本的なレジスタ割り当てと命令選択だけを行い、反復することなく単一の線形スキャンでコード生成を完結させます。同時にその IR 設計もより軽量で、上位 IR からマシン語への高速な翻訳のために特別に設計されており、数十年分の汎用化という重荷を背負った LLVM IR とは異なります。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:49.219722Z
+      seconds: 13.287706208
+      tokens: 19672
+      review: false
+    ko-KR:
+      text: 그렇다면 Cranelift는 대체 어디서 빨라야 할까요? 가장 좋은 단계는 바로 개발 시기입니다. 이 시기에는 실행 효율이 극도로 최적화된 거의 완벽한 머신 코드가 아예 필요하지 않을 수도 있습니다. 단지 빠른 피드백만 얻을 수 있다면 충분할지도 모르죠. 이 그다지 훌륭하지 않은 머신 코드가 LLVM이 제대로 뽑아낸 머신 코드와 의미론적으로 동일하기만 하다면 말입니다. 초기 Cranelift는 수많은 Edge Case 때문에 사실 이렇게 하지 못했습니다. 지금도 여전히 존재하긴 하지만 많이 개선되었으며, 현재 Cranelift에서는 잘 돌아가는데 LLVM에서 깨질 확률은 Rust를 작성하다가 rustc ICE를 유발할 확률과 거의 비슷합니다. LLVM은 극도로 최적화된 머신 코드를 생성하기 위해 루프 언롤링, 벡터화, 상수 전파, 데드 코드 제거 등 수십 개의 최적화 pass를 실행합니다... 정말 수많은 과정을 한 땀 한 땀 다듬어 나가는 것이죠. 반면 Cranelift의 설계 철학은 전혀 다릅니다. 이러한 최적화 단계를 대폭 축소하여 가장 기본적인 레지스터 할당과 명령어 선택만 수행하고, 반복적인 이터레이션 없이 단 한 번의 선형 스캔으로 코드 생성을 완료합니다. 동시에 IR 설계 역시 훨씬 가벼우며, 수십 년간의 범용화 부담을 짊어진 LLVM IR과 달리 상위 IR에서 머신 코드로 빠르게 변환되도록 전용으로 설계되었습니다.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:49.219722Z
+      seconds: 13.287706208
+      tokens: 19672
+      review: false
+    zh-CN:
+      text: 那所以 Cranelift 到底应该快在哪呢，最好的阶段就是开发时期，这个时候也许你根本不需要接近完美的、极限优化执行效率的机器码，也许我们只需要一个快速的反馈而已，只要这个不是那么好的机器码和 LLVM 正经算出来的机器码语意等价就行了，早期的 Cranelift 其实做不到，因为有很多 Edge Case，虽然现在还是有，但是已经改善了很多了，现在出现 Cranelift 可以跑但是 LLVM 坏掉的概率差不多和你写 rust 触发 rustc ICE 差不多了。LLVM 为了生成极致优化的机器码，会跑几十个优化 pass，比如循环展开、向量化、常量传播、消除死代码之类的…… 很多很多，一层一层磨，而 Cranelift 的设计哲学完全不同，它大幅削减了这些优化步骤，只做最基本的寄存器分配和指令选择，用一趟线性扫描就完成代码生成，不反复迭代。同时它的 IR 设计也更轻量，是专门为快速从上层 IR 翻译到机器码设计的，不像 LLVM IR 那样承载着几十年的通用化包袱。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:49.219722Z
+      seconds: 13.287706208
+      tokens: 19672
+      review: false
+    zh-TW:
+      text: 那所以 Cranelift 到底應該快在哪裡呢？最好的階段就是開發時期。這個時候也許你根本不需要接近完美的、極限優化執行效率的機器碼，也許我們只需要一個快速的反饋而已，只要這個不是那麼好的機器碼和 LLVM 正經算出來的機器碼語意等價就行了。早期的 Cranelift 其實做不到，因為有很多 Edge Case，雖然現在還是有，但是已經改善很多了，現在出現 Cranelift 可以跑但是 LLVM 壞掉的機率差不多和你寫 rust 觸發 rustc ICE 差不多了。LLVM 為了生成極致優化的機器碼，會跑幾十個優化 pass，比如迴圈展開、向量化、常數傳播、消除死程式碼之類的…… 很多很多，一層一層磨，而 Cranelift 的設計哲學完全不同，它大幅削減了這些優化步驟，只做最基本的暫存器分配和指令選擇，用一趟線性掃描就完成程式碼生成，不反覆迭代。同時它的 IR 設計也更輕量，是專門為快速從上層 IR 翻譯到機器碼設計的，不像 LLVM IR 那樣承載著幾十年的通用化包袱。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:49.219722Z
+      seconds: 13.287706208
+      tokens: 19672
+      review: false
+  24268afc11caa88923098713cc65341b:
+    de-DE:
+      text: 'Die gute Nachricht ist jedoch: Wenn Sie macOS verwenden, müssen Sie sich überhaupt keine Sorgen machen, da `aarch64-apple-darwin` derzeit die einzige Wahl ist. macOS unterstützt von seinem Design her keine vollständig statische Verlinkung, was aus Sicht der Kompilierungsgeschwindigkeit sogar eine gute Sache ist. Daher nutzt das dev profile unter Linux gnulibc und unter macOS libSystem, während für das release profile sowohl unter macOS als auch unter Linux musl verwendet werden kann. Aufgrund von Problemen mit der Standardauswahl von linker und ar unter macOS ist das Einzige, worauf man achten sollte, dass eventuell `.cargo/config.toml` konfiguriert werden muss.'
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:54.789025Z
+      seconds: 8.150646041
+      tokens: 16609
+      review: false
+    en-US:
+      text: But the good news is that if you use macOS, you don't have to worry at all—`aarch64-apple-darwin` is currently the only choice. macOS does not support fully static linking by design, which is actually a good thing from the standpoint of compilation speed. So for the dev profile, use gnulibc on Linux and libSystem on macOS, while for the release profile, you can use musl on both macOS and Linux. Due to issues with macOS's default choice of linker and ar, the only thing worth noting is that you might need to configure `.cargo/config.toml`.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:54.789025Z
+      seconds: 8.150646041
+      tokens: 16609
+      review: false
+    es-ES:
+      text: 'Sin embargo, la buena noticia es que si usas macOS, no tienes de qué preocuparte en absoluto: `aarch64-apple-darwin` es actualmente la única opción. Por diseño, macOS no admite el enlazado totalmente estático, lo cual, desde la perspectiva de la velocidad de compilación, es en realidad algo bueno. Por lo tanto, el dev profile usa gnulibc en Linux y libSystem en macOS, mientras que el release profile puede usar musl tanto en macOS como en Linux. Debido a problemas con la selección predeterminada de linker y ar en macOS, lo único que conviene tener en cuenta es que quizás sea necesario configurar `.cargo/config.toml`.'
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:54.789025Z
+      seconds: 8.150646041
+      tokens: 16609
+      review: false
+    fr-FR:
+      text: "Cependant, la bonne nouvelle est que si vous utilisez macOS, vous n'avez pas du tout à vous inquiéter : `aarch64-apple-darwin` est actuellement le seul choix possible. Par conception, macOS ne prend pas en charge la liaison entièrement statique, ce qui est en fait une bonne chose du point de vue de la vitesse de compilation. Ainsi, le dev profile utilise gnulibc sur Linux et libSystem sur macOS, tandis que le release profile peut utiliser musl à la fois sur macOS et Linux. En raison de problèmes liés aux choix par défaut de linker et ar sur macOS, le seul point à noter est que vous devrez peut-être configurer `.cargo/config.toml`."
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:54.789025Z
+      seconds: 8.150646041
+      tokens: 16609
+      review: false
+    ja-JP:
+      text: しかし朗報として、macOS を使っているなら全く心配する必要はありません。`aarch64-apple-darwin` が現在唯一の選択肢となります。macOS は設計上、完全な静的リンクをサポートしていませんが、コンパイル速度の観点からはむしろ好都合です。そのため、dev profile では Linux で gnulibc、macOS で libSystem を使い、release profile では macOS と Linux の両方で musl を使用できます。macOS のデフォルトの linker と ar の選択の問題があるため、唯一注意すべき点として `.cargo/config.toml` の設定が必要になるかもしれないことです。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:54.789025Z
+      seconds: 8.150646041
+      tokens: 16609
+      review: false
+    ko-KR:
+      text: 하지만 다행히도 macOS를 사용하고 있다면 전혀 걱정할 필요가 없습니다. `aarch64-apple-darwin`이(가) 현재 유일한 선택지입니다. macOS는 설계상 완전한 정적 링크를 지원하지 않는데, 컴파일 속도 측면에서는 오히려 잘된 일입니다. 따라서 dev profile에서는 Linux에서 gnulibc, macOS에서 libSystem을 사용하고, release profile에서는 macOS와 Linux 모두에서 musl을 사용할 수 있습니다. macOS의 기본 linker 및 ar 선택 문제로 인해 유의할 점은 `.cargo/config.toml`을(를) 설정해야 할 수도 있다는 것뿐입니다.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:54.789025Z
+      seconds: 8.150646041
+      tokens: 16609
+      review: false
+    zh-CN:
+      text: 不过好消息是如果你用 macOS 的话，那就完全不用担心了，`aarch64-apple-darwin` 就是目前唯一的选择了，macOS 从设计上就不支持完全静态链接，从编译速度的角度来说，这反而是好事。所以 dev profile 在 linux 上 gnulibc，macOS 上 libSystem，release profile 在 macOS 和 linux 上都可以 musl，因为 macOS 默认选择 linker 和 ar 的问题，唯一值得注意的就是可能需要配置一下 `.cargo/config.toml`
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:54.789025Z
+      seconds: 8.150646041
+      tokens: 16609
+      review: false
+    zh-TW:
+      text: 不過好消息是如果你用 macOS 的話，那就完全不用擔心了，`aarch64-apple-darwin` 就是目前唯一的選擇了，macOS 從設計上就不支援完全靜態連結，從編譯速度的角度來說，這反而是好事。所以 dev profile 在 linux 上 gnulibc，macOS 上 libSystem，release profile 在 macOS 和 linux 上都可以 musl，因為 macOS 預設選擇 linker 和 ar 的問題，唯一值得注意的就是可能需要設定一下 `.cargo/config.toml`
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:54.789025Z
+      seconds: 8.150646041
+      tokens: 16609
+      review: false
+  2f12e5a08a22a3ba4a33b174e8049e08:
+    de-DE:
+      text: Ein weiterer Punkt, der eine Diskussion wert ist, ist die Verwendung von [UPX](https://github.com/upx/upx); ich weiß, dass es eigentlich ziemlich widersprüchlich klingt und keinen Sinn zu ergeben scheint, wenn ich sage, dass ich musl mag, aber gleichzeitig eine geringe Größe anstrebe...
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:54.790135Z
+      seconds: 6.531845292
+      tokens: 14977
+      review: false
+    en-US:
+      text: Another point worth discussing is the use of [UPX](https://github.com/upx/upx); I know that saying I like musl while also pursuing small binary size actually sounds quite contradictory and doesn't seem to make sense...
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:54.790135Z
+      seconds: 6.531845292
+      tokens: 14977
+      review: false
+    es-ES:
+      text: Otro punto que vale la pena discutir es el uso de [UPX](https://github.com/upx/upx); sé que decir que me gusta musl y al mismo tiempo buscar un tamaño reducido resulta en realidad bastante contradictorio y parece no tener sentido...
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:54.790135Z
+      seconds: 6.531845292
+      tokens: 14977
+      review: false
+    fr-FR:
+      text: Un autre point qui mérite d'être discuté est l'utilisation de [UPX](https://github.com/upx/upx) ; je sais qu'il paraît plutôt contradictoire et peu logique de dire que j'aime musl tout en cherchant à obtenir une faible taille...
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:54.790135Z
+      seconds: 6.531845292
+      tokens: 14977
+      review: false
+    ja-JP:
+      text: もう一つ議論する価値のあるポイントは [UPX](https://github.com/upx/upx) の使用についてです。musl が好きだと言いながら同時に小さなサイズを追求するのは、実際かなり矛盾していて理にかなわないように聞こえるのは分かっていますが…
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:54.790135Z
+      seconds: 6.531845292
+      tokens: 14977
+      review: false
+    ko-KR:
+      text: 논의해 볼 만한 또 다른 포인트는 바로 [UPX](https://github.com/upx/upx) 사용에 관한 것입니다. 제가 musl을 좋아한다고 하면서 동시에 작은 용량을 추구하는 것이 사실 꽤 모순되고 말이 안 되게 들린다는 점은 저도 압니다...
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:54.790135Z
+      seconds: 6.531845292
+      tokens: 14977
+      review: false
+    zh-CN:
+      text: 还有一个值得讨论的点就是关于 [UPX](https://github.com/upx/upx) 的使用；我知道我说我喜欢 musl，但是又追求小体积实际上很冲突，听起来没道理...
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:54.790135Z
+      seconds: 6.531845292
+      tokens: 14977
+      review: false
+    zh-TW:
+      text: 還有一個值得討論的點就是關於 [UPX](https://github.com/upx/upx) 的使用；我知道我說我喜歡 musl，但是又追求小體積實際上很衝突，聽起來沒道理...
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:54.790135Z
+      seconds: 6.531845292
+      tokens: 14977
+      review: false
+  342f20e52b9ab4bb72d82c6f84108e5e:
+    de-DE:
+      text: 'In normaler Logik sollte `panic` eigentlich nicht existieren. Wenn normaler Code zur runtime auf einen Fehler stößt, sollte jeder für Fehlertoleranz entworfene Err sicher zurückgegeben werden, anstatt gewaltsam zu panicken. Genau wie bei einer React ErrorBoundary sollte er ganz normal als Fehler behandelt werden. Ein panic sollte nur ausgelöst werden, wenn der Code felsenfest davon überzeugt ist, einen unmöglichen und nicht mehr zu rettenden Zustand erreicht zu haben. Meine persönliche Philosophie ist es, auf panic zu verzichten. Warum? Weil man Code in der Praxis in 3 Testebenen unterteilen kann: Die erste Ebene ist der happy path, die zweite Ebene sind Fehlerpfade (eine von unendlich vielen Möglichkeiten) und erst die dritte Ebene sind Edge Cases, die durch fuzzing oder Kollisionstests erschöpfend ermittelt werden. Aus technischer Sicht lässt sich der fehlerfreie Pfad zu 100 % testen, und bei Fehlerpfaden reicht 1 von n Varianten einer Kategorie. Kollisionstests sind reine Zeitsache und meistens den Aufwand nicht wert. Wenn die Zahl Ihrer Nutzer wirklich groß genug ist, werden Sie selbst wissen, wann es Zeit dafür ist; ich persönlich verzichte in der Regel komplett darauf.'
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:58.794626Z
+      seconds: 10.027445708
+      tokens: 17753
+      review: false
+    en-US:
+      text: "In normal business logic, `panic` should not exist. When normal business code encounters an error at runtime, any Err designed with fault tolerance should be safely returned rather than violently panicking. Just like React ErrorBoundary, it should be treated normally as an error; panic should only be triggered when the code firmly believes it has entered an impossible, unrecoverable state. My personal philosophy is to abandon panic. Why? Because in practice, business code can be divided into 3 layers of testing: the first layer is the happy path, the second layer is error paths (one of an infinite number of possibilities), and the third layer consists of Edge Cases exhaustively found through fuzzing or collision testing. From an engineering standpoint, the correct path can achieve 100% test coverage, and for error paths, you can pick 1 out of n variants per category. Collision testing is purely a matter of time and is mostly not worth it; when your user base actually reaches that scale, you will naturally know when to do it. Usually, I don't do it at all."
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:58.794626Z
+      seconds: 10.027445708
+      tokens: 17753
+      review: false
+    es-ES:
+      text: 'En la lógica de negocio normal, `panic` no debería existir. Cuando el código de negocio normal encuentra un error en runtime, cualquier Err diseñado para la tolerancia a fallos debería devolverse de forma segura en lugar de hacer un panic de manera violenta. Al igual que un ErrorBoundary de React, debería tratarse normalmente como un error; un panic solo debería activarse cuando el código tenga la firme certeza de haber entrado en un estado imposible e irrecuperable. Mi filosofía personal es renunciar al panic, ¿por qué? Porque, en la práctica, el código de negocio se puede dividir en 3 capas de pruebas: la primera capa es el happy path, la segunda capa son las rutas de error (una entre infinitas posibilidades) y la tercera capa son los Edge Cases obtenidos exhaustivamente mediante fuzzing o pruebas de colisión. Desde el punto de vista de la ingeniería, la ruta correcta se puede probar al 100 %, y para las rutas de error basta con tomar 1 opción entre n variantes de una categoría. Las pruebas de colisión son puramente una cuestión de tiempo y la mayoría de las veces no valen la pena; cuando tu volumen de usuarios realmente crezca, sabrás por ti mismo cuándo es necesario hacerlo. Por lo general, yo nunca lo hago.'
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:58.794626Z
+      seconds: 10.027445708
+      tokens: 17753
+      review: false
+    fr-FR:
+      text: "Dans la logique métier normale, `panic` ne devrait pas exister. Lorsque du code métier classique rencontre une erreur au runtime, tout Err conçu pour la tolérance aux pannes doit être retourné en toute sécurité plutôt que d'effectuer un panic brutal. Tout comme un ErrorBoundary React, cela doit être traité normalement comme une erreur ; un panic ne devrait se déclencher que si le code a la certitude d'être entré dans un état impossible et irrécupérable. Ma philosophie personnelle est d'abandonner le panic. Pourquoi ? Parce qu'en pratique, le code métier peut être divisé en 3 niveaux de tests : le premier niveau est le happy path, le deuxième niveau correspond aux chemins d'erreur (une possibilité parmi une infinité), et le troisième niveau seulement concerne les Edge Cases extraits de manière exhaustive par du fuzzing ou des tests de collision. D'un point de vue ingénierie, le chemin nominal peut être testé à 100 %, et pour les chemins d'erreur, on peut choisir 1 variante parmi n dans une catégorie donnée. Les tests de collision sont purement une question de temps et n'en valent la plupart du temps pas la peine ; lorsque votre volume d'utilisateurs augmentera vraiment, vous saurez vous-même quand il faudra le faire. En général, je ne le fais jamais."
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:58.794626Z
+      seconds: 10.027445708
+      tokens: 17753
+      review: false
+    ja-JP:
+      text: 通常のビジネスロジックにおいて、`panic` は存在するべきではありません。通常のビジネスコードが runtime でエラーに遭遇した際、耐障害性が設計された Err であれば安全に返されるべきであり、強引に panic させるべきではありません。React ErrorBoundary と同様に、通常の異常として処理されるべきです。panic は、コードが絶対にあり得ない状態に陥り、復旧不可能であると確信したときにのみトリガーされるべきです。私個人の哲学としては panic を放棄することですが、なぜでしょうか？実際にはビジネスコードは 3 層のテストとして捉えることができるからです。第 1 層は happy path、第 2 層はエラーパス（無限の可能性の中のどれか 1 つ）、第 3 層になって初めて fuzz や衝突テストによって網羅された Edge Case となります。工学的に言えば、正常パスは 100% のテストが可能であり、エラーパスは 1 つのカテゴリ内の n 種類のバリエーションから 1 つを選べば十分です。衝突テストは純粋に時間の問題であり、ほとんどの場合はかける価値がありません。ユーザー規模が実際に拡大したとき、実施すべきタイミングは自然とわかるはずです。通常、私は一切行いません。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:58.794626Z
+      seconds: 10.027445708
+      tokens: 17753
+      review: false
+    ko-KR:
+      text: 일반적인 비즈니스 로직에서 `panic` 은 존재해서는 안 됩니다. 일반적인 비즈니스 코드가 runtime에서 에러를 만났을 때, 결함 허용(fault tolerance)이 설계된 Err라면 폭력적으로 panic을 일으키는 대신 안전하게 반환되어야 합니다. React ErrorBoundary와 마찬가지로 정상적인 에러로 처리되어야 하며, panic은 코드가 복구 불가능한 불가능한 상태에 진입했다고 확신할 때만 발생해야 합니다. 저 개인의 철학은 panic을 포기하는 것인데, 왜일까요? 실제로 비즈니스 코드는 3단계 테스트로 나눌 수 있기 때문입니다. 첫 번째 단계는 happy path, 두 번째 단계는 에러 경로(무한한 가능성 중 어느 하나), 세 번째 단계가 비로소 fuzz나 충돌 테스트로 구한 Edge Case입니다. 공학적으로 볼 때 정상 경로는 100% 테스트할 수 있고, 에러 경로는 한 유형의 n가지 변형 중 1가지를 선택할 수 있습니다. 충돌 테스트는 순전히 시간 문제일 뿐 대부분의 경우 그럴 가치가 없으며, 사용자 규모가 실제로 커지면 직접 언제 해야 할지 알게 될 것입니다. 보통 저는 전혀 하지 않습니다.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:58.794626Z
+      seconds: 10.027445708
+      tokens: 17753
+      review: false
+    zh-CN:
+      text: 在正常的业务中，`panic` 应该是不能存在的，正常业务代码 runtime 遇到错误的时候，但凡是设计了容错的 Err 都应该被安全的返回，而不是暴力 panic 掉，就和 React ErrorBoundary 一样，应该被正常当作错误处理，panic 只有在代码坚信进入了不可能的状态，且无法挽回的时候才应该触发。我个人的哲学是放弃 panic，为什么呢？因为实际上业务代码可以作为 3层测试，第一层 happy path，第二层错误路径（无限种可能中的某一种），第三层才是 fuzz or 碰撞测试穷举出来的 Edge Case。工程学上来说，正确路径可以做到 100% 测试，错误路径可以一类 n 种变体中取 1种；碰撞测试纯粹是时间问题，大部分时候不值得，等你用户体量真的上来了，要做的时候你自己就会知道，通常我一律不做。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:58.794626Z
+      seconds: 10.027445708
+      tokens: 17753
+      review: false
+    zh-TW:
+      text: 在正常的業務中，`panic` 應該是不能存在的，正常業務程式碼 runtime 遇到錯誤的時候，但凡是設計了容錯的 Err 都應該被安全地傳回，而不是暴力 panic 掉，就和 React ErrorBoundary 一樣，應該被正常當作錯誤處理，panic 只有在程式碼堅信進入了不可能的狀態，且無法挽回的時候才應該觸發。我個人哲學是放棄 panic，為什麼呢？因為實際上業務程式碼可以作為 3 層測試，第一層 happy path，第二層錯誤路徑（無限種可能中的某一種），第三層才是 fuzz or 碰撞測試窮舉出來的 Edge Case。工程學上來說，正確路徑可以做到 100% 測試，錯誤路徑可以一類 n 種變體中取 1 種；碰撞測試純粹是時間問題，大部分時候不值得，等你的使用者體量真的上來了，要做的時候你自己就會知道，通常我一律不做。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:47:58.794626Z
+      seconds: 10.027445708
+      tokens: 17753
+      review: false
+  3af867c1c9c2855d32512288192a0fd0:
+    de-DE:
+      text: '## Verzicht auf panic! {#abort-on-panic}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:02.50963Z
+      seconds: 5.907512833
+      tokens: 13986
+      review: false
+    en-US:
+      text: '## Abandoning panic! {#abort-on-panic}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:02.50963Z
+      seconds: 5.907512833
+      tokens: 13986
+      review: false
+    es-ES:
+      text: '## Renunciar a panic! {#abort-on-panic}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:02.50963Z
+      seconds: 5.907512833
+      tokens: 13986
+      review: false
+    fr-FR:
+      text: '## Renoncer à panic! {#abort-on-panic}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:02.50963Z
+      seconds: 5.907512833
+      tokens: 13986
+      review: false
+    ja-JP:
+      text: '## panic! の放棄 {#abort-on-panic}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:02.50963Z
+      seconds: 5.907512833
+      tokens: 13986
+      review: false
+    ko-KR:
+      text: '## panic! 포기하기 {#abort-on-panic}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:02.50963Z
+      seconds: 5.907512833
+      tokens: 13986
+      review: false
+    zh-CN:
+      text: '## 放弃 panic! {#abort-on-panic}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:02.50963Z
+      seconds: 5.907512833
+      tokens: 13986
+      review: false
+    zh-TW:
+      text: '## 放棄 panic! {#abort-on-panic}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:02.50963Z
+      seconds: 5.907512833
+      tokens: 13986
+      review: false
+  3ecfd63d0174b61813402b5872679438:
+    de-DE:
+      text: Nachdem wir nun über die Vorteile gesprochen haben, was ist der Preis dafür? Erstens ist offensichtlich, dass der von Cranelift generierte Code bei der Laufzeit-Performance schlechter abschneidet als LLVM und je nach Szenario etwa 10 % bis 30 % langsamer ist. Aber wenn man mal ehrlich ist, erkennt man schnell, dass das in der Entwicklungsphase überhaupt keine Rolle spielt. Wozu brauche ich denn so viel Speed? Machen Sie Benchmarks oder einen CI release? Ich will doch nur verdammt nochmal, dass `cargo build` schneller läuft, um zu sehen, ob die Logik funktioniert. Außerdem wette ich, dass die meisten Programme, die Sie schreiben, kaum mehr als 80 % der Zeit die Rechenressourcen voll auslasten. Es kommt ja immer Geschäftslogik rein, aber wie groß kann diese Last in der Entwicklung schon sein? Die CPU ist doch wahrscheinlich die ganze Zeit nur am Däumchen drehen! Ich will stattdessen Ergebnisse sehen und die Logik überprüfen. Sollte man diese Rechnung – Kompilierzeit gegen Laufzeiteffizienz – im Entwicklungszyklus also nicht genau andersherum aufstellen?
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:02.942335Z
+      seconds: 25.990938334
+      tokens: 20719
+      review: false
+    en-US:
+      text: So, now that we've covered the benefits, what's the catch? First, the obvious downside is that code generated by Cranelift has worse runtime performance than LLVM, being roughly 10%–30% slower depending on the scenario. But if you think about it, you'll realize this doesn't matter at all during the development phase. Why do I need it to be so fast? Are you benchmarking or doing a CI release? I just damn well want `cargo build` to run faster so I can see if the logic works out. Besides, I bet most of the programs you write won't spend over 80% of their time maxing out compute resources; there has to be business logic coming in, and how heavy can your workload even be during dev? The CPU is probably slacking off the whole time anyway! What I actually care about is seeing the results and verifying the logic. So trading compilation time for runtime efficiency—shouldn't that math be flipped on its head in the development loop?
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:02.942335Z
+      seconds: 25.990938334
+      tokens: 20719
+      review: false
+    es-ES:
+      text: Así que, tras hablar de las ventajas, ¿cuál es el precio? En primer lugar, lo más evidente es que el código generado por Cranelift tiene un rendimiento en tiempo de ejecución inferior al de LLVM, siendo aproximadamente entre un 10 % y un 30 % más lento según el escenario. Pero si lo piensas fríamente, te darás cuenta de que esto en la fase de desarrollo no importa en absoluto. ¿Para qué necesito ir tan rápido? ¿Estás haciendo un benchmark o un CI release? Yo lo único que quiero es que `cargo build` vaya más rápido para ver si sale la lógica. Además, apuesto a que la mayoría de los programas que escribes no ocupan más del 80 % de los recursos de cómputo la mayor parte del tiempo; seguro que dependerán del tráfico de negocio que reciban, ¿y qué tan grande puede ser ese tráfico durante el desarrollo? ¡La CPU seguro que se pasa todo el tiempo tocándose las narices! Lo que yo quiero es ver los resultados y validar la lógica. Por tanto, intercambiar tiempo de compilación por eficiencia en tiempo de ejecución, ¿no es una cuenta que en el bucle de desarrollo deberíamos hacer al revés?
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:02.942335Z
+      seconds: 25.990938334
+      tokens: 20719
+      review: false
+    fr-FR:
+      text: Une fois les avantages passés en revue, quel en est le coût ? L'inconvénient le plus évident est que le code généré par Cranelift offre des performances à l'exécution inférieures à celles de LLVM, étant environ 10 % à 30 % plus lent selon le scénario. Mais en y réfléchissant bien, on réalise que cela n'a aucune espèce d'importance en phase de développement. Pourquoi avoir besoin d'autant de rapidité ? Êtes-vous en train de faire du benchmark ou un CI release ? Tout ce que je veux, bordel, c'est que `cargo build` s'exécute plus vite pour voir si la logique fonctionne. De plus, je parie que la plupart des programmes que vous écrivez n'occupent pas plus de 80 % des ressources de calcul la majeure partie du temps ; il faut bien qu'il y ait du trafic métier qui arrive, et quelle peut bien être la taille de ce trafic pendant le dev ? Le CPU passe probablement son temps à se tourner les pouces ! Tout ce qui m'importe, c'est de voir le résultat et de vérifier la logique. Alors, troquer du temps de compilation contre de l'efficacité à l'exécution, ne devrait-on pas inverser le calcul dans la boucle de développement ?
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:02.942335Z
+      seconds: 25.990938334
+      tokens: 20719
+      review: false
+    ja-JP:
+      text: さて、メリットを話し終えたところで、では代償は何でしょうか？ まず目につくのは、Cranelift が生成するコードの実行時パフォーマンスが LLVM よりも劣り、シナリオにもよりますがおよそ 10%〜30% 遅くなる点です。ですが、割り切って考えてみれば、開発段階ではそんなことはどうでもいいと気づくでしょう。何をそんなに急ぐ必要があるのでしょうか。ベンチマークを取っているのか、それとも CI release なのですか？ こっちはただ `cargo build` を速く終わらせて、ロジックが動くかどうかを確認したいだけなのです。それに賭けてもいいですが、書いたプログラムの大半が時間の 80% 以上も計算リソースを食いつぶすなんてことはまずありません。何かしらのビジネスリクエストが来て動くものですが、開発中にどれほどの負荷がかかるというのでしょう？ CPU なんて終始サボっているようなものです。それよりも結果を見てロジックを検証したいのです。コンパイル時間と実行効率のトレードオフという勘定は、開発サイクルにおいてはむしろ逆算すべきではないでしょうか。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:02.942335Z
+      seconds: 25.990938334
+      tokens: 20719
+      review: false
+    ko-KR:
+      text: 그럼 장점에 대해 다 이야기했으니, 대가는 무엇일까요? 우선 가장 명확한 단점은 Cranelift가 생성한 코드의 런타임 성능이 LLVM보다 떨어지며, 시나리오에 따라 약 10%~30% 정도 느리다는 점입니다. 하지만 생각을 바꿔보면 개발 단계에서는 이게 전혀 중요하지 않다는 사실을 깨닫게 됩니다. 왜 그렇게 빨라야 할까요? 벤치마크 점수를 내는 중인가요, 아니면 CI release를 돌리는 중인가요? 나는 그저 `cargo build`가 좀 더 빨리 돌아가서 로직이 제대로 나오는지 확인하고 싶을 뿐입니다. 그리고 장담하건대, 여러분이 작성하는 대부분의 프로그램은 80% 이상의 시간 동안 계산 리소스를 꽉 채워 쓰지 않습니다. 당연히 비즈니스 요청이 들어와야 동작할 텐데, 개발 중에 비즈니스 요청이 커 봤자 얼마나 크겠습니까? CPU는 아마 내내 농땡이를 치고 있을 겁니다. 오히려 내가 원하는 건 결과를 보고 로직을 검증하는 것이죠. 그렇다면 컴파일 시간과 런타임 효율을 맞바꾸는 셈법은 개발 루프에서 오히려 반대로 계산해야 하는 게 아닐까요?
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:02.942335Z
+      seconds: 25.990938334
+      tokens: 20719
+      review: false
+    zh-CN:
+      text: 那么好处说完了，代价呢？首先显而易见的是 Cranelift 生成的代码运行时性能比 LLVM 差，根据场景不同大概会慢 10%~30%。但想开了其实就会发现，这在开发阶段根本不重要，我要那么快干嘛，你是跑分还是 CI release 啊，我就 tm 要跑 cargo build 快点，看看逻辑出没出来，而且我打赌，你写的大部分程序不可能 80% 以上的时间占满计算资源，肯定是要有业务来的，你开发的时候业务能有多大？cpu 怕不是全程都在摸鱼呢，反倒是我要看效果、验证逻辑。那编译时间换运行时效率，这笔账在开发循环里是不是应该倒过来算嘛。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:02.942335Z
+      seconds: 25.990938334
+      tokens: 20719
+      review: false
+    zh-TW:
+      text: 那麼好處說完了，代價呢？首先顯而易見的是 Cranelift 生成的程式碼執行期效能比 LLVM 差，根據場景不同大概會慢 10%~30%。但想開了其實就會發現，這在開發階段根本不重要，我要那麼快幹嘛，你是跑分還是 CI release 啊，我就 tm 要跑 cargo build 快點，看看邏輯出沒出來，而且我賭，你寫的大部分程式不可能 80% 以上的時間占滿計算資源，肯定是要有業務來的，你開發的時候業務能有多大？cpu 怕不是全程都在摸魚呢，反倒是我要看效果、驗證邏輯。那編譯時間換執行期效能，這筆帳在開發迴圈裡是不是應該倒過來算嘛。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:02.942335Z
+      seconds: 25.990938334
+      tokens: 20719
+      review: false
+  54e05f42d060fa75becb4273b614c77f:
+    de-DE:
+      text: Wie bei allen anderen Dingen auch befinden sich die debuginfo und symbols von Rust genau hier. Das Aktivieren von `strip` im release-Modus kann die Größe erheblich reduzieren – ein gewaltiger Unterschied wie (~~normalerweise 50MB vs 5MB~~). Das Entfernen von symbols ist außerdem sicherer; schließlich wird Frontend-source code meistens dadurch geleakt, dass maps versehentlich auf npm gepusht werden :(
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:02.944683Z
+      seconds: 8.255878542
+      tokens: 15585
+      review: false
+    en-US:
+      text: Just like everything else, Rust's debuginfo and symbols reside right here. Enabling `strip` in release mode can reduce the binary size significantly—an insane difference like (~~usually 50MB vs 5MB~~). Stripping symbols is also safer, after all, most frontend source code leaks occur when maps are accidentally pushed to npm :(
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:02.944683Z
+      seconds: 8.255878542
+      tokens: 15585
+      review: false
+    es-ES:
+      text: Como ocurre con todo lo demás, la debuginfo y los symbols de Rust residen aquí. Activar `strip` en modo release puede reducir el tamaño de forma considerable, una diferencia brutal como (~~normalmente 50MB vs 5MB~~). Eliminar los symbols también es más seguro, al fin y al cabo, la mayoría de las fugas de source code frontend suceden cuando se hace push por accidente de las maps a npm :(
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:02.944683Z
+      seconds: 8.255878542
+      tokens: 15585
+      review: false
+    fr-FR:
+      text: Comme pour le reste, la debuginfo et les symbols de Rust se trouvent ici. Activer `strip` en mode release permet de réduire considérablement la taille – une différence hallucinante du style (~~souvent 50MB vs 5MB~~). Supprimer les symbols est également plus sûr ; après tout, la plupart des fuites de source code frontend surviennent quand des maps sont accidentellement push sur npm :(
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:02.944683Z
+      seconds: 8.255878542
+      tokens: 15585
+      review: false
+    ja-JP:
+      text: 他のものと同様、Rust の debuginfo や symbols はここに存在しています。release モードで `strip` を有効にすると、サイズをかなり削減できます（~~通常は 50MB vs 5MB~~ という途方もない違いです）。symbols を取り除くことは安全性の面でも有利です。結局のところ、フロントエンドの source code が漏洩する原因の多くは、map の中からうっかり npm に push されてしまうことなのですから :(
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:02.944683Z
+      seconds: 8.255878542
+      tokens: 15585
+      review: false
+    ko-KR:
+      text: 다른 것들과 마찬가지로 Rust의 debuginfo와 symbols는 바로 여기에 존재합니다. release 모드에서 `strip`을 활성화하면 크기를 상당히 줄일 수 있는데, (~~보통 50MB vs 5MB~~) 정도의 엄청난 차이입니다. symbols를 제거하는 것은 보안 측면에서도 더 안전합니다. 결국 대부분의 프론트엔드 source code 유출은 map에서 실수로 npm에 push되어 발생하니까요 :(
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:02.944683Z
+      seconds: 8.255878542
+      tokens: 15585
+      review: false
+    zh-CN:
+      text: 和其他东西一样 Rust 的 debuginfo 和 symbols 就是存在于这里的，release 模式开启 `strip` 可减少非常可观的体积（~~通常是50MB vs 5MB~~）这样的逆天区别，除掉 symbols 也更加安全，毕竟大部分时候前端 source code 都是从 map 里面不小心 push 上 npm 泄漏的 :(
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:02.944683Z
+      seconds: 8.255878542
+      tokens: 15585
+      review: false
+    zh-TW:
+      text: 和其他東西一樣，Rust 的 debuginfo 和 symbols 就是存在於這裡的，release 模式開啟 `strip` 可減少非常可觀的體積（~~通常是50MB vs 5MB~~）這種極大的差距，去除 symbols 也更加安全，畢竟大部分時候前端 source code 都是從 map 裡面不小心 push 上 npm 洩漏的 :(
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:02.944683Z
+      seconds: 8.255878542
+      tokens: 15585
+      review: false
+  5848c8d3988d4cfd2ec43ed33b167136:
+    de-DE:
+      text: Die Verbesserung ist immer noch sehr deutlich, aber leider gibt es auf macOS nur sold als kommerzielles Projekt. Die gute Nachricht ist jedoch, dass lld auf macOS oder Apples mitgeliefertes ld64 selbst nicht mehr langsam ist – besonders der neue Linker seit Xcode 15 bringt eine extrem deutliche Geschwindigkeitssteigerung. Das einzige Manko an diesem Ding ist jedoch, dass man bei unbeaufsichtigter macOS-CI und nach Updates jedes Mal per sudo Accept einer Vereinbarung zustimmen muss, was dazu geführt hat, dass meine geplanten CI-Tasks etliche Male fehlgeschlagen sind.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:08.824817Z
+      seconds: 9.68607225
+      tokens: 15950
+      review: false
+    en-US:
+      text: The improvement is still quite noticeable, but unfortunately on macOS there is only sold, a commercial project. The good news, however, is that lld on macOS or Apple's built-in ld64 itself is no longer slow—especially the new linker introduced in Xcode 15, which brings a super dramatic speedup. The only downside to this thing is that on unattended macOS CI and after updates, you have to sudo Accept an agreement every time, which caused my scheduled CI tasks to fail several times.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:08.824817Z
+      seconds: 9.68607225
+      tokens: 15950
+      review: false
+    es-ES:
+      text: La mejora sigue siendo muy evidente, pero lamentablemente en macOS solo existe sold, que es un proyecto comercial. La buena noticia es que lld en macOS o el ld64 integrado de Apple ya no es lento de por sí, especialmente el nuevo enlazador a partir de Xcode 15, cuyo aumento de velocidad es súper evidente. Sin embargo, lo único malo de esta cosa es que en un CI desatendido de macOS y tras las actualizaciones, hay que hacer sudo Accept de una cláusula cada vez, lo que provocó que mis tareas programadas de CI fallaran varias veces.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:08.824817Z
+      seconds: 9.68607225
+      tokens: 15950
+      review: false
+    fr-FR:
+      text: L'amélioration reste très nette, mais il est regrettable que sur macOS, il n'y ait que sold, un projet commercial. La bonne nouvelle, en revanche, c'est que lld sur macOS ou le ld64 fourni par Apple n'est déjà plus lent en soi, surtout le nouvel éditeur de liens depuis Xcode 15 dont le gain de vitesse est extrêmement visible. Le seul inconvénient de ce truc, c'est que sur un CI macOS non supervisé et après une mise à jour, il faut à chaque fois sudo Accept une clause, ce qui a fait planter mes tâches planifiées du CI à plusieurs reprises.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:08.824817Z
+      seconds: 9.68607225
+      tokens: 15950
+      review: false
+    ja-JP:
+      text: 向上した効果はかなり顕著ですが、残念ながら macOS 上には sold という商用プロジェクトしかありません。しかし嬉しいことに、macOS 上の lld や Apple 付属の ld64 自体がすでに遅くはありません。特に Xcode 15 以降の新しいリンカーは、速度向上が超顕著です。ただ、この代物の唯一の難点は、macOS の無人 CI 環境や更新後に毎回 sudo Accept で利用規約に同意する必要があり、そのせいで私の CI 定期タスクが何度か落ちてしまったことです。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:08.824817Z
+      seconds: 9.68607225
+      tokens: 15950
+      review: false
+    ko-KR:
+      text: 성능 향상은 여전히 매우 체감되지만, 아쉽게도 macOS에는 sold라는 상용 프로젝트만 존재합니다. 하지만 다행스러운 소식은 macOS의 lld나 Apple 자체 ld64 속도가 이미 결코 느리지 않다는 점입니다. 특히 Xcode 15 이후의 새 링커는 속도 향상이 엄청나게 눈에 띕니다. 다만 이 녀석의 유일한 단점은 무인 macOS CI 및 업데이트 후에 매번 sudo Accept로 약관에 동의해야 해서, 제 CI 정기 작업이 몇 번이나 뻗었다는 점입니다.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:08.824817Z
+      seconds: 9.68607225
+      tokens: 15950
+      review: false
+    zh-CN:
+      text: 提升还是很明显的，但是很遗憾 macOS 上只有 sold 这个商业项目，但是好消息是 macOS 上的 lld or Apple 自带的 ld64 本身已经不慢了，尤其是 Xcode 15 之后那个新链接器，速度提升超级明显，不过这个玩意唯一的不好就是 macOS 无人值守 CI 和更新后每次都要 sudo Accept 一个条款，导致我好几次 CI 定时任务挂掉。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:08.824817Z
+      seconds: 9.68607225
+      tokens: 15950
+      review: false
+    zh-TW:
+      text: 提升還是很明顯的，但很遺憾 macOS 上只有 sold 這個商業專案，不過好消息是 macOS 上的 lld 或 Apple 自帶的 ld64 本身已經不慢了，特別是 Xcode 15 之後那個新連結器，速度提升超級明顯，只不過這玩意唯一的缺點就是 macOS 無人值守 CI 和更新後每次都要 sudo Accept 一個條款，導致我好幾次 CI 定時任務掛掉。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:08.824817Z
+      seconds: 9.68607225
+      tokens: 15950
+      review: false
+  59129e74c82e302c36e7da4800e6472e:
+    de-DE:
+      text: '## Tatsächlicher Benchmark {#benchmark}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:08.827277Z
+      seconds: 5.56612625
+      tokens: 13364
+      review: false
+    en-US:
+      text: '## Actual Benchmark {#benchmark}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:08.827277Z
+      seconds: 5.56612625
+      tokens: 13364
+      review: false
+    es-ES:
+      text: '## Benchmark real {#benchmark}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:08.827277Z
+      seconds: 5.56612625
+      tokens: 13364
+      review: false
+    fr-FR:
+      text: '## Benchmark réel {#benchmark}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:08.827277Z
+      seconds: 5.56612625
+      tokens: 13364
+      review: false
+    ja-JP:
+      text: '## 実際のベンチマーク {#benchmark}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:08.827277Z
+      seconds: 5.56612625
+      tokens: 13364
+      review: false
+    ko-KR:
+      text: '## 실제 벤치마크 {#benchmark}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:08.827277Z
+      seconds: 5.56612625
+      tokens: 13364
+      review: false
+    zh-CN:
+      text: '## 实际测试 {#benchmark}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:08.827277Z
+      seconds: 5.56612625
+      tokens: 13364
+      review: false
+    zh-TW:
+      text: '## 實際測試 {#benchmark}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:08.827277Z
+      seconds: 5.56612625
+      tokens: 13364
+      review: false
+  5aa2aca5f3799916473ef8b5a278b286:
+    de-DE:
+      text: Auf diese Weise können Sie Drittanbieter-Abhängigkeiten mit O3 kompilieren. Dies erhöht lediglich die Zeit für die erste Kalt-Kompilierung, da spätere Erstellungen inkrementell erfolgen. Da externe Abhängigkeiten in der Regel nicht häufig aktualisiert werden, bietet die Verwendung von O3 für Abhängigkeiten und O0 für Ihren eigenen Geschäftscode unter normalen Umständen ein gutes dev-Modus-Erlebnis, das Ausführungsgeschwindigkeit und Dateigröße gut gegeneinander abwägt. Im Release-Modus empfehle ich jedoch weiterhin ohne Umschweife, O3 oder Z voll auszureizen.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.936544Z
+      seconds: 6.233171166
+      tokens: 14128
+      review: false
+    en-US:
+      text: This way, you can compile third-party dependencies with O3. This will only increase the time taken for the initial cold compilation, as subsequent builds will be incremental. Since external dependencies generally don't update frequently, using O3 for dependencies while using O0 for your own business logic provides a great dev mode experience that balances speed and binary size under normal circumstances. However, in Release mode, I still recommend maxing out with O3 or Z without question.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.936544Z
+      seconds: 6.233171166
+      tokens: 14128
+      review: false
+    es-ES:
+      text: De esta manera, puedes compilar las dependencias de terceros con O3, lo que solo aumentará el tiempo de la primera compilación en frío, ya que las siguientes serán incrementales. Dado que las dependencias externas generalmente no se actualizan con frecuencia, usar O3 para ellas y O0 para tu propio código de negocio ofrece una buena experiencia en modo dev que equilibra velocidad y tamaño en circunstancias normales. Sin embargo, en el modo Release, sigo recomendando al máximo O3 o Z sin lugar a dudas.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.936544Z
+      seconds: 6.233171166
+      tokens: 14128
+      review: false
+    fr-FR:
+      text: Cela permet de compiler les dépendances tierces avec O3, ce qui n'augmente que le temps de la première compilation à froid, les suivantes étant incrémentales. Les dépendances externes n'étant généralement pas mises à jour fréquemment, utiliser O3 pour celles-ci et O0 pour votre propre code métier offre une bonne expérience en mode dev en équilibrant vitesse et taille dans les cas généraux. Cependant, en mode Release, je recommande toujours de pousser O3 ou Z au maximum, sans hésitation.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.936544Z
+      seconds: 6.233171166
+      tokens: 14128
+      review: false
+    ja-JP:
+      text: これにより、サードパーティの依存関係を O3 でビルドできるようになります。増えるのは最初のクリーンビルドの時間だけで、それ以降は増分ビルドになります。外部依存関係は通常それほど頻繁に更新されないため、依存関係には O3 を使い、自身のビジネスロジックには O0 を使うことで、通常の開発において速度とサイズのバランスが取れた良好な dev モードの体験が得られます。ただし、Release モードにおいては、迷わず O3 または Z を最大まで設定することをお勧めします。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.936544Z
+      seconds: 6.233171166
+      tokens: 14128
+      review: false
+    ko-KR:
+      text: 이렇게 하면 서드파티 의존성을 O3로 컴파일할 수 있으며, 이는 첫 번째 콜드 컴파일 시간만 늘릴 뿐 이후에는 증분 컴파일됩니다. 외부 의존성은 일반적으로 자주 업데이트되지 않으므로, 의존성에는 O3를 사용하고 본인의 비즈니스 코드에는 O0를 사용하면 일반적인 상황에서 속도와 용량을 적절히 조율한 좋은 dev 모드 환경을 얻을 수 있습니다. 하지만 Release 모드에서는 군말 없이 O3나 Z를 최대로 올리는 것을 추천합니다.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.936544Z
+      seconds: 6.233171166
+      tokens: 14128
+      review: false
+    zh-CN:
+      text: 这样就可以给第三方依赖用 O3 编译，这样只会增加第一次冷编译的时间，后续就是增量编译的。外部依赖一般不会频繁更新，这里用 O3 自己业务代码用 O0 可以获得一般情况下权衡速度和体积的良好 dev 模式体验，但是 Release 模式下我还是建议 O3 或者 Z 拉满没啥好说的。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.936544Z
+      seconds: 6.233171166
+      tokens: 14128
+      review: false
+    zh-TW:
+      text: 這樣就可以給第三方相依套件用 O3 編譯，這樣只會增加第一次冷編譯的時間，後續就是增量編譯的。外部相依套件一般不會頻繁更新，這裡用 O3 自己業務程式碼用 O0 可以獲得一般情況下權衡速度和體積的良好 dev 模式體驗，但是 Release 模式下我還是建議 O3 或者 Z 拉滿沒啥好說的。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.936544Z
+      seconds: 6.233171166
+      tokens: 14128
+      review: false
+  5d40ce0aa9f8cfbaba85afa08e1831f0:
+    de-DE:
+      text: '## Cranelift {#cranelift}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:28.939461Z
+      seconds: 3.6228897079999998
+      tokens: 12596
+      review: false
+    en-US:
+      text: '## Cranelift {#cranelift}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:28.939461Z
+      seconds: 3.6228897079999998
+      tokens: 12596
+      review: false
+    es-ES:
+      text: '## Cranelift {#cranelift}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:28.939461Z
+      seconds: 3.6228897079999998
+      tokens: 12596
+      review: false
+    fr-FR:
+      text: '## Cranelift {#cranelift}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:28.939461Z
+      seconds: 3.6228897079999998
+      tokens: 12596
+      review: false
+    ja-JP:
+      text: '## Cranelift {#cranelift}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:28.939461Z
+      seconds: 3.6228897079999998
+      tokens: 12596
+      review: false
+    ko-KR:
+      text: '## Cranelift {#cranelift}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:28.939461Z
+      seconds: 3.6228897079999998
+      tokens: 12596
+      review: false
+    zh-CN:
+      text: '## Cranelift {#cranelift}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:28.939461Z
+      seconds: 3.6228897079999998
+      tokens: 12596
+      review: false
+    zh-TW:
+      text: '## Cranelift {#cranelift}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:28.939461Z
+      seconds: 3.6228897079999998
+      tokens: 12596
+      review: false
+  5fc6fde170d3f8a2e5b55e141f1e4a38:
+    de-DE:
+      text: Eine weitere Konfiguration, die oft übersehen wird, aber angepasst werden kann, ist `opt-level`. Standardmäßig sollte sie "3" sein, aber für Release-Builds ist es üblicher, sie auf "z" zu stellen. Das ist eine kostenlose Optimierung der Artefaktgröße, ohne den Code ändern zu müssen – warum sollte man sie also nicht aktivieren? Im Entwicklungsmodus sollte hier jedoch "0" konfiguriert werden, da nur ganz ohne Optimierung die schnellste Geschwindigkeit erreicht wird.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.942467Z
+      seconds: 8.750874167
+      tokens: 15736
+      review: false
+    en-US:
+      text: Another setting that is often overlooked but can be tuned is `opt-level`. By default, it should be "3", but for Release, a more common practice is to set it to "z". This is a free artifact size optimization you can get without modifying code, so why not enable it? However, in development mode, this should be configured as "0", since completely disabling optimization yields the fastest speed.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.942467Z
+      seconds: 8.750874167
+      tokens: 15736
+      review: false
+    es-ES:
+      text: Otra configuración que suele pasarse por alto pero que se puede ajustar es `opt-level`. Por defecto debería ser "3", pero para Release, lo más habitual es ponerla en "z". Esta es una optimización gratuita del tamaño del artefacto sin modificar el código, así que ¿por qué no activarla? Sin embargo, en modo de desarrollo debe configurarse en "0", ya que solo sin ninguna optimización se consigue la máxima velocidad.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.942467Z
+      seconds: 8.750874167
+      tokens: 15736
+      review: false
+    fr-FR:
+      text: Une autre configuration souvent négligée mais qui peut être ajustée est `opt-level`. Par défaut, elle devrait être sur "3", mais pour les builds Release, la pratique la plus courante est de la régler sur "z". C'est une optimisation gratuite de la taille de l'artefact sans modifier le code, alors pourquoi s'en priver ? Cependant, en mode développement, elle doit être configurée sur "0", car c'est en ne réalisant aucune optimisation que l'on obtient la vitesse la plus rapide.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.942467Z
+      seconds: 8.750874167
+      tokens: 15736
+      review: false
+    ja-JP:
+      text: もう一つ見落とされがちですが調整できる設定項目が `opt-level` です。デフォルトでは "3" のはずですが、Release では "z" に設定するのがより一般的です。コードを変更せずに得られる無料の成果物サイズ最適化ですから、使わない手はありません。しかし、開発モードではここを "0" に設定し、全く最適化を行わないことで最速の速度を得るべきです。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.942467Z
+      seconds: 8.750874167
+      tokens: 15736
+      review: false
+    ko-KR:
+      text: 간과하기 쉽지만 조절할 수 있는 또 다른 설정은 `opt-level`입니다. 기본값은 "3"이어야 하지만, Release 빌드에서는 "z"로 설정하는 것이 더 일반적입니다. 코드를 수정하지 않고도 얻을 수 있는 무료 아티팩트 크기 최적화인데, 설정하지 않을 이유가 없겠죠. 하지만 개발 모드에서는 최적화를 전혀 하지 않는 "0"으로 설정해야 가장 빠른 속도를 얻을 수 있습니다.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.942467Z
+      seconds: 8.750874167
+      tokens: 15736
+      review: false
+    zh-CN:
+      text: 还有一个经常被忽略但是可以调的配置就是 `opt-level`，默认情况下应该是 "3"，而作为 Release，更常见的做法是开到 "z"，这就是在不修改代码的前提下，可以获得的免费产物体积优化，为什么不开呢；但是呢，开发模式下这里应该配置为 "0"，完全不优化才能获得最快的速度。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.942467Z
+      seconds: 8.750874167
+      tokens: 15736
+      review: false
+    zh-TW:
+      text: 另一個經常被忽略但是可以調整的設定就是 `opt-level`，預設情況下應該是 "3"，而作為 Release，更常見的做法是開到 "z"，這就是要在不修改程式碼的前提下，可以獲得的免費產物體積最佳化，為什麼不開呢；但是呢，開發模式下這裡應該設定為 "0"，完全不最佳化才能獲得最快的速度。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.942467Z
+      seconds: 8.750874167
+      tokens: 15736
+      review: false
+  62f11cea844f6703b0dbf9857e15453c:
+    de-DE:
+      text: In der Praxis löst das Vorhandensein von UPX dieses Problem jedoch. Das Prinzip von UPX besteht darin, Ihre BIN-Datei zu komprimieren und mit einem Entpackungs-Stub zu versehen. Zur Laufzeit wird sie zuerst im Arbeitsspeicher entpackt und dann ausgeführt. Dadurch lässt sich die Binärgröße auf etwa 30 % bis 50 % des Originals reduzieren, was einen sehr deutlichen Größenvorteil bietet. Doch genau aus diesem Grund führt UPX + dynamische Verlinkung mit GNU glibc zu großen Problemen, da dynamisch verlinkte glibc-Binärdateien spezielle Sections und dynamische Lademechanismen enthalten, die durch die UPX-Komprimierung beschädigt werden können, sodass dynamische Bibliotheken zur Laufzeit nicht gefunden werden `segment fault`; musl hingegen eignet sich hervorragend für UPX. Es ist von Haus aus vollständig statisch und intern stabil, sodass Entpacken und Komprimieren nach UPX sehr sauber ablaufen. Daher wäre ein zusätzlicher UPX-Schritt in der Release-CI für musl tatsächlich ein großes Plus.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.945353Z
+      seconds: 21.182800958
+      tokens: 18652
+      review: false
+    en-US:
+      text: "However, in practice, the existence of UPX solves this problem. The principle behind UPX is actually compressing your BIN and wrapping it with a decompression stub, decompressing it in memory at runtime before executing it. This allows the binary size to be reduced to about 30%–50% of the original, making the size advantage very obvious. But precisely because of this, combining UPX with GNU glibc dynamic linking leads to major issues: dynamically linked glibc binaries contain special sections and dynamic loading mechanisms that UPX compression might corrupt, resulting in dynamic libraries not being found at runtime `segment fault`; on the other hand, musl is exceptionally well-suited for UPX—it is fully static by default and internally stable, so decompression and compression after UPX are very clean. Therefore, adding an extra UPX step to musl's release CI is actually a huge plus."
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.945353Z
+      seconds: 21.182800958
+      tokens: 18652
+      review: false
+    es-ES:
+      text: 'Pero en la práctica, la existencia de UPX soluciona este problema. El principio de UPX consiste en comprimir tu BIN y envolverlo en un stub de descompresión, de modo que al ejecutarse se descomprime primero en memoria y luego se ejecuta. Esto permite reducir el tamaño del binario a alrededor del 30%~50% del original, lo que supone una ventaja de tamaño muy evidente. Sin embargo, precisamente por esto, combinar UPX + enlace dinámico con GNU glibc genera grandes problemas: los binarios de glibc con enlace dinámico contienen secciones especiales y mecanismos de carga dinámica que la compresión de UPX puede dañar, haciendo que no se encuentren las bibliotecas dinámicas en tiempo de ejecución `segment fault`; en cambio, musl es perfecto para UPX. Es totalmente estático por naturaleza e internamente estable, por lo que la descompresión y compresión con UPX resultan muy limpias. Por lo tanto, añadir un paso de UPX en el CI de release para musl sería sin duda un gran punto a favor.'
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.945353Z
+      seconds: 21.182800958
+      tokens: 18652
+      review: false
+    fr-FR:
+      text: "Mais en pratique, l'existence d'UPX permet de résoudre ce problème. Le principe d'UPX consiste en fait à compresser votre BIN et à l'envelopper dans un stub de décompression, pour le décompresser en mémoire au moment de l'exécution avant de l'exécuter. Cela permet de réduire la taille du binaire à environ 30 % à 50 % de sa taille d'origine, rendant l'avantage en termes de taille très net. Mais c'est précisément pour cette raison que l'association UPX + liaison dynamique GNU glibc pose de gros problèmes : les binaires glibc liés dynamiquement contiennent des sections spéciales et des mécanismes de chargement dynamique que la compression UPX risque d'endommager, ce qui fait que les bibliothèques dynamiques sont introuvables à l'exécution `segment fault` ; en revanche, musl est parfaitement adapté à UPX. Il est entièrement statique par nature et stable en interne, de sorte que la décompression et la compression après UPX se font très proprement. Ajouter une étape UPX dans le CI de release pour musl serait donc un véritable plus."
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.945353Z
+      seconds: 21.182800958
+      tokens: 18652
+      review: false
+    ja-JP:
+      text: しかし実際には、UPX の存在によってこの問題は解決されます。UPX の原理は、BIN を圧縮した後に解凍 stub を被せ、実行時にまずメモリ内で解凍してから実行するというもので、これによりバイナリサイズを元の 30%〜50% 程度に圧縮できるため、サイズの優位性が非常に顕著になります。しかし、まさにそのために UPX + GNU glibc の動的リンクには大きな問題が生じます。glibc 動的リンクのバイナリには特殊な section や動的ロード機構が存在し、UPX 圧縮によってこれらが破壊され、実行時に動的ライブラリが見つからなくなる可能性があります `segment fault`。一方で musl を見ると、これは UPX に非常に適しています。もともと完全スタティックで内部も安定しているため、UPX 後の解凍と圧縮が非常にクリーンです。そのため、musl の release CI に UPX のステップを 1 つ追加するのは非常にポイントが高いと言えます。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.945353Z
+      seconds: 21.182800958
+      tokens: 18652
+      review: false
+    ko-KR:
+      text: 하지만 실제로 upx의 존재 덕분에 이 문제는 해결됩니다. UPX의 원리는 BIN을 압축한 후 해제 stub으로 감싸, 실행 시 먼저 메모리에서 해제한 뒤 실행하는 방식입니다. 이렇게 하면 바이너리 크기를 원래의 30%~50% 정도로 압축할 수 있어 크기 이점이 매우 명확해지지만, 바로 이 점 때문에 UPX + GNU glibc 동적 링크는 큰 문제를 일으킵니다. glibc 동적 링크 바이너리에는 특수한 section과 동적 로딩 메커니즘이 존재하여 UPX 압축 후 이러한 구조가 손상되고 실행 시 동적 라이브러리를 찾지 못하게 될 수 있기 때문입니다 `segment fault`. 반면 musl의 경우 UPX에 매우 적합합니다. 원래부터 완전 정적이고 내부적으로 안정적이어서 UPX 후의 해제와 압축이 매우 깔끔합니다. 따라서 musl의 release CI에 UPX 단계를 하나 더 추가하는 것은 확실히 큰 플러스 요소입니다.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.945353Z
+      seconds: 21.182800958
+      tokens: 18652
+      review: false
+    zh-CN:
+      text: 但是实际上 upx 的存在让这个问题得到了解决，UPX 的原理实际上是把你的 BIN 压缩后包上一个解压 stub，运行时先在内存里解压再执行，这样就可以把二进制体积压缩到原来的 30%~50% 左右这样体积优势就会非常明显，但也正是因为这样，UPX + GNU glibc 动态链接就会有大问题，因为 glibc 动态链接的二进制里有一些特殊的 section 和动态加载机制，UPX 压缩之后可能会破坏这些结构，导致运行时找不到动态库 `segment fault`；但是反观 musl，这个就非常适合 UPX，本来就是全静态，内部稳定，UPX 后解压和压缩都很干净。所以 musl 的 release CI 其实可以多加一步 UPX 是非常加分的。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.945353Z
+      seconds: 21.182800958
+      tokens: 18652
+      review: false
+    zh-TW:
+      text: 但是實際上 upx 的存在讓這個問題得到了解決，UPX 的原理實際上是把你的 BIN 壓縮後包上一個解壓 stub，執行時先在記憶體裡解壓再執行，這樣就可以把二進位體積壓縮到原來的 30%~50% 左右，體積優勢就會非常明顯。但也正是因為這樣，UPX + GNU glibc 動態鏈結就會有大問題，因為 glibc 動態鏈結的二進位檔案裡有一些特殊的 section 和動態載入機制，UPX 壓縮之後可能會破壞這些結構，導致執行時找不到動態程式庫 `segment fault`；但是反觀 musl，這個就非常適合 UPX，本來就是全靜態，內部穩定，UPX 後解壓和壓縮都很乾淨。所以 musl 的 release CI 其實可以多加一步 UPX 是非常加分的。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:28.945353Z
+      seconds: 21.182800958
+      tokens: 18652
+      review: false
+  641bf59022771f8c13814097a7cdc7be:
+    de-DE:
+      text: Gibt es für all das denn wirklich keine Lösung? Tatsächlich gibt es eine. Vor etwa einem Monat habe ich einige Methoden ausprobiert, um meinen Rust-Entwicklungsprozess zu beschleunigen, darunter Workflow-Optimierungen und dergleichen, aber letztendlich hing die Wartezeit jedes Mal an Cargo. Wenn man dieses Problem nicht löst, geht man nicht an die Ursache heran. Da trifft es sich gut, diese Gelegenheit zu nutzen, um ein wenig über die Optimierung der Cargo.toml-Konfiguration bei der Rust-Entwicklung und die dazugehörigen peripheren Konfigurationen zu sprechen.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:35.173894Z
+      seconds: 10.403109458
+      tokens: 16986
+      review: false
+    en-US:
+      text: Is there really no way around all of this? Actually, there is. About a month ago, I tried a few methods to speed up my Rust development workflow, including workflow optimizations and the like, but the waiting time was ultimately always stuck on Cargo. If we don't solve this, it won't address the root cause. So, taking this opportunity, I'd like to talk a bit about Cargo.toml configuration tuning in Rust development along with its supporting peripheral configurations.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:35.173894Z
+      seconds: 10.403109458
+      tokens: 16986
+      review: false
+    es-ES:
+      text: ¿Acaso no hay ninguna solución para todo esto? En realidad sí la hay. Hace aproximadamente un mes, probé algunos métodos para acelerar mi proceso de desarrollo en Rust, incluyendo la optimización del flujo de trabajo y cosas por el estilo, pero en realidad el tiempo de espera siempre se quedaba atascado en Cargo. Si no se resuelve esto, no se ataca la raíz del problema, así que aprovecharé esta oportunidad para hablar un poco sobre la optimización de la configuración de Cargo.toml en el desarrollo de Rust y sus configuraciones periféricas complementarias.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:35.173894Z
+      seconds: 10.403109458
+      tokens: 16986
+      review: false
+    fr-FR:
+      text: N'y a-t-il vraiment aucun moyen de remédier à tout cela ? En fait, si. Il y a environ un mois, j'ai essayé quelques méthodes pour accélérer mon processus de développement Rust, y compris l'optimisation du workflow et autres, mais en réalité, le temps d'attente restait à chaque fois bloqué au niveau de Cargo. Si l'on ne résout pas cela, on ne s'attaque pas à la racine du problème. C'est donc l'occasion idéale de parler un peu de l'optimisation de la configuration de Cargo.toml dans le développement Rust et des configurations périphériques associées.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:35.173894Z
+      seconds: 10.403109458
+      tokens: 16986
+      review: false
+    ja-JP:
+      text: これらすべてに対処する方法は本当にないのでしょうか？実はあるのです。約1か月前、私は Rust の開発フローを速くするためにワークフローの最適化などいくつかの方法を試してみましたが、実際の待ち時間は毎回 Cargo で止まっていました。これを解決できなければ根本的な解決にはなりません。そこでちょうど良い機会ですので、Rust 開発における Cargo.toml の設定チューニングに関する内容と、その周辺設定について少しお話ししようと思います。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:35.173894Z
+      seconds: 10.403109458
+      tokens: 16986
+      review: false
+    ko-KR:
+      text: 이 모든 것에 정말 방법이 없는 걸까요? 사실 방법은 있습니다. 약 한 달 전, 저는 워크플로 최적화를 포함해 Rust 개발 프로세스를 더 빠르게 만들기 위해 몇 가지 방법을 시도해 보았습니다. 하지만 실제 대기 시간은 매번 Cargo에서 막혔습니다. 이것을 해결하지 않으면 근본적인 해결이 되지 않기에, 이번 기회를 빌려 Rust 개발 중 Cargo.toml 설정 튜닝과 관련된 내용 및 이에 수반되는 주변 설정에 대해 이야기해 보고자 합니다.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:35.173894Z
+      seconds: 10.403109458
+      tokens: 16986
+      review: false
+    zh-CN:
+      text: 这一切难道就没有办法了吗？其实是有的。在大约一个月前，我尝试了一些办法让我的 Rust 开发流程更快，包括工作流优化之类的，但其实每次等待的时间都卡在 Cargo 上。如果不能解决这个就无法治本，那正好借这个机会来稍微说一下关于 Rust 开发中 Cargo.toml 配置调优相关的内容和配套外围配置吧。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:35.173894Z
+      seconds: 10.403109458
+      tokens: 16986
+      review: false
+    zh-TW:
+      text: 這一切難道就沒有辦法了嗎？其實是有的。在大約一個月前，我嘗試了一些辦法讓我的 Rust 開發流程更快，包括工作流程優化之類的，但其實每次等待的時間都卡在 Cargo 上。如果不能解決這個就無法治本，那正好藉這個機會來稍微說一下關於 Rust 開發中 Cargo.toml 設定調優相關的內容和配套週邊設定吧。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:35.173894Z
+      seconds: 10.403109458
+      tokens: 16986
+      review: false
+  696c86aedc20e88694bbbce205a74c4b:
+    de-DE:
+      text: ::image{src="5104d3b6f735fbe76558681b4d37e8ce.avif"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:35.177448Z
+      seconds: 3.8681685
+      tokens: 13020
+      review: false
+    en-US:
+      text: ::image{src="5104d3b6f735fbe76558681b4d37e8ce.avif"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:35.177448Z
+      seconds: 3.8681685
+      tokens: 13020
+      review: false
+    es-ES:
+      text: ::image{src="5104d3b6f735fbe76558681b4d37e8ce.avif"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:35.177448Z
+      seconds: 3.8681685
+      tokens: 13020
+      review: false
+    fr-FR:
+      text: ::image{src="5104d3b6f735fbe76558681b4d37e8ce.avif"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:35.177448Z
+      seconds: 3.8681685
+      tokens: 13020
+      review: false
+    ja-JP:
+      text: ::image{src="5104d3b6f735fbe76558681b4d37e8ce.avif"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:35.177448Z
+      seconds: 3.8681685
+      tokens: 13020
+      review: false
+    ko-KR:
+      text: ::image{src="5104d3b6f735fbe76558681b4d37e8ce.avif"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:35.177448Z
+      seconds: 3.8681685
+      tokens: 13020
+      review: false
+    zh-CN:
+      text: ::image{src="5104d3b6f735fbe76558681b4d37e8ce.avif"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:35.177448Z
+      seconds: 3.8681685
+      tokens: 13020
+      review: false
+    zh-TW:
+      text: ::image{src="5104d3b6f735fbe76558681b4d37e8ce.avif"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:35.177448Z
+      seconds: 3.8681685
+      tokens: 13020
+      review: false
+  753f60673f27ad08896f0f3c7eae02dc:
+    de-DE:
+      text: '## Codegen-Einheiten {#codegen-units}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:37.696956Z
+      seconds: 4.6558315
+      tokens: 13230
+      review: false
+    en-US:
+      text: '## Codegen Units {#codegen-units}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:37.696956Z
+      seconds: 4.6558315
+      tokens: 13230
+      review: false
+    es-ES:
+      text: '## Unidades de generación de código {#codegen-units}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:37.696956Z
+      seconds: 4.6558315
+      tokens: 13230
+      review: false
+    fr-FR:
+      text: '## Unités de génération de code {#codegen-units}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:37.696956Z
+      seconds: 4.6558315
+      tokens: 13230
+      review: false
+    ja-JP:
+      text: '## コード生成ユニット {#codegen-units}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:37.696956Z
+      seconds: 4.6558315
+      tokens: 13230
+      review: false
+    ko-KR:
+      text: '## 코드 생성 단위 {#codegen-units}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:37.696956Z
+      seconds: 4.6558315
+      tokens: 13230
+      review: false
+    zh-CN:
+      text: '## 代码生成单元 {#codegen-units}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:37.696956Z
+      seconds: 4.6558315
+      tokens: 13230
+      review: false
+    zh-TW:
+      text: '## 程式碼生成單元 {#codegen-units}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:37.696956Z
+      seconds: 4.6558315
+      tokens: 13230
+      review: false
+  763d8324763c75f703cd5a5da4279733:
+    de-DE:
+      text: ::placeholder{kind="cargo" crate="seam-cli"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:50.133422Z
+      seconds: 3.80994725
+      tokens: 12801
+      review: false
+    en-US:
+      text: ::placeholder{kind="cargo" crate="seam-cli"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:50.133422Z
+      seconds: 3.80994725
+      tokens: 12801
+      review: false
+    es-ES:
+      text: ::placeholder{kind="cargo" crate="seam-cli"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:50.133422Z
+      seconds: 3.80994725
+      tokens: 12801
+      review: false
+    fr-FR:
+      text: ::placeholder{kind="cargo" crate="seam-cli"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:50.133422Z
+      seconds: 3.80994725
+      tokens: 12801
+      review: false
+    ja-JP:
+      text: ::placeholder{kind="cargo" crate="seam-cli"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:50.133422Z
+      seconds: 3.80994725
+      tokens: 12801
+      review: false
+    ko-KR:
+      text: ::placeholder{kind="cargo" crate="seam-cli"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:50.133422Z
+      seconds: 3.80994725
+      tokens: 12801
+      review: false
+    zh-CN:
+      text: ::placeholder{kind="cargo" crate="seam-cli"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:50.133422Z
+      seconds: 3.80994725
+      tokens: 12801
+      review: false
+    zh-TW:
+      text: ::placeholder{kind="cargo" crate="seam-cli"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:50.133422Z
+      seconds: 3.80994725
+      tokens: 12801
+      review: false
+  77dbea1f344e54e899f0f992db0bd70c:
+    de-DE:
+      text: '## Veralteter Linker {#legacy-linker}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:50.137277Z
+      seconds: 5.2023725
+      tokens: 13361
+      review: false
+    en-US:
+      text: '## Legacy Linker {#legacy-linker}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:50.137277Z
+      seconds: 5.2023725
+      tokens: 13361
+      review: false
+    es-ES:
+      text: '## Enlazador obsoleto {#legacy-linker}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:50.137277Z
+      seconds: 5.2023725
+      tokens: 13361
+      review: false
+    fr-FR:
+      text: '## Éditeur de liens obsolète {#legacy-linker}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:50.137277Z
+      seconds: 5.2023725
+      tokens: 13361
+      review: false
+    ja-JP:
+      text: '## 古いリンカ {#legacy-linker}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:50.137277Z
+      seconds: 5.2023725
+      tokens: 13361
+      review: false
+    ko-KR:
+      text: '## 오래된 링커 {#legacy-linker}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:50.137277Z
+      seconds: 5.2023725
+      tokens: 13361
+      review: false
+    zh-CN:
+      text: '## 老旧的链接器 {#legacy-linker}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:50.137277Z
+      seconds: 5.2023725
+      tokens: 13361
+      review: false
+    zh-TW:
+      text: '## 老舊的連結器 {#legacy-linker}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:50.137277Z
+      seconds: 5.2023725
+      tokens: 13361
+      review: false
+  79ff0db9c5cea340095a60851e284cc9:
+    de-DE:
+      text: 'Außerdem sollte man UPX nicht übermäßig einsetzen. UPX eignet sich nur für langlaufende Aufgaben oder selten ausgeführte Aufgaben. Bei langlaufenden Aufgaben liegt das daran, dass UPX beim Start einmal im Arbeitsspeicher entpackt werden muss; dieser Prozess verläuft zwar vollautomatisch, erfordert jedoch eine kurze Kaltstartzeit. Das fällt kaum ins Gewicht, ist aber auf hochfrequenten Pfaden fatal. Daher eignet sich UPX sehr gut für langlaufende Aufgaben, die einmal gestartet und im Hintergrund betrieben werden. Ich rate jedoch davon ab, Docker-Images für solche dauerhaften Dienste gedankenlos mit UPX vollzupacken, da man hierbei im Grunde Arbeitsspeicher gegen Speicherplatz eintauscht – ein extrem schlechter Deal. Zudem erreicht die Komprimierung von Container-Layern beim Verteilen genau denselben Zweck wie UPX, um die Download-Größe zu reduzieren. Empfohlen wird UPX stattdessen für bestimmte CLI-Anwendungsfälle: Es spart enorm viel Speicherplatz, und die Entpackzeit beim Start ist kaum spürbar. Außerdem eignet sich musl von Natur aus hervorragend für CLI-Tools – andernfalls müsste ich namentlich AUR-Helper kritisieren: Das in Go geschriebene Ding war nicht statisch gelinkt, was dazu führte, dass bei mir einmal yay auf ArchLinux kaputtging, weil dynamische Bibliotheken nicht gefunden wurden. Da es selbst ein Paketmanager ist, gab es keine Rettung, außer über eine LiveISO zu booten und am Ende per chroot das System zu reparieren.'
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:50.140621Z
+      seconds: 14.496796958000001
+      tokens: 19380
+      review: false
+    en-US:
+      text: "Additionally, UPX shouldn't be abused. UPX is only suitable for long-running tasks or low-frequency tasks. For long-running tasks, UPX needs to decompress in memory upon startup; although this process is fully automatic, it requires a bit of cold start time. While this impact is usually negligible, it can be fatal on high-frequency paths. So launching a long-running task once and letting it run in the background is a great fit. However, I don't recommend mindlessly stuffing UPX into Docker images for long-running services, because in reality, this trades memory for disk space—a terrible trade-off. Furthermore, container Layer compression already achieves the same effect as UPX in reducing download size during distribution. Instead, the recommended environment is for certain CLI use cases: it saves a huge amount of disk space with virtually imperceptible startup decompression time. Plus, musl is naturally suited for CLI tools. Otherwise, I'd have to call out AUR helpers—that thing written in Go without static linking, which once caused yay on my ArchLinux to break due to missing dynamic libraries. Since it is itself a system package manager, I had no choice but to boot into a LiveISO and run chroot to unbrick the system."
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:50.140621Z
+      seconds: 14.496796958000001
+      tokens: 19380
+      review: false
+    es-ES:
+      text: 'Por otro lado, tampoco se debe abusar de UPX. UPX solo es adecuado para tareas de larga duración o de baja frecuencia. En el caso de las tareas de larga duración, esto se debe a que UPX necesita descomprimirse en memoria al iniciar; aunque este proceso es totalmente automático, requiere un pequeño tiempo de inicio en frío. Este impacto suele ser insignificante, pero resulta fatal en rutas de alta frecuencia. Por ello, iniciar una tarea de larga duración una vez y dejarla ejecutándose en segundo plano es muy adecuado. Sin embargo, no recomiendo meter UPX a ciegas en imágenes de Docker para servicios de larga duración, ya que en realidad se está cambiando memoria por espacio en disco, lo cual es un negocio pésimo. Además, la compresión de las Layers de los contenedores hace exactamente lo mismo que UPX para reducir el tamaño de descarga durante la distribución. En cambio, el entorno recomendado es para ciertos usos de CLI: ahorra muchísimo espacio en disco y el tiempo de descompresión al iniciar es casi imperceptible. Además, musl es naturally idóneo para crear CLI. De lo contrario, tendría que criticar directamente a los asistentes de AUR: esa cosa escrita en Go pero sin enlazado estático provocó que una vez se rompuera yay en mi ArchLinux al no encontrar las bibliotecas dinámicas. Como era el propio gestor de paquetes del sistema, no hubo más remedio que iniciar desde un LiveISO y hacer un chroot para rescatar el sistema.'
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:50.140621Z
+      seconds: 14.496796958000001
+      tokens: 19380
+      review: false
+    fr-FR:
+      text: "De plus, il ne faut pas abuser de UPX. UPX ne convient qu'aux tâches de longue durée ou à faible fréquence. Pour les tâches de longue durée, cela s'explique par le fait que UPX doit décompresser une fois en mémoire au démarrage. Même si ce processus est entièrement automatique, il nécessite un petit temps de démarrage à froid, ce qui a peu d'impact en général mais s'avère fatal sur des chemins à haute fréquence. Ainsi, lancer une tâche de longue durée une seule fois pour la laisser tourner en arrière-plan convient très bien. Cependant, je ne recommande pas de fourrer aveuglément du UPX dans des images Docker pour de tels services durables, car il s'agit en réalité d'échanger de la mémoire contre de l'espace disque, ce qui est une très mauvaise affaire. De plus, la compression des Layers de conteneurs fait exactement la même chose que UPX pour réduire la taille de téléchargement lors de la distribution. L'environnement recommandé concerne plutôt certains usages CLI : cela permet d'économiser une quantité énorme d'espace disque avec un temps de décompression au démarrage presque imperceptible. De plus, musl est naturellement adapté aux outils CLI. Sinon, je devrais pointer du doigt les assistants AUR : ce truc écrit en Go sans liaison statique qui a fait que yay s'est cassé sur mon ArchLinux à cause de bibliothèques dynamiques introuvables. Comme il s'agit lui-même du gestionnaire de paquets système, il n'y avait pas d'autre solution que de démarrer sur un LiveISO et de faire un chroot pour sauver le système."
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:50.140621Z
+      seconds: 14.496796958000001
+      tokens: 19380
+      review: false
+    ja-JP:
+      text: また、UPX も乱用すべきではありません。UPX は長期間実行するタスク（長タスク）か低頻度タスクにのみ適しています。長タスクに適合するのは、UPX が起動時にメモリ上で一度解凍を行う必要があり、このプロセスは全自動であるものの多少のコールドスタート時間を要するためです。この影響は僅かですが、高頻度で呼び出されるパスにおいては非常に致命的となります。そのため、長タスクを一度起動してバックグラウンドで常駐させるような用途には非常に適しています。しかし、Docker イメージのような長期サービスのパッケージに思考停止で UPX を詰め込むことはおすすめしません。なぜなら、これは実質的にメモリとディスク容量をトレードオフする行為であり、大損だからです。さらに、コンテナ Layer の圧縮は実質的に UPX と同じ役割を果たし、配信時のダウンロードサイズを削減してくれます。むしろ推奨される環境は特定の CLI 用途です。膨大なディスク容量を節約できる上、起動時の解凍時間はほとんど体感できません。しかも musl は本質的に CLI 開発に向いています。さもなければ AUR ヘルパーを名指しで批判することになってしまいます。Go で書かれたあのツールは静的リンクがされておらず、以前 ArchLinux 上で yay が壊れて動的ライブラリが見つからなくなる事態に遭遇しました。それ自体がシステムパッケージマネージャーであるため自力での解決が不可能となり、最終的に LiveISO で起動して chroot して復旧するしかありませんでした。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:50.140621Z
+      seconds: 14.496796958000001
+      tokens: 19380
+      review: false
+    ko-KR:
+      text: 또한 UPX를 남용해서는 안 됩니다. UPX는 장기 실행 작업(long-running task)이나 저빈도 작업에만 적합합니다. 장기 실행 작업에 적합한 이유는 UPX가 시작할 때 메모리에서 한 번 해제해야 하며, 이 과정은 전자동이지만 약간의 콜드 스타트 시간이 필요하기 때문입니다. 이 영향은 미미하지만 고빈도 경로에서는 치명적일 수 있습니다. 따라서 장기 실행 작업을 한 번 시작해 백그라운드에 띄워 두는 용도에는 매우 적합합니다. 하지만 Docker 이미지와 같은 장기 서비스 패키지에 무작정 UPX를 밀어 넣는 것은 추천하지 않습니다. 왜냐하면 이는 사실상 메모리를 주고 디스크 공간을 바꾸는 행위로, 엄청난 손해이기 때문입니다. 게다가 컨테이너 Layer의 압축도 배포 시 다운로드 용량을 줄여준다는 점에서 실제로는 UPX와 동일한 역할을 합니다. 오히려 추천하는 환경은 특정 CLI 용도입니다. 엄청난 디스크 공간을 절약할 수 있으며 시작 시 해제 시간도 거의 체감되지 않습니다. 게다가 musl은 본래 CLI를 만드는 데에도 적합합니다. 그렇지 않다면 AUR 헬퍼를 명적으로 비판해야 할 뻔했습니다. Go로 작성된 그 녀석은 정적 링크가 되어 있지 않아, 과거 ArchLinux에서 yay가 고장 나 동적 라이브러리를 찾지 못하는 상황을 겪은 적이 있습니다. 본체 자체가 시스템 패키지 관리자라 자체 해결이 불가능해, 결국 LiveISO로 부팅한 뒤 chroot로 복구할 수밖에 없었습니다.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:50.140621Z
+      seconds: 14.496796958000001
+      tokens: 19380
+      review: false
+    zh-CN:
+      text: 另外就是 UPX 也不能滥用，UPX 只适合长任务 or 低频任务，长任务是因为 UPX 启动的时候需要内存解压一次，这个过程虽然是全自动的但是需要一点冷启动时间，这个影响很少，但是在高频路径上还是很致命。所以长任务启动一次后台挂就很适合这个，但是我并不推荐无脑给 docker 镜像这种长服务的包塞 UPX，因为实际上这是内存换磁盘空间的行为，属于血亏，而且容器 Layer 的压缩实际和 UPX 是一样的，减少了分发的时候下载体积。反而推荐的环境是某些 CLI 的用途；节省超多磁盘空间并且启动解压时间几乎无感，而且 musl 天然也适合做 CLI，不然我就要点名批评 AUR 助手了，go 写的那个玩意但是没有静态链，导致我曾经遇到过 ArchLinux 上 yay 坏掉了，找不到动态库，本身又是系统管理器，无解只能另外 LiveISO 启动最后 chroot 救砖。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:50.140621Z
+      seconds: 14.496796958000001
+      tokens: 19380
+      review: false
+    zh-TW:
+      text: 另外就是 UPX 也不能濫用，UPX 只適合長任務或低頻任務。長任務是因為 UPX 啟動時需要在記憶體中解壓縮一次，這個過程雖然是全自動的，但需要一點冷啟動時間，這個影響雖然微小，但在高頻路徑上還是很致命。所以長任務啟動一次並在背景執行就很適合這個；但我並不推薦無腦地給 Docker 映像檔這種長服務的封包塞 UPX，因為實際上這是用記憶體換取磁碟空間的行為，屬於血虧，而且容器 Layer 的壓縮實際上跟 UPX 是一樣的，能減少分發時的下載體積。反而推薦的環境是某些 CLI 的用途：節省超多磁碟空間，並且啟動解壓縮時間幾乎無感，而且 musl 天然也很適合做 CLI。不然我就要點名批評 AUR 助手了——Go 寫的那個玩意兒卻沒有靜態連結，導致我曾經遇到過 ArchLinux 上的 yay 壞掉了、找不到動態函式庫，本身又是系統套件管理器，無解只能另外用 LiveISO 啟動最後 chroot 救磚。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:50.140621Z
+      seconds: 14.496796958000001
+      tokens: 19380
+      review: false
+  8209cae5598a352589c652418635fba9:
+    de-DE:
+      text: 'Im Gegensatz dazu ist das unten stehende CLI-Paket nicht besonders geeignet. Viele Abhängigkeiten sind zwar kein Problem – theoretisch spiegelt dies eine höhere Effizienz wider –, aber hier gibt es eine klassische Entweder-Oder-Entscheidung. Man kann oben links sehen, dass die Abhängigkeit `ring` als optional markiert ist; das liegt daran, dass das Projekt ursprünglich `aws-lc-rs` verwendet hat. Beide dieser Dinge sind Verschlüsselungsalgorithmus-Backends in Rust. Warum sollte es jedoch optional sein? Das liegt daran, dass `ring` in reinem Rust geschrieben ist, während das andere über Asm-Assembler-FFI eingebunden ist und speziell für die Assembler-Beschleunigung auf gängigen cpu-Architekturen wie x86 und arm64 entwickelt wurde. Doch genau hier liegt der Haken: Die Magie von Cranelift beschränkt sich rein auf reines Rust. Sobald man Unsafe Code oder FFI C, ASM und Ähnliches einführt, wird die Kompatibilität von Cranelift in der Praxis extrem schlecht.'
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:50.144315Z
+      seconds: 9.806571833
+      tokens: 16978
+      review: false
+    en-US:
+      text: On the other hand, the CLI package below is not quite suitable. Having many dependencies isn't really a problem—in theory, this better demonstrates efficiency—but here there is a classic either-or choice. You can see in the upper left corner that the `ring` dependency is marked as optional; that's because the project originally used `aws-lc-rs`, both of which are cryptographic algorithm Backends in Rust. But why make it optional? That is because `ring` is written in pure Rust, while the other is brought in via Asm assembly FFI, specifically designed for assembly acceleration on mainstream cpu architectures like x86 and arm64. Yet that is also where it falls short, because Cranelift's magic is limited strictly to pure Rust. Once you introduce Unsafe Code, or FFI C, ASM, etc., Cranelift's compatibility actually becomes extremely poor.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:50.144315Z
+      seconds: 9.806571833
+      tokens: 16978
+      review: false
+    es-ES:
+      text: Por otro lado, el paquete CLI de abajo no es muy adecuado. Tener muchas dependencias no es realmente un problema —en teoría, esto refleja mejor la eficiencia—, pero aquí hay una clásica elección entre dos opciones. Puedes ver en la esquina superior izquierda que la dependencia `ring` está marcada como opcional; esto se debe a que el proyecto originalmente usaba `aws-lc-rs`, siendo ambos Backends de algoritmos de cifrado en Rust. Pero ¿por qué hacerla opcional? Es porque `ring` está escrito en pure Rust, mientras que el otro se incluye mediante FFI de ensamblador Asm, diseñado específicamente para la aceleración por ensamblador en arquitecturas cpu principales como x86 y arm64. Sin embargo, ahí radica también su ruina, ya que la magia de Cranelift se limita estrictamente a pure Rust. Una vez que introduces Unsafe Code, o FFI C, ASM y similares, en la práctica la compatibilidad de Cranelift se vuelve extremadamente deficiente.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:50.144315Z
+      seconds: 9.806571833
+      tokens: 16978
+      review: false
+    fr-FR:
+      text: En revanche, le paquet CLI ci-dessous n'est pas très approprié. Avoir de nombreuses dépendances n'est pas vraiment un problème — en théorie, cela reflète mieux l'efficacité —, mais il y a ici un choix cornélien classique. Vous pouvez voir dans le coin supérieur gauche que la dépendance `ring` est marquée comme optionnelle ; c'est parce que le projet utilisait à l'origine `aws-lc-rs`, ces deux éléments étant des Backends d'algorithmes de chiffrement en Rust. Mais pourquoi la rendre optionnelle ? C'est parce que `ring` est écrit en pure Rust, tandis que l'autre est intégré via FFI en assembleur Asm, spécifiquement conçu pour l'accélération assembleur sur les architectures cpu courantes telles que x86 et arm64. Cependant, c'est aussi là que le bât blesse, car la magie de Cranelift est strictement limitée au pure Rust. Dès que vous introduisez du Unsafe Code, ou du FFI C, ASM, etc., la compatibilité de Cranelift devient en réalité extrêmement mauvaise.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:50.144315Z
+      seconds: 9.806571833
+      tokens: 16978
+      review: false
+    ja-JP:
+      text: 一方で、以下の CLI パッケージはあまり適切ではありません。依存関係が多いこと自体は問題ではなく、理論上はこの方が効率性を発揮できますが、ここには古典的な二者択一が存在します。左上を見ると `ring` という依存関係がオプショナルとしてマークされているのが分かります。それはプロジェクトが元々 `aws-lc-rs` を使用していたためで、これらはどちらも Rust における暗号化アルゴリズムの Backend です。ではなぜオプショナルにする必要があるのかというと、`ring` は純粋な Rust で書かれているのに対し、もう一方は Asm アセンブリの FFI 経由で導入されており、x86 や arm64 などの主要な cpu アーキテクチャ向けにアセンブリ加速が施されているからです。しかし、これこそが裏目に出ており、Cranelift の魔法は純粋な Rust に限定されているため、Unsafe Code や FFI C、ASM などを導入した途端、実際には Cranelift の互換性が極めて悪くなってしまうのです。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:50.144315Z
+      seconds: 9.806571833
+      tokens: 16978
+      review: false
+    ko-KR:
+      text: 반면에 아래의 CLI 패키지는 그다지 적절하지 않습니다. 의존성이 많은 것 자체는 문제가 아니며, 이론적으로는 이것이 효율성을 더 잘 보여줄 수 있지만, 여기에는 클래식한 둘 중 하나의 선택이 존재합니다. 왼쪽 상단에서 `ring` 의존성이 선택 사항으로 표시된 것을 볼 수 있습니다. 이는 프로젝트가 원래 `aws-lc-rs`을(를) 사용했기 때문이며, 이 두 가지 모두 Rust의 암호화 알고리즘 Backend입니다. 하지만 왜 선택 사항이어야 할까요? 그것은 `ring`이(가) 순수 Rust로 작성된 반면, 다른 하나는 Asm 어셈블리 FFI로 들어와 x86, arm64 등 주요 cpu 아키텍처를 위한 어셈블리 가속용으로 전용 작성되었기 때문입니다. 하지만 패배의 원인도 바로 여기에 있습니다. Cranelift의 마법은 순수 Rust에만 국한되기 때문에, Unsafe Code나 FFI C, ASM 등을 도입하는 순간 실제로는 Cranelift의 호환성이 극도로 악화됩니다.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:50.144315Z
+      seconds: 9.806571833
+      tokens: 16978
+      review: false
+    zh-CN:
+      text: 反观下面这个 CLI 包就不怎么合适，依赖多倒不是什么问题，理论上这样更能体现效率，但是这里有一个经典的二选一，可以在左上角看到 `ring` 这个依赖标记为可选了；那是因为项目本来用的是 `aws-lc-rs`，这两玩意都是 Rust 中的加密算法 Backend；但是为什么要可选呢，那是因为 `ring` 是纯 Rust 写的，而另外一个是 Asm 汇编 FFI 进来的，专为 x86 arm64 等主流 cpu 架构汇编加速，但是败也在这里，因为 Cranelift 的魔法只局限于纯 Rust，一旦你引入 Unsafe Code，or FFI C、ASM 之类的，此时实际上 Cranelift 兼容性极差。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:50.144315Z
+      seconds: 9.806571833
+      tokens: 16978
+      review: false
+    zh-TW:
+      text: 反觀下面這個 CLI 包就不是很合適，相依性多倒不是什麼問題，理論上這樣更能體現效率，但是這裡有一個經典的二選一，可以在左上角看到 `ring` 這個相依性標記為選配了；那是因為專案本來用的是 `aws-lc-rs`，這兩個東西都是 Rust 中的加密演算法 Backend；但是為什麼要可選呢？那是因為 `ring` 是純 Rust 寫的，而另外一個是 Asm 組合語言 FFI 進來的，專為 x86 arm64 等主流 cpu 架構組合語言加速，但是敗也在此，因為 Cranelift 的魔法只局限於純 Rust，一旦你引進 Unsafe Code，or FFI C、ASM 之類的，此時實際上 Cranelift 相容性極差。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:50.144315Z
+      seconds: 9.806571833
+      tokens: 16978
+      review: false
+  8581c2d8b834c7f585d9f381ffc74aca:
+    de-DE:
+      text: Betrachtet man die Gesamtergebnisse, unterscheiden sich die beiden Dinge eigentlich kaum. Es ist zwar kein Quantensprung, aber definitiv deutlich spürbar. Der Hauptgrund dafür ist, dass Apple Silicon einfach extrem stark ist – die Single-Core-Leistung und die Speicherbandbreite der M-Chips sind unfassbar hoch, wovon rechen- und I/O-intensive Aufgaben wie das Kompilieren genau profitieren. Wenn man das Ganze auf Linux laufen lässt, wäre der Unterschied normalerweise noch größer; wenn man jedoch Asahi Linux oder Ähnliches auf einem MacBook installiert, gewinnt definitiv Linux.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:53.948664Z
+      seconds: 7.804596583
+      tokens: 14841
+      review: false
+    en-US:
+      text: Looking at the overall results, these two aren't actually all that different—it's hardly a game-changer, but you can definitely notice the difference clearly. The main reason is that Apple Silicon is just ridiculously powerful; the single-core performance and memory bandwidth of M-series chips are insanely high, and heavy compute + heavy I/O tasks like compilation happen to leverage these exact strengths. Normally, running this on Linux would show an even bigger gap, but if you were to run something like Asahi Linux on a MacBook, Linux would definitely win out.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:53.948664Z
+      seconds: 7.804596583
+      tokens: 14841
+      review: false
+    es-ES:
+      text: 'Analizando los resultados globales, estos dos elementos no son en realidad tan diferentes; no se puede hablar de una revolución, pero sin duda se percibe claramente la diferencia. La razón principal es que Apple Silicon es brutalmente potente: el rendimiento mononúcleo y el ancho de banda de memoria de los chips de la serie M son increíblemente altos, por lo que las tareas con gran carga de cálculo y de E/S, como la compilación, aprovechan al máximo estas ventajas. Por lo general, al ejecutar esto en Linux la diferencia sería aún mayor, pero si se instala algo como Asahi Linux en un MacBook, sin duda ganaría Linux.'
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:53.948664Z
+      seconds: 7.804596583
+      tokens: 14841
+      review: false
+    fr-FR:
+      text: "En examinant les résultats globaux, ces deux éléments ne sont pas vraiment si différents ; ce n'est pas une révolution, mais la différence est absolument perceptible. La raison principale est qu'Apple Silicon est tout simplement ultra-puissant : les performances mono-cœur et la bande passante mémoire des puces de la série M sont incroyablement élevées, et des tâches lourdes en calcul et en E/S comme la compilation tirent pleinement parti de ces atouts. En général, les faire tourner sur Linux marquerait un écart encore plus grand, mais si l'on installe Asahi Linux ou un système similaire sur un MacBook, c'est sans aucun doute Linux qui l'emporte."
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:53.948664Z
+      seconds: 7.804596583
+      tokens: 14841
+      review: false
+    ja-JP:
+      text: 総合的な結果を見ると、この2つは実際そこまで大差なく、劇的な変化とまではいかないものの、間違いなく体感できる違いがあります。主な理由は Apple Silicon があまりにも強力だからです。Mシリーズのチップはシングルコア性能とメモリ帯域幅が異常なほど高く、コンパイルのような計算重度＋I/O重度のタスクがちょうどこれらの強みを享受できています。通常 Linux で走らせると差はさらに広がるはずですが、MacBook に Asahi Linux などを導入して動かすなら間違いなく Linux の勝ちでしょう。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:53.948664Z
+      seconds: 7.804596583
+      tokens: 14841
+      review: false
+    ko-KR:
+      text: 종합적인 결과를 보면 이 둘은 사실 차이가 그리 크지 않습니다. 비약적인 변화까지는 아니더라도 확실히 체감할 수 있는 수준인데, 주요 원인은 Apple Silicon이 너무 강력하기 때문입니다. M 시리즈 칩의 싱글 코어 성능과 메모리 대역폭이 말도 안 되게 뛰어나서, 컴파일 같은 고연산+고I/O 작업이 이러한 장점을 그대로 누리게 됩니다. 보통 Linux에서 돌려보면 차이가 더 크게 나겠지만, MacBook에 Asahi Linux 같은 것을 올려서 실행한다면 단연 Linux가 이길 것입니다.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:53.948664Z
+      seconds: 7.804596583
+      tokens: 14841
+      review: false
+    zh-CN:
+      text: 综合结果看下来这两玩意其实差不多，谈不上质变但是绝对能明显感知，主要原因是 Apple Silicon 太猛了，M 系列芯片的单核性能、内存带宽都强的离谱，编译这种重计算+重 I/O 的任务刚好吃到这些优势。如果用 Linux 跑跑通常来说差距会更大，但是如果一台 MacBook 刷 Asahi Linux 之类的肯定是 Linux 赢。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:53.948664Z
+      seconds: 7.804596583
+      tokens: 14841
+      review: false
+    zh-TW:
+      text: 綜合結果看下來這兩玩意其實差不多，談不上質變但是絕對能明顯感知，主要原因是 Apple Silicon 太猛了，M 系列晶片的單核效能、記憶體頻寬都強得離譜，編譯這種重計算+重 I/O 的任務剛好吃到這些優勢。如果用 Linux 跑跑通常來說差距會更大，但是如果在一台 MacBook 刷 Asahi Linux 之類的肯定是 Linux 贏。
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:48:53.948664Z
+      seconds: 7.804596583
+      tokens: 14841
+      review: false
+  894965060bc75a34909ee7b96e8b66fe:
+    de-DE:
+      text: ::linkcard{src="3f34360a5eb3c9ec303ca1035cc2453b.avif" url="https://github.com/bytecodealliance/wasmtime/tree/main/cranelift" title="Ein maschinennaher, retargetbarer Codegenerator." tone="dark"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:55.342963Z
+      seconds: 5.652183917
+      tokens: 14922
+      review: false
+    en-US:
+      text: ::linkcard{src="3f34360a5eb3c9ec303ca1035cc2453b.avif" url="https://github.com/bytecodealliance/wasmtime/tree/main/cranelift" title="A low-level retargetable code generator." tone="dark"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:55.342963Z
+      seconds: 5.652183917
+      tokens: 14922
+      review: false
+    es-ES:
+      text: ::linkcard{src="3f34360a5eb3c9ec303ca1035cc2453b.avif" url="https://github.com/bytecodealliance/wasmtime/tree/main/cranelift" title="Un generador de código de bajo nivel y reorientable." tone="dark"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:55.342963Z
+      seconds: 5.652183917
+      tokens: 14922
+      review: false
+    fr-FR:
+      text: ::linkcard{src="3f34360a5eb3c9ec303ca1035cc2453b.avif" url="https://github.com/bytecodealliance/wasmtime/tree/main/cranelift" title="Un générateur de code bas niveau réorientable." tone="dark"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:55.342963Z
+      seconds: 5.652183917
+      tokens: 14922
+      review: false
+    ja-JP:
+      text: ::linkcard{src="3f34360a5eb3c9ec303ca1035cc2453b.avif" url="https://github.com/bytecodealliance/wasmtime/tree/main/cranelift" title="低水準のリターゲッタブルコード生成器。" tone="dark"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:55.342963Z
+      seconds: 5.652183917
+      tokens: 14922
+      review: false
+    ko-KR:
+      text: ::linkcard{src="3f34360a5eb3c9ec303ca1035cc2453b.avif" url="https://github.com/bytecodealliance/wasmtime/tree/main/cranelift" title="저수준의 리타겟팅 가능한 코드 생성기." tone="dark"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:55.342963Z
+      seconds: 5.652183917
+      tokens: 14922
+      review: false
+    zh-CN:
+      text: ::linkcard{src="3f34360a5eb3c9ec303ca1035cc2453b.avif" url="https://github.com/bytecodealliance/wasmtime/tree/main/cranelift" title="一个底层可重目标代码生成器。" tone="dark"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:55.342963Z
+      seconds: 5.652183917
+      tokens: 14922
+      review: false
+    zh-TW:
+      text: ::linkcard{src="3f34360a5eb3c9ec303ca1035cc2453b.avif" url="https://github.com/bytecodealliance/wasmtime/tree/main/cranelift" title="一個低階可重目標程式碼產生器。" tone="dark"}
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:48:55.342963Z
+      seconds: 5.652183917
+      tokens: 14922
+      review: false
+  8972ab2a06f2e872c59e5822ca3c56f5:
+    en-US:
+      text: Finally, while these handy configurations can help you quickly distinguish between the dev and release profiles—a benefit that will become even more obvious as your codebase grows—I still recommend setting up a CI pipeline to run the Rust Stable LLVM Build, ideally along with all your tests. This way, you won't need to switch from your local nightly Rust, edge cases won't trip you up, and any issues will be caught by CI as soon as you push. This is currently the most comfortable DX mode. That's all for this time, and I'll catch you again next time I'm free!
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:49:04.642884Z
+      seconds: 7.26682525
+      tokens: 14563
+      review: false
+    es-ES:
+      text: Por último, aunque estas prácticas configuraciones pueden ayudarte a diferenciar rápidamente entre el profile de dev y el de release —algo que será cada vez más evidente a medida que crezca el código del proyecto—, te recomiendo configurar una CI para ejecutar Rust Stable LLVM Build, idealmente junto con tus distintas pruebas. De este modo, no tendrás que cambiar de versión local de nightly Rust, los Edge Cases no te pillarán por sorpresa y cualquier problema será bloqueado por la CI al hacer push. Este es actualmente el modo DX más cómodo. Eso es todo por esta vez, ¡volveremos en la próxima oportunidad!
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:49:04.642884Z
+      seconds: 7.26682525
+      tokens: 14563
+      review: false
+    fr-FR:
+      text: Enfin, bien que ces configurations pratiques puissent vous aider à distinguer rapidement le profile dev et release – ce qui deviendra d'autant plus évident au fur et à mesure que le code du projet s'étoffera –, je vous recommande tout de même de mettre en place une CI pour lancer le Rust Stable LLVM Build, idéalement combinée avec vos différents tests. De cette façon, vous n'aurez pas besoin de basculer de votre version locale nightly de Rust, les Edge Cases ne vous piégeront pas, et tout problème sera intercepté par la CI lors du push. C'est actuellement le mode DX le plus confortable. C'est tout pour cette fois, à la prochaine quand j'aurai un moment !
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:49:04.642884Z
+      seconds: 7.26682525
+      tokens: 14563
+      review: false
+    ja-JP:
+      text: |-
+        最後に、これらの便利な設定は dev プロファイルと release プロファイルを素早く区別するのに役立ち、プロジェクトのコードが増えるにつれてそのメリットはますます顕著になりますが、やはり Rust Stable LLVM Build を実行する CI をもう一つ作成し、各種テストも一緒に走らせることをお勧めします。そうすればローカルで nightly の Rust を切り替える必要もなくなり、Edge Case にハマることもなく、push した際に問題があれば CI でブロックされます。これが現状最も快適な DX モードです。それでは今回はここまでにして、また時間がある時に続きを書きたいと思います。
+
+        ⟦de-DE⟧:
+        Schließlich können diese nützlichen Konfigurationen zwar helfen, schnell zwischen dem dev- und release-Profile zu unterscheiden – was bei wachsendem Projektcode nur noch offensichtlicher wird –, aber ich empfehle dennoch, ein zusätzliches CI einzurichten, um den Rust Stable LLVM Build auszuführen, am besten zusammen mit Ihren verschiedenen Tests. Auf diese Weise müssen Sie lokal nicht von nightly Rust wechseln, Edge Cases können Ihnen nichts anhaben, und Probleme werden beim Push direkt vom CI abgefangen. Das ist derzeit der komfortabelste DX-Modus. Das war's für dieses Mal, beim nächsten Mal geht es weiter!
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:49:04.642884Z
+      seconds: 7.26682525
+      tokens: 14563
+      review: false
+    ko-KR:
+      text: 마지막으로 이러한 유용한 설정들이 dev와 release profile을 빠르게 구분하는 데 도움을 주며, 프로젝트 코드가 늘어날수록 그 효과는 더욱 분명해지지만, 저는 여전히 Rust Stable LLVM Build를 실행하는 CI를 추가하고 다양한 테스트와 함께 실행하는 것을 권장합니다. 이렇게 하면 로컬에서 nightly Rust를 전환할 필요가 없고, Edge Case에 걸릴 일도 없으며, push 시 문제가 발생하더라도 CI에서 걸러집니다. 이것이 현재 가장 편안한 DX 모드입니다. 그럼 이번에는 여기까지 하고, 다음에 시간이 날 때 다시 찾아뵙겠습니다.
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:49:04.642884Z
+      seconds: 7.26682525
+      tokens: 14563
+      review: false
+    zh-CN:
+      text: 最后这些好用的配置虽然可以帮助你快速区分 dev 和 release profile，在项目代码上来后只会越来越明显，但是我还是建议你多写一个 CI 来跑 Rust Stable LLVM Build，最好再加上你的各种测试一起跑，这样本地 nightly 的 rust 也不用切换了，Edge Case 也坑不到你，push 上去有问题就被 CI 拦了，这样就是目前最舒服的 DX 模式了；那这次就说到这里了，下次有空再摸吧
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:49:04.642884Z
+      seconds: 7.26682525
+      tokens: 14563
+      review: false
+    zh-TW:
+      text: 最後這些好用的設定雖然可以幫助你快速區分 dev 和 release profile，在專案程式碼增加後只會越來越明顯，但我還是建議你多寫一個 CI 來跑 Rust Stable LLVM Build，最好再加上你的各種測試一起跑，這樣本地 nightly 的 rust 也不用切換了，Edge Case 也坑不到你，push 上去有問題就被 CI 攔了，這樣就是目前最舒服的 DX 模式了；那這次就說到這裡了，下次有空再摸吧
+      provider: google
+      model: gemini-3-6-flash-high
+      at: 2026-08-01T01:49:04.642884Z
+      seconds: 7.26682525
+      tokens: 14563
+      review: false
+  8b26dd6ee82e31c3df3d10f8d575647d:
+    de-DE:
+      text: '## Backend-Theorie {#backend-theory}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:49:04.64682Z
+      seconds: 4.753844
+      tokens: 12746
+      review: false
+    en-US:
+      text: '## Backend Theory {#backend-theory}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:49:04.64682Z
+      seconds: 4.753844
+      tokens: 12746
+      review: false
+    es-ES:
+      text: '## Teoría del backend {#backend-theory}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:49:04.64682Z
+      seconds: 4.753844
+      tokens: 12746
+      review: false
+    fr-FR:
+      text: '## Théorie du backend {#backend-theory}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:49:04.64682Z
+      seconds: 4.753844
+      tokens: 12746
+      review: false
+    ja-JP:
+      text: '## バックエンド理論 {#backend-theory}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:49:04.64682Z
+      seconds: 4.753844
+      tokens: 12746
+      review: false
+    ko-KR:
+      text: '## 백엔드 이론 {#backend-theory}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:49:04.64682Z
+      seconds: 4.753844
+      tokens: 12746
+      review: false
+    zh-CN:
+      text: '## 后端理论 {#backend-theory}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:49:04.64682Z
+      seconds: 4.753844
+      tokens: 12746
+      review: false
+    zh-TW:
+      text: '## 後端理論 {#backend-theory}'
+      provider: google
+      model: gemini-3-6-flash-medium
+      at: 2026-08-01T01:49:04.64682Z
+      seconds: 4.753844
+      tokens: 12746
+      review: false

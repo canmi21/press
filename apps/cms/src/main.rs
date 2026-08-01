@@ -236,8 +236,9 @@ fn translate_articles(args: &[String]) -> ExitCode {
 		.and_then(|value| value.parse::<usize>().ok());
 
 	let mut only: Vec<std::path::PathBuf> = Vec::new();
+	let mut runner = i18n::runner::Runner::Claude;
 	let mut skip = false;
-	for arg in args {
+	for (at, arg) in args.iter().enumerate() {
 		if skip {
 			skip = false;
 			continue;
@@ -245,6 +246,19 @@ fn translate_articles(args: &[String]) -> ExitCode {
 		match arg.as_str() {
 			"--force" => {}
 			"--limit" => skip = true,
+			"--model" => {
+				skip = true;
+				match args
+					.get(at + 1)
+					.and_then(|name| i18n::runner::Runner::parse(name))
+				{
+					Some(chosen) => runner = chosen,
+					None => {
+						eprintln!("--model takes claude or gemini");
+						return ExitCode::FAILURE;
+					}
+				}
+			}
 			other => only.push(std::path::PathBuf::from(other)),
 		}
 	}
@@ -264,7 +278,13 @@ fn translate_articles(args: &[String]) -> ExitCode {
 			return ExitCode::FAILURE;
 		}
 	};
-	let outcome = match runtime.block_on(i18n::run(&root.join("contents"), &only, limit, force)) {
+	let outcome = match runtime.block_on(i18n::run(
+		runner,
+		&root.join("contents"),
+		&only,
+		limit,
+		force,
+	)) {
 		Ok(outcome) => outcome,
 		Err(error) => {
 			eprintln!("could not write: {error}");
@@ -280,6 +300,11 @@ fn translate_articles(args: &[String]) -> ExitCode {
 	if outcome.orphans > 0 {
 		eprintln!("note  {} stale segments left by edits", outcome.orphans);
 	}
+	// Not a failure. The work done is kept, and running again after the reset picks up exactly
+	// where this stopped, because only missing segments are ever requested.
+	if let Some(reason) = &outcome.exhausted {
+		println!("stopped: {reason}");
+	}
 	println!(
 		"{} translations across {} segments, {} failed",
 		outcome.translated,
@@ -289,6 +314,7 @@ fn translate_articles(args: &[String]) -> ExitCode {
 	if outcome.translated > 0 {
 		println!("{} tokens, ${:.2}", outcome.tokens, outcome.usd);
 	}
+	// A spent allowance is a normal state to stop in, not an error to report as one.
 	if outcome.failed.is_empty() {
 		ExitCode::SUCCESS
 	} else {
@@ -525,7 +551,7 @@ fn usage() {
 	eprintln!("                              collect the icons the linkcards need");
 	eprintln!("  alt [--force] [--limit N]   describe assets that have no description yet");
 	eprintln!("  og [--force]                render an OpenGraph card per article");
-	eprintln!("  i18n [--force] [--limit N] [article...]");
+	eprintln!("  i18n [--model claude|gemini|gpt-oss] [--force] [--limit N] [article...]");
 	eprintln!("                              translate article segments into every locale");
 	eprintln!("  check                       list referenced assets that are not present");
 	eprintln!("  gc [--live]                 drop published assets no article asks for");

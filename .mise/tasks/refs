@@ -64,10 +64,20 @@ def docs() -> list[pathlib.Path]:
 
 
 def code_files() -> list[pathlib.Path]:
+	"""Files whose URLs something other than a reader would resolve.
+
+	`contents/` is excluded whatever the extension. A translation sidecar is YAML by format
+	and prose by nature: the links in it are the ones the author wrote in the article, carried
+	across by the translator. Asking those to live in libs/urls would be asking an article not
+	to cite anything.
+	"""
 	return [
 		p
 		for p in ROOT.rglob("*")
-		if p.is_file() and p.suffix in CODE_SUFFIXES and not SKIP_DIRS & set(p.parts)
+		if p.is_file()
+		and p.suffix in CODE_SUFFIXES
+		and not SKIP_DIRS & set(p.parts)
+		and "contents" not in p.parts
 	]
 
 
