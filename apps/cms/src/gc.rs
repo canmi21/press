@@ -34,14 +34,14 @@ pub fn plan(repo: &Path, public: &Path, articles: &Path) -> std::io::Result<Swee
 	// alive -- which is correct, because the site could not resolve it either.
 	let mut keep: BTreeSet<String> = wanted.clone();
 	for cid in &wanted {
-		if let Some(media) = merged.assets.get(cid) {
+		if let Some(media) = merged.media.get(cid) {
 			keep.extend(media.variants.keys().cloned());
 		}
 	}
 
 	let mut sweep = Sweep {
 		entries: merged
-			.assets
+			.media
 			.keys()
 			.filter(|cid| !wanted.contains(*cid))
 			.cloned()
@@ -100,9 +100,9 @@ pub fn apply(repo: &Path, sweep: &Sweep) -> std::io::Result<()> {
 	let merged_path = repo.join(MERGED);
 	let mut merged = load(&merged_path);
 	for cid in &sweep.entries {
-		merged.assets.remove(cid);
+		merged.media.remove(cid);
 	}
-	merged.generated = crate::image::manifest::now();
+	merged.updated = crate::image::manifest::now();
 	crate::image::store::write(
 		&merged_path,
 		format!(
@@ -119,8 +119,9 @@ fn load(path: &Path) -> Merged {
 		.and_then(|text| serde_json::from_str(&text).ok())
 		.unwrap_or_else(|| Merged {
 			version: crate::image::manifest::VERSION,
-			generated: crate::image::manifest::now(),
-			assets: std::collections::BTreeMap::new(),
+			created: crate::image::manifest::now(),
+			updated: crate::image::manifest::now(),
+			media: std::collections::BTreeMap::new(),
 		})
 }
 
@@ -221,8 +222,9 @@ mod tests {
 		assets.insert(dropped.clone(), media(&dropped_variant));
 		let merged = Merged {
 			version: 1,
-			generated: "2026-07-31T00:00:00Z".into(),
-			assets,
+			created: "2026-07-31T00:00:00Z".into(),
+			updated: "2026-07-31T00:00:00Z".into(),
+			media: assets,
 		};
 		// Through the same writer production uses, which creates the parent. The manifest sits
 		// at `data/metadata.json` now, so a bare write lands in a directory that is not there.
@@ -263,10 +265,10 @@ mod tests {
 
 		apply(&root, &sweep).expect("apply");
 		let merged = load(&root.join(MERGED));
-		assert_eq!(merged.assets.len(), 1);
+		assert_eq!(merged.media.len(), 1);
 		assert!(
 			merged
-				.assets
+				.media
 				.contains_key("44b6081deaf0242ca3bf83d62a3b6c95")
 		);
 		std::fs::remove_dir_all(&root).ok();

@@ -10,6 +10,7 @@ import { parse as parseYaml } from 'yaml';
 
 const SITE_CONFIG = fileURLToPath(new URL('./site.config.yaml', import.meta.url));
 const ASSETS = fileURLToPath(new URL('../../data/metadata.json', import.meta.url));
+const MEDIA = fileURLToPath(new URL('../../data/media.yaml', import.meta.url));
 
 // Built-in 301s, kept out of site.config.yaml because they are product behaviour rather than
 // configuration: feed aliases and the favicon redirect to the CDN.
@@ -120,6 +121,21 @@ export default defineConfig(({ mode }) => {
 					if (id !== '\0virtual:assets') return null;
 					this.addWatchFile(ASSETS);
 					return `export const assets = ${readFileSync(ASSETS, 'utf8')};`;
+				},
+			},
+			{
+				// Descriptions and tags, which live apart from the manifest because they cost
+				// money to produce and a rebuild of the pixels must not be able to reach them.
+				// See spec/architecture.md.
+				name: 'virtual-media',
+				resolveId(id: string) {
+					return id === 'virtual:media' ? '\0virtual:media' : null;
+				},
+				load(id: string) {
+					if (id !== '\0virtual:media') return null;
+					this.addWatchFile(MEDIA);
+					const parsed = parseYaml(readFileSync(MEDIA, 'utf8')) ?? { media: {} };
+					return `export const media = ${JSON.stringify(parsed)};`;
 				},
 			},
 			{

@@ -403,9 +403,18 @@ polygon the point actually falls in rather than from the nearest town. Offline d
 geocoding service would make importing a photograph depend on somebody else's uptime, rate
 limit and terms, for a fact that never changes once written.
 
-`district`, `subregion` and `postal_code` stay absent. That dataset records settlements, not
-neighbourhoods or postal areas, and deriving either from the nearest town would state
-something the source never claimed.
+The county comes from the admin2 code the settlement already carries, and the postal code from
+a second index of GeoNames' postal points -- found by position and then checked against the
+country, because a code is not unique on its own: 27707 is a district of Eumseong and also a
+part of Durham.
+
+`district` stays absent. Naming a neighbourhood needs the full GeoNames dump, an order of
+magnitude larger than everything else here put together, and deriving one from the nearest
+town would state something no source claimed.
+
+Building the postal index costs about fourteen seconds for 1.8 million points. It happens once
+per run, which a batch import absorbs and a single import does not, and that is the trade for
+never asking anyone.
 
 HEIC decodes through a pure-Rust decoder rather than bindings to libheif. It is HEVC inside a
 HEIF container -- the same container AVIF uses, with a different codec, so support for one

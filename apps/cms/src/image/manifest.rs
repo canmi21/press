@@ -82,11 +82,21 @@ pub struct VariantRecord {
 }
 
 /// Every asset, merged. This is the file that gets committed.
+///
+/// One entry per asset, each the same shape as the document published beside the bytes, so a
+/// reader that can parse one can parse the other. `created` is the day the file itself first
+/// appeared and `updated` moves whenever anything in it does -- the same pair every record
+/// here carries, at the level above them.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct Merged {
 	pub version: u32,
-	pub generated: String,
-	pub assets: BTreeMap<String, Media>,
+	#[serde(default)]
+	pub created: String,
+	#[serde(default)]
+	pub updated: String,
+	/// Accepts the old key so a manifest written before the rename still loads.
+	#[serde(alias = "assets")]
+	pub media: BTreeMap<String, Media>,
 }
 
 /// Bring a manifest read from disk up to the current shape, in place.

@@ -108,7 +108,7 @@ fn pending(
 	force: bool,
 ) -> (Vec<(String, PathBuf)>, Vec<String>) {
 	let wanted: Vec<&String> = merged
-		.assets
+		.media
 		.keys()
 		.filter(|cid| {
 			force
@@ -217,7 +217,7 @@ pub async fn run(
 		todo.truncate(limit);
 	}
 	let mut outcome = Outcome {
-		skipped: merged.assets.len() - wanted - unreadable.len(),
+		skipped: merged.media.len() - wanted - unreadable.len(),
 		deferred: wanted - todo.len(),
 		unreadable,
 		..Outcome::default()
@@ -310,8 +310,9 @@ mod tests {
 	fn an_asset_with_a_description_is_not_pending() {
 		let merged = Merged {
 			version: crate::image::manifest::VERSION,
-			generated: crate::image::manifest::now(),
-			assets: BTreeMap::from([(
+			created: crate::image::manifest::now(),
+			updated: crate::image::manifest::now(),
+			media: BTreeMap::from([(
 				"a".to_owned(),
 				crate::image::manifest::media_for(
 					&crate::image::Derived {

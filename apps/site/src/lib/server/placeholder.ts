@@ -41,7 +41,7 @@ const QUALITY = 70;
 
 const previews = new Map<string, string>();
 
-for (const asset of Object.values(assets.assets)) {
+for (const asset of Object.values(assets.media)) {
 	if (!asset.thumbhash || previews.has(asset.thumbhash)) continue;
 	const bytes = Uint8Array.from(atob(asset.thumbhash), (c) => c.charCodeAt(0));
 	const { w, h, rgba } = thumbHashToRGBA(bytes);

@@ -61,7 +61,7 @@ pub fn run(
 	// already holds everything they contain. Re-deriving to fix a version number would spend
 	// minutes of CPU to produce identical pixels.
 	if manifest::migrate(&mut merged) {
-		for (cid, media) in &merged.assets {
+		for (cid, media) in &merged.media {
 			republish(public, cid, media)?;
 			outcome.migrated += 1;
 		}
@@ -80,7 +80,7 @@ pub fn run(
 		};
 
 		let id = super::cid(&bytes);
-		let previous = merged.assets.get(&id);
+		let previous = merged.media.get(&id);
 		// The published variants already answer this: a rung at exactly the source's width can
 		// only exist because the full frame was kept. Below the cap the top rung is the source
 		// either way, so there is nothing to infer and nothing that could be inferred wrong.
@@ -106,7 +106,7 @@ pub fn run(
 				if let Some(target) = reference.as_deref() {
 					note(&mut rewrites, target, &id, Some(&media));
 				}
-				merged.assets.insert(id, media);
+				merged.media.insert(id, media);
 				outcome.processed += 1;
 			}
 			Err(error) => outcome.failed.push((path, error)),
@@ -122,7 +122,7 @@ pub fn run(
 			continue;
 		};
 		if let Some(name) = merged
-			.assets
+			.media
 			.get(cid)
 			.and_then(|media| resolved_name(cid, media))
 			&& name != image.value
@@ -131,7 +131,7 @@ pub fn run(
 		}
 	}
 
-	merged.generated = manifest::now();
+	merged.updated = manifest::now();
 	store::write(
 		&merged_path,
 		format!(
@@ -181,7 +181,7 @@ fn wanted(
 	let unpublished: Vec<String> = scan
 		.cids()
 		.into_iter()
-		.filter(|cid| !published(public, merged.assets.get(cid)))
+		.filter(|cid| !published(public, merged.media.get(cid)))
 		.collect();
 	if !unpublished.is_empty() {
 		let by_id = originals_by_id(originals);
@@ -321,8 +321,9 @@ pub fn load(path: &Path) -> Merged {
 		.and_then(|text| serde_json::from_str(&text).ok())
 		.unwrap_or_else(|| Merged {
 			version: manifest::VERSION,
-			generated: manifest::now(),
-			assets: BTreeMap::new(),
+			created: manifest::now(),
+			updated: manifest::now(),
+			media: BTreeMap::new(),
 		})
 }
 

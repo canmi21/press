@@ -1,7 +1,8 @@
 {
 	"version": 3,
-	"generated": "2026-08-01T22:00:43.377175Z",
-	"assets": {
+	"created": "2026-08-01T22:12:59.501555Z",
+	"updated": "2026-08-01T22:15:39.817202Z",
+	"media": {
 		"12faaa76365814de1195d6bdf1e5ba05": {
 			"type": "image",
 			"created": "2026-07-31T07:08:46.024963Z",
@@ -701,7 +702,7 @@
 		"b5951446d4de92d1b15b929938562f02": {
 			"type": "image",
 			"created": "2026-08-01T21:56:39.552999Z",
-			"updated": "2026-08-01T22:00:43.376268Z",
+			"updated": "2026-08-01T22:12:59.498919Z",
 			"blake3": "b5951446d4de92d1b15b929938562f02",
 			"thumbhash": "XxgGJIb1uns9hXmveHgLUqUwRg==",
 			"source": {
@@ -746,7 +747,9 @@
 					"country": "United States",
 					"country_code": "US",
 					"region": "North Carolina",
+					"subregion": "Durham County",
 					"city": "Durham",
+					"postal_code": "27713",
 					"timezone": "America/New_York"
 				},
 				"software": "26.6",

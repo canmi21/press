@@ -1,6 +1,7 @@
 import { previewFor } from '$lib/server/placeholder';
 import { URLS } from '@canmi/urls';
 import { assets } from 'virtual:assets';
+import { media } from 'virtual:media';
 
 /**
  * Resolving an image reference into everything the markup needs, at build time.
@@ -60,7 +61,7 @@ function url(cid: string, mime: string): string {
  * the page still renders rather than failing the build.
  */
 export function resolve(reference: string): Resolved | null {
-	const asset = assets.assets[idOf(reference)];
+	const asset = assets.media[idOf(reference)];
 	if (!asset) return null;
 
 	const variants = Object.entries(asset.variants).sort(([, a], [, b]) => a.width - b.width);
@@ -76,6 +77,8 @@ export function resolve(reference: string): Resolved | null {
 		height: asset.source.height,
 		ratio: asset.source.ratio,
 		preview: previewFor(asset.thumbhash),
-		description: asset.description,
+		// From media.yaml, in the source locale. Translations of it arrive with the rest of the
+		// article's locales rather than through a second path.
+		description: media.media[idOf(reference)]?.description?.['en-US']?.text,
 	};
 }
