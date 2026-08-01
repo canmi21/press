@@ -11,6 +11,7 @@ mod alt;
 mod check;
 mod favicon;
 mod gc;
+mod i18n;
 mod image;
 mod opengraph;
 mod paths;
@@ -25,6 +26,7 @@ fn main() -> ExitCode {
 		Some("image") => process_images(&args[1..]),
 		Some("check") => check_assets(),
 		Some("og") => render_cards(&args[1..]),
+		Some("i18n") => translate_articles(&args[1..]),
 		Some("alt") => describe_images(&args[1..]),
 		Some("gc") => collect_garbage(&args[1..]),
 		Some(other) => {
@@ -213,6 +215,65 @@ fn describe_images(args: &[String]) -> ExitCode {
 			spent.output,
 			spent.usd
 		);
+	}
+	if outcome.failed.is_empty() {
+		ExitCode::SUCCESS
+	} else {
+		ExitCode::FAILURE
+	}
+}
+
+/// Translate every article segment that has no translation yet.
+///
+/// One request covers one segment in all eight locales, so an edited paragraph costs one call
+/// and updates every language together.
+fn translate_articles(args: &[String]) -> ExitCode {
+	let force = args.iter().any(|arg| arg == "--force");
+	let limit = args
+		.iter()
+		.position(|arg| arg == "--limit")
+		.and_then(|at| args.get(at + 1))
+		.and_then(|value| value.parse::<usize>().ok());
+
+	let root = match paths::repo_root() {
+		Ok(root) => root,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
+	};
+
+	let runtime = match tokio::runtime::Runtime::new() {
+		Ok(runtime) => runtime,
+		Err(error) => {
+			eprintln!("could not start a runtime: {error}");
+			return ExitCode::FAILURE;
+		}
+	};
+	let outcome = match runtime.block_on(i18n::run(&root.join("contents"), limit, force)) {
+		Ok(outcome) => outcome,
+		Err(error) => {
+			eprintln!("could not write: {error}");
+			return ExitCode::FAILURE;
+		}
+	};
+
+	for (id, error) in &outcome.failed {
+		eprintln!("fail  {id}: {error}");
+	}
+	// Reported rather than swept here: an edited paragraph leaves its old translation behind,
+	// and that text is usually still worth reading before it goes.
+	if outcome.orphans > 0 {
+		eprintln!("note  {} stale segments left by edits", outcome.orphans);
+	}
+	println!(
+		"{} translations across {} segments, {} failed",
+		outcome.translated,
+		outcome.segments,
+		outcome.failed.len()
+	);
+	if outcome.translated > 0 {
+		println!("{} tokens, ${:.2}", outcome.tokens, outcome.usd);
 	}
 	if outcome.failed.is_empty() {
 		ExitCode::SUCCESS
@@ -450,6 +511,7 @@ fn usage() {
 	eprintln!("                              collect the icons the linkcards need");
 	eprintln!("  alt [--force] [--limit N]   describe assets that have no description yet");
 	eprintln!("  og [--force]                render an OpenGraph card per article");
+	eprintln!("  i18n [--force] [--limit N]  translate article segments into every locale");
 	eprintln!("  check                       list referenced assets that are not present");
 	eprintln!("  gc [--live]                 drop published assets no article asks for");
 }

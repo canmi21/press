@@ -1,0 +1,67 @@
+version: 1
+segments:
+  0024a0ed7539afcffc9c8ff2923ce62e:
+    de-DE:
+      text: Und wie es der Zufall will, lassen sich diese Möglichkeiten mit einem hervorragenden Ansatz beschreiben, nämlich **JTD**!
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:16:00.264952Z
+      seconds: 7.846257667
+      tokens: 33411
+      review: false
+    en-US:
+      text: And it just so happens that these possibilities can be described with a great approach, which is **JTD**!
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:16:00.264952Z
+      seconds: 7.846257667
+      tokens: 33411
+      review: false
+    es-ES:
+      text: Y da la casualidad de que estas posibilidades pueden describirse con un enfoque excelente, que es **JTD**!
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:16:00.264952Z
+      seconds: 7.846257667
+      tokens: 33411
+      review: false
+    fr-FR:
+      text: Et justement, ces possibilités peuvent être décrites par une excellente approche, à savoir **JTD** !
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:16:00.264952Z
+      seconds: 7.846257667
+      tokens: 33411
+      review: false
+    ja-JP:
+      text: ちょうどこれらの可能性は、ある優れた方法で記述することができる。それが **JTD** だ！
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:16:00.264952Z
+      seconds: 7.846257667
+      tokens: 33411
+      review: false
+    ko-KR:
+      text: 마침 이러한 가능성들은 아주 좋은 방법으로 기술할 수 있는데, 그것이 바로 **JTD**다!
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:16:00.264952Z
+      seconds: 7.846257667
+      tokens: 33411
+      review: false
+    zh-CN:
+      text: 那正好这些可能性可以用一个很好的办法来描述，那就是 **JTD**！
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:16:00.264952Z
+      seconds: 7.846257667
+      tokens: 33411
+      review: false
+    zh-TW:
+      text: 那正好這些可能性可以用一個很好的辦法來描述，那就是 **JTD**！
+      provider: anthropic
+      model: claude-sonnet-5
+      at: 2026-08-01T01:16:00.264952Z
+      seconds: 7.846257667
+      tokens: 33411
+      review: false

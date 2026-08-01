@@ -81,4 +81,5 @@ of truth.
 | Naming conventions                        | [spec/naming.md](spec/naming.md)                 |
 | Linting and formatting                    | [spec/lint-format.md](spec/lint-format.md)       |
 | Type checking, tests, comments            | [spec/code.md](spec/code.md)                     |
+| Translating article content               | [spec/i18n.md](spec/i18n.md)                     |
 | Toolchain and default stacks              | [spec/toolchain.md](spec/toolchain.md)           |

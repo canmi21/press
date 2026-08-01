@@ -1,0 +1,291 @@
+//! Cutting an article into the units a translation is addressed by.
+//!
+//! A segment is a markdown block, and its id is the hash of its own text. That is the whole
+//! synchronisation mechanism: edit a paragraph and only that paragraph's id changes, so only
+//! its translations go stale. Move a paragraph and nothing changes at all, because order lives
+//! in the article and never in the sidecar. See spec/architecture.md.
+
+use std::collections::BTreeMap;
+
+/// What a block is, which decides whether it is translated and by which model.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Kind {
+	/// Prose. Carries register, idiom and the things only a careful model gets right.
+	Prose,
+	/// A heading. Structural text, short, no register to lose.
+	Heading,
+	/// A quotation. Translated, but its language is the author's choice to preserve.
+	Quote,
+	/// Code. Never translated, never sent -- including any comments inside it. A code block is
+	/// an executable fact, and editing it would raise the question of where to stop.
+	Code,
+	/// A directive. Only named attributes are translatable; `src` and `url` are addresses.
+	Directive,
+}
+
+impl Kind {
+	pub fn translatable(self) -> bool {
+		self != Self::Code
+	}
+
+	/// Whether this block is structural enough that a light model is not a gamble.
+	///
+	/// Decided by what the block is rather than by scoring its content. Length and punctuation
+	/// density are weak proxies for difficulty, and the things that actually make a passage
+	/// hard -- a pun, a register, a cultural reference -- are exactly what cannot be counted.
+	pub fn is_light(self) -> bool {
+		matches!(self, Self::Heading | Self::Directive)
+	}
+}
+
+#[derive(Debug, Clone)]
+pub struct Segment {
+	pub id: String,
+	pub kind: Kind,
+	/// The block exactly as the article writes it.
+	pub source: String,
+	/// Line number in the article, for reporting only. Never stored.
+	pub line: usize,
+}
+
+/// The sentinel wrapped around anything that must survive translation untouched.
+///
+/// `⟦⟧` are U+27E6 and U+27E7, mathematical white square brackets. They are chosen for one
+/// property: prose does not contain them. A `$1`-style marker would be ambiguous in an article
+/// about shells or regular expressions, which is exactly the kind this site publishes.
+pub const OPEN: char = '⟦';
+pub const CLOSE: char = '⟧';
+
+/// A block with its unstranslatable parts lifted out.
+#[derive(Debug, Clone)]
+pub struct Masked {
+	pub text: String,
+	pub slots: Vec<String>,
+}
+
+impl Masked {
+	/// Put the lifted parts back where the markers ended up.
+	pub fn restore(&self, translated: &str) -> String {
+		let mut out = translated.to_owned();
+		for (index, original) in self.slots.iter().enumerate() {
+			out = out.replace(&marker(index), original);
+		}
+		out
+	}
+
+	/// Whether a translation still carries every marker exactly once.
+	///
+	/// The point of masking is not to hope the model leaves code alone but to be able to prove
+	/// it did. A lost or duplicated marker fails here and the segment is retried, rather than
+	/// silently producing prose with a mangled identifier in it.
+	pub fn intact(&self, translated: &str) -> bool {
+		(0..self.slots.len()).all(|index| translated.matches(&marker(index)).count() == 1)
+	}
+}
+
+pub fn marker(index: usize) -> String {
+	format!("{OPEN}tk:{index}{CLOSE}")
+}
+
+/// Lift inline code out of a block, leaving markers in its place.
+///
+/// Without this a paragraph would have to be split around every `` `Cargo.toml` `` -- 180 of
+/// them across these articles -- which fragments the context a translator needs and costs more
+/// in requests than it saves in tokens.
+pub fn mask(source: &str) -> Masked {
+	let mut text = String::with_capacity(source.len());
+	let mut slots = Vec::new();
+	let mut rest = source;
+
+	while let Some(start) = rest.find('`') {
+		let after = &rest[start + 1..];
+		let Some(end) = after.find('`') else {
+			break;
+		};
+		text.push_str(&rest[..start]);
+		text.push_str(&marker(slots.len()));
+		slots.push(rest[start..start + 1 + end + 1].to_owned());
+		rest = &after[end + 1..];
+	}
+	text.push_str(rest);
+
+	Masked { text, slots }
+}
+
+/// The id of a block: the hash of its text, truncated the same way asset ids are.
+pub fn id_of(source: &str) -> String {
+	crate::image::cid(normalise(source).as_bytes())
+}
+
+/// Whitespace differences must not invalidate a translation, so they are removed before
+/// hashing. A reflowed paragraph is the same paragraph.
+fn normalise(source: &str) -> String {
+	source.split_whitespace().collect::<Vec<_>>().join(" ")
+}
+
+/// Split an article body into blocks, skipping frontmatter.
+pub fn split(article: &str) -> Vec<Segment> {
+	let body = match article.strip_prefix("---\n") {
+		Some(rest) => rest.split_once("\n---").map_or(rest, |(_, after)| after),
+		None => article,
+	};
+
+	let mut segments = Vec::new();
+	let mut block: Vec<&str> = Vec::new();
+	let mut fenced = false;
+	let mut start_line = 0;
+
+	for (offset, line) in body.lines().enumerate() {
+		if line.trim_start().starts_with("```") {
+			// A fence toggles: inside one, blank lines are content rather than separators.
+			if fenced {
+				block.push(line);
+				push(&mut segments, &mut block, start_line);
+				fenced = false;
+				continue;
+			}
+			push(&mut segments, &mut block, start_line);
+			fenced = true;
+			start_line = offset;
+			block.push(line);
+			continue;
+		}
+		if fenced {
+			block.push(line);
+			continue;
+		}
+		if line.trim().is_empty() {
+			push(&mut segments, &mut block, start_line);
+			continue;
+		}
+		if block.is_empty() {
+			start_line = offset;
+		}
+		block.push(line);
+	}
+	push(&mut segments, &mut block, start_line);
+	segments
+}
+
+fn push(into: &mut Vec<Segment>, block: &mut Vec<&str>, line: usize) {
+	if block.is_empty() {
+		return;
+	}
+	let source = block.join("\n");
+	block.clear();
+	let trimmed = source.trim();
+	if trimmed.is_empty() {
+		return;
+	}
+	let kind = if trimmed.starts_with("```") {
+		Kind::Code
+	} else if trimmed.starts_with('#') {
+		Kind::Heading
+	} else if trimmed.starts_with('>') {
+		Kind::Quote
+	} else if trimmed.starts_with("::") {
+		Kind::Directive
+	} else {
+		Kind::Prose
+	};
+	into.push(Segment {
+		id: id_of(&source),
+		kind,
+		source,
+		line: line + 1,
+	});
+}
+
+/// Every segment worth translating, keyed by id, deduplicated.
+pub fn translatable(article: &str) -> BTreeMap<String, Segment> {
+	split(article)
+		.into_iter()
+		.filter(|segment| segment.kind.translatable())
+		.map(|segment| (segment.id.clone(), segment))
+		.collect()
+}
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn an_edit_changes_only_its_own_segment() {
+		// The whole synchronisation design rests on this: a small change must not invalidate
+		// the translations of everything around it.
+		let before = split("first para\n\nsecond para\n\nthird para");
+		let after = split("first para\n\nsecond para edited\n\nthird para");
+		assert_eq!(before[0].id, after[0].id);
+		assert_ne!(before[1].id, after[1].id);
+		assert_eq!(before[2].id, after[2].id);
+	}
+
+	#[test]
+	fn moving_a_paragraph_changes_nothing() {
+		// Order lives in the article, so the sidecar has no opinion about it.
+		let a = split("alpha\n\nbeta");
+		let b = split("beta\n\nalpha");
+		assert_eq!(a[0].id, b[1].id);
+		assert_eq!(a[1].id, b[0].id);
+	}
+
+	#[test]
+	fn reflowing_is_not_editing() {
+		assert_eq!(id_of("one two\nthree"), id_of("one   two\n\tthree  "));
+	}
+
+	#[test]
+	fn a_fence_holds_its_blank_lines_together() {
+		let segments = split("intro\n\n```rust\nfn a() {}\n\nfn b() {}\n```\n\noutro");
+		assert_eq!(segments.len(), 3);
+		assert_eq!(segments[1].kind, Kind::Code);
+		assert!(segments[1].source.contains("fn b()"));
+	}
+
+	#[test]
+	fn code_is_never_sent_anywhere() {
+		assert!(!Kind::Code.translatable());
+		let kept = translatable("prose\n\n```\nlet x = 1;\n```");
+		assert_eq!(kept.len(), 1);
+	}
+
+	#[test]
+	fn inline_code_leaves_a_marker_and_comes_back() {
+		let masked = mask("set `opt-level` in `Cargo.toml` now");
+		assert_eq!(masked.slots.len(), 2);
+		assert!(!masked.text.contains('`'));
+
+		// Word order changes in translation; the markers move with it and still restore.
+		let translated = format!("{} を {} に設定", marker(1), marker(0));
+		assert!(masked.intact(&translated));
+		assert_eq!(
+			masked.restore(&translated),
+			"`Cargo.toml` を `opt-level` に設定"
+		);
+	}
+
+	#[test]
+	fn a_dropped_marker_is_caught_rather_than_shipped() {
+		// A model that swallows one is the failure this exists to detect. Silently restoring
+		// what is left would put a half-translated identifier into prose.
+		let masked = mask("use `serde` and `jiff`");
+		assert!(!masked.intact(&format!("{} を使う", marker(0))));
+		assert!(!masked.intact(&format!("{}{}{}", marker(0), marker(1), marker(1))));
+	}
+
+	#[test]
+	fn structure_decides_the_model_not_a_difficulty_score() {
+		assert!(Kind::Heading.is_light());
+		assert!(Kind::Directive.is_light());
+		// Prose and quotations carry register and idiom, which is what a light model loses.
+		assert!(!Kind::Prose.is_light());
+		assert!(!Kind::Quote.is_light());
+	}
+
+	#[test]
+	fn frontmatter_is_not_a_segment() {
+		let segments = split("---\ntitle: A\n---\n\nbody text");
+		assert_eq!(segments.len(), 1);
+		assert_eq!(segments[0].source, "body text");
+	}
+}
