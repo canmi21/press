@@ -89,10 +89,10 @@ Inside that library the convention's own selectors (`.svg-canvas`, `.c-purple`) 
 untouched, because they are the contract with the markup. The library name was the only part
 we owned.
 
-Worked example from this repo: the commit hook is `.claude/hooks/commit.py`, not
-`jj-commit.py`. Validating a commit message is not a jj-specific job; it would survive a move
-to another VCS untouched. The `jj-` prefix named the current supplier of the commits, which
-is exactly the information the filename did not need.
+Worked example from this repo: the commit hook is `hooks/commit.py`, not `jj-commit.py` and not
+a copy under either agent's vendor directory. Validating a commit message is not a jj-specific
+job; it would survive a move to another VCS untouched. The `jj-` prefix named the current
+supplier of the commits, which is exactly the information the filename did not need.
 
 ## Inside code
 

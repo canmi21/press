@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PostToolUse hook for `jj commit`: notice decisions that were not written down.
+"""Shared PostToolUse hook for `jj commit`: notice decisions that were not written down.
 
 A commit that adds a feature, restructures something, or changes the toolchain usually
 settled a question along the way -- which option was taken, and what it cost. That reasoning
@@ -26,6 +26,10 @@ import os
 import subprocess
 import sys
 
+sys.dont_write_bytecode = True
+
+from jj_command import invocations
+
 # Types that usually carry a decision. Absent by design: docs, test, style, chore, fix, ci --
 # a bug fix records its cause at the test, not in the rules.
 DECISION_TYPES = ("feat", "refactor", "build", "perf")
@@ -37,10 +41,21 @@ def run(args: list[str]) -> str:
 	return result.stdout if result.returncode == 0 else ""
 
 
+def writes_commit(command: str) -> bool:
+	"""Whether one shell segment asks jj to create a commit."""
+	return any(subcommand in ("commit", "ci") for subcommand, _ in invocations(command))
+
+
 def main() -> int:
 	try:
 		payload = json.load(sys.stdin)
 	except (json.JSONDecodeError, ValueError):
+		return 0
+
+	command = payload.get("tool_input", {}).get("command", "")
+	# Codex matches the tool name but has no handler-level command predicate, so the portable
+	# hook owns the narrower selection itself.
+	if not writes_commit(command):
 		return 0
 
 	cwd = payload.get("cwd")

@@ -21,9 +21,12 @@ See spec/commits.md and spec/lint-format.md.
 import json
 import os
 import re
-import shlex
 import subprocess
 import sys
+
+sys.dont_write_bytecode = True
+
+from jj_command import invocations
 
 TYPES = "feat|fix|docs|refactor|perf|test|build|ci|chore|revert"
 HEADER = re.compile(rf"^({TYPES})(\([a-z0-9.-]+\))?!?: (.+)$")
@@ -43,8 +46,6 @@ SUBCOMMANDS = {
 	"squash",
 	"metaedit",
 }
-SEPARATORS = {"&&", ";", "||", "|"}
-
 # Whether an assistant co-authored a change is a judgement no script can make, so only the
 # shape is checked here: if a trailer is present at all, it has to be one of the two agreed
 # forms. See spec/commits.md for when to add one.
@@ -57,21 +58,15 @@ COAUTHOR_OK = re.compile(
 
 def messages_in(command: str) -> list[str]:
 	"""Every -m value attached to a commit/describe subcommand in a shell command line."""
-	try:
-		tokens = shlex.split(command)
-	except ValueError:
-		return []  # unbalanced quoting; let the normal permission flow deal with it
-
-	found, armed = [], False
-	for i, token in enumerate(tokens):
-		if token in SUBCOMMANDS:
-			armed = True
-		elif token in SEPARATORS:
-			armed = False
-		elif armed and token in ("-m", "--message") and i + 1 < len(tokens):
-			found.append(tokens[i + 1])
-		elif armed and token.startswith("--message="):
-			found.append(token.split("=", 1)[1])
+	found = []
+	for subcommand, arguments in invocations(command):
+		if subcommand not in SUBCOMMANDS:
+			continue
+		for i, token in enumerate(arguments):
+			if token in ("-m", "--message") and i + 1 < len(arguments):
+				found.append(arguments[i + 1])
+			elif token.startswith("--message="):
+				found.append(token.split("=", 1)[1])
 	return found
 
 
@@ -116,9 +111,15 @@ def main() -> int:
 	if cwd and os.path.isdir(cwd):
 		os.chdir(cwd)
 
-	problems = [p for message in messages_in(command) for p in problems_with(message)]
+	messages = messages_in(command)
+	# Both harnesses can match Bash but only Claude Code has a handler-level `if` filter.
+	# Keep the selection here so the shared hook behaves identically behind either adapter.
+	if not messages:
+		return 0
+
+	problems = [p for message in messages for p in problems_with(message)]
 	if problems:
-		print("Commit message rejected by .claude/hooks/commit.py:\n", file=sys.stderr)
+		print("Commit message rejected by hooks/commit.py:\n", file=sys.stderr)
 		for problem in problems:
 			print(f"  - {problem}\n", file=sys.stderr)
 		print(

@@ -1,0 +1,31 @@
+{
+	"description": "Codex adapter for the repository's shared agent hooks.",
+	"hooks": {
+		"PreToolUse": [
+			{
+				"matcher": "^Bash$",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "/usr/bin/python3 \"$(jj workspace root)/hooks/commit.py\"",
+						"timeout": 120,
+						"statusMessage": "Checking commit message"
+					}
+				]
+			}
+		],
+		"PostToolUse": [
+			{
+				"matcher": "^Bash$",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "/usr/bin/python3 \"$(jj workspace root)/hooks/spec_check.py\"",
+						"timeout": 30,
+						"statusMessage": "Checking whether the commit settled a decision"
+					}
+				]
+			}
+		]
+	}
+}

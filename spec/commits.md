@@ -89,10 +89,10 @@ fixing a malformed message never requires an amend dance.
 
 ## Enforcement
 
-`.claude/hooks/commit.py` runs before any jj subcommand that can write a description and does
-two things: it runs `jj fix` so the content being committed is already formatted, then it
-checks the message. A malformed message is refused with the specific reason, which the agent
-reads and corrects on the spot.
+`hooks/commit.py` runs before any jj subcommand that can write a description and does two
+things: it runs `jj fix` so the content being committed is already formatted, then it checks
+the message. A malformed message is refused with the specific reason, which the agent reads
+and corrects on the spot.
 
 The guarded list is derived from which subcommands accept `-m`, not from the two that write
 most of the messages. It was `commit` and `describe` alone, and `jj split -m` carried a
@@ -108,7 +108,13 @@ commands (verified -- `jj` prints `Cannot define an alias that overrides the bui
 command 'commit'`). The moment a message is written is inside the agent's tool call, so that
 is where the check has to sit.
 
-`.claude/hooks/spec-check.py` runs _after_ the commit lands and asks the question the diff
+The behavior has one home under `hooks/`. `.claude/settings.json` and `.codex/hooks.json` are
+thin adapters that bind the same scripts to each harness's `PreToolUse` and `PostToolUse`
+events. Command selection lives inside the scripts rather than in either adapter because the
+two hook configs do not share a command-predicate field; putting it in one vendor's config
+would make the other runner enforce a wider rule.
+
+`hooks/spec_check.py` runs _after_ the commit lands and asks the question the diff
 cannot: was a decision made here that nobody wrote down? It fires when a `feat`, `refactor`,
 `build`, or `perf` commit touched no rules, and injects a reminder to record the reasoning
 while it is still in context.
@@ -123,7 +129,7 @@ in the rules.
 What all of this does not cover, and why the rules above still have to be read rather than
 merely enforced:
 
-- Only Claude Code. Codex, opencode, and any other harness need their own equivalent.
+- Only Claude Code and Codex. Opencode and any other harness need their own adapter.
 - Only the `-m` form. `jj commit` with no message opens an editor, which the hook cannot see.
 - Not a human typing in a terminal.
 

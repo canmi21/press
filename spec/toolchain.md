@@ -185,8 +185,10 @@ where a task needs real logic, which goes in `.mise/tasks/` as an executable fil
 
 ### The other exception: hook scripts
 
-`.claude/hooks/` is deliberately outside mise's reach. Those scripts use `#!/usr/bin/env
-python3` and nothing beyond the standard library.
+`hooks/` is deliberately outside mise's reach. The real scripts live there once and use
+`#!/usr/bin/env python3` with nothing beyond the standard library. Vendor directories contain
+only the glue that binds those scripts to each harness: `.claude/settings.json` and
+`.codex/hooks.json`.
 
 The reason is the failure mode. mise activation is shell-scoped, and a hook is launched by
 the agent harness rather than by an interactive shell. If a hook's interpreter came from
