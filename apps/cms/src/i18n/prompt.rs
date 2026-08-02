@@ -90,6 +90,13 @@ pub fn build(
 	} else {
 		""
 	};
+	let navigation = if segment.kind == Kind::Heading && segment.region == Region::Body {
+		"\n- This heading also appears in a narrow table of contents. Translate it as a concise \
+		 navigation label. Preserve its meaning, tone, and necessary technical terms, but avoid \
+		 explanatory expansion, redundant wording, and parenthetical glosses."
+	} else {
+		""
+	};
 
 	let text = format!(
 		"You are translating one block of an article. The article is written in a mixture of \
@@ -110,6 +117,7 @@ pub fn build(
 		 meaning is genuinely unrecoverable from context. Prefer none.\n\
 		 - Keep markdown structure: emphasis, links and list markers stay as they are.\n\
 		 {metadata}\n\
+		 {navigation}\n\
 		 \n\
 		 Output format, exactly. One marker line, then the translation, then a blank line:\n\
 		 {locales}\n\
@@ -228,6 +236,16 @@ mod tests {
 				.text
 				.contains("Never copy a neighbouring language's punctuation")
 		);
+		assert!(!request.text.contains("narrow table of contents"));
+	}
+
+	#[test]
+	fn body_heading_is_told_to_stay_concise_for_navigation() {
+		let request = build(&segment(Kind::Heading), "A long heading", None, None);
+
+		assert!(request.text.contains("narrow table of contents"));
+		assert!(request.text.contains("concise navigation label"));
+		assert!(request.text.contains("avoid explanatory expansion"));
 	}
 
 	#[test]

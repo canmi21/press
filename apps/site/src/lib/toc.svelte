@@ -9,7 +9,6 @@
 	const LEAVE_DELAY = 250;
 	const SCROLL_OFFSET = 96;
 	const TOP_DEAD_ZONE = 64;
-	const INDICATOR_OFFSET = 6;
 	const BAR_SPRING = { type: 'spring' as const, stiffness: 300, damping: 28 };
 	const TEXT_TWEEN = { duration: 0.15 };
 
@@ -34,11 +33,14 @@
 	let firstShowSet = false;
 	let firstIndicatorSet = false;
 	let prevIndicatorVisible = false;
+	let prevIndicatorActive = -1;
+	let prevGeometryVersion = 0;
 	let isClickScrolling = false;
 	let phaseTimer: ReturnType<typeof setTimeout> | undefined;
 	let leaveTimer: ReturnType<typeof setTimeout> | undefined;
 	let trackingToken = 0;
 	let trackingRAF: number | undefined;
+	let geometryVersion = $state(0);
 
 	function jumpToSection(el: HTMLElement, idx: number) {
 		isClickScrolling = true;
@@ -64,6 +66,10 @@
 		const max = Math.max(...widths);
 		if (max < 1) return widths.map(() => MAX_BAR_WIDTH / 2);
 		return widths.map((w) => Math.max(MIN_BAR_WIDTH, (w / max) * MAX_BAR_WIDTH));
+	}
+
+	function centeredIndicatorY(button: HTMLElement, indicator: HTMLElement): number {
+		return button.offsetTop + (button.offsetHeight - indicator.offsetHeight) / 2;
 	}
 
 	const barWidths = $derived(linearBars(entries.map((e) => e.width)));
@@ -276,13 +282,17 @@
 		if (!asideEl || !indicatorEl) return;
 		const show = showText;
 		const active = activeIndex;
+		const geometry = geometryVersion;
 		const buttons = asideEl.querySelectorAll<HTMLElement>('[data-toc-button]');
 		if (buttons.length !== entries.length || buttons.length === 0) return;
 
 		if (!firstIndicatorSet) {
 			firstIndicatorSet = true;
+			prevGeometryVersion = geometry;
 			return;
 		}
+		const geometryChanged = geometry !== prevGeometryVersion;
+		prevGeometryVersion = geometry;
 
 		trackingToken++;
 		if (trackingRAF !== undefined) {
@@ -294,39 +304,49 @@
 		if (!visible) {
 			indicatorEl.style.opacity = '0';
 			prevIndicatorVisible = false;
+			prevIndicatorActive = active;
 			return;
 		}
 
-		// Nudge that centers the dot against a bar; scales with the root font.
-		const offset = toScaledPx(INDICATOR_OFFSET, rootFontPx());
-
-		if (!prevIndicatorVisible) {
+		if (!prevIndicatorVisible || (geometryChanged && active === prevIndicatorActive)) {
 			const setLivePos = () => {
 				if (!asideEl || !indicatorEl) return;
 				const btn = asideEl.querySelectorAll<HTMLElement>('[data-toc-button]')[active];
 				if (!btn) return;
-				indicatorEl.style.transform = `translateY(${btn.offsetTop + offset}px)`;
+				indicatorEl.style.transform = `translateY(${centeredIndicatorY(btn, indicatorEl)}px)`;
 			};
 			setLivePos();
 			indicatorEl.style.opacity = '0.8';
 
-			const myToken = trackingToken;
-			const start = performance.now();
-			const tick = () => {
-				if (myToken !== trackingToken) return;
-				setLivePos();
-				if (performance.now() - start < 200) {
-					trackingRAF = requestAnimationFrame(tick);
-				} else {
-					trackingRAF = undefined;
-				}
-			};
-			trackingRAF = requestAnimationFrame(tick);
+			if (!prevIndicatorVisible) {
+				const myToken = trackingToken;
+				const start = performance.now();
+				const tick = () => {
+					if (myToken !== trackingToken) return;
+					setLivePos();
+					if (performance.now() - start < 200) {
+						trackingRAF = requestAnimationFrame(tick);
+					} else {
+						trackingRAF = undefined;
+					}
+				};
+				trackingRAF = requestAnimationFrame(tick);
+			}
 		} else {
-			const y = buttons[active].offsetTop + offset;
+			const y = centeredIndicatorY(buttons[active], indicatorEl);
 			animate(indicatorEl, { y }, BAR_SPRING);
 		}
 		prevIndicatorVisible = visible;
+		prevIndicatorActive = active;
+	});
+
+	$effect(() => {
+		if (!asideEl || typeof ResizeObserver === 'undefined') return;
+		const observer = new ResizeObserver(() => {
+			geometryVersion += 1;
+		});
+		observer.observe(asideEl);
+		return () => observer.disconnect();
 	});
 </script>
 
@@ -337,7 +357,7 @@
 		onmouseenter={handleEnter}
 		onmouseleave={handleLeave}
 		class:revealed={showText}
-		class="fixed top-1/2 left-[calc(20%-11rem)] hidden w-16 -translate-y-1/2 flex-col items-start overflow-visible lg:flex"
+		class="toc-nav fixed top-1/2 hidden -translate-y-1/2 flex-col items-start overflow-visible lg:flex"
 	>
 		<span
 			bind:this={indicatorEl}
@@ -350,8 +370,9 @@
 				type="button"
 				aria-label={entry.text}
 				aria-current={i === activeIndex ? 'location' : undefined}
+				title={entry.text}
 				onclick={() => jumpToSection(entry.el, i)}
-				class="block cursor-pointer py-[0.1875rem]"
+				class="block max-w-full cursor-pointer py-[0.1875rem] text-left"
 			>
 				<!-- Bar and text each sit in a full-opacity ring host: the inner span carries
 				the opacity animation, so drawing the focus ring on the wrapper keeps it crisp
@@ -364,10 +385,10 @@
 						style="width: 2rem; height: 0.25rem; opacity: 0.35"
 					></span>
 				</span>
-				<span class="toc-ring-text block w-fit">
+				<span class="toc-ring-text block w-fit max-w-full">
 					<span
 						data-toc-text
-						class="block overflow-hidden text-[0.8125rem] leading-snug whitespace-nowrap"
+						class="text-[0.8125rem] leading-snug"
 						class:text-text-strong={i === activeIndex}
 						class:text-text-soft={i !== activeIndex}
 						style="height: 0; opacity: 0"
@@ -381,6 +402,24 @@
 {/if}
 
 <style>
+	/* The article is at most 45rem wide. Keep the ToC 1.5rem outside that box,
+	and preserve the same viewport gutter at the lg breakpoint. */
+	.toc-nav {
+		right: calc(50% + 24rem);
+		width: min(12rem, calc(50vw - 25.5rem));
+	}
+
+	[data-toc-text] {
+		display: -webkit-box;
+		max-width: 100%;
+		overflow: hidden;
+		overflow-wrap: anywhere;
+		white-space: normal;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		line-clamp: 2;
+	}
+
 	/* Move the focus ring off the padded button onto the visible mark, full-opacity
 	(see the ring-host wrappers in the template). Unlayered here, so it wins over the
 	@layer base :focus-visible default. */
