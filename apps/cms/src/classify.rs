@@ -8,7 +8,9 @@
 //! beside `terminal` and `cli` beside both; telling it to be consistent achieves nothing when
 //! it has nothing to be consistent with. See spec/architecture.md.
 
+use crate::alt::SOURCE_LOCALE;
 use crate::i18n::runner::{self, Refusal, Runner};
+use crate::i18n::store::Translation;
 use crate::media::{self, Category, Entry};
 use crate::tags::{self, Tag};
 use indicatif::{ProgressBar, ProgressStyle};
@@ -192,6 +194,23 @@ fn needs_classification(entry: Option<&Entry>, registry: &tags::Registry, force:
 		})
 }
 
+fn insert_new_tag(registry: &mut tags::Registry, tagged: &Tagged, creator: &Translation) -> bool {
+	if registry.tags.contains_key(&tagged.name) {
+		return false;
+	}
+	let mut tag = tagged.tag.clone();
+	if let Tag::Ordinary {
+		source, display, ..
+	} = &mut tag
+	{
+		let mut english = creator.clone();
+		english.text.clone_from(source);
+		display.insert(SOURCE_LOCALE.to_owned(), english);
+	}
+	registry.tags.insert(tagged.name.clone(), tag);
+	true
+}
+
 /// Classify every asset missing either its own labels or the registry records behind them.
 pub async fn run(
 	repo: &Path,
@@ -259,6 +278,8 @@ pub async fn run(
 		);
 
 		let text = prompt(&path, &tags::known(&registry));
+		let at = crate::image::manifest::now();
+		let clock = std::time::Instant::now();
 		let answer = match runner::ask_vision(runner, &text, model, &path).await {
 			Ok(answer) => answer,
 			Err(Refusal::Exhausted(reason)) => {
@@ -271,6 +292,7 @@ pub async fn run(
 				continue;
 			}
 		};
+		let seconds = clock.elapsed().as_secs_f64();
 
 		let (category, found) = parse(&answer.text, &registry);
 		if found.len() < MIN_TAGS {
@@ -281,11 +303,17 @@ pub async fn run(
 			continue;
 		}
 
+		let creator = Translation {
+			text: String::new(),
+			provider: runner.provider().to_owned(),
+			model: answer.model.clone(),
+			at,
+			seconds,
+			tokens: answer.tokens,
+			review: false,
+		};
 		for tagged in &found {
-			if !registry.tags.contains_key(&tagged.name) {
-				registry
-					.tags
-					.insert(tagged.name.clone(), tagged.tag.clone());
+			if insert_new_tag(&mut registry, tagged, &creator) {
 				outcome.minted.push(tagged.name.clone());
 			}
 		}
@@ -447,5 +475,39 @@ mod tests {
 			false
 		));
 		assert!(!needs_classification(Some(&entry), &registry(), false));
+	}
+
+	#[test]
+	fn an_ordinary_tag_keeps_the_creating_answers_provenance_for_english() {
+		let mut registry = tags::Registry::default();
+		let tagged = Tagged {
+			name: "cellular-network".to_owned(),
+			tag: Tag::ordinary(
+				"Cellular Network",
+				"mobile carrier connectivity and SIM service, not biology",
+			),
+		};
+		let creator = Translation {
+			text: String::new(),
+			provider: "openai".to_owned(),
+			model: "gpt-5-6-terra-medium".to_owned(),
+			at: "2026-08-01T00:00:00Z".to_owned(),
+			seconds: 1.25,
+			tokens: 42,
+			review: false,
+		};
+
+		assert!(insert_new_tag(&mut registry, &tagged, &creator));
+		let english = &registry.tags["cellular-network"]
+			.translations()
+			.expect("ordinary")[SOURCE_LOCALE];
+		assert_eq!(english.text, "Cellular Network");
+		assert_eq!(english.provider, creator.provider);
+		assert_eq!(english.model, creator.model);
+		assert_eq!(english.at, creator.at);
+		assert_eq!(english.seconds, creator.seconds);
+		assert_eq!(english.tokens, creator.tokens);
+		assert!(!english.review);
+		assert!(!insert_new_tag(&mut registry, &tagged, &creator));
 	}
 }

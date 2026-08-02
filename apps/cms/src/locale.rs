@@ -1,8 +1,8 @@
 //! The `cms locale` command: translating tag labels and image descriptions.
 //!
 //! These are short plain strings, not article blocks. An ordinary tag asks for every missing
-//! locale at once; descriptions remain one request per locale. Each unit is saved as soon as
-//! it returns, so an interrupted run keeps every answer it paid for.
+//! non-source locale at once; descriptions remain one request per locale. Each unit is saved
+//! as soon as it returns, so an interrupted run keeps every answer it paid for.
 
 use crate::alt::SOURCE_LOCALE;
 use crate::i18n::runner::{self, Answer, Refusal, Runner};
@@ -57,14 +57,13 @@ fn targets(
 	translations: &std::collections::BTreeMap<String, Translation>,
 	locales: &[&str],
 	force: bool,
-	include_source: bool,
 ) -> (Vec<String>, usize) {
 	let mut wanted = Vec::new();
 	let mut skipped = 0;
 	for locale in locales {
-		// A description's source is input, never output. Ordinary tag labels have no separate
-		// source artefact, so en-US is one of their eight outputs.
-		if !include_source && *locale == SOURCE_LOCALE {
+		// The source is input, never output. For an ordinary tag, `cms tag` records the English
+		// label from the same vision answer that created it; even force must preserve that fact.
+		if *locale == SOURCE_LOCALE {
 			continue;
 		}
 		if !force && translations.contains_key(*locale) {
@@ -92,7 +91,7 @@ fn pending(
 			continue;
 		};
 		let display = tag.translations().expect("ordinary tag has translations");
-		let (wanted, already) = targets(display, locales, force, true);
+		let (wanted, already) = targets(display, locales, force);
 		skipped += already;
 		if !wanted.is_empty() {
 			items.push(Item {
@@ -109,7 +108,7 @@ fn pending(
 		let Some(source) = entry.description.get(SOURCE_LOCALE) else {
 			continue;
 		};
-		let (wanted, already) = targets(&entry.description, locales, force, false);
+		let (wanted, already) = targets(&entry.description, locales, force);
 		skipped += already;
 		if !wanted.is_empty() {
 			items.push(Item {
@@ -468,14 +467,22 @@ mod tests {
 		}
 	}
 
-	fn ordinary(entries: impl IntoIterator<Item = (&'static str, Translation)>) -> tags::Tag {
-		tags::Tag::Ordinary {
-			source: "Terminal".to_owned(),
-			meaning: "terminal emulator or command-line window".to_owned(),
-			display: entries
+	fn ordinary(
+		source: &str,
+		meaning: &str,
+		entries: impl IntoIterator<Item = (&'static str, Translation)>,
+	) -> tags::Tag {
+		let mut display =
+			std::collections::BTreeMap::from([(SOURCE_LOCALE.to_owned(), translation(source))]);
+		display.extend(
+			entries
 				.into_iter()
-				.map(|(locale, translation)| (locale.to_owned(), translation))
-				.collect(),
+				.map(|(locale, translation)| (locale.to_owned(), translation)),
+		);
+		tags::Tag::Ordinary {
+			source: source.to_owned(),
+			meaning: meaning.to_owned(),
+			display,
 		}
 	}
 
@@ -493,7 +500,11 @@ mod tests {
 		let mut registry = tags::Registry::default();
 		registry.tags.insert(
 			"terminal".to_owned(),
-			ordinary([("zh-CN", translation("终端"))]),
+			ordinary(
+				"Terminal",
+				"terminal emulator or command-line window",
+				[("zh-CN", translation("终端"))],
+			),
 		);
 		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
 
@@ -561,13 +572,12 @@ mod tests {
 	async fn a_failed_unit_does_not_discard_another_answer() {
 		let temp = Temp::new("failure");
 		let mut registry = tags::Registry::default();
-		registry.tags.insert(
-			"first".to_owned(),
-			tags::Tag::ordinary("First", "first concept"),
-		);
+		registry
+			.tags
+			.insert("first".to_owned(), ordinary("First", "first concept", []));
 		registry.tags.insert(
 			"second".to_owned(),
-			tags::Tag::ordinary("Second", "second concept"),
+			ordinary("Second", "second concept", []),
 		);
 		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
 
@@ -583,10 +593,7 @@ mod tests {
 				std::future::ready(if requests <= ATTEMPTS {
 					Err(Refusal::Failed("bad answer".to_owned()))
 				} else {
-					Ok(answer(&marked(&[
-						(SOURCE_LOCALE, "Second"),
-						("zh-CN", "第二"),
-					])))
+					Ok(answer(&marked(&[("zh-CN", "第二")])))
 				})
 			},
 		)
@@ -594,13 +601,11 @@ mod tests {
 		.expect("run");
 
 		assert_eq!(outcome.failed.len(), 1);
-		assert_eq!(outcome.translated, 2);
+		assert_eq!(outcome.translated, 1);
 		let saved = tags::load(&tags::path_for(&temp.root));
-		assert!(
-			saved.tags["first"]
-				.translations()
-				.expect("ordinary")
-				.is_empty()
+		assert_eq!(
+			saved.tags["first"].translations().expect("ordinary").len(),
+			1
 		);
 		assert_eq!(
 			saved.tags["second"].translations().expect("ordinary")["zh-CN"].text,
@@ -641,16 +646,17 @@ mod tests {
 	}
 
 	#[tokio::test]
-	async fn one_tag_requests_every_locale_once() {
+	async fn one_tag_requests_every_non_source_locale_once() {
 		let temp = Temp::new("one-call");
 		let mut registry = tags::Registry::default();
 		registry.tags.insert(
 			"browser".to_owned(),
-			tags::Tag::ordinary("Browser", "software for viewing websites"),
+			ordinary("Browser", "software for viewing websites", []),
 		);
 		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
 		let translations: Vec<(&str, &str)> = crate::i18n::prompt::LOCALES
 			.iter()
+			.filter(|locale| **locale != SOURCE_LOCALE)
 			.map(|locale| (*locale, *locale))
 			.collect();
 		let reply = marked(&translations);
@@ -659,14 +665,18 @@ mod tests {
 		let outcome = run_with(
 			&temp.root,
 			Runner::GptOss,
-			false,
+			true,
 			None,
 			&crate::i18n::prompt::LOCALES,
 			|_, prompt, _| {
 				requests += 1;
-				for locale in crate::i18n::prompt::LOCALES {
+				for locale in crate::i18n::prompt::LOCALES
+					.into_iter()
+					.filter(|locale| *locale != SOURCE_LOCALE)
+				{
 					assert!(prompt.contains(&crate::i18n::prompt::locale_marker(locale)));
 				}
+				assert!(!prompt.contains(&crate::i18n::prompt::locale_marker(SOURCE_LOCALE)));
 				std::future::ready(Ok(answer(&reply)))
 			},
 		)
@@ -674,11 +684,18 @@ mod tests {
 		.expect("run");
 
 		assert_eq!(requests, 1);
-		assert_eq!(outcome.translated, crate::i18n::prompt::LOCALES.len());
+		assert_eq!(outcome.translated, crate::i18n::prompt::LOCALES.len() - 1);
 		let saved = tags::load(&tags::path_for(&temp.root));
 		let display = saved.tags["browser"].translations().expect("ordinary");
 		assert_eq!(display.len(), crate::i18n::prompt::LOCALES.len());
-		assert!(display.values().all(|translation| translation.tokens == 12));
+		assert_eq!(display[SOURCE_LOCALE].model, "claude-sonnet-5");
+		assert_eq!(display[SOURCE_LOCALE].tokens, 10);
+		assert!(
+			display
+				.iter()
+				.filter(|(locale, _)| locale.as_str() != SOURCE_LOCALE)
+				.all(|(_, translation)| translation.tokens == 12)
+		);
 	}
 
 	#[tokio::test]
@@ -687,7 +704,7 @@ mod tests {
 		let mut registry = tags::Registry::default();
 		registry.tags.insert(
 			"terminal".to_owned(),
-			tags::Tag::ordinary("Terminal", "terminal emulator or command-line window"),
+			ordinary("Terminal", "terminal emulator or command-line window", []),
 		);
 		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
 
@@ -713,10 +730,7 @@ mod tests {
 			&[SOURCE_LOCALE, "zh-CN"],
 			|_, prompt, _| {
 				prompts.push(prompt);
-				std::future::ready(Ok(answer(&marked(&[
-					(SOURCE_LOCALE, "Terminal"),
-					("zh-CN", "终端"),
-				]))))
+				std::future::ready(Ok(answer(&marked(&[("zh-CN", "终端")]))))
 			},
 		)
 		.await

@@ -438,9 +438,11 @@ thing, and one `mold` for two things would make a correct translation impossible
 
 What a reader sees lives in `data/tags.yaml`. A technical name has one official display form
 and is never translated. An ordinary name records a disambiguated English source label, a
-short semantic meaning, and its translated display forms. The meaning is not copy: it is the
-stable contract that lets both the tagging model and the translator decide which concept the
-identifier denotes. See [i18n.md](i18n.md) for how those labels are translated and cased.
+short semantic meaning, and its translated display forms. Its `en-US` form comes from the same
+vision answer that creates the tag and retains that answer's provenance. The meaning is not
+copy: it is the stable contract that lets both the tagging model and the translator decide
+which concept the identifier denotes. See [i18n.md](i18n.md) for how those labels are
+translated and cased.
 
 Both answers come from one request, because they are one look at one picture. Asking
 separately would pay twice for the same glance and let the two disagree; a `screenshot` tagged

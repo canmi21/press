@@ -11,12 +11,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - hexo
-    - browser
-    - blog-framework
-    - homepage
-    - npm
   13d5b6bcd2b0dce847951d4e3faf89ca:
     category: photograph
     description:
@@ -28,11 +22,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - laptop
-    - macbook
-    - river
-    - cityscape
   18dc4b33f21890aa9042955b67ac346d:
     category: screenshot
     description:
@@ -44,11 +33,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - ios
-    - esim
-    - hong-kong
-    - cellular
   2722532798307eb9c03d89e2343c2cda:
     category: screenshot
     description:
@@ -60,11 +44,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - browser
-    - homepage
-    - macos
-    - speech-to-text
   2acad555d6fe7cbcd5b153ce945585a0:
     category: photograph
     description:
@@ -76,11 +55,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - cityscape
-    - footpath
-    - garden
-    - shrubs
   3f34360a5eb3c9ec303ca1035cc2453b:
     category: screenshot
     description:
@@ -92,12 +66,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - browser
-    - cranelift
-    - bytecode-alliance
-    - rust
-    - webassembly
   4a1d25650b1262d916f6571208a32764:
     category: screenshot
     description:
@@ -109,10 +77,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - homepage
-    - blog-framework
-    - hexo
   5104d3b6f735fbe76558681b4d37e8ce:
     category: screenshot
     description:
@@ -124,11 +88,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - terminal
-    - rust
-    - cargo
-    - macos
   5898c4f0bf6412e9323eca7b85c75365:
     category: photograph
     description:
@@ -140,11 +99,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - fire-hydrant
-    - garage
-    - wall
-    - sign
   5c33f853b73251e594e7c0eaca0a5709:
     category: screenshot
     description:
@@ -156,10 +110,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - browser
-    - homepage
-    - react
   6da637a66b48711354532477ac3f2014:
     category: artwork
     description:
@@ -171,11 +121,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - hexo
-    - blog-framework
-    - homepage
-    - responsive-design
   7d3a80a688fa627e4f3577f69b320867:
     category: diagram
     description:
@@ -187,12 +132,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - linker
-    - benchmark
-    - rust
-    - mold
-    - cargo
   8acf126a993024efcb5d4db159659d40:
     category: screenshot
     description:
@@ -204,11 +143,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - browser
-    - homepage
-    - vercel
-    - responsive-design
   8d32cfe9437f0bba72819263799a99ca:
     category: photograph
     description:
@@ -220,10 +154,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - grass
-    - garden
-    - fallen-leaves
   917811350fbfc7af291fce7bd549ef3e:
     category: photograph
     description:
@@ -235,11 +165,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - garden
-    - footpath
-    - shrubs
-    - cityscape
   a10408f6aebb21591eed99bdacd7c1e5:
     category: photograph
     description:
@@ -251,10 +176,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - river
-    - footpath
-    - wall
   a46df6030a9b1ba3f0af95e1a2196850:
     category: photograph
     description:
@@ -266,11 +187,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - shrubs
-    - garden
-    - footpath
-    - curb
   a853e69c33ee2c50ed9125ff947b2d49:
     category: screenshot
     description:
@@ -282,10 +198,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - browser
-    - homepage
-    - responsive-design
   a904d61e5006b602f7c6efd236911d78:
     category: screenshot
     description:
@@ -297,18 +209,8 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - macos
-    - terminal
-    - benchmark
   b5951446d4de92d1b15b929938562f02:
     category: photograph
-    tags:
-    - footpath
-    - curb
-    - grass
-    - shrubs
-    - fire-hydrant
   c4297c3fd885b805484659786e1fb561:
     category: screenshot
     description:
@@ -320,11 +222,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - browser
-    - homepage
-    - blog-framework
-    - remix
   cbc260f16e936f977570f8fb391f48e2:
     category: screenshot
     description:
@@ -336,11 +233,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - terminal
-    - rust
-    - cargo
-    - macos
   ccab92399398f1642024732cc1097abe:
     category: screenshot
     description:
@@ -352,11 +244,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - homepage
-    - blog-framework
-    - circuit-board
-    - electronics
   d4fb6031c436599353a6a90fdd99792c:
     category: photograph
     description:
@@ -368,10 +255,6 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - footpath
-    - grass
-    - mold
   ff309d022981d9168fca9e5e9b7291e4:
     category: photograph
     description:
@@ -383,8 +266,3 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
-    tags:
-    - sky
-    - clouds
-    - tree
-    - leaves
