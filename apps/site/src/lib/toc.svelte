@@ -5,6 +5,7 @@
 	const MAX_BAR_WIDTH = 64;
 	const MIN_BAR_WIDTH = 8;
 	const BAR_HEIGHT = 4;
+	const INDICATOR_HEIGHT = 12;
 	const REVEAL_DELAY = 180;
 	const LEAVE_DELAY = 250;
 	const SCROLL_OFFSET = 96;
@@ -23,6 +24,8 @@
 
 	type Phase = 'collapsed' | 'expanded' | 'revealed';
 	type Entry = { el: HTMLElement; width: number; text: string };
+	type IndicatorGeometry = { y: number; height: number };
+	type AnimationControl = { stop: () => void };
 
 	let entries = $state<Entry[]>([]);
 	let asideEl = $state<HTMLElement | undefined>();
@@ -40,6 +43,7 @@
 	let leaveTimer: ReturnType<typeof setTimeout> | undefined;
 	let trackingToken = 0;
 	let trackingRAF: number | undefined;
+	let indicatorAnimation: AnimationControl | undefined;
 	let geometryVersion = $state(0);
 
 	function jumpToSection(el: HTMLElement, idx: number) {
@@ -68,8 +72,14 @@
 		return widths.map((w) => Math.max(MIN_BAR_WIDTH, (w / max) * MAX_BAR_WIDTH));
 	}
 
-	function centeredIndicatorY(button: HTMLElement, indicator: HTMLElement): number {
-		return button.offsetTop + (button.offsetHeight - indicator.offsetHeight) / 2;
+	function indicatorGeometry(button: HTMLElement): IndicatorGeometry {
+		const label = button.querySelector<HTMLElement>('[data-toc-text]');
+		const lineHeight = label ? parseFloat(getComputedStyle(label).lineHeight) : 0;
+		const measuredLines = label && lineHeight > 0 ? Math.round(label.scrollHeight / lineHeight) : 1;
+		const lines = Math.min(2, Math.max(1, measuredLines));
+		const height = toScaledPx(INDICATOR_HEIGHT, rootFontPx()) + lineHeight * (lines - 1);
+		const center = button.offsetTop + button.offsetHeight / 2;
+		return { y: center - height / 2, height };
 	}
 
 	const barWidths = $derived(linearBars(entries.map((e) => e.width)));
@@ -195,6 +205,7 @@
 			for (const c of cleanups) c();
 			if (phaseTimer) clearTimeout(phaseTimer);
 			if (leaveTimer) clearTimeout(leaveTimer);
+			indicatorAnimation?.stop();
 		};
 	});
 
@@ -299,6 +310,8 @@
 			cancelAnimationFrame(trackingRAF);
 			trackingRAF = undefined;
 		}
+		indicatorAnimation?.stop();
+		indicatorAnimation = undefined;
 
 		const visible = show && active >= 0 && active < buttons.length;
 		if (!visible) {
@@ -313,7 +326,9 @@
 				if (!asideEl || !indicatorEl) return;
 				const btn = asideEl.querySelectorAll<HTMLElement>('[data-toc-button]')[active];
 				if (!btn) return;
-				indicatorEl.style.transform = `translateY(${centeredIndicatorY(btn, indicatorEl)}px)`;
+				const target = indicatorGeometry(btn);
+				indicatorEl.style.height = `${target.height}px`;
+				indicatorEl.style.transform = `translateY(${target.y}px)`;
 			};
 			setLivePos();
 			indicatorEl.style.opacity = '0.8';
@@ -333,8 +348,27 @@
 				trackingRAF = requestAnimationFrame(tick);
 			}
 		} else {
-			const y = centeredIndicatorY(buttons[active], indicatorEl);
-			animate(indicatorEl, { y }, BAR_SPRING);
+			const target = indicatorGeometry(buttons[active]);
+			const indicator = indicatorEl;
+			const navRect = asideEl.getBoundingClientRect();
+			const indicatorRect = indicator.getBoundingClientRect();
+			const startHeight = indicatorRect.height;
+			const startCenter = indicatorRect.top - navRect.top + startHeight / 2;
+			const targetCenter = target.y + target.height / 2;
+			indicatorAnimation = animate(0, 1, {
+				...BAR_SPRING,
+				onUpdate: (progress) => {
+					const height = startHeight + (target.height - startHeight) * progress;
+					const center = startCenter + (targetCenter - startCenter) * progress;
+					indicator.style.height = `${height}px`;
+					indicator.style.transform = `translateY(${center - height / 2}px)`;
+				},
+				onComplete: () => {
+					indicator.style.height = `${target.height}px`;
+					indicator.style.transform = `translateY(${target.y}px)`;
+					indicatorAnimation = undefined;
+				}
+			});
 		}
 		prevIndicatorVisible = visible;
 		prevIndicatorActive = active;
@@ -361,8 +395,8 @@
 	>
 		<span
 			bind:this={indicatorEl}
-			class="pointer-events-none absolute h-3 w-0.5 rounded-full bg-text-soft"
-			style="left: -0.5rem; top: 0; opacity: 0"
+			class="pointer-events-none absolute w-0.5 rounded-full bg-text-soft"
+			style="left: -0.5rem; top: 0; height: 0.75rem; opacity: 0"
 		></span>
 		{#each entries as entry, i (entry.el)}
 			<button
