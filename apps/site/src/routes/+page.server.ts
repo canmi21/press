@@ -31,6 +31,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 	});
 	return {
 		articles,
+		locale: { code },
 		title: page.meta.title ?? 'Canmi',
 		description: page.meta.description ?? '',
 		bio: page.blocks,

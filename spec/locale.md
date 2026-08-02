@@ -17,9 +17,9 @@ link is a link to the article, and the reader's own preference decides the rest.
 The cost is real and accepted: **a shared URL carries no language.** Sending someone a link
 shows them the article in their language, not in yours.
 
-## Three sources, in one order
+## Browser-facing HTML has three preference sources
 
-A request resolves its locale from the first of these that answers:
+An HTML request resolves its locale from the first of these that answers:
 
 1. A `lang` query parameter.
 2. The locale cookie.
@@ -35,11 +35,14 @@ arrives there, and choosing after first paint would make a page render in one la
 swap. Unlike theme, the content itself differs, so this cannot be a class toggle — see the
 caching rule below for what that forces.
 
-Collection surfaces use the same resolved code for every article they include. Homepage cards,
-article lists, `llms.txt`, and Atom entries take their title, subtitle, description, body, and
-language from that article's resolved view; `mw` means each article's own original. These
-responses vary by the same request inputs as an article page and therefore are not shared-cache
-content either.
+Browser-facing collection surfaces use the same resolved code for every article they include.
+Homepage cards and article lists take their title, subtitle, description, body, and language
+from that article's resolved view; `mw` means each article's own original. `llms.txt` keeps its
+existing behaviour and has no indexed language dimension: an LLM can read any of the views.
+
+Server-only discovery routes do not inherit this negotiation. The sitemap publishes every
+indexable view at once. Atom selects from `lang` alone, because each query-specific feed is a
+shared-cache resource and neither a cookie nor `Accept-Language` is part of its address.
 
 ## The query parameter is for crawlers, and is removed for readers
 
@@ -87,9 +90,10 @@ unvalidated into every original-view public attribute.
 
 ## Canonical points at the version being read
 
-Each of the nine views is its own canonical: the original at the bare URL, every other language
-at its `?lang=` form. Nine self-canonical URLs, one per language, so ranking weight accumulates
-where the content actually is instead of being handed to a version the reader never asked for.
+Each view starts with its own canonical: the original at the bare URL, every other language at
+its `?lang=` form. Ranking weight then accumulates where the content actually is instead of
+being handed to a version the reader never asked for, subject to the same-language deferral
+below.
 
 The full `hreflang` set accompanies every view — all nine alternates plus `x-default` pointing
 at the bare URL. Canonical alone says "this is the address of this page"; it does not say "these
@@ -126,11 +130,36 @@ This also removes the question of what to do when articles start mixing language
 genuinely differs from it, the similarity drops, and the rule stops applying on its own without
 anyone revisiting it.
 
+## The sitemap lists addresses, not language codes
+
+The sitemap emits one `url` entry per distinct canonical URL. It does not assume that nine
+codes produce nine entries: when a translation defers to the original, both codes share the
+bare address and only one entry is emitted for it.
+
+Every article entry carries the complete `xhtml:link` alternate set, including its own URL and
+`x-default`. The set is the same one the page head receives from `indexingMetadata`; the
+sitemap never reimplements similarity, canonical selection, or the internal-code mapping. A
+set that omits its own member, or disagrees with the page head, is invalid as a whole rather
+than partially useful.
+
+## Atom puts its language in the URL
+
+The bare `/atom.xml` is the original feed. Each translation is `/atom.xml?lang={code}`, using
+the same internal codes as article pages. Atom reads that parameter and nothing else. An
+unknown value falls back to `mw`; cookies and `Accept-Language` are deliberately invisible to
+the route so they cannot make one cached URL contain different readers' content.
+
+The feed and every entry declare the BCP-47 language of the view actually served. Entry titles,
+summaries and bodies come from that resolved view, including translated frontmatter. A page's
+feed-discovery link names the same code as the page, so subscribing from a translated view
+selects its translated feed.
+
 ## HTML is never cached; assets still are
 
 The response body for a page depends on a cookie, so **HTML is served with `Cache-Control:
 private, no-store`**. A cached page is a page some other reader's language is about to be
-served from.
+served from. Atom is the deliberate opposite: its language is wholly in the URL, so it remains
+`public, max-age=360, s-maxage=360` and is safe in shared caches.
 
 This is the deliberate exception to the rule in [architecture.md](architecture.md) that a
 hashed name is cached for a year. HTML carries no hash in its name, so it was never covered by

@@ -70,6 +70,7 @@ export type Article = Compiled & {
 	path: string;
 	url: string;
 	views: Record<LocaleCode, ArticleView>;
+	canonicalUrls: string[];
 	alternates: Alternate[];
 };
 

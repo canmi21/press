@@ -39,7 +39,9 @@ const pageHandle: Handle = async ({ event, resolve }) => {
 	}
 	const path = pathname.replace(/^\//, '').replace(/\/$/, '');
 	const article = getArticle(path);
-	const localeAware = article != null || ['/', '/atom.xml', '/llms.txt'].includes(pathname);
+	// Browser-facing HTML negotiates from every reader preference. Atom is intentionally
+	// absent: a shared-cache feed resolves from its URL alone inside its own route.
+	const localeAware = article != null || ['/', '/llms.txt'].includes(pathname);
 	if (localeAware && !building) {
 		const cookie = event.cookies.get('language');
 		const code = resolveLocale({

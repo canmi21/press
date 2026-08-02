@@ -1,5 +1,5 @@
 import { similarity } from './assemble.ts';
-import { languageTag, LOCALE_CODES, type LocaleCode } from '../locale.ts';
+import { languageTag, localeUrl, LOCALE_CODES, type LocaleCode } from '../locale.ts';
 import type { Alternate } from './types.ts';
 
 export const CANONICAL_SIMILARITY_THRESHOLD = 0.9;
@@ -9,18 +9,19 @@ export function indexingMetadata(
 	url: string,
 	sourceLanguage: string,
 	raws: Readonly<Record<LocaleCode, string>>,
-): { canonical: Record<LocaleCode, string>; alternates: Alternate[] } {
+): { canonical: Record<LocaleCode, string>; canonicalUrls: string[]; alternates: Alternate[] } {
 	const canonical = Object.fromEntries(
 		LOCALE_CODES.map((code) => [
 			code,
 			code === 'mw' || similarity(raws.mw, raws[code]) >= CANONICAL_SIMILARITY_THRESHOLD
 				? url
-				: `${url}?lang=${code}`,
+				: localeUrl(url, code),
 		]),
 	) as Record<LocaleCode, string>;
 
 	return {
 		canonical,
+		canonicalUrls: [...new Set(LOCALE_CODES.map((code) => canonical[code]))],
 		alternates: [
 			...LOCALE_CODES.map((code) => ({
 				code,

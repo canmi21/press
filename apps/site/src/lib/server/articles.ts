@@ -100,7 +100,7 @@ export async function buildArticles(
 		} as Record<LocaleCode, Awaited<ReturnType<typeof compile>>>;
 
 		const sourceLanguage = compiled.mw.meta.lang;
-		const { canonical, alternates } = indexingMetadata(url, sourceLanguage, raws);
+		const { canonical, canonicalUrls, alternates } = indexingMetadata(url, sourceLanguage, raws);
 		const views = Object.fromEntries(
 			LOCALE_CODES.map((code) => {
 				const view = compiled[code];
@@ -118,7 +118,7 @@ export async function buildArticles(
 				];
 			}),
 		) as Record<LocaleCode, ArticleView>;
-		articles.push({ ...compiled.mw, path, url, views, alternates });
+		articles.push({ ...compiled.mw, path, url, views, canonicalUrls, alternates });
 	}
 
 	return {

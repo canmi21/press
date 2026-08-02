@@ -20,6 +20,11 @@ export function localeCode(value: string | null | undefined): LocaleCode | undef
 	return value != null && CODE_SET.has(value) ? (value as LocaleCode) : undefined;
 }
 
+/** The public URL for a selected view; the source view keeps the bare address. */
+export function localeUrl(url: string, code: LocaleCode): string {
+	return code === 'mw' ? url : `${url}?lang=${code}`;
+}
+
 /** A public BCP-47 tag. `mw` is the source article, so its tag is article-owned. */
 export function languageTag(code: LocaleCode, sourceLanguage: string): string {
 	return code === 'mw' ? sourceLanguage : PUBLIC_LANGUAGE[code];

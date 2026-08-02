@@ -4,6 +4,7 @@ import {
 	acceptedLocale,
 	assertLanguageTag,
 	languageTag,
+	localeUrl,
 	privateHtml,
 	resolveLocale,
 	withoutLanguageParameter,
@@ -67,4 +68,9 @@ it('removes only lang and keeps unrelated query parameters in their original ord
 		new URL('/post?utm=a&lang=ja&draft=1&utm=b#section', import.meta.url),
 	);
 	expect(clean).toBe('/post?utm=a&draft=1&utm=b#section');
+});
+
+it('keeps the source URL bare and gives translated views explicit feed URLs', () => {
+	expect(localeUrl('/atom.xml', 'mw')).toBe('/atom.xml');
+	expect(localeUrl('/atom.xml', 'fr')).toBe('/atom.xml?lang=fr');
 });

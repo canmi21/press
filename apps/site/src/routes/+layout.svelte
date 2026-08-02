@@ -2,15 +2,20 @@
 	import { dev } from '$app/environment';
 	import { page } from '$app/state';
 	import { URLS, pickUrls } from '@canmi/urls';
+	import { localeUrl } from '$lib/locale';
 	import { site } from '$lib/site';
 	import '../styles/app.css';
 	import '@canmi/fonts/mono.css';
 
 	const cdn = pickUrls(dev).cdn;
-	const articleLocale = $derived('locale' in page.data ? page.data.locale : undefined);
+	const locale = $derived('locale' in page.data ? page.data.locale : undefined);
+	const articleLocale = $derived(
+		locale && 'canonical' in locale && 'alternates' in locale ? locale : undefined,
+	);
 	const canonical = $derived(
 		articleLocale?.canonical ?? `${URLS.apps.production.site}${page.url.pathname}`,
 	);
+	const feed = $derived(localeUrl('/atom.xml', locale?.code ?? 'mw'));
 	let { children } = $props();
 
 	/**
@@ -61,7 +66,7 @@
 	{/if}
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -- escaped by ldJson above -->
 	{@html ldJson(website)}
-	<link rel="alternate" type="application/atom+xml" href="/atom.xml" title={site.name} />
+	<link rel="alternate" type="application/atom+xml" href={feed} title={site.name} />
 	<link rel="llms" type="text/markdown" href="/llms.txt" />
 	<link rel="icon" type="image/png" sizes="96x96" href="{cdn}/favicon-96x96.png" />
 	<link rel="icon" type="image/png" sizes="512x512" href="{cdn}/favicon-512x512.png" />

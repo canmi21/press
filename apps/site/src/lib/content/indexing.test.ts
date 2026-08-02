@@ -52,6 +52,9 @@ describe('indexing metadata', () => {
 		expect(indexing.canonical.mw).toBe('/article');
 		expect(indexing.canonical.zh).toBe('/article');
 		expect(indexing.canonical.en).toBe('/article?lang=en');
+		expect(indexing.canonicalUrls).toEqual([
+			...new Set(LOCALE_CODES.map((code) => indexing.canonical[code])),
+		]);
 		expect(indexing.alternates).toHaveLength(LOCALE_CODES.length + 1);
 		for (const code of LOCALE_CODES) {
 			const alternate = indexing.alternates.find((entry) => entry.code === code);

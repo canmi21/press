@@ -1,5 +1,7 @@
 import { URLS } from '@canmi/urls';
 import { getArticles } from '$lib/content';
+import { sitemapViews } from '$lib/content/sitemap';
+import type { Alternate } from '$lib/content/types';
 import type { RequestHandler } from './$types';
 
 // Generated per request so changefreq/priority reflect staleness at crawl time,
@@ -10,6 +12,7 @@ type Entry = {
 	lastmod: string;
 	changefreq: string;
 	priority: string;
+	alternates?: Alternate[];
 };
 
 const HOUR = 3_600_000;
@@ -50,14 +53,15 @@ export const GET: RequestHandler = async () => {
 
 	const entries: Entry[] = [
 		...staticEntries,
-		...articles.map((article) => {
+		...articles.flatMap((article) => {
 			const ageMs = now - Date.parse(article.meta.lastmod);
-			return {
-				loc: article.url,
+			return sitemapViews(article).map(({ loc, alternates }) => ({
+				loc,
 				lastmod: article.meta.lastmod,
 				changefreq: changefreq(ageMs),
 				priority: priority(ageMs),
-			};
+				alternates,
+			}));
 		}),
 	];
 
@@ -65,6 +69,10 @@ export const GET: RequestHandler = async () => {
 		.map((e) => {
 			const parts = [
 				`\t\t<loc>${e.loc}</loc>`,
+				...(e.alternates ?? []).map(
+					(alternate) =>
+						`\t\t<xhtml:link rel="alternate" hreflang="${alternate.languageTag}" href="${alternate.href}" />`,
+				),
 				`\t\t<lastmod>${e.lastmod}</lastmod>`,
 				`\t\t<changefreq>${e.changefreq}</changefreq>`,
 				`\t\t<priority>${e.priority}</priority>`,
