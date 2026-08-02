@@ -21,12 +21,23 @@ projs/      Reserved for large standalone projects. Not created yet.
 ### What `data/` keeps out of git
 
 Not the directory -- the kind of thing. **Text that means something goes in; bytes and bulk
-stay out.** `data/metadata.json`, `data/media.yaml`, `data/tags.yaml` and
-`data/article-segments.json` are records: a build resolves every image from the first without
-one image being present, the next two hold descriptions that cost money and tags a person
-curates, and the last fixes the CMS-derived article segment layout consumed by the site.
-Photographs, derived variants, fonts and a geocoding database are bytes, and no diff of them
-says anything.
+stay out.** `data/metadata.json`, `data/media.yaml` and `data/tags.yaml` are records: a build
+resolves every image from the first without one image being present, and the other two hold
+descriptions that cost money and tags a person curates. Photographs, derived variants, fonts
+and a geocoding database are bytes, and no diff of them says anything.
+
+#### Generated build inputs live under `data/build/`
+
+A record a person writes and a record a tool regenerates are both text worth committing, and
+they still do not belong side by side. `data/build/segments.json` is the CMS-derived article
+segment layout the site assembles from; nobody edits it, and a diff of it is a consequence
+rather than a decision.
+
+The split is there to keep the top of `data/` readable. Everything directly under it is
+something a person curates and may be asked about; `data/build/` is output, and it may grow a
+file whenever a consumer needs one without that growth being a question. Committed all the
+same, for the reason the segment layout exists at all: a site-only CI build must not need a
+Rust toolchain to produce its own inputs.
 
 The rule was first written as "`data/` is never in git", which held until it needed several
 exceptions. Those exceptions mean the line was drawn around the wrong thing: the directory
@@ -288,7 +299,7 @@ a fact about this repository rather than a property of the command, so it waits 
 ### A CI build must be able to build from git alone
 
 The site builds from `data/metadata.json`, `data/media.yaml`,
-`data/article-segments.json`, `contents/` and `site.config.yaml` -- all committed -- and never
+`data/build/segments.json`, `contents/` and `site.config.yaml` -- all committed -- and never
 reads untracked asset bytes. The merged image manifest carries every dimension, srcset and
 placeholder, and the article segment record carries the CMS-derived ids and byte ranges, so a
 page renders correctly with neither an image byte nor a Rust toolchain present. A checkout is
