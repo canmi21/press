@@ -25,7 +25,7 @@ pub const PARALLEL: usize = 4;
 ///
 /// One language out of the model, then translated like anything else. Asking for eight at
 /// once would mean eight looks at the same picture, and the picture does not change.
-const SOURCE_LOCALE: &str = "en-US";
+pub(crate) const SOURCE_LOCALE: &str = "en-US";
 
 /// What the model is asked for.
 ///
@@ -237,7 +237,7 @@ pub async fn run(
 			Ok((text, spend, model)) => {
 				outcome.spent.add(spend);
 				let entry = described.media.entry(cid).or_insert_with(Entry::default);
-				// Written under the source locale the article is authored in. `cms i18n` fills
+				// Written under the source locale the article is authored in. `cms locale` fills
 				// the rest from here, through the same pipeline a paragraph goes through.
 				entry.description.insert(
 					SOURCE_LOCALE.to_owned(),

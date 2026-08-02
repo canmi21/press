@@ -14,6 +14,7 @@ mod favicon;
 mod gc;
 mod i18n;
 mod image;
+mod locale;
 mod media;
 mod opengraph;
 mod paths;
@@ -31,6 +32,7 @@ fn main() -> ExitCode {
 		Some("og") => render_cards(&args[1..]),
 		Some("tag") => classify_images(&args[1..]),
 		Some("i18n") => translate_articles(&args[1..]),
+		Some("locale") => translate_locales(&args[1..]),
 		Some("alt") => describe_images(&args[1..]),
 		Some("gc") => collect_garbage(&args[1..]),
 		Some(other) => {
@@ -346,6 +348,66 @@ fn translate_articles(args: &[String]) -> ExitCode {
 	}
 }
 
+/// Translate tag labels and image descriptions from their English source text.
+fn translate_locales(args: &[String]) -> ExitCode {
+	let force = args.iter().any(|arg| arg == "--force");
+	let limit = args
+		.iter()
+		.position(|arg| arg == "--limit")
+		.and_then(|at| args.get(at + 1))
+		.and_then(|value| value.parse::<usize>().ok());
+	let runner = match selected_runner(args, i18n::runner::DEFAULT_TEXT) {
+		Ok(runner) => runner,
+		Err(code) => return code,
+	};
+
+	let root = match paths::repo_root() {
+		Ok(root) => root,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
+	};
+	let runtime = match tokio::runtime::Runtime::new() {
+		Ok(runtime) => runtime,
+		Err(error) => {
+			eprintln!("could not start a runtime: {error}");
+			return ExitCode::FAILURE;
+		}
+	};
+	let outcome = match runtime.block_on(locale::run(&root, runner, force, limit)) {
+		Ok(outcome) => outcome,
+		Err(error) => {
+			eprintln!("could not write: {error}");
+			return ExitCode::FAILURE;
+		}
+	};
+
+	for (id, error) in &outcome.failed {
+		eprintln!("fail  {id}: {error}");
+	}
+	if let Some(reason) = &outcome.exhausted {
+		println!("stopped: {reason}");
+	}
+	println!(
+		"{} translations across {} sources, {} already present, {} left by --limit, {} failed",
+		outcome.translated,
+		outcome.sources,
+		outcome.skipped,
+		outcome.deferred,
+		outcome.failed.len()
+	);
+	if outcome.translated > 0 {
+		println!("{} tokens, ${:.2}", outcome.tokens, outcome.usd);
+	}
+	// Exhaustion is a normal stopping point even if an earlier independent unit failed.
+	if outcome.exhausted.is_some() || outcome.failed.is_empty() {
+		ExitCode::SUCCESS
+	} else {
+		ExitCode::FAILURE
+	}
+}
+
 /// Render one OpenGraph card per article.
 ///
 /// Nothing references these: the page emits `/opengraph/{slug}.png` and no article writes the
@@ -641,6 +703,8 @@ fn usage() {
 	eprintln!("  og [--force]                render an OpenGraph card per article");
 	eprintln!("  i18n [--model M] [--force] [--limit N] [article...]");
 	eprintln!("                              translate article segments into every locale");
+	eprintln!("  locale [--model M] [--force] [--limit N]");
+	eprintln!("                              translate tag labels and image descriptions");
 	eprintln!("  tag [--model M] [--force] [--limit N]");
 	eprintln!("                              give each asset a category and tags");
 	eprintln!("  check                       list referenced assets that are not present");
