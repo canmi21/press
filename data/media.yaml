@@ -301,7 +301,16 @@ media:
     - macos
     - terminal
     - benchmark
+  b5951446d4de92d1b15b929938562f02:
+    category: photograph
+    tags:
+    - footpath
+    - curb
+    - grass
+    - shrubs
+    - fire-hydrant
   c4297c3fd885b805484659786e1fb561:
+    category: screenshot
     description:
       en-US:
         text: A screenshot of the Remix framework website, with the Remix logo top-left and a navigation bar linking to Blog, Jam, Store, and V2 Docs top-right. The centered headline reads "Remix 3 is under active development," subtitled "A new full stack framework built on Web APIs," and below it sits an illustration of a car-shaped object draped in a black cloth cover, with the Remix arrow logo and a rainbow-striped diagonal band peeking through where the fabric drapes over its hood. The car-under-a-sheet imagery evokes a product unveiling or teaser, signaling that Remix 3 is a forthcoming release still being built.
@@ -311,7 +320,13 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - browser
+    - homepage
+    - blog-framework
+    - remix
   cbc260f16e936f977570f8fb391f48e2:
+    category: screenshot
     description:
       en-US:
         text: 'This is a screenshot of a terminal window titled "~/C/P/seam" showing the tail end of a `cargo build --release` run for a project called "seam." The scroll lists dozens of dependency crates compiling in sequence — walkdir, rand, tungstenite, sha2, toml, notify, rquickjs, clap and others — followed by the project''s own workspace members such as seam-codegen, seam-skeleton, seam-injector-wasm, seam-engine-wasm, seam-server, seam-server-axum, seam-cli, and several example backends (demo-server-rust, github-dashboard-axum, markdown-demo-rust, i18n-demo-axum). The final lines confirm success: "Finished `release` profile [optimized] target(s) in 1m 05s," followed by an idle shell prompt reading `canmi@xyy ~/C/P/seam (main)>`. It is evidence of a clean, complete release build of a multi-crate Rust monorepo with WASM and Axum server components.'
@@ -321,7 +336,13 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - terminal
+    - rust
+    - cargo
+    - macos
   ccab92399398f1642024732cc1097abe:
+    category: screenshot
     description:
       en-US:
         text: A screenshot of a personal blog homepage shows a sidebar with an anime-style avatar, the name "小汐", a "主页" link, and "所有文章/友链/关于我" navigation along with GitHub and other social icons, sitting beside a feed of pinned posts. The top post, dated 2023-01-29 and tagged "置顶" (pinned), is titled "PD-METER-R4" with the note "正在开发，相较于R3优化布局，更换主控，增加少量新功能" (in development, layout optimized versus R3, main controller replaced, a few new features added), illustrated by two photos of a green PCB labeled "USBC-R4 SAKURA" showing its component side and its bare reverse side on a fabric backdrop. Below it, a second post titled "WORX-BAT-Charger" dated 2023-02-14 begins, cut off at the bottom of the frame. The image serves as evidence of an ongoing hardware project documenting iterative revisions of a USB-C PD (power delivery) measurement device.
@@ -331,7 +352,13 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - homepage
+    - blog-framework
+    - circuit-board
+    - electronics
   d4fb6031c436599353a6a90fdd99792c:
+    category: photograph
     description:
       en-US:
         text: A close-up photograph of a weathered wooden boardwalk or dock, shot from a low angle looking down the length of the planks as they recede into the distance. The gray, sun-bleached boards show heavy wear -- splintered edges, protruding rusty nail heads, and several boards cracked or broken through, with tufts of green grass and dead leaves pushing up through the gaps on the left side. The overall condition points to long-term outdoor exposure and neglect, suggesting the structure is due for repair or replacement.
@@ -341,7 +368,12 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - footpath
+    - grass
+    - mold
   ff309d022981d9168fca9e5e9b7291e4:
+    category: photograph
     description:
       en-US:
         text: A photograph taken looking straight up into the sky, dominated by scattered wisps and clusters of white cumulus fragments against a hazy blue-gray backdrop. The clouds cluster more densely toward the upper left, thinning to open sky in the center and right, while the silhouetted, leafy branches of a tree cut into the frame along the right edge, their dark foliage backlit by the overcast light. The soft, diffuse illumination suggests a bright but sun-obscured day, with the upward angle and tree branch giving the shot the feel of a casual, ground-level nature snapshot rather than a staged composition.
@@ -351,3 +383,8 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+    tags:
+    - sky
+    - clouds
+    - tree
+    - leaves

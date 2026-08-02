@@ -6,9 +6,12 @@ tags:
   bytecode-alliance: {}
   cargo: {}
   cellular: {}
+  circuit-board: {}
   cityscape: {}
+  clouds: {}
   cranelift: {}
   curb: {}
+  electronics: {}
   esim: {}
   fallen-leaves: {}
   fire-hydrant: {}
@@ -21,19 +24,23 @@ tags:
   hong-kong: {}
   ios: {}
   laptop: {}
+  leaves: {}
   linker: {}
   macbook: {}
   macos: {}
   mold: {}
   npm: {}
   react: {}
+  remix: {}
   responsive-design: {}
   river: {}
   rust: {}
   shrubs: {}
   sign: {}
+  sky: {}
   speech-to-text: {}
   terminal: {}
+  tree: {}
   vercel: {}
   wall: {}
   webassembly: {}
