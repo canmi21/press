@@ -64,7 +64,11 @@ export type ArticleView = Pick<Compiled, 'meta' | 'blocks' | 'feed' | 'text'> & 
 	canonical: string;
 };
 
-export type Alternate = { code: LocaleCode | 'x-default'; languageTag: string; href: string };
+export type Alternate = {
+	code: Exclude<LocaleCode, 'mw'> | 'x-default';
+	languageTag: string;
+	href: string;
+};
 
 export type Article = Compiled & {
 	path: string;

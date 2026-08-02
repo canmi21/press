@@ -82,6 +82,11 @@ description = "Run the API worker"
 dir = "apps/api"
 run = "pnpm run dev"
 
+[tasks.dev-site]
+description = "Run the site worker"
+dir = "apps/site"
+run = "pnpm run dev"
+
 [tasks.dev-cdn]
 description = "Run the CDN worker against data/public"
 dir = "apps/cdn"

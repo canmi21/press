@@ -19,12 +19,6 @@ export type SegmentLayout = {
 	articles: Record<string, SegmentSpan[]>;
 };
 
-function articleBody(raw: string): string {
-	if (!raw.startsWith('---\n')) return raw;
-	const end = raw.indexOf('\n---', 4);
-	return end < 0 ? raw : raw.slice(end + 4);
-}
-
 /** FNV-1a over source bytes: a drift detector, not a content address. */
 export function sourceFingerprint(bytes: Uint8Array): string {
 	let checksum = 0x811c9dc5;
@@ -38,7 +32,11 @@ export function assemble(
 	sidecar: TranslationSidecar,
 	locale: TranslationLocale,
 	article: string,
-): { raw: string; missing: string[] } {
+): {
+	raw: string;
+	missing: string[];
+	translatable: { source: string; translated: string };
+} {
 	const bytes = new TextEncoder().encode(raw);
 	const decoder = new TextDecoder('utf-8', { fatal: true });
 	const missing: string[] = [];
@@ -63,12 +61,16 @@ export function assemble(
 
 	let cursor = 0;
 	let translated = '';
+	const sourceContent: string[] = [];
+	const translatedContent: string[] = [];
 	for (const span of spans) {
 		try {
 			translated += decoder.decode(bytes.subarray(cursor, span.start));
 			const source = decoder.decode(bytes.subarray(span.start, span.end));
 			const entry = sidecar.segments?.[span.id]?.[locale];
 			if (!entry && span.region === 'body') missing.push(span.id);
+			sourceContent.push(source);
+			translatedContent.push(entry?.text ?? source);
 			translated += entry
 				? span.region === 'frontmatter'
 					? ` ${JSON.stringify(entry.text)}`
@@ -82,12 +84,19 @@ export function assemble(
 		cursor = span.end;
 	}
 	translated += decoder.decode(bytes.subarray(cursor));
-	return { raw: translated, missing };
+	return {
+		raw: translated,
+		missing,
+		translatable: {
+			source: sourceContent.join('\n\n'),
+			translated: translatedContent.join('\n\n'),
+		},
+	};
 }
 
-function normaliseArticle(raw: string): string[] {
+function normaliseText(raw: string): string[] {
 	return Array.from(
-		articleBody(raw)
+		raw
 			.normalize('NFKC')
 			.toLocaleLowerCase()
 			.replace(/[“”]/gu, '"')
@@ -99,8 +108,8 @@ function normaliseArticle(raw: string): string[] {
 
 /** Sørensen-Dice over character pairs: punctuation drift is cheap; rewritten prose is not. */
 export function similarity(left: string, right: string): number {
-	const a = normaliseArticle(left);
-	const b = normaliseArticle(right);
+	const a = normaliseText(left);
+	const b = normaliseText(right);
 	if (a.length < 2 || b.length < 2) return a.join('') === b.join('') ? 1 : 0;
 
 	const pairs = new Map<string, number>();

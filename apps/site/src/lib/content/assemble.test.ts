@@ -34,6 +34,10 @@ it('assembles translations in article order while leaving code untouched', () =>
 	);
 	expect(result.missing).toEqual([]);
 	expect(result.raw).toContain('erste Zeile\n\n```ts\nconst x = 1;\n```\n\nletzte Zeile');
+	expect(result.translatable).toEqual({
+		source: '中文\n\nfirst line\n\nlast line',
+		translated: 'Chinesisch\n\nerste Zeile\n\nletzte Zeile',
+	});
 });
 
 it('rejects spans shifted by an insertion even when every translation still resolves', () => {

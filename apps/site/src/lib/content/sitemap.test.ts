@@ -13,7 +13,7 @@ describe('sitemap language views', () => {
 		const raws = Object.fromEntries(
 			LOCALE_CODES.map((code) => [code, code === 'mw' || code === 'zh' ? 'source' : code]),
 		) as Record<LocaleCode, string>;
-		const indexing = indexingMetadata('https://example.com/article', 'zh', raws);
+		const indexing = indexingMetadata('https://example.com/article', raws);
 		const pageHeadAlternates = indexing.alternates;
 		const entries = sitemapViews({
 			canonicalUrls: indexing.canonicalUrls,

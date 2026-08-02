@@ -30,7 +30,7 @@ export function languageTag(code: LocaleCode, sourceLanguage: string): string {
 	return code === 'mw' ? sourceLanguage : PUBLIC_LANGUAGE[code];
 }
 
-/** Reject source metadata that would invalidate every public hreflang emitted for an article. */
+/** Reject malformed source metadata before it reaches `<html lang>` or `og:locale`. */
 export function assertLanguageTag(value: unknown, file: string): asserts value is string {
 	if (typeof value !== 'string' || !LANGUAGE_TAG_SHAPE.test(value)) {
 		throw new Error(`${file}: invalid BCP-47 lang frontmatter ${JSON.stringify(value)}`);

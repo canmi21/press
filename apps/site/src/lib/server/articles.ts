@@ -37,10 +37,11 @@ function translatedRaws(
 	raw: string,
 	sidecar: TranslationSidecar,
 	layout: SegmentLayout,
-): Record<LocaleCode, string> {
+): { raws: Record<LocaleCode, string>; translatable: Record<LocaleCode, string> } {
 	const spans = layout.articles[article];
 	if (!spans) throw new Error(`${file}: missing from data/build/segments.json`);
-	const views = { mw: raw } as Record<LocaleCode, string>;
+	const raws = { mw: raw } as Record<LocaleCode, string>;
+	const translatable = {} as Record<LocaleCode, string>;
 	for (const [code, locale] of Object.entries(PUBLIC_LANGUAGE) as [
 		Exclude<LocaleCode, 'mw'>,
 		(typeof PUBLIC_LANGUAGE)[Exclude<LocaleCode, 'mw'>],
@@ -49,9 +50,11 @@ function translatedRaws(
 		if (assembled.missing.length > 0) {
 			throw new Error(`${file}: ${locale} is missing ${assembled.missing.length} live segments`);
 		}
-		views[code] = assembled.raw;
+		raws[code] = assembled.raw;
+		translatable.mw = assembled.translatable.source;
+		translatable[code] = assembled.translatable.translated;
 	}
-	return views;
+	return { raws, translatable };
 }
 
 export async function buildArticles(
@@ -83,7 +86,7 @@ export async function buildArticles(
 			highlight,
 			sourceFile: file,
 		});
-		const raws = translatedRaws(file, `${path}.md`, raw, sidecar, layout);
+		const { raws, translatable } = translatedRaws(file, `${path}.md`, raw, sidecar, layout);
 		const compiled = {
 			mw: source,
 			...Object.fromEntries(
@@ -100,7 +103,7 @@ export async function buildArticles(
 		} as Record<LocaleCode, Awaited<ReturnType<typeof compile>>>;
 
 		const sourceLanguage = compiled.mw.meta.lang;
-		const { canonical, canonicalUrls, alternates } = indexingMetadata(url, sourceLanguage, raws);
+		const { canonical, canonicalUrls, alternates } = indexingMetadata(url, translatable);
 		const views = Object.fromEntries(
 			LOCALE_CODES.map((code) => {
 				const view = compiled[code];
