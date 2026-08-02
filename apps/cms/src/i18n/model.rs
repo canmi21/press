@@ -1,8 +1,8 @@
 //! Naming a model the same way twice.
 //!
-//! Two families order their parts differently and neither is going to change, so the shape is
-//! recorded rather than guessed: Anthropic names a variant then a version, OpenAI names a
-//! version then a variant. Dots become hyphens throughout, so `4.5` is `4-5`.
+//! Model families keep their own part order, so the shape is recorded rather than guessed:
+//! Anthropic names a variant then a version, while OpenAI names a version then a variant. Dots
+//! become hyphens throughout, so `4.5` is `4-5`.
 //!
 //! The identity is read from the response envelope wherever the runner reports one, because a
 //! model's account of itself is unreliable in a way that a runtime fact is not. `anonymous`
@@ -21,6 +21,7 @@ pub enum Provider {
 	Openai,
 	Alibaba,
 	Deepseek,
+	Cursor,
 }
 
 #[allow(dead_code)]
@@ -31,6 +32,7 @@ impl Provider {
 			Self::Openai => "openai",
 			Self::Alibaba => "alibaba",
 			Self::Deepseek => "deepseek",
+			Self::Cursor => "cursor",
 		}
 	}
 
@@ -41,6 +43,7 @@ impl Provider {
 			Self::Openai => "gpt",
 			Self::Alibaba => "qwen",
 			Self::Deepseek => "deepseek",
+			Self::Cursor => "composer",
 		}
 	}
 
@@ -50,6 +53,7 @@ impl Provider {
 			"gpt" => Some(Self::Openai),
 			"qwen" => Some(Self::Alibaba),
 			"deepseek" => Some(Self::Deepseek),
+			"composer" => Some(Self::Cursor),
 			_ => None,
 		}
 	}
@@ -62,7 +66,7 @@ impl Provider {
 /// from this list still gets recorded -- see `normalise` -- but only what is listed here is a
 /// name this project claims to understand.
 #[allow(dead_code)]
-pub const KNOWN: [&str; 22] = [
+pub const KNOWN: [&str; 26] = [
 	// anthropic: family, variant, version
 	"claude-opus-5",
 	"claude-opus-4-8",
@@ -78,6 +82,9 @@ pub const KNOWN: [&str; 22] = [
 	"gpt-5-6-sol",
 	"gpt-5-6-terra",
 	"gpt-5-6-luna",
+	"gpt-5-6-luna-medium",
+	"gpt-5-6-terra-medium",
+	"gpt-5-6-terra-high",
 	// alibaba
 	"qwen-3",
 	"qwen-2-5",
@@ -88,6 +95,8 @@ pub const KNOWN: [&str; 22] = [
 	"deepseek-r1",
 	"deepseek-coder-v2",
 	"deepseek-prover-v2",
+	// cursor
+	"composer-2-5",
 	// the light Claude, kept last so the list reads by provider
 	"claude-haiku-4-6",
 ];
@@ -130,9 +139,11 @@ pub const NAMING_RULE: &str = "\
 Report the model that produced this answer on a single line, as `provider/model`.
 
   anthropic/claude-{variant}-{version}   claude-sonnet-5, claude-haiku-4-5, claude-opus-4-8
-  openai/gpt-{version}[-{variant}]       gpt-5, gpt-5-2, gpt-5-sol, gpt-5-6-terra
+  openai/gpt-{version}[-{variant}][-{effort}]
+                                           gpt-5, gpt-5-sol, gpt-5-6-terra-medium
   alibaba/qwen-{version}[-{variant}]     qwen-3, qwen-2-5, qwen-2-5-max, qwen-3-235b-a22b
   deepseek/deepseek-{variant}            deepseek-v3, deepseek-r1, deepseek-coder-v2
+  cursor/composer-{version}              composer-2-5
 
 Anthropic names the variant before the version; OpenAI names the version before the variant.
 Write every dot as a hyphen, and use lower case throughout.";
@@ -186,7 +197,9 @@ mod tests {
 	#[test]
 	fn the_known_list_holds_what_the_rules_describe() {
 		assert!(known("claude-haiku-4-5"));
-		assert!(known("gpt-5-6-luna"));
+		assert!(known("gpt-5-6-luna-medium"));
+		assert!(known("gpt-5-6-terra-high"));
+		assert!(known("composer-2-5"));
 		assert!(known("deepseek-prover-v2"));
 		// Recognition is not a gate: an unfamiliar id is still recorded as it arrived.
 		assert!(!known("claude-something-9"));
@@ -194,11 +207,12 @@ mod tests {
 	}
 
 	#[test]
-	fn the_two_families_order_their_parts_differently() {
+	fn the_model_families_keep_their_own_shapes() {
 		// Worth a test because it is the thing most likely to be silently normalised into one
 		// shape by somebody tidying up later.
 		assert!(NAMING_RULE.contains("claude-{variant}-{version}"));
-		assert!(NAMING_RULE.contains("gpt-{version}[-{variant}]"));
+		assert!(NAMING_RULE.contains("gpt-{version}[-{variant}][-{effort}]"));
+		assert!(NAMING_RULE.contains("composer-{version}"));
 	}
 
 	#[test]
@@ -216,6 +230,7 @@ mod tests {
 			Provider::of_model("deepseek-prover-v2"),
 			Some(Provider::Deepseek)
 		);
+		assert_eq!(Provider::of_model("composer-2-5"), Some(Provider::Cursor));
 		assert_eq!(Provider::of_model("something-else"), None);
 	}
 

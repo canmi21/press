@@ -139,6 +139,23 @@ fn fetch_favicons(args: &[String]) -> ExitCode {
 	ExitCode::SUCCESS
 }
 
+fn selected_runner(
+	args: &[String],
+	default: i18n::runner::Runner,
+) -> Result<i18n::runner::Runner, ExitCode> {
+	let Some(at) = args.iter().position(|arg| arg == "--model") else {
+		return Ok(default);
+	};
+	let Some(runner) = args
+		.get(at + 1)
+		.and_then(|name| i18n::runner::Runner::parse(name))
+	else {
+		eprintln!("--model takes {}", i18n::runner::CHOICES);
+		return Err(ExitCode::FAILURE);
+	};
+	Ok(runner)
+}
+
 /// Describe every asset that has no description yet.
 ///
 /// The description is written into the manifest, so it belongs to the picture rather than to
@@ -151,12 +168,10 @@ fn describe_images(args: &[String]) -> ExitCode {
 		.position(|arg| arg == "--limit")
 		.and_then(|at| args.get(at + 1))
 		.and_then(|value| value.parse::<usize>().ok());
-	let runner = args
-		.iter()
-		.position(|arg| arg == "--model")
-		.and_then(|at| args.get(at + 1))
-		.and_then(|name| i18n::runner::Runner::parse(name))
-		.unwrap_or(i18n::runner::DEFAULT);
+	let runner = match selected_runner(args, i18n::runner::DEFAULT_VISION) {
+		Ok(runner) => runner,
+		Err(code) => return code,
+	};
 
 	let root = match paths::repo_root() {
 		Ok(root) => root,
@@ -245,7 +260,7 @@ fn translate_articles(args: &[String]) -> ExitCode {
 		.and_then(|value| value.parse::<usize>().ok());
 
 	let mut only: Vec<std::path::PathBuf> = Vec::new();
-	let mut runner = i18n::runner::DEFAULT;
+	let mut runner = i18n::runner::DEFAULT_TEXT;
 	let mut skip = false;
 	for (at, arg) in args.iter().enumerate() {
 		if skip {
@@ -263,7 +278,7 @@ fn translate_articles(args: &[String]) -> ExitCode {
 				{
 					Some(chosen) => runner = chosen,
 					None => {
-						eprintln!("--model takes claude or gemini");
+						eprintln!("--model takes {}", i18n::runner::CHOICES);
 						return ExitCode::FAILURE;
 					}
 				}
@@ -397,12 +412,10 @@ fn classify_images(args: &[String]) -> ExitCode {
 		.position(|arg| arg == "--limit")
 		.and_then(|at| args.get(at + 1))
 		.and_then(|value| value.parse::<usize>().ok());
-	let runner = args
-		.iter()
-		.position(|arg| arg == "--model")
-		.and_then(|at| args.get(at + 1))
-		.and_then(|name| i18n::runner::Runner::parse(name))
-		.unwrap_or(i18n::runner::DEFAULT);
+	let runner = match selected_runner(args, i18n::runner::DEFAULT_VISION) {
+		Ok(runner) => runner,
+		Err(code) => return code,
+	};
 
 	let root = match paths::repo_root() {
 		Ok(root) => root,
@@ -626,7 +639,7 @@ fn usage() {
 	eprintln!("  alt [--model M] [--force] [--limit N]");
 	eprintln!("                              describe assets that have no description yet");
 	eprintln!("  og [--force]                render an OpenGraph card per article");
-	eprintln!("  i18n [--model claude|gemini|gpt-oss] [--force] [--limit N] [article...]");
+	eprintln!("  i18n [--model M] [--force] [--limit N] [article...]");
 	eprintln!("                              translate article segments into every locale");
 	eprintln!("  tag [--model M] [--force] [--limit N]");
 	eprintln!("                              give each asset a category and tags");

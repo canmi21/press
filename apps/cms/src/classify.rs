@@ -178,7 +178,7 @@ pub async fn run(
 		);
 
 		let text = prompt(&path, &tags::known(&registry));
-		let answer = match runner::ask(runner, &text, runner.model_for_vision()).await {
+		let answer = match runner::ask_vision(runner, &text, runner.model_for_vision(), &path).await {
 			Ok(answer) => answer,
 			Err(Refusal::Exhausted(reason)) => {
 				outcome.exhausted = Some(reason);

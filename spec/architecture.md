@@ -345,11 +345,10 @@ picture, and the picture is the same picture wherever it appears -- so one descr
 once is inherited by every reference, including the ones written years later. An article that
 needs different wording for its own context overrides it; nothing else has to say anything.
 
-`cms alt` fills them by handing the work to the local `claude` CLI rather than to the API.
-That binary is a whole agent with a Read tool of its own, so naming a path in the prompt is
-enough: there is no multimodal request to assemble, no image to encode, and no key to hold. It
-is slower and dearer per call, and neither matters for a batch that runs once per imported
-picture.
+`cms alt` fills them by handing the work to a local agent CLI rather than to an API. The
+default is `gpt-5.6-terra-medium` through Codex, with the image attached to the invocation;
+other runners may read the path named in the prompt instead. There is no multimodal request to
+assemble, no image to encode, and no key to hold.
 
 The framing in the prompt is the instruction that matters. "Describe this image" produces a
 caption -- a label naming the subject. Asking for what someone who cannot see it would need

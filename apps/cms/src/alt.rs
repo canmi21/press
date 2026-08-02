@@ -3,11 +3,9 @@
 //! The description belongs to the asset, not to any article referencing it, so it is written
 //! into the manifest once and every reference inherits it. See spec/architecture.md.
 //!
-//! Work is handed to the local `claude` CLI rather than to the API. That binary is a whole
-//! agent with a Read tool of its own, so naming a path in the prompt is enough -- there is no
-//! multimodal request to assemble, no image to base64, and no key to hold. It is slower and
-//! dearer per call than the raw API, neither of which matters for a batch that runs once per
-//! imported picture.
+//! Work is handed to a local agent CLI rather than to an API. The runner either attaches the
+//! image or reads the named path itself, so there is no multimodal request to assemble, no image
+//! to base64, and no key to hold.
 
 use crate::i18n::runner::{self, Refusal, Runner};
 use crate::image::manifest::Merged;
@@ -151,7 +149,7 @@ fn originals_by_id(originals: &Path) -> BTreeMap<String, PathBuf> {
 /// applies here as everywhere else. The provider and model recorded afterwards come from what
 /// actually ran rather than from a constant in this file.
 async fn describe(runner: Runner, path: &Path) -> Result<(String, Spend, String), Refusal> {
-	let answer = runner::ask(runner, &prompt(path), runner.model_for_vision()).await?;
+	let answer = runner::ask_vision(runner, &prompt(path), runner.model_for_vision(), path).await?;
 	let text = answer.text.trim().to_owned();
 	if text.is_empty() {
 		return Err(Refusal::Failed("the model returned nothing".to_owned()));

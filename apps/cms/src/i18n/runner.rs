@@ -1,16 +1,17 @@
 //! Who does the translating.
 //!
-//! Two agents with the same shape: a local binary taking one prompt non-interactively and
-//! printing a JSON envelope. Neither is an API client, so there is no key here and no request
-//! to assemble -- the difference between them is which envelope to read.
+//! Local agents taking one prompt non-interactively. None is an API client, so there is no key
+//! here and no request to assemble -- the difference between them is which command to run and
+//! which envelope to read.
 //!
-//! Claude reports the model that actually ran; `agy` does not, so for Gemini what was asked
-//! for is what gets recorded. That is a weaker fact and it is worth knowing which one you
-//! have. See spec/i18n.md.
+//! Claude reports the model that actually ran; the others do not, so what was asked for is what
+//! gets recorded. That is a weaker fact and it is worth knowing which one you have. See
+//! spec/i18n.md.
 
 use super::model;
 use super::segment::Kind;
 use claude_codes::{AsyncClient, ClaudeOutput, cli::ClaudeCliBuilder};
+use std::path::Path;
 
 /// Which agent a run uses.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -19,14 +20,17 @@ pub enum Runner {
 	Gemini,
 	/// Open-weight GPT, served through the same `agy` binary as Gemini.
 	GptOss,
+	Codex,
+	Cursor,
 }
 
-/// Which agent runs when a command is given no `--model`.
-///
-/// The open-weight one. Nothing here needs the strongest model available -- describing a
-/// picture and naming what is in it are reading tasks -- and a default that spends the most
-/// expensive allowance is a default that gets overridden every time.
-pub const DEFAULT: Runner = Runner::GptOss;
+/// Pure text stays on the open-weight model unless a runner is named explicitly.
+pub const DEFAULT_TEXT: Runner = Runner::GptOss;
+
+/// Tasks that need to see an image use Codex's balanced vision model by default.
+pub const DEFAULT_VISION: Runner = Runner::Codex;
+
+pub const CHOICES: &str = "claude, gemini, gpt-oss, codex, or cursor";
 
 impl Runner {
 	pub fn parse(name: &str) -> Option<Self> {
@@ -34,6 +38,8 @@ impl Runner {
 			"claude" => Some(Self::Claude),
 			"gemini" | "agy" => Some(Self::Gemini),
 			"gpt-oss" | "oss" => Some(Self::GptOss),
+			"codex" => Some(Self::Codex),
+			"cursor" | "cursor-agent" => Some(Self::Cursor),
 			_ => None,
 		}
 	}
@@ -44,6 +50,8 @@ impl Runner {
 			Self::Gemini => "google",
 			// The weights are OpenAI's; agy is only the road it arrives by.
 			Self::GptOss => "openai",
+			Self::Codex => "openai",
+			Self::Cursor => "cursor",
 		}
 	}
 
@@ -67,6 +75,12 @@ impl Runner {
 			// One size offered, so every tier is the same string. Named per tier anyway, so
 			// that adding a second is a table edit rather than a restructure.
 			Self::GptOss => "gpt-oss-120b-medium",
+			Self::Codex => match (kind.is_light(), attempt) {
+				(true, 0) => "gpt-5.6-luna-medium",
+				(_, 0 | 1) => "gpt-5.6-terra-medium",
+				_ => "gpt-5.6-terra-high",
+			},
+			Self::Cursor => "composer-2.5",
 		}
 	}
 
@@ -80,12 +94,9 @@ impl Runner {
 			Self::Claude => "sonnet",
 			Self::Gemini => "gemini-3.6-flash-high",
 			Self::GptOss => "gpt-oss-120b-medium",
+			Self::Codex => "gpt-5.6-terra-medium",
+			Self::Cursor => "composer-2.5",
 		}
-	}
-
-	/// Whether this runner is driven by the `agy` binary.
-	pub fn uses_agy(self) -> bool {
-		matches!(self, Self::Gemini | Self::GptOss)
 	}
 }
 
@@ -119,10 +130,30 @@ impl std::fmt::Display for Refusal {
 }
 
 pub async fn ask(runner: Runner, prompt: &str, model: &str) -> Result<Answer, Refusal> {
-	if runner.uses_agy() {
-		agy(prompt, model).await
-	} else {
-		claude(prompt, model).await
+	dispatch(runner, prompt, model, None).await
+}
+
+/// Ask a runner about an image, attaching the bytes when its CLI supports that directly.
+pub async fn ask_vision(
+	runner: Runner,
+	prompt: &str,
+	model: &str,
+	image: &Path,
+) -> Result<Answer, Refusal> {
+	dispatch(runner, prompt, model, Some(image)).await
+}
+
+async fn dispatch(
+	runner: Runner,
+	prompt: &str,
+	model: &str,
+	image: Option<&Path>,
+) -> Result<Answer, Refusal> {
+	match runner {
+		Runner::Claude => claude(prompt, model).await,
+		Runner::Gemini | Runner::GptOss => agy(prompt, model).await,
+		Runner::Codex => codex(prompt, model, image).await,
+		Runner::Cursor => cursor(prompt, model).await,
 	}
 }
 
@@ -168,6 +199,122 @@ async fn claude(prompt: &str, model: &str) -> Result<Answer, Refusal> {
 				+ u64::from(u.cache_creation_input_tokens)
 		}),
 		usd: result.total_cost_usd,
+	})
+}
+
+fn failed_command(binary: &str, output: &std::process::Output) -> Refusal {
+	let stderr = String::from_utf8_lossy(&output.stderr);
+	let stdout = String::from_utf8_lossy(&output.stdout);
+	let detail = if stderr.trim().is_empty() {
+		stdout.trim()
+	} else {
+		stderr.trim()
+	};
+	classify(&format!(
+		"{binary} exited {}: {}",
+		output.status,
+		detail.chars().take(500).collect::<String>()
+	))
+}
+
+/// Read the final message and billed tokens from `codex exec --json` JSONL.
+fn codex_result(stdout: &[u8]) -> Result<(String, u64), Refusal> {
+	let mut answer = None;
+	let mut tokens = 0;
+	for line in stdout
+		.split(|byte| *byte == b'\n')
+		.filter(|line| !line.is_empty())
+	{
+		let event: serde_json::Value = serde_json::from_slice(line)
+			.map_err(|error| Refusal::Failed(format!("invalid codex event: {error}")))?;
+		match event.get("type").and_then(serde_json::Value::as_str) {
+			Some("item.completed")
+				if event
+					.pointer("/item/type")
+					.and_then(serde_json::Value::as_str)
+					== Some("agent_message") =>
+			{
+				answer = event
+					.pointer("/item/text")
+					.and_then(serde_json::Value::as_str)
+					.map(str::to_owned);
+			}
+			Some("turn.completed") => {
+				let input = event
+					.pointer("/usage/input_tokens")
+					.and_then(serde_json::Value::as_u64)
+					.unwrap_or(0);
+				let output = event
+					.pointer("/usage/output_tokens")
+					.and_then(serde_json::Value::as_u64)
+					.unwrap_or(0);
+				tokens = input + output;
+			}
+			_ => {}
+		}
+	}
+	answer
+		.map(|text| (text, tokens))
+		.ok_or_else(|| Refusal::Failed("codex ended without a final message".to_owned()))
+}
+
+async fn codex(prompt: &str, model: &str, image: Option<&Path>) -> Result<Answer, Refusal> {
+	let mut command = tokio::process::Command::new("codex");
+	command
+		.arg("exec")
+		.arg("--ephemeral")
+		.arg("--sandbox")
+		.arg("read-only")
+		.arg("--model")
+		.arg(model)
+		.arg("--json");
+	if let Some(image) = image {
+		command.arg("--image").arg(image);
+	}
+	let output = command
+		.arg(prompt)
+		.output()
+		.await
+		.map_err(|error| Refusal::Failed(format!("could not run codex: {error}")))?;
+	if !output.status.success() {
+		return Err(failed_command("codex", &output));
+	}
+
+	let (text, tokens) = codex_result(&output.stdout)?;
+	Ok(Answer {
+		text,
+		// Codex's event stream does not name the resolved model, so record the requested one.
+		model: model::normalise(model),
+		tokens,
+		// The CLI reports tokens but not their cost.
+		usd: 0.0,
+	})
+}
+
+async fn cursor(prompt: &str, model: &str) -> Result<Answer, Refusal> {
+	let output = tokio::process::Command::new("cursor-agent")
+		.arg("--print")
+		.arg("--output-format")
+		.arg("text")
+		// Ask mode can inspect the named image but cannot edit the workspace.
+		.arg("--mode")
+		.arg("ask")
+		.arg("--model")
+		.arg(model)
+		.arg(prompt)
+		.output()
+		.await
+		.map_err(|error| Refusal::Failed(format!("could not run cursor-agent: {error}")))?;
+	if !output.status.success() {
+		return Err(failed_command("cursor-agent", &output));
+	}
+
+	Ok(Answer {
+		text: String::from_utf8_lossy(&output.stdout).into_owned(),
+		// Text output identifies neither the resolved model nor usage.
+		model: model::normalise(model),
+		tokens: 0,
+		usd: 0.0,
 	})
 }
 
@@ -313,18 +460,61 @@ mod tests {
 		assert_eq!(Runner::parse("Gemini"), Some(Runner::Gemini));
 		// The binary is `agy`, and somebody will reach for that name.
 		assert_eq!(Runner::parse("agy"), Some(Runner::Gemini));
+		assert_eq!(Runner::parse("codex"), Some(Runner::Codex));
+		assert_eq!(Runner::parse("cursor-agent"), Some(Runner::Cursor));
 		assert_eq!(Runner::parse("gpt"), None);
 	}
 
 	#[test]
-	fn both_runners_have_the_same_three_tiers() {
-		for runner in [Runner::Claude, Runner::Gemini] {
+	fn tiered_runners_have_the_same_three_roles() {
+		for runner in [Runner::Claude, Runner::Gemini, Runner::Codex] {
 			let light = runner.model_for(Kind::Heading, 0);
 			let standard = runner.model_for(Kind::Prose, 0);
 			let strong = runner.model_for(Kind::Prose, 2);
 			assert_ne!(light, standard);
 			assert_ne!(standard, strong);
 		}
+	}
+
+	#[test]
+	fn codex_uses_the_three_requested_tiers() {
+		assert_eq!(
+			Runner::Codex.model_for(Kind::Heading, 0),
+			"gpt-5.6-luna-medium"
+		);
+		assert_eq!(
+			Runner::Codex.model_for(Kind::Prose, 0),
+			"gpt-5.6-terra-medium"
+		);
+		assert_eq!(
+			Runner::Codex.model_for(Kind::Prose, 2),
+			"gpt-5.6-terra-high"
+		);
+	}
+
+	#[test]
+	fn cursor_only_offers_composer() {
+		for kind in [Kind::Heading, Kind::Prose] {
+			assert_eq!(Runner::Cursor.model_for(kind, 0), "composer-2.5");
+			assert_eq!(Runner::Cursor.model_for(kind, 2), "composer-2.5");
+		}
+		assert_eq!(Runner::Cursor.model_for_vision(), "composer-2.5");
+	}
+
+	#[test]
+	fn text_and_vision_have_separate_defaults() {
+		assert_eq!(DEFAULT_TEXT, Runner::GptOss);
+		assert_eq!(DEFAULT_VISION, Runner::Codex);
+		assert_eq!(DEFAULT_VISION.model_for_vision(), "gpt-5.6-terra-medium");
+	}
+
+	#[test]
+	fn a_codex_event_stream_yields_the_answer_and_usage() {
+		let events = br#"{"type":"thread.started","thread_id":"1"}
+{"type":"item.completed","item":{"type":"agent_message","text":"done"}}
+{"type":"turn.completed","usage":{"input_tokens":12,"output_tokens":3}}
+"#;
+		assert_eq!(codex_result(events).unwrap(), ("done".to_owned(), 15));
 	}
 
 	#[test]
@@ -381,5 +571,8 @@ mod tests {
 	fn each_runner_names_its_own_provider() {
 		assert_eq!(Runner::Claude.provider(), "anthropic");
 		assert_eq!(Runner::Gemini.provider(), "google");
+		assert_eq!(Runner::GptOss.provider(), "openai");
+		assert_eq!(Runner::Codex.provider(), "openai");
+		assert_eq!(Runner::Cursor.provider(), "cursor");
 	}
 }
