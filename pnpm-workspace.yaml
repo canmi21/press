@@ -5,6 +5,12 @@ packages:
   - libs/*
   - apps/*
 
+# SvelteKit 2 retains cookie 0.6 for compatibility with invalid cookie attributes. Match only
+# that vulnerable edge, so a future upstream range starting at 0.7 or a newer SvelteKit major
+# takes precedence automatically.
+overrides:
+  '@sveltejs/kit@2>cookie@<0.7.0': 0.7.2
+
 # A package listed here may run arbitrary code during install. pnpm blocks that by default,
 # and the default is right -- an install script is the shortest path from a compromised
 # package to a compromised machine, and it runs before anybody reads a line of the code.
