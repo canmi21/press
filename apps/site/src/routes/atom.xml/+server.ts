@@ -4,23 +4,27 @@ import { getArticles } from '$lib/content';
 import { site } from '$lib/site';
 import type { RequestHandler } from './$types';
 
-export const prerender = true;
+export const prerender = false;
 
 const SITE = URLS.apps.production.site;
 const RES = URLS.apps.production.cdn;
 
-export const GET: RequestHandler = async () => {
+export const GET: RequestHandler = async ({ locals }) => {
+	const code = locals.locale?.code ?? 'mw';
 	const prepared = (await getArticles())
-		.map((article) => ({
-			id: article.url,
-			title: article.meta.title,
-			updated: new Date(article.meta.lastmod),
-			published: new Date(article.meta.created),
-			summary: article.meta.description,
-			content: article.feed,
-			links: [{ href: article.url }],
-			lang: article.meta.lang,
-		}))
+		.map((article) => {
+			const view = article.views[code];
+			return {
+				id: article.url,
+				title: view.meta.title,
+				updated: new Date(view.meta.lastmod),
+				published: new Date(view.meta.created),
+				summary: view.meta.description,
+				content: view.feed,
+				links: [{ href: view.canonical }],
+				lang: view.languageTag,
+			};
+		})
 		.toSorted((a, b) => b.updated.getTime() - a.updated.getTime());
 
 	let xml = generateAtomFeed({
@@ -56,7 +60,7 @@ export const GET: RequestHandler = async () => {
 	return new Response(xml, {
 		headers: {
 			'Content-Type': 'application/atom+xml; charset=utf-8',
-			'Cache-Control': 'public, max-age=360, s-maxage=360',
+			'Cache-Control': 'private, no-store',
 		},
 	});
 };

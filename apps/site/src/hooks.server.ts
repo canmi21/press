@@ -39,14 +39,18 @@ const pageHandle: Handle = async ({ event, resolve }) => {
 	}
 	const path = pathname.replace(/^\//, '').replace(/\/$/, '');
 	const article = getArticle(path);
-	if (article && !building) {
+	const localeAware = article != null || ['/', '/atom.xml', '/llms.txt'].includes(pathname);
+	if (localeAware && !building) {
 		const cookie = event.cookies.get('language');
 		const code = resolveLocale({
 			query: event.url.searchParams.get('lang'),
 			cookie,
 			acceptLanguage: event.request.headers.get('accept-language'),
 		});
-		event.locals.locale = { code, languageTag: languageTag(code, article.meta.lang) };
+		event.locals.locale = {
+			code,
+			languageTag: languageTag(code, article?.meta.lang ?? 'en-US'),
+		};
 		if (shouldWriteLanguageCookie(cookie, code)) {
 			event.cookies.set('language', code, {
 				path: '/',

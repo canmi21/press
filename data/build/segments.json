@@ -1,1202 +1,1498 @@
 {
-  "version": 2,
+  "version": 3,
   "articles": {
     "architecture/compile-time-rendering.md": [
+      {
+        "id": "de0329c8ae5d94b2f882129a2de5a41a",
+        "start": 10,
+        "end": 34,
+        "fingerprint": "80d204c4",
+        "region": "frontmatter"
+      },
+      {
+        "id": "7039d1334cf4ac0b9759edca4d22b17c",
+        "start": 44,
+        "end": 82,
+        "fingerprint": "e8ec0b8a",
+        "region": "frontmatter"
+      },
+      {
+        "id": "a66d7e8297a97144113a2bed5312a375",
+        "start": 95,
+        "end": 363,
+        "fingerprint": "a397f63f",
+        "region": "frontmatter"
+      },
       {
         "id": "95c8b6f6d1d4ceebcfc333965ffee9cf",
         "start": 458,
         "end": 670,
-        "fingerprint": "fd25cc71"
+        "fingerprint": "fd25cc71",
+        "region": "body"
       },
       {
         "id": "fe2d1626f580fc58fa74bba2618cdedb",
         "start": 672,
         "end": 692,
-        "fingerprint": "e73b7ceb"
+        "fingerprint": "e73b7ceb",
+        "region": "body"
       },
       {
         "id": "999ec04ab43a9fbfb8fa0a97118cf4bf",
         "start": 694,
         "end": 1330,
-        "fingerprint": "c8e9f1e8"
+        "fingerprint": "c8e9f1e8",
+        "region": "body"
       },
       {
         "id": "c098f921ac2f71ab542af57a7c12469c",
         "start": 1332,
         "end": 1855,
-        "fingerprint": "54d0ae63"
+        "fingerprint": "54d0ae63",
+        "region": "body"
       },
       {
         "id": "0d08f4664451ce6255d7aa6b19a628ec",
         "start": 1857,
         "end": 1890,
-        "fingerprint": "1fc935c6"
+        "fingerprint": "1fc935c6",
+        "region": "body"
       },
       {
         "id": "d73a136fa5db614a86a6343f76a7aeea",
         "start": 1892,
         "end": 3051,
-        "fingerprint": "619ce7f3"
+        "fingerprint": "619ce7f3",
+        "region": "body"
       },
       {
         "id": "3c3a82fc5efa357a56c52b4baef3eb55",
         "start": 7155,
         "end": 7648,
-        "fingerprint": "40096e65"
+        "fingerprint": "40096e65",
+        "region": "body"
       },
       {
         "id": "148f2fac7accb5704d043703b4f19d4d",
         "start": 7650,
         "end": 8243,
-        "fingerprint": "587c4961"
+        "fingerprint": "587c4961",
+        "region": "body"
       },
       {
         "id": "7f07d6c5e6a3099ac07a850f1eb642f4",
         "start": 8245,
         "end": 8655,
-        "fingerprint": "d094fd96"
+        "fingerprint": "d094fd96",
+        "region": "body"
       },
       {
         "id": "9e9e14164958cb6ff0e6d1b7b04662e0",
         "start": 8657,
         "end": 9056,
-        "fingerprint": "4632c779"
+        "fingerprint": "4632c779",
+        "region": "body"
       },
       {
         "id": "bf7094165fcf7d6768011d14f82468a0",
         "start": 11759,
         "end": 11804,
-        "fingerprint": "f1310439"
+        "fingerprint": "f1310439",
+        "region": "body"
       },
       {
         "id": "77ba0677efb663f049d1735f108fad91",
         "start": 11806,
         "end": 12123,
-        "fingerprint": "633398c8"
+        "fingerprint": "633398c8",
+        "region": "body"
       },
       {
         "id": "46a2851690f3ecc92712fd6b0091238d",
         "start": 12125,
         "end": 12567,
-        "fingerprint": "82c59b80"
+        "fingerprint": "82c59b80",
+        "region": "body"
       },
       {
         "id": "470c1e5caf20d3b815c5a6e044fc408b",
         "start": 15860,
         "end": 16172,
-        "fingerprint": "5d916a2e"
+        "fingerprint": "5d916a2e",
+        "region": "body"
       },
       {
         "id": "0faaf2c4057af0a05c680781f1faa0dd",
         "start": 16174,
         "end": 16752,
-        "fingerprint": "dec4a320"
+        "fingerprint": "dec4a320",
+        "region": "body"
       },
       {
         "id": "0024a0ed7539afcffc9c8ff2923ce62e",
         "start": 16754,
         "end": 16840,
-        "fingerprint": "6c49af0a"
+        "fingerprint": "6c49af0a",
+        "region": "body"
       },
       {
         "id": "e20db97cd7c94390ebb1913943b9cac7",
         "start": 16842,
         "end": 16867,
-        "fingerprint": "a9975ad0"
+        "fingerprint": "a9975ad0",
+        "region": "body"
       },
       {
         "id": "c1902d0bdcbabcc9f04b1821c234aa66",
         "start": 16869,
         "end": 17871,
-        "fingerprint": "9677281e"
+        "fingerprint": "9677281e",
+        "region": "body"
       },
       {
         "id": "c482d57c15362611aafa1d19896dd6e0",
         "start": 17873,
         "end": 17896,
-        "fingerprint": "1a0ab75c"
+        "fingerprint": "1a0ab75c",
+        "region": "body"
       },
       {
         "id": "4aa16a298ad0995c33b61c2c0fa34ccd",
         "start": 17898,
         "end": 18154,
-        "fingerprint": "f8e725a6"
+        "fingerprint": "f8e725a6",
+        "region": "body"
       },
       {
         "id": "a66eef830b1e9be813420837144c619c",
         "start": 18204,
         "end": 18267,
-        "fingerprint": "f8af67b2"
+        "fingerprint": "f8af67b2",
+        "region": "body"
       },
       {
         "id": "1476aa5652f7b8035eb86ed872125322",
         "start": 18347,
         "end": 18648,
-        "fingerprint": "2a8015fb"
+        "fingerprint": "2a8015fb",
+        "region": "body"
       },
       {
         "id": "0e1434b80402c02fdc8b7a74be1e70ae",
         "start": 18763,
         "end": 19267,
-        "fingerprint": "8a7703bd"
+        "fingerprint": "8a7703bd",
+        "region": "body"
       },
       {
         "id": "23a4cdba2f8efddf9582d234cd294685",
         "start": 22079,
         "end": 22310,
-        "fingerprint": "0dc44bfb"
+        "fingerprint": "0dc44bfb",
+        "region": "body"
       },
       {
         "id": "52637a9cf61525f4292e4e42d769263b",
         "start": 22420,
         "end": 22462,
-        "fingerprint": "91abd25f"
+        "fingerprint": "91abd25f",
+        "region": "body"
       },
       {
         "id": "602407b7f2bce94e855549a24cdc1820",
         "start": 22551,
         "end": 22569,
-        "fingerprint": "7d84af22"
+        "fingerprint": "7d84af22",
+        "region": "body"
       },
       {
         "id": "48f04710e94fe79ceb06ce672885792c",
         "start": 22746,
         "end": 23340,
-        "fingerprint": "d0b37825"
+        "fingerprint": "d0b37825",
+        "region": "body"
       },
       {
         "id": "9090e380fb1b42aff540bfabaad95bbe",
         "start": 23342,
         "end": 23369,
-        "fingerprint": "5c7a8514"
+        "fingerprint": "5c7a8514",
+        "region": "body"
       },
       {
         "id": "15fab1951eaa6c8c18f1489d17190399",
         "start": 23371,
         "end": 24515,
-        "fingerprint": "71a25ac2"
+        "fingerprint": "71a25ac2",
+        "region": "body"
       },
       {
         "id": "e5f922120429435a0094d32102727c01",
         "start": 27543,
         "end": 28802,
-        "fingerprint": "58a126ec"
+        "fingerprint": "58a126ec",
+        "region": "body"
       },
       {
         "id": "b97d3cbcdfe80335d3662a3dc06f45a2",
         "start": 28804,
         "end": 28832,
-        "fingerprint": "6d546483"
+        "fingerprint": "6d546483",
+        "region": "body"
       },
       {
         "id": "bf55e6c2f2de634378a342c1010f5ce1",
         "start": 28834,
         "end": 29049,
-        "fingerprint": "90cdcc49"
+        "fingerprint": "90cdcc49",
+        "region": "body"
       },
       {
         "id": "648829f27f27ca013ea5ee55b54ac91a",
         "start": 29051,
         "end": 29984,
-        "fingerprint": "1d60b55b"
+        "fingerprint": "1d60b55b",
+        "region": "body"
       },
       {
         "id": "74a3ce40be4e9268244b3b26976864d5",
         "start": 29986,
         "end": 30011,
-        "fingerprint": "6e304ef4"
+        "fingerprint": "6e304ef4",
+        "region": "body"
       },
       {
         "id": "86099d0249c4444f92e73cf124aaea11",
         "start": 30013,
         "end": 30646,
-        "fingerprint": "3e83b61a"
+        "fingerprint": "3e83b61a",
+        "region": "body"
       },
       {
         "id": "8c394885c925c5549b722bc9b19b1dea",
         "start": 34252,
         "end": 34866,
-        "fingerprint": "447985f3"
+        "fingerprint": "447985f3",
+        "region": "body"
       },
       {
         "id": "382f4ceea128880c834d4ceecfeca360",
         "start": 34868,
         "end": 34917,
-        "fingerprint": "e61ce0d6"
+        "fingerprint": "e61ce0d6",
+        "region": "body"
       },
       {
         "id": "08c8b56ae0db900da6578e071dd20e62",
         "start": 34919,
         "end": 35500,
-        "fingerprint": "eeecacf5"
+        "fingerprint": "eeecacf5",
+        "region": "body"
       },
       {
         "id": "5d2562fa7c57900522dc8814c2f9b0e7",
         "start": 39074,
         "end": 39445,
-        "fingerprint": "9647ea44"
+        "fingerprint": "9647ea44",
+        "region": "body"
       },
       {
         "id": "8a158baf206a259b9e845bbf5010c99d",
         "start": 39447,
         "end": 39486,
-        "fingerprint": "8aa85f32"
+        "fingerprint": "8aa85f32",
+        "region": "body"
       },
       {
         "id": "7e2e18612febe5942620ca2ba1fe8476",
         "start": 39488,
         "end": 40058,
-        "fingerprint": "bea5da55"
+        "fingerprint": "bea5da55",
+        "region": "body"
       },
       {
         "id": "4aff906a806c3ef5b5a8599cc6da11a7",
         "start": 40060,
         "end": 40626,
-        "fingerprint": "3d111921"
+        "fingerprint": "3d111921",
+        "region": "body"
       },
       {
         "id": "3b94504af8ec2a3de06ab1561f14f389",
         "start": 42957,
         "end": 43632,
-        "fingerprint": "a05ee27b"
+        "fingerprint": "a05ee27b",
+        "region": "body"
       },
       {
         "id": "74c8398859e4ce8be3842fbe1f8a9902",
         "start": 43634,
         "end": 43681,
-        "fingerprint": "75815295"
+        "fingerprint": "75815295",
+        "region": "body"
       },
       {
         "id": "2c3b4fa344cd8b6b29ae3cc7dc457d52",
         "start": 43683,
         "end": 44047,
-        "fingerprint": "5f6beeae"
+        "fingerprint": "5f6beeae",
+        "region": "body"
       },
       {
         "id": "497d30bf48f4cedf9921c427edd12bbd",
         "start": 47620,
         "end": 48135,
-        "fingerprint": "113662f6"
+        "fingerprint": "113662f6",
+        "region": "body"
       },
       {
         "id": "7d5a54d5e45779310f3eadf5fcdbef73",
         "start": 48137,
         "end": 48169,
-        "fingerprint": "b498c35d"
+        "fingerprint": "b498c35d",
+        "region": "body"
       },
       {
         "id": "5ad017ea5101092ac7cd459df3332921",
         "start": 48171,
         "end": 48802,
-        "fingerprint": "ebe81ff8"
+        "fingerprint": "ebe81ff8",
+        "region": "body"
       },
       {
         "id": "6c50245db5ab6c44c41bcec16801afba",
         "start": 51978,
         "end": 52362,
-        "fingerprint": "0a649ee2"
+        "fingerprint": "0a649ee2",
+        "region": "body"
       },
       {
         "id": "f8549fd13877656daca0cfd15179969a",
         "start": 52364,
         "end": 52423,
-        "fingerprint": "02b3af7e"
+        "fingerprint": "02b3af7e",
+        "region": "body"
       },
       {
         "id": "16c897d9849a9ca874846d7e7c6a967f",
         "start": 52425,
         "end": 53262,
-        "fingerprint": "edb6f189"
+        "fingerprint": "edb6f189",
+        "region": "body"
       },
       {
         "id": "93d2cba94164810c8b03f0f6a0a0fa30",
         "start": 56938,
         "end": 57828,
-        "fingerprint": "14486b59"
+        "fingerprint": "14486b59",
+        "region": "body"
       },
       {
         "id": "7a7fe7978a91b6977d03d428de4a0093",
         "start": 57830,
         "end": 57864,
-        "fingerprint": "bf8e7919"
+        "fingerprint": "bf8e7919",
+        "region": "body"
       },
       {
         "id": "8c2732a7758a537a95b2e90dddd8378f",
         "start": 57866,
         "end": 58725,
-        "fingerprint": "1436ac12"
+        "fingerprint": "1436ac12",
+        "region": "body"
       },
       {
         "id": "93d4e759eab62ad27c417e8ae87b7635",
         "start": 64282,
         "end": 64701,
-        "fingerprint": "33efa9f2"
+        "fingerprint": "33efa9f2",
+        "region": "body"
       },
       {
         "id": "ccb2b39319a4c601dec48bcab6bae2f5",
         "start": 64703,
         "end": 64722,
-        "fingerprint": "3419c5e2"
+        "fingerprint": "3419c5e2",
+        "region": "body"
       },
       {
         "id": "e607f79910ca2344315b82a7fe7f1e29",
         "start": 64724,
         "end": 65413,
-        "fingerprint": "fae132e3"
+        "fingerprint": "fae132e3",
+        "region": "body"
       },
       {
         "id": "33df17f3b78ab8de02d9073ad51ac02c",
         "start": 68603,
         "end": 69134,
-        "fingerprint": "7d422a25"
+        "fingerprint": "7d422a25",
+        "region": "body"
       },
       {
         "id": "d16ed62cae0de289bd693686d35470cd",
         "start": 69136,
         "end": 69197,
-        "fingerprint": "87469900"
+        "fingerprint": "87469900",
+        "region": "body"
       },
       {
         "id": "495255041b4e86206efd13dac3abbd9c",
         "start": 69199,
         "end": 69236,
-        "fingerprint": "8a4fdca5"
+        "fingerprint": "8a4fdca5",
+        "region": "body"
       },
       {
         "id": "1fdc34fee91d0cd111a4f94ef5608493",
         "start": 72375,
         "end": 72860,
-        "fingerprint": "68d7fc66"
+        "fingerprint": "68d7fc66",
+        "region": "body"
       },
       {
         "id": "e4701007cd132158d1e103345fbf40de",
         "start": 72862,
         "end": 72910,
-        "fingerprint": "8acb3481"
+        "fingerprint": "8acb3481",
+        "region": "body"
       },
       {
         "id": "2eeed0381e20a693773c97cf918e09cd",
         "start": 72912,
         "end": 73544,
-        "fingerprint": "071abbed"
+        "fingerprint": "071abbed",
+        "region": "body"
       },
       {
         "id": "d5d15e323a637dac21d7a25e2db46975",
         "start": 76903,
         "end": 77420,
-        "fingerprint": "e709e14f"
+        "fingerprint": "e709e14f",
+        "region": "body"
       },
       {
         "id": "10270e637033b8d1cf61b8b8bf7a0789",
         "start": 78899,
         "end": 79586,
-        "fingerprint": "0584e727"
+        "fingerprint": "0584e727",
+        "region": "body"
       },
       {
         "id": "1464bd3901fb54513434f63f831b4148",
         "start": 79588,
         "end": 79614,
-        "fingerprint": "fb87659b"
+        "fingerprint": "fb87659b",
+        "region": "body"
       },
       {
         "id": "2572d33c59b0de355b8679aea55f1811",
         "start": 79616,
         "end": 80332,
-        "fingerprint": "7a1ddac5"
+        "fingerprint": "7a1ddac5",
+        "region": "body"
       }
     ],
     "development/rust-cargo-cranelift-tuning.md": [
       {
+        "id": "e4f45bb1cfbab66a39437d6e7026e471",
+        "start": 10,
+        "end": 36,
+        "fingerprint": "68bfdf0f",
+        "region": "frontmatter"
+      },
+      {
+        "id": "88551a1239b60d2cd9e0b979acf4e742",
+        "start": 46,
+        "end": 95,
+        "fingerprint": "1f46a102",
+        "region": "frontmatter"
+      },
+      {
+        "id": "daf36a3490b545034e4de52103d4b575",
+        "start": 108,
+        "end": 341,
+        "fingerprint": "c8baa1b4",
+        "region": "frontmatter"
+      },
+      {
         "id": "8f107e6c4908d70a5555730342bbba94",
         "start": 436,
         "end": 833,
-        "fingerprint": "b7b3c5e5"
+        "fingerprint": "b7b3c5e5",
+        "region": "body"
       },
       {
         "id": "9f059c827d113b5922837414055cc9cb",
         "start": 835,
         "end": 1413,
-        "fingerprint": "93e72bcf"
+        "fingerprint": "93e72bcf",
+        "region": "body"
       },
       {
         "id": "641bf59022771f8c13814097a7cdc7be",
         "start": 1415,
         "end": 1803,
-        "fingerprint": "63875532"
+        "fingerprint": "63875532",
+        "region": "body"
       },
       {
         "id": "8b26dd6ee82e31c3df3d10f8d575647d",
         "start": 1805,
         "end": 1838,
-        "fingerprint": "94abb1a3"
+        "fingerprint": "94abb1a3",
+        "region": "body"
       },
       {
         "id": "c26cd7334110d7d7418db67f768ed852",
         "start": 1840,
         "end": 2527,
-        "fingerprint": "8b629ee1"
+        "fingerprint": "8b629ee1",
+        "region": "body"
       },
       {
         "id": "15480aefffe4c21385656ad5c1bac7ab",
         "start": 7543,
         "end": 8310,
-        "fingerprint": "1d74b8e8"
+        "fingerprint": "1d74b8e8",
+        "region": "body"
       },
       {
         "id": "5d40ce0aa9f8cfbaba85afa08e1831f0",
         "start": 8312,
         "end": 8337,
-        "fingerprint": "d2bcc9f0"
+        "fingerprint": "d2bcc9f0",
+        "region": "body"
       },
       {
         "id": "97df4075d878ac7b8a6b12e70ee5b037",
         "start": 8339,
         "end": 8899,
-        "fingerprint": "54d218e5"
+        "fingerprint": "54d218e5",
+        "region": "body"
       },
       {
         "id": "894965060bc75a34909ee7b96e8b66fe",
         "start": 8901,
         "end": 9088,
-        "fingerprint": "5ed0a78c"
+        "fingerprint": "5ed0a78c",
+        "region": "body"
       },
       {
         "id": "16d5a7d88341168965926e5fafdc5c42",
         "start": 9090,
         "end": 10194,
-        "fingerprint": "ac93ae7e"
+        "fingerprint": "ac93ae7e",
+        "region": "body"
       },
       {
         "id": "3ecfd63d0174b61813402b5872679438",
         "start": 13780,
         "end": 14467,
-        "fingerprint": "47492589"
+        "fingerprint": "47492589",
+        "region": "body"
       },
       {
         "id": "753f60673f27ad08896f0f3c7eae02dc",
         "start": 14469,
         "end": 14507,
-        "fingerprint": "d04a387d"
+        "fingerprint": "d04a387d",
+        "region": "body"
       },
       {
         "id": "f431cfd98af980adfd9c279f26cf0ff0",
         "start": 14509,
         "end": 15008,
-        "fingerprint": "aa45bc36"
+        "fingerprint": "aa45bc36",
+        "region": "body"
       },
       {
         "id": "f03f713488e8914a4e63da46f8da7fd8",
         "start": 19144,
         "end": 19402,
-        "fingerprint": "3b228fda"
+        "fingerprint": "3b228fda",
+        "region": "body"
       },
       {
         "id": "9dab696ffc64d93b04b1da52a4226ecf",
         "start": 19404,
         "end": 19432,
-        "fingerprint": "eaaa0d32"
+        "fingerprint": "eaaa0d32",
+        "region": "body"
       },
       {
         "id": "5fc6fde170d3f8a2e5b55e141f1e4a38",
         "start": 19434,
         "end": 19795,
-        "fingerprint": "a48cb6ee"
+        "fingerprint": "a48cb6ee",
+        "region": "body"
       },
       {
         "id": "dc16e19413a7b7b643f868855c8b7038",
         "start": 19797,
         "end": 19913,
-        "fingerprint": "cfb009e3"
+        "fingerprint": "cfb009e3",
+        "region": "body"
       },
       {
         "id": "5aa2aca5f3799916473ef8b5a278b286",
         "start": 19968,
         "end": 20325,
-        "fingerprint": "1b3835be"
+        "fingerprint": "1b3835be",
+        "region": "body"
       },
       {
         "id": "e546e7e012bf42735634f55a842f5026",
         "start": 20327,
         "end": 20371,
-        "fingerprint": "f3eb2ac3"
+        "fingerprint": "f3eb2ac3",
+        "region": "body"
       },
       {
         "id": "932ed4fb81fe3ff80b0d225149714615",
         "start": 20373,
         "end": 21001,
-        "fingerprint": "efa47b4e"
+        "fingerprint": "efa47b4e",
+        "region": "body"
       },
       {
         "id": "9f7ee025dc7baa3234873cf0497ef03d",
         "start": 21003,
         "end": 21047,
-        "fingerprint": "c17eb532"
+        "fingerprint": "c17eb532",
+        "region": "body"
       },
       {
         "id": "54e05f42d060fa75becb4273b614c77f",
         "start": 21049,
         "end": 21370,
-        "fingerprint": "0c6dc099"
+        "fingerprint": "0c6dc099",
+        "region": "body"
       },
       {
         "id": "975836895270d632940b9810067ef218",
         "start": 21372,
         "end": 21805,
-        "fingerprint": "cd57a329"
+        "fingerprint": "cd57a329",
+        "region": "body"
       },
       {
         "id": "3af867c1c9c2855d32512288192a0fd0",
         "start": 27602,
         "end": 27636,
-        "fingerprint": "ed6a4b20"
+        "fingerprint": "ed6a4b20",
+        "region": "body"
       },
       {
         "id": "342f20e52b9ab4bb72d82c6f84108e5e",
         "start": 27638,
         "end": 28532,
-        "fingerprint": "263ff0ca"
+        "fingerprint": "263ff0ca",
+        "region": "body"
       },
       {
         "id": "977ff184355d7deda86d0a8c3077ed8c",
         "start": 28534,
         "end": 29823,
-        "fingerprint": "32766ae4"
+        "fingerprint": "32766ae4",
+        "region": "body"
       },
       {
         "id": "59129e74c82e302c36e7da4800e6472e",
         "start": 29825,
         "end": 29853,
-        "fingerprint": "058b7a19"
+        "fingerprint": "058b7a19",
+        "region": "body"
       },
       {
         "id": "df450b1d2c8872c348fe90704c844906",
         "start": 29855,
         "end": 29990,
-        "fingerprint": "ab79e7bf"
+        "fingerprint": "ab79e7bf",
+        "region": "body"
       },
       {
         "id": "a94383d7cb9c5055fea17b7235acdae7",
         "start": 33900,
         "end": 33986,
-        "fingerprint": "c3dfd428"
+        "fingerprint": "c3dfd428",
+        "region": "body"
       },
       {
         "id": "936b48773d2eb41c764e9bbe3a422b59",
         "start": 33988,
         "end": 34096,
-        "fingerprint": "0abe0589"
+        "fingerprint": "0abe0589",
+        "region": "body"
       },
       {
         "id": "9ac95fea36915a75d53d391209946f4e",
         "start": 34098,
         "end": 34457,
-        "fingerprint": "d7495d10"
+        "fingerprint": "d7495d10",
+        "region": "body"
       },
       {
         "id": "b87af62581612d6464cf0aac366905a9",
         "start": 34459,
         "end": 34508,
-        "fingerprint": "aa8257af"
+        "fingerprint": "aa8257af",
+        "region": "body"
       },
       {
         "id": "8209cae5598a352589c652418635fba9",
         "start": 34510,
         "end": 35177,
-        "fingerprint": "e6af0190"
+        "fingerprint": "e6af0190",
+        "region": "body"
       },
       {
         "id": "763d8324763c75f703cd5a5da4279733",
         "start": 35179,
         "end": 35223,
-        "fingerprint": "8bca7ac8"
+        "fingerprint": "8bca7ac8",
+        "region": "body"
       },
       {
         "id": "ff317262076663bb2d98caaad83893c9",
         "start": 35225,
         "end": 35861,
-        "fingerprint": "43539091"
+        "fingerprint": "43539091",
+        "region": "body"
       },
       {
         "id": "a86e40caebe198f200cc55a4030eb4fa",
         "start": 35863,
         "end": 35915,
-        "fingerprint": "ba1ba8a6"
+        "fingerprint": "ba1ba8a6",
+        "region": "body"
       },
       {
         "id": "696c86aedc20e88694bbbce205a74c4b",
         "start": 35917,
         "end": 35969,
-        "fingerprint": "b5e5e031"
+        "fingerprint": "b5e5e031",
+        "region": "body"
       },
       {
         "id": "8581c2d8b834c7f585d9f381ffc74aca",
         "start": 35971,
         "end": 36366,
-        "fingerprint": "05da39a4"
+        "fingerprint": "05da39a4",
+        "region": "body"
       },
       {
         "id": "77dbea1f344e54e899f0f992db0bd70c",
         "start": 36368,
         "end": 36406,
-        "fingerprint": "0986f732"
+        "fingerprint": "0986f732",
+        "region": "body"
       },
       {
         "id": "0f01aca1b9a9cb57f08a05c7403d77bd",
         "start": 36408,
         "end": 36785,
-        "fingerprint": "1ba459ba"
+        "fingerprint": "1ba459ba",
+        "region": "body"
       },
       {
         "id": "b3f35dd0746c98618a6638583b5fcc63",
         "start": 36896,
         "end": 36947,
-        "fingerprint": "34d7d0a4"
+        "fingerprint": "34d7d0a4",
+        "region": "body"
       },
       {
         "id": "5848c8d3988d4cfd2ec43ed33b167136",
         "start": 36949,
         "end": 37348,
-        "fingerprint": "7691d2c4"
+        "fingerprint": "7691d2c4",
+        "region": "body"
       },
       {
         "id": "00a31e806c22ce9ccd5ca5cf17461a89",
         "start": 37350,
         "end": 37365,
-        "fingerprint": "532dee96"
+        "fingerprint": "532dee96",
+        "region": "body"
       },
       {
         "id": "0ab50562ac7ea4bf26e4e95e0cb715c1",
         "start": 37367,
         "end": 37852,
-        "fingerprint": "acc9bc36"
+        "fingerprint": "acc9bc36",
+        "region": "body"
       },
       {
         "id": "24268afc11caa88923098713cc65341b",
         "start": 37854,
         "end": 38333,
-        "fingerprint": "1478ce90"
+        "fingerprint": "1478ce90",
+        "region": "body"
       },
       {
         "id": "bf8af9bda87a0ee239ae9723aa619fed",
         "start": 38444,
         "end": 39072,
-        "fingerprint": "bb773966"
+        "fingerprint": "bb773966",
+        "region": "body"
       },
       {
         "id": "fc378fc4acb44e74349676a38089c534",
         "start": 39074,
         "end": 39122,
-        "fingerprint": "e843cb8b"
+        "fingerprint": "e843cb8b",
+        "region": "body"
       },
       {
         "id": "2f12e5a08a22a3ba4a33b174e8049e08",
         "start": 39124,
         "end": 39311,
-        "fingerprint": "deaa641c"
+        "fingerprint": "deaa641c",
+        "region": "body"
       },
       {
         "id": "62f11cea844f6703b0dbf9857e15453c",
         "start": 39906,
         "end": 40655,
-        "fingerprint": "82813710"
+        "fingerprint": "82813710",
+        "region": "body"
       },
       {
         "id": "79ff0db9c5cea340095a60851e284cc9",
         "start": 40657,
         "end": 41625,
-        "fingerprint": "5ba5bdf1"
+        "fingerprint": "5ba5bdf1",
+        "region": "body"
       },
       {
         "id": "f94ebe5d401d712c0a99f0bd41ab9190",
         "start": 41627,
         "end": 41647,
-        "fingerprint": "7f0e6e00"
+        "fingerprint": "7f0e6e00",
+        "region": "body"
       },
       {
         "id": "8972ab2a06f2e872c59e5822ca3c56f5",
         "start": 41649,
         "end": 42116,
-        "fingerprint": "6183e5d5"
+        "fingerprint": "6183e5d5",
+        "region": "body"
       }
     ],
     "homepage.md": [
       {
+        "id": "ae914e773307cf74be41846a9daeeffd",
+        "start": 10,
+        "end": 16,
+        "fingerprint": "ed52b2e9",
+        "region": "frontmatter"
+      },
+      {
+        "id": "b8de478138706b6f5c1aa10eec4f58ad",
+        "start": 29,
+        "end": 103,
+        "fingerprint": "1e1a3cda",
+        "region": "frontmatter"
+      },
+      {
         "id": "454688a59e895fc34c3efacf1ba58881",
         "start": 205,
         "end": 500,
-        "fingerprint": "45d5ae38"
+        "fingerprint": "45d5ae38",
+        "region": "body"
       },
       {
         "id": "2eb073034a23d61eb025f3f22e403d5f",
         "start": 502,
         "end": 765,
-        "fingerprint": "9b98c9f9"
+        "fingerprint": "9b98c9f9",
+        "region": "body"
       }
     ],
     "milestone/less-is-more.md": [
       {
+        "id": "accfb2e414f5ec2d4afbe6ecb6631d36",
+        "start": 10,
+        "end": 23,
+        "fingerprint": "59f0c9ef",
+        "region": "frontmatter"
+      },
+      {
+        "id": "b60e899dca8ebe5689336bfe87e8278c",
+        "start": 33,
+        "end": 66,
+        "fingerprint": "9bbd9702",
+        "region": "frontmatter"
+      },
+      {
+        "id": "00aa63a1acb8da75178976e034a46db3",
+        "start": 79,
+        "end": 289,
+        "fingerprint": "ead0fb9d",
+        "region": "frontmatter"
+      },
+      {
         "id": "b99b9fcffe3b3af02b601b9e4b16d415",
         "start": 384,
         "end": 414,
-        "fingerprint": "fc47325c"
+        "fingerprint": "fc47325c",
+        "region": "body"
       },
       {
         "id": "0718215ea97d512da49fb3554686b339",
         "start": 416,
         "end": 858,
-        "fingerprint": "ad8bdd78"
+        "fingerprint": "ad8bdd78",
+        "region": "body"
       },
       {
         "id": "d0affcbc050f4326676bcaea16ecfa14",
         "start": 860,
         "end": 993,
-        "fingerprint": "12387245"
+        "fingerprint": "12387245",
+        "region": "body"
       },
       {
         "id": "a1ddce9aae8d974e6904aa33b0d78d57",
         "start": 995,
         "end": 1170,
-        "fingerprint": "34255962"
+        "fingerprint": "34255962",
+        "region": "body"
       },
       {
         "id": "b813388f5221a9659beaae2d7bc57e4f",
         "start": 1172,
         "end": 1547,
-        "fingerprint": "583d4a04"
+        "fingerprint": "583d4a04",
+        "region": "body"
       },
       {
         "id": "a3f7d18cba4720ead4bdd82c365ffb82",
         "start": 1549,
         "end": 1776,
-        "fingerprint": "903187b2"
+        "fingerprint": "903187b2",
+        "region": "body"
       },
       {
         "id": "9566ed40af060ec2841b1342a8b37c7a",
         "start": 1778,
         "end": 1833,
-        "fingerprint": "dc64c259"
+        "fingerprint": "dc64c259",
+        "region": "body"
       },
       {
         "id": "1436607ae993428b426301492efa5785",
         "start": 1835,
         "end": 1865,
-        "fingerprint": "eac88845"
+        "fingerprint": "eac88845",
+        "region": "body"
       },
       {
         "id": "24142222e9959eef92eba10eeb3c19aa",
         "start": 1867,
         "end": 1894,
-        "fingerprint": "e987bf8b"
+        "fingerprint": "e987bf8b",
+        "region": "body"
       },
       {
         "id": "9b3c3ea302ecdb63c26e09738b202a95",
         "start": 1896,
         "end": 2286,
-        "fingerprint": "95c5ccec"
+        "fingerprint": "95c5ccec",
+        "region": "body"
       },
       {
         "id": "f97e2651068c28acc08f8e6ab86bb317",
         "start": 2288,
         "end": 2442,
-        "fingerprint": "45a023a3"
+        "fingerprint": "45a023a3",
+        "region": "body"
       },
       {
         "id": "980b053f0b14f93a70ff6fc01aa3405f",
         "start": 2444,
         "end": 3138,
-        "fingerprint": "598259a1"
+        "fingerprint": "598259a1",
+        "region": "body"
       },
       {
         "id": "5af675f22d8da3b89b77d585a86bb166",
         "start": 3140,
         "end": 3175,
-        "fingerprint": "44d7c758"
+        "fingerprint": "44d7c758",
+        "region": "body"
       },
       {
         "id": "016e6cfa28b6f4b9669d435ac27d78f1",
         "start": 3177,
         "end": 3223,
-        "fingerprint": "1d10ab73"
+        "fingerprint": "1d10ab73",
+        "region": "body"
       },
       {
         "id": "7ee9767101581747f4ff96ad967dabb1",
         "start": 3225,
         "end": 3717,
-        "fingerprint": "d9620631"
+        "fingerprint": "d9620631",
+        "region": "body"
       },
       {
         "id": "24765af22f2e9a85fc27f072c1f9316a",
         "start": 3719,
         "end": 4037,
-        "fingerprint": "7b7b949d"
+        "fingerprint": "7b7b949d",
+        "region": "body"
       },
       {
         "id": "551935a9c558349b95fc6fe2d3ca8486",
         "start": 4039,
         "end": 4059,
-        "fingerprint": "f52adc8d"
+        "fingerprint": "f52adc8d",
+        "region": "body"
       },
       {
         "id": "b87e4e0d776ff8cd521563a327de034f",
         "start": 4061,
         "end": 4350,
-        "fingerprint": "be33bf88"
+        "fingerprint": "be33bf88",
+        "region": "body"
       },
       {
         "id": "eebb522aa683c3b83f31a18dcb0f6649",
         "start": 4352,
         "end": 4412,
-        "fingerprint": "f4ade841"
+        "fingerprint": "f4ade841",
+        "region": "body"
       },
       {
         "id": "d903812efddba5a98bbe4e5992f9de2a",
         "start": 4414,
         "end": 4508,
-        "fingerprint": "22ca42ba"
+        "fingerprint": "22ca42ba",
+        "region": "body"
       },
       {
         "id": "cac47bdc754803865501f9720ad6297b",
         "start": 4510,
         "end": 5429,
-        "fingerprint": "d3a1d99a"
+        "fingerprint": "d3a1d99a",
+        "region": "body"
       },
       {
         "id": "baeb6d1f711284a0d340870e787b4ae3",
         "start": 5431,
         "end": 5536,
-        "fingerprint": "bc7d6e20"
+        "fingerprint": "bc7d6e20",
+        "region": "body"
       },
       {
         "id": "b1bc5b37ff66a410010322be52c0979a",
         "start": 5538,
         "end": 5851,
-        "fingerprint": "30e60e73"
+        "fingerprint": "30e60e73",
+        "region": "body"
       },
       {
         "id": "c7bdf4b88695030bffb497401ba760b6",
         "start": 5853,
         "end": 5879,
-        "fingerprint": "0c3bc378"
+        "fingerprint": "0c3bc378",
+        "region": "body"
       },
       {
         "id": "aec1797236cdd7822690c065263deb93",
         "start": 5881,
         "end": 5928,
-        "fingerprint": "45a3f933"
+        "fingerprint": "45a3f933",
+        "region": "body"
       },
       {
         "id": "d8a34f9704461233cc03c6aeabc67fbf",
         "start": 5930,
         "end": 5982,
-        "fingerprint": "160256ec"
+        "fingerprint": "160256ec",
+        "region": "body"
       },
       {
         "id": "943bc9082d74c7867db730a57a3c5d75",
         "start": 5984,
         "end": 6459,
-        "fingerprint": "04a59638"
+        "fingerprint": "04a59638",
+        "region": "body"
       },
       {
         "id": "b674eb6b25c4ee3aed166b037ba95e10",
         "start": 6461,
         "end": 6717,
-        "fingerprint": "016d0f15"
+        "fingerprint": "016d0f15",
+        "region": "body"
       },
       {
         "id": "03a7b723b0bf91095124a7d8c7cf04c7",
         "start": 6719,
         "end": 7150,
-        "fingerprint": "06437b52"
+        "fingerprint": "06437b52",
+        "region": "body"
       },
       {
         "id": "e8f82735606f2fb8d14c78303c5bd343",
         "start": 7152,
         "end": 7209,
-        "fingerprint": "900ab61e"
+        "fingerprint": "900ab61e",
+        "region": "body"
       },
       {
         "id": "6b07c9db881e076bad87307a05bdbc06",
         "start": 7211,
         "end": 7238,
-        "fingerprint": "b159296c"
+        "fingerprint": "b159296c",
+        "region": "body"
       },
       {
         "id": "b859d93e20d231f4aa7278f613c464c0",
         "start": 7240,
         "end": 7401,
-        "fingerprint": "970649a0"
+        "fingerprint": "970649a0",
+        "region": "body"
       },
       {
         "id": "fa9a3a29d0ffcead3aef8d7578108257",
         "start": 7403,
         "end": 7534,
-        "fingerprint": "5dad3b4c"
+        "fingerprint": "5dad3b4c",
+        "region": "body"
       },
       {
         "id": "90837a7b3a5f5bfd3df633d264d75a1a",
         "start": 7536,
         "end": 7908,
-        "fingerprint": "a6ae9041"
+        "fingerprint": "a6ae9041",
+        "region": "body"
       },
       {
         "id": "a7d26083a0ab33e3fbeef827290eedc1",
         "start": 7910,
         "end": 8272,
-        "fingerprint": "40596cd7"
+        "fingerprint": "40596cd7",
+        "region": "body"
       },
       {
         "id": "10a6be685d67b9d197263f044f2ae2e9",
         "start": 8274,
         "end": 8369,
-        "fingerprint": "65f5704c"
+        "fingerprint": "65f5704c",
+        "region": "body"
       },
       {
         "id": "ffb2a6a34cb5ebc79cbf51e93c1f9641",
         "start": 8371,
         "end": 8918,
-        "fingerprint": "a46a0724"
+        "fingerprint": "a46a0724",
+        "region": "body"
       },
       {
         "id": "98b470be75ff6650b1e7b5e7cdc8791b",
         "start": 8920,
         "end": 8951,
-        "fingerprint": "678c08fa"
+        "fingerprint": "678c08fa",
+        "region": "body"
       },
       {
         "id": "f2d7d48b5ea2d57bf00e313e6085b0cd",
         "start": 8953,
         "end": 9028,
-        "fingerprint": "aa943e99"
+        "fingerprint": "aa943e99",
+        "region": "body"
       },
       {
         "id": "3f9a6599c6088b5128387feefbb4c4d3",
         "start": 9030,
         "end": 9667,
-        "fingerprint": "7e08ff8c"
+        "fingerprint": "7e08ff8c",
+        "region": "body"
       },
       {
         "id": "4846d4b9b85bb3f2152d082cf4a7947e",
         "start": 9669,
         "end": 9721,
-        "fingerprint": "e109a699"
+        "fingerprint": "e109a699",
+        "region": "body"
       },
       {
         "id": "00524fa758f97a14d9aa0d6286d1b12b",
         "start": 9723,
         "end": 10206,
-        "fingerprint": "fc493250"
+        "fingerprint": "fc493250",
+        "region": "body"
       }
     ],
     "mirror/less-than-an-hour.md": [
       {
+        "id": "7e3804851177f271b148ca13f4d0a1f6",
+        "start": 10,
+        "end": 26,
+        "fingerprint": "570d2885",
+        "region": "frontmatter"
+      },
+      {
+        "id": "397652d5755e8b85e26bbe709fdc99bc",
+        "start": 36,
+        "end": 73,
+        "fingerprint": "dda4f1b4",
+        "region": "frontmatter"
+      },
+      {
+        "id": "b20418b65885f121bdfee9a54e31d21e",
+        "start": 86,
+        "end": 300,
+        "fingerprint": "f6006bd4",
+        "region": "frontmatter"
+      },
+      {
         "id": "86c5fbdb33d50086883e7552c0b7c428",
         "start": 399,
         "end": 1162,
-        "fingerprint": "d3980622"
+        "fingerprint": "d3980622",
+        "region": "body"
       },
       {
         "id": "c8f426dbaca9e2b4579091d2d0b6b5ef",
         "start": 1164,
         "end": 1187,
-        "fingerprint": "bdb9f02a"
+        "fingerprint": "bdb9f02a",
+        "region": "body"
       },
       {
         "id": "62be9102d0da473945e86a0a3b2bb471",
         "start": 1189,
         "end": 1712,
-        "fingerprint": "fceee693"
+        "fingerprint": "fceee693",
+        "region": "body"
       },
       {
         "id": "e01d8e1e543f16b81140771368abcf4e",
         "start": 1714,
         "end": 2356,
-        "fingerprint": "a7ed6533"
+        "fingerprint": "a7ed6533",
+        "region": "body"
       },
       {
         "id": "3f58794bc2ebaa4e840e82849bba75cb",
         "start": 2358,
         "end": 2380,
-        "fingerprint": "56a9eb6b"
+        "fingerprint": "56a9eb6b",
+        "region": "body"
       },
       {
         "id": "71c02f8a87a99a49dc10fd3318433505",
         "start": 2382,
         "end": 3069,
-        "fingerprint": "1d7bf848"
+        "fingerprint": "1d7bf848",
+        "region": "body"
       },
       {
         "id": "52341859001e96f7ba70307797a1d86c",
         "start": 3071,
         "end": 3123,
-        "fingerprint": "1f97340d"
+        "fingerprint": "1f97340d",
+        "region": "body"
       },
       {
         "id": "ece3bf55829edba4e5b445a3313f4642",
         "start": 3125,
         "end": 4134,
-        "fingerprint": "34469fe2"
+        "fingerprint": "34469fe2",
+        "region": "body"
       },
       {
         "id": "ef777fdbb680bf711f96006468b7b38a",
         "start": 4136,
         "end": 4188,
-        "fingerprint": "0543d21e"
+        "fingerprint": "0543d21e",
+        "region": "body"
       },
       {
         "id": "361602b8c96e2ad6455e7b210cc53c99",
         "start": 4190,
         "end": 4220,
-        "fingerprint": "78ae2b28"
+        "fingerprint": "78ae2b28",
+        "region": "body"
       },
       {
         "id": "b5b4c92dd5874dc2b7cc34cc65ebfca3",
         "start": 4222,
         "end": 5287,
-        "fingerprint": "001dd88b"
+        "fingerprint": "001dd88b",
+        "region": "body"
       },
       {
         "id": "8dd73efa60106c920c8055731aad1ccc",
         "start": 5289,
         "end": 5404,
-        "fingerprint": "61975a4b"
+        "fingerprint": "61975a4b",
+        "region": "body"
       },
       {
         "id": "ff6e6e87eb11c4e2e2e1764bcade3bf6",
         "start": 5406,
         "end": 6179,
-        "fingerprint": "ae9da0ed"
+        "fingerprint": "ae9da0ed",
+        "region": "body"
       },
       {
         "id": "575f9d1e46947d0a29743dd1839a3b18",
         "start": 6181,
         "end": 6211,
-        "fingerprint": "21b38df8"
+        "fingerprint": "21b38df8",
+        "region": "body"
       },
       {
         "id": "8dba1a489980be0aaaa3aa12aa8f1872",
         "start": 6213,
         "end": 6776,
-        "fingerprint": "924ef21e"
+        "fingerprint": "924ef21e",
+        "region": "body"
       },
       {
         "id": "ba12d9fc19ee0412a58afae256735ab8",
         "start": 6778,
         "end": 6830,
-        "fingerprint": "7a5e5c97"
+        "fingerprint": "7a5e5c97",
+        "region": "body"
       },
       {
         "id": "3bb9b980660f429a30514def002361ed",
         "start": 6832,
         "end": 7540,
-        "fingerprint": "9641b0a7"
+        "fingerprint": "9641b0a7",
+        "region": "body"
       },
       {
         "id": "aea184268674b162bc536618bcced975",
         "start": 7542,
         "end": 7594,
-        "fingerprint": "c92bb395"
+        "fingerprint": "c92bb395",
+        "region": "body"
       },
       {
         "id": "10224a97f9a9e6c8059838db34c0fde7",
         "start": 7596,
         "end": 8257,
-        "fingerprint": "dc2022ff"
+        "fingerprint": "dc2022ff",
+        "region": "body"
       },
       {
         "id": "e99a127906d910d7439e1bea29f6d99f",
         "start": 8259,
         "end": 8311,
-        "fingerprint": "cea9ee5a"
+        "fingerprint": "cea9ee5a",
+        "region": "body"
       },
       {
         "id": "a42738995f28441e1a630b3113a058ff",
         "start": 8313,
         "end": 8341,
-        "fingerprint": "712e63e7"
+        "fingerprint": "712e63e7",
+        "region": "body"
       },
       {
         "id": "ff5d22300f32c078cc5833697fcd1828",
         "start": 8343,
         "end": 9313,
-        "fingerprint": "5782de80"
+        "fingerprint": "5782de80",
+        "region": "body"
       },
       {
         "id": "d106482e8e65f9603b629e419860e709",
         "start": 9315,
         "end": 9367,
-        "fingerprint": "bc6bf5a4"
+        "fingerprint": "bc6bf5a4",
+        "region": "body"
       },
       {
         "id": "92a8081dc9e7181860a418067fa8d1bf",
         "start": 9369,
         "end": 10386,
-        "fingerprint": "832638f1"
+        "fingerprint": "832638f1",
+        "region": "body"
       },
       {
         "id": "82b914521e0ca4e1ee40d6f92249efba",
         "start": 10388,
         "end": 10440,
-        "fingerprint": "9d8e9cb2"
+        "fingerprint": "9d8e9cb2",
+        "region": "body"
       },
       {
         "id": "a7ba67efcc47d9c2a021967eb928e0c9",
         "start": 10442,
         "end": 11123,
-        "fingerprint": "65aee630"
+        "fingerprint": "65aee630",
+        "region": "body"
       },
       {
         "id": "04aac9967908c30fcfe0106c925e15a5",
         "start": 11125,
         "end": 11154,
-        "fingerprint": "02a310ef"
+        "fingerprint": "02a310ef",
+        "region": "body"
       },
       {
         "id": "f487f10aaf6d6c652d00601e193dcaed",
         "start": 11156,
         "end": 11645,
-        "fingerprint": "4dc60229"
+        "fingerprint": "4dc60229",
+        "region": "body"
       },
       {
         "id": "63369bcee7356a1e29c6cf767944f141",
         "start": 11647,
         "end": 11699,
-        "fingerprint": "827dd6c1"
+        "fingerprint": "827dd6c1",
+        "region": "body"
       },
       {
         "id": "be2f806b83808fc5d4bcf0257c42584b",
         "start": 11701,
         "end": 12164,
-        "fingerprint": "07e0634e"
+        "fingerprint": "07e0634e",
+        "region": "body"
       },
       {
         "id": "3a4299e3166f2bb95fe4455ac56db749",
         "start": 12166,
         "end": 12218,
-        "fingerprint": "9a0ca844"
+        "fingerprint": "9a0ca844",
+        "region": "body"
       },
       {
         "id": "32c72537542b299f6e68c64f0ac0f610",
         "start": 12220,
         "end": 13065,
-        "fingerprint": "0d43977d"
+        "fingerprint": "0d43977d",
+        "region": "body"
       },
       {
         "id": "2f8a0158823a1e03474bd194c3004a66",
         "start": 13067,
         "end": 13091,
-        "fingerprint": "07321c48"
+        "fingerprint": "07321c48",
+        "region": "body"
       },
       {
         "id": "c2a61f5ffa1950a0b3e22070052a76bd",
         "start": 13093,
         "end": 13808,
-        "fingerprint": "73042433"
+        "fingerprint": "73042433",
+        "region": "body"
       },
       {
         "id": "6e4a0628c90263c33d91336b653e408c",
         "start": 13810,
         "end": 13900,
-        "fingerprint": "f35d640e"
+        "fingerprint": "f35d640e",
+        "region": "body"
       }
     ]
   }

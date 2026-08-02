@@ -6,7 +6,13 @@ export type TranslationSidecar = {
 	segments?: Record<string, Partial<Record<TranslationLocale, { text: string }>>>;
 };
 
-export type SegmentSpan = { id: string; start: number; end: number; fingerprint: string };
+export type SegmentSpan = {
+	id: string;
+	start: number;
+	end: number;
+	fingerprint: string;
+	region: 'frontmatter' | 'body';
+};
 
 export type SegmentLayout = {
 	version: number;
@@ -44,7 +50,8 @@ export function assemble(
 			!Number.isSafeInteger(span.end) ||
 			span.start < previousEnd ||
 			span.end <= span.start ||
-			span.end > bytes.length
+			span.end > bytes.length ||
+			(span.region !== 'frontmatter' && span.region !== 'body')
 		) {
 			throw new Error(`${article}: invalid source range for article segment ${span.id}`);
 		}
@@ -61,8 +68,12 @@ export function assemble(
 			translated += decoder.decode(bytes.subarray(cursor, span.start));
 			const source = decoder.decode(bytes.subarray(span.start, span.end));
 			const entry = sidecar.segments?.[span.id]?.[locale];
-			if (!entry) missing.push(span.id);
-			translated += entry?.text ?? source;
+			if (!entry && span.region === 'body') missing.push(span.id);
+			translated += entry
+				? span.region === 'frontmatter'
+					? ` ${JSON.stringify(entry.text)}`
+					: entry.text
+				: source;
 		} catch {
 			throw new Error(
 				`${article}: source range splits a UTF-8 character for article segment ${span.id}`,

@@ -7,6 +7,15 @@
 
 use std::collections::BTreeMap;
 
+const TRANSLATABLE_FRONTMATTER: [&str; 3] = ["title", "subtitle", "description"];
+
+/// Where a segment is spliced back into the article.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Region {
+	Frontmatter,
+	Body,
+}
+
 /// What a block is, which decides whether it is translated and by which model.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Kind {
@@ -42,8 +51,10 @@ impl Kind {
 pub struct Segment {
 	pub id: String,
 	pub kind: Kind,
-	/// The block exactly as the article writes it.
+	/// The prose sent for translation. Body prose is byte-identical to its source span;
+	/// frontmatter prose is the YAML scalar's decoded value.
 	pub source: String,
+	pub region: Region,
 	/// Byte offsets in the complete source article. Stored in the build artifact.
 	pub start: usize,
 	pub end: usize,
@@ -126,22 +137,29 @@ fn normalise(source: &str) -> String {
 	source.split_whitespace().collect::<Vec<_>>().join(" ")
 }
 
-/// Split an article body into blocks, skipping frontmatter.
+/// Split allowlisted frontmatter values and body blocks; the frontmatter block itself is never
+/// a segment.
 pub fn split(article: &str) -> Vec<Segment> {
-	let (body, body_start) = match article.strip_prefix("---\n") {
-		Some(rest) => rest
-			.find("\n---")
-			.map_or((rest, 4), |end| (&rest[end + 4..], end + 8)),
-		None => (article, 0),
+	let (body, body_start, frontmatter) = match article.strip_prefix("---\n") {
+		Some(rest) => rest.find("\n---").map_or((rest, 4, None), |end| {
+			(&rest[end + 4..], end + 8, Some((&rest[..end], 4)))
+		}),
+		None => (article, 0, None),
 	};
 
-	let mut segments = Vec::new();
+	let mut segments = frontmatter.map_or_else(Vec::new, |(source, start)| {
+		frontmatter_segments(source, start)
+	});
 	let mut block: Vec<&str> = Vec::new();
 	let mut fenced = false;
 	let mut start_line = 0;
 	let mut block_start = body_start;
 	let mut block_end = body_start;
 	let mut cursor = body_start;
+	let body_line = article[..body_start]
+		.bytes()
+		.filter(|byte| *byte == b'\n')
+		.count();
 
 	for (offset, line) in body.split('\n').enumerate() {
 		let line_start = cursor;
@@ -156,7 +174,7 @@ pub fn split(article: &str) -> Vec<Segment> {
 					article,
 					&mut segments,
 					&mut block,
-					start_line,
+					body_line + start_line,
 					block_start,
 					block_end,
 				);
@@ -167,7 +185,7 @@ pub fn split(article: &str) -> Vec<Segment> {
 				article,
 				&mut segments,
 				&mut block,
-				start_line,
+				body_line + start_line,
 				block_start,
 				block_end,
 			);
@@ -188,7 +206,7 @@ pub fn split(article: &str) -> Vec<Segment> {
 				article,
 				&mut segments,
 				&mut block,
-				start_line,
+				body_line + start_line,
 				block_start,
 				block_end,
 			);
@@ -205,10 +223,73 @@ pub fn split(article: &str) -> Vec<Segment> {
 		article,
 		&mut segments,
 		&mut block,
-		start_line,
+		body_line + start_line,
 		block_start,
 		block_end,
 	);
+	segments
+}
+
+fn frontmatter_segments(frontmatter: &str, absolute_start: usize) -> Vec<Segment> {
+	let values: serde_yaml_ng::Value = serde_yaml_ng::from_str(frontmatter)
+		.unwrap_or_else(|error| panic!("invalid article frontmatter: {error}"));
+	let Some(values) = values.as_mapping() else {
+		panic!("article frontmatter must be a mapping");
+	};
+
+	let mut lines = Vec::new();
+	let mut cursor = 0usize;
+	for line in frontmatter.split_inclusive('\n') {
+		let text = line.strip_suffix('\n').unwrap_or(line);
+		lines.push((cursor, cursor + text.len(), text));
+		cursor += line.len();
+	}
+	if frontmatter.is_empty() {
+		return Vec::new();
+	}
+
+	let mut segments = Vec::new();
+	for (index, (line_start, line_end, line)) in lines.iter().copied().enumerate() {
+		if line.starts_with(char::is_whitespace) || line.starts_with('#') {
+			continue;
+		}
+		let Some(colon) = line.find(':') else {
+			continue;
+		};
+		let key = &line[..colon];
+		if !TRANSLATABLE_FRONTMATTER.contains(&key) {
+			continue;
+		}
+		let source = match values.get(serde_yaml_ng::Value::String(key.to_owned())) {
+			Some(serde_yaml_ng::Value::String(source)) => source,
+			Some(_) => panic!("frontmatter {key} must be a string"),
+			None => continue,
+		};
+		if source.is_empty() {
+			continue;
+		}
+
+		let mut end = line_end;
+		for (_, continuation_end, continuation) in lines.iter().skip(index + 1).copied() {
+			if !continuation.is_empty() && !continuation.starts_with(char::is_whitespace) {
+				break;
+			}
+			end = continuation_end;
+		}
+		segments.push(Segment {
+			id: id_of(source),
+			kind: if matches!(key, "title" | "subtitle") {
+				Kind::Heading
+			} else {
+				Kind::Prose
+			},
+			source: source.clone(),
+			region: Region::Frontmatter,
+			start: absolute_start + line_start + colon + 1,
+			end: absolute_start + end,
+			line: index + 2,
+		});
+	}
 	segments
 }
 
@@ -245,6 +326,7 @@ fn push(
 		id: id_of(&source),
 		kind,
 		source,
+		region: Region::Body,
 		start,
 		end,
 		line: line + 1,
@@ -339,12 +421,62 @@ mod tests {
 
 	#[test]
 	fn frontmatter_is_not_a_segment() {
-		let segments = split("---\ntitle: A\n---\n\nbody text");
-		assert_eq!(segments.len(), 1);
-		assert_eq!(segments[0].source, "body text");
+		let article = "---\ntitle: A\nlang: zh\n---\n\nbody text";
+		let segments = split(article);
+		assert_eq!(segments.len(), 2);
+		assert_eq!(segments[0].source, "A");
+		assert_eq!(segments[0].region, Region::Frontmatter);
+		assert!(
+			!segments
+				.iter()
+				.any(|segment| segment.source.contains("title:"))
+		);
+		assert_eq!(&article[segments[0].start..segments[0].end], " A");
+		assert_eq!(segments[1].source, "body text");
+		assert_eq!(segments[1].region, Region::Body);
+		assert_eq!(&article[segments[1].start..segments[1].end], "body text");
+	}
+
+	#[test]
+	fn editing_a_title_invalidates_only_that_title() {
+		let before = split(
+			"---\ntitle: Before\nsubtitle: Same subtitle\ndescription: Same description\nlang: zh\n---\n\nSame body",
+		);
+		let after = split(
+			"---\ntitle: After\nsubtitle: Same subtitle\ndescription: Same description\nlang: zh\n---\n\nSame body",
+		);
+		assert_eq!(before.len(), 4);
+		assert_eq!(after.len(), 4);
+		assert_ne!(before[0].id, after[0].id);
+		for index in 1..before.len() {
+			assert_eq!(before[index].id, after[index].id);
+		}
+	}
+
+	#[test]
+	fn a_non_allowlisted_frontmatter_key_is_never_translatable() {
+		let live = translatable(
+			"---\ntitle: Visible\nlang: zh\ncreated: 2026-08-02\nviews: 5\nfuture: Never send me\n---\n\nBody",
+		);
+		let sources = live
+			.values()
+			.map(|segment| segment.source.as_str())
+			.collect::<Vec<_>>();
+		assert_eq!(sources.len(), 2);
+		assert!(sources.contains(&"Visible"));
+		assert!(sources.contains(&"Body"));
+		assert!(!sources.contains(&"zh"));
+		assert!(!sources.contains(&"Never send me"));
+	}
+
+	#[test]
+	fn folded_frontmatter_is_one_semantic_segment_with_one_lexical_span() {
+		let article = "---\ndescription:\n  first line\n  second line\nlang: zh\n---\n\nBody";
+		let segments = split(article);
+		assert_eq!(segments[0].source, "first line second line");
 		assert_eq!(
-			&"---\ntitle: A\n---\n\nbody text"[segments[0].start..segments[0].end],
-			"body text"
+			&article[segments[0].start..segments[0].end],
+			"\n  first line\n  second line"
 		);
 	}
 }

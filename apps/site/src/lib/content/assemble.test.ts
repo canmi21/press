@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
+import { parse as parseYaml } from 'yaml';
 import { assemble, similarity, sourceFingerprint, type SegmentSpan } from './assemble';
+import { compile } from './compile';
 import { CANONICAL_SIMILARITY_THRESHOLD } from './indexing';
 
 it('assembles translations in article order while leaving code untouched', () => {
@@ -13,6 +15,7 @@ it('assembles translations in article order while leaving code untouched', () =>
 			start: encoder.encode(raw.slice(0, start)).length,
 			end: encoder.encode(raw.slice(0, start + source.length)).length,
 			fingerprint: sourceFingerprint(encoder.encode(source)),
+			region: 'body',
 		};
 	};
 	const spans = [span('first', '中文'), span('second', 'first line'), span('last', 'last line')];
@@ -43,6 +46,7 @@ it('rejects spans shifted by an insertion even when every translation still reso
 			start: encoder.encode(original.slice(0, start)).length,
 			end: encoder.encode(original.slice(0, start + source.length)).length,
 			fingerprint: sourceFingerprint(encoder.encode(source)),
+			region: 'body',
 		};
 	};
 	const spans = [span('first-id', 'first'), span('second-id', 'second')];
@@ -57,6 +61,55 @@ it('rejects spans shifted by an insertion even when every translation still reso
 	expect(() => assemble(edited, spans, sidecar, 'de-DE', 'contents/shifted.md')).toThrow(
 		'contents/shifted.md: stale segment layout',
 	);
+});
+
+it('compiles a view with the source title when that locale has no title translation', async () => {
+	const raw =
+		'---\ntitle: Source title\nsubtitle: Source subtitle\ndescription: Source description\nlang: en\ncreated: 2026-08-02\nlastmod: 2026-08-02\n---\n\nBody\n';
+	const encoder = new TextEncoder();
+	const start = raw.indexOf(': Source title') + 1;
+	const end = start + ' Source title'.length;
+	const span: SegmentSpan = {
+		id: 'title-id',
+		start,
+		end,
+		fingerprint: sourceFingerprint(encoder.encode(raw.slice(start, end))),
+		region: 'frontmatter',
+	};
+	const result = assemble(raw, [span], { segments: {} }, 'de-DE', 'contents/fallback.md');
+	const yaml = result.raw.slice(4, result.raw.indexOf('\n---', 4));
+
+	expect(result.missing).toEqual([]);
+	expect(parseYaml(yaml)).toMatchObject({ title: 'Source title', lang: 'en' });
+	const view = await compile(result.raw, '/fallback', {
+		resolveAsset: () => null,
+		highlight: async () => '',
+	});
+	expect(view.meta.title).toBe('Source title');
+});
+
+it('quotes translated frontmatter before splicing it into yaml', () => {
+	const raw = '---\ntitle: Source title\nlang: en\n---\n\nBody\n';
+	const encoder = new TextEncoder();
+	const start = raw.indexOf(': Source title') + 1;
+	const end = start + ' Source title'.length;
+	const span: SegmentSpan = {
+		id: 'title-id',
+		start,
+		end,
+		fingerprint: sourceFingerprint(encoder.encode(raw.slice(start, end))),
+		region: 'frontmatter',
+	};
+	const result = assemble(
+		raw,
+		[span],
+		{ segments: { 'title-id': { 'de-DE': { text: 'Titel: "übersetzt"' } } } },
+		'de-DE',
+		'contents/translated.md',
+	);
+	const yaml = result.raw.slice(4, result.raw.indexOf('\n---', 4));
+
+	expect(parseYaml(yaml)).toMatchObject({ title: 'Titel: "übersetzt"', lang: 'en' });
 });
 
 describe('similarity', () => {

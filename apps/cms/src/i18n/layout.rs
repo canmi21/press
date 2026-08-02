@@ -1,7 +1,7 @@
 //! The ordered segment layout consumed by the site build.
 //!
-//! Rust alone decides block boundaries and ids. The committed artifact carries only the byte
-//! ranges and fingerprints of translatable blocks, so the TypeScript build can assemble
+//! Rust alone decides segment boundaries and ids. The committed artifact carries only the byte
+//! ranges and fingerprints of translatable spans, so the TypeScript build can assemble
 //! translations without learning how segmentation works or requiring Rust in CI.
 
 use serde::{Deserialize, Serialize};
@@ -9,7 +9,7 @@ use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 
 pub const FILE: &str = "data/build/segments.json";
-pub const VERSION: u8 = 2;
+pub const VERSION: u8 = 3;
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Span {
@@ -17,6 +17,7 @@ pub struct Span {
 	pub start: usize,
 	pub end: usize,
 	pub fingerprint: String,
+	pub region: String,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -44,11 +45,19 @@ pub fn build(root: &Path) -> std::io::Result<Layout> {
 		let spans = super::segment::split(&article)
 			.into_iter()
 			.filter(|segment| segment.kind.translatable())
-			.map(|segment| Span {
-				id: segment.id,
-				start: segment.start,
-				end: segment.end,
-				fingerprint: fingerprint(segment.source.as_bytes()),
+			.map(|segment| {
+				let bytes = &article.as_bytes()[segment.start..segment.end];
+				Span {
+					id: segment.id,
+					start: segment.start,
+					end: segment.end,
+					fingerprint: fingerprint(bytes),
+					region: match segment.region {
+						super::segment::Region::Frontmatter => "frontmatter",
+						super::segment::Region::Body => "body",
+					}
+					.to_owned(),
+				}
 			})
 			.collect();
 		articles.insert(relative, spans);

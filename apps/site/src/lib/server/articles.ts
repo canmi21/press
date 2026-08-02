@@ -11,7 +11,7 @@ import { languageTag, LOCALE_CODES, PUBLIC_LANGUAGE, type LocaleCode } from '../
 import { highlight } from './highlight.ts';
 import { buildPreviews } from './placeholder.ts';
 
-const SEGMENT_LAYOUT_VERSION = 2;
+const SEGMENT_LAYOUT_VERSION = 3;
 
 type BuildPaths = { contents: string; assets: string; media: string; segments: string };
 
@@ -110,6 +110,7 @@ export async function buildArticles(
 						meta: view.meta,
 						blocks: view.blocks,
 						text: view.text,
+						feed: view.feed,
 						code,
 						languageTag: languageTag(code, sourceLanguage),
 						canonical: canonical[code],

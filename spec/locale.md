@@ -35,6 +35,12 @@ arrives there, and choosing after first paint would make a page render in one la
 swap. Unlike theme, the content itself differs, so this cannot be a class toggle — see the
 caching rule below for what that forces.
 
+Collection surfaces use the same resolved code for every article they include. Homepage cards,
+article lists, `llms.txt`, and Atom entries take their title, subtitle, description, body, and
+language from that article's resolved view; `mw` means each article's own original. These
+responses vary by the same request inputs as an article page and therefore are not shared-cache
+content either.
+
 ## The query parameter is for crawlers, and is removed for readers
 
 A crawler has no cookie and does not run a language switcher, so without a URL that names a

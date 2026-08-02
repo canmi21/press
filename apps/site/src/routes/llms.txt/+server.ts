@@ -3,7 +3,7 @@ import { URLS } from '@canmi/urls';
 import { site } from '$lib/site';
 import type { RequestHandler } from './$types';
 
-export const prerender = true;
+export const prerender = false;
 
 // The site's nature, distinct from site.tagline (which is the RSS description).
 const DESCRIPTION =
@@ -18,9 +18,10 @@ function oneline(value: string): string {
 // each link as [name](url) with a short note. Site collects the homepage,
 // sitemap and feed; Writing lists every article as title -> clean markdown with
 // the subtitle. See https://llmstxt.org/.
-export const GET: RequestHandler = async () => {
+export const GET: RequestHandler = async ({ locals }) => {
 	const web = URLS.apps.production.site;
 	const articles = await getArticles();
+	const code = locals.locale?.code ?? 'mw';
 	const body = [
 		`# ${site.name}`,
 		'',
@@ -34,12 +35,15 @@ export const GET: RequestHandler = async () => {
 		'',
 		'## Writing',
 		'',
-		...articles.map((a) => `- [${a.meta.title}](${a.url}.md): ${oneline(a.meta.subtitle)}`),
+		...articles.map((article) => {
+			const meta = article.views[code].meta;
+			return `- [${meta.title}](${article.url}.md): ${oneline(meta.subtitle)}`;
+		}),
 	].join('\n');
 	return new Response(`${body}\n`, {
 		headers: {
 			'Content-Type': 'text/plain; charset=utf-8',
-			'Cache-Control': 'public, max-age=300, s-maxage=300',
+			'Cache-Control': 'private, no-store',
 		},
 	});
 };
