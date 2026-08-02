@@ -50,8 +50,10 @@ function escapeHtml(value: string): string {
 // `:t[text]{...}` is a styled span; `:link[platform]{to=handle}` a social link.
 type DirectiveAttrs = Record<string, string | null | undefined>;
 
+type SocialPlatform = 'twitter' | 'github' | 'email';
+
 const SOCIAL: Record<
-	string,
+	SocialPlatform,
 	{ href: (handle: string) => string; follow?: (handle: string) => string; newTab: boolean }
 > = {
 	twitter: {
@@ -65,13 +67,22 @@ const SOCIAL: Record<
 
 // `:link[Twitter]{to=canmi21}` resolves to the profile; add the `follow` flag for
 // the intent-follow prompt. Unknown platforms fall back to the raw `to` value.
-function resolveLink(label: string, attrs: DirectiveAttrs): { href: string; newTab: boolean } {
-	const platform = SOCIAL[label.toLowerCase()];
+function resolveLink(
+	label: string,
+	attrs: DirectiveAttrs,
+): { href: string; newTab: boolean; platform?: SocialPlatform } {
 	const handle = attrs.to ?? '';
+	const named = label.toLowerCase();
+	const platform =
+		named in SOCIAL
+			? (named as SocialPlatform)
+			: /^[^@\s]+@[^@\s]+$/u.test(handle)
+				? ('email' as const)
+				: undefined;
 	if (!platform) return { href: handle, newTab: false };
-	const href =
-		platform.follow && 'follow' in attrs ? platform.follow(handle) : platform.href(handle);
-	return { href, newTab: platform.newTab };
+	const target = SOCIAL[platform];
+	const href = target.follow && 'follow' in attrs ? target.follow(handle) : target.href(handle);
+	return { href, newTab: target.newTab, platform };
 }
 
 // `:t` attributes -> utility classes. font/color carry token names (libs/tokens);
@@ -417,11 +428,10 @@ function inlineSegments(node: Paragraph): InlineSegment[] {
 			flush();
 			const attrs = (child.attributes ?? {}) as DirectiveAttrs;
 			const label = mdastToString(child);
-			const platform = label.toLowerCase();
-			const { href, newTab } = resolveLink(label, attrs);
+			const { href, newTab, platform } = resolveLink(label, attrs);
 			segments.push({
 				type: 'link',
-				icon: platform in SOCIAL ? (platform as 'twitter' | 'github' | 'email') : undefined,
+				icon: platform,
 				href,
 				label,
 				newTab,

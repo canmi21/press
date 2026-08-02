@@ -4,9 +4,9 @@ import { URLS } from '@canmi/urls';
 import { parse as parseYaml } from 'yaml';
 import { createAssetResolver, type AssetManifest, type MediaManifest } from '../assets.ts';
 import { assemble, type SegmentLayout, type TranslationSidecar } from '../content/assemble.ts';
-import { compile } from '../content/compile.ts';
+import { compile, compilePage } from '../content/compile.ts';
 import { indexingMetadata } from '../content/indexing.ts';
-import type { Article, ArticleView } from '../content/types.ts';
+import type { Article, ArticleView, CompiledPage, Page, PageView } from '../content/types.ts';
 import { languageTag, LOCALE_CODES, PUBLIC_LANGUAGE, type LocaleCode } from '../locale.ts';
 import { highlight } from './highlight.ts';
 import { buildPreviews } from './placeholder.ts';
@@ -27,8 +27,27 @@ async function articleFiles(contents: string): Promise<string[]> {
 	return files.toSorted();
 }
 
+async function pageFiles(contents: string): Promise<string[]> {
+	return (await readdir(contents, { withFileTypes: true }))
+		.filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
+		.map((entry) => join(contents, entry.name))
+		.toSorted();
+}
+
 function articlePath(contents: string, file: string): string {
 	return file.slice(contents.length + 1).replace(/\.md$/, '');
+}
+
+function pageDocument(path: string, { meta, body }: Pick<CompiledPage, 'meta' | 'body'>): string {
+	const name = path.charAt(0).toUpperCase() + path.slice(1);
+	const lines = [`# ${name}`, ''];
+	if (meta.summary) lines.push(`> ${meta.summary}`, '');
+	if (meta.title) {
+		lines.push(`## ${meta.title}`, '');
+		if (meta.description) lines.push(meta.description, '');
+	}
+	if (body) lines.push('## Bio', '', body, '');
+	return `${lines.join('\n').trim()}\n`;
 }
 
 function translatedRaws(
@@ -133,5 +152,46 @@ export async function buildArticles(
 			paths.media,
 			paths.segments,
 		],
+	};
+}
+
+export async function buildPages(
+	paths: Pick<BuildPaths, 'contents' | 'segments'>,
+): Promise<{ pages: Page[]; files: string[] }> {
+	const files = await pageFiles(paths.contents);
+	const layout = JSON.parse(await readFile(paths.segments, 'utf8')) as SegmentLayout;
+	if (layout.version !== SEGMENT_LAYOUT_VERSION) {
+		throw new Error(
+			`${paths.segments}: expected version ${SEGMENT_LAYOUT_VERSION}, got ${layout.version}`,
+		);
+	}
+	const pages: Page[] = [];
+
+	for (const file of files) {
+		const sidecarFile = file.replace(/\.md$/, '.i18n.yaml');
+		const [raw, sidecarText] = await Promise.all([
+			readFile(file, 'utf8'),
+			readFile(sidecarFile, 'utf8'),
+		]);
+		const sidecar = parseYaml(sidecarText) as TranslationSidecar;
+		const path = articlePath(paths.contents, file);
+		const source = compilePage(raw);
+		const { raws } = translatedRaws(file, `${path}.md`, raw, sidecar, layout);
+		const compiled = Object.fromEntries(
+			LOCALE_CODES.map((code) => [code, code === 'mw' ? source : compilePage(raws[code])]),
+		) as Record<LocaleCode, CompiledPage>;
+		const views = Object.fromEntries(
+			LOCALE_CODES.map((code) => {
+				const { meta, blocks } = compiled[code];
+				return [code, { meta, blocks } satisfies PageView];
+			}),
+		) as Record<LocaleCode, PageView>;
+
+		pages.push({ path, markdown: pageDocument(path, source), views });
+	}
+
+	return {
+		pages,
+		files: [...files, ...files.map((file) => file.replace(/\.md$/, '.i18n.yaml')), paths.segments],
 	};
 }

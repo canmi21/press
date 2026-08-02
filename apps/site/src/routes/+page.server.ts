@@ -12,6 +12,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 	const page = getPage('homepage');
 	if (!page) error(500, 'Missing contents/homepage.md');
 	const code = locals.locale?.code ?? 'mw';
+	const view = page.views[code];
 	const articles = (await getArticles()).map((article) => {
 		const { meta, text } = article.views[code];
 		return {
@@ -32,8 +33,8 @@ export const load: PageServerLoad = async ({ locals }) => {
 	return {
 		articles,
 		locale: { code },
-		title: page.meta.title ?? 'Canmi',
-		description: page.meta.description ?? '',
-		bio: page.blocks,
+		title: view.meta.title ?? 'Canmi',
+		description: view.meta.description ?? '',
+		bio: view.blocks,
 	};
 };

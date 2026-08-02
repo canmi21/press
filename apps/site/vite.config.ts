@@ -7,7 +7,7 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 import { parse as parseYaml } from 'yaml';
-import { buildArticles } from './src/lib/server/articles.ts';
+import { buildArticles, buildPages } from './src/lib/server/articles.ts';
 
 const SITE_CONFIG = fileURLToPath(new URL('./site.config.yaml', import.meta.url));
 const CONTENTS = fileURLToPath(new URL('../../contents', import.meta.url));
@@ -69,22 +69,30 @@ export default defineConfig(({ mode }) => {
 		plugins: [
 			tailwindcss(),
 			{
-				// Article source and sidecars are build inputs, not Worker work. Compile every view
-				// here and serialize the finished lookup table into the server bundle.
+				// Content sources and sidecars are build inputs, not Worker work. Compile every
+				// browser-facing view here and serialize the lookup tables into the server bundle.
 				name: 'virtual-articles',
 				resolveId(id: string) {
 					return id === 'virtual:articles' ? '\0virtual:articles' : null;
 				},
 				async load(id: string) {
 					if (id !== '\0virtual:articles') return null;
-					const built = await buildArticles({
-						contents: CONTENTS,
-						assets: ASSETS,
-						media: MEDIA,
-						segments: SEGMENTS,
-					});
-					for (const file of built.files) this.addWatchFile(file);
-					return `export const articles = ${JSON.stringify(built.articles)};`;
+					const [articleBuild, pageBuild] = await Promise.all([
+						buildArticles({
+							contents: CONTENTS,
+							assets: ASSETS,
+							media: MEDIA,
+							segments: SEGMENTS,
+						}),
+						buildPages({ contents: CONTENTS, segments: SEGMENTS }),
+					]);
+					for (const file of new Set([...articleBuild.files, ...pageBuild.files])) {
+						this.addWatchFile(file);
+					}
+					return [
+						`export const articles = ${JSON.stringify(articleBuild.articles)};`,
+						`export const pages = ${JSON.stringify(pageBuild.pages)};`,
+					].join('\n');
 				},
 			},
 			sentrySvelteKit({

@@ -100,6 +100,12 @@ export type CompiledPage = {
 	body: string;
 };
 
-// As served at /<slug>.md: `markdown` is the generated standalone document (see
-// the mapping in content/index.ts), the rest passes through from CompiledPage.
-export type Page = Omit<CompiledPage, 'body'> & { markdown: string };
+export type PageView = Pick<CompiledPage, 'meta' | 'blocks'>;
+
+// The source remains the public /<slug>.md document. Browser-facing HTML chooses
+// one of the compiled views using the same request locale as an article.
+export type Page = {
+	path: string;
+	markdown: string;
+	views: Record<LocaleCode, PageView>;
+};
