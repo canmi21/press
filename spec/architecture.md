@@ -563,6 +563,9 @@ sets that family.
 Cache lifetime follows one rule everywhere: **a name carrying a content hash is cached for a
 year and marked `immutable`, but only on a 2xx. Anything else is cached for five minutes.**
 
+HTML is the one thing that is not cached at all, because its body varies by the reader's
+locale cookie. See [locale.md](locale.md).
+
 The year is an observation, not a promise. Changing the bytes changes the hash and therefore
 the URL, so a hashed name cannot come to mean anything else and nobody has to remember to bust
 it. `/fonts/` is kept for a year too and is the exception that shows the difference: those

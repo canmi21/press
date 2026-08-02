@@ -82,4 +82,5 @@ of truth.
 | Linting and formatting                    | [spec/lint-format.md](spec/lint-format.md)       |
 | Type checking, tests, comments            | [spec/code.md](spec/code.md)                     |
 | Translating article content               | [spec/i18n.md](spec/i18n.md)                     |
+| Serving a reader their language           | [spec/locale.md](spec/locale.md)                 |
 | Toolchain and default stacks              | [spec/toolchain.md](spec/toolchain.md)           |
