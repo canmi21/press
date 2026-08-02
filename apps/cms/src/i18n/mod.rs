@@ -45,6 +45,27 @@ pub struct Outcome {
 	pub exhausted: Option<String>,
 }
 
+fn validate_reply(
+	reply: &str,
+	boundary: &str,
+	masked: &segment::Masked,
+) -> Result<Vec<(String, String)>, Refusal> {
+	let parsed = prompt::parse(reply, Some(boundary)).map_err(|prompt::BoundaryLeak| {
+		Refusal::Failed("the model echoed the prompt boundary".to_owned())
+	})?;
+	let kept: Vec<(String, String)> = parsed
+		.into_iter()
+		.filter(|(_, text)| masked.intact(text))
+		.map(|(locale, text)| (locale, masked.restore(&text)))
+		.collect();
+	if kept.is_empty() {
+		return Err(Refusal::Failed(
+			"no locale survived marker validation".to_owned(),
+		));
+	}
+	Ok(kept)
+}
+
 /// Translate one segment into every locale it is missing.
 async fn translate(
 	item: &Segment,
@@ -61,9 +82,9 @@ async fn translate(
 	let mut backoff = BACKOFF_START;
 
 	while attempt < ATTEMPTS {
-		let text = prompt::build(item, &masked.text, before.as_deref(), after.as_deref());
+		let request = prompt::build(item, &masked.text, before.as_deref(), after.as_deref());
 		let wanted = runner.model_for(item.kind, attempt);
-		let answer = match runner::ask(runner, &text, wanted).await {
+		let answer = match runner::ask(runner, &request.text, wanted).await {
 			Ok(answer) => answer,
 			// No point trying a stronger model against an allowance that is gone; it is the
 			// same account either way. Stop and say so.
@@ -84,17 +105,14 @@ async fn translate(
 
 		// Every marker back exactly once, or the answer is not usable. This is the point of
 		// masking: not hoping the model left the code alone, but being able to show it did.
-		let kept: Vec<(String, String)> = prompt::parse(&answer.text)
-			.into_iter()
-			.filter(|(_, text)| masked.intact(text))
-			.map(|(locale, text)| (locale, masked.restore(&text)))
-			.collect();
-
-		if kept.is_empty() {
-			last = Refusal::Failed("no locale survived marker validation".to_owned());
-			attempt += 1;
-			continue;
-		}
+		let kept = match validate_reply(&answer.text, &request.boundary, &masked) {
+			Ok(kept) => kept,
+			Err(error) => {
+				last = error;
+				attempt += 1;
+				continue;
+			}
+		};
 
 		let provider = runner.provider().to_owned();
 		let seconds = clock.elapsed().as_secs_f64();
@@ -288,6 +306,7 @@ pub async fn run(
 #[cfg(test)]
 mod tests {
 	use super::*;
+	use std::collections::BTreeMap;
 
 	#[test]
 	fn the_status_line_is_measured_in_columns_not_characters() {
@@ -304,5 +323,46 @@ mod tests {
 	#[test]
 	fn the_status_line_collapses_a_block_to_one_row() {
 		assert_eq!(preview("\n\nfirst line\nsecond line"), "first line");
+	}
+
+	#[test]
+	fn a_boundary_echo_cannot_reach_a_sidecar() {
+		let boundary = "VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2";
+		let reply = format!(
+			"{}\n{boundary}\nPaid-for prose remains intact.\n{boundary}\n",
+			prompt::locale_marker("en-US"),
+		);
+		let result = validate_reply(&reply, boundary, &segment::mask("source"));
+		assert!(matches!(&result, Err(Refusal::Failed(_))));
+
+		let mut sidecar = store::Sidecar::default();
+		if let Ok(entries) = result {
+			sidecar.segments.insert(
+				"segment".to_owned(),
+				entries
+					.into_iter()
+					.map(|(locale, text)| {
+						(
+							locale,
+							Translation {
+								text,
+								provider: "openai".to_owned(),
+								model: "gpt-oss-120b-medium".to_owned(),
+								at: "2026-08-02T00:00:00Z".to_owned(),
+								seconds: 1.0,
+								tokens: 10,
+								review: false,
+							},
+						)
+					})
+					.collect::<BTreeMap<_, _>>(),
+			);
+		}
+		assert!(sidecar.segments.is_empty());
+		assert!(
+			!serde_yaml_ng::to_string(&sidecar)
+				.expect("sidecar")
+				.contains(boundary)
+		);
 	}
 }

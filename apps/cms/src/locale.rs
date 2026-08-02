@@ -239,7 +239,8 @@ where
 		match ask(runner, prompt, model).await {
 			Ok(answer) => {
 				let wanted = &item.locales;
-				let found: Vec<(String, String)> = crate::i18n::prompt::parse(&answer.text)
+				let found: Vec<(String, String)> = crate::i18n::prompt::parse(&answer.text, None)
+					.unwrap_or_default()
 					.into_iter()
 					.filter(|(locale, _)| wanted.contains(locale))
 					.collect();

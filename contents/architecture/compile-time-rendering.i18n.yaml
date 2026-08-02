@@ -3123,9 +3123,7 @@ segments:
   999ec04ab43a9fbfb8fa0a97118cf4bf:
     de-DE:
       text: |-
-        P8IYZN0MGM9N7MNBMDPLQF9EKGJ9D19B
         Vielleicht liegt es daran, dass ich von Natur aus eine starke Neugier für niedrigere Prinzipien habe und manchmal beharrlich frage, warum etwas nicht so gemacht werden kann; ich vermute, es ist genau das, weshalb ich gelegentlich einzigartige Ideen entwickeln kann: Das hier ist eine davon. Bereits im November 2025 tauchte sie auf, ich sprach damals mit vielen Freunden darüber, aber wegen Terminüberschneidungen mit laufenden Projekten verschob sich die Umsetzung bis etwa zum Neujahrswechsel 2026, als ich endlich eine Version fertigstellte. Danach legte ich das Ganze wieder beiseite – weil ich eine Website aufbaute. Der Blog ist zwar noch nicht vollständig fertig, aber zumindest habe ich einen Ort, an dem ich Dinge festhalten kann, sodass ich das Thema wieder aufgreifen und neu erläutern möchte.
-        P8IYZN0MGM9N7MNBMDPLQF9EKGJ9D19B
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:13:46.177637Z
@@ -3134,9 +3132,7 @@ segments:
       review: false
     en-US:
       text: |-
-        P8IYZN0MGM9N7MNBMDPLQF9EKGJ9D19B
         It may be that I was born with a strong curiosity about underlying principles, and sometimes I persistently ask why something can't be done; I guess that's the case, so occasionally I can come up with some unique ideas: this is one of them. It first emerged back in November 2025, and I discussed it with many friends at the time, but due to scheduling conflicts with ongoing projects, it was postponed until around the New Year of **2026**, when I finally built a version. Afterwards it was shelved again—because I went on to set up a website. The blog isn’t fully set up yet, but at least I have a place that can somewhat record things, so I want to bring this matter up again and talk about it.
-        P8IYZN0MGM9N7MNBMDPLQF9EKGJ9D19B
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:13:46.177637Z
@@ -3145,9 +3141,7 @@ segments:
       review: false
     es-ES:
       text: |-
-        P8IYZN0MGM9N7MNBMDPLQF9EKGJ9D19B
         Puede que haya nacido con una gran curiosidad por los principios subyacentes y, a veces, me obsesione con preguntar por qué no se puede hacer de cierta forma; supongo que es así, y por eso a veces logro idear ideas únicas: esta es una de ellas. Surgió ya en noviembre de 2025, la comenté con muchos amigos en ese momento, pero debido a conflictos de agenda con proyectos en curso, se pospuso hasta alrededor del Año Nuevo **2026**, cuando finalmente desarrollé una versión. Después la dejé en pausa nuevamente, porque me dediqué a montar un sitio web. El blog aún no está completamente listo, pero al menos tengo un lugar donde puedo registrar cosas, así que quiero retomar este asunto y volver a hablar de él.
-        P8IYZN0MGM9N7MNBMDPLQF9EKGJ9D19B
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:13:46.177637Z
@@ -3156,9 +3150,7 @@ segments:
       review: false
     fr-FR:
       text: |-
-        P8IYZN0MGM9N7MNBMDPLQF9EKGJ9D19B
         Il se peut que je sois né avec une curiosité très forte pour les principes fondamentaux, et parfois je persiste à demander pourquoi on ne peut pas faire les choses de telle manière ; je suppose que c’est ainsi que je parviens parfois à imaginer des idées originales : celle-ci en est un exemple. Elle est apparue dès novembre 2025, j’en ai parlé à de nombreux amis à l’époque, mais à cause de conflits de planning avec d’autres projets, elle a été repoussée jusqu’aux alentours du Nouvel An **2026** où j’ai finalement réalisé une première version. Ensuite elle a de nouveau été mise de côté – parce que je me suis lancé dans la création d’un site. Le blog n’est pas encore totalement opérationnel, mais j’ai au moins un endroit où je peux consigner des choses, donc je veux ressortir ce sujet et le réexpliquer.
-        P8IYZN0MGM9N7MNBMDPLQF9EKGJ9D19B
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:13:46.177637Z
@@ -3167,9 +3159,7 @@ segments:
       review: false
     ja-JP:
       text: |-
-        P8IYZN0MGM9N7MNBMDPLQF9EKGJ9D19B
         私が生まれつき基礎原理に強い好奇心を持っているせいかもしれませんし、時にはなぜそれができないのかを徹底的に質問し続けることがあります；そのようなことがあるからこそ、ときどき独自のアイデアが思いつくことがあります：これもその一つで、25年11月にすでに姿を現しました。当時は多くの友人と話し合いましたが、手元のプロジェクトのスケジュールが重なり、**2026**年の正月前後まで実際に手を動かしてバージョンを作るのが遅れました。その後、サイト構築に取り掛かったため再び中断しました。ブログはまだ完全に立ち上がってはいませんが、少なくとも記録できる場所ができたので、改めてこのことを取り上げて語り直したいと思います。
-        P8IYZN0MGM9N7MNBMDPLQF9EKGJ9D19B
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:13:46.177637Z
@@ -3178,9 +3168,7 @@ segments:
       review: false
     ko-KR:
       text: |-
-        P8IYZN0MGM9N7MNBMDPLQF9EKGJ9D19B
         아마도 나는 태어날 때부터 근본 원리에 대한 강한 호기심을 가지고 있었고, 때때로 왜 그렇게 할 수 없는지 계속해서 물어보는 집착이 있었기 때문인 것 같다; 그래서 가끔 독특한 아이디어를 떠올릴 수 있었던 것 같다: 이것도 그 중 하나로, 25년 11월에 이미 나타났다. 당시 많은 친구들과 이야기를 나눴지만, 진행 중인 프로젝트와 시간 충돌이 있어 **2026**년 새해 전후까지 실제로 버전을 만들기까지 미뤄졌다. 이후 다시 미뤄졌는데, 웹사이트를 만들러 갔기 때문이다. 블로그는 아직 완전히 갖춰지지는 않았지만, 적어도 기록할 수 있는 장소가 생겨서 이 일을 다시 꺼내어 이야기하고 싶다.
-        P8IYZN0MGM9N7MNBMDPLQF9EKGJ9D19B
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:13:46.177637Z
@@ -3189,9 +3177,7 @@ segments:
       review: false
     zh-CN:
       text: |-
-        P8IYZN0MGM9N7MNBMDPLQF9EKGJ9D19B
         可能是我的天生就对底层原理有很强的好奇心，再加上有时候一直执着于问清楚为什么不能这么做；我猜可能是这样子的，所以有时候我才能想出一些独特的想法：这个就是其中之一，早在 25 年 11 月的时候它就冒出来了，当时跟身边很多朋友聊了聊，但因为手头项目的时间冲突，一直拖到了 **2026** 年新年前后才真正动手做了一版出来。之后又搁置了——因为我跑去建站了。博客虽然也没完全搭好，但总算有了一个还算能记录东西的地方，所以我想把这件事拎出来重新说一说。
-        P8IYZN0MGM9N7MNBMDPLQF9EKGJ9D19B
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:13:46.177637Z
@@ -3200,9 +3186,7 @@ segments:
       review: false
     zh-TW:
       text: |-
-        P8IYZN0MGM9N7MNBMDPLQF9EKGJ9D19B
         可能是我天生對底層原理有非常強的好奇心，加上有時候執著於問清楚為什麼不能這樣做；我猜大概是這樣，所以有時候我才能想到一些獨特的想法：這就是其中之一，早在 25 年 11 月它就冒出來了，當時跟身邊很多朋友聊了聊，但因手頭項目時間衝突，一直拖到 **2026** 年新年前後才真正動手做出一個版本。之後又擱置了——因為我去建站了。雖然部落格還沒完全搭好，但總算有一個還算能記錄東西的地方，所以我想把這件事重新拎出來說一說。
-        P8IYZN0MGM9N7MNBMDPLQF9EKGJ9D19B
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:13:46.177637Z

@@ -132,7 +132,7 @@ segments:
       review: false
   03a7b723b0bf91095124a7d8c7cf04c7:
     de-DE:
-      text: "T990H6ECU8OK9BSETJCC7BA7I5VPPDVS  \nSeltsamerweise hat die Qualität nach dem Loslassen nicht nachgelassen. Ich denke, das liegt wahrscheinlich daran, dass die früheren „古法“-Programmierzeiten nicht umsonst waren; bereits in der GPT‑2‑Ära habe ich angefangen, KI zu benutzen, doch damals schrieb ich noch jede Zeile Code gewissenhaft und verstand jedes Konzept. Diese Erfahrung hat mir ein Fundament gegeben, und eher als später Vibe Coding zu bezeichnen, sollte man von Context Coding sprechen; das nötige Urteilsvermögen ist noch vorhanden, und das Loslassen hat nicht zu niedrigen Fehlern oder Unfällen geführt."
+      text: "Seltsamerweise hat die Qualität nach dem Loslassen nicht nachgelassen. Ich denke, das liegt wahrscheinlich daran, dass die früheren „古法“-Programmierzeiten nicht umsonst waren; bereits in der GPT‑2‑Ära habe ich angefangen, KI zu benutzen, doch damals schrieb ich noch jede Zeile Code gewissenhaft und verstand jedes Konzept. Diese Erfahrung hat mir ein Fundament gegeben, und eher als später Vibe Coding zu bezeichnen, sollte man von Context Coding sprechen; das nötige Urteilsvermögen ist noch vorhanden, und das Loslassen hat nicht zu niedrigen Fehlern oder Unfällen geführt."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:43.346376Z
@@ -140,7 +140,7 @@ segments:
       tokens: 18290
       review: false
     en-US:
-      text: "T990H6ECU8OK9BSETJCC7BA7I5VPPDVS  \nStrangely, the quality didn't degrade after letting go. I think this is probably because those “古法” programming days weren't wasted; as early as the GPT‑2 era I started using AI, but back then I was still honestly writing every line of code and understanding every concept. That experience gave me a foundation, and rather than saying it was later Vibe Coding, it's more like Context Coding; the necessary judgment is still there, and letting go hasn't led to any low‑level mistakes or accidents."
+      text: "Strangely, the quality didn't degrade after letting go. I think this is probably because those “古法” programming days weren't wasted; as early as the GPT‑2 era I started using AI, but back then I was still honestly writing every line of code and understanding every concept. That experience gave me a foundation, and rather than saying it was later Vibe Coding, it's more like Context Coding; the necessary judgment is still there, and letting go hasn't led to any low‑level mistakes or accidents."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:43.346376Z
@@ -148,7 +148,7 @@ segments:
       tokens: 18290
       review: false
     es-ES:
-      text: "T990H6ECU8OK9BSETJCC7BA7I5VPPDVS  \nCuriosamente, la calidad no empeoró después de soltar el control. Supongo que se debe a que esos días de programación « 古法 » no fueron en vano; ya en la era de GPT‑2 comencé a usar IA, pero entonces todavía escribía cada línea de código con dedicación y comprendía cada concepto. Esa experiencia me dio una base, y más que llamarlo Vibe Coding después, debería llamarse Context Coding; la capacidad de juicio necesaria sigue ahí, y dejar ir no provocó errores básicos ni accidentes."
+      text: "Curiosamente, la calidad no empeoró después de soltar el control. Supongo que se debe a que esos días de programación « 古法 » no fueron en vano; ya en la era de GPT‑2 comencé a usar IA, pero entonces todavía escribía cada línea de código con dedicación y comprendía cada concepto. Esa experiencia me dio una base, y más que llamarlo Vibe Coding después, debería llamarse Context Coding; la capacidad de juicio necesaria sigue ahí, y dejar ir no provocó errores básicos ni accidentes."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:43.346376Z
@@ -156,7 +156,7 @@ segments:
       tokens: 18290
       review: false
     fr-FR:
-      text: "T990H6ECU8OK9BSETJCC7BA7I5VPPDVS  \nÉtrangement, la qualité ne s’est pas détériorée après avoir laissé aller. Je pense que c’est probablement parce que les jours de programmation « 古法 » n’ont pas été vains ; dès l’époque GPT‑2, j’ai commencé à utiliser l’IA, mais à l’époque je rédigeais chaque ligne de code avec soin et comprenais chaque concept. Cette expérience m’a donné une base, et plutôt que d’appeler cela Vibe Coding, on pourrait parler de Context Coding ; le jugement nécessaire est toujours présent, et le fait de lâcher prise n’a pas entraîné d’erreurs basiques ni d’accidents."
+      text: "Étrangement, la qualité ne s’est pas détériorée après avoir laissé aller. Je pense que c’est probablement parce que les jours de programmation « 古法 » n’ont pas été vains ; dès l’époque GPT‑2, j’ai commencé à utiliser l’IA, mais à l’époque je rédigeais chaque ligne de code avec soin et comprenais chaque concept. Cette expérience m’a donné une base, et plutôt que d’appeler cela Vibe Coding, on pourrait parler de Context Coding ; le jugement nécessaire est toujours présent, et le fait de lâcher prise n’a pas entraîné d’erreurs basiques ni d’accidents."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:43.346376Z
@@ -164,7 +164,7 @@ segments:
       tokens: 18290
       review: false
     ja-JP:
-      text: "T990H6ECU8OK9BSETJCC7BA7I5VPPDVS  \n不思議なことに、手放した後でも品質は低下しなかった。これはおそらく、以前の「古法」プログラミングの日々が無駄ではなかったからだと思う。GPT‑2 の時代からすでに AI を使い始めていたが、その頃はまだ一行一行を書き、すべての概念を理解しようとしていた。その経験が基盤となり、後の Vibe Coding と呼ぶよりむしろ Context Coding と呼んだ方が適切で、必要な判断力は依然として残っており、手放したからといって低レベルのミスや事故が起きたわけではない。"
+      text: "不思議なことに、手放した後でも品質は低下しなかった。これはおそらく、以前の「古法」プログラミングの日々が無駄ではなかったからだと思う。GPT‑2 の時代からすでに AI を使い始めていたが、その頃はまだ一行一行を書き、すべての概念を理解しようとしていた。その経験が基盤となり、後の Vibe Coding と呼ぶよりむしろ Context Coding と呼んだ方が適切で、必要な判断力は依然として残っており、手放したからといって低レベルのミスや事故が起きたわけではない。"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:43.346376Z
@@ -172,7 +172,7 @@ segments:
       tokens: 18290
       review: false
     ko-KR:
-      text: "T990H6ECU8OK9BSETJCC7BA7I5VPPDVS  \n이상하게도, 손을 놓은 뒤에도 품질이 나빠지지 않았다. 이는 아마도 이전의 “古法” 프로그래밍 시절이 헛되지 않았기 때문이라고 생각한다. GPT‑2 시절부터 이미 AI를 사용하기 시작했지만, 그때는 여전히 모든 코드를 한 줄씩 성실히 작성하고 모든 개념을 이해하려고 했다. 그 경험이 토대가 되었고, 이후의 Vibe Coding이라기보다 Context Coding이라고 부르는 것이 맞으며, 필요한 판단력은 여전히 남아 있고, 손을 놓았다고 해서 저급한 실수나 사고가 발생한 것은 아니다."
+      text: "이상하게도, 손을 놓은 뒤에도 품질이 나빠지지 않았다. 이는 아마도 이전의 “古法” 프로그래밍 시절이 헛되지 않았기 때문이라고 생각한다. GPT‑2 시절부터 이미 AI를 사용하기 시작했지만, 그때는 여전히 모든 코드를 한 줄씩 성실히 작성하고 모든 개념을 이해하려고 했다. 그 경험이 토대가 되었고, 이후의 Vibe Coding이라기보다 Context Coding이라고 부르는 것이 맞으며, 필요한 판단력은 여전히 남아 있고, 손을 놓았다고 해서 저급한 실수나 사고가 발생한 것은 아니다."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:43.346376Z
@@ -180,7 +180,7 @@ segments:
       tokens: 18290
       review: false
     zh-CN:
-      text: "T990H6ECU8OK9BSETJCC7BA7I5VPPDVS  \n奇怪的是，放手之后质量并没有变差。我想这大概是因为之前那些\"古法\"编程的日子没有白费；早在 GPT-2 时代我就开始用 AI 了，但那时候我还在老老实实地写每一行代码、理解每一个概念。那段经历给了我底子，与其说后来 Vibe Coding 不如说是 Context Coding，该有的判断力还在，并没有因为放手就出什么低级错误或者说是事故。"
+      text: "奇怪的是，放手之后质量并没有变差。我想这大概是因为之前那些\"古法\"编程的日子没有白费；早在 GPT-2 时代我就开始用 AI 了，但那时候我还在老老实实地写每一行代码、理解每一个概念。那段经历给了我底子，与其说后来 Vibe Coding 不如说是 Context Coding，该有的判断力还在，并没有因为放手就出什么低级错误或者说是事故。"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:43.346376Z
@@ -188,7 +188,7 @@ segments:
       tokens: 18290
       review: false
     zh-TW:
-      text: "T990H6ECU8OK9BSETJCC7BA7I5VPPDVS  \n奇怪的是，放手之後品質並沒有變差。我想這大概是因為之前那些「古法」程式設計的日子沒有白費；早在 GPT-2 時代我就開始使用 AI 了，但那時候我還在老老實實地寫每一行程式碼、理解每一個概念。那段經驗給了我底子，與其說後來 Vibe Coding 不如說是 Context Coding，該有的判斷力還在，並沒有因為放手就出什麼低階錯誤或是事故。"
+      text: "奇怪的是，放手之後品質並沒有變差。我想這大概是因為之前那些「古法」程式設計的日子沒有白費；早在 GPT-2 時代我就開始使用 AI 了，但那時候我還在老老實實地寫每一行程式碼、理解每一個概念。那段經驗給了我底子，與其說後來 Vibe Coding 不如說是 Context Coding，該有的判斷力還在，並沒有因為放手就出什麼低階錯誤或是事故。"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:43.346376Z
@@ -263,9 +263,7 @@ segments:
   10a6be685d67b9d197263f044f2ae2e9:
     de-DE:
       text: |-
-        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
         ::linkcard{src="8acf126a993024efcb5d4db159659d40.avif" url="https://vercel.com" title="Vercel"}
-        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:43.34644Z
@@ -274,9 +272,7 @@ segments:
       review: false
     en-US:
       text: |-
-        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
         ::linkcard{src="8acf126a993024efcb5d4db159659d40.avif" url="https://vercel.com" title="Vercel"}
-        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:43.34644Z
@@ -285,9 +281,7 @@ segments:
       review: false
     es-ES:
       text: |-
-        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
         ::linkcard{src="8acf126a993024efcb5d4db159659d40.avif" url="https://vercel.com" title="Vercel"}
-        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:43.34644Z
@@ -296,9 +290,7 @@ segments:
       review: false
     fr-FR:
       text: |-
-        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
         ::linkcard{src="8acf126a993024efcb5d4db159659d40.avif" url="https://vercel.com" title="Vercel"}
-        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:43.34644Z
@@ -307,9 +299,7 @@ segments:
       review: false
     ja-JP:
       text: |-
-        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
         ::linkcard{src="8acf126a993024efcb5d4db159659d40.avif" url="https://vercel.com" title="Vercel"}
-        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:43.34644Z
@@ -318,9 +308,7 @@ segments:
       review: false
     ko-KR:
       text: |-
-        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
         ::linkcard{src="8acf126a993024efcb5d4db159659d40.avif" url="https://vercel.com" title="Vercel"}
-        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:43.34644Z
@@ -329,9 +317,7 @@ segments:
       review: false
     zh-CN:
       text: |-
-        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
         ::linkcard{src="8acf126a993024efcb5d4db159659d40.avif" url="https://vercel.com" title="Vercel"}
-        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:43.34644Z
@@ -340,9 +326,7 @@ segments:
       review: false
     zh-TW:
       text: |-
-        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
         ::linkcard{src="8acf126a993024efcb5d4db159659d40.avif" url="https://vercel.com" title="Vercel"}
-        9A79WVTYN2WHHZRALG32XXWQDUCSGN4N
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:43.34644Z
@@ -612,9 +596,7 @@ segments:
   4846d4b9b85bb3f2152d082cf4a7947e:
     de-DE:
       text: |-
-        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
         ::image{src="a46df6030a9b1ba3f0af95e1a2196850.avif"}
-        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:59.005094Z
@@ -623,9 +605,7 @@ segments:
       review: false
     en-US:
       text: |-
-        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
         ::image{src="a46df6030a9b1ba3f0af95e1a2196850.avif"}
-        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:59.005094Z
@@ -634,9 +614,7 @@ segments:
       review: false
     es-ES:
       text: |-
-        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
         ::image{src="a46df6030a9b1ba3f0af95e1a2196850.avif"}
-        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:59.005094Z
@@ -645,9 +623,7 @@ segments:
       review: false
     fr-FR:
       text: |-
-        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
         ::image{src="a46df6030a9b1ba3f0af95e1a2196850.avif"}
-        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:59.005094Z
@@ -656,9 +632,7 @@ segments:
       review: false
     ja-JP:
       text: |-
-        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
         ::image{src="a46df6030a9b1ba3f0af95e1a2196850.avif"}
-        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:59.005094Z
@@ -667,9 +641,7 @@ segments:
       review: false
     ko-KR:
       text: |-
-        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
         ::image{src="a46df6030a9b1ba3f0af95e1a2196850.avif"}
-        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:59.005094Z
@@ -678,9 +650,7 @@ segments:
       review: false
     zh-CN:
       text: |-
-        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
         ::image{src="a46df6030a9b1ba3f0af95e1a2196850.avif"}
-        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:59.005094Z
@@ -689,9 +659,7 @@ segments:
       review: false
     zh-TW:
       text: |-
-        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
         ::image{src="a46df6030a9b1ba3f0af95e1a2196850.avif"}
-        I8E0BLY0J4ADYLHOP49DYHCV7VLUVCKW
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:59.005094Z
@@ -1353,9 +1321,7 @@ segments:
       text: |-
         ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo: Ein schnelles, einfaches und leistungsstarkes Blog-Framework."}
         再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
-        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
         ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
-        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:44.699539Z
@@ -1366,9 +1332,7 @@ segments:
       text: |-
         ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo: A fast, simple & powerful blog framework."}
         再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
-        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
         ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
-        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:44.699539Z
@@ -1379,9 +1343,7 @@ segments:
       text: |-
         ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo: un framework de blogs rápido, sencillo y potente."}
         再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
-        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
         ::linkcard{src="ccab92399398f1642024732cc1097abe.avavif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
-        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:44.699539Z
@@ -1392,9 +1354,7 @@ segments:
       text: |-
         ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo : un framework de blog rapide, simple et puissant."}
         再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
-        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
         ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
-        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:44.699539Z
@@ -1405,9 +1365,7 @@ segments:
       text: |-
         ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo：高速でシンプルかつ強力なブログフレームワーク。"}
         再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
-        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
         ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
-        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:44.699539Z
@@ -1418,9 +1376,7 @@ segments:
       text: |-
         ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo: 빠르고 간단하며 강력한 블로그 프레임워크."}
         再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
-        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
         ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
-        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:44.699539Z
@@ -1431,9 +1387,7 @@ segments:
       text: |-
         ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo：一个快速、简洁且功能强大的博客框架。"}
         再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
-        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
         ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
-        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:44.699539Z
@@ -1444,9 +1398,7 @@ segments:
       text: |-
         ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo：一個快速、簡潔且功能強大的部落格框架。"}
         再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
-        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
         ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
-        W2YA7QWCAG2C4ZZV5VY73H3XGDRXILFH
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:44.699539Z
@@ -1716,7 +1668,6 @@ segments:
   b674eb6b25c4ee3aed166b037ba95e10:
     de-DE:
       text: |-
-        91HPJYDNC8RHC54FFSXCK39E3JYIJDMW
         Ich habe begonnen loszulassen. Ich habe die Dinge, an denen ich einst festgehalten habe, aufgegeben, gelernt, bei Bedarf zu stoppen, und das Morgen erledige ich morgen. Vane nicht fertig? Erst mal liegen lassen. Seam ist noch weit entfernt? Später erledigen. Der Blog ist nicht perfekt? Erst einmal veröffentlichen. Beginne komplett mit Vibe Coding; wenn es kein Problem gibt, ignoriere es, bei Problemen kümmere ich mich später darum.
       provider: openai
       model: gpt-oss-120b-medium
@@ -1726,7 +1677,6 @@ segments:
       review: false
     en-US:
       text: |-
-        91HPJYDNC8RHC54FFSXCK39E3JYIJDMW
         I started to let go. I gave up the things I once clung to, learned to stop at the right moment, and to deal with tomorrow's matters tomorrow. Vane not finished? Leave it for now. Seam still far from done? Do it later. Blog not perfect? Launch it first. Begin fully with Vibe Coding; if there’s no problem, ignore it, and if there is, address it later.
       provider: openai
       model: gpt-oss-120b-medium
@@ -1736,7 +1686,6 @@ segments:
       review: false
     es-ES:
       text: |-
-        91HPJYDNC8RHC54FFSXCK39E3JYIJDMW
         He empezado a soltar. He dejado atrás las cosas a las que antes me aferraba, he aprendido a detenerme a tiempo, y lo de mañana lo dejo para mañana. ¿Vane no está terminado? Lo dejo por ahora. ¿Seam todavía está lejos? Lo haré después. ¿El blog no es perfecto? Primero lo pongo en línea. Empieza a hacer Vibe Coding por completo; si no hay problema no lo toques, si lo hay, lo abordarás después.
       provider: openai
       model: gpt-oss-120b-medium
@@ -1746,7 +1695,6 @@ segments:
       review: false
     fr-FR:
       text: |-
-        91HPJYDNC8RHC54FFSXCK39E3JYIJDMW
         J’ai commencé à lâcher prise. J’ai abandonné les choses auxquelles j’étais autrefois accro, appris à m’arrêter au bon moment, et à remettre à demain ce qui peut attendre. Vane n’est pas terminé ? On le laisse de côté pour l’instant. Seam est encore loin d’être fini ? On y reviendra plus tard. Le blog n’est pas parfait ? On le publie d’abord. Commencez à faire du Vibe Coding à fond ; s’il n’y a pas de problème, on ne s’en occupe pas, sinon on en parlera plus tard.
       provider: openai
       model: gpt-oss-120b-medium
@@ -1756,7 +1704,6 @@ segments:
       review: false
     ja-JP:
       text: |-
-        91HPJYDNC8RHC54FFSXCK39E3JYIJDMW
         私は手放し始めた。かつて執着していたものを手放し、ほどほどに止めることを学び、明日のことは明日やる。Vane がまだ終わっていない？まずは放っておく。Seam はまだ遠い？後でやる。ブログは完璧でなくても？まずは公開する。完全に Vibe Coding を始め、問題がなければ放置し、問題があれば後で対処する。
       provider: openai
       model: gpt-oss-120b-medium
@@ -1766,7 +1713,6 @@ segments:
       review: false
     ko-KR:
       text: |-
-        91HPJYDNC8RHC54FFSXCK39E3JYIJDMW
         나는 놓기 시작했다. 예전마다 고집하던 것을 포기하고, 적당한 시점에 멈추는 법을 배우며, 내일 일은 내일에 말한다. Vane 아직 안 됐어? 일단 놔두자. Seam 아직 멀었어? 나중에 하자. 블로그가 완벽하지 않아? 먼저 올리자. 완전히 Vibe Coding을 시작하고, 문제가 없으면 신경 쓰지 않고, 문제가 있으면 나중에 이야기한다.
       provider: openai
       model: gpt-oss-120b-medium
@@ -1776,7 +1722,6 @@ segments:
       review: false
     zh-CN:
       text: |-
-        91HPJYDNC8RHC54FFSXCK39E3JYIJDMW
         我开始放手。放弃曾经执着的东西，学会点到为止，明天的事明天再说。Vane 没做完？先放着。Seam 还差很远？以后再来。博客不完美？先上线。开始完全 Vibe Coding，没问题就不管，有问题再说。
       provider: openai
       model: gpt-oss-120b-medium
@@ -1786,7 +1731,6 @@ segments:
       review: false
     zh-TW:
       text: |-
-        91HPJYDNC8RHC54FFSXCK39E3JYIJDMW
         我開始放手。放棄曾經執著的東西，學會點到為止，明天的事明天再說。Vane 沒做完？先放著。Seam 還差很遠？以後再來。部落格不完美？先上線。開始完全 Vibe Coding，沒問題就不管，有問題再說。
       provider: openai
       model: gpt-oss-120b-medium
@@ -1992,7 +1936,6 @@ segments:
   b99b9fcffe3b3af02b601b9e4b16d415:
     de-DE:
       text: |-
-        GGUJ4QZJI6AU0WXR8NB5CIL2D1M6OI0F
         Ich habe über diesen Blog zwei Jahre nachgedacht.
       provider: openai
       model: gpt-oss-120b-medium
@@ -2002,7 +1945,6 @@ segments:
       review: false
     en-US:
       text: |-
-        GGUJ4QZJI6AU0WXR8NB5CIL2D1M6OI0F
         I’ve been thinking about this blog for two years.
       provider: openai
       model: gpt-oss-120b-medium
@@ -2012,7 +1954,6 @@ segments:
       review: false
     es-ES:
       text: |-
-        GGUJ4QZJI6AU0WXR8NB5CIL2D1M6OI0F
         He pensado en este blog durante dos años.
       provider: openai
       model: gpt-oss-120b-medium
@@ -2022,7 +1963,6 @@ segments:
       review: false
     fr-FR:
       text: |-
-        GGUJ4QZJI6AU0WXR8NB5CIL2D1M6OI0F
         J’ai réfléchi à ce blog pendant deux ans.
       provider: openai
       model: gpt-oss-120b-medium
@@ -2032,7 +1972,6 @@ segments:
       review: false
     ja-JP:
       text: |-
-        GGUJ4QZJI6AU0WXR8NB5CIL2D1M6OI0F
         このブログについて、2年間考えていました。
       provider: openai
       model: gpt-oss-120b-medium
@@ -2042,7 +1981,6 @@ segments:
       review: false
     ko-KR:
       text: |-
-        GGUJ4QZJI6AU0WXR8NB5CIL2D1M6OI0F
         이 블로그에 대해 두 해 동안 생각했습니다.
       provider: openai
       model: gpt-oss-120b-medium
@@ -2052,7 +1990,6 @@ segments:
       review: false
     zh-CN:
       text: |-
-        GGUJ4QZJI6AU0WXR8NB5CIL2D1M6OI0F
         这个博客，我想了两年
       provider: openai
       model: gpt-oss-120b-medium
@@ -2062,7 +1999,6 @@ segments:
       review: false
     zh-TW:
       text: |-
-        GGUJ4QZJI6AU0WXR8NB5CIL2D1M6OI0F
         這個部落格，我想了兩年.
       provider: openai
       model: gpt-oss-120b-medium
