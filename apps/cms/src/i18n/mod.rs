@@ -16,6 +16,18 @@ use segment::Segment;
 use std::path::Path;
 use store::Translation;
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Scope {
+	All,
+	Frontmatter,
+}
+
+impl Scope {
+	fn includes(self, segment: &Segment) -> bool {
+		self == Self::All || segment.region == segment::Region::Frontmatter
+	}
+}
+
 /// Requests in flight. The same reasoning as `cms alt`: politeness rather than local limits.
 pub const PARALLEL: usize = 4;
 
@@ -180,6 +192,7 @@ pub async fn run(
 	only: &[std::path::PathBuf],
 	limit: Option<usize>,
 	force: bool,
+	scope: Scope,
 ) -> std::io::Result<Outcome> {
 	let mut outcome = Outcome::default();
 	let mut budget = limit.unwrap_or(usize::MAX);
@@ -201,16 +214,20 @@ pub async fn run(
 		let live = segment::translatable(&article);
 		let sidecar_path = store::path_for(&path);
 		let mut sidecar = store::load(&sidecar_path);
-		outcome.segments += live.len();
+		outcome.segments += live
+			.values()
+			.filter(|segment| scope.includes(segment))
+			.count();
 		outcome.orphans += store::orphans(&sidecar, &live).len();
 
-		let wanted = if force {
+		let mut wanted = if force {
 			live.keys().cloned().collect::<Vec<_>>()
 		} else {
 			store::missing(&sidecar, &live, &prompt::LOCALES)
 				.into_keys()
 				.collect()
 		};
+		wanted.retain(|id| live.get(id).is_some_and(|segment| scope.includes(segment)));
 		if wanted.is_empty() {
 			continue;
 		}
@@ -324,6 +341,21 @@ mod tests {
 	#[test]
 	fn the_status_line_collapses_a_block_to_one_row() {
 		assert_eq!(preview("\n\nfirst line\nsecond line"), "first line");
+	}
+
+	#[test]
+	fn frontmatter_scope_never_selects_body_prose() {
+		let segments = segment::split(
+			"---\ntitle: Visible title\nlang: en-US\n---\n\nBody that must stay out of this run.",
+		);
+		let selected = segments
+			.iter()
+			.filter(|segment| Scope::Frontmatter.includes(segment))
+			.collect::<Vec<_>>();
+
+		assert_eq!(selected.len(), 1);
+		assert_eq!(selected[0].source, "Visible title");
+		assert_eq!(selected[0].region, segment::Region::Frontmatter);
 	}
 
 	#[test]

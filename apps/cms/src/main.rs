@@ -256,6 +256,11 @@ fn describe_images(args: &[String]) -> ExitCode {
 /// and updates every language together.
 fn translate_articles(args: &[String]) -> ExitCode {
 	let force = args.iter().any(|arg| arg == "--force");
+	let scope = if args.iter().any(|arg| arg == "--frontmatter") {
+		i18n::Scope::Frontmatter
+	} else {
+		i18n::Scope::All
+	};
 	let limit = args
 		.iter()
 		.position(|arg| arg == "--limit")
@@ -271,7 +276,7 @@ fn translate_articles(args: &[String]) -> ExitCode {
 			continue;
 		}
 		match arg.as_str() {
-			"--force" => {}
+			"--force" | "--frontmatter" => {}
 			"--limit" => skip = true,
 			"--model" => {
 				skip = true;
@@ -315,6 +320,7 @@ fn translate_articles(args: &[String]) -> ExitCode {
 		&only,
 		limit,
 		force,
+		scope,
 	)) {
 		Ok(outcome) => outcome,
 		Err(error) => {
@@ -728,7 +734,7 @@ fn usage() {
 	eprintln!("                              describe assets that have no description yet");
 	eprintln!("  og [--force]                render an OpenGraph card per article");
 	eprintln!("  segments                    write article segment ids and source ranges");
-	eprintln!("  i18n [--model M] [--force] [--limit N] [article...]");
+	eprintln!("  i18n [--model M] [--force] [--frontmatter] [--limit N] [article...]");
 	eprintln!("                              translate article segments into every locale");
 	eprintln!("  locale [--model M] [--force] [--limit N]");
 	eprintln!("                              translate tag labels and image descriptions");

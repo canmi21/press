@@ -67,8 +67,7 @@ segments:
       review: false
   10224a97f9a9e6c8059838db34c0fde7:
     de-DE:
-      text: |-
-        Ich hockte mich hin und strich über das Grasbüschel, das in der Lücke des fehlenden Bretts gewachsen war. Es sah aus wie gewöhnliches Gras, doch beim Anfassen war es trocken, der Boden schien nicht besonders gut, und trotzdem wuchs es aus den Rissen des Bretts. Normalerweise kommt hier kaum jemand vorbei… Tatsächlich ist mein Geist, wenn ich an solchen Stellen entlanggehe, schon lange leer, ohne konkrete Gedanken, nur das Gefühl, dass sehr, sehr lange Zeit vergangen ist, und die Dinge und Details, die ich sonst nie wieder einfallen lasse, tauchen plötzlich wieder auf, sobald ich diesen Ort erreiche, und werden erstaunlich klar. Dann empfindet man, dass sich dieser Ort verändert hat und jener Ort ebenso. Der Ort aus der Erinnerung existiert nicht mehr; die Zeit hat alles davongetragen.
+      text: Ich hockte mich hin und strich über das Grasbüschel, das in der Lücke des fehlenden Bretts gewachsen war. Es sah aus wie gewöhnliches Gras, doch beim Anfassen war es trocken, der Boden schien nicht besonders gut, und trotzdem wuchs es aus den Rissen des Bretts. Normalerweise kommt hier kaum jemand vorbei… Tatsächlich ist mein Geist, wenn ich an solchen Stellen entlanggehe, schon lange leer, ohne konkrete Gedanken, nur das Gefühl, dass sehr, sehr lange Zeit vergangen ist, und die Dinge und Details, die ich sonst nie wieder einfallen lasse, tauchen plötzlich wieder auf, sobald ich diesen Ort erreiche, und werden erstaunlich klar. Dann empfindet man, dass sich dieser Ort verändert hat und jener Ort ebenso. Der Ort aus der Erinnerung existiert nicht mehr; die Zeit hat alles davongetragen.
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.71278Z
@@ -76,8 +75,7 @@ segments:
       tokens: 18405
       review: false
     en-US:
-      text: |-
-        I crouched down and brushed the clump of grass that had grown in the gap of the missing board. It looked like ordinary grass, but it felt dry to the touch, and the soil seemed poor, yet it still managed to sprout from the board’s crack. Usually, hardly anyone comes here… In fact, when walking through these places, my mind has already emptied long ago, with no concrete thoughts—just a sense that a very long time has passed, and the things and details that I normally can’t recall seem to surface automatically when I reach that spot, becoming strikingly clear. Then you can’t help but feel that this place has changed, and that place too. The place in memory no longer exists; time has taken it all away.
+      text: I crouched down and brushed the clump of grass that had grown in the gap of the missing board. It looked like ordinary grass, but it felt dry to the touch, and the soil seemed poor, yet it still managed to sprout from the board’s crack. Usually, hardly anyone comes here… In fact, when walking through these places, my mind has already emptied long ago, with no concrete thoughts—just a sense that a very long time has passed, and the things and details that I normally can’t recall seem to surface automatically when I reach that spot, becoming strikingly clear. Then you can’t help but feel that this place has changed, and that place too. The place in memory no longer exists; time has taken it all away.
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.71278Z
@@ -85,8 +83,7 @@ segments:
       tokens: 18405
       review: false
     es-ES:
-      text: |-
-        Me agaché, pasé la mano por el montón de hierba que había brotado en la grieta de la tabla faltante. A simple vista parecía hierba normal, pero al tocarla estaba seca, el suelo no parecía muy bueno, y sin embargo seguía creciendo desde la hendidura de la tabla. Normalmente, casi nadie viene aquí… De hecho, al caminar por estos lugares mi mente ya está vacía desde hace tiempo, sin pensamientos concretos, solo la sensación de que ha pasado mucho, mucho tiempo, y las cosas y detalles que normalmente no logro recordar aparecen por sí solos al llegar a ese sitio, volviéndose increíblemente claros. Entonces te das cuenta de que aquí ha cambiado, y allí también ha cambiado. El lugar que guardaba en la memoria ya no existe; el tiempo se lo ha llevado todo.
+      text: Me agaché, pasé la mano por el montón de hierba que había brotado en la grieta de la tabla faltante. A simple vista parecía hierba normal, pero al tocarla estaba seca, el suelo no parecía muy bueno, y sin embargo seguía creciendo desde la hendidura de la tabla. Normalmente, casi nadie viene aquí… De hecho, al caminar por estos lugares mi mente ya está vacía desde hace tiempo, sin pensamientos concretos, solo la sensación de que ha pasado mucho, mucho tiempo, y las cosas y detalles que normalmente no logro recordar aparecen por sí solos al llegar a ese sitio, volviéndose increíblemente claros. Entonces te das cuenta de que aquí ha cambiado, y allí también ha cambiado. El lugar que guardaba en la memoria ya no existe; el tiempo se lo ha llevado todo.
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.71278Z
@@ -94,8 +91,7 @@ segments:
       tokens: 18405
       review: false
     fr-FR:
-      text: |-
-        Je me suis accroupi et ai effleuré la touffe d’herbe qui avait poussé dans l’écart de la planche manquante. Elle n’avait rien de différent d’une herbe ordinaire, mais au toucher elle était sèche, le sol semblait pauvre, et pourtant elle poussait toujours à travers la fissure de la planche. Habituellement, personne ne vient ici… En fait, en marchant dans ces lieux, mon cerveau s’est déjà vidé depuis longtemps, sans pensée précise, seulement la sensation que beaucoup, beaucoup de temps s’est écoulé, et les choses et les détails que je n’arrivais jamais à me rappeler semblent surgir d’eux‑mêmes quand j’atteins cet endroit, devenant d’une clarté saisissante. Alors l’on se dit que cet endroit a changé, que cet autre aussi a changé. L’endroit qui existait dans ma mémoire n’est plus ; le temps a tout emporté.
+      text: Je me suis accroupi et ai effleuré la touffe d’herbe qui avait poussé dans l’écart de la planche manquante. Elle n’avait rien de différent d’une herbe ordinaire, mais au toucher elle était sèche, le sol semblait pauvre, et pourtant elle poussait toujours à travers la fissure de la planche. Habituellement, personne ne vient ici… En fait, en marchant dans ces lieux, mon cerveau s’est déjà vidé depuis longtemps, sans pensée précise, seulement la sensation que beaucoup, beaucoup de temps s’est écoulé, et les choses et les détails que je n’arrivais jamais à me rappeler semblent surgir d’eux‑mêmes quand j’atteins cet endroit, devenant d’une clarté saisissante. Alors l’on se dit que cet endroit a changé, que cet autre aussi a changé. L’endroit qui existait dans ma mémoire n’est plus ; le temps a tout emporté.
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.71278Z
@@ -103,8 +99,7 @@ segments:
       tokens: 18405
       review: false
     ja-JP:
-      text: |-
-        私はしゃがみ込み、欠けた板の隙間から生えてきた草の束に手を触れた。見た目は普通の草と変わらないが、触ると乾いていて、土もあまり良さそうではない。それでも板の裂け目から伸びてきたのだ。ここには普段ほとんど人が来ないだろう… 実際にこの場所を歩くと、頭はすでに空っぽになっていて、具体的な考えはなく、ただとても長い時間が過ぎたと感じるだけだ。普段は思い出せないようなものや細部が、その場所に足を踏み入れると自然に浮かび上がり、驚くほど鮮明になる。そして、ここは変わった、あそこも変わったと感慨にふける。記憶の中のあの場所はすでに存在せず、時間がすべてを奪っていった。
+      text: 私はしゃがみ込み、欠けた板の隙間から生えてきた草の束に手を触れた。見た目は普通の草と変わらないが、触ると乾いていて、土もあまり良さそうではない。それでも板の裂け目から伸びてきたのだ。ここには普段ほとんど人が来ないだろう… 実際にこの場所を歩くと、頭はすでに空っぽになっていて、具体的な考えはなく、ただとても長い時間が過ぎたと感じるだけだ。普段は思い出せないようなものや細部が、その場所に足を踏み入れると自然に浮かび上がり、驚くほど鮮明になる。そして、ここは変わった、あそこも変わったと感慨にふける。記憶の中のあの場所はすでに存在せず、時間がすべてを奪っていった。
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.71278Z
@@ -112,8 +107,7 @@ segments:
       tokens: 18405
       review: false
     ko-KR:
-      text: |-
-        나는 쭈그리고 앉아, 없어져버린 나무판자 사이에 자라난 풀 덤불을 살짝 만졌다. 보기에 평범한 풀과 다를 바 없지만, 손으로 만져보니 건조했고, 토양도 별로 좋지 않아 보였다. 그래도 그 풀은 판자 틈새에서 자라났다. 여기엔 평소에 사람도 거의 오지 않을 것 같다… 사실 이런 곳을 걸을 때면 이미 머릿속이 텅 비어 구체적인 생각은 없고, 오래오래 시간이 흘렀다는 느낌만 든다. 평소엔 떠올리기 힘든 것들과 세부 사항들이 그곳에 도착하자마자 스스로 떠오르는 듯하고, 굉장히 선명해진다. 그러고는 여기도 변했고, 저기도 변했구나 싶는다. 기억 속 그 장소는 이미 존재하지 않고, 시간은 모든 것을 가져가 버렸다.
+      text: 나는 쭈그리고 앉아, 없어져버린 나무판자 사이에 자라난 풀 덤불을 살짝 만졌다. 보기에 평범한 풀과 다를 바 없지만, 손으로 만져보니 건조했고, 토양도 별로 좋지 않아 보였다. 그래도 그 풀은 판자 틈새에서 자라났다. 여기엔 평소에 사람도 거의 오지 않을 것 같다… 사실 이런 곳을 걸을 때면 이미 머릿속이 텅 비어 구체적인 생각은 없고, 오래오래 시간이 흘렀다는 느낌만 든다. 평소엔 떠올리기 힘든 것들과 세부 사항들이 그곳에 도착하자마자 스스로 떠오르는 듯하고, 굉장히 선명해진다. 그러고는 여기도 변했고, 저기도 변했구나 싶는다. 기억 속 그 장소는 이미 존재하지 않고, 시간은 모든 것을 가져가 버렸다.
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.71278Z
@@ -121,8 +115,7 @@ segments:
       tokens: 18405
       review: false
     zh-CN:
-      text: |-
-        我蹲下来，在缺失的木板中间长出的那丛草上摸了一下。看着和普通的草没什么区别，但摸上去是干的，土也不太好的样子，只是它还是从木板的缝隙里长出来了。这里平时大概也不会有什么人来吧… 其实走在这些地方的时候大脑早就放空了，没什么具体的念头，只是觉得过了很久很久，那些平时怎么都想不起来的东西和细节，模糊的记忆好像走到那个地方就会自己冒出来一样，变得无比清晰。然后你就会感慨，这里变了，那里也变了。记忆中的那个地方早就已经不存在了，时间带走了这一切。
+      text: 我蹲下来，在缺失的木板中间长出的那丛草上摸了一下。看着和普通的草没什么区别，但摸上去是干的，土也不太好的样子，只是它还是从木板的缝隙里长出来了。这里平时大概也不会有什么人来吧… 其实走在这些地方的时候大脑早就放空了，没什么具体的念头，只是觉得过了很久很久，那些平时怎么都想不起来的东西和细节，模糊的记忆好像走到那个地方就会自己冒出来一样，变得无比清晰。然后你就会感慨，这里变了，那里也变了。记忆中的那个地方早就已经不存在了，时间带走了这一切。
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.71278Z
@@ -332,10 +325,74 @@ segments:
       seconds: 7.032265292
       tokens: 16021
       review: false
+  397652d5755e8b85e26bbe709fdc99bc:
+    de-DE:
+      text: Zu lange drinnen gewesen – gehen wir doch mal raus
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-02T18:37:57.257402Z
+      seconds: 13.886770625
+      tokens: 15277
+      review: false
+    en-US:
+      text: Been indoors too long—might as well go out for a walk
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-02T18:37:57.257402Z
+      seconds: 13.886770625
+      tokens: 15277
+      review: false
+    es-ES:
+      text: Llevo demasiado tiempo encerrado; va siendo hora de salir a dar una vuelta
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-02T18:37:57.257402Z
+      seconds: 13.886770625
+      tokens: 15277
+      review: false
+    fr-FR:
+      text: Ça fait trop longtemps que je reste enfermé, autant sortir marcher un peu
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-02T18:37:57.257402Z
+      seconds: 13.886770625
+      tokens: 15277
+      review: false
+    ja-JP:
+      text: 引きこもりすぎたし、たまには外を歩こう
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-02T18:37:57.257402Z
+      seconds: 13.886770625
+      tokens: 15277
+      review: false
+    ko-KR:
+      text: 너무 오래 집에만 있었으니, 모처럼 나가서 좀 걸어보자
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-02T18:37:57.257402Z
+      seconds: 13.886770625
+      tokens: 15277
+      review: false
+    zh-CN:
+      text: 宅太久了，难得出去走走吧
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-02T18:37:57.257402Z
+      seconds: 13.886770625
+      tokens: 15277
+      review: false
+    zh-TW:
+      text: 宅太久了，難得出門走走吧
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-02T18:37:57.257402Z
+      seconds: 13.886770625
+      tokens: 15277
+      review: false
   3a4299e3166f2bb95fe4455ac56db749:
     de-DE:
-      text: |-
-        ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
+      text: ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:21.856853Z
@@ -343,8 +400,7 @@ segments:
       tokens: 16691
       review: false
     en-US:
-      text: |-
-        ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
+      text: ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:21.856853Z
@@ -352,8 +408,7 @@ segments:
       tokens: 16691
       review: false
     es-ES:
-      text: |-
-        ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
+      text: ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:21.856853Z
@@ -361,8 +416,7 @@ segments:
       tokens: 16691
       review: false
     fr-FR:
-      text: |-
-        ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
+      text: ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:21.856853Z
@@ -370,8 +424,7 @@ segments:
       tokens: 16691
       review: false
     ja-JP:
-      text: |-
-        ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
+      text: ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:21.856853Z
@@ -379,8 +432,7 @@ segments:
       tokens: 16691
       review: false
     ko-KR:
-      text: |-
-        ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
+      text: ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:21.856853Z
@@ -388,8 +440,7 @@ segments:
       tokens: 16691
       review: false
     zh-CN:
-      text: |-
-        ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
+      text: ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:21.856853Z
@@ -397,8 +448,7 @@ segments:
       tokens: 16691
       review: false
     zh-TW:
-      text: |-
-        ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
+      text: ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:21.856853Z
@@ -537,8 +587,7 @@ segments:
       review: false
   52341859001e96f7ba70307797a1d86c:
     de-DE:
-      text: |-
-        ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
+      text: ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.560462Z
@@ -546,8 +595,7 @@ segments:
       tokens: 16783
       review: false
     en-US:
-      text: |-
-        ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
+      text: ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.560462Z
@@ -555,8 +603,7 @@ segments:
       tokens: 16783
       review: false
     es-ES:
-      text: |-
-        ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
+      text: ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.560462Z
@@ -564,8 +611,7 @@ segments:
       tokens: 16783
       review: false
     fr-FR:
-      text: |-
-        ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
+      text: ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.560462Z
@@ -573,8 +619,7 @@ segments:
       tokens: 16783
       review: false
     ja-JP:
-      text: |-
-        ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
+      text: ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.560462Z
@@ -582,8 +627,7 @@ segments:
       tokens: 16783
       review: false
     ko-KR:
-      text: |-
-        ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
+      text: ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.560462Z
@@ -591,8 +635,7 @@ segments:
       tokens: 16783
       review: false
     zh-CN:
-      text: |-
-        ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
+      text: ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.560462Z
@@ -600,8 +643,7 @@ segments:
       tokens: 16783
       review: false
     zh-TW:
-      text: |-
-        ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
+      text: ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.560462Z
@@ -740,8 +782,7 @@ segments:
       review: false
   63369bcee7356a1e29c6cf767944f141:
     de-DE:
-      text: |-
-        ::image{src="18dc4b33f21890aa9042955b67ac346d.avif"}
+      text: ::image{src="18dc4b33f21890aa9042955b67ac346d.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.485179Z
@@ -749,8 +790,7 @@ segments:
       tokens: 16564
       review: false
     en-US:
-      text: |-
-        ::image{src="18dc4b33f21890aa9042955b67ac346d.avif"}
+      text: ::image{src="18dc4b33f21890aa9042955b67ac346d.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.485179Z
@@ -758,8 +798,7 @@ segments:
       tokens: 16564
       review: false
     es-ES:
-      text: |-
-        ::image{src="18dc4b33f21890aa9042955b67ac346d.avif"}
+      text: ::image{src="18dc4b33f21890aa9042955b67ac346d.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.485179Z
@@ -767,8 +806,7 @@ segments:
       tokens: 16564
       review: false
     fr-FR:
-      text: |-
-        ::image{src="18dc4b33f21890aa9042955b67ac346d.avif"}
+      text: ::image{src="18dc4b33f21890aa9042955b67ac346d.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.485179Z
@@ -776,8 +814,7 @@ segments:
       tokens: 16564
       review: false
     ja-JP:
-      text: |-
-        ::image{src="18dc4b33f21890aa9042955b67ac346d.avif"}
+      text: ::image{src="18dc4b33f21890aa9042955b67ac346d.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.485179Z
@@ -785,8 +822,7 @@ segments:
       tokens: 16564
       review: false
     ko-KR:
-      text: |-
-        ::image{src="18dc4b33f21890aa9042955b67ac346d.avif"}
+      text: ::image{src="18dc4b33f21890aa9042955b67ac346d.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.485179Z
@@ -794,8 +830,7 @@ segments:
       tokens: 16564
       review: false
     zh-CN:
-      text: |-
-        ::image{src="18dc4b33f21890aa9042955b67ac346d.avif"}
+      text: ::image{src="18dc4b33f21890aa9042955b67ac346d.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.485179Z
@@ -803,8 +838,7 @@ segments:
       tokens: 16564
       review: false
     zh-TW:
-      text: |-
-        ::image{src="18dc4b33f21890aa9042955b67ac346d.avif"}
+      text: ::image{src="18dc4b33f21890aa9042955b67ac346d.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.485179Z
@@ -965,10 +999,74 @@ segments:
       seconds: 19.056739833
       tokens: 19320
       review: false
+  7e3804851177f271b148ca13f4d0a1f6:
+    de-DE:
+      text: Die Welt draußen
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-02T18:37:57.257407Z
+      seconds: 13.642217167
+      tokens: 15016
+      review: false
+    en-US:
+      text: The World Outside
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-02T18:37:57.257407Z
+      seconds: 13.642217167
+      tokens: 15016
+      review: false
+    es-ES:
+      text: El mundo exterior
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-02T18:37:57.257407Z
+      seconds: 13.642217167
+      tokens: 15016
+      review: false
+    fr-FR:
+      text: Le monde extérieur
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-02T18:37:57.257407Z
+      seconds: 13.642217167
+      tokens: 15016
+      review: false
+    ja-JP:
+      text: 外の世界
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-02T18:37:57.257407Z
+      seconds: 13.642217167
+      tokens: 15016
+      review: false
+    ko-KR:
+      text: 바깥세상
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-02T18:37:57.257407Z
+      seconds: 13.642217167
+      tokens: 15016
+      review: false
+    zh-CN:
+      text: 外面的世界
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-02T18:37:57.257407Z
+      seconds: 13.642217167
+      tokens: 15016
+      review: false
+    zh-TW:
+      text: 外面的世界
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-02T18:37:57.257407Z
+      seconds: 13.642217167
+      tokens: 15016
+      review: false
   82b914521e0ca4e1ee40d6f92249efba:
     de-DE:
-      text: |-
-        ::image{src="8d32cfe9437f0bba72819263799a99ca.avif"}
+      text: ::image{src="8d32cfe9437f0bba72819263799a99ca.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:26.774024Z
@@ -976,8 +1074,7 @@ segments:
       tokens: 16719
       review: false
     en-US:
-      text: |-
-        ::image{src="8d32cfe9437f0bba72819263799a99ca.avif"}
+      text: ::image{src="8d32cfe9437f0bba72819263799a99ca.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:26.774024Z
@@ -985,8 +1082,7 @@ segments:
       tokens: 16719
       review: false
     es-ES:
-      text: |-
-        ::image{src="8d32cfe9437f0bba72819263799a99ca.avif"}
+      text: ::image{src="8d32cfe9437f0bba72819263799a99ca.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:26.774024Z
@@ -994,8 +1090,7 @@ segments:
       tokens: 16719
       review: false
     fr-FR:
-      text: |-
-        ::image{src="8d32cfe9437f0bba72819263799a99ca.avif"}
+      text: ::image{src="8d32cfe9437f0bba72819263799a99ca.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:26.774024Z
@@ -1003,8 +1098,7 @@ segments:
       tokens: 16719
       review: false
     ja-JP:
-      text: |-
-        ::image{src="8d32cfe9437f0bba72819263799a99ca.avif"}
+      text: ::image{src="8d32cfe9437f0bba72819263799a99ca.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:26.774024Z
@@ -1012,8 +1106,7 @@ segments:
       tokens: 16719
       review: false
     ko-KR:
-      text: |-
-        ::image{src="8d32cfe9437f0bba72819263799a99ca.avif"}
+      text: ::image{src="8d32cfe9437f0bba72819263799a99ca.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:26.774024Z
@@ -1021,8 +1114,7 @@ segments:
       tokens: 16719
       review: false
     zh-CN:
-      text: |-
-        ::image{src="8d32cfe9437f0bba72819263799a99ca.avif"}
+      text: ::image{src="8d32cfe9437f0bba72819263799a99ca.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:26.774024Z
@@ -1030,8 +1122,7 @@ segments:
       tokens: 16719
       review: false
     zh-TW:
-      text: |-
-        ::image{src="8d32cfe9437f0bba72819263799a99ca.avif"}
+      text: ::image{src="8d32cfe9437f0bba72819263799a99ca.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:26.774024Z
@@ -1170,8 +1261,7 @@ segments:
       review: false
   8dd73efa60106c920c8055731aad1ccc:
     de-DE:
-      text: |-
-        ::linkcard{src="2722532798307eb9c03d89e2343c2cda.avif" url="https://www.typeless.com" title="Typeless" tone="dark"}
+      text: ::linkcard{src="2722532798307eb9c03d89e2343c2cda.avif" url="https://www.typeless.com" title="Typeless" tone="dark"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:36.285971Z
@@ -1179,8 +1269,7 @@ segments:
       tokens: 17043
       review: false
     en-US:
-      text: |-
-        ::linkcard{src="2722532798307eb9c03d89e2343c2cda.avif" url="https://www.typeless.com" title="Typeless" tone="dark"}
+      text: ::linkcard{src="2722532798307eb9c03d89e2343c2cda.avif" url="https://www.typeless.com" title="Typeless" tone="dark"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:36.285971Z
@@ -1188,8 +1277,7 @@ segments:
       tokens: 17043
       review: false
     es-ES:
-      text: |-
-        ::linkcard{src="2722532798307eb9c03d89e2343c2cda.avif" url="https://www.typeless.com" title="Typeless" tone="dark"}
+      text: ::linkcard{src="2722532798307eb9c03d89e2343c2cda.avif" url="https://www.typeless.com" title="Typeless" tone="dark"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:36.285971Z
@@ -1197,8 +1285,7 @@ segments:
       tokens: 17043
       review: false
     fr-FR:
-      text: |-
-        ::linkcard{src="2722532798307eb9c03d89e2343c2cda.avif" url="https://www.typeless.com" title="Typeless" tone="dark"}
+      text: ::linkcard{src="2722532798307eb9c03d89e2343c2cda.avif" url="https://www.typeless.com" title="Typeless" tone="dark"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:36.285971Z
@@ -1206,8 +1293,7 @@ segments:
       tokens: 17043
       review: false
     ja-JP:
-      text: |-
-        ::linkcard{src="2722532798307eb9c03d89e2343c2cda.avif" url="https://www.typeless.com" title="Typeless" tone="dark"}
+      text: ::linkcard{src="2722532798307eb9c03d89e2343c2cda.avif" url="https://www.typeless.com" title="Typeless" tone="dark"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:36.285971Z
@@ -1215,8 +1301,7 @@ segments:
       tokens: 17043
       review: false
     ko-KR:
-      text: |-
-        ::linkcard{src="2722532798307eb9c03d89e2343c2cda.avif" url="https://www.typeless.com" title="Typeless" tone="dark"}
+      text: ::linkcard{src="2722532798307eb9c03d89e2343c2cda.avif" url="https://www.typeless.com" title="Typeless" tone="dark"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:36.285971Z
@@ -1224,8 +1309,7 @@ segments:
       tokens: 17043
       review: false
     zh-CN:
-      text: |-
-        ::linkcard{src="2722532798307eb9c03d89e2343c2cda.avif" url="https://www.typeless.com" title="Typeless" tone="dark"}
+      text: ::linkcard{src="2722532798307eb9c03d89e2343c2cda.avif" url="https://www.typeless.com" title="Typeless" tone="dark"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:36.285971Z
@@ -1233,8 +1317,7 @@ segments:
       tokens: 17043
       review: false
     zh-TW:
-      text: |-
-        ::linkcard{src="2722532798307eb9c03d89e2343c2cda.avif" url="https://www.typeless.com" title="Typeless" tone="dark"}
+      text: ::linkcard{src="2722532798307eb9c03d89e2343c2cda.avif" url="https://www.typeless.com" title="Typeless" tone="dark"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:36.285971Z
@@ -1381,7 +1464,7 @@ segments:
       tokens: 19802
       review: false
     en-US:
-      text: "The moment I lay down, I knew it wouldn't work. The ground was as hard as cement, only a layer of grass on the surface, with no cushioning at all. When you normally lie on grass you don't want it too wet, but it shouldn't be this dry and hard either. The soil has become completely compacted; from a few meters away it looks no different from a normal lawn, but your body won't be fooled. Not even mosquitoes are present ~~maybe even insects don't want to come to a place like this~~. Lying there with eyes closed, you don't hear any natural sounds. It's all the city's noise: the roar of gasoline engines—though electric cars have increased in recent years, they’re still unavoidable on the roads; the distant footsteps of pedestrians; and in this small city the cars seem to ignore the rules, occasionally blaring a horn, abrupt and piercing."
+      text: 'The moment I lay down, I knew it wouldn''t work. The ground was as hard as cement, only a layer of grass on the surface, with no cushioning at all. When you normally lie on grass you don''t want it too wet, but it shouldn''t be this dry and hard either. The soil has become completely compacted; from a few meters away it looks no different from a normal lawn, but your body won''t be fooled. Not even mosquitoes are present ~~maybe even insects don''t want to come to a place like this~~. Lying there with eyes closed, you don''t hear any natural sounds. It''s all the city''s noise: the roar of gasoline engines—though electric cars have increased in recent years, they’re still unavoidable on the roads; the distant footsteps of pedestrians; and in this small city the cars seem to ignore the rules, occasionally blaring a horn, abrupt and piercing.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.569098Z
@@ -1438,8 +1521,7 @@ segments:
       review: false
   aea184268674b162bc536618bcced975:
     de-DE:
-      text: |-
-        ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
+      text: ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:46.303016Z
@@ -1447,8 +1529,7 @@ segments:
       tokens: 16567
       review: false
     en-US:
-      text: |-
-        ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
+      text: ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:46.303016Z
@@ -1456,8 +1537,7 @@ segments:
       tokens: 16567
       review: false
     es-ES:
-      text: |-
-        ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
+      text: ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:46.303016Z
@@ -1465,8 +1545,7 @@ segments:
       tokens: 16567
       review: false
     fr-FR:
-      text: |-
-        ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
+      text: ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:46.303016Z
@@ -1474,8 +1553,7 @@ segments:
       tokens: 16567
       review: false
     ja-JP:
-      text: |-
-        ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
+      text: ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:46.303016Z
@@ -1483,8 +1561,7 @@ segments:
       tokens: 16567
       review: false
     ko-KR:
-      text: |-
-        ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
+      text: ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:46.303016Z
@@ -1492,8 +1569,7 @@ segments:
       tokens: 16567
       review: false
     zh-CN:
-      text: |-
-        ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
+      text: ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:46.303016Z
@@ -1501,13 +1577,77 @@ segments:
       tokens: 16567
       review: false
     zh-TW:
-      text: |-
-        ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
+      text: ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:46.303016Z
       seconds: 6.600817708
       tokens: 16567
+      review: false
+  b20418b65885f121bdfee9a54e31d21e:
+    de-DE:
+      text: Mit einem MacBook unter dem Arm geht der Autor hinaus, um am Flussortwechselnd Code zu schreiben, wird jedoch von Bildschirmhelligkeit, Empfang und längst veränderten Straßen zurückgeschlagen. Ein essayistischer Rückblick auf Erinnerungen und Entfremdung beim erneuten Hinausgehen nach langem Leben in Innenräumen – etwa eine Stunde Stadtspaziergang.
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-02T18:37:57.257437Z
+      seconds: 24.911097833
+      tokens: 17182
+      review: false
+    en-US:
+      text: Carrying a MacBook outside in hopes of writing code somewhere by the river, the author is defeated by the screen brightness, the signal, and streets that have long since changed. A reflective essay on the memories and disconnection of stepping outside again after staying indoors for too long, through roughly an hour of urban wandering.
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-02T18:37:57.257437Z
+      seconds: 24.911097833
+      tokens: 17182
+      review: false
+    es-ES:
+      text: El autor sale con un MacBook, con la intención de ir a escribir código junto al río, pero se ve derrotado por el brillo de la pantalla, la señal y unas calles que hace tiempo cambiaron por completo. Un ensayo de recuerdos y desconexión al volver a salir tras pasar demasiado tiempo en interiores, durante aproximadamente una hora de paseo urbano.
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-02T18:37:57.257437Z
+      seconds: 24.911097833
+      tokens: 17182
+      review: false
+    fr-FR:
+      text: L’auteur sort avec son MacBook, espérant aller écrire du code au bord du fleuve, mais se retrouve repoussé par la luminosité de l’écran, le réseau et des rues déjà méconnaissables. Un essai fait de souvenirs et de décalage après être ressorti, après avoir longtemps vécu à l’intérieur, au fil d’environ une heure de déambulation urbaine.
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-02T18:37:57.257437Z
+      seconds: 24.911097833
+      tokens: 17182
+      review: false
+    ja-JP:
+      text: 筆者は MacBook を抱えて外へ出て、川辺で場所を変えてコードを書こうとしたが、画面の明るさ、電波、そしてすっかり様変わりした街並みに打ちのめされる。長く室内にこもった後に再び外へ出た記憶と断絶を綴る、約一時間の街歩きエッセイ。
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-02T18:37:57.257437Z
+      seconds: 24.911097833
+      tokens: 17182
+      review: false
+    ko-KR:
+      text: 필자는 MacBook을 안고 밖으로 나가 강변에서 장소를 바꿔 코드를 쓰려 했지만, 화면 밝기와 신호, 그리고 이미 많이 변해 버린 거리 앞에서 물러난다. 오래 실내에 머문 뒤 다시 밖으로 나선 기억과 단절을 담은, 약 한 시간의 도시 산책 에세이.
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-02T18:37:57.257437Z
+      seconds: 24.911097833
+      tokens: 17182
+      review: false
+    zh-CN:
+      text: 笔者抱着 MacBook 出门，想去江边换个地方写代码，却被屏幕亮度、信号和早已变样的街道击退。一篇久居室内后再出门的回忆与脱节随笔，约一小时的城市漫游。
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-02T18:37:57.257437Z
+      seconds: 24.911097833
+      tokens: 17182
+      review: false
+    zh-TW:
+      text: 筆者抱著 MacBook 出門，想去江邊換個地方寫程式，卻被螢幕亮度、訊號和早已變樣的街道擊退。一篇久居室內後再出門的回憶與脫節隨筆，約一小時的城市漫遊。
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-02T18:37:57.257437Z
+      seconds: 24.911097833
+      tokens: 17182
       review: false
   b5b4c92dd5874dc2b7cc34cc65ebfca3:
     de-DE:
@@ -1706,8 +1846,7 @@ segments:
       review: false
   c2a61f5ffa1950a0b3e22070052a76bd:
     de-DE:
-      text: |-
-        Ich nehme den Aufzug, gehe nach oben, öffne die Tür und komme nach Hause. Die Vorhänge sind tagsüber bereits zugezogen ~~weil ich mich schon lange daran gewöhnt habe, an einem Ort zu leben, der in einer anderen Zeitzone liegt~~, das Licht im Raum ist kein Sonnenlicht, sondern das helle Weiß der Leuchtstoffröhren – gleichmäßig, stabil und ohne Wärme. Das Ausgehen dauert weniger als eine Stunde. Doch wenn ich draußen gehe, habe ich das Gefühl, dass sehr lange Zeit vergangen ist, wie ein langer „Traum“, in dem alles verändert wurde und doch nichts klar erklärt werden kann. Dann wache ich auf. Nachdem ich den Aufzug aus der Tiefgarage verlassen habe, bin ich wieder an diesem Schreibtisch, vor diesem Bildschirm. Die Wärme der Sonne kann tatsächlich drückend wirken, aber wenn sie fehlt, vermisse ich dieses Gefühl. Obwohl Temperatur und Luftfeuchtigkeit im Raum genau richtig sind, führt langes Sitzen zu einer unerklärlichen Müdigkeit.
+      text: Ich nehme den Aufzug, gehe nach oben, öffne die Tür und komme nach Hause. Die Vorhänge sind tagsüber bereits zugezogen ~~weil ich mich schon lange daran gewöhnt habe, an einem Ort zu leben, der in einer anderen Zeitzone liegt~~, das Licht im Raum ist kein Sonnenlicht, sondern das helle Weiß der Leuchtstoffröhren – gleichmäßig, stabil und ohne Wärme. Das Ausgehen dauert weniger als eine Stunde. Doch wenn ich draußen gehe, habe ich das Gefühl, dass sehr lange Zeit vergangen ist, wie ein langer „Traum“, in dem alles verändert wurde und doch nichts klar erklärt werden kann. Dann wache ich auf. Nachdem ich den Aufzug aus der Tiefgarage verlassen habe, bin ich wieder an diesem Schreibtisch, vor diesem Bildschirm. Die Wärme der Sonne kann tatsächlich drückend wirken, aber wenn sie fehlt, vermisse ich dieses Gefühl. Obwohl Temperatur und Luftfeuchtigkeit im Raum genau richtig sind, führt langes Sitzen zu einer unerklärlichen Müdigkeit.
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:35.845953Z
@@ -1715,8 +1854,7 @@ segments:
       tokens: 19523
       review: false
     en-US:
-      text: |-
-        Take the elevator up, open the door and return home. The curtains are drawn already during the day ~~because I’ve long gotten used to living in a place that’s in a different time zone~~, the light inside isn’t sunlight; it’s the bright white glow from fluorescent tubes—uniform, steady, without warmth. Going out takes less than an hour. But while walking outside, it feels like ages have passed, like a long “dream” where everything changed yet nothing can be explained. Then I wake up. After stepping out of the underground garage elevator, I’m back at this desk, in front of this screen. The temperature of sunlight can indeed feel oppressive, but when it’s absent I miss its feeling. Even though the indoor temperature and humidity are just right, sitting for a long time creates an indescribable fatigue.
+      text: Take the elevator up, open the door and return home. The curtains are drawn already during the day ~~because I’ve long gotten used to living in a place that’s in a different time zone~~, the light inside isn’t sunlight; it’s the bright white glow from fluorescent tubes—uniform, steady, without warmth. Going out takes less than an hour. But while walking outside, it feels like ages have passed, like a long “dream” where everything changed yet nothing can be explained. Then I wake up. After stepping out of the underground garage elevator, I’m back at this desk, in front of this screen. The temperature of sunlight can indeed feel oppressive, but when it’s absent I miss its feeling. Even though the indoor temperature and humidity are just right, sitting for a long time creates an indescribable fatigue.
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:35.845953Z
@@ -1724,8 +1862,7 @@ segments:
       tokens: 19523
       review: false
     es-ES:
-      text: |-
-        Subí en el ascensor, abrí la puerta y regresé a casa. Las cortinas están ya corridas durante el día ~~porque ya estoy acostumbrado a vivir en una zona horaria distinta~~, la luz dentro de la habitación no es la del sol, sino la luz blanca y brillante que emiten los tubos fluorescentes, uniforme, constante, sin calor. Salir lleva menos de una hora. Pero al caminar al exterior, siento que ha pasado mucho tiempo, como si hubiera tenido un largo «sueño», donde todo cambió y, sin embargo, nada se puede describir. Entonces despierto. Al salir del ascensor del garaje subterráneo, vuelvo a este escritorio, a esta pantalla. La temperatura de la luz solar a veces resulta sofocante, pero cuando no está, la echo de menos. Aunque la temperatura y la humedad interior son perfectas, quedarse sentado mucho tiempo genera una fatiga inexplicable.
+      text: Subí en el ascensor, abrí la puerta y regresé a casa. Las cortinas están ya corridas durante el día ~~porque ya estoy acostumbrado a vivir en una zona horaria distinta~~, la luz dentro de la habitación no es la del sol, sino la luz blanca y brillante que emiten los tubos fluorescentes, uniforme, constante, sin calor. Salir lleva menos de una hora. Pero al caminar al exterior, siento que ha pasado mucho tiempo, como si hubiera tenido un largo «sueño», donde todo cambió y, sin embargo, nada se puede describir. Entonces despierto. Al salir del ascensor del garaje subterráneo, vuelvo a este escritorio, a esta pantalla. La temperatura de la luz solar a veces resulta sofocante, pero cuando no está, la echo de menos. Aunque la temperatura y la humedad interior son perfectas, quedarse sentado mucho tiempo genera una fatiga inexplicable.
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:35.845953Z
@@ -1733,8 +1870,7 @@ segments:
       tokens: 19523
       review: false
     fr-FR:
-      text: |-
-        Je prends l'ascenseur, je monte, j'ouvre la porte et je rentre chez moi. Les rideaux sont tirés dès le jour ~~parce que je me suis longtemps habitué à vivre dans un fuseau horaire différent~~, la lumière dans la pièce n’est pas du soleil, mais la lumière blanche et brillante des tubes fluorescents, uniforme, constante, sans chaleur. Sortir ne prend pas plus d’une heure. Mais en marchant dehors, j’ai l’impression que des heures, voire des jours, se sont écoulés, comme si j’avais fait un long « rêve » où tout a changé et pourtant rien n’est explicable. Puis je me réveille. En sortant de l’ascenseur du parking souterrain, je reviens à ce bureau, devant cet écran. La chaleur du soleil peut parfois sembler étouffante, mais lorsqu’il n’est plus là, son absence se fait ressentir. Bien que la température et l’humidité à l’intérieur soient parfaites, rester assis longtemps engendre une fatigue inexplicable.
+      text: Je prends l'ascenseur, je monte, j'ouvre la porte et je rentre chez moi. Les rideaux sont tirés dès le jour ~~parce que je me suis longtemps habitué à vivre dans un fuseau horaire différent~~, la lumière dans la pièce n’est pas du soleil, mais la lumière blanche et brillante des tubes fluorescents, uniforme, constante, sans chaleur. Sortir ne prend pas plus d’une heure. Mais en marchant dehors, j’ai l’impression que des heures, voire des jours, se sont écoulés, comme si j’avais fait un long « rêve » où tout a changé et pourtant rien n’est explicable. Puis je me réveille. En sortant de l’ascenseur du parking souterrain, je reviens à ce bureau, devant cet écran. La chaleur du soleil peut parfois sembler étouffante, mais lorsqu’il n’est plus là, son absence se fait ressentir. Bien que la température et l’humidité à l’intérieur soient parfaites, rester assis longtemps engendre une fatigue inexplicable.
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:35.845953Z
@@ -1742,8 +1878,7 @@ segments:
       tokens: 19523
       review: false
     ja-JP:
-      text: |-
-        エレベーターで階に上がり、ドアを開けて家に帰る。カーテンは昼間からすでに閉めてある ~~なぜなら私はずっと自分の暮らす場所が異なるタイムゾーンにあることに慣れているから~~、部屋の光は太陽光ではなく、蛍光灯が放つあの明るい白色で、均一で安定しており、暖かさがない。外出はだいたい1時間もかからない。しかし外を歩くと、長い時間が過ぎたように感じる。まるで長い「夢」を見たかのようで、そこではすべてが変わり、でも何もはっきりと言えない。そして目が覚める。地下駐車場のエレベーターを出た後、私はまたこの机の前、このスクリーンの前に戻ってきた。太陽の温度は時に灼熱に感じられるが、太陽がないとその感覚が恋しくなる。室内は温度も湿度もちょうど良いのに、長時間座っていると説明できない疲労感が生まれる。
+      text: エレベーターで階に上がり、ドアを開けて家に帰る。カーテンは昼間からすでに閉めてある ~~なぜなら私はずっと自分の暮らす場所が異なるタイムゾーンにあることに慣れているから~~、部屋の光は太陽光ではなく、蛍光灯が放つあの明るい白色で、均一で安定しており、暖かさがない。外出はだいたい1時間もかからない。しかし外を歩くと、長い時間が過ぎたように感じる。まるで長い「夢」を見たかのようで、そこではすべてが変わり、でも何もはっきりと言えない。そして目が覚める。地下駐車場のエレベーターを出た後、私はまたこの机の前、このスクリーンの前に戻ってきた。太陽の温度は時に灼熱に感じられるが、太陽がないとその感覚が恋しくなる。室内は温度も湿度もちょうど良いのに、長時間座っていると説明できない疲労感が生まれる。
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:35.845953Z
@@ -1751,8 +1886,7 @@ segments:
       tokens: 19523
       review: false
     ko-KR:
-      text: |-
-        엘리베이터를 타고 올라가 문을 열어 집에 들어간다. 커튼은 낮에도 이미 닫혀 있다 ~~내가 오래전에 살고 있는 곳이 다른 시간대에 있다는 것에 익숙해졌기 때문~~, 방 안의 빛은 햇빛이 아니라 형광등에서 나오는 그 밝은 흰색이며, 고르고 안정적이고 온기가 없다. 외출은 대략 한 시간도 안 된다. 하지만 밖을 걸을 때는 시간이 오래 지난 것처럼 느껴진다. 마치 긴 “꿈”을 꾸는 듯, 안에서는 모든 것이 변했지만 설명할 수 없는 느낌이다. 그리고 깨어난다. 지하 주차장의 엘리베이터를 나와 다시 이 책상 앞, 이 화면 앞에 돌아온다. 햇빛의 온도는 때때로 뜨겁게 느껴지지만, 햇빛이 없을 때는 그 느낌을 그리워한다. 실내는 온도와 습도가 딱 맞지만 오래 앉아 있으면 이해할 수 없는 피로감이 생긴다.
+      text: 엘리베이터를 타고 올라가 문을 열어 집에 들어간다. 커튼은 낮에도 이미 닫혀 있다 ~~내가 오래전에 살고 있는 곳이 다른 시간대에 있다는 것에 익숙해졌기 때문~~, 방 안의 빛은 햇빛이 아니라 형광등에서 나오는 그 밝은 흰색이며, 고르고 안정적이고 온기가 없다. 외출은 대략 한 시간도 안 된다. 하지만 밖을 걸을 때는 시간이 오래 지난 것처럼 느껴진다. 마치 긴 “꿈”을 꾸는 듯, 안에서는 모든 것이 변했지만 설명할 수 없는 느낌이다. 그리고 깨어난다. 지하 주차장의 엘리베이터를 나와 다시 이 책상 앞, 이 화면 앞에 돌아온다. 햇빛의 온도는 때때로 뜨겁게 느껴지지만, 햇빛이 없을 때는 그 느낌을 그리워한다. 실내는 온도와 습도가 딱 맞지만 오래 앉아 있으면 이해할 수 없는 피로감이 생긴다.
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:35.845953Z
@@ -1760,8 +1894,7 @@ segments:
       tokens: 19523
       review: false
     zh-CN:
-      text: |-
-        坐电梯上了楼，开门回了家 窗帘是白天就拉上的 ~~因为我早就习惯了和我生活的地方不在一个时区~~，屋里的光不是阳光，是灯管发出的那种亮白色，均匀、稳定、没有温度 出门大概不到一个小时。但走在外面的时候，总觉得过了很久很久，像做了一场很长的「梦」，里面什么都变了，又什么都说不清楚。然后就醒了。从地下车库的电梯里走出来后我就又回到了这张桌前，回到了这块屏幕前。阳光的温度有时候确实让人觉得燥热，但没有它的时候又会想念它的感觉，室内的一切虽然温度湿度刚好，但是坐久了却会生出一种莫名的疲惫。
+      text: 坐电梯上了楼，开门回了家 窗帘是白天就拉上的 ~~因为我早就习惯了和我生活的地方不在一个时区~~，屋里的光不是阳光，是灯管发出的那种亮白色，均匀、稳定、没有温度 出门大概不到一个小时。但走在外面的时候，总觉得过了很久很久，像做了一场很长的「梦」，里面什么都变了，又什么都说不清楚。然后就醒了。从地下车库的电梯里走出来后我就又回到了这张桌前，回到了这块屏幕前。阳光的温度有时候确实让人觉得燥热，但没有它的时候又会想念它的感觉，室内的一切虽然温度湿度刚好，但是坐久了却会生出一种莫名的疲惫。
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:35.845953Z
@@ -1769,8 +1902,7 @@ segments:
       tokens: 19523
       review: false
     zh-TW:
-      text: |-
-        坐電梯上了樓，開門回了家 窗簾是白天就拉上的 ~~因為我早就習慣了和我生活的地方不在一個時區~~，屋裡的光不是陽光，是燈管發出的那種亮白色，均勻、穩定、沒有溫度 出門大概不到一個小時。但走在外面的時候，總覺得過了很久很久，像做了一場很長的「夢」，裡面什麼都變了，又什麼都說不清楚。然後就醒了。從地下車庫的電梯裡走出來後我就又回到了這張桌前，回到了這塊螢幕前。陽光的溫度有時候確實讓人覺得燥熱，但沒有它的時候又會想念它的感覺，室內的一切雖然溫度濕度剛好，但是坐久了卻會生出一種莫名的疲憊。
+      text: 坐電梯上了樓，開門回了家 窗簾是白天就拉上的 ~~因為我早就習慣了和我生活的地方不在一個時區~~，屋裡的光不是陽光，是燈管發出的那種亮白色，均勻、穩定、沒有溫度 出門大概不到一個小時。但走在外面的時候，總覺得過了很久很久，像做了一場很長的「夢」，裡面什麼都變了，又什麼都說不清楚。然後就醒了。從地下車庫的電梯裡走出來後我就又回到了這張桌前，回到了這塊螢幕前。陽光的溫度有時候確實讓人覺得燥熱，但沒有它的時候又會想念它的感覺，室內的一切雖然溫度濕度剛好，但是坐久了卻會生出一種莫名的疲憊。
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:35.845953Z
@@ -1844,8 +1976,7 @@ segments:
       review: false
   d106482e8e65f9603b629e419860e709:
     de-DE:
-      text: |-
-        ::image{src="ff309d022981d9168fca9e5e9b7291e4.avif"}
+      text: ::image{src="ff309d022981d9168fca9e5e9b7291e4.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:50.890839Z
@@ -1853,8 +1984,7 @@ segments:
       tokens: 16975
       review: false
     en-US:
-      text: |-
-        ::image{src="ff309d022981d9168fca9e5e9b7291e4.avif"}
+      text: ::image{src="ff309d022981d9168fca9e5e9b7291e4.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:50.890839Z
@@ -1862,8 +1992,7 @@ segments:
       tokens: 16975
       review: false
     es-ES:
-      text: |-
-        ::image{src="ff309d022981d9168fca9e5e9b7291e4.avif"}
+      text: ::image{src="ff309d022981d9168fca9e5e9b7291e4.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:50.890839Z
@@ -1871,8 +2000,7 @@ segments:
       tokens: 16975
       review: false
     fr-FR:
-      text: |-
-        ::image{src="ff309d022981d9168fca9e5e9b7291e4.avif"}
+      text: ::image{src="ff309d022981d9168fca9e5e9b7291e4.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:50.890839Z
@@ -1880,8 +2008,7 @@ segments:
       tokens: 16975
       review: false
     ja-JP:
-      text: |-
-        ::image{src="ff309d022981d9168fca9e5e9b7291e4.avif"}
+      text: ::image{src="ff309d022981d9168fca9e5e9b7291e4.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:50.890839Z
@@ -1889,8 +2016,7 @@ segments:
       tokens: 16975
       review: false
     ko-KR:
-      text: |-
-        ::image{src="ff309d022981d9168fca9e5e9b7291e4.avif"}
+      text: ::image{src="ff309d022981d9168fca9e5e9b7291e4.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:50.890839Z
@@ -1898,8 +2024,7 @@ segments:
       tokens: 16975
       review: false
     zh-CN:
-      text: |-
-        ::image{src="ff309d022981d9168fca9e5e9b7291e4.avif"}
+      text: ::image{src="ff309d022981d9168fca9e5e9b7291e4.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:50.890839Z
@@ -1907,8 +2032,7 @@ segments:
       tokens: 16975
       review: false
     zh-TW:
-      text: |-
-        ::image{src="ff309d022981d9168fca9e5e9b7291e4.avif"}
+      text: ::image{src="ff309d022981d9168fca9e5e9b7291e4.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:50.890839Z
@@ -2112,8 +2236,7 @@ segments:
       review: false
   ef777fdbb680bf711f96006468b7b38a:
     de-DE:
-      text: |-
-        ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
+      text: ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.563491Z
@@ -2121,8 +2244,7 @@ segments:
       tokens: 16450
       review: false
     en-US:
-      text: |-
-        ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
+      text: ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.563491Z
@@ -2130,8 +2252,7 @@ segments:
       tokens: 16450
       review: false
     es-ES:
-      text: |-
-        ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
+      text: ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.563491Z
@@ -2139,8 +2260,7 @@ segments:
       tokens: 16450
       review: false
     fr-FR:
-      text: |-
-        ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
+      text: ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.563491Z
@@ -2148,8 +2268,7 @@ segments:
       tokens: 16450
       review: false
     ja-JP:
-      text: |-
-        ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
+      text: ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.563491Z
@@ -2157,8 +2276,7 @@ segments:
       tokens: 16450
       review: false
     ko-KR:
-      text: |-
-        ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
+      text: ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.563491Z
@@ -2166,8 +2284,7 @@ segments:
       tokens: 16450
       review: false
     zh-CN:
-      text: |-
-        ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
+      text: ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.563491Z
@@ -2175,8 +2292,7 @@ segments:
       tokens: 16450
       review: false
     zh-TW:
-      text: |-
-        ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
+      text: ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.563491Z

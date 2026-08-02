@@ -5,7 +5,7 @@
 //! line-anchored rather than JSON so that one malformed language costs one language. See
 //! spec/architecture.md.
 
-use super::segment::{CLOSE, Kind, OPEN, Segment};
+use super::segment::{CLOSE, Kind, OPEN, Region, Segment};
 use rand::RngExt as _;
 
 /// Every locale a translation is produced for.
@@ -83,6 +83,13 @@ pub fn build(
 			a.unwrap_or("(end of article)")
 		),
 	};
+	let metadata = if segment.region == Region::Frontmatter {
+		"\n- This block is display metadata. Match whether the source ends in punctuation, but use \
+		 each target locale's native casing and punctuation. Never copy a neighbouring \
+		 language's punctuation into the translation."
+	} else {
+		""
+	};
 
 	let text = format!(
 		"You are translating one block of an article. The article is written in a mixture of \
@@ -102,6 +109,7 @@ pub fn build(
 		 explanation\"}}` immediately after it. At most one per block, and only when the \
 		 meaning is genuinely unrecoverable from context. Prefer none.\n\
 		 - Keep markdown structure: emphasis, links and list markers stay as they are.\n\
+		 {metadata}\n\
 		 \n\
 		 Output format, exactly. One marker line, then the translation, then a blank line:\n\
 		 {locales}\n\
@@ -205,6 +213,21 @@ mod tests {
 			.collect();
 		assert_eq!(fences.len(), 2);
 		assert_eq!(fences[0], fences[1]);
+	}
+
+	#[test]
+	fn frontmatter_is_told_to_use_target_locale_typography() {
+		let mut item = segment(Kind::Heading);
+		item.region = Region::Frontmatter;
+		let request = build(&item, "A title.", None, None);
+
+		assert!(request.text.contains("display metadata"));
+		assert!(request.text.contains("native casing and punctuation"));
+		assert!(
+			request
+				.text
+				.contains("Never copy a neighbouring language's punctuation")
+		);
 	}
 
 	#[test]
