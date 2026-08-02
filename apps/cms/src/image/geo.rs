@@ -147,29 +147,6 @@ impl Gazetteer {
 			}
 		}
 
-		// Optional, and by far the largest of these files. Absent, postal codes are simply
-		// missing, which is the state every image was in before it was fetched.
-		let postal = std::fs::read_to_string(root.join("postal.txt"))
-			.ok()
-			.map(|text| {
-				let points: Vec<Postal> = text
-					.lines()
-					.filter_map(|line| {
-						let f: Vec<&str> = line.split('\t').collect();
-						if f.len() < 11 {
-							return None;
-						}
-						Some(Postal {
-							lat: f[9].parse().ok()?,
-							lon: f[10].parse().ok()?,
-							code: f[1].to_owned(),
-							country: f[0].to_owned(),
-						})
-					})
-					.collect();
-				RTree::bulk_load(points)
-			});
-
 		// Built once. Two hundred thousand points is a second of work and a lookup that costs
 		// nothing after, which matters because a library of photographs is imported in batches.
 		let places: Vec<Place> = cities
