@@ -325,6 +325,16 @@ addressing a lifetime of personal assets requires, and is deliberately not a tam
 claim. It is also unrelated to an IPFS CID, which is a structured multihash rather than a bare
 digest.
 
+Recovering an original after a cropped or converted stand-in was published is an identity
+migration, not a new description job. An explicit filename pairing establishes which two
+sources depict the same asset; their bytes establish the old and new ids. The recovered source
+is derived normally so its dimensions and EXIF come from the real file, while article
+references, media labels and translated directive segments move mechanically to the new id.
+Paid descriptions and tags are evidence about the picture and are never requested again for a
+change of source bytes alone. The old aggregate manifest record is removed only after the new
+record exists, or commands that enumerate the manifest would mistake the superseded source for
+an unlabelled asset; deleting its published bytes still waits for an explicit garbage collection.
+
 ### Variants stop where the layout does
 
 An image is published at 640, 1280 and 1920 on its long edge, and no further. Nothing on the

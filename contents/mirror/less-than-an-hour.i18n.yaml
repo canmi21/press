@@ -65,71 +65,6 @@ segments:
       seconds: 6.04522275
       tokens: 16131
       review: false
-  07fcaa6c250db7c160c13a7f074287ea:
-    de-DE:
-      text: ::image{src="2acad555d6fe7cbcd5b153ce945585a0.avif"}
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:30.712716Z
-      seconds: 6.053152541
-      tokens: 16319
-      review: false
-    en-US:
-      text: ::image{src="2acad555d6fe7cbcd5b153ce945585a0.avif"}
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:30.712716Z
-      seconds: 6.053152541
-      tokens: 16319
-      review: false
-    es-ES:
-      text: ::image{src="2acad555d6fe7cbcd5b153ce945585a0.avif"}
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:30.712716Z
-      seconds: 6.053152541
-      tokens: 16319
-      review: false
-    fr-FR:
-      text: ::image{src="2acad555d6fe7cbcd5b153ce945585a0.avif"}
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:30.712716Z
-      seconds: 6.053152541
-      tokens: 16319
-      review: false
-    ja-JP:
-      text: ::image{src="2acad555d6fe7cbcd5b153ce945585a0.avif"}
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:30.712716Z
-      seconds: 6.053152541
-      tokens: 16319
-      review: false
-    ko-KR:
-      text: ::image{src="2acad555d6fe7cbcd5b153ce945585a0.avif"}
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:30.712716Z
-      seconds: 6.053152541
-      tokens: 16319
-      review: false
-    zh-CN:
-      text: ::image{src="2acad555d6fe7cbcd5b153ce945585a0.avif"}
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:30.712716Z
-      seconds: 6.053152541
-      tokens: 16319
-      review: false
-    zh-TW:
-      text: ::image{src="2acad555d6fe7cbcd5b153ce945585a0.avif"}
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:30.712716Z
-      seconds: 6.053152541
-      tokens: 16319
-      review: false
   10224a97f9a9e6c8059838db34c0fde7:
     de-DE:
       text: |-
@@ -411,6 +346,95 @@ segments:
       seconds: 7.032265292
       tokens: 16021
       review: false
+  3a4299e3166f2bb95fe4455ac56db749:
+    de-DE:
+      text: |-
+        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+        ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
+        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:21.856853Z
+      seconds: 13.163762125
+      tokens: 16691
+      review: false
+    en-US:
+      text: |-
+        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+        ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
+        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:21.856853Z
+      seconds: 13.163762125
+      tokens: 16691
+      review: false
+    es-ES:
+      text: |-
+        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+        ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
+        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:21.856853Z
+      seconds: 13.163762125
+      tokens: 16691
+      review: false
+    fr-FR:
+      text: |-
+        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+        ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
+        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:21.856853Z
+      seconds: 13.163762125
+      tokens: 16691
+      review: false
+    ja-JP:
+      text: |-
+        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+        ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
+        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:21.856853Z
+      seconds: 13.163762125
+      tokens: 16691
+      review: false
+    ko-KR:
+      text: |-
+        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+        ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
+        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:21.856853Z
+      seconds: 13.163762125
+      tokens: 16691
+      review: false
+    zh-CN:
+      text: |-
+        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+        ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
+        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:21.856853Z
+      seconds: 13.163762125
+      tokens: 16691
+      review: false
+    zh-TW:
+      text: |-
+        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+        ::image{src="7ff802c270a8b05f42e77ff401fe5475.avif"}
+        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:21.856853Z
+      seconds: 13.163762125
+      tokens: 16691
+      review: false
   3bb9b980660f429a30514def002361ed:
     de-DE:
       text: Ich blieb vor dem Eingang des hölzernen Pavillons stehen. Der Boden des Pavillons ist mit Holz gedeckt, und einige Bretter fehlen bereits; wenn man darauf tritt, knickt das Holz und erzeugt ein unangenehm unsicheres Geräusch, und die Nägel sind vermutlich schon lange zerbrochen. Die Oberseite des Holzwegs ist transparent, vielleicht Glas oder Acryl, doch mehr als die Hälfte ist bereits mit Ablagerungen bedeckt, sodass sie kaum noch lichtdurchlässig ist. Die Umgebung war ursprünglich eine Rasenfläche, etwa ein Meter hohe Sträucher, aber jetzt sind sie fast zwei Meter gewachsen, und das Innere erweckt wirklich den Eindruck, im Dschungel zu stehen – sofern man noch einen Blick auf die Gebäude werfen kann. Das nahe der Hauptstraße wachsende Grün zeigt noch Spuren davon, dass es einst zu einem Quadrat geschnitten wurde, doch die Ränder sind abgerundet; die Zeit hat es allmählich zu seiner natürlichen Pflanzenform zurückkehren lassen.
@@ -476,95 +500,6 @@ segments:
       seconds: 13.181562875000001
       tokens: 17856
       review: false
-  3daa53688c98174b79ee8c32c63330bd:
-    de-DE:
-      text: |-
-        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
-        ::image{src="917811350fbfc7af291fce7bd549ef3e.avif"}
-        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:46.303016Z
-      seconds: 6.600817708
-      tokens: 16567
-      review: false
-    en-US:
-      text: |-
-        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
-        ::image{src="917811350fbfc7af291fce7bd549ef3e.avif"}
-        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:46.303016Z
-      seconds: 6.600817708
-      tokens: 16567
-      review: false
-    es-ES:
-      text: |-
-        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
-        ::image{src="917811350fbfc7af291fce7bd549ef3e.avif"}
-        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:46.303016Z
-      seconds: 6.600817708
-      tokens: 16567
-      review: false
-    fr-FR:
-      text: |-
-        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
-        ::image{src="917811350fbfc7af291fce7bd549ef3e.avif"}
-        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:46.303016Z
-      seconds: 6.600817708
-      tokens: 16567
-      review: false
-    ja-JP:
-      text: |-
-        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
-        ::image{src="917811350fbfc7af291fce7bd549ef3e.avif"}
-        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:46.303016Z
-      seconds: 6.600817708
-      tokens: 16567
-      review: false
-    ko-KR:
-      text: |-
-        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
-        ::image{src="917811350fbfc7af291fce7bd549ef3e.avif"}
-        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:46.303016Z
-      seconds: 6.600817708
-      tokens: 16567
-      review: false
-    zh-CN:
-      text: |-
-        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
-        ::image{src="917811350fbfc7af291fce7bd549ef3e.avif"}
-        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:46.303016Z
-      seconds: 6.600817708
-      tokens: 16567
-      review: false
-    zh-TW:
-      text: |-
-        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
-        ::image{src="917811350fbfc7af291fce7bd549ef3e.avif"}
-        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:46.303016Z
-      seconds: 6.600817708
-      tokens: 16567
-      review: false
   3f58794bc2ebaa4e840e82849bba75cb:
     de-DE:
       text: '## Unsichtbar {#unseen}'
@@ -629,6 +564,95 @@ segments:
       at: 2026-08-01T02:28:59.405895Z
       seconds: 5.310989666
       tokens: 16091
+      review: false
+  52341859001e96f7ba70307797a1d86c:
+    de-DE:
+      text: |-
+        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
+        ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
+        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:14.560462Z
+      seconds: 7.292657667
+      tokens: 16783
+      review: false
+    en-US:
+      text: |-
+        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
+        ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
+        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:14.560462Z
+      seconds: 7.292657667
+      tokens: 16783
+      review: false
+    es-ES:
+      text: |-
+        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
+        ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
+        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:14.560462Z
+      seconds: 7.292657667
+      tokens: 16783
+      review: false
+    fr-FR:
+      text: |-
+        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
+        ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
+        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:14.560462Z
+      seconds: 7.292657667
+      tokens: 16783
+      review: false
+    ja-JP:
+      text: |-
+        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
+        ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
+        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:14.560462Z
+      seconds: 7.292657667
+      tokens: 16783
+      review: false
+    ko-KR:
+      text: |-
+        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
+        ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
+        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:14.560462Z
+      seconds: 7.292657667
+      tokens: 16783
+      review: false
+    zh-CN:
+      text: |-
+        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
+        ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
+        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:14.560462Z
+      seconds: 7.292657667
+      tokens: 16783
+      review: false
+    zh-TW:
+      text: |-
+        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
+        ::image{src="8fd9a29b8367e6beba6b7901e794ca3a.avif"}
+        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:14.560462Z
+      seconds: 7.292657667
+      tokens: 16783
       review: false
   575f9d1e46947d0a29743dd1839a3b18:
     de-DE:
@@ -1376,184 +1400,6 @@ segments:
       seconds: 16.888363708
       tokens: 19086
       review: false
-  930f300050a9c2f9a5278c4757043dbd:
-    de-DE:
-      text: |-
-        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
-        ::image{src="13d5b6bcd2b0dce847951d4e3faf89ca.avif"}
-        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:14.560462Z
-      seconds: 7.292657667
-      tokens: 16783
-      review: false
-    en-US:
-      text: |-
-        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
-        ::image{src="13d5b6bcd2b0dce847951d4e3faf89ca.avif"}
-        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:14.560462Z
-      seconds: 7.292657667
-      tokens: 16783
-      review: false
-    es-ES:
-      text: |-
-        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
-        ::image{src="13d5b6bcd2b0dce847951d4e3faf89ca.avif"}
-        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:14.560462Z
-      seconds: 7.292657667
-      tokens: 16783
-      review: false
-    fr-FR:
-      text: |-
-        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
-        ::image{src="13d5b6bcd2b0dce847951d4e3faf89ca.avif"}
-        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:14.560462Z
-      seconds: 7.292657667
-      tokens: 16783
-      review: false
-    ja-JP:
-      text: |-
-        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
-        ::image{src="13d5b6bcd2b0dce847951d4e3faf89ca.avif"}
-        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:14.560462Z
-      seconds: 7.292657667
-      tokens: 16783
-      review: false
-    ko-KR:
-      text: |-
-        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
-        ::image{src="13d5b6bcd2b0dce847951d4e3faf89ca.avif"}
-        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:14.560462Z
-      seconds: 7.292657667
-      tokens: 16783
-      review: false
-    zh-CN:
-      text: |-
-        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
-        ::image{src="13d5b6bcd2b0dce847951d4e3faf89ca.avif"}
-        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:14.560462Z
-      seconds: 7.292657667
-      tokens: 16783
-      review: false
-    zh-TW:
-      text: |-
-        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
-        ::image{src="13d5b6bcd2b0dce847951d4e3faf89ca.avif"}
-        BX0P6HA468F3OOOQ5FXFWM0MIPHP98UA
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:14.560462Z
-      seconds: 7.292657667
-      tokens: 16783
-      review: false
-  9b4165d2cc23ef509d2b54f66ff33ea8:
-    de-DE:
-      text: |-
-        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
-        ::image{src="a10408f6aebb21591eed99bdacd7c1e5.avif"}
-        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:14.563491Z
-      seconds: 7.812778958
-      tokens: 16450
-      review: false
-    en-US:
-      text: |-
-        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
-        ::image{src="a10408f6aebb21591eed99bdacd7c1e5.avif"}
-        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:14.563491Z
-      seconds: 7.812778958
-      tokens: 16450
-      review: false
-    es-ES:
-      text: |-
-        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
-        ::image{src="a10408f6aebb21591eed99bdacd7c1e5.avif"}
-        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:14.563491Z
-      seconds: 7.812778958
-      tokens: 16450
-      review: false
-    fr-FR:
-      text: |-
-        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
-        ::image{src="a10408f6aebb21591eed99bdacd7c1e5.avif"}
-        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:14.563491Z
-      seconds: 7.812778958
-      tokens: 16450
-      review: false
-    ja-JP:
-      text: |-
-        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
-        ::image{src="a10408f6aebb21591eed99bdacd7c1e5.avif"}
-        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:14.563491Z
-      seconds: 7.812778958
-      tokens: 16450
-      review: false
-    ko-KR:
-      text: |-
-        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
-        ::image{src="a10408f6aebb21591eed99bdacd7c1e5.avif"}
-        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:14.563491Z
-      seconds: 7.812778958
-      tokens: 16450
-      review: false
-    zh-CN:
-      text: |-
-        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
-        ::image{src="a10408f6aebb21591eed99bdacd7c1e5.avif"}
-        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:14.563491Z
-      seconds: 7.812778958
-      tokens: 16450
-      review: false
-    zh-TW:
-      text: |-
-        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
-        ::image{src="a10408f6aebb21591eed99bdacd7c1e5.avif"}
-        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:14.563491Z
-      seconds: 7.812778958
-      tokens: 16450
-      review: false
   a42738995f28441e1a630b3113a058ff:
     de-DE:
       text: '## In der Stadt {#inside-the-city}'
@@ -1684,94 +1530,94 @@ segments:
       seconds: 21.272360084
       tokens: 19802
       review: false
-  aefdec1cba4d2c1b97586db096432042:
+  aea184268674b162bc536618bcced975:
     de-DE:
       text: |-
-        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
-        ::image{src="5898c4f0bf6412e9323eca7b85c75365.avif"}
-        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
+        ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
+        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:21.856853Z
-      seconds: 13.163762125
-      tokens: 16691
+      at: 2026-08-01T02:28:46.303016Z
+      seconds: 6.600817708
+      tokens: 16567
       review: false
     en-US:
       text: |-
-        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
-        ::image{src="5898c4f0bf6412e9323eca7b85c75365.avif"}
-        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
+        ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
+        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:21.856853Z
-      seconds: 13.163762125
-      tokens: 16691
+      at: 2026-08-01T02:28:46.303016Z
+      seconds: 6.600817708
+      tokens: 16567
       review: false
     es-ES:
       text: |-
-        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
-        ::image{src="5898c4f0bf6412e9323eca7b85c75365.avif"}
-        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
+        ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
+        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:21.856853Z
-      seconds: 13.163762125
-      tokens: 16691
+      at: 2026-08-01T02:28:46.303016Z
+      seconds: 6.600817708
+      tokens: 16567
       review: false
     fr-FR:
       text: |-
-        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
-        ::image{src="5898c4f0bf6412e9323eca7b85c75365.avif"}
-        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
+        ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
+        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:21.856853Z
-      seconds: 13.163762125
-      tokens: 16691
+      at: 2026-08-01T02:28:46.303016Z
+      seconds: 6.600817708
+      tokens: 16567
       review: false
     ja-JP:
       text: |-
-        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
-        ::image{src="5898c4f0bf6412e9323eca7b85c75365.avif"}
-        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
+        ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
+        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:21.856853Z
-      seconds: 13.163762125
-      tokens: 16691
+      at: 2026-08-01T02:28:46.303016Z
+      seconds: 6.600817708
+      tokens: 16567
       review: false
     ko-KR:
       text: |-
-        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
-        ::image{src="5898c4f0bf6412e9323eca7b85c75365.avif"}
-        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
+        ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
+        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:21.856853Z
-      seconds: 13.163762125
-      tokens: 16691
+      at: 2026-08-01T02:28:46.303016Z
+      seconds: 6.600817708
+      tokens: 16567
       review: false
     zh-CN:
       text: |-
-        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
-        ::image{src="5898c4f0bf6412e9323eca7b85c75365.avif"}
-        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
+        ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
+        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:21.856853Z
-      seconds: 13.163762125
-      tokens: 16691
+      at: 2026-08-01T02:28:46.303016Z
+      seconds: 6.600817708
+      tokens: 16567
       review: false
     zh-TW:
       text: |-
-        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
-        ::image{src="5898c4f0bf6412e9323eca7b85c75365.avif"}
-        VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2
+        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
+        ::image{src="a2b472ee8c494d39f18e8cb06f5ec684.avif"}
+        YKGEP819PUI2IXB7CSE2JXYYUFYRA3Q0
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:21.856853Z
-      seconds: 13.163762125
-      tokens: 16691
+      at: 2026-08-01T02:28:46.303016Z
+      seconds: 6.600817708
+      tokens: 16567
       review: false
   b5b4c92dd5874dc2b7cc34cc65ebfca3:
     de-DE:
@@ -1837,6 +1683,71 @@ segments:
       at: 2026-08-01T02:30:22.381167Z
       seconds: 28.503985083
       tokens: 21873
+      review: false
+  ba12d9fc19ee0412a58afae256735ab8:
+    de-DE:
+      text: ::image{src="ec38a5d85298b5e0d5b8acc1591097c2.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:30.712716Z
+      seconds: 6.053152541
+      tokens: 16319
+      review: false
+    en-US:
+      text: ::image{src="ec38a5d85298b5e0d5b8acc1591097c2.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:30.712716Z
+      seconds: 6.053152541
+      tokens: 16319
+      review: false
+    es-ES:
+      text: ::image{src="ec38a5d85298b5e0d5b8acc1591097c2.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:30.712716Z
+      seconds: 6.053152541
+      tokens: 16319
+      review: false
+    fr-FR:
+      text: ::image{src="ec38a5d85298b5e0d5b8acc1591097c2.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:30.712716Z
+      seconds: 6.053152541
+      tokens: 16319
+      review: false
+    ja-JP:
+      text: ::image{src="ec38a5d85298b5e0d5b8acc1591097c2.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:30.712716Z
+      seconds: 6.053152541
+      tokens: 16319
+      review: false
+    ko-KR:
+      text: ::image{src="ec38a5d85298b5e0d5b8acc1591097c2.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:30.712716Z
+      seconds: 6.053152541
+      tokens: 16319
+      review: false
+    zh-CN:
+      text: ::image{src="ec38a5d85298b5e0d5b8acc1591097c2.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:30.712716Z
+      seconds: 6.053152541
+      tokens: 16319
+      review: false
+    zh-TW:
+      text: ::image{src="ec38a5d85298b5e0d5b8acc1591097c2.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:28:30.712716Z
+      seconds: 6.053152541
+      tokens: 16319
       review: false
   be2f806b83808fc5d4bcf0257c42584b:
     de-DE:
@@ -2203,6 +2114,71 @@ segments:
       seconds: 20.619946375
       tokens: 19819
       review: false
+  e99a127906d910d7439e1bea29f6d99f:
+    de-DE:
+      text: ::image{src="7c112d031538b0ee7baeea1524fc5de5.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:54.862935Z
+      seconds: 5.512867959
+      tokens: 15922
+      review: false
+    en-US:
+      text: ::image{src="7c112d031538b0ee7baeea1524fc5de5.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:54.862935Z
+      seconds: 5.512867959
+      tokens: 15922
+      review: false
+    es-ES:
+      text: ::image{src="7c112d031538b0ee7baeea1524fc5de5.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:54.862935Z
+      seconds: 5.512867959
+      tokens: 15922
+      review: false
+    fr-FR:
+      text: ::image{src="7c112d031538b0ee7baeea1524fc5de5.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:54.862935Z
+      seconds: 5.512867959
+      tokens: 15922
+      review: false
+    ja-JP:
+      text: ::image{src="7c112d031538b0ee7baeea1524fc5de5.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:54.862935Z
+      seconds: 5.512867959
+      tokens: 15922
+      review: false
+    ko-KR:
+      text: ::image{src="7c112d031538b0ee7baeea1524fc5de5.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:54.862935Z
+      seconds: 5.512867959
+      tokens: 15922
+      review: false
+    zh-CN:
+      text: ::image{src="7c112d031538b0ee7baeea1524fc5de5.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:54.862935Z
+      seconds: 5.512867959
+      tokens: 15922
+      review: false
+    zh-TW:
+      text: ::image{src="7c112d031538b0ee7baeea1524fc5de5.avif"}
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-01T02:30:54.862935Z
+      seconds: 5.512867959
+      tokens: 15922
+      review: false
   ece3bf55829edba4e5b445a3313f4642:
     de-DE:
       text: 'In dem Moment, in dem ich den Bildschirm aufklappte, wusste ich, dass es zu Ende war. Die Bildschirmhelligkeit von Guoguo ist im Freien einfach nicht ausreichend. Ich habe ein wenig verschiedene Blickwinkel ausprobiert – Gegenlicht, Sonnenlicht, sogar mich selbst so ausgerichtet, dass ich mit der Sonne auf einer Linie liege – aber wie ich auch einstelle, konnte ich nichts sehen. Ehrlich gesagt, das ist ziemlich beklagenswert. Drinnen fühlte ich mich noch als Programmierer, doch draußen stellte ich fest, dass der Bildschirm überhaupt nicht leuchtete. Na gut, ich könnte den Code einfach nicht schreiben, aber ich gab nicht auf, schloss den Laptop und beschloss, im Schatten eines Baumes gegenüber der Straße mein Glück zu versuchen. Bevor ich das Geländer verließ, warf ich noch einen Blick auf das Wasser. Aus der Ferne sah es eigentlich ganz in Ordnung aus; bei bewölktem Wetter mit Sonne sah die Wasseroberfläche immer noch so aus, wie ich sie in Erinnerung habe. Doch als ich den Blick leicht senkte und zum Ufer schaute, bemerkte ich eine Schicht von etwas auf der Oberfläche – Algen, Blätter, allerlei Treibgut. Nicht viel, aber das Flusswasser war bereits trüb, die Oberfläche blieb still wie in der Erinnerung, aber das Ufer war eindeutig vernachlässigt: „早几年疫情的时候我其实就出来看过，自那时候起其实就这样了“~~Aber jedes Mal, wenn ich vorbeigehe, fühle ich ein wenig Wehmut~~.'
@@ -2268,70 +2244,94 @@ segments:
       seconds: 28.266401958
       tokens: 21810
       review: false
-  f03c54854b15bb721114c0778a5e0265:
+  ef777fdbb680bf711f96006468b7b38a:
     de-DE:
-      text: ::image{src="d4fb6031c436599353a6a90fdd99792c.avif"}
+      text: |-
+        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
+        ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
+        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:54.862935Z
-      seconds: 5.512867959
-      tokens: 15922
+      at: 2026-08-01T02:30:14.563491Z
+      seconds: 7.812778958
+      tokens: 16450
       review: false
     en-US:
-      text: ::image{src="d4fb6031c436599353a6a90fdd99792c.avif"}
+      text: |-
+        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
+        ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
+        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:54.862935Z
-      seconds: 5.512867959
-      tokens: 15922
+      at: 2026-08-01T02:30:14.563491Z
+      seconds: 7.812778958
+      tokens: 16450
       review: false
     es-ES:
-      text: ::image{src="d4fb6031c436599353a6a90fdd99792c.avif"}
+      text: |-
+        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
+        ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
+        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:54.862935Z
-      seconds: 5.512867959
-      tokens: 15922
+      at: 2026-08-01T02:30:14.563491Z
+      seconds: 7.812778958
+      tokens: 16450
       review: false
     fr-FR:
-      text: ::image{src="d4fb6031c436599353a6a90fdd99792c.avif"}
+      text: |-
+        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
+        ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
+        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:54.862935Z
-      seconds: 5.512867959
-      tokens: 15922
+      at: 2026-08-01T02:30:14.563491Z
+      seconds: 7.812778958
+      tokens: 16450
       review: false
     ja-JP:
-      text: ::image{src="d4fb6031c436599353a6a90fdd99792c.avif"}
+      text: |-
+        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
+        ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
+        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:54.862935Z
-      seconds: 5.512867959
-      tokens: 15922
+      at: 2026-08-01T02:30:14.563491Z
+      seconds: 7.812778958
+      tokens: 16450
       review: false
     ko-KR:
-      text: ::image{src="d4fb6031c436599353a6a90fdd99792c.avif"}
+      text: |-
+        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
+        ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
+        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:54.862935Z
-      seconds: 5.512867959
-      tokens: 15922
+      at: 2026-08-01T02:30:14.563491Z
+      seconds: 7.812778958
+      tokens: 16450
       review: false
     zh-CN:
-      text: ::image{src="d4fb6031c436599353a6a90fdd99792c.avif"}
+      text: |-
+        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
+        ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
+        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:54.862935Z
-      seconds: 5.512867959
-      tokens: 15922
+      at: 2026-08-01T02:30:14.563491Z
+      seconds: 7.812778958
+      tokens: 16450
       review: false
     zh-TW:
-      text: ::image{src="d4fb6031c436599353a6a90fdd99792c.avif"}
+      text: |-
+        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
+        ::image{src="c59b29dec6d015ea19363ac47f43c36e.avif"}
+        U0BF5RDNE1LAIKJ6P16EDPOMMOPP5NYL
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:54.862935Z
-      seconds: 5.512867959
-      tokens: 15922
+      at: 2026-08-01T02:30:14.563491Z
+      seconds: 7.812778958
+      tokens: 16450
       review: false
   f487f10aaf6d6c652d00601e193dcaed:
     de-DE:

@@ -72,78 +72,6 @@ media:
     - npm
     - blog-framework
     - web-navigation
-  13d5b6bcd2b0dce847951d4e3faf89ca:
-    category: photograph
-    description:
-      de-DE:
-        text: Ein Foto zeigt einen dunkel gefärbten Laptop, dessen Bildschirm aus ist und der einen gewellten violetten Schimmer reflektiert, offen auf einem Stein‑ oder Betonpfeiler thronend und mit Blick auf einen breiten, schlammig‑braunen Fluss. Das gegenüberliegende Ufer weist eine neblige Skyline aus niedrigen Gebäuden, Kränen und einer kabelgespannten Struktur mit rotem Mast auf, alles abgedämpft durch bewölktes, nebliges Tageslicht. Rechts verläuft ein Metallgeländer entlang eines gepflasterten Dämms, und ein kleines Boot mit rotem Marker treibt allein auf dem Wasser nach links. Die Gesamtszene wirkt wie ein lockeres Outdoor‑Foto eines Laptops vor einer Flussstadtkulisse, wahrscheinlich aufgenommen, um das Design des Geräts vor einer landschaftlich stimmungsvollen Kulisse zu präsentieren.
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:08:22.195344Z
-        seconds: 7.215795292
-        tokens: 14943
-        review: false
-      en-US:
-        text: A photograph shows a dark-colored laptop, screen off and reflecting a rippled purplish sheen, perched open on top of a stone or concrete pillar overlooking a wide, muddy-brown river. The far bank holds a hazy skyline of low-rise buildings, cranes, and a cable-stayed structure with a red mast, all softened by overcast, misty daylight. To the right a metal railing runs along a paved embankment, and a small boat with a red marker floats alone on the water toward the left. The overall scene reads as a casual outdoor photo of a laptop set against a riverside city backdrop, likely taken to showcase the device's design against a scenic, moody backdrop.
-        provider: anthropic
-        model: claude-sonnet-5
-        at: 2026-07-31T20:09:01.30263Z
-        seconds: 0.0
-        tokens: 0
-        review: false
-      es-ES:
-        text: Una fotografía muestra un portátil de color oscuro, con la pantalla apagada y reflejando un brillo ondulado violeta, posado abierto sobre una columna de piedra o hormigón con vistas a un amplio río de tono marrón fangoso. La orilla lejana presenta un horizonte brumoso de edificios bajos, grúas y una estructura atirantada con un mástil rojo, todo suavizado por una luz de día nublada y brumosa. A la derecha, una baranda metálica recorre un terraplén pavimentado, y una pequeña embarcación con una marca roja flota sola en el agua hacia la izquierda. En conjunto, la escena parece una foto casual al aire libre de un portátil contra un fondo urbano ribereño, probablemente tomada para mostrar el diseño del dispositivo en un entorno escénico y melancólico.
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:08:39.325956Z
-        seconds: 4.810284417
-        tokens: 14832
-        review: false
-      fr-FR:
-        text: Une photographie montre un ordinateur portable de couleur sombre, l’écran éteint, reflétant une lueur violette ondulée, posé ouvert sur le dessus d’un pilier en pierre ou en béton surplombant une large rivière brunâtre et boueuse. L’autre rive présente une silhouette floue de bâtiments de faible hauteur, de grues et d’une structure à haubans avec un mât rouge, le tout adouci par une lumière du jour couverte et brumeuse. À droite, une balustrade métallique longe une berge pavée, et un petit bateau avec un marqueur rouge flotte seul sur l’eau vers la gauche. L’ensemble de la scène apparaît comme une photo extérieure décontractée d’un ordinateur portable placé devant un décor urbain riverain, probablement prise pour mettre en valeur le design de l’appareil dans un cadre pittoresque et mélancolique.
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:08:34.398478Z
-        seconds: 4.925376
-        tokens: 14873
-        review: false
-      ja-JP:
-        text: 写真には、暗色のノートパソコンが映っており、画面はオフで波打つ紫がかった光沢を反射し、石またはコンクリートの柱の上に開いたまま置かれ、広く濁った茶褐色の川を見下ろしています。遠くの岸には、低層の建物、クレーン、赤いマストを持つ斜張橋が霞んだように見え、曇りがちで霧のような日光に柔らかく映っています。右側には金属製の手すりが舗装された堤防に沿って走り、左方向に向かって赤いマーカーが付いた小さなボートが一つだけ水面に浮かんでいます。全体として、このシーンはリバーサイドの都市背景に対してノートパソコンを配置したカジュアルな屋外写真で、風景的でムーディーな背景にデザインを際立たせるために撮影されたものと思われます。
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:08:16.663184Z
-        seconds: 5.5301902080000005
-        tokens: 14982
-        review: false
-      ko-KR:
-        text: 한 사진에는 어두운 색상의 노트북이 화면을 끈 상태로 파란빛이 도는 물결 무늬를 반사하며, 돌 또는 콘크리트 기둥 위에 열려 있는 채로 놓여 있어 넓고 진흙빛 갈색 강을 내려다보고 있습니다. 저편 강변에는 저층 건물, 크레인, 그리고 빨간 마스트가 달린 케이블교 구조물이 흐릿한 안개 낀 흐린 햇빛에 부드럽게 보이는 흐릿한 스카이라인이 있습니다. 오른쪽에는 포장된 제방을 따라 금속 난간이 이어지고, 빨간 마커가 달린 작은 보트가 물 위에 왼쪽을 향해 혼자 떠 있습니다. 전체 장면은 강가 도시 배경을 배경으로 노트북의 디자인을 시각적으로 강조하기 위해 촬영된 캐주얼한 야외 사진처럼 보입니다.
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:08:29.412891Z
-        seconds: 4.983404042
-        tokens: 14892
-        review: false
-      zh-CN:
-        text: 一张照片中，深色笔记本电脑屏幕关闭，映出波纹状的紫色光泽，敞开地放在石质或混凝土柱子顶部，俯瞰宽阔的泥棕色河流。远岸是一片朦胧的低矮建筑天际线，点缀着起重机和一座带红色桅杆的斜拉桥，整个景象被阴天的雾蒙光线柔化。右侧有金属栏杆沿着铺砌的堤岸延伸，左侧的水面上有一只带红色标记的小船独自漂浮。整体画面呈现出一幅随意的户外场景，将笔记本置于河畔城市背景下，似乎是为展示该设备的设计而拍摄的风景化、情绪化的照片。
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:08:11.733756Z
-        seconds: 4.927545167
-        tokens: 14897
-        review: false
-      zh-TW:
-        text: 一張照片顯示一臺深色筆記型電腦，螢幕關閉，映出波紋狀的紫色光澤，打開放置在石頭或混凝土柱子上，俯瞰寬闊、呈泥棕色的河流。遠岸上有朦朧的低層建築天際線、起重機，以及帶有紅色桅杆的斜張橋，全部被陰天、霧濛的光線柔化。右側有金屬欄杆沿著鋪設的堤岸伸展，左側水面上漂浮著一艘帶紅色標記的小船。整體畫面呈現出隨性戶外拍攝的筆記型電腦，背景是河岸城市景觀，似乎是為了展示該裝置在風景氛圍濃厚的環境中的設計。
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:08:44.138127Z
-        seconds: 5.486301541
-        tokens: 14924
-        review: false
-    tags:
-    - laptop
-    - river
-    - waterfront
-    - railing
   18dc4b33f21890aa9042955b67ac346d:
     category: screenshot
     description:
@@ -286,78 +214,6 @@ media:
     - typeless
     - macos
     - web-navigation
-  2acad555d6fe7cbcd5b153ce945585a0:
-    category: photograph
-    description:
-      de-DE:
-        text: Ein Foto, aufgenommen entlang eines gepflasterten Fußwegs, der durch einen Park oder Innenhof führt, wobei Unkraut und Gras durch Risse im abgenutzten Beton sprießen. Dichte, etwas überwucherte Sträucher und bambusähnliche Hecken säumen beide Seiten, flankiert von Bäumen mit weiß gestrichenen Stämmen rechts und einem kahlen Baum sowie einer rostigen, dachlosen Metall-Pergo­la in mittlerer Entfernung. Hinter einem niedrigen Zaun und Geländer links steht ein hellbraunes mehrstöckiges Gebäude, dessen Fenster teilweise von kahlen Ästen verdeckt werden, während weiches, diffuses Tageslicht auf einen bewölkten Morgen oder späten Nachmittag hindeutet. Der vernachlässigte Gehweg und das ungepflegte Grün lassen auf einen nur leicht gepflegten Grünbereich in einem älteren Wohnkomplex oder institutionellen Komplex schließen.
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:10:19.174438Z
-        seconds: 7.248357
-        tokens: 15270
-        review: false
-      en-US:
-        text: A photograph taken along a paved footpath cutting through a park or residential courtyard, with weeds and grass sprouting through cracks in the worn concrete. Thick, somewhat overgrown shrubs and bamboo-like hedges line both sides, flanked by trees with white-painted trunks on the right and a leafless tree and a rusted, roofless metal pergola structure in the middle distance. Beyond a low fence and railing on the left stands a tan multi-story building, its windows partly obscured by bare branches, while soft, hazy daylight suggests an overcast morning or late afternoon. The neglected pavement and untrimmed vegetation suggest a lightly maintained green space within an older apartment complex or institutional compound.
-        provider: anthropic
-        model: claude-sonnet-5
-        at: 2026-07-31T20:16:43.086168Z
-        seconds: 0.0
-        tokens: 0
-        review: false
-      es-ES:
-        text: Una fotografía tomada a lo largo de un sendero pavimentado que corta un parque o patio residencial, con hierbas y pasto brotando a través de grietas en el concreto desgastado. Arbustos gruesos y algo exuberantes y setos similares a bambú bordean ambos lados, flanqueados por árboles con troncos pintados de blanco a la derecha y un árbol sin hojas y una pérgola de metal oxidada y sin techo en la distancia media. Más allá de una cerca baja y una barandilla a la izquierda se alza un edificio de varios pisos de color tostado, cuyas ventanas están parcialmente ocultas por ramas desnudas, mientras una luz suave y difusa sugiere una mañana nublada o una tarde tardía. El pavimento descuidado y la vegetación sin podar sugieren un espacio verde ligeramente mantenido dentro de un complejo de apartamentos antiguo o un recinto institucional.
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:10:35.792764Z
-        seconds: 5.160903167
-        tokens: 14879
-        review: false
-      fr-FR:
-        text: Une photographie prise le long d’un trottoir pavé traversant un parc ou une cour résidentielle, avec des mauvaises herbes et de l’herbe qui poussent à travers les fissures du béton usé. Des arbustes épais, quelque peu envahis, et des haies semblables à du bambou bordent les deux côtés, accompagnés d’arbres aux troncs peints en blanc à droite, ainsi qu’un arbre dénudé et une pergola métallique rouillée et sans toit au loin au centre. Au-delà d’une petite clôture et d’une rambarde à gauche se dresse un bâtiment tan de plusieurs étages, ses fenêtres partiellement masquées par des branches nues, tandis qu’une lumière douce et brumeuse suggère un matin couvert ou un fin d’après‑midi. Le pavé négligé et la végétation non taillée indiquent un espace vert légèrement entretenu au sein d’un ancien complexe d’appartements ou d’un lotissement institutionnel.
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:10:32.405364Z
-        seconds: 3.384561125
-        tokens: 14510
-        review: false
-      ja-JP:
-        text: 舗装された歩道が公園や住宅の中庭を横切り、ひび割れたコンクリートから雑草や草が生えている写真です。両側にはやや伸び過ぎた低木や竹のような生垣があり、右側には白で塗装された幹の木、中央遠景には枝のない木と錆びた屋根のない金属製パーゴラ構造物が配置されています。左側の低いフェンスと手すりの向こうには、薄い色の複数階建ての建物があり、窓は葉のない枝で部分的に隠れています。柔らかく霞んだ光が、曇りがちな朝か夕方の遅い時間帯を示唆しています。手入れの行き届いていない舗装と刈り込まれていない植生は、古いアパート群や施設内の軽く管理された緑地であることを示しています。
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:10:15.662069Z
-        seconds: 3.509652792
-        tokens: 14550
-        review: false
-      ko-KR:
-        text: 공원이나 주거 안뜰을 가로지르는 포장된 보행로를 따라 촬영된 사진으로, 닳아 있는 콘크리트 균열 사이에 잡초와 풀이 돋아 있다. 양쪽에 두껍고 다소 무성하게 자란 관목과 대나무 같은 울타리가 늘어서 있으며, 오른쪽에는 흰색으로 칠해진 줄기를 가진 나무가 있고, 중간 거리에는 잎이 없는 나무와 녹이 슬어 지붕이 없는 금속 파고라 구조물이 있다. 왼쪽 낮은 울타리와 난간 너머에는 갈색 다층 건물이 서 있으며, 그 창문은 벌거벗은 가지에 일부 가려져 있다. 부드럽고 흐릿한 햇빛은 흐린 아침이나 늦은 오후를 연상시킨다. 방치된 보도와 다듬어지지 않은 식생은 오래된 아파트 단지나 기관 단지 내에서 약간만 관리된 녹지를 보여준다.
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:10:26.425517Z
-        seconds: 5.977139209
-        tokens: 14930
-        review: false
-      zh-CN:
-        text: 一张沿着铺砌人行道的照片，路径穿过公园或住宅院落，破旧的混凝土裂缝中冒出杂草和草坪。两侧种植着茂密、稍显蔓延的灌木和类似竹子的树篱，右侧有树干涂成白色的树，远处中间有一棵落叶的树和一座锈蚀、缺失屋顶的金属凉亭结构。左侧低矮的围栏和扶手后面是一栋棕褐色的多层建筑，窗户被光秃的枝条部分遮挡，柔和而朦胧的光线显示出阴天的上午或傍晚。破旧的人行道和未修剪的植被表明这是一个维护略显疏忽的绿地，位于较老的公寓小区或机构院落内。
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:10:12.031019Z
-        seconds: 3.6283990839999998
-        tokens: 14528
-        review: false
-      zh-TW:
-        text: 這張照片拍攝於一條穿過公園或住宅院落的鋪砌步道，鋪面已磨損，裂縫中冒出雜草與草叢。兩側排列著濃密且稍顯蔓生的灌木與類竹籬笆，右側有白漆樹幹的樹木，遠處中景則有一棵落葉樹與一座生鏽、無屋頂的金屬涼亭。左側低矮的圍欄與護欄後矗立著一棟淡棕色的多層建築，窗戶部分被光禿的枝條遮掩，柔和朦瀧的光線顯示出陰天的早晨或傍晚。被遺棄的鋪面與未修剪的植被顯示這是一個維護較少的綠地，位於較舊的公寓群或機構院落內。
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:10:40.956766Z
-        seconds: 6.215276542
-        tokens: 15057
-        review: false
-    tags:
-    - park-path
-    - shrub
-    - tree
-    - pergola
   3f34360a5eb3c9ec303ca1035cc2453b:
     category: screenshot
     description:
@@ -574,78 +430,6 @@ media:
     - cargo
     - command-line-interface
     - compilation
-  5898c4f0bf6412e9323eca7b85c75365:
-    category: photograph
-    description:
-      de-DE:
-        text: Ein Foto, das drinnen aufgenommen wurde, vermutlich in einem Parkhaus oder einem Versorgungskorridor, zeigt eine raue Betonwand mit einem an der Wand montierten Hydranten-Schrank links, beschriftet mit „消火栓 / FIRE HYDRANT“ in rotem Text auf weißem Hintergrund, neben freiliegenden Rohren und einem kleinen, an der Wand angebrachten Abluftventil darüber. Auf dem unteren Wandstreifen ist in tropfenden roten Buchstaben die Warnung „消防通道严禁停车“ (Feuerweg, Parken streng verboten) gemalt; die verlaufende Farbe lässt vermuten, dass sie von Hand mit Pinsel oder Rolle aufgetragen wurde und nicht gedruckt ist. Der nackte Betonboden, die unfertigen Wände und die technischen Anschlüsse zeigen, dass es sich um einen Dienst- oder Kellerbereich handelt, in dem das Schild als Nachweis für aktive Bemühungen dient, den Feuerzugang von geparkten Fahrzeugen freizuhalten.
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:13:07.492962Z
-        seconds: 4.758524459
-        tokens: 14925
-        review: false
-      en-US:
-        text: A photograph taken indoors, likely in a parking garage or utility corridor, showing a rough concrete wall with a wall-mounted fire hydrant cabinet on the left, labeled "消火栓 / FIRE HYDRANT" in red text on white, alongside exposed pipes and a small wall-mounted exhaust vent above it. Painted in dripping red characters across the lower band of the wall is the warning "消防通道严禁停车" (fire lane, parking strictly prohibited), the paint runs suggesting it was applied by hand with a brush or roller rather than printed. The bare concrete floor, unfinished walls, and utility fittings indicate this is a service or basement area where the sign serves as evidence of an active effort to keep the fire access route clear of parked vehicles.
-        provider: anthropic
-        model: claude-sonnet-5
-        at: 2026-07-31T20:16:43.086172Z
-        seconds: 0.0
-        tokens: 0
-        review: false
-      es-ES:
-        text: Una fotografía tomada en interiores, probablemente en un estacionamiento subterráneo o corredor de servicios, que muestra una pared de concreto rugosa con un armario de hidrante contra incendios montado en la pared a la izquierda, etiquetado con "消火栓 / FIRE HYDRANT" en texto rojo sobre fondo blanco, junto a tuberías expuestas y una pequeña ventilación de escape montada en la pared encima. Pintado con caracteres rojos goteantes a lo largo de la banda inferior de la pared está la advertencia "消防通道严禁停车" (calle de incendio, prohibido estacionar), la pintura parece haber sido aplicada a mano con pincel o rodillo en lugar de imprimirse. El suelo de concreto desnudo, las paredes sin terminar y los accesorios de servicios indican que se trata de un área de servicio o sótano donde el letrero sirve como evidencia de un esfuerzo activo para mantener la ruta de acceso al fuego libre de vehículos estacionados.
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:13:22.849425Z
-        seconds: 3.120563042
-        tokens: 14532
-        review: false
-      fr-FR:
-        text: Une photographie prise à l'intérieur, probablement dans un garage souterrain ou un couloir utilitaire, montrant un mur de béton rugueux avec une armoire d'incendie murale à gauche, portant l'inscription « 消火栓 / FIRE HYDRANT » en texte rouge sur fond blanc, à côté de conduites apparentes et d'une petite ventouse d'extraction murale au-dessus. Des caractères rouges dégoulinants peints sur la bande inférieure du mur affichent l'avertissement « 消防通道严禁停车 » (voie d’incendie, stationnement strictement interdit), la coulure de la peinture suggérant qu'elle a été appliquée à la main à l'aide d'un pinceau ou d'un rouleau plutôt qu'imprimée. Le sol en béton brut, les murs non finis et les équipements utilitaires indiquent qu'il s'agit d'un espace de service ou d’un sous‑sol où le panneau constitue la preuve d'un effort actif pour garder la voie d'accès aux pompiers dégagée des véhicules stationnés.
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:13:17.836243Z
-        seconds: 5.009566042
-        tokens: 14943
-        review: false
-      ja-JP:
-        text: 屋内で撮影された写真で、駐車場や設備用通路と思われる場所にあり、左側に壁掛け式の消火栓キャビネットが取り付けられたざらざらしたコンクリート壁が映っている。キャビネットには白地に赤文字で「消火栓 / FIRE HYDRANT」とラベルが付いており、露出した配管とその上部に小さな壁掛け式排気口がある。壁の下部帯に、赤い文字がにじみながら「消防通道严禁停车」（消防通路は駐車禁止）という警告が塗られており、刷り出しではなく筆やローラーで手塗りされたことがうかがえる。むき出しのコンクリート床、未完成の壁、設備類から、この場所はサービス用または地下のエリアであり、標識は駐車車両が消防経路を塞がないようにする積極的な取り組みの証拠となっている。
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:13:02.000056Z
-        seconds: 5.489210209
-        tokens: 15010
-        review: false
-      ko-KR:
-        text: 실내에서 촬영된 사진으로, 주차장이나 설비 복도일 가능성이 높으며, 거친 콘크리트 벽에 왼쪽에 벽걸이형 소화전 캐비닛이 보이고, 흰 바탕에 빨간 글씨로 “消火栓 / FIRE HYDRANT”라고 라벨링되어 있다. 그 옆에는 노출된 파이프와 위에 작은 벽걸이형 배기구가 있다. 벽 아래쪽 띠에는 물방울이 흐른 듯한 빨간 글자로 “消防通道严禁停车”(화재 통로, 주차 금지) 경고 문구가 칠해져 있으며, 페인트가 번진 형태는 브러시나 롤러로 손으로 칠한 것으로 보인다. 노출된 콘크리트 바닥, 마감되지 않은 벽, 설비 부속품은 이곳이 서비스 또는 지하 공간임을 나타내며, 표지판은 주차된 차량이 화재 접근 통로를 막지 않도록 적극적인 관리가 이루어지고 있음을 증명한다.
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:13:12.255247Z
-        seconds: 5.577414875
-        tokens: 15007
-        review: false
-      zh-CN:
-        text: 这是一张室内拍摄的照片，可能位于停车库或设施走廊，展示了一面粗糙的混凝土墙，左侧挂有壁挂式消火栓柜，柜体上以红底白字标注“消火栓 / FIRE HYDRANT”，旁边可见裸露的管道，柜上方有一个小型壁挂式排气口。墙面下部用滴漆的红色字符写着警示语“消防通道严禁停车”，漆迹呈流淌状，显示是手工用刷子或滚筒涂刷而非印刷。光秃的混凝土地面、未完工的墙面以及各种设施配件表明这里是服务或地下区域，标识体现了有人积极保持消防通道不被停放车辆占用的努力。
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:12:56.977463Z
-        seconds: 5.018809416
-        tokens: 14910
-        review: false
-      zh-TW:
-        text: 這張照片在室內拍攝，可能位於停車場或公共走廊，畫面顯示一面粗糙的混凝土牆，左側掛有標示「消火栓 / FIRE HYDRANT」的壁掛式消防栓櫃，旁邊有裸露的管線及其上方的壁掛式小型排氣口。牆面下方以滴筆式紅字寫著警示「消防通道嚴禁停車」，字跡流淌顯示是手工用刷子或滾筒塗刷而非印刷。裸露的混凝土地面、未完成的牆壁以及各種管線裝置表明這是服務或地下空間，標示顯示有人主動維護消防通道不被停車佔用。
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:13:25.97401Z
-        seconds: 7.997192125
-        tokens: 14984
-        review: false
-    tags:
-    - fire-hydrant
-    - concrete-wall
-    - chinese-graffiti
-    - exposed-pipes
   5c33f853b73251e594e7c0eaca0a5709:
     category: screenshot
     description:
@@ -789,6 +573,77 @@ media:
     - blog-framework
     - web-navigation
     - personal-website
+  7c112d031538b0ee7baeea1524fc5de5:
+    category: photograph
+    description:
+      de-DE:
+        text: Eine Nahaufnahme eines verwitterten Holzsteges oder Anlegers, aus einer niedrigen Winkelperspektive fotografiert, die entlang der Länge der Dielen nach unten blickt, während sie in die Ferne verschwinden. Die grauen, sonnenverblassten Bretter zeigen starke Abnutzung – gesprungene Kanten, herausragende rostige Nagelköpfe und mehrere Bretter, die geknackt oder durchbrochen sind, wobei Grüngrasbüschel und welkende Blätter aus den Lücken auf der linken Seite hervorschießen. Der Gesamteindruck deutet auf langjährige Witterungseinwirkung und Vernachlässigung hin und lässt darauf schließen, dass die Struktur reparatur- oder ersatzbedürftig ist.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:21:54.142329Z
+        seconds: 4.734800125
+        tokens: 14701
+        review: false
+      en-US:
+        text: A close-up photograph of a weathered wooden boardwalk or dock, shot from a low angle looking down the length of the planks as they recede into the distance. The gray, sun-bleached boards show heavy wear -- splintered edges, protruding rusty nail heads, and several boards cracked or broken through, with tufts of green grass and dead leaves pushing up through the gaps on the left side. The overall condition points to long-term outdoor exposure and neglect, suggesting the structure is due for repair or replacement.
+        provider: anthropic
+        model: claude-sonnet-5
+        at: 2026-07-31T20:16:43.086181Z
+        seconds: 0.0
+        tokens: 0
+        review: false
+      es-ES:
+        text: 'Una foto en primer plano de un pasillo o muelle de madera envejecida, tomada desde un ángulo bajo mirando a lo largo de las tablas mientras se alejan en la distancia. Las tablas grises, blanqueadas por el sol, muestran un desgaste intenso: bordes astillados, cabezas de clavos oxidados sobresaliendo y varias tablas agrietadas o rotas, con mechones de hierba verde y hojas secas que sobresalen por las grietas en el lado izquierdo. El estado general evidencia una exposición prolongada al exterior y abandono, lo que sugiere que la estructura necesita reparación o sustitución.'
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:22:08.03402Z
+        seconds: 2.930301084
+        tokens: 14355
+        review: false
+      fr-FR:
+        text: Une photographie en gros plan d’une promenade en bois usée ou d’un quai, prise d’un angle bas en regardant le long des planches qui s’éloignent dans la distance. Les planches grises, décolorées par le soleil, montrent une usure importante — bords éclatés, têtes de clous rouillées qui dépassent, et plusieurs planches fissurées ou cassées, avec des touffes d’herbe verte et des feuilles mortes qui poussent à travers les espaces du côté gauche. L’état général indique une exposition extérieure prolongée et négligence, suggérant que la structure nécessite des réparations ou un remplacement.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:22:03.619008Z
+        seconds: 4.40855725
+        tokens: 14636
+        review: false
+      ja-JP:
+        text: 低い角度から撮影された、風化した木製の板道（または桟橋）のクローズアップ写真で、板の長さに沿って奥へ遠ざかる様子が見える。灰色で日焼けした板は、ひび割れた縁や突き出た錆びた釘の頭、そしていくつかの板が割れたり欠損しており、左側の隙間からは緑の草や枯れ葉の束が顔を出している。全体的な状態は長期間の屋外曝露と放置を示しており、修復または交換が必要であることを示唆している。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:21:47.358569Z
+        seconds: 6.777294958
+        tokens: 14916
+        review: false
+      ko-KR:
+        text: 날씨에 닳아진 목재 보드워크 또는 부두를 클로즈업한 사진으로, 낮은 각도에서 판자들의 길이를 따라 멀리 사라지는 모습을 바라보며 촬영했습니다. 회색이고 햇볕에 퇴색한 판자들은 심한 마모가 보이며—깎인 가장자리, 튀어나온 녹슨 못 머리, 그리고 몇몇 판자는 갈라지거나 부서져 있으며, 왼쪽 측면의 틈새에는 푸른 풀잎과 마른 잎이 솟아 있습니다. 전체적인 상태는 장기간 야외 노출과 방치의 흔적으로, 구조물이 수리 또는 교체가 필요함을 시사합니다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:21:58.883845Z
+        seconds: 4.729132041
+        tokens: 14644
+        review: false
+      zh-CN:
+        text: 一张特写照片，拍摄一段风化的木板人行道或码头，低视角向下俯视木板的长度，木板在远处逐渐消失。灰色、被阳光漂白的木板显示出严重的磨损——边缘碎裂、凸出的锈蚀钉头，以及几块木板出现裂缝或断裂，左侧有绿草和枯叶从缝隙中冒出。整体状况表明长期户外暴露和疏于维护，暗示该结构需要维修或更换。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:21:44.213995Z
+        seconds: 3.138775958
+        tokens: 14389
+        review: false
+      zh-TW:
+        text: 近距離拍攝的舊化木棧道或碼頭，從低角度俯視，沿著木板長度向遠處延伸。灰色、被陽光漂白的木板顯示嚴重磨損——板邊碎裂、突出的鏽釘頭，以及多塊木板開裂或斷裂，左側有綠草和枯葉從縫隙中冒出。整體狀況顯示長期戶外曝曬與疏於維護，暗示該結構亟需修繕或更換。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:22:10.971017Z
+        seconds: 4.094618292
+        tokens: 14674
+        review: false
+    tags:
+    - wooden-decking
+    - grass
+    - fallen-leaves
   7d3a80a688fa627e4f3577f69b320867:
     category: diagram
     description:
@@ -861,6 +716,78 @@ media:
     - gnu-gold
     - llvm-lld
     - mold-linker
+  7ff802c270a8b05f42e77ff401fe5475:
+    category: photograph
+    description:
+      de-DE:
+        text: Ein Foto, das drinnen aufgenommen wurde, vermutlich in einem Parkhaus oder einem Versorgungskorridor, zeigt eine raue Betonwand mit einem an der Wand montierten Hydranten-Schrank links, beschriftet mit „消火栓 / FIRE HYDRANT“ in rotem Text auf weißem Hintergrund, neben freiliegenden Rohren und einem kleinen, an der Wand angebrachten Abluftventil darüber. Auf dem unteren Wandstreifen ist in tropfenden roten Buchstaben die Warnung „消防通道严禁停车“ (Feuerweg, Parken streng verboten) gemalt; die verlaufende Farbe lässt vermuten, dass sie von Hand mit Pinsel oder Rolle aufgetragen wurde und nicht gedruckt ist. Der nackte Betonboden, die unfertigen Wände und die technischen Anschlüsse zeigen, dass es sich um einen Dienst- oder Kellerbereich handelt, in dem das Schild als Nachweis für aktive Bemühungen dient, den Feuerzugang von geparkten Fahrzeugen freizuhalten.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:13:07.492962Z
+        seconds: 4.758524459
+        tokens: 14925
+        review: false
+      en-US:
+        text: A photograph taken indoors, likely in a parking garage or utility corridor, showing a rough concrete wall with a wall-mounted fire hydrant cabinet on the left, labeled "消火栓 / FIRE HYDRANT" in red text on white, alongside exposed pipes and a small wall-mounted exhaust vent above it. Painted in dripping red characters across the lower band of the wall is the warning "消防通道严禁停车" (fire lane, parking strictly prohibited), the paint runs suggesting it was applied by hand with a brush or roller rather than printed. The bare concrete floor, unfinished walls, and utility fittings indicate this is a service or basement area where the sign serves as evidence of an active effort to keep the fire access route clear of parked vehicles.
+        provider: anthropic
+        model: claude-sonnet-5
+        at: 2026-07-31T20:16:43.086172Z
+        seconds: 0.0
+        tokens: 0
+        review: false
+      es-ES:
+        text: Una fotografía tomada en interiores, probablemente en un estacionamiento subterráneo o corredor de servicios, que muestra una pared de concreto rugosa con un armario de hidrante contra incendios montado en la pared a la izquierda, etiquetado con "消火栓 / FIRE HYDRANT" en texto rojo sobre fondo blanco, junto a tuberías expuestas y una pequeña ventilación de escape montada en la pared encima. Pintado con caracteres rojos goteantes a lo largo de la banda inferior de la pared está la advertencia "消防通道严禁停车" (calle de incendio, prohibido estacionar), la pintura parece haber sido aplicada a mano con pincel o rodillo en lugar de imprimirse. El suelo de concreto desnudo, las paredes sin terminar y los accesorios de servicios indican que se trata de un área de servicio o sótano donde el letrero sirve como evidencia de un esfuerzo activo para mantener la ruta de acceso al fuego libre de vehículos estacionados.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:13:22.849425Z
+        seconds: 3.120563042
+        tokens: 14532
+        review: false
+      fr-FR:
+        text: Une photographie prise à l'intérieur, probablement dans un garage souterrain ou un couloir utilitaire, montrant un mur de béton rugueux avec une armoire d'incendie murale à gauche, portant l'inscription « 消火栓 / FIRE HYDRANT » en texte rouge sur fond blanc, à côté de conduites apparentes et d'une petite ventouse d'extraction murale au-dessus. Des caractères rouges dégoulinants peints sur la bande inférieure du mur affichent l'avertissement « 消防通道严禁停车 » (voie d’incendie, stationnement strictement interdit), la coulure de la peinture suggérant qu'elle a été appliquée à la main à l'aide d'un pinceau ou d'un rouleau plutôt qu'imprimée. Le sol en béton brut, les murs non finis et les équipements utilitaires indiquent qu'il s'agit d'un espace de service ou d’un sous‑sol où le panneau constitue la preuve d'un effort actif pour garder la voie d'accès aux pompiers dégagée des véhicules stationnés.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:13:17.836243Z
+        seconds: 5.009566042
+        tokens: 14943
+        review: false
+      ja-JP:
+        text: 屋内で撮影された写真で、駐車場や設備用通路と思われる場所にあり、左側に壁掛け式の消火栓キャビネットが取り付けられたざらざらしたコンクリート壁が映っている。キャビネットには白地に赤文字で「消火栓 / FIRE HYDRANT」とラベルが付いており、露出した配管とその上部に小さな壁掛け式排気口がある。壁の下部帯に、赤い文字がにじみながら「消防通道严禁停车」（消防通路は駐車禁止）という警告が塗られており、刷り出しではなく筆やローラーで手塗りされたことがうかがえる。むき出しのコンクリート床、未完成の壁、設備類から、この場所はサービス用または地下のエリアであり、標識は駐車車両が消防経路を塞がないようにする積極的な取り組みの証拠となっている。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:13:02.000056Z
+        seconds: 5.489210209
+        tokens: 15010
+        review: false
+      ko-KR:
+        text: 실내에서 촬영된 사진으로, 주차장이나 설비 복도일 가능성이 높으며, 거친 콘크리트 벽에 왼쪽에 벽걸이형 소화전 캐비닛이 보이고, 흰 바탕에 빨간 글씨로 “消火栓 / FIRE HYDRANT”라고 라벨링되어 있다. 그 옆에는 노출된 파이프와 위에 작은 벽걸이형 배기구가 있다. 벽 아래쪽 띠에는 물방울이 흐른 듯한 빨간 글자로 “消防通道严禁停车”(화재 통로, 주차 금지) 경고 문구가 칠해져 있으며, 페인트가 번진 형태는 브러시나 롤러로 손으로 칠한 것으로 보인다. 노출된 콘크리트 바닥, 마감되지 않은 벽, 설비 부속품은 이곳이 서비스 또는 지하 공간임을 나타내며, 표지판은 주차된 차량이 화재 접근 통로를 막지 않도록 적극적인 관리가 이루어지고 있음을 증명한다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:13:12.255247Z
+        seconds: 5.577414875
+        tokens: 15007
+        review: false
+      zh-CN:
+        text: 这是一张室内拍摄的照片，可能位于停车库或设施走廊，展示了一面粗糙的混凝土墙，左侧挂有壁挂式消火栓柜，柜体上以红底白字标注“消火栓 / FIRE HYDRANT”，旁边可见裸露的管道，柜上方有一个小型壁挂式排气口。墙面下部用滴漆的红色字符写着警示语“消防通道严禁停车”，漆迹呈流淌状，显示是手工用刷子或滚筒涂刷而非印刷。光秃的混凝土地面、未完工的墙面以及各种设施配件表明这里是服务或地下区域，标识体现了有人积极保持消防通道不被停放车辆占用的努力。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:12:56.977463Z
+        seconds: 5.018809416
+        tokens: 14910
+        review: false
+      zh-TW:
+        text: 這張照片在室內拍攝，可能位於停車場或公共走廊，畫面顯示一面粗糙的混凝土牆，左側掛有標示「消火栓 / FIRE HYDRANT」的壁掛式消防栓櫃，旁邊有裸露的管線及其上方的壁掛式小型排氣口。牆面下方以滴筆式紅字寫著警示「消防通道嚴禁停車」，字跡流淌顯示是手工用刷子或滾筒塗刷而非印刷。裸露的混凝土地面、未完成的牆壁以及各種管線裝置表明這是服務或地下空間，標示顯示有人主動維護消防通道不被停車佔用。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:13:25.97401Z
+        seconds: 7.997192125
+        tokens: 14984
+        review: false
+    tags:
+    - fire-hydrant
+    - concrete-wall
+    - chinese-graffiti
+    - exposed-pipes
   8acf126a993024efcb5d4db159659d40:
     category: screenshot
     description:
@@ -1003,7 +930,79 @@ media:
     - lawn
     - mushroom
     - fallen-leaves
-  917811350fbfc7af291fce7bd549ef3e:
+  8fd9a29b8367e6beba6b7901e794ca3a:
+    category: photograph
+    description:
+      de-DE:
+        text: Ein Foto zeigt einen dunkel gefärbten Laptop, dessen Bildschirm aus ist und der einen gewellten violetten Schimmer reflektiert, offen auf einem Stein‑ oder Betonpfeiler thronend und mit Blick auf einen breiten, schlammig‑braunen Fluss. Das gegenüberliegende Ufer weist eine neblige Skyline aus niedrigen Gebäuden, Kränen und einer kabelgespannten Struktur mit rotem Mast auf, alles abgedämpft durch bewölktes, nebliges Tageslicht. Rechts verläuft ein Metallgeländer entlang eines gepflasterten Dämms, und ein kleines Boot mit rotem Marker treibt allein auf dem Wasser nach links. Die Gesamtszene wirkt wie ein lockeres Outdoor‑Foto eines Laptops vor einer Flussstadtkulisse, wahrscheinlich aufgenommen, um das Design des Geräts vor einer landschaftlich stimmungsvollen Kulisse zu präsentieren.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:08:22.195344Z
+        seconds: 7.215795292
+        tokens: 14943
+        review: false
+      en-US:
+        text: A photograph shows a dark-colored laptop, screen off and reflecting a rippled purplish sheen, perched open on top of a stone or concrete pillar overlooking a wide, muddy-brown river. The far bank holds a hazy skyline of low-rise buildings, cranes, and a cable-stayed structure with a red mast, all softened by overcast, misty daylight. To the right a metal railing runs along a paved embankment, and a small boat with a red marker floats alone on the water toward the left. The overall scene reads as a casual outdoor photo of a laptop set against a riverside city backdrop, likely taken to showcase the device's design against a scenic, moody backdrop.
+        provider: anthropic
+        model: claude-sonnet-5
+        at: 2026-07-31T20:09:01.30263Z
+        seconds: 0.0
+        tokens: 0
+        review: false
+      es-ES:
+        text: Una fotografía muestra un portátil de color oscuro, con la pantalla apagada y reflejando un brillo ondulado violeta, posado abierto sobre una columna de piedra o hormigón con vistas a un amplio río de tono marrón fangoso. La orilla lejana presenta un horizonte brumoso de edificios bajos, grúas y una estructura atirantada con un mástil rojo, todo suavizado por una luz de día nublada y brumosa. A la derecha, una baranda metálica recorre un terraplén pavimentado, y una pequeña embarcación con una marca roja flota sola en el agua hacia la izquierda. En conjunto, la escena parece una foto casual al aire libre de un portátil contra un fondo urbano ribereño, probablemente tomada para mostrar el diseño del dispositivo en un entorno escénico y melancólico.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:08:39.325956Z
+        seconds: 4.810284417
+        tokens: 14832
+        review: false
+      fr-FR:
+        text: Une photographie montre un ordinateur portable de couleur sombre, l’écran éteint, reflétant une lueur violette ondulée, posé ouvert sur le dessus d’un pilier en pierre ou en béton surplombant une large rivière brunâtre et boueuse. L’autre rive présente une silhouette floue de bâtiments de faible hauteur, de grues et d’une structure à haubans avec un mât rouge, le tout adouci par une lumière du jour couverte et brumeuse. À droite, une balustrade métallique longe une berge pavée, et un petit bateau avec un marqueur rouge flotte seul sur l’eau vers la gauche. L’ensemble de la scène apparaît comme une photo extérieure décontractée d’un ordinateur portable placé devant un décor urbain riverain, probablement prise pour mettre en valeur le design de l’appareil dans un cadre pittoresque et mélancolique.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:08:34.398478Z
+        seconds: 4.925376
+        tokens: 14873
+        review: false
+      ja-JP:
+        text: 写真には、暗色のノートパソコンが映っており、画面はオフで波打つ紫がかった光沢を反射し、石またはコンクリートの柱の上に開いたまま置かれ、広く濁った茶褐色の川を見下ろしています。遠くの岸には、低層の建物、クレーン、赤いマストを持つ斜張橋が霞んだように見え、曇りがちで霧のような日光に柔らかく映っています。右側には金属製の手すりが舗装された堤防に沿って走り、左方向に向かって赤いマーカーが付いた小さなボートが一つだけ水面に浮かんでいます。全体として、このシーンはリバーサイドの都市背景に対してノートパソコンを配置したカジュアルな屋外写真で、風景的でムーディーな背景にデザインを際立たせるために撮影されたものと思われます。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:08:16.663184Z
+        seconds: 5.5301902080000005
+        tokens: 14982
+        review: false
+      ko-KR:
+        text: 한 사진에는 어두운 색상의 노트북이 화면을 끈 상태로 파란빛이 도는 물결 무늬를 반사하며, 돌 또는 콘크리트 기둥 위에 열려 있는 채로 놓여 있어 넓고 진흙빛 갈색 강을 내려다보고 있습니다. 저편 강변에는 저층 건물, 크레인, 그리고 빨간 마스트가 달린 케이블교 구조물이 흐릿한 안개 낀 흐린 햇빛에 부드럽게 보이는 흐릿한 스카이라인이 있습니다. 오른쪽에는 포장된 제방을 따라 금속 난간이 이어지고, 빨간 마커가 달린 작은 보트가 물 위에 왼쪽을 향해 혼자 떠 있습니다. 전체 장면은 강가 도시 배경을 배경으로 노트북의 디자인을 시각적으로 강조하기 위해 촬영된 캐주얼한 야외 사진처럼 보입니다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:08:29.412891Z
+        seconds: 4.983404042
+        tokens: 14892
+        review: false
+      zh-CN:
+        text: 一张照片中，深色笔记本电脑屏幕关闭，映出波纹状的紫色光泽，敞开地放在石质或混凝土柱子顶部，俯瞰宽阔的泥棕色河流。远岸是一片朦胧的低矮建筑天际线，点缀着起重机和一座带红色桅杆的斜拉桥，整个景象被阴天的雾蒙光线柔化。右侧有金属栏杆沿着铺砌的堤岸延伸，左侧的水面上有一只带红色标记的小船独自漂浮。整体画面呈现出一幅随意的户外场景，将笔记本置于河畔城市背景下，似乎是为展示该设备的设计而拍摄的风景化、情绪化的照片。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:08:11.733756Z
+        seconds: 4.927545167
+        tokens: 14897
+        review: false
+      zh-TW:
+        text: 一張照片顯示一臺深色筆記型電腦，螢幕關閉，映出波紋狀的紫色光澤，打開放置在石頭或混凝土柱子上，俯瞰寬闊、呈泥棕色的河流。遠岸上有朦朧的低層建築天際線、起重機，以及帶有紅色桅杆的斜張橋，全部被陰天、霧濛的光線柔化。右側有金屬欄杆沿著鋪設的堤岸伸展，左側水面上漂浮著一艘帶紅色標記的小船。整體畫面呈現出隨性戶外拍攝的筆記型電腦，背景是河岸城市景觀，似乎是為了展示該裝置在風景氛圍濃厚的環境中的設計。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:08:44.138127Z
+        seconds: 5.486301541
+        tokens: 14924
+        review: false
+    tags:
+    - laptop
+    - river
+    - waterfront
+    - railing
+  a2b472ee8c494d39f18e8cb06f5ec684:
     category: photograph
     description:
       de-DE:
@@ -1075,79 +1074,6 @@ media:
     - railing
     - tree
     - shrub
-  a10408f6aebb21591eed99bdacd7c1e5:
-    category: photograph
-    description:
-      de-DE:
-        text: Ein Foto, aufgenommen von einer erhöhten Uferpromenade, das über eine weite, ruhige Fläche von graubraunem Flusswasser unter einem bedeckten, nebligen Himmel blickt. Zwei Straßenlaternen und ein Metallgeländer säumen den vorderen Gehweg, während eine dichte Matte aus dunklem Treibgut oder Algen das nahe Ufer umschließt und sich in einem unregelmäßigen Band ausbreitet, bevor sie dem offenen Wasser weicht. In der Ferne deuten schwache vertikale Spiegelungen auf die Pfeiler einer Brücke oder einer erhöhten Struktur hin, mit einem kleinen rot‑dunklen Boot oder einer Boje, die kaum am Horizont zu sehen ist. Das trübe Wasser und das treibende Gerümpel am Ufer weisen auf eine schlechte Wasserqualität oder angesammelte Verschmutzung entlang dieses Flussabschnitts hin.
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:17:41.409881Z
-        seconds: 4.960211416
-        tokens: 14813
-        review: false
-      en-US:
-        text: A photograph taken from an elevated riverside promenade, looking out over a wide, calm expanse of grayish-brown river water under an overcast, hazy sky. Two street lamps and a metal railing line the foreground walkway, while a dense mat of dark floating debris or algae hugs the near shoreline, spreading out in an irregular band before giving way to open water. In the far distance, faint vertical reflections suggest the pillars of a bridge or elevated structure, with a small red-and-dark boat or buoy barely visible near the horizon. The murky water and drifting clutter near the shore point to poor water quality or accumulated pollution along this stretch of the river.
-        provider: anthropic
-        model: claude-sonnet-5
-        at: 2026-07-31T20:16:43.086177Z
-        seconds: 0.0
-        tokens: 0
-        review: false
-      es-ES:
-        text: Una fotografía tomada desde un paseo elevado a la orilla del río, mirando hacia una amplia y tranquila extensión de agua del río de color gris parduzco bajo un cielo nublado y brumoso. Dos farolas y una baranda de metal alinean la pasarela del primer plano, mientras una densa alfombra de escombros flotantes oscuros o algas abraza la orilla cercana, extendiéndose en una banda irregular antes de dar paso al agua abierta. En la distancia, reflejos verticales tenues sugieren los pilares de un puente o estructura elevada, con una pequeña embarcación o boya rojo‑oscura apenas visible cerca del horizonte. El agua turbia y la acumulación de desechos cerca de la orilla indican una calidad de agua deficiente o contaminación acumulada a lo largo de este tramo del río.
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:17:52.916404Z
-        seconds: 3.695054083
-        tokens: 14466
-        review: false
-      fr-FR:
-        text: Une photographie prise depuis une promenade surélevée au bord de la rivière, regardant une vaste étendue d'eau de rivière gris-brun, calme, sous un ciel couvert et brumeux. Deux lampadaires et une rambarde métallique bordent le passage au premier plan, tandis qu'un tapis dense de débris sombres flottants ou d'algues colle à la rive proche, s'étendant en une bande irrégulière avant de céder à l'eau libre. Au loin, de faibles reflets verticaux suggèrent les piliers d'un pont ou d'une structure élevée, avec un petit bateau ou bouée rouge et sombre à peine visible près de l'horizon. L'eau trouble et les amas dérivants près du rivage indiquent une mauvaise qualité de l'eau ou une accumulation de pollution le long de ce tronçon de la rivière.
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:17:49.746103Z
-        seconds: 3.165158334
-        tokens: 14478
-        review: false
-      ja-JP:
-        text: 雨がかった霞んだ空の下、灰褐色の広く静かな川面を見下ろす高架の川辺の散歩道から撮影された写真。前景の歩道には2本の街灯と金属製の手すりが並び、近岸では暗い浮遊ゴミや藻類の密集したマットが不規則な帯状に広がり、そこから開けた水域へと続く。遠方には橋柱や高架構造物らしき垂直の反射がかすかに見え、地平線近くには小さな赤黒いボートまたはブイがかろうじて見える。岸辺付近の濁った水と漂うごみは、この川のこの区間の水質が悪く、汚染が蓄積していることを示している。
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:17:37.023286Z
-        seconds: 4.38086725
-        tokens: 14731
-        review: false
-      ko-KR:
-        text: 고도가 높은 강변 산책로에서 촬영된 사진으로, 흐리고 안개 낀 하늘 아래 회갈색 강물의 넓고 잔잔한 수면을 바라보고 있다. 전경에 두 개의 가로등과 금속 난간이 늘어선 보도가 있고, 어두운 떠다니는 파편이나 조류가 강가 가까이 촘촘히 깔려 불규칙한 띠를 이루며 이어지다가 넓은 물로 이어진다. 멀리서는 희미한 수직 반사광이 다리 또는 고가 구조물의 기둥을 암시하고, 수평선 근처에 작고 빨간색-어두운 색 보트 혹은 부표가 거의 보인다. 강가 근처의 탁한 물과 떠다니는 쓰레기는 이 구간의 수질이 나쁘거나 오염이 누적되었음을 나타낸다.
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:17:46.374774Z
-        seconds: 3.3667265410000002
-        tokens: 14502
-        review: false
-      zh-CN:
-        text: 这是一张从高处的河岸长廊拍摄的照片，向外望去，灰褐色的河面在阴天、雾霾的天空下显得宽阔而平静。前景的人行道上竖着两盏路灯和一条金属栏杆，近岸边紧贴着一层密集的深色漂浮碎屑或藻类，呈不规则的带状向外延伸，随后转为开阔的水面。远处，微弱的竖向倒影暗示着桥梁或高架结构的柱子，地平线附近还能隐约看到一艘小的红黑色船只或浮标。岸边的浑浊水面和漂浮杂物表明该河段的水质较差或已积累污染。
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:17:32.136524Z
-        seconds: 4.881795709
-        tokens: 14853
-        review: false
-      zh-TW:
-        text: 一張從高處的河岸長廊拍攝的照片，眺望在陰天、朦朧的天空下，寬闊而平靜的灰棕色河面。前景的人行道上有兩盞路燈與金屬欄杆，而靠近岸邊的水面覆蓋著密集的暗色漂浮碎屑或藻類，形成不規則的帶狀，之後才是開闊的水面。遠處微弱的垂直倒影似乎是橋樑或高架結構的橋柱，地平線附近隱約可見一艘小型紅暗相間的船隻或浮標。近岸的混濁水面與漂浮雜物顯示此段河流的水質不佳或已累積污染。
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:17:56.617014Z
-        seconds: 4.76826775
-        tokens: 14852
-        review: false
-    tags:
-    - river
-    - waterfront
-    - railing
-    - streetlight
-    - algae
   a46df6030a9b1ba3f0af95e1a2196850:
     category: photograph
     description:
@@ -1437,6 +1363,79 @@ media:
     - landing-page
     - web-navigation
     - automobile
+  c59b29dec6d015ea19363ac47f43c36e:
+    category: photograph
+    description:
+      de-DE:
+        text: Ein Foto, aufgenommen von einer erhöhten Uferpromenade, das über eine weite, ruhige Fläche von graubraunem Flusswasser unter einem bedeckten, nebligen Himmel blickt. Zwei Straßenlaternen und ein Metallgeländer säumen den vorderen Gehweg, während eine dichte Matte aus dunklem Treibgut oder Algen das nahe Ufer umschließt und sich in einem unregelmäßigen Band ausbreitet, bevor sie dem offenen Wasser weicht. In der Ferne deuten schwache vertikale Spiegelungen auf die Pfeiler einer Brücke oder einer erhöhten Struktur hin, mit einem kleinen rot‑dunklen Boot oder einer Boje, die kaum am Horizont zu sehen ist. Das trübe Wasser und das treibende Gerümpel am Ufer weisen auf eine schlechte Wasserqualität oder angesammelte Verschmutzung entlang dieses Flussabschnitts hin.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:17:41.409881Z
+        seconds: 4.960211416
+        tokens: 14813
+        review: false
+      en-US:
+        text: A photograph taken from an elevated riverside promenade, looking out over a wide, calm expanse of grayish-brown river water under an overcast, hazy sky. Two street lamps and a metal railing line the foreground walkway, while a dense mat of dark floating debris or algae hugs the near shoreline, spreading out in an irregular band before giving way to open water. In the far distance, faint vertical reflections suggest the pillars of a bridge or elevated structure, with a small red-and-dark boat or buoy barely visible near the horizon. The murky water and drifting clutter near the shore point to poor water quality or accumulated pollution along this stretch of the river.
+        provider: anthropic
+        model: claude-sonnet-5
+        at: 2026-07-31T20:16:43.086177Z
+        seconds: 0.0
+        tokens: 0
+        review: false
+      es-ES:
+        text: Una fotografía tomada desde un paseo elevado a la orilla del río, mirando hacia una amplia y tranquila extensión de agua del río de color gris parduzco bajo un cielo nublado y brumoso. Dos farolas y una baranda de metal alinean la pasarela del primer plano, mientras una densa alfombra de escombros flotantes oscuros o algas abraza la orilla cercana, extendiéndose en una banda irregular antes de dar paso al agua abierta. En la distancia, reflejos verticales tenues sugieren los pilares de un puente o estructura elevada, con una pequeña embarcación o boya rojo‑oscura apenas visible cerca del horizonte. El agua turbia y la acumulación de desechos cerca de la orilla indican una calidad de agua deficiente o contaminación acumulada a lo largo de este tramo del río.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:17:52.916404Z
+        seconds: 3.695054083
+        tokens: 14466
+        review: false
+      fr-FR:
+        text: Une photographie prise depuis une promenade surélevée au bord de la rivière, regardant une vaste étendue d'eau de rivière gris-brun, calme, sous un ciel couvert et brumeux. Deux lampadaires et une rambarde métallique bordent le passage au premier plan, tandis qu'un tapis dense de débris sombres flottants ou d'algues colle à la rive proche, s'étendant en une bande irrégulière avant de céder à l'eau libre. Au loin, de faibles reflets verticaux suggèrent les piliers d'un pont ou d'une structure élevée, avec un petit bateau ou bouée rouge et sombre à peine visible près de l'horizon. L'eau trouble et les amas dérivants près du rivage indiquent une mauvaise qualité de l'eau ou une accumulation de pollution le long de ce tronçon de la rivière.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:17:49.746103Z
+        seconds: 3.165158334
+        tokens: 14478
+        review: false
+      ja-JP:
+        text: 雨がかった霞んだ空の下、灰褐色の広く静かな川面を見下ろす高架の川辺の散歩道から撮影された写真。前景の歩道には2本の街灯と金属製の手すりが並び、近岸では暗い浮遊ゴミや藻類の密集したマットが不規則な帯状に広がり、そこから開けた水域へと続く。遠方には橋柱や高架構造物らしき垂直の反射がかすかに見え、地平線近くには小さな赤黒いボートまたはブイがかろうじて見える。岸辺付近の濁った水と漂うごみは、この川のこの区間の水質が悪く、汚染が蓄積していることを示している。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:17:37.023286Z
+        seconds: 4.38086725
+        tokens: 14731
+        review: false
+      ko-KR:
+        text: 고도가 높은 강변 산책로에서 촬영된 사진으로, 흐리고 안개 낀 하늘 아래 회갈색 강물의 넓고 잔잔한 수면을 바라보고 있다. 전경에 두 개의 가로등과 금속 난간이 늘어선 보도가 있고, 어두운 떠다니는 파편이나 조류가 강가 가까이 촘촘히 깔려 불규칙한 띠를 이루며 이어지다가 넓은 물로 이어진다. 멀리서는 희미한 수직 반사광이 다리 또는 고가 구조물의 기둥을 암시하고, 수평선 근처에 작고 빨간색-어두운 색 보트 혹은 부표가 거의 보인다. 강가 근처의 탁한 물과 떠다니는 쓰레기는 이 구간의 수질이 나쁘거나 오염이 누적되었음을 나타낸다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:17:46.374774Z
+        seconds: 3.3667265410000002
+        tokens: 14502
+        review: false
+      zh-CN:
+        text: 这是一张从高处的河岸长廊拍摄的照片，向外望去，灰褐色的河面在阴天、雾霾的天空下显得宽阔而平静。前景的人行道上竖着两盏路灯和一条金属栏杆，近岸边紧贴着一层密集的深色漂浮碎屑或藻类，呈不规则的带状向外延伸，随后转为开阔的水面。远处，微弱的竖向倒影暗示着桥梁或高架结构的柱子，地平线附近还能隐约看到一艘小的红黑色船只或浮标。岸边的浑浊水面和漂浮杂物表明该河段的水质较差或已积累污染。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:17:32.136524Z
+        seconds: 4.881795709
+        tokens: 14853
+        review: false
+      zh-TW:
+        text: 一張從高處的河岸長廊拍攝的照片，眺望在陰天、朦朧的天空下，寬闊而平靜的灰棕色河面。前景的人行道上有兩盞路燈與金屬欄杆，而靠近岸邊的水面覆蓋著密集的暗色漂浮碎屑或藻類，形成不規則的帶狀，之後才是開闊的水面。遠處微弱的垂直倒影似乎是橋樑或高架結構的橋柱，地平線附近隱約可見一艘小型紅暗相間的船隻或浮標。近岸的混濁水面與漂浮雜物顯示此段河流的水質不佳或已累積污染。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:17:56.617014Z
+        seconds: 4.76826775
+        tokens: 14852
+        review: false
+    tags:
+    - river
+    - waterfront
+    - railing
+    - streetlight
+    - algae
   cbc260f16e936f977570f8fb391f48e2:
     category: screenshot
     description:
@@ -1582,77 +1581,78 @@ media:
     - anime-avatar
     - printed-circuit-board
     - usb-c
-  d4fb6031c436599353a6a90fdd99792c:
+  ec38a5d85298b5e0d5b8acc1591097c2:
     category: photograph
     description:
       de-DE:
-        text: Eine Nahaufnahme eines verwitterten Holzsteges oder Anlegers, aus einer niedrigen Winkelperspektive fotografiert, die entlang der Länge der Dielen nach unten blickt, während sie in die Ferne verschwinden. Die grauen, sonnenverblassten Bretter zeigen starke Abnutzung – gesprungene Kanten, herausragende rostige Nagelköpfe und mehrere Bretter, die geknackt oder durchbrochen sind, wobei Grüngrasbüschel und welkende Blätter aus den Lücken auf der linken Seite hervorschießen. Der Gesamteindruck deutet auf langjährige Witterungseinwirkung und Vernachlässigung hin und lässt darauf schließen, dass die Struktur reparatur- oder ersatzbedürftig ist.
+        text: Ein Foto, aufgenommen entlang eines gepflasterten Fußwegs, der durch einen Park oder Innenhof führt, wobei Unkraut und Gras durch Risse im abgenutzten Beton sprießen. Dichte, etwas überwucherte Sträucher und bambusähnliche Hecken säumen beide Seiten, flankiert von Bäumen mit weiß gestrichenen Stämmen rechts und einem kahlen Baum sowie einer rostigen, dachlosen Metall-Pergo­la in mittlerer Entfernung. Hinter einem niedrigen Zaun und Geländer links steht ein hellbraunes mehrstöckiges Gebäude, dessen Fenster teilweise von kahlen Ästen verdeckt werden, während weiches, diffuses Tageslicht auf einen bewölkten Morgen oder späten Nachmittag hindeutet. Der vernachlässigte Gehweg und das ungepflegte Grün lassen auf einen nur leicht gepflegten Grünbereich in einem älteren Wohnkomplex oder institutionellen Komplex schließen.
         provider: openai
         model: gpt-oss-120b-medium
-        at: 2026-08-02T04:21:54.142329Z
-        seconds: 4.734800125
-        tokens: 14701
+        at: 2026-08-02T04:10:19.174438Z
+        seconds: 7.248357
+        tokens: 15270
         review: false
       en-US:
-        text: A close-up photograph of a weathered wooden boardwalk or dock, shot from a low angle looking down the length of the planks as they recede into the distance. The gray, sun-bleached boards show heavy wear -- splintered edges, protruding rusty nail heads, and several boards cracked or broken through, with tufts of green grass and dead leaves pushing up through the gaps on the left side. The overall condition points to long-term outdoor exposure and neglect, suggesting the structure is due for repair or replacement.
+        text: A photograph taken along a paved footpath cutting through a park or residential courtyard, with weeds and grass sprouting through cracks in the worn concrete. Thick, somewhat overgrown shrubs and bamboo-like hedges line both sides, flanked by trees with white-painted trunks on the right and a leafless tree and a rusted, roofless metal pergola structure in the middle distance. Beyond a low fence and railing on the left stands a tan multi-story building, its windows partly obscured by bare branches, while soft, hazy daylight suggests an overcast morning or late afternoon. The neglected pavement and untrimmed vegetation suggest a lightly maintained green space within an older apartment complex or institutional compound.
         provider: anthropic
         model: claude-sonnet-5
-        at: 2026-07-31T20:16:43.086181Z
+        at: 2026-07-31T20:16:43.086168Z
         seconds: 0.0
         tokens: 0
         review: false
       es-ES:
-        text: 'Una foto en primer plano de un pasillo o muelle de madera envejecida, tomada desde un ángulo bajo mirando a lo largo de las tablas mientras se alejan en la distancia. Las tablas grises, blanqueadas por el sol, muestran un desgaste intenso: bordes astillados, cabezas de clavos oxidados sobresaliendo y varias tablas agrietadas o rotas, con mechones de hierba verde y hojas secas que sobresalen por las grietas en el lado izquierdo. El estado general evidencia una exposición prolongada al exterior y abandono, lo que sugiere que la estructura necesita reparación o sustitución.'
+        text: Una fotografía tomada a lo largo de un sendero pavimentado que corta un parque o patio residencial, con hierbas y pasto brotando a través de grietas en el concreto desgastado. Arbustos gruesos y algo exuberantes y setos similares a bambú bordean ambos lados, flanqueados por árboles con troncos pintados de blanco a la derecha y un árbol sin hojas y una pérgola de metal oxidada y sin techo en la distancia media. Más allá de una cerca baja y una barandilla a la izquierda se alza un edificio de varios pisos de color tostado, cuyas ventanas están parcialmente ocultas por ramas desnudas, mientras una luz suave y difusa sugiere una mañana nublada o una tarde tardía. El pavimento descuidado y la vegetación sin podar sugieren un espacio verde ligeramente mantenido dentro de un complejo de apartamentos antiguo o un recinto institucional.
         provider: openai
         model: gpt-oss-120b-medium
-        at: 2026-08-02T04:22:08.03402Z
-        seconds: 2.930301084
-        tokens: 14355
+        at: 2026-08-02T04:10:35.792764Z
+        seconds: 5.160903167
+        tokens: 14879
         review: false
       fr-FR:
-        text: Une photographie en gros plan d’une promenade en bois usée ou d’un quai, prise d’un angle bas en regardant le long des planches qui s’éloignent dans la distance. Les planches grises, décolorées par le soleil, montrent une usure importante — bords éclatés, têtes de clous rouillées qui dépassent, et plusieurs planches fissurées ou cassées, avec des touffes d’herbe verte et des feuilles mortes qui poussent à travers les espaces du côté gauche. L’état général indique une exposition extérieure prolongée et négligence, suggérant que la structure nécessite des réparations ou un remplacement.
+        text: Une photographie prise le long d’un trottoir pavé traversant un parc ou une cour résidentielle, avec des mauvaises herbes et de l’herbe qui poussent à travers les fissures du béton usé. Des arbustes épais, quelque peu envahis, et des haies semblables à du bambou bordent les deux côtés, accompagnés d’arbres aux troncs peints en blanc à droite, ainsi qu’un arbre dénudé et une pergola métallique rouillée et sans toit au loin au centre. Au-delà d’une petite clôture et d’une rambarde à gauche se dresse un bâtiment tan de plusieurs étages, ses fenêtres partiellement masquées par des branches nues, tandis qu’une lumière douce et brumeuse suggère un matin couvert ou un fin d’après‑midi. Le pavé négligé et la végétation non taillée indiquent un espace vert légèrement entretenu au sein d’un ancien complexe d’appartements ou d’un lotissement institutionnel.
         provider: openai
         model: gpt-oss-120b-medium
-        at: 2026-08-02T04:22:03.619008Z
-        seconds: 4.40855725
-        tokens: 14636
+        at: 2026-08-02T04:10:32.405364Z
+        seconds: 3.384561125
+        tokens: 14510
         review: false
       ja-JP:
-        text: 低い角度から撮影された、風化した木製の板道（または桟橋）のクローズアップ写真で、板の長さに沿って奥へ遠ざかる様子が見える。灰色で日焼けした板は、ひび割れた縁や突き出た錆びた釘の頭、そしていくつかの板が割れたり欠損しており、左側の隙間からは緑の草や枯れ葉の束が顔を出している。全体的な状態は長期間の屋外曝露と放置を示しており、修復または交換が必要であることを示唆している。
+        text: 舗装された歩道が公園や住宅の中庭を横切り、ひび割れたコンクリートから雑草や草が生えている写真です。両側にはやや伸び過ぎた低木や竹のような生垣があり、右側には白で塗装された幹の木、中央遠景には枝のない木と錆びた屋根のない金属製パーゴラ構造物が配置されています。左側の低いフェンスと手すりの向こうには、薄い色の複数階建ての建物があり、窓は葉のない枝で部分的に隠れています。柔らかく霞んだ光が、曇りがちな朝か夕方の遅い時間帯を示唆しています。手入れの行き届いていない舗装と刈り込まれていない植生は、古いアパート群や施設内の軽く管理された緑地であることを示しています。
         provider: openai
         model: gpt-oss-120b-medium
-        at: 2026-08-02T04:21:47.358569Z
-        seconds: 6.777294958
-        tokens: 14916
+        at: 2026-08-02T04:10:15.662069Z
+        seconds: 3.509652792
+        tokens: 14550
         review: false
       ko-KR:
-        text: 날씨에 닳아진 목재 보드워크 또는 부두를 클로즈업한 사진으로, 낮은 각도에서 판자들의 길이를 따라 멀리 사라지는 모습을 바라보며 촬영했습니다. 회색이고 햇볕에 퇴색한 판자들은 심한 마모가 보이며—깎인 가장자리, 튀어나온 녹슨 못 머리, 그리고 몇몇 판자는 갈라지거나 부서져 있으며, 왼쪽 측면의 틈새에는 푸른 풀잎과 마른 잎이 솟아 있습니다. 전체적인 상태는 장기간 야외 노출과 방치의 흔적으로, 구조물이 수리 또는 교체가 필요함을 시사합니다.
+        text: 공원이나 주거 안뜰을 가로지르는 포장된 보행로를 따라 촬영된 사진으로, 닳아 있는 콘크리트 균열 사이에 잡초와 풀이 돋아 있다. 양쪽에 두껍고 다소 무성하게 자란 관목과 대나무 같은 울타리가 늘어서 있으며, 오른쪽에는 흰색으로 칠해진 줄기를 가진 나무가 있고, 중간 거리에는 잎이 없는 나무와 녹이 슬어 지붕이 없는 금속 파고라 구조물이 있다. 왼쪽 낮은 울타리와 난간 너머에는 갈색 다층 건물이 서 있으며, 그 창문은 벌거벗은 가지에 일부 가려져 있다. 부드럽고 흐릿한 햇빛은 흐린 아침이나 늦은 오후를 연상시킨다. 방치된 보도와 다듬어지지 않은 식생은 오래된 아파트 단지나 기관 단지 내에서 약간만 관리된 녹지를 보여준다.
         provider: openai
         model: gpt-oss-120b-medium
-        at: 2026-08-02T04:21:58.883845Z
-        seconds: 4.729132041
-        tokens: 14644
+        at: 2026-08-02T04:10:26.425517Z
+        seconds: 5.977139209
+        tokens: 14930
         review: false
       zh-CN:
-        text: 一张特写照片，拍摄一段风化的木板人行道或码头，低视角向下俯视木板的长度，木板在远处逐渐消失。灰色、被阳光漂白的木板显示出严重的磨损——边缘碎裂、凸出的锈蚀钉头，以及几块木板出现裂缝或断裂，左侧有绿草和枯叶从缝隙中冒出。整体状况表明长期户外暴露和疏于维护，暗示该结构需要维修或更换。
+        text: 一张沿着铺砌人行道的照片，路径穿过公园或住宅院落，破旧的混凝土裂缝中冒出杂草和草坪。两侧种植着茂密、稍显蔓延的灌木和类似竹子的树篱，右侧有树干涂成白色的树，远处中间有一棵落叶的树和一座锈蚀、缺失屋顶的金属凉亭结构。左侧低矮的围栏和扶手后面是一栋棕褐色的多层建筑，窗户被光秃的枝条部分遮挡，柔和而朦胧的光线显示出阴天的上午或傍晚。破旧的人行道和未修剪的植被表明这是一个维护略显疏忽的绿地，位于较老的公寓小区或机构院落内。
         provider: openai
         model: gpt-oss-120b-medium
-        at: 2026-08-02T04:21:44.213995Z
-        seconds: 3.138775958
-        tokens: 14389
+        at: 2026-08-02T04:10:12.031019Z
+        seconds: 3.6283990839999998
+        tokens: 14528
         review: false
       zh-TW:
-        text: 近距離拍攝的舊化木棧道或碼頭，從低角度俯視，沿著木板長度向遠處延伸。灰色、被陽光漂白的木板顯示嚴重磨損——板邊碎裂、突出的鏽釘頭，以及多塊木板開裂或斷裂，左側有綠草和枯葉從縫隙中冒出。整體狀況顯示長期戶外曝曬與疏於維護，暗示該結構亟需修繕或更換。
+        text: 這張照片拍攝於一條穿過公園或住宅院落的鋪砌步道，鋪面已磨損，裂縫中冒出雜草與草叢。兩側排列著濃密且稍顯蔓生的灌木與類竹籬笆，右側有白漆樹幹的樹木，遠處中景則有一棵落葉樹與一座生鏽、無屋頂的金屬涼亭。左側低矮的圍欄與護欄後矗立著一棟淡棕色的多層建築，窗戶部分被光禿的枝條遮掩，柔和朦瀧的光線顯示出陰天的早晨或傍晚。被遺棄的鋪面與未修剪的植被顯示這是一個維護較少的綠地，位於較舊的公寓群或機構院落內。
         provider: openai
         model: gpt-oss-120b-medium
-        at: 2026-08-02T04:22:10.971017Z
-        seconds: 4.094618292
-        tokens: 14674
+        at: 2026-08-02T04:10:40.956766Z
+        seconds: 6.215276542
+        tokens: 15057
         review: false
     tags:
-    - wooden-decking
-    - grass
-    - fallen-leaves
+    - park-path
+    - shrub
+    - tree
+    - pergola
   ff309d022981d9168fca9e5e9b7291e4:
     category: photograph
     description:
