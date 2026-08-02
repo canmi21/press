@@ -1,2 +1,2363 @@
 version: 3
-tags: {}
+tags:
+  algae:
+    kind: ordinary
+    source: Algae
+    meaning: aquatic plant-like growth on shallow water
+    display:
+      de-DE:
+        text: Algen
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:35.205437Z
+        seconds: 5.6978127910000005
+        tokens: 14932
+        review: false
+      en-US:
+        text: Algae
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:01:55.360218Z
+        seconds: 6.978482708
+        tokens: 19084
+        review: false
+      es-ES:
+        text: Algas
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:35.205437Z
+        seconds: 5.6978127910000005
+        tokens: 14932
+        review: false
+      fr-FR:
+        text: Algues
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:35.205437Z
+        seconds: 5.6978127910000005
+        tokens: 14932
+        review: false
+      ja-JP:
+        text: 藻類
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:35.205437Z
+        seconds: 5.6978127910000005
+        tokens: 14932
+        review: false
+      ko-KR:
+        text: 조류
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:35.205437Z
+        seconds: 5.6978127910000005
+        tokens: 14932
+        review: false
+      zh-CN:
+        text: 藻类
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:35.205437Z
+        seconds: 5.6978127910000005
+        tokens: 14932
+        review: false
+      zh-TW:
+        text: 藻類
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:35.205437Z
+        seconds: 5.6978127910000005
+        tokens: 14932
+        review: false
+  anime-avatar:
+    kind: ordinary
+    source: Anime Avatar
+    meaning: stylized illustrated profile image
+    display:
+      de-DE:
+        text: Anime‑Avatar
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:40.905247Z
+        seconds: 5.357330042
+        tokens: 15110
+        review: false
+      en-US:
+        text: Anime Avatar
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:00:52.337797Z
+        seconds: 7.466820459
+        tokens: 19385
+        review: false
+      es-ES:
+        text: Avatar de anime
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:40.905247Z
+        seconds: 5.357330042
+        tokens: 15110
+        review: false
+      fr-FR:
+        text: Avatar d’anime
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:40.905247Z
+        seconds: 5.357330042
+        tokens: 15110
+        review: false
+      ja-JP:
+        text: アニメアバター
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:40.905247Z
+        seconds: 5.357330042
+        tokens: 15110
+        review: false
+      ko-KR:
+        text: 애니메이션 아바타
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:40.905247Z
+        seconds: 5.357330042
+        tokens: 15110
+        review: false
+      zh-CN:
+        text: 动漫头像
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:40.905247Z
+        seconds: 5.357330042
+        tokens: 15110
+        review: false
+      zh-TW:
+        text: 動漫頭像
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:40.905247Z
+        seconds: 5.357330042
+        tokens: 15110
+        review: false
+  automobile:
+    kind: ordinary
+    source: Automobile
+    meaning: road vehicle covered by a drape
+    display:
+      de-DE:
+        text: Auto
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:46.264732Z
+        seconds: 3.9661925
+        tokens: 14794
+        review: false
+      en-US:
+        text: Automobile
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:02:22.668703Z
+        seconds: 6.930297959
+        tokens: 18379
+        review: false
+      es-ES:
+        text: Coche
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:46.264732Z
+        seconds: 3.9661925
+        tokens: 14794
+        review: false
+      fr-FR:
+        text: Voiture
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:46.264732Z
+        seconds: 3.9661925
+        tokens: 14794
+        review: false
+      ja-JP:
+        text: 自動車
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:46.264732Z
+        seconds: 3.9661925
+        tokens: 14794
+        review: false
+      ko-KR:
+        text: 자동차
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:46.264732Z
+        seconds: 3.9661925
+        tokens: 14794
+        review: false
+      zh-CN:
+        text: 汽车
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:46.264732Z
+        seconds: 3.9661925
+        tokens: 14794
+        review: false
+      zh-TW:
+        text: 汽車
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:46.264732Z
+        seconds: 3.9661925
+        tokens: 14794
+        review: false
+  blog-framework:
+    kind: ordinary
+    source: Blog Framework
+    meaning: software for publishing and managing blogs
+    display:
+      de-DE:
+        text: Blog‑Framework
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:50.23296Z
+        seconds: 6.140507292
+        tokens: 15205
+        review: false
+      en-US:
+        text: Blog Framework
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:00:04.886277Z
+        seconds: 8.674856417
+        tokens: 17559
+        review: false
+      es-ES:
+        text: Marco de blog
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:50.23296Z
+        seconds: 6.140507292
+        tokens: 15205
+        review: false
+      fr-FR:
+        text: Cadre de blog
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:50.23296Z
+        seconds: 6.140507292
+        tokens: 15205
+        review: false
+      ja-JP:
+        text: ブログフレームワーク
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:50.23296Z
+        seconds: 6.140507292
+        tokens: 15205
+        review: false
+      ko-KR:
+        text: 블로그 프레임워크
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:50.23296Z
+        seconds: 6.140507292
+        tokens: 15205
+        review: false
+      zh-CN:
+        text: 博客框架
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:50.23296Z
+        seconds: 6.140507292
+        tokens: 15205
+        review: false
+      zh-TW:
+        text: 部落格框架
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:50.23296Z
+        seconds: 6.140507292
+        tokens: 15205
+        review: false
+  bytecode-alliance:
+    kind: technical
+    display: Bytecode Alliance
+    meaning: open-source organization for bytecode technologies
+  cargo:
+    kind: technical
+    display: Cargo
+    meaning: Rust package manager and build tool
+  cellular-network:
+    kind: ordinary
+    source: Cellular Network
+    meaning: mobile carrier connectivity and SIM service
+    display:
+      de-DE:
+        text: Mobilfunknetz
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:56.375609Z
+        seconds: 4.8843765
+        tokens: 14923
+        review: false
+      en-US:
+        text: Cellular Network
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:00:18.600489Z
+        seconds: 13.205130708
+        tokens: 17128
+        review: false
+      es-ES:
+        text: Red celular
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:56.375609Z
+        seconds: 4.8843765
+        tokens: 14923
+        review: false
+      fr-FR:
+        text: Réseau cellulaire
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:56.375609Z
+        seconds: 4.8843765
+        tokens: 14923
+        review: false
+      ja-JP:
+        text: セルラーネットワーク
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:56.375609Z
+        seconds: 4.8843765
+        tokens: 14923
+        review: false
+      ko-KR:
+        text: 셀룰러 네트워크
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:56.375609Z
+        seconds: 4.8843765
+        tokens: 14923
+        review: false
+      zh-CN:
+        text: 蜂窝网络
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:56.375609Z
+        seconds: 4.8843765
+        tokens: 14923
+        review: false
+      zh-TW:
+        text: 行動網路
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:04:56.375609Z
+        seconds: 4.8843765
+        tokens: 14923
+        review: false
+  chinese-graffiti:
+    kind: ordinary
+    source: Chinese Graffiti
+    meaning: painted Chinese-language writing on a wall
+    display:
+      de-DE:
+        text: Chinesisches Graffiti
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:01.262275Z
+        seconds: 5.968114041
+        tokens: 15355
+        review: false
+      en-US:
+        text: Chinese Graffiti
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:01:06.270899Z
+        seconds: 5.678670209
+        tokens: 19646
+        review: false
+      es-ES:
+        text: Grafiti chino
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:01.262275Z
+        seconds: 5.968114041
+        tokens: 15355
+        review: false
+      fr-FR:
+        text: Graffiti chinois
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:01.262275Z
+        seconds: 5.968114041
+        tokens: 15355
+        review: false
+      ja-JP:
+        text: 中国語落書き
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:01.262275Z
+        seconds: 5.968114041
+        tokens: 15355
+        review: false
+      ko-KR:
+        text: 중국어 그래피티
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:01.262275Z
+        seconds: 5.968114041
+        tokens: 15355
+        review: false
+      zh-CN:
+        text: 中文涂鸦
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:01.262275Z
+        seconds: 5.968114041
+        tokens: 15355
+        review: false
+      zh-TW:
+        text: 中文塗鴉
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:01.262275Z
+        seconds: 5.968114041
+        tokens: 15355
+        review: false
+  cloud:
+    kind: ordinary
+    source: Cloud
+    meaning: visible mass of condensed water vapor in the sky
+    display:
+      de-DE:
+        text: Wolke
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:07.2328Z
+        seconds: 5.615618541
+        tokens: 14869
+        review: false
+      en-US:
+        text: Cloud
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:03:20.385154Z
+        seconds: 4.654326417
+        tokens: 20079
+        review: false
+      es-ES:
+        text: Nube
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:07.2328Z
+        seconds: 5.615618541
+        tokens: 14869
+        review: false
+      fr-FR:
+        text: Nuage
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:07.2328Z
+        seconds: 5.615618541
+        tokens: 14869
+        review: false
+      ja-JP:
+        text: 雲
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:07.2328Z
+        seconds: 5.615618541
+        tokens: 14869
+        review: false
+      ko-KR:
+        text: 구름
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:07.2328Z
+        seconds: 5.615618541
+        tokens: 14869
+        review: false
+      zh-CN:
+        text: 云
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:07.2328Z
+        seconds: 5.615618541
+        tokens: 14869
+        review: false
+      zh-TW:
+        text: 雲
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:07.2328Z
+        seconds: 5.615618541
+        tokens: 14869
+        review: false
+  cloudflare:
+    kind: technical
+    display: Cloudflare
+    meaning: web infrastructure and cloud services company
+  command-line-interface:
+    kind: ordinary
+    source: Command-Line Interface
+    meaning: text-based interface for running commands
+    display:
+      de-DE:
+        text: Befehlszeilenschnittstelle
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:12.851067Z
+        seconds: 5.413058416
+        tokens: 15241
+        review: false
+      en-US:
+        text: Command-Line Interface
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:00:59.80671Z
+        seconds: 6.461400833
+        tokens: 19540
+        review: false
+      es-ES:
+        text: Interfaz de línea de comandos
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:12.851067Z
+        seconds: 5.413058416
+        tokens: 15241
+        review: false
+      fr-FR:
+        text: Interface en ligne de commande
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:12.851067Z
+        seconds: 5.413058416
+        tokens: 15241
+        review: false
+      ja-JP:
+        text: コマンドラインインターフェース
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:12.851067Z
+        seconds: 5.413058416
+        tokens: 15241
+        review: false
+      ko-KR:
+        text: 명령줄 인터페이스
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:12.851067Z
+        seconds: 5.413058416
+        tokens: 15241
+        review: false
+      zh-CN:
+        text: 命令行界面
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:12.851067Z
+        seconds: 5.413058416
+        tokens: 15241
+        review: false
+      zh-TW:
+        text: 命令列介面
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:12.851067Z
+        seconds: 5.413058416
+        tokens: 15241
+        review: false
+  compilation:
+    kind: ordinary
+    source: Compilation
+    meaning: building source code into executable software
+    display:
+      de-DE:
+        text: Kompilierung
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:18.266899Z
+        seconds: 4.740756667
+        tokens: 15028
+        review: false
+      en-US:
+        text: Compilation
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:00:59.80671Z
+        seconds: 6.461400833
+        tokens: 19540
+        review: false
+      es-ES:
+        text: Compilación
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:18.266899Z
+        seconds: 4.740756667
+        tokens: 15028
+        review: false
+      fr-FR:
+        text: Compilation
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:18.266899Z
+        seconds: 4.740756667
+        tokens: 15028
+        review: false
+      ja-JP:
+        text: コンパイル
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:18.266899Z
+        seconds: 4.740756667
+        tokens: 15028
+        review: false
+      ko-KR:
+        text: 컴파일
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:18.266899Z
+        seconds: 4.740756667
+        tokens: 15028
+        review: false
+      zh-CN:
+        text: 编译
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:18.266899Z
+        seconds: 4.740756667
+        tokens: 15028
+        review: false
+      zh-TW:
+        text: 編譯
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:18.266899Z
+        seconds: 4.740756667
+        tokens: 15028
+        review: false
+  concrete-wall:
+    kind: ordinary
+    source: Concrete Wall
+    meaning: structural wall made of concrete
+    display:
+      de-DE:
+        text: Betonwand
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:23.01064Z
+        seconds: 7.335201292
+        tokens: 15134
+        review: false
+      en-US:
+        text: Concrete Wall
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:01:06.270899Z
+        seconds: 5.678670209
+        tokens: 19646
+        review: false
+      es-ES:
+        text: Muro de hormigón
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:23.01064Z
+        seconds: 7.335201292
+        tokens: 15134
+        review: false
+      fr-FR:
+        text: Mur en béton
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:23.01064Z
+        seconds: 7.335201292
+        tokens: 15134
+        review: false
+      ja-JP:
+        text: コンクリート壁
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:23.01064Z
+        seconds: 7.335201292
+        tokens: 15134
+        review: false
+      ko-KR:
+        text: 콘크리트 벽
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:23.01064Z
+        seconds: 7.335201292
+        tokens: 15134
+        review: false
+      zh-CN:
+        text: 混凝土墙
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:23.01064Z
+        seconds: 7.335201292
+        tokens: 15134
+        review: false
+      zh-TW:
+        text: 混凝土牆
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:23.01064Z
+        seconds: 7.335201292
+        tokens: 15134
+        review: false
+  cranelift:
+    kind: technical
+    display: Cranelift
+    meaning: compiler backend
+  esim:
+    kind: technical
+    display: eSIM
+    meaning: embedded SIM for cellular service
+  exposed-pipes:
+    kind: ordinary
+    source: Exposed Pipes
+    meaning: visible building utility pipes
+    display:
+      de-DE:
+        text: Freiliegende Rohre
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:30.348639Z
+        seconds: 5.507041
+        tokens: 15287
+        review: false
+      en-US:
+        text: Exposed Pipes
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:01:06.270899Z
+        seconds: 5.678670209
+        tokens: 19646
+        review: false
+      es-ES:
+        text: Tuberías expuestas
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:30.348639Z
+        seconds: 5.507041
+        tokens: 15287
+        review: false
+      fr-FR:
+        text: Tuyaux exposés
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:30.348639Z
+        seconds: 5.507041
+        tokens: 15287
+        review: false
+      ja-JP:
+        text: 露出した配管
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:30.348639Z
+        seconds: 5.507041
+        tokens: 15287
+        review: false
+      ko-KR:
+        text: 노출된 배관
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:30.348639Z
+        seconds: 5.507041
+        tokens: 15287
+        review: false
+      zh-CN:
+        text: 外露管道
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:30.348639Z
+        seconds: 5.507041
+        tokens: 15287
+        review: false
+      zh-TW:
+        text: 外露管道
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:30.348639Z
+        seconds: 5.507041
+        tokens: 15287
+        review: false
+  fallen-leaves:
+    kind: ordinary
+    source: Fallen Leaves
+    meaning: dead leaves on the ground
+    display:
+      de-DE:
+        text: Herabgefallene Blätter
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:35.85848Z
+        seconds: 4.829146167
+        tokens: 15031
+        review: false
+      en-US:
+        text: Fallen Leaves
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:01:34.651687Z
+        seconds: 11.932593624999999
+        tokens: 19898
+        review: false
+      es-ES:
+        text: Hojas caídas
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:35.85848Z
+        seconds: 4.829146167
+        tokens: 15031
+        review: false
+      fr-FR:
+        text: Feuilles mortes
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:35.85848Z
+        seconds: 4.829146167
+        tokens: 15031
+        review: false
+      ja-JP:
+        text: 落ち葉
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:35.85848Z
+        seconds: 4.829146167
+        tokens: 15031
+        review: false
+      ko-KR:
+        text: 낙엽
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:35.85848Z
+        seconds: 4.829146167
+        tokens: 15031
+        review: false
+      zh-CN:
+        text: 落叶
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:35.85848Z
+        seconds: 4.829146167
+        tokens: 15031
+        review: false
+      zh-TW:
+        text: 落葉
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:35.85848Z
+        seconds: 4.829146167
+        tokens: 15031
+        review: false
+  fire-hydrant:
+    kind: ordinary
+    source: Fire Hydrant
+    meaning: fire-suppression equipment access point
+    display:
+      de-DE:
+        text: Feuerhydrant
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:40.690834Z
+        seconds: 5.109075584
+        tokens: 15050
+        review: false
+      en-US:
+        text: Fire Hydrant
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:01:06.270899Z
+        seconds: 5.678670209
+        tokens: 19646
+        review: false
+      es-ES:
+        text: Boca de incendio
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:40.690834Z
+        seconds: 5.109075584
+        tokens: 15050
+        review: false
+      fr-FR:
+        text: Bouche d'incendie
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:40.690834Z
+        seconds: 5.109075584
+        tokens: 15050
+        review: false
+      ja-JP:
+        text: 消火栓
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:40.690834Z
+        seconds: 5.109075584
+        tokens: 15050
+        review: false
+      ko-KR:
+        text: 소화전
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:40.690834Z
+        seconds: 5.109075584
+        tokens: 15050
+        review: false
+      zh-CN:
+        text: 消火栓
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:40.690834Z
+        seconds: 5.109075584
+        tokens: 15050
+        review: false
+      zh-TW:
+        text: 消火栓
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:40.690834Z
+        seconds: 5.109075584
+        tokens: 15050
+        review: false
+  gnu-gold:
+    kind: technical
+    display: GNU gold
+    meaning: GNU project's optimized linker
+  gnu-ld:
+    kind: technical
+    display: GNU ld
+    meaning: GNU project's linker
+  grass:
+    kind: ordinary
+    source: Grass
+    meaning: green plants growing between the boards
+    display:
+      de-DE:
+        text: Gras
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:45.802942Z
+        seconds: 4.857189416
+        tokens: 14925
+        review: false
+      en-US:
+        text: Grass
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:03:10.068639Z
+        seconds: 10.314060334
+        tokens: 20049
+        review: false
+      es-ES:
+        text: Hierba
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:45.802942Z
+        seconds: 4.857189416
+        tokens: 14925
+        review: false
+      fr-FR:
+        text: Herbe
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:45.802942Z
+        seconds: 4.857189416
+        tokens: 14925
+        review: false
+      ja-JP:
+        text: 草
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:45.802942Z
+        seconds: 4.857189416
+        tokens: 14925
+        review: false
+      ko-KR:
+        text: 풀
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:45.802942Z
+        seconds: 4.857189416
+        tokens: 14925
+        review: false
+      zh-CN:
+        text: 草
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:45.802942Z
+        seconds: 4.857189416
+        tokens: 14925
+        review: false
+      zh-TW:
+        text: 草
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:45.802942Z
+        seconds: 4.857189416
+        tokens: 14925
+        review: false
+  hexo:
+    kind: technical
+    display: Hexo
+    meaning: blog framework and static site generator
+  landing-page:
+    kind: ordinary
+    source: Landing Page
+    meaning: website entry page promoting a product or service
+    display:
+      de-DE:
+        text: Landingpage
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:50.663319Z
+        seconds: 6.137268917
+        tokens: 15263
+        review: false
+      en-US:
+        text: Landing Page
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:01:28.027306Z
+        seconds: 6.621976
+        tokens: 18181
+        review: false
+      es-ES:
+        text: Página de aterrizaje
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:50.663319Z
+        seconds: 6.137268917
+        tokens: 15263
+        review: false
+      fr-FR:
+        text: Page d’atterrissage
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:50.663319Z
+        seconds: 6.137268917
+        tokens: 15263
+        review: false
+      ja-JP:
+        text: ランディングページ
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:50.663319Z
+        seconds: 6.137268917
+        tokens: 15263
+        review: false
+      ko-KR:
+        text: 랜딩 페이지
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:50.663319Z
+        seconds: 6.137268917
+        tokens: 15263
+        review: false
+      zh-CN:
+        text: 落地页
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:50.663319Z
+        seconds: 6.137268917
+        tokens: 15263
+        review: false
+      zh-TW:
+        text: 落地頁
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:50.663319Z
+        seconds: 6.137268917
+        tokens: 15263
+        review: false
+  laptop:
+    kind: ordinary
+    source: Laptop
+    meaning: portable personal computer
+    display:
+      de-DE:
+        text: Laptop
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:56.803999Z
+        seconds: 4.9430527909999995
+        tokens: 15095
+        review: false
+      en-US:
+        text: Laptop
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:00:13.563261Z
+        seconds: 5.03532875
+        tokens: 19198
+        review: false
+      es-ES:
+        text: Ordenador portátil
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:56.803999Z
+        seconds: 4.9430527909999995
+        tokens: 15095
+        review: false
+      fr-FR:
+        text: Ordinateur portable
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:56.803999Z
+        seconds: 4.9430527909999995
+        tokens: 15095
+        review: false
+      ja-JP:
+        text: ノートパソコン
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:56.803999Z
+        seconds: 4.9430527909999995
+        tokens: 15095
+        review: false
+      ko-KR:
+        text: 노트북
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:56.803999Z
+        seconds: 4.9430527909999995
+        tokens: 15095
+        review: false
+      zh-CN:
+        text: 笔记本
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:56.803999Z
+        seconds: 4.9430527909999995
+        tokens: 15095
+        review: false
+      zh-TW:
+        text: 筆記本
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:05:56.803999Z
+        seconds: 4.9430527909999995
+        tokens: 15095
+        review: false
+  lawn:
+    kind: ordinary
+    source: Lawn
+    meaning: grass-covered ground
+    display:
+      de-DE:
+        text: Rasen
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:01.750514Z
+        seconds: 5.121434042
+        tokens: 15075
+        review: false
+      en-US:
+        text: Lawn
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:01:34.651687Z
+        seconds: 11.932593624999999
+        tokens: 19898
+        review: false
+      es-ES:
+        text: Césped
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:01.750514Z
+        seconds: 5.121434042
+        tokens: 15075
+        review: false
+      fr-FR:
+        text: Pelouse
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:01.750514Z
+        seconds: 5.121434042
+        tokens: 15075
+        review: false
+      ja-JP:
+        text: 芝生
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:01.750514Z
+        seconds: 5.121434042
+        tokens: 15075
+        review: false
+      ko-KR:
+        text: 잔디
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:01.750514Z
+        seconds: 5.121434042
+        tokens: 15075
+        review: false
+      zh-CN:
+        text: 草坪
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:01.750514Z
+        seconds: 5.121434042
+        tokens: 15075
+        review: false
+      zh-TW:
+        text: 草坪
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:01.750514Z
+        seconds: 5.121434042
+        tokens: 15075
+        review: false
+  llvm-lld:
+    kind: technical
+    display: LLVM lld
+    meaning: LLVM project's linker
+  macos:
+    kind: technical
+    display: macOS
+    meaning: Apple desktop operating system
+  mold-linker:
+    kind: technical
+    display: mold
+    meaning: high-performance executable linker
+  mushroom:
+    kind: ordinary
+    source: Mushroom
+    meaning: fruiting body of a fungus
+    display:
+      de-DE:
+        text: Pilz
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:06.875544Z
+        seconds: 4.293278459
+        tokens: 14928
+        review: false
+      en-US:
+        text: Mushroom
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:01:34.651687Z
+        seconds: 11.932593624999999
+        tokens: 19898
+        review: false
+      es-ES:
+        text: Champiñón
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:06.875544Z
+        seconds: 4.293278459
+        tokens: 14928
+        review: false
+      fr-FR:
+        text: Champignon
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:06.875544Z
+        seconds: 4.293278459
+        tokens: 14928
+        review: false
+      ja-JP:
+        text: キノコ
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:06.875544Z
+        seconds: 4.293278459
+        tokens: 14928
+        review: false
+      ko-KR:
+        text: 버섯
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:06.875544Z
+        seconds: 4.293278459
+        tokens: 14928
+        review: false
+      zh-CN:
+        text: 蘑菇
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:06.875544Z
+        seconds: 4.293278459
+        tokens: 14928
+        review: false
+      zh-TW:
+        text: 蘑菇
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:06.875544Z
+        seconds: 4.293278459
+        tokens: 14928
+        review: false
+  next-js:
+    kind: technical
+    display: Next.js
+    meaning: React web framework
+  node-js:
+    kind: technical
+    display: Node.js
+    meaning: JavaScript runtime environment
+  npm:
+    kind: technical
+    display: npm
+    meaning: JavaScript package manager
+  park-path:
+    kind: ordinary
+    source: Park Path
+    meaning: paved pedestrian route through a landscaped park
+    display:
+      de-DE:
+        text: Parkweg
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:11.172576Z
+        seconds: 5.1838968340000005
+        tokens: 15089
+        review: false
+      en-US:
+        text: Park Path
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:00:39.818059Z
+        seconds: 7.355496083
+        tokens: 18467
+        review: false
+      es-ES:
+        text: Sendero del parque
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:11.172576Z
+        seconds: 5.1838968340000005
+        tokens: 15089
+        review: false
+      fr-FR:
+        text: Sentier du parc
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:11.172576Z
+        seconds: 5.1838968340000005
+        tokens: 15089
+        review: false
+      ja-JP:
+        text: 公園散歩道
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:11.172576Z
+        seconds: 5.1838968340000005
+        tokens: 15089
+        review: false
+      ko-KR:
+        text: 공원 산책로
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:11.172576Z
+        seconds: 5.1838968340000005
+        tokens: 15089
+        review: false
+      zh-CN:
+        text: 公园小径
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:11.172576Z
+        seconds: 5.1838968340000005
+        tokens: 15089
+        review: false
+      zh-TW:
+        text: 公園小徑
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:11.172576Z
+        seconds: 5.1838968340000005
+        tokens: 15089
+        review: false
+  pergola:
+    kind: ordinary
+    source: Pergola
+    meaning: open garden structure with vertical posts and overhead beams
+    display:
+      de-DE:
+        text: Pergola
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:16.36019Z
+        seconds: 4.734907625
+        tokens: 14972
+        review: false
+      en-US:
+        text: Pergola
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:00:39.818059Z
+        seconds: 7.355496083
+        tokens: 18467
+        review: false
+      es-ES:
+        text: Pergola
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:16.36019Z
+        seconds: 4.734907625
+        tokens: 14972
+        review: false
+      fr-FR:
+        text: Pergola
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:16.36019Z
+        seconds: 4.734907625
+        tokens: 14972
+        review: false
+      ja-JP:
+        text: パーゴラ
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:16.36019Z
+        seconds: 4.734907625
+        tokens: 14972
+        review: false
+      ko-KR:
+        text: 퍼걸라
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:16.36019Z
+        seconds: 4.734907625
+        tokens: 14972
+        review: false
+      zh-CN:
+        text: 凉棚
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:16.36019Z
+        seconds: 4.734907625
+        tokens: 14972
+        review: false
+      zh-TW:
+        text: 涼棚
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:16.36019Z
+        seconds: 4.734907625
+        tokens: 14972
+        review: false
+  personal-website:
+    kind: ordinary
+    source: Personal Website
+    meaning: individual online profile and portfolio site
+    display:
+      de-DE:
+        text: Persönliche Website
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:21.098677Z
+        seconds: 5.468325084
+        tokens: 15079
+        review: false
+      en-US:
+        text: Personal Website
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:00:52.337797Z
+        seconds: 7.466820459
+        tokens: 19385
+        review: false
+      es-ES:
+        text: Sitio personal
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:21.098677Z
+        seconds: 5.468325084
+        tokens: 15079
+        review: false
+      fr-FR:
+        text: Site personnel
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:21.098677Z
+        seconds: 5.468325084
+        tokens: 15079
+        review: false
+      ja-JP:
+        text: 個人ウェブサイト
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:21.098677Z
+        seconds: 5.468325084
+        tokens: 15079
+        review: false
+      ko-KR:
+        text: 개인 웹사이트
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:21.098677Z
+        seconds: 5.468325084
+        tokens: 15079
+        review: false
+      zh-CN:
+        text: 个人网站
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:21.098677Z
+        seconds: 5.468325084
+        tokens: 15079
+        review: false
+      zh-TW:
+        text: 個人網站
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:21.098677Z
+        seconds: 5.468325084
+        tokens: 15079
+        review: false
+  printed-circuit-board:
+    kind: ordinary
+    source: Printed Circuit Board
+    meaning: electronic circuit board with mounted components
+    display:
+      de-DE:
+        text: Leiterplatte
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:26.571091Z
+        seconds: 5.352405125
+        tokens: 15020
+        review: false
+      en-US:
+        text: Printed Circuit Board
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:02:34.779367Z
+        seconds: 35.28660675
+        tokens: 18347
+        review: false
+      es-ES:
+        text: Placa de circuito impreso
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:26.571091Z
+        seconds: 5.352405125
+        tokens: 15020
+        review: false
+      fr-FR:
+        text: Carte de circuit imprimé
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:26.571091Z
+        seconds: 5.352405125
+        tokens: 15020
+        review: false
+      ja-JP:
+        text: プリント基板
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:26.571091Z
+        seconds: 5.352405125
+        tokens: 15020
+        review: false
+      ko-KR:
+        text: 인쇄 회로 기판
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:26.571091Z
+        seconds: 5.352405125
+        tokens: 15020
+        review: false
+      zh-CN:
+        text: 印刷电路板
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:26.571091Z
+        seconds: 5.352405125
+        tokens: 15020
+        review: false
+      zh-TW:
+        text: 印刷電路板
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:26.571091Z
+        seconds: 5.352405125
+        tokens: 15020
+        review: false
+  railing:
+    kind: ordinary
+    source: Railing
+    meaning: protective barrier along an edge
+    display:
+      de-DE:
+        text: Geländer
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:31.927501Z
+        seconds: 4.928624667
+        tokens: 15020
+        review: false
+      en-US:
+        text: Railing
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:00:13.563261Z
+        seconds: 5.03532875
+        tokens: 19198
+        review: false
+      es-ES:
+        text: Barandilla
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:31.927501Z
+        seconds: 4.928624667
+        tokens: 15020
+        review: false
+      fr-FR:
+        text: Rampe
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:31.927501Z
+        seconds: 4.928624667
+        tokens: 15020
+        review: false
+      ja-JP:
+        text: 手すり
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:31.927501Z
+        seconds: 4.928624667
+        tokens: 15020
+        review: false
+      ko-KR:
+        text: 난간
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:31.927501Z
+        seconds: 4.928624667
+        tokens: 15020
+        review: false
+      zh-CN:
+        text: 栏杆
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:31.927501Z
+        seconds: 4.928624667
+        tokens: 15020
+        review: false
+      zh-TW:
+        text: 欄杆
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:31.927501Z
+        seconds: 4.928624667
+        tokens: 15020
+        review: false
+  remix:
+    kind: technical
+    display: Remix
+    meaning: full stack web framework
+  river:
+    kind: ordinary
+    source: River
+    meaning: large natural flowing waterway
+    display:
+      de-DE:
+        text: Fluss
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:36.859965Z
+        seconds: 6.4045355
+        tokens: 15002
+        review: false
+      en-US:
+        text: River
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:00:13.563261Z
+        seconds: 5.03532875
+        tokens: 19198
+        review: false
+      es-ES:
+        text: Río
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:36.859965Z
+        seconds: 6.4045355
+        tokens: 15002
+        review: false
+      fr-FR:
+        text: Rivière
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:36.859965Z
+        seconds: 6.4045355
+        tokens: 15002
+        review: false
+      ja-JP:
+        text: 川
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:36.859965Z
+        seconds: 6.4045355
+        tokens: 15002
+        review: false
+      ko-KR:
+        text: 강
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:36.859965Z
+        seconds: 6.4045355
+        tokens: 15002
+        review: false
+      zh-CN:
+        text: 河流
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:36.859965Z
+        seconds: 6.4045355
+        tokens: 15002
+        review: false
+      zh-TW:
+        text: 河流
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:36.859965Z
+        seconds: 6.4045355
+        tokens: 15002
+        review: false
+  rust:
+    kind: technical
+    display: Rust
+    meaning: programming language
+  shrub:
+    kind: ordinary
+    source: Shrub
+    meaning: low woody garden plant
+    display:
+      de-DE:
+        text: Strauch
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:43.268921Z
+        seconds: 4.827717625
+        tokens: 15009
+        review: false
+      en-US:
+        text: Shrub
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:00:39.818059Z
+        seconds: 7.355496083
+        tokens: 18467
+        review: false
+      es-ES:
+        text: Arbusto
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:43.268921Z
+        seconds: 4.827717625
+        tokens: 15009
+        review: false
+      fr-FR:
+        text: Arbuste
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:43.268921Z
+        seconds: 4.827717625
+        tokens: 15009
+        review: false
+      ja-JP:
+        text: 低木
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:43.268921Z
+        seconds: 4.827717625
+        tokens: 15009
+        review: false
+      ko-KR:
+        text: 관목
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:43.268921Z
+        seconds: 4.827717625
+        tokens: 15009
+        review: false
+      zh-CN:
+        text: 灌木
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:43.268921Z
+        seconds: 4.827717625
+        tokens: 15009
+        review: false
+      zh-TW:
+        text: 灌木
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:43.268921Z
+        seconds: 4.827717625
+        tokens: 15009
+        review: false
+  sim-card:
+    kind: technical
+    display: SIM Card
+    meaning: subscriber identity module card for mobile service
+  sky:
+    kind: ordinary
+    source: Sky
+    meaning: visible atmosphere above the ground
+    display:
+      de-DE:
+        text: Himmel
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:48.100817Z
+        seconds: 4.147296666
+        tokens: 14811
+        review: false
+      en-US:
+        text: Sky
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:03:20.385154Z
+        seconds: 4.654326417
+        tokens: 20079
+        review: false
+      es-ES:
+        text: Cielo
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:48.100817Z
+        seconds: 4.147296666
+        tokens: 14811
+        review: false
+      fr-FR:
+        text: Ciel
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:48.100817Z
+        seconds: 4.147296666
+        tokens: 14811
+        review: false
+      ja-JP:
+        text: 空
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:48.100817Z
+        seconds: 4.147296666
+        tokens: 14811
+        review: false
+      ko-KR:
+        text: 하늘
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:48.100817Z
+        seconds: 4.147296666
+        tokens: 14811
+        review: false
+      zh-CN:
+        text: 天空
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:48.100817Z
+        seconds: 4.147296666
+        tokens: 14811
+        review: false
+      zh-TW:
+        text: 天空
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:48.100817Z
+        seconds: 4.147296666
+        tokens: 14811
+        review: false
+  streetlight:
+    kind: ordinary
+    source: Streetlight
+    meaning: outdoor lamp along a pedestrian promenade
+    display:
+      de-DE:
+        text: Straßenlaterne
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:52.252688Z
+        seconds: 4.809679291
+        tokens: 14979
+        review: false
+      en-US:
+        text: Streetlight
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:01:55.360218Z
+        seconds: 6.978482708
+        tokens: 19084
+        review: false
+      es-ES:
+        text: Farola
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:52.252688Z
+        seconds: 4.809679291
+        tokens: 14979
+        review: false
+      fr-FR:
+        text: Lampadaire
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:52.252688Z
+        seconds: 4.809679291
+        tokens: 14979
+        review: false
+      ja-JP:
+        text: 街灯
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:52.252688Z
+        seconds: 4.809679291
+        tokens: 14979
+        review: false
+      ko-KR:
+        text: 가로등
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:52.252688Z
+        seconds: 4.809679291
+        tokens: 14979
+        review: false
+      zh-CN:
+        text: 路灯
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:52.252688Z
+        seconds: 4.809679291
+        tokens: 14979
+        review: false
+      zh-TW:
+        text: 路燈
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:52.252688Z
+        seconds: 4.809679291
+        tokens: 14979
+        review: false
+  token-usage:
+    kind: ordinary
+    source: Token Usage
+    meaning: counts of AI language model tokens consumed
+    display:
+      de-DE:
+        text: Token‑Verbrauch
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:57.06687Z
+        seconds: 5.931394875
+        tokens: 15076
+        review: false
+      en-US:
+        text: Token Usage
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:02:13.312931Z
+        seconds: 9.353331916
+        tokens: 20008
+        review: false
+      es-ES:
+        text: Uso de tokens
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:57.06687Z
+        seconds: 5.931394875
+        tokens: 15076
+        review: false
+      fr-FR:
+        text: Utilisation des tokens
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:57.06687Z
+        seconds: 5.931394875
+        tokens: 15076
+        review: false
+      ja-JP:
+        text: トークン使用量
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:57.06687Z
+        seconds: 5.931394875
+        tokens: 15076
+        review: false
+      ko-KR:
+        text: 토큰 사용량
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:57.06687Z
+        seconds: 5.931394875
+        tokens: 15076
+        review: false
+      zh-CN:
+        text: 令牌使用
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:57.06687Z
+        seconds: 5.931394875
+        tokens: 15076
+        review: false
+      zh-TW:
+        text: 令牌使用量
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:06:57.06687Z
+        seconds: 5.931394875
+        tokens: 15076
+        review: false
+  tree:
+    kind: ordinary
+    source: Tree
+    meaning: tall woody plant with trunk and branches
+    display:
+      de-DE:
+        text: Baum
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:03.00264Z
+        seconds: 4.296226083
+        tokens: 14889
+        review: false
+      en-US:
+        text: Tree
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:00:39.818059Z
+        seconds: 7.355496083
+        tokens: 18467
+        review: false
+      es-ES:
+        text: Árbol
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:03.00264Z
+        seconds: 4.296226083
+        tokens: 14889
+        review: false
+      fr-FR:
+        text: Arbre
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:03.00264Z
+        seconds: 4.296226083
+        tokens: 14889
+        review: false
+      ja-JP:
+        text: 木
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:03.00264Z
+        seconds: 4.296226083
+        tokens: 14889
+        review: false
+      ko-KR:
+        text: 나무
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:03.00264Z
+        seconds: 4.296226083
+        tokens: 14889
+        review: false
+      zh-CN:
+        text: 树
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:03.00264Z
+        seconds: 4.296226083
+        tokens: 14889
+        review: false
+      zh-TW:
+        text: 樹
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:03.00264Z
+        seconds: 4.296226083
+        tokens: 14889
+        review: false
+  typeless:
+    kind: technical
+    display: Typeless
+    meaning: voice-powered writing application
+  usage-cost:
+    kind: ordinary
+    source: Usage Cost
+    meaning: monetary cost of recorded service consumption
+    display:
+      de-DE:
+        text: Nutzungskosten
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:07.303627Z
+        seconds: 4.047068459
+        tokens: 14864
+        review: false
+      en-US:
+        text: Usage Cost
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:02:13.312931Z
+        seconds: 9.353331916
+        tokens: 20008
+        review: false
+      es-ES:
+        text: Costo de uso
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:07.303627Z
+        seconds: 4.047068459
+        tokens: 14864
+        review: false
+      fr-FR:
+        text: Coût d’utilisation
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:07.303627Z
+        seconds: 4.047068459
+        tokens: 14864
+        review: false
+      ja-JP:
+        text: 利用料金
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:07.303627Z
+        seconds: 4.047068459
+        tokens: 14864
+        review: false
+      ko-KR:
+        text: 사용 요금
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:07.303627Z
+        seconds: 4.047068459
+        tokens: 14864
+        review: false
+      zh-CN:
+        text: 使用费用
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:07.303627Z
+        seconds: 4.047068459
+        tokens: 14864
+        review: false
+      zh-TW:
+        text: 使用費用
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:07.303627Z
+        seconds: 4.047068459
+        tokens: 14864
+        review: false
+  usb-c:
+    kind: technical
+    display: USB-C
+    meaning: reversible USB connector standard
+  vercel:
+    kind: technical
+    display: Vercel
+    meaning: cloud platform for web deployment and developer tools
+  wasmtime:
+    kind: technical
+    display: Wasmtime
+    meaning: WebAssembly runtime
+  waterfront:
+    kind: ordinary
+    source: Waterfront
+    meaning: land or promenade beside a body of water
+    display:
+      de-DE:
+        text: Ufer
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:11.355522Z
+        seconds: 6.032306125
+        tokens: 15138
+        review: false
+      en-US:
+        text: Waterfront
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:00:13.563261Z
+        seconds: 5.03532875
+        tokens: 19198
+        review: false
+      es-ES:
+        text: Orilla
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:11.355522Z
+        seconds: 6.032306125
+        tokens: 15138
+        review: false
+      fr-FR:
+        text: Bord de l'eau
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:11.355522Z
+        seconds: 6.032306125
+        tokens: 15138
+        review: false
+      ja-JP:
+        text: 水辺
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:11.355522Z
+        seconds: 6.032306125
+        tokens: 15138
+        review: false
+      ko-KR:
+        text: 수변
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:11.355522Z
+        seconds: 6.032306125
+        tokens: 15138
+        review: false
+      zh-CN:
+        text: 水岸
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:11.355522Z
+        seconds: 6.032306125
+        tokens: 15138
+        review: false
+      zh-TW:
+        text: 水岸
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:11.355522Z
+        seconds: 6.032306125
+        tokens: 15138
+        review: false
+  web-navigation:
+    kind: ordinary
+    source: Web Navigation
+    meaning: website menu and search interface
+    display:
+      de-DE:
+        text: Webnavigation
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:17.392995Z
+        seconds: 5.363064167
+        tokens: 15010
+        review: false
+      en-US:
+        text: Web Navigation
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:00:04.886277Z
+        seconds: 8.674856417
+        tokens: 17559
+        review: false
+      es-ES:
+        text: Navegación web
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:17.392995Z
+        seconds: 5.363064167
+        tokens: 15010
+        review: false
+      fr-FR:
+        text: Navigation web
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:17.392995Z
+        seconds: 5.363064167
+        tokens: 15010
+        review: false
+      ja-JP:
+        text: ウェブナビゲーション
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:17.392995Z
+        seconds: 5.363064167
+        tokens: 15010
+        review: false
+      ko-KR:
+        text: 웹 탐색
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:17.392995Z
+        seconds: 5.363064167
+        tokens: 15010
+        review: false
+      zh-CN:
+        text: 网页导航
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:17.392995Z
+        seconds: 5.363064167
+        tokens: 15010
+        review: false
+      zh-TW:
+        text: 網頁導覽
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:17.392995Z
+        seconds: 5.363064167
+        tokens: 15010
+        review: false
+  wooden-decking:
+    kind: ordinary
+    source: Wooden Decking
+    meaning: weathered wooden boards forming an outdoor walking surface
+    display:
+      de-DE:
+        text: Holzterrasse
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:22.760927Z
+        seconds: 5.623789291
+        tokens: 15111
+        review: false
+      en-US:
+        text: Wooden Decking
+        provider: openai
+        model: gpt-5-6-terra-medium
+        at: 2026-08-02T04:03:10.068639Z
+        seconds: 10.314060334
+        tokens: 20049
+        review: false
+      es-ES:
+        text: Entablado de madera
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:22.760927Z
+        seconds: 5.623789291
+        tokens: 15111
+        review: false
+      fr-FR:
+        text: Deck en bois
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:22.760927Z
+        seconds: 5.623789291
+        tokens: 15111
+        review: false
+      ja-JP:
+        text: ウッドデッキ
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:22.760927Z
+        seconds: 5.623789291
+        tokens: 15111
+        review: false
+      ko-KR:
+        text: 우드 데크
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:22.760927Z
+        seconds: 5.623789291
+        tokens: 15111
+        review: false
+      zh-CN:
+        text: 木质甲板
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:22.760927Z
+        seconds: 5.623789291
+        tokens: 15111
+        review: false
+      zh-TW:
+        text: 木質甲板
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:22.760927Z
+        seconds: 5.623789291
+        tokens: 15111
+        review: false

@@ -3,6 +3,14 @@ media:
   12faaa76365814de1195d6bdf1e5ba05:
     category: screenshot
     description:
+      de-DE:
+        text: Dies ist ein Screenshot der Homepage des Hexo‑Projekts, einer dunkel gestalteten Seite mit einem sechseckigen „H“-Logo und einer oberen Navigation für Docs, API, News, Plugins, Themes und About. Die Hauptüberschrift lautet „Ein schnelles, einfaches & leistungsstarkes Blog‑Framework“ über einem terminal‑artigen Installationsbefehl `npm install hexo-cli -g`, flankiert von Badges mit 41 k GitHub‑Sternen, 5 k Forks, 212 k Downloads pro Monat und einer Follower‑Zahl für @hexojs auf X. Darunter befindet sich eine Zeitleiste mit den Versionen 8.1.0 (26.10.2025), 8.0.0 (16.09.2025), 7.3.0 (02.07.2024) und 7.2.0 (17.04.2024), und die Seite beginnt in einen Funktionsbereich überzugehen, der „Blazing Fast“ und „Markdown Support“ hervorhebt. Das Bild belegt den aktuellen Release‑Zyklus und die Community‑Adoptionskennzahlen von Hexo, wie sie auf der offiziellen Seite angezeigt werden.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:40.467203Z
+        seconds: 5.387409
+        tokens: 14724
+        review: false
       en-US:
         text: This is a screenshot of the Hexo project's homepage, a dark-themed site with a hexagonal "H" logo and a top nav for Docs, API, News, Plugins, Themes, and About. The hero headline reads "A fast, simple & powerful blog framework" above a terminal-style install command, `npm install hexo-cli -g`, flanked by badges showing 41k GitHub stars, 5k forks, 212k downloads per month, and a follow count for @hexojs on X. Below that sits a release timeline listing versions 8.1.0 (2025-10-26), 8.0.0 (2025-09-16), 7.3.0 (2024-07-02), and 7.2.0 (2024-04-17), and the page begins transitioning into a features section highlighting "Blazing Fast" and "Markdown Support." The image is evidence of Hexo's current release cadence and community adoption metrics as displayed on its official site.
         provider: anthropic
@@ -11,9 +19,70 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: Esta es una captura de pantalla de la página principal del proyecto Hexo, un sitio con tema oscuro y un logotipo hexagonal “H” y una barra de navegación superior con Docs, API, News, Plugins, Themes y About. El encabezado principal dice “A fast, simple & powerful blog framework” sobre un comando de instalación estilo terminal, `npm install hexo-cli -g`, acompañado de insignias que muestran 41 k estrellas en GitHub, 5 k forks, 212 k descargas al mes y el recuento de seguidores de @hexojs en X. Debajo aparece una línea de tiempo de versiones que enumera 8.1.0 (2025-10-26), 8.0.0 (2025-09-16), 7.3.0 (2024-07-02) y 7.2.0 (2024-04-17), y la página comienza a pasar a una sección de características que destaca “Blazing Fast” y “Markdown Support”. La imagen es evidencia de la cadencia de lanzamientos actual de Hexo y de las métricas de adopción de la comunidad tal como se muestran en su sitio oficial.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:58.192212Z
+        seconds: 7.832847084
+        tokens: 15448
+        review: false
+      fr-FR:
+        text: Ceci est une capture d'écran de la page d'accueil du projet Hexo, un site à thème sombre avec un logo hexagonal « H » et une navigation supérieure pour Docs, API, News, Plugins, Themes et About. Le titre principal indique « Un framework de blog rapide, simple et puissant » au-dessus d'une commande d'installation en style terminal, `npm install hexo-cli -g`, encadrée par des badges affichant 41 k étoiles GitHub, 5 k forks, 212 k téléchargements par mois et un compteur de suivi pour @hexojs sur X. En dessous se trouve une chronologie des versions répertoriant les versions 8.1.0 (2025‑10‑26), 8.0.0 (2025‑09‑16), 7.3.0 (2024‑07‑02) et 7.2.0 (2024‑04‑17), et la page commence à basculer vers une section présentant les fonctionnalités « Blazing Fast » et « Markdown Support ». L'image constitue une preuve du rythme actuel de publication de Hexo et des métriques d'adoption de la communauté telles qu'affichées sur son site officiel.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:51.988804Z
+        seconds: 6.201298375
+        tokens: 15305
+        review: false
+      ja-JP:
+        text: これは Hexo プロジェクトのホームページのスクリーンショットで、暗いテーマのサイトです。六角形の「H」ロゴと、Docs、API、News、Plugins、Themes、About のトップナビがあります。ヒーローエリアの見出しは「A fast, simple & powerful blog framework」で、その下に端末風のインストールコマンド `npm install hexo-cli -g` が表示され、左右には GitHub のスター 41k、フォーク 5k、月間ダウンロード数 212k、X の @hexojs のフォロワー数を示すバッジがあります。その下にはリリースタイムラインがあり、バージョン 8.1.0（2025-10-26）、8.0.0（2025-09-16）、7.3.0（2024-07-02）、7.2.0（2024-04-17）がリストされています。ページは「Blazing Fast」や「Markdown Support」などの機能セクションへと移行し始めます。この画像は、公式サイトに表示されている Hexo の現在のリリースサイクルとコミュニティの採用指標を示す証拠です。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:33.902323Z
+        seconds: 6.56305925
+        tokens: 15301
+        review: false
+      ko-KR:
+        text: 이 이미지는 Hexo 프로젝트의 홈페이지 스크린샷으로, 어두운 테마에 육각형 “H” 로고와 Docs, API, News, Plugins, Themes, About 메뉴가 있는 상단 네비게이션을 가지고 있습니다. 히어로 헤드라인은 “빠르고, 간단하며 강력한 블로그 프레임워크”라고 표시되어 있으며, 그 아래 터미널 스타일의 설치 명령 `npm install hexo-cli -g`가 있고, 양옆에 GitHub 별 41k, 포크 5k, 월간 다운로드 212k, X에서 @hexojs 팔로우 수 배지가 표시됩니다. 그 아래에는 버전 8.1.0(2025-10-26), 8.0.0(2025-09-16), 7.3.0(2024-07-02), 7.2.0(2024-04-17)을 나열한 릴리스 타임라인이 있으며, 페이지는 “Blazing Fast”와 “Markdown Support”를 강조하는 기능 섹션으로 전환됩니다. 이 이미지는 Hexo의 현재 릴리스 주기와 공식 사이트에 표시된 커뮤니티 채택 지표를 증명합니다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:45.856384Z
+        seconds: 6.130676125
+        tokens: 15293
+        review: false
+      zh-CN:
+        text: 这是一张 Hexo 项目主页的截图，页面采用深色主题，具有一个六边形的 “H” 标志，顶部导航栏包括 Docs、API、News、Plugins、Themes 和 About。主视觉标题为 “A fast, simple & powerful blog framework”，其下方是一条终端风格的安装命令 `npm install hexo-cli -g`，两侧是显示 41k GitHub 星标、5k 分叉、每月 212k 下载量以及 @hexojs 在 X 上的关注数的徽章。其下方是发布时间轴，列出版本 8.1.0（2025-10-26）、8.0.0（2025-09-16）、7.3.0（2024-07-02）和 7.2.0（2024-04-17），页面随后转入功能区，突出 “Blazing Fast” 与 “Markdown Support”。该图片证明了 Hexo 当前的发布节奏及其在官方站点上展示的社区采纳指标。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:07:28.389902Z
+        seconds: 5.511282083
+        tokens: 15192
+        review: false
+      zh-TW:
+        text: 這是一張 Hexo 專案首頁的螢幕截圖，網站採用深色主題，具備六角形的「H」標誌，頂部導覽列包含 Docs、API、News、Plugins、Themes 與 About。首頁大標題寫著「快速、簡潔且功能強大的部落格框架」，下方是一行類似終端機的安裝指令 `npm install hexo-cli -g`，旁邊顯示 41k GitHub 星標、5k 分支、每月 212k 下載次數，以及 X 上 @hexojs 的關注數。其下是一條發佈時間表，列出 8.1.0（2025-10-26）、8.0.0（2025-09-16）、7.3.0（2024-07-02）與 7.2.0（2024-04-17）等版本，接著頁面進入功能區段，強調「極速」與「Markdown 支援」。此圖證明了 Hexo 目前的發佈節奏與官方網站上顯示的社群採用指標。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:08:06.026972Z
+        seconds: 5.704793708
+        tokens: 15259
+        review: false
+    tags:
+    - hexo
+    - npm
+    - blog-framework
+    - web-navigation
   13d5b6bcd2b0dce847951d4e3faf89ca:
     category: photograph
     description:
+      de-DE:
+        text: Ein Foto zeigt einen dunkel gefärbten Laptop, dessen Bildschirm aus ist und der einen gewellten violetten Schimmer reflektiert, offen auf einem Stein‑ oder Betonpfeiler thronend und mit Blick auf einen breiten, schlammig‑braunen Fluss. Das gegenüberliegende Ufer weist eine neblige Skyline aus niedrigen Gebäuden, Kränen und einer kabelgespannten Struktur mit rotem Mast auf, alles abgedämpft durch bewölktes, nebliges Tageslicht. Rechts verläuft ein Metallgeländer entlang eines gepflasterten Dämms, und ein kleines Boot mit rotem Marker treibt allein auf dem Wasser nach links. Die Gesamtszene wirkt wie ein lockeres Outdoor‑Foto eines Laptops vor einer Flussstadtkulisse, wahrscheinlich aufgenommen, um das Design des Geräts vor einer landschaftlich stimmungsvollen Kulisse zu präsentieren.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:08:22.195344Z
+        seconds: 7.215795292
+        tokens: 14943
+        review: false
       en-US:
         text: A photograph shows a dark-colored laptop, screen off and reflecting a rippled purplish sheen, perched open on top of a stone or concrete pillar overlooking a wide, muddy-brown river. The far bank holds a hazy skyline of low-rise buildings, cranes, and a cable-stayed structure with a red mast, all softened by overcast, misty daylight. To the right a metal railing runs along a paved embankment, and a small boat with a red marker floats alone on the water toward the left. The overall scene reads as a casual outdoor photo of a laptop set against a riverside city backdrop, likely taken to showcase the device's design against a scenic, moody backdrop.
         provider: anthropic
@@ -22,9 +91,70 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: Una fotografía muestra un portátil de color oscuro, con la pantalla apagada y reflejando un brillo ondulado violeta, posado abierto sobre una columna de piedra o hormigón con vistas a un amplio río de tono marrón fangoso. La orilla lejana presenta un horizonte brumoso de edificios bajos, grúas y una estructura atirantada con un mástil rojo, todo suavizado por una luz de día nublada y brumosa. A la derecha, una baranda metálica recorre un terraplén pavimentado, y una pequeña embarcación con una marca roja flota sola en el agua hacia la izquierda. En conjunto, la escena parece una foto casual al aire libre de un portátil contra un fondo urbano ribereño, probablemente tomada para mostrar el diseño del dispositivo en un entorno escénico y melancólico.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:08:39.325956Z
+        seconds: 4.810284417
+        tokens: 14832
+        review: false
+      fr-FR:
+        text: Une photographie montre un ordinateur portable de couleur sombre, l’écran éteint, reflétant une lueur violette ondulée, posé ouvert sur le dessus d’un pilier en pierre ou en béton surplombant une large rivière brunâtre et boueuse. L’autre rive présente une silhouette floue de bâtiments de faible hauteur, de grues et d’une structure à haubans avec un mât rouge, le tout adouci par une lumière du jour couverte et brumeuse. À droite, une balustrade métallique longe une berge pavée, et un petit bateau avec un marqueur rouge flotte seul sur l’eau vers la gauche. L’ensemble de la scène apparaît comme une photo extérieure décontractée d’un ordinateur portable placé devant un décor urbain riverain, probablement prise pour mettre en valeur le design de l’appareil dans un cadre pittoresque et mélancolique.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:08:34.398478Z
+        seconds: 4.925376
+        tokens: 14873
+        review: false
+      ja-JP:
+        text: 写真には、暗色のノートパソコンが映っており、画面はオフで波打つ紫がかった光沢を反射し、石またはコンクリートの柱の上に開いたまま置かれ、広く濁った茶褐色の川を見下ろしています。遠くの岸には、低層の建物、クレーン、赤いマストを持つ斜張橋が霞んだように見え、曇りがちで霧のような日光に柔らかく映っています。右側には金属製の手すりが舗装された堤防に沿って走り、左方向に向かって赤いマーカーが付いた小さなボートが一つだけ水面に浮かんでいます。全体として、このシーンはリバーサイドの都市背景に対してノートパソコンを配置したカジュアルな屋外写真で、風景的でムーディーな背景にデザインを際立たせるために撮影されたものと思われます。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:08:16.663184Z
+        seconds: 5.5301902080000005
+        tokens: 14982
+        review: false
+      ko-KR:
+        text: 한 사진에는 어두운 색상의 노트북이 화면을 끈 상태로 파란빛이 도는 물결 무늬를 반사하며, 돌 또는 콘크리트 기둥 위에 열려 있는 채로 놓여 있어 넓고 진흙빛 갈색 강을 내려다보고 있습니다. 저편 강변에는 저층 건물, 크레인, 그리고 빨간 마스트가 달린 케이블교 구조물이 흐릿한 안개 낀 흐린 햇빛에 부드럽게 보이는 흐릿한 스카이라인이 있습니다. 오른쪽에는 포장된 제방을 따라 금속 난간이 이어지고, 빨간 마커가 달린 작은 보트가 물 위에 왼쪽을 향해 혼자 떠 있습니다. 전체 장면은 강가 도시 배경을 배경으로 노트북의 디자인을 시각적으로 강조하기 위해 촬영된 캐주얼한 야외 사진처럼 보입니다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:08:29.412891Z
+        seconds: 4.983404042
+        tokens: 14892
+        review: false
+      zh-CN:
+        text: 一张照片中，深色笔记本电脑屏幕关闭，映出波纹状的紫色光泽，敞开地放在石质或混凝土柱子顶部，俯瞰宽阔的泥棕色河流。远岸是一片朦胧的低矮建筑天际线，点缀着起重机和一座带红色桅杆的斜拉桥，整个景象被阴天的雾蒙光线柔化。右侧有金属栏杆沿着铺砌的堤岸延伸，左侧的水面上有一只带红色标记的小船独自漂浮。整体画面呈现出一幅随意的户外场景，将笔记本置于河畔城市背景下，似乎是为展示该设备的设计而拍摄的风景化、情绪化的照片。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:08:11.733756Z
+        seconds: 4.927545167
+        tokens: 14897
+        review: false
+      zh-TW:
+        text: 一張照片顯示一臺深色筆記型電腦，螢幕關閉，映出波紋狀的紫色光澤，打開放置在石頭或混凝土柱子上，俯瞰寬闊、呈泥棕色的河流。遠岸上有朦朧的低層建築天際線、起重機，以及帶有紅色桅杆的斜張橋，全部被陰天、霧濛的光線柔化。右側有金屬欄杆沿著鋪設的堤岸伸展，左側水面上漂浮著一艘帶紅色標記的小船。整體畫面呈現出隨性戶外拍攝的筆記型電腦，背景是河岸城市景觀，似乎是為了展示該裝置在風景氛圍濃厚的環境中的設計。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:08:44.138127Z
+        seconds: 5.486301541
+        tokens: 14924
+        review: false
+    tags:
+    - laptop
+    - river
+    - waterfront
+    - railing
   18dc4b33f21890aa9042955b67ac346d:
     category: screenshot
     description:
+      de-DE:
+        text: 'Dies ist ein Screenshot des iPhone‑Einstellungs‑Bildschirms, der den SIM‑Bereich zeigt, mit zwei aktivierten eSIM‑Einträgen: „Travel – CMHK“ mit der Bezeichnung T1 und „Travel – Hutchison HK“ mit der Bezeichnung T2, letzterer zeigt eine teilweise unscharfe Hongkong‑Telefonnummer, die mit +852 51 beginnt und auf 77 endet. Ein blauer Link „eSIM hinzufügen“ befindet sich unter den beiden Einträgen und zeigt an, dass das Telefon Dual‑SIM mit zwei aktiven Hongkong‑Anbieter‑eSIMs ist, wahrscheinlich für Reisen eingerichtet.'
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:09:04.705515Z
+        seconds: 4.342199792
+        tokens: 14644
+        review: false
       en-US:
         text: 'This is a screenshot of an iPhone Settings screen showing the SIMs section, with two eSIM entries both toggled on: "Travel - CMHK" labeled T1, and "Travel - Hutchison HK" labeled T2, the latter displaying a partially blurred Hong Kong phone number starting with +852 51 and ending in 77. A blue "Add eSIM" link sits below the two entries, indicating the phone is dual-SIM with two Hong Kong carrier eSIMs active, likely set up for travel.'
         provider: anthropic
@@ -33,9 +163,69 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: 'Esta es una captura de pantalla de la pantalla de Ajustes de iPhone que muestra la sección de SIMs, con dos entradas eSIM activadas: Travel - CMHK etiquetada como T1, y Travel - Hutchison HK etiquetada como T2, esta última muestra un número de teléfono de Hong Kong parcialmente difuminado que comienza con +852 51 y termina en 77. Un enlace azul Add eSIM se encuentra debajo de las dos entradas, indicando que el teléfono es dual‑SIM con dos eSIMs de operadores de Hong Kong activas, probablemente configuradas para viajar.'
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:09:18.999131Z
+        seconds: 5.989940125
+        tokens: 14885
+        review: false
+      fr-FR:
+        text: 'Ceci est une capture d’écran de l’écran Paramètres d’un iPhone affichant la section SIM, avec deux entrées eSIM toutes deux activées : « Travel - CMHK » étiquetée T1, et « Travel - Hutchison HK » étiquetée T2, cette dernière affichant un numéro de téléphone hongkongais partiellement flouté commençant par +852 51 et se terminant par 77. Un lien bleu « Ajouter eSIM » se trouve sous les deux entrées, indiquant que le téléphone est en double SIM avec deux eSIM d’opérateurs hongkongais actives, probablement configurées pour le voyage.'
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:09:13.625252Z
+        seconds: 5.371559709
+        tokens: 14838
+        review: false
+      ja-JP:
+        text: iPhoneの設定画面のSIMsセクションのスクリーンショットです。2つのeSIMエントリがオンになっており、「Travel - CMHK」はT1として表示され、「Travel - Hutchison HK」はT2として表示され、後者は+852 51***77という部分的にぼかされた香港の電話番号を示しています。その下に青い「Add eSIM」リンクがあり、電話がデュアルSIMで、2つの香港キャリアeSIMがアクティブになっていること、旅行用に設定されていることを示しています。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:08:59.931617Z
+        seconds: 4.77153175
+        tokens: 14629
+        review: false
+      ko-KR:
+        text: '이 사진은 iPhone 설정 화면의 SIM 섹션을 보여주며, 두 개의 eSIM 항목이 모두 켜져 있습니다: “Travel - CMHK”는 T1으로 표시되고, “Travel - Hutchison HK”는 T2로 표시되며, 후자는 +852 51로 시작하고 77로 끝나는 부분적으로 흐릿한 홍콩 전화번호를 표시합니다. 두 항목 아래에 파란색 “Add eSIM” 링크가 있어, 이 전화기가 두 개의 홍콩 통신사 eSIM을 활성화한 듀얼 SIM이며, 여행용으로 설정된 것으로 보입니다.'
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:09:09.049959Z
+        seconds: 4.57273075
+        tokens: 14646
+        review: false
+      zh-CN:
+        text: 这是一张 iPhone 设置界面的截图，显示 SIM 卡部分，包含两个已开启的 eSIM 条目：“Travel - CMHK”（标记为 T1）和 “Travel - Hutchison HK”（标记为 T2），后者显示部分模糊的香港电话号码，开头为 +852 51，结尾为 77。两个条目下方有一个蓝色的 “Add eSIM” 链接，表明手机使用双 SIM，激活了两个香港运营商的 eSIM，可能是为旅行而设置的。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:08:49.626554Z
+        seconds: 4.606443334
+        tokens: 14623
+        review: false
+      zh-TW:
+        text: 這是一張 iPhone 設定畫面的螢幕截圖，顯示 SIM 卡區段，有兩個已啟用的 eSIM 項目：「Travel - CMHK」標記為 T1，以及「Travel - Hutchison HK」標記為 T2，後者顯示部分模糊的香港電話號碼，以 +852 51 開頭、以 77 結尾。兩個項目下方有藍色的「Add eSIM」連結，表明此手機為雙 SIM，已啟用兩張香港電信業者的 eSIM，可能是為了旅行而設置。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:09:24.99118Z
+        seconds: 4.75005425
+        tokens: 14684
+        review: false
+    tags:
+    - esim
+    - sim-card
+    - cellular-network
   2722532798307eb9c03d89e2343c2cda:
     category: screenshot
     description:
+      de-DE:
+        text: Ein Screenshot einer Marketing‑Landingpage für ein Produkt namens Typeless, mit einem vogelähnlichen Logo und oberen Navigationslinks für Manifesto, Pricing und About sowie einem schwarzen „Download für macOS“-Button in der Ecke. Die große, zentrierte Überschrift lautet „Speak, don't type“ in fettem Schwarz‑Grau‑Text, gefolgt von einem Absatz, der erklärt, dass natürliches Sprechen Typeless ermöglicht, „deine Worte in ausgefeilte Nachrichten, E‑Mails und Dokumente zu verwandeln“, die so wirken, als seien sie sorgfältig getippt, in Echtzeit und „viermal schneller als tippen“. Unter dem Text befindet sich ein zweiter, pillenförmiger schwarzer „Download für macOS“-Call‑to‑Action‑Button, zentriert auf einem ansonsten schlichten weißen Hintergrund. Die Seite bewirbt eine Diktier‑zu‑Text‑macOS‑App mit dem Versprechen von Geschwindigkeit und Stil gegenüber traditionellem Tippen.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:09:41.467517Z
+        seconds: 5.946571417
+        tokens: 15026
+        review: false
       en-US:
         text: A screenshot of a marketing landing page for a product called Typeless, with a bird-like logo and top navigation links for Manifesto, Pricing, and About, plus a black "Download for macOS" button in the corner. The large centered headline reads "Speak, don't type" in bold black-and-gray text, followed by a paragraph explaining that speaking naturally lets Typeless "turn your words into polished messages, emails, and documents" that read as if carefully typed, in real time, and "4x faster than typing." Below the text sits a second, pill-shaped black "Download for macOS" call-to-action button, centered on an otherwise plain white background. The page is evidence of a dictation-to-text macOS app being promoted with a speed and polish claim over traditional typing.
         provider: anthropic
@@ -44,9 +234,69 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: Una captura de pantalla de una página de destino de marketing para un producto llamado Typeless, con un logotipo parecido a un pájaro y enlaces de navegación superior para Manifesto, Pricing y About, además de un botón negro “Download for macOS” en la esquina. El gran titular centrado dice “Speak, don't type” en texto negrita negro y gris, seguido de un párrafo que explica que hablar de forma natural permite a Typeless “convertir tus palabras en mensajes, correos electrónicos y documentos pulidos” que se leen como si estuvieran escritos cuidadosamente, en tiempo real, y “4 veces más rápido que escribir”. Debajo del texto hay un segundo botón CTA negro en forma de píldora “Download for macOS”, centrado en un fondo blanco liso. La página es evidencia de una aplicación macOS de dictado a texto que se promociona con una afirmación de velocidad y pulido frente a la escritura tradicional.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:10:00.568441Z
+        seconds: 5.980440958
+        tokens: 14996
+        review: false
+      fr-FR:
+        text: Une capture d'écran d'une page d'atterrissage marketing pour un produit appelé Typeless, avec un logo en forme d'oiseau et des liens de navigation supérieurs pour Manifesto, Pricing et About, ainsi qu'un bouton noir « Download for macOS » dans le coin. Le gros titre centré indique « Speak, don't type » en texte noir et gris gras, suivi d'un paragraphe expliquant que parler naturellement permet à Typeless « de transformer vos mots en messages, e‑mails et documents soignés » qui semblent rédigés à la main, en temps réel, et « 4 fois plus rapide que la frappe ». En dessous du texte se trouve un second bouton noir en forme de pilule « Download for macOS », centré sur un fond blanc autrement simple. La page montre une application macOS de dictée‑texte promue avec une revendication de vitesse et de qualité supérieure à la saisie traditionnelle.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:09:54.832898Z
+        seconds: 5.733013708
+        tokens: 15017
+        review: false
+      ja-JP:
+        text: Typelessという製品のマーケティングランディングページのスクリーンショットで、鳥のようなロゴと上部にManifesto、Pricing、Aboutのナビゲーションリンクがあり、隅には黒い「Download for macOS」ボタンがあります。大きく中央に配置された見出しは太字の黒と灰色のテキストで「Speak, don't type」と書かれており、その下に、自然に話すだけでTypelessが「あなたの言葉を洗練されたメッセージ、メール、文書」に変換し、まるで慎重に入力されたかのようにリアルタイムで表示し、さらに「入力の4倍の速さ」であることを説明する段落があります。テキストの下には、丸みを帯びた黒い「Download for macOS」ボタンがもう一つあり、白い背景の中央に配置されています。このページは、従来のタイピングに比べて速度と仕上がりを訴求する、音声入力からテキストへ変換するmacOSアプリの宣伝であることを示しています。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:09:35.718292Z
+        seconds: 5.746928584
+        tokens: 15067
+        review: false
+      ko-KR:
+        text: Typeless라는 제품의 마케팅 랜딩 페이지 스크린샷으로, 새 모양 로고와 상단 네비게이션에 Manifesto, Pricing, About 링크가 있으며 오른쪽 구석에 검은색 Download for macOS 버튼이 있다. 중앙에 크게 배치된 헤드라인은 굵은 검정‑회색 텍스트로 Speak, don't type이라고 적혀 있고, 이어지는 문단에서는 자연스럽게 말하는 것이 Typeless가 당신의 말을 다듬어진 메시지, 이메일, 문서로 변환해 주어 마치 신중히 타이핑한 듯 실시간으로 보여주며, 타이핑보다 4배 빠르다고 설명한다. 텍스트 아래에는 또 다른 둥근 형태의 검은색 Download for macOS 호출 버튼이 흰색 배경 중앙에 배치되어 있다. 이 페이지는 전통적인 타이핑에 비해 속도와 완성도를 강조하는 음성‑텍스트 변환 macOS 앱을 홍보하고 있음을 보여준다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:09:47.416513Z
+        seconds: 7.413836291
+        tokens: 15334
+        review: false
+      zh-CN:
+        text: 一个产品名为 Typeless 的营销登录页截图，页面拥有类似鸟形的徽标，顶部导航链接包括 Manifesto、Pricing 和 About，右上角有一个黑色的 “Download for macOS” 按钮。居中大标题以粗体黑灰色文字写着 “Speak, don't type”，其下是一段文字，说明自然说话可以让 Typeless 将你的话语 “转换为精致的消息、电子邮件和文档”，这些内容看起来像是经过仔细打字的，实时生成，并且 “比打字快 4 倍”。在文字下方还有第二个胶囊形的黑色 “Download for macOS” 按钮，居中于一片纯白背景。该页面展示了一款面向 macOS 的语音转文字应用，宣称在速度和文本优雅度上优于传统打字。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:09:29.743453Z
+        seconds: 5.9732605
+        tokens: 15101
+        review: false
+      zh-TW:
+        text: 這是一張名為 Typeless 產品的行銷著陸頁截圖，頁面上有類鳥形的標誌，頂部導航包含 Manifesto、Pricing、About 三個鏈接，右上角有一個黑色的「Download for macOS」按鈕。居中的大標題以粗體黑灰色文字寫著「Speak, don't type」，其下是一段說明文字，指出自然說話可讓 Typeless「將你的文字轉化為精緻的訊息、電子郵件與文件」，讀起來彷彿是用心打字，且即時完成，速度「比打字快 4 倍」。文字下方再有一個呈膠囊形的黑色「Download for macOS」行動按鈕，置於純白背景的正中央。此頁面展示了一款將語音轉文字的 macOS 應用，聲稱在速度與品質上優於傳統打字。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:10:06.551124Z
+        seconds: 5.477345958
+        tokens: 14995
+        review: false
+    tags:
+    - typeless
+    - macos
+    - web-navigation
   2acad555d6fe7cbcd5b153ce945585a0:
     category: photograph
     description:
+      de-DE:
+        text: Ein Foto, aufgenommen entlang eines gepflasterten Fußwegs, der durch einen Park oder Innenhof führt, wobei Unkraut und Gras durch Risse im abgenutzten Beton sprießen. Dichte, etwas überwucherte Sträucher und bambusähnliche Hecken säumen beide Seiten, flankiert von Bäumen mit weiß gestrichenen Stämmen rechts und einem kahlen Baum sowie einer rostigen, dachlosen Metall-Pergo­la in mittlerer Entfernung. Hinter einem niedrigen Zaun und Geländer links steht ein hellbraunes mehrstöckiges Gebäude, dessen Fenster teilweise von kahlen Ästen verdeckt werden, während weiches, diffuses Tageslicht auf einen bewölkten Morgen oder späten Nachmittag hindeutet. Der vernachlässigte Gehweg und das ungepflegte Grün lassen auf einen nur leicht gepflegten Grünbereich in einem älteren Wohnkomplex oder institutionellen Komplex schließen.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:10:19.174438Z
+        seconds: 7.248357
+        tokens: 15270
+        review: false
       en-US:
         text: A photograph taken along a paved footpath cutting through a park or residential courtyard, with weeds and grass sprouting through cracks in the worn concrete. Thick, somewhat overgrown shrubs and bamboo-like hedges line both sides, flanked by trees with white-painted trunks on the right and a leafless tree and a rusted, roofless metal pergola structure in the middle distance. Beyond a low fence and railing on the left stands a tan multi-story building, its windows partly obscured by bare branches, while soft, hazy daylight suggests an overcast morning or late afternoon. The neglected pavement and untrimmed vegetation suggest a lightly maintained green space within an older apartment complex or institutional compound.
         provider: anthropic
@@ -55,9 +305,70 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: Una fotografía tomada a lo largo de un sendero pavimentado que corta un parque o patio residencial, con hierbas y pasto brotando a través de grietas en el concreto desgastado. Arbustos gruesos y algo exuberantes y setos similares a bambú bordean ambos lados, flanqueados por árboles con troncos pintados de blanco a la derecha y un árbol sin hojas y una pérgola de metal oxidada y sin techo en la distancia media. Más allá de una cerca baja y una barandilla a la izquierda se alza un edificio de varios pisos de color tostado, cuyas ventanas están parcialmente ocultas por ramas desnudas, mientras una luz suave y difusa sugiere una mañana nublada o una tarde tardía. El pavimento descuidado y la vegetación sin podar sugieren un espacio verde ligeramente mantenido dentro de un complejo de apartamentos antiguo o un recinto institucional.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:10:35.792764Z
+        seconds: 5.160903167
+        tokens: 14879
+        review: false
+      fr-FR:
+        text: Une photographie prise le long d’un trottoir pavé traversant un parc ou une cour résidentielle, avec des mauvaises herbes et de l’herbe qui poussent à travers les fissures du béton usé. Des arbustes épais, quelque peu envahis, et des haies semblables à du bambou bordent les deux côtés, accompagnés d’arbres aux troncs peints en blanc à droite, ainsi qu’un arbre dénudé et une pergola métallique rouillée et sans toit au loin au centre. Au-delà d’une petite clôture et d’une rambarde à gauche se dresse un bâtiment tan de plusieurs étages, ses fenêtres partiellement masquées par des branches nues, tandis qu’une lumière douce et brumeuse suggère un matin couvert ou un fin d’après‑midi. Le pavé négligé et la végétation non taillée indiquent un espace vert légèrement entretenu au sein d’un ancien complexe d’appartements ou d’un lotissement institutionnel.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:10:32.405364Z
+        seconds: 3.384561125
+        tokens: 14510
+        review: false
+      ja-JP:
+        text: 舗装された歩道が公園や住宅の中庭を横切り、ひび割れたコンクリートから雑草や草が生えている写真です。両側にはやや伸び過ぎた低木や竹のような生垣があり、右側には白で塗装された幹の木、中央遠景には枝のない木と錆びた屋根のない金属製パーゴラ構造物が配置されています。左側の低いフェンスと手すりの向こうには、薄い色の複数階建ての建物があり、窓は葉のない枝で部分的に隠れています。柔らかく霞んだ光が、曇りがちな朝か夕方の遅い時間帯を示唆しています。手入れの行き届いていない舗装と刈り込まれていない植生は、古いアパート群や施設内の軽く管理された緑地であることを示しています。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:10:15.662069Z
+        seconds: 3.509652792
+        tokens: 14550
+        review: false
+      ko-KR:
+        text: 공원이나 주거 안뜰을 가로지르는 포장된 보행로를 따라 촬영된 사진으로, 닳아 있는 콘크리트 균열 사이에 잡초와 풀이 돋아 있다. 양쪽에 두껍고 다소 무성하게 자란 관목과 대나무 같은 울타리가 늘어서 있으며, 오른쪽에는 흰색으로 칠해진 줄기를 가진 나무가 있고, 중간 거리에는 잎이 없는 나무와 녹이 슬어 지붕이 없는 금속 파고라 구조물이 있다. 왼쪽 낮은 울타리와 난간 너머에는 갈색 다층 건물이 서 있으며, 그 창문은 벌거벗은 가지에 일부 가려져 있다. 부드럽고 흐릿한 햇빛은 흐린 아침이나 늦은 오후를 연상시킨다. 방치된 보도와 다듬어지지 않은 식생은 오래된 아파트 단지나 기관 단지 내에서 약간만 관리된 녹지를 보여준다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:10:26.425517Z
+        seconds: 5.977139209
+        tokens: 14930
+        review: false
+      zh-CN:
+        text: 一张沿着铺砌人行道的照片，路径穿过公园或住宅院落，破旧的混凝土裂缝中冒出杂草和草坪。两侧种植着茂密、稍显蔓延的灌木和类似竹子的树篱，右侧有树干涂成白色的树，远处中间有一棵落叶的树和一座锈蚀、缺失屋顶的金属凉亭结构。左侧低矮的围栏和扶手后面是一栋棕褐色的多层建筑，窗户被光秃的枝条部分遮挡，柔和而朦胧的光线显示出阴天的上午或傍晚。破旧的人行道和未修剪的植被表明这是一个维护略显疏忽的绿地，位于较老的公寓小区或机构院落内。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:10:12.031019Z
+        seconds: 3.6283990839999998
+        tokens: 14528
+        review: false
+      zh-TW:
+        text: 這張照片拍攝於一條穿過公園或住宅院落的鋪砌步道，鋪面已磨損，裂縫中冒出雜草與草叢。兩側排列著濃密且稍顯蔓生的灌木與類竹籬笆，右側有白漆樹幹的樹木，遠處中景則有一棵落葉樹與一座生鏽、無屋頂的金屬涼亭。左側低矮的圍欄與護欄後矗立著一棟淡棕色的多層建築，窗戶部分被光禿的枝條遮掩，柔和朦瀧的光線顯示出陰天的早晨或傍晚。被遺棄的鋪面與未修剪的植被顯示這是一個維護較少的綠地，位於較舊的公寓群或機構院落內。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:10:40.956766Z
+        seconds: 6.215276542
+        tokens: 15057
+        review: false
+    tags:
+    - park-path
+    - shrub
+    - tree
+    - pergola
   3f34360a5eb3c9ec303ca1035cc2453b:
     category: screenshot
     description:
+      de-DE:
+        text: Ein Screenshot der Dokumentationsseite der Bytecode Alliance für Cranelift, mit einer oberen Navigationsleiste, die zu Documentation, API Reference, Contributing, Chat und einem GitHub‑Symbol führt. Unter einer großen Überschrift „Cranelift“ beschreibt der Text, dass es sich um ein schnelles, sicheres, relativ einfaches und innovatives Compiler‑Backend handelt, das in Rust geschrieben ist und Zwischenrepräsentationen in ausführbaren Maschinencode kompiliert. Es wird von der Wasmtime‑WebAssembly‑Virtuellen Maschine für JIT‑ und AOT‑Kompilierung verwendet und experimentell als Backend für den Rust‑Compiler eingesetzt. Weiterhin wird angegeben, dass Cranelift derzeit die Plattformen x86‑64, aarch64 (ARM64), s390x (IBM Z) und riscv64 unterstützt, retargetierbar ist und weitere ISA‑Beiträge willkommen heißt. Zudem wird erwähnt, dass es aktiv gepflegt wird, um sandboxed, nicht vertrauenswürdigen Code mit nahezu nativer Leistung auszuführen, und dabei den Release‑ und Sicherheitspolitiken von Wasmtime folgt. Die Seite dient als Nachweis für den Projektumfang von Cranelift, die unterstützten Architekturen und seine Rolle im Bytecode‑Alliance‑Ökosystem.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:10:59.711952Z
+        seconds: 4.543547042
+        tokens: 14739
+        review: false
       en-US:
         text: A screenshot of the Bytecode Alliance's documentation page for Cranelift, with a top navigation bar linking to Documentation, API Reference, Contributing, Chat, and a GitHub icon. Below a large "Cranelift" heading, the body text describes it as a fast, secure, relatively simple, and innovative compiler backend written in Rust that compiles intermediate representations into executable machine code, used by the Wasmtime WebAssembly virtual machine for JIT and AOT compilation and experimentally as a Rust compiler backend. It goes on to state that Cranelift currently supports x86-64, aarch64 (ARM64), s390x (IBM Z), and riscv64 platforms, is retargetable, and welcomes further ISA contributions, and notes it is actively maintained for running sandboxed untrusted code with close-to-native performance, following Wasmtime's release and security policies. The page serves as evidence of Cranelift's project scope, supported architectures, and its role within the Bytecode Alliance ecosystem.
         provider: anthropic
@@ -66,9 +377,70 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: Una captura de pantalla de la página de documentación de Cranelift de Bytecode Alliance, con una barra de navegación superior que enlaza a Documentación, Referencia de API, Contribuir, Chat y un ícono de GitHub. Debajo de un encabezado grande “Cranelift”, el texto principal lo describe como un backend de compilador rápido, seguro, relativamente sencillo e innovador escrito en Rust que compila representaciones intermedias en código máquina ejecutable, utilizado por la máquina virtual WebAssembly Wasmtime para compilación JIT y AOT y, experimentalmente, como backend de compilador de Rust. Continúa indicando que Cranelift actualmente soporta las plataformas x86-64, aarch64 (ARM64), s390x (IBM Z) y riscv64, es retargetable y acoge contribuciones adicionales de ISA, y señala que se mantiene activamente para ejecutar código no confiable en sandbox con un rendimiento cercano al nativo, siguiendo las políticas de lanzamiento y seguridad de Wasmtime. La página sirve como evidencia del alcance del proyecto Cranelift, las arquitecturas soportadas y su papel dentro del ecosistema de Bytecode Alliance.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:11:16.44308Z
+        seconds: 6.163001084
+        tokens: 15181
+        review: false
+      fr-FR:
+        text: Une capture d'écran de la page de documentation de Cranelift du Bytecode Alliance, avec une barre de navigation supérieure comportant des liens vers Documentation, Référence API, Contribuer, Chat et une icône GitHub. Sous un grand titre « Cranelift », le texte décrit Cranelift comme un backend de compilateur rapide, sécurisé, relativement simple et innovant, écrit en Rust, qui compile des représentations intermédiaires en code machine exécutable, utilisé par la machine virtuelle WebAssembly Wasmtime pour la compilation JIT et AOT et expérimentalement comme backend de compilateur Rust. Il indique que Cranelift prend actuellement en charge les plateformes x86‑64, aarch64 (ARM64), s390x (IBM Z) et riscv64, qu’il est retargetable et accueille de nouvelles contributions d’ISA, et précise qu’il est activement maintenu pour exécuter du code non fiable en bac à sable avec des performances proches du natif, conformément aux politiques de publication et de sécurité de Wasmtime. La page constitue une preuve de la portée du projet Cranelift, des architectures prises en charge et de son rôle dans l’écosystème du Bytecode Alliance.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:11:10.448736Z
+        seconds: 5.9916025
+        tokens: 15210
+        review: false
+      ja-JP:
+        text: Bytecode Alliance の Cranelift 文書ページのスクリーンショットで、上部ナビゲーションバーには Documentation、API Reference、Contributing、Chat のリンクと GitHub アイコンがあります。大きな「Cranelift」見出しの下に、本文では Cranelift が Rust で実装された高速・安全・比較的シンプルで革新的なコンパイラバックエンドであり、中間表現を実行可能な機械コードに変換し、Wasmtime WebAssembly 仮想マシンの JIT および AOT コンパイル、また実験的に Rust コンパイラのバックエンドとして使用されていると説明されています。さらに、Cranelift は現在 x86-64、aarch64（ARM64）、s390x（IBM Z）、riscv64 プラットフォームをサポートし、リターゲット可能であり、さらなる ISA の貢献を歓迎していること、そして Wasmtime のリリースおよびセキュリティポリシーに従い、サンドボックス化された信頼できないコードをネイティブに近い性能で実行するために積極的に保守されていることが記されています。このページは Cranelift のプロジェクト範囲、サポートアーキテクチャ、および Bytecode Alliance エコシステム内での役割を示す証拠となっています。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:10:53.186263Z
+        seconds: 6.522812583
+        tokens: 15364
+        review: false
+      ko-KR:
+        text: Bytecode Alliance의 Cranelift 문서 페이지 스크린샷으로, 상단 네비게이션 바에는 Documentation, API Reference, Contributing, Chat 링크와 GitHub 아이콘이 있다. 큰 “Cranelift” 제목 아래 본문은 Rust로 작성된 빠르고 안전하며 비교적 단순하고 혁신적인 컴파일러 백엔드로, 중간 표현을 실행 가능한 머신 코드로 컴파일하며 Wasmtime WebAssembly 가상 머신에서 JIT 및 AOT 컴파일에 사용되고 실험적으로 Rust 컴파일러 백엔드로도 활용된다고 설명한다. 이어서 Cranelift는 현재 x86-64, aarch64(ARM64), s390x(IBM Z), riscv64 플랫폼을 지원하고, 재타깃이 가능하며 추가 ISA 기여를 환영한다는 내용과, Wasmtime의 릴리스 및 보안 정책을 따라 샌드박스된 신뢰되지 않은 코드를 네이티브에 근접한 성능으로 실행하기 위해 활발히 유지 관리되고 있다고 언급한다. 이 페이지는 Cranelift의 프로젝트 범위, 지원 아키텍처 및 Bytecode Alliance 생태계 내 역할을 증명하는 자료이다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:11:04.25799Z
+        seconds: 6.188042375
+        tokens: 15253
+        review: false
+      zh-CN:
+        text: 这是一张 Bytecode Alliance 关于 Cranelift 的文档页面的截图，顶部导航栏包含 “Documentation（文档）”、 “API Reference（API 参考）”、 “Contributing（贡献）”、 “Chat（聊天）” 链接以及一个 GitHub 图标。页面主体在大标题 “Cranelift” 以下，正文将其描述为用 Rust 编写的快速、安全、相对简洁且创新的编译器后端，能够将中间表示编译成可执行机器代码，供 Wasmtime WebAssembly 虚拟机进行 JIT 和 AOT 编译，并在实验性地作为 Rust 编译器的后端使用。文中进一步说明 Cranelift 目前支持 x86-64、aarch64（ARM64）、s390x（IBM Z）和 riscv64 平台，可重新定位，并欢迎进一步的 ISA 贡献；同时指出它正在积极维护，以在遵循 Wasmtime 的发布和安全策略的前提下，以接近本机性能运行沙箱中的不受信任代码。该页面作为 Cranelift 项目范围、支持的架构以及其在 Bytecode Alliance 生态系统中作用的证据。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:10:47.174998Z
+        seconds: 6.008500041
+        tokens: 15212
+        review: false
+      zh-TW:
+        text: 這是一張 Bytecode Alliance 的 Cranelift 文件頁面的螢幕截圖，頁面頂部有導覽列，連結至「Documentation（文件）」「API Reference（API 參考）」「Contributing（貢獻）」「Chat（聊天）」以及 GitHub 圖示。下方有大型的「Cranelift」標題，正文描述它是用 Rust 撰寫的快速、安全、相對簡單且創新的編譯器後端，能將中間表示編譯成可執行的機器碼，並被 Wasmtime WebAssembly 虛擬機用於 JIT 與 AOT 編譯，亦作為 Rust 編譯器的實驗性後端。文中指出 Cranelift 目前支援 x86-64、aarch64（ARM64）、s390x（IBM Z）以及 riscv64 平台，可重新定位並歡迎更多指令集貢獻，並說明它持續維護，以在沙箱環境中執行不受信任程式碼，提供接近原生效能，遵循 Wasmtime 的發佈與安全政策。此頁面證明了 Cranelift 的專案範圍、支援的架構，以及在 Bytecode Alliance 生態系統中的角色。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:11:22.609025Z
+        seconds: 6.6414145829999995
+        tokens: 15287
+        review: false
+    tags:
+    - cranelift
+    - bytecode-alliance
+    - wasmtime
+    - rust
   4a1d25650b1262d916f6571208a32764:
     category: screenshot
     description:
+      de-DE:
+        text: Dies ist ein Screenshot der persönlichen Entwickler‑Startseite, dunkel gestaltet, mit Navigationslinks oben, die 首页, 文稿, 手记, 时光, 思考 und 更多 anzeigen, daneben ein kleines kreisförmiges Avatar‑Symbol links und ein Profil‑Symbol rechts. Der Hauptinhalt stellt den Seiteninhaber vor mit Hi, I'm Innei gefolgt von einem winkenden Hand‑Emoji, dann A NodeJS Full Stack <Developer /> und dem Slogan An independent developer coding with love, begleitet von einer Reihe von acht Social‑/Kontakt‑Icons darunter (anscheinend Bilibili, NetEase Music, GitHub, E‑Mail, RSS, Telegram und X/Twitter). Auf der rechten Seite schwebt ein großes kreisförmiges Porträt eines Anime‑Mädchens mit hell lavendel‑weißem Haar, einer pinken Schleife und grauen Augen vor einem hellblauen Hintergrund, während rosafarbene Blumenblüten über den dunklen Hintergrund der gesamten Seite treiben. Am unteren Rand steht eine kurze chinesische Zeile mit einem Zitat über die Kraft des Gefühls, das lehrt, das Leben durch Verantwortung zu erhöhen, zugeschrieben den vier inneren Kräften.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:11:42.630863Z
+        seconds: 7.536846416
+        tokens: 15625
+        review: false
       en-US:
         text: This is a screenshot of a personal developer's homepage, dark-themed, with navigation links across the top reading 首页, 文稿, 手记, 时光, 思考, and 更多, alongside a small circular avatar icon on the left and a profile icon on the right. The main content introduces the site owner with "Hi, I'm Innei" followed by a waving hand emoji, then "A NodeJS Full Stack <Developer />" and the tagline "An independent developer coding with love," accompanied by a row of eight social/contact icons below (including what appear to be Bilibili, NetEase Music, GitHub, email, RSS, Telegram, and X/Twitter). On the right side floats a large circular portrait of an anime-style girl with light lavender-white hair, a pink bow, and grey eyes, set against a pale blue background, while pink flower petals drift across the dark backdrop of the whole page. At the bottom, a small line of Chinese text reads a quote about the power of feeling teaching one to elevate life through responsibility, attributed to "your four inner powers."
         provider: anthropic
@@ -77,9 +449,70 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: Esta es una captura de pantalla de la página principal de un desarrollador personal, con tema oscuro, con enlaces de navegación en la parte superior que dicen 首页, 文稿, 手记, 时光, 思考 y 更多, junto a un pequeño ícono circular de avatar a la izquierda y un ícono de perfil a la derecha. El contenido principal presenta al propietario del sitio con "Hi, I'm Innei" seguido de un emoji de mano saludando, luego "A NodeJS Full Stack <Developer />" y el lema "An independent developer coding with love", acompañados por una fila de ocho íconos sociales/contacto debajo (que incluyen lo que parecen ser Bilibili, NetEase Music, GitHub, correo electrónico, RSS, Telegram y X/Twitter). En el lado derecho flota un gran retrato circular de una chica estilo anime con cabello blanco lavanda claro, un lazo rosa y ojos grises, sobre un fondo azul pálido, mientras pétalos de flores rosa se deslizan por el fondo oscuro de toda la página. En la parte inferior, una pequeña línea de texto chino muestra una cita sobre el poder del sentimiento que enseña a elevar la vida mediante la responsabilidad, atribuida a "tus cuatro poderes internos".
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:12:04.674966Z
+        seconds: 5.513826125
+        tokens: 15274
+        review: false
+      fr-FR:
+        text: Ceci est une capture d'écran de la page d'accueil d'un développeur personnel, à thème sombre, avec des liens de navigation en haut affichant 首页, 文稿, 手记, 时光, 思考 et 更多, ainsi qu'une petite icône d'avatar circulaire à gauche et une icône de profil à droite. Le contenu principal présente le propriétaire du site avec Hi, I'm Innei suivi d'un emoji de main qui salue, puis A NodeJS Full Stack <Developer /> et le slogan An independent developer coding with love, accompagné d'une rangée de huit icônes sociales ou de contact (dont Bilibili, NetEase Music, GitHub, email, RSS, Telegram et X/Twitter). À droite flotte un grand portrait circulaire d'une fille de style anime aux cheveux blanc‑lavande clair, à un nœud rose et aux yeux gris, sur fond bleu pâle, tandis que des pétales de fleur rose dérivent sur le fond sombre de toute la page. En bas, une petite ligne de texte chinois cite une pensée sur le pouvoir du sentiment qui enseigne à élever la vie à travers la responsabilité, attribuée à vos quatre pouvoirs intérieurs.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:11:57.132489Z
+        seconds: 7.539314375
+        tokens: 15629
+        review: false
+      ja-JP:
+        text: これは個人開発者のホームページのスクリーンショットで、ダークテーマです。上部には「首页」「文稿」「手记」「时光」「思考」「更多」というナビゲーションリンクが並び、左側に小さな円形アバターアイコン、右側にプロフィールアイコンがあります。メインコンテンツは「Hi, I'm Innei」の挨拶（揺れる手の絵文字付き）と「A NodeJS Full Stack <Developer />」という文言、さらに「An independent developer coding with love」というタグラインで構成され、その下にBilibili、NetEase Music、GitHub、メール、RSS、Telegram、X/Twitter などと思われる8つのソーシャル/連絡先アイコンが並んでいます。右側には淡い青色の背景に、淡いラベンダー白の髪にピンクのリボン、灰色の目を持つアニメ風の少女の大きな円形ポートレートが浮かび、ページ全体の暗い背景にはピンクの花びらが舞っています。下部には「あなたの四つの内なる力」と署名された、感情の力が責任を通じて人生を高めることを教えるという意味合いの中国語の短文が表示されています。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:11:36.065352Z
+        seconds: 6.562255042
+        tokens: 15377
+        review: false
+      ko-KR:
+        text: 이것은 개인 개발자 홈페이지의 스크린샷으로, 다크 테마이며 상단에 首页, 文稿, 手记, 时光, 思考, 그리고 更多 라는 네비게이션 링크가 가로로 배치되고, 왼쪽에는 작은 원형 아바타 아이콘이, 오른쪽에는 프로필 아이콘이 있습니다. 메인 콘텐츠는 사이트 소유자를 소개하며 Hi, I'm Innei와 손 흔드는 이모지를 보여주고, 이어서 A NodeJS Full Stack <Developer />와 An independent developer coding with love라는 태그라인이 있습니다. 그 아래에는 Bilibili, NetEase Music, GitHub, 이메일, RSS, 텔레그램, X/Twitter 등으로 보이는 여덟 개의 소셜·연락 아이콘이 일렬로 배치되어 있습니다. 오른쪽에는 옅은 라벤더‑흰색 머리와 핑크색 리본, 회색 눈을 가진 애니메이션 스타일 소녀의 큰 원형 초상이 연한 파란 배경에 떠 있으며, 페이지 전체의 어두운 배경 위로 핑크색 꽃잎이 흩날립니다. 하단에는 “당신의 네 가지 내면의 힘”이라고 귀속된, 감정의 힘이 책임감을 통해 삶을 고양시킨다는 내용의 짧은 중국어 인용구가 있습니다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:11:50.170887Z
+        seconds: 6.958899667
+        tokens: 15379
+        review: false
+      zh-CN:
+        text: 这是一张个人开发者主页的截图，采用暗色主题，顶部有导航链接，文字分别为“首页、文稿、手记、时光、思考、更多”，左侧有一个小圆形头像图标，右侧有一个个人资料图标。主页主体以 “Hi, I'm Innei” 并配有挥手表情符号开场，随后是 “A NodeJS Full Stack <Developer />” 以及标语 “An independent developer coding with love”，下方排列着八个社交/联系图标（包括看起来像是哔哩哔哩、网易云音乐、GitHub、邮件、RSS、Telegram 和 X/Twitter）。右侧漂浮着一张大型圆形动漫风格女孩画像，女孩拥有淡紫白色的发色、粉色蝴蝶结和灰色眼睛，背景为浅蓝色；页面整体的暗色背景上飘散着粉色花瓣。底部有一行中文小字，引用了一句关于感受的力量教人通过责任提升人生的格言，署名为“你的四种内在力量”。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:11:29.25342Z
+        seconds: 6.809252083
+        tokens: 15410
+        review: false
+      zh-TW:
+        text: 這是一張個人開發者主頁的螢幕截圖，採用深色主題，頂部有導航連結依序為「首頁、文稿、手記、時光、思考、更多」，左側有一個小圓形頭像圖示，右側有個人檔案圖示。主要內容以「Hi, I'm Innei」並附上揮手表情符號作為開場，接著寫著「A NodeJS Full Stack <Developer />」及標語「An independent developer coding with love」，下方排列著八個社交/聯絡圖示（看起來分別是 Bilibili、網易雲音樂、GitHub、電子郵件、RSS、Telegram、以及 X/Twitter）。右側漂浮著一張大型圓形動漫風格女孩肖像，髮色為淡薰衣草白，帶粉紅蝴蝶結，眼睛呈灰色，背景是淡藍色；整個頁面的暗色背景上飄著粉紅花瓣。底部有一行中文文字，引用關於感受力量教導人以責任提升人生的語句，署名「你的四種內在力量」。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:12:10.19218Z
+        seconds: 5.950908209
+        tokens: 15271
+        review: false
+    tags:
+    - web-navigation
+    - node-js
+    - anime-avatar
+    - personal-website
   5104d3b6f735fbe76558681b4d37e8ce:
     category: screenshot
     description:
+      de-DE:
+        text: Ein Terminal‑Screenshot zeigt das Ende eines Cargo‑Build‑Logs für einen Rust‑Workspace namens „seam“, der mit `~/C/P/seam` bezeichnet ist und in dem die Shell unter dem Benutzer `canmi` auf dem Branch `main` läuft. Dutzende von Abhängigkeits‑Crates werden nacheinander kompiliert (console, reqwest, clap, tokio‑tungstenite, notify, indicatif und weitere), gefolgt von den eigenen Crates des Projekts — seam-codegen, seam-server-axum, seam-skeleton, seam-injector-wasm, seam-engine-wasm, seam-cli, alle in Version 0.5.38 — sowie mehreren Beispiel‑Backends (github-dashboard-axum, i18n-demo-axum, markdown-demo-rust, demo-server-rust). Das Log endet mit `Finished \`dev\` profile [unoptimized + debuginfo] target(s) in 19.23s` und weist damit auf einen erfolgreichen Debug‑Build des gesamten Workspaces einschließlich seiner Beispielanwendungen hin.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:12:27.987016Z
+        seconds: 5.819493542
+        tokens: 15120
+        review: false
       en-US:
         text: A terminal screenshot shows the tail end of a Cargo build log for a Rust workspace called "seam", titled `~/C/P/seam` with the shell running under user `canmi` on branch `main`. Dozens of dependency crates compile in sequence (console, reqwest, clap, tokio-tungstenite, notify, indicatif, and others), followed by the project's own crates — seam-codegen, seam-server-axum, seam-skeleton, seam-injector-wasm, seam-engine-wasm, seam-cli, all at version 0.5.38 — and several example backends (github-dashboard-axum, i18n-demo-axum, markdown-demo-rust, demo-server-rust). The log ends with `Finished \\`dev\\` profile [unoptimized + debuginfo] target(s) in 19.23s`, indicating a successful debug build of the whole workspace including its example applications.
         provider: anthropic
@@ -88,9 +521,70 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: Una captura de pantalla de terminal muestra el final de un registro de construcción de Cargo para un espacio de trabajo Rust llamado “seam”, con la ruta `~/C/P/seam` y el shell ejecutándose bajo el usuario `canmi` en la rama `main`. Decenas de crates de dependencias se compilan en secuencia (console, reqwest, clap, tokio‑tungstenite, notify, indicatif y otros), seguidos por los crates propios del proyecto — seam‑codegen, seam‑server‑axum, seam‑skeleton, seam‑injector‑wasm, seam‑engine‑wasm, seam‑cli, todos en la versión 0.5.38 — y varios back‑ends de ejemplo (github‑dashboard‑axum, i18n‑demo‑axum, markdown‑demo‑rust, demo‑server‑rust). El registro termina con `Finished \`dev\` profile [unoptimized + debuginfo] target(s) in 19.23s`, indicando una compilación de depuración exitosa de todo el espacio de trabajo, incluidas sus aplicaciones de ejemplo.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:12:46.501184Z
+        seconds: 4.02253525
+        tokens: 14678
+        review: false
+      fr-FR:
+        text: Une capture d’écran du terminal montre la fin d’un journal de construction Cargo pour un espace de travail Rust nommé « seam », intitulé `~/C/P/seam` avec le shell exécuté sous l’utilisateur `canmi` sur la branche `main`. Des dizaines de crates de dépendances se compilent successivement (console, reqwest, clap, tokio-tungstenite, notify, indicatif, et d’autres), suivies des crates du projet — seam-codegen, seam-server-axum, seam-skeleton, seam-injector-wasm, seam-engine-wasm, seam-cli, toutes en version 0.5.38 — et plusieurs back‑ends d’exemple (github-dashboard-axum, i18n-demo-axum, markdown-demo-rust, demo-server-rust). Le journal se termine par `Finished \`dev\` profile [unoptimized + debuginfo] target(s) in 19.23s`, indiquant une construction de débogage réussie de l’ensemble de l’espace de travail, y compris ses applications d’exemple.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:12:40.19024Z
+        seconds: 6.307390542
+        tokens: 15118
+        review: false
+      ja-JP:
+        text: ターミナルのスクリーンショットは、Rust ワークスペース「seam」の Cargo ビルドログの末尾を示し、タイトルは `~/C/P/seam`、シェルはユーザー `canmi` が `main` ブランチで実行しています。依存クレートが順にコンパイルされます（console、reqwest、clap、tokio-tungstenite、notify、indicatif など）。続いてプロジェクト独自のクレート—seam-codegen、seam-server-axum、seam-skeleton、seam-injector-wasm、seam-engine-wasm、seam-cli（すべてバージョン 0.5.38）—と、いくつかの例バックエンド（github-dashboard-axum、i18n-demo-axum、markdown-demo-rust、demo-server-rust）がコンパイルされます。ログは `Finished \`dev\` profile [unoptimized + debuginfo] target(s) in 19.23s` で終了し、例示アプリケーションを含むワークスペース全体のデバッグビルドが成功したことを示しています。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:12:21.994475Z
+        seconds: 5.988940333
+        tokens: 15226
+        review: false
+      ko-KR:
+        text: 터미널 스크린샷은 Rust 워크스페이스 “seam”의 Cargo 빌드 로그 말미를 보여줍니다. 제목은 `~/C/P/seam`이며, 셸은 사용자 `canmi`가 `main` 브랜치에서 실행하고 있습니다. 수십 개의 의존 크레이트가 순차적으로 컴파일됩니다 (console, reqwest, clap, tokio-tungstenite, notify, indicatif 등). 이어서 프로젝트 자체 크레이트들—seam-codegen, seam-server-axum, seam-skeleton, seam-injector-wasm, seam-engine-wasm, seam-cli—모두 버전 0.5.38이며, 몇몇 예제 백엔드(github-dashboard-axum, i18n-demo-axum, markdown-demo-rust, demo-server-rust)도 포함됩니다. 로그는 `Finished \`dev\` profile [unoptimized + debuginfo] target(s) in 19.23s` 로 끝나며, 예제 애플리케이션을 포함한 전체 워크스페이스가 성공적으로 디버그 빌드되었음을 나타냅니다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:12:33.809764Z
+        seconds: 6.376854291
+        tokens: 15158
+        review: false
+      zh-CN:
+        text: 终端截图显示了名为 “seam” 的 Rust 工作区的 Cargo 构建日志尾部，标题为 `~/C/P/seam`，在用户 `canmi` 的 shell 中，分支为 `main`。数十个依赖 crate 依次编译（console、reqwest、clap、tokio-tungstenite、notify、indicatif 等），随后是项目自身的 crate —— seam-codegen、seam-server-axum、seam-skeleton、seam-injector-wasm、seam-engine-wasm、seam-cli，全部版本为 0.5.38 —— 以及多个示例后端（github-dashboard-axum、i18n-demo-axum、markdown-demo-rust、demo-server-rust）。日志以 `Finished \\`dev\\` profile [unoptimized + debuginfo] target(s) in 19.23s` 结束，表明整个工作区包括示例应用已成功完成调试构建。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:12:16.146293Z
+        seconds: 5.845254042
+        tokens: 15169
+        review: false
+      zh-TW:
+        text: 終端畫面截圖顯示了 Rust 工作區「seam」的 Cargo 建置日誌尾端，目錄為 `~/C/P/seam`，使用者 `canmi` 在 `main` 分支上執行 shell。數十個依賴 crate 依序編譯（如 console、reqwest、clap、tokio-tungstenite、notify、indicatif 等），接著是專案自己的 crate —— seam-codegen、seam-server-axum、seam-skeleton、seam-injector-wasm、seam-engine-wasm、seam-cli，全部為 0.5.38 版 —— 以及數個示例後端（github-dashboard-axum、i18n-demo-axum、markdown-demo-rust、demo-server-rust）。日誌以 `Finished \`dev\` profile [unoptimized + debuginfo] target(s) in 19.23s` 結束，表示整個工作區包括其示例應用程式已成功完成除錯建置。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:12:50.527269Z
+        seconds: 6.446827541
+        tokens: 15264
+        review: false
+    tags:
+    - rust
+    - cargo
+    - command-line-interface
+    - compilation
   5898c4f0bf6412e9323eca7b85c75365:
     category: photograph
     description:
+      de-DE:
+        text: Ein Foto, das drinnen aufgenommen wurde, vermutlich in einem Parkhaus oder einem Versorgungskorridor, zeigt eine raue Betonwand mit einem an der Wand montierten Hydranten-Schrank links, beschriftet mit „消火栓 / FIRE HYDRANT“ in rotem Text auf weißem Hintergrund, neben freiliegenden Rohren und einem kleinen, an der Wand angebrachten Abluftventil darüber. Auf dem unteren Wandstreifen ist in tropfenden roten Buchstaben die Warnung „消防通道严禁停车“ (Feuerweg, Parken streng verboten) gemalt; die verlaufende Farbe lässt vermuten, dass sie von Hand mit Pinsel oder Rolle aufgetragen wurde und nicht gedruckt ist. Der nackte Betonboden, die unfertigen Wände und die technischen Anschlüsse zeigen, dass es sich um einen Dienst- oder Kellerbereich handelt, in dem das Schild als Nachweis für aktive Bemühungen dient, den Feuerzugang von geparkten Fahrzeugen freizuhalten.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:13:07.492962Z
+        seconds: 4.758524459
+        tokens: 14925
+        review: false
       en-US:
         text: A photograph taken indoors, likely in a parking garage or utility corridor, showing a rough concrete wall with a wall-mounted fire hydrant cabinet on the left, labeled "消火栓 / FIRE HYDRANT" in red text on white, alongside exposed pipes and a small wall-mounted exhaust vent above it. Painted in dripping red characters across the lower band of the wall is the warning "消防通道严禁停车" (fire lane, parking strictly prohibited), the paint runs suggesting it was applied by hand with a brush or roller rather than printed. The bare concrete floor, unfinished walls, and utility fittings indicate this is a service or basement area where the sign serves as evidence of an active effort to keep the fire access route clear of parked vehicles.
         provider: anthropic
@@ -99,9 +593,70 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: Una fotografía tomada en interiores, probablemente en un estacionamiento subterráneo o corredor de servicios, que muestra una pared de concreto rugosa con un armario de hidrante contra incendios montado en la pared a la izquierda, etiquetado con "消火栓 / FIRE HYDRANT" en texto rojo sobre fondo blanco, junto a tuberías expuestas y una pequeña ventilación de escape montada en la pared encima. Pintado con caracteres rojos goteantes a lo largo de la banda inferior de la pared está la advertencia "消防通道严禁停车" (calle de incendio, prohibido estacionar), la pintura parece haber sido aplicada a mano con pincel o rodillo en lugar de imprimirse. El suelo de concreto desnudo, las paredes sin terminar y los accesorios de servicios indican que se trata de un área de servicio o sótano donde el letrero sirve como evidencia de un esfuerzo activo para mantener la ruta de acceso al fuego libre de vehículos estacionados.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:13:22.849425Z
+        seconds: 3.120563042
+        tokens: 14532
+        review: false
+      fr-FR:
+        text: Une photographie prise à l'intérieur, probablement dans un garage souterrain ou un couloir utilitaire, montrant un mur de béton rugueux avec une armoire d'incendie murale à gauche, portant l'inscription « 消火栓 / FIRE HYDRANT » en texte rouge sur fond blanc, à côté de conduites apparentes et d'une petite ventouse d'extraction murale au-dessus. Des caractères rouges dégoulinants peints sur la bande inférieure du mur affichent l'avertissement « 消防通道严禁停车 » (voie d’incendie, stationnement strictement interdit), la coulure de la peinture suggérant qu'elle a été appliquée à la main à l'aide d'un pinceau ou d'un rouleau plutôt qu'imprimée. Le sol en béton brut, les murs non finis et les équipements utilitaires indiquent qu'il s'agit d'un espace de service ou d’un sous‑sol où le panneau constitue la preuve d'un effort actif pour garder la voie d'accès aux pompiers dégagée des véhicules stationnés.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:13:17.836243Z
+        seconds: 5.009566042
+        tokens: 14943
+        review: false
+      ja-JP:
+        text: 屋内で撮影された写真で、駐車場や設備用通路と思われる場所にあり、左側に壁掛け式の消火栓キャビネットが取り付けられたざらざらしたコンクリート壁が映っている。キャビネットには白地に赤文字で「消火栓 / FIRE HYDRANT」とラベルが付いており、露出した配管とその上部に小さな壁掛け式排気口がある。壁の下部帯に、赤い文字がにじみながら「消防通道严禁停车」（消防通路は駐車禁止）という警告が塗られており、刷り出しではなく筆やローラーで手塗りされたことがうかがえる。むき出しのコンクリート床、未完成の壁、設備類から、この場所はサービス用または地下のエリアであり、標識は駐車車両が消防経路を塞がないようにする積極的な取り組みの証拠となっている。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:13:02.000056Z
+        seconds: 5.489210209
+        tokens: 15010
+        review: false
+      ko-KR:
+        text: 실내에서 촬영된 사진으로, 주차장이나 설비 복도일 가능성이 높으며, 거친 콘크리트 벽에 왼쪽에 벽걸이형 소화전 캐비닛이 보이고, 흰 바탕에 빨간 글씨로 “消火栓 / FIRE HYDRANT”라고 라벨링되어 있다. 그 옆에는 노출된 파이프와 위에 작은 벽걸이형 배기구가 있다. 벽 아래쪽 띠에는 물방울이 흐른 듯한 빨간 글자로 “消防通道严禁停车”(화재 통로, 주차 금지) 경고 문구가 칠해져 있으며, 페인트가 번진 형태는 브러시나 롤러로 손으로 칠한 것으로 보인다. 노출된 콘크리트 바닥, 마감되지 않은 벽, 설비 부속품은 이곳이 서비스 또는 지하 공간임을 나타내며, 표지판은 주차된 차량이 화재 접근 통로를 막지 않도록 적극적인 관리가 이루어지고 있음을 증명한다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:13:12.255247Z
+        seconds: 5.577414875
+        tokens: 15007
+        review: false
+      zh-CN:
+        text: 这是一张室内拍摄的照片，可能位于停车库或设施走廊，展示了一面粗糙的混凝土墙，左侧挂有壁挂式消火栓柜，柜体上以红底白字标注“消火栓 / FIRE HYDRANT”，旁边可见裸露的管道，柜上方有一个小型壁挂式排气口。墙面下部用滴漆的红色字符写着警示语“消防通道严禁停车”，漆迹呈流淌状，显示是手工用刷子或滚筒涂刷而非印刷。光秃的混凝土地面、未完工的墙面以及各种设施配件表明这里是服务或地下区域，标识体现了有人积极保持消防通道不被停放车辆占用的努力。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:12:56.977463Z
+        seconds: 5.018809416
+        tokens: 14910
+        review: false
+      zh-TW:
+        text: 這張照片在室內拍攝，可能位於停車場或公共走廊，畫面顯示一面粗糙的混凝土牆，左側掛有標示「消火栓 / FIRE HYDRANT」的壁掛式消防栓櫃，旁邊有裸露的管線及其上方的壁掛式小型排氣口。牆面下方以滴筆式紅字寫著警示「消防通道嚴禁停車」，字跡流淌顯示是手工用刷子或滾筒塗刷而非印刷。裸露的混凝土地面、未完成的牆壁以及各種管線裝置表明這是服務或地下空間，標示顯示有人主動維護消防通道不被停車佔用。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:13:25.97401Z
+        seconds: 7.997192125
+        tokens: 14984
+        review: false
+    tags:
+    - fire-hydrant
+    - concrete-wall
+    - chinese-graffiti
+    - exposed-pipes
   5c33f853b73251e594e7c0eaca0a5709:
     category: screenshot
     description:
+      de-DE:
+        text: Dies ist ein Screenshot der Next.js‑Startseite, dunkel gestaltet mit einem dreieckigen Logo und einer oberen Navigation, die Showcase, Docs, Blog, Templates, Enterprise, eine Suchleiste sowie Deploy‑ und Learn‑Buttons auflistet. Der Hero‑Bereich zeigt den Text „The React Framework for the Web“ und darunter einen Untertext, der erklärt, dass Next.js von einigen der größten Unternehmen der Welt genutzt wird, um hochwertige Web‑Anwendungen mit React‑Komponenten zu bauen. Darunter befinden sich zwei Buttons, „Get Started“ und „Learn Next.js“, sowie eine terminalartige Befehlszeile mit „npx create-next-app@latest“, die die Rolle der Seite als offizielle Marketing‑ und Onboarding‑Landing‑Page des Frameworks belegt.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:13:44.382893Z
+        seconds: 4.696441875
+        tokens: 14807
+        review: false
       en-US:
         text: This is a screenshot of the Next.js homepage, dark-themed with a triangular logo and a top nav listing Showcase, Docs, Blog, Templates, Enterprise, a search bar, and Deploy and Learn buttons. The hero section reads "The React Framework for the Web," followed by subtext explaining that Next.js is used by some of the world's largest companies to build high-quality web applications with React components. Below that sit two buttons, "Get Started" and "Learn Next.js," and a terminal-style command line reading "npx create-next-app@latest," evidencing the site's role as the framework's official marketing and onboarding landing page.
         provider: anthropic
@@ -110,9 +665,69 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: Esta es una captura de pantalla de la página principal de Next.js, con tema oscuro, un logo triangular y una barra de navegación superior que muestra Showcase, Docs, Blog, Templates, Enterprise, una barra de búsqueda y los botones Deploy y Learn. La sección principal muestra el texto "The React Framework for the Web", seguido de un subtítulo que explica que Next.js es usado por algunas de las mayores compañías del mundo para crear aplicaciones web de alta calidad con componentes React. Debajo hay dos botones, "Get Started" y "Learn Next.js", y una línea de comandos estilo terminal que dice "npx create-next-app@latest", evidenciando el papel del sitio como la página oficial de marketing e incorporación del framework.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:13:58.783581Z
+        seconds: 4.9261215
+        tokens: 14852
+        review: false
+      fr-FR:
+        text: Ceci est une capture d’écran de la page d’accueil de Next.js, thème sombre avec un logo triangulaire et une barre de navigation supérieure répertoriant Showcase, Docs, Blog, Templates, Enterprise, une barre de recherche, ainsi que les boutons Deploy et Learn. La section héro lit « The React Framework for the Web », suivie d’un sous‑texte expliquant que Next.js est utilisé par certaines des plus grandes entreprises du monde pour créer des applications web de haute qualité avec des composants React. En dessous se trouvent deux boutons, « Get Started » et « Learn Next.js », ainsi qu’une ligne de commande de type terminal affichant « npx create-next-app@latest », attestant du rôle du site en tant que page officielle de marketing et d’onboarding du framework.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:13:53.963661Z
+        seconds: 4.81620075
+        tokens: 14640
+        review: false
+      ja-JP:
+        text: これはNext.jsのホームページのスクリーンショットで、暗いテーマに三角形のロゴがあり、上部ナビゲーションにはShowcase、Docs、Blog、Templates、Enterpriseが並び、検索バーとDeploy、Learnボタンがあります。ヒーローセクションには「The React Framework for the Web」と表示され、その下にNext.jsが世界最大手の企業のいくつかによって、Reactコンポーネントを使用して高品質なウェブアプリケーションを構築するために利用されていることを説明するサブテキストがあります。その下に「Get Started」と「Learn Next.js」の2つのボタンがあり、ターミナル風のコマンドライン「npx create-next-app@latest」が表示され、サイトがフレームワークの公式マーケティングおよびオンボーディング用ランディングページであることが示されています。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:13:38.744313Z
+        seconds: 5.634863875
+        tokens: 14907
+        review: false
+      ko-KR:
+        text: 다음은 삼각형 로고와 어두운 테마를 갖춘 Next.js 홈페이지의 스크린샷이며, 상단 네비게이션에 Showcase, Docs, Blog, Templates, Enterprise, 검색창, Deploy 및 Learn 버튼이 나열되어 있습니다. 히어로 섹션에는 "The React Framework for the Web"이라는 문구가 표시되고, 이어서 Next.js가 세계 최대 기업들 중 일부에 의해 React 컴포넌트를 사용하여 고품질 웹 애플리케이션을 구축하는 데 사용된다는 설명이 있습니다. 그 아래에는 "Get Started"와 "Learn Next.js" 버튼 두 개와 "npx create-next-app@latest"라는 터미널 스타일 명령어가 있어, 이 사이트가 프레임워크의 공식 마케팅 및 온보딩 랜딩 페이지 역할을 함을 나타냅니다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:13:49.083297Z
+        seconds: 4.876181709
+        tokens: 14825
+        review: false
+      zh-CN:
+        text: 这是 Next.js 首页的截图，采用深色主题，带有三角形标志，顶部导航列出 Showcase、Docs、Blog、Templates、Enterprise、搜索框以及 Deploy 和 Learn 按钮。英雄区显示 “The React Framework for the Web”，随后有说明文字指出 Next.js 被全球一些最大的公司用于使用 React 组件构建高质量的 Web 应用程序。下面有两个按钮，“Get Started”和“Learn Next.js”，以及一行终端风格的命令行 “npx create-next-app@latest”，彰显该站点是该框架官方的营销和入门登录页。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:13:33.975379Z
+        seconds: 4.765541791
+        tokens: 14731
+        review: false
+      zh-TW:
+        text: 這是一張 Next.js 首頁的螢幕截圖，採用深色主題，具有三角形標誌，頂部導覽列列出 Showcase、Docs、Blog、Templates、Enterprise、一個搜尋列，以及 Deploy 與 Learn 按鈕。主視覺區寫著「The React Framework for the Web」，其下的說明文字指出 Next.js 被全球一些最大的公司用來使用 React 元件建構高品質的 Web 應用程式。其下方有「Get Started」與「Learn Next.js」兩個按鈕，以及一行類似終端機的指令列「npx create-next-app@latest」，顯示此網站是該框架官方的行銷與上手導覽頁面。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:14:03.713255Z
+        seconds: 4.898177875
+        tokens: 14849
+        review: false
+    tags:
+    - next-js
+    - npm
+    - web-navigation
   6da637a66b48711354532477ac3f2014:
     category: artwork
     description:
+      de-DE:
+        text: 'Dies ist ein Screenshot‑Mockup, das ein Blog‑Theme bewirbt, mit dem Wortzeichen‑Logo „Nlvi“ und einem Korallen‑Unterstrich links, daneben zwei überlappende Browser‑Fenster‑Vorschauen einer mit dem Hexo‑Static‑Site‑Generator erstellten Seite. Beide Vorschaufenster zeigen denselben Demo‑Beitrag vom 27.12.2013 mit dem Titel „Elements“, Platzhalter‑Lorem‑Ipsum‑Text und einer vollständigen Palette typografischer Beispiele: Überschriften 1 bis 6 in absteigender Größe, ein Absatzabschnitt mit gestalteten Links, fett‑ und kursivem Text, Unterstreichungen und einem Blockzitat, gefolgt von einer dreispaltigen Tabelle mit „Table Header 1/2/3“ und „Division“-Zeilen. Die obere Navigationsleiste zeigt „ARTICLE, ARCHIVES, TAGS, ABOUT“ zusammen mit einem Such‑Symbol und weist darauf hin, dass es sich um eine Style‑Guide‑ bzw. Theme‑Demo‑Seite handelt, die die Darstellung von HTML‑Elementen im Hexo‑Theme demonstriert.'
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:14:20.740008Z
+        seconds: 7.460879459
+        tokens: 15083
+        review: false
       en-US:
         text: 'This is a screenshot mockup promoting a blog theme, showing a "Nlvi" wordmark logo with a coral underline on the left, paired with two overlapping browser-window previews of a site built with the Hexo static-site generator. Both preview panes display the same demo post dated 2013-12-27, titled "Elements," with placeholder Lorem Ipsum text and a full stack of typographic samples: headings 1 through 6 in descending size, a paragraph section with styled links, bold and italic text, underlines, and a blockquote, followed by a three-column table with "Table Header 1/2/3" and "Division" rows. The top navigation bar reads "ARTICLE, ARCHIVES, TAGS, ABOUT" alongside a search icon, indicating this is a style-guide or theme-demo page meant to showcase how HTML elements render within the Hexo theme.'
         provider: anthropic
@@ -121,9 +736,70 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: 'Esta es una maqueta de captura de pantalla que promociona un tema de blog, mostrando el logotipo de marca denominativa “Nlvi” con un subrayado coral a la izquierda, acompañado de dos vistas preliminares de ventanas de navegador superpuestas de un sitio creado con el generador estático Hexo. Ambos paneles de vista previa muestran la misma publicación de demostración con fecha 27‑12‑2013, titulada “Elements”, con texto de marcador de posición Lorem Ipsum y una gama completa de ejemplos tipográficos: encabezados del 1 al 6 en tamaños descendentes, una sección de párrafo con enlaces estilizados, texto en negrita y cursiva, subrayados y una cita en bloque, seguidos de una tabla de tres columnas con “Table Header 1/2/3” y filas “Division”. La barra de navegación superior muestra “ARTICLE, ARCHIVES, TAGS, ABOUT” junto a un icono de búsqueda, indicando que se trata de una página de guía de estilo o demostración de tema destinada a mostrar cómo se renderizan los elementos HTML dentro del tema Hexo.'
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:14:39.36216Z
+        seconds: 5.837065542
+        tokens: 15170
+        review: false
+      fr-FR:
+        text: 'Il s''agit d''une maquette d''écran promotionnelle d''un thème de blog, affichant le logo texte « Nlvi » avec un soulignement corail à gauche, accompagné de deux aperçus superposés de fenêtres de navigateur d''un site créé avec le générateur de sites statiques Hexo. Les deux panneaux d''aperçu montrent le même article de démonstration daté du 27‑12‑2013, intitulé « Elements », avec du texte factice Lorem Ipsum et une gamme complète d''exemples typographiques : titres 1 à 6 décroissants, une section de paragraphe avec des liens stylisés, du texte en gras et en italique, des soulignements et une citation en bloc, suivis d''un tableau à trois colonnes avec les en‑têtes « Table Header 1/2/3 » et des lignes « Division ». La barre de navigation supérieure indique « ARTICLE, ARCHIVES, TAGS, ABOUT » accompagnée d''une icône de recherche, indiquant qu''il s''agit d''une page de guide de style ou de démonstration du thème destinée à montrer le rendu des éléments HTML dans le thème Hexo.'
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:14:33.983245Z
+        seconds: 5.374952959
+        tokens: 15093
+        review: false
+      ja-JP:
+        text: これはブログテーマを宣伝するスクリーンショットモックアップで、左側にサンゴ色の下線が付いた「Nlvi」ワードマークロゴが表示され、Hexo 静的サイトジェネレータで構築されたサイトの2つの重なり合うブラウザウィンドウプレビューが添えられています。両方のプレビューペインでは、2013‑12‑27の日付で「Elements」というタイトルのデモ投稿が同じく表示され、プレースホルダーの Lorem Ipsum テキストと、見出し1から6までサイズが徐々に小さくなるタイポグラフィサンプル、リンク装飾付きの段落、太字・斜体・下線、ブロッククオート、そして「Table Header 1」「Table Header 2」「Table Header 3」と「Division」行を持つ3列テーブルが続きます。上部ナビゲーションバーには「ARTICLE, ARCHIVES, TAGS, ABOUT」と検索アイコンが並び、これは Hexi テーマ内で HTML 要素がどのようにレンダリングされるかを示すスタイルガイドまたはテーマデモページであることを示しています。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:14:14.364954Z
+        seconds: 6.371149542
+        tokens: 15224
+        review: false
+      ko-KR:
+        text: '이 스크린샷 모형은 블로그 테마를 홍보하는 것으로, 왼쪽에 산호색 밑줄이 있는 "Nlvi" 워드마크 로고와 Hexo 정적 사이트 생성기로 만든 사이트의 두 개 겹쳐진 브라우저 창 미리보기가 함께 표시됩니다. 두 미리보기 창 모두 2013-12-27 날짜의 데모 포스트 "Elements"를 보여주며, 자리표시자 Lorem Ipsum 텍스트와 전체 타이포그래피 샘플이 포함됩니다: 크기가 큰 순서대로 1~6 수준의 헤딩, 스타일이 적용된 링크가 포함된 단락, 굵게와 기울임꼴 텍스트, 밑줄, 인용구, 그리고 "Table Header 1/2/3"와 "Division" 행이 있는 3열 표가 이어집니다. 상단 네비게이션 바에는 검색 아이콘과 함께 "ARTICLE, ARCHIVES, TAGS, ABOUT"가 표시되어, 이것이 Hexo 테마 내에서 HTML 요소가 어떻게 렌더링되는지를 보여주는 스타일 가이드 또는 테마 데모 페이지임을 나타냅니다.'
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:14:28.204949Z
+        seconds: 5.775290583
+        tokens: 15152
+        review: false
+      zh-CN:
+        text: 这是一个用于推广博客主题的截图模型，左侧显示带有珊瑚色下划线的“Nlvi”文字徽标，右侧配有两个重叠的浏览器窗口预览，展示使用 Hexo 静态站点生成器构建的网站。两个预览窗格均显示同一篇发布日期为 2013-12-27、标题为 “Elements” 的演示文章，内容为占位的 Lorem Ipsum 文本，并呈现完整的排版示例：从大到小的 1 到 6 级标题、带样式链接的段落、加粗和斜体文本、下划线以及块引用，随后是一个三列表格，表头为 “Table Header 1/2/3”，行标题为 “Division”。顶部导航栏显示 “ARTICLE, ARCHIVES, TAGS, ABOUT” 并附有搜索图标，表明这是一个风格指南或主题演示页面，用于展示 Hexo 主题中 HTML 元素的渲染效果。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:14:08.615386Z
+        seconds: 5.745662542
+        tokens: 15087
+        review: false
+      zh-TW:
+        text: 這是一張宣傳部落格主題的螢幕截圖模型，左側顯示帶有珊瑚色底線的「Nlvi」文字商標標誌，旁邊配有兩個重疊的瀏覽器視窗預覽，展示使用 Hexo 靜態網站生成器建構的網站。兩個預覽窗格均顯示同一篇發佈於 2013-12-27 的示範文章，標題為「Elements」，內容為佔位的 Lorem Ipsum 文本，並呈現完整的排版範例：從大到小的 1 至 6 級標題、帶有樣式連結的段落、粗體、斜體、底線文字及引用區塊，接著是一個三欄表格，表頭為「Table Header 1/2/3」且有「Division」列。頂部導覽列顯示「ARTICLE、ARCHIVES、TAGS、ABOUT」以及搜尋圖示，表明這是一個風格指南或主題示範頁面，用於展示 Hexo 主題中 HTML 元素的呈現效果。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:14:45.203624Z
+        seconds: 5.908087334
+        tokens: 15184
+        review: false
+    tags:
+    - hexo
+    - blog-framework
+    - web-navigation
+    - personal-website
   7d3a80a688fa627e4f3577f69b320867:
     category: diagram
     description:
+      de-DE:
+        text: 'Dies ist ein Balkendiagramm, das die Linkzeiten von vier Linkern – GNU ld 2.42, GNU gold 2.38, LLVM lld 19.0.0 und mold 2.4.0 – bei drei Programmen zunehmender Binärgröße vergleicht: MySQL 8.3 (0,47 GiB), Clang 19.0 (1,56 GiB) und Chromium 124 (1,35 GiB), wobei die Linkzeit in Sekunden auf der vertikalen Achse angezeigt wird. GNU ld benötigt etwa 11 Sekunden für MySQL und rund 42 Sekunden für Clang, für Chromium gibt es keinen Balken. GNU gold steigt von etwa 7,5 Sekunden über 33 Sekunden auf 27 Sekunden bei den drei Programmen. LLVM lld und mold bleiben dagegen deutlich niedriger, wobei lld etwa 2, 5 und 6 Sekunden und mold durchgehend unter 2 Sekunden liegt. Das Diagramm zeigt, dass mold und LLVM lld mit der Binärgröße viel besser skalieren als die traditionellen Linker GNU ld und gold, deren Linkzeiten bei größeren Programmen deutlich stärker ansteigen.'
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:15:04.872718Z
+        seconds: 6.323161792
+        tokens: 15290
+        review: false
       en-US:
         text: 'This is a bar chart comparing link times across four linkers -- GNU ld 2.42, GNU gold 2.38, LLVM lld 19.0.0, and mold 2.4.0 -- on three programs of increasing binary size: MySQL 8.3 (0.47 GiB), Clang 19.0 (1.56 GiB), and Chromium 124 (1.35 GiB), with time to link in seconds on the vertical axis. GNU ld takes about 11 seconds on MySQL and roughly 42 seconds on Clang but has no bar for Chromium, GNU gold rises from about 7.5 seconds to 33 seconds to 27 seconds across the three, while LLVM lld and mold stay far lower throughout, with lld around 2, 5, and 6 seconds and mold consistently under 2 seconds. The chart is evidence that mold and LLVM lld scale far better with binary size than the traditional GNU ld and gold linkers, whose link times grow much more steeply as the program being linked gets larger.'
         provider: anthropic
@@ -132,9 +808,70 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: 'Este es un diagrama de barras que compara los tiempos de enlace de cuatro enlazadores — GNU ld 2.42, GNU gold 2.38, LLVM lld 19.0.0 y mold 2.4.0 — en tres programas de tamaño binario creciente: MySQL 8.3 (0,47 GiB), Clang 19.0 (1,56 GiB) y Chromium 124 (1,35 GiB), con el tiempo de enlace en segundos en el eje vertical. GNU ld tarda aproximadamente 11 segundos en MySQL y alrededor de 42 segundos en Clang, pero no tiene barra para Chromium; GNU gold aumenta de unos 7,5 segundos a 33 segundos y luego a 27 segundos en los tres casos, mientras que LLVM lld y mold permanecen mucho más bajos, con lld alrededor de 2, 5 y 6 segundos y mold consistentemente bajo 2 segundos. El gráfico evidencia que mold y LLVM lld escalan mucho mejor con el tamaño binario que los enlazadores tradicionales GNU ld y gold, cuyos tiempos de enlace crecen mucho más abruptamente a medida que el programa enlazado se hace más grande.'
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:15:23.566826Z
+        seconds: 7.082574958
+        tokens: 15314
+        review: false
+      fr-FR:
+        text: 'Ceci est un diagramme à barres comparant les temps de liaison de quatre lieurs — GNU ld 2.42, GNU gold 2.38, LLVM lld 19.0.0 et mold 2.4.0 — sur trois programmes de taille binaire croissante : MySQL 8.3 (0,47 GiB), Clang 19.0 (1,56 GiB) et Chromium 124 (1,35 GiB), avec le temps de liaison en secondes sur l’axe vertical. GNU ld prend environ 11 secondes sur MySQL et environ 42 secondes sur Clang, mais il n’a pas de barre pour Chromium ; GNU gold augmente d’environ 7,5 secondes à 33 secondes puis à 27 secondes sur les trois, tandis que LLVM lld et mold restent largement plus bas tout au long, lld étant autour de 2, 5 et 6 secondes et mold constamment inférieur à 2 secondes. Le diagramme montre que mold et LLVM lld s’adaptent beaucoup mieux à la taille binaire que les lieurs traditionnels GNU ld et gold, dont les temps de liaison augmentent beaucoup plus fortement à mesure que le programme lié devient plus grand.'
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:15:17.032692Z
+        seconds: 6.52989525
+        tokens: 15367
+        review: false
+      ja-JP:
+        text: これは、4つのリンカ（GNU ld 2.42、GNU gold 2.38、LLVM lld 19.0.0、mold 2.4.0）のリンク時間を、バイナリサイズが増加する3つのプログラム（MySQL 8.3（0.47 GiB）、Clang 19.0（1.56 GiB）、Chromium 124（1.35 GiB））で比較した棒グラフで、縦軸は秒単位のリンク時間を示しています。GNU ld は MySQL で約11秒、Clang で約42秒かかりますが、Chromium のバーはありません。GNU gold は約7.5秒、33秒、27秒と3つのプログラムで増加します。一方、LLVM lld と mold は全体を通してはるかに低く、lld は約2秒、5秒、6秒、mold は常に2秒未満です。このチャートは、従来の GNU ld と gold に比べ、mold と LLVM lld がバイナリサイズの増大に対してはるかにスケーラブルであること、すなわちリンク時間がプログラムのサイズが大きくなるにつれて急激に増加することを示す証拠です。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:14:57.120369Z
+        seconds: 7.748257625
+        tokens: 15363
+        review: false
+      ko-KR:
+        text: 이 차트는 네 개 링커(GNU ld 2.42, GNU gold 2.38, LLVM lld 19.0.0, mold 2.4.0)의 링크 시간을 세 가지 바이너리 크기가 증가하는 프로그램(MySQL 8.3 (0.47 GiB), Clang 19.0 (1.56 GiB), Chromium 124 (1.35 GiB))에 대해 비교한 막대 차트이며, 세로 축은 초 단위의 링크 시간을 나타낸다. GNU ld는 MySQL에서 약 11초, Clang에서 약 42초가 걸리지만 Chromium에 대한 막대는 없으며, GNU gold는 세 프로그램에서 각각 약 7.5초, 33초, 27초로 증가한다. 반면 LLVM lld와 mold는 전체적으로 훨씬 낮은 시간을 보이며, lld는 약 2초, 5초, 6초, mold는 지속적으로 2초 미만이다. 이 차트는 전통적인 GNU ld와 gold 링커에 비해 mold와 LLVM lld가 바이너리 크기가 커질수록 훨씬 잘 확장된다는 증거이며, 후자들의 링크 시간은 프로그램이 커질수록 급격히 증가한다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:15:11.199491Z
+        seconds: 5.82892225
+        tokens: 15317
+        review: false
+      zh-CN:
+        text: 这是一张柱状图，比较四种链接器的链接时间——GNU ld 2.42、GNU gold 2.38、LLVM lld 19.0.0 和 mold 2.4.0——在三个二进制大小递增的程序上：MySQL 8.3（0.47 GiB）、Clang 19.0（1.56 GiB）和 Chromium 124（1.35 GiB），纵轴为链接所需的秒数。GNU ld 在 MySQL 上约需 11 秒，在 Clang 上约为 42 秒，但在 Chromium 上没有数据；GNU gold 的时间分别在三个程序上约为 7.5 秒、33 秒和 27 秒；而 LLVM lld 和 mold 的时间始终远低于前者，lld 大约为 2、5、6 秒，mold 则始终保持在 2 秒以下。图表表明，mold 和 LLVM lld 在二进制大小增大时的扩展性远好于传统的 GNU ld 和 gold 链接器，后者的链接时间随程序规模增大而显著上升。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:14:51.115775Z
+        seconds: 6.000502083
+        tokens: 15256
+        review: false
+      zh-TW:
+        text: 這是一個條形圖，比較四個鏈接器的鏈接時間──GNU ld 2.42、GNU gold 2.38、LLVM lld 19.0.0 以及 mold 2.4.0──在三個二進制大小遞增的程式上：MySQL 8.3（0.47 GiB）、Clang 19.0（1.56 GiB）與 Chromium 124（1.35 GiB），垂直軸顯示以秒為單位的鏈接時間。GNU ld 在 MySQL 上約 11 秒，在 Clang 上約 42 秒，但在 Chromium 上沒有條形；GNU gold 在三個程式上分別約 7.5 秒、33 秒與 27 秒；而 LLVM lld 與 mold 整體保持在較低水準，lld 大約為 2、5、6 秒，mold 始終低於 2 秒。此圖表證明 mold 與 LLVM lld 在二進制規模增長時的可擴展性遠優於傳統的 GNU ld 與 gold 鏈接器，後者的鏈接時間隨程式變大而顯著上升。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:15:30.652734Z
+        seconds: 7.465548084
+        tokens: 15138
+        review: false
+    tags:
+    - gnu-ld
+    - gnu-gold
+    - llvm-lld
+    - mold-linker
   8acf126a993024efcb5d4db159659d40:
     category: screenshot
     description:
+      de-DE:
+        text: Ein Screenshot der Vercel‑Marketing‑Startseite auf einem schwarzen Hintergrund, mit einer oberen Navigationsleiste, die die Punkte Produkte, Ressourcen, Lösungen, Enterprise und Preise anzeigt, sowie die Schaltflächen KI‑fragen, Anmelden und Registrieren neben dem dreieckigen Vercel‑Logo. Darunter steht eine große Überschrift „Erstellen und bereitstellen in der KI‑Cloud“, gefolgt vom Text „Vercel bietet die Entwickler‑Tools und die Cloud‑Infrastruktur, um ein schnelleres, personalisierteres Web zu bauen, zu skalieren und zu sichern“, und zwei Schaltflächen mit der Aufschrift „Jetzt bereitstellen“ und „Demo anfordern“. Die untere Hälfte wird dominiert von einem leuchtenden, facettierten dreieckigen Prisma, das im Drahtgitter‑Mesh‑Stil dargestellt ist und blaues, grünes, oranges und rotes Licht über einem Rasterhintergrund ausstrahlt – offensichtlich eine stilisierte 3‑D‑Neuinterpretation des Vercel‑Logos als Hero‑Grafik.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:15:51.4475Z
+        seconds: 6.206027167
+        tokens: 15193
+        review: false
       en-US:
         text: A screenshot of the Vercel marketing homepage on a black background, with a top navigation bar reading Products, Resources, Solutions, Enterprise, and Pricing, plus Ask AI, Log In, and Sign Up buttons beside the triangular Vercel logo. Beneath it, a large heading reads "Build and deploy on the AI Cloud," followed by the subtext "Vercel provides the developer tools and cloud infrastructure to build, scale, and secure a faster, more personalized web," and two buttons labeled "Start Deploying" and "Get a Demo." The lower half is dominated by a glowing, faceted triangular prism rendered in a wireframe mesh style, radiating blue, green, orange, and red light across a grid backdrop, evidently a stylized 3D re-imagining of the Vercel logo used as hero art.
         provider: anthropic
@@ -143,9 +880,69 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: Una captura de pantalla de la página de marketing de Vercel sobre un fondo negro, con una barra de navegación superior que muestra Productos, Recursos, Soluciones, Empresa y Precios, además de los botones Preguntar a IA, Iniciar sesión y Registrarse junto al logo triangular de Vercel. Debajo, un encabezado grande dice "Construye y despliega en la Nube AI", seguido del subtítulo "Vercel ofrece las herramientas de desarrollo y la infraestructura en la nube para crear, escalar y asegurar una web más rápida y personalizada", y dos botones etiquetados "Comenzar a desplegar" y "Solicitar una demo". La mitad inferior está dominada por un prisma triangular facetado y brillante, renderizado en estilo malla de alambre, que irradia luz azul, verde, naranja y roja sobre un fondo de cuadrícula, evidentemente una reinterpretación 3D estilizada del logo de Vercel utilizada como arte principal.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:16:10.281012Z
+        seconds: 5.401562542
+        tokens: 14979
+        review: false
+      fr-FR:
+        text: Capture d'écran de la page d'accueil marketing de Vercel sur fond noir, avec une barre de navigation supérieure indiquant Produits, Ressources, Solutions, Entreprise et Tarifs, ainsi que les boutons Demander l'IA, Se connecter et S'inscrire à côté du logo triangulaire Vercel. En dessous, un grand titre indique « Construisez et déployez sur le cloud IA », suivi du sous‑texte « Vercel fournit les outils de développement et l'infrastructure cloud pour créer, faire évoluer et sécuriser un web plus rapide et plus personnalisé », et deux boutons libellés « Commencer le déploiement » et « Obtenir une démo ». La moitié inférieure est dominée par un prisme triangulaire facetté et lumineux, rendu en maillage filaire, diffusant des lumières bleues, vertes, orangées et rouges sur un fond à grille, clairement une réinterprétation 3D stylisée du logo Vercel utilisée comme visuel principal.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:16:03.557375Z
+        seconds: 6.7189905
+        tokens: 15358
+        review: false
+      ja-JP:
+        text: 黒い背景の Vercel マーケティングホームページのスクリーンショットで、上部ナビゲーションバーには「Products」「Resources」「Solutions」「Enterprise」「Pricing」と表示され、三角形の Vercel ロゴの横に「Ask AI」「Log In」「Sign Up」ボタンがあります。その下には大きな見出し「Build and deploy on the AI Cloud」があり、サブテキストとして「Vercel provides the developer tools and cloud infrastructure to build, scale, and secure a faster, more personalized web」が続き、ラベルが「Start Deploying」と「Get a Demo」の2つのボタンがあります。下半分は、光る多面体の三角プリズムがワイヤーフレームメッシュで描かれ、青・緑・オレンジ・赤の光がグリッド背景に放射し、Vercel ロゴのスタイライズされた 3D 再構築がヒーローアートとして使用されています。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:15:45.126002Z
+        seconds: 6.31746675
+        tokens: 15109
+        review: false
+      ko-KR:
+        text: 검은 배경에 Vercel 마케팅 홈페이지의 스크린샷으로, 상단 네비게이션 바에는 Products, Resources, Solutions, Enterprise, Pricing가 표시되고, 삼각형 Vercel 로고 옆에 Ask AI, Log In, Sign Up 버튼이 있습니다. 그 아래에는 큰 제목으로 “Build and deploy on the AI Cloud”가 나타나며, 이어서 “Vercel provides the developer tools and cloud infrastructure to build, scale, and secure a faster, more personalized web”라는 부제가 있고, “Start Deploying”과 “Get a Demo”라는 두 버튼이 있습니다. 하단 절반은 빛나는 면이 있는 삼각형 프리즘이 와이어프레임 메쉬 형태로 렌더링되어 파란색, 녹색, 주황색, 빨간색 빛을 격자 배경에 방사하고 있으며, 이는 Vercel 로고를 영웅 이미지로 재구성한 스타일리시한 3D 표현입니다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:15:57.658045Z
+        seconds: 5.894998833
+        tokens: 15068
+        review: false
+      zh-CN:
+        text: 一张 Vercel 营销主页的截图，背景为黑色，顶部导航栏显示 “Products、Resources、Solutions、Enterprise、Pricing”，以及位于三角形 Vercel 标志旁的 “Ask AI、Log In、Sign Up” 按钮。其下方的大标题为 “Build and deploy on the AI Cloud”，随后是副文本 “Vercel provides the developer tools and cloud infrastructure to build, scale, and secure a faster, more personalized web”，并有两个按钮标为 “Start Deploying” 与 “Get a Demo”。下半部分主要呈现一个发光的多面三角棱镜，采用线框网格渲染风格，蓝、绿、橙、红光在网格背景上辐射，显然是对 Vercel 标志的三维艺术化再创作，作为首页主体视觉。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:15:38.121061Z
+        seconds: 7.000540583
+        tokens: 15162
+        review: false
+      zh-TW:
+        text: Vercel 行銷首頁的螢幕截圖，背景為黑色，頂部導覽列顯示「Products（產品）」「Resources（資源）」「Solutions（解決方案）」「Enterprise（企業）」與「Pricing（定價）」，以及「Ask AI（詢問 AI）」「Log In（登入）」「Sign Up（註冊）」按鈕，位於三角形的 Vercel 標誌旁。下方有大標題「在 AI 雲端建置與部署」，接著的說明文字為「Vercel 提供開發者工具與雲端基礎設施，協助建置、擴展與保護更快速、更個人化的網站」，並有兩個按鈕分別寫著「開始部署」與「取得示範」。畫面下半部以發光的多面體三角棱鏡為主體，呈線框網格風格，藍、綠、橙、紅光在格狀背景上輻射，顯然是 Vercel 標誌的立體化、風格化藝術呈現。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:16:15.686928Z
+        seconds: 6.22533875
+        tokens: 15103
+        review: false
+    tags:
+    - vercel
+    - web-navigation
+    - landing-page
   8d32cfe9437f0bba72819263799a99ca:
     category: photograph
     description:
+      de-DE:
+        text: Ein Foto, aufgenommen im Freien, das gerade nach unten auf ein Stück Rasen blickt, wo grüne Grashalme durch ein verstreutes Angebot trockener, spröder brauner und beiger Blätter und Schnittgut hindurchwachsen. Ein paar gerollte rötlich‑braune Blätter liegen nahe der Bildmitte, flankiert von zwei dünnen, hellen Zweigen, die sich durch die Vegetation nach oben biegen, wobei ein Stück weißer Plastikabfall am unteren linken Rand sichtbar ist. Das Licht ist weich und gleichmäßig, passend zu einem bewölkten Tag oder diffusem Tageslicht, und das Bild wirkt wie ein unauffälliges Nahaufnahme‑Foto von Bodenbedeckung, nicht als gestellte oder dokumentarische Aufnahme von etwas Bestimmtem.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:16:31.572804Z
+        seconds: 4.7205453330000005
+        tokens: 14756
+        review: false
       en-US:
         text: A photograph, taken outdoors looking straight down at a patch of lawn where green grass blades push up through a scattering of dry, brittle brown and beige leaves and thatch. A couple of curled reddish-brown leaves sit near the center of the frame, flanked by two thin pale twigs bending upward through the vegetation, with a bit of white plastic debris visible at the lower left edge. The lighting is soft and even, consistent with an overcast day or diffuse daylight, and the image reads as an unremarkable close-up snapshot of ground cover rather than a staged or documentary shot of anything in particular.
         provider: anthropic
@@ -154,9 +951,69 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: Una fotografía, tomada al aire libre mirando directamente hacia abajo un parche de césped donde las cuchillas verdes emergen entre una dispersión de hojas secas, frágiles, marrones y beige y restos de paja. Un par de hojas rizadas de color marrón rojizo se sitúan cerca del centro del encuadre, flanqueadas por dos delgadas ramitas pálidas que se doblan hacia arriba a través de la vegetación, con un pequeño fragmento de plástico blanco visible en el borde inferior izquierdo. La iluminación es suave y uniforme, coherente con un día nublado o luz difusa, y la imagen se percibe como una captura cercana sin sobresalto de la cobertura del suelo, más que como una toma escenificada o documental de algo en particular.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:16:45.570514Z
+        seconds: 4.869504375
+        tokens: 14754
+        review: false
+      fr-FR:
+        text: Une photographie prise à l'extérieur, vue du dessus d'une parcelle de pelouse où des brins d'herbe verte percent un tapis de feuilles sèches, cassantes, brunes et beige, ainsi que de la paille. Deux feuilles enroulées, brun-rougeâtre, sont placées près du centre du cadre, encadrées de chaque côté par deux fines brindilles pâles qui se redressent à travers la végétation, avec un petit morceau de débris plastique blanc visible dans le coin inférieur gauche. L'éclairage est doux et uniforme, rappelant une journée nuageuse ou une lumière diffuse, et l'image apparaît comme une simple prise de vue rapprochée du revêtement du sol, plutôt qu'une scène mise en scène ou documentaire d'un sujet particulier.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:16:42.191967Z
+        seconds: 3.374085125
+        tokens: 14448
+        review: false
+      ja-JP:
+        text: 屋外で撮影された写真で、真上から緑の草の葉が乾いた脆い茶色とベージュの葉やわらの中から突き出している芝生の一部を写しています。フレームの中心付近にはカールした赤茶色の葉が数枚あり、その両側には細く淡い枝が植物の中から上向きに曲がっています。左下端には白いプラスチックの破片が少し見えます。光は柔らかく均一で、曇りの日や拡散光に相当し、特定の被写体を演出したり記録したものではなく、地表の覆い草のありふれたクローズアップスナップショットとして見えます。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:16:25.665429Z
+        seconds: 5.902411125
+        tokens: 15067
+        review: false
+      ko-KR:
+        text: 야외에서 촬영된 사진으로, 녹색 잔디가 건조하고 부서지기 쉬운 갈색 및 베이지색 잎과 짚 사이에서 솟아오른 잔디밭을 바로 아래에서 바라보고 있다. 곱슬한 적갈색 잎 두 장이 프레임 중앙 근처에 놓여 있고, 두 개의 얇은 연한 가지가 식물 사이를 위로 굽혀 있다. 왼쪽 아래 가장자리에는 흰색 플라스틱 파편이 약간 보인다. 조명은 부드럽고 고르게 비추어 흐린 날이나 확산된 햇빛과 일치하며, 이 이미지는 특별히 연출되거나 다큐멘터리적인 사진이라기보다 땅덮개의 평범한 클로즈업 스냅샷으로 보인다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:16:36.297482Z
+        seconds: 5.8898255
+        tokens: 15084
+        review: false
+      zh-CN:
+        text: 一张在户外拍摄的照片，俯视着一块草坪，绿色的草叶从散落的干枯、脆弱的棕色和米色叶子以及枯草中冒出。画面中心附近有几片卷曲的红褐色叶子，两侧各有两根细长的浅色小枝向上弯曲穿过植被，左下角可见一点白色塑料碎屑。光线柔和均匀，符合阴天或漫射日光的效果，图像呈现的是一个普通的近景地面覆盖物快照，而非特意摆拍或纪录的特定对象。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:16:21.916876Z
+        seconds: 3.7442064999999998
+        tokens: 14607
+        review: false
+      zh-TW:
+        text: 照片，於戶外拍攝，俯視向下看一塊草坪，綠色的草葉從散落的乾燥、脆弱的棕色與米色葉子與枯草中冒出。畫面中心附近有幾片捲曲的紅棕色葉子，兩側各有兩根細長的淡色小枝向上彎曲穿過植被，左下角可見一些白色塑膠碎片。光線柔和且均勻，與陰天或散射日光相符，畫面呈現的是一張普通的地面覆蓋特寫快照，而非特意擺拍或紀錄特定主題的照片。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:16:50.445142Z
+        seconds: 3.965793
+        tokens: 14652
+        review: false
+    tags:
+    - lawn
+    - mushroom
+    - fallen-leaves
   917811350fbfc7af291fce7bd549ef3e:
     category: photograph
     description:
+      de-DE:
+        text: Ein Foto, aufgenommen entlang eines verwitterten Holzstegs, der unter einer Reihe von rostigen Metallpergolenrahmen verläuft, deren Gitterdächer längst von Kletterpflanzen befreit und kahl gegen den Himmel stehen. Dichter Bambus und überwucherte Sträucher drängen sich auf beiden Seiten des Weges, ihre Blätter fangen das Tageslicht ein, während die Holzplanken darunter Lücken, Verwerfungen und Moospolster oder sprießende Unkräuter zwischen den Brettern zeigen. In der Ferne setzt der Weg den Lauf fort, vorbei an kahlen, winterlichen Bäumen, hin zu einem Gebiet, das wie ein Teich oder eine offene Lichtung wirkt, mit einer Gruppe von Wohnhochhäusern, die oben links über dem Grün zu sehen sind. Der Gesamteindruck ist der eines verlassenen oder vernachlässigten Parkweges, der nach einer Phase der Nichtbenutzung von der Vegetation zurückerobert wurde.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:17:05.37823Z
+        seconds: 5.14646275
+        tokens: 14907
+        review: false
       en-US:
         text: A photograph taken along a weathered wooden boardwalk that runs beneath a series of rusted metal pergola frames, their trellis tops long since stripped of any climbing plants and left bare against the sky. Dense bamboo and overgrown shrubs crowd both sides of the path, their leaves catching daylight while the wood planks below show gaps, warping, and patches of moss or sprouting weeds pushing up between the boards. In the distance the walkway continues past bare-branched winter trees toward what looks like a pond or open clearing, with a cluster of residential high-rises visible above the greenery on the upper left. The overall impression is of an abandoned or neglected park walkway, reclaimed by vegetation after a period of disuse.
         provider: anthropic
@@ -165,9 +1022,70 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: Una fotografía tomada a lo largo de una pasarela de madera envejecida que corre bajo una serie de marcos de pérgola de metal oxidado, cuyos enrejados superiores hace tiempo fueron despojados de cualquier planta trepadora y quedan desnudos contra el cielo. Denso bambú y arbustos crecidos abarrotan ambos lados del camino, sus hojas captan la luz mientras las tablas de madera debajo presentan huecos, deformaciones y parches de musgo o malezas brotando entre las tablas. A lo lejos, la pasarela continúa más allá de árboles invernales de ramas desnudas hacia lo que parece un estanque o un claro abierto, con un conjunto de rascacielos residenciales visibles sobre la vegetación en la esquina superior izquierda. La impresión general es la de una senda de parque abandonada o descuidada, reclam​ada por la vegetación tras un periodo de desuso.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:17:22.773262Z
+        seconds: 4.171458667
+        tokens: 14684
+        review: false
+      fr-FR:
+        text: Une photographie prise le long d’une promenade en bois usé qui serpente sous une série de pergolas en métal rouillé, dont les dessus de treillis ont depuis longtemps été dépourvus de plantes grimpantes et laissés nus contre le ciel. Un bambou dense et des arbustes envahissants encombrent les deux côtés du sentier, leurs feuilles captant la lumière du jour tandis que les planches de bois en dessous présentent des espaces, des déformations et des plaques de mousse ou des mauvaises herbes qui surgissent entre les lattes. Au loin, la voie continue au-delà d’arbres d’hiver aux branches nues vers ce qui ressemble à un étang ou une clairière ouverte, avec un groupe de tours résidentielles visibles au-dessus du feuillage dans le coin supérieur gauche. L’impression générale est celle d’une allée de parc abandonnée ou négligée, reconquise par la végétation après une période d’inutilisation.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:17:15.745775Z
+        seconds: 7.022743792
+        tokens: 15283
+        review: false
+      ja-JP:
+        text: 天候にさらされて色褪せた木製の歩道に沿って撮影された写真で、錆びた金属製のパーゴラ枠の下を通ります。その格子の上部はかつてのつる植物がすでに取り除かれ、空に向かってむき出しです。道の両側には密集した竹と伸び放題の低木が生い茂り、葉が日光を受けています。一方、下の木板には隙間や反り、苔や雑草が生え込み、板の間から芽が出ています。遠くには、枝が裸の冬の木々の間を歩道が通り、池または開けた空き地のような場所へ続いています。左上には緑の上に住宅の高層ビル群が見えます。全体として、放置されたか手入れのされていない公園の歩道が、長期間の不使用の後に植物に取り戻された様子が感じられます。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:17:00.37592Z
+        seconds: 4.997136666
+        tokens: 14898
+        review: false
+      ko-KR:
+        text: 녹슨 금속 퍼골라 프레임 아래를 따라 이어지는 낡은 목재 보드워크를 배경으로 촬영된 사진이다. 그 트렐리스 상단은 오래전에 등반식물을 모두 벗겨내어 하늘에 대비해 텅 비어 있다. 빽빽한 대나무와 무성하게 자란 관목들이 길 양쪽을 뒤덮고, 잎은 햇빛을 받아 반짝이며, 그 아래 목재 판자는 틈새와 뒤틀림, 이끼와 새싹이 자라난 부분이 보인다. 멀리서 보도는 가지가 없는 겨울 나무 사이를 지나 연못이나 탁 트인 공터처럼 보이는 곳으로 이어지고, 왼쪽 위에는 녹지 위에 주거 고층 건물이 군집해 있다. 전체적인 인상은 사용되지 않아 방치된 공원 산책로가 식생에 의해 다시 회복된 모습이다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:17:10.529494Z
+        seconds: 5.211202292
+        tokens: 14936
+        review: false
+      zh-CN:
+        text: 这是一张拍摄于一条风化的木质木板路上的照片，木板路位于一排锈蚀的金属凉亭框架下方，凉亭的格子顶已久未有攀爬植物，裸露在天空下。茂密的竹子和杂草在小径两侧拥挤，它们的叶子捕捉阳光，而下面的木板则出现裂缝、变形，并有苔藓或萌发的杂草在板间生长。远处，小径穿过光秃的冬季树枝，延伸至看似池塘或空旷的空地，左上方的绿植上方可见一簇住宅高层建筑。整体印象是这条公园步道被遗弃或疏于维护，经过一段时间的荒废后被植被重新占据。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:16:54.415533Z
+        seconds: 5.95611775
+        tokens: 14926
+        review: false
+      zh-TW:
+        text: 一張沿著磨損的木板路拍攝的照片，木板路位於一系列生鏽金屬涼亭框架之下，格子頂部早已被爬藤剝除，裸露在天空之下。濃密的竹子和雜草叢生於小徑兩側，葉子捕捉光線；下面的木板出現裂縫、變形，還有苔蘚或雜草在板縫間冒出。遠處，走道穿過光禿的冬季樹枝，延伸至看似池塘或開闊的空地，左上方的綠意上方可見一群住宅高樓。整體印象是一條被遺棄或疏忽的公園步道，經過一段時間的失用後被植被重新佔領。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:17:26.949812Z
+        seconds: 5.181391791
+        tokens: 14888
+        review: false
+    tags:
+    - pergola
+    - railing
+    - tree
+    - shrub
   a10408f6aebb21591eed99bdacd7c1e5:
     category: photograph
     description:
+      de-DE:
+        text: Ein Foto, aufgenommen von einer erhöhten Uferpromenade, das über eine weite, ruhige Fläche von graubraunem Flusswasser unter einem bedeckten, nebligen Himmel blickt. Zwei Straßenlaternen und ein Metallgeländer säumen den vorderen Gehweg, während eine dichte Matte aus dunklem Treibgut oder Algen das nahe Ufer umschließt und sich in einem unregelmäßigen Band ausbreitet, bevor sie dem offenen Wasser weicht. In der Ferne deuten schwache vertikale Spiegelungen auf die Pfeiler einer Brücke oder einer erhöhten Struktur hin, mit einem kleinen rot‑dunklen Boot oder einer Boje, die kaum am Horizont zu sehen ist. Das trübe Wasser und das treibende Gerümpel am Ufer weisen auf eine schlechte Wasserqualität oder angesammelte Verschmutzung entlang dieses Flussabschnitts hin.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:17:41.409881Z
+        seconds: 4.960211416
+        tokens: 14813
+        review: false
       en-US:
         text: A photograph taken from an elevated riverside promenade, looking out over a wide, calm expanse of grayish-brown river water under an overcast, hazy sky. Two street lamps and a metal railing line the foreground walkway, while a dense mat of dark floating debris or algae hugs the near shoreline, spreading out in an irregular band before giving way to open water. In the far distance, faint vertical reflections suggest the pillars of a bridge or elevated structure, with a small red-and-dark boat or buoy barely visible near the horizon. The murky water and drifting clutter near the shore point to poor water quality or accumulated pollution along this stretch of the river.
         provider: anthropic
@@ -176,9 +1094,71 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: Una fotografía tomada desde un paseo elevado a la orilla del río, mirando hacia una amplia y tranquila extensión de agua del río de color gris parduzco bajo un cielo nublado y brumoso. Dos farolas y una baranda de metal alinean la pasarela del primer plano, mientras una densa alfombra de escombros flotantes oscuros o algas abraza la orilla cercana, extendiéndose en una banda irregular antes de dar paso al agua abierta. En la distancia, reflejos verticales tenues sugieren los pilares de un puente o estructura elevada, con una pequeña embarcación o boya rojo‑oscura apenas visible cerca del horizonte. El agua turbia y la acumulación de desechos cerca de la orilla indican una calidad de agua deficiente o contaminación acumulada a lo largo de este tramo del río.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:17:52.916404Z
+        seconds: 3.695054083
+        tokens: 14466
+        review: false
+      fr-FR:
+        text: Une photographie prise depuis une promenade surélevée au bord de la rivière, regardant une vaste étendue d'eau de rivière gris-brun, calme, sous un ciel couvert et brumeux. Deux lampadaires et une rambarde métallique bordent le passage au premier plan, tandis qu'un tapis dense de débris sombres flottants ou d'algues colle à la rive proche, s'étendant en une bande irrégulière avant de céder à l'eau libre. Au loin, de faibles reflets verticaux suggèrent les piliers d'un pont ou d'une structure élevée, avec un petit bateau ou bouée rouge et sombre à peine visible près de l'horizon. L'eau trouble et les amas dérivants près du rivage indiquent une mauvaise qualité de l'eau ou une accumulation de pollution le long de ce tronçon de la rivière.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:17:49.746103Z
+        seconds: 3.165158334
+        tokens: 14478
+        review: false
+      ja-JP:
+        text: 雨がかった霞んだ空の下、灰褐色の広く静かな川面を見下ろす高架の川辺の散歩道から撮影された写真。前景の歩道には2本の街灯と金属製の手すりが並び、近岸では暗い浮遊ゴミや藻類の密集したマットが不規則な帯状に広がり、そこから開けた水域へと続く。遠方には橋柱や高架構造物らしき垂直の反射がかすかに見え、地平線近くには小さな赤黒いボートまたはブイがかろうじて見える。岸辺付近の濁った水と漂うごみは、この川のこの区間の水質が悪く、汚染が蓄積していることを示している。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:17:37.023286Z
+        seconds: 4.38086725
+        tokens: 14731
+        review: false
+      ko-KR:
+        text: 고도가 높은 강변 산책로에서 촬영된 사진으로, 흐리고 안개 낀 하늘 아래 회갈색 강물의 넓고 잔잔한 수면을 바라보고 있다. 전경에 두 개의 가로등과 금속 난간이 늘어선 보도가 있고, 어두운 떠다니는 파편이나 조류가 강가 가까이 촘촘히 깔려 불규칙한 띠를 이루며 이어지다가 넓은 물로 이어진다. 멀리서는 희미한 수직 반사광이 다리 또는 고가 구조물의 기둥을 암시하고, 수평선 근처에 작고 빨간색-어두운 색 보트 혹은 부표가 거의 보인다. 강가 근처의 탁한 물과 떠다니는 쓰레기는 이 구간의 수질이 나쁘거나 오염이 누적되었음을 나타낸다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:17:46.374774Z
+        seconds: 3.3667265410000002
+        tokens: 14502
+        review: false
+      zh-CN:
+        text: 这是一张从高处的河岸长廊拍摄的照片，向外望去，灰褐色的河面在阴天、雾霾的天空下显得宽阔而平静。前景的人行道上竖着两盏路灯和一条金属栏杆，近岸边紧贴着一层密集的深色漂浮碎屑或藻类，呈不规则的带状向外延伸，随后转为开阔的水面。远处，微弱的竖向倒影暗示着桥梁或高架结构的柱子，地平线附近还能隐约看到一艘小的红黑色船只或浮标。岸边的浑浊水面和漂浮杂物表明该河段的水质较差或已积累污染。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:17:32.136524Z
+        seconds: 4.881795709
+        tokens: 14853
+        review: false
+      zh-TW:
+        text: 一張從高處的河岸長廊拍攝的照片，眺望在陰天、朦朧的天空下，寬闊而平靜的灰棕色河面。前景的人行道上有兩盞路燈與金屬欄杆，而靠近岸邊的水面覆蓋著密集的暗色漂浮碎屑或藻類，形成不規則的帶狀，之後才是開闊的水面。遠處微弱的垂直倒影似乎是橋樑或高架結構的橋柱，地平線附近隱約可見一艘小型紅暗相間的船隻或浮標。近岸的混濁水面與漂浮雜物顯示此段河流的水質不佳或已累積污染。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:17:56.617014Z
+        seconds: 4.76826775
+        tokens: 14852
+        review: false
+    tags:
+    - river
+    - waterfront
+    - railing
+    - streetlight
+    - algae
   a46df6030a9b1ba3f0af95e1a2196850:
     category: photograph
     description:
+      de-DE:
+        text: Es ist ein im Freien aufgenommenes Foto, das nach unten auf einen niedrigen, dichten Heckenstreifen aus kleinblättrigen Sträuchern blickt, die entlang einer Straße oder eines Bürgersteigs gepflanzt sind, mit einem diagonalen Granitkantenstein, der von der unteren linken Ecke zur oberen rechten Ecke verläuft, und einer gepflasterten Straße, die in der unteren linken Ecke sichtbar ist. Die Hecke zeigt frisches hellgrünes Neuwachstum an dunkleren holzigen Ästen, mit einem Baumstammgrund, das nahe dem oberen Rand sichtbar ist, und einem Streifen mulchigem oder nacktem braunem Boden jenseits der Sträucher. Helles, direktes Sonnenlicht wirft scharfe Schatten über die Blätter und den Randstein und deutet darauf hin, dass das Foto etwa zur Mittagszeit aufgenommen wurde.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:18:10.216605Z
+        seconds: 4.951923625
+        tokens: 14870
+        review: false
       en-US:
         text: It's a photograph taken outdoors, looking down at a low, dense hedge of small-leaved shrubs planted along a street or sidewalk, with a granite curb running diagonally from the lower left toward the upper right and a paved road visible in the bottom-left corner. The hedge shows fresh light-green new growth on darker woody branches, with a tree trunk base visible near the top edge and a strip of mulched or bare brown ground beyond the shrubs. Bright, direct sunlight casts sharp shadows across the leaves and curb, suggesting the photo was taken around midday.
         provider: anthropic
@@ -187,9 +1167,70 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: Es una fotografía tomada al aire libre, vista desde arriba de un seto bajo y denso de arbustos de hojas pequeñas plantados a lo largo de una calle o acera, con un bordillo de granito que corre diagonalmente desde la esquina inferior izquierda hacia la esquina superior derecha y una carretera pavimentada visible en la esquina inferior izquierda. El seto muestra nuevo crecimiento de color verde claro sobre ramas leñosas más oscuras, con la base de un tronco de árbol visible cerca del borde superior y una franja de suelo cubierto con mantillo o desnudo de color marrón más allá de los arbustos. La luz solar directa y brillante proyecta sombras definidas sobre las hojas y el bordillo, lo que sugiere que la foto fue tomada alrededor del mediodía.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:18:26.561419Z
+        seconds: 3.416166833
+        tokens: 14400
+        review: false
+      fr-FR:
+        text: C’est une photographie prise en extérieur, vue de dessus d’une haie basse et dense de petits arbustes à feuilles petites plantés le long d’une rue ou d’un trottoir, avec une bordure en granit qui s’étend en diagonale du coin inférieur gauche vers le coin supérieur droit et une route asphaltée visible dans le coin inférieur gauche. La haie montre une nouvelle pousse vert clair sur des branches ligneuses plus sombres, avec la base d’un tronc d’arbre visible près du bord supérieur et une bande de sol mulché ou nu brun au-delà des arbustes. Un soleil lumineux et direct projette des ombres nettes sur les feuilles et la bordure, suggérant que la photo a été prise vers midi.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:18:20.732295Z
+        seconds: 5.823688625
+        tokens: 14960
+        review: false
+      ja-JP:
+        text: 屋外で撮影された写真で、通りや歩道に沿って植えられた小葉の低く密集した生垣を見下ろす構図です。左下から右上へ対角線状に走る花崗岩の縁石があり、左下隅には舗装された道路が見えます。生垣は暗い木質の枝に対して淡い緑の新芽が鮮やかに出ており、上端付近に樹幹の根元が見え、植木の向こう側にはマルチングされたか裸の茶色い土が広がっています。明るい直射日光が葉や縁石に鋭い影を落としており、撮影は正午前後であることがうかがえます。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:18:05.717455Z
+        seconds: 4.495502292
+        tokens: 14769
+        review: false
+      ko-KR:
+        text: 이 사진은 야외에서 촬영했으며, 거리나 인도에 심어진 작은 잎이 많은 낮고 촘촘한 관목 울타리를 아래에서 바라보고 있다. 화강암 보도가 좌하단에서 우상단으로 대각선으로 이어지고, 좌하단 구석에 포장된 도로가 보인다. 울타리에는 어두운 목가지 위에 신선한 연두색 새싹이 돋아 있고, 상단 가장자리 근처에 나무줄기 밑부분이 보이며, 관목 너머에 멀칭되었거나 벌거벗은 갈색 토양이 있다. 밝고 직접적인 햇빛이 잎과 보도에 선명한 그림자를 드리워 사진이 정오 무렵에 촬영된 것으로 보인다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:18:15.174018Z
+        seconds: 5.553144208
+        tokens: 14946
+        review: false
+      zh-CN:
+        text: 这是一张在户外拍摄的照片，俯视沿街道或人行道种植的低矮密集的小叶灌木篱笆，花岗岩路缘从左下角对角线向右上方延伸，左下角可见铺砌的道路。篱笆上深色木质枝条上有新鲜的淡绿色新芽，篱笆顶部附近可以看到树干基部，灌木后面是一条覆有覆盖物或裸露的棕色地面。明亮的直射阳光在叶子和路缘上投下锐利的阴影，暗示拍摄时间约在中午。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:18:01.390398Z
+        seconds: 4.322098166
+        tokens: 14768
+        review: false
+      zh-TW:
+        text: 這是一張戶外拍攝的照片，俯視沿街道或人行道種植的低矮茂密的小葉灌木樹籬，花崗岩路緣從左下角斜向右上方，左下角可見鋪好的道路。樹籬上淡綠色的新芽點綴在較暗的木質枝條上，樹幹基部在上緣附近可見，灌木後方是一條覆蓋有覆蓋物或裸露的棕色地面。明亮的直射陽光在葉子和路緣上投下銳利的陰影，暗示照片拍攝於正午左右。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:18:29.983158Z
+        seconds: 4.579193291
+        tokens: 14729
+        review: false
+    tags:
+    - shrub
+    - tree
+    - park-path
+    - fallen-leaves
   a853e69c33ee2c50ed9125ff947b2d49:
     category: screenshot
     description:
+      de-DE:
+        text: Dies ist ein Screenshot des Hero‑Bereichs einer Marketing‑Website, dargestellt auf einem warmen orangefarbenen Verlaufshintergrund mit einer dezenten gepunkteten Textur. Eine Navigationsleiste erstreckt sich oben und enthält Links für Produkte, Lösungen, Ressourcen und Preise sowie Login‑ und „Start building“-Buttons rechts. Die Überschrift lautet „Everything we learned from powering 20% of the Internet — yours by default“ und wird gefolgt von einem Untertext, der das Unternehmen als Cloudflare identifiziert und es als „AI Cloud mit Compute, KI‑Inference und Storage“ beschreibt, die es Nutzern ermöglicht, „Anwendungen auszuliefern statt die Infrastruktur zu verwalten“, mit einem zweiten „Start building“-Call‑to‑Action‑Button zentriert darunter.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:18:45.650208Z
+        seconds: 4.964337917
+        tokens: 14803
+        review: false
       en-US:
         text: This is a screenshot of a marketing website's hero section, rendered on a warm orange gradient background with a subtle dotted texture. A navigation bar spans the top with links for Products, Solutions, Resources, and Pricing, plus Login and Start building buttons on the right. The headline reads "Everything we learned from powering 20% of the Internet — yours by default," followed by subtext identifying the company as Cloudflare and describing it as an "AI Cloud with compute, AI inference, and storage" that lets users "ship applications instead of managing infrastructure," with a second Start building call-to-action button centered below.
         provider: anthropic
@@ -198,9 +1239,69 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: 'Esta es una captura de pantalla de la sección principal de un sitio web de marketing, mostrada sobre un fondo de degradado naranja cálido con una sutil textura de puntos. Una barra de navegación se extiende en la parte superior con enlaces a Productos, Soluciones, Recursos y Precios, además de los botones Iniciar sesión y Empezar a crear a la derecha. El titular dice: “Todo lo que aprendimos al impulsar el 20 % de Internet, ahora por defecto para ti”, seguido de un subtítulo que identifica la compañía como Cloudflare y la describe como una “Nube de IA con cómputo, inferencia de IA y almacenamiento” que permite a los usuarios “desplegar aplicaciones en lugar de gestionar infraestructura”, con un segundo botón de llamado a la acción “Empezar a crear” centrado debajo.'
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:19:00.555734Z
+        seconds: 5.091997166
+        tokens: 14784
+        review: false
+      fr-FR:
+        text: Ceci est une capture d'écran de la section héro d'un site marketing, affichée sur un fond dégradé orange chaud avec une texture ponctuée subtile. Une barre de navigation s'étend en haut avec des liens vers Produits, Solutions, Ressources et Tarification, ainsi que les boutons Connexion et Commencer à construire à droite. Le titre indique « Tout ce que nous avons appris en alimentant 20 % d'Internet — le vôtre par défaut », suivi d'un texte secondaire identifiant l'entreprise comme Cloudflare et la décrivant comme un « Cloud IA avec calcul, inférence IA et stockage » qui permet aux utilisateurs « de déployer des applications au lieu de gérer l'infrastructure », avec un deuxième bouton d'appel à l'action Commencer à construire centré en dessous.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:18:55.734733Z
+        seconds: 4.815683334
+        tokens: 14783
+        review: false
+      ja-JP:
+        text: これは、温かみのあるオレンジのグラデーション背景に微細なドットテクスチャが施されたマーケティングウェブサイトのヒーローセクションのスクリーンショットです。上部にナビゲーションバーがあり、Products、Solutions、Resources、Pricing のリンクと、右側に Login と Start building ボタンが配置されています。見出しは「インターネットの20％を支えることで得たすべての知見 — デフォルトであなたに」となり、続くサブテキストで会社は Cloudflare と示され、「コンピュート、AI 推論、ストレージを備えた AI Cloud」として、インフラを管理するのではなくアプリケーションを提供できることが説明されています。さらに、下部中央にもう一つの「Start building」呼びかけボタンが配置されています。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:18:39.458241Z
+        seconds: 6.186595125
+        tokens: 15045
+        review: false
+      ko-KR:
+        text: 이 이미지는 따뜻한 주황색 그라디언트 배경에 섬세한 점 무늬 텍스처가 적용된 마케팅 웹사이트 히어로 섹션의 스크린샷입니다. 상단에는 제품, 솔루션, 리소스, 가격에 대한 링크와 오른쪽에 로그인 및 시작하기 버튼이 있는 내비게이션 바가 있습니다. 헤드라인은 “인터넷의 20%를 구동하면서 배운 모든 것을 — 기본적으로 여러분에게 제공됩니다”라고 적혀 있으며, 이어서 회사가 Cloudflare임을 밝히고 “컴퓨팅, AI 추론, 스토리지를 갖춘 AI 클라우드”이며 사용자가 “인프라를 관리하는 대신 애플리케이션을 배포할 수 있게 해준다”는 부연 설명이 있습니다. 아래 중앙에는 두 번째 시작하기 호출‑액션 버튼이 배치되어 있습니다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:18:50.619679Z
+        seconds: 5.109536416
+        tokens: 14870
+        review: false
+      zh-CN:
+        text: 这是营销网站首页英雄区的截图，背景为温暖的橙色渐变并带有细腻的点状纹理。顶部有导航栏，链接包括“产品”、“解决方案”、“资源”和“定价”，右侧还有“登录”和“开始构建”按钮。标题为“我们从支撑 20% 互联网中学到的一切——默认即为您的”，随后是副文，说明公司为 Cloudflare，并将其描述为“具备计算、AI 推理和存储的 AI 云”，让用户能够“交付应用而非管理基础设施”，下方居中还有第二个“开始构建”行动号召按钮。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:18:34.567434Z
+        seconds: 4.885708458
+        tokens: 14826
+        review: false
+      zh-TW:
+        text: 這是一張行銷網站首頁區塊的截圖，畫面呈現在暖色橘色漸層背景上，帶有細微的點狀紋理。頂部有一條導覽列，包含「Products」、「Solutions」、「Resources」和「Pricing」的連結，右側則有「Login」與「Start building」按鈕。標題寫著「Everything we learned from powering 20% of the Internet — yours by default」，其下的說明文字指出公司為 Cloudflare，並將其描述為「具備運算、AI 推論與儲存的 AI Cloud」，讓使用者「直接交付應用程式，而非管理基礎設施」，下方中央再有一個「Start building」的行動呼籲按鈕。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:19:05.653431Z
+        seconds: 5.261348917
+        tokens: 14847
+        review: false
+    tags:
+    - cloudflare
+    - landing-page
+    - web-navigation
   a904d61e5006b602f7c6efd236911d78:
     category: screenshot
     description:
+      de-DE:
+        text: Ein Screenshot eines Terminal‑ oder Anwendungsfensters, das eine dunkel‑themed Datentabelle mit einem Titel anzeigt, der einen abgeschnittenen Pfad endet mit „roject“, in der tägliche Modellnutzung von 2026‑03‑03 bis 2026‑03‑13 aufgelistet ist. Die Spalten zeigen die verwendeten Modelle (Kombinationen aus haiku‑4‑5, opus‑4‑6 und sonnet‑4‑6), mehrere numerische Nutzungsspalten, die in die Milliarden gehen, und eine abschließende Kostenspalte in US‑Dollar, die pro Tag etwa 97,92 $ bis 1 765,56 $ beträgt. Die höchsten Kosten und Token‑Zahlen erscheinen am 2026‑03‑09 (über 3,27 Milliarden in der größten Spalte, 1 765,56 $), während am 2026‑03‑12 ein starker Rückgang auf 97,92 $ zu sehen ist, was auf einen Teil‑ oder Anomalietag hindeutet. Dies scheint ein Nachweis für die Nutzung von KI‑APIs und die Kostenverfolgung zu sein, wahrscheinlich von einem Kosten‑Monitoring‑Dashboard für ein Softwareprojekt.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:19:22.439818Z
+        seconds: 5.842941625
+        tokens: 15189
+        review: false
       en-US:
         text: A screenshot of a terminal or app window displaying a dark-themed data table titled with a truncated path ending in "roject," listing daily model usage across dated rows from 2026-03-03 to 2026-03-13, with columns for the models used (combinations of haiku-4-5, opus-4-6, and sonnet-4-6), several numeric usage columns growing into the billions, and a final dollar-cost column ranging from about $97.92 to $1,765.56 per day. The highest cost and token counts appear on 2026-03-09 (over 3.27 billion in the largest column, $1,765.56), while 2026-03-12 shows a sharp drop to $97.92, suggesting a partial or anomalous day. This appears to be evidence of AI API usage and billing tracking, likely from a cost-monitoring dashboard for a software project.
         provider: anthropic
@@ -209,11 +1310,72 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: Una captura de pantalla de una terminal o ventana de aplicación que muestra una tabla de datos de tema oscuro con un título que incluye una ruta truncada que termina en "roject", enumerando el uso diario de modelos en filas fechadas del 2026-03-03 al 2026-03-13, con columnas para los modelos utilizados (combinaciones de haiku-4-5, opus-4-6 y sonnet-4-6), varias columnas numéricas de uso que alcanzan miles de millones, y una columna final de costo en dólares que varía aproximadamente entre $97.92 y $1,765.56 por día. El mayor costo y recuento de tokens aparecen el 2026-03-09 (más de 3.27 mil millones en la columna más grande, $1,765.56), mientras que el 2026-03-12 muestra una caída brusca a $97.92, lo que sugiere un día parcial o anómalo. Esto parece ser evidencia del uso de la API de IA y el seguimiento de facturación, probablemente de un panel de monitoreo de costos para un proyecto de software.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:19:39.273804Z
+        seconds: 6.296694334
+        tokens: 15185
+        review: false
+      fr-FR:
+        text: Capture d'écran d'un terminal ou d'une fenêtre d'application affichant un tableau de données au thème sombre, intitulé d'un chemin tronqué se terminant par « roject », répertoriant l'utilisation quotidienne des modèles sur des lignes datées du 03‑03‑2026 au 13‑03‑2026, avec des colonnes pour les modèles utilisés (combinaisons de haiku‑4‑5, opus‑4‑6 et sonnet‑4‑6), plusieurs colonnes numériques d'usage atteignant des milliards, et une colonne finale de coût en dollars variant d'environ 97,92 $ à 1 765,56 $ par jour. Le coût le plus élevé et le nombre de tokens apparaissent le 09‑03‑2026 (plus de 3,27 milliards dans la plus grande colonne, 1 765,56 $), tandis que le 12‑03‑2026 montre une chute brutale à 97,92 $, ce qui suggère une journée partielle ou anormale. Cela semble être la preuve d'une utilisation de l'API IA et du suivi de facturation, probablement provenant d'un tableau de bord de suivi des coûts pour un projet logiciel.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:19:34.078964Z
+        seconds: 5.184256167
+        tokens: 15194
+        review: false
+      ja-JP:
+        text: ターミナルまたはアプリウィンドウのスクリーンショットで、ダークテーマのデータテーブルが表示されており、タイトルは「...roject」で切り詰められたパスになっています。2026-03-03 から 2026-03-13 までの日付行で日別モデル使用量が一覧化され、使用されたモデル（haiku-4-5、opus-4-6、sonnet-4-6 の組み合わせ）を示す列、数十億規模に達する複数の数値使用列、そして 1 日あたり約 $97.92 から $1,765.56 の範囲のドルコスト列があります。最も高いコストとトークン数は 2026-03-09 に現れ（最大列で 32.7 億超、$1,765.56）、2026-03-12 は $97.92 に急落しており、部分的または異常な日の可能性を示唆しています。これは AI API の使用量と請求を追跡する証拠であり、ソフトウェアプロジェクトのコスト監視ダッシュボードからのものと思われます。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:19:16.517452Z
+        seconds: 5.917974458
+        tokens: 15311
+        review: false
+      ko-KR:
+        text: 터미널이나 앱 창의 스크린샷으로, 다크 테마 데이터 테이블이 표시되어 있으며, 제목은 "roject"로 끝나는 잘린 경로이고, 2026-03-03부터 2026-03-13까지 날짜별 행에 일일 모델 사용량이 나열되어 있습니다. 사용된 모델(haiku-4-5, opus-4-6, sonnet-4-6 조합) 컬럼과 수십억 단위까지 늘어나는 여러 수치 사용량 컬럼, 그리고 하루당 약 $97.92에서 $1,765.56까지 범위의 최종 달러 비용 컬럼이 있습니다. 가장 높은 비용과 토큰 수는 2026-03-09에 나타나며(가장 큰 컬럼에서 32억 7천만 이상, $1,765.56), 2026-03-12에는 $97.92로 급격히 감소하여 부분적인 혹은 비정상적인 하루임을 시사합니다. 이는 AI API 사용 및 청구 내역을 보여주는 증거로, 소프트웨어 프로젝트의 비용 모니터링 대시보드에서 가져온 것으로 보입니다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:19:28.288157Z
+        seconds: 5.7808095
+        tokens: 15229
+        review: false
+      zh-CN:
+        text: 一张终端或应用窗口的截图，显示一个暗色主题的数据表，标题为截断的路径，末尾为“roject”，列出2026-03-03至2026-03-13每日模型使用情况，行按日期排列，列包括使用的模型（haiku-4-5、opus-4-6、sonnet-4-6 的组合）、多个数值使用列，数字达到数十亿，以及最后一列显示每日美元费用，范围约为 97.92 美元至 1,765.56 美元。最高费用和 token 数出现在2026-03-09（最大列超过 32.7 亿，费用为 1,765.56 美元），而2026-03-12 则骤降至 97.92 美元，暗示该天为部分或异常记录。这似乎是 AI API 使用和计费的证据，可能来自软件项目的成本监控仪表板。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:19:10.920538Z
+        seconds: 5.591330959
+        tokens: 15136
+        review: false
+      zh-TW:
+        text: 一張螢幕截圖，顯示在終端或應用程式視窗中，深色主題的資料表，標題為截斷的路徑，結尾為「roject」，列出 2026-03-03 至 2026-03-13 的每日模型使用情況，欄位包括使用的模型（haiku-4-5、opus-4-6、sonnet-4-6 的組合）、多個數值使用欄位達到十億級別，最後的美元成本欄位每日介於約 97.92 美元至 1,765.56 美元。最高成本與代幣數出現在 2026-03-09（最大欄位超過 32.7 億，成本 1,765.56 美元），而 2026-03-12 則急速下降至 97.92 美元，暗示該日僅部分或異常。這似乎是 AI API 使用與計費追蹤的證據，可能來自軟體專案的成本監控儀表板。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:19:45.580023Z
+        seconds: 5.319986333
+        tokens: 15192
+        review: false
+    tags:
+    - macos
+    - command-line-interface
+    - token-usage
+    - usage-cost
   b5951446d4de92d1b15b929938562f02:
     category: photograph
   c4297c3fd885b805484659786e1fb561:
     category: screenshot
     description:
+      de-DE:
+        text: Ein Screenshot der Remix‑Framework‑Website, mit dem Remix‑Logo oben links und einer Navigationsleiste oben rechts, die zu Blog, Jam, Store und V2 Docs verlinkt. Die zentrale Überschrift lautet „Remix 3 befindet sich in aktiver Entwicklung“, darunter steht das Untertitel „Ein neues Full‑Stack‑Framework, das auf Web‑APIs basiert“, und darunter befindet sich eine Illustration eines autoähnlichen Objekts, das mit einer schwarzen Stoffabdeckung bedeckt ist, wobei das Remix‑Pfeilsymbol und ein regenbogenstreifiger diagonaler Streifen durch das über die Motorhaube drapierte Tuch hervorschauen. Das Bild eines unter einem Tuch liegenden Autos ruft den Eindruck einer Produkteinführung oder eines Teasers hervor und signalisiert, dass Remix 3 eine kommende Veröffentlichung ist, die noch entwickelt wird.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:20:01.110094Z
+        seconds: 5.52351225
+        tokens: 15101
+        review: false
       en-US:
         text: A screenshot of the Remix framework website, with the Remix logo top-left and a navigation bar linking to Blog, Jam, Store, and V2 Docs top-right. The centered headline reads "Remix 3 is under active development," subtitled "A new full stack framework built on Web APIs," and below it sits an illustration of a car-shaped object draped in a black cloth cover, with the Remix arrow logo and a rainbow-striped diagonal band peeking through where the fabric drapes over its hood. The car-under-a-sheet imagery evokes a product unveiling or teaser, signaling that Remix 3 is a forthcoming release still being built.
         provider: anthropic
@@ -222,9 +1384,70 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: Una captura de pantalla del sitio web del framework Remix, con el logotipo de Remix en la esquina superior izquierda y una barra de navegación que enlaza a Blog, Jam, Store y V2 Docs en la esquina superior derecha. El titular centrado dice «Remix 3 está en desarrollo activo», con el subtítulo «Un nuevo framework full stack construido sobre Web APIs», y debajo aparece una ilustración de un objeto con forma de coche cubierto por una sábana negra, con el logotipo de la flecha de Remix y una banda diagonal a rayas de colores del arcoíris asomándose donde la tela cubre el capó. La imagen del coche bajo una cubierta evoca el lanzamiento o avance de un producto, señalando que Remix 3 es una próxima versión que aún está en construcción.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:20:16.413329Z
+        seconds: 4.634431292
+        tokens: 14819
+        review: false
+      fr-FR:
+        text: Une capture d'écran du site du framework Remix, avec le logo Remix en haut à gauche et une barre de navigation en haut à droite reliant Blog, Jam, Store et V2 Docs. Le titre centré indique « Remix 3 est en cours de développement actif », sous-titré « Un nouveau framework full‑stack construit sur les Web APIs », et en dessous se trouve une illustration d’un objet en forme de voiture recouvert d’un drap noir, avec le logo flèche de Remix et une bande diagonale à rayures arc‑en‑ciel qui apparaît là où le tissu recouvre le capot. L’image de la voiture sous le drap évoque le dévoilement d’un produit ou un teaser, signalant que Remix 3 est une version à venir qui est encore en cours de construction.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:20:11.858898Z
+        seconds: 4.547908667
+        tokens: 14810
+        review: false
+      ja-JP:
+        text: Remixフレームワークのウェブサイトのスクリーンショットで、左上にRemixロゴ、右上に「Blog」「Jam」「Store」「V2 Docs」へのナビゲーションバーがあります。中央の見出しは「Remix 3は現在積極的に開発中です」と書かれ、サブタイトルは「Web API上に構築された新しいフルスタックフレームワーク」です。その下には、黒い布で覆われた車形のオブジェのイラストがあり、布がフードにかかる部分からRemixの矢印ロゴと虹色の斜め帯が覗いています。シートに覆われた車のイメージは製品の発表やティーザーを連想させ、Remix 3がまだ開発中の次期リリースであることを示しています。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:19:55.425687Z
+        seconds: 5.676988
+        tokens: 14972
+        review: false
+      ko-KR:
+        text: Remix 프레임워크 웹사이트의 스크린샷으로, 왼쪽 상단에 Remix 로고가 있고 오른쪽 상단에 Blog, Jam, Store, V2 Docs로 연결되는 네비게이션 바가 있습니다. 중앙 헤드라인은 "Remix 3 is under active development"이며 부제는 "A new full stack framework built on Web APIs"입니다. 그 아래에는 검은 천으로 덮인 자동차 모양의 일러스트가 배치되어 있으며, 천이 후드 위에 씌워진 부분에서 Remix 화살표 로고와 무지개 줄무늬 대각선 밴드가 살짝 보입니다. 천에 가려진 자동차 이미지는 제품 공개 또는 티저를 연상시켜 Remix 3가 아직 개발 중인 향후 출시 버전임을 알립니다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:20:06.640818Z
+        seconds: 5.211676541
+        tokens: 14926
+        review: false
+      zh-CN:
+        text: Remix 框架网站的截图，左上角是 Remix 标志，右上角的导航栏链接到 Blog、Jam、Store 和 V2 Docs。居中的标题写着“Remix 3 正在积极开发中”，副标题为“基于 Web API 的全栈新框架”，其下是一辆车形物体覆以黑色布盖的插图，布料覆盖在引擎盖上时，露出 Remix 箭头标志和一条彩虹条纹的对角带。车被布覆盖的画面营造出产品发布或预告的氛围，表明 Remix 3 是即将推出且仍在构建中的版本。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:19:50.90833Z
+        seconds: 4.509854042
+        tokens: 14797
+        review: false
+      zh-TW:
+        text: 這是一張 Remix 框架網站的螢幕截圖，左上角是 Remix 標誌，右上角有導覽列連結至 Blog、Jam、Store 和 V2 Docs。畫面中央的標題寫著「Remix 3 正在積極開發中」，副標題為「一個基於 Web APIs 的全新全端框架」，其下是一幅車形物件被黑色布料覆蓋的插圖，布料覆蓋在引擎蓋上時露出 Remix 箭頭標誌和一條彩虹條紋的對角帶。這張覆蓋在車上的圖像讓人聯想到產品發表或預告，暗示 Remix 3 是即將推出且仍在開發中的版本。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:20:21.054076Z
+        seconds: 4.5326369589999995
+        tokens: 14827
+        review: false
+    tags:
+    - remix
+    - landing-page
+    - web-navigation
+    - automobile
   cbc260f16e936f977570f8fb391f48e2:
     category: screenshot
     description:
+      de-DE:
+        text: 'Dies ist ein Screenshot eines Terminalfensters mit dem Titel „~/C/P/seam“, das das Ende eines `cargo build --release`-Durchlaufs für das Projekt „seam“ zeigt. Die Bildlaufleiste listet Dutzende von Abhängigkeits‑Crates auf, die nacheinander kompiliert werden – walkdir, rand, tungstenite, sha2, toml, notify, rquickjs, clap und weitere – gefolgt von den eigenen Arbeitsbereichs‑Mitgliedern des Projekts wie seam-codegen, seam-skeleton, seam-injector-wasm, seam-engine-wasm, seam-server, seam-server-axum, seam-cli und mehreren Beispiel‑Backends (demo-server-rust, github-dashboard-axum, markdown-demo-rust, i18n-demo-axum). Die letzten Zeilen bestätigen den Erfolg: „Finished `release` profile [optimized] target(s) in 1m 05s“, gefolgt von einer Leerlauf‑Shell‑Eingabeaufforderung `canmi@xyy ~/C/P/seam (main)>`. Es ist ein Beweis für einen sauberen, vollständigen Release‑Build eines mehr‑Crate‑Rust‑Monorepos mit WASM‑ und Axum‑Server‑Komponenten.'
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:20:36.179905Z
+        seconds: 5.733484833
+        tokens: 15270
+        review: false
       en-US:
         text: 'This is a screenshot of a terminal window titled "~/C/P/seam" showing the tail end of a `cargo build --release` run for a project called "seam." The scroll lists dozens of dependency crates compiling in sequence — walkdir, rand, tungstenite, sha2, toml, notify, rquickjs, clap and others — followed by the project''s own workspace members such as seam-codegen, seam-skeleton, seam-injector-wasm, seam-engine-wasm, seam-server, seam-server-axum, seam-cli, and several example backends (demo-server-rust, github-dashboard-axum, markdown-demo-rust, i18n-demo-axum). The final lines confirm success: "Finished `release` profile [optimized] target(s) in 1m 05s," followed by an idle shell prompt reading `canmi@xyy ~/C/P/seam (main)>`. It is evidence of a clean, complete release build of a multi-crate Rust monorepo with WASM and Axum server components.'
         provider: anthropic
@@ -233,9 +1456,71 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: 'Esta es una captura de pantalla de una ventana de terminal titulada "~/C/P/seam" que muestra la parte final de una ejecución de `cargo build --release` para un proyecto llamado "seam". La pantalla desplaza docenas de crates de dependencias compilándose en secuencia — walkdir, rand, tungstenite, sha2, toml, notify, rquickjs, clap y otros — seguidos por los miembros propios del espacio de trabajo del proyecto, como seam-codegen, seam-skeleton, seam-injector-wasm, seam-engine-wasm, seam-server, seam-server-axum, seam-cli y varios backends de ejemplo (demo-server-rust, github-dashboard-axum, markdown-demo-rust, i18n-demo-axum). Las líneas finales confirman el éxito: "Finished `release` profile [optimized] target(s) in 1m 05s", seguido de un prompt de shell inactivo que muestra `canmi@xyy ~/C/P/seam (main)>`. Es evidencia de una compilación limpia y completa en modo release de un monorepo Rust de múltiples crates con componentes WASM y servidor Axum.'
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:20:53.939462Z
+        seconds: 3.526365917
+        tokens: 14733
+        review: false
+      fr-FR:
+        text: 'Ceci est une capture d''écran d''une fenêtre de terminal intitulée "~/C/P/seam" montrant la partie finale d''une exécution de `cargo build --release` pour un projet appelé "seam". Le déroulement répertorie des dizaines de crates de dépendances compilées en séquence — walkdir, rand, tungstenite, sha2, toml, notify, rquickjs, clap et d''autres — suivi des membres propres de l''espace de travail du projet tels que seam-codegen, seam-skeleton, seam-injector-wasm, seam-engine-wasm, seam-server, seam-server-axum, seam-cli, et plusieurs backends d''exemple (demo-server-rust, github-dashboard-axum, markdown-demo-rust, i18n-demo-axum). Les lignes finales confirment le succès : "Finished `release` profile [optimized] target(s) in 1m 05s," suivi d''une invite de shell inactive affichant `canmi@xyy ~/C/P/seam (main)>`. Cela constitue la preuve d''une construction release propre et complète d''un monorepo Rust multi‑crate avec des composants WASM et serveur Axum.'
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:20:47.905511Z
+        seconds: 6.027682584
+        tokens: 15351
+        review: false
+      ja-JP:
+        text: これは「~/C/P/seam」というタイトルのターミナルウィンドウのスクリーンショットで、プロジェクト「seam」の `cargo build --release` 実行の最後の部分を示しています。スクロールには、walkdir、rand、tungstenite、sha2、toml、notify、rquickjs、clap など、順にコンパイルされる多数の依存クレートがリストされ、その後に seam-codegen、seam-skeleton、seam-injector-wasm、seam-engine-wasm、seam-server、seam-server-axum、seam-cli といったプロジェクト固有のワークスペースメンバーや、demo-server-rust、github-dashboard-axum、markdown-demo-rust、i18n-demo-axum といった例示的バックエンドが続きます。最終行は「Finished `release` profile [optimized] target(s) in 1m 05s」と成功を示し、続いてアイドル状態のシェルプロンプト `canmi@xyy ~/C/P/seam (main)>` が表示されています。これは、WASM と Axum サーバーコンポーネントを含むマルチクレート Rust モノレポのクリーンで完全なリリースビルドの証拠です。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:20:30.357451Z
+        seconds: 5.817334208
+        tokens: 15332
+        review: false
+      ko-KR:
+        text: '이 스크린샷은 터미널 창(제목: "~/C/P/seam")에서 "seam" 프로젝트에 대해 `cargo build --release`를 실행한 최종 부분을 보여줍니다. 스크롤에는 walkdir, rand, tungstenite, sha2, toml, notify, rquickjs, clap 등 수십 개의 의존성 크레이트가 순차적으로 컴파일되는 목록이 표시되고, 이어서 seam-codegen, seam-skeleton, seam-injector-wasm, seam-engine-wasm, seam-server, seam-server-axum, seam-cli 등 프로젝트 자체 워크스페이스 구성원과 몇몇 예시 백엔드(demo-server-rust, github-dashboard-axum, markdown-demo-rust, i18n-demo-axum)가 나타납니다. 마지막 줄에는 "Finished `release` profile [optimized] target(s) in 1m 05s" 라는 성공 메시지가 나오고, 그 뒤에 `canmi@xyy ~/C/P/seam (main)>` 라는 대기 중 쉘 프롬프트가 표시됩니다. 이는 WASM 및 Axum 서버 구성 요소를 포함한 다중 크레이트 Rust 모노레포가 깨끗하고 완전하게 릴리즈 빌드된 증거입니다.'
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:20:41.918649Z
+        seconds: 5.980760084
+        tokens: 15290
+        review: false
+      zh-CN:
+        text: 这是一张终端窗口的截图，标题为“~/C/P/seam”，显示了对名为“seam”的项目执行 `cargo build --release` 的最终阶段。滚动列表中按顺序编译了数十个依赖 crate——包括 walkdir、rand、tungstenite、sha2、toml、notify、rquickjs、clap 等——随后是项目自身的工作区成员，如 seam-codegen、seam-skeleton、seam-injector-wasm、seam-engine-wasm、seam-server、seam-server-axum、seam-cli，以及多个示例后端（demo-server-rust、github-dashboard-axum、markdown-demo-rust、i18n-demo-axum）。最后几行确认构建成功：“Finished `release` profile [optimized] target(s) in 1m 05s”，随后出现空闲的 shell 提示符 `canmi@xyy ~/C/P/seam (main)>`。这表明对包含 WASM 和 Axum 服务器组件的多 crate Rust 单体仓库完成了干净、完整的发布构建。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:20:25.592982Z
+        seconds: 4.758742
+        tokens: 15022
+        review: false
+      zh-TW:
+        text: 這是一張終端機視窗的螢幕截圖，視窗標題為「~/C/P/seam」，顯示名為「seam」的專案執行 `cargo build --release` 的最後階段。捲軸列出數十個依賴 crate 按順序編譯——walkdir、rand、tungstenite、sha2、toml、notify、rquickjs、clap 等——接著是專案本身的工作區成員，如 seam-codegen、seam-skeleton、seam-injector-wasm、seam-engine-wasm、seam-server、seam-server-axum、seam-cli，以及數個範例後端（demo-server-rust、github-dashboard-axum、markdown-demo-rust、i18n-demo-axum）。最後幾行確認成功：`Finished `release` profile [optimized] target(s) in 1m 05s`，接著是一個閒置的 Shell 提示字元 `canmi@xyy ~/C/P/seam (main)>`。這證明了這個包含 WASM 與 Axum 伺服器元件的多 crate Rust monorepo 已完成乾淨、完整的 Release 建置。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:20:57.472005Z
+        seconds: 5.766469125
+        tokens: 15312
+        review: false
+    tags:
+    - cargo
+    - rust
+    - compilation
+    - command-line-interface
+    - macos
   ccab92399398f1642024732cc1097abe:
     category: screenshot
     description:
+      de-DE:
+        text: Ein Screenshot der Startseite eines persönlichen Blogs zeigt eine Seitenleiste mit einem Anime‑Stil‑Avatar, dem Namen “小汐”, einem Link „主页“ und einer Navigation „所有文章/友链/关于我“ sowie GitHub‑ und anderen Social‑Media‑Icons, daneben ein Feed von angehefteten Beiträgen. Der oberste Beitrag, datiert vom 29.01.2023 und mit dem Tag „置顶“ (angeheftet), trägt den Titel „PD-METER-R4“ und enthält den Hinweis „正在开发，相较于R3优化布局，更换主控，增加少量新功能“ (in Entwicklung, Layout im Vergleich zu R3 optimiert, Hauptcontroller ausgetauscht, ein paar neue Funktionen hinzugefügt), illustriert durch zwei Fotos einer grünen Platine mit Aufschrift „USBC‑R4 SAKURA“, die die Bauteilseite und die blanke Rückseite auf einem Stoffhintergrund zeigen. Darunter beginnt ein zweiter Beitrag mit dem Titel „WORX‑BAT‑Charger“, datiert vom 14.02.2023, der am unteren Bildrand abgeschnitten ist. Das Bild dient als Nachweis für ein laufendes Hardware‑Projekt, das iterative Überarbeitungen eines USB‑C‑PD‑Messgeräts dokumentiert.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:21:14.30608Z
+        seconds: 6.306150292
+        tokens: 15403
+        review: false
       en-US:
         text: A screenshot of a personal blog homepage shows a sidebar with an anime-style avatar, the name "小汐", a "主页" link, and "所有文章/友链/关于我" navigation along with GitHub and other social icons, sitting beside a feed of pinned posts. The top post, dated 2023-01-29 and tagged "置顶" (pinned), is titled "PD-METER-R4" with the note "正在开发，相较于R3优化布局，更换主控，增加少量新功能" (in development, layout optimized versus R3, main controller replaced, a few new features added), illustrated by two photos of a green PCB labeled "USBC-R4 SAKURA" showing its component side and its bare reverse side on a fabric backdrop. Below it, a second post titled "WORX-BAT-Charger" dated 2023-02-14 begins, cut off at the bottom of the frame. The image serves as evidence of an ongoing hardware project documenting iterative revisions of a USB-C PD (power delivery) measurement device.
         provider: anthropic
@@ -244,9 +1529,70 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: Una captura de pantalla de la página principal de un blog personal muestra una barra lateral con un avatar estilo anime, el nombre «小汐», un enlace «主页», y la navegación «所有文章/友链/关于我» junto con íconos de GitHub y otras redes sociales, situada al lado de un feed de publicaciones destacadas. La publicación superior, fechada el 29‑01‑2023 y etiquetada «置顶» (destacada), lleva el título «PD-METER-R4» con la nota «正在开发，相较于R3优化布局，更换主控，增加少量新功能» (en desarrollo, diseño optimizado respecto a R3, controlador principal reemplazado, se añaden unas pocas funciones nuevas), ilustrada con dos fotos de una PCB verde etiquetada «USBC‑R4 SAKURA» que muestra su lado de componentes y su reverso desnudo sobre un fondo de tela. Debajo, comienza una segunda publicación titulada «WORX‑BAT‑Charger», fechada el 14‑02‑2023, que queda cortada en la parte inferior del marco. La imagen sirve como evidencia de un proyecto de hardware en curso que documenta revisiones iterativas de un dispositivo de medición USB‑C PD (entrega de energía).
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:21:32.544017Z
+        seconds: 5.708350666
+        tokens: 15300
+        review: false
+      fr-FR:
+        text: Une capture d'écran de la page d'accueil d'un blog personnel montre une barre latérale avec un avatar de style anime, le nom « 小汐 », un lien « 主页 », et une navigation « 所有文章/友链/关于我 » accompagnée d'icônes GitHub et d'autres réseaux sociaux, placée à côté d'un fil d'articles épinglés. Le premier article, daté du 29 janvier 2023 et étiqueté « 置顶 » (épinglé), est intitulé « PD-METER-R4 » avec la remarque « 正在开发，相较于R3优化布局，更换主控，增加少量新功能 » (en développement, mise en page optimisée par rapport à R3, remplacement du contrôleur principal, ajout de quelques nouvelles fonctionnalités), illustrée par deux photos d'un circuit imprimé vert portant la mention « USBC‑R4 SAKURA » montrant son côté composant et son verso nu sur un fond en tissu. En dessous, commence un second article intitulé « WORX‑BAT‑Charger », daté du 14 février 2023, coupé au bas du cadre. L'image constitue une preuve d'un projet matériel en cours documentant les révisions itératives d'un dispositif de mesure USB‑C PD (Power Delivery).
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:21:26.729947Z
+        seconds: 5.807690583
+        tokens: 15320
+        review: false
+      ja-JP:
+        text: 個人ブログのホームページのスクリーンショットには、アニメ風のアバターと名前「小汐」、リンク「主页」、そして「所有文章/友链/关于我」のナビゲーションとGitHubをはじめとするソーシャルアイコンが表示されたサイドバーが、ピン留めされた投稿のフィードの横に配置されている。最上位の投稿は2023-01-29付けでタグ「置顶」（ピン留め）されており、タイトルは「PD-METER-R4」、メモは「正在开发，相较于R3优化布局，更换主控，增加少量新功能」（開発中で、R3に比べレイアウトを最適化し、主制御装置を交換し、少数の新機能を追加）となっている。緑色のPCB「USBC-R4 SAKURA」の部品面と、布製バックドロップ上の裏面の裸状態を示す2枚の写真が添えられている。その下には、2023-02-14付けのタイトル「WORX-BAT-Charger」の2番目の投稿が始まっているが、フレームの下部で切れている。この画像は、USB-C PD（Power Delivery）測定装置の反復的な改良を記録した、進行中のハードウェアプロジェクトの証拠となっている。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:21:08.347826Z
+        seconds: 5.951644083
+        tokens: 15515
+        review: false
+      ko-KR:
+        text: 개인 블로그 홈페이지의 스크린샷에는 애니메이션 스타일 아바타와 이름 小汐, 主页 링크, 所有文章/友链/关于我 네비게이션, GitHub 및 기타 소셜 아이콘이 포함된 사이드바가 고정된 포스트 피드 옆에 배치되어 있습니다. 가장 위의 포스트는 2023‑01‑29에 작성되었으며 置顶(고정) 태그가 붙어 있고, 제목은 PD-METER-R4이며 正在开发，相较于R3优化布局，更换主控，增加少量新功能(개발 중이며, R3에 비해 레이아웃을 최적화하고 메인 컨트롤러를 교체했으며 소량의 새로운 기능을 추가함)이라는 메모가 있습니다. 이 포스트는 USBC‑R4 SAKURA라고 적힌 초록색 PCB의 부품 면과 천 배경 위에 놓인 맨 뒤쪽 면을 보여주는 두 장의 사진으로 구성됩니다. 그 아래에는 2023‑02‑14에 작성된 WORX‑BAT‑Charger라는 두 번째 포스트가 시작되지만 프레임 하단에서 잘려 있습니다. 이 이미지는 USB‑C PD(전력 전송) 측정 장치의 반복적인 개정 과정을 문서화하는 진행 중인 하드웨어 프로젝트의 증거 역할을 합니다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:21:20.618414Z
+        seconds: 6.106016958
+        tokens: 15418
+        review: false
+      zh-CN:
+        text: 个人博客主页的截图显示，侧栏有一张动漫风格的头像，名称“小汐”，一个“主页”链接，以及“所有文章/友链/关于我”导航，旁边还有GitHub等社交图标，位于置顶文章的内容流旁。置顶的第一篇文章日期为2023-01-29，标记为“置顶”，标题为“PD-METER-R4”，备注为“正在开发，相较于R3优化布局，更换主控，增加少量新功能”，配有两张标有“USBC-R4 SAKURA”的绿色PCB照片，分别展示其元件面和布料背景下的裸背面。其下是一篇标题为“WORX-BAT-Charger”，日期为2023-02-14的第二篇文章，画面在底部被截断。该图片作为正在进行的硬件项目的证据，记录了USB-C PD（电力传输）测量装置的迭代修订。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:21:03.244767Z
+        seconds: 5.096364208
+        tokens: 15201
+        review: false
+      zh-TW:
+        text: 個人部落格首頁的螢幕截圖顯示側邊欄有一個動漫風格的頭像，名稱「小汐」、「首頁」連結，以及「所有文章/友鏈/關於我」導覽，並伴有 GitHub 與其他社群圖示，位於置頂文章的資訊流旁。最上方的文章於 2023-01-29 發布，標記為「置頂」，標題為「PD-METER-R4」，註記為「正在開發，相較於 R3 優化布局，更換主控，增加少量新功能」，並透過兩張照片展示標示為「USBC-R4 SAKURA」的綠色 PCB，分別為元件面與裸露的背面，放置於布料背景上。其下方是第二篇標題為「WORX-BAT-Charger」、日期為 2023-02-14 的文章，畫面在底部被截斷。此圖片作為正在進行的硬體專案的證據，記錄 USB‑C PD（電力傳輸）測量裝置的迭代修訂。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:21:38.259115Z
+        seconds: 5.949919584
+        tokens: 15291
+        review: false
+    tags:
+    - personal-website
+    - anime-avatar
+    - printed-circuit-board
+    - usb-c
   d4fb6031c436599353a6a90fdd99792c:
     category: photograph
     description:
+      de-DE:
+        text: Eine Nahaufnahme eines verwitterten Holzsteges oder Anlegers, aus einer niedrigen Winkelperspektive fotografiert, die entlang der Länge der Dielen nach unten blickt, während sie in die Ferne verschwinden. Die grauen, sonnenverblassten Bretter zeigen starke Abnutzung – gesprungene Kanten, herausragende rostige Nagelköpfe und mehrere Bretter, die geknackt oder durchbrochen sind, wobei Grüngrasbüschel und welkende Blätter aus den Lücken auf der linken Seite hervorschießen. Der Gesamteindruck deutet auf langjährige Witterungseinwirkung und Vernachlässigung hin und lässt darauf schließen, dass die Struktur reparatur- oder ersatzbedürftig ist.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:21:54.142329Z
+        seconds: 4.734800125
+        tokens: 14701
+        review: false
       en-US:
         text: A close-up photograph of a weathered wooden boardwalk or dock, shot from a low angle looking down the length of the planks as they recede into the distance. The gray, sun-bleached boards show heavy wear -- splintered edges, protruding rusty nail heads, and several boards cracked or broken through, with tufts of green grass and dead leaves pushing up through the gaps on the left side. The overall condition points to long-term outdoor exposure and neglect, suggesting the structure is due for repair or replacement.
         provider: anthropic
@@ -255,9 +1601,69 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: 'Una foto en primer plano de un pasillo o muelle de madera envejecida, tomada desde un ángulo bajo mirando a lo largo de las tablas mientras se alejan en la distancia. Las tablas grises, blanqueadas por el sol, muestran un desgaste intenso: bordes astillados, cabezas de clavos oxidados sobresaliendo y varias tablas agrietadas o rotas, con mechones de hierba verde y hojas secas que sobresalen por las grietas en el lado izquierdo. El estado general evidencia una exposición prolongada al exterior y abandono, lo que sugiere que la estructura necesita reparación o sustitución.'
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:22:08.03402Z
+        seconds: 2.930301084
+        tokens: 14355
+        review: false
+      fr-FR:
+        text: Une photographie en gros plan d’une promenade en bois usée ou d’un quai, prise d’un angle bas en regardant le long des planches qui s’éloignent dans la distance. Les planches grises, décolorées par le soleil, montrent une usure importante — bords éclatés, têtes de clous rouillées qui dépassent, et plusieurs planches fissurées ou cassées, avec des touffes d’herbe verte et des feuilles mortes qui poussent à travers les espaces du côté gauche. L’état général indique une exposition extérieure prolongée et négligence, suggérant que la structure nécessite des réparations ou un remplacement.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:22:03.619008Z
+        seconds: 4.40855725
+        tokens: 14636
+        review: false
+      ja-JP:
+        text: 低い角度から撮影された、風化した木製の板道（または桟橋）のクローズアップ写真で、板の長さに沿って奥へ遠ざかる様子が見える。灰色で日焼けした板は、ひび割れた縁や突き出た錆びた釘の頭、そしていくつかの板が割れたり欠損しており、左側の隙間からは緑の草や枯れ葉の束が顔を出している。全体的な状態は長期間の屋外曝露と放置を示しており、修復または交換が必要であることを示唆している。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:21:47.358569Z
+        seconds: 6.777294958
+        tokens: 14916
+        review: false
+      ko-KR:
+        text: 날씨에 닳아진 목재 보드워크 또는 부두를 클로즈업한 사진으로, 낮은 각도에서 판자들의 길이를 따라 멀리 사라지는 모습을 바라보며 촬영했습니다. 회색이고 햇볕에 퇴색한 판자들은 심한 마모가 보이며—깎인 가장자리, 튀어나온 녹슨 못 머리, 그리고 몇몇 판자는 갈라지거나 부서져 있으며, 왼쪽 측면의 틈새에는 푸른 풀잎과 마른 잎이 솟아 있습니다. 전체적인 상태는 장기간 야외 노출과 방치의 흔적으로, 구조물이 수리 또는 교체가 필요함을 시사합니다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:21:58.883845Z
+        seconds: 4.729132041
+        tokens: 14644
+        review: false
+      zh-CN:
+        text: 一张特写照片，拍摄一段风化的木板人行道或码头，低视角向下俯视木板的长度，木板在远处逐渐消失。灰色、被阳光漂白的木板显示出严重的磨损——边缘碎裂、凸出的锈蚀钉头，以及几块木板出现裂缝或断裂，左侧有绿草和枯叶从缝隙中冒出。整体状况表明长期户外暴露和疏于维护，暗示该结构需要维修或更换。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:21:44.213995Z
+        seconds: 3.138775958
+        tokens: 14389
+        review: false
+      zh-TW:
+        text: 近距離拍攝的舊化木棧道或碼頭，從低角度俯視，沿著木板長度向遠處延伸。灰色、被陽光漂白的木板顯示嚴重磨損——板邊碎裂、突出的鏽釘頭，以及多塊木板開裂或斷裂，左側有綠草和枯葉從縫隙中冒出。整體狀況顯示長期戶外曝曬與疏於維護，暗示該結構亟需修繕或更換。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:22:10.971017Z
+        seconds: 4.094618292
+        tokens: 14674
+        review: false
+    tags:
+    - wooden-decking
+    - grass
+    - fallen-leaves
   ff309d022981d9168fca9e5e9b7291e4:
     category: photograph
     description:
+      de-DE:
+        text: Ein Foto, aufgenommen beim direkten Blick nach oben in den Himmel, dominiert von verstreuten Schleiern und Gruppen weißer Kumulusfragmente vor einem neblig blau‑grauen Hintergrund. Die Wolken verdichten sich stärker im oberen linken Bereich, werden in der Mitte und rechts zum offenen Himmel hin dünner, während die silhouettierten, blattreichen Äste eines Baumes am rechten Bildrand in den Rahmen schneiden und ihr dunkles Laub vom bedeckten Licht rückseitig beleuchtet wird. Die sanfte, diffuse Beleuchtung deutet auf einen hellen, aber von der Sonne verdeckten Tag hin, wobei der Aufwärtswinkel und der Baumast dem Bild das Gefühl eines lockeren, bodennahen Naturaufnahmes geben, statt einer inszenierten Komposition.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:22:24.714519Z
+        seconds: 4.301103792
+        tokens: 14746
+        review: false
       en-US:
         text: A photograph taken looking straight up into the sky, dominated by scattered wisps and clusters of white cumulus fragments against a hazy blue-gray backdrop. The clouds cluster more densely toward the upper left, thinning to open sky in the center and right, while the silhouetted, leafy branches of a tree cut into the frame along the right edge, their dark foliage backlit by the overcast light. The soft, diffuse illumination suggests a bright but sun-obscured day, with the upward angle and tree branch giving the shot the feel of a casual, ground-level nature snapshot rather than a staged composition.
         provider: anthropic
@@ -266,3 +1672,55 @@ media:
         seconds: 0.0
         tokens: 0
         review: false
+      es-ES:
+        text: Una fotografía tomada mirando directamente hacia arriba en el cielo, dominada por filamentos y cúmulos dispersos de fragmentos de nubes cúmulus blancas contra un fondo azul‑gris brumoso. Las nubes se agrupan más densamente hacia la esquina superior izquierda, afinándose hacia cielo abierto en el centro y la derecha, mientras que las ramas con hojas de un árbol, en silueta, cortan el encuadre a lo largo del borde derecho, su follaje oscuro iluminado de fondo por la luz nublada. La iluminación suave y difusa sugiere un día brillante pero sin sol visible, y el ángulo ascendente y la rama del árbol le dan a la foto la sensación de una captura casual de la naturaleza a nivel del suelo, en lugar de una composición puesta en escena.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:22:39.02325Z
+        seconds: 6.362571042
+        tokens: 14754
+        review: false
+      fr-FR:
+        text: Une photographie prise en regardant droit vers le ciel, dominée par des volutes éparses et des amas de fragments de cumulus blancs sur un arrière‑plan bleu‑gris brumeux. Les nuages s’agglutinent plus densément vers le coin supérieur gauche, s’amincissant vers le ciel ouvert au centre et à droite, tandis que les branches feuillues et silhouettées d’un arbre découpent le cadre le long du bord droit, leur feuillage sombre rétroéclairé par la lumière diffuse du ciel couvert. L’éclairage doux et diffus suggère une journée lumineuse mais le soleil étant masqué, l’angle ascendant et la branche d’arbre donnent à la prise l’impression d’une capture nature décontractée, prise au niveau du sol, plutôt que d’une composition mise en scène.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:22:33.963456Z
+        seconds: 5.052905375
+        tokens: 14778
+        review: false
+      ja-JP:
+        text: 上をまっすぐ見上げて撮影された写真で、霞んだ青灰色の背景に白い積雲のかすかな繊維や塊が散在して支配的に映っている。雲は左上部に向かって密集し、中央と右側では空が開けている。一方、右端に沿ってフレームに切り込むように映る木の葉のついた枝がシルエットとなり、暗い葉が曇り光に背面から照らされている。柔らかく拡散した光は、日差しは隠れているものの明るい日を示唆しており、上向きの角度と木の枝が、演出された構図ではなく、地上からのカジュアルな自然スナップの雰囲気を与えている。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:22:19.803375Z
+        seconds: 4.9040385
+        tokens: 14851
+        review: false
+      ko-KR:
+        text: 하늘을 바로 위로 바라본 사진으로, 흐릿한 청회색 배경에 흩어져 있는 흰색 구름 조각과 얇은 구름 무리들이 지배적이다. 구름은 왼쪽 위쪽으로 더 촘촘히 모여 있고, 가운데와 오른쪽으로 갈수록 하늘이 드러난다. 오른쪽 가장자리를 따라 프레임에 들어온 나무의 잎이 무성한 가지가 실루엣처럼 보이며, 어두운 잎사귀가 흐린 빛에 역광을 받고 있다. 부드럽고 확산된 조명은 햇빛은 가려졌지만 밝은 날임을 암시하고, 위쪽을 향한 각도와 나무 가지가 이 사진을 연출된 구도가 아니라 일상적인 지면 수준의 자연 스냅처럼 느끼게 만든다.
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:22:29.02244Z
+        seconds: 4.934273416
+        tokens: 14844
+        review: false
+      zh-CN:
+        text: 这是一张仰视天空的照片，画面以散落的细线状和成簇的白色积云碎片为主，背景是一片朦胧的蓝灰色。云层在左上方更为密集，向中心和右侧逐渐稀疏至开阔的天空；与此同时，画面右侧出现了树的剪影枝叶，暗色的叶子在阴天的光线下被背光。柔和的漫射光暗示着天气明亮但阳光被遮蔽，仰视的角度和树枝让这张照片更像是随意的低角度自然快照，而非刻意的构图。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:22:15.071421Z
+        seconds: 4.7256276249999996
+        tokens: 14738
+        review: false
+      zh-TW:
+        text: 一張仰望天空直拍的照片，畫面被散落的白色積雲碎片與薄纖雲絲所主導，背景是朦朧的藍灰色。雲團在左上方較為密集，向中部和右側逐漸變稀，呈現開闊的天空；右側邊緣可見樹枝的剪影，葉片濃密且被陰天的光線從背後照亮。柔和且散射的光線顯示出天氣明亮卻被遮住陽光，向上俯瞰的角度加上樹枝，使畫面更像是隨意的地面自然快照，而非刻意構圖。
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T04:22:45.392526Z
+        seconds: 4.707265959
+        tokens: 14782
+        review: false
+    tags:
+    - tree
+    - sky
+    - cloud
