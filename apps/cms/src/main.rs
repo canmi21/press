@@ -675,8 +675,9 @@ fn process_images(args: &[String]) -> ExitCode {
 		eprintln!("warn  no original for {value}");
 	}
 	println!(
-		"{} derived, {} unchanged, {} failed, {} references rewritten",
+		"{} derived, {} sidecars rewritten, {} unchanged, {} failed, {} references rewritten",
 		outcome.processed,
+		outcome.migrated,
 		outcome.skipped,
 		outcome.failed.len(),
 		outcome.rewritten

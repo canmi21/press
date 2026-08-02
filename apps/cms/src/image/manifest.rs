@@ -14,6 +14,7 @@ use base64::Engine as _;
 use base64::engine::general_purpose::STANDARD;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
+use std::path::Path;
 
 /// Bumped when the shape changes, so a reader can tell rather than guess. The first change
 /// without one is the one that corrupts silently.
@@ -99,22 +100,29 @@ pub struct Merged {
 	pub media: BTreeMap<String, Media>,
 }
 
-/// Bring a manifest read from disk up to the current shape, in place.
-///
-/// Returns whether anything moved, so a caller knows to republish the per-asset records that
-/// were written under the old shape. One-way and one-time: the upgraded file is written back,
-/// so there is never a v1 reader to keep working. Two readers for two shapes is how a format
-/// stops having a current version at all.
+/// Bring a manifest read from disk up to the current shape and find stale per-asset records.
 ///
 /// A field added with `#[serde(default)]` is already correct by the time this runs -- the
 /// version number is the part that has to be said out loud, because the next migration needs
 /// to know where it is starting from.
-pub fn migrate(merged: &mut Merged) -> bool {
-	if merged.version >= VERSION {
-		return false;
-	}
-	merged.version = VERSION;
-	true
+///
+/// Staleness belongs to each sidecar rather than to this aggregate version. The aggregate may
+/// have been upgraded before every guarded write completed; using it as a one-shot gate then
+/// makes the unfinished writes permanently invisible on every later run.
+pub fn migrate(merged: &mut Merged, public: &Path) -> Vec<String> {
+	merged.version = merged.version.max(VERSION);
+	merged
+		.media
+		.keys()
+		.filter(|cid| {
+			let path = super::store::meta_path(public, cid);
+			std::fs::read_to_string(path)
+				.ok()
+				.and_then(|text| serde_json::from_str::<Document>(&text).ok())
+				.is_none_or(|document| document.version < VERSION)
+		})
+		.cloned()
+		.collect()
 }
 
 pub fn ratio_of(width: u32, height: u32) -> String {

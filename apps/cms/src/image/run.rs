@@ -60,9 +60,9 @@ pub fn run(
 	// Records published under an older shape are rewritten from the merged manifest, which
 	// already holds everything they contain. Re-deriving to fix a version number would spend
 	// minutes of CPU to produce identical pixels.
-	if manifest::migrate(&mut merged) {
-		for (cid, media) in &merged.media {
-			republish(public, cid, media)?;
+	for cid in manifest::migrate(&mut merged, public) {
+		if let Some(media) = merged.media.get(&cid) {
+			republish(public, &cid, media)?;
 			outcome.migrated += 1;
 		}
 	}
@@ -539,5 +539,84 @@ mod tests {
 			resolved_name("44b6081deaf0242ca3bf83d62a3b6c95", &media).as_deref(),
 			Some("44b6081deaf0242ca3bf83d62a3b6c95.png")
 		);
+	}
+
+	#[test]
+	fn a_stale_sidecar_is_republished_when_the_aggregate_is_current() {
+		let root = temp("stale-sidecar");
+		let public = root.join("public");
+		let articles = root.join("contents");
+		std::fs::create_dir_all(root.join("data")).expect("data");
+		std::fs::create_dir_all(&articles).expect("articles");
+
+		let cid = "44b6081deaf0242ca3bf83d62a3b6c95";
+		let media = manifest::Media {
+			kind: "image".into(),
+			created: "2026-07-31T00:00:00Z".into(),
+			updated: "2026-07-31T00:00:00Z".into(),
+			blake3: cid.into(),
+			thumbhash: "hash".into(),
+			source: manifest::Source {
+				mime: "image/png".into(),
+				width: 1,
+				height: 1,
+				ratio: "1:1".into(),
+				bytes: 1,
+			},
+			metadata: None,
+			variants: BTreeMap::new(),
+		};
+		let merged = Merged {
+			version: manifest::VERSION,
+			created: "2026-07-31T00:00:00Z".into(),
+			updated: "2026-07-31T00:00:00Z".into(),
+			media: BTreeMap::from([(cid.to_owned(), media.clone())]),
+		};
+		store::write(
+			&root.join(MERGED),
+			serde_json::to_string_pretty(&merged)
+				.expect("merged")
+				.as_bytes(),
+		)
+		.expect("write merged");
+		let mut stale = serde_json::to_value(manifest::Document {
+			version: 2,
+			media: media.clone(),
+		})
+		.expect("stale document");
+		stale["media"]["preview"] = "obsolete".into();
+		store::write(
+			&store::meta_path(&public, cid),
+			serde_json::to_string_pretty(&stale)
+				.expect("stale json")
+				.as_bytes(),
+		)
+		.expect("write stale sidecar");
+
+		let outcome = run(
+			&root,
+			&root.join("data/image"),
+			&public,
+			&articles,
+			&Options {
+				force: false,
+				keep_original: false,
+				only: &[],
+			},
+		)
+		.expect("run");
+
+		// The old aggregate gate returned before seeing this v2 file because the aggregate was
+		// already v3. The repair comes entirely from merged metadata: no original or variant
+		// directory exists for a pixel pipeline to read or write.
+		assert_eq!(outcome.migrated, 1);
+		assert_eq!(outcome.processed, 0);
+		let rewritten = std::fs::read_to_string(store::meta_path(&public, cid)).expect("sidecar");
+		let document: manifest::Document = serde_json::from_str(&rewritten).expect("document");
+		assert_eq!(document.version, manifest::VERSION);
+		assert_eq!(document.media, media);
+		assert!(!rewritten.contains("preview"));
+		assert!(!public.join("image").exists());
+		std::fs::remove_dir_all(&root).ok();
 	}
 }
