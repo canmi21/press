@@ -95,10 +95,23 @@ its `?lang=` form. Ranking weight then accumulates where the content actually is
 being handed to a version the reader never asked for, subject to the same-language deferral
 below.
 
-The full `hreflang` set accompanies every view — all nine alternates plus `x-default` pointing
-at the bare URL. Canonical alone says "this is the address of this page"; it does not say "these
-pages are translations of one another", and without that a crawler is left to guess from
-content it has already decided is similar.
+The `hreflang` set accompanies every view: the eight locales, plus `x-default` pointing at the
+bare URL. Canonical alone says "this is the address of this page"; it does not say "these pages
+are translations of one another", and without that a crawler is left to guess from content it
+has already decided is similar.
+
+**`mw` is the `x-default` and never an `hreflang` value of its own.** Its tag would have to come
+from the article's frontmatter, and that tag always duplicates whichever locale matches it —
+`zh` beside `zh-CN` for a Chinese article, `en` beside `en-US` for an English one. Worse, it is
+the honest position: an article that deliberately mixes languages has no single one to claim,
+and `x-default` already means the version to serve when nothing else matches.
+
+The original stays reachable by `?lang=mw` and through the language switcher. It stops making a
+claim about its language; it does not stop being served.
+
+Keeping it out also keeps an unvalidated value away from the one attribute where a bad value is
+destructive rather than merely wrong. Frontmatter `lang` still reaches `<html lang>`, where an
+error mislabels a page; in an `hreflang` it would discard the whole set.
 
 **An `hreflang` URL must be the canonical URL of the page it names.** Point one at a page that
 canonicals elsewhere and the entire set is discarded — which is what makes the next rule a
@@ -110,20 +123,41 @@ An article written entirely in one language will come back from that language's 
 almost unchanged. Two of the nine views are then the same text at two addresses, and the pair
 competes with itself.
 
-**When a locale's assembled text is at least 0.90 similar to the original after normalisation,
-that locale canonicals to the bare URL instead of to itself, and its `hreflang` entry points
-there too.** Below the threshold it is a translation like any other.
+**When a locale is at least 0.90 similar to the original after normalisation, that locale
+canonicals to the bare URL instead of to itself, and its `hreflang` entry points there too.**
+Below the threshold it is a translation like any other.
 
-The threshold is measured, not chosen for roundness. Across the four articles that exist, a
-same-language pair scores between 0.95 and 1.00 — the differences are punctuation the model
-normalised, `"` becoming `“”` and `?` becoming `？` — while a genuine translation of the same
-article scores between 0.33 and 0.54. Nothing lands between 0.54 and 0.95, so the boundary sits
-in an empty region and small errors in either direction change no outcome.
+### The comparison is over translatable content only
 
-Comparison is on assembled output rather than on stored segments, because that is what a reader
-and a crawler actually receive. Exact equality was tried first and rejected: only 40 of 52
-segments in one article matched byte for byte, so the rule would have failed to fire in exactly
-the case it exists for.
+Only the translatable spans are compared: the source text of those spans against the translated
+text of the same spans. Not the assembled views.
+
+This was got wrong first and the wrong version shipped, so the reason is worth stating. An
+assembled view is mostly material both sides share — code blocks, links, markdown structure,
+untranslated frontmatter — so scoring whole views largely measures how much code an article
+contains. Every score rises, and they rise by different amounts per article. Measured that way,
+`zh-TW` scored 0.943 on one article and folded into the Simplified original, while scoring
+0.890, 0.706 and 0.606 on the others: the same language behaving differently per article, which
+is harder to diagnose than behaving wrongly everywhere. Japanese sat at 0.850, one code-heavy
+article from the same fate.
+
+Comparing translatable spans separates the cases cleanly. Across the five articles that exist,
+the locale sharing an article's language scores 0.947 to 1.000, every other locale scores 0.719
+or below, and nothing lands between. The homepage is the useful check: it is written in English,
+so `en` scores 1.000 and defers while `zh` scores 0.495 — the rule follows the article rather
+than assuming Chinese.
+
+Exact equality was tried before either of these and rejected: only 40 of 52 segments in one
+article matched byte for byte, so the rule would never have fired in the case it exists for.
+
+### The threshold is not centred, on purpose
+
+0.90 sits nearer the top of a gap running from 0.719 to 0.947. That is the safer end.
+
+Folding wrongly sends a reader to a language they did not ask for and drops a translation
+somebody paid for out of the index. Failing to fold leaves a near-duplicate, which a crawler
+consolidates by itself. The two mistakes do not cost the same, so the boundary leans toward not
+folding.
 
 This also removes the question of what to do when articles start mixing languages, which
 [i18n.md](i18n.md) says they will. A mixed original produces a Simplified Chinese view that
