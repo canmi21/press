@@ -1,4 +1,5 @@
 import type { ArticleMeta } from '$lib/article.svelte';
+import type { LocaleCode } from '$lib/locale';
 
 // One markdown source compiles to several targets; only the custom blocks below
 // need bespoke per-target output. `block` drives page rendering, `feed` is
@@ -57,7 +58,20 @@ export type Compiled = {
 	text: string;
 };
 
-export type Article = Compiled & { path: string; url: string };
+export type ArticleView = Pick<Compiled, 'meta' | 'blocks' | 'text'> & {
+	code: LocaleCode;
+	languageTag: string;
+	canonical: string;
+};
+
+export type Alternate = { code: LocaleCode | 'x-default'; languageTag: string; href: string };
+
+export type Article = Compiled & {
+	path: string;
+	url: string;
+	views: Record<LocaleCode, ArticleView>;
+	alternates: Alternate[];
+};
 
 // A page paragraph is split at `:link` boundaries so styled text stays dead HTML
 // while each link renders live (with its `<Icon>`), keeping the {@html} zone small.

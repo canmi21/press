@@ -6,6 +6,6 @@
 	let { data }: { data: PageData } = $props();
 </script>
 
-<Article meta={data.meta} chars={data.chars}>
+<Article meta={data.meta} chars={data.chars} locale={data.locale}>
 	<ArticleBody blocks={data.blocks} />
 </Article>

@@ -1,4 +1,4 @@
-import { dev } from '$app/environment';
+import { building, dev } from '$app/environment';
 import { URLS } from '@canmi/urls';
 import { handleErrorWithSentry, initCloudflareSentryHandle, sentryHandle } from '@sentry/sveltekit';
 import type { Handle } from '@sveltejs/kit';
@@ -6,6 +6,7 @@ import { sequence } from '@sveltejs/kit/hooks';
 import { getArticle, getPage } from '$lib/content';
 import { app } from '$lib/server/api';
 import { themeScript } from '$lib/theme';
+import { languageTag, privateHtml, resolveLocale, shouldWriteLanguageCookie } from '$lib/locale';
 
 // Serve clean markdown at <url>.md (llms.txt convention) generically, without a
 // per-target route — for articles and standalone pages (e.g. /homepage.md).
@@ -26,7 +27,7 @@ const markdownHandle: Handle = async ({ event, resolve }) => {
 	return resolve(event);
 };
 
-const pageHandle: Handle = ({ event, resolve }) => {
+const pageHandle: Handle = async ({ event, resolve }) => {
 	const { pathname } = event.url;
 	if (pathname.startsWith('/api')) {
 		return app.fetch(event.request, event.platform?.env, event.platform?.context);
@@ -36,15 +37,36 @@ const pageHandle: Handle = ({ event, resolve }) => {
 	if (pathname === '/homepage') {
 		return new Response(null, { status: 302, headers: { location: '/' } });
 	}
+	const path = pathname.replace(/^\//, '').replace(/\/$/, '');
+	const article = getArticle(path);
+	if (article && !building) {
+		const cookie = event.cookies.get('language');
+		const code = resolveLocale({
+			query: event.url.searchParams.get('lang'),
+			cookie,
+			acceptLanguage: event.request.headers.get('accept-language'),
+		});
+		event.locals.locale = { code, languageTag: languageTag(code, article.meta.lang) };
+		if (shouldWriteLanguageCookie(cookie, code)) {
+			event.cookies.set('language', code, {
+				path: '/',
+				maxAge: 365 * 24 * 60 * 60,
+				sameSite: 'lax',
+				httpOnly: true,
+			});
+		}
+	}
 	const theme = event.cookies.get('theme');
-	return resolve(event, {
+	const response = await resolve(event, {
 		transformPageChunk: ({ html }) =>
 			hoistCharset(
 				html
+					.replace('%language.tag%', event.locals.locale?.languageTag ?? 'en-US')
 					.replace('%theme.class%', theme === 'dark' ? 'dark' : '')
 					.replace('%theme.script%', themeScript),
 			),
 	});
+	return privateHtml(response);
 };
 
 /**

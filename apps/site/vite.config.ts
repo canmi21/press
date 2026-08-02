@@ -7,8 +7,10 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 import { parse as parseYaml } from 'yaml';
+import { buildArticles } from './build/articles.ts';
 
 const SITE_CONFIG = fileURLToPath(new URL('./site.config.yaml', import.meta.url));
+const CONTENTS = fileURLToPath(new URL('../../contents', import.meta.url));
 const ASSETS = fileURLToPath(new URL('../../data/metadata.json', import.meta.url));
 const MEDIA = fileURLToPath(new URL('../../data/media.yaml', import.meta.url));
 
@@ -65,6 +67,20 @@ export default defineConfig(({ mode }) => {
 	return {
 		plugins: [
 			tailwindcss(),
+			{
+				// Article source and sidecars are build inputs, not Worker work. Compile every view
+				// here and serialize the finished lookup table into the server bundle.
+				name: 'virtual-articles',
+				resolveId(id: string) {
+					return id === 'virtual:articles' ? '\0virtual:articles' : null;
+				},
+				async load(id: string) {
+					if (id !== '\0virtual:articles') return null;
+					const built = await buildArticles({ contents: CONTENTS, assets: ASSETS, media: MEDIA });
+					for (const file of built.files) this.addWatchFile(file);
+					return `export const articles = ${JSON.stringify(built.articles)};`;
+				},
+			},
 			sentrySvelteKit({
 				org: 'canmi',
 				project: 'canmi',
@@ -107,35 +123,6 @@ export default defineConfig(({ mode }) => {
 						return code.replaceAll('__CDN_URL__', urls.cdn);
 					}
 					return null;
-				},
-			},
-			{
-				// The asset manifest, baked in so an article can carry its own placeholders and
-				// variant list. The images themselves are not in the repository, which is
-				// exactly why this file is: a CI build has the manifest and needs nothing else.
-				name: 'virtual-assets',
-				resolveId(id: string) {
-					return id === 'virtual:assets' ? '\0virtual:assets' : null;
-				},
-				load(id: string) {
-					if (id !== '\0virtual:assets') return null;
-					this.addWatchFile(ASSETS);
-					return `export const assets = ${readFileSync(ASSETS, 'utf8')};`;
-				},
-			},
-			{
-				// Descriptions and tags, which live apart from the manifest because they cost
-				// money to produce and a rebuild of the pixels must not be able to reach them.
-				// See spec/architecture.md.
-				name: 'virtual-media',
-				resolveId(id: string) {
-					return id === 'virtual:media' ? '\0virtual:media' : null;
-				},
-				load(id: string) {
-					if (id !== '\0virtual:media') return null;
-					this.addWatchFile(MEDIA);
-					const parsed = parseYaml(readFileSync(MEDIA, 'utf8')) ?? { media: {} };
-					return `export const media = ${JSON.stringify(parsed)};`;
 				},
 			},
 			{

@@ -1,52 +1,25 @@
-import { URLS } from '@canmi/urls';
-import { compile, compilePage } from './compile';
+import { articles as builtArticles } from 'virtual:articles';
+import { compilePage } from './compile';
 import type { Article, CompiledPage, Page } from './types';
 
-// Globbed at build; compilation is memoized and, since every consuming route is
-// prerendered, runs only at build time. Posts are category-nested
-// (contents/<category>/<slug>.md); top-level files (contents/index.md) are pages
-// and never enter the article stream (feed, sitemap, llms.txt index).
-const postRaws = import.meta.glob('$contents/*/*.md', {
-	query: '?raw',
-	import: 'default',
-	eager: true,
-}) as Record<string, string>;
-
+// Articles arrive already compiled through virtual:articles. Top-level files
+// (contents/index.md) are standalone pages and never enter the article stream.
 const pageRaws = import.meta.glob('$contents/*.md', {
 	query: '?raw',
 	import: 'default',
 	eager: true,
 }) as Record<string, string>;
 
-function pathOf(file: string): string {
-	return file.replace(/^.*\/contents\//, '').replace(/\.md$/, '');
-}
-
-let cache: Promise<Article[]> | undefined;
-
-function build(): Promise<Article[]> {
-	if (!cache) {
-		cache = Promise.all(
-			Object.entries(postRaws).map(async ([file, raw]) => {
-				const path = pathOf(file);
-				const url = `${URLS.apps.production.site}/${path}`;
-				return { ...(await compile(raw, url)), path, url };
-			}),
-		).then((list) =>
-			list.toSorted((a, b) => Date.parse(b.meta.created) - Date.parse(a.meta.created)),
-		);
-	}
-	return cache;
-}
+const articlesByPath = new Map(builtArticles.map((article) => [article.path, article]));
 
 // Article list (publish-date desc), shared by the sitemap, /llms.txt and
 // per-article markdown.
-export async function getArticles(): Promise<Article[]> {
-	return build();
+export function getArticles(): Article[] {
+	return builtArticles;
 }
 
-export async function getArticle(path: string): Promise<Article | undefined> {
-	return (await build()).find((article) => article.path === path);
+export function getArticle(path: string): Article | undefined {
+	return articlesByPath.get(path);
 }
 
 const pages = new Map<string, Page>();

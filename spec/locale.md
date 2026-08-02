@@ -30,10 +30,10 @@ The query parameter wins outright and **also writes the cookie**, so choosing a 
 is choosing it from then on. That is what makes the parameter a switch rather than a one-off
 override, and it is why the language switcher needs no separate mechanism.
 
-Selection runs in a blocking script in `<head>`, before first paint, exactly as the theme does
-and for the same reason: a page that renders in one language and then swaps is worse than a
-page that waits. Unlike theme, the content itself differs, so this cannot be a class toggle —
-see the caching rule below for what that forces.
+Selection runs in the worker on the request, before any HTML is rendered. Every input already
+arrives there, and choosing after first paint would make a page render in one language and then
+swap. Unlike theme, the content itself differs, so this cannot be a class toggle — see the
+caching rule below for what that forces.
 
 ## The query parameter is for crawlers, and is removed for readers
 
@@ -48,7 +48,7 @@ the parameter still being there.
 Only `lang` is ever touched. Other query parameters are left exactly as they arrived, including
 their order, because they belong to whatever put them there. `URLSearchParams` is built into
 every browser this site supports; **a query parameter is not a reason to ship a library**, and
-the blocking script is the last place to add one.
+the post-load cleanup is the last place to add one.
 
 ## Two vocabularies, and only one of them is public
 

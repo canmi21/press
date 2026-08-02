@@ -2,7 +2,8 @@ import { getArticles, getPage } from '$lib/content';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
-export const prerender = true;
+// HTML passes through the Worker so the site-wide private/no-store rule also applies here.
+export const prerender = false;
 
 // Landing page lists every article newest-first; getArticles() is already sorted
 // by publish date. The bio prose is content-driven (contents/homepage.md, also

@@ -7,7 +7,10 @@
 	import '@canmi/fonts/mono.css';
 
 	const cdn = pickUrls(dev).cdn;
-	const canonical = $derived(`${URLS.apps.production.site}${page.url.pathname}`);
+	const articleLocale = $derived('locale' in page.data ? page.data.locale : undefined);
+	const canonical = $derived(
+		articleLocale?.canonical ?? `${URLS.apps.production.site}${page.url.pathname}`,
+	);
 	let { children } = $props();
 
 	/**
@@ -47,6 +50,9 @@
 <svelte:head>
 	<link rel="preconnect" href={cdn} crossorigin="anonymous" />
 	<link rel="canonical" href={canonical} />
+	{#each articleLocale?.alternates ?? [] as alternate (alternate.code)}
+		<link rel="alternate" hreflang={alternate.languageTag} href={alternate.href} />
+	{/each}
 	<!-- Site-wide, so it sits here rather than being repeated by every page that has a card. -->
 	<meta property="og:site_name" content={site.name} />
 	{#if site.author.x}

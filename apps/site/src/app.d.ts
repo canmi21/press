@@ -1,9 +1,13 @@
 /// <reference types="@cloudflare/workers-types" />
 
+import type { LocaleCode } from '$lib/locale';
+
 declare global {
 	namespace App {
 		// interface Error {}
-		// interface Locals {}
+		interface Locals {
+			locale?: { code: LocaleCode; languageTag: string };
+		}
 		// interface PageData {}
 		// interface PageState {}
 		interface Platform {

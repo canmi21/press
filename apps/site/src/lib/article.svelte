@@ -3,7 +3,8 @@
 		title: string;
 		subtitle: string;
 		description: string;
-		lang: 'zh' | 'en' | 'ja';
+		/** The source view's public BCP-47 language tag. */
+		lang: string;
 		created: string;
 		lastmod: string;
 		// Hard-coded view count carried over from the old site; swap for an API later.
@@ -19,10 +20,24 @@
 	import BookOpenText from '@lucide/svelte/icons/book-open-text';
 	import Type from '@lucide/svelte/icons/type';
 	import type { Snippet } from 'svelte';
+	import type { Alternate } from '$lib/content/types';
+	import type { LocaleCode } from '$lib/locale';
 	import { formatCompact } from '$lib/format';
 	import Toc from '$lib/toc.svelte';
 
-	let { meta, chars, children }: { meta: ArticleMeta; chars: number; children: Snippet } = $props();
+	type ArticleLocale = {
+		code: LocaleCode;
+		languageTag: string;
+		canonical: string;
+		alternates: Alternate[];
+	};
+
+	let {
+		meta,
+		chars,
+		locale,
+		children,
+	}: { meta: ArticleMeta; chars: number; locale: ArticleLocale; children: Snippet } = $props();
 
 	const urls = pickUrls(dev);
 
@@ -35,21 +50,10 @@
 	 * week rather than a year. See spec/architecture.md.
 	 */
 	const card = $derived(`${urls.cdn}/opengraph${page.url.pathname.replace(/\/$/, '')}.png`);
-	const canonical = $derived(new URL(page.url.pathname, urls.site).href);
 
-	/**
-	 * The article's dominant language, as OpenGraph spells locales.
-	 *
-	 * Frontmatter names a language; this names a locale, which is what the property is defined
-	 * to carry. An article mixing languages still has one that dominates -- that is what the
-	 * field claims and all it claims.
-	 */
-	const LOCALE: Record<string, string> = {
-		zh: 'zh_CN',
-		en: 'en_US',
-		ja: 'ja_JP',
-	};
-	const locale = $derived(LOCALE[meta.lang] ?? 'en_US');
+	$effect(() => {
+		document.documentElement.lang = locale.languageTag;
+	});
 
 	/**
 	 * A JSON-LD block, safe to drop into markup.
@@ -73,8 +77,8 @@
 		image: card,
 		datePublished: meta.created,
 		dateModified: meta.lastmod,
-		inLanguage: locale.replace('_', '-'),
-		mainEntityOfPage: canonical,
+		inLanguage: locale.languageTag,
+		mainEntityOfPage: locale.canonical,
 		author: { '@type': 'Person', name: site.author.name },
 	});
 
@@ -97,8 +101,8 @@
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content={meta.title} />
 	<meta property="og:description" content={meta.description} />
-	<meta property="og:url" content={canonical} />
-	<meta property="og:locale" content={locale} />
+	<meta property="og:url" content={locale.canonical} />
+	<meta property="og:locale" content={locale.languageTag} />
 	<meta property="og:image" content={card} />
 	<!-- Stated because a crawler that reserves the box before fetching draws it right. -->
 	<meta property="og:image:width" content="1200" />

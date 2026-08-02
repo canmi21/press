@@ -1,7 +1,4 @@
-import { previewFor } from '$lib/server/placeholder';
 import { URLS } from '@canmi/urls';
-import { assets } from 'virtual:assets';
-import { media } from 'virtual:media';
 
 /**
  * Resolving an image reference into everything the markup needs, at build time.
@@ -39,6 +36,21 @@ export type Resolved = {
 	description?: string;
 };
 
+export type AssetManifest = {
+	media: Record<
+		string,
+		{
+			thumbhash: string;
+			source: { width: number; height: number; ratio: string };
+			variants: Record<string, { mime: string; width: number }>;
+		}
+	>;
+};
+
+export type MediaManifest = {
+	media: Record<string, { description?: Record<string, { text: string }> }>;
+};
+
 /** Strip any extension an article wrote, leaving the content id. */
 function idOf(reference: string): string {
 	return (
@@ -60,25 +72,33 @@ function url(cid: string, mime: string): string {
  * article written before its image was imported. The caller falls back to a plain `img` so
  * the page still renders rather than failing the build.
  */
-export function resolve(reference: string): Resolved | null {
-	const asset = assets.media[idOf(reference)];
-	if (!asset) return null;
+export function createAssetResolver(
+	assets: AssetManifest,
+	media: MediaManifest,
+	previews: ReadonlyMap<string, string>,
+	descriptionLocale = 'en-US',
+): (reference: string) => Resolved | null {
+	return (reference) => {
+		const id = idOf(reference);
+		const asset = assets.media[id];
+		if (!asset) return null;
 
-	const variants = Object.entries(asset.variants).sort(([, a], [, b]) => a.width - b.width);
-	if (variants.length === 0) return null;
+		const variants = Object.entries(asset.variants).toSorted(([, a], [, b]) => a.width - b.width);
+		const largest = variants.at(-1);
+		if (!largest) return null;
 
-	const largest = variants[variants.length - 1];
-	return {
-		src: url(largest[0], largest[1].mime),
-		srcset: variants.map(([cid, v]) => `${url(cid, v.mime)} ${v.width}w`).join(', '),
-		// The original's dimensions, not the largest variant's: they share a ratio, and this is
-		// what the browser needs to reserve the right box before anything loads.
-		width: asset.source.width,
-		height: asset.source.height,
-		ratio: asset.source.ratio,
-		preview: previewFor(asset.thumbhash),
-		// From media.yaml, in the source locale. Translations of it arrive with the rest of the
-		// article's locales rather than through a second path.
-		description: media.media[idOf(reference)]?.description?.['en-US']?.text,
+		return {
+			src: url(largest[0], largest[1].mime),
+			srcset: variants.map(([cid, v]) => `${url(cid, v.mime)} ${v.width}w`).join(', '),
+			// The original's dimensions, not the largest variant's: they share a ratio, and this is
+			// what the browser needs to reserve the right box before anything loads.
+			width: asset.source.width,
+			height: asset.source.height,
+			ratio: asset.source.ratio,
+			preview: previews.get(asset.thumbhash) ?? '',
+			// media.yaml owns these translations independently from article segments. Selecting the
+			// matching value here makes each compiled view carry its own accessible fallback text.
+			description: media.media[id]?.description?.[descriptionLocale]?.text,
+		};
 	};
 }

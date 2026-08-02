@@ -1,6 +1,7 @@
 import { dev } from '$app/environment';
 import { URLS } from '@canmi/urls';
 import * as Sentry from '@sentry/sveltekit';
+import { withoutLanguageParameter } from '$lib/locale';
 
 Sentry.init({
 	dsn: URLS.external.sentry.site,
@@ -9,3 +10,13 @@ Sentry.init({
 });
 
 export const handleError = Sentry.handleErrorWithSentry();
+
+function cleanLanguageParameter(): void {
+	const replacement = withoutLanguageParameter(new URL(window.location.href));
+	if (replacement) history.replaceState(history.state, '', replacement);
+}
+
+// The Worker has already selected and persisted the view. Address-bar cleanup is deliberately
+// deferred until load, so it can neither block rendering nor race the request that used `lang`.
+if (document.readyState === 'complete') cleanLanguageParameter();
+else window.addEventListener('load', cleanLanguageParameter, { once: true });

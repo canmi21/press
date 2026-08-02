@@ -9,10 +9,9 @@ import remarkParse from 'remark-parse';
 import remarkStringify from 'remark-stringify';
 import { unified } from 'unified';
 import { parse as parseYaml, stringify as stringifyYaml } from 'yaml';
-import { type Resolved, resolve as resolveAsset } from '$lib/assets';
-import { highlight } from '$lib/server/highlight';
+import type { Resolved } from '$lib/assets';
 import type { ArticleMeta } from '$lib/article.svelte';
-import type { Block, Compiled, CompiledPage, InlineSegment, PageBlock, TocEntry } from './types';
+import type { Block, Compiled, CompiledPage, InlineSegment, PageBlock, TocEntry } from './types.ts';
 import type { TextDirective } from 'mdast-util-directive';
 import type { Heading, Image as MdImage, Paragraph, Root, RootContent } from 'mdast';
 
@@ -246,7 +245,16 @@ function cropAlign(value: string | null | undefined, url: string): string | unde
 	return wanted === 'center' ? undefined : wanted;
 }
 
-export async function compile(raw: string, url: string): Promise<Compiled> {
+export type CompileContext = {
+	resolveAsset: (reference: string) => Resolved | null;
+	highlight: (code: string, lang: string) => Promise<string>;
+};
+
+export async function compile(
+	raw: string,
+	url: string,
+	{ resolveAsset, highlight }: CompileContext,
+): Promise<Compiled> {
 	const tree = parser.parse(raw) as Root;
 	let meta: ArticleMeta | undefined;
 	const blocks: Block[] = [];
