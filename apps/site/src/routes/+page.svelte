@@ -79,7 +79,7 @@
 			<PageBody blocks={data.bio} />
 		</div>
 
-		<ArticleList articles={data.articles} />
+		<ArticleList articles={data.articles} heading={data.writing} />
 
 		<!-- Tune the focus ring for the whole icon group: a 0.125rem (2px) gap with
 		a 0.3125rem (5px) radius, inherited by each link's :focus-visible. Each link

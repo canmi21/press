@@ -37,10 +37,10 @@ caching rule below for what that forces.
 
 Browser-facing collection surfaces use the same resolved code for every article they include.
 Homepage cards and article lists take their title, subtitle, description, body, and language
-from that article's resolved view; `mw` means each article's own original. Content-backed
-homepage prose follows the same selection and is compiled into all nine views; fixed UI strings
-remain a separate concern. `llms.txt` keeps its existing behaviour and has no indexed language
-dimension: an LLM can read any of the views.
+from that article's resolved view; `mw` means each article's own original. The homepage bio is
+identity copy and stays in its English source form in every view. Collection UI such as the
+Writing heading resolves from the same code through the UI message table. `llms.txt` keeps its
+existing behaviour and has no indexed language dimension: an LLM can read any of the views.
 
 Server-only discovery routes do not inherit this negotiation. The sitemap publishes every
 indexable view at once. Atom selects from `lang` alone, because each query-specific feed is a

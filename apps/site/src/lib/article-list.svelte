@@ -4,7 +4,8 @@
 	import ArticleCard from '$lib/article-card.svelte';
 
 	let {
-		articles
+		articles,
+		heading
 	}: {
 		articles: {
 			title: string;
@@ -13,6 +14,7 @@
 			path: string;
 			paragraphs: string[];
 		}[];
+		heading: string;
 	} = $props();
 
 	// Bar widths map straight into the range taken from the first frame's bars:
@@ -145,8 +147,8 @@
 	});
 </script>
 
-<section bind:this={listEl} aria-label="Writing" class="mt-16">
-	<h2 class="mb-3 font-medium text-text-strong">Writing</h2>
+<section bind:this={listEl} aria-label={heading} class="mt-16">
+	<h2 class="mb-3 font-medium text-text-strong">{heading}</h2>
 	<div>
 		{#each articles as article (article.path)}
 			<ArticleCard

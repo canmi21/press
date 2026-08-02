@@ -1,4 +1,5 @@
 import { getArticles, getPage } from '$lib/content';
+import { homepageContent } from '$lib/server/homepage';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
@@ -12,7 +13,6 @@ export const load: PageServerLoad = async ({ locals }) => {
 	const page = getPage('homepage');
 	if (!page) error(500, 'Missing contents/homepage.md');
 	const code = locals.locale?.code ?? 'mw';
-	const view = page.views[code];
 	const articles = (await getArticles()).map((article) => {
 		const { meta, text } = article.views[code];
 		return {
@@ -33,8 +33,6 @@ export const load: PageServerLoad = async ({ locals }) => {
 	return {
 		articles,
 		locale: { code },
-		title: view.meta.title ?? 'Canmi',
-		description: view.meta.description ?? '',
-		bio: view.blocks,
+		...homepageContent(page, code),
 	};
 };
