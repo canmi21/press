@@ -165,6 +165,20 @@ pub async fn run(
 		todo.truncate(limit);
 	}
 
+	// Refused up front rather than once per image. A runner that cannot see would fail every
+	// one of these identically, and finding that out twenty times is not finding it out
+	// better.
+	let Some(model) = runner.model_for_vision() else {
+		outcome.failed.push((
+			String::new(),
+			format!(
+				"{} cannot read an image; pick a runner that can",
+				runner.provider()
+			),
+		));
+		return Ok(outcome);
+	};
+
 	// One at a time, unlike translation. Each answer changes the list the next request is
 	// shown, and running four in parallel would let four images each invent their own name
 	// for the same thing before any of them could see the others.
@@ -178,7 +192,7 @@ pub async fn run(
 		);
 
 		let text = prompt(&path, &tags::known(&registry));
-		let answer = match runner::ask_vision(runner, &text, runner.model_for_vision(), &path).await {
+		let answer = match runner::ask_vision(runner, &text, model, &path).await {
 			Ok(answer) => answer,
 			Err(Refusal::Exhausted(reason)) => {
 				outcome.exhausted = Some(reason);

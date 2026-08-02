@@ -149,7 +149,13 @@ fn originals_by_id(originals: &Path) -> BTreeMap<String, PathBuf> {
 /// applies here as everywhere else. The provider and model recorded afterwards come from what
 /// actually ran rather than from a constant in this file.
 async fn describe(runner: Runner, path: &Path) -> Result<(String, Spend, String), Refusal> {
-	let answer = runner::ask_vision(runner, &prompt(path), runner.model_for_vision(), path).await?;
+	let Some(model) = runner.model_for_vision() else {
+		return Err(Refusal::Failed(format!(
+			"{} cannot read an image; pick a runner that can",
+			runner.provider()
+		)));
+	};
+	let answer = runner::ask_vision(runner, &prompt(path), model, path).await?;
 	let text = answer.text.trim().to_owned();
 	if text.is_empty() {
 		return Err(Refusal::Failed("the model returned nothing".to_owned()));

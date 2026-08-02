@@ -11,6 +11,7 @@
 use super::model;
 use super::segment::Kind;
 use claude_codes::{AsyncClient, ClaudeOutput, cli::ClaudeCliBuilder};
+use std::ffi::OsString;
 use std::path::Path;
 
 /// Which agent a run uses.
@@ -89,13 +90,16 @@ impl Runner {
 	/// No tiering here. Reading a picture is the whole of the work and there is no structural
 	/// signal to route on -- a photograph and a screenshot are equally a look, unlike a
 	/// heading and a paragraph, which differ in what they can lose.
-	pub fn model_for_vision(self) -> &'static str {
+	pub fn model_for_vision(self) -> Option<&'static str> {
 		match self {
-			Self::Claude => "sonnet",
-			Self::Gemini => "gemini-3.6-flash-high",
-			Self::GptOss => "gpt-oss-120b-medium",
-			Self::Codex => "gpt-5.6-terra-medium",
-			Self::Cursor => "composer-2.5",
+			Self::Claude => Some("sonnet"),
+			Self::Gemini => Some("gemini-3.6-flash-high"),
+			Self::Codex => Some("gpt-5.6-terra-medium"),
+			Self::Cursor => Some("composer-2.5"),
+			// Text only. Asked to look at a file it cancels the turn and reports no error at
+			// all, so a caller that tried anyway would see an empty answer and no reason for
+			// it. Measured: the same model answers a text prompt in the same breath.
+			Self::GptOss => None,
 		}
 	}
 }
@@ -258,24 +262,83 @@ fn codex_result(stdout: &[u8]) -> Result<(String, u64), Refusal> {
 		.ok_or_else(|| Refusal::Failed("codex ended without a final message".to_owned()))
 }
 
-async fn codex(prompt: &str, model: &str, image: Option<&Path>) -> Result<Answer, Refusal> {
-	let mut command = tokio::process::Command::new("codex");
-	command
-		.arg("exec")
-		.arg("--ephemeral")
-		.arg("--sandbox")
-		.arg("read-only")
-		.arg("--model")
-		.arg(model)
-		.arg("--json");
-	if let Some(image) = image {
-		command.arg("--image").arg(image);
+/// The reason codex gives for a turn it could not run, from its event stream.
+///
+/// Worth digging for because the useful message is on stdout while stderr carries only
+/// "Reading additional input from stdin...", which is printed on success too. Reporting the
+/// stream in exit-code order said nothing at all six times over.
+fn codex_error(stdout: &[u8]) -> Option<String> {
+	stdout
+		.split(|byte| *byte == b'\n')
+		.filter(|line| !line.is_empty())
+		.filter_map(|line| serde_json::from_slice::<serde_json::Value>(line).ok())
+		.filter(|event| event.get("type").and_then(serde_json::Value::as_str) == Some("error"))
+		.find_map(|event| {
+			let message = event.get("message")?.as_str()?.to_owned();
+			// The message is often a JSON error envelope quoted into a string. One level of
+			// unwrapping turns a wall of escapes back into the sentence it contains.
+			Some(
+				serde_json::from_str::<serde_json::Value>(&message)
+					.ok()
+					.and_then(|inner| Some(inner.pointer("/error/message")?.as_str()?.to_owned()))
+					.unwrap_or(message),
+			)
+		})
+}
+
+/// Split a tier name into the model and the effort the CLI wants separately.
+///
+/// Every provider here names its tiers with the effort baked in, because for most of them it
+/// is genuinely part of the model id. Codex is the exception: it takes a family and a
+/// reasoning effort as two settings, and rejects `gpt-5.6-terra-medium` outright. Splitting
+/// happens here, at the edge that binds to the CLI, so the vocabulary stays one shape
+/// everywhere else -- including in what gets recorded, which should say what was asked for.
+fn split_effort(model: &str) -> (&str, Option<&str>) {
+	match model.rsplit_once('-') {
+		Some((family, effort @ ("low" | "medium" | "high"))) => (family, Some(effort)),
+		_ => (model, None),
 	}
-	let output = command
-		.arg(prompt)
+}
+
+/// The argument list for one `codex exec` run.
+///
+/// Separated from the call so the shape can be asserted. The prompt's position here is load
+/// bearing and the way it breaks is silent -- see the terminator below.
+fn codex_args(prompt: &str, model: &str, image: Option<&Path>) -> Vec<OsString> {
+	let mut args: Vec<OsString> = ["exec", "--ephemeral", "--sandbox", "read-only", "--model"]
+		.iter()
+		.map(OsString::from)
+		.collect();
+	let (family, effort) = split_effort(model);
+	args.push(family.into());
+	if let Some(effort) = effort {
+		// There is no flag for this, only a config override.
+		args.push("-c".into());
+		args.push(format!("model_reasoning_effort={effort}").into());
+	}
+	args.push("--json".into());
+	if let Some(image) = image {
+		args.push("--image".into());
+		args.push(image.into());
+	}
+	// `--image` takes `<FILE>...`, so without this the prompt is read as a second file. Codex
+	// then finds no positional argument, falls back to a stdin that `output()` has already
+	// closed, and fails with a message naming stdin and never the flag that caused it.
+	args.push("--".into());
+	args.push(prompt.into());
+	args
+}
+
+async fn codex(prompt: &str, model: &str, image: Option<&Path>) -> Result<Answer, Refusal> {
+	let output = tokio::process::Command::new("codex")
+		.args(codex_args(prompt, model, image))
 		.output()
 		.await
 		.map_err(|error| Refusal::Failed(format!("could not run codex: {error}")))?;
+	// The stream is read before the exit code, because it is the only place that says why.
+	if let Some(reason) = codex_error(&output.stdout) {
+		return Err(classify(&format!("codex: {reason}")));
+	}
 	if !output.status.success() {
 		return Err(failed_command("codex", &output));
 	}
@@ -455,6 +518,72 @@ mod tests {
 	use super::*;
 
 	#[test]
+	fn an_attached_image_cannot_swallow_the_prompt() {
+		// `--image` takes `<FILE>...`. Without the terminator it took the prompt as a second
+		// file, and codex went looking for the prompt on a closed stdin -- reporting that
+		// nothing arrived there rather than that a flag had eaten it. Every image tagged in one
+		// run failed identically before this was found.
+		let args = codex_args(
+			"describe this",
+			"gpt-5.6-terra-medium",
+			Some(Path::new("/a.png")),
+		);
+		let end = &args[args.len() - 2..];
+		assert_eq!(end, ["--", "describe this"]);
+
+		// The terminator holds with no image too, where a prompt beginning with a dash would
+		// otherwise be read as a flag.
+		let bare = codex_args("--not-a-flag", "gpt-5.6-terra-medium", None);
+		assert_eq!(&bare[bare.len() - 2..], ["--", "--not-a-flag"]);
+		assert!(!bare.contains(&OsString::from("--image")));
+	}
+
+	#[test]
+	fn codex_is_given_the_effort_apart_from_the_model() {
+		// It rejects `gpt-5.6-terra-medium` as a model name and takes the effort as a config
+		// override instead. Everywhere else the tier is one string, so the split lives here.
+		assert_eq!(
+			split_effort("gpt-5.6-terra-medium"),
+			("gpt-5.6-terra", Some("medium"))
+		);
+		assert_eq!(
+			split_effort("gpt-5.6-luna-high"),
+			("gpt-5.6-luna", Some("high"))
+		);
+		// A name that merely ends in a word is not an effort.
+		assert_eq!(split_effort("gpt-5.6-sol"), ("gpt-5.6-sol", None));
+
+		let args = codex_args("hi", "gpt-5.6-terra-medium", None);
+		assert!(args.contains(&OsString::from("gpt-5.6-terra")));
+		assert!(args.contains(&OsString::from("model_reasoning_effort=medium")));
+		assert!(!args.contains(&OsString::from("gpt-5.6-terra-medium")));
+	}
+
+	#[test]
+	fn the_reason_a_turn_failed_is_read_off_the_stream() {
+		// stderr says only "Reading additional input from stdin...", which it also says on a
+		// run that works. Reporting that instead of this is reporting nothing.
+		let stream = concat!(
+			r#"{"type":"thread.started","thread_id":"x"}"#,
+			"\n",
+			r#"{"type":"error","message":"{\"error\":{\"message\":\"model not supported\"}}"}"#,
+			"\n"
+		);
+		assert_eq!(
+			codex_error(stream.as_bytes()).as_deref(),
+			Some("model not supported")
+		);
+
+		// A plain message survives the unwrapping attempt intact.
+		let plain = "{\"type\":\"error\",\"message\":\"stream disconnected\"}\n";
+		assert_eq!(
+			codex_error(plain.as_bytes()).as_deref(),
+			Some("stream disconnected")
+		);
+		assert_eq!(codex_error(b"{\"type\":\"turn.completed\"}\n"), None);
+	}
+
+	#[test]
 	fn a_runner_is_named_the_way_a_person_would_type_it() {
 		assert_eq!(Runner::parse("claude"), Some(Runner::Claude));
 		assert_eq!(Runner::parse("Gemini"), Some(Runner::Gemini));
@@ -498,14 +627,22 @@ mod tests {
 			assert_eq!(Runner::Cursor.model_for(kind, 0), "composer-2.5");
 			assert_eq!(Runner::Cursor.model_for(kind, 2), "composer-2.5");
 		}
-		assert_eq!(Runner::Cursor.model_for_vision(), "composer-2.5");
+		assert_eq!(Runner::Cursor.model_for_vision(), Some("composer-2.5"));
 	}
 
 	#[test]
 	fn text_and_vision_have_separate_defaults() {
 		assert_eq!(DEFAULT_TEXT, Runner::GptOss);
 		assert_eq!(DEFAULT_VISION, Runner::Codex);
-		assert_eq!(DEFAULT_VISION.model_for_vision(), "gpt-5.6-terra-medium");
+		assert_eq!(
+			DEFAULT_VISION.model_for_vision(),
+			Some("gpt-5.6-terra-medium")
+		);
+
+		// The open-weight model is text only, and saying so is the whole reason this returns an
+		// option. Measured: asked to look at a file it cancels the turn and fills in no error,
+		// so a caller handed a model name anyway would see an empty answer and no cause.
+		assert_eq!(Runner::GptOss.model_for_vision(), None);
 	}
 
 	#[test]
