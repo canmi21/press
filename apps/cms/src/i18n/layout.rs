@@ -1,21 +1,22 @@
 //! The ordered segment layout consumed by the site build.
 //!
 //! Rust alone decides block boundaries and ids. The committed artifact carries only the byte
-//! ranges of translatable blocks, so the TypeScript build can assemble translations without
-//! learning how segmentation works or requiring Rust in CI.
+//! ranges and fingerprints of translatable blocks, so the TypeScript build can assemble
+//! translations without learning how segmentation works or requiring Rust in CI.
 
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 
-pub const FILE: &str = "data/article-segments.json";
-pub const VERSION: u8 = 1;
+pub const FILE: &str = "data/build/segments.json";
+pub const VERSION: u8 = 2;
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Span {
 	pub id: String,
 	pub start: usize,
 	pub end: usize,
+	pub fingerprint: String,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -47,6 +48,7 @@ pub fn build(root: &Path) -> std::io::Result<Layout> {
 				id: segment.id,
 				start: segment.start,
 				end: segment.end,
+				fingerprint: fingerprint(segment.source.as_bytes()),
 			})
 			.collect();
 		articles.insert(relative, spans);
@@ -55,6 +57,16 @@ pub fn build(root: &Path) -> std::io::Result<Layout> {
 		version: VERSION,
 		articles,
 	})
+}
+
+/// FNV-1a over the exact source bytes. This detects stale offsets; it is not an address.
+fn fingerprint(bytes: &[u8]) -> String {
+	let mut checksum = 0x811c_9dc5_u32;
+	for byte in bytes {
+		checksum ^= u32::from(*byte);
+		checksum = checksum.wrapping_mul(0x0100_0193);
+	}
+	format!("{checksum:08x}")
 }
 
 #[cfg(test)]
@@ -71,6 +83,9 @@ pub fn sync(root: &Path) -> std::io::Result<bool> {
 	text.push('\n');
 	if std::fs::read_to_string(&path).is_ok_and(|existing| existing == text) {
 		return Ok(false);
+	}
+	if let Some(parent) = path.parent() {
+		std::fs::create_dir_all(parent)?;
 	}
 	std::fs::write(path, text)?;
 	Ok(true)

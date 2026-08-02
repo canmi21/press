@@ -12,7 +12,7 @@ const ARTICLES = [
 	'mirror/less-than-an-hour',
 ];
 const layout = JSON.parse(
-	readFileSync(new URL('../../../../../data/article-segments.json', import.meta.url), 'utf8'),
+	readFileSync(new URL('../../../../../data/build/segments.json', import.meta.url), 'utf8'),
 ) as SegmentLayout;
 
 function articleViews(path: string): Record<LocaleCode, string> {
@@ -21,11 +21,11 @@ function articleViews(path: string): Record<LocaleCode, string> {
 	const raw = readFileSync(article, 'utf8');
 	const translations = parseYaml(readFileSync(sidecar, 'utf8')) as TranslationSidecar;
 	const spans = layout.articles[`${path}.md`];
-	if (!spans) throw new Error(`${path}: missing from article-segments.json`);
+	if (!spans) throw new Error(`${path}: missing from data/build/segments.json`);
 	return Object.fromEntries([
 		['mw', raw],
 		...Object.entries(PUBLIC_LANGUAGE).map(([code, locale]) => {
-			const assembled = assemble(raw, spans, translations, locale);
+			const assembled = assemble(raw, spans, translations, locale, `${path}.md`);
 			if (assembled.missing.length > 0) {
 				throw new Error(`${path}: ${locale} is missing ${assembled.missing.length} segments`);
 			}

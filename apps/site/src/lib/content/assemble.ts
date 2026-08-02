@@ -6,7 +6,7 @@ export type TranslationSidecar = {
 	segments?: Record<string, Partial<Record<TranslationLocale, { text: string }>>>;
 };
 
-export type SegmentSpan = { id: string; start: number; end: number };
+export type SegmentSpan = { id: string; start: number; end: number; fingerprint: string };
 
 export type SegmentLayout = {
 	version: number;
@@ -19,28 +19,44 @@ function articleBody(raw: string): string {
 	return end < 0 ? raw : raw.slice(end + 4);
 }
 
+/** FNV-1a over source bytes: a drift detector, not a content address. */
+export function sourceFingerprint(bytes: Uint8Array): string {
+	let checksum = 0x811c9dc5;
+	for (const byte of bytes) checksum = Math.imul(checksum ^ byte, 0x01000193);
+	return (checksum >>> 0).toString(16).padStart(8, '0');
+}
+
 export function assemble(
 	raw: string,
 	spans: readonly SegmentSpan[],
 	sidecar: TranslationSidecar,
 	locale: TranslationLocale,
+	article: string,
 ): { raw: string; missing: string[] } {
 	const bytes = new TextEncoder().encode(raw);
 	const decoder = new TextDecoder('utf-8', { fatal: true });
 	const missing: string[] = [];
-	let cursor = 0;
-	let translated = '';
 
+	let previousEnd = 0;
 	for (const span of spans) {
 		if (
 			!Number.isSafeInteger(span.start) ||
 			!Number.isSafeInteger(span.end) ||
-			span.start < cursor ||
+			span.start < previousEnd ||
 			span.end <= span.start ||
 			span.end > bytes.length
 		) {
-			throw new Error(`invalid source range for article segment ${span.id}`);
+			throw new Error(`${article}: invalid source range for article segment ${span.id}`);
 		}
+		if (sourceFingerprint(bytes.subarray(span.start, span.end)) !== span.fingerprint) {
+			throw new Error(`${article}: stale segment layout at ${span.id}; run \`cms segments\``);
+		}
+		previousEnd = span.end;
+	}
+
+	let cursor = 0;
+	let translated = '';
+	for (const span of spans) {
 		try {
 			translated += decoder.decode(bytes.subarray(cursor, span.start));
 			const source = decoder.decode(bytes.subarray(span.start, span.end));
@@ -48,7 +64,9 @@ export function assemble(
 			if (!entry) missing.push(span.id);
 			translated += entry?.text ?? source;
 		} catch {
-			throw new Error(`source range splits a UTF-8 character for article segment ${span.id}`);
+			throw new Error(
+				`${article}: source range splits a UTF-8 character for article segment ${span.id}`,
+			);
 		}
 		cursor = span.end;
 	}

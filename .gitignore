@@ -1,5 +1,11 @@
-# Everything here is reproducible from source: dependencies, build output,
-# caches, and generated code. Nothing generated is ever committed.
+# Dependencies, runtime build output, caches, and generated code stay out by default.
+# Committed derived records are named explicitly in the data allowlist below.
+
+# Build output
+build/
+dist/
+target/
+.svelte-kit/
 
 # data/ holds assets and the records describing them. The bytes stay out of git -- photos,
 # derived variants, fonts, a geocoding database -- and are mirrored to R2 or backed up
@@ -15,16 +21,10 @@ data/**
 !data/metadata.json
 !data/media.yaml
 !data/tags.yaml
-!data/article-segments.json
+!data/build/segments.json
 
 # Dependencies
 node_modules/
-
-# Build output
-build/
-dist/
-target/
-.svelte-kit/
 
 # Caches
 .wrangler/

@@ -11,7 +11,7 @@ import { languageTag, LOCALE_CODES, PUBLIC_LANGUAGE, type LocaleCode } from '../
 import { highlight } from './highlight.ts';
 import { buildPreviews } from './placeholder.ts';
 
-const SEGMENT_LAYOUT_VERSION = 1;
+const SEGMENT_LAYOUT_VERSION = 2;
 
 type BuildPaths = { contents: string; assets: string; media: string; segments: string };
 
@@ -39,13 +39,13 @@ function translatedRaws(
 	layout: SegmentLayout,
 ): Record<LocaleCode, string> {
 	const spans = layout.articles[article];
-	if (!spans) throw new Error(`${file}: missing from article-segments.json`);
+	if (!spans) throw new Error(`${file}: missing from data/build/segments.json`);
 	const views = { mw: raw } as Record<LocaleCode, string>;
 	for (const [code, locale] of Object.entries(PUBLIC_LANGUAGE) as [
 		Exclude<LocaleCode, 'mw'>,
 		(typeof PUBLIC_LANGUAGE)[Exclude<LocaleCode, 'mw'>],
 	][]) {
-		const assembled = assemble(raw, spans, sidecar, locale);
+		const assembled = assemble(raw, spans, sidecar, locale, file);
 		if (assembled.missing.length > 0) {
 			throw new Error(`${file}: ${locale} is missing ${assembled.missing.length} live segments`);
 		}
