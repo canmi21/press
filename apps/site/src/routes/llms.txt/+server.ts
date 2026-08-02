@@ -3,7 +3,7 @@ import { URLS } from '@canmi/urls';
 import { site } from '$lib/site';
 import type { RequestHandler } from './$types';
 
-export const prerender = false;
+export const prerender = true;
 
 // The site's nature, distinct from site.tagline (which is the RSS description).
 const DESCRIPTION =
@@ -18,10 +18,14 @@ function oneline(value: string): string {
 // each link as [name](url) with a short note. Site collects the homepage,
 // sitemap and feed; Writing lists every article as title -> clean markdown with
 // the subtitle. See https://llmstxt.org/.
-export const GET: RequestHandler = async ({ locals }) => {
+// Deliberately not locale-aware, unlike every other route here. A model reads any language,
+// and the pages this file points at negotiate on their own, so varying it buys a dimension
+// its own readers never use -- they send no cookie -- while costing prerendering and the
+// shared cache. Serving one language keeps it a static file.
+export const GET: RequestHandler = async () => {
 	const web = URLS.apps.production.site;
 	const articles = await getArticles();
-	const code = locals.locale?.code ?? 'mw';
+	const code = 'mw' as const;
 	const body = [
 		`# ${site.name}`,
 		'',
@@ -43,7 +47,7 @@ export const GET: RequestHandler = async ({ locals }) => {
 	return new Response(`${body}\n`, {
 		headers: {
 			'Content-Type': 'text/plain; charset=utf-8',
-			'Cache-Control': 'private, no-store',
+			'Cache-Control': 'public, max-age=300, s-maxage=300',
 		},
 	});
 };

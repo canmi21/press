@@ -39,9 +39,10 @@ const pageHandle: Handle = async ({ event, resolve }) => {
 	}
 	const path = pathname.replace(/^\//, '').replace(/\/$/, '');
 	const article = getArticle(path);
-	// Browser-facing HTML negotiates from every reader preference. Atom is intentionally
-	// absent: a shared-cache feed resolves from its URL alone inside its own route.
-	const localeAware = article != null || ['/', '/llms.txt'].includes(pathname);
+	// Browser-facing HTML negotiates from every reader preference. Two routes are deliberately
+	// absent: the feed resolves from its URL alone, inside its own route, because it lives in a
+	// shared cache; and llms.txt is served in one language so it can stay a prerendered file.
+	const localeAware = article != null || pathname === '/';
 	if (localeAware && !building) {
 		const cookie = event.cookies.get('language');
 		const code = resolveLocale({
