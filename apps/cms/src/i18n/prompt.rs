@@ -276,7 +276,9 @@ mod tests {
 	#[test]
 	fn the_source_locale_is_never_requested() {
 		// The article is not a translation of itself, so there is no slot for it to fill.
-		assert!(!LOCALES.contains(&"wm"));
+		// `mw` is the code the site serves the original under; it is a routing name, not a
+		// locale, and it must never become one here. See spec/locale.md.
+		assert!(!LOCALES.contains(&"mw"));
 		assert_eq!(LOCALES.len(), 8);
 		let _ = segment::OPEN;
 	}
