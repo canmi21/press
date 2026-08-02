@@ -120,6 +120,29 @@ and `x-default` already means the version to serve when nothing else matches.
 The original stays reachable by `?lang=mw` and through the language switcher. It stops making a
 claim about its language; it does not stop being served.
 
+## The article switcher names languages for their own readers
+
+The article metadata row carries the content-language switcher; it is separate from UI-message
+translation and does not use Paraglide. Its trigger shows a globe on `mw`, a languages icon on
+a translation, and the current view's name in that language's own form.
+
+The eight translation rows are fixed endonyms and do not change with the active view. The
+original is a separate first row: its name is derived from the article's own language tag and
+is marked `Original`, because `mw` names authorship rather than a language. Consequently an
+original Chinese view and the Simplified Chinese translation may share a displayed language
+name while remaining visibly distinct rows.
+
+Selection compares internal codes. Equal codes close the menu; different codes perform a full
+document navigation to `?lang={code}`, including `?lang=mw`. Comparing public language tags
+would make a same-language translation unreachable, while client routing would leave the
+worker-owned cookie and document language behind the content being shown. The parameter is
+still removed after the resulting document loads, as described above.
+
+The trigger exposes its expanded state, the selected row is announced, and the menu supports
+native activation plus arrow, Home, End, Escape, and Tab keyboard behaviour. Endonyms help a
+reader find the right row without first understanding the current content language; keyboard
+and screen-reader access are part of that same requirement.
+
 Keeping it out also keeps an unvalidated value away from the one attribute where a bad value is
 destructive rather than merely wrong. Frontmatter `lang` still reaches `<html lang>`, where an
 error mislabels a page; in an `hreflang` it would discard the whole set.

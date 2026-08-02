@@ -23,6 +23,7 @@
 	import type { Alternate } from '$lib/content/types';
 	import type { LocaleCode } from '$lib/locale';
 	import { formatCompact } from '$lib/format';
+	import LanguageSwitcher from '$lib/language-switcher.svelte';
 	import Toc from '$lib/toc.svelte';
 
 	type ArticleLocale = {
@@ -126,7 +127,7 @@
 	<article class="mx-auto max-w-180 px-6 py-24">
 		<header>
 			<h1 class="text-text-strong">{meta.title}</h1>
-			<div class="mt-2 flex items-center gap-2 text-sm text-text-soft">
+			<div class="mt-2 flex flex-wrap items-center gap-2 text-sm text-text-soft">
 				<time datetime={meta.created}>{date}</time>
 				<span
 					class="inline-flex items-center gap-1"
@@ -146,6 +147,7 @@
 						{formatCompact(meta.views)}
 					</span>
 				{/if}
+				<LanguageSwitcher code={locale.code} />
 			</div>
 		</header>
 
