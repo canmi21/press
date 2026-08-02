@@ -8,13 +8,7 @@
 			<head>
 				<meta charset="utf-8"/>
 				<meta name="viewport" content="width=device-width, initial-scale=1"/>
-				<title>
-					<xsl:choose>
-						<xsl:when test="name(*) = 'urlset'">Sitemap</xsl:when>
-						<xsl:when test="name(*) = 'feed'">Feed</xsl:when>
-						<xsl:otherwise><xsl:value-of select="name(*)"/></xsl:otherwise>
-					</xsl:choose>
-				</title>
+				<title>Sitemap</title>
 				<style>
 					:root {
 						color-scheme: light dark;
@@ -74,7 +68,7 @@
 				</script>
 			</head>
 			<body>
-				<pre class="xml-code"><span class="p">&lt;?</span><span class="t">xml</span><xsl:text> </xsl:text><span class="a">version</span><span class="p">="</span><span class="v">1.0</span><span class="p">"</span><xsl:text> </xsl:text><span class="a">encoding</span><span class="p">="</span><span class="v">UTF-8</span><span class="p">"?&gt;</span><xsl:text>&#10;</xsl:text><span class="p">&lt;?</span><span class="t">xml-stylesheet</span><xsl:text> </xsl:text><span class="a">type</span><span class="p">="</span><span class="v">text/xsl</span><span class="p">"</span><xsl:text> </xsl:text><span class="a">href</span><span class="p">="</span><span class="v">/xml.xsl</span><span class="p">"?&gt;</span><xsl:text>&#10;</xsl:text><xsl:apply-templates select="*"/></pre>
+				<pre class="xml-code"><span class="p">&lt;?</span><span class="t">xml</span><xsl:text> </xsl:text><span class="a">version</span><span class="p">="</span><span class="v">1.0</span><span class="p">"</span><xsl:text> </xsl:text><span class="a">encoding</span><span class="p">="</span><span class="v">UTF-8</span><span class="p">"?&gt;</span><xsl:text>&#10;</xsl:text><span class="p">&lt;?</span><span class="t">xml-stylesheet</span><xsl:text> </xsl:text><span class="a">type</span><span class="p">="</span><span class="v">text/xsl</span><span class="p">"</span><xsl:text> </xsl:text><span class="a">href</span><span class="p">="</span><span class="v">/sitemap.xsl</span><span class="p">"?&gt;</span><xsl:text>&#10;</xsl:text><xsl:apply-templates select="*"/></pre>
 			</body>
 		</html>
 	</xsl:template>
