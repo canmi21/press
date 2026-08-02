@@ -89,10 +89,18 @@ fixing a malformed message never requires an amend dance.
 
 ## Enforcement
 
-`.claude/hooks/commit.py` runs before any `jj commit` or `jj describe` and does two
-things: it runs `jj fix` so the content being committed is already formatted, then it checks
-the message. A malformed message is refused with the specific reason, which the agent reads
-and corrects on the spot.
+`.claude/hooks/commit.py` runs before any jj subcommand that can write a description and does
+two things: it runs `jj fix` so the content being committed is already formatted, then it
+checks the message. A malformed message is refused with the specific reason, which the agent
+reads and corrects on the spot.
+
+The guarded list is derived from which subcommands accept `-m`, not from the two that write
+most of the messages. It was `commit` and `describe` alone, and `jj split -m` carried a
+malformed co-author trailer straight past it -- caught only because a later `describe` in the
+same session was checked and rejected the identical text. A gap of that kind is silent by
+construction: the hook cannot report a command it never looked at. So when jj grows another
+way to set a message, the list grows with it -- currently `commit`, `ci`, `describe`, `desc`,
+`split`, `new`, `squash`, `metaedit`.
 
 The hook lives at the agent-harness layer rather than in jj, because jj offers no hook point
 at all: it has no commit hook, and it explicitly refuses aliases that shadow built-in

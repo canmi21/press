@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PreToolUse hook for `jj commit` and `jj describe`.
+"""PreToolUse hook for every jj subcommand that writes a commit description.
 
 Two jobs, in order:
   1. Run `jj fix`, so what gets committed is already formatted.
@@ -28,7 +28,21 @@ import sys
 TYPES = "feat|fix|docs|refactor|perf|test|build|ci|chore|revert"
 HEADER = re.compile(rf"^({TYPES})(\([a-z0-9.-]+\))?!?: (.+)$")
 LIMIT = 96
-SUBCOMMANDS = {"commit", "describe", "desc", "ci"}
+# Every jj subcommand that can write a description, not just the two that usually do. The
+# list was `commit` and `describe` alone, and `jj split -m` walked a malformed trailer
+# straight past it -- caught only because a later `describe` in the same session was checked
+# and rejected the identical message. A gap here is silent by construction, so this is
+# derived from which subcommands accept -m rather than from which ones come to mind.
+SUBCOMMANDS = {
+	"commit",
+	"ci",
+	"describe",
+	"desc",
+	"split",
+	"new",
+	"squash",
+	"metaedit",
+}
 SEPARATORS = {"&&", ";", "||", "|"}
 
 # Whether an assistant co-authored a change is a judgement no script can make, so only the
