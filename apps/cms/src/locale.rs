@@ -1,7 +1,8 @@
 //! The `cms locale` command: translating tag labels and image descriptions.
 //!
-//! These are short plain strings, not article blocks. Each target locale is one request and
-//! is saved as soon as it returns, so an interrupted run keeps every answer it paid for.
+//! These are short plain strings, not article blocks. An ordinary tag asks for every missing
+//! locale at once; descriptions remain one request per locale. Each unit is saved as soon as
+//! it returns, so an interrupted run keeps every answer it paid for.
 
 use crate::alt::SOURCE_LOCALE;
 use crate::i18n::runner::{self, Answer, Refusal, Runner};
@@ -49,24 +50,20 @@ impl Item {
 			Destination::Description(cid) => format!("description {cid}/{locale}"),
 		}
 	}
-
-	fn label(&self) -> &str {
-		match &self.destination {
-			Destination::Tag(name) | Destination::Description(name) => name,
-		}
-	}
 }
 
 fn targets(
 	translations: &std::collections::BTreeMap<String, Translation>,
 	locales: &[&str],
 	force: bool,
+	include_source: bool,
 ) -> (Vec<String>, usize) {
 	let mut wanted = Vec::new();
 	let mut skipped = 0;
 	for locale in locales {
-		// The source is input, never output. This remains true under --force.
-		if *locale == SOURCE_LOCALE {
+		// A description's source is input, never output. Ordinary tag labels have no separate
+		// source artefact, so en-US is one of their eight outputs.
+		if !include_source && *locale == SOURCE_LOCALE {
 			continue;
 		}
 		if !force && translations.contains_key(*locale) {
@@ -90,7 +87,10 @@ fn pending(
 	// Tags deliberately come first. They are cheap enough to prove the runner and persistence
 	// path before the longer descriptions spend real money.
 	for (name, tag) in &registry.tags {
-		let (wanted, already) = targets(&tag.display, locales, force);
+		let Some(display) = tag.translations() else {
+			continue;
+		};
+		let (wanted, already) = targets(display, locales, force, true);
 		skipped += already;
 		if !wanted.is_empty() {
 			items.push(Item {
@@ -106,7 +106,7 @@ fn pending(
 		let Some(source) = entry.description.get(SOURCE_LOCALE) else {
 			continue;
 		};
-		let (wanted, already) = targets(&entry.description, locales, force);
+		let (wanted, already) = targets(&entry.description, locales, force, false);
 		skipped += already;
 		if !wanted.is_empty() {
 			items.push(Item {
@@ -120,26 +120,32 @@ fn pending(
 	(items, skipped)
 }
 
-fn request(item: &Item, locale: &str) -> String {
-	match item.destination {
-		Destination::Tag(_) => format!(
-			"Translate one tag for display in {locale}. A tag is one word or a short noun phrase. \
-			 A brand keeps its form in every language (for example, typescript becomes TypeScript \
-			 in zh-CN too); a common noun is translated (for example, terminal becomes 终端 in \
-			 zh-CN).\n\nRaw tag: {}\nLocale: {locale}\n\nReply with the translated tag alone. \
-			 No preamble, quotes, explanation, or markdown.",
-			item.source
-		),
-		Destination::Description(_) => format!(
-			"Translate this short plain-text image description from {SOURCE_LOCALE} into {locale}. \
-			 Preserve its meaning and factual detail. Reply with the translation alone: no \
-			 preamble, quotes, explanation, or markdown.\n\n{}",
-			item.source
-		),
-	}
+fn tag_request(item: &Item) -> String {
+	let markers = item
+		.locales
+		.iter()
+		.map(|locale| crate::i18n::prompt::locale_marker(locale))
+		.collect::<Vec<_>>()
+		.join("\n");
+	format!(
+		"Translate one ordinary tag into every locale listed below. It is a common noun or short \
+		 noun phrase that a reader expects in their own language.\n\nOutput format, exactly: one \
+		 marker line, then the short translation, then a blank line.\n{markers}\n\nNothing else. \
+		 No preamble, quotes, explanation, or markdown.\n\nRaw tag: {}",
+		item.source
+	)
 }
 
-async fn translate<F, Fut>(
+fn description_request(item: &Item, locale: &str) -> String {
+	format!(
+		"Translate this short plain-text image description from {SOURCE_LOCALE} into {locale}. \
+		 Preserve its meaning and factual detail. Reply with the translation alone: no preamble, \
+		 quotes, explanation, or markdown.\n\n{}",
+		item.source
+	)
+}
+
+async fn translate_description<F, Fut>(
 	runner: Runner,
 	item: &Item,
 	locale: &str,
@@ -154,7 +160,7 @@ where
 	let mut last = Refusal::Failed(String::new());
 
 	while attempt < ATTEMPTS {
-		let prompt = request(item, locale);
+		let prompt = description_request(item, locale);
 		let model = runner.model_for(item.kind, attempt).to_owned();
 		let at = crate::image::manifest::now();
 		let clock = std::time::Instant::now();
@@ -181,6 +187,71 @@ where
 					tokens,
 					usd,
 				));
+			}
+			Err(Refusal::Exhausted(reason)) => return Err(Refusal::Exhausted(reason)),
+			Err(Refusal::Throttled(_)) => {
+				tokio::time::sleep(backoff).await;
+				backoff = (backoff * 2).min(BACKOFF_MAX);
+			}
+			Err(error) => {
+				last = error;
+				attempt += 1;
+			}
+		}
+	}
+	Err(last)
+}
+
+async fn translate_tag<F, Fut>(
+	runner: Runner,
+	item: &Item,
+	ask: &mut F,
+) -> Result<(Vec<(String, Translation)>, u64, f64), Refusal>
+where
+	F: FnMut(Runner, String, String) -> Fut,
+	Fut: Future<Output = Result<Answer, Refusal>>,
+{
+	let mut attempt = 0usize;
+	let mut backoff = BACKOFF_START;
+	let mut last = Refusal::Failed(String::new());
+
+	while attempt < ATTEMPTS {
+		let prompt = tag_request(item);
+		let model = runner.model_for(item.kind, attempt).to_owned();
+		let at = crate::image::manifest::now();
+		let clock = std::time::Instant::now();
+		match ask(runner, prompt, model).await {
+			Ok(answer) => {
+				let wanted = &item.locales;
+				let found: Vec<(String, String)> = crate::i18n::prompt::parse(&answer.text)
+					.into_iter()
+					.filter(|(locale, _)| wanted.contains(locale))
+					.collect();
+				if found.is_empty() {
+					last = Refusal::Failed("the model returned no requested locale".to_owned());
+					attempt += 1;
+					continue;
+				}
+				let provider = runner.provider().to_owned();
+				let seconds = clock.elapsed().as_secs_f64();
+				let entries = found
+					.into_iter()
+					.map(|(locale, text)| {
+						(
+							locale,
+							Translation {
+								text,
+								provider: provider.clone(),
+								model: answer.model.clone(),
+								at: at.clone(),
+								seconds,
+								tokens: answer.tokens,
+								review: false,
+							},
+						)
+					})
+					.collect();
+				return Ok((entries, answer.tokens, answer.usd));
 			}
 			Err(Refusal::Exhausted(reason)) => return Err(Refusal::Exhausted(reason)),
 			Err(Refusal::Throttled(_)) => {
@@ -250,26 +321,58 @@ where
 		deferred: wanted - items.len(),
 		..Outcome::default()
 	};
-	let calls = items.iter().map(|item| item.locales.len()).sum();
+	let calls = items
+		.iter()
+		.map(|item| match item.destination {
+			Destination::Tag(_) => 1,
+			Destination::Description(_) => item.locales.len(),
+		})
+		.sum();
 	let progress = bar(calls);
 
 	for item in items {
-		for locale in &item.locales {
-			progress.set_message(format!("{} {locale}", item.label()));
-			let result = translate(runner, &item, locale, &mut ask).await;
-			match result {
-				Ok((translation, tokens, usd)) => {
-					match &item.destination {
-						Destination::Tag(name) => {
-							registry
-								.tags
-								.entry(name.clone())
-								.or_default()
-								.display
-								.insert(locale.clone(), translation);
-							tags::save(&registry_path, &registry)?;
+		match &item.destination {
+			Destination::Tag(name) => {
+				progress.set_message(name.clone());
+				match translate_tag(runner, &item, &mut ask).await {
+					Ok((entries, tokens, usd)) => {
+						let Some(display) = registry
+							.tags
+							.get_mut(name)
+							.and_then(tags::Tag::translations_mut)
+						else {
+							outcome.failed.push((
+								format!("tag {name}"),
+								"tag is no longer ordinary".to_owned(),
+							));
+							progress.inc(1);
+							continue;
+						};
+						for (locale, translation) in entries {
+							display.insert(locale, translation);
+							outcome.translated += 1;
 						}
-						Destination::Description(cid) => {
+						outcome.tokens += tokens;
+						outcome.usd += usd;
+						// One paid turn produced the whole tag, so one durable write commits it.
+						tags::save(&registry_path, &registry)?;
+					}
+					Err(Refusal::Exhausted(reason)) => {
+						outcome.exhausted = Some(reason);
+						progress.finish_and_clear();
+						return Ok(outcome);
+					}
+					Err(error) => outcome
+						.failed
+						.push((format!("tag {name}"), error.to_string())),
+				}
+				progress.inc(1);
+			}
+			Destination::Description(cid) => {
+				for locale in &item.locales {
+					progress.set_message(format!("{cid} {locale}"));
+					match translate_description(runner, &item, locale, &mut ask).await {
+						Ok((translation, tokens, usd)) => {
 							described
 								.media
 								.entry(cid.clone())
@@ -277,20 +380,20 @@ where
 								.description
 								.insert(locale.clone(), translation);
 							media::save(&described_path, &described)?;
+							outcome.translated += 1;
+							outcome.tokens += tokens;
+							outcome.usd += usd;
 						}
+						Err(Refusal::Exhausted(reason)) => {
+							outcome.exhausted = Some(reason);
+							progress.finish_and_clear();
+							return Ok(outcome);
+						}
+						Err(error) => outcome.failed.push((item.id(locale), error.to_string())),
 					}
-					outcome.translated += 1;
-					outcome.tokens += tokens;
-					outcome.usd += usd;
+					progress.inc(1);
 				}
-				Err(Refusal::Exhausted(reason)) => {
-					outcome.exhausted = Some(reason);
-					progress.finish_and_clear();
-					return Ok(outcome);
-				}
-				Err(error) => outcome.failed.push((item.id(locale), error.to_string())),
 			}
-			progress.inc(1);
 		}
 	}
 	progress.finish_and_clear();
@@ -348,15 +451,30 @@ mod tests {
 		}
 	}
 
+	fn ordinary(entries: impl IntoIterator<Item = (&'static str, Translation)>) -> tags::Tag {
+		tags::Tag::Ordinary {
+			display: entries
+				.into_iter()
+				.map(|(locale, translation)| (locale.to_owned(), translation))
+				.collect(),
+		}
+	}
+
+	fn marked(entries: &[(&str, &str)]) -> String {
+		entries
+			.iter()
+			.map(|(locale, text)| format!("{}\n{text}\n", crate::i18n::prompt::locale_marker(locale)))
+			.collect::<Vec<_>>()
+			.join("\n")
+	}
+
 	#[tokio::test]
 	async fn an_existing_translation_is_skipped_without_a_request() {
 		let temp = Temp::new("skip");
 		let mut registry = tags::Registry::default();
 		registry.tags.insert(
 			"terminal".to_owned(),
-			tags::Tag {
-				display: std::collections::BTreeMap::from([("zh-CN".to_owned(), translation("终端"))]),
-			},
+			ordinary([("zh-CN", translation("终端"))]),
 		);
 		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
 
@@ -366,7 +484,7 @@ mod tests {
 			Runner::GptOss,
 			false,
 			None,
-			&[SOURCE_LOCALE, "zh-CN"],
+			&["zh-CN"],
 			|_, _, _| {
 				requests += 1;
 				std::future::ready(Ok(answer("unexpected")))
@@ -378,26 +496,16 @@ mod tests {
 		assert_eq!(requests, 0);
 		assert_eq!(outcome.skipped, 1);
 		assert_eq!(
-			tags::load(&tags::path_for(&temp.root)).tags["terminal"].display["zh-CN"],
-			registry.tags["terminal"].display["zh-CN"]
+			tags::load(&tags::path_for(&temp.root)).tags["terminal"]
+				.translations()
+				.expect("ordinary")["zh-CN"],
+			registry.tags["terminal"].translations().expect("ordinary")["zh-CN"]
 		);
 	}
 
 	#[tokio::test]
 	async fn force_never_overwrites_the_source_locale() {
 		let temp = Temp::new("source");
-		let mut registry = tags::Registry::default();
-		registry.tags.insert(
-			"typescript".to_owned(),
-			tags::Tag {
-				display: std::collections::BTreeMap::from([(
-					SOURCE_LOCALE.to_owned(),
-					translation("TypeScript"),
-				)]),
-			},
-		);
-		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
-
 		let mut described = media::Media::default();
 		described.media.insert(
 			"asset".to_owned(),
@@ -422,18 +530,7 @@ mod tests {
 		.await
 		.expect("run");
 
-		assert_eq!(outcome.translated, 2);
-		let saved_tags = tags::load(&tags::path_for(&temp.root));
-		assert_eq!(
-			saved_tags.tags["typescript"].display[SOURCE_LOCALE].text,
-			"TypeScript"
-		);
-		let translated = &saved_tags.tags["typescript"].display["zh-CN"];
-		assert_eq!(translated.provider, "openai");
-		assert_eq!(translated.model, "gpt-oss-120b-medium");
-		assert_eq!(translated.tokens, 12);
-		assert!(!translated.at.is_empty());
-		assert!(!translated.review);
+		assert_eq!(outcome.translated, 1);
 		let saved_media = media::load(&media::path_for(&temp.root));
 		assert_eq!(
 			saved_media.media["asset"].description[SOURCE_LOCALE].text,
@@ -447,7 +544,10 @@ mod tests {
 		let mut registry = tags::Registry::default();
 		registry
 			.tags
-			.insert("terminal".to_owned(), tags::Tag::default());
+			.insert("first".to_owned(), tags::Tag::ordinary());
+		registry
+			.tags
+			.insert("second".to_owned(), tags::Tag::ordinary());
 		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
 
 		let mut requests = 0;
@@ -456,13 +556,16 @@ mod tests {
 			Runner::GptOss,
 			false,
 			None,
-			&[SOURCE_LOCALE, "zh-CN", "ja-JP"],
+			&[SOURCE_LOCALE, "zh-CN"],
 			|_, _, _| {
 				requests += 1;
 				std::future::ready(if requests <= ATTEMPTS {
 					Err(Refusal::Failed("bad answer".to_owned()))
 				} else {
-					Ok(answer("ターミナル"))
+					Ok(answer(&marked(&[
+						(SOURCE_LOCALE, "Second"),
+						("zh-CN", "第二"),
+					])))
 				})
 			},
 		)
@@ -470,10 +573,89 @@ mod tests {
 		.expect("run");
 
 		assert_eq!(outcome.failed.len(), 1);
-		assert_eq!(outcome.translated, 1);
+		assert_eq!(outcome.translated, 2);
 		let saved = tags::load(&tags::path_for(&temp.root));
-		assert!(!saved.tags["terminal"].display.contains_key("zh-CN"));
-		assert_eq!(saved.tags["terminal"].display["ja-JP"].text, "ターミナル");
+		assert!(
+			saved.tags["first"]
+				.translations()
+				.expect("ordinary")
+				.is_empty()
+		);
+		assert_eq!(
+			saved.tags["second"].translations().expect("ordinary")["zh-CN"].text,
+			"第二"
+		);
+	}
+
+	#[tokio::test]
+	async fn a_technical_tag_never_produces_a_translation_request() {
+		let temp = Temp::new("technical");
+		let mut registry = tags::Registry::default();
+		registry.tags.insert(
+			"typescript".to_owned(),
+			tags::Tag::Technical {
+				display: "TypeScript".to_owned(),
+			},
+		);
+		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
+
+		let mut requests = 0;
+		let outcome = run_with(
+			&temp.root,
+			Runner::GptOss,
+			true,
+			None,
+			&crate::i18n::prompt::LOCALES,
+			|_, _, _| {
+				requests += 1;
+				std::future::ready(Ok(answer("unexpected")))
+			},
+		)
+		.await
+		.expect("run");
+
+		assert_eq!(requests, 0);
+		assert_eq!(outcome.sources, 0);
+	}
+
+	#[tokio::test]
+	async fn one_tag_requests_every_locale_once() {
+		let temp = Temp::new("one-call");
+		let mut registry = tags::Registry::default();
+		registry
+			.tags
+			.insert("browser".to_owned(), tags::Tag::ordinary());
+		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
+		let translations: Vec<(&str, &str)> = crate::i18n::prompt::LOCALES
+			.iter()
+			.map(|locale| (*locale, *locale))
+			.collect();
+		let reply = marked(&translations);
+		let mut requests = 0;
+
+		let outcome = run_with(
+			&temp.root,
+			Runner::GptOss,
+			false,
+			None,
+			&crate::i18n::prompt::LOCALES,
+			|_, prompt, _| {
+				requests += 1;
+				for locale in crate::i18n::prompt::LOCALES {
+					assert!(prompt.contains(&crate::i18n::prompt::locale_marker(locale)));
+				}
+				std::future::ready(Ok(answer(&reply)))
+			},
+		)
+		.await
+		.expect("run");
+
+		assert_eq!(requests, 1);
+		assert_eq!(outcome.translated, crate::i18n::prompt::LOCALES.len());
+		let saved = tags::load(&tags::path_for(&temp.root));
+		let display = saved.tags["browser"].translations().expect("ordinary");
+		assert_eq!(display.len(), crate::i18n::prompt::LOCALES.len());
+		assert!(display.values().all(|translation| translation.tokens == 12));
 	}
 
 	#[tokio::test]
@@ -482,7 +664,7 @@ mod tests {
 		let mut registry = tags::Registry::default();
 		registry
 			.tags
-			.insert("terminal".to_owned(), tags::Tag::default());
+			.insert("terminal".to_owned(), tags::Tag::ordinary());
 		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
 
 		let mut described = media::Media::default();
@@ -507,7 +689,10 @@ mod tests {
 			&[SOURCE_LOCALE, "zh-CN"],
 			|_, prompt, _| {
 				prompts.push(prompt);
-				std::future::ready(Ok(answer("终端")))
+				std::future::ready(Ok(answer(&marked(&[
+					(SOURCE_LOCALE, "Terminal"),
+					("zh-CN", "终端"),
+				]))))
 			},
 		)
 		.await
@@ -524,17 +709,16 @@ mod tests {
 	}
 
 	#[test]
-	fn a_tag_prompt_carries_only_the_raw_name_and_target_locale_as_data() {
+	fn a_tag_prompt_carries_one_raw_name_and_every_target_locale() {
 		let item = Item {
 			destination: Destination::Tag("typescript".to_owned()),
 			source: "typescript".to_owned(),
 			locales: vec!["zh-CN".to_owned()],
 			kind: Kind::Heading,
 		};
-		let text = request(&item, "zh-CN");
-		assert!(text.contains("brand keeps its form"));
-		assert!(text.contains("common noun is translated"));
+		let text = tag_request(&item);
+		assert!(text.contains("ordinary tag"));
 		assert!(text.contains("Raw tag: typescript"));
-		assert!(text.contains("Locale: zh-CN"));
+		assert!(text.contains(&crate::i18n::prompt::locale_marker("zh-CN")));
 	}
 }

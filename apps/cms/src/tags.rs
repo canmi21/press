@@ -1,26 +1,52 @@
-//! `data/tags.yaml`: what each tag is called, in every language.
+//! `data/tags.yaml`: what each tag is called.
 //!
 //! An image links to a raw name and nothing else. What a reader sees lives here, so renaming
 //! `terminal` to `Terminal` for English and `终端` for Chinese never touches a single image,
 //! and one concept cannot drift into three spellings across a library.
 //!
 //! The raw form is constrained -- lower case, digits, hyphens -- because it is an identifier
-//! that happens to be readable. The display form is free: a brand keeps its capitals, a
-//! common noun gets translated. See spec/architecture.md.
+//! that happens to be readable. Technical names have one correctly cased display form;
+//! ordinary names have a translated display form per locale. See spec/architecture.md.
 
 use crate::i18n::store::Translation;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 
-pub const VERSION: u32 = 1;
+pub const VERSION: u32 = 2;
 
-#[derive(Debug, Clone, Default, Serialize, Deserialize, PartialEq)]
-pub struct Tag {
-	/// What this is called per locale. The same shape as a description or a translated
-	/// paragraph, so all three go through one pipeline.
-	#[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
-	pub display: BTreeMap<String, Translation>,
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+#[serde(tag = "kind", rename_all = "lowercase")]
+pub enum Tag {
+	/// A proper noun, brand, tool, format, protocol or organisation. Its name is not translated.
+	Technical { display: String },
+	/// A common noun that readers expect to see in their own language.
+	Ordinary {
+		#[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+		display: BTreeMap<String, Translation>,
+	},
+}
+
+impl Tag {
+	pub fn ordinary() -> Self {
+		Self::Ordinary {
+			display: BTreeMap::new(),
+		}
+	}
+
+	pub fn translations(&self) -> Option<&BTreeMap<String, Translation>> {
+		match self {
+			Self::Technical { .. } => None,
+			Self::Ordinary { display } => Some(display),
+		}
+	}
+
+	pub fn translations_mut(&mut self) -> Option<&mut BTreeMap<String, Translation>> {
+		match self {
+			Self::Technical { .. } => None,
+			Self::Ordinary { display } => Some(display),
+		}
+	}
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -84,22 +110,19 @@ mod tests {
 	}
 
 	#[test]
-	fn a_tag_is_named_once_and_shown_many_ways() {
-		// The point of the split: an image carries `typescript`, and whether a reader sees
-		// "TypeScript" or "TypeScript" or something else entirely is settled here.
+	fn technical_and_ordinary_tags_have_distinct_shapes() {
+		// The point of the split: a reader never has to guess whether an empty map means a name
+		// is universal or merely has not been translated yet.
 		let mut registry = Registry::default();
 		registry.tags.insert(
 			"typescript".to_owned(),
-			Tag {
-				display: BTreeMap::from([
-					("en-US".to_owned(), display("TypeScript")),
-					("zh-CN".to_owned(), display("TypeScript")),
-				]),
+			Tag::Technical {
+				display: "TypeScript".to_owned(),
 			},
 		);
 		registry.tags.insert(
 			"terminal".to_owned(),
-			Tag {
+			Tag::Ordinary {
 				display: BTreeMap::from([
 					("en-US".to_owned(), display("Terminal")),
 					("zh-CN".to_owned(), display("终端")),
@@ -107,21 +130,39 @@ mod tests {
 			},
 		);
 
-		// A brand keeps its form in every language; a common noun does not.
 		assert_eq!(
-			registry.tags["typescript"].display["zh-CN"].text,
-			"TypeScript"
+			registry.tags["typescript"],
+			Tag::Technical {
+				display: "TypeScript".to_owned()
+			}
 		);
-		assert_eq!(registry.tags["terminal"].display["zh-CN"].text, "终端");
+		assert_eq!(
+			registry.tags["terminal"].translations().expect("ordinary")["zh-CN"].text,
+			"终端"
+		);
 		assert_eq!(known(&registry), vec!["terminal", "typescript"]);
 	}
 
 	#[test]
 	fn the_registry_round_trips() {
 		let mut registry = Registry::default();
-		registry.tags.insert("wasm".to_owned(), Tag::default());
+		registry.tags.insert(
+			"wasm".to_owned(),
+			Tag::Technical {
+				display: "Wasm".to_owned(),
+			},
+		);
+		registry.tags.insert("terminal".to_owned(), Tag::ordinary());
 		let text = serde_yaml_ng::to_string(&registry).expect("yaml");
 		let back: Registry = serde_yaml_ng::from_str(&text).expect("parse");
 		assert!(back.tags.contains_key("wasm"));
+		assert!(
+			back.tags["terminal"]
+				.translations()
+				.expect("ordinary")
+				.is_empty()
+		);
+		assert!(text.contains("kind: technical"));
+		assert!(text.contains("kind: ordinary"));
 	}
 }

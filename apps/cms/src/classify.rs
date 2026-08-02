@@ -22,6 +22,12 @@ use std::path::{Path, PathBuf};
 const MIN_TAGS: usize = 3;
 const MAX_TAGS: usize = 5;
 
+#[derive(Debug, Clone, PartialEq)]
+struct Tagged {
+	name: String,
+	tag: Tag,
+}
+
 #[derive(Debug, Default)]
 pub struct Outcome {
 	pub classified: usize,
@@ -55,15 +61,23 @@ fn prompt(path: &Path, existing: &[&str]) -> String {
 		 editor are all screenshots. A diagram is drawn to explain something. A document has \
 		 text as its subject. Artwork is illustrated, rendered or generated.\n\
 		 \n\
-		 Second, between {MIN_TAGS} and {MAX_TAGS} tags for what is in it. Lower case, digits \
-		 and hyphens only, English, no spaces. A tag names a subject, a tool, a place or a \
-		 medium -- not an opinion and not the category again.\n\
+		 Second, between {MIN_TAGS} and {MAX_TAGS} tags for what is in it. Each tag has a raw \
+		 identifier, a kind and a display form. The identifier uses lower case, digits and \
+		 hyphens only, English, no spaces. A tag names a subject, a tool, a place or a medium \
+		 -- not an opinion and not the category again.\n\
+		 \n\
+		 A technical tag is a proper noun, brand, tool, format, protocol or organisation: a \
+		 name that stays the same in every language. Give its correctly cased and spaced display \
+		 form, such as `cargo|technical|Cargo`, `typescript|technical|TypeScript` or \
+		 `bytecode-alliance|technical|Bytecode Alliance`. An ordinary tag is a common noun a \
+		 reader expects in their own language; write `-` for its display form, such as \
+		 `terminal|ordinary|-`.\n\
 		 \n\
 		 {known}\n\
 		 \n\
 		 Answer in exactly two lines and nothing else:\n\
 		 category: <one word>\n\
-		 tags: <comma-separated>",
+		 tags: <raw|technical|display or raw|ordinary|-, comma-separated>",
 		path.display()
 	)
 }
@@ -72,7 +86,7 @@ fn prompt(path: &Path, existing: &[&str]) -> String {
 ///
 /// Line-anchored for the same reason translations are: a malformed answer costs one field
 /// rather than the whole reply, and there is no structure to get subtly wrong.
-fn parse(reply: &str) -> (Option<Category>, Vec<String>) {
+fn parse(reply: &str) -> (Option<Category>, Vec<Tagged>) {
 	let mut category = None;
 	let mut tags = Vec::new();
 	for line in reply.lines() {
@@ -82,12 +96,25 @@ fn parse(reply: &str) -> (Option<Category>, Vec<String>) {
 		} else if let Some(value) = line.strip_prefix("tags:") {
 			tags = value
 				.split(',')
-				.map(|tag| tag.trim().to_ascii_lowercase())
-				// Silently dropped rather than repaired. A tag with a space in it is a phrase,
-				// and turning it into one by replacing the space invents a name nobody chose.
-				.filter(|tag| media::is_valid_tag(tag))
+				.filter_map(|value| {
+					let mut fields = value.split('|').map(str::trim);
+					let name = fields.next()?.to_ascii_lowercase();
+					let kind = fields.next()?;
+					let display = fields.next()?;
+					if fields.next().is_some() || !media::is_valid_tag(&name) {
+						return None;
+					}
+					let tag = match kind {
+						"technical" if !display.is_empty() && display != "-" => Tag::Technical {
+							display: display.to_owned(),
+						},
+						"ordinary" if display == "-" => Tag::ordinary(),
+						_ => return None,
+					};
+					Some(Tagged { name, tag })
+				})
 				.collect();
-			tags.dedup();
+			tags.dedup_by(|left, right| left.name == right.name);
 			tags.truncate(MAX_TAGS);
 		}
 	}
@@ -214,16 +241,18 @@ pub async fn run(
 			continue;
 		}
 
-		for tag in &found {
-			if !registry.tags.contains_key(tag) {
-				registry.tags.insert(tag.clone(), Tag::default());
-				outcome.minted.push(tag.clone());
+		for tagged in &found {
+			if !registry.tags.contains_key(&tagged.name) {
+				registry
+					.tags
+					.insert(tagged.name.clone(), tagged.tag.clone());
+				outcome.minted.push(tagged.name.clone());
 			}
 		}
 
 		let entry = described.media.entry(cid).or_insert_with(Entry::default);
 		entry.category = category;
-		entry.tags = found;
+		entry.tags = found.into_iter().map(|tagged| tagged.name).collect();
 		outcome.classified += 1;
 		outcome.tokens += answer.tokens;
 		outcome.usd += answer.usd;
@@ -245,22 +274,55 @@ mod tests {
 
 	#[test]
 	fn the_two_answers_are_read_off_two_lines() {
-		let (category, tags) = parse("category: screenshot\ntags: terminal, cargo, rust\n");
+		let (category, tags) = parse(
+			"category: screenshot\ntags: terminal|ordinary|-, cargo|technical|Cargo, \
+			 rust|technical|Rust\n",
+		);
 		assert_eq!(category, Some(Category::Screenshot));
-		assert_eq!(tags, vec!["terminal", "cargo", "rust"]);
+		assert_eq!(
+			tags,
+			vec![
+				Tagged {
+					name: "terminal".to_owned(),
+					tag: Tag::ordinary(),
+				},
+				Tagged {
+					name: "cargo".to_owned(),
+					tag: Tag::Technical {
+						display: "Cargo".to_owned(),
+					},
+				},
+				Tagged {
+					name: "rust".to_owned(),
+					tag: Tag::Technical {
+						display: "Rust".to_owned(),
+					},
+				},
+			]
+		);
 	}
 
 	#[test]
 	fn a_malformed_tag_is_dropped_and_not_repaired() {
 		// Replacing the space would invent `shell-terminal`, a name nobody chose and which now
 		// competes with `terminal` forever.
-		let (_, tags) = parse("category: screenshot\ntags: terminal, shell terminal, TypeScript, rust");
-		assert_eq!(tags, vec!["terminal", "typescript", "rust"]);
+		let (_, tags) = parse(
+			"category: screenshot\ntags: terminal|ordinary|-, shell terminal|ordinary|-, \
+			 TypeScript|technical|TypeScript, rust|technical|Rust",
+		);
+		assert_eq!(
+			tags
+				.iter()
+				.map(|tagged| tagged.name.as_str())
+				.collect::<Vec<_>>(),
+			vec!["terminal", "typescript", "rust"]
+		);
 	}
 
 	#[test]
 	fn a_bad_category_leaves_the_field_empty_rather_than_guessing() {
-		let (category, tags) = parse("category: terminal\ntags: a, b, c");
+		let (category, tags) =
+			parse("category: terminal\ntags: a|ordinary|-, b|ordinary|-, c|ordinary|-");
 		assert_eq!(category, None);
 		// The tags still land: one malformed line costs one field.
 		assert_eq!(tags.len(), 3);
@@ -268,7 +330,10 @@ mod tests {
 
 	#[test]
 	fn the_budget_holds_at_the_top() {
-		let (_, tags) = parse("tags: a, b, c, d, e, f, g, h");
+		let (_, tags) = parse(
+			"tags: a|ordinary|-, b|ordinary|-, c|ordinary|-, d|ordinary|-, \
+			 e|ordinary|-, f|ordinary|-, g|ordinary|-, h|ordinary|-",
+		);
 		assert_eq!(tags.len(), MAX_TAGS);
 	}
 
@@ -279,6 +344,8 @@ mod tests {
 		let with = prompt(Path::new("/tmp/a.png"), &["terminal", "rust"]);
 		assert!(with.contains("terminal, rust"));
 		assert!(with.contains("Reuse one wherever it fits"));
+		assert!(with.contains("cargo|technical|Cargo"));
+		assert!(with.contains("terminal|ordinary|-"));
 
 		let without = prompt(Path::new("/tmp/a.png"), &[]);
 		assert!(without.contains("no tags yet"));

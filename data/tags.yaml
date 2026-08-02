@@ -1,46 +1,236 @@
-version: 1
+version: 2
 tags:
-  benchmark: {}
-  blog-framework: {}
-  browser: {}
-  bytecode-alliance: {}
-  cargo: {}
-  cellular: {}
-  circuit-board: {}
-  cityscape: {}
-  clouds: {}
-  cranelift: {}
-  curb: {}
-  electronics: {}
-  esim: {}
-  fallen-leaves: {}
-  fire-hydrant: {}
-  footpath: {}
-  garage: {}
-  garden: {}
-  grass: {}
-  hexo: {}
-  homepage: {}
-  hong-kong: {}
-  ios: {}
-  laptop: {}
-  leaves: {}
-  linker: {}
-  macbook: {}
-  macos: {}
-  mold: {}
-  npm: {}
-  react: {}
-  remix: {}
-  responsive-design: {}
-  river: {}
-  rust: {}
-  shrubs: {}
-  sign: {}
-  sky: {}
-  speech-to-text: {}
-  terminal: {}
-  tree: {}
-  vercel: {}
-  wall: {}
-  webassembly: {}
+  benchmark:
+    kind: technical
+    display: Benchmark
+  blog-framework:
+    kind: ordinary
+    display:
+      en-US:
+        text: Blog Framework
+        provider: migration
+        model: deterministic
+        at: 2026-08-02T03:27:59.056656Z
+        seconds: 0.0
+        tokens: 0
+        review: false
+      de-DE:
+        text: Blog-Framework
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T03:11:36.993757Z
+        seconds: 4.064354417
+        tokens: 14422
+        review: false
+      es-ES:
+        text: framework de blog
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T03:11:48.897411Z
+        seconds: 3.3137805
+        tokens: 14249
+        review: false
+      fr-FR:
+        text: cadre de blog
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T03:11:44.762433Z
+        seconds: 4.134155458
+        tokens: 14238
+        review: false
+      ja-JP:
+        text: ブログフレームワーク
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T03:11:33.670428Z
+        seconds: 3.322160708
+        tokens: 14203
+        review: false
+      ko-KR:
+        text: 블로그 프레임워크
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T03:11:41.058761Z
+        seconds: 3.702507458
+        tokens: 14266
+        review: false
+      zh-CN:
+        text: 博客框架
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T03:11:30.770403Z
+        seconds: 2.899272417
+        tokens: 14178
+        review: false
+      zh-TW:
+        text: 部落格框架
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T03:11:52.211999Z
+        seconds: 3.17063625
+        tokens: 14216
+        review: false
+  browser:
+    kind: ordinary
+    display:
+      en-US:
+        text: Browser
+        provider: migration
+        model: deterministic
+        at: 2026-08-02T03:27:59.056656Z
+        seconds: 0.0
+        tokens: 0
+        review: false
+      de-DE:
+        text: Browser
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T03:12:02.189071Z
+        seconds: 3.0398472500000002
+        tokens: 14164
+        review: false
+      es-ES:
+        text: navegador
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T03:12:11.351824Z
+        seconds: 2.739187875
+        tokens: 14161
+        review: false
+      fr-FR:
+        text: navigateur
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T03:12:08.035018Z
+        seconds: 3.315847458
+        tokens: 14158
+        review: false
+      ja-JP:
+        text: ブラウザ
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T03:11:59.138728Z
+        seconds: 3.049380583
+        tokens: 14176
+        review: false
+      ko-KR:
+        text: 브라우저
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T03:12:05.229937Z
+        seconds: 2.80406925
+        tokens: 14186
+        review: false
+      zh-CN:
+        text: 浏览器
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T03:11:55.383561Z
+        seconds: 3.754288666
+        tokens: 14155
+        review: false
+      zh-TW:
+        text: 瀏覽器
+        provider: openai
+        model: gpt-oss-120b-medium
+        at: 2026-08-02T03:12:14.091986Z
+        seconds: 2.836993542
+        tokens: 14168
+        review: false
+  bytecode-alliance:
+    kind: technical
+    display: Bytecode Alliance
+  cargo:
+    kind: technical
+    display: Cargo
+  cellular:
+    kind: ordinary
+  circuit-board:
+    kind: ordinary
+  cityscape:
+    kind: ordinary
+  clouds:
+    kind: ordinary
+  cranelift:
+    kind: technical
+    display: Cranelift
+  curb:
+    kind: ordinary
+  electronics:
+    kind: ordinary
+  esim:
+    kind: technical
+    display: eSIM
+  fallen-leaves:
+    kind: ordinary
+  fire-hydrant:
+    kind: ordinary
+  footpath:
+    kind: ordinary
+  garage:
+    kind: ordinary
+  garden:
+    kind: ordinary
+  grass:
+    kind: ordinary
+  hexo:
+    kind: technical
+    display: Hexo
+  homepage:
+    kind: ordinary
+  hong-kong:
+    kind: technical
+    display: Hong Kong
+  ios:
+    kind: technical
+    display: iOS
+  laptop:
+    kind: ordinary
+  leaves:
+    kind: ordinary
+  linker:
+    kind: ordinary
+  macbook:
+    kind: technical
+    display: MacBook
+  macos:
+    kind: technical
+    display: macOS
+  mold:
+    kind: ordinary
+  npm:
+    kind: technical
+    display: npm
+  react:
+    kind: technical
+    display: React
+  remix:
+    kind: technical
+    display: Remix
+  responsive-design:
+    kind: ordinary
+  river:
+    kind: ordinary
+  rust:
+    kind: technical
+    display: Rust
+  shrubs:
+    kind: ordinary
+  sign:
+    kind: ordinary
+  sky:
+    kind: ordinary
+  speech-to-text:
+    kind: ordinary
+  terminal:
+    kind: ordinary
+  tree:
+    kind: ordinary
+  vercel:
+    kind: technical
+    display: Vercel
+  wall:
+    kind: ordinary
+  webassembly:
+    kind: technical
+    display: WebAssembly
