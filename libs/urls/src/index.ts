@@ -41,10 +41,11 @@ export const URLS = {
 		// Named as the feed's generator. Nothing fetches it, but it is emitted into published
 		// output, so it belongs with the other URLs rather than inline in a route.
 		feedsmith: 'https://feedsmith.dev',
-		// Bases for social profile links written into articles. `x` and `twitter` are the same
+		// Bases for social profile links. `x` and `twitter` are the same
 		// service under two hostnames: profiles moved and the intent endpoint did not, so both
 		// are still live and both are still needed.
 		social: {
+			telegram: 'https://t.me',
 			x: 'https://x.com',
 			twitterIntent: 'https://twitter.com/intent/follow',
 		},

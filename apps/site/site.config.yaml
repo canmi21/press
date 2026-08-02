@@ -9,7 +9,8 @@ tagline: One developer's journey through code, circuits, pixels — and life in 
 author:
   name: Canmi
   email: t@canmi.net
-  # The handle, not the URL. Where to reach it is libs/urls' business; who it is belongs here.
+  # Handles, not URLs. Where to reach them is libs/urls' business; who they identify lives here.
+  telegram: canmimua
   x: canmi21
 
 feed:

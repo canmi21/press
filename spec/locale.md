@@ -44,6 +44,15 @@ Server-only discovery routes do not inherit this negotiation. The sitemap publis
 indexable view at once. Atom selects from `lang` alone, because each query-specific feed is a
 shared-cache resource and neither a cookie nor `Accept-Language` is part of its address.
 
+### Server-only documents leave the page router
+
+Links from an HTML page to Atom or the sitemap perform a full document navigation. They are
+server endpoints, not pages in the client route manifest; allowing the SPA router to intercept
+one produces its own 404 even though a direct request to the same URL succeeds. The boundary
+belongs on the [source link](../apps/site/src/routes/+page.svelte). Making the endpoint reload
+itself would first render the wrong route and would require client JavaScript in a document
+that never needed it.
+
 ## The query parameter is for crawlers, and is removed for readers
 
 A crawler has no cookie and does not run a language switcher, so without a URL that names a

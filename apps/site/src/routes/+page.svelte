@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
 	import { imgsrc } from '@canmi/imgsrc';
-	import { pickUrls } from '@canmi/urls';
+	import { pickUrls, URLS } from '@canmi/urls';
 	import GitMerge from '@lucide/svelte/icons/git-merge';
 	import Lollipop from '@lucide/svelte/icons/lollipop';
 	import ArticleList from '$lib/article-list.svelte';
 	import PageBody from '$lib/content/page-body.svelte';
 	import Icon from '$lib/icons.svelte';
+	import { site } from '$lib/site';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -19,6 +20,8 @@
 	// matches the inline text icons (h-4); wide/flat glyphs (Telegram) get a larger
 	// box to read optically equal.
 	const base = 'h-4 w-4';
+	// `document` keeps server-only resources out of the client page router.
+	// See spec/locale.md#server-only-documents-leave-the-page-router.
 	const links = [
 		{ name: 'github', label: 'GitHub', href: 'https://github.com/canmi21', size: base },
 		{
@@ -29,8 +32,13 @@
 		},
 		{ name: 'nyaone', label: 'Nya.one', href: 'https://nya.one/@canmi', size: base },
 		{ name: 'bluesky', label: 'Bluesky', href: 'https://bsky.app/profile/canmi.net', size: base },
-		{ name: 'telegram', label: 'Telegram', href: 'https://t.me/canmi21', size: 'h-5 w-5' },
-		{ name: 'sitemap', label: 'Sitemap', href: '/sitemap.xml', size: base },
+		{
+			name: 'telegram',
+			label: 'Telegram',
+			href: `${URLS.external.social.telegram}/${site.author.telegram}`,
+			size: 'h-5 w-5'
+		},
+		{ name: 'sitemap', label: 'Sitemap', href: '/sitemap.xml', size: base, document: true },
 		{
 			name: 'travellings',
 			label: 'Travellings',
@@ -38,7 +46,7 @@
 			size: base
 		},
 		{ name: 'moe', label: 'Travellings Moe', href: 'https://travel.moe/go?travel=on', size: base },
-		{ name: 'rss', label: 'RSS feed', href: '/atom.xml', size: base }
+		{ name: 'rss', label: 'RSS feed', href: '/atom.xml', size: base, document: true }
 	] as const;
 </script>
 
@@ -81,15 +89,20 @@
 			aria-label="Find me elsewhere"
 			class="mt-20 flex flex-wrap items-center justify-center gap-3 [--focus-ring-offset:0.125rem] [--focus-ring-radius:0.3125rem]"
 		>
-			{#each links as { name, href, label, size } (label)}
+			{#each links as link (link.label)}
 				<a
-					{href}
-					aria-label={href.startsWith('/') ? label : `${label} (opens in new tab)`}
-					title={label}
+					href={link.href}
+					aria-label={link.href.startsWith('/')
+						? link.label
+						: `${link.label} (opens in new tab)`}
+					title={link.label}
+					data-sveltekit-reload={'document' in link ? true : undefined}
 					class="inline-flex size-5 items-center justify-center text-text-soft transition-colors duration-200 hover:text-text-strong"
-					{...href.startsWith('/') ? {} : { target: '_blank', rel: 'noopener noreferrer' }}
+					{...link.href.startsWith('/')
+						? {}
+						: { target: '_blank', rel: 'noopener noreferrer' }}
 				>
-					<Icon {name} class={size} />
+					<Icon name={link.name} class={link.size} />
 				</a>
 			{/each}
 		</nav>
