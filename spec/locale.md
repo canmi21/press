@@ -75,6 +75,10 @@ frontmatter, never from the code. A code that resolves to a different tag per ar
 as an internal name and fatal as a public one, which is the same rule as above arriving from a
 different direction.
 
+That frontmatter value is validated as a BCP-47-shaped language tag when the source article is
+read. A malformed value fails the build once, with the source file named; it must never travel
+unvalidated into every original-view public attribute.
+
 ## Canonical points at the version being read
 
 Each of the nine views is its own canonical: the original at the bare URL, every other language

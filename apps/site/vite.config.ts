@@ -7,12 +7,13 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 import { parse as parseYaml } from 'yaml';
-import { buildArticles } from './build/articles.ts';
+import { buildArticles } from './src/lib/server/articles.ts';
 
 const SITE_CONFIG = fileURLToPath(new URL('./site.config.yaml', import.meta.url));
 const CONTENTS = fileURLToPath(new URL('../../contents', import.meta.url));
 const ASSETS = fileURLToPath(new URL('../../data/metadata.json', import.meta.url));
 const MEDIA = fileURLToPath(new URL('../../data/media.yaml', import.meta.url));
+const SEGMENTS = fileURLToPath(new URL('../../data/article-segments.json', import.meta.url));
 
 // Built-in 301s, kept out of site.config.yaml because they are product behaviour rather than
 // configuration: feed aliases and the favicon redirect to the CDN.
@@ -76,7 +77,12 @@ export default defineConfig(({ mode }) => {
 				},
 				async load(id: string) {
 					if (id !== '\0virtual:articles') return null;
-					const built = await buildArticles({ contents: CONTENTS, assets: ASSETS, media: MEDIA });
+					const built = await buildArticles({
+						contents: CONTENTS,
+						assets: ASSETS,
+						media: MEDIA,
+						segments: SEGMENTS,
+					});
 					for (const file of built.files) this.addWatchFile(file);
 					return `export const articles = ${JSON.stringify(built.articles)};`;
 				},

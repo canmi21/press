@@ -21,13 +21,15 @@ projs/      Reserved for large standalone projects. Not created yet.
 ### What `data/` keeps out of git
 
 Not the directory -- the kind of thing. **Text that means something goes in; bytes and bulk
-stay out.** `data/metadata.json`, `data/media.yaml` and `data/tags.yaml` are records: a build
-resolves every image from the first without one image being present, and the other two hold
-descriptions that cost money and tags a person curates. Photographs, derived variants, fonts
-and a geocoding database are bytes, and no diff of them says anything.
+stay out.** `data/metadata.json`, `data/media.yaml`, `data/tags.yaml` and
+`data/article-segments.json` are records: a build resolves every image from the first without
+one image being present, the next two hold descriptions that cost money and tags a person
+curates, and the last fixes the CMS-derived article segment layout consumed by the site.
+Photographs, derived variants, fonts and a geocoding database are bytes, and no diff of them
+says anything.
 
-The rule was first written as "`data/` is never in git", which held until it needed a third
-exception. Three exceptions mean the line was drawn around the wrong thing: the directory
+The rule was first written as "`data/` is never in git", which held until it needed several
+exceptions. Those exceptions mean the line was drawn around the wrong thing: the directory
 groups assets with the records about them, and it is the records that git wants. So
 `.gitignore` there is an allowlist, and the question to ask of a new file is whether reading
 its diff would ever tell anyone anything.
@@ -285,10 +287,12 @@ a fact about this repository rather than a property of the command, so it waits 
 
 ### A CI build must be able to build from git alone
 
-The site builds from `data/metadata.json`, `contents/` and `site.config.yaml` -- all committed --
-and never reads `data/`. That is what the merged manifest is for: it carries every dimension,
-srcset and placeholder, so a page renders correctly with not one image byte present. A
-checkout is a complete build input.
+The site builds from `data/metadata.json`, `data/media.yaml`,
+`data/article-segments.json`, `contents/` and `site.config.yaml` -- all committed -- and never
+reads untracked asset bytes. The merged image manifest carries every dimension, srcset and
+placeholder, and the article segment record carries the CMS-derived ids and byte ranges, so a
+page renders correctly with neither an image byte nor a Rust toolchain present. A checkout is
+a complete build input.
 
 The consequence is a rule: **CI compiles, it never derives.** No `cms` command runs there.
 `cms image` would write into a `data/` that vanishes with the container, and it could not read

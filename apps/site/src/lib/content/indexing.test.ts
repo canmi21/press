@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { parse as parseYaml } from 'yaml';
 import { describe, expect, it } from 'vitest';
-import { assemble, similarity, type TranslationSidecar } from './assemble';
+import { assemble, similarity, type SegmentLayout, type TranslationSidecar } from './assemble';
 import { CANONICAL_SIMILARITY_THRESHOLD, indexingMetadata } from './indexing';
 import { LOCALE_CODES, PUBLIC_LANGUAGE, type LocaleCode } from '../locale';
 
@@ -11,16 +11,21 @@ const ARTICLES = [
 	'milestone/less-is-more',
 	'mirror/less-than-an-hour',
 ];
+const layout = JSON.parse(
+	readFileSync(new URL('../../../../../data/article-segments.json', import.meta.url), 'utf8'),
+) as SegmentLayout;
 
 function articleViews(path: string): Record<LocaleCode, string> {
 	const article = new URL(`../../../../../contents/${path}.md`, import.meta.url);
 	const sidecar = new URL(`../../../../../contents/${path}.i18n.yaml`, import.meta.url);
 	const raw = readFileSync(article, 'utf8');
 	const translations = parseYaml(readFileSync(sidecar, 'utf8')) as TranslationSidecar;
+	const spans = layout.articles[`${path}.md`];
+	if (!spans) throw new Error(`${path}: missing from article-segments.json`);
 	return Object.fromEntries([
 		['mw', raw],
 		...Object.entries(PUBLIC_LANGUAGE).map(([code, locale]) => {
-			const assembled = assemble(raw, translations, locale);
+			const assembled = assemble(raw, spans, translations, locale);
 			if (assembled.missing.length > 0) {
 				throw new Error(`${path}: ${locale} is missing ${assembled.missing.length} segments`);
 			}

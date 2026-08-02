@@ -11,6 +11,7 @@ import { unified } from 'unified';
 import { parse as parseYaml, stringify as stringifyYaml } from 'yaml';
 import type { Resolved } from '$lib/assets';
 import type { ArticleMeta } from '$lib/article.svelte';
+import { assertLanguageTag } from '../locale.ts';
 import type { Block, Compiled, CompiledPage, InlineSegment, PageBlock, TocEntry } from './types.ts';
 import type { TextDirective } from 'mdast-util-directive';
 import type { Heading, Image as MdImage, Paragraph, Root, RootContent } from 'mdast';
@@ -248,12 +249,14 @@ function cropAlign(value: string | null | undefined, url: string): string | unde
 export type CompileContext = {
 	resolveAsset: (reference: string) => Resolved | null;
 	highlight: (code: string, lang: string) => Promise<string>;
+	/** Present only while reading the source view; translations inherit validated frontmatter. */
+	sourceFile?: string;
 };
 
 export async function compile(
 	raw: string,
 	url: string,
-	{ resolveAsset, highlight }: CompileContext,
+	{ resolveAsset, highlight, sourceFile }: CompileContext,
 ): Promise<Compiled> {
 	const tree = parser.parse(raw) as Root;
 	let meta: ArticleMeta | undefined;
@@ -266,6 +269,7 @@ export async function compile(
 	for (const node of tree.children) {
 		if (node.type === 'yaml') {
 			meta = parseYaml(node.value) as ArticleMeta;
+			if (sourceFile) assertLanguageTag(meta?.lang, sourceFile);
 			continue;
 		}
 

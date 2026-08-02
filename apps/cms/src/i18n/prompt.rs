@@ -170,6 +170,8 @@ mod tests {
 			id: "x".into(),
 			kind,
 			source: "text".into(),
+			start: 0,
+			end: 4,
 			line: 1,
 		}
 	}

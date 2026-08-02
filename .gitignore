@@ -11,11 +11,11 @@ data/**
 !data/**/.gitkeep
 # An allowlist, not exceptions. What `data/` keeps out of git is bytes, not the directory:
 # photographs, derived variants, fonts and a geocoding database say nothing in a diff. These
-# three are records -- a build resolves every image from the first without one being present,
-# and the others hold descriptions that cost money and tags a person curates.
+# are records -- builds consume them without the underlying bytes or local tools.
 !data/metadata.json
 !data/media.yaml
 !data/tags.yaml
+!data/article-segments.json
 
 # Dependencies
 node_modules/

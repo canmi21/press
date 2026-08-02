@@ -3,6 +3,7 @@
 //! Segment by segment, all locales at once, because a paragraph edited on its own should cost
 //! one request and update every language together. See spec/architecture.md.
 
+pub mod layout;
 pub mod model;
 pub mod prompt;
 pub mod runner;

@@ -14,6 +14,7 @@ export const PUBLIC_LANGUAGE = {
 } as const satisfies Record<Exclude<LocaleCode, 'mw'>, string>;
 
 const CODE_SET = new Set<string>(LOCALE_CODES);
+const LANGUAGE_TAG_SHAPE = /^[A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/;
 
 export function localeCode(value: string | null | undefined): LocaleCode | undefined {
 	return value != null && CODE_SET.has(value) ? (value as LocaleCode) : undefined;
@@ -22,6 +23,13 @@ export function localeCode(value: string | null | undefined): LocaleCode | undef
 /** A public BCP-47 tag. `mw` is the source article, so its tag is article-owned. */
 export function languageTag(code: LocaleCode, sourceLanguage: string): string {
 	return code === 'mw' ? sourceLanguage : PUBLIC_LANGUAGE[code];
+}
+
+/** Reject source metadata that would invalidate every public hreflang emitted for an article. */
+export function assertLanguageTag(value: unknown, file: string): asserts value is string {
+	if (typeof value !== 'string' || !LANGUAGE_TAG_SHAPE.test(value)) {
+		throw new Error(`${file}: invalid BCP-47 lang frontmatter ${JSON.stringify(value)}`);
+	}
 }
 
 function codeForLanguageRange(value: string): Exclude<LocaleCode, 'mw'> | undefined {

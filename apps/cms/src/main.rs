@@ -31,6 +31,7 @@ fn main() -> ExitCode {
 		Some("check") => check_assets(),
 		Some("og") => render_cards(&args[1..]),
 		Some("tag") => classify_images(&args[1..]),
+		Some("segments") => write_segment_layout(),
 		Some("i18n") => translate_articles(&args[1..]),
 		Some("locale") => translate_locales(&args[1..]),
 		Some("alt") => describe_images(&args[1..]),
@@ -296,6 +297,10 @@ fn translate_articles(args: &[String]) -> ExitCode {
 			return ExitCode::FAILURE;
 		}
 	};
+	if let Err(error) = i18n::layout::sync(&root) {
+		eprintln!("could not write {}: {error}", i18n::layout::FILE);
+		return ExitCode::FAILURE;
+	}
 
 	let runtime = match tokio::runtime::Runtime::new() {
 		Ok(runtime) => runtime,
@@ -346,6 +351,26 @@ fn translate_articles(args: &[String]) -> ExitCode {
 	} else {
 		ExitCode::FAILURE
 	}
+}
+
+/// Materialise the Rust segment ids and source ranges for builds that do not have Rust.
+fn write_segment_layout() -> ExitCode {
+	let root = match paths::repo_root() {
+		Ok(root) => root,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
+	};
+	match i18n::layout::sync(&root) {
+		Ok(true) => println!("wrote {}", i18n::layout::FILE),
+		Ok(false) => println!("{} unchanged", i18n::layout::FILE),
+		Err(error) => {
+			eprintln!("could not write {}: {error}", i18n::layout::FILE);
+			return ExitCode::FAILURE;
+		}
+	}
+	ExitCode::SUCCESS
 }
 
 /// Translate tag labels and image descriptions from their English source text.
@@ -702,6 +727,7 @@ fn usage() {
 	eprintln!("  alt [--model M] [--force] [--limit N]");
 	eprintln!("                              describe assets that have no description yet");
 	eprintln!("  og [--force]                render an OpenGraph card per article");
+	eprintln!("  segments                    write article segment ids and source ranges");
 	eprintln!("  i18n [--model M] [--force] [--limit N] [article...]");
 	eprintln!("                              translate article segments into every locale");
 	eprintln!("  locale [--model M] [--force] [--limit N]");

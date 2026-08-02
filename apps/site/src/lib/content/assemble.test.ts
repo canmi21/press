@@ -1,21 +1,28 @@
 import { describe, expect, it } from 'vitest';
-import { assemble, segmentId, similarity, splitSegments } from './assemble';
+import { assemble, similarity, type SegmentSpan } from './assemble';
 import { CANONICAL_SIMILARITY_THRESHOLD } from './indexing';
 
-it('uses the same normalised BLAKE3 address as the CMS', () => {
-	expect(segmentId('one two\nthree')).toBe('b6434919a1cc9750bde65e1a4f81e056');
-});
-
 it('assembles translations in article order while leaving code untouched', () => {
-	const raw = '---\ntitle: Test\n---\n\nfirst line\n\n```ts\nconst x = 1;\n```\n\nlast line\n';
-	const [first, code, last] = splitSegments(raw);
-	if (!first || !code || !last) throw new Error('fixture did not split');
+	const raw =
+		'---\ntitle: Test\n---\n\n中文\n\nfirst line\n\n```ts\nconst x = 1;\n```\n\nlast line\n';
+	const encoder = new TextEncoder();
+	const span = (id: string, source: string): SegmentSpan => {
+		const start = raw.indexOf(source);
+		return {
+			id,
+			start: encoder.encode(raw.slice(0, start)).length,
+			end: encoder.encode(raw.slice(0, start + source.length)).length,
+		};
+	};
+	const spans = [span('first', '中文'), span('second', 'first line'), span('last', 'last line')];
 	const result = assemble(
 		raw,
+		spans,
 		{
 			segments: {
-				[first.id]: { 'de-DE': { text: 'erste Zeile' } },
-				[last.id]: { 'de-DE': { text: 'letzte Zeile' } },
+				first: { 'de-DE': { text: 'Chinesisch' } },
+				second: { 'de-DE': { text: 'erste Zeile' } },
+				last: { 'de-DE': { text: 'letzte Zeile' } },
 			},
 		},
 		'de-DE',

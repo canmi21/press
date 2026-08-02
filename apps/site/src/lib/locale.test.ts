@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
 	LOCALE_CODES,
 	acceptedLocale,
+	assertLanguageTag,
 	languageTag,
 	privateHtml,
 	resolveLocale,
@@ -28,6 +29,16 @@ describe('locale resolution', () => {
 		expect(acceptedLocale('fr-FR;q=broken, en-US;q=0.8')).toBe('en');
 		expect(acceptedLocale('fr-FR;q=1.2, de-DE;q=0.7')).toBe('de');
 	});
+});
+
+it('rejects a malformed source language with the article file named', () => {
+	expect(() => assertLanguageTag('zh_CN', 'contents/example.md')).toThrow(
+		'contents/example.md: invalid BCP-47 lang frontmatter "zh_CN"',
+	);
+	expect(() => assertLanguageTag('chinese', 'contents/example.md')).toThrow(
+		/contents\/example\.md/,
+	);
+	expect(() => assertLanguageTag('zh-Hant-TW', 'contents/example.md')).not.toThrow();
 });
 
 it('never maps an internal translation code directly into an html lang value', () => {

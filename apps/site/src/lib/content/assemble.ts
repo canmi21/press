@@ -1,4 +1,3 @@
-import { hash } from 'blake3-wasm';
 import { PUBLIC_LANGUAGE } from '$lib/locale';
 
 export type TranslationLocale = (typeof PUBLIC_LANGUAGE)[keyof typeof PUBLIC_LANGUAGE];
@@ -7,98 +6,59 @@ export type TranslationSidecar = {
 	segments?: Record<string, Partial<Record<TranslationLocale, { text: string }>>>;
 };
 
-type Segment = { id: string; source: string; translatable: boolean };
+export type SegmentSpan = { id: string; start: number; end: number };
 
-function articleBody(raw: string): { prefix: string; body: string } {
-	if (!raw.startsWith('---\n')) return { prefix: '', body: raw };
+export type SegmentLayout = {
+	version: number;
+	articles: Record<string, SegmentSpan[]>;
+};
+
+function articleBody(raw: string): string {
+	if (!raw.startsWith('---\n')) return raw;
 	const end = raw.indexOf('\n---', 4);
-	if (end < 0) return { prefix: '', body: raw };
-	const bodyStart = end + 4;
-	return { prefix: raw.slice(0, bodyStart), body: raw.slice(bodyStart) };
-}
-
-function normaliseSegment(source: string): string {
-	return source.trim().split(/\s+/u).join(' ');
-}
-
-export function segmentId(source: string): string {
-	return hash(normaliseSegment(source)).toString('hex').slice(0, 32);
-}
-
-/** Keep this byte-for-byte aligned with the CMS block splitter that addresses the sidecar. */
-export function splitSegments(raw: string): Segment[] {
-	const { body } = articleBody(raw);
-	const segments: Segment[] = [];
-	let block: string[] = [];
-	let fenced = false;
-
-	const push = () => {
-		if (block.length === 0) return;
-		const source = block.join('\n');
-		block = [];
-		const trimmed = source.trim();
-		if (!trimmed) return;
-		segments.push({
-			id: segmentId(source),
-			source,
-			translatable: !trimmed.startsWith('```'),
-		});
-	};
-
-	for (const line of body.split('\n')) {
-		if (line.trimStart().startsWith('```')) {
-			if (fenced) {
-				block.push(line);
-				push();
-				fenced = false;
-				continue;
-			}
-			push();
-			fenced = true;
-			block.push(line);
-			continue;
-		}
-		if (fenced) {
-			block.push(line);
-			continue;
-		}
-		if (!line.trim()) {
-			push();
-			continue;
-		}
-		block.push(line);
-	}
-	push();
-	return segments;
+	return end < 0 ? raw : raw.slice(end + 4);
 }
 
 export function assemble(
 	raw: string,
+	spans: readonly SegmentSpan[],
 	sidecar: TranslationSidecar,
 	locale: TranslationLocale,
 ): { raw: string; missing: string[] } {
-	const { prefix, body } = articleBody(raw);
+	const bytes = new TextEncoder().encode(raw);
+	const decoder = new TextDecoder('utf-8', { fatal: true });
 	const missing: string[] = [];
 	let cursor = 0;
 	let translated = '';
 
-	for (const segment of splitSegments(raw)) {
-		const offset = body.indexOf(segment.source, cursor);
-		if (offset < 0) throw new Error(`cannot locate article segment ${segment.id}`);
-		translated += body.slice(cursor, offset);
-		const entry = sidecar.segments?.[segment.id]?.[locale];
-		if (segment.translatable && !entry) missing.push(segment.id);
-		translated += segment.translatable && entry ? entry.text : segment.source;
-		cursor = offset + segment.source.length;
+	for (const span of spans) {
+		if (
+			!Number.isSafeInteger(span.start) ||
+			!Number.isSafeInteger(span.end) ||
+			span.start < cursor ||
+			span.end <= span.start ||
+			span.end > bytes.length
+		) {
+			throw new Error(`invalid source range for article segment ${span.id}`);
+		}
+		try {
+			translated += decoder.decode(bytes.subarray(cursor, span.start));
+			const source = decoder.decode(bytes.subarray(span.start, span.end));
+			const entry = sidecar.segments?.[span.id]?.[locale];
+			if (!entry) missing.push(span.id);
+			translated += entry?.text ?? source;
+		} catch {
+			throw new Error(`source range splits a UTF-8 character for article segment ${span.id}`);
+		}
+		cursor = span.end;
 	}
-	translated += body.slice(cursor);
-	return { raw: prefix + translated, missing };
+	translated += decoder.decode(bytes.subarray(cursor));
+	return { raw: translated, missing };
 }
 
 function normaliseArticle(raw: string): string[] {
-	const { body } = articleBody(raw);
 	return Array.from(
-		body
+		articleBody(raw)
 			.normalize('NFKC')
 			.toLocaleLowerCase()
 			.replace(/[“”]/gu, '"')

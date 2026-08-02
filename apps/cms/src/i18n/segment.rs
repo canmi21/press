@@ -44,6 +44,9 @@ pub struct Segment {
 	pub kind: Kind,
 	/// The block exactly as the article writes it.
 	pub source: String,
+	/// Byte offsets in the complete source article. Stored in the build artifact.
+	pub start: usize,
+	pub end: usize,
 	/// Line number in the article, for reporting only. Never stored.
 	pub line: usize,
 }
@@ -125,54 +128,104 @@ fn normalise(source: &str) -> String {
 
 /// Split an article body into blocks, skipping frontmatter.
 pub fn split(article: &str) -> Vec<Segment> {
-	let body = match article.strip_prefix("---\n") {
-		Some(rest) => rest.split_once("\n---").map_or(rest, |(_, after)| after),
-		None => article,
+	let (body, body_start) = match article.strip_prefix("---\n") {
+		Some(rest) => rest
+			.find("\n---")
+			.map_or((rest, 4), |end| (&rest[end + 4..], end + 8)),
+		None => (article, 0),
 	};
 
 	let mut segments = Vec::new();
 	let mut block: Vec<&str> = Vec::new();
 	let mut fenced = false;
 	let mut start_line = 0;
+	let mut block_start = body_start;
+	let mut block_end = body_start;
+	let mut cursor = body_start;
 
-	for (offset, line) in body.lines().enumerate() {
+	for (offset, line) in body.split('\n').enumerate() {
+		let line_start = cursor;
+		let line_end = line_start + line.len();
+		cursor = line_end.saturating_add(1);
 		if line.trim_start().starts_with("```") {
 			// A fence toggles: inside one, blank lines are content rather than separators.
 			if fenced {
 				block.push(line);
-				push(&mut segments, &mut block, start_line);
+				block_end = line_end;
+				push(
+					article,
+					&mut segments,
+					&mut block,
+					start_line,
+					block_start,
+					block_end,
+				);
 				fenced = false;
 				continue;
 			}
-			push(&mut segments, &mut block, start_line);
+			push(
+				article,
+				&mut segments,
+				&mut block,
+				start_line,
+				block_start,
+				block_end,
+			);
 			fenced = true;
 			start_line = offset;
+			block_start = line_start;
+			block_end = line_end;
 			block.push(line);
 			continue;
 		}
 		if fenced {
 			block.push(line);
+			block_end = line_end;
 			continue;
 		}
 		if line.trim().is_empty() {
-			push(&mut segments, &mut block, start_line);
+			push(
+				article,
+				&mut segments,
+				&mut block,
+				start_line,
+				block_start,
+				block_end,
+			);
 			continue;
 		}
 		if block.is_empty() {
 			start_line = offset;
+			block_start = line_start;
 		}
 		block.push(line);
+		block_end = line_end;
 	}
-	push(&mut segments, &mut block, start_line);
+	push(
+		article,
+		&mut segments,
+		&mut block,
+		start_line,
+		block_start,
+		block_end,
+	);
 	segments
 }
 
-fn push(into: &mut Vec<Segment>, block: &mut Vec<&str>, line: usize) {
+fn push(
+	article: &str,
+	into: &mut Vec<Segment>,
+	block: &mut Vec<&str>,
+	line: usize,
+	start: usize,
+	end: usize,
+) {
 	if block.is_empty() {
 		return;
 	}
 	let source = block.join("\n");
 	block.clear();
+	debug_assert_eq!(article.get(start..end), Some(source.as_str()));
 	let trimmed = source.trim();
 	if trimmed.is_empty() {
 		return;
@@ -192,6 +245,8 @@ fn push(into: &mut Vec<Segment>, block: &mut Vec<&str>, line: usize) {
 		id: id_of(&source),
 		kind,
 		source,
+		start,
+		end,
 		line: line + 1,
 	});
 }
@@ -287,5 +342,9 @@ mod tests {
 		let segments = split("---\ntitle: A\n---\n\nbody text");
 		assert_eq!(segments.len(), 1);
 		assert_eq!(segments[0].source, "body text");
+		assert_eq!(
+			&"---\ntitle: A\n---\n\nbody text"[segments[0].start..segments[0].end],
+			"body text"
+		);
 	}
 }
