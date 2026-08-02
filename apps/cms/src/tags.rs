@@ -5,46 +5,61 @@
 //! and one concept cannot drift into three spellings across a library.
 //!
 //! The raw form is constrained -- lower case, digits, hyphens -- because it is an identifier
-//! that happens to be readable. Technical names have one correctly cased display form;
-//! ordinary names have a translated display form per locale. See spec/architecture.md.
+//! that happens to be readable. Every entry also states what concept it names, so a translator
+//! never has to guess whether `cellular` means a network or a cell. See spec/architecture.md.
 
 use crate::i18n::store::Translation;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 
-pub const VERSION: u32 = 2;
+pub const VERSION: u32 = 3;
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 #[serde(tag = "kind", rename_all = "lowercase")]
 pub enum Tag {
 	/// A proper noun, brand, tool, format, protocol or organisation. Its name is not translated.
-	Technical { display: String },
+	Technical { display: String, meaning: String },
 	/// A common noun that readers expect to see in their own language.
 	Ordinary {
+		/// The disambiguated English label from which every locale is translated.
+		source: String,
+		/// The exact concept this registry key denotes, not copy shown to a reader.
+		meaning: String,
 		#[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
 		display: BTreeMap<String, Translation>,
 	},
 }
 
 impl Tag {
-	pub fn ordinary() -> Self {
+	pub fn ordinary(source: impl Into<String>, meaning: impl Into<String>) -> Self {
 		Self::Ordinary {
+			source: source.into(),
+			meaning: meaning.into(),
 			display: BTreeMap::new(),
+		}
+	}
+
+	pub fn translation_source(&self) -> Option<(&str, &str)> {
+		match self {
+			Self::Technical { .. } => None,
+			Self::Ordinary {
+				source, meaning, ..
+			} => Some((source, meaning)),
 		}
 	}
 
 	pub fn translations(&self) -> Option<&BTreeMap<String, Translation>> {
 		match self {
 			Self::Technical { .. } => None,
-			Self::Ordinary { display } => Some(display),
+			Self::Ordinary { display, .. } => Some(display),
 		}
 	}
 
 	pub fn translations_mut(&mut self) -> Option<&mut BTreeMap<String, Translation>> {
 		match self {
 			Self::Technical { .. } => None,
-			Self::Ordinary { display } => Some(display),
+			Self::Ordinary { display, .. } => Some(display),
 		}
 	}
 }
@@ -89,8 +104,19 @@ pub fn save(path: &Path, registry: &Registry) -> std::io::Result<()> {
 /// -- it has nothing to be consistent *with* unless it is shown. A hundred tags is nothing to
 /// include; if this ever reaches thousands it becomes a retrieval problem rather than a
 /// listing one.
-pub fn known(registry: &Registry) -> Vec<&str> {
-	registry.tags.keys().map(String::as_str).collect()
+pub fn known(registry: &Registry) -> Vec<String> {
+	registry
+		.tags
+		.iter()
+		.map(|(name, tag)| match tag {
+			Tag::Technical { display, meaning } => {
+				format!("{name} | technical | display: {display} | meaning: {meaning}")
+			}
+			Tag::Ordinary {
+				source, meaning, ..
+			} => format!("{name} | ordinary | source: {source} | meaning: {meaning}"),
+		})
+		.collect()
 }
 
 #[cfg(test)]
@@ -118,11 +144,14 @@ mod tests {
 			"typescript".to_owned(),
 			Tag::Technical {
 				display: "TypeScript".to_owned(),
+				meaning: "programming language".to_owned(),
 			},
 		);
 		registry.tags.insert(
 			"terminal".to_owned(),
 			Tag::Ordinary {
+				source: "Terminal".to_owned(),
+				meaning: "terminal emulator or command-line window".to_owned(),
 				display: BTreeMap::from([
 					("en-US".to_owned(), display("Terminal")),
 					("zh-CN".to_owned(), display("终端")),
@@ -133,14 +162,15 @@ mod tests {
 		assert_eq!(
 			registry.tags["typescript"],
 			Tag::Technical {
-				display: "TypeScript".to_owned()
+				display: "TypeScript".to_owned(),
+				meaning: "programming language".to_owned()
 			}
 		);
 		assert_eq!(
 			registry.tags["terminal"].translations().expect("ordinary")["zh-CN"].text,
 			"终端"
 		);
-		assert_eq!(known(&registry), vec!["terminal", "typescript"]);
+		assert_eq!(known(&registry).len(), 2);
 	}
 
 	#[test]
@@ -150,9 +180,13 @@ mod tests {
 			"wasm".to_owned(),
 			Tag::Technical {
 				display: "Wasm".to_owned(),
+				meaning: "WebAssembly binary instruction format".to_owned(),
 			},
 		);
-		registry.tags.insert("terminal".to_owned(), Tag::ordinary());
+		registry.tags.insert(
+			"terminal".to_owned(),
+			Tag::ordinary("Terminal", "terminal emulator or command-line window"),
+		);
 		let text = serde_yaml_ng::to_string(&registry).expect("yaml");
 		let back: Registry = serde_yaml_ng::from_str(&text).expect("parse");
 		assert!(back.tags.contains_key("wasm"));
@@ -164,5 +198,14 @@ mod tests {
 		);
 		assert!(text.contains("kind: technical"));
 		assert!(text.contains("kind: ordinary"));
+		assert!(text.contains("source: Terminal"));
+		assert!(text.contains("meaning: terminal emulator or command-line window"));
+		assert_eq!(
+			known(&back),
+			vec![
+				"terminal | ordinary | source: Terminal | meaning: terminal emulator or command-line window",
+				"wasm | technical | display: Wasm | meaning: WebAssembly binary instruction format",
+			]
+		);
 	}
 }

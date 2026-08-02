@@ -430,20 +430,26 @@ editor capture are all screenshots, and letting each become a kind of its own wo
 list once for every application that exists. The category says what sort of thing it is; tags
 say what is in it.
 
-Tags are raw names: lower case, digits, hyphens. What a reader sees lives in `data/tags.yaml`,
-per locale, so a brand keeps its capitals and a common noun gets translated without touching a
-single image. The constraint is the point -- `TypeScript`, `typescript` and `type-script`
-would otherwise be three tags for one thing, and care at the point of writing does not prevent
-that forever.
+Tags are raw identifiers: lower case, digits, hyphens. Each identifies one concept without
+needing an image to explain it, so an ambiguous word gets qualified -- `cellular-network`, not
+`cellular`; `mold-linker` names the product while `mold` names fungal growth. The constraint is
+the point -- `TypeScript`, `typescript` and `type-script` would otherwise be three tags for one
+thing, and one `mold` for two things would make a correct translation impossible.
+
+What a reader sees lives in `data/tags.yaml`. A technical name has one official display form
+and is never translated. An ordinary name records a disambiguated English source label, a
+short semantic meaning, and its translated display forms. The meaning is not copy: it is the
+stable contract that lets both the tagging model and the translator decide which concept the
+identifier denotes. See [i18n.md](i18n.md) for how those labels are translated and cased.
 
 Both answers come from one request, because they are one look at one picture. Asking
 separately would pay twice for the same glance and let the two disagree; a `screenshot` tagged
 `landscape` is a contradiction only a second request can produce.
 
-The existing tags go into the prompt in full, and images are classified one at a time rather
-than in parallel. A model shown nothing invents `terminal-window` beside `terminal` and `cli`
-beside both, and telling it to be consistent achieves nothing when it has nothing to be
-consistent with. Four running at once would each name the same thing before any could see the
+The existing tags go into the prompt with their kind, label and meaning, and images are
+classified one at a time rather than in parallel. A raw list cannot say whether `mold` is a
+linker or fungus, while a model shown nothing invents `terminal-window` beside `terminal` and
+`cli` beside both. Four running at once would each name the same thing before any could see the
 others.
 
 A malformed tag is dropped, never repaired. Turning `shell terminal` into `shell-terminal`

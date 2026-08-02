@@ -39,6 +39,7 @@ enum Destination {
 struct Item {
 	destination: Destination,
 	source: String,
+	meaning: Option<String>,
 	locales: Vec<String>,
 	kind: Kind,
 }
@@ -87,15 +88,17 @@ fn pending(
 	// Tags deliberately come first. They are cheap enough to prove the runner and persistence
 	// path before the longer descriptions spend real money.
 	for (name, tag) in &registry.tags {
-		let Some(display) = tag.translations() else {
+		let Some((source, meaning)) = tag.translation_source() else {
 			continue;
 		};
+		let display = tag.translations().expect("ordinary tag has translations");
 		let (wanted, already) = targets(display, locales, force, true);
 		skipped += already;
 		if !wanted.is_empty() {
 			items.push(Item {
 				destination: Destination::Tag(name.clone()),
-				source: name.clone(),
+				source: source.to_owned(),
+				meaning: Some(meaning.to_owned()),
 				locales: wanted,
 				kind: Kind::Heading,
 			});
@@ -112,6 +115,7 @@ fn pending(
 			items.push(Item {
 				destination: Destination::Description(cid.clone()),
 				source: source.text.clone(),
+				meaning: None,
 				locales: wanted,
 				kind: Kind::Prose,
 			});
@@ -121,6 +125,11 @@ fn pending(
 }
 
 fn tag_request(item: &Item) -> String {
+	let name = match &item.destination {
+		Destination::Tag(name) => name,
+		Destination::Description(_) => unreachable!("a tag request needs a tag destination"),
+	};
+	let meaning = item.meaning.as_deref().unwrap_or_default();
 	let markers = item
 		.locales
 		.iter()
@@ -128,11 +137,19 @@ fn tag_request(item: &Item) -> String {
 		.collect::<Vec<_>>()
 		.join("\n");
 	format!(
-		"Translate one ordinary tag into every locale listed below. It is a common noun or short \
-		 noun phrase that a reader expects in their own language.\n\nOutput format, exactly: one \
-		 marker line, then the short translation, then a blank line.\n{markers}\n\nNothing else. \
-		 No preamble, quotes, explanation, or markdown.\n\nRaw tag: {}",
-		item.source
+		"Translate one ordinary tag into every locale listed below. Translate the stated concept, \
+		 not the raw identifier in isolation. Every answer is a short, ready-to-render standalone \
+		 UI label, never an explanation or a sentence. Use the standard term a native reader would \
+		 expect.\n\nCasing rules:\n- en-US uses Title Case for a short tag label.\n- de-DE \
+		 follows normal German noun capitalisation.\n- fr-FR and es-ES capitalise the first word \
+		 as a standalone label and otherwise follow native orthography.\n- Scripts without case use \
+		 their natural written form.\n- Preserve conventional casing inside any established term; never \
+		 apply mechanical title casing.\n\nAll locales must express the same meaning below. The English \
+		 source label and meaning are authoritative; context in the raw identifier is only a stable \
+		 key.\n\nOutput format, exactly: one marker line, then the short label, then a blank \
+		 line.\n{markers}\n\nNothing else. No preamble, quotes, explanation, or markdown.\n\nRaw \
+		 identifier: {name}\nEnglish source label: {}\nMeaning: {meaning}",
+		item.source,
 	)
 }
 
@@ -453,6 +470,8 @@ mod tests {
 
 	fn ordinary(entries: impl IntoIterator<Item = (&'static str, Translation)>) -> tags::Tag {
 		tags::Tag::Ordinary {
+			source: "Terminal".to_owned(),
+			meaning: "terminal emulator or command-line window".to_owned(),
 			display: entries
 				.into_iter()
 				.map(|(locale, translation)| (locale.to_owned(), translation))
@@ -542,12 +561,14 @@ mod tests {
 	async fn a_failed_unit_does_not_discard_another_answer() {
 		let temp = Temp::new("failure");
 		let mut registry = tags::Registry::default();
-		registry
-			.tags
-			.insert("first".to_owned(), tags::Tag::ordinary());
-		registry
-			.tags
-			.insert("second".to_owned(), tags::Tag::ordinary());
+		registry.tags.insert(
+			"first".to_owned(),
+			tags::Tag::ordinary("First", "first concept"),
+		);
+		registry.tags.insert(
+			"second".to_owned(),
+			tags::Tag::ordinary("Second", "second concept"),
+		);
 		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
 
 		let mut requests = 0;
@@ -595,6 +616,7 @@ mod tests {
 			"typescript".to_owned(),
 			tags::Tag::Technical {
 				display: "TypeScript".to_owned(),
+				meaning: "programming language".to_owned(),
 			},
 		);
 		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
@@ -622,9 +644,10 @@ mod tests {
 	async fn one_tag_requests_every_locale_once() {
 		let temp = Temp::new("one-call");
 		let mut registry = tags::Registry::default();
-		registry
-			.tags
-			.insert("browser".to_owned(), tags::Tag::ordinary());
+		registry.tags.insert(
+			"browser".to_owned(),
+			tags::Tag::ordinary("Browser", "software for viewing websites"),
+		);
 		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
 		let translations: Vec<(&str, &str)> = crate::i18n::prompt::LOCALES
 			.iter()
@@ -662,9 +685,10 @@ mod tests {
 	async fn the_limit_reaches_tags_before_descriptions() {
 		let temp = Temp::new("order");
 		let mut registry = tags::Registry::default();
-		registry
-			.tags
-			.insert("terminal".to_owned(), tags::Tag::ordinary());
+		registry.tags.insert(
+			"terminal".to_owned(),
+			tags::Tag::ordinary("Terminal", "terminal emulator or command-line window"),
+		);
 		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
 
 		let mut described = media::Media::default();
@@ -699,7 +723,7 @@ mod tests {
 		.expect("run");
 
 		assert_eq!(prompts.len(), 1);
-		assert!(prompts[0].contains("Raw tag: terminal"));
+		assert!(prompts[0].contains("Raw identifier: terminal"));
 		assert_eq!(outcome.deferred, 1);
 		assert!(
 			!media::load(&media::path_for(&temp.root)).media["000-first-by-key"]
@@ -711,14 +735,19 @@ mod tests {
 	#[test]
 	fn a_tag_prompt_carries_one_raw_name_and_every_target_locale() {
 		let item = Item {
-			destination: Destination::Tag("typescript".to_owned()),
-			source: "typescript".to_owned(),
+			destination: Destination::Tag("cellular-network".to_owned()),
+			source: "Cellular Network".to_owned(),
+			meaning: Some("mobile carrier connectivity and SIM service, not biology".to_owned()),
 			locales: vec!["zh-CN".to_owned()],
 			kind: Kind::Heading,
 		};
 		let text = tag_request(&item);
 		assert!(text.contains("ordinary tag"));
-		assert!(text.contains("Raw tag: typescript"));
+		assert!(text.contains("Raw identifier: cellular-network"));
+		assert!(text.contains("English source label: Cellular Network"));
+		assert!(text.contains("not biology"));
+		assert!(text.contains("ready-to-render standalone UI label"));
+		assert!(text.contains("en-US uses Title Case"));
 		assert!(text.contains(&crate::i18n::prompt::locale_marker("zh-CN")));
 	}
 }
