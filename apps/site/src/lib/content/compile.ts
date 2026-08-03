@@ -12,7 +12,19 @@ import { parse as parseYaml, stringify as stringifyYaml } from 'yaml';
 import type { Resolved } from '$lib/assets';
 import type { ArticleMeta } from '$lib/article.svelte';
 import { assertLanguageTag } from '../locale.ts';
-import type { Block, Compiled, CompiledPage, InlineSegment, PageBlock, TocEntry } from './types.ts';
+import type {
+	Block,
+	CardAlign,
+	Compiled,
+	CompiledPage,
+	CargoView,
+	CrateRecord,
+	InlineSegment,
+	PageBlock,
+	RepoRecord,
+	TokeiView,
+	TocEntry,
+} from './types.ts';
 import type { TextDirective } from 'mdast-util-directive';
 import type { Heading, Image as MdImage, Paragraph, Root, RootContent } from 'mdast';
 
@@ -326,12 +338,37 @@ function cropAlign(value: string | null | undefined, url: string): string | unde
 
 export type CompileContext = {
 	resolveAsset: (reference: string) => Resolved | null;
+	/** Crate trees and repository facts, fetched at build time by `cms embed`. */
+	embeds?: {
+		crates: Record<string, CrateRecord>;
+		repos: Record<string, RepoRecord>;
+	};
 	highlight: (code: string, lang: string) => Promise<string>;
 	/** Present only while reading the source view; translations inherit validated frontmatter. */
 	sourceFile?: string;
 };
 
 const TRANSLATABLE_FRONTMATTER = ['title', 'subtitle', 'description'] as const;
+
+function codeMeta(value: string | null | undefined): Record<string, string> {
+	const fields: Record<string, string> = {};
+	for (const match of value?.matchAll(/(\w+)(?:="([^"]*)")?/g) ?? []) {
+		fields[match[1]!] = match[2] ?? 'true';
+	}
+	return fields;
+}
+
+function cargoView(value: string | null | undefined): CargoView {
+	return value === 'table' ? 'table' : 'treemap';
+}
+
+function tokeiView(value: string | null | undefined): TokeiView {
+	return value === 'bar' || value === 'table' ? value : 'treemap';
+}
+
+function cardAlign(value: string | null | undefined): CardAlign {
+	return value === 'left' || value === 'right' ? value : 'center';
+}
 
 function assertFrontmatterHasNoTranslatorNotes(
 	meta: Partial<ArticleMeta> | Record<string, string>,
@@ -348,7 +385,7 @@ function assertFrontmatterHasNoTranslatorNotes(
 export async function compile(
 	raw: string,
 	url: string,
-	{ resolveAsset, highlight, sourceFile }: CompileContext,
+	{ resolveAsset, highlight, sourceFile, embeds }: CompileContext,
 ): Promise<Compiled> {
 	const tree = parser.parse(raw) as Root;
 	let meta: ArticleMeta | undefined;
@@ -378,6 +415,17 @@ export async function compile(
 
 		if (node.type === 'code') {
 			const lang = node.lang ?? 'text';
+			// Pasted straight from the tool, so the markdown keeps something a person can read
+			// and check against their terminal. Parsing it back costs less than keeping a second
+			// machine-readable copy in step with it.
+			if (lang === 'tokei') {
+				const props = codeMeta(node.meta);
+				const title = props.title || meta?.title || 'code statistics';
+				blocks.push({ type: 'tokei', source: node.value, title, view: tokeiView(props.view) });
+				feed.push(`<pre>${escapeHtml(node.value)}</pre>`);
+				md.push('```\n' + node.value + '\n```');
+				continue;
+			}
 			if (lang === 'svg-canvas') {
 				const title = node.meta?.trim() || meta?.title || 'diagram';
 				blocks.push({ type: 'svgCanvas', svg: node.value, title });
@@ -432,17 +480,58 @@ export async function compile(
 			continue;
 		}
 
+		if (node.type === 'leafDirective' && node.name === 'cargo') {
+			const name = node.attributes?.crate ?? '';
+			const crate = embeds?.crates[name];
+			if (crate) {
+				blocks.push({ type: 'cargo', crate, view: cargoView(node.attributes?.view) });
+				feed.push(
+					`<p><em>[crate: ${escapeHtml(crate.name)} ${escapeHtml(crate.version)}]</em></p>`,
+				);
+				md.push(`> [crate: ${crate.name} ${crate.version}]`);
+				continue;
+			}
+			// Named but not fetched. The article keeps saying which crate it meant, so `cms embed`
+			// can fill it in later without anyone editing prose to ask again.
+			blocks.push({ type: 'placeholder', kind: 'cargo', meta: { crate: name } });
+			md.push(`> [crate: ${name}]`);
+			continue;
+		}
+
+		if (node.type === 'leafDirective' && node.name === 'github') {
+			const name = node.attributes?.repo ?? '';
+			const repo = embeds?.repos[name];
+			const gitRef = node.attributes?.ref ?? undefined;
+			if (repo) {
+				blocks.push({
+					type: 'github',
+					repo,
+					gitRef,
+					title: node.attributes?.title ?? undefined,
+					align: cardAlign(node.attributes?.align),
+				});
+				feed.push(`<p><em>[repository: ${escapeHtml(repo.full_name)}]</em></p>`);
+				md.push(`> [repository: ${repo.full_name}]`);
+				continue;
+			}
+			blocks.push({ type: 'placeholder', kind: 'github', meta: { repo: name } });
+			md.push(`> [repository: ${name}]`);
+			continue;
+		}
+
 		if (node.type === 'leafDirective' && node.name === 'placeholder') {
 			const { kind, ...rest } = node.attributes ?? {};
-			const meta: Record<string, string> = {};
-			for (const [key, value] of Object.entries(rest)) if (value != null) meta[key] = value;
+			const placeholderMeta: Record<string, string> = {};
+			for (const [key, value] of Object.entries(rest)) {
+				if (value != null) placeholderMeta[key] = value;
+			}
 			const label = kind ?? '';
-			const metaText = Object.entries(meta)
+			const metaText = Object.entries(placeholderMeta)
 				.map(([k, v]) => ` ${k}="${v}"`)
 				.join('');
-			blocks.push({ type: 'placeholder', kind: label, meta });
+			blocks.push({ type: 'placeholder', kind: label, meta: placeholderMeta });
 			feed.push(
-				`<pre>::${escapeHtml(label)}${Object.entries(meta)
+				`<pre>::${escapeHtml(label)}${Object.entries(placeholderMeta)
 					.map(([k, v]) => `\n${k} = "${escapeHtml(v)}"`)
 					.join('')}</pre>`,
 			);

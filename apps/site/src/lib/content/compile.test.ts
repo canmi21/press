@@ -62,3 +62,62 @@ it('rejects translator notes in translated frontmatter with the article named', 
 		"contents/bad-title.md: translator's notes are not allowed in frontmatter title",
 	);
 });
+
+it('compiles repository, crate, and tokei presentation controls into live widgets', async () => {
+	const raw = `---
+title: Test
+lang: en-US
+---
+
+\`\`\`tokei title="Language statistics" view="bar"
+ Language  Files  Lines  Code  Comments  Blanks
+ Rust      1      10     8     1         1
+\`\`\`
+
+::github{repo="canmi21/seam" ref="abc123" title="Seam" align="right"}
+
+::cargo{crate="seam-cli" view="table"}
+`;
+	const compiled = await compile(raw, '/article', {
+		resolveAsset: () => null,
+		highlight: async () => '',
+		sourceFile: 'contents/widgets.md',
+		embeds: {
+			repos: {
+				'canmi21/seam': {
+					full_name: 'canmi21/seam',
+					description: 'A repository.',
+					language: 'Rust',
+					stars: 1,
+					forks: 2,
+					open_issues: 3,
+					license: 'MIT',
+					pushed_at: '2026-01-01T00:00:00Z',
+				},
+			},
+			crates: {
+				'seam-cli': {
+					name: 'seam-cli',
+					version: '1.0.0',
+					rust_version: null,
+					features: {},
+					deps: [],
+					total_dep_size: 0,
+				},
+			},
+		},
+	});
+
+	expect(compiled.blocks).toEqual(
+		expect.arrayContaining([
+			expect.objectContaining({ type: 'tokei', title: 'Language statistics', view: 'bar' }),
+			expect.objectContaining({
+				type: 'github',
+				gitRef: 'abc123',
+				title: 'Seam',
+				align: 'right',
+			}),
+			expect.objectContaining({ type: 'cargo', view: 'table' }),
+		]),
+	);
+});

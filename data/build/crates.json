@@ -1,0 +1,3030 @@
+{
+  "version": 1,
+  "crates": {
+    "seam-cli": {
+      "name": "seam-cli",
+      "version": "0.5.38",
+      "rust_version": null,
+      "features": {
+        "crypto-aws": [
+          "reqwest/rustls"
+        ],
+        "crypto-ring": [
+          "rustls/ring"
+        ],
+        "default": [
+          "crypto-ring"
+        ]
+      },
+      "deps": [
+        {
+          "name": "anyhow",
+          "version": "1.0.104",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 48819,
+          "depth": 0
+        },
+        {
+          "name": "axum",
+          "version": "0.8.9",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "ws"
+          ],
+          "size": 180525,
+          "depth": 0
+        },
+        {
+          "name": "clap",
+          "version": "4.6.5",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "derive"
+          ],
+          "size": 64483,
+          "depth": 0
+        },
+        {
+          "name": "futures-util",
+          "version": "0.3.33",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 169725,
+          "depth": 0
+        },
+        {
+          "name": "indicatif",
+          "version": "0.18.6",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 70598,
+          "depth": 0
+        },
+        {
+          "name": "notify",
+          "version": "8.2.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 39067,
+          "depth": 0
+        },
+        {
+          "name": "reqwest",
+          "version": "0.13.4",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "json",
+            "stream",
+            "charset",
+            "http2",
+            "system-proxy",
+            "rustls-no-provider"
+          ],
+          "size": 162754,
+          "depth": 0
+        },
+        {
+          "name": "rustls",
+          "version": "0.23.43",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "std",
+            "tls12"
+          ],
+          "size": 375868,
+          "depth": 0
+        },
+        {
+          "name": "seam-codegen",
+          "version": "0.5.38",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 22385,
+          "depth": 0
+        },
+        {
+          "name": "seam-server",
+          "version": "0.5.38",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 33268,
+          "depth": 0
+        },
+        {
+          "name": "seam-skeleton",
+          "version": "0.5.38",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 47138,
+          "depth": 0
+        },
+        {
+          "name": "serde",
+          "version": "1.0.229",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "derive"
+          ],
+          "size": 83669,
+          "depth": 0
+        },
+        {
+          "name": "serde_json",
+          "version": "1.0.151",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 156556,
+          "depth": 0
+        },
+        {
+          "name": "tempfile",
+          "version": "3.27.0",
+          "kind": "dev",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 44780,
+          "depth": 0
+        },
+        {
+          "name": "tokio",
+          "version": "1.53.1",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "full"
+          ],
+          "size": 920101,
+          "depth": 0
+        },
+        {
+          "name": "tokio-tungstenite",
+          "version": "0.29.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 30226,
+          "depth": 0
+        },
+        {
+          "name": "toml",
+          "version": "1.1.4+spec-1.1.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 56447,
+          "depth": 0
+        },
+        {
+          "name": "tower-http",
+          "version": "0.6.11",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "fs"
+          ],
+          "size": 156773,
+          "depth": 0
+        },
+        {
+          "name": "anstream",
+          "version": "1.0.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 28916,
+          "depth": 1
+        },
+        {
+          "name": "anstyle",
+          "version": "1.0.14",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 17787,
+          "depth": 1
+        },
+        {
+          "name": "async-compression",
+          "version": "0.4.43",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [
+            "tokio"
+          ],
+          "size": 102575,
+          "depth": 1
+        },
+        {
+          "name": "aws-lc-rs",
+          "version": "1.17.3",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 242469,
+          "depth": 1
+        },
+        {
+          "name": "axum-core",
+          "version": "0.5.6",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 26769,
+          "depth": 1
+        },
+        {
+          "name": "axum-macros",
+          "version": "0.5.1",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 44007,
+          "depth": 1
+        },
+        {
+          "name": "backtrace",
+          "version": "0.3.76",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(all(tokio_unstable, target_os = \"linux\"))",
+          "features": [],
+          "size": 89458,
+          "depth": 1
+        },
+        {
+          "name": "base64",
+          "version": "0.22.1",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 81597,
+          "depth": 1
+        },
+        {
+          "name": "bitflags",
+          "version": "2.13.1",
+          "kind": "normal",
+          "optional": false,
+          "target": "cfg(target_os=\"macos\")",
+          "features": [],
+          "size": 51395,
+          "depth": 1
+        },
+        {
+          "name": "brotli",
+          "version": "8.0.4",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [
+            "std"
+          ],
+          "size": 751794,
+          "depth": 1
+        },
+        {
+          "name": "brotli-decompressor",
+          "version": "5.0.3",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 197262,
+          "depth": 1
+        },
+        {
+          "name": "bytes",
+          "version": "1.12.1",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 75667,
+          "depth": 1
+        },
+        {
+          "name": "clap_builder",
+          "version": "4.6.5",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 171746,
+          "depth": 1
+        },
+        {
+          "name": "clap_derive",
+          "version": "4.6.4",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 33533,
+          "depth": 1
+        },
+        {
+          "name": "console",
+          "version": "0.16.4",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "ansi-parsing",
+            "std"
+          ],
+          "size": 34353,
+          "depth": 1
+        },
+        {
+          "name": "cookie",
+          "version": "0.18.1",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(not(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\"))))",
+          "features": [],
+          "size": 43551,
+          "depth": 1
+        },
+        {
+          "name": "cookie_store",
+          "version": "0.22.1",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(not(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\"))))",
+          "features": [],
+          "size": 40513,
+          "depth": 1
+        },
+        {
+          "name": "crossbeam-channel",
+          "version": "0.5.16",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 93189,
+          "depth": 1
+        },
+        {
+          "name": "encoding_rs",
+          "version": "0.8.35",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(not(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\"))))",
+          "features": [],
+          "size": 1381050,
+          "depth": 1
+        },
+        {
+          "name": "flume",
+          "version": "0.11.1",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 67947,
+          "depth": 1
+        },
+        {
+          "name": "foldhash",
+          "version": "0.2.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 23329,
+          "depth": 1
+        },
+        {
+          "name": "form_urlencoded",
+          "version": "1.2.2",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 9347,
+          "depth": 1
+        },
+        {
+          "name": "fsevent-sys",
+          "version": "4.1.0",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(target_os=\"macos\")",
+          "features": [],
+          "size": 4620,
+          "depth": 1
+        },
+        {
+          "name": "futures",
+          "version": "0.1.31",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 157731,
+          "depth": 1
+        },
+        {
+          "name": "futures-channel",
+          "version": "0.3.33",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [
+            "std"
+          ],
+          "size": 33168,
+          "depth": 1
+        },
+        {
+          "name": "futures-core",
+          "version": "0.3.33",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 14691,
+          "depth": 1
+        },
+        {
+          "name": "futures-io",
+          "version": "0.3.33",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [
+            "std"
+          ],
+          "size": 9190,
+          "depth": 1
+        },
+        {
+          "name": "futures-macro",
+          "version": "0.3.33",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 11928,
+          "depth": 1
+        },
+        {
+          "name": "futures-sink",
+          "version": "0.3.33",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 8108,
+          "depth": 1
+        },
+        {
+          "name": "futures-task",
+          "version": "0.3.33",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 11381,
+          "depth": 1
+        },
+        {
+          "name": "h2",
+          "version": "0.4.15",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(not(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\"))))",
+          "features": [],
+          "size": 180875,
+          "depth": 1
+        },
+        {
+          "name": "h3",
+          "version": "0.0.8",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(not(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\"))))",
+          "features": [],
+          "size": 124655,
+          "depth": 1
+        },
+        {
+          "name": "h3-quinn",
+          "version": "0.0.10",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(not(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\"))))",
+          "features": [],
+          "size": 11656,
+          "depth": 1
+        },
+        {
+          "name": "hashbrown",
+          "version": "0.15.5",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [
+            "default-hasher",
+            "inline-more"
+          ],
+          "size": 140908,
+          "depth": 1
+        },
+        {
+          "name": "hex",
+          "version": "0.4.3",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 13299,
+          "depth": 1
+        },
+        {
+          "name": "hickory-resolver",
+          "version": "0.26.1",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(not(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\"))))",
+          "features": [
+            "tokio"
+          ],
+          "size": 143885,
+          "depth": 1
+        },
+        {
+          "name": "http",
+          "version": "1.5.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 111161,
+          "depth": 1
+        },
+        {
+          "name": "http-body",
+          "version": "1.1.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 7887,
+          "depth": 1
+        },
+        {
+          "name": "http-body-util",
+          "version": "0.1.4",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 19304,
+          "depth": 1
+        },
+        {
+          "name": "http-range-header",
+          "version": "0.4.2",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 8545,
+          "depth": 1
+        },
+        {
+          "name": "httpdate",
+          "version": "1.0.3",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 10639,
+          "depth": 1
+        },
+        {
+          "name": "hyper",
+          "version": "1.11.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 168224,
+          "depth": 1
+        },
+        {
+          "name": "hyper-rustls",
+          "version": "0.27.9",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(not(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\"))))",
+          "features": [
+            "http1",
+            "tls12"
+          ],
+          "size": 22935,
+          "depth": 1
+        },
+        {
+          "name": "hyper-tls",
+          "version": "0.6.0",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(not(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\"))))",
+          "features": [],
+          "size": 15052,
+          "depth": 1
+        },
+        {
+          "name": "hyper-util",
+          "version": "0.1.20",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [
+            "tokio",
+            "server",
+            "service"
+          ],
+          "size": 112807,
+          "depth": 1
+        },
+        {
+          "name": "indexmap",
+          "version": "2.14.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 104085,
+          "depth": 1
+        },
+        {
+          "name": "inotify",
+          "version": "0.11.4",
+          "kind": "normal",
+          "optional": false,
+          "target": "cfg(any(target_os=\"linux\", target_os=\"android\"))",
+          "features": [],
+          "size": 30209,
+          "depth": 1
+        },
+        {
+          "name": "io-uring",
+          "version": "0.7.13",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(all(tokio_unstable, target_os = \"linux\"))",
+          "features": [],
+          "size": 107376,
+          "depth": 1
+        },
+        {
+          "name": "itoa",
+          "version": "1.0.18",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 15935,
+          "depth": 1
+        },
+        {
+          "name": "js-sys",
+          "version": "0.3.103",
+          "kind": "normal",
+          "optional": false,
+          "target": "cfg(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\")))",
+          "features": [],
+          "size": 108366,
+          "depth": 1
+        },
+        {
+          "name": "kqueue",
+          "version": "1.2.0",
+          "kind": "normal",
+          "optional": false,
+          "target": "cfg(any(target_os=\"freebsd\", target_os=\"openbsd\", target_os = \"netbsd\", target_os = \"dragonflybsd\", target_os = \"ios\"))",
+          "features": [],
+          "size": 28412,
+          "depth": 1
+        },
+        {
+          "name": "libc",
+          "version": "0.2.189",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 851502,
+          "depth": 1
+        },
+        {
+          "name": "log",
+          "version": "0.4.33",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 52997,
+          "depth": 1
+        },
+        {
+          "name": "matchit",
+          "version": "0.8.4",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 33986,
+          "depth": 1
+        },
+        {
+          "name": "memchr",
+          "version": "2.8.3",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 99165,
+          "depth": 1
+        },
+        {
+          "name": "mime",
+          "version": "0.3.17",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 15712,
+          "depth": 1
+        },
+        {
+          "name": "mime_guess",
+          "version": "2.0.5",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 27166,
+          "depth": 1
+        },
+        {
+          "name": "mio",
+          "version": "1.2.2",
+          "kind": "normal",
+          "optional": false,
+          "target": "cfg(any(target_os=\"freebsd\", target_os=\"openbsd\", target_os = \"netbsd\", target_os = \"dragonflybsd\", target_os = \"ios\"))",
+          "features": [
+            "os-ext"
+          ],
+          "size": 111363,
+          "depth": 1
+        },
+        {
+          "name": "multer",
+          "version": "3.1.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 25980,
+          "depth": 1
+        },
+        {
+          "name": "native-tls",
+          "version": "0.2.18",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(not(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\"))))",
+          "features": [],
+          "size": 29967,
+          "depth": 1
+        },
+        {
+          "name": "notify-types",
+          "version": "2.1.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 22796,
+          "depth": 1
+        },
+        {
+          "name": "once_cell",
+          "version": "1.21.4",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(not(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\"))))",
+          "features": [],
+          "size": 35010,
+          "depth": 1
+        },
+        {
+          "name": "parking_lot",
+          "version": "0.12.5",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 46735,
+          "depth": 1
+        },
+        {
+          "name": "percent-encoding",
+          "version": "2.3.2",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 11583,
+          "depth": 1
+        },
+        {
+          "name": "pin-project-lite",
+          "version": "0.2.17",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 31034,
+          "depth": 1
+        },
+        {
+          "name": "portable-atomic",
+          "version": "1.14.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 200703,
+          "depth": 1
+        },
+        {
+          "name": "portable-atomic-util",
+          "version": "0.2.7",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 53577,
+          "depth": 1
+        },
+        {
+          "name": "quinn",
+          "version": "0.11.11",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(not(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\"))))",
+          "features": [
+            "runtime-tokio"
+          ],
+          "size": 85390,
+          "depth": 1
+        },
+        {
+          "name": "rand",
+          "version": "0.10.2",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 104493,
+          "depth": 1
+        },
+        {
+          "name": "rayon",
+          "version": "1.12.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 183391,
+          "depth": 1
+        },
+        {
+          "name": "regex",
+          "version": "1.13.1",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 157118,
+          "depth": 1
+        },
+        {
+          "name": "reqwest",
+          "version": "0.12.28",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [
+            "json",
+            "stream",
+            "multipart"
+          ],
+          "size": 157031,
+          "depth": 1
+        },
+        {
+          "name": "ring",
+          "version": "0.17.14",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 1502610,
+          "depth": 1
+        },
+        {
+          "name": "rquickjs",
+          "version": "0.11.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 25527,
+          "depth": 1
+        },
+        {
+          "name": "rustls-native-certs",
+          "version": "0.8.4",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 22129,
+          "depth": 1
+        },
+        {
+          "name": "rustls-pki-types",
+          "version": "1.15.1",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(not(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\"))))",
+          "features": [
+            "std"
+          ],
+          "size": 39322,
+          "depth": 1
+        },
+        {
+          "name": "rustls-platform-verifier",
+          "version": "0.7.0",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(not(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\"))))",
+          "features": [],
+          "size": 58733,
+          "depth": 1
+        },
+        {
+          "name": "rustls-webpki",
+          "version": "0.103.13",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "alloc"
+          ],
+          "size": 87513,
+          "depth": 1
+        },
+        {
+          "name": "rustversion",
+          "version": "1.0.23",
+          "kind": "build",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 21013,
+          "depth": 1
+        },
+        {
+          "name": "seam-engine",
+          "version": "0.5.38",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 13849,
+          "depth": 1
+        },
+        {
+          "name": "seam-injector",
+          "version": "0.5.36",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 14949,
+          "depth": 1
+        },
+        {
+          "name": "seam-macros",
+          "version": "0.5.31",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 11526,
+          "depth": 1
+        },
+        {
+          "name": "serde_core",
+          "version": "1.0.229",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 63100,
+          "depth": 1
+        },
+        {
+          "name": "serde_derive",
+          "version": "1.0.229",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 59864,
+          "depth": 1
+        },
+        {
+          "name": "serde_path_to_error",
+          "version": "0.1.20",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 18046,
+          "depth": 1
+        },
+        {
+          "name": "serde_spanned",
+          "version": "1.1.1",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "alloc"
+          ],
+          "size": 11025,
+          "depth": 1
+        },
+        {
+          "name": "serde_urlencoded",
+          "version": "0.7.1",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 12822,
+          "depth": 1
+        },
+        {
+          "name": "sha1",
+          "version": "0.10.7",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 14582,
+          "depth": 1
+        },
+        {
+          "name": "sha2",
+          "version": "0.10.9",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 29271,
+          "depth": 1
+        },
+        {
+          "name": "signal-hook-registry",
+          "version": "1.4.8",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(unix)",
+          "features": [],
+          "size": 21668,
+          "depth": 1
+        },
+        {
+          "name": "slab",
+          "version": "0.4.12",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 19080,
+          "depth": 1
+        },
+        {
+          "name": "socket2",
+          "version": "0.6.5",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(any(not(target_family = \"wasm\"), all(target_os = \"wasi\", not(target_env = \"p1\"))))",
+          "features": [
+            "all"
+          ],
+          "size": 60031,
+          "depth": 1
+        },
+        {
+          "name": "spin",
+          "version": "0.12.2",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 42804,
+          "depth": 1
+        },
+        {
+          "name": "subtle",
+          "version": "2.6.1",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 14562,
+          "depth": 1
+        },
+        {
+          "name": "sync_wrapper",
+          "version": "1.0.2",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 6958,
+          "depth": 1
+        },
+        {
+          "name": "tokio-io",
+          "version": "0.1.13",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 33665,
+          "depth": 1
+        },
+        {
+          "name": "tokio-macros",
+          "version": "2.7.2",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 16081,
+          "depth": 1
+        },
+        {
+          "name": "tokio-native-tls",
+          "version": "0.3.1",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(not(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\"))))",
+          "features": [],
+          "size": 20676,
+          "depth": 1
+        },
+        {
+          "name": "tokio-rustls",
+          "version": "0.26.4",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(not(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\"))))",
+          "features": [
+            "tls12"
+          ],
+          "size": 35430,
+          "depth": 1
+        },
+        {
+          "name": "tokio-util",
+          "version": "0.7.19",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(not(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\"))))",
+          "features": [
+            "io"
+          ],
+          "size": 147245,
+          "depth": 1
+        },
+        {
+          "name": "toml_datetime",
+          "version": "1.1.1+spec-1.1.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "alloc"
+          ],
+          "size": 17982,
+          "depth": 1
+        },
+        {
+          "name": "toml_parser",
+          "version": "1.1.3+spec-1.1.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [
+            "alloc"
+          ],
+          "size": 35888,
+          "depth": 1
+        },
+        {
+          "name": "toml_writer",
+          "version": "1.1.2+spec-1.1.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [
+            "alloc"
+          ],
+          "size": 18968,
+          "depth": 1
+        },
+        {
+          "name": "tower",
+          "version": "0.5.3",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "util"
+          ],
+          "size": 110488,
+          "depth": 1
+        },
+        {
+          "name": "tower-layer",
+          "version": "0.3.3",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 6180,
+          "depth": 1
+        },
+        {
+          "name": "tower-service",
+          "version": "0.3.3",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 6950,
+          "depth": 1
+        },
+        {
+          "name": "tracing",
+          "version": "0.1.44",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 463135,
+          "depth": 1
+        },
+        {
+          "name": "tungstenite",
+          "version": "0.29.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 72513,
+          "depth": 1
+        },
+        {
+          "name": "unicode-segmentation",
+          "version": "1.13.3",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 112325,
+          "depth": 1
+        },
+        {
+          "name": "unicode-width",
+          "version": "0.2.2",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 282768,
+          "depth": 1
+        },
+        {
+          "name": "unit-prefix",
+          "version": "0.5.2",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 8041,
+          "depth": 1
+        },
+        {
+          "name": "url",
+          "version": "2.5.8",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 86512,
+          "depth": 1
+        },
+        {
+          "name": "uuid",
+          "version": "1.24.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [
+            "v4"
+          ],
+          "size": 63882,
+          "depth": 1
+        },
+        {
+          "name": "vt100",
+          "version": "0.16.2",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 32355,
+          "depth": 1
+        },
+        {
+          "name": "walkdir",
+          "version": "2.5.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 23951,
+          "depth": 1
+        },
+        {
+          "name": "wasm-bindgen",
+          "version": "0.2.126",
+          "kind": "normal",
+          "optional": false,
+          "target": "cfg(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\")))",
+          "features": [],
+          "size": 67461,
+          "depth": 1
+        },
+        {
+          "name": "wasm-bindgen-futures",
+          "version": "0.4.76",
+          "kind": "normal",
+          "optional": false,
+          "target": "cfg(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\")))",
+          "features": [],
+          "size": 8262,
+          "depth": 1
+        },
+        {
+          "name": "wasm-streams",
+          "version": "0.5.0",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\")))",
+          "features": [],
+          "size": 37790,
+          "depth": 1
+        },
+        {
+          "name": "web-sys",
+          "version": "0.3.103",
+          "kind": "normal",
+          "optional": false,
+          "target": "cfg(all(target_arch = \"wasm32\", any(target_os = \"unknown\", target_os = \"none\")))",
+          "features": [
+            "AbortController",
+            "AbortSignal",
+            "Headers",
+            "Request",
+            "RequestInit",
+            "RequestMode",
+            "Response",
+            "Window",
+            "FormData",
+            "Blob",
+            "BlobPropertyBag",
+            "ServiceWorkerGlobalScope",
+            "RequestCredentials",
+            "File",
+            "ReadableStream",
+            "RequestCache"
+          ],
+          "size": 675560,
+          "depth": 1
+        },
+        {
+          "name": "web-time",
+          "version": "1.1.0",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(target_arch = \"wasm32\")",
+          "features": [],
+          "size": 18026,
+          "depth": 1
+        },
+        {
+          "name": "webpki-roots",
+          "version": "0.26.11",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 15557,
+          "depth": 1
+        },
+        {
+          "name": "windows-sys",
+          "version": "0.60.2",
+          "kind": "normal",
+          "optional": false,
+          "target": "cfg(windows)",
+          "features": [
+            "Win32_System_Threading",
+            "Win32_Foundation",
+            "Win32_Storage_FileSystem",
+            "Win32_Security",
+            "Win32_System_WindowsProgramming",
+            "Win32_System_IO"
+          ],
+          "size": 2518479,
+          "depth": 1
+        },
+        {
+          "name": "windows-sys",
+          "version": "0.61.2",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(windows)",
+          "features": [],
+          "size": 2517186,
+          "depth": 1
+        },
+        {
+          "name": "winnow",
+          "version": "1.0.4",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 188513,
+          "depth": 1
+        },
+        {
+          "name": "zeroize",
+          "version": "1.9.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 24480,
+          "depth": 1
+        },
+        {
+          "name": "zlib-rs",
+          "version": "0.6.7",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 215740,
+          "depth": 1
+        },
+        {
+          "name": "zmij",
+          "version": "1.0.23",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 28612,
+          "depth": 1
+        },
+        {
+          "name": "aho-corasick",
+          "version": "1.1.5",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 184315,
+          "depth": 2
+        },
+        {
+          "name": "arbitrary",
+          "version": "1.4.2",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 38307,
+          "depth": 2
+        },
+        {
+          "name": "bytemuck",
+          "version": "1.25.2",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 54075,
+          "depth": 2
+        },
+        {
+          "name": "cfg-if",
+          "version": "1.0.4",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 9360,
+          "depth": 2
+        },
+        {
+          "name": "chacha20",
+          "version": "0.10.1",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [
+            "rng"
+          ],
+          "size": 38187,
+          "depth": 2
+        },
+        {
+          "name": "clap_lex",
+          "version": "1.1.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 13470,
+          "depth": 2
+        },
+        {
+          "name": "cpufeatures",
+          "version": "0.2.17",
+          "kind": "normal",
+          "optional": false,
+          "target": "cfg(any(target_arch = \"aarch64\", target_arch = \"x86_64\", target_arch = \"x86\"))",
+          "features": [],
+          "size": 13466,
+          "depth": 2
+        },
+        {
+          "name": "data-encoding",
+          "version": "2.11.1",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 22651,
+          "depth": 2
+        },
+        {
+          "name": "digest",
+          "version": "0.10.7",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 19557,
+          "depth": 2
+        },
+        {
+          "name": "either",
+          "version": "1.17.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 21820,
+          "depth": 2
+        },
+        {
+          "name": "encode_unicode",
+          "version": "1.0.0",
+          "kind": "normal",
+          "optional": false,
+          "target": "cfg(windows)",
+          "features": [],
+          "size": 56986,
+          "depth": 2
+        },
+        {
+          "name": "getrandom",
+          "version": "0.4.3",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 52437,
+          "depth": 2
+        },
+        {
+          "name": "hdrhistogram",
+          "version": "7.6.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 323261,
+          "depth": 2
+        },
+        {
+          "name": "httparse",
+          "version": "1.10.1",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 45190,
+          "depth": 2
+        },
+        {
+          "name": "idna",
+          "version": "1.1.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "alloc",
+            "compiled_data"
+          ],
+          "size": 148747,
+          "depth": 2
+        },
+        {
+          "name": "inotify-sys",
+          "version": "0.1.8",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 8411,
+          "depth": 2
+        },
+        {
+          "name": "kqueue-sys",
+          "version": "1.1.2",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 8796,
+          "depth": 2
+        },
+        {
+          "name": "no-panic",
+          "version": "0.1.37",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 15125,
+          "depth": 2
+        },
+        {
+          "name": "proc-macro2",
+          "version": "1.0.107",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 59588,
+          "depth": 2
+        },
+        {
+          "name": "quote",
+          "version": "1.0.47",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 31622,
+          "depth": 2
+        },
+        {
+          "name": "rand",
+          "version": "0.9.5",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 100216,
+          "depth": 2
+        },
+        {
+          "name": "rand_core",
+          "version": "0.10.1",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 22833,
+          "depth": 2
+        },
+        {
+          "name": "regex-automata",
+          "version": "0.4.16",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "alloc",
+            "syntax",
+            "meta",
+            "nfa-pikevm"
+          ],
+          "size": 627556,
+          "depth": 2
+        },
+        {
+          "name": "regex-syntax",
+          "version": "0.8.11",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 359055,
+          "depth": 2
+        },
+        {
+          "name": "rquickjs-core",
+          "version": "0.11.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 130101,
+          "depth": 2
+        },
+        {
+          "name": "rquickjs-macro",
+          "version": "0.11.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 31447,
+          "depth": 2
+        },
+        {
+          "name": "rustc-std-workspace-core",
+          "version": "1.0.1",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 935,
+          "depth": 2
+        },
+        {
+          "name": "same-file",
+          "version": "1.0.6",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 10183,
+          "depth": 2
+        },
+        {
+          "name": "sha2-asm",
+          "version": "0.6.4",
+          "kind": "normal",
+          "optional": true,
+          "target": "cfg(any(target_arch = \"aarch64\", target_arch = \"x86_64\", target_arch = \"x86\"))",
+          "features": [],
+          "size": 12581,
+          "depth": 2
+        },
+        {
+          "name": "strsim",
+          "version": "0.11.1",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 14266,
+          "depth": 2
+        },
+        {
+          "name": "sval",
+          "version": "2.21.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 84065,
+          "depth": 2
+        },
+        {
+          "name": "sval_ref",
+          "version": "2.21.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 8683,
+          "depth": 2
+        },
+        {
+          "name": "syn",
+          "version": "2.0.119",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "full"
+          ],
+          "size": 307407,
+          "depth": 2
+        },
+        {
+          "name": "terminal_size",
+          "version": "0.4.4",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 10022,
+          "depth": 2
+        },
+        {
+          "name": "thiserror",
+          "version": "2.0.19",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 29026,
+          "depth": 2
+        },
+        {
+          "name": "unicase",
+          "version": "2.9.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 24368,
+          "depth": 2
+        },
+        {
+          "name": "untrusted",
+          "version": "0.9.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 14447,
+          "depth": 2
+        },
+        {
+          "name": "value-bag",
+          "version": "1.13.2",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [
+            "inline-i128"
+          ],
+          "size": 50758,
+          "depth": 2
+        },
+        {
+          "name": "wasi",
+          "version": "0.11.1+wasi-snapshot-preview1",
+          "kind": "normal",
+          "optional": false,
+          "target": "cfg(target_os = \"wasi\")",
+          "features": [],
+          "size": 28477,
+          "depth": 2
+        },
+        {
+          "name": "wasm-bindgen-macro",
+          "version": "0.2.126",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 9303,
+          "depth": 2
+        },
+        {
+          "name": "wasm-bindgen-shared",
+          "version": "0.2.126",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 11287,
+          "depth": 2
+        },
+        {
+          "name": "winapi-util",
+          "version": "0.1.11",
+          "kind": "normal",
+          "optional": false,
+          "target": "cfg(windows)",
+          "features": [],
+          "size": 13368,
+          "depth": 2
+        },
+        {
+          "name": "windows-targets",
+          "version": "0.53.5",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 7126,
+          "depth": 2
+        },
+        {
+          "name": "zeroize_derive",
+          "version": "1.5.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 12034,
+          "depth": 2
+        },
+        {
+          "name": "ascii",
+          "version": "1.1.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 36075,
+          "depth": 3
+        },
+        {
+          "name": "async-lock",
+          "version": "3.4.2",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 39826,
+          "depth": 3
+        },
+        {
+          "name": "blobby",
+          "version": "0.3.1",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 9941,
+          "depth": 3
+        },
+        {
+          "name": "block-buffer",
+          "version": "0.10.4",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 10538,
+          "depth": 3
+        },
+        {
+          "name": "chrono",
+          "version": "0.4.45",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 240866,
+          "depth": 3
+        },
+        {
+          "name": "const-oid",
+          "version": "0.9.6",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 45382,
+          "depth": 3
+        },
+        {
+          "name": "crypto-common",
+          "version": "0.1.7",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 9619,
+          "depth": 3
+        },
+        {
+          "name": "dlopen2",
+          "version": "0.8.2",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 27695,
+          "depth": 3
+        },
+        {
+          "name": "hashbrown",
+          "version": "0.16.1",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 147785,
+          "depth": 3
+        },
+        {
+          "name": "idna_adapter",
+          "version": "1.2.2",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 10444,
+          "depth": 3
+        },
+        {
+          "name": "phf",
+          "version": "0.13.1",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 24786,
+          "depth": 3
+        },
+        {
+          "name": "rand_chacha",
+          "version": "0.9.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 18258,
+          "depth": 3
+        },
+        {
+          "name": "rand_core",
+          "version": "0.9.5",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 24129,
+          "depth": 3
+        },
+        {
+          "name": "relative-path",
+          "version": "2.0.1",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [
+            "alloc"
+          ],
+          "size": 28829,
+          "depth": 3
+        },
+        {
+          "name": "rquickjs-sys",
+          "version": "0.11.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 916264,
+          "depth": 3
+        },
+        {
+          "name": "rustc-std-workspace-alloc",
+          "version": "1.0.1",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 938,
+          "depth": 3
+        },
+        {
+          "name": "smallvec",
+          "version": "1.15.2",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "const_generics"
+          ],
+          "size": 34899,
+          "depth": 3
+        },
+        {
+          "name": "thiserror-impl",
+          "version": "2.0.19",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 21408,
+          "depth": 3
+        },
+        {
+          "name": "unicode-ident",
+          "version": "1.0.24",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 49298,
+          "depth": 3
+        },
+        {
+          "name": "utf8_iter",
+          "version": "1.0.4",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 10437,
+          "depth": 3
+        },
+        {
+          "name": "wasm-bindgen-macro-support",
+          "version": "0.2.126",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 82688,
+          "depth": 3
+        },
+        {
+          "name": "windows-link",
+          "version": "0.2.1",
+          "kind": "normal",
+          "optional": false,
+          "target": "cfg(windows_raw_dylib)",
+          "features": [],
+          "size": 6133,
+          "depth": 3
+        },
+        {
+          "name": "windows_aarch64_gnullvm",
+          "version": "0.53.1",
+          "kind": "normal",
+          "optional": false,
+          "target": "aarch64-pc-windows-gnullvm",
+          "features": [],
+          "size": 787748,
+          "depth": 3
+        },
+        {
+          "name": "windows_aarch64_msvc",
+          "version": "0.53.1",
+          "kind": "normal",
+          "optional": false,
+          "target": "cfg(all(target_arch = \"aarch64\", target_env = \"msvc\", not(windows_raw_dylib)))",
+          "features": [],
+          "size": 838009,
+          "depth": 3
+        },
+        {
+          "name": "windows_i686_gnu",
+          "version": "0.53.1",
+          "kind": "normal",
+          "optional": false,
+          "target": "cfg(all(target_arch = \"x86\", target_env = \"gnu\", not(target_abi = \"llvm\"), not(windows_raw_dylib)))",
+          "features": [],
+          "size": 939775,
+          "depth": 3
+        },
+        {
+          "name": "windows_i686_gnullvm",
+          "version": "0.53.1",
+          "kind": "normal",
+          "optional": false,
+          "target": "i686-pc-windows-gnullvm",
+          "features": [],
+          "size": 857396,
+          "depth": 3
+        },
+        {
+          "name": "windows_i686_msvc",
+          "version": "0.53.1",
+          "kind": "normal",
+          "optional": false,
+          "target": "cfg(all(target_arch = \"x86\", target_env = \"msvc\", not(windows_raw_dylib)))",
+          "features": [],
+          "size": 907688,
+          "depth": 3
+        },
+        {
+          "name": "windows_x86_64_gnu",
+          "version": "0.53.1",
+          "kind": "normal",
+          "optional": false,
+          "target": "cfg(all(target_arch = \"x86_64\", target_env = \"gnu\", not(target_abi = \"llvm\"), not(windows_raw_dylib)))",
+          "features": [],
+          "size": 903712,
+          "depth": 3
+        },
+        {
+          "name": "windows_x86_64_gnullvm",
+          "version": "0.53.1",
+          "kind": "normal",
+          "optional": false,
+          "target": "x86_64-pc-windows-gnullvm",
+          "features": [],
+          "size": 787739,
+          "depth": 3
+        },
+        {
+          "name": "windows_x86_64_msvc",
+          "version": "0.53.1",
+          "kind": "normal",
+          "optional": false,
+          "target": "cfg(all(any(target_arch = \"x86_64\", target_arch = \"arm64ec\"), target_env = \"msvc\", not(windows_raw_dylib)))",
+          "features": [],
+          "size": 837950,
+          "depth": 3
+        },
+        {
+          "name": "allocator-api2",
+          "version": "0.2.21",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [
+            "alloc"
+          ],
+          "size": 63622,
+          "depth": 4
+        },
+        {
+          "name": "bincode",
+          "version": "2.0.1",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 70469,
+          "depth": 4
+        },
+        {
+          "name": "bindgen",
+          "version": "0.72.1",
+          "kind": "build",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 246071,
+          "depth": 4
+        },
+        {
+          "name": "bumpalo",
+          "version": "3.20.3",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 98671,
+          "depth": 4
+        },
+        {
+          "name": "cc",
+          "version": "1.4.0",
+          "kind": "build",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 97878,
+          "depth": 4
+        },
+        {
+          "name": "equivalent",
+          "version": "1.0.2",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 7419,
+          "depth": 4
+        },
+        {
+          "name": "generic-array",
+          "version": "0.14.7",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "more_lengths"
+          ],
+          "size": 15950,
+          "depth": 4
+        },
+        {
+          "name": "getrandom",
+          "version": "0.3.4",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 50932,
+          "depth": 4
+        },
+        {
+          "name": "icu_normalizer",
+          "version": "2.2.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 78154,
+          "depth": 4
+        },
+        {
+          "name": "icu_properties",
+          "version": "2.2.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 63950,
+          "depth": 4
+        },
+        {
+          "name": "malloc_size_of",
+          "version": "0.1.1",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 10746,
+          "depth": 4
+        },
+        {
+          "name": "pretty_env_logger",
+          "version": "0.5.0",
+          "kind": "build",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 9810,
+          "depth": 4
+        },
+        {
+          "name": "rand_core",
+          "version": "0.6.4",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 22666,
+          "depth": 4
+        },
+        {
+          "name": "syn",
+          "version": "3.0.3",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 312999,
+          "depth": 4
+        },
+        {
+          "name": "typenum",
+          "version": "1.20.1",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 105479,
+          "depth": 4
+        },
+        {
+          "name": "unty",
+          "version": "0.0.4",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 7200,
+          "depth": 4
+        },
+        {
+          "name": "databake",
+          "version": "0.2.1",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [
+            "derive"
+          ],
+          "size": 9699,
+          "depth": 5
+        },
+        {
+          "name": "find-msvc-tools",
+          "version": "0.1.9",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 31493,
+          "depth": 5
+        },
+        {
+          "name": "harfbuzz-traits",
+          "version": "0.6.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 6846,
+          "depth": 5
+        },
+        {
+          "name": "icu_collections",
+          "version": "2.2.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 88011,
+          "depth": 5
+        },
+        {
+          "name": "icu_locale_core",
+          "version": "2.2.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "zerovec"
+          ],
+          "size": 78639,
+          "depth": 5
+        },
+        {
+          "name": "icu_normalizer_data",
+          "version": "2.2.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 67134,
+          "depth": 5
+        },
+        {
+          "name": "icu_properties_data",
+          "version": "2.2.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 168901,
+          "depth": 5
+        },
+        {
+          "name": "icu_provider",
+          "version": "2.2.0",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 51620,
+          "depth": 5
+        },
+        {
+          "name": "jobserver",
+          "version": "0.1.35",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 28890,
+          "depth": 5
+        },
+        {
+          "name": "scale-info",
+          "version": "1.0.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 29661,
+          "depth": 5
+        },
+        {
+          "name": "shlex",
+          "version": "2.0.1",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 19332,
+          "depth": 5
+        },
+        {
+          "name": "unicode-bidi",
+          "version": "0.3.18",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 58300,
+          "depth": 5
+        },
+        {
+          "name": "utf16_iter",
+          "version": "1.0.5",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 9736,
+          "depth": 5
+        },
+        {
+          "name": "version_check",
+          "version": "0.9.5",
+          "kind": "build",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 15554,
+          "depth": 5
+        },
+        {
+          "name": "write16",
+          "version": "1.0.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [
+            "alloc"
+          ],
+          "size": 7218,
+          "depth": 5
+        },
+        {
+          "name": "zerotrie",
+          "version": "0.2.4",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "yoke",
+            "zerofrom"
+          ],
+          "size": 83690,
+          "depth": 5
+        },
+        {
+          "name": "zerovec",
+          "version": "0.11.6",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 128583,
+          "depth": 5
+        },
+        {
+          "name": "bincode",
+          "version": "1.3.3",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 28958,
+          "depth": 6
+        },
+        {
+          "name": "displaydoc",
+          "version": "0.2.7",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 21343,
+          "depth": 6
+        },
+        {
+          "name": "erased-serde",
+          "version": "0.4.10",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 31339,
+          "depth": 6
+        },
+        {
+          "name": "litemap",
+          "version": "0.8.2",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 34572,
+          "depth": 6
+        },
+        {
+          "name": "postcard",
+          "version": "1.1.3",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 43968,
+          "depth": 6
+        },
+        {
+          "name": "potential_utf",
+          "version": "0.1.5",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "zerovec"
+          ],
+          "size": 10189,
+          "depth": 6
+        },
+        {
+          "name": "schemars",
+          "version": "1.2.2",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 94320,
+          "depth": 6
+        },
+        {
+          "name": "stable_deref_trait",
+          "version": "1.2.1",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 8186,
+          "depth": 6
+        },
+        {
+          "name": "tinystr",
+          "version": "0.8.3",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 24710,
+          "depth": 6
+        },
+        {
+          "name": "twox-hash",
+          "version": "2.1.3",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [
+            "xxhash64"
+          ],
+          "size": 36146,
+          "depth": 6
+        },
+        {
+          "name": "writeable",
+          "version": "0.6.3",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 26685,
+          "depth": 6
+        },
+        {
+          "name": "yoke",
+          "version": "0.8.3",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "derive"
+          ],
+          "size": 33132,
+          "depth": 6
+        },
+        {
+          "name": "zerofrom",
+          "version": "0.1.8",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "derive"
+          ],
+          "size": 6156,
+          "depth": 6
+        },
+        {
+          "name": "zerovec-derive",
+          "version": "0.11.3",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 22115,
+          "depth": 6
+        },
+        {
+          "name": "yoke-derive",
+          "version": "0.8.2",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 15077,
+          "depth": 7
+        },
+        {
+          "name": "zerofrom-derive",
+          "version": "0.1.7",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 8853,
+          "depth": 7
+        }
+      ],
+      "total_dep_size": 34759094
+    },
+    "seam-skeleton": {
+      "name": "seam-skeleton",
+      "version": "0.5.38",
+      "rust_version": null,
+      "features": {},
+      "deps": [
+        {
+          "name": "anyhow",
+          "version": "1.0.104",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 48819,
+          "depth": 0
+        },
+        {
+          "name": "regex",
+          "version": "1.13.1",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 157118,
+          "depth": 0
+        },
+        {
+          "name": "seam-injector",
+          "version": "0.5.36",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 14949,
+          "depth": 0
+        },
+        {
+          "name": "serde",
+          "version": "1.0.229",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "derive"
+          ],
+          "size": 83669,
+          "depth": 0
+        },
+        {
+          "name": "serde_json",
+          "version": "1.0.151",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 156556,
+          "depth": 0
+        },
+        {
+          "name": "aho-corasick",
+          "version": "1.1.5",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 184315,
+          "depth": 1
+        },
+        {
+          "name": "indexmap",
+          "version": "2.14.0",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 104085,
+          "depth": 1
+        },
+        {
+          "name": "itoa",
+          "version": "1.0.18",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 15935,
+          "depth": 1
+        },
+        {
+          "name": "memchr",
+          "version": "2.8.3",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 99165,
+          "depth": 1
+        },
+        {
+          "name": "regex-automata",
+          "version": "0.4.16",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "alloc",
+            "syntax",
+            "meta",
+            "nfa-pikevm"
+          ],
+          "size": 627556,
+          "depth": 1
+        },
+        {
+          "name": "regex-syntax",
+          "version": "0.8.11",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 359055,
+          "depth": 1
+        },
+        {
+          "name": "serde_core",
+          "version": "1.0.229",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [
+            "result"
+          ],
+          "size": 63100,
+          "depth": 1
+        },
+        {
+          "name": "serde_derive",
+          "version": "1.0.229",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 59864,
+          "depth": 1
+        },
+        {
+          "name": "zmij",
+          "version": "1.0.23",
+          "kind": "normal",
+          "optional": false,
+          "target": null,
+          "features": [],
+          "size": 28612,
+          "depth": 1
+        },
+        {
+          "name": "arbitrary",
+          "version": "1.4.2",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [
+            "derive"
+          ],
+          "size": 38307,
+          "depth": 2
+        },
+        {
+          "name": "log",
+          "version": "0.4.33",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 52997,
+          "depth": 2
+        },
+        {
+          "name": "no-panic",
+          "version": "0.1.37",
+          "kind": "normal",
+          "optional": true,
+          "target": null,
+          "features": [],
+          "size": 15125,
+          "depth": 2
+        }
+      ],
+      "total_dep_size": 2109227
+    }
+  }
+}

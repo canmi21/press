@@ -432,6 +432,7 @@ dependencies = [
  "rgb",
  "rstar",
  "scraper",
+ "semver",
  "serde",
  "serde_json",
  "serde_yaml_ng",

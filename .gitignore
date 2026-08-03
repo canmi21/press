@@ -23,6 +23,8 @@ data/**
 !data/tags.yaml
 !data/tn.yaml
 !data/build/segments.json
+!data/build/crates.json
+!data/build/repos.json
 
 # Dependencies
 node_modules/

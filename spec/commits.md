@@ -87,6 +87,13 @@ jj commit -m "feat: add token refresh"     # describe, then start a new change
 In jj a message is not frozen at commit time -- `jj describe` rewrites it at any point, so
 fixing a malformed message never requires an amend dance.
 
+## Completion
+
+When an agent finishes a task that changed repository files, it commits the completed change
+and moves the `main` bookmark before handing the result back. A separate request to commit is
+not required. Partial or blocked work stays uncommitted, and unrelated changes already in the
+working copy are never swept into the task's commit merely to make the tree clean.
+
 ## Enforcement
 
 `hooks/commit.py` runs before any jj subcommand that can write a description and does two

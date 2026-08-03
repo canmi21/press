@@ -6,14 +6,29 @@ import { createAssetResolver, type AssetManifest, type MediaManifest } from '../
 import { assemble, type SegmentLayout, type TranslationSidecar } from '../content/assemble.ts';
 import { compile, compilePage } from '../content/compile.ts';
 import { indexingMetadata } from '../content/indexing.ts';
-import type { Article, ArticleView, CompiledPage, Page, PageView } from '../content/types.ts';
+import type {
+	Article,
+	ArticleView,
+	CompiledPage,
+	CrateRecord,
+	Page,
+	PageView,
+	RepoRecord,
+} from '../content/types.ts';
 import { languageTag, LOCALE_CODES, PUBLIC_LANGUAGE, type LocaleCode } from '../locale.ts';
 import { highlight } from './highlight.ts';
 import { buildPreviews } from './placeholder.ts';
 
 const SEGMENT_LAYOUT_VERSION = 3;
 
-type BuildPaths = { contents: string; assets: string; media: string; segments: string };
+type BuildPaths = {
+	contents: string;
+	assets: string;
+	media: string;
+	segments: string;
+	crates: string;
+	repos: string;
+};
 
 async function articleFiles(contents: string): Promise<string[]> {
 	const files: string[] = [];
@@ -83,6 +98,23 @@ export async function buildArticles(
 	const assets = JSON.parse(await readFile(paths.assets, 'utf8')) as AssetManifest;
 	const media = (parseYaml(await readFile(paths.media, 'utf8')) ?? { media: {} }) as MediaManifest;
 	const layout = JSON.parse(await readFile(paths.segments, 'utf8')) as SegmentLayout;
+	// Fetched by `cms embed`. Absent is a working state rather than an error: an article whose
+	// crate has not been read yet keeps the placeholder it had before, which is what the
+	// placeholder is for.
+	const embeds = {
+		crates:
+			(
+				JSON.parse(await readFile(paths.crates, 'utf8').catch(() => '{}')) as {
+					crates?: Record<string, CrateRecord>;
+				}
+			).crates ?? {},
+		repos:
+			(
+				JSON.parse(await readFile(paths.repos, 'utf8').catch(() => '{}')) as {
+					repos?: Record<string, RepoRecord>;
+				}
+			).repos ?? {},
+	};
 	if (layout.version !== SEGMENT_LAYOUT_VERSION) {
 		throw new Error(
 			`${paths.segments}: expected version ${SEGMENT_LAYOUT_VERSION}, got ${layout.version}`,
@@ -104,6 +136,7 @@ export async function buildArticles(
 			resolveAsset: createAssetResolver(assets, media, previews, 'en-US'),
 			highlight,
 			sourceFile: file,
+			embeds,
 		});
 		const { raws, translatable } = translatedRaws(file, `${path}.md`, raw, sidecar, layout);
 		const compiled = {
@@ -116,6 +149,7 @@ export async function buildArticles(
 							resolveAsset: createAssetResolver(assets, media, previews, PUBLIC_LANGUAGE[code]),
 							highlight,
 							sourceFile: file,
+							embeds,
 						}),
 					]),
 				),
@@ -152,6 +186,8 @@ export async function buildArticles(
 			paths.assets,
 			paths.media,
 			paths.segments,
+			paths.crates,
+			paths.repos,
 		],
 	};
 }

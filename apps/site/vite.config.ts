@@ -15,6 +15,8 @@ const CONTENTS = fileURLToPath(new URL('../../contents', import.meta.url));
 const ASSETS = fileURLToPath(new URL('../../data/metadata.json', import.meta.url));
 const MEDIA = fileURLToPath(new URL('../../data/media.yaml', import.meta.url));
 const SEGMENTS = fileURLToPath(new URL('../../data/build/segments.json', import.meta.url));
+const CRATES = fileURLToPath(new URL('../../data/build/crates.json', import.meta.url));
+const REPOS = fileURLToPath(new URL('../../data/build/repos.json', import.meta.url));
 
 // Built-in 301s, kept out of site.config.yaml because they are product behaviour rather than
 // configuration: feed aliases and the favicon redirect to the CDN.
@@ -87,6 +89,8 @@ export default defineConfig(({ mode }) => {
 							assets: ASSETS,
 							media: MEDIA,
 							segments: SEGMENTS,
+							crates: CRATES,
+							repos: REPOS,
 						}),
 						buildPages({ contents: CONTENTS, segments: SEGMENTS }),
 					]);

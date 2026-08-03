@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "repos": {
+    "canmi21/seam": {
+      "full_name": "canmi21/seam",
+      "description": "Rendering is a protocol, not a render-time computation.",
+      "language": "TypeScript",
+      "stars": 39,
+      "forks": 1,
+      "open_issues": 1,
+      "license": "MIT",
+      "pushed_at": "2026-07-03T17:40:58Z"
+    }
+  }
+}

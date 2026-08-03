@@ -2925,6 +2925,71 @@ segments:
       seconds: 68.967651584
       tokens: 19280
       review: false
+  cc411bfda088898020986b72ef160004:
+    de-DE:
+      text: ::cargo{crate="seam-cli"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555046Z
+      seconds: 9.996027417
+      tokens: 15504
+      review: false
+    en-US:
+      text: ::cargo{crate="seam-cli"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555046Z
+      seconds: 9.996027417
+      tokens: 15504
+      review: false
+    es-ES:
+      text: ::cargo{crate="seam-cli"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555046Z
+      seconds: 9.996027417
+      tokens: 15504
+      review: false
+    fr-FR:
+      text: ::cargo{crate="seam-cli"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555046Z
+      seconds: 9.996027417
+      tokens: 15504
+      review: false
+    ja-JP:
+      text: ::cargo{crate="seam-cli"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555046Z
+      seconds: 9.996027417
+      tokens: 15504
+      review: false
+    ko-KR:
+      text: ::cargo{crate="seam-cli"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555046Z
+      seconds: 9.996027417
+      tokens: 15504
+      review: false
+    zh-CN:
+      text: ::cargo{crate="seam-cli"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555046Z
+      seconds: 9.996027417
+      tokens: 15504
+      review: false
+    zh-TW:
+      text: ::cargo{crate="seam-cli"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555046Z
+      seconds: 9.996027417
+      tokens: 15504
+      review: false
   daf36a3490b545034e4de52103d4b575:
     de-DE:
       text: Ausgehend vom Rust‑Kompilierungsprozess stellen wir Schritt für Schritt die Optimierungsmethoden zur Kompiliergeschwindigkeit und zur Größe der Artefakte auf Cargo.toml‑ und Linker‑Ebene vor — Cranelift‑Backend, codegen‑units, opt-level, LTO, strip, panic=abort, lld und MUSL, inklusive praktischer Vergleichsdaten.
@@ -3249,6 +3314,136 @@ segments:
       at: 2026-08-03T01:39:53.53285Z
       seconds: 9.232259292
       tokens: 16713
+      review: false
+  ebc4cb6ba78ba8e6cb60ccb655354e81:
+    de-DE:
+      text: ::cargo{crate="seam-skeleton"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555054Z
+      seconds: 8.985866666
+      tokens: 15391
+      review: false
+    en-US:
+      text: ::cargo{crate="seam-skeleton"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555054Z
+      seconds: 8.985866666
+      tokens: 15391
+      review: false
+    es-ES:
+      text: ::cargo{crate="seam-skeleton"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555054Z
+      seconds: 8.985866666
+      tokens: 15391
+      review: false
+    fr-FR:
+      text: ::cargo{crate="seam-skeleton"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555054Z
+      seconds: 8.985866666
+      tokens: 15391
+      review: false
+    ja-JP:
+      text: ::cargo{crate="seam-skeleton"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555054Z
+      seconds: 8.985866666
+      tokens: 15391
+      review: false
+    ko-KR:
+      text: ::cargo{crate="seam-skeleton"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555054Z
+      seconds: 8.985866666
+      tokens: 15391
+      review: false
+    zh-CN:
+      text: ::cargo{crate="seam-skeleton"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555054Z
+      seconds: 8.985866666
+      tokens: 15391
+      review: false
+    zh-TW:
+      text: ::cargo{crate="seam-skeleton"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555054Z
+      seconds: 8.985866666
+      tokens: 15391
+      review: false
+  ed2db2844cf77ada1d3fcfd5c555aea0:
+    de-DE:
+      text: ::github{repo="canmi21/seam" align="left" ref="a7f34cb47df324c84de7725296c9ef539e05b791"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555061Z
+      seconds: 14.517310791
+      tokens: 15505
+      review: false
+    en-US:
+      text: ::github{repo="canmi21/seam" align="left" ref="a7f34cb47df324c84de7725296c9ef539e05b791"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555061Z
+      seconds: 14.517310791
+      tokens: 15505
+      review: false
+    es-ES:
+      text: ::github{repo="canmi21/seam" align="left" ref="a7f34cb47df324c84de7725296c9ef539e05b791"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555061Z
+      seconds: 14.517310791
+      tokens: 15505
+      review: false
+    fr-FR:
+      text: ::github{repo="canmi21/seam" align="left" ref="a7f34cb47df324c84de7725296c9ef539e05b791"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555061Z
+      seconds: 14.517310791
+      tokens: 15505
+      review: false
+    ja-JP:
+      text: ::github{repo="canmi21/seam" align="left" ref="a7f34cb47df324c84de7725296c9ef539e05b791"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555061Z
+      seconds: 14.517310791
+      tokens: 15505
+      review: false
+    ko-KR:
+      text: ::github{repo="canmi21/seam" align="left" ref="a7f34cb47df324c84de7725296c9ef539e05b791"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555061Z
+      seconds: 14.517310791
+      tokens: 15505
+      review: false
+    zh-CN:
+      text: ::github{repo="canmi21/seam" align="left" ref="a7f34cb47df324c84de7725296c9ef539e05b791"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555061Z
+      seconds: 14.517310791
+      tokens: 15505
+      review: false
+    zh-TW:
+      text: ::github{repo="canmi21/seam" align="left" ref="a7f34cb47df324c84de7725296c9ef539e05b791"}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T14:14:41.555061Z
+      seconds: 14.517310791
+      tokens: 15505
       review: false
   f03f713488e8914a4e63da46f8da7fd8:
     de-DE:

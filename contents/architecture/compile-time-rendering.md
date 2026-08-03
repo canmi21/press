@@ -229,7 +229,7 @@ views: 5250
 
 但说实话，**SeamJS** 现在还是一个非常基础的样子。跑起来是没什么问题的，但真的拿它去写项目的话还需要打磨很久，我也在更多的思考一些架构上的改革，比如数据传输通道的抽象，但我并不确定在后续版本中还会不会坚持这个方向？框架层面上，我肯定会做出一个 TypeScript 的全栈框架，以及一个 Rust 作为后端的旗舰框架；至于 Go 相关的实习后续版本中移除掉，我觉得自己的精力维护不过来了。
 
-::placeholder{kind="github" repo="canmi21/seam" align="left"}
+::github{repo="canmi21/seam" align="left"}
 
 ## 不只是 Web 框架 {#beyond-web}
 

@@ -10,6 +10,15 @@ export type Block =
 	| { type: 'heading'; depth: number; slug: string; text: string }
 	| { type: 'code'; lang: string; html: string; code: string }
 	| { type: 'svgCanvas'; svg: string; title: string }
+	| { type: 'tokei'; source: string; title: string; view: TokeiView }
+	| { type: 'cargo'; crate: CrateRecord; view: CargoView }
+	| {
+			type: 'github';
+			repo: RepoRecord;
+			gitRef?: string;
+			title?: string;
+			align: CardAlign;
+	  }
 	| {
 			type: 'linkcard';
 			src: string;
@@ -49,6 +58,10 @@ export type Block =
 
 export type TocEntry = { slug: string; text: string; depth: number };
 
+export type CardAlign = 'left' | 'center' | 'right';
+export type CargoView = 'treemap' | 'table';
+export type TokeiView = 'treemap' | 'bar' | 'table';
+
 export type Compiled = {
 	meta: ArticleMeta;
 	toc: TocEntry[];
@@ -62,6 +75,37 @@ export type ArticleView = Pick<Compiled, 'meta' | 'blocks' | 'feed' | 'text'> & 
 	code: LocaleCode;
 	languageTag: string;
 	canonical: string;
+};
+
+export type CrateDep = {
+	name: string;
+	version: string;
+	kind: string;
+	optional: boolean;
+	target: string | null;
+	features: string[];
+	size: number | null;
+	depth: number;
+};
+
+export type CrateRecord = {
+	name: string;
+	version: string;
+	rust_version: string | null;
+	features: Record<string, string[]>;
+	deps: CrateDep[];
+	total_dep_size: number;
+};
+
+export type RepoRecord = {
+	full_name: string;
+	description: string | null;
+	language: string | null;
+	stars: number;
+	forks: number;
+	open_issues: number;
+	license: string | null;
+	pushed_at: string | null;
 };
 
 export type Alternate = {

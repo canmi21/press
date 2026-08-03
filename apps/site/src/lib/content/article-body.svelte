@@ -6,6 +6,9 @@
 	import Placeholder from '$lib/placeholder.svelte';
 	import Section from '$lib/section.svelte';
 	import SvgCanvas from '$lib/svg-canvas.svelte';
+	import Tokei from '$lib/tokei.svelte';
+	import Cargo from '$lib/cargo.svelte';
+	import GitHub from '$lib/github.svelte';
 	import Info from '@lucide/svelte/icons/info';
 	import X from '@lucide/svelte/icons/x';
 	import { cubicOut } from 'svelte/easing';
@@ -144,6 +147,17 @@
 			<Placeholder kind={block.kind} meta={block.meta} />
 		{:else if block.type === 'svgCanvas'}
 			<SvgCanvas svg={block.svg} />
+		{:else if block.type === 'tokei'}
+			<Tokei source={block.source} title={block.title} view={block.view} />
+		{:else if block.type === 'cargo'}
+			<Cargo crate={block.crate} view={block.view} />
+		{:else if block.type === 'github'}
+			<GitHub
+				repo={block.repo}
+				gitRef={block.gitRef}
+				title={block.title}
+				align={block.align}
+			/>
 		{/if}
 	{/each}
 </div>

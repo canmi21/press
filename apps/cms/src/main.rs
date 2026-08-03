@@ -10,6 +10,7 @@ use std::process::ExitCode;
 mod alt;
 mod check;
 mod classify;
+mod embed;
 mod favicon;
 mod gc;
 mod i18n;
@@ -35,6 +36,7 @@ fn main() -> ExitCode {
 		Some("segments") => write_segment_layout(),
 		Some("i18n") => translate_articles(&args[1..]),
 		Some("tn") => scan_notes(&args[1..]),
+		Some("embed") => fetch_embeds(&args[1..]),
 		Some("locale") => translate_locales(&args[1..]),
 		Some("alt") => describe_images(&args[1..]),
 		Some("gc") => collect_garbage(&args[1..]),
@@ -792,7 +794,13 @@ fn scan_notes(args: &[String]) -> ExitCode {
 	} else {
 		only
 			.into_iter()
-			.map(|item| if item.is_absolute() { item } else { root.join(item) })
+			.map(|item| {
+				if item.is_absolute() {
+					item
+				} else {
+					root.join(item)
+				}
+			})
 			.collect()
 	};
 
@@ -885,6 +893,128 @@ fn scan_notes(args: &[String]) -> ExitCode {
 	ExitCode::SUCCESS
 }
 
+/// The `cms embed` command: the crate trees and repository facts the articles show.
+///
+/// Fetched here rather than in the browser, so a page renders from a checkout with no proxy
+/// route, no request per reader and no key. Both records rebuild from what git already holds,
+/// which is what puts them under `data/build/`. See spec/architecture.md.
+fn fetch_embeds(args: &[String]) -> ExitCode {
+	let force = args.iter().any(|arg| arg == "--force");
+	let root = match paths::repo_root() {
+		Ok(root) => root,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
+	};
+
+	let mut crates = embed::Crates::default();
+	let mut repos = embed::Repos::default();
+	if !force {
+		if let Ok(text) = std::fs::read_to_string(embed::crates_path(&root)) {
+			crates = serde_json::from_str(&text).unwrap_or_default();
+		}
+		if let Ok(text) = std::fs::read_to_string(embed::repos_path(&root)) {
+			repos = serde_json::from_str(&text).unwrap_or_default();
+		}
+	}
+
+	let articles = match refs::markdown_under(&root.join("contents")) {
+		Ok(articles) => articles,
+		Err(error) => {
+			eprintln!("could not read contents: {error}");
+			return ExitCode::FAILURE;
+		}
+	};
+	let mut want = embed::Wanted::default();
+	for path in &articles {
+		if let Ok(text) = std::fs::read_to_string(path) {
+			let found = embed::wanted(&text);
+			want.crates.extend(found.crates);
+			want.repos.extend(found.repos);
+		}
+	}
+	want.crates.sort();
+	want.crates.dedup();
+	want.repos.sort();
+	want.repos.dedup();
+
+	let todo: Vec<&String> = want
+		.crates
+		.iter()
+		.filter(|name| !crates.crates.contains_key(*name))
+		.collect();
+	let todo_repos: Vec<&String> = want
+		.repos
+		.iter()
+		.filter(|name| !repos.repos.contains_key(*name))
+		.collect();
+
+	let progress = progress::bar((todo.len() + todo_repos.len()) as u64);
+	let mut failed = 0usize;
+	for name in todo {
+		progress.set_message(name.clone());
+		match embed::fetch::krate(name) {
+			Some(resolved) => {
+				progress.suspend(|| {
+					println!(
+						"  {name} {} -- {} deps",
+						resolved.version,
+						resolved.deps.len()
+					);
+				});
+				crates.crates.insert(name.clone(), resolved);
+			}
+			None => {
+				failed += 1;
+				progress.suspend(|| eprintln!("fail  {name}: not on the index"));
+			}
+		}
+		progress.inc(1);
+	}
+	for name in todo_repos {
+		progress.set_message(name.clone());
+		match embed::fetch::repo(name) {
+			Some(found) => {
+				progress.suspend(|| println!("  {name} -- {} stars", found.stars));
+				repos.repos.insert(name.clone(), found);
+			}
+			None => {
+				failed += 1;
+				progress.suspend(|| eprintln!("fail  {name}: GitHub did not answer"));
+			}
+		}
+		progress.inc(1);
+	}
+	progress.finish_and_clear();
+
+	if let Err(error) = image::store::write(
+		&embed::crates_path(&root),
+		serde_json::to_string_pretty(&crates)
+			.unwrap_or_default()
+			.as_bytes(),
+	) {
+		eprintln!("could not write crates.json: {error}");
+		return ExitCode::FAILURE;
+	}
+	if let Err(error) = image::store::write(
+		&embed::repos_path(&root),
+		serde_json::to_string_pretty(&repos)
+			.unwrap_or_default()
+			.as_bytes(),
+	) {
+		eprintln!("could not write repos.json: {error}");
+		return ExitCode::FAILURE;
+	}
+
+	println!(
+		"{} crates, {} repositories, {failed} failed",
+		crates.crates.len(),
+		repos.repos.len()
+	);
+	ExitCode::SUCCESS
+}
+
 fn usage() {
 	eprintln!("usage: cms <command>");
 	eprintln!();
@@ -901,6 +1031,9 @@ fn usage() {
 	eprintln!("  i18n [--model M] [--force] [--frontmatter] [--limit N] [article...]");
 	eprintln!("                              translate article segments into every locale");
 	eprintln!("  tn [--model M] [--force] [article...]");
+	eprintln!(
+		"  embed [--force]              fetch the crate and repository data the articles embed"
+	);
 	eprintln!("                              suggest passages a translation would have to gloss");
 	eprintln!("  locale [--model M] [--force] [--limit N]");
 	eprintln!("                              translate tag labels and image descriptions");

@@ -298,12 +298,14 @@ a fact about this repository rather than a property of the command, so it waits 
 
 ### A CI build must be able to build from git alone
 
-The site builds from `data/metadata.json`, `data/media.yaml`,
-`data/build/segments.json`, `contents/` and `site.config.yaml` -- all committed -- and never
-reads untracked asset bytes. The merged image manifest carries every dimension, srcset and
-placeholder, and the article segment record carries the CMS-derived ids and byte ranges, so a
-page renders correctly with neither an image byte nor a Rust toolchain present. A checkout is
-a complete build input.
+The site builds from `data/metadata.json`, `data/media.yaml`, the records under `data/build/`,
+`contents/` and `site.config.yaml` -- all committed -- and never reads untracked asset bytes.
+The merged image manifest carries every dimension, srcset and placeholder, the article segment
+record carries the CMS-derived ids and byte ranges, and `cms embed` writes repository and crate
+facts for author-written `::github` and `::cargo` directives. The site watches those generated
+records as first-class build inputs. It never fetches widget data in the browser or Worker, so
+a checkout renders the complete article with neither asset bytes, network access nor a Rust
+toolchain present.
 
 The consequence is a rule: **CI compiles, it never derives.** No `cms` command runs there.
 `cms image` would write into a `data/` that vanishes with the container, and it could not read

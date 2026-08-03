@@ -87,7 +87,7 @@ LTO（Link-Time Optimization）是另外一个很吃内存和编译性能的东�
 
 那么多说无益，实际来看看这一些组合下来的提升吧，这里拿一个我前几个月做的小玩具项目做为参考
 
-```text
+```tokei title="Seam language statistics"
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -126,15 +126,15 @@ LTO（Link-Time Optimization）是另外一个很吃内存和编译性能的东�
 
 这个项目里面 Rust 的部分差不多有 32K SCoL Rust，不包含依赖体积。
 
-::placeholder{kind="github" repo="canmi21/seam" align="left" ref="a7f34cb47df324c84de7725296c9ef539e05b791"}
+::github{repo="canmi21/seam" align="left" ref="a7f34cb47df324c84de7725296c9ef539e05b791"}
 
 这个仓库实际上是一个有很多子项目的 monorepo，但是其中可以找出2个典型的例子，首先看看 Skeleton 这个包特点就很明显，代码量大，依赖极少，这个包会是整个项目里面 codegen 占比最高的，这个就会很适合 Cranelift 发挥，另外就是这个包也很干净，干净指的是纯 Safe Rust。
 
-::placeholder{kind="cargo" crate="seam-skeleton"}
+::cargo{crate="seam-skeleton"}
 
 反观下面这个 CLI 包就不怎么合适，依赖多倒不是什么问题，理论上这样更能体现效率，但是这里有一个经典的二选一，可以在左上角看到 `ring` 这个依赖标记为可选了；那是因为项目本来用的是 `aws-lc-rs`，这两玩意都是 Rust 中的加密算法 Backend；但是为什么要可选呢，那是因为 `ring` 是纯 Rust 写的，而另外一个是 Asm 汇编 FFI 进来的，专为 x86 arm64 等主流 cpu 架构汇编加速，但是败也在这里，因为 Cranelift 的魔法只局限于纯 Rust，一旦你引入 Unsafe Code，or FFI C、ASM 之类的，此时实际上 Cranelift 兼容性极差。
 
-::placeholder{kind="cargo" crate="seam-cli"}
+::cargo{crate="seam-cli"}
 
 但是这个也不是无解，其实可以用 cfg 选后端，Cranelift 模式下给 `ring` 来编译就好了。在按照上述描述配置好 dev 和 release profile 后，就可以简单跑一下 CLI 的编译对比，在这个情况下，开发至少比发布快 3倍，这还都是冷编译，没有增量的情况下；并且使用 O0 和关闭 LTO，dev profile 在后续的增量更新中都应该比 release 快几十倍不止。因为 LTO 之类的魔法实际上是通过拍平各个 crate 的边界得来的，那么都变成一个整体后，修改一处代码，当前一起都要重新编译不能被正确增量更新。
 
