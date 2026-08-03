@@ -2,7 +2,7 @@ version: 1
 segments:
   00a31e806c22ce9ccd5ca5cf17461a89:
     de-DE:
-      text: "## MUSL {#musl}"
+      text: '## MUSL {#musl}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:34:44.650069Z
@@ -10,7 +10,7 @@ segments:
       tokens: 16395
       review: false
     en-US:
-      text: "## MUSL {#musl}"
+      text: '## MUSL {#musl}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:34:44.650069Z
@@ -18,7 +18,7 @@ segments:
       tokens: 16395
       review: false
     es-ES:
-      text: "## MUSL {#musl}"
+      text: '## MUSL {#musl}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:34:44.650069Z
@@ -26,7 +26,7 @@ segments:
       tokens: 16395
       review: false
     fr-FR:
-      text: "## MUSL {#musl}"
+      text: '## MUSL {#musl}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:34:44.650069Z
@@ -34,7 +34,7 @@ segments:
       tokens: 16395
       review: false
     ja-JP:
-      text: "## MUSL {#musl}"
+      text: '## MUSL {#musl}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:34:44.650069Z
@@ -42,7 +42,7 @@ segments:
       tokens: 16395
       review: false
     ko-KR:
-      text: "## MUSL {#musl}"
+      text: '## MUSL {#musl}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:34:44.650069Z
@@ -50,7 +50,7 @@ segments:
       tokens: 16395
       review: false
     zh-CN:
-      text: "## MUSL {#musl}"
+      text: '## MUSL {#musl}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:34:44.650069Z
@@ -58,12 +58,77 @@ segments:
       tokens: 16395
       review: false
     zh-TW:
-      text: "## MUSL {#musl}"
+      text: '## MUSL {#musl}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:34:44.650069Z
       seconds: 7.087849667
       tokens: 16395
+      review: false
+  0ab50562ac7ea4bf26e4e95e0cb715c1:
+    de-DE:
+      text: 'Ich selbst bin ein :tn[MUSL-Fanatiker]{is="Das Original verwendet 厨, japanischen Internet-Slang für einen übermäßig begeisterten Anhänger; hier ist es selbstironisch gemeint.} und kann GNU glibc überhaupt nicht ausstehen, aber für die Entwicklung empfehle ich dennoch `x86_64-unknown-linux-gnu`. Warum? Weil es schnell ist. MUSLs größter Vorteil ist, dass es vollständig statisch gelinkte Binärdateien erzeugen kann – ohne Abhängigkeit von irgendwelchen dynamischen Bibliotheken auf dem System. Das Kompilierte lässt sich auf jeden Linux-Rechner kopieren und dort ausführen, was besonders gut für Container und eingebettete Systeme geeignet ist. Statisches Linken ist aber auch der Grund für die Langsamkeit: Der Linker muss alles mit einpacken, sodass die Link-Phase deutlich mehr Arbeit verursacht als dynamisches Linken.'
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.09511Z
+      seconds: 38.438993375
+      tokens: 18581
+      review: false
+    en-US:
+      text: 'Personally, I’m a :tn[MUSL fanatic]{is="The original uses 厨, Japanese internet slang for an obsessively enthusiastic fan; it is self-mocking here."}, and I really dislike GNU glibc, but for development I still recommend `x86_64-unknown-linux-gnu`. Why? Because it’s fast. MUSL’s biggest selling point is that it can produce fully statically linked binaries—without depending on any dynamic libraries installed on the system—so you can copy what you build to any Linux machine and run it. That makes it especially suitable for containers and embedded systems, but static linking is also where it becomes slow: the linker has to package everything in, making the linking stage substantially more work than dynamic linking.'
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.09511Z
+      seconds: 38.438993375
+      tokens: 18581
+      review: false
+    es-ES:
+      text: 'Personalmente, soy un :tn[fanático de MUSL]{is="El original usa 厨, jerga japonesa de Internet para un seguidor excesivamente entusiasta; aquí se emplea con autocrítica.}, y detesto GNU glibc, pero para el desarrollo aun así recomiendo usar `x86_64-unknown-linux-gnu`. ¿Por qué? Porque es rápido. El mayor atractivo de MUSL es que puede generar binarios completamente enlazados de forma estática, sin depender de ninguna biblioteca dinámica del sistema, de modo que puedes copiar lo compilado a cualquier máquina Linux y ejecutarlo. Es especialmente adecuado para contenedores y sistemas embebidos, pero el enlace estático también es la razón de su lentitud: el enlazador tiene que empaquetarlo todo, así que la fase de enlace requiere bastante más trabajo que el enlace dinámico.'
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.09511Z
+      seconds: 38.438993375
+      tokens: 18581
+      review: false
+    fr-FR:
+      text: 'Personnellement, je suis un :tn[fanatique de MUSL]{is="L’original emploie 厨, un terme d’argot Internet japonais désignant un admirateur excessivement enthousiaste ; il est ici employé avec autodérision.}, et je déteste GNU glibc, mais pour le développement je recommande tout de même d’utiliser `x86_64-unknown-linux-gnu`. Pourquoi ? Parce que c’est rapide. Le principal atout de MUSL est de pouvoir produire des binaires entièrement liés statiquement — sans dépendre d’aucune bibliothèque dynamique présente sur le système — que l’on peut copier sur n’importe quelle machine Linux pour les exécuter. C’est particulièrement adapté aux conteneurs et aux systèmes embarqués, mais le lien statique est aussi ce qui le rend lent : l’éditeur de liens doit tout empaqueter, ce qui représente nettement plus de travail à l’étape d’édition de liens que le lien dynamique.'
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.09511Z
+      seconds: 38.438993375
+      tokens: 18581
+      review: false
+    ja-JP:
+      text: 私は :tn[MUSL の熱狂的ファン]{is="原文の「厨」は、日本のネットスラングで、ある対象に異常なほど熱中する支持者を指す。ここでは自嘲的に使われている。}で、GNU glibc が大嫌いですが、開発ではそれでも `x86_64-unknown-linux-gnu` を使うことを勧めます。なぜかというと、速いからです。MUSL の最大の売りは、完全に静的リンクされたバイナリを生成できることです。つまり、システム上のどの動的ライブラリにも依存せず、ビルドしたものを任意の Linux マシンにコピーすれば動かせます。コンテナや組み込みシステムには特に向いていますが、静的リンクが遅い理由でもあります。リンカーがすべてをまとめて取り込む必要があり、リンク段階の作業量は動的リンクよりかなり多くなるからです。
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.09511Z
+      seconds: 38.438993375
+      tokens: 18581
+      review: false
+    ko-KR:
+      text: 나는 :tn[MUSL 광팬]{is="원문의 ‘厨’는 어떤 대상에 지나치게 열광하는 팬을 뜻하는 일본 인터넷 은어이며, 여기서는 자기비하적으로 쓰였다.}이고 GNU glibc를 아주 싫어하지만, 개발할 때는 그래도 `x86_64-unknown-linux-gnu` 사용을 권한다. 왜냐하면 빠르기 때문이다. MUSL의 가장 큰 장점은 완전 정적 링크 바이너리를 만들 수 있다는 것이다. 즉 시스템에 있는 어떤 동적 라이브러리에도 의존하지 않으므로, 빌드한 결과물을 어느 Linux 머신에나 복사해서 실행할 수 있다. 컨테이너와 임베디드 시스템에 특히 잘 맞지만, 정적 링크가 느린 이유이기도 하다. 링커가 모든 것을 함께 묶어 넣어야 하므로 링크 단계의 작업량이 동적 링크보다 훨씬 많기 때문이다.
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.09511Z
+      seconds: 38.438993375
+      tokens: 18581
+      review: false
+    zh-CN:
+      text: 我本人是一个 :tn[MUSL 狂热爱好者]{is="原文使用“厨”这一日语网络用语，指对某个对象异常热衷的拥趸；这里带有自嘲意味。}，非常讨厌 GNU glibc，但在开发时我还是推荐你使用 `x86_64-unknown-linux-gnu`。为什么？因为快。MUSL 最大的卖点是能生成完全静态链接的二进制文件——不依赖系统上的任何动态库，编译出来的东西拷到任何 Linux 机器上就能运行，特别适合容器和嵌入式系统；但静态链接也正是它慢的原因，因为链接器需要把所有东西都打包进去，链接阶段的工作量比动态链接大不少。
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.09511Z
+      seconds: 38.438993375
+      tokens: 18581
+      review: false
+    zh-TW:
+      text: 我本人是一個 :tn[MUSL 狂熱愛好者]{is="原文使用「廚」這個日語網路用語，指對某個對象異常熱衷的擁躉；這裡帶有自嘲意味。}，非常討厭 GNU glibc，但在開發時我還是建議你使用 `x86_64-unknown-linux-gnu`。為什麼？因為快。MUSL 最大的賣點是能產生完全靜態連結的二進位檔——不依賴系統上的任何動態函式庫，編譯出來的東西複製到任何 Linux 機器上就能執行，特別適合容器和嵌入式系統；但靜態連結也正是它慢的原因，因為連結器需要把所有東西都打包進去，連結階段的工作量比動態連結大不少。
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.09511Z
+      seconds: 38.438993375
+      tokens: 18581
       review: false
   0f01aca1b9a9cb57f08a05c7403d77bd:
     de-DE:
@@ -132,7 +197,7 @@ segments:
       review: false
   15480aefffe4c21385656ad5c1bac7ab:
     de-DE:
-      text: "Wo liegt also das eigentliche Problem? Die Antwort ist eigentlich ganz simpel: LLVM ist eine sehr schwere Infrastruktur, die in Produktionsumgebungen Sinn macht; die Philosophie, die Kompilierzeit gegen eine schnellere Ausführungszeit einzutauschen, ist gut. LLVM verbindet das obere Rust mit einer Menge anderer Sprachen wie C, C++ und Swift. Das bedeutet, dass seine Optimierungspipeline dafür ausgelegt ist, „optimale Maschinencode‑Generierung“ zu erzielen, und nicht darauf abzielt, „schnelles Kompilieren“ zu ermöglichen. Dutzende Optimierungs‑Passes im Release‑Modus durchlaufen zu lassen, kostet sehr viel Zeit; selbst im Debug‑Modus mit O0 muss LLVM den gesamten Prozess von IR‑Erzeugung bis zur Maschinencode‑Generierung durchlaufen, was an sich nicht leichtgewichtig ist. Zusätzlich führt Rust’ generische Monomorphisierung zur Compile‑Zeit zu einer massiven Code‑Expansion, sodass das an LLVM übergebene IR um ein Vielfaches größer ist als der Quellcode, und der Arbeitsaufwand für LLVM natürlich entsprechend anwächst."
+      text: 'Wo liegt also das eigentliche Problem? Die Antwort ist eigentlich ganz simpel: LLVM ist eine sehr schwere Infrastruktur, die in Produktionsumgebungen Sinn macht; die Philosophie, die Kompilierzeit gegen eine schnellere Ausführungszeit einzutauschen, ist gut. LLVM verbindet das obere Rust mit einer Menge anderer Sprachen wie C, C++ und Swift. Das bedeutet, dass seine Optimierungspipeline dafür ausgelegt ist, „optimale Maschinencode‑Generierung“ zu erzielen, und nicht darauf abzielt, „schnelles Kompilieren“ zu ermöglichen. Dutzende Optimierungs‑Passes im Release‑Modus durchlaufen zu lassen, kostet sehr viel Zeit; selbst im Debug‑Modus mit O0 muss LLVM den gesamten Prozess von IR‑Erzeugung bis zur Maschinencode‑Generierung durchlaufen, was an sich nicht leichtgewichtig ist. Zusätzlich führt Rust’ generische Monomorphisierung zur Compile‑Zeit zu einer massiven Code‑Expansion, sodass das an LLVM übergebene IR um ein Vielfaches größer ist als der Quellcode, und der Arbeitsaufwand für LLVM natürlich entsprechend anwächst.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:34:44.650134Z
@@ -140,7 +205,7 @@ segments:
       tokens: 22441
       review: false
     en-US:
-      text: "So where is the problem actually? The answer is actually very simple: LLVM is a heavyweight infrastructure, which makes sense in production environments; the philosophy of trading compilation time for faster execution is a good one. It bridges the upper‑level Rust and also a large pile of languages like C, C++, Swift, etc. This means its optimization pipeline is designed for “generating optimal machine code”, not for “quickly completing compilation”. Running dozens of optimization passes in release mode takes a lot of time; even in debug mode with O0, LLVM still has to go through the full IR generation and machine‑code generation process, which itself is not lightweight. Moreover, Rust’s generic monomorphization expands a large amount of code at compile time, so the IR handed to LLVM is far larger than your source code appears, and the amount of work LLVM has to handle naturally inflates."
+      text: 'So where is the problem actually? The answer is actually very simple: LLVM is a heavyweight infrastructure, which makes sense in production environments; the philosophy of trading compilation time for faster execution is a good one. It bridges the upper‑level Rust and also a large pile of languages like C, C++, Swift, etc. This means its optimization pipeline is designed for “generating optimal machine code”, not for “quickly completing compilation”. Running dozens of optimization passes in release mode takes a lot of time; even in debug mode with O0, LLVM still has to go through the full IR generation and machine‑code generation process, which itself is not lightweight. Moreover, Rust’s generic monomorphization expands a large amount of code at compile time, so the IR handed to LLVM is far larger than your source code appears, and the amount of work LLVM has to handle naturally inflates.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:34:44.650134Z
@@ -148,7 +213,7 @@ segments:
       tokens: 22441
       review: false
     es-ES:
-      text: "¿Entonces dónde está realmente el problema? La respuesta es bastante simple: LLVM es una infraestructura muy pesada, lo cual tiene sentido en entornos de producción; la filosofía de intercambiar tiempo de compilación por tiempo de ejecución es excelente. LLVM actúa como puente entre Rust y una gran cantidad de lenguajes como C, C++ y Swift. Esto significa que su canal de optimización está diseñado para «generar código máquina óptimo», no para «completar la compilación rápidamente». Ejecutar decenas de pasadas de optimización en modo release lleva mucho tiempo; incluso en modo debug con O0, LLVM aún debe completar todo el proceso de generación de IR y de código máquina, lo cual no es liviano. Además, la monomorfización genérica de Rust expande una gran cantidad de código en tiempo de compilación, de modo que el IR que se entrega a LLVM es mucho más grande que el código fuente aparentemente, y la carga de trabajo que LLVM debe manejar naturalmente se incrementa."
+      text: '¿Entonces dónde está realmente el problema? La respuesta es bastante simple: LLVM es una infraestructura muy pesada, lo cual tiene sentido en entornos de producción; la filosofía de intercambiar tiempo de compilación por tiempo de ejecución es excelente. LLVM actúa como puente entre Rust y una gran cantidad de lenguajes como C, C++ y Swift. Esto significa que su canal de optimización está diseñado para «generar código máquina óptimo», no para «completar la compilación rápidamente». Ejecutar decenas de pasadas de optimización en modo release lleva mucho tiempo; incluso en modo debug con O0, LLVM aún debe completar todo el proceso de generación de IR y de código máquina, lo cual no es liviano. Además, la monomorfización genérica de Rust expande una gran cantidad de código en tiempo de compilación, de modo que el IR que se entrega a LLVM es mucho más grande que el código fuente aparentemente, y la carga de trabajo que LLVM debe manejar naturalmente se incrementa.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:34:44.650134Z
@@ -156,7 +221,7 @@ segments:
       tokens: 22441
       review: false
     fr-FR:
-      text: "Où se situe réellement le problème ? La réponse est en fait très simple : LLVM est une infrastructure très lourde, ce qui a du sens en environnement de production, la philosophie d’échanger le temps de compilation contre un temps d’exécution plus rapide est excellente. LLVM fait le pont entre le Rust de haut niveau et une multitude de langages tels que C, C++ ou Swift. Cela signifie que son pipeline d’optimisation est conçu pour « générer le code machine optimal », et non pour « terminer rapidement la compilation ». Faire passer des dizaines de passes d’optimisation en mode release prend beaucoup de temps ; même en mode debug avec O0, LLVM doit tout de même parcourir l’ensemble du processus de génération d’IR puis de code machine, ce qui n’est pas léger. De plus, la monomorphisation générique de Rust entraîne, à la compilation, une expansion massive du code, de sorte que l’IR transmis à LLVM est bien plus volumineux que le code source apparent, et la charge de travail que LLVM doit gérer augmente naturellement."
+      text: 'Où se situe réellement le problème ? La réponse est en fait très simple : LLVM est une infrastructure très lourde, ce qui a du sens en environnement de production, la philosophie d’échanger le temps de compilation contre un temps d’exécution plus rapide est excellente. LLVM fait le pont entre le Rust de haut niveau et une multitude de langages tels que C, C++ ou Swift. Cela signifie que son pipeline d’optimisation est conçu pour « générer le code machine optimal », et non pour « terminer rapidement la compilation ». Faire passer des dizaines de passes d’optimisation en mode release prend beaucoup de temps ; même en mode debug avec O0, LLVM doit tout de même parcourir l’ensemble du processus de génération d’IR puis de code machine, ce qui n’est pas léger. De plus, la monomorphisation générique de Rust entraîne, à la compilation, une expansion massive du code, de sorte que l’IR transmis à LLVM est bien plus volumineux que le code source apparent, et la charge de travail que LLVM doit gérer augmente naturellement.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:34:44.650134Z
@@ -197,7 +262,7 @@ segments:
       review: false
   16d5a7d88341168965926e5fafdc5c42:
     de-DE:
-      text: "Also, wo genau soll Cranelift schneller sein? Die beste Phase ist die Entwicklungszeit, in der man nicht unbedingt nahezu perfekten, extrem optimierten Maschinencode benötigt; man braucht nur schnelles Feedback, und solange dieser nicht so gute Maschinencode semantisch äquivalent zum korrekt von LLVM erzeugten Code ist, ist das ausreichend; frühe Cranelift-Versionen konnten das wegen vieler Edge Cases nicht, obwohl viele bereits verbessert wurden, und heute ist die Wahrscheinlichkeit, dass Cranelift läuft, während LLVM abstürzt, etwa gleich hoch wie das Auftreten eines rustc‑ICE beim Schreiben von Rust; LLVM erzeugt hochoptimierten Maschinencode, indem es Dutzende von Optimierungspässen ausführt – Schleifenausrollen, Vektorisierung, Konstanten­propagation, Dead‑Code‑Elimination usw. – Schicht für Schicht, während Cranelifts Design‑Philosophie völlig anders ist: Es reduziert diese Optimierungsschritte drastisch, führt nur die grundlegendste Registerzuweisung und Instruktionsauswahl mit einem einzigen linearen Scan durch, ohne wiederholte Durchläufe, und sein IR ist leichtgewichtig und speziell für die schnelle Übersetzung von höherem IR in Maschinencode konzipiert, im Gegensatz zu LLVM‑IR, das jahrzehntelange Allgemein‑Last trägt."
+      text: 'Also, wo genau soll Cranelift schneller sein? Die beste Phase ist die Entwicklungszeit, in der man nicht unbedingt nahezu perfekten, extrem optimierten Maschinencode benötigt; man braucht nur schnelles Feedback, und solange dieser nicht so gute Maschinencode semantisch äquivalent zum korrekt von LLVM erzeugten Code ist, ist das ausreichend; frühe Cranelift-Versionen konnten das wegen vieler Edge Cases nicht, obwohl viele bereits verbessert wurden, und heute ist die Wahrscheinlichkeit, dass Cranelift läuft, während LLVM abstürzt, etwa gleich hoch wie das Auftreten eines rustc‑ICE beim Schreiben von Rust; LLVM erzeugt hochoptimierten Maschinencode, indem es Dutzende von Optimierungspässen ausführt – Schleifenausrollen, Vektorisierung, Konstanten­propagation, Dead‑Code‑Elimination usw. – Schicht für Schicht, während Cranelifts Design‑Philosophie völlig anders ist: Es reduziert diese Optimierungsschritte drastisch, führt nur die grundlegendste Registerzuweisung und Instruktionsauswahl mit einem einzigen linearen Scan durch, ohne wiederholte Durchläufe, und sein IR ist leichtgewichtig und speziell für die schnelle Übersetzung von höherem IR in Maschinencode konzipiert, im Gegensatz zu LLVM‑IR, das jahrzehntelange Allgemein‑Last trägt.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:34:51.743778Z
@@ -205,7 +270,7 @@ segments:
       tokens: 21770
       review: false
     en-US:
-      text: "So where exactly is Cranelift supposed to be faster? The best stage is the development phase, when you may not need near‑perfect, ultra‑optimized machine code at all; you just need quick feedback, and as long as this not‑so‑good machine code is semantically equivalent to the properly generated LLVM code, that’s sufficient; early Cranelift couldn’t achieve this because of many edge cases, although many have been improved, and now the chance that Cranelift runs while LLVM crashes is about the same as encountering a rustc ICE when writing Rust; LLVM generates highly optimized machine code by running dozens of passes—loop unrolling, vectorization, constant propagation, dead‑code elimination, etc.—layer after layer, whereas Cranelift’s philosophy is completely different: it drastically cuts these optimization steps, performing only basic register allocation and instruction selection with a single linear scan, without iterative passes, and its IR is lightweight, designed specifically for fast translation from a higher‑level IR to machine code, unlike LLVM IR which carries decades of general‑purpose baggage."
+      text: 'So where exactly is Cranelift supposed to be faster? The best stage is the development phase, when you may not need near‑perfect, ultra‑optimized machine code at all; you just need quick feedback, and as long as this not‑so‑good machine code is semantically equivalent to the properly generated LLVM code, that’s sufficient; early Cranelift couldn’t achieve this because of many edge cases, although many have been improved, and now the chance that Cranelift runs while LLVM crashes is about the same as encountering a rustc ICE when writing Rust; LLVM generates highly optimized machine code by running dozens of passes—loop unrolling, vectorization, constant propagation, dead‑code elimination, etc.—layer after layer, whereas Cranelift’s philosophy is completely different: it drastically cuts these optimization steps, performing only basic register allocation and instruction selection with a single linear scan, without iterative passes, and its IR is lightweight, designed specifically for fast translation from a higher‑level IR to machine code, unlike LLVM IR which carries decades of general‑purpose baggage.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:34:51.743778Z
@@ -213,7 +278,7 @@ segments:
       tokens: 21770
       review: false
     es-ES:
-      text: "Entonces, ¿en qué parte exactamente es Cranelift más rápido? La mejor fase es la etapa de desarrollo, cuando probablemente no necesites un código máquina casi perfecto o con una eficiencia de ejecución de optimización extrema; basta con una retroalimentación rápida. Mientras ese código máquina, aunque no sea tan bueno, sea semánticamente equivalente al código generado correctamente por LLVM, es suficiente. Las versiones tempranas de Cranelift no podían lograrlo debido a muchos casos límite; aunque todavía existen algunos, se han mejorado mucho, y ahora la probabilidad de que Cranelift funcione mientras LLVM falla es aproximadamente la misma que desencadenar un ICE de rustc al escribir Rust. LLVM genera código máquina de máxima optimización ejecutando docenas de pases de optimización, como desenrollado de bucles, vectorización, propagación de constantes, eliminación de código muerto, etc., capa tras capa. La filosofía de diseño de Cranelift es completamente diferente: reduce drásticamente esos pasos de optimización, solo realiza la asignación de registros básica y la selección de instrucciones con un único escaneo lineal, sin iteraciones repetidas. Además, su IR es más liviano, diseñado específicamente para traducir rápidamente un IR de nivel superior a código máquina, a diferencia del IR de LLVM que lleva la carga de décadas de generalidad."
+      text: 'Entonces, ¿en qué parte exactamente es Cranelift más rápido? La mejor fase es la etapa de desarrollo, cuando probablemente no necesites un código máquina casi perfecto o con una eficiencia de ejecución de optimización extrema; basta con una retroalimentación rápida. Mientras ese código máquina, aunque no sea tan bueno, sea semánticamente equivalente al código generado correctamente por LLVM, es suficiente. Las versiones tempranas de Cranelift no podían lograrlo debido a muchos casos límite; aunque todavía existen algunos, se han mejorado mucho, y ahora la probabilidad de que Cranelift funcione mientras LLVM falla es aproximadamente la misma que desencadenar un ICE de rustc al escribir Rust. LLVM genera código máquina de máxima optimización ejecutando docenas de pases de optimización, como desenrollado de bucles, vectorización, propagación de constantes, eliminación de código muerto, etc., capa tras capa. La filosofía de diseño de Cranelift es completamente diferente: reduce drásticamente esos pasos de optimización, solo realiza la asignación de registros básica y la selección de instrucciones con un único escaneo lineal, sin iteraciones repetidas. Además, su IR es más liviano, diseñado específicamente para traducir rápidamente un IR de nivel superior a código máquina, a diferencia del IR de LLVM que lleva la carga de décadas de generalidad.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:34:51.743778Z
@@ -221,7 +286,7 @@ segments:
       tokens: 21770
       review: false
     fr-FR:
-      text: "Alors, où Cranelift est‑il réellement plus rapide ? La meilleure période est la phase de développement, où il n’est pas nécessaire d’avoir un code machine presque parfait ou d’une optimisation extrême ; un retour rapide suffit. Tant que ce code machine, même s’il n’est pas aussi bon, est sémantiquement équivalent au code généré correctement par LLVM, c’est acceptable. Les premières versions de Cranelift ne pouvaient pas le faire à cause de nombreux cas limites ; bien que certains subsistent, ils ont été largement résolus, et aujourd’hui la probabilité que Cranelift fonctionne tandis que LLVM échoue est comparable à celle de déclencher un ICE de rustc en écrivant du Rust. LLVM produit du code machine hautement optimisé en exécutant des dizaines de passes d’optimisation – déroulement de boucles, vectorisation, propagation de constantes, élimination de code mort, etc. – couche après couche. La philosophie de conception de Cranelift est complètement différente : il réduit drastiquement ces étapes d’optimisation, ne réalise que l’allocation de registres de base et le choix d’instructions avec un seul balayage linéaire, sans itérations. De plus, son IR est plus léger, conçu spécifiquement pour traduire rapidement un IR de haut niveau en code machine, à la différence de l’IR d’LLVM qui porte le poids de décennies de généralisation."
+      text: 'Alors, où Cranelift est‑il réellement plus rapide ? La meilleure période est la phase de développement, où il n’est pas nécessaire d’avoir un code machine presque parfait ou d’une optimisation extrême ; un retour rapide suffit. Tant que ce code machine, même s’il n’est pas aussi bon, est sémantiquement équivalent au code généré correctement par LLVM, c’est acceptable. Les premières versions de Cranelift ne pouvaient pas le faire à cause de nombreux cas limites ; bien que certains subsistent, ils ont été largement résolus, et aujourd’hui la probabilité que Cranelift fonctionne tandis que LLVM échoue est comparable à celle de déclencher un ICE de rustc en écrivant du Rust. LLVM produit du code machine hautement optimisé en exécutant des dizaines de passes d’optimisation – déroulement de boucles, vectorisation, propagation de constantes, élimination de code mort, etc. – couche après couche. La philosophie de conception de Cranelift est complètement différente : il réduit drastiquement ces étapes d’optimisation, ne réalise que l’allocation de registres de base et le choix d’instructions avec un seul balayage linéaire, sans itérations. De plus, son IR est plus léger, conçu spécifiquement pour traduire rapidement un IR de haut niveau en code machine, à la différence de l’IR d’LLVM qui porte le poids de décennies de généralisation.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:34:51.743778Z
@@ -335,7 +400,7 @@ segments:
       tokens: 17282
       review: false
     en-US:
-      text: "There's another point worth discussing: the use of [UPX](https://github.com/upx/upx); I know I say I like musl, but also pursuing a small size is actually contradictory—it sounds unreasonable."
+      text: 'There''s another point worth discussing: the use of [UPX](https://github.com/upx/upx); I know I say I like musl, but also pursuing a small size is actually contradictory—it sounds unreasonable.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:35:21.240688Z
@@ -392,7 +457,7 @@ segments:
       review: false
   342f20e52b9ab4bb72d82c6f84108e5e:
     de-DE:
-      text: "Im normalen Geschäftslogik sollte `panic` nicht vorkommen. Wenn die Laufzeit im regulären Code auf einen Fehler trifft, sollte jedes fault‑tolerant konzipierte Err sicher zurückgegeben werden, anstatt gewaltsam zu panicen – ähnlich wie bei React ErrorBoundary – und als normale Fehlerbehandlung behandelt werden. Panic sollte nur ausgelöst werden, wenn der Code sicher ist, dass er in einen unmöglichen, nicht wiederherstellbaren Zustand geraten ist. Meine persönliche Philosophie ist, Panic zu verwerfen. Warum? Weil sich Geschäftslogik praktisch durch drei Teststufen abdecken lässt: die erste ist der Happy‑Path, die zweite ein Fehlermodus (einer von unendlich vielen möglichen), und die dritte besteht aus Fuzz‑ oder Kollisions‑Tests, die Edge‑Cases systematisch finden. Aus ingenieurtechnischer Sicht kann der korrekte Pfad zu 100 % getestet werden, und für den Fehlermodus reicht es, aus einer Klasse von n Varianten eine zu wählen; Kollisions‑Tests sind rein zeitaufwendig und meist nicht lohnenswert. Sobald die Nutzerzahl wirklich stark wächst, erkennt man selbst, wann sie nötig sind – ich verzichte in der Regel darauf."
+      text: 'Im normalen Geschäftslogik sollte `panic` nicht vorkommen. Wenn die Laufzeit im regulären Code auf einen Fehler trifft, sollte jedes fault‑tolerant konzipierte Err sicher zurückgegeben werden, anstatt gewaltsam zu panicen – ähnlich wie bei React ErrorBoundary – und als normale Fehlerbehandlung behandelt werden. Panic sollte nur ausgelöst werden, wenn der Code sicher ist, dass er in einen unmöglichen, nicht wiederherstellbaren Zustand geraten ist. Meine persönliche Philosophie ist, Panic zu verwerfen. Warum? Weil sich Geschäftslogik praktisch durch drei Teststufen abdecken lässt: die erste ist der Happy‑Path, die zweite ein Fehlermodus (einer von unendlich vielen möglichen), und die dritte besteht aus Fuzz‑ oder Kollisions‑Tests, die Edge‑Cases systematisch finden. Aus ingenieurtechnischer Sicht kann der korrekte Pfad zu 100 % getestet werden, und für den Fehlermodus reicht es, aus einer Klasse von n Varianten eine zu wählen; Kollisions‑Tests sind rein zeitaufwendig und meist nicht lohnenswert. Sobald die Nutzerzahl wirklich stark wächst, erkennt man selbst, wann sie nötig sind – ich verzichte in der Regel darauf.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:35:35.158446Z
@@ -400,7 +465,7 @@ segments:
       tokens: 36295
       review: false
     en-US:
-      text: "In normal business logic, `panic` should not exist. When runtime encounters an error in normal business code, any Err that has been designed with fault tolerance should be safely returned rather than violently panicking, just like React ErrorBoundary, and should be treated as normal error handling. Panic should only be triggered when the code is certain it has entered an impossible state that cannot be recovered. My personal philosophy is to abandon panic. Why? Because in practice, business code can be covered by three layers of testing: the first layer is the happy path, the second layer is an error path (one of the infinite possible cases), and the third layer is fuzz or collision testing that exhaustively discovers edge cases. From an engineering standpoint, the correct path can be tested 100%, and the error path can take one variant out of a class of n variations; collision testing is purely a matter of time and is often not worth it. When your user base truly scales up, you’ll know when you need to do it; I generally never do it."
+      text: 'In normal business logic, `panic` should not exist. When runtime encounters an error in normal business code, any Err that has been designed with fault tolerance should be safely returned rather than violently panicking, just like React ErrorBoundary, and should be treated as normal error handling. Panic should only be triggered when the code is certain it has entered an impossible state that cannot be recovered. My personal philosophy is to abandon panic. Why? Because in practice, business code can be covered by three layers of testing: the first layer is the happy path, the second layer is an error path (one of the infinite possible cases), and the third layer is fuzz or collision testing that exhaustively discovers edge cases. From an engineering standpoint, the correct path can be tested 100%, and the error path can take one variant out of a class of n variations; collision testing is purely a matter of time and is often not worth it. When your user base truly scales up, you’ll know when you need to do it; I generally never do it.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:35:35.158446Z
@@ -408,7 +473,7 @@ segments:
       tokens: 36295
       review: false
     es-ES:
-      text: "En la lógica de negocio normal, `panic` no debería existir. Cuando el runtime se encuentra con un error en el código de negocio habitual, cualquier Err diseñado con tolerancia a fallos debe devolverse de forma segura en lugar de provocar un panic violento, al igual que React ErrorBoundary, y debe tratarse como una gestión de errores normal. El panic solo debe activarse cuando el código está seguro de haber entrado en un estado imposible e irrecuperable. Mi filosofía personal es abandonar el panic. ¿Por qué? Porque en la práctica el código de negocio puede cubrirse con tres capas de pruebas: la primera es el happy path, la segunda un camino de error (una de las infinitas posibilidades) y la tercera es fuzz o pruebas de colisión que exhaustivamente descubren los edge cases. Desde el punto de vista de la ingeniería, el camino correcto puede probarse al 100 %, el camino de error puede tomar una variante de n, las pruebas de colisión son solo una cuestión de tiempo y a menudo no valen la pena. Cuando tu base de usuarios realmente crece, sabrás cuándo hacerlo; normalmente yo nunca lo hago."
+      text: 'En la lógica de negocio normal, `panic` no debería existir. Cuando el runtime se encuentra con un error en el código de negocio habitual, cualquier Err diseñado con tolerancia a fallos debe devolverse de forma segura en lugar de provocar un panic violento, al igual que React ErrorBoundary, y debe tratarse como una gestión de errores normal. El panic solo debe activarse cuando el código está seguro de haber entrado en un estado imposible e irrecuperable. Mi filosofía personal es abandonar el panic. ¿Por qué? Porque en la práctica el código de negocio puede cubrirse con tres capas de pruebas: la primera es el happy path, la segunda un camino de error (una de las infinitas posibilidades) y la tercera es fuzz o pruebas de colisión que exhaustivamente descubren los edge cases. Desde el punto de vista de la ingeniería, el camino correcto puede probarse al 100 %, el camino de error puede tomar una variante de n, las pruebas de colisión son solo una cuestión de tiempo y a menudo no valen la pena. Cuando tu base de usuarios realmente crece, sabrás cuándo hacerlo; normalmente yo nunca lo hago.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:35:35.158446Z
@@ -416,7 +481,7 @@ segments:
       tokens: 36295
       review: false
     fr-FR:
-      text: "Dans la logique métier normale, `panic` ne devrait pas exister. Lorsqu’à l’exécution le code métier rencontre une erreur, tout Err conçu avec tolérance aux pannes doit être retourné en toute sécurité plutôt que de déclencher brutalement un panic, à l’instar de React ErrorBoundary, et doit être traité comme une gestion d’erreur normale. Le panic ne doit être déclenché que lorsque le code est certain d’être dans un état impossible et irrécupérable. Ma philosophie personnelle est d’abandonner le panic. Pourquoi ? Parce qu’en pratique, le code métier peut être couvert par trois niveaux de tests : le premier est le happy path, le deuxième un chemin d’erreur (une des possibilités infinies), et le troisième le fuzz ou les tests de collision qui exhaustivent les edge cases. Du point de vue de l’ingénierie, le chemin correct peut être testé à 100 %, le chemin d’erreur peut prendre une variante parmi n, les tests de collision ne sont qu’une question de temps et ne valent souvent pas la peine. Lorsque votre base d’utilisateurs grandit réellement, vous verrez vous‑même quand les faire ; personnellement, je ne les fais généralement pas."
+      text: 'Dans la logique métier normale, `panic` ne devrait pas exister. Lorsqu’à l’exécution le code métier rencontre une erreur, tout Err conçu avec tolérance aux pannes doit être retourné en toute sécurité plutôt que de déclencher brutalement un panic, à l’instar de React ErrorBoundary, et doit être traité comme une gestion d’erreur normale. Le panic ne doit être déclenché que lorsque le code est certain d’être dans un état impossible et irrécupérable. Ma philosophie personnelle est d’abandonner le panic. Pourquoi ? Parce qu’en pratique, le code métier peut être couvert par trois niveaux de tests : le premier est le happy path, le deuxième un chemin d’erreur (une des possibilités infinies), et le troisième le fuzz ou les tests de collision qui exhaustivent les edge cases. Du point de vue de l’ingénierie, le chemin correct peut être testé à 100 %, le chemin d’erreur peut prendre une variante parmi n, les tests de collision ne sont qu’une question de temps et ne valent souvent pas la peine. Lorsque votre base d’utilisateurs grandit réellement, vous verrez vous‑même quand les faire ; personnellement, je ne les fais généralement pas.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:35:35.158446Z
@@ -457,7 +522,7 @@ segments:
       review: false
   3af867c1c9c2855d32512288192a0fd0:
     de-DE:
-      text: "## Panic aufgeben! {#abort-on-panic}"
+      text: '## Panic aufgeben! {#abort-on-panic}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:35:49.647608Z
@@ -465,7 +530,7 @@ segments:
       tokens: 16939
       review: false
     en-US:
-      text: "## Abort panic! {#abort-on-panic}"
+      text: '## Abort panic! {#abort-on-panic}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:35:49.647608Z
@@ -473,7 +538,7 @@ segments:
       tokens: 16939
       review: false
     es-ES:
-      text: "## Abandonar panic! {#abort-on-panic}"
+      text: '## Abandonar panic! {#abort-on-panic}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:35:49.647608Z
@@ -481,7 +546,7 @@ segments:
       tokens: 16939
       review: false
     fr-FR:
-      text: "## Abandonner panic! {#abort-on-panic}"
+      text: '## Abandonner panic! {#abort-on-panic}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:35:49.647608Z
@@ -489,7 +554,7 @@ segments:
       tokens: 16939
       review: false
     ja-JP:
-      text: "## panic を放棄! {#abort-on-panic}"
+      text: '## panic を放棄! {#abort-on-panic}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:35:49.647608Z
@@ -497,7 +562,7 @@ segments:
       tokens: 16939
       review: false
     ko-KR:
-      text: "## panic 포기! {#abort-on-panic}"
+      text: '## panic 포기! {#abort-on-panic}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:35:49.647608Z
@@ -505,7 +570,7 @@ segments:
       tokens: 16939
       review: false
     zh-CN:
-      text: "## 放弃 panic! {#abort-on-panic}"
+      text: '## 放弃 panic! {#abort-on-panic}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:35:49.647608Z
@@ -513,7 +578,7 @@ segments:
       tokens: 16939
       review: false
     zh-TW:
-      text: "## 放棄 panic! {#abort-on-panic}"
+      text: '## 放棄 panic! {#abort-on-panic}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:35:49.647608Z
@@ -522,133 +587,133 @@ segments:
       review: false
   3ecfd63d0174b61813402b5872679438:
     de-DE:
-      text: Nachdem die Vorteile erklärt sind, was kostet das? Zunächst ist offensichtlich, dass der von Cranelift erzeugte Code langsamer läuft als der von LLVM, je nach Szenario etwa 10 % bis 30 % langsamer. Aber wenn man darüber nachdenkt, merkt man, dass das in der Entwicklungsphase völlig unwichtig ist. Warum muss es so schnell sein? Geht es um Benchmarks oder um ein CI‑Release? Ich will einfach nur, dass cargo build schnell läuft, um zu sehen, ob die Logik funktioniert. Außerdem wette ich, dass die meisten Programme nicht mehr als 80 % ihrer Zeit mit rechenintensiven Aufgaben verbringen; es muss Geschäftslogik geben. Wie groß kann das Geschäft während der Entwicklung sein? Die CPU ist wahrscheinlich nicht die ganze Zeit beschäftigt. Stattdessen will ich das Ergebnis sehen und die Logik verifizieren. Wenn man also die Kompilierzeit gegen die Laufzeiteffizienz abwägt, sollte man in der Entwicklungsschleife das Ganze umdrehen.
+      text: 'Nachdem die Vorteile geklärt sind: Was kostet das? Zunächst einmal liegt die Laufzeitleistung von Cranelift-generiertem Code offensichtlich unter der von LLVM; je nach Szenario ist er etwa 10 % bis 30 % langsamer. Aber wenn man es nüchtern betrachtet, ist das in der Entwicklung völlig unwichtig. Wozu brauche ich das so schnell – machst du Benchmarks oder einen CI release? Ich will :tn[verdammt noch mal]{is="Im Original stand „tm“, eine aus Initialen gebildete, teilweise verschleierte chinesische Beschimpfung; sie klingt grob und frustriert.} nur, dass `cargo build` schneller durchläuft, damit ich sehe, ob die Logik funktioniert. Und ich wette, dass die meisten Programme, die du schreibst, unmöglich mehr als 80 % der Zeit die Rechenressourcen auslasten können; es müssen schließlich erst Geschäftsanforderungen eintreffen. Wie viel Last kann es während der Entwicklung schon geben? Die CPU macht vermutlich die ganze Zeit blau. Ich will stattdessen das Ergebnis sehen und die Logik prüfen. Sollte man die Rechnung „Kompilierzeit gegen Laufzeiteffizienz“ im Entwicklungszyklus also nicht umgekehrt aufstellen?'
       provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:35:49.658331Z
-      seconds: 21.938597792
-      tokens: 20601
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.095134Z
+      seconds: 48.467702458
+      tokens: 19411
       review: false
     en-US:
-      text: Having said the benefits, what about the cost? First, it’s obvious that code generated by Cranelift runs slower than LLVM’s, roughly 10%–30% slower depending on the scenario. But when you think about it, you realize this isn’t important at all during development. Why do we need it to be that fast? Are you chasing benchmarks or a CI release? I just want cargo build to be quick, to see if the logic works. Moreover, I bet most of your programs don’t spend more than 80% of the time on computation; they must have business logic. How big can that business be while you’re developing? The CPU is probably not busy all the time. Instead, I care about seeing the effect and validating the logic. So swapping compile time for runtime efficiency—shouldn’t we invert that calculation in the development loop?
+      text: So, after the benefits, what’s the cost? First, obviously, code generated by Cranelift has worse runtime performance than LLVM, roughly 10%–30% slower depending on the scenario. But once you think it through, you realize that simply does not matter during development. Why do I need it that fast—are you benchmarking or doing a CI release? I :tn[fucking]{is="The original used “tm,” an initialism for a Chinese profanity; it keeps the blunt, partly censored frustration.} just want `cargo build` to finish faster so I can see whether the logic works. And I’d bet that most programs you write cannot possibly keep compute resources saturated more than 80% of the time; they have to wait for business requests. How much traffic can there be while you’re developing? The CPU is probably slacking off the whole time. What I need instead is to see the result and validate the logic. So when trading compile time for runtime efficiency, shouldn’t the calculation be reversed in the development loop?
       provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:35:49.658331Z
-      seconds: 21.938597792
-      tokens: 20601
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.095134Z
+      seconds: 48.467702458
+      tokens: 19411
       review: false
     es-ES:
-      text: Ya que hemos mencionado los beneficios, ¿cuál es el coste? En primer lugar, es evidente que el código generado por Cranelift tiene un rendimiento de ejecución peor que el de LLVM, alrededor de un 10 %‑30 % más lento según el caso. Pero al reflexionar, nos damos cuenta de que esto no importa en absoluto durante el desarrollo. ¿Por qué necesita ser tan rápido? ¿Se trata de puntuaciones o de un release CI? Simplemente quiero que cargo build se ejecute rápido para comprobar que la lógica funciona. Además, apuesto a que la mayoría de tus programas no ocupan más del 80 % del tiempo de cálculo; deben contener lógica de negocio. ¿Cuán grande puede ser esa lógica durante el desarrollo? La CPU probablemente no está ocupada todo el tiempo. Más bien, quiero ver el efecto y validar la lógica. Así que, al intercambiar tiempo de compilación por eficiencia en tiempo de ejecución, ¿no deberíamos invertir ese cálculo en el ciclo de desarrollo?
+      text: 'Bien, ya hemos hablado de las ventajas; ¿cuál es el coste? Primero, es evidente que el código generado por Cranelift rinde peor en tiempo de ejecución que LLVM: según el escenario, puede ser aproximadamente entre un 10 % y un 30 % más lento. Pero, si lo piensas bien, eso no importa en absoluto durante el desarrollo. ¿Para qué lo quiero tan rápido, estás haciendo benchmarks o una CI release? Yo :tn[maldita sea]{is="El original usaba «tm», unas iniciales que ocultan parcialmente una palabrota china; conserva un tono brusco y frustrado.} solo quiero que `cargo build` se ejecute más rápido para ver si la lógica funciona. Además, apostaría a que la mayoría de los programas que escribes no pueden tener los recursos de cómputo ocupados más del 80 % del tiempo; tienen que llegar solicitudes de negocio. ¿Cuánta carga de negocio puede haber mientras desarrollas? El CPU seguramente está holgazaneando todo el tiempo. Lo que yo quiero es ver el resultado y validar la lógica. Entonces, ¿no habría que invertir la cuenta de cambiar tiempo de compilación por eficiencia en tiempo de ejecución dentro del ciclo de desarrollo?'
       provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:35:49.658331Z
-      seconds: 21.938597792
-      tokens: 20601
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.095134Z
+      seconds: 48.467702458
+      tokens: 19411
       review: false
     fr-FR:
-      text: Après avoir exposé les avantages, quel est le coût ? Tout d’abord, il est évident que le code généré par Cranelift est moins performant à l’exécution que celui d’LLVM, environ 10 % à 30 % plus lent selon les scénarios. Mais en y réfléchissant, on se rend compte que cela n’a aucune importance pendant le développement. Pourquoi faut‑il que ce soit si rapide ? S’agit‑il de benchmarks ou d’une release CI ? Je veux simplement que cargo build s’exécute rapidement pour voir si la logique fonctionne. De plus, je parie que la plupart de vos programmes n’occupent pas plus de 80 % du temps de calcul ; ils doivent contenir une logique métier. Quelle envergure peut avoir cette logique pendant le développement ? Le CPU n’est probablement pas occupé en permanence. Au contraire, je veux voir le résultat et valider la logique. Ainsi, échanger le temps de compilation contre l’efficacité à l’exécution devrait, dans la boucle de développement, être calculé à l’envers.
+      text: 'Maintenant que les avantages sont dits, quel en est le prix ? D’abord, évidemment, le code généré par Cranelift offre de moins bonnes performances à l’exécution que LLVM, avec environ 10 % à 30 % de ralentissement selon le cas. Mais à bien y réfléchir, cela n’a aucune importance pendant le développement. Pourquoi me faudrait-il une telle vitesse : tu fais du benchmark ou une CI release ? Je veux :tn[putain]{is="L’original employait « tm », des initiales masquant partiellement une grossièreté chinoise ; cela exprime une frustration crue mais euphémisée.} juste que `cargo build` termine plus vite, pour vérifier que la logique marche. Et je parie que la plupart des programmes que tu écris ne peuvent pas saturer les ressources de calcul plus de 80 % du temps ; il faut bien attendre que des requêtes métier arrivent. Quelle charge métier peut-il y avoir pendant le développement ? Le CPU est probablement en train de glander tout du long. Moi, ce que je veux, c’est voir le résultat et valider la logique. Alors, dans la boucle de développement, ne devrait-on pas inverser le calcul entre temps de compilation et efficacité à l’exécution ?'
       provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:35:49.658331Z
-      seconds: 21.938597792
-      tokens: 20601
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.095134Z
+      seconds: 48.467702458
+      tokens: 19411
       review: false
     ja-JP:
-      text: 利点は述べたので、コストは？まず明らかなのは、Cranelift が生成するコードは LLVM より実行時の性能が劣り、シナリオによっては約10%～30%遅くなることです。しかし、開発段階ではこれが全く重要でないことに気づきます。そこまで速くする必要はありますか？ベンチマークを取るのか、CI リリースなのか、私は cargo build を早く走らせてロジックが出てくるか確認したいだけです。さらに、プログラムの80%以上が計算リソースを占有することはほとんどなく、ビジネスロジックが必ず入ります。開発時にどれだけのビジネスがあるでしょうか？CPU はずっと遊んでいるわけではないでしょう。むしろ効果を見てロジックを検証したいのです。なので、コンパイル時間と実行時効率を入れ替えるとしたら、開発サイクルでは逆算すべきではありませんか。
+      text: では、利点を話し終えたところで、代償は何か。まず明らかなのは、Cranelift が生成するコードは LLVM より実行時性能が低く、状況によってはおよそ 10%～30% 遅いことだ。でも考え直せば、開発段階ではそんなことはまったく重要ではない。そんなに速くして何になる、ベンチマークでも CI release でもあるまいし。俺は :tn[とにかくクソほど]{is="原文の「tm」は中国語の罵り言葉を頭文字で伏せた表現で、乱暴だが少し婉曲な苛立ちを出している。} `cargo build` を速く走らせて、ロジックが動くか見たいだけだ。それに、あなたが書くプログラムの大半が計算資源を 80% 以上の時間ずっと使い切るなんてあり得ない、と私は賭けてもいい。仕事のリクエストを待つ必要があるのだから。開発中にどれほどのトラフィックがあるというのか。CPU は最初から最後までサボっているのではないか。むしろ必要なのは結果を見て、ロジックを検証することだ。なら、コンパイル時間と実行時効率を交換する計算は、開発ループでは逆に考えるべきではないか。
       provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:35:49.658331Z
-      seconds: 21.938597792
-      tokens: 20601
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.095134Z
+      seconds: 48.467702458
+      tokens: 19411
       review: false
     ko-KR:
-      text: 이점은 말했으니, 비용은 어떨까요? 먼저 명백한 것은 Cranelift가 생성한 코드는 LLVM보다 실행 성능이 떨어지고, 상황에 따라 약 10%~30% 정도 느리다는 점입니다. 하지만 생각해 보면 개발 단계에서는 이것이 전혀 중요하지 않다는 것을 알게 됩니다. 그렇게 빨리 할 필요가 있을까요? 벤치마크를 위해서인가, CI 릴리스를 위한 것인가요? 저는 단지 cargo build를 빠르게 실행해서 로직이 나오는지 확인하고 싶을 뿐입니다. 또한 대부분의 프로그램이 80% 이상을 계산 자원으로 사용하지 않을 것이라고 장담합니다; 비즈니스 로직이 반드시 들어가야 합니다. 개발 중에 비즈니스가 얼마나 클 수 있겠습니까? CPU가 계속 놀고 있는 건 아닐 겁니다. 오히려 결과를 보고 로직을 검증하고 싶습니다. 따라서 컴파일 시간과 런타임 효율성을 맞바꾼다면, 개발 루프에서는 이를 역으로 계산해야 하지 않을까요?
+      text: 그럼 장점은 다 말했으니, 대가는 뭘까? 우선 분명한 것은 Cranelift가 생성한 코드는 LLVM보다 런타임 성능이 떨어지고, 상황에 따라 대략 10%~30% 느리다는 점이다. 하지만 곰곰이 생각해 보면 개발 단계에서는 그게 전혀 중요하지 않다. 그렇게 빨라서 뭐 하려고, 벤치마크를 돌리는 것도 아니고 CI release를 하는 것도 아닌데. 나는 :tn[빌어먹을]{is="원문의 “tm”은 중국어 욕설을 이니셜로 가린 표현으로, 거칠면서도 일부를 완곡하게 감춘 짜증을 담고 있다.} `cargo build`가 좀 더 빨리 끝나서 로직이 나왔는지만 보고 싶을 뿐이다. 그리고 장담하는데, 당신이 작성하는 대부분의 프로그램이 시간의 80% 이상 동안 계산 자원을 꽉 채울 리는 없다. 업무 요청이 들어와야 하니까. 개발 중에 업무량이 얼마나 되겠는가? CPU는 아마 처음부터 끝까지 놀고 있을 것이다. 오히려 나는 결과를 보고 로직을 검증하고 싶다. 그렇다면 컴파일 시간과 런타임 효율의 교환을 개발 루프에서는 거꾸로 계산해야 하지 않을까?
       provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:35:49.658331Z
-      seconds: 21.938597792
-      tokens: 20601
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.095134Z
+      seconds: 48.467702458
+      tokens: 19411
       review: false
     zh-CN:
-      text: 那么好处说完了，代价呢？首先显而易见的是 Cranelift 生成的代码运行时性能比 LLVM 差，根据场景不同大概会慢 10%~30%。但想开了其实就会发现，这在开发阶段根本不重要，我要那么快干嘛，你是跑分还是 CI release 啊，我就 tm 要跑 cargo build 快点，看看逻辑出没出来，而且我打赌，你写的大部分程序不可能 80% 以上的时间占满计算资源，肯定是要有业务来的，你开发的时候业务能有多大？cpu 怕不是全程都在摸鱼呢，反倒是我要看效果、验证逻辑。那编译时间换运行时效率，这笔账在开发循环里是不是应该倒过来算嘛。
+      text: 那么好处说完了，代价呢？首先显而易见的是 Cranelift 生成的代码运行时性能比 LLVM 差，根据场景不同大概会慢 10%～30%。但想开了其实就会发现，这在开发阶段根本不重要，我要那么快干嘛，你是跑分还是 CI release 啊，我就 :tn[他妈的]{is="原文用“tm”代替汉语脏话“他妈”，以字母作含蓄遮挡，同时保留粗暴的语气。} 要跑 `cargo build` 快点，看看逻辑出没出来，而且我打赌，你写的大部分程序不可能 80% 以上的时间占满计算资源，肯定是要有业务来的，你开发的时候业务能有多大？CPU 怕不是全程都在摸鱼呢，反倒是我要看效果、验证逻辑。那编译时间换运行时效率，这笔账在开发循环里是不是应该倒过来算嘛。
       provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:35:49.658331Z
-      seconds: 21.938597792
-      tokens: 20601
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.095134Z
+      seconds: 48.467702458
+      tokens: 19411
       review: false
     zh-TW:
-      text: 那麼好處說完了，代價呢？首先顯而易見的是 Cranelift 生成的代碼運行時性能比 LLVM 差，根據場景不同大概會慢 10%~30%。但想開了其實就會發現，這在開發階段根本不重要，我要那麼快幹嘛，你是跑分還是 CI release 啊，我就 tm 要跑 cargo build 快點，看看邏輯出沒出來，而且我打賭，你寫的大部分程式不可能 80% 以上的時間佔滿計算資源，肯定是要有業務來的，你開發的時候業務能有多大？cpu 怕不是全程都在摸魚呢，反倒是我要看效果、驗證邏輯。那編譯時間換運行時效率，這筆帳在開發循環裡是不是應該倒過來算嘛。
+      text: 那麼好處說完了，代價呢？首先顯而易見的是 Cranelift 生成的程式碼執行時效能比 LLVM 差，依場景不同大概會慢 10%～30%。但想開了其實就會發現，這在開發階段根本不重要，我要那麼快幹嘛，你是跑分還是 CI release 啊，我就 :tn[他媽的]{is="原文以「tm」縮寫代替漢語髒話「他媽」，用字母稍作遮掩，仍保留粗暴的語氣。} 要跑 `cargo build` 快點，看看邏輯有沒有跑出來，而且我打賭，你寫的大部分程式不可能 80% 以上的時間占滿運算資源，肯定是要有業務進來，你開發的時候業務能有多大？CPU 怕不是全程都在摸魚呢，反倒是我要看效果、驗證邏輯。那編譯時間換執行時效率，這筆帳在開發迴圈裡是不是應該倒過來算嘛。
       provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:35:49.658331Z
-      seconds: 21.938597792
-      tokens: 20601
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.095134Z
+      seconds: 48.467702458
+      tokens: 19411
       review: false
   54e05f42d060fa75becb4273b614c77f:
     de-DE:
-      text: Wie bei allen anderen Dingen befinden sich Rust‑Debuginfo und Symbole hier. Das Aktivieren von `strip` im Release‑Modus kann die Größe erheblich reduzieren (~~normalerweise 50 MB vs 5 MB~~), ein erstaunlicher Unterschied. Das Entfernen von Symbolen erhöht zudem die Sicherheit, da der Frontend‑Quellcode häufig versehentlich über Source‑Maps in npm veröffentlicht und dadurch geleakt wird. :(
+      text: 'Wie alles andere befinden sich auch Rusts Debuginformationen und Symbole hier; wenn man im Release-Modus `strip` aktiviert, lässt sich die Größe erheblich verringern (~~gewöhnlich 50 MB gegenüber 5 MB~~) – ein :tn[völlig absurden]{is="Im Original steht 逆天, wörtlich „dem Himmel widersprechend“: chinesischer Netzjargon, der scherzhaft etwas als so unglaublich bezeichnet, dass es jeder Vernunft spottet.} Unterschied. Das Entfernen der Symbole ist außerdem sicherer, denn der Frontend-source code wird meist geleakt, weil ihn jemand versehentlich aus einer Map-Datei auf npm pusht :('
       provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:35:49.666854Z
-      seconds: 13.452033959
-      tokens: 17985
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.09516Z
+      seconds: 32.436720167
+      tokens: 18280
       review: false
     en-US:
-      text: Like everything else, Rust’s debuginfo and symbols are located here; enabling `strip` in release mode can dramatically shrink the size (~~normally 50 MB vs 5 MB~~), a staggering difference. Removing symbols also makes it safer, since most of the time frontend source code accidentally gets pushed to npm via source maps, leaking it. :(
+      text: As with everything else, Rust’s debug information and symbols live here; enabling `strip` in release mode can cut an enormous amount of size (~~usually 50 MB vs. 5 MB~~)—a :tn[completely absurd]{is="The original uses 逆天, literally “defying heaven,” as playful internet slang for something outrageously beyond reason.} difference. Removing symbols is also safer, since frontend source code is usually leaked when someone accidentally pushes it to npm from a map file :(
       provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:35:49.666854Z
-      seconds: 13.452033959
-      tokens: 17985
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.09516Z
+      seconds: 32.436720167
+      tokens: 18280
       review: false
     es-ES:
-      text: Al igual que todo lo demás, el debuginfo y los símbolos de Rust están aquí. Activar `strip` en modo release puede reducir enormemente el tamaño (~~normalmente 50 MB frente a 5 MB~~), una diferencia asombrosa. Eliminar los símbolos también es más seguro, ya que la mayor parte del tiempo el código fuente del frontend se sube accidentalmente a npm a través de los mapas de origen, provocando una fuga. :(
+      text: 'Como todo lo demás, la información de depuración y los símbolos de Rust también están aquí; activar `strip` en modo release puede reducir muchísimo el tamaño (~~normalmente 50 MB frente a 5 MB~~), una diferencia :tn[de locos]{is="El original usa 逆天, literalmente «desafiar al cielo»: jerga china de internet, exagerada y jocosa, para algo tan absurdo que rebasa toda lógica.}. Quitar los símbolos también es más seguro, porque la mayor parte de las veces el source code del frontend se filtra cuando alguien lo sube accidentalmente a npm desde un archivo map :('
       provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:35:49.666854Z
-      seconds: 13.452033959
-      tokens: 17985
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.09516Z
+      seconds: 32.436720167
+      tokens: 18280
       review: false
     fr-FR:
-      text: Comme tout le reste, le debuginfo et les symboles de Rust se trouvent ici. Activer `strip` en mode release permet de réduire considérablement la taille (~~généralement 50 Mo contre 5 Mo~~), une différence impressionnante. Supprimer les symboles augmente également la sécurité, car le code source du front‑end se retrouve souvent accidentellement dans npm via les source maps, entraînant une fuite. :(
+      text: 'Comme pour le reste, les informations de débogage et les symboles de Rust se trouvent ici ; activer `strip` en mode release peut réduire très fortement la taille (~~en général 50 MB contre 5 MB~~), une différence :tn[complètement hallucinante]{is="L’original emploie 逆天, littéralement « défier le ciel » : un terme d’argot internet chinois, volontairement exagéré et moqueur, pour dire que c’est absurde au-delà du raisonnable.}. Supprimer les symboles est aussi plus sûr, puisque le source code frontend fuite le plus souvent quand quelqu’un le push accidentellement sur npm depuis un fichier map :('
       provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:35:49.666854Z
-      seconds: 13.452033959
-      tokens: 17985
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.09516Z
+      seconds: 32.436720167
+      tokens: 18280
       review: false
     ja-JP:
-      text: 他のものと同様に、Rust の debuginfo とシンボルはここにあります。release モードで `strip` を有効にすると、サイズが非常に大幅に削減できます（~~通常は 50 MB vs 5 MB~~）という驚異的な差があります。シンボルを除去することで安全性も高まります。というのも、ほとんどの場合、フロントエンドのソースコードが map から誤って npm にプッシュされて漏洩してしまうからです。 :(
+      text: ほかのものと同様に、Rust のデバッグ情報とシンボルもここに存在し、release モードで `strip` を有効にすると、非常に大きく容量を削減できる（~~通常は 50 MB 対 5 MB~~）。これは :tn[常識外れなほどの]{is="原文の「逆天」は、字面では「天に逆らう」の意で、あまりに非常識で笑ってしまうほどだと誇張する中国語ネットスラング。}差だ。シンボルを取り除くほうが安全でもある。というのも、フロントエンドの source code はたいてい、map ファイルから誤って npm に push されて漏洩するからだ :(
       provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:35:49.666854Z
-      seconds: 13.452033959
-      tokens: 17985
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.09516Z
+      seconds: 32.436720167
+      tokens: 18280
       review: false
     ko-KR:
-      text: 다른 모든 것과 마찬가지로 Rust의 debuginfo와 symbols는 여기 있습니다. release 모드에서 `strip`를 활성화하면 크기를 크게 줄일 수 있습니다(~~보통 50 MB vs 5 MB~~)라는 놀라운 차이가 있습니다. symbols를 제거하면 안전성도 높아집니다. 대부분의 경우 프론트엔드 소스 코드를 map에서 실수로 npm에 푸시해 유출되기 때문입니다. :(
+      text: 다른 것들과 마찬가지로 Rust의 debug information과 symbols도 여기에 있으며, release 모드에서 `strip`를 켜면 용량을 크게 줄일 수 있다(~~보통 50 MB 대 5 MB~~). 이 정도면 :tn[상식을 초월할 만큼 황당한]{is="원문의 逆天은 글자 그대로는 ‘하늘을 거스르다’이며, 너무 터무니없어 웃길 정도라는 뜻을 과장해 표현하는 중국 인터넷 속어다.} 차이다. symbols를 제거하는 편이 더 안전하기도 한데, frontend source code는 대개 map 파일에서 실수로 npm에 push되어 유출되기 때문이다 :(
       provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:35:49.666854Z
-      seconds: 13.452033959
-      tokens: 17985
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.09516Z
+      seconds: 32.436720167
+      tokens: 18280
       review: false
     zh-CN:
-      text: 和其他东西一样 Rust 的 debuginfo 和 symbols 就是存在于这里的，release 模式开启 `strip` 可减少非常可观的体积（~~通常是50MB vs 5MB~~）这样的逆天区别，除掉 symbols 也更加安全，毕竟大部分时候前端 source code 都是从 map 里面不小心 push 上 npm 泄漏的 :(
+      text: 和其他东西一样，Rust 的调试信息和符号也都在这里；在 release 模式开启 `strip` 可以显著缩小体积（~~通常是 50 MB 对 5 MB~~），差距 :tn[离谱得逆天]{is="“逆天”字面意思是“违逆上天”，这里用作带戏谑感的网络语，夸张地说这种差距荒唐得超出常理。}。去掉符号也更安全，毕竟前端 source code 大多都是有人不小心从 map 文件 push 到 npm 后泄漏的 :(
       provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:35:49.666854Z
-      seconds: 13.452033959
-      tokens: 17985
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.09516Z
+      seconds: 32.436720167
+      tokens: 18280
       review: false
     zh-TW:
-      text: 和其他東西一樣 Rust 的 debuginfo 和 symbols 就是存在於這裡的，release 模式開啟 `strip` 可減少非常可觀的體積（~~通常是50MB vs 5MB~~）這樣的逆天區別，除掉 symbols 也更加安全，畢竟大部分時候前端 source code 都是從 map 裡面不小心 push 上 npm 泄漏的 :(
+      text: 和其他東西一樣，Rust 的偵錯資訊和符號也都在這裡；在 release 模式開啟 `strip` 可以大幅縮小體積（~~通常是 50 MB 對 5 MB~~），差距 :tn[離譜到逆天]{is="「逆天」字面是「違逆上天」，這裡是帶戲謔感的網路用語，誇張地形容差距荒唐得超出常理。}。移除符號也更安全，畢竟前端 source code 多半都是有人不小心從 map 檔案 push 到 npm 後洩漏的 :(
       provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:35:49.666854Z
-      seconds: 13.452033959
-      tokens: 17985
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.09516Z
+      seconds: 32.436720167
+      tokens: 18280
       review: false
   5848c8d3988d4cfd2ec43ed33b167136:
     de-DE:
@@ -717,7 +782,7 @@ segments:
       review: false
   59129e74c82e302c36e7da4800e6472e:
     de-DE:
-      text: "## Tatsächliche Tests {#benchmark}"
+      text: '## Tatsächliche Tests {#benchmark}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:05.849642Z
@@ -725,7 +790,7 @@ segments:
       tokens: 16825
       review: false
     en-US:
-      text: "## Actual testing {#benchmark}"
+      text: '## Actual testing {#benchmark}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:05.849642Z
@@ -733,7 +798,7 @@ segments:
       tokens: 16825
       review: false
     es-ES:
-      text: "## Pruebas reales {#benchmark}"
+      text: '## Pruebas reales {#benchmark}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:05.849642Z
@@ -741,7 +806,7 @@ segments:
       tokens: 16825
       review: false
     fr-FR:
-      text: "## Tests réels {#benchmark}"
+      text: '## Tests réels {#benchmark}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:05.849642Z
@@ -749,7 +814,7 @@ segments:
       tokens: 16825
       review: false
     ja-JP:
-      text: "## 実際のテスト {#benchmark}"
+      text: '## 実際のテスト {#benchmark}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:05.849642Z
@@ -757,7 +822,7 @@ segments:
       tokens: 16825
       review: false
     ko-KR:
-      text: "## 실제 테스트 {#benchmark}"
+      text: '## 실제 테스트 {#benchmark}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:05.849642Z
@@ -765,7 +830,7 @@ segments:
       tokens: 16825
       review: false
     zh-CN:
-      text: "## 实际测试 {#benchmark}"
+      text: '## 实际测试 {#benchmark}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:05.849642Z
@@ -773,7 +838,7 @@ segments:
       tokens: 16825
       review: false
     zh-TW:
-      text: "## 實際測試 {#benchmark}"
+      text: '## 實際測試 {#benchmark}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:05.849642Z
@@ -847,7 +912,7 @@ segments:
       review: false
   5d40ce0aa9f8cfbaba85afa08e1831f0:
     de-DE:
-      text: "## Cranelift {#cranelift}"
+      text: '## Cranelift {#cranelift}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:11.619256Z
@@ -855,7 +920,7 @@ segments:
       tokens: 16509
       review: false
     en-US:
-      text: "## Cranelift {#cranelift}"
+      text: '## Cranelift {#cranelift}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:11.619256Z
@@ -863,7 +928,7 @@ segments:
       tokens: 16509
       review: false
     es-ES:
-      text: "## Cranelift {#cranelift}"
+      text: '## Cranelift {#cranelift}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:11.619256Z
@@ -871,7 +936,7 @@ segments:
       tokens: 16509
       review: false
     fr-FR:
-      text: "## Cranelift {#cranelift}"
+      text: '## Cranelift {#cranelift}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:11.619256Z
@@ -879,7 +944,7 @@ segments:
       tokens: 16509
       review: false
     ja-JP:
-      text: "## Cranelift {#cranelift}"
+      text: '## Cranelift {#cranelift}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:11.619256Z
@@ -887,7 +952,7 @@ segments:
       tokens: 16509
       review: false
     ko-KR:
-      text: "## Cranelift {#cranelift}"
+      text: '## Cranelift {#cranelift}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:11.619256Z
@@ -895,7 +960,7 @@ segments:
       tokens: 16509
       review: false
     zh-CN:
-      text: "## Cranelift {#cranelift}"
+      text: '## Cranelift {#cranelift}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:11.619256Z
@@ -903,7 +968,7 @@ segments:
       tokens: 16509
       review: false
     zh-TW:
-      text: "## Cranelift {#cranelift}"
+      text: '## Cranelift {#cranelift}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:11.619256Z
@@ -1172,7 +1237,7 @@ segments:
       review: false
   753f60673f27ad08896f0f3c7eae02dc:
     de-DE:
-      text: "## Code-Generierungseinheiten {#codegen-units}"
+      text: '## Code-Generierungseinheiten {#codegen-units}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:33.555287Z
@@ -1180,7 +1245,7 @@ segments:
       tokens: 16753
       review: false
     en-US:
-      text: "## Code Generation Units {#codegen-units}"
+      text: '## Code Generation Units {#codegen-units}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:33.555287Z
@@ -1188,7 +1253,7 @@ segments:
       tokens: 16753
       review: false
     es-ES:
-      text: "## Unidades de generación de código {#codegen-units}"
+      text: '## Unidades de generación de código {#codegen-units}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:33.555287Z
@@ -1196,7 +1261,7 @@ segments:
       tokens: 16753
       review: false
     fr-FR:
-      text: "## Unité de génération de code {#codegen-units}"
+      text: '## Unité de génération de code {#codegen-units}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:33.555287Z
@@ -1204,7 +1269,7 @@ segments:
       tokens: 16753
       review: false
     ja-JP:
-      text: "## コード生成ユニット {#codegen-units}"
+      text: '## コード生成ユニット {#codegen-units}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:33.555287Z
@@ -1212,7 +1277,7 @@ segments:
       tokens: 16753
       review: false
     ko-KR:
-      text: "## 코드 생성 단위 {#codegen-units}"
+      text: '## 코드 생성 단위 {#codegen-units}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:33.555287Z
@@ -1220,7 +1285,7 @@ segments:
       tokens: 16753
       review: false
     zh-CN:
-      text: "## 代码生成单元 {#codegen-units}"
+      text: '## 代码生成单元 {#codegen-units}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:33.555287Z
@@ -1228,7 +1293,7 @@ segments:
       tokens: 16753
       review: false
     zh-TW:
-      text: "## 代碼生成單元 {#codegen-units}"
+      text: '## 代碼生成單元 {#codegen-units}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:33.555287Z
@@ -1302,7 +1367,7 @@ segments:
       review: false
   77dbea1f344e54e899f0f992db0bd70c:
     de-DE:
-      text: "## Veralteter Linker {#legacy-linker}"
+      text: '## Veralteter Linker {#legacy-linker}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:45.009882Z
@@ -1310,7 +1375,7 @@ segments:
       tokens: 16888
       review: false
     en-US:
-      text: "## Legacy Linker {#legacy-linker}"
+      text: '## Legacy Linker {#legacy-linker}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:45.009882Z
@@ -1318,7 +1383,7 @@ segments:
       tokens: 16888
       review: false
     es-ES:
-      text: "## Linker heredado {#legacy-linker}"
+      text: '## Linker heredado {#legacy-linker}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:45.009882Z
@@ -1326,7 +1391,7 @@ segments:
       tokens: 16888
       review: false
     fr-FR:
-      text: "## Linker hérité {#legacy-linker}"
+      text: '## Linker hérité {#legacy-linker}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:45.009882Z
@@ -1334,7 +1399,7 @@ segments:
       tokens: 16888
       review: false
     ja-JP:
-      text: "## レガシーリンカー {#legacy-linker}"
+      text: '## レガシーリンカー {#legacy-linker}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:45.009882Z
@@ -1342,7 +1407,7 @@ segments:
       tokens: 16888
       review: false
     ko-KR:
-      text: "## 레거시 링커 {#legacy-linker}"
+      text: '## 레거시 링커 {#legacy-linker}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:45.009882Z
@@ -1350,7 +1415,7 @@ segments:
       tokens: 16888
       review: false
     zh-CN:
-      text: "## 老旧的链接器 {#legacy-linker}"
+      text: '## 老旧的链接器 {#legacy-linker}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:45.009882Z
@@ -1358,7 +1423,7 @@ segments:
       tokens: 16888
       review: false
     zh-TW:
-      text: "## 老舊的連結器 {#legacy-linker}"
+      text: '## 老舊的連結器 {#legacy-linker}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:45.009882Z
@@ -1367,7 +1432,7 @@ segments:
       review: false
   79ff0db9c5cea340095a60851e284cc9:
     de-DE:
-      text: "Außerdem sollte UPX nicht missbraucht werden; es eignet sich nur für langlaufende oder seltene Aufgaben. Langlaufende Aufgaben sind passend, weil UPX beim Start das Binärfile einmal im Speicher entpacken muss – dieser Vorgang ist vollständig automatisiert, verursacht jedoch eine geringe Kaltstartverzögerung, die bei seltenen Aufrufen vernachlässigbar ist, auf hochfrequenten Pfaden jedoch tödlich sein kann. Daher passt ein einmaliger Hintergrundstart einer langlaufenden Aufgabe gut, aber ich empfehle nicht, Docker‑Images für langlaufende Dienste gedankenlos mit UPX zu füllen, da dies im Grunde einen Tausch von Arbeitsspeicher gegen Festplattenspeicher darstellt – ein echter Verlust – und die Container‑Layer‑Komprimierung bereits denselben Nutzen bietet, indem sie die Downloadgröße reduziert. Stattdessen wird die Umgebung für bestimmte CLI‑Anwendungen empfohlen: Sie spart enorm viel Festplattenspeicher, die Entpackzeit ist praktisch unmerklich, und musl ist von Natur aus für CLI‑Tools geeignet. Andernfalls muss ich den AUR‑Helper kritisieren – in Go geschrieben, aber ohne statisches Linking – denn ich habe bereits erlebt, dass yay auf ArchLinux kaputt ging, weil es eine dynamische Bibliothek nicht finden konnte; als Systemverwalter blieb mir nur, ein Live‑ISO zu starten und schließlich mit chroot das System zu retten."
+      text: 'Außerdem sollte UPX nicht missbraucht werden; es eignet sich nur für langlaufende oder seltene Aufgaben. Langlaufende Aufgaben sind passend, weil UPX beim Start das Binärfile einmal im Speicher entpacken muss – dieser Vorgang ist vollständig automatisiert, verursacht jedoch eine geringe Kaltstartverzögerung, die bei seltenen Aufrufen vernachlässigbar ist, auf hochfrequenten Pfaden jedoch tödlich sein kann. Daher passt ein einmaliger Hintergrundstart einer langlaufenden Aufgabe gut, aber ich empfehle nicht, Docker‑Images für langlaufende Dienste gedankenlos mit UPX zu füllen, da dies im Grunde einen Tausch von Arbeitsspeicher gegen Festplattenspeicher darstellt – ein echter Verlust – und die Container‑Layer‑Komprimierung bereits denselben Nutzen bietet, indem sie die Downloadgröße reduziert. Stattdessen wird die Umgebung für bestimmte CLI‑Anwendungen empfohlen: Sie spart enorm viel Festplattenspeicher, die Entpackzeit ist praktisch unmerklich, und musl ist von Natur aus für CLI‑Tools geeignet. Andernfalls muss ich den AUR‑Helper kritisieren – in Go geschrieben, aber ohne statisches Linking – denn ich habe bereits erlebt, dass yay auf ArchLinux kaputt ging, weil es eine dynamische Bibliothek nicht finden konnte; als Systemverwalter blieb mir nur, ein Live‑ISO zu starten und schließlich mit chroot das System zu retten.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:45.016589Z
@@ -1375,7 +1440,7 @@ segments:
       tokens: 22274
       review: false
     en-US:
-      text: "Moreover, UPX should not be overused; it is only suitable for long-running or low‑frequency tasks. Long tasks are acceptable because UPX needs to decompress the binary into memory once at startup—this process is fully automatic but incurs a small cold‑start delay, which is negligible for infrequent runs but can be fatal on high‑frequency code paths. Therefore, a one‑time background launch of a long task fits well, but I do not recommend mindlessly stuffing UPX into Docker images for long‑running services, because that essentially trades memory for disk space—a wasteful move, and container layer compression already provides the same benefit of reducing download size. Instead, the recommended environment is certain CLI use cases: it saves a huge amount of disk space and the decompression time is virtually imperceptible, and musl is naturally suited for CLI tools. Otherwise, I would have to call out the AUR helper—written in Go but lacking static linking—since I once encountered a broken yay on ArchLinux that couldn’t find a dynamic library; as a system manager I was helpless except to boot a LiveISO and finally chroot to rescue the system."
+      text: 'Moreover, UPX should not be overused; it is only suitable for long-running or low‑frequency tasks. Long tasks are acceptable because UPX needs to decompress the binary into memory once at startup—this process is fully automatic but incurs a small cold‑start delay, which is negligible for infrequent runs but can be fatal on high‑frequency code paths. Therefore, a one‑time background launch of a long task fits well, but I do not recommend mindlessly stuffing UPX into Docker images for long‑running services, because that essentially trades memory for disk space—a wasteful move, and container layer compression already provides the same benefit of reducing download size. Instead, the recommended environment is certain CLI use cases: it saves a huge amount of disk space and the decompression time is virtually imperceptible, and musl is naturally suited for CLI tools. Otherwise, I would have to call out the AUR helper—written in Go but lacking static linking—since I once encountered a broken yay on ArchLinux that couldn’t find a dynamic library; as a system manager I was helpless except to boot a LiveISO and finally chroot to rescue the system.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:45.016589Z
@@ -1383,7 +1448,7 @@ segments:
       tokens: 22274
       review: false
     es-ES:
-      text: "Además, UPX no debe ser abusado; solo es adecuado para tareas largas o de baja frecuencia. Las tareas largas son aceptables porque UPX necesita descomprimir el binario en memoria una vez al iniciar, un proceso totalmente automático pero que implica un pequeño tiempo de arranque en frío, que es insignificante para ejecuciones poco frecuentes pero puede ser fatal en rutas de alta frecuencia. Por lo tanto, lanzar una tarea larga en segundo plano una sola vez encaja bien, pero no recomiendo indiscriminadamente empaquetar UPX en imágenes Docker para servicios de larga duración, ya que en realidad es un intercambio de memoria por espacio en disco, una pérdida considerable, y la compresión de capas de contenedores ya brinda el mismo beneficio al reducir el tamaño de descarga. En cambio, el entorno recomendado es para ciertos usos de CLI: ahorra una gran cantidad de espacio en disco y el tiempo de descompresión es prácticamente imperceptible, y musl es naturalmente adecuado para herramientas de línea de comandos. De lo contrario, tendría que criticar al asistente de AUR —escrito en Go pero sin enlace estático— porque una vez encontré un yay roto en ArchLinux que no encontraba la biblioteca dinámica; como administrador del sistema, no tuve más remedio que iniciar un LiveISO y, al final, usar chroot para rescatar el sistema."
+      text: 'Además, UPX no debe ser abusado; solo es adecuado para tareas largas o de baja frecuencia. Las tareas largas son aceptables porque UPX necesita descomprimir el binario en memoria una vez al iniciar, un proceso totalmente automático pero que implica un pequeño tiempo de arranque en frío, que es insignificante para ejecuciones poco frecuentes pero puede ser fatal en rutas de alta frecuencia. Por lo tanto, lanzar una tarea larga en segundo plano una sola vez encaja bien, pero no recomiendo indiscriminadamente empaquetar UPX en imágenes Docker para servicios de larga duración, ya que en realidad es un intercambio de memoria por espacio en disco, una pérdida considerable, y la compresión de capas de contenedores ya brinda el mismo beneficio al reducir el tamaño de descarga. En cambio, el entorno recomendado es para ciertos usos de CLI: ahorra una gran cantidad de espacio en disco y el tiempo de descompresión es prácticamente imperceptible, y musl es naturalmente adecuado para herramientas de línea de comandos. De lo contrario, tendría que criticar al asistente de AUR —escrito en Go pero sin enlace estático— porque una vez encontré un yay roto en ArchLinux que no encontraba la biblioteca dinámica; como administrador del sistema, no tuve más remedio que iniciar un LiveISO y, al final, usar chroot para rescatar el sistema.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:45.016589Z
@@ -1391,7 +1456,7 @@ segments:
       tokens: 22274
       review: false
     fr-FR:
-      text: "De plus, UPX ne doit pas être abusé ; il ne convient qu'aux tâches longues ou peu fréquentes. Les tâches longues sont acceptables parce que UPX doit décompresser le binaire en mémoire une fois au démarrage – ce processus est entièrement automatisé mais impose un léger temps de démarrage à froid, négligeable pour des exécutions rares mais potentiellement fatal sur des chemins très fréquents. Ainsi, un lancement unique en arrière‑plan d’une tâche longue convient bien, mais je ne recommande pas d’enfourner sans discernement UPX dans les images Docker de services à long terme, car cela revient à échanger de la mémoire contre de l’espace disque – une perte importante – et la compression des couches de conteneur offre déjà le même avantage en réduisant la taille du téléchargement. En revanche, l’environnement recommandé concerne certains usages CLI : il économise énormément d’espace disque, le temps de décompression est presque imperceptible, et musl est naturellement adapté aux outils en ligne de commande. Sinon, je me verrais contraint de critiquer l’assistant AUR – écrit en Go mais sans liaison statique – car j’ai déjà rencontré un yay cassé sur ArchLinux qui ne trouvait pas de bibliothèque dynamique ; en tant qu’administrateur système, je n’avais d’autre choix que de démarrer un LiveISO et, en dernier recours, d’utiliser chroot pour sauver le système."
+      text: 'De plus, UPX ne doit pas être abusé ; il ne convient qu''aux tâches longues ou peu fréquentes. Les tâches longues sont acceptables parce que UPX doit décompresser le binaire en mémoire une fois au démarrage – ce processus est entièrement automatisé mais impose un léger temps de démarrage à froid, négligeable pour des exécutions rares mais potentiellement fatal sur des chemins très fréquents. Ainsi, un lancement unique en arrière‑plan d’une tâche longue convient bien, mais je ne recommande pas d’enfourner sans discernement UPX dans les images Docker de services à long terme, car cela revient à échanger de la mémoire contre de l’espace disque – une perte importante – et la compression des couches de conteneur offre déjà le même avantage en réduisant la taille du téléchargement. En revanche, l’environnement recommandé concerne certains usages CLI : il économise énormément d’espace disque, le temps de décompression est presque imperceptible, et musl est naturellement adapté aux outils en ligne de commande. Sinon, je me verrais contraint de critiquer l’assistant AUR – écrit en Go mais sans liaison statique – car j’ai déjà rencontré un yay cassé sur ArchLinux qui ne trouvait pas de bibliothèque dynamique ; en tant qu’administrateur système, je n’avais d’autre choix que de démarrer un LiveISO et, en dernier recours, d’utiliser chroot pour sauver le système.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:45.016589Z
@@ -1432,7 +1497,7 @@ segments:
       review: false
   8209cae5598a352589c652418635fba9:
     de-DE:
-      text: "Im Gegensatz dazu ist das folgende CLI‑Paket nicht besonders geeignet; viele Abhängigkeiten sind zwar kein Problem, und theoretisch würde das die Effizienz besser demonstrieren. Hier gibt es jedoch eine klassische Entweder‑oder‑Entscheidung, die man in der oberen linken Ecke sieht: Das mit `ring` markierte Abhängigkeits‑Flag ist optional. Das liegt daran, dass das Projekt ursprünglich `aws-lc-rs` verwendet hat; beide sind Backend‑Implementierungen von Kryptografie‑Algorithmen in Rust. Warum also optional? Weil `ring` komplett in Rust geschrieben ist, während das andere über ein Asm‑Assembly‑FFI eingebunden wird, speziell zur Beschleunigung auf gängigen CPU‑Architekturen wie x86 und arm64. Hier liegt das Problem: Cranelifts Magie ist nur auf reinem Rust beschränkt; wenn man Unsafe‑Code, FFI‑C oder ASM einführt, ist die Cranelift‑Kompatibilität in der Praxis sehr schlecht."
+      text: 'Im Gegensatz dazu ist das folgende CLI‑Paket nicht besonders geeignet; viele Abhängigkeiten sind zwar kein Problem, und theoretisch würde das die Effizienz besser demonstrieren. Hier gibt es jedoch eine klassische Entweder‑oder‑Entscheidung, die man in der oberen linken Ecke sieht: Das mit `ring` markierte Abhängigkeits‑Flag ist optional. Das liegt daran, dass das Projekt ursprünglich `aws-lc-rs` verwendet hat; beide sind Backend‑Implementierungen von Kryptografie‑Algorithmen in Rust. Warum also optional? Weil `ring` komplett in Rust geschrieben ist, während das andere über ein Asm‑Assembly‑FFI eingebunden wird, speziell zur Beschleunigung auf gängigen CPU‑Architekturen wie x86 und arm64. Hier liegt das Problem: Cranelifts Magie ist nur auf reinem Rust beschränkt; wenn man Unsafe‑Code, FFI‑C oder ASM einführt, ist die Cranelift‑Kompatibilität in der Praxis sehr schlecht.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:45.023076Z
@@ -1448,7 +1513,7 @@ segments:
       tokens: 20494
       review: false
     es-ES:
-      text: "En contraste, el paquete CLI que sigue no es muy adecuado; que tenga muchas dependencias no es un problema, y en teoría esto mostraría mejor la eficiencia. Sin embargo, aquí hay una elección clásica de dos opciones: se puede ver en la esquina superior izquierda que la dependencia marcada `ring` es opcional. Eso se debe a que el proyecto originalmente utilizaba `aws-lc-rs`; ambos son back‑ends de algoritmos de cifrado en Rust. Pero, ¿por qué hacerlo opcional? Porque `ring` está escrito completamente en Rust, mientras que el otro proviene de un FFI en ensamblador (Asm) diseñado para acelerar arquitecturas de CPU principales como x86 y arm64. El problema está aquí: la magia de Cranelift se limita al Rust puro; una vez que introduces código unsafe, FFI C o ASM, la compatibilidad de Cranelift resulta realmente pobre."
+      text: 'En contraste, el paquete CLI que sigue no es muy adecuado; que tenga muchas dependencias no es un problema, y en teoría esto mostraría mejor la eficiencia. Sin embargo, aquí hay una elección clásica de dos opciones: se puede ver en la esquina superior izquierda que la dependencia marcada `ring` es opcional. Eso se debe a que el proyecto originalmente utilizaba `aws-lc-rs`; ambos son back‑ends de algoritmos de cifrado en Rust. Pero, ¿por qué hacerlo opcional? Porque `ring` está escrito completamente en Rust, mientras que el otro proviene de un FFI en ensamblador (Asm) diseñado para acelerar arquitecturas de CPU principales como x86 y arm64. El problema está aquí: la magia de Cranelift se limita al Rust puro; una vez que introduces código unsafe, FFI C o ASM, la compatibilidad de Cranelift resulta realmente pobre.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:45.023076Z
@@ -1456,7 +1521,7 @@ segments:
       tokens: 20494
       review: false
     fr-FR:
-      text: "En revanche, le crate CLI ci‑dessous n’est pas vraiment adapté ; avoir de nombreuses dépendances n’est pas un problème en soi, et en théorie cela montrerait mieux l’efficacité. Cependant, il y a ici un choix binaire classique : on peut voir dans le coin supérieur gauche que la dépendance `ring` est marquée comme optionnelle. C’est parce que le projet utilisait à l’origine `aws-lc-rs`, ces deux éléments étant des back‑ends d’algorithmes de chiffrement en Rust. Mais pourquoi la rendre optionnelle ? Parce que `ring` est entièrement écrit en Rust, tandis que l’autre provient d’un FFI en assembleur (Asm) destiné à accélérer les architectures CPU courantes comme x86 et arm64. Le problème réside ici : la magie de Cranelift ne s’applique qu’au Rust pur ; dès que vous introduisez du code unsafe, du FFI C ou de l’ASM, la compatibilité de Cranelift devient très mauvaise."
+      text: 'En revanche, le crate CLI ci‑dessous n’est pas vraiment adapté ; avoir de nombreuses dépendances n’est pas un problème en soi, et en théorie cela montrerait mieux l’efficacité. Cependant, il y a ici un choix binaire classique : on peut voir dans le coin supérieur gauche que la dépendance `ring` est marquée comme optionnelle. C’est parce que le projet utilisait à l’origine `aws-lc-rs`, ces deux éléments étant des back‑ends d’algorithmes de chiffrement en Rust. Mais pourquoi la rendre optionnelle ? Parce que `ring` est entièrement écrit en Rust, tandis que l’autre provient d’un FFI en assembleur (Asm) destiné à accélérer les architectures CPU courantes comme x86 et arm64. Le problème réside ici : la magie de Cranelift ne s’applique qu’au Rust pur ; dès que vous introduisez du code unsafe, du FFI C ou de l’ASM, la compatibilité de Cranelift devient très mauvaise.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:45.023076Z
@@ -1513,7 +1578,7 @@ segments:
       tokens: 18079
       review: false
     es-ES:
-      text: "Al observar los resultados en conjunto, estas dos cosas en realidad no son muy diferentes; no se trata de una transformación cualitativa, pero la diferencia es claramente perceptible. La razón principal es que Apple Silicon es extremadamente potente: los chips de la serie M tienen un rendimiento de un solo núcleo y un ancho de banda de memoria absurdamente altos, lo que beneficia a tareas de compilación que demandan mucho cálculo y E/S. En Linux, la diferencia suele ser mayor, pero en un MacBook con Asahi Linux o similar, Linux gana sin duda."
+      text: 'Al observar los resultados en conjunto, estas dos cosas en realidad no son muy diferentes; no se trata de una transformación cualitativa, pero la diferencia es claramente perceptible. La razón principal es que Apple Silicon es extremadamente potente: los chips de la serie M tienen un rendimiento de un solo núcleo y un ancho de banda de memoria absurdamente altos, lo que beneficia a tareas de compilación que demandan mucho cálculo y E/S. En Linux, la diferencia suele ser mayor, pero en un MacBook con Asahi Linux o similar, Linux gana sin duda.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:37:01.564616Z
@@ -1521,7 +1586,7 @@ segments:
       tokens: 18079
       review: false
     fr-FR:
-      text: "En regardant les résultats globaux, ces deux éléments ne diffèrent pas vraiment ; on ne parle pas d’un changement qualitatif, mais la différence est clairement perceptible. La raison principale est que l’Apple Silicon est extrêmement puissant : les puces de la série M ont des performances monocœur et une bande passante mémoire hors du commun, ce qui profite aux tâches de compilation très lourdes en calcul et en I/O. Sous Linux, l’écart est généralement plus important, mais sur un MacBook installé avec Asahi Linux ou similaire, c’est clairement Linux qui l’emporte."
+      text: 'En regardant les résultats globaux, ces deux éléments ne diffèrent pas vraiment ; on ne parle pas d’un changement qualitatif, mais la différence est clairement perceptible. La raison principale est que l’Apple Silicon est extrêmement puissant : les puces de la série M ont des performances monocœur et une bande passante mémoire hors du commun, ce qui profite aux tâches de compilation très lourdes en calcul et en I/O. Sous Linux, l’écart est généralement plus important, mais sur un MacBook installé avec Asahi Linux ou similaire, c’est clairement Linux qui l’emporte.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:37:01.564616Z
@@ -1690,9 +1755,74 @@ segments:
       seconds: 5.652183917
       tokens: 14922
       review: false
+  8972ab2a06f2e872c59e5822ca3c56f5:
+    de-DE:
+      text: Diese praktischen Einstellungen helfen zwar dabei, Entwicklungs- und Release-Profile schnell zu unterscheiden, und ihr Nutzen wird mit wachsendem Projektcode immer deutlicher. Trotzdem empfehle ich, zusätzlich eine CI einzurichten, die einen Rust-Stable-LLVM-Build ausführt und idealerweise auch all eure Tests mitlaufen lässt. Dann müsst ihr euer lokales Nightly-Rust nicht mehr umschalten, Edge Cases erwischen euch nicht mehr, und Probleme beim Push werden von der CI abgefangen. Das ist derzeit die angenehmste DX-Konfiguration. Damit sind wir diesmal durch; beim nächsten Mal tüfteln wir weiter, wenn Zeit ist.
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.095213Z
+      seconds: 30.666068625
+      tokens: 17795
+      review: false
+    en-US:
+      text: Although these handy settings can help you quickly distinguish between development and release profiles—and will only become more valuable as the project code grows—I still recommend adding a CI workflow to run a Rust Stable LLVM build, ideally alongside all your tests. That way, you no longer need to switch your local nightly Rust, edge cases will not catch you out, and any problems on push will be stopped by CI; this is currently the most comfortable DX setup. That is all for this time—let us tinker again when there is time.
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.095213Z
+      seconds: 30.666068625
+      tokens: 17795
+      review: false
+    es-ES:
+      text: Aunque estas configuraciones tan útiles pueden ayudarte a distinguir rápidamente entre los profiles de desarrollo y de publicación, y su utilidad solo será más evidente conforme crezca el código del proyecto, sigo recomendando añadir una CI que ejecute una compilación Rust Stable LLVM, preferiblemente junto con todas tus pruebas. Así no tendrás que cambiar tu Rust nightly local, los casos límite no te pillarán por sorpresa y cualquier problema al hacer push quedará bloqueado por la CI. Este es actualmente el modo de DX más cómodo. Eso es todo por esta vez; volveremos a trastear cuando haya tiempo.
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.095213Z
+      seconds: 30.666068625
+      tokens: 17795
+      review: false
+    fr-FR:
+      text: Ces configurations pratiques permettent certes de distinguer rapidement les profiles de développement et de publication, et leur intérêt ne fera que devenir plus évident à mesure que le code du projet grandira. Je recommande toutefois d’ajouter une CI qui exécute un build Rust Stable LLVM, idéalement avec tous vos tests. Ainsi, vous n’aurez plus besoin de basculer votre Rust nightly local, les cas limites ne vous piégeront pas, et tout problème lors d’un push sera bloqué par la CI. C’est actuellement la configuration DX la plus confortable. C’est tout pour cette fois ; nous bricolerons de nouveau quand nous aurons le temps.
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.095213Z
+      seconds: 30.666068625
+      tokens: 17795
+      review: false
+    ja-JP:
+      text: こうした便利な設定は、開発用とリリース用の profile をすばやく区別するのに役立ち、プロジェクトのコードが増えるほど効果もはっきりしてきます。それでも、Rust Stable LLVM のビルドを実行する CI をもう一つ用意し、できれば各種テストもまとめて走らせることをおすすめします。そうすればローカルの nightly Rust を切り替える必要もなくなり、エッジケースにも足をすくわれず、push 後に問題があれば CI が止めてくれます。これが今のところ最も快適な DX の形です。今回はここまで、また時間があるときにいじりましょう。
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.095213Z
+      seconds: 30.666068625
+      tokens: 17795
+      review: false
+    ko-KR:
+      text: 이런 유용한 설정은 개발용과 릴리스용 profile을 빠르게 구분하는 데 도움이 되고, 프로젝트 코드가 늘어날수록 그 효과도 더 뚜렷해집니다. 그래도 Rust Stable LLVM 빌드를 실행하는 CI를 하나 더 작성하고, 가능하면 각종 테스트도 함께 돌리기를 권합니다. 그러면 로컬 nightly Rust를 전환할 필요도 없고, 엣지 케이스에 당할 일도 없으며, push 후 문제가 생기면 CI가 막아 줍니다. 이것이 현재 가장 편안한 DX 방식입니다. 이번에는 여기까지 하고, 다음에 시간 날 때 다시 만져 봅시다.
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.095213Z
+      seconds: 30.666068625
+      tokens: 17795
+      review: false
+    zh-CN:
+      text: 最后这些好用的配置虽然可以帮助你快速区分开发和发布 profile，并且在项目代码增多后会越来越明显，但我还是建议你额外写一个 CI 来跑 Rust Stable LLVM 构建，最好再把各种测试一起跑。这样本地的 nightly Rust 也不用切换了，边缘情况也坑不到你，push 上去有问题就会被 CI 拦住；这就是目前最舒服的 DX 模式了。那这次就说到这里，下次有空再摸吧。
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.095213Z
+      seconds: 30.666068625
+      tokens: 17795
+      review: false
+    zh-TW:
+      text: 最後這些好用的設定雖然可以幫助你快速區分開發和發佈 profile，而且在專案程式碼增加後會越來越明顯，但我還是建議你另外寫一個 CI 來跑 Rust Stable LLVM 建置，最好再把各種測試一起跑。這樣本機的 nightly Rust 也不用切換了，邊緣情況也坑不到你，push 上去有問題就會被 CI 攔住；這就是目前最舒服的 DX 模式了。那這次就說到這裡，下次有空再摸吧。
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:55:31.095213Z
+      seconds: 30.666068625
+      tokens: 17795
+      review: false
   8b26dd6ee82e31c3df3d10f8d575647d:
     de-DE:
-      text: "## Backend-Theorie {#backend-theory}"
+      text: '## Backend-Theorie {#backend-theory}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:37:18.759953Z
@@ -1700,7 +1830,7 @@ segments:
       tokens: 16338
       review: false
     en-US:
-      text: "## Backend Theory {#backend-theory}"
+      text: '## Backend Theory {#backend-theory}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:37:18.759953Z
@@ -1708,7 +1838,7 @@ segments:
       tokens: 16338
       review: false
     es-ES:
-      text: "## Teoría del backend {#backend-theory}"
+      text: '## Teoría del backend {#backend-theory}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:37:18.759953Z
@@ -1716,7 +1846,7 @@ segments:
       tokens: 16338
       review: false
     fr-FR:
-      text: "## Théorie du backend {#backend-theory}"
+      text: '## Théorie du backend {#backend-theory}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:37:18.759953Z
@@ -1724,7 +1854,7 @@ segments:
       tokens: 16338
       review: false
     ja-JP:
-      text: "## バックエンド理論 {#backend-theory}"
+      text: '## バックエンド理論 {#backend-theory}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:37:18.759953Z
@@ -1732,7 +1862,7 @@ segments:
       tokens: 16338
       review: false
     ko-KR:
-      text: "## 백엔드 이론 {#backend-theory}"
+      text: '## 백엔드 이론 {#backend-theory}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:37:18.759953Z
@@ -1740,7 +1870,7 @@ segments:
       tokens: 16338
       review: false
     zh-CN:
-      text: "## 后端理论 {#backend-theory}"
+      text: '## 后端理论 {#backend-theory}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:37:18.759953Z
@@ -1748,7 +1878,7 @@ segments:
       tokens: 16338
       review: false
     zh-TW:
-      text: "## 後端理論 {#backend-theory}"
+      text: '## 後端理論 {#backend-theory}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:37:18.759953Z
@@ -2080,9 +2210,74 @@ segments:
       seconds: 32.040905542
       tokens: 23351
       review: false
+  97df4075d878ac7b8a6b12e70ee5b037:
+    de-DE:
+      text: 'Im Wesentlichen wird also ein großer Teil der langsamen Kompilierzeit nicht im Frontend von Rust selbst, sondern in LLVM, diesem „schwergewichtigen Backend“, verbraucht. Da stellt sich die Frage: Kann man es loswerden? ~~:tn[Die Antwort lautet ja, miau]{is="Das Original endet mit „喵“, einem absichtlich niedlichen, katzenhaften Partikel aus dem chinesischen Internet, das die technische Aussage spielerisch färbt.}~~ Es gibt ein Backend namens Cranelift, das genau für diesen Bedarf entwickelt wurde. Es begann 2016 als Cretonne, wird von der [Bytecode Alliance](https://bytecodealliance.org) entwickelt und war zunächst eine :tn[für Wasmtime gewickelte Teigtasche]{is="Das Original nennt Cranelift scherzhaft eine „für Wasmtime gewickelte Teigtasche“ und benutzt ein Essensbild für seinen anfänglichen Zweck als Wasmtime-Begleiter.}—ein dafür konzipiertes Codegenerierungs-Backend für [Wasmtime](https://github.com/bytecodealliance/wasmtime). Später wurde es :tn[in Rusts offizielle Reihen eingegliedert]{is="Das Original verwendet „收编“, einen militärischen Ausdruck für die Eingliederung irregulärer Truppen in eine reguläre Armee, scherzhaft für Rusts Übernahme von Cranelift.} und als optionales codegen-Backend aufgenommen.'
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:56:09.54952Z
+      seconds: 51.34750025
+      tokens: 19478
+      review: false
+    en-US:
+      text: 'So in essence, a large share of Rust’s slow compilation time is spent not in Rust’s own frontend but in LLVM, the “heavyweight backend.” That raises a question: could we get rid of it? ~~:tn[the answer is yes, meow]{is="The original ends with “喵,” a deliberately cute, catlike Chinese internet particle that softens the technical claim.}~~ There is a backend called Cranelift built for exactly this need. It began as Cretonne in 2016, developed by [Bytecode Alliance](https://bytecodealliance.org), initially as a :tn[dumpling wrapped for Wasmtime]{is="The original calls it “为 Wasmtime 包的饺子,” humorously comparing Cranelift to a food item made specifically to accompany Wasmtime.}—a code-generation backend designed for [Wasmtime](https://github.com/bytecodealliance/wasmtime); it was later :tn[enlisted into Rust’s official ranks]{is="The original uses “收编,” a military term for incorporating irregular forces into a regular army, jokingly describing Rust’s adoption of Cranelift.} as an optional codegen backend.'
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:56:09.54952Z
+      seconds: 51.34750025
+      tokens: 19478
+      review: false
+    es-ES:
+      text: 'Así que, en esencia, gran parte del tiempo de compilación lenta no se gasta en el frontend de Rust, sino en LLVM, ese «backend pesado». Entonces surge la pregunta: ¿se puede prescindir de él? ~~:tn[la respuesta es sí, miau]{is="El original termina con «喵», una partícula china de internet deliberadamente mona y gatuna que da un tono juguetón a la afirmación técnica.}~~ Hay un backend llamado Cranelift creado precisamente para esta necesidad. Empezó como Cretonne en 2016, desarrollado por [Bytecode Alliance](https://bytecodealliance.org), inicialmente como una :tn[empanadilla envuelta para Wasmtime]{is="El original llama en broma a Cranelift una «empanadilla envuelta para Wasmtime», usando una imagen culinaria para su función inicial de acompañamiento hecho a medida.}: un backend de generación de código diseñado para [Wasmtime](https://github.com/bytecodealliance/wasmtime). Más tarde fue :tn[incorporado a las filas oficiales de Rust]{is="El original usa «收编», un término militar para incorporar fuerzas irregulares a un ejército regular, en broma sobre la adopción de Cranelift por Rust.} como backend de codegen opcional.'
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:56:09.54952Z
+      seconds: 51.34750025
+      tokens: 19478
+      review: false
+    fr-FR:
+      text: 'En substance, une grande partie du temps de compilation lent n’est pas passée dans le frontend de Rust lui-même, mais dans LLVM, ce « backend lourd ». La question est donc : peut-on s’en débarrasser ? ~~:tn[la réponse est oui, miaou]{is="L’original se termine par « 喵 », une particule chinoise de style félin volontairement mignon, qui donne un ton espiègle à cette affirmation technique.}~~ Il existe un backend nommé Cranelift, conçu précisément pour ce besoin. Il a débuté sous le nom de Cretonne en 2016, développé par [Bytecode Alliance](https://bytecodealliance.org), d’abord comme un :tn[ravioli confectionné pour Wasmtime]{is="L’original décrit plaisamment Cranelift comme un « ravioli préparé pour Wasmtime », avec une image culinaire qui souligne son rôle initial d’accompagnement sur mesure.} : un backend de génération de code conçu pour [Wasmtime](https://github.com/bytecodealliance/wasmtime). Il a ensuite été :tn[enrôlé dans les rangs officiels de Rust]{is="L’original emploie « 收编 », terme militaire désignant l’incorporation de forces irrégulières dans une armée régulière, pour plaisanter sur l’adoption de Cranelift par Rust.} comme backend de codegen optionnel.'
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:56:09.54952Z
+      seconds: 51.34750025
+      tokens: 19478
+      review: false
+    ja-JP:
+      text: つまり、コンパイルが遅い時間のかなりの部分は Rust 自身のフロントエンドではなく、「重量級バックエンド」である LLVM に費やされている。では、それを捨てることはできるのか？ ~~:tn[答えはイエス、にゃ]{is="原文は「喵」で締めており、中国語ネット文化の意図的にかわいらしい猫語調で技術的な断言を和らげている。}~~ そのために作られた Cranelift というバックエンドがある。これは 2016 年に Cretonne として始まり、[Bytecode Alliance](https://bytecodealliance.org) が開発したもので、当初は [Wasmtime](https://github.com/bytecodealliance/wasmtime) 向けに :tn[包まれた餃子]{is="原文は Cranelift を「Wasmtime のために包んだ餃子」と呼び、Wasmtime 専用の付け合わせのように食べ物でたとえる冗談になっている。}、すなわちそのために設計されたコード生成バックエンドだった。その後 Rust 公式に :tn[正規軍へ編入された]{is="原文の「收编」は非正規武装を正規軍に組み入れる軍事用語で、Cranelift が Rust 公式に採用されたことを冗談めかしている。}、オプションの codegen バックエンドとなった。
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:56:09.54952Z
+      seconds: 51.34750025
+      tokens: 19478
+      review: false
+    ko-KR:
+      text: 그러므로 본질적으로 컴파일이 느린 시간의 상당 부분은 Rust 자체의 프런트엔드가 아니라 “중량급 백엔드”인 LLVM에 쓰인다. 그렇다면 그것을 버릴 수는 없을까? ~~:tn[답은 그렇다, 야옹]{is="원문은 중국 인터넷 문화의 의도적으로 귀여운 고양이 말투인 “喵”로 끝나 기술적 단언에 애교 섞인 분위기를 더한다.}~~ 바로 이 필요를 위해 만들어진 Cranelift라는 백엔드가 있다. 이는 2016년에 Cretonne으로 시작되어 [Bytecode Alliance](https://bytecodealliance.org)가 개발했으며, 처음에는 [Wasmtime](https://github.com/bytecodealliance/wasmtime)를 위해 :tn[빚은 만두]{is="원문은 Cranelift를 “Wasmtime을 위해 빚은 만두”라고 부르며, Wasmtime에 맞춰 만든 초기 용도를 음식 이미지로 익살스럽게 표현한다.}였던, 즉 이를 위해 설계된 코드 생성 백엔드였다. 이후 Rust 공식 체계에 :tn[정규군으로 편입되었다]{is="원문의 “收编”은 비정규 무장을 정규군에 편입한다는 군사용어로, Cranelift가 Rust 공식 체계에 받아들여진 일을 익살스럽게 말한다.}가 선택 가능한 codegen 백엔드가 되었다.
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:56:09.54952Z
+      seconds: 51.34750025
+      tokens: 19478
+      review: false
+    zh-CN:
+      text: 所以本质上，编译慢的很大一部分时间不是花在 Rust 自己的前端，而是花在 LLVM 这个“重型后端”上。那么问题来了：有没有可能丢掉它？~~:tn[答案是有的，喵]{is="原文以“喵”收尾，这是中文网络中刻意卖萌的猫娘式语气词，让技术判断显得俏皮。}~~ 有一个叫 Cranelift 的后端正是为这个需求而做的。它最早叫 Cretonne，2016 年启动，由 [Bytecode Alliance](https://bytecodealliance.org) 开发，最初是为 [Wasmtime](https://github.com/bytecodealliance/wasmtime) :tn[包的饺子]{is="原文把 Cranelift 戏称为“为 Wasmtime 包的饺子”，以食物意象形容它最初是专门配套 Wasmtime 的。}，才设计出的代码生成后端；后来被 Rust 官方 :tn[收编]{is="“收编”原本指将非正规武装纳入正规军，此处戏称 Cranelift 被 Rust 官方体系吸纳。}，作为可选的 codegen 后端。
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:56:09.54952Z
+      seconds: 51.34750025
+      tokens: 19478
+      review: false
+    zh-TW:
+      text: 所以本質上，編譯慢的很大一部分時間不是花在 Rust 自己的前端，而是花在 LLVM 這個「重型後端」上。那麼問題來了：有沒有可能丟掉它？~~:tn[答案是有的，喵]{is="原文以「喵」收尾，這是中文網路中刻意賣萌的貓娘式語氣詞，讓技術判斷帶上俏皮口吻。}~~ 有一個叫 Cranelift 的後端正是為這個需求而做的。它最早叫 Cretonne，2016 年啟動，由 [Bytecode Alliance](https://bytecodealliance.org) 開發，最初是為 [Wasmtime](https://github.com/bytecodealliance/wasmtime) :tn[包的餃子]{is="原文把 Cranelift 戲稱為「為 Wasmtime 包的餃子」，以食物意象形容它最初是專門配套 Wasmtime 的。}，才設計出的程式碼生成後端；後來被 Rust 官方 :tn[收編]{is="「收編」原本指將非正規武裝納入正規軍，此處戲稱 Cranelift 被 Rust 官方體系吸納。}，作為可選的 codegen 後端。
+      provider: openai
+      model: gpt-5-6-terra-medium
+      at: 2026-08-03T02:56:09.54952Z
+      seconds: 51.34750025
+      tokens: 19478
+      review: false
   9ac95fea36915a75d53d391209946f4e:
     de-DE:
-      text: "Dieses Repository ist eigentlich ein Monorepo mit vielen Unterprojekten, aber man kann darin zwei typische Beispiele finden. Zunächst schaut man sich das Skeleton-Paket an: Die Merkmale sind offensichtlich – es hat einen großen Codeumfang und sehr wenige Abhängigkeiten. Dieses Paket hat den höchsten Anteil an codegen im gesamten Projekt, was es besonders geeignet für den Einsatz von Cranelift macht. Außerdem ist das Paket sehr sauber, wobei “sauber” bedeutet, dass es reines Safe Rust ist."
+      text: 'Dieses Repository ist eigentlich ein Monorepo mit vielen Unterprojekten, aber man kann darin zwei typische Beispiele finden. Zunächst schaut man sich das Skeleton-Paket an: Die Merkmale sind offensichtlich – es hat einen großen Codeumfang und sehr wenige Abhängigkeiten. Dieses Paket hat den höchsten Anteil an codegen im gesamten Projekt, was es besonders geeignet für den Einsatz von Cranelift macht. Außerdem ist das Paket sehr sauber, wobei “sauber” bedeutet, dass es reines Safe Rust ist.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:17.600731Z
@@ -2090,7 +2285,7 @@ segments:
       tokens: 18099
       review: false
     en-US:
-      text: "This repository is actually a monorepo with many subprojects, but you can identify two typical examples. First, look at the Skeleton package: its characteristics are obvious—it has a large amount of code and very few dependencies. This package has the highest proportion of codegen in the whole project, making it well suited for Cranelift to shine. Additionally, this package is also very clean, where “clean” means it is pure Safe Rust."
+      text: 'This repository is actually a monorepo with many subprojects, but you can identify two typical examples. First, look at the Skeleton package: its characteristics are obvious—it has a large amount of code and very few dependencies. This package has the highest proportion of codegen in the whole project, making it well suited for Cranelift to shine. Additionally, this package is also very clean, where “clean” means it is pure Safe Rust.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:17.600731Z
@@ -2098,7 +2293,7 @@ segments:
       tokens: 18099
       review: false
     es-ES:
-      text: "Este repositorio es en realidad un monorepo con muchos subproyectos, pero se pueden identificar dos ejemplos típicos. Primero, echemos un vistazo al paquete Skeleton: sus características son evidentes, tiene una gran cantidad de código y muy pocas dependencias. Este paquete tiene la mayor proporción de codegen en todo el proyecto, lo que lo hace muy adecuado para que Cranelift demuestre su potencial. Además, este paquete también es muy limpio, siendo ‘limpio’ sinónimo de Rust puro y seguro (Safe Rust)."
+      text: 'Este repositorio es en realidad un monorepo con muchos subproyectos, pero se pueden identificar dos ejemplos típicos. Primero, echemos un vistazo al paquete Skeleton: sus características son evidentes, tiene una gran cantidad de código y muy pocas dependencias. Este paquete tiene la mayor proporción de codegen en todo el proyecto, lo que lo hace muy adecuado para que Cranelift demuestre su potencial. Además, este paquete también es muy limpio, siendo ‘limpio’ sinónimo de Rust puro y seguro (Safe Rust).'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:17.600731Z
@@ -2106,7 +2301,7 @@ segments:
       tokens: 18099
       review: false
     fr-FR:
-      text: "Ce dépôt est en réalité un monorepo contenant de nombreux sous‑projets, mais on peut y identifier deux exemples typiques. Tout d’abord, le paquet Skeleton : ses caractéristiques sont évidentes – il possède une grande quantité de code et très peu de dépendances. Ce paquet représente la plus grande proportion de codegen dans l’ensemble du projet, ce qui le rend particulièrement adapté à l’exploitation de Cranelift. De plus, ce paquet est très « propre », le terme « propre » signifiant qu’il est purement Safe Rust."
+      text: 'Ce dépôt est en réalité un monorepo contenant de nombreux sous‑projets, mais on peut y identifier deux exemples typiques. Tout d’abord, le paquet Skeleton : ses caractéristiques sont évidentes – il possède une grande quantité de code et très peu de dépendances. Ce paquet représente la plus grande proportion de codegen dans l’ensemble du projet, ce qui le rend particulièrement adapté à l’exploitation de Cranelift. De plus, ce paquet est très « propre », le terme « propre » signifiant qu’il est purement Safe Rust.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:17.600731Z
@@ -2147,7 +2342,7 @@ segments:
       review: false
   9dab696ffc64d93b04b1da52a4226ecf:
     de-DE:
-      text: "## Optimierungsstufe {#opt-level}"
+      text: '## Optimierungsstufe {#opt-level}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:17.608266Z
@@ -2155,7 +2350,7 @@ segments:
       tokens: 16392
       review: false
     en-US:
-      text: "## Optimization Level {#opt-level}"
+      text: '## Optimization Level {#opt-level}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:17.608266Z
@@ -2163,7 +2358,7 @@ segments:
       tokens: 16392
       review: false
     es-ES:
-      text: "## Nivel de optimización {#opt-level}"
+      text: '## Nivel de optimización {#opt-level}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:17.608266Z
@@ -2171,7 +2366,7 @@ segments:
       tokens: 16392
       review: false
     fr-FR:
-      text: "## Niveau d'optimisation {#opt-level}"
+      text: '## Niveau d''optimisation {#opt-level}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:17.608266Z
@@ -2179,7 +2374,7 @@ segments:
       tokens: 16392
       review: false
     ja-JP:
-      text: "## 最適化レベル {#opt-level}"
+      text: '## 最適化レベル {#opt-level}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:17.608266Z
@@ -2187,7 +2382,7 @@ segments:
       tokens: 16392
       review: false
     ko-KR:
-      text: "## 최적화 수준 {#opt-level}"
+      text: '## 최적화 수준 {#opt-level}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:17.608266Z
@@ -2195,7 +2390,7 @@ segments:
       tokens: 16392
       review: false
     zh-CN:
-      text: "## 优化等级 {#opt-level}"
+      text: '## 优化等级 {#opt-level}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:17.608266Z
@@ -2203,7 +2398,7 @@ segments:
       tokens: 16392
       review: false
     zh-TW:
-      text: "## 優化等級 {#opt-level}"
+      text: '## 優化等級 {#opt-level}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:17.608266Z
@@ -2277,7 +2472,7 @@ segments:
       review: false
   9f7ee025dc7baa3234873cf0497ef03d:
     de-DE:
-      text: "## Debug‑Symbole entfernen {#strip-debug-symbols}"
+      text: '## Debug‑Symbole entfernen {#strip-debug-symbols}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:47.067026Z
@@ -2285,7 +2480,7 @@ segments:
       tokens: 16674
       review: false
     en-US:
-      text: "## Remove Debug Symbols {#strip-debug-symbols}"
+      text: '## Remove Debug Symbols {#strip-debug-symbols}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:47.067026Z
@@ -2293,7 +2488,7 @@ segments:
       tokens: 16674
       review: false
     es-ES:
-      text: "## Eliminar símbolos de depuración {#strip-debug-symbols}"
+      text: '## Eliminar símbolos de depuración {#strip-debug-symbols}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:47.067026Z
@@ -2301,7 +2496,7 @@ segments:
       tokens: 16674
       review: false
     fr-FR:
-      text: "## Supprimer les symboles de débogage {#strip-debug-symbols}"
+      text: '## Supprimer les symboles de débogage {#strip-debug-symbols}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:47.067026Z
@@ -2309,7 +2504,7 @@ segments:
       tokens: 16674
       review: false
     ja-JP:
-      text: "## デバッグシンボルを削除 {#strip-debug-symbols}"
+      text: '## デバッグシンボルを削除 {#strip-debug-symbols}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:47.067026Z
@@ -2317,7 +2512,7 @@ segments:
       tokens: 16674
       review: false
     ko-KR:
-      text: "## 디버그 심볼 제거 {#strip-debug-symbols}"
+      text: '## 디버그 심볼 제거 {#strip-debug-symbols}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:47.067026Z
@@ -2325,7 +2520,7 @@ segments:
       tokens: 16674
       review: false
     zh-CN:
-      text: "## 干掉调试符号 {#strip-debug-symbols}"
+      text: '## 干掉调试符号 {#strip-debug-symbols}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:47.067026Z
@@ -2333,7 +2528,7 @@ segments:
       tokens: 16674
       review: false
     zh-TW:
-      text: "## 去除除錯符號 {#strip-debug-symbols}"
+      text: '## 去除除錯符號 {#strip-debug-symbols}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:47.067026Z
@@ -2602,7 +2797,7 @@ segments:
       review: false
   bf8af9bda87a0ee239ae9723aa619fed:
     de-DE:
-      text: "Übrigens: Verwenden Sie unbedingt kein zig, denn das zbuild unter nightly Rust hat derzeit enorme Probleme. Wenn Sie Cross‑Compilation benötigen und der Host ein Linux x86 ist, empfiehlt sich [cross](https://github.com/cross-rs/cross) – das Kompilieren mit Docker funktioniert hervorragend und die Umgebung ist komplett eingerichtet. Wenn Sie glibc bevorzugen, funktioniert das ebenfalls gut, weil glibc nur rückwärtskompatibel ist. In der Regel sollte man gegen die glibc‑Version einer großen Debian‑Veröffentlichung (z. B. Debian -2) kompilieren; eine zu neue glibc lässt viele Maschinen versagen. Dabei geht es nicht um ein neues Feature, sondern nur darum, eine Versionszeichenfolge zu prüfen, um Sie zu ärgern. Ist der Host ein Mac, benutzen Sie bitte das native rustup `target + cargo build --release `"
+      text: 'Übrigens: Verwenden Sie unbedingt kein zig, denn das zbuild unter nightly Rust hat derzeit enorme Probleme. Wenn Sie Cross‑Compilation benötigen und der Host ein Linux x86 ist, empfiehlt sich [cross](https://github.com/cross-rs/cross) – das Kompilieren mit Docker funktioniert hervorragend und die Umgebung ist komplett eingerichtet. Wenn Sie glibc bevorzugen, funktioniert das ebenfalls gut, weil glibc nur rückwärtskompatibel ist. In der Regel sollte man gegen die glibc‑Version einer großen Debian‑Veröffentlichung (z. B. Debian -2) kompilieren; eine zu neue glibc lässt viele Maschinen versagen. Dabei geht es nicht um ein neues Feature, sondern nur darum, eine Versionszeichenfolge zu prüfen, um Sie zu ärgern. Ist der Host ein Mac, benutzen Sie bitte das native rustup `target + cargo build --release `'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:39:05.317913Z
@@ -2634,7 +2829,7 @@ segments:
       tokens: 19377
       review: false
     ja-JP:
-      text: "ちなみに、zigは絶対に使わないでください。nightly Rustのzbuildは現在大きな問題があります。クロスコンパイルが必要な場合、ホストがLinux x86なら、[cross](https://github.com/cross-rs/cross) をおすすめします。Dockerでビルドすれば環境が整っていてとても便利です。glibcがお好きならそれも問題なく使えます。glibcは下位互換性しか提供しないため、一般的にはDebianのメジャーリリース（例: Debian -2）のglibcバージョンでコンパイルすべきです。新しすぎるglibcは多くのマシンで動作しなくなります。これは新機能を使ったからではなく、単にバージョン文字列をチェックしてイライラさせるためです。ホストがmacの場合は、rustup のネイティブ版を使用してください `target + cargo build --release `"
+      text: 'ちなみに、zigは絶対に使わないでください。nightly Rustのzbuildは現在大きな問題があります。クロスコンパイルが必要な場合、ホストがLinux x86なら、[cross](https://github.com/cross-rs/cross) をおすすめします。Dockerでビルドすれば環境が整っていてとても便利です。glibcがお好きならそれも問題なく使えます。glibcは下位互換性しか提供しないため、一般的にはDebianのメジャーリリース（例: Debian -2）のglibcバージョンでコンパイルすべきです。新しすぎるglibcは多くのマシンで動作しなくなります。これは新機能を使ったからではなく、単にバージョン文字列をチェックしてイライラさせるためです。ホストがmacの場合は、rustup のネイティブ版を使用してください `target + cargo build --release `'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:39:05.317913Z
@@ -2642,7 +2837,7 @@ segments:
       tokens: 19377
       review: false
     ko-KR:
-      text: "참고로, zig는 절대 사용하지 마세요. nightly Rust의 zbuild는 현재 큰 문제가 있습니다. 크로스 컴파일이 필요하고 호스트가 Linux x86인 경우, [cross](https://github.com/cross-rs/cross) 를 사용하는 것이 좋습니다. Docker와 함께 빌드하면 환경이 완벽하게 갖춰져 매우 편리합니다. glibc를 선호한다면 그것도 잘 동작합니다. glibc는 하위 호환성만 제공하기 때문에 일반적으로 Debian 주요 버전(예: Debian -2)의 glibc 버전으로 컴파일해야 합니다. 너무 최신 glibc는 많은 머신에서 실행되지 않을 수 있습니다. 이는 새로운 기능을 사용했기 때문이 아니라 버전 문자열을 단순히 체크해 여러분을 짜증 나게 하기 위함입니다. 호스트가 mac인 경우에는 rustup 네이티브 버전을 사용하십시오 `target + cargo build --release `"
+      text: '참고로, zig는 절대 사용하지 마세요. nightly Rust의 zbuild는 현재 큰 문제가 있습니다. 크로스 컴파일이 필요하고 호스트가 Linux x86인 경우, [cross](https://github.com/cross-rs/cross) 를 사용하는 것이 좋습니다. Docker와 함께 빌드하면 환경이 완벽하게 갖춰져 매우 편리합니다. glibc를 선호한다면 그것도 잘 동작합니다. glibc는 하위 호환성만 제공하기 때문에 일반적으로 Debian 주요 버전(예: Debian -2)의 glibc 버전으로 컴파일해야 합니다. 너무 최신 glibc는 많은 머신에서 실행되지 않을 수 있습니다. 이는 새로운 기능을 사용했기 때문이 아니라 버전 문자열을 단순히 체크해 여러분을 짜증 나게 하기 위함입니다. 호스트가 mac인 경우에는 rustup 네이티브 버전을 사용하십시오 `target + cargo build --release `'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:39:05.317913Z
@@ -2667,68 +2862,68 @@ segments:
       review: false
   c26cd7334110d7d7418db67f768ed852:
     de-DE:
-      text: "Im Design von Rust ist LLVM zwar ein wenig ein bequemer Ausweg, aber auch eine gute Wahl: Statt wie Go den Prozess zur Erzeugung von Maschinencode selbst zu pflegen, ist es sehr sinnvoll, das ausgereifte Optimieren dem großen LLVM-Ökosystem zu überlassen. Der gesamte Rust-Kompilierungsablauf lässt sich grob so beschreiben: Der Quellcode durchläuft zunächst lexikalische und syntaktische Analyse und erzeugt einen AST, danach folgen Makroexpansion sowie Absenkung und Abflachung zu HIR; anschließend kommen die gewöhnliche Typprüfung und ein klitzekleines bisschen Borrow-Checking, bis schließlich MIR erzeugt wird. Bis hierhin arbeitet das eigene Frontend des Rust-Compilers. Alles nach MIR wird LLVM überlassen: etwa die Übersetzung von MIR in LLVM IR, die Ausführung seiner Optimierungs-pass-Sammlung durch LLVM (von O0 bis O3), die abschließende Erzeugung von Maschinencode für die Zielplattform und die Übergabe an den Linker, der daraus eine ausführbare BIN-Datei zusammensetzt."
+      text: 'Wo genau liegt also das Problem? Die Antwort ist eigentlich ganz einfach: LLVM ist eine schwergewichtige Infrastruktur, und in der Produktion ist dieses Schwergewicht genau richtig. Kompilierzeit gegen Ausführungszeit einzutauschen, ist eine gute Philosophie; LLVM bildet die Brücke zwischen dem höheren Rust und einer ganzen Reihe von Sprachen wie C, C++ und Swift. Das bedeutet, dass seine Optimierungspipeline darauf ausgelegt ist, „den besten Maschinencode zu erzeugen“, und nicht darauf, „die Kompilierung schnell abzuschließen“. Die mehreren Dutzend Optimierungsdurchläufe im release-Modus einmal auszuführen, kostet sehr viel Zeit. Selbst bei O0 im debug-Modus muss LLVM noch den vollständigen Ablauf von der IR-Erzeugung bis zur Maschinencode-Erzeugung durchlaufen, und dieser Ablauf ist an sich nicht leichtgewichtig. Hinzu kommt, dass Rusts Monomorphisierung von Generics zur Kompilierzeit große Mengen Code entfaltet; das an LLVM übergebene IR-Volumen ist daher weit größer, als der Quellcode vermuten lässt, wodurch auch LLVMs Arbeitsaufwand zwangsläufig anwächst.'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T01:47:46.838009Z
-      seconds: 39.484624
-      tokens: 18624
+      at: 2026-08-03T02:56:19.57674Z
+      seconds: 44.400738625
+      tokens: 19155
       review: false
     en-US:
-      text: "In Rust’s design, LLVM is admittedly a bit of a shortcut, but it is a good choice: rather than maintaining the process of turning code into machine code itself as Go does, letting LLVM’s broad ecosystem handle mature optimizations works very well. Rust’s overall compilation process can roughly be described as source code going through lexical and syntax analysis to produce an AST, then macro expansion and HIR lowering and flattening; it then enters normal type checking and a tiny bit of borrow checking, ultimately producing MIR. Up to this point, Rust’s own compiler frontend is doing the work. Everything after MIR is handed over to LLVM: for example, translating MIR into LLVM IR, having LLVM run its suite of optimization passes (ranging from O0 to O3), finally generating machine code for the target platform, and then passing it to the linker to assemble a BIN executable."
+      text: 'So where exactly is the problem? The answer is actually quite simple: LLVM is heavyweight infrastructure—being heavyweight is right for production. Trading compilation time for execution time is a sound philosophy, and it bridges high-level Rust with a whole host of languages such as C, C++, and Swift. That means its optimization pipeline is designed to “produce the best machine code,” not to “finish compiling quickly.” Running those dozens of optimization passes once in release mode takes a very long time. Even at O0 in debug mode, LLVM still has to go through the entire IR-generation and machine-code-generation process, and that process is not lightweight in itself. On top of that, Rust’s generic monomorphization expands a large amount of code at compile time, so the volume of IR handed to LLVM is far larger than your source code appears to be, naturally inflating LLVM’s workload accordingly.'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T01:47:46.838009Z
-      seconds: 39.484624
-      tokens: 18624
+      at: 2026-08-03T02:56:19.57674Z
+      seconds: 44.400738625
+      tokens: 19155
       review: false
     es-ES:
-      text: "En el diseño de Rust, LLVM es en realidad una opción un poco cómoda, pero también muy acertada: en vez de mantener por sí mismo, como Go, el proceso de convertir código en código máquina, dejar que el gran ecosistema de LLVM realice optimizaciones maduras funciona muy bien. El proceso completo de compilación de Rust puede describirse aproximadamente así: el código fuente pasa por análisis léxico y sintáctico para generar un AST, después por expansión de macros, descenso y aplanado a HIR; luego entra en la comprobación de tipos habitual y una pizca de comprobación de préstamos, y finalmente genera MIR. Hasta aquí, trabaja el frontend del propio compilador de Rust. Lo que sigue a MIR se deja en manos de LLVM: por ejemplo, traducir MIR a LLVM IR, hacer que LLVM ejecute su conjunto de passes de optimización (desde O0 hasta O3), generar por último el código máquina de la plataforma objetivo y entregárselo al enlazador para ensamblarlo en un ejecutable BIN."
+      text: 'Entonces, ¿dónde está exactamente el problema? La respuesta es bastante sencilla: LLVM es una infraestructura pesada, y que lo sea es correcto en producción. Cambiar tiempo de compilación por tiempo de ejecución es una buena filosofía; LLVM tiende un puente entre Rust, en las capas superiores, y toda una larga lista de lenguajes como C, C++ y Swift. Eso significa que su canalización de optimización está diseñada para «generar el mejor código máquina», no para «terminar la compilación rápidamente». Ejecutar una vez esas decenas de pases de optimización en modo release consume muchísimo tiempo. Incluso con O0 en modo debug, LLVM sigue teniendo que recorrer todo el proceso de generación de IR y de código máquina, y ese proceso no es ligero de por sí. Además, la monomorfización de los genéricos de Rust expande una gran cantidad de código durante la compilación, de modo que el volumen de IR entregado a LLVM es mucho mayor de lo que parece indicar el código fuente, y la carga de trabajo que LLVM debe procesar aumenta naturalmente con ello.'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T01:47:46.838009Z
-      seconds: 39.484624
-      tokens: 18624
+      at: 2026-08-03T02:56:19.57674Z
+      seconds: 44.400738625
+      tokens: 19155
       review: false
     fr-FR:
-      text: "Dans la conception de Rust, LLVM est certes un choix un peu facile, mais c’est aussi un bon choix : plutôt que de maintenir lui-même, comme Go, le processus de production de code machine, Rust laisse le vaste écosystème de LLVM effectuer des optimisations éprouvées, ce qui fonctionne très bien. Le processus global de compilation de Rust peut être décrit approximativement ainsi : le code source passe par une analyse lexicale et syntaxique pour produire un AST, puis par l’expansion des macros, l’abaissement et l’aplatissement en HIR ; il entre ensuite dans la vérification de types habituelle et un tout petit peu de vérification des emprunts, pour finalement produire du MIR. Jusqu’ici, c’est le frontend du compilateur Rust lui-même qui travaille. Après le MIR, tout est confié à LLVM : par exemple, traduire le MIR en LLVM IR, faire exécuter à LLVM sa série de passes d’optimisation (de O0 à O3), générer enfin le code machine de la plateforme cible, puis le transmettre à l’éditeur de liens pour l’assembler en exécutable BIN."
+      text: 'Alors, où se situe exactement le problème ? La réponse est en fait très simple : LLVM est une infrastructure lourde, et cette lourdeur est précisément adaptée à la production. Échanger du temps de compilation contre du temps d’exécution est une excellente philosophie ; LLVM fait le pont entre Rust, situé en amont, et tout un ensemble de langages comme C, C++ et Swift. Cela signifie que sa chaîne d’optimisation est conçue pour « produire le meilleur code machine », et non pour « terminer rapidement la compilation ». Exécuter une fois ces dizaines de passes d’optimisation en mode release prend énormément de temps. Même avec O0 en mode debug, LLVM doit toujours parcourir l’intégralité du processus de génération d’IR puis de code machine, et ce processus n’a rien de léger. En outre, la monomorphisation des génériques de Rust développe une grande quantité de code à la compilation ; le volume d’IR confié à LLVM est donc bien supérieur à ce que laisse voir le code source, ce qui gonfle naturellement la charge de travail de LLVM.'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T01:47:46.838009Z
-      seconds: 39.484624
-      tokens: 18624
+      at: 2026-08-03T02:56:19.57674Z
+      seconds: 44.400738625
+      tokens: 19155
       review: false
     ja-JP:
-      text: Rust の設計では、LLVM の採用は少し手抜きとも言えるが、良い選択でもある。Go のように機械語へ変換する工程を自前で維持するのではなく、LLVM の大きなエコシステムに成熟した最適化を任せるのは非常に合理的だ。Rust のコンパイル全体の流れは、おおまかにはソースコードが字句解析と構文解析を経て AST を生成し、その後にマクロ展開、HIR への低水準化と平坦化を行い、通常の型検査とほんの少しの借用検査に入り、最終的に MIR を生成するというものだ。ここまでは Rust コンパイラ自身のフロントエンドが作業する。MIR 以降は LLVM に委ねられ、たとえば MIR を LLVM IR に変換し、LLVM が最適化 pass 一式（O0 から O3 まで）を実行し、最後に対象プラットフォーム向けの機械語を生成して、リンカーが BIN 実行ファイルに組み立てる。
+      text: では、いったい何が問題なのでしょうか。答えは実に単純です。LLVM は非常に重厚な基盤技術であり、本番環境ではその重さこそが正しいのです。コンパイル時間を実行時間と引き換えにするのは優れた思想で、上位層の Rust と C、C++、Swift など数多くの言語を橋渡しします。つまり、その最適化パイプラインは「最良の機械語を生成する」ために設計されており、「素早くコンパイルを終える」ためではありません。release モードで数十個の最適化 pass を一巡させるのは非常に時間がかかります。debug モードの O0 であっても、LLVM は IR の生成から機械語の生成までの全工程を通る必要があり、その工程自体が軽量ではありません。さらに Rust のジェネリック単相化はコンパイル時に大量のコードを展開するため、LLVM に渡される IR の量はソースコードから見える量をはるかに上回り、LLVM が処理する作業量も当然それに伴って膨らみます。
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T01:47:46.838009Z
-      seconds: 39.484624
-      tokens: 18624
+      at: 2026-08-03T02:56:19.57674Z
+      seconds: 44.400738625
+      tokens: 19155
       review: false
     ko-KR:
-      text: Rust 설계에서 LLVM은 사실 조금 편한 선택이지만, 좋은 선택이기도 하다. Go처럼 기계어로 만드는 과정을 직접 유지하는 대신 LLVM의 거대한 생태계에 성숙한 최적화를 맡기는 것은 매우 좋다. Rust의 전체 컴파일 과정은 대략 소스 코드가 어휘 분석과 구문 분석을 거쳐 AST를 만들고, 이어 매크로 확장과 HIR 하향 변환 및 평탄화를 거친 뒤, 일반적인 타입 검사와 아주 조금의 빌림 검사를 수행하여 최종적으로 MIR을 생성한다고 볼 수 있다. 여기까지는 Rust 컴파일러 자체의 프런트엔드가 작업한다. MIR 이후는 LLVM에 맡긴다. 예를 들어 MIR을 LLVM IR로 번역하고, LLVM이 최적화 pass 묶음(O0부터 O3까지)을 한 번 실행한 뒤, 대상 플랫폼의 기계어를 생성하고, 마지막으로 링커에 넘겨 BIN 실행 파일로 조립한다.
+      text: 그렇다면 정확히 어디에 문제가 있을까요? 답은 사실 아주 간단합니다. LLVM은 상당히 무거운 기반 인프라이며, production 환경에서는 그 무거움이 오히려 옳습니다. 컴파일 시간을 실행 시간과 맞바꾸는 것은 좋은 철학이고, LLVM은 상위 계층의 Rust와 C, C++, Swift 등 수많은 언어를 이어 줍니다. 즉, 그 최적화 파이프라인은 “최적의 machine code를 생성하는” 데 맞춰 설계되었지, “컴파일을 빠르게 끝내는” 데 맞춰 설계된 것이 아닙니다. release 모드에서 수십 개의 최적화 pass를 한 번 돌리는 일은 매우 오래 걸립니다. debug 모드의 O0에서도 LLVM은 여전히 IR 생성과 machine code 생성의 전체 과정을 거쳐야 하며, 그 과정 자체도 가볍지 않습니다. 게다가 Rust의 generic monomorphization은 컴파일 시점에 많은 코드를 펼쳐 내므로 LLVM에 넘겨지는 IR의 규모는 소스 코드에서 보이는 것보다 훨씬 크고, LLVM이 처리해야 할 작업량도 자연스럽게 함께 불어납니다.
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T01:47:46.838009Z
-      seconds: 39.484624
-      tokens: 18624
+      at: 2026-08-03T02:56:19.57674Z
+      seconds: 44.400738625
+      tokens: 19155
       review: false
     zh-CN:
-      text: 在 Rust 的设计中，LLVM 其实有点偷懒，但也选得很好：不像 Go 那样自己维护生成机器码的过程，而是让 LLVM 庞大的生态来完成成熟的优化，这其实很好。整个 Rust 的编译流程大致可以说是：源码先经过一遍词法分析和语法分析，生成 AST，再经过宏展开、HIR 降级和拍平；然后进入常规类型检查和亿点点借用检查，最终生成 MIR。到这里为止，都是 Rust 编译器自己的前端在干活。MIR 之后的事情就交给 LLVM，例如把 MIR 翻译成 LLVM IR，然后 LLVM 跑一遍它那套优化 pass（从 O0 到 O3 不等），最后生成目标平台的机器码，再交给链接器拼成 BIN 可执行文件。
+      text: 那么问题到底出在哪呢？答案其实已经很简单了：LLVM 是一套很重的基础设施，而在生产环境中，这种“重”恰恰是正确的。用编译时间换执行时间是很好的哲学，它连接了上层的 Rust，以及 C、C++、Swift 等一大堆语言。这意味着，它的优化管线是为“生成最优机器码”设计的，而不是为“快速完成编译”设计的。release 模式下跑一遍几十个优化 pass 会非常耗时；即便 debug 模式使用 O0，LLVM 仍要走完 IR 生成和机器码生成的完整流程，而这个流程本身并不轻量。再加上 Rust 的泛型单态化会在编译期展开大量代码，交给 LLVM 的 IR 体量远比源码看起来大得多，LLVM 需要处理的工作量自然也随之膨胀。
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T01:47:46.838009Z
-      seconds: 39.484624
-      tokens: 18624
+      at: 2026-08-03T02:56:19.57674Z
+      seconds: 44.400738625
+      tokens: 19155
       review: false
     zh-TW:
-      text: 在 Rust 的設計中，LLVM 其實有點偷懶，但也選得很好：不像 Go 那樣自己維護產生機器碼的過程，而是讓 LLVM 龐大的生態系來完成成熟的最佳化，這其實很好。整個 Rust 的編譯流程大致可以說是：原始碼先經過一遍詞法分析和語法分析，產生 AST，再經過巨集展開、HIR 降級和拍平；然後進入一般型別檢查和億點點借用檢查，最終產生 MIR。到這裡為止，都是 Rust 編譯器自己的前端在做事。MIR 之後的事情就交給 LLVM，例如把 MIR 翻譯成 LLVM IR，然後 LLVM 跑一遍它那套最佳化 pass（從 O0 到 O3 不等），最後產生目標平台的機器碼，再交給連結器組成 BIN 可執行檔。
+      text: 那麼問題到底出在哪裡呢？答案其實已經很簡單了：LLVM 是一套很重的基礎設施，而在生產環境中，這種「重」恰恰是正確的。用編譯時間換取執行時間是很好的哲學，它連接了上層的 Rust，以及 C、C++、Swift 等一大堆語言。這意味著，它的最佳化管線是為「產生最佳機器碼」設計的，而不是為「快速完成編譯」設計的。release 模式下跑一遍數十個最佳化 pass 會非常耗時；即便 debug 模式使用 O0，LLVM 仍要走完 IR 產生和機器碼產生的完整流程，而這個流程本身並不輕量。再加上 Rust 的泛型單態化會在編譯期展開大量程式碼，交給 LLVM 的 IR 體量遠比原始碼看起來大得多，LLVM 需要處理的工作量自然也隨之膨脹。
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T01:47:46.838009Z
-      seconds: 39.484624
-      tokens: 18624
+      at: 2026-08-03T02:56:19.57674Z
+      seconds: 44.400738625
+      tokens: 19155
       review: false
   daf36a3490b545034e4de52103d4b575:
     de-DE:
@@ -2797,7 +2992,7 @@ segments:
       review: false
   dc16e19413a7b7b643f868855c8b7038:
     de-DE:
-      text: "Ein weiterer kleiner Trick ist: `Cargo.toml` kann tatsächlich unterschiedliche Optimierungsstufen für Abhängigkeiten und den eigenen Code festlegen:"
+      text: 'Ein weiterer kleiner Trick ist: `Cargo.toml` kann tatsächlich unterschiedliche Optimierungsstufen für Abhängigkeiten und den eigenen Code festlegen:'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:39:27.180288Z
@@ -2805,7 +3000,7 @@ segments:
       tokens: 16863
       review: false
     en-US:
-      text: "There's also a little trick: `Cargo.toml` can actually set different optimization levels for dependencies and your own code:"
+      text: 'There''s also a little trick: `Cargo.toml` can actually set different optimization levels for dependencies and your own code:'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:39:27.180288Z
@@ -2813,7 +3008,7 @@ segments:
       tokens: 16863
       review: false
     es-ES:
-      text: "También hay un pequeño truco: `Cargo.toml` puede, de hecho, establecer diferentes niveles de optimización para las dependencias y su propio código:"
+      text: 'También hay un pequeño truco: `Cargo.toml` puede, de hecho, establecer diferentes niveles de optimización para las dependencias y su propio código:'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:39:27.180288Z
@@ -2821,7 +3016,7 @@ segments:
       tokens: 16863
       review: false
     fr-FR:
-      text: "Il y a aussi une petite astuce : `Cargo.toml` peut en fait définir des niveaux d'optimisation différents pour les dépendances et votre propre code :"
+      text: 'Il y a aussi une petite astuce : `Cargo.toml` peut en fait définir des niveaux d''optimisation différents pour les dépendances et votre propre code :'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:39:27.180288Z
@@ -2829,7 +3024,7 @@ segments:
       tokens: 16863
       review: false
     ja-JP:
-      text: "もうひとつ小技があります: `Cargo.toml` は実際に依存ライブラリと自分のコードで異なる最適化レベルを設定できます:"
+      text: 'もうひとつ小技があります: `Cargo.toml` は実際に依存ライブラリと自分のコードで異なる最適化レベルを設定できます:'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:39:27.180288Z
@@ -2837,7 +3032,7 @@ segments:
       tokens: 16863
       review: false
     ko-KR:
-      text: "또 하나의 작은 요령은 `Cargo.toml` 를 사용하면 의존성 및 자체 코드에 서로 다른 최적화 수준을 설정할 수 있다는 것입니다:"
+      text: '또 하나의 작은 요령은 `Cargo.toml` 를 사용하면 의존성 및 자체 코드에 서로 다른 최적화 수준을 설정할 수 있다는 것입니다:'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:39:27.180288Z
@@ -2925,9 +3120,74 @@ segments:
       seconds: 7.632593083
       tokens: 16376
       review: false
+  e4f45bb1cfbab66a39437d6e7026e471:
+    de-DE:
+      text: Cargo darf nicht wieder:tn[faulenzen]{is="Das chinesische Original verwendet mit „摸鱼“ Internet-Slang für absichtliches Nichtstun bei der Arbeit und stellt Cargo dadurch als faulenzenden Angestellten dar.}.
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T02:56:19.583525Z
+      seconds: 20.672458167
+      tokens: 15930
+      review: false
+    en-US:
+      text: Don't Let Cargo Slack Off Again :tn[Slack Off]{is="The original uses the Chinese internet slang “摸鱼,” portraying Cargo as an employee slacking off at work.}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T02:56:19.583525Z
+      seconds: 20.672458167
+      tokens: 15930
+      review: false
+    es-ES:
+      text: Que Cargo no vuelva a:tn[escaquearse]{is="El original usa «摸鱼», jerga china de Internet para referirse a holgazanear en el trabajo, presentando a Cargo como un empleado que se escaquea.}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T02:56:19.583525Z
+      seconds: 20.672458167
+      tokens: 15930
+      review: false
+    fr-FR:
+      text: Cargo ne doit plus:tn[paresser]{is="L’original emploie « 摸鱼 », un terme d’argot Internet chinois désignant le fait de tirer au flanc au travail, ce qui personnifie Cargo en employé qui se relâche.}.
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T02:56:19.583525Z
+      seconds: 20.672458167
+      tokens: 15930
+      review: false
+    ja-JP:
+      text: Cargoをもう:tn[サボらせない]{is="原文の「摸鱼」は、仕事中に怠けることを指す中国語ネットスラングで、Cargoを仕事中にサボる人のように擬人化しています。}ぞ
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T02:56:19.583525Z
+      seconds: 20.672458167
+      tokens: 15930
+      review: false
+    ko-KR:
+      text: Cargo가 다시:tn[농땡이 피우게 두지 마]{is="원문의 “摸鱼”는 일하는 척하며 게으름을 피운다는 중국어 인터넷 속어로, Cargo를 근무 중 농땡이 피우는 사람처럼 의인화합니다.}
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T02:56:19.583525Z
+      seconds: 20.672458167
+      tokens: 15930
+      review: false
+    zh-CN:
+      text: 不许 Cargo 再:tn[偷懒]{is="原文“摸鱼”是网络口语，指偷懒或消极怠工，并把 Cargo 拟人化成上班划水的人。}了
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T02:56:19.583525Z
+      seconds: 20.672458167
+      tokens: 15930
+      review: false
+    zh-TW:
+      text: 不准 Cargo 再:tn[偷懶]{is="原文的「摸魚」是網路口語，指偷懶或消極怠工，並將 Cargo 擬人化成上班摸魚的人。}了
+      provider: openai
+      model: gpt-5-6-luna-medium
+      at: 2026-08-03T02:56:19.583525Z
+      seconds: 20.672458167
+      tokens: 15930
+      review: false
   e546e7e012bf42735634f55a842f5026:
     de-DE:
-      text: "## Linkzeit-Optimierung {#link-time-optimization}"
+      text: '## Linkzeit-Optimierung {#link-time-optimization}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:39:53.53285Z
@@ -2935,7 +3195,7 @@ segments:
       tokens: 16713
       review: false
     en-US:
-      text: "## Link-time Optimization {#link-time-optimization}"
+      text: '## Link-time Optimization {#link-time-optimization}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:39:53.53285Z
@@ -2943,7 +3203,7 @@ segments:
       tokens: 16713
       review: false
     es-ES:
-      text: "## Optimización en tiempo de enlace {#link-time-optimization}"
+      text: '## Optimización en tiempo de enlace {#link-time-optimization}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:39:53.53285Z
@@ -2951,7 +3211,7 @@ segments:
       tokens: 16713
       review: false
     fr-FR:
-      text: "## Optimisation au moment du lien {#link-time-optimization}"
+      text: '## Optimisation au moment du lien {#link-time-optimization}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:39:53.53285Z
@@ -2959,7 +3219,7 @@ segments:
       tokens: 16713
       review: false
     ja-JP:
-      text: "## リンク時最適化 {#link-time-optimization}"
+      text: '## リンク時最適化 {#link-time-optimization}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:39:53.53285Z
@@ -2967,7 +3227,7 @@ segments:
       tokens: 16713
       review: false
     ko-KR:
-      text: "## 링크 시점 최적화 {#link-time-optimization}"
+      text: '## 링크 시점 최적화 {#link-time-optimization}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:39:53.53285Z
@@ -2975,7 +3235,7 @@ segments:
       tokens: 16713
       review: false
     zh-CN:
-      text: "## 链接段优化 {#link-time-optimization}"
+      text: '## 链接段优化 {#link-time-optimization}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:39:53.53285Z
@@ -2983,7 +3243,7 @@ segments:
       tokens: 16713
       review: false
     zh-TW:
-      text: "## 連結段優化 {#link-time-optimization}"
+      text: '## 連結段優化 {#link-time-optimization}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:39:53.53285Z
@@ -3057,7 +3317,7 @@ segments:
       review: false
   f431cfd98af980adfd9c279f26cf0ff0:
     de-DE:
-      text: "Auch über `codegen-units`: Dies ist tatsächlich ein Parameter, mit dem der Compiler steuert, in wie viele kleinste Einheiten ein Crate aufgeteilt wird, damit das Backend sie parallel verarbeiten kann. Standardmäßig verwendet der Debug‑Modus 256 Einheiten und der Release‑Modus 16 Einheiten. Je größer die Zahl, desto höher die Parallelität und desto schneller die Kompilierung – weil mehrere CPU‑Kerne gleichzeitig für die Code‑Generierung im Backend genutzt werden können. Der Nachteil ist jedoch eine schlechtere Optimierung, da jede Einheit unabhängig optimiert wird und LLVM (oder Cranelift) nur einen kleineren Kontext sieht, wodurch Inline‑ und Optimierungsmöglichkeiten zwischen den Einheiten abnehmen."
+      text: 'Auch über `codegen-units`: Dies ist tatsächlich ein Parameter, mit dem der Compiler steuert, in wie viele kleinste Einheiten ein Crate aufgeteilt wird, damit das Backend sie parallel verarbeiten kann. Standardmäßig verwendet der Debug‑Modus 256 Einheiten und der Release‑Modus 16 Einheiten. Je größer die Zahl, desto höher die Parallelität und desto schneller die Kompilierung – weil mehrere CPU‑Kerne gleichzeitig für die Code‑Generierung im Backend genutzt werden können. Der Nachteil ist jedoch eine schlechtere Optimierung, da jede Einheit unabhängig optimiert wird und LLVM (oder Cranelift) nur einen kleineren Kontext sieht, wodurch Inline‑ und Optimierungsmöglichkeiten zwischen den Einheiten abnehmen.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.922967Z
@@ -3073,7 +3333,7 @@ segments:
       tokens: 18754
       review: false
     es-ES:
-      text: "Hablemos también de `codegen-units`: en realidad es un parámetro que controla cuántas unidades mínimas se divide un crate para que el backend lo procese en paralelo. Por defecto, el modo debug usa 256 unidades y el modo release 16. Cuanto mayor es el número, mayor es el paralelismo y la compilación es más rápida, ya que se pueden aprovechar varios núcleos de CPU simultáneamente para la generación de código del backend. Sin embargo, el precio es una peor optimización, pues cada unidad se optimiza de forma independiente y LLVM (or Cranelift) ve un contexto más pequeño, reduciendo las oportunidades de inlining y optimización entre unidades."
+      text: 'Hablemos también de `codegen-units`: en realidad es un parámetro que controla cuántas unidades mínimas se divide un crate para que el backend lo procese en paralelo. Por defecto, el modo debug usa 256 unidades y el modo release 16. Cuanto mayor es el número, mayor es el paralelismo y la compilación es más rápida, ya que se pueden aprovechar varios núcleos de CPU simultáneamente para la generación de código del backend. Sin embargo, el precio es una peor optimización, pues cada unidad se optimiza de forma independiente y LLVM (or Cranelift) ve un contexto más pequeño, reduciendo las oportunidades de inlining y optimización entre unidades.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.922967Z
@@ -3081,7 +3341,7 @@ segments:
       tokens: 18754
       review: false
     fr-FR:
-      text: "Parlons aussi de `codegen-units` : il s’agit en fait d’un paramètre qui indique au compilateur en combien d’unités les plus petites possible il doit découper un crate pour que le back‑end les traite en parallèle. Par défaut, le mode debug utilise 256 unités et le mode release 16 unités. Plus le nombre est élevé, plus le degré de parallélisme et la rapidité de la compilation augmentent – plusieurs cœurs CPU peuvent ainsi être exploités simultanément pour la génération de code du back‑end. En contrepartie, l’optimisation en pâtit, chaque unité étant optimisée de manière indépendante, et LLVM (ou Cranelift) voit un contexte plus restreint, ce qui réduit les possibilités d’inlining et d’optimisation entre les unités."
+      text: 'Parlons aussi de `codegen-units` : il s’agit en fait d’un paramètre qui indique au compilateur en combien d’unités les plus petites possible il doit découper un crate pour que le back‑end les traite en parallèle. Par défaut, le mode debug utilise 256 unités et le mode release 16 unités. Plus le nombre est élevé, plus le degré de parallélisme et la rapidité de la compilation augmentent – plusieurs cœurs CPU peuvent ainsi être exploités simultanément pour la génération de code du back‑end. En contrepartie, l’optimisation en pâtit, chaque unité étant optimisée de manière indépendante, et LLVM (ou Cranelift) voit un contexte plus restreint, ce qui réduit les possibilités d’inlining et d’optimisation entre les unités.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.922967Z
@@ -3089,7 +3349,7 @@ segments:
       tokens: 18754
       review: false
     ja-JP:
-      text: "`codegen-units` についても触れると、これは実際にコンパイラが crate をバックエンドで並列処理するために、どれだけ小さな単位に分割するかを制御するパラメータです。デフォルトでは、デバッグモードは 256 個、リリースモードは 16 個です。数値が大きいほど並列度が上がり、コンパイルが速くなります――複数の CPU コアを同時に利用してバックエンドのコード生成を行えるからです。しかし、その代償として最適化効果は低下します。各ユニットは個別に最適化され、LLVM（or Cranelift）が見るコンテキストが小さくなるため、ユニット間のインライン化や最適化機会が減少します。"
+      text: '`codegen-units` についても触れると、これは実際にコンパイラが crate をバックエンドで並列処理するために、どれだけ小さな単位に分割するかを制御するパラメータです。デフォルトでは、デバッグモードは 256 個、リリースモードは 16 個です。数値が大きいほど並列度が上がり、コンパイルが速くなります――複数の CPU コアを同時に利用してバックエンドのコード生成を行えるからです。しかし、その代償として最適化効果は低下します。各ユニットは個別に最適化され、LLVM（or Cranelift）が見るコンテキストが小さくなるため、ユニット間のインライン化や最適化機会が減少します。'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.922967Z
@@ -3097,7 +3357,7 @@ segments:
       tokens: 18754
       review: false
     ko-KR:
-      text: "`codegen-units`에 대해서도 이야기하자면, 이것은 실제로 컴파일러가 크레이트를 백엔드에서 병렬 처리하기 위해 얼마나 작은 단위로 분할할지를 제어하는 매개변수입니다. 기본적으로 디버그 모드는 256개, 릴리즈 모드는 16개로 설정됩니다. 숫자가 클수록 병렬도가 높아져 컴파일 속도가 빨라집니다—여러 CPU 코어를 동시에 활용해 백엔드 코드 생성을 수행할 수 있기 때문입니다. 그러나 그 대가로 최적화 효과는 악화됩니다. 각 단위가 독립적으로 최적화되며 LLVM (or Cranelift)이 보는 컨텍스트가 작아져 단위 간 인라인 및 최적화 기회가 줄어듭니다."
+      text: '`codegen-units`에 대해서도 이야기하자면, 이것은 실제로 컴파일러가 크레이트를 백엔드에서 병렬 처리하기 위해 얼마나 작은 단위로 분할할지를 제어하는 매개변수입니다. 기본적으로 디버그 모드는 256개, 릴리즈 모드는 16개로 설정됩니다. 숫자가 클수록 병렬도가 높아져 컴파일 속도가 빨라집니다—여러 CPU 코어를 동시에 활용해 백엔드 코드 생성을 수행할 수 있기 때문입니다. 그러나 그 대가로 최적화 효과는 악화됩니다. 각 단위가 독립적으로 최적화되며 LLVM (or Cranelift)이 보는 컨텍스트가 작아져 단위 간 인라인 및 최적화 기회가 줄어듭니다.'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.922967Z
@@ -3122,7 +3382,7 @@ segments:
       review: false
   f94ebe5d401d712c0a99f0bd41ab9190:
     de-DE:
-      text: "## Zusammenfassung {#summary}"
+      text: '## Zusammenfassung {#summary}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.9299Z
@@ -3130,7 +3390,7 @@ segments:
       tokens: 16522
       review: false
     en-US:
-      text: "## Summary {#summary}"
+      text: '## Summary {#summary}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.9299Z
@@ -3138,7 +3398,7 @@ segments:
       tokens: 16522
       review: false
     es-ES:
-      text: "## Resumen {#summary}"
+      text: '## Resumen {#summary}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.9299Z
@@ -3146,7 +3406,7 @@ segments:
       tokens: 16522
       review: false
     fr-FR:
-      text: "## Résumé {#summary}"
+      text: '## Résumé {#summary}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.9299Z
@@ -3154,7 +3414,7 @@ segments:
       tokens: 16522
       review: false
     ja-JP:
-      text: "## 概要 {#summary}"
+      text: '## 概要 {#summary}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.9299Z
@@ -3162,7 +3422,7 @@ segments:
       tokens: 16522
       review: false
     ko-KR:
-      text: "## 요약 {#summary}"
+      text: '## 요약 {#summary}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.9299Z
@@ -3170,7 +3430,7 @@ segments:
       tokens: 16522
       review: false
     zh-CN:
-      text: "## 总结 {#summary}"
+      text: '## 总结 {#summary}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.9299Z
@@ -3178,7 +3438,7 @@ segments:
       tokens: 16522
       review: false
     zh-TW:
-      text: "## 總結 {#summary}"
+      text: '## 總結 {#summary}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.9299Z
@@ -3187,7 +3447,7 @@ segments:
       review: false
   fc378fc4acb44e74349676a38089c534:
     de-DE:
-      text: "## UPX ist schlecht {#upx-considered-harmful}"
+      text: '## UPX ist schlecht {#upx-considered-harmful}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.937593Z
@@ -3195,7 +3455,7 @@ segments:
       tokens: 16479
       review: false
     en-US:
-      text: "## UPX is a Bad Thing {#upx-considered-harmful}"
+      text: '## UPX is a Bad Thing {#upx-considered-harmful}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.937593Z
@@ -3203,7 +3463,7 @@ segments:
       tokens: 16479
       review: false
     es-ES:
-      text: "## UPX es malo {#upx-considered-harmful}"
+      text: '## UPX es malo {#upx-considered-harmful}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.937593Z
@@ -3211,7 +3471,7 @@ segments:
       tokens: 16479
       review: false
     fr-FR:
-      text: "## UPX est mauvais {#upx-considered-harmful}"
+      text: '## UPX est mauvais {#upx-considered-harmful}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.937593Z
@@ -3219,7 +3479,7 @@ segments:
       tokens: 16479
       review: false
     ja-JP:
-      text: "## UPX は悪いものです {#upx-considered-harmful}"
+      text: '## UPX は悪いものです {#upx-considered-harmful}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.937593Z
@@ -3227,7 +3487,7 @@ segments:
       tokens: 16479
       review: false
     ko-KR:
-      text: "## UPX는 나쁜 것입니다 {#upx-considered-harmful}"
+      text: '## UPX는 나쁜 것입니다 {#upx-considered-harmful}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.937593Z
@@ -3235,7 +3495,7 @@ segments:
       tokens: 16479
       review: false
     zh-CN:
-      text: "## UPX 是个坏东西 {#upx-considered-harmful}"
+      text: '## UPX 是个坏东西 {#upx-considered-harmful}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.937593Z
@@ -3243,7 +3503,7 @@ segments:
       tokens: 16479
       review: false
     zh-TW:
-      text: "## UPX 是個壞東西 {#upx-considered-harmful}"
+      text: '## UPX 是個壞東西 {#upx-considered-harmful}'
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:40:24.937593Z
