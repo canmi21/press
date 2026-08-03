@@ -25,8 +25,6 @@
 	let rootEl = $state<HTMLElement | undefined>();
 	let triggerEl = $state<HTMLButtonElement | undefined>();
 	let open = $state(false);
-	const choices = $derived(languageChoices(code, sourceLanguage));
-	const current = $derived(choices.find((choice) => choice.current) ?? choices[0]);
 
 	/** A reader who asked for less motion gets none of it; the menu still opens. */
 	function fadeMs(): number {
@@ -68,6 +66,11 @@
 		acceptedLocale(globalThis.navigator?.languages?.join(',') ?? globalThis.navigator?.language) ??
 			'en',
 	);
+
+	// Ordered by the reader's own language rather than by the view, so the sequence settles once
+	// per reader instead of shifting as they move between translations.
+	const choices = $derived(languageChoices(code, sourceLanguage, preferred));
+	const current = $derived(choices.find((choice) => choice.current) ?? choices[0]);
 
 	/**
 	 * The trigger says where the reader stands; the menu says what each language is.

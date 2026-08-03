@@ -16,9 +16,6 @@ export type LanguageChoice = {
  * A reader who cannot read the interface still has to find their language in this list, so it
  * reads the same whichever view rendered it. Only the pairs that need telling apart carry a
  * qualifier -- there is one English here and two Chinese.
- *
- * Reading order, not alphabetical: the languages this site is actually read in come first, then
- * the rest. Object order is the rendered order, so the two cannot drift apart.
  */
 export const LANGUAGE_ENDONYMS = {
 	en: 'English',
@@ -31,7 +28,26 @@ export const LANGUAGE_ENDONYMS = {
 	es: 'Español',
 } as const satisfies Record<TranslationCode, string>;
 
-const TRANSLATION_CODES = Object.keys(LANGUAGE_ENDONYMS) as TranslationCode[];
+/**
+ * Two orders, chosen by what the reader's own language is rather than by the view.
+ *
+ * Names never change; only their sequence does, and it settles once per reader rather than
+ * shifting as they move between views. Someone reading in Japanese should not have to walk past
+ * four European languages to reach Chinese, and someone reading in French should not have to do
+ * the reverse.
+ *
+ * Written out rather than derived from the endonym table, because there are now two of them and
+ * an implicit order cannot express two. Both must name all eight; the tests hold them to it.
+ */
+const ORDER_CJK = ['en', 'zh', 'tw', 'ja', 'ko', 'de', 'fr', 'es'] as const;
+const ORDER_LATIN = ['en', 'es', 'fr', 'ja', 'zh', 'tw', 'ko', 'de'] as const;
+
+/** Reader languages that get the first order. Not `COMPACT_SCRIPT`: that one is about labels. */
+const CJK_READER = new Set<LocaleCode>(['zh', 'tw', 'ja', 'ko']);
+
+export function orderFor(preferred: LocaleCode): readonly TranslationCode[] {
+	return CJK_READER.has(preferred) ? ORDER_CJK : ORDER_LATIN;
+}
 
 /**
  * Views whose script keeps a language name short enough to spell out.
@@ -89,9 +105,10 @@ export function sourceLabel(sourceLanguage: string, currentCode: LocaleCode): st
 export function languageChoices(
 	currentCode: LocaleCode,
 	sourceLanguage: string,
+	preferred: LocaleCode = 'en',
 ): LanguageChoice[] {
 	return [
-		...TRANSLATION_CODES.map((code) => ({
+		...orderFor(preferred).map((code) => ({
 			code,
 			name: LANGUAGE_ENDONYMS[code],
 			original: false,

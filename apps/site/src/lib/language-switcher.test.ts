@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import {
 	LANGUAGE_ENDONYMS,
 	languageChoices,
+	orderFor,
 	selectContentLanguage,
 	sourceLabel,
 } from './language-switcher';
@@ -73,10 +74,10 @@ describe('article language switcher', () => {
 		}
 	});
 
-	it('opens with the languages this site is read in', () => {
-		// Order is the declaration order of the endonym table, so a reordering there is the only
-		// way to reorder the menu -- there is no second list to forget.
-		expect(languageChoices('en', 'zh').map((choice) => choice.code)).toEqual([
+	it('orders by the reader rather than by the view', () => {
+		// A reader in Japanese should not walk past four European languages to reach Chinese, and
+		// a reader in French should not do the reverse.
+		expect(languageChoices('en', 'zh', 'ja').map((choice) => choice.code)).toEqual([
 			'en',
 			'zh',
 			'tw',
@@ -87,6 +88,36 @@ describe('article language switcher', () => {
 			'es',
 			'mw',
 		]);
+		expect(languageChoices('en', 'zh', 'fr').map((choice) => choice.code)).toEqual([
+			'en',
+			'es',
+			'fr',
+			'ja',
+			'zh',
+			'tw',
+			'ko',
+			'de',
+			'mw',
+		]);
+	});
+
+	it('holds the same sequence across every view a reader moves through', () => {
+		// The order follows the reader, so switching translations must not reshuffle the menu.
+		for (const preferred of ['ja', 'fr'] as const) {
+			const expected = languageChoices('mw', 'zh', preferred).map((choice) => choice.code);
+			for (const current of ['de', 'en', 'ja', 'zh', 'tw'] as const) {
+				expect(languageChoices(current, 'zh', preferred).map((choice) => choice.code)).toEqual(
+					expected,
+				);
+			}
+		}
+	});
+
+	it('keeps both orders complete, so neither can lose a language', () => {
+		const codes = Object.keys(LANGUAGE_ENDONYMS).toSorted();
+		for (const preferred of ['zh', 'tw', 'ja', 'ko', 'en', 'de', 'fr', 'es'] as const) {
+			expect(orderFor(preferred).toSorted()).toEqual(codes);
+		}
 	});
 
 	it('reaches both Chinese views from either of them', () => {
