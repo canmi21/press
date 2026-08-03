@@ -195,136 +195,6 @@ segments:
       seconds: 6.195712292
       tokens: 15914
       review: false
-  03a7b723b0bf91095124a7d8c7cf04c7:
-    de-DE:
-      text: Komischerweise ist die Qualität nach dem Loslassen nicht schlechter geworden. Ich denke, das liegt wahrscheinlich daran, dass die früheren „Altmodisch“-Programmierungstage nicht umsonst waren; schon in der GPT‑2‑Ära habe ich KI eingesetzt, aber damals schrieb ich noch jede Zeile Code gewissenhaft und verstand jedes Konzept. Diese Erfahrung gab mir eine Grundlage; eher würde ich später von Vibe Coding als von Context Coding sprechen, das nötige Urteilsvermögen ist noch da, und das Loslassen hat keine grundsätzlichen Fehler oder Unfälle verursacht.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:33:20.798668Z
-      seconds: 16.439965583
-      tokens: 18308
-      review: false
-    en-US:
-      text: Strangely, the quality didn't degrade after letting go. I think this is probably because those “old‑school” programming days weren't wasted; as early as the GPT‑2 era I started using AI, but back then I was still honestly writing every line of code and understanding each concept. That experience gave me a foundation; rather than saying later it's Vibe Coding, it's more like Context Coding, the necessary judgment is still there, and letting go didn't lead to any low‑level mistakes or accidents.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:33:20.798668Z
-      seconds: 16.439965583
-      tokens: 18308
-      review: false
-    es-ES:
-      text: Curiosamente, la calidad no disminuyó después de soltar el control. Creo que esto se debe probablemente a que esos días de programación “a la vieja usanza” no fueron en vano; ya en la era GPT‑2 comencé a usar IA, pero entonces todavía escribía cada línea de código con dedicación y comprendía cada concepto. Esa experiencia me dio una base; más que llamarlo Vibe Coding, diría que es Context Coding, el juicio necesario sigue presente y soltar no provocó errores graves ni incidentes.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:33:20.798668Z
-      seconds: 16.439965583
-      tokens: 18308
-      review: false
-    fr-FR:
-      text: Étrangement, la qualité n’a pas diminué après avoir lâché prise. Je pense que c’est probablement parce que ces jours de programmation « à l’ancienne » n’ont pas été vains ; dès l’époque GPT‑2, je me servais déjà de l’IA, mais à l’époque j’écrivais honnêtement chaque ligne de code et comprenais chaque concept. Cette expérience m’a donné des bases ; plutôt que d’appeler cela Vibe Coding, on parlerait davantage de Context Coding, le sens du jugement nécessaire est toujours présent, et le fait de lâcher prise n’a entraîné aucune erreur de bas niveau ni aucun incident.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:33:20.798668Z
-      seconds: 16.439965583
-      tokens: 18308
-      review: false
-    ja-JP:
-      text: 不思議なことに、手放した後でも品質は低下しませんでした。これはおそらく、以前の「古法」プログラミングの時代が無駄ではなかったからだと思います。GPT‑2 時代からすでに AI を使い始めていましたが、その頃はまだ一行一行を誠実に書き、概念をすべて理解していました。その経験が基礎となり、後になると Vibe Coding と呼ぶよりむしろ Context Coding と言えるでしょう。必要な判断力は残っており、手放したからといって低レベルのミスや事故が起きたわけではありません。
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:33:20.798668Z
-      seconds: 16.439965583
-      tokens: 18308
-      review: false
-    ko-KR:
-      text: 이상하게도, 놓아버린 뒤에도 품질이 떨어지지 않았습니다. 이는 아마도 이전에 있던 “고전” 프로그래밍 시절이 헛되지 않았기 때문이라고 생각합니다. GPT‑2 시절부터 이미 AI를 사용했지만, 그때는 여전히 모든 코드를 성실히 작성하고 각 개념을 이해하고 있었습니다. 그 경험이 토대가 되었고, 이후에는 Vibe Coding이라기보다 Context Coding이라고 부르는 것이 더 맞습니다. 필요한 판단력은 여전히 존재하며, 놓아버렸다고 해서 저급 실수나 사고가 발생한 것은 아닙니다.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:33:20.798668Z
-      seconds: 16.439965583
-      tokens: 18308
-      review: false
-    zh-CN:
-      text: 奇怪的是，放手之后质量并没有变差。我想这大概是因为之前那些"古法"编程的日子没有白费；早在 GPT-2 时代我就开始用 AI 了，但那时候我还在老老实实地写每一行代码、理解每一个概念。那段经历给了我底子，与其说后来 Vibe Coding 不如说是 Context Coding，该有的判断力还在，并没有因为放手就出什么低级错误或者说是事故。
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:33:20.798668Z
-      seconds: 16.439965583
-      tokens: 18308
-      review: false
-    zh-TW:
-      text: 奇怪的是，放手之後品質並沒有變差。我想這大概是因為之前那些"古法"編程的日子沒有白費；早在 GPT-2 時代我就開始用 AI 了，但那時候我還在老老實實地寫每一行程式碼、理解每一個概念。那段經歷給了我底子，與其說後來 Vibe Coding 不如說是 Context Coding，該有的判斷力還在，並沒有因為放手就出什麼低級錯誤或者說是事故。
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:33:20.798668Z
-      seconds: 16.439965583
-      tokens: 18308
-      review: false
-  0718215ea97d512da49fb3554686b339:
-    de-DE:
-      text: „Wollen“ zu sagen ist eigentlich nicht ganz exakt, es ist eher eine Obsession. In den frühen Tagen, als ich noch weder Front‑End‑ noch Back‑End‑Code schreiben konnte und keine Embedded‑Programmierung kannte, entstand das Verlangen. Ich bastelte noch mit Elektronik und stieß zufällig auf [@ushio](https://github.com/sakura-ushio)s B‑Station‑Video und Webseite, fand es so spannend, dass ich es selbst ausprobieren wollte. Anschließend verbrachte ich etwa ein halbes Jahr damit, von Grund auf C und ein bisschen JS/CSS zu lernen, und baute mit Hexet einen statischen Blog, den ich auf GitHub Pages bereitstellte – so entstand mein kleines eigenes Eckchen.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:25:43.346435Z
-      seconds: 12.032307791
-      tokens: 17275
-      review: false
-    en-US:
-      text: Saying “want” isn’t quite accurate; it’s more like an obsession. It started back when, in the early days, I didn’t know how to write front‑end or back‑end code, nor embedded code. I was still tinkering with electronics, and by chance I saw [@ushio](https://github.com/sakura-ushio)’s Bilibili video and website, and thought it was fun, so I wanted to try it too. Later I spent about half a year learning from scratch to write C and a bit of JS/CSS, and using Hexet I set up a static blog hosted on GitHub Pages, which can be considered my own little corner of the world.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:25:43.346435Z
-      seconds: 12.032307791
-      tokens: 17275
-      review: false
-    es-ES:
-      text: Decir “querer” no es del todo exacto, es más bien una obsesión. En los primeros tiempos, cuando aún no sabía programar front‑end ni back‑end y tampoco código embebido, surgió esa necesidad. Estaba jugando con electrónica y, por casualidad, descubrí el video de B‑Station y el sitio web de [@ushio](https://github.com/sakura-ushio); me pareció muy divertido y quise probarlo también. Después pasé medio año aprendiendo desde cero C y un poco de JS/CSS, y usando Hexet creé un blog estático que desplegué en GitHub Pages, lo que puede considerarse mi pequeño espacio propio.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:25:43.346435Z
-      seconds: 12.032307791
-      tokens: 17275
-      review: false
-    fr-FR:
-      text: Dire « vouloir » n’est pas tout à fait exact, c’est plutôt une obsession. Au début, je ne savais pas écrire de code front‑end ou back‑end, ni de code embarqué, et c’est à cette époque que cela a commencé. Je bricolais encore avec l’électronique et, par hasard, j’ai découvert la vidéo B‑Station et le site de [@ushio](https://github.com/sakura-ushio); cela m’a paru très amusant et j’ai voulu essayer moi‑même. J’ai ensuite passé environ six mois à apprendre le C et un peu de JS/CSS depuis zéro, et avec Hexet j’ai monté un blog statique hébergé sur GitHub Pages, ce qui peut être considéré comme mon petit coin de paradis.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:25:43.346435Z
-      seconds: 12.032307791
-      tokens: 17275
-      review: false
-    ja-JP:
-      text: 「欲しい」と言うのは実は正確ではなく、むしろ執念に近い。最初はフロントエンドやバックエンド、組み込みコードさえ書けなかった頃に芽生えた。まだ電子工作をしていて、たまたま[@ushio](https://github.com/sakura-ushio)のBilibili動画とサイトを見つけ、面白そうだと思って自分もやってみたくなった。その後、半年ほどかけてゼロからC言語と少しのJS/CSSを書けるようになり、Hexetで静的ブログを作ってGitHub Pagesにデプロイした。これで自分だけの小さな世界ができた。
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:25:43.346435Z
-      seconds: 12.032307791
-      tokens: 17275
-      review: false
-    ko-KR:
-      text: ‘원한다’는 표현은 정확하지 않고, 오히려 집착에 가깝다. 초기에는 프론트엔드·백엔드 코드를 쓰지도 못하고, 임베디드 코드조차 작성하지 못했을 때부터 이런 감정이 생겼다. 그때 전자공학을 만지작거리며 우연히 [@ushio](https://github.com/sakura-ushio)의 B站 동영상과 웹사이트를 보게 되었고, 재미있다고 느껴 나도 해보고 싶었다. 이후 약 반년 동안 기초부터 C와 약간의 JS/CSS를 배우고, Hexet을 이용해 정적 블로그를 만들어 GitHub Pages에 배포했다. 이렇게 나만의 작은 공간을 갖게 되었다.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:25:43.346435Z
-      seconds: 12.032307791
-      tokens: 17275
-      review: false
-    zh-CN:
-      text: 说“想”其实不太准确，更像是一个执念。早期我还不会写前后端，也不会写嵌入式代码，那时还在玩电子，偶然间看到[@ushio](https://github.com/sakura-ushio)的 B 站视频和网站，觉得很好玩，于是也想尝试。后来花了小半年时间，从零学会了写 C 和一点点 JS/CSS，用 Hexet 搭建了一个静态博客，部署在 Github Pages 上，也算是拥有了自己的小天地。
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:25:43.346435Z
-      seconds: 12.032307791
-      tokens: 17275
-      review: false
-    zh-TW:
-      text: 說「想」其實不太準確，更像是一種執念。早期我還不會寫前後端，也不會寫嵌入式程式碼，當時還在玩電子，偶然間看到[@ushio](https://github.com/sakura-ushio)的 B 站影片和網站，覺得很好玩，我也想試試看。後來花了半年左右的時間，從零學會寫 C 和一點點 JS/CSS，使用 Hexet 搭建了一個靜態部落格，部署在 GitHub Pages 上，也算是擁有了自己的小天地。
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:25:43.346435Z
-      seconds: 12.032307791
-      tokens: 17275
-      review: false
   10a6be685d67b9d197263f044f2ae2e9:
     de-DE:
       text: ::linkcard{src="8acf126a993024efcb5d4db159659d40.avif" url="https://vercel.com" title="Vercel"}
@@ -457,7 +327,7 @@ segments:
       review: false
   24142222e9959eef92eba10eeb3c19aa:
     de-DE:
-      text: '## Außer Kontrolle {#out-of-control}'
+      text: "## Außer Kontrolle {#out-of-control}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:59.001133Z
@@ -465,7 +335,7 @@ segments:
       tokens: 15794
       review: false
     en-US:
-      text: '## Out of Control {#out-of-control}'
+      text: "## Out of Control {#out-of-control}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:59.001133Z
@@ -473,7 +343,7 @@ segments:
       tokens: 15794
       review: false
     es-ES:
-      text: '## Fuera de control {#out-of-control}'
+      text: "## Fuera de control {#out-of-control}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:59.001133Z
@@ -481,7 +351,7 @@ segments:
       tokens: 15794
       review: false
     fr-FR:
-      text: '## Hors de contrôle {#out-of-control}'
+      text: "## Hors de contrôle {#out-of-control}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:59.001133Z
@@ -489,7 +359,7 @@ segments:
       tokens: 15794
       review: false
     ja-JP:
-      text: '## 制御不能 {#out-of-control}'
+      text: "## 制御不能 {#out-of-control}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:59.001133Z
@@ -497,7 +367,7 @@ segments:
       tokens: 15794
       review: false
     ko-KR:
-      text: '## 통제불능 {#out-of-control}'
+      text: "## 통제불능 {#out-of-control}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:59.001133Z
@@ -505,7 +375,7 @@ segments:
       tokens: 15794
       review: false
     zh-CN:
-      text: '## 失控 {#out-of-control}'
+      text: "## 失控 {#out-of-control}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:59.001133Z
@@ -513,7 +383,7 @@ segments:
       tokens: 15794
       review: false
     zh-TW:
-      text: '## 失控 {#out-of-control}'
+      text: "## 失控 {#out-of-control}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:59.001133Z
@@ -587,7 +457,7 @@ segments:
       review: false
   3f9a6599c6088b5128387feefbb4c4d3:
     de-DE:
-      text: 'Der Kern des Rückgriffs auf das Ingenieurwesen lautet: „Make it function, make it correct, then make it exceptional.“ Ich habe endlich den richtigen Kurs gefunden und es functional gemacht. Ist mein aktueller Blog schlicht? Ja, schlicht. Unvollständig? Tatsächlich unvollständig. Aber besser als gar nichts. Wenn du nicht einmal einen Release‑Tag hast und ständig an etwas arbeitest, das „vielleicht nötig“ ist, dabei einer unsichtbaren Perfektion nachjagst, bleibt am Ende nichts greifbar. Das ist kein Kompromiss, sondern ein technisches Abwägen. So oder so, ich habe es mir gefallen lassen. Also habe ich losgelassen. Ich fixiere mich nicht mehr auf jedes Detail und habe stattdessen das Haus verlassen. In meinem Handy‑Album gibt es seit langem kein Outdoor‑Foto mehr, also habe ich spontan ein Bild vom Straßenrand geschossen – ich war schon ewig nicht mehr draußen.'
+      text: "Der Kern des Rückgriffs auf das Ingenieurwesen lautet: „Make it function, make it correct, then make it exceptional.“ Ich habe endlich den richtigen Kurs gefunden und es functional gemacht. Ist mein aktueller Blog schlicht? Ja, schlicht. Unvollständig? Tatsächlich unvollständig. Aber besser als gar nichts. Wenn du nicht einmal einen Release‑Tag hast und ständig an etwas arbeitest, das „vielleicht nötig“ ist, dabei einer unsichtbaren Perfektion nachjagst, bleibt am Ende nichts greifbar. Das ist kein Kompromiss, sondern ein technisches Abwägen. So oder so, ich habe es mir gefallen lassen. Also habe ich losgelassen. Ich fixiere mich nicht mehr auf jedes Detail und habe stattdessen das Haus verlassen. In meinem Handy‑Album gibt es seit langem kein Outdoor‑Foto mehr, also habe ich spontan ein Bild vom Straßenrand geschossen – ich war schon ewig nicht mehr draußen."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:59.003822Z
@@ -595,7 +465,7 @@ segments:
       tokens: 17470
       review: false
     en-US:
-      text: 'The essence of returning to engineering is: “Make it function, make it correct, then make it exceptional.” I finally got on the right track and made it functional. Is my current blog simplistic? Yes, simplistic. Incomplete? Indeed incomplete. But it’s still better than nothing. If you don’t even have a launch line and keep working on something that’s “maybe needed,” constantly chasing an invisible perfection, you’ll end up with nothing to show. This isn’t a compromise; it’s an engineering trade‑off. Anyway, I’ve come to terms with it. So I’ve let go. No longer obsessing over a single detail, I stepped outside. My phone’s gallery hasn’t had an outdoor photo in ages, so I casually snapped a shot of the roadside—haven’t been out for a long time.'
+      text: "The essence of returning to engineering is: “Make it function, make it correct, then make it exceptional.” I finally got on the right track and made it functional. Is my current blog simplistic? Yes, simplistic. Incomplete? Indeed incomplete. But it’s still better than nothing. If you don’t even have a launch line and keep working on something that’s “maybe needed,” constantly chasing an invisible perfection, you’ll end up with nothing to show. This isn’t a compromise; it’s an engineering trade‑off. Anyway, I’ve come to terms with it. So I’ve let go. No longer obsessing over a single detail, I stepped outside. My phone’s gallery hasn’t had an outdoor photo in ages, so I casually snapped a shot of the roadside—haven’t been out for a long time."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:59.003822Z
@@ -603,7 +473,7 @@ segments:
       tokens: 17470
       review: false
     es-ES:
-      text: 'La esencia de volver a la ingeniería es: “Make it function, make it correct, then make it exceptional.” Finalmente encontré el camino correcto y lo hice functional. ¿Mi blog es sencillo? Sí, sencillo. ¿Incompleto? Sí, incompleto. Pero sigue siendo mejor que nada. Si ni siquiera tienes una versión en línea y sigues trabajando en algo que es “quizá necesario”, persiguiendo una perfección invisible, acabarás sin nada que mostrar. No es una concesión, es una elección de ingeniería. En fin, lo he aceptado. Así que lo he aceptado. Ya no me aferro a un detalle y, en cambio, salí. Mi galería del móvil lleva mucho tiempo sin fotos al aire libre, así que tomé rápidamente una foto del borde de la carretera—hace mucho que no salgo.'
+      text: "La esencia de volver a la ingeniería es: “Make it function, make it correct, then make it exceptional.” Finalmente encontré el camino correcto y lo hice functional. ¿Mi blog es sencillo? Sí, sencillo. ¿Incompleto? Sí, incompleto. Pero sigue siendo mejor que nada. Si ni siquiera tienes una versión en línea y sigues trabajando en algo que es “quizá necesario”, persiguiendo una perfección invisible, acabarás sin nada que mostrar. No es una concesión, es una elección de ingeniería. En fin, lo he aceptado. Así que lo he aceptado. Ya no me aferro a un detalle y, en cambio, salí. Mi galería del móvil lleva mucho tiempo sin fotos al aire libre, así que tomé rápidamente una foto del borde de la carretera—hace mucho que no salgo."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:59.003822Z
@@ -611,7 +481,7 @@ segments:
       tokens: 17470
       review: false
     fr-FR:
-      text: 'L’essence du retour à l’ingénierie est : « Make it function, make it correct, then make it exceptional. ». J’ai enfin repris le bon chemin et l’ai rendu functional. Mon blog est‑il rudimentaire ? Oui, il l’est. Incomplet ? Effectivement incomplet. Mais cela vaut mieux que rien. Si vous n’avez même pas de mise en ligne et que vous continuez à travailler sur ce qui est « peut‑être nécessaire », en poursuivant une perfection invisible, vous finirez par n’avoir rien à présenter. Ce n’est pas un compromis, c’est un compromis d’ingénierie. Quoi qu’il en soit, j’ai fini par l’accepter. Donc je l’ai accepté. Je ne suis plus obsédé par un détail, j’ai plutôt quitté la maison. Mon album photo n’a pas eu de photo en plein air depuis longtemps, alors j’ai rapidement pris une photo du bord de la route — cela fait longtemps que je ne suis pas sorti.'
+      text: "L’essence du retour à l’ingénierie est : « Make it function, make it correct, then make it exceptional. ». J’ai enfin repris le bon chemin et l’ai rendu functional. Mon blog est‑il rudimentaire ? Oui, il l’est. Incomplet ? Effectivement incomplet. Mais cela vaut mieux que rien. Si vous n’avez même pas de mise en ligne et que vous continuez à travailler sur ce qui est « peut‑être nécessaire », en poursuivant une perfection invisible, vous finirez par n’avoir rien à présenter. Ce n’est pas un compromis, c’est un compromis d’ingénierie. Quoi qu’il en soit, j’ai fini par l’accepter. Donc je l’ai accepté. Je ne suis plus obsédé par un détail, j’ai plutôt quitté la maison. Mon album photo n’a pas eu de photo en plein air depuis longtemps, alors j’ai rapidement pris une photo du bord de la route — cela fait longtemps que je ne suis pas sorti."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:25:59.003822Z
@@ -717,7 +587,7 @@ segments:
       review: false
   551935a9c558349b95fc6fe2d3ca8486:
     de-DE:
-      text: '## Fehlschlag {#failure}'
+      text: "## Fehlschlag {#failure}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:04.784641Z
@@ -725,7 +595,7 @@ segments:
       tokens: 15658
       review: false
     en-US:
-      text: '## Failure {#failure}'
+      text: "## Failure {#failure}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:04.784641Z
@@ -733,7 +603,7 @@ segments:
       tokens: 15658
       review: false
     es-ES:
-      text: '## Fallo {#failure}'
+      text: "## Fallo {#failure}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:04.784641Z
@@ -741,7 +611,7 @@ segments:
       tokens: 15658
       review: false
     fr-FR:
-      text: '## Échec {#failure}'
+      text: "## Échec {#failure}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:04.784641Z
@@ -749,7 +619,7 @@ segments:
       tokens: 15658
       review: false
     ja-JP:
-      text: '## 失敗 {#failure}'
+      text: "## 失敗 {#failure}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:04.784641Z
@@ -757,7 +627,7 @@ segments:
       tokens: 15658
       review: false
     ko-KR:
-      text: '## 실패 {#failure}'
+      text: "## 실패 {#failure}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:04.784641Z
@@ -765,7 +635,7 @@ segments:
       tokens: 15658
       review: false
     zh-CN:
-      text: '## 失败 {#failure}'
+      text: "## 失败 {#failure}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:04.784641Z
@@ -773,7 +643,7 @@ segments:
       tokens: 15658
       review: false
     zh-TW:
-      text: '## 失敗 {#failure}'
+      text: "## 失敗 {#failure}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:04.784641Z
@@ -782,7 +652,7 @@ segments:
       review: false
   5af675f22d8da3b89b77d585a86bb166:
     de-DE:
-      text: '## Überengineering {#over-engineering}'
+      text: "## Überengineering {#over-engineering}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:15.481056Z
@@ -790,7 +660,7 @@ segments:
       tokens: 16305
       review: false
     en-US:
-      text: '## Over‑engineering {#over-engineering}'
+      text: "## Over‑engineering {#over-engineering}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:15.481056Z
@@ -798,7 +668,7 @@ segments:
       tokens: 16305
       review: false
     es-ES:
-      text: '## Sobreingeniería {#over-engineering}'
+      text: "## Sobreingeniería {#over-engineering}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:15.481056Z
@@ -806,7 +676,7 @@ segments:
       tokens: 16305
       review: false
     fr-FR:
-      text: '## Sur‑ingénierie {#over-engineering}'
+      text: "## Sur‑ingénierie {#over-engineering}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:15.481056Z
@@ -814,7 +684,7 @@ segments:
       tokens: 16305
       review: false
     ja-JP:
-      text: '## 過度エンジニアリング {#over-engineering}'
+      text: "## 過度エンジニアリング {#over-engineering}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:15.481056Z
@@ -822,7 +692,7 @@ segments:
       tokens: 16305
       review: false
     ko-KR:
-      text: '## 과도한 엔지니어링 {#over-engineering}'
+      text: "## 과도한 엔지니어링 {#over-engineering}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:15.481056Z
@@ -830,7 +700,7 @@ segments:
       tokens: 16305
       review: false
     zh-CN:
-      text: '## 过度工程 {#over-engineering}'
+      text: "## 过度工程 {#over-engineering}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:15.481056Z
@@ -838,7 +708,7 @@ segments:
       tokens: 16305
       review: false
     zh-TW:
-      text: '## 過度工程 {#over-engineering}'
+      text: "## 過度工程 {#over-engineering}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:15.481056Z
@@ -847,7 +717,7 @@ segments:
       review: false
   6b07c9db881e076bad87307a05bdbc06:
     de-DE:
-      text: '## Ursprung {#back-to-origin}'
+      text: "## Ursprung {#back-to-origin}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:15.483092Z
@@ -855,7 +725,7 @@ segments:
       tokens: 15597
       review: false
     en-US:
-      text: '## Origin {#back-to-origin}'
+      text: "## Origin {#back-to-origin}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:15.483092Z
@@ -863,7 +733,7 @@ segments:
       tokens: 15597
       review: false
     es-ES:
-      text: '## Origen {#back-to-origin}'
+      text: "## Origen {#back-to-origin}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:15.483092Z
@@ -871,7 +741,7 @@ segments:
       tokens: 15597
       review: false
     fr-FR:
-      text: '## Origine {#back-to-origin}'
+      text: "## Origine {#back-to-origin}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:15.483092Z
@@ -879,7 +749,7 @@ segments:
       tokens: 15597
       review: false
     ja-JP:
-      text: '## 原点 {#back-to-origin}'
+      text: "## 原点 {#back-to-origin}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:15.483092Z
@@ -887,7 +757,7 @@ segments:
       tokens: 15597
       review: false
     ko-KR:
-      text: '## 원점 {#back-to-origin}'
+      text: "## 원점 {#back-to-origin}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:15.483092Z
@@ -895,7 +765,7 @@ segments:
       tokens: 15597
       review: false
     zh-CN:
-      text: '## 原点 {#back-to-origin}'
+      text: "## 原点 {#back-to-origin}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:15.483092Z
@@ -903,7 +773,7 @@ segments:
       tokens: 15597
       review: false
     zh-TW:
-      text: '## 原點 {#back-to-origin}'
+      text: "## 原點 {#back-to-origin}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:15.483092Z
@@ -928,7 +798,7 @@ segments:
       tokens: 19855
       review: false
     es-ES:
-      text: 'Lo más irónico es que estas cosas debían hacerse después de crear un blog, registrándolas mientras se trabajaba en ellas. Pero el blog fue abandonado una y otra vez, las ideas se fueron acumulando y no había ningún lugar donde anotarlas. Por un lado mi interior me reprocha; prometí terminar Vane, pero no pude, tuve que detenerme. Por otro lado siento una creciente impotencia a medida que me alejo cada vez más. Siempre recuerdo lo que quiero hacer, pero simplemente no lo consigo. Si lo pienso bien, hace mucho que no me siento a escribir nada. Al mirar atrás, todo apunta a lo mismo: el sobre‑ingeniería.'
+      text: "Lo más irónico es que estas cosas debían hacerse después de crear un blog, registrándolas mientras se trabajaba en ellas. Pero el blog fue abandonado una y otra vez, las ideas se fueron acumulando y no había ningún lugar donde anotarlas. Por un lado mi interior me reprocha; prometí terminar Vane, pero no pude, tuve que detenerme. Por otro lado siento una creciente impotencia a medida que me alejo cada vez más. Siempre recuerdo lo que quiero hacer, pero simplemente no lo consigo. Si lo pienso bien, hace mucho que no me siento a escribir nada. Al mirar atrás, todo apunta a lo mismo: el sobre‑ingeniería."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:24.366731Z
@@ -1040,71 +910,6 @@ segments:
       seconds: 12.405827
       tokens: 17752
       review: false
-  943bc9082d74c7867db730a57a3c5d75:
-    de-DE:
-      text: Das Tempo der KI‑Ära ist zu schnell. Modelle werden nacheinander iteriert, neue Technologien tauchen ebenfalls nacheinander auf, und ich werde immer ängstlicher, als ob ein Stillstand bedeuten würde, überholt zu werden. In meinem verrücktesten Moment schrieb ich an einem Tag 16 kleine Programme; ein Tag an Tokens konnte etwa 1.900 USD verbrennen ~~(ungefähr im Februar)~~, und ich war fast am Ende. Doch was das alles zum Stillstand brachte, war kein Erwachen, sondern reine Erschöpfung. Bei dem immer schneller werdenden Rhythmus drückte das letzte Strohhalm‑Glas nach unten, und ich fühlte plötzlich Erleichterung, ließ los, gab den Kampf auf; so ist das eigentlich ziemlich gut.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:26:24.370789Z
-      seconds: 20.32490825
-      tokens: 19699
-      review: false
-    en-US:
-      text: AI era's rhythm is too fast. Models iterate one after another, new technologies keep emerging in waves, and I become increasingly anxious, as if stopping would mean being overtaken. At my craziest, I wrote 16 small pieces of code in a day; a day's worth of tokens could scorch $1.9k USD ~~(around February)~~, and I was nearly exhausted. But what halted all this wasn't any epiphany, just plain fatigue. In an ever‑tightening pace, the last straw finally fell, and I felt a sense of release, opened up, gave up the struggle; in this way, it's actually quite good.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:26:24.370789Z
-      seconds: 20.32490825
-      tokens: 19699
-      review: false
-    es-ES:
-      text: El ritmo de la era de la IA es demasiado rápido. Los modelos se iteran uno tras otro, nuevas tecnologías aparecen una tras otra, y cada vez estoy más ansioso, como si detenerme significara ser superado. En mi momento más loco escribí 16 pequeños fragmentos de código en un día; los tokens podían quemar 1,9 k USD en un día ~~(aproximadamente en febrero)~~, y estaba al borde del colapso. Pero lo que hizo que todo se detuviera no fue alguna revelación, simplemente el cansancio puro. En un ritmo cada vez más acelerado, la última paja cayó y, al contrario, me sentí aliviado, me abrí, abandoné la lucha; de esa forma, está bastante bien.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:26:24.370789Z
-      seconds: 20.32490825
-      tokens: 19699
-      review: false
-    fr-FR:
-      text: Le rythme de l’ère de l’IA est trop rapide. Les modèles s’enchaînent les uns après les autres, de nouvelles technologies émergent continuellement, et je deviens de plus en plus anxieux, comme si s’arrêter signifiait être dépassé. Au plus fou, j’ai écrit 16 petits morceaux de code en un jour ; les tokens pouvaient brûler 1 900 $ USD en une journée ~~(vers février)~~, et j’étais sur le point de perdre la tête. Mais ce qui a tout arrêté n’était pas une illumination, simplement la fatigue pure. Dans ce rythme toujours plus pressé, la dernière paille a fini par me faire céder, et j’ai ressenti un soulagement, me suis ouvert, j’ai abandonné la lutte ; ainsi, c’est en fait assez bien.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:26:24.370789Z
-      seconds: 20.32490825
-      tokens: 19699
-      review: false
-    ja-JP:
-      text: AI時代のリズムは速すぎる。モデルは次々にイテレーションされ、新技術が次々と出てくる。止まってしまうと追い抜かれるようで、ますます不安になる。最も狂っていたときは、一日に16個の小さなコードを書き、Tokenは一日で約1.9千米ドルを燃やすことができ（~~(大体2月頃だと考えられる)~~）、人はほぼ疲れ果てていた。しかし、すべてを止めさせたのは何かの悟りではなく、単なる疲労だった。ますます速くなるペースの中で、最後の一本の藁が落ち、逆に解放感を得て、心が開き、諦めた；こうして、結局はかなり良いことだ。
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:26:24.370789Z
-      seconds: 20.32490825
-      tokens: 19699
-      review: false
-    ko-KR:
-      text: AI 시대의 리듬이 너무 빠릅니다. 모델이 하나씩 연속으로 반복되고, 새로운 기술이 연속으로 나타나면서 점점 불안해집니다. 멈추면 추월당할 것 같은 느낌이 듭니다. 가장 미쳤을 때 하루에 16개의 작은 코드를 작성했고, 토큰은 하루에 약 1,900 USD를 소모할 수 있었습니다 ~~(대략 2월쯤)~~, 몸이 거의 지쳤습니다. 하지만 이 모든 것을 멈추게 만든 것은 어떤 깨달음이 아니라 단순한 피로였습니다. 점점 빨라지는 리듬 속에서 마지막 짚이 내려오자 저는 오히려 안도감을 느꼈고, 마음을 열었으며, 포기했습니다; 이렇게 하면 오히려 좋기도 합니다.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:26:24.370789Z
-      seconds: 20.32490825
-      tokens: 19699
-      review: false
-    zh-CN:
-      text: AI 时代的节奏太快了。模型一个接一个迭代，新技术一轮接一轮冒出来，我越来越焦虑，好像停下来就要被超越。最疯的时候一天写 16个 小时代码，Token 一天就能烧 $1.9k USD ~~(大概2月的时候吧)~~，人快废了。但让这一切停下来的不是什么顿悟，就是单纯的累了。在越来越紧的节奏下，最后一根稻草压下来，我反而释然了，想开了，摆烂了；这样，也挺好的。
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:26:24.370789Z
-      seconds: 20.32490825
-      tokens: 19699
-      review: false
-    zh-TW:
-      text: AI 時代的節奏太快了。模型一個接一個迭代，新技術一輪接一輪冒出來，我越來越焦慮，好像停下來就要被超越。最瘋的時候一天寫 16 個小時代碼，Token 一天就能燒 $1.9k USD ~~(大概 2 月的時候吧)~~，人快廢了。但讓這一切停下來的不是什麼頓悟，就是單純的累了。在越來越緊的節奏下，最後一根稻草壓下來，我反而釋然了，想開了，擺爛了；這樣，也挺好的。
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:26:24.370789Z
-      seconds: 20.32490825
-      tokens: 19699
-      review: false
   9566ed40af060ec2841b1342a8b37c7a:
     de-DE:
       text: Das war das Jahr 2024, ~~dann 24, 25, 26 Jahre bis jetzt~~
@@ -1172,7 +977,7 @@ segments:
       review: false
   980b053f0b14f93a70ff6fc01aa3405f:
     de-DE:
-      text: 'Aber das ist nur die Spitze des Eisbergs. Nachdem ich React entdeckt hatte, ging ich von der Steinzeit von Hexo und Vanilla JS über zu Next.js 13 Page Router, wandte mich dann Vue zu, studierte SPA‑Routing, verstand das index.html‑Fallback und erstellte unzählige neue Projekte. Ich kaufte einen Server, bastelte an Docker, Nginx, NAS; fand 1Panel unschön und schrieb das Canopy‑Panel selbst, erforschte NAS‑Speicher-Arrays und schrieb RFS. Beim SSL‑Handling machte die heimische Umgebung mit acme.sh so viel Ärger, dass ich einen Reverse‑Proxy in Rust schrieb: Vane & Lazyacme. Was ursprünglich ein dreistündiges, 800‑Zeilen‑“Müllprojekt” war, entwickelte sich nach der Ermutigung eines Freundes zu vier Monaten Arbeit, in die ich HTTP/3, Zero‑Copy, das Layer‑Modell und die Flow‑Engine stopfte. Später kam noch Seam dazu, ein Full‑Stack‑Framework, das ebenfalls ein Albtraum ist – darüber später mehr.'
+      text: "Aber das ist nur die Spitze des Eisbergs. Nachdem ich React entdeckt hatte, ging ich von der Steinzeit von Hexo und Vanilla JS über zu Next.js 13 Page Router, wandte mich dann Vue zu, studierte SPA‑Routing, verstand das index.html‑Fallback und erstellte unzählige neue Projekte. Ich kaufte einen Server, bastelte an Docker, Nginx, NAS; fand 1Panel unschön und schrieb das Canopy‑Panel selbst, erforschte NAS‑Speicher-Arrays und schrieb RFS. Beim SSL‑Handling machte die heimische Umgebung mit acme.sh so viel Ärger, dass ich einen Reverse‑Proxy in Rust schrieb: Vane & Lazyacme. Was ursprünglich ein dreistündiges, 800‑Zeilen‑“Müllprojekt” war, entwickelte sich nach der Ermutigung eines Freundes zu vier Monaten Arbeit, in die ich HTTP/3, Zero‑Copy, das Layer‑Modell und die Flow‑Engine stopfte. Später kam noch Seam dazu, ein Full‑Stack‑Framework, das ebenfalls ein Albtraum ist – darüber später mehr."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:44.26011Z
@@ -1180,7 +985,7 @@ segments:
       tokens: 18279
       review: false
     en-US:
-      text: 'But that''s just the tip of the iceberg. After discovering React, I went from the Stone Age of Hexo and Vanilla JS all the way to Next.js 13 Page Router, then turned to Vue, studied SPA routing, understood the index.html fallback, and created countless new projects. I bought a server, tinkered with Docker, Nginx, NAS; finding 1Panel ugly, I hand‑wrote the Canopy panel, explored NAS storage arrays and wrote RFS. Dealing with SSL, the domestic environment made acme.sh so frustrating that I resorted to writing a reverse proxy in Rust: Vane & Lazyacme. What started as an eight‑hundred‑line junk project written in three hours one night turned, after a friend''s encouragement, into four months of work, stuffing in HTTP/3, Zero‑Copy, the Layer model, and the Flow engine. Later there is also Seam, a full‑stack framework that is another nightmare—more on that later.'
+      text: "But that's just the tip of the iceberg. After discovering React, I went from the Stone Age of Hexo and Vanilla JS all the way to Next.js 13 Page Router, then turned to Vue, studied SPA routing, understood the index.html fallback, and created countless new projects. I bought a server, tinkered with Docker, Nginx, NAS; finding 1Panel ugly, I hand‑wrote the Canopy panel, explored NAS storage arrays and wrote RFS. Dealing with SSL, the domestic environment made acme.sh so frustrating that I resorted to writing a reverse proxy in Rust: Vane & Lazyacme. What started as an eight‑hundred‑line junk project written in three hours one night turned, after a friend's encouragement, into four months of work, stuffing in HTTP/3, Zero‑Copy, the Layer model, and the Flow engine. Later there is also Seam, a full‑stack framework that is another nightmare—more on that later."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:44.26011Z
@@ -1188,7 +993,7 @@ segments:
       tokens: 18279
       review: false
     es-ES:
-      text: 'Pero eso es solo la punta del iceberg. Tras descubrir React, pasé de la era de piedra de Hexo y Vanilla JS a Next.js 13 Page Router, luego me volqué a Vue, estudié el enrutamiento SPA, comprendí el fallback de index.html y creé innumerables proyectos nuevos. Compré un servidor, jugué con Docker, Nginx, NAS; al considerar feo a 1Panel, escribí a mano el panel Canopy, investigué arreglos de almacenamiento NAS y escribí RFS. Al manejar SSL, el entorno local hacía que acme.sh fuera tan frustrante que terminé escribiendo un proxy inverso en Rust: Vane & Lazyacme. Lo que empezó como un proyecto de ocho‑cientos líneas escrito en tres horas una noche se transformó, tras el impulso de un amigo, en cuatro meses de trabajo, empaquetando HTTP/3, Zero‑Copy, el modelo Layer y el motor Flow. Más adelante está también Seam, un framework full‑stack que es otro verdadero quebradero de cabeza; lo dejaré para otra ocasión.'
+      text: "Pero eso es solo la punta del iceberg. Tras descubrir React, pasé de la era de piedra de Hexo y Vanilla JS a Next.js 13 Page Router, luego me volqué a Vue, estudié el enrutamiento SPA, comprendí el fallback de index.html y creé innumerables proyectos nuevos. Compré un servidor, jugué con Docker, Nginx, NAS; al considerar feo a 1Panel, escribí a mano el panel Canopy, investigué arreglos de almacenamiento NAS y escribí RFS. Al manejar SSL, el entorno local hacía que acme.sh fuera tan frustrante que terminé escribiendo un proxy inverso en Rust: Vane & Lazyacme. Lo que empezó como un proyecto de ocho‑cientos líneas escrito en tres horas una noche se transformó, tras el impulso de un amigo, en cuatro meses de trabajo, empaquetando HTTP/3, Zero‑Copy, el modelo Layer y el motor Flow. Más adelante está también Seam, un framework full‑stack que es otro verdadero quebradero de cabeza; lo dejaré para otra ocasión."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:44.26011Z
@@ -1196,7 +1001,7 @@ segments:
       tokens: 18279
       review: false
     fr-FR:
-      text: 'Mais ce n’est que la partie visible de l’iceberg. Après avoir découvert React, je suis passé de l’époque primitive avec Hexo et Vanilla JS à Next.js 13 Page Router, puis je me suis tourné vers Vue, étudié le routage SPA, compris le fallback index.html, et créé d’innombrables projets. J’ai acheté un serveur, bricolé avec Docker, Nginx, NAS ; trouvant 1Panel inesthétique, j’ai écrit moi‑même le panneau Canopy, exploré les matrices de stockage NAS et développé RFS. En gérant le SSL, l’environnement local rendait acme.sh si pénible que j’ai fini par écrire un reverse‑proxy en Rust : Vane & Lazyacme. Ce qui était au départ un projet « junk » de 800 lignes réalisé en trois heures un soir est devenu, après les encouragements d’un ami, quatre mois de travail, y intégrant HTTP/3, Zero‑Copy, le modèle Layer et le moteur Flow. Plus tard, il y a aussi Seam, un framework full‑stack qui est également un vrai cauchemar — j’en parlerai plus tard.'
+      text: "Mais ce n’est que la partie visible de l’iceberg. Après avoir découvert React, je suis passé de l’époque primitive avec Hexo et Vanilla JS à Next.js 13 Page Router, puis je me suis tourné vers Vue, étudié le routage SPA, compris le fallback index.html, et créé d’innombrables projets. J’ai acheté un serveur, bricolé avec Docker, Nginx, NAS ; trouvant 1Panel inesthétique, j’ai écrit moi‑même le panneau Canopy, exploré les matrices de stockage NAS et développé RFS. En gérant le SSL, l’environnement local rendait acme.sh si pénible que j’ai fini par écrire un reverse‑proxy en Rust : Vane & Lazyacme. Ce qui était au départ un projet « junk » de 800 lignes réalisé en trois heures un soir est devenu, après les encouragements d’un ami, quatre mois de travail, y intégrant HTTP/3, Zero‑Copy, le modèle Layer et le moteur Flow. Plus tard, il y a aussi Seam, un framework full‑stack qui est également un vrai cauchemar — j’en parlerai plus tard."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:44.26011Z
@@ -1237,7 +1042,7 @@ segments:
       review: false
   98b470be75ff6650b1e7b5e7cdc8791b:
     de-DE:
-      text: '## Weniger ist mehr {#less-is-more}'
+      text: "## Weniger ist mehr {#less-is-more}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:44.262381Z
@@ -1245,7 +1050,7 @@ segments:
       tokens: 15830
       review: false
     en-US:
-      text: '## Less is more {#less-is-more}'
+      text: "## Less is more {#less-is-more}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:44.262381Z
@@ -1253,7 +1058,7 @@ segments:
       tokens: 15830
       review: false
     es-ES:
-      text: '## Menos es más {#less-is-more}'
+      text: "## Menos es más {#less-is-more}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:44.262381Z
@@ -1261,7 +1066,7 @@ segments:
       tokens: 15830
       review: false
     fr-FR:
-      text: '## Moins, c’est plus {#less-is-more}'
+      text: "## Moins, c’est plus {#less-is-more}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:44.262381Z
@@ -1269,7 +1074,7 @@ segments:
       tokens: 15830
       review: false
     ja-JP:
-      text: '## 少ないほど多い {#less-is-more}'
+      text: "## 少ないほど多い {#less-is-more}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:44.262381Z
@@ -1277,7 +1082,7 @@ segments:
       tokens: 15830
       review: false
     ko-KR:
-      text: '## 적을수록 풍부하다 {#less-is-more}'
+      text: "## 적을수록 풍부하다 {#less-is-more}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:44.262381Z
@@ -1285,7 +1090,7 @@ segments:
       tokens: 15830
       review: false
     zh-CN:
-      text: '## 少即是多 {#less-is-more}'
+      text: "## 少即是多 {#less-is-more}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:44.262381Z
@@ -1293,7 +1098,7 @@ segments:
       tokens: 15830
       review: false
     zh-TW:
-      text: '## 少即是多 {#less-is-more}'
+      text: "## 少即是多 {#less-is-more}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:44.262381Z
@@ -1497,7 +1302,7 @@ segments:
       review: false
   a7d26083a0ab33e3fbeef827290eedc1:
     de-DE:
-      text: 'Der Speicher ist genauso. Da ich Object Storage zu teuer finde, wollte ich die Festplatten meines eigenen Servers nutzen und schrieb RFS, ein VFS für atomare Deduplizierung und Zusammenführung einzelner Dateien, revivierte sogar das Registrierungs‑Konzept der 80er‑90er Jahre und mountete es schließlich über FUSE. Das Ergebnis: Ich habe noch mehr Zeit damit verbracht, ein nicht besonders gutes Rad zu bauen, der Server lief ein Jahr lang leer, es war ein komplett verlustreiches Geschäft.'
+      text: "Der Speicher ist genauso. Da ich Object Storage zu teuer finde, wollte ich die Festplatten meines eigenen Servers nutzen und schrieb RFS, ein VFS für atomare Deduplizierung und Zusammenführung einzelner Dateien, revivierte sogar das Registrierungs‑Konzept der 80er‑90er Jahre und mountete es schließlich über FUSE. Das Ergebnis: Ich habe noch mehr Zeit damit verbracht, ein nicht besonders gutes Rad zu bauen, der Server lief ein Jahr lang leer, es war ein komplett verlustreiches Geschäft."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:26:58.899536Z
@@ -1755,71 +1560,6 @@ segments:
       seconds: 12.459323
       tokens: 17410
       review: false
-  b60e899dca8ebe5689336bfe87e8278c:
-    de-DE:
-      text: Next.js 13 bis Next.js 16 aufgeschoben
-      provider: openai
-      model: gpt-5-6-luna-medium
-      at: 2026-08-02T18:37:36.233937Z
-      seconds: 15.708399166
-      tokens: 15180
-      review: false
-    en-US:
-      text: Putting off Next.js 13 until Next.js 16
-      provider: openai
-      model: gpt-5-6-luna-medium
-      at: 2026-08-02T18:37:36.233937Z
-      seconds: 15.708399166
-      tokens: 15180
-      review: false
-    es-ES:
-      text: Aplazar Next.js 13 hasta Next.js 16
-      provider: openai
-      model: gpt-5-6-luna-medium
-      at: 2026-08-02T18:37:36.233937Z
-      seconds: 15.708399166
-      tokens: 15180
-      review: false
-    fr-FR:
-      text: Repousser Next.js 13 jusqu’à Next.js 16
-      provider: openai
-      model: gpt-5-6-luna-medium
-      at: 2026-08-02T18:37:36.233937Z
-      seconds: 15.708399166
-      tokens: 15180
-      review: false
-    ja-JP:
-      text: Next.js 13からNext.js 16まで先延ばし
-      provider: openai
-      model: gpt-5-6-luna-medium
-      at: 2026-08-02T18:37:36.233937Z
-      seconds: 15.708399166
-      tokens: 15180
-      review: false
-    ko-KR:
-      text: Next.js 13에서 Next.js 16까지 미루다
-      provider: openai
-      model: gpt-5-6-luna-medium
-      at: 2026-08-02T18:37:36.233937Z
-      seconds: 15.708399166
-      tokens: 15180
-      review: false
-    zh-CN:
-      text: 从 Next.js 13 鸽到 Next.js 16
-      provider: openai
-      model: gpt-5-6-luna-medium
-      at: 2026-08-02T18:37:36.233937Z
-      seconds: 15.708399166
-      tokens: 15180
-      review: false
-    zh-TW:
-      text: 從 Next.js 13 拖到 Next.js 16
-      provider: openai
-      model: gpt-5-6-luna-medium
-      at: 2026-08-02T18:37:36.233937Z
-      seconds: 15.708399166
-      tokens: 15180
-      review: false
   b674eb6b25c4ee3aed166b037ba95e10:
     de-DE:
       text: Ich habe begonnen loszulassen. Ich habe die Dinge, an denen ich einst festgehalten habe, aufgegeben, gelernt, bei Bedarf zu stoppen, und das Morgen erledige ich morgen. Vane nicht fertig? Erst mal liegen lassen. Seam ist noch weit entfernt? Später erledigen. Der Blog ist nicht perfekt? Erst einmal veröffentlichen. Beginne komplett mit Vibe Coding; wenn es kein Problem gibt, ignoriere es, bei Problemen kümmere ich mich später darum.
@@ -1903,7 +1643,7 @@ segments:
       tokens: 18221
       review: false
     es-ES:
-      text: 'Después, descubrí el pequeño sitio de [@Innei](https://twitter.com/__oQuery); su diseño es muy refinado y sus funciones están muy completas. En el momento lo miré y me lo quise al instante, incluso lo patrociné. Aunque luego no lo utilicé, no me arrepiento del dinero gastado porque pude acceder al código fuente de React, lo que me recordó a la primera vez que vi C: al fin y al cabo es solo código, nada de gran cosa. Estoy seguro de que algún día escribiré el mío propio.'
+      text: "Después, descubrí el pequeño sitio de [@Innei](https://twitter.com/__oQuery); su diseño es muy refinado y sus funciones están muy completas. En el momento lo miré y me lo quise al instante, incluso lo patrociné. Aunque luego no lo utilicé, no me arrepiento del dinero gastado porque pude acceder al código fuente de React, lo que me recordó a la primera vez que vi C: al fin y al cabo es solo código, nada de gran cosa. Estoy seguro de que algún día escribiré el mío propio."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:12.461866Z
@@ -1911,7 +1651,7 @@ segments:
       tokens: 18221
       review: false
     fr-FR:
-      text: 'Plus tard, j’ai découvert le petit site de [@Innei](https://twitter.com/__oQuery) : son design est très soigné et ses fonctionnalités très complètes. En le voyant, j’ai tout de suite eu envie de l’obtenir, au point même de le soutenir financièrement. Même si je ne l’ai jamais réellement utilisé, je ne regrette pas cet argent dépensé, car cela m’a permis d’explorer le code source de React, ce qui m’a rappelé la première fois où j’ai découvert le langage C. Ce n’est « juste » du code, rien de plus. Un jour, je suis convaincu que j’écrirai le mien.'
+      text: "Plus tard, j’ai découvert le petit site de [@Innei](https://twitter.com/__oQuery) : son design est très soigné et ses fonctionnalités très complètes. En le voyant, j’ai tout de suite eu envie de l’obtenir, au point même de le soutenir financièrement. Même si je ne l’ai jamais réellement utilisé, je ne regrette pas cet argent dépensé, car cela m’a permis d’explorer le code source de React, ce qui m’a rappelé la première fois où j’ai découvert le langage C. Ce n’est « juste » du code, rien de plus. Un jour, je suis convaincu que j’écrirai le mien."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:12.461866Z
@@ -1952,7 +1692,7 @@ segments:
       review: false
   b859d93e20d231f4aa7278f613c464c0:
     de-DE:
-      text: 'Die endgültige Lösung ist überraschend einfach: All in Cloudflare. R2‑Objektspeicher, D1 Edge‑Datenbank, KV für Caching, Worker führt SSR aus, alles ist serverlos, es gibt keinen Server.'
+      text: "Die endgültige Lösung ist überraschend einfach: All in Cloudflare. R2‑Objektspeicher, D1 Edge‑Datenbank, KV für Caching, Worker führt SSR aus, alles ist serverlos, es gibt keinen Server."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:12.464972Z
@@ -1960,7 +1700,7 @@ segments:
       tokens: 16437
       review: false
     en-US:
-      text: 'The final solution is actually very simple: All in Cloudflare. R2 object storage, D1 Edge database, KV for caching, Worker runs SSR, everything is serverless, no servers.'
+      text: "The final solution is actually very simple: All in Cloudflare. R2 object storage, D1 Edge database, KV for caching, Worker runs SSR, everything is serverless, no servers."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:12.464972Z
@@ -1968,7 +1708,7 @@ segments:
       tokens: 16437
       review: false
     es-ES:
-      text: 'La solución final es en realidad muy sencilla: All in Cloudflare. Almacenamiento de objetos R2, base de datos D1 Edge, KV para caché, Worker ejecuta SSR, todo es serverless, no hay servidores.'
+      text: "La solución final es en realidad muy sencilla: All in Cloudflare. Almacenamiento de objetos R2, base de datos D1 Edge, KV para caché, Worker ejecuta SSR, todo es serverless, no hay servidores."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:12.464972Z
@@ -1976,7 +1716,7 @@ segments:
       tokens: 16437
       review: false
     fr-FR:
-      text: 'La solution finale est en fait très simple : All in Cloudflare. Stockage d’objets R2, base de données D1 Edge, KV pour le cache, Worker exécute le SSR, tout est sans serveur, il n’y a pas de serveur.'
+      text: "La solution finale est en fait très simple : All in Cloudflare. Stockage d’objets R2, base de données D1 Edge, KV pour le cache, Worker exécute le SSR, tout est sans serveur, il n’y a pas de serveur."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:12.464972Z
@@ -1992,7 +1732,7 @@ segments:
       tokens: 16437
       review: false
     ko-KR:
-      text: '최종 솔루션은 오히려 매우 간단합니다: All in Cloudflare. R2 객체 스토리지, D1 Edge 데이터베이스, KV를 캐시로 사용하고, Worker가 SSR을 실행합니다. 모두 서버리스이며 서버가 없습니다.'
+      text: "최종 솔루션은 오히려 매우 간단합니다: All in Cloudflare. R2 객체 스토리지, D1 Edge 데이터베이스, KV를 캐시로 사용하고, Worker가 SSR을 실행합니다. 모두 서버리스이며 서버가 없습니다."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:12.464972Z
@@ -2017,7 +1757,7 @@ segments:
       review: false
   b87e4e0d776ff8cd521563a327de034f:
     de-DE:
-      text: 'Ein Blog erfordert eigentlich keinen Reverse‑Proxy und kein eigens entwickeltes Framework. Trotzdem habe ich damals diese Dinge als Vorbedingungen angesehen und sie als die immer blockierende, aber scheinbar vernünftige Begründung benutzt – obwohl sie nie solche waren. Die einzige wahre Voraussetzung ist nur eine: Setz dich hin und schreibe den ersten Beitrag.'
+      text: "Ein Blog erfordert eigentlich keinen Reverse‑Proxy und kein eigens entwickeltes Framework. Trotzdem habe ich damals diese Dinge als Vorbedingungen angesehen und sie als die immer blockierende, aber scheinbar vernünftige Begründung benutzt – obwohl sie nie solche waren. Die einzige wahre Voraussetzung ist nur eine: Setz dich hin und schreibe den ersten Beitrag."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:14.9145Z
@@ -2025,7 +1765,7 @@ segments:
       tokens: 16877
       review: false
     en-US:
-      text: 'Doing a blog actually doesn’t require a reverse proxy, nor a custom framework. Yet at that time I treated them as prerequisites, as that forever‑blocking but reasonable excuse, but they never were. The only real prerequisite is just one: sit down and write the first article.'
+      text: "Doing a blog actually doesn’t require a reverse proxy, nor a custom framework. Yet at that time I treated them as prerequisites, as that forever‑blocking but reasonable excuse, but they never were. The only real prerequisite is just one: sit down and write the first article."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:14.9145Z
@@ -2033,7 +1773,7 @@ segments:
       tokens: 16877
       review: false
     es-ES:
-      text: 'Hacer un blog en realidad no requiere un proxy inverso ni un framework propio. Sin embargo, en aquel momento los consideraba como condiciones previas, como una excusa siempre bloqueante pero razonable, aunque nunca lo fueron. La única condición previa real es una sola: sentarte y escribir el primer artículo.'
+      text: "Hacer un blog en realidad no requiere un proxy inverso ni un framework propio. Sin embargo, en aquel momento los consideraba como condiciones previas, como una excusa siempre bloqueante pero razonable, aunque nunca lo fueron. La única condición previa real es una sola: sentarte y escribir el primer artículo."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:14.9145Z
@@ -2041,7 +1781,7 @@ segments:
       tokens: 16877
       review: false
     fr-FR:
-      text: 'Créer un blog ne nécessite en réalité ni proxy inverse, ni framework maison. Pourtant, à l''époque, je les considérais comme des conditions préalables, comme une excuse toujours bloquante mais apparemment raisonnable, alors qu''elles ne l''étaient jamais. La seule vraie condition préalable est simple : asseyez‑vous et écrivez votre premier article.'
+      text: "Créer un blog ne nécessite en réalité ni proxy inverse, ni framework maison. Pourtant, à l'époque, je les considérais comme des conditions préalables, comme une excuse toujours bloquante mais apparemment raisonnable, alors qu'elles ne l'étaient jamais. La seule vraie condition préalable est simple : asseyez‑vous et écrivez votre premier article."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:14.9145Z
@@ -2057,7 +1797,7 @@ segments:
       tokens: 16877
       review: false
     ko-KR:
-      text: '블로그를 작성하는 데 실제로는 역방향 프록시도, 자체 프레임워크도 필요하지 않습니다. 하지만 그 당시 나는 그것들을 전제조건으로 여기며, 영원히 차단되지만 합리적인 이유라고 생각했지만, 실제로는 그렇지 않았습니다. 진정한 전제조건은 단 하나뿐입니다: 앉아서 첫 번째 글을 써 내려가는 것.'
+      text: "블로그를 작성하는 데 실제로는 역방향 프록시도, 자체 프레임워크도 필요하지 않습니다. 하지만 그 당시 나는 그것들을 전제조건으로 여기며, 영원히 차단되지만 합리적인 이유라고 생각했지만, 실제로는 그렇지 않았습니다. 진정한 전제조건은 단 하나뿐입니다: 앉아서 첫 번째 글을 써 내려가는 것."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:14.9145Z
@@ -2212,7 +1952,7 @@ segments:
       review: false
   c7bdf4b88695030bffb497401ba760b6:
     de-DE:
-      text: '## Loslassen {#letting-go}'
+      text: "## Loslassen {#letting-go}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:27.555952Z
@@ -2220,7 +1960,7 @@ segments:
       tokens: 15942
       review: false
     en-US:
-      text: '## Letting go {#letting-go}'
+      text: "## Letting go {#letting-go}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:27.555952Z
@@ -2228,7 +1968,7 @@ segments:
       tokens: 15942
       review: false
     es-ES:
-      text: '## Dejar ir {#letting-go}'
+      text: "## Dejar ir {#letting-go}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:27.555952Z
@@ -2236,7 +1976,7 @@ segments:
       tokens: 15942
       review: false
     fr-FR:
-      text: '## Lâcher prise {#letting-go}'
+      text: "## Lâcher prise {#letting-go}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:27.555952Z
@@ -2244,7 +1984,7 @@ segments:
       tokens: 15942
       review: false
     ja-JP:
-      text: '## 手放す {#letting-go}'
+      text: "## 手放す {#letting-go}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:27.555952Z
@@ -2252,7 +1992,7 @@ segments:
       tokens: 15942
       review: false
     ko-KR:
-      text: '## 놓아버리기 {#letting-go}'
+      text: "## 놓아버리기 {#letting-go}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:27.555952Z
@@ -2260,7 +2000,7 @@ segments:
       tokens: 15942
       review: false
     zh-CN:
-      text: '## 放手吧 {#letting-go}'
+      text: "## 放手吧 {#letting-go}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:27.555952Z
@@ -2268,7 +2008,7 @@ segments:
       tokens: 15942
       review: false
     zh-TW:
-      text: '## 放手吧 {#letting-go}'
+      text: "## 放手吧 {#letting-go}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:27.555952Z
@@ -2277,7 +2017,7 @@ segments:
       review: false
   cac47bdc754803865501f9720ad6297b:
     de-DE:
-      text: 'Das erste Mal war noch zur Zeit des Next.js 13 Page Router. Damals verstand ich kaum, was eine SPA ist, und die Konzepte SSR, SSG, ISR waren mir völlig unbekannt, aber weil andere sagten, SSR sei gut, wollte ich es ebenfalls verwenden. Während ich schrieb, stellte ich fest, dass ich nicht verstand, welche Probleme diese Architekturen lösen sollten, und ich kam nicht weiter. Später wechselte ich zu einer reinen Vue 2‑SPA. Warum Vue? Ehrlich gesagt gefiel mir der Name, er wirkte neu, also probierte ich es aus. Das hielt nicht lange. Beim dritten Mal kehrte ich zu React zurück, begann mit einfachem JSX, lernte TypeScript, beherrschte TSX, verstand den Unterschied zwischen CJS und ESM, verliebte mich in reaktive Programmierung und nutzte Lucide, Framer Motion, Radix UI – Bibliotheken, ohne die ich jetzt nicht mehr auskomme – dieses Mal sah es endlich nach einem funktionierenden Ansatz aus. Trotzdem scheiterte ich, weil ich im Kern nur nachahmte: Ich nahm, was andere benutzten, es wirkte zwar korrekt, aber ich verstand nicht, warum es so gemacht werden sollte. Hinzu kamen die Halluzinationen der KI; man konnte ein MVP zum Laufen bringen, aber beim Scale‑Up war alles voller Fallen.'
+      text: "Das erste Mal war noch zur Zeit des Next.js 13 Page Router. Damals verstand ich kaum, was eine SPA ist, und die Konzepte SSR, SSG, ISR waren mir völlig unbekannt, aber weil andere sagten, SSR sei gut, wollte ich es ebenfalls verwenden. Während ich schrieb, stellte ich fest, dass ich nicht verstand, welche Probleme diese Architekturen lösen sollten, und ich kam nicht weiter. Später wechselte ich zu einer reinen Vue 2‑SPA. Warum Vue? Ehrlich gesagt gefiel mir der Name, er wirkte neu, also probierte ich es aus. Das hielt nicht lange. Beim dritten Mal kehrte ich zu React zurück, begann mit einfachem JSX, lernte TypeScript, beherrschte TSX, verstand den Unterschied zwischen CJS und ESM, verliebte mich in reaktive Programmierung und nutzte Lucide, Framer Motion, Radix UI – Bibliotheken, ohne die ich jetzt nicht mehr auskomme – dieses Mal sah es endlich nach einem funktionierenden Ansatz aus. Trotzdem scheiterte ich, weil ich im Kern nur nachahmte: Ich nahm, was andere benutzten, es wirkte zwar korrekt, aber ich verstand nicht, warum es so gemacht werden sollte. Hinzu kamen die Halluzinationen der KI; man konnte ein MVP zum Laufen bringen, aber beim Scale‑Up war alles voller Fallen."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:27.559478Z
@@ -2293,7 +2033,7 @@ segments:
       tokens: 21235
       review: false
     es-ES:
-      text: 'La primera vez fue cuando todavía estaba el Next.js 13 Page Router. En ese momento apenas entendía qué era una SPA, y los conceptos SSR, SSG, ISR no los tenía claros en absoluto, pero como los demás decían que el SSR era bueno, yo también quise usarlo. A medida que escribía, descubrí que realmente no comprendía qué problemas resolvían esas arquitecturas y no podía seguir. Después cambié a una SPA pura con Vue 2. ¿Por qué Vue? La verdad es que me gustó el nombre, parecía nuevo, así que lo probé. No duró mucho. La tercera vez volví a React, empezando con JSX simple, aprendí TypeScript, dominé TSX, entendí la diferencia entre CJS y ESM, me enamoré de la programación reactiva y comencé a usar Lucide, Framer Motion, Radix UI, bibliotecas de las que ahora no puedo prescindir; esta vez finalmente tenía algo con forma. Pero aun así fracasé, porque en esencia solo estaba imitando: tomaba lo que otros usaban, parecía estar bien, pero en realidad no entendía por qué se hacía de esa manera. Además, con las alucinaciones de la IA, se podía montar un MVP, pero al escalar todo era una mina de problemas.'
+      text: "La primera vez fue cuando todavía estaba el Next.js 13 Page Router. En ese momento apenas entendía qué era una SPA, y los conceptos SSR, SSG, ISR no los tenía claros en absoluto, pero como los demás decían que el SSR era bueno, yo también quise usarlo. A medida que escribía, descubrí que realmente no comprendía qué problemas resolvían esas arquitecturas y no podía seguir. Después cambié a una SPA pura con Vue 2. ¿Por qué Vue? La verdad es que me gustó el nombre, parecía nuevo, así que lo probé. No duró mucho. La tercera vez volví a React, empezando con JSX simple, aprendí TypeScript, dominé TSX, entendí la diferencia entre CJS y ESM, me enamoré de la programación reactiva y comencé a usar Lucide, Framer Motion, Radix UI, bibliotecas de las que ahora no puedo prescindir; esta vez finalmente tenía algo con forma. Pero aun así fracasé, porque en esencia solo estaba imitando: tomaba lo que otros usaban, parecía estar bien, pero en realidad no entendía por qué se hacía de esa manera. Además, con las alucinaciones de la IA, se podía montar un MVP, pero al escalar todo era una mina de problemas."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:27.559478Z
@@ -2301,7 +2041,7 @@ segments:
       tokens: 21235
       review: false
     fr-FR:
-      text: 'La première fois était à l''époque du Next.js 13 Page Router. À ce moment-là je ne comprenais même pas ce qu''était une SPA, et les concepts SSR, SSG, ISR me étaient totalement inconnus, mais comme les autres disaient que le SSR était bon, j’ai voulu l’utiliser aussi. Au fil de l’écriture, je me suis rendu compte que je ne comprenais pas quels problèmes ces architectures résolvaient, et je n’ai plus pu poursuivre. Ensuite, je suis passé à une SPA pure avec Vue 2. Pourquoi Vue ? Honnêtement, le nom me plaisait, il était nouveau, alors je l’ai essayé. Ça n’a pas duré longtemps. La troisième fois, je suis revenu à React, en partant du simple JSX, j’ai appris TypeScript, maîtrisé le TSX, compris la différence entre CJS et ESM, je suis tombé amoureux du paradigme réactif et j’ai commencé à utiliser Lucide, Framer Motion, Radix UI, des bibliothèques dont je ne peux plus me passer — cette fois, ça ressemblait enfin à quelque chose de cohérent. Mais j’ai quand même échoué, car en réalité je ne faisais qu’imiter : je prenais ce que les autres utilisaient, cela semblait correct en apparence, mais je ne comprenais pas pourquoi cela devait être fait ainsi. En plus, avec les hallucinations de l’IA, on pouvait faire fonctionner un MVP, mais lors du passage à l’échelle, c’était un champ de mines.'
+      text: "La première fois était à l'époque du Next.js 13 Page Router. À ce moment-là je ne comprenais même pas ce qu'était une SPA, et les concepts SSR, SSG, ISR me étaient totalement inconnus, mais comme les autres disaient que le SSR était bon, j’ai voulu l’utiliser aussi. Au fil de l’écriture, je me suis rendu compte que je ne comprenais pas quels problèmes ces architectures résolvaient, et je n’ai plus pu poursuivre. Ensuite, je suis passé à une SPA pure avec Vue 2. Pourquoi Vue ? Honnêtement, le nom me plaisait, il était nouveau, alors je l’ai essayé. Ça n’a pas duré longtemps. La troisième fois, je suis revenu à React, en partant du simple JSX, j’ai appris TypeScript, maîtrisé le TSX, compris la différence entre CJS et ESM, je suis tombé amoureux du paradigme réactif et j’ai commencé à utiliser Lucide, Framer Motion, Radix UI, des bibliothèques dont je ne peux plus me passer — cette fois, ça ressemblait enfin à quelque chose de cohérent. Mais j’ai quand même échoué, car en réalité je ne faisais qu’imiter : je prenais ce que les autres utilisaient, cela semblait correct en apparence, mais je ne comprenais pas pourquoi cela devait être fait ainsi. En plus, avec les hallucinations de l’IA, on pouvait faire fonctionner un MVP, mais lors du passage à l’échelle, c’était un champ de mines."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:27:27.559478Z
@@ -2862,7 +2602,7 @@ segments:
       review: false
   ffb2a6a34cb5ebc79cbf51e93c1f9641:
     de-DE:
-      text: 'Am Ende drehte ich mich im Kreis und landete wieder bei Serverless. Das Konzept von Vercel ist gut, aber ich mag Next.js nicht; außerdem steckt bei Vercel zu viel „Magie“, und das Middleware‑Design, das im Voraus kompiliert wird, um am Edge zu laufen, führt letztlich zu einer Zersplitterung und sogar zu mehreren CVEs. Es wäre besser, alles auf dem Origin‑Server zu betreiben. Cloudflare Workers hingegen sind großartig und erreichen ein extremes Szenario: Produkte unter 10 MB werden zu WASM kompiliert und können echte Geschäftslogik am Edge ausführen – genau das, was ich will. Abgesehen von den Kosten gibt es kaum Nachteile – obwohl man das nicht wirklich als Nachteil bezeichnen kann, denn gesparte Zeit ist Geld.'
+      text: "Am Ende drehte ich mich im Kreis und landete wieder bei Serverless. Das Konzept von Vercel ist gut, aber ich mag Next.js nicht; außerdem steckt bei Vercel zu viel „Magie“, und das Middleware‑Design, das im Voraus kompiliert wird, um am Edge zu laufen, führt letztlich zu einer Zersplitterung und sogar zu mehreren CVEs. Es wäre besser, alles auf dem Origin‑Server zu betreiben. Cloudflare Workers hingegen sind großartig und erreichen ein extremes Szenario: Produkte unter 10 MB werden zu WASM kompiliert und können echte Geschäftslogik am Edge ausführen – genau das, was ich will. Abgesehen von den Kosten gibt es kaum Nachteile – obwohl man das nicht wirklich als Nachteil bezeichnen kann, denn gesparte Zeit ist Geld."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:14.111657Z
@@ -2870,7 +2610,7 @@ segments:
       tokens: 18584
       review: false
     en-US:
-      text: 'Finally, after going around in circles, I’m back to serverless. Vercel’s concept is good, but I don’t like Next.js; moreover, Vercel has too much “magic,” and the middleware design that pre‑compiles to run on the Edge ends up fragmented, even causing a few CVEs. It would be better to have everything on the origin. On the other hand, Cloudflare Workers are great, achieving another extreme: products under 10 MB compiled to WASM can run real business logic on the Edge, which is exactly what I want. Apart from the cost, there are essentially no drawbacks—though it’s not really a drawback, since the time saved is money.'
+      text: "Finally, after going around in circles, I’m back to serverless. Vercel’s concept is good, but I don’t like Next.js; moreover, Vercel has too much “magic,” and the middleware design that pre‑compiles to run on the Edge ends up fragmented, even causing a few CVEs. It would be better to have everything on the origin. On the other hand, Cloudflare Workers are great, achieving another extreme: products under 10 MB compiled to WASM can run real business logic on the Edge, which is exactly what I want. Apart from the cost, there are essentially no drawbacks—though it’s not really a drawback, since the time saved is money."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:14.111657Z
@@ -2878,7 +2618,7 @@ segments:
       tokens: 18584
       review: false
     es-ES:
-      text: 'Al final, después de dar muchas vueltas, termino volviendo al serverless. El concepto de Vercel es bueno, pero no me gusta Next.js; además, Vercel tiene demasiada “magia” y el diseño del middleware que se compila por adelantado para ejecutarse en el Edge termina fragmentado, incluso provocando varios CVE. Sería mejor que todo estuviera en el origen. Por otro lado, Cloudflare Workers es excelente, alcanzando otro extremo: compilar productos de menos de 10 MB a WASM permite ejecutar lógica de negocio real en el Edge, que es justo lo que quiero. Aparte del gasto, no tiene verdaderos defectos, aunque técnicamente no es un defecto, ya que el tiempo ahorrado equivale a dinero.'
+      text: "Al final, después de dar muchas vueltas, termino volviendo al serverless. El concepto de Vercel es bueno, pero no me gusta Next.js; además, Vercel tiene demasiada “magia” y el diseño del middleware que se compila por adelantado para ejecutarse en el Edge termina fragmentado, incluso provocando varios CVE. Sería mejor que todo estuviera en el origen. Por otro lado, Cloudflare Workers es excelente, alcanzando otro extremo: compilar productos de menos de 10 MB a WASM permite ejecutar lógica de negocio real en el Edge, que es justo lo que quiero. Aparte del gasto, no tiene verdaderos defectos, aunque técnicamente no es un defecto, ya que el tiempo ahorrado equivale a dinero."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:14.111657Z
@@ -2886,7 +2626,7 @@ segments:
       tokens: 18584
       review: false
     fr-FR:
-      text: 'En fin de compte, après un long détour, je reviens au serverless. Le concept de Vercel est bon, mais je n’aime pas Next.js ; de plus, Vercel recourt à trop de « magie », et le design du middleware pré‑compilé pour s’exécuter sur l’Edge finit par être fragmenté, voire à l’origine de plusieurs CVE. Il vaudrait mieux tout centraliser sur l’origine. En revanche, Cloudflare Workers est excellent : il atteint un autre extrême en compilant des produits de moins de 10 Mo en WASM, capables d’exécuter la véritable logique métier sur l’Edge, exactement ce que je recherche. En dehors du coût, il n’y a vraiment aucun inconvénient – même si ce n’est pas vraiment un défaut, car le temps économisé représente de l’argent.'
+      text: "En fin de compte, après un long détour, je reviens au serverless. Le concept de Vercel est bon, mais je n’aime pas Next.js ; de plus, Vercel recourt à trop de « magie », et le design du middleware pré‑compilé pour s’exécuter sur l’Edge finit par être fragmenté, voire à l’origine de plusieurs CVE. Il vaudrait mieux tout centraliser sur l’origine. En revanche, Cloudflare Workers est excellent : il atteint un autre extrême en compilant des produits de moins de 10 Mo en WASM, capables d’exécuter la véritable logique métier sur l’Edge, exactement ce que je recherche. En dehors du coût, il n’y a vraiment aucun inconvénient – même si ce n’est pas vraiment un défaut, car le temps économisé représente de l’argent."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:14.111657Z

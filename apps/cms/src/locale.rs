@@ -9,7 +9,6 @@ use crate::i18n::runner::{self, Answer, Refusal, Runner};
 use crate::i18n::segment::Kind;
 use crate::i18n::store::Translation;
 use crate::{media, tags};
-use indicatif::{ProgressBar, ProgressStyle};
 use std::future::Future;
 use std::path::Path;
 
@@ -284,15 +283,6 @@ where
 	Err(last)
 }
 
-fn bar(total: usize) -> ProgressBar {
-	let bar = ProgressBar::new(total as u64);
-	bar.set_style(
-		ProgressStyle::with_template("  {bar:28} {pos}/{len}  {wide_msg}")
-			.unwrap_or_else(|_| ProgressStyle::default_bar()),
-	);
-	bar
-}
-
 pub async fn run(
 	repo: &Path,
 	runner: Runner,
@@ -338,14 +328,14 @@ where
 		deferred: wanted - items.len(),
 		..Outcome::default()
 	};
-	let calls = items
+	let calls: usize = items
 		.iter()
 		.map(|item| match item.destination {
 			Destination::Tag(_) => 1,
 			Destination::Description(_) => item.locales.len(),
 		})
 		.sum();
-	let progress = bar(calls);
+	let progress = crate::progress::bar(calls as u64);
 
 	for item in items {
 		match &item.destination {

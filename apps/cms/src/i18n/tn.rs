@@ -114,16 +114,35 @@ pub fn save(path: &Path, table: &Table) -> std::io::Result<()> {
 
 /// The rule a flagged block adds to its translation prompt.
 ///
-/// Two halves, and only having both is useful. Left alone the translator renders `古法` as
-/// "old-school" -- reasonable English with nothing left to annotate -- so a note that glossed it
-/// would be explaining a word no longer on the page. Keeping the phrase is what gives the note
-/// something to point at.
+/// The note attaches to the translation, never to a retained original. A translation is expected
+/// to be wholly in its own language, and fluent prose has nowhere to put a foreign clause: an
+/// earlier version asked for the source wording to be kept verbatim and produced German
+/// paragraphs ending in Chinese sentences. The original belongs inside the note, where a reader
+/// meets it only if they want to.
+///
+/// The guidance below is given to the model as findings, not as copy. It was written in whatever
+/// language the scan ran in, for a machine, about a source a reader of the target language has
+/// not seen -- reproducing it verbatim would put an internal memo on the page.
 pub fn rule(entry: &Entry) -> String {
 	let mut rule = String::from(
-		"- This block contains wording a reader of the target language cannot recover. For each \
-		 phrase listed below: reproduce the phrase exactly as written, do not translate it, and \
-		 place `:tn[phrase]{is=\"...\"}` immediately after it, with the explanation written in \
-		 the target language. One note per phrase listed, and none for anything else.\n",
+		"- Some wording in this block carries an effect that does not survive translation. Handle \
+		 each item below like this:\n\
+		 \n\
+		 1. Translate the passage naturally, as you would without this rule. The result must read \
+		 as that language, with no source-language characters left in it.\n\
+		 2. Wrap the translated words that stand where the original effect was in \
+		 `:tn[translated words]{is=\"...\"}`.\n\
+		 3. Write `is` for someone who reads only the target language and has not seen the \
+		 original. Say what the original word was, and what it did -- the joke, the tone, the \
+		 register, whatever is actually lost. One or two sentences.\n\
+		 \n\
+		 The findings below are notes to you, not text to reproduce. Do not translate them and do \
+		 not paste them: they were written about a source your reader has never read. Work out \
+		 for yourself what that reader needs in order to feel what the original does, and write \
+		 that. A note that explains the joke well in one language may need to be shorter, longer \
+		 or differently aimed in another, and that is your judgement to make.\n\
+		 \n\
+		 One note per item listed, and none for anything else in this block.\n",
 	);
 	for span in &entry.spans {
 		rule.push_str(&format!("  - {}: {}\n", span.phrase, span.guidance));
@@ -143,22 +162,46 @@ fn scan_prompt(article: &str) -> String {
 		 from context once it is translated: a quoted idiom, a pun, a culturally local reference, \
 		 a phrase whose force depends on how it is written rather than what it says.\n\
 		 \n\
-		 You are not translating. You are deciding what a translator will have to keep in the \
-		 original and explain.\n\
+		 You are not translating. The passage will be translated normally; you are deciding \
+		 which word the translation should carry a footnote about, so that a reader learns what \
+		 the original did there.\n\
+		 \n\
+		 So name the shortest span that carries the effect, and never more. If a clause reads \
+		 oddly, the word inside it is what you want -- `鸽` and not `从 Next.js 13 鸽到 Next.js \
+		 16`, `摸鱼` and not `不许 Cargo 再摸鱼了`. A note attaches to a word; naming a whole \
+		 sentence produces a footnote longer than the thing it explains.\n\
+		 \n\
+		 Some effects have no word to attach to: a rhythm across two sentences, a callback \
+		 between a title and an ending. Those are real losses and there is nothing to point at, \
+		 so do not report them. A note explains one word; anything wider is a loss to accept \
+		 rather than a note to write.\n\
 		 \n\
 		 Be sparing. A phrase whose meaning the surrounding sentences already carry needs no \
 		 note, and a note on something obvious is worse than none. Most articles have very few. \
 		 If there are none, say so and stop.\n\
 		 \n\
 		 For each one, output exactly one line:\n\
-		 PHRASE\\tone sentence on what it means and why a translation would lose it\n\
+		 WORD\\tone sentence on what it means and why a translation would lose it\n\
 		 \n\
-		 The phrase must appear in the article exactly as you write it. Nothing else: no \
+		 The word must appear in the article exactly as you write it. Nothing else: no \
 		 preamble, no numbering, no code fences.\n\
 		 \n\
 		 ---\n{article}\n---"
 	)
 }
+
+/// The longest span worth keeping in the original, in characters.
+///
+/// A note holds one word in place and footnotes it; the sentence around it is still translated.
+/// Past a few characters the thing being kept is a clause, and keeping a clause does not
+/// annotate a translation -- it cancels it, leaving a German page with a Chinese sentence in the
+/// middle of it. Measured on the first run: `果果`, `摆烂了` and `MUSL 厨` read well, while
+/// `从 Next.js 13 鸽到 Next.js 16` and `只剩下一个"清"字可以形容` left whole clauses untranslated
+/// in all eight languages.
+///
+/// A limit rather than only an instruction, because the instruction is advice to a model and
+/// this is the property the output has to have.
+const LONGEST_SPAN: usize = 8;
 
 /// Read the scanner's reply into phrases and their guidance.
 pub fn parse_scan(reply: &str) -> Vec<Gloss> {
@@ -168,7 +211,8 @@ pub fn parse_scan(reply: &str) -> Vec<Gloss> {
 			let (phrase, guidance) = line.split_once('\t')?;
 			let phrase = phrase.trim();
 			let guidance = guidance.trim();
-			(!phrase.is_empty() && !guidance.is_empty()).then(|| Gloss {
+			let short = phrase.chars().count() <= LONGEST_SPAN;
+			(!phrase.is_empty() && !guidance.is_empty() && short).then(|| Gloss {
 				phrase: phrase.to_owned(),
 				guidance: guidance.to_owned(),
 			})
@@ -232,14 +276,26 @@ mod tests {
 	}
 
 	#[test]
-	fn the_rule_keeps_the_phrase_as_well_as_explaining_it() {
-		// Only asking for the note leaves nothing to annotate: the phrase would already have
-		// been translated away by the time the note was written.
+	fn the_rule_annotates_the_translation_rather_than_keeping_the_source() {
+		// An earlier version asked for the source wording to be kept verbatim, which produced
+		// German paragraphs ending in Chinese sentences. A translation is wholly its own
+		// language; the original belongs inside the note.
 		let rule = rule(&entry());
-		assert!(rule.contains("do not translate it"));
-		assert!(rule.contains(":tn[phrase]"));
+		assert!(rule.contains("Translate the passage naturally"));
+		assert!(rule.contains("no source-language characters left in it"));
+		assert!(rule.contains(":tn[translated words]"));
+		// The finding still reaches the model, as a finding.
 		assert!(rule.contains("古法"));
 		assert!(rule.contains("the old method"));
+	}
+
+	#[test]
+	fn the_findings_are_marked_as_notes_rather_than_copy() {
+		// Written for a machine, in whichever language the scan ran, about a source the reader
+		// has not seen. Pasted through, they put an internal memo on the page.
+		let rule = rule(&entry());
+		assert!(rule.contains("notes to you, not text to reproduce"));
+		assert!(rule.contains("Work out for yourself"));
 	}
 
 	fn article() -> Article {
@@ -286,7 +342,7 @@ mod tests {
 			None,
 			Some(&entry()),
 		);
-		assert!(request.text.contains("do not translate it"));
+		assert!(request.text.contains("Translate the passage naturally"));
 		assert!(request.text.contains("古法"));
 	}
 
@@ -317,6 +373,18 @@ mod tests {
 		let found = parse_scan("古法\tthe old method\nnot a suggestion\n想开了\tcame to terms\n");
 		assert_eq!(found.len(), 2);
 		assert_eq!(found[1].phrase, "想开了");
+	}
+
+	#[test]
+	fn a_span_longer_than_a_word_is_not_recorded() {
+		// Keeping a clause in the original does not annotate a translation, it cancels it. The
+		// first run left `从 Next.js 13 鸽到 Next.js 16` untranslated in all eight languages
+		// because the instruction alone did not hold.
+		let found = parse_scan(
+			"鸽\tto flake on a plan\n从 Next.js 13 鸽到 Next.js 16\tthe same joke, as a clause\n",
+		);
+		assert_eq!(found.len(), 1);
+		assert_eq!(found[0].phrase, "鸽");
 	}
 
 	#[test]

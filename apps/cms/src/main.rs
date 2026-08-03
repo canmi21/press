@@ -19,6 +19,7 @@ mod media;
 mod opengraph;
 mod paths;
 mod port;
+mod progress;
 mod refs;
 mod tags;
 
@@ -799,26 +800,33 @@ fn scan_notes(args: &[String]) -> ExitCode {
 	let mut spent = 0u64;
 	let mut read = 0usize;
 
+	// Counted over everything named, including articles already read: a bar that shrank as it
+	// skipped would report a total that had never been true.
+	let progress = progress::bar(wanted.len() as u64);
 	for article in &wanted {
 		let key = article
 			.strip_prefix(&contents)
 			.unwrap_or(article)
 			.to_string_lossy()
 			.replace('\\', "/");
+		progress.set_message(key.clone());
 		if !force && table.scanned(&key) {
+			progress.inc(1);
 			continue;
 		}
 		let text = match std::fs::read_to_string(article) {
 			Ok(text) => text,
 			Err(error) => {
-				eprintln!("fail  {key}: {error}");
+				progress.suspend(|| eprintln!("fail  {key}: {error}"));
+				progress.inc(1);
 				continue;
 			}
 		};
 		let (found, model, tokens) = match runtime.block_on(i18n::tn::scan(&text, runner)) {
 			Ok(result) => result,
 			Err(error) => {
-				eprintln!("fail  {key}: {error}");
+				progress.suspend(|| eprintln!("fail  {key}: {error}"));
+				progress.inc(1);
 				continue;
 			}
 		};
@@ -827,16 +835,20 @@ fn scan_notes(args: &[String]) -> ExitCode {
 
 		let segments = i18n::segment::split(&text);
 		let attached = i18n::tn::attach(&segments, &found);
-		println!("{key}");
-		if attached.is_empty() {
-			println!("  nothing worth a note");
-		}
 		let mut entries = std::collections::BTreeMap::new();
-		for (id, source, spans) in attached {
-			println!("  {}", &id[..12.min(id.len())]);
-			for span in &spans {
-				println!("    {}  --  {}", span.phrase, span.guidance);
+		progress.suspend(|| {
+			println!("{key}");
+			if attached.is_empty() {
+				println!("  nothing worth a note");
 			}
+			for (id, _, spans) in &attached {
+				println!("  {}", &id[..12.min(id.len())]);
+				for span in spans {
+					println!("    {}  --  {}", span.phrase, span.guidance);
+				}
+			}
+		});
+		for (id, source, spans) in attached {
 			suggested += spans.len();
 			entries.insert(id, i18n::tn::Entry { source, spans });
 		}
@@ -853,15 +865,20 @@ fn scan_notes(args: &[String]) -> ExitCode {
 				segments: entries,
 			},
 		);
+		// Written after each article rather than once at the end. An interrupted run otherwise
+		// discards every article it had already paid to read, which this repository has been
+		// bitten by before: a paid result is a purchase, not an intermediate.
+		if let Err(error) = i18n::tn::save(&path, &table) {
+			progress.suspend(|| eprintln!("could not write {}: {error}", path.display()));
+			return ExitCode::FAILURE;
+		}
+		progress.inc(1);
 	}
+	progress.finish_and_clear();
 
 	if read == 0 {
 		println!("every article already read; pass --force to read one again");
 		return ExitCode::SUCCESS;
-	}
-	if let Err(error) = i18n::tn::save(&path, &table) {
-		eprintln!("could not write {}: {error}", path.display());
-		return ExitCode::FAILURE;
 	}
 	println!("{read} read, {suggested} suggestions in data/tn.yaml; delete any you disagree with");
 	println!("{spent} tokens");

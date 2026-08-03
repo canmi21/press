@@ -3,104 +3,25 @@ articles:
   architecture/compile-time-rendering.md:
     provider: openai
     model: gpt-5-6-sol-high
-    at: 2026-08-03T02:22:33.816236Z
-    tokens: 42082
+    at: 2026-08-03T02:51:44.656855Z
+    tokens: 42233
     segments:
       2572d33c59b0de355b8679aea55f1811:
         source: 说了那么多，什么时候能吃上呢：大概吧，还要很久很久，真的不是我想鸽子，而是其实我觉得现阶段这个玩意绑架我太多太多了。我只能拿来开发的话，基本上应用写不了，写什么都被框架先绊脚，更何况我最近主要其实都在写这个网站什么的了。所以我想通了，不如网站先写上一个规模，这样就知道我的需求到底是什么；后面也许再来写 SeamJS 就有一个 TODO List 了，一个一个实现好这个功能就能用了，~~后续还能再水一个 迁移 和 Benchmark~~ ？好了，大饼画完了，理念就在这，先别管今天能不能用，至少思路上原型已经跑通了，晚安 💤
         spans:
-        - phrase: 真的不是我想鸽子
-          guidance: “鸽子”在中文网络语境中被临时用作动词，表示拖延、爽约或弃坑，其诙谐语气无法靠直译恢复。
-        - phrase: 水一个 迁移 和 Benchmark
-          guidance: “水”是网络俚语，指借题轻松凑出一篇内容，暗含作者拿项目后续写作“刷篇数”的自嘲。
-        - phrase: 大饼画完了
-          guidance: “画大饼”指许下宏大但未必兑现的承诺，此处用完成体自嘲整篇文章是在描绘诱人的未来。
+        - phrase: 鸽子
+          guidance: Internet slang derived from “pigeon” for delaying or abandoning something one had suggested or promised.
+        - phrase: 大饼
+          guidance: “Big flatbread” belongs to 画大饼, an idiom for enticing people with grand promises that may never be fulfilled.
+      3b94504af8ec2a3de06ab1561f14f389:
+        source: 再说回 `raw HTML slot` 这个解决主要还是 `Markdown`、`Rich Text` 这类场景，渲染出来的 **HTML** 通过 `dangerouslySetInnerHTML` 注入，水合后这块区域不参与交互，是 **"死的"**；这部分内容应该被最小化，你想给文章加边框、加样式，那些应该用 React 组件来写，而不是混在这段 HTML 里。这种做法的缺点是它不能在水合之后发生改变，但它确实把这种前提下的 "SSR" 成本压到了非常低，接近于 Zero Cost 了。在真正需要 SSR 的场景里，大概 60% 都是这种静态 HTML 注入的情况；剩下 40% 才需要 RSC 那种服务端执行任意组件的能力。
+        spans:
+        - phrase: 水
+          guidance: Internet slang for padding one’s output with an easy or low-effort article, here joking about future migration and benchmark posts.
       e607f79910ca2344315b82a7fe7f1e29:
         source: 所以你是不是已经被 **Seam** 和 **SeamJS** 的关系绕晕了，其实这两很简单，Seam 是协议，它定义的是怎么用 `Sentinel` 标记动态位置、怎么转换成 `slot` 标记、怎么做条件块和循环块的 `diff` 检测、以及运行时怎么基于 **AST** 做数据注入。协议本身是语言无关的，任何能解析 **HTML** 注释、能做字符串替换的后端都能实现它。**SeamJS** 是框架，是基于这套协议做的一个具体实现 它把 **Vite**、**TanStack Router**、**TanStack Query** 这些轮子缝在一起，然后补它们覆盖不到的地方，比如我这套 **skeleton** 提取、注入引擎、**CLI** 之类的。
         spans:
-        - phrase: 这些轮子缝在一起
-          guidance: “轮子”是现成软件组件，而“缝”既指整合它们又呼应项目名 Seam，这层双关难以在翻译中同时保留。
-  development/rust-cargo-cranelift-tuning.md:
-    provider: openai
-    model: gpt-5-6-sol-high
-    at: 2026-08-03T02:23:23.826616Z
-    tokens: 28995
-    segments:
-      0ab50562ac7ea4bf26e4e95e0cb715c1:
-        source: 我本人是一个 MUSL 厨，非常讨厌 GNU glibc，但是开发我还是推荐你使用 `x86_64-unknown-linux-gnu` 为什么呢，因为快，MUSL 最大的卖点是能生成完全静态链接的二进制——不依赖系统上的任何动态库，编译出来的东西拷到任何 Linux 机器上就能跑，特别适合容器和嵌入式，但是慢也慢在静态链接，因为链接器需要把所有东西都打包进去，链接阶段的工作量比动态链接大不少。
-        spans:
-        - phrase: MUSL 厨
-          guidance: “厨”不是厨师，而是源自日语网络亚文化、表示某事物狂热拥趸的后缀。
-      8972ab2a06f2e872c59e5822ca3c56f5:
-        source: 最后这些好用的配置虽然可以帮助你快速区分 dev 和 release profile，在项目代码上来后只会越来越明显，但是我还是建议你多写一个 CI 来跑 Rust Stable LLVM Build，最好再加上你的各种测试一起跑，这样本地 nightly 的 rust 也不用切换了，Edge Case 也坑不到你，push 上去有问题就被 CI 拦了，这样就是目前最舒服的 DX 模式了；那这次就说到这里了，下次有空再摸吧
-        spans:
-        - phrase: 下次有空再摸吧
-          guidance: “摸”既表示作者下次再折腾，也回扣标题中“摸鱼”的偷懒含义，形成收尾双关。
-      97df4075d878ac7b8a6b12e70ee5b037:
-        source: 所以本质上，编译慢的很大一部分时间不是花在 Rust 自己的前端而是花在了 LLVM 这个"重型后端"上。那么问题来了，有没有可能丢掉它嘛，~~答案是有的喵~~，有一个叫做 Cranelift 的后端就是一个为了这个需求做的。它最早是 Cretonne，2016 年启动，由 [Bytecode Alliance](https://bytecodealliance.org) 开发，最初是为 [Wasmtime](https://github.com/bytecodealliance/wasmtime) 包的饺子，才设计的代码生成后端；后被 Rust 官方收编作为可选的 codegen 后端。
-        spans:
-        - phrase: ~~答案是有的喵~~
-          guidance: 删除线与句尾猫叫“喵”共同制造故意卖萌又自我撤回的语气，仅译字面答案会丢失这种书写效果。
-      c26cd7334110d7d7418db67f768ed852:
-        source: Rust 设计中，LLVM 其实有点偷懒，但也选的很好，不像 Go 一样自己维护 To 机器码的过程让 LLVM 大生态来做成熟的优化其实很好。整个 Rust 的编译流程大致可以说是源码跑一边词法分析、语法分析生成 AST，再经过宏展开、HIR 降级拍平！然后进入常规类型检查、亿点点借用检查，最终生成 MIR 了到这里为止，都是 Rust 编译器自己的前端在干活。而 MIR 之后的事情，就交给了 LLVM，比如把 MIR 翻译成 LLVM IR，然后 LLVM 跑一遍它那套优化 pass（从 O0 ～ O3 不等），最后生成目标平台的机器码，再交给链接器拼成 BIN 可执行文件。
-        spans:
-        - phrase: 亿点点借用检查
-          guidance: “亿点点”用“亿”替换同音的“一”，以夸张字形反讽借用检查远非“一点点”。
-      e4f45bb1cfbab66a39437d6e7026e471:
-        source: 不许 Cargo 再摸鱼了
-        spans:
-        - phrase: 不许 Cargo 再摸鱼了
-          guidance: “摸鱼”是中文网络语中的偷懒，标题把 Cargo 拟人化，并与结尾的“摸”形成双关照应。
-  homepage.md:
-    provider: openai
-    model: gpt-5-6-sol-high
-    at: 2026-08-03T02:23:39.511374Z
-    tokens: 16380
-    segments: {}
-  milestone/less-is-more.md:
-    provider: openai
-    model: gpt-5-6-sol-high
-    at: 2026-08-03T02:24:12.936745Z
-    tokens: 20034
-    segments:
-      03a7b723b0bf91095124a7d8c7cf04c7:
-        source: 奇怪的是，放手之后质量并没有变差。我想这大概是因为之前那些"古法"编程的日子没有白费；早在 GPT-2 时代我就开始用 AI 了，但那时候我还在老老实实地写每一行代码、理解每一个概念。那段经历给了我底子，与其说后来 Vibe Coding 不如说是 Context Coding，该有的判断力还在，并没有因为放手就出什么低级错误或者说是事故。
-        spans:
-        - phrase: '"古法"编程'
-          guidance: “古法”通常形容传统手工工艺，加引号用于戏称逐行亲手写代码已经像 AI 时代的古老技艺。
-      0718215ea97d512da49fb3554686b339:
-        source: 说"想"其实不太准确，更像是一个执念。在早期我还不会写前后端，不会写嵌入式代码的时候就有了，当时还在玩电子，偶然间看到了 [@ushio](https://github.com/sakura-ushio) 的 B站视频 和 网站，窝觉得很好玩我也要。后来花了小半年时间，从零学会了写 C 和一点点 JS CSS 用 Hexo 搭了一个静态博客部署在 Github Pages，也算是有了自己的小天地。
-        spans:
-        - phrase: 窝觉得很好玩我也要
-          guidance: “窝”是把“我”写成同音近音字的卖萌式网络用法，直译会丢掉刻意稚拙的口吻。
-      943bc9082d74c7867db730a57a3c5d75:
-        source: AI 时代的节奏太快了。模型一个接一个迭代，新技术一轮接一轮冒出来，我越来越焦虑，好像停下来就要被超越。最疯的时候一天写 16个 小时代码，Token 一天就能烧 $1.9k USD ~~(大概2月的时候吧)~~，人快废了。但让这一切停下来的不是什么顿悟，就是单纯的累了。在越来越紧的节奏下，最后一根稻草压下来，我反而释然了，想开了，摆烂了；这样，也挺好的。
-        spans:
-        - phrase: 摆烂了
-          guidance: “摆烂”是中文网络俚语，指因疲惫或无力而主动放弃挣扎，语气比普通的“放弃”更自嘲。
-      b60e899dca8ebe5689336bfe87e8278c:
-        source: 从 Next.js 13 鸽到 Next.js 16
-        spans:
-        - phrase: 从 Next.js 13 鸽到 Next.js 16
-          guidance: “鸽”是中文网络俚语，指一再拖延或爽约，这里还借版本跨度调侃博客被拖了数年。
-  mirror/less-than-an-hour.md:
-    provider: openai
-    model: gpt-5-6-sol-high
-    at: 2026-08-03T02:24:36.825872Z
-    tokens: 20909
-    segments:
-      32c72537542b299f6e68c64f0ac0f610:
-        source: 回去的时候走了一条完全不同的路，从小区后门绕进去，经过地下车库。小时候经常在车库里玩，虽然后来搬过一次家，不知怎么又搬回来了。车库是我成长记忆里唯一不常去的地方，样子变没变我看不出来，但我记得它的味道。小时候车库里有一种很清新的气息，有点像薄荷，浓浓的但没有香气，只剩下一个"清"字可以形容，再夹着一点地下室特有的阴凉。我其实还挺喜欢那个味道的。但是现在走进去，那股清气没了。只剩下阴冷的湿气，闷闷地贴在空气里。车开过来的时候带起一点风，大概是从入口灌进来的，但那个风也不对，什么都不对，哪哪都不对了，我已经想想不出来那个样子了，但是绝对就是你在那就能感受到的不同。
-        spans:
-        - phrase: 只剩下一个"清"字可以形容
-          guidance: 这里直接借汉字“清”的多重联想来同时表达清凉、清新和澄净，其他语言很难用一个对应字保留这种感官叠合。
-      86c5fbdb33d50086883e7552c0b7c428:
-        source: 我是一个很宅的人，也不知道从什么时候起，「出门」对我来说已经是一个很陌生的词汇了。我常常一个月只在必要的时候才出门，即使出门也是两点一线的生活，还常常坐车。仔细想想，我已经很久没有真正离开过室内了。在经历了 AI 时代的泡沫和焦虑后，我染上了一个坏习惯——常常凌晨写代码，似乎已经和生活的世界不在一个"时区"了。今天早上也是挨到了十二点多才起床，一天只吃两餐，醒来就坐到书房，打开电脑开始写。写代码本身是一件很好玩的事情，但 AI 时代的写代码已经不是了。盯着屏幕盯到下午，什么都写不出来，没有设计灵感，觉得一切都不完美。
-        spans:
-        - phrase: 两点一线的生活
-          guidance: “Two points joined by one line” is a fixed Chinese image for a life confined to shuttling between two places, usually home and work, which a literal translation would not convey.
-      ece3bf55829edba4e5b445a3313f4642:
-        source: 打开屏幕的那一刻我就知道完了。果果的屏幕亮度在户外根本不够看。稍微尝试了一下各种角度，背光、顺光，甚至把自己调整到和太阳在同一条线上——怎么调都看不清。挺可怜的，说实话。在室内觉得自己还是个程序员，结果到了户外发现连屏幕都点不亮。算了，这代码不写也罢，但是我还是不死心，合上笔记本，决定去马路对面的树荫里碰碰运气。离开栏杆之前，我又往江面看了一眼。远看其实还行，水面在多云伴随阳光的天气下看起来还是那种记忆里的样子。但稍稍低头把视线下压一点看向岸边看，就能发现水面上浮着一层东西——水藻、树叶、零零碎碎的漂浮物。不多，但江水已经不清了，水面比记忆中的静，但岸边很显然已经没人搭理了，「早几年疫情的时候我其实就出来看过，自那时候起其实就这样了」~~但是每次走过还是有些许感慨~~。
-        spans:
-        - phrase: 果果
-          guidance: 这是由“苹果”缩成的昵称，既把 Apple 拟人化又保留了品牌双关，译成普通的“电脑”或“Mac”都会丢失这种语气。
+        - phrase: 轮子
+          guidance: Chinese developer slang for existing libraries or tools, extended here into a metaphor that they can be stitched together.
+        - phrase: 缝
+          guidance: “Stitch” describes joining those tools while also echoing the framework name Seam.

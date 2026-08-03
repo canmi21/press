@@ -83,9 +83,13 @@ pub fn orphans(sidecar: &Sidecar, live: &BTreeMap<String, super::segment::Segmen
 ///
 /// A recorded note request makes an existing translation outdated, because it was produced
 /// before anyone decided the phrase had to survive. Detected from the text rather than from a
-/// timestamp: the request says a phrase is kept verbatim, so a translation that does not contain
-/// it cannot be carrying the note. That reads the same fact the instruction states, instead of
-/// keeping a second record of when each was written and trusting the two to stay in step.
+/// timestamp, which reads the same fact the instruction states instead of keeping a second
+/// record of when each was written and trusting the two to stay in step.
+///
+/// The note is what is looked for, and nothing else. The source wording is deliberately absent
+/// from a finished translation -- it lives inside the note, where a reader meets it by choice --
+/// so requiring the original phrase to appear would fail exactly the translations that got it
+/// right.
 pub fn missing(
 	sidecar: &Sidecar,
 	live: &BTreeMap<String, super::segment::Segment>,
@@ -103,9 +107,7 @@ pub fn missing(
 			.iter()
 			.filter(|locale| match have.and_then(|map| map.get(**locale)) {
 				None => true,
-				Some(translation) => required
-					.iter()
-					.any(|span| !translation.text.contains(&span.phrase)),
+				Some(translation) => !required.is_empty() && !translation.text.contains(":tn["),
 			})
 			.map(|locale| (*locale).to_owned())
 			.collect();
@@ -194,17 +196,20 @@ mod tests {
 		let live = segment::translatable("古法 programming");
 		let id = live.keys().next().expect("segment").clone();
 
-		let mut kept = entry();
-		kept.text = "古法 :tn[古法]{is=\"the old method\"} programming".into();
-		let mut lost = entry();
-		lost.text = "old-school programming".into();
+		// The shape a correct translation has: wholly in its own language, with the original
+		// inside the note rather than on the page.
+		let mut noted = entry();
+		noted.text = ":tn[old-school]{is=\"the source reads 古法, an antique-craft word\"} programming"
+			.into();
+		let mut plain = entry();
+		plain.text = "old-school programming".into();
 
 		let mut sidecar = Sidecar::default();
 		sidecar.segments.insert(
 			id.clone(),
 			BTreeMap::from([
-				("ja-JP".to_owned(), kept),
-				("de-DE".to_owned(), lost.clone()),
+				("ja-JP".to_owned(), noted),
+				("de-DE".to_owned(), plain),
 			]),
 		);
 
@@ -229,7 +234,7 @@ mod tests {
 			},
 		);
 
-		// Only the one that translated the phrase away is asked for again.
+		// The annotated one is left alone; the one that lost the note is asked for again.
 		let want = missing(&sidecar, &live, &["ja-JP", "de-DE"], &glosses);
 		assert_eq!(want[&id], vec!["de-DE"]);
 

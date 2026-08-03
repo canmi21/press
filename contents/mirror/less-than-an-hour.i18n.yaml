@@ -2,7 +2,7 @@ version: 1
 segments:
   04aac9967908c30fcfe0106c925e15a5:
     de-DE:
-      text: '## Stadtlärm {#city-noise}'
+      text: "## Stadtlärm {#city-noise}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.712681Z
@@ -10,7 +10,7 @@ segments:
       tokens: 16131
       review: false
     en-US:
-      text: '## City Noise {#city-noise}'
+      text: "## City Noise {#city-noise}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.712681Z
@@ -18,7 +18,7 @@ segments:
       tokens: 16131
       review: false
     es-ES:
-      text: '## Ruido de la ciudad {#city-noise}'
+      text: "## Ruido de la ciudad {#city-noise}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.712681Z
@@ -26,7 +26,7 @@ segments:
       tokens: 16131
       review: false
     fr-FR:
-      text: '## Bruit de la ville {#city-noise}'
+      text: "## Bruit de la ville {#city-noise}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.712681Z
@@ -34,7 +34,7 @@ segments:
       tokens: 16131
       review: false
     ja-JP:
-      text: '## 都市の騒音 {#city-noise}'
+      text: "## 都市の騒音 {#city-noise}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.712681Z
@@ -42,7 +42,7 @@ segments:
       tokens: 16131
       review: false
     ko-KR:
-      text: '## 도시의 소음 {#city-noise}'
+      text: "## 도시의 소음 {#city-noise}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.712681Z
@@ -50,7 +50,7 @@ segments:
       tokens: 16131
       review: false
     zh-CN:
-      text: '## 城市喧嚣 {#city-noise}'
+      text: "## 城市喧嚣 {#city-noise}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.712681Z
@@ -58,7 +58,7 @@ segments:
       tokens: 16131
       review: false
     zh-TW:
-      text: '## 城市喧囂 {#city-noise}'
+      text: "## 城市喧囂 {#city-noise}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.712681Z
@@ -132,7 +132,7 @@ segments:
       review: false
   2f8a0158823a1e03474bd194c3004a66:
     de-DE:
-      text: '## Eine Stunde {#one-hour}'
+      text: "## Eine Stunde {#one-hour}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.712805Z
@@ -140,7 +140,7 @@ segments:
       tokens: 16023
       review: false
     en-US:
-      text: '## One hour {#one-hour}'
+      text: "## One hour {#one-hour}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.712805Z
@@ -148,7 +148,7 @@ segments:
       tokens: 16023
       review: false
     es-ES:
-      text: '## Una hora {#one-hour}'
+      text: "## Una hora {#one-hour}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.712805Z
@@ -156,7 +156,7 @@ segments:
       tokens: 16023
       review: false
     fr-FR:
-      text: '## Une heure {#one-hour}'
+      text: "## Une heure {#one-hour}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.712805Z
@@ -164,7 +164,7 @@ segments:
       tokens: 16023
       review: false
     ja-JP:
-      text: '## 1時間 {#one-hour}'
+      text: "## 1時間 {#one-hour}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.712805Z
@@ -172,7 +172,7 @@ segments:
       tokens: 16023
       review: false
     ko-KR:
-      text: '## 한 시간 {#one-hour}'
+      text: "## 한 시간 {#one-hour}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.712805Z
@@ -180,7 +180,7 @@ segments:
       tokens: 16023
       review: false
     zh-CN:
-      text: '## 一小时 {#one-hour}'
+      text: "## 一小时 {#one-hour}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.712805Z
@@ -188,81 +188,16 @@ segments:
       tokens: 16023
       review: false
     zh-TW:
-      text: '## 一小時 {#one-hour}'
+      text: "## 一小時 {#one-hour}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:30.712805Z
       seconds: 5.083705166
       tokens: 16023
-      review: false
-  32c72537542b299f6e68c64f0ac0f610:
-    de-DE:
-      text: Auf dem Rückweg nahm ich einen völlig anderen Weg, ging durch den Hintereingang der Wohnanlage und fuhr durch die Tiefgarage. Als Kind habe ich oft in der Garage gespielt, obwohl ich später einmal umgezogen bin, bin ich aus irgendeinem Grund wieder zurückgezogen. Die Garage ist der einzige Ort in meinen Kindheitserinnerungen, den ich kaum besucht habe; ich kann nicht sagen, ob ihr Aussehen sich verändert hat, aber ich erinnere mich an ihren Geruch. Als Kind hatte die Garage einen sehr frischen Duft, ein wenig nach Minze, stark, aber ohne eigentlichen Geruch – nur das Wort „klar“ würde ihn beschreiben, dazu ein Hauch der kühlen, typischen Kellerkühle. Ich mochte diesen Geruch eigentlich ganz gern. Jetzt, wenn ich hineinsteige, ist dieser frische Duft verschwunden. Es bleibt nur die kalte, feuchte Feuchtigkeit, die schwer in der Luft liegt. Wenn ein Auto vorbeifährt, weht ein wenig Luft, vermutlich von dem Eingang herein, aber dieser Wind ist ebenfalls nicht richtig, alles ist nicht richtig, ich kann mir das Bild nicht mehr vorstellen, aber es ist definitiv ein Unterschied, den man spürt, wenn man dort ist.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:36.758909Z
-      seconds: 22.645393541
-      tokens: 20245
-      review: false
-    en-US:
-      text: When I went back, I took a completely different route, entering through the back gate of the community and passing through the underground garage. As a child I often played in the garage, and although I moved home once later, I somehow moved back again. The garage is the only place in my childhood memories that I rarely visited; I can’t tell if its appearance has changed, but I remember its smell. When I was young, the garage had a very fresh scent, a bit like mint—intense but without fragrance, only the character “clear” could describe it, with a hint of the coolness typical of a basement. I actually liked that smell quite a bit. But now, when I go in, that fresh scent is gone. Only a cold, damp humidity clings to the air. When a car passes by, it brings a little wind, probably from the entrance, but that wind feels off, everything feels off, I can’t even picture it now, yet it’s definitely a difference you can feel when you’re there.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:36.758909Z
-      seconds: 22.645393541
-      tokens: 20245
-      review: false
-    es-ES:
-      text: Al volver, tomé un camino completamente diferente, entrando por la puerta trasera del complejo y pasando por el garaje subterráneo. Cuando era niño solía jugar mucho en el garaje, aunque después me mudé una vez y, de alguna forma, volví a mudarme de nuevo. El garaje es el único lugar en mis recuerdos de infancia que rara vez visitaba; no sé si su aspecto ha cambiado, pero recuerdo su olor. De niño, el garaje tenía una atmósfera muy fresca, un poco como la menta, intensa pero sin perfume, solo la palabra « claro » podía describirla, con un toque de la frescura propia de los sótanos. En realidad, me gustaba bastante ese olor. Pero ahora, al entrar, esa frescura ha desaparecido. Solo queda una humedad fría que se adhiere al aire. Cuando pasa un coche, levanta un poco de viento, probablemente desde la entrada, pero ese viento también se siente extraño, todo se siente extraño, ya no puedo imaginar cómo era, pero definitivamente es una diferencia que se percibe cuando estás allí.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:36.758909Z
-      seconds: 22.645393541
-      tokens: 20245
-      review: false
-    fr-FR:
-      text: En rentrant, j’ai emprunté un chemin complètement différent, passant par la porte arrière du quartier et traversant le garage souterrain. Quand j’étais petit, je jouais souvent dans le garage, même si j’ai déménagé une fois plus tard, je suis revenu pour une raison inconnue. Le garage est le seul endroit de mes souvenirs d’enfance que je fréquentais rarement ; je ne sais pas s’il a changé d’aspect, mais je me souviens de son odeur. Quand j’étais enfant, le garage dégageait une odeur très fraîche, un peu mentholée, forte mais sans parfum, on ne pouvait le qualifier que de « clair », avec une touche de fraîcheur typique des sous-sols. J’aimais vraiment cette odeur. Mais maintenant, en y entrant, cette fraîcheur a disparu. Il ne reste que l’humidité froide qui colle lourdement à l’air. Quand une voiture passe, un petit souffle de vent se lève, probablement provenant de l’entrée, mais ce vent est également étrange, tout est étrange, je ne parviens plus à imaginer cette atmosphère, mais c’est certainement une différence que l’on ressent quand on est là.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:36.758909Z
-      seconds: 22.645393541
-      tokens: 20245
-      review: false
-    ja-JP:
-      text: 帰るとき、全く違う道を通り、小区の裏門から入り、地下駐車場を通った。子供の頃はよく駐車場で遊んだが、後に一度引っ越したものの、なぜかまた戻ってきた。駐車場は私の成長記憶の中で、ほとんど行かない唯一の場所で、見た目が変わったかどうかは分からないが、その匂いは覚えている。子供の頃、駐車場にはとてもさわやかな匂いがあり、少しミントのようで、濃厚だけど香りはなく、「清」という字だけで表現でき、さらに地下室特有の涼しさが混ざっていた。実はその匂いがかなり好きだった。しかし今入ると、その清々しい匂いはなくなっている。残っているのはひんやりとした湿気だけで、空気にくっついている。車が通ると少し風が起きるが、入口から入ってくるだろうが、その風も違う、すべてが違う、もうその様子を思い浮かべることができないが、確かにそこにいると感じられる違いだ。
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:36.758909Z
-      seconds: 22.645393541
-      tokens: 20245
-      review: false
-    ko-KR:
-      text: 돌아갈 때 전혀 다른 길을 걸어, 단지 뒤문으로 들어가 지하 주차장을 통과했다. 어릴 때 자주 주차장에서 놀았는데, 나중에 한 번 이사했지만, 왜인지 다시 돌아왔다. 주차장은 내 성장 기억 속에서 거의 가지 않던 유일한 장소이며, 모양이 변했는지 여부는 알 수 없지만 그 냄새는 기억한다. 어릴 때 주차장에는 아주 상쾌한 기운이 있었는데, 약간 민트 같고, 진하지만 향기는 없으며, '청'이라는 글자로만 표현할 수 있었고, 지하실 특유의 서늘함도 약간 섞여 있었다. 나는 사실 그 냄새를 꽤 좋아했다. 하지만 이제 들어가 보면 그 상쾌한 기운은 사라졌다. 남는 것은 차가운 습기뿐이며, 공기 속에 무겁게 붙어 있다. 차가 지나갈 때 약간의 바람이 들어오는데, 아마 입구에서 들어오는 것 같은데, 그 바람도 맞지 않고, 모든 것이 맞지 않는다. 이제 그 모습을 떠올릴 수 없지만, 그곳에 있으면 확실히 느낄 수 있는 차이이다.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:36.758909Z
-      seconds: 22.645393541
-      tokens: 20245
-      review: false
-    zh-CN:
-      text: 回去的时候走了一条完全不同的路，从小区后门绕进去，经过地下车库。小时候经常在车库里玩，虽然后来搬过一次家，不知怎么又搬回来了。车库是我成长记忆里唯一不常去的地方，样子变没变我看不出来，但我记得它的味道。小时候车库里有一种很清新的气息，有点像薄荷，浓浓的但没有香气，只剩下一个"清"字可以形容，再夹着一点地下室特有的阴凉。我其实还挺喜欢那个味道的。但是现在走进去，那股清气没了。只剩下阴冷的湿气，闷闷地贴在空气里。车开过来的时候带起一点风，大概是从入口灌进来的，但那个风也不对，什么都不对，哪哪都不对了，我已经想想不出来那个样子了，但是绝对就是你在那就能感受到的不同。
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:36.758909Z
-      seconds: 22.645393541
-      tokens: 20245
-      review: false
-    zh-TW:
-      text: 回去的時候走了一條完全不同的路，從小區後門繞進去，經過地下車庫。小時候經常在車庫裡玩，雖然後來搬過一次家，不知怎麼又搬回來了。車庫是我成長記憶裡唯一不常去的地方，樣子變沒變我看不出來，但我記得它的味道。小時候車庫裡有一種很清新的氣息，有點像薄荷，濃濃的但沒有香氣，只剩下一个「清」字可以形容，再夾著一點地下室特有的陰涼。我其實還挺喜歡那個味道的。但是現在走進去，那股清氣沒了。只剩下陰冷的濕氣，悶悶地貼在空氣裡。車開過來的時候帶起一點風，大概是從入口灌進來的，但那個風也不對，什麼都不對，哪哪都不對了，我已經想想不出來那個樣子了，但是絕對就是你在那就能感受到的不同。
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:28:36.758909Z
-      seconds: 22.645393541
-      tokens: 20245
       review: false
   361602b8c96e2ad6455e7b210cc53c99:
     de-DE:
-      text: '## Erste Erinnerungen {#first-memories}'
+      text: "## Erste Erinnerungen {#first-memories}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:36.766626Z
@@ -270,7 +205,7 @@ segments:
       tokens: 16021
       review: false
     en-US:
-      text: '## First Memories {#first-memories}'
+      text: "## First Memories {#first-memories}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:36.766626Z
@@ -278,7 +213,7 @@ segments:
       tokens: 16021
       review: false
     es-ES:
-      text: '## Primeros Recuerdos {#first-memories}'
+      text: "## Primeros Recuerdos {#first-memories}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:36.766626Z
@@ -286,7 +221,7 @@ segments:
       tokens: 16021
       review: false
     fr-FR:
-      text: '## Premiers Souvenirs {#first-memories}'
+      text: "## Premiers Souvenirs {#first-memories}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:36.766626Z
@@ -294,7 +229,7 @@ segments:
       tokens: 16021
       review: false
     ja-JP:
-      text: '## 最初の記憶 {#first-memories}'
+      text: "## 最初の記憶 {#first-memories}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:36.766626Z
@@ -302,7 +237,7 @@ segments:
       tokens: 16021
       review: false
     ko-KR:
-      text: '## 첫 번째 기억 {#first-memories}'
+      text: "## 첫 번째 기억 {#first-memories}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:36.766626Z
@@ -310,7 +245,7 @@ segments:
       tokens: 16021
       review: false
     zh-CN:
-      text: '## 回忆初 {#first-memories}'
+      text: "## 回忆初 {#first-memories}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:36.766626Z
@@ -318,7 +253,7 @@ segments:
       tokens: 16021
       review: false
     zh-TW:
-      text: '## 回憶初 {#first-memories}'
+      text: "## 回憶初 {#first-memories}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:36.766626Z
@@ -522,7 +457,7 @@ segments:
       review: false
   3f58794bc2ebaa4e840e82849bba75cb:
     de-DE:
-      text: '## Unsichtbar {#unseen}'
+      text: "## Unsichtbar {#unseen}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.405895Z
@@ -530,7 +465,7 @@ segments:
       tokens: 16091
       review: false
     en-US:
-      text: '## Invisible {#unseen}'
+      text: "## Invisible {#unseen}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.405895Z
@@ -538,7 +473,7 @@ segments:
       tokens: 16091
       review: false
     es-ES:
-      text: '## Invisible {#unseen}'
+      text: "## Invisible {#unseen}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.405895Z
@@ -546,7 +481,7 @@ segments:
       tokens: 16091
       review: false
     fr-FR:
-      text: '## Invisible {#unseen}'
+      text: "## Invisible {#unseen}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.405895Z
@@ -554,7 +489,7 @@ segments:
       tokens: 16091
       review: false
     ja-JP:
-      text: '## 見えない {#unseen}'
+      text: "## 見えない {#unseen}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.405895Z
@@ -562,7 +497,7 @@ segments:
       tokens: 16091
       review: false
     ko-KR:
-      text: '## 보이지 않음 {#unseen}'
+      text: "## 보이지 않음 {#unseen}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.405895Z
@@ -570,7 +505,7 @@ segments:
       tokens: 16091
       review: false
     zh-CN:
-      text: '## 看不见 {#unseen}'
+      text: "## 看不见 {#unseen}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.405895Z
@@ -578,7 +513,7 @@ segments:
       tokens: 16091
       review: false
     zh-TW:
-      text: '## 看不見 {#unseen}'
+      text: "## 看不見 {#unseen}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.405895Z
@@ -652,7 +587,7 @@ segments:
       review: false
   575f9d1e46947d0a29743dd1839a3b18:
     de-DE:
-      text: '## Waldweg {#forest-path}'
+      text: "## Waldweg {#forest-path}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.407221Z
@@ -660,7 +595,7 @@ segments:
       tokens: 16375
       review: false
     en-US:
-      text: '## Forest Path {#forest-path}'
+      text: "## Forest Path {#forest-path}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.407221Z
@@ -668,7 +603,7 @@ segments:
       tokens: 16375
       review: false
     es-ES:
-      text: '## Sendero del bosque {#forest-path}'
+      text: "## Sendero del bosque {#forest-path}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.407221Z
@@ -676,7 +611,7 @@ segments:
       tokens: 16375
       review: false
     fr-FR:
-      text: '## Sentier de la forêt {#forest-path}'
+      text: "## Sentier de la forêt {#forest-path}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.407221Z
@@ -684,7 +619,7 @@ segments:
       tokens: 16375
       review: false
     ja-JP:
-      text: '## 森の小道 {#forest-path}'
+      text: "## 森の小道 {#forest-path}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.407221Z
@@ -692,7 +627,7 @@ segments:
       tokens: 16375
       review: false
     ko-KR:
-      text: '## 숲길 {#forest-path}'
+      text: "## 숲길 {#forest-path}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.407221Z
@@ -700,7 +635,7 @@ segments:
       tokens: 16375
       review: false
     zh-CN:
-      text: '## 林中小道 {#forest-path}'
+      text: "## 林中小道 {#forest-path}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.407221Z
@@ -708,7 +643,7 @@ segments:
       tokens: 16375
       review: false
     zh-TW:
-      text: '## 林中小道 {#forest-path}'
+      text: "## 林中小道 {#forest-path}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.407221Z
@@ -717,7 +652,7 @@ segments:
       review: false
   62be9102d0da473945e86a0a3b2bb471:
     de-DE:
-      text: 'In diesem Moment kam plötzlich ein längst vergessenes Wort „außen“ in meinen Kopf. Es war kein konkreter Ort, nur ein vages Gefühl, als hätte ich das schon einmal in meiner Erinnerung gehabt: Sonnenschein, Wind, Wiese, aber ich kann es nicht klar beschreiben. Gerade dass ich es nicht klar beschreiben kann, beunruhigt mich ein wenig. Zufällig war das Wetter heute schön und Claude hatte das Sitzungs‑Limit erreicht, also schloss ich mein Notizbuch, setzte meine Kopfhörer auf, griff nach einer Flasche Wasser und ging nach draußen. Ja, ich nahm mein MacBook Air mit. Ich wollte im Grunde einfach an einen anderen Ort gehen und weiter schreiben, vielleicht ein bisschen Inspiration finden.'
+      text: "In diesem Moment kam plötzlich ein längst vergessenes Wort „außen“ in meinen Kopf. Es war kein konkreter Ort, nur ein vages Gefühl, als hätte ich das schon einmal in meiner Erinnerung gehabt: Sonnenschein, Wind, Wiese, aber ich kann es nicht klar beschreiben. Gerade dass ich es nicht klar beschreiben kann, beunruhigt mich ein wenig. Zufällig war das Wetter heute schön und Claude hatte das Sitzungs‑Limit erreicht, also schloss ich mein Notizbuch, setzte meine Kopfhörer auf, griff nach einer Flasche Wasser und ging nach draußen. Ja, ich nahm mein MacBook Air mit. Ich wollte im Grunde einfach an einen anderen Ort gehen und weiter schreiben, vielleicht ein bisschen Inspiration finden."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.484341Z
@@ -725,7 +660,7 @@ segments:
       tokens: 21169
       review: false
     en-US:
-      text: 'At that moment, a long‑forgotten thought of “outside” suddenly popped into my head. It wasn’t any specific place, just a vague feeling, like something I’ve once had in memory: sunshine, wind, grassland, but I can’t quite describe it. The very fact that I can’t describe it makes me a bit uneasy. It just so happened that the weather was nice today, and Claude had hit its session limit, so I closed my notebook, put on my headphones, grabbed a bottle of water and stepped outside. Yes, I went out with my MacBook Air. I basically thought I’d go to a different spot to keep writing, maybe I could find some inspiration?'
+      text: "At that moment, a long‑forgotten thought of “outside” suddenly popped into my head. It wasn’t any specific place, just a vague feeling, like something I’ve once had in memory: sunshine, wind, grassland, but I can’t quite describe it. The very fact that I can’t describe it makes me a bit uneasy. It just so happened that the weather was nice today, and Claude had hit its session limit, so I closed my notebook, put on my headphones, grabbed a bottle of water and stepped outside. Yes, I went out with my MacBook Air. I basically thought I’d go to a different spot to keep writing, maybe I could find some inspiration?"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.484341Z
@@ -733,7 +668,7 @@ segments:
       tokens: 21169
       review: false
     es-ES:
-      text: 'En ese momento, de pronto surgió en mi cabeza un pensamiento largamente olvidado: “afuera”. No era un lugar concreto, sino una sensación muy difusa, como algo que había tenido en la memoria: sol, viento, hierba, pero no podía describirlo con claridad. El hecho de no poder describirlo me incomoda un poco. Resultó que hoy hacía buen tiempo y Claude había alcanzado el límite de sesión, así que cerré el cuaderno, me puse los auriculares, agarré una botella de agua y salí. Sí, salí con mi MacBook Air. Básicamente pensé en cambiar de sitio para seguir escribiendo, tal vez encontrar algo de inspiración.'
+      text: "En ese momento, de pronto surgió en mi cabeza un pensamiento largamente olvidado: “afuera”. No era un lugar concreto, sino una sensación muy difusa, como algo que había tenido en la memoria: sol, viento, hierba, pero no podía describirlo con claridad. El hecho de no poder describirlo me incomoda un poco. Resultó que hoy hacía buen tiempo y Claude había alcanzado el límite de sesión, así que cerré el cuaderno, me puse los auriculares, agarré una botella de agua y salí. Sí, salí con mi MacBook Air. Básicamente pensé en cambiar de sitio para seguir escribiendo, tal vez encontrar algo de inspiración."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.484341Z
@@ -741,7 +676,7 @@ segments:
       tokens: 21169
       review: false
     fr-FR:
-      text: 'À ce moment‑là, une pensée longtemps oubliée, « l’extérieur », a soudain surgi dans ma tête. Ce n’était pas un lieu précis, juste une sensation vague, comme quelque chose que j’avais déjà eu dans ma mémoire : le soleil, le vent, l’herbe, mais je ne parviens pas à le décrire clairement. Le fait même de ne pas pouvoir le décrire m’interroge un peu. Il se trouvait que le temps était beau aujourd’hui et que Claude avait atteint sa limite de session, alors j’ai refermé mon carnet, mis mes écouteurs, saisi une bouteille d’eau et suis sorti. Oui, je suis sorti avec mon MacBook Air. En gros, je pensais aller quelque part d’autre pour continuer à écrire, peut‑être y trouver un peu d’inspiration ?'
+      text: "À ce moment‑là, une pensée longtemps oubliée, « l’extérieur », a soudain surgi dans ma tête. Ce n’était pas un lieu précis, juste une sensation vague, comme quelque chose que j’avais déjà eu dans ma mémoire : le soleil, le vent, l’herbe, mais je ne parviens pas à le décrire clairement. Le fait même de ne pas pouvoir le décrire m’interroge un peu. Il se trouvait que le temps était beau aujourd’hui et que Claude avait atteint sa limite de session, alors j’ai refermé mon carnet, mis mes écouteurs, saisi une bouteille d’eau et suis sorti. Oui, je suis sorti avec mon MacBook Air. En gros, je pensais aller quelque part d’autre pour continuer à écrire, peut‑être y trouver un peu d’inspiration ?"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:28:59.484341Z
@@ -912,7 +847,7 @@ segments:
       review: false
   71c02f8a87a99a49dc10fd3318433505:
     de-DE:
-      text: 'Nach etwa ein‑ bis zweihundert Metern Fußweg erreichte ich das Flussufer. Das steinerne Geländer neben dem Bürgersteig war ein wenig breit, gerade genug, um einen Laptop darauf zu stellen. Ich hatte eigentlich nicht vor, hier zu programmieren – ich war einfach am Fluss, nach langer Zeit wieder draußen, und machte zuerst ein Foto mit meinem Handy. Nachdem ich das Foto geschossen hatte, stellte ich fest, dass die Outdoor‑Atmosphäre ganz okay war, also zog ich beiläufig mein MacBook heraus, stellte es auf das Geländer und nach dem Entsperren des Bildschirms füllten sich Editor‑ und Terminalfenster. Ich weiß nicht warum, aber ich dachte, ich könnte einen Tweet posten, so nach dem Muster: Jemand öffnet sein MacBook auf einem verschneiten Berg oder beim Angeln, der Bildschirm ist voller IDEs und Terminals, und man fügt den Satz „what can stop you coding like this“ hinzu. Ich gab das jedoch schnell auf, weil die LCD‑Bildschirmhelligkeit des 25‑Zoll‑MBA einfach zu niedrig war…'
+      text: "Nach etwa ein‑ bis zweihundert Metern Fußweg erreichte ich das Flussufer. Das steinerne Geländer neben dem Bürgersteig war ein wenig breit, gerade genug, um einen Laptop darauf zu stellen. Ich hatte eigentlich nicht vor, hier zu programmieren – ich war einfach am Fluss, nach langer Zeit wieder draußen, und machte zuerst ein Foto mit meinem Handy. Nachdem ich das Foto geschossen hatte, stellte ich fest, dass die Outdoor‑Atmosphäre ganz okay war, also zog ich beiläufig mein MacBook heraus, stellte es auf das Geländer und nach dem Entsperren des Bildschirms füllten sich Editor‑ und Terminalfenster. Ich weiß nicht warum, aber ich dachte, ich könnte einen Tweet posten, so nach dem Muster: Jemand öffnet sein MacBook auf einem verschneiten Berg oder beim Angeln, der Bildschirm ist voller IDEs und Terminals, und man fügt den Satz „what can stop you coding like this“ hinzu. Ich gab das jedoch schnell auf, weil die LCD‑Bildschirmhelligkeit des 25‑Zoll‑MBA einfach zu niedrig war…"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:17.225505Z
@@ -1105,74 +1040,9 @@ segments:
       seconds: 6.9454502080000005
       tokens: 16719
       review: false
-  86c5fbdb33d50086883e7552c0b7c428:
-    de-DE:
-      text: Ich bin ein sehr häuslicher Mensch und weiß gar nicht, wann es angefangen hat, aber das Wort „ausgehen“ ist mir schon völlig fremd geworden. Ich gehe meist nur einmal im Monat aus, und zwar nur, wenn es wirklich nötig ist; selbst dann besteht mein Leben aus einem einfachen Hin‑und‑Weg‑Muster, oft mit dem Zug oder dem Auto. Wenn ich darüber nachdenke, ist es schon lange her, dass ich einen Raum wirklich verlassen habe. Nach den Blasen und Ängsten der KI‑Ära habe ich mir eine schlechte Gewohnheit angeeignet – mitten in der Nacht zu programmieren, als befände ich mich nicht mehr in derselben „Zeitzone“ wie das übrige Leben. Heute Morgen bin ich erst nach zwölf Uhr aufgestanden, esse nur zweimal am Tag und setze mich nach dem Aufwachen sofort ins Arbeitszimmer, schalte den Computer ein und beginne zu schreiben. Das Programmieren an sich macht nach wie vor großen Spaß, doch das Programmieren in der KI‑Ära ist es nicht mehr. Ich starre den ganzen Nachmittag auf den Bildschirm, kann nichts schreiben, habe keine Design‑Inspiration und habe das Gefühl, dass alles unperfekt ist.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:29:26.776375Z
-      seconds: 47.780261375
-      tokens: 19792
-      review: false
-    en-US:
-      text: I’m a very homebound person, and I don’t even know when it started, but “going out” has become a completely unfamiliar term to me. I usually only go out once a month when it’s truly necessary; even then my outings are just a simple two‑point‑one‑line routine, and I often take a car or public transport. Thinking carefully, I realize I haven’t genuinely left a room in a long time. After experiencing the bubbles and anxieties of the AI era, I picked up a bad habit—writing code in the middle of the night, as if I’m no longer in the same “time zone” as the rest of life. This morning I didn’t get up until after noon, I only have two meals a day, and as soon as I wake I sit in my study, turn on the computer and start writing. Writing code itself is still a lot of fun, but coding in the AI era is no longer that. Staring at the screen until the afternoon, I can’t produce anything, lack design inspiration, and feel everything is imperfect.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:29:26.776375Z
-      seconds: 47.780261375
-      tokens: 19792
-      review: false
-    es-ES:
-      text: 'Soy una persona muy casera y ni siquiera sé desde cuándo, pero la palabra « salir » ya se ha convertido en un término muy desconocido para mí. Normalmente solo salgo una vez al mes, y solo cuando es realmente necesario; incluso entonces mi vida es un simple ida‑y‑vuelta, y a menudo viajo en coche o en transporte público. Pensándolo bien, hace mucho que no he salido realmente de una habitación. Después de pasar por las burbujas y la ansiedad de la era de la IA, adquirí un mal hábito: programar a medianoche, como si ya no estuviera en el mismo « huso horario » que el resto de la vida. Esta mañana no me levanté hasta pasada la una, solo como dos comidas al día, y al despertarme me dirijo directamente a mi estudio, enciendo el ordenador y empiezo a escribir. Programar en sí sigue siendo muy divertido, pero escribir código en la era de la IA ya no lo es. Paso la tarde mirando la pantalla, no logro escribir nada, me falta inspiración de diseño y siento que todo está imperfecto.'
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:29:26.776375Z
-      seconds: 47.780261375
-      tokens: 19792
-      review: false
-    fr-FR:
-      text: Je suis quelqu’un très casanier et je ne sais même pas depuis quand, mais le mot « sortir » est déjà devenu un terme très étranger pour moi. Je ne sors généralement qu’une fois par mois, uniquement quand c’est vraiment nécessaire ; même alors ma vie se résume à un trajet aller‑retour, souvent en voiture ou en transport en commun. En y réfléchissant bien, cela fait longtemps que je n’ai pas réellement quitté une pièce. Après avoir traversé les bulles et les angoisses de l’ère de l’IA, j’ai développé une mauvaise habitude — coder en pleine nuit, comme si je n’étais plus dans le même « fuseau horaire » que le reste de la vie. Ce matin, je ne me suis levé qu’après midi, je ne prends que deux repas par jour, et dès que je me réveille, je m’installe immédiatement dans mon bureau, j’allume mon ordinateur et commence à écrire. Programmer reste très amusant, mais le codage à l’ère de l’IA ne l’est plus vraiment. Je passe l’après‑midi à fixer l’écran, je ne parviens à rien écrire, je manque d’inspiration pour le design et je sens que tout est imparfait.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:29:26.776375Z
-      seconds: 47.780261375
-      tokens: 19792
-      review: false
-    ja-JP:
-      text: 私はとても引きこもりがちな人で、いつからなのかはわからないが、「外出」は私にとってすでにとても馴染みのない言葉になっている。私は必要な時だけ月に一度ほど外出し、外出しても二点一線の生活で、よく車や電車に乗る。よく考えてみると、実際に室内を離れたのはかなり久しい。AI時代のバブルと不安を経験した後、私は悪い癖――深夜にコードを書くこと――を身につけてしまい、生活の世界とはもう同じ「タイムゾーン」にいないかのようだ。今朝も昼過ぎまで起きず、１日２食で、目が覚めたらすぐ書斎に座り、パソコンを立ち上げて書き始める。コードを書くこと自体はとても楽しいことだが、AI時代のコード執筆はもうそうではない。画面を午後まで見つめ続け、何も書けず、デザインのインスピレーションもなく、すべてが完璧でないと感じる。
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:29:26.776375Z
-      seconds: 47.780261375
-      tokens: 19792
-      review: false
-    ko-KR:
-      text: 저는 꽤 집돌이(집에만 있는 사람)이고, 언제부터인지 모르겠지만 ‘외출’이라는 것이 저에게는 이미 낯선 단어가 되었습니다. 저는 보통 한 달에 한 번, 꼭 필요할 때만 외출합니다. 외출해도 두 점 일선(집↔외출) 생활이고, 차를 자주 탑니다. 생각해 보면, 실제로 방을 떠난 지 오래되었습니다. AI 시대의 거품과 불안을 겪은 뒤, 저는 나쁜 습관을 갖게 되었는데—깊은 밤에 코드를 짜는 것입니다. 마치 생활 세계와 같은 ‘시간대’에 있지 않은 듯합니다. 오늘 아침에도 열두 시가 넘어서야 일어났고, 하루에 두 끼만 먹으며, 깨어나자마자 서재에 앉아 컴퓨터를 켜고 코딩을 시작합니다. 코딩 자체는 여전히 재미있는 일인데, AI 시대의 코딩은 더 이상 그렇지 않다고 느껴집니다. 화면을 오후까지 뚫어지게 바라보며 아무것도 써내려가지 못하고, 디자인 영감도 없으며, 모든 것이 완벽하지 않다고 생각합니다.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:29:26.776375Z
-      seconds: 47.780261375
-      tokens: 19792
-      review: false
-    zh-CN:
-      text: 我是一个很宅的人，也不知道从什么时候起，「出门」对我来说已经是一个很陌生的词汇了。我常常一个月只在必要的时候才出门，即使出门也是两点一线的生活，还常常坐车。仔细想想，我已经很久没有真正离开过室内了。在经历了 AI 时代的泡沫和焦虑后，我染上了一个坏习惯——常常凌晨写代码，似乎已经和生活的世界不在一个"时区"了。今天早上也是挨到了十二点多才起床，一天只吃两餐，醒来就坐到书房，打开电脑开始写。写代码本身是一件很好玩的事情，但 AI 时代的写代码已经不是了。盯着屏幕盯到下午，什么都写不出来，没有设计灵感，觉得一切都不完美。
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:29:26.776375Z
-      seconds: 47.780261375
-      tokens: 19792
-      review: false
-    zh-TW:
-      text: 我是個很宅的人，也不知道從什麼時候起，「出門」對我來說已經是個很陌生的詞彙了。我常常一個月只在必要的時候才出門，即使出門也是兩點一線的生活，還常常坐車。仔細想想，我已經很久沒有真正離開過室內了。在經歷了 AI 時代的泡沫和焦慮後，我染上了一個壞習慣——常常凌晨寫程式，似乎已經和生活的世界不在同一個「時區」了。今天早上也是挨到了十二點多才起床，一天只吃兩餐，醒來就坐到書房，打開電腦開始寫。寫程式本身是一件很好玩的事情，但 AI 時代的寫程式已經不是了。盯著螢幕盯到下午，什麼都寫不出來，沒有設計靈感，覺得一切都不完美。
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-01T02:29:26.776375Z
-      seconds: 47.780261375
-      tokens: 19792
-      review: false
   8dba1a489980be0aaaa3aa12aa8f1872:
     de-DE:
-      text: 'Entlang der Straße am Fluss entlang ging ich zurück und bog in einen schmalen Weg, der dicht an den Wohnhäusern lag. Man nennt ihn zwar Waldweg, aber er kann kaum als solcher durchgehen; die Bäume stehen dünn gesät, und direkt daneben ragt die Mauer eines Gebäudes hervor. Der Weg ist asphaltiert; an einer Gabelung ist ein kurzer hölzerner Steg mit einem Pavillon zusammengefügt. Der Asphaltabschnitt ist bereits rissig, in den Rissen sprießt Gras, und der Untergrund ist mit kleinen Ästen und abgefallenen Blättern übersät. Auf demselben Abschnitt lassen sich zwei Farben erkennen: die eine Hälfte wurde deutlich renoviert, doch dieses „Neu“ wirkt mindestens drei bis fünf Jahre alt, und an den Fugen sprießen immer noch hartnäckig ein paar kleine Gräser – eher ein paar Reihen Unkraut als echte Gräser.'
+      text: "Entlang der Straße am Fluss entlang ging ich zurück und bog in einen schmalen Weg, der dicht an den Wohnhäusern lag. Man nennt ihn zwar Waldweg, aber er kann kaum als solcher durchgehen; die Bäume stehen dünn gesät, und direkt daneben ragt die Mauer eines Gebäudes hervor. Der Weg ist asphaltiert; an einer Gabelung ist ein kurzer hölzerner Steg mit einem Pavillon zusammengefügt. Der Asphaltabschnitt ist bereits rissig, in den Rissen sprießt Gras, und der Untergrund ist mit kleinen Ästen und abgefallenen Blättern übersät. Auf demselben Abschnitt lassen sich zwei Farben erkennen: die eine Hälfte wurde deutlich renoviert, doch dieses „Neu“ wirkt mindestens drei bis fünf Jahre alt, und an den Fugen sprießen immer noch hartnäckig ein paar kleine Gräser – eher ein paar Reihen Unkraut als echte Gräser."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:26.778311Z
@@ -1196,7 +1066,7 @@ segments:
       tokens: 19294
       review: false
     fr-FR:
-      text: 'En remontant le chemin le long du fleuve, je me suis engagé dans une petite allée proche des immeubles résidentiels. On l’appelle « sentier forestier », mais ce n’est guère le cas : les arbres sont rares, et juste à côté se dresse le mur d’un bâtiment. L’allée est en bitume ; à une bifurcation, une courte passerelle en bois surmontée d’un pavillon a été assemblée. La partie bitumée s’est déjà fissurée, de l’herbe a germé dans les craquelures, et le sol est jonché de brindilles et de feuilles mortes. Sur le même tronçon, on distingue deux teintes. La moitié a clairement été rénovée, mais ce « neuf » semble dater d’il y a au moins trois à cinq ans, et aux joints, quelques brins d’herbe tenaces percent encore — ce ne sont plus vraiment des « herbes », plutôt quelques rangées de mauvaises herbes.'
+      text: "En remontant le chemin le long du fleuve, je me suis engagé dans une petite allée proche des immeubles résidentiels. On l’appelle « sentier forestier », mais ce n’est guère le cas : les arbres sont rares, et juste à côté se dresse le mur d’un bâtiment. L’allée est en bitume ; à une bifurcation, une courte passerelle en bois surmontée d’un pavillon a été assemblée. La partie bitumée s’est déjà fissurée, de l’herbe a germé dans les craquelures, et le sol est jonché de brindilles et de feuilles mortes. Sur le même tronçon, on distingue deux teintes. La moitié a clairement été rénovée, mais ce « neuf » semble dater d’il y a au moins trois à cinq ans, et aux joints, quelques brins d’herbe tenaces percent encore — ce ne sont plus vraiment des « herbes », plutôt quelques rangées de mauvaises herbes."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:26.778311Z
@@ -1302,7 +1172,7 @@ segments:
       review: false
   92a8081dc9e7181860a418067fa8d1bf:
     de-DE:
-      text: 'Geht man weiter voraus, gelangt man zu einer Baustelle. Zwar nennt man sie Baustelle, aber tatsächlich gibt es dort keine Arbeiter mehr. Das Gebiet ist stark polarisiert: Die eine Hälfte der Gebäude ist bereits fertiggestellt, es werden sogar Mieter akquiriert, während die andere Hälfte nur noch aus dem Gerüst besteht, der Zaun zur Hälfte abgerissen wurde und der verbleibende Teil weiterhin umzäunt ist – es scheint, als wolle niemand die Bauarbeiten weiterführen. In den letzten Jahren war der chinesische Immobilienmarkt schwach, die Immobilienpreise sind kontinuierlich gefallen; vermutlich war der Preis bereits gesunken, bevor das Projekt fertiggestellt war, und zwar schneller als der Baufortschritt. Die Bauträger sind entweder abgehauen oder haben das Projekt einfach liegen lassen. Genau deshalb ist der noch nicht befestigte Abschnitt vom Zaun abgesperrt, sodass gewöhnlich kaum jemand hineintritt und sich ein großes Stück Grasfläche gebildet hat. Das war das erste Mal heute, dass ich eine so ausgedehnte Wiese seit meinem Ausgang aus dem Haus gesehen habe. Aus der Ferne fühlte ich ein wenig Freude – das wäre das Bild, das man aus der Erinnerung erwartet, doch aus der Nähe wirkte es anders. Das Gras war nicht mehr grün, sondern durchsetzt mit vielen welkgelben Blättern, und ich wusste nicht, woher der Wind kam, weil in der Nähe keine Bäume standen. Das Gras selbst wuchs krumm, war hart und trocken anzufassen; dennoch legte ich mich schließlich hin.'
+      text: "Geht man weiter voraus, gelangt man zu einer Baustelle. Zwar nennt man sie Baustelle, aber tatsächlich gibt es dort keine Arbeiter mehr. Das Gebiet ist stark polarisiert: Die eine Hälfte der Gebäude ist bereits fertiggestellt, es werden sogar Mieter akquiriert, während die andere Hälfte nur noch aus dem Gerüst besteht, der Zaun zur Hälfte abgerissen wurde und der verbleibende Teil weiterhin umzäunt ist – es scheint, als wolle niemand die Bauarbeiten weiterführen. In den letzten Jahren war der chinesische Immobilienmarkt schwach, die Immobilienpreise sind kontinuierlich gefallen; vermutlich war der Preis bereits gesunken, bevor das Projekt fertiggestellt war, und zwar schneller als der Baufortschritt. Die Bauträger sind entweder abgehauen oder haben das Projekt einfach liegen lassen. Genau deshalb ist der noch nicht befestigte Abschnitt vom Zaun abgesperrt, sodass gewöhnlich kaum jemand hineintritt und sich ein großes Stück Grasfläche gebildet hat. Das war das erste Mal heute, dass ich eine so ausgedehnte Wiese seit meinem Ausgang aus dem Haus gesehen habe. Aus der Ferne fühlte ich ein wenig Freude – das wäre das Bild, das man aus der Erinnerung erwartet, doch aus der Nähe wirkte es anders. Das Gras war nicht mehr grün, sondern durchsetzt mit vielen welkgelben Blättern, und ich wusste nicht, woher der Wind kam, weil in der Nähe keine Bäume standen. Das Gras selbst wuchs krumm, war hart und trocken anzufassen; dennoch legte ich mich schließlich hin."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:36.288796Z
@@ -1310,7 +1180,7 @@ segments:
       tokens: 19086
       review: false
     en-US:
-      text: 'Going further ahead, we stepped into a construction site. Though it’s called a site, there are actually no workers there. This area is starkly polarized: half of the buildings are already complete, even beginning to attract tenants, while the other half is just a skeletal frame, its fence half taken down, the remaining part still fenced off, and it looks like no one intends to resume work. In recent years, China’s real estate market has been weak, with house prices continually falling; by the time this development would have been finished, prices had already dropped faster than the construction progress. The developers either fled or simply stalled. Ironically, because of this, the unfinished section is blocked by the fence, so few people normally venture in, leaving a large swath of grass. It was the first time today I’d seen such an extensive grassy area since I left home. From a distance it gave me a slight feeling of optimism, as if it were the scene that should belong in my memory, but up close it felt off. The grass was no longer green, mixed with many withered yellow leaves, and I couldn’t tell where the wind had come from, since there were no trees nearby. The grass itself grew crookedly, feeling hard and dry to the touch; yet eventually I still lay down.'
+      text: "Going further ahead, we stepped into a construction site. Though it’s called a site, there are actually no workers there. This area is starkly polarized: half of the buildings are already complete, even beginning to attract tenants, while the other half is just a skeletal frame, its fence half taken down, the remaining part still fenced off, and it looks like no one intends to resume work. In recent years, China’s real estate market has been weak, with house prices continually falling; by the time this development would have been finished, prices had already dropped faster than the construction progress. The developers either fled or simply stalled. Ironically, because of this, the unfinished section is blocked by the fence, so few people normally venture in, leaving a large swath of grass. It was the first time today I’d seen such an extensive grassy area since I left home. From a distance it gave me a slight feeling of optimism, as if it were the scene that should belong in my memory, but up close it felt off. The grass was no longer green, mixed with many withered yellow leaves, and I couldn’t tell where the wind had come from, since there were no trees nearby. The grass itself grew crookedly, feeling hard and dry to the touch; yet eventually I still lay down."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:36.288796Z
@@ -1318,7 +1188,7 @@ segments:
       tokens: 19086
       review: false
     es-ES:
-      text: 'Al avanzar un poco más, entramos en una zona de obra. Aunque se llama obra, en realidad ya no hay trabajadores allí. Esta área está muy polarizada: la mitad de los edificios ya está terminada, incluso empieza a atraer inquilinos, mientras que la otra mitad solo queda como una estructura esquelética, con la valla a medio derribar y la parte restante todavía cercada, y parece que nadie tiene intención de continuar la construcción. En los últimos años, el mercado inmobiliario chino no ha sido bueno; los precios de la vivienda han estado cayendo constantemente, y probablemente antes de que este proyecto se completara, los precios ya habían descendido más rápido que el avance de la obra. Los promotores se han ido o simplemente se han quedado estancados. Pero precisamente por eso, la parte sin pavimentar está bloqueada por la valla, por lo que normalmente pocos se aventuran allí, dejando una gran zona de césped. Es la primera vez hoy que veo una extensión de hierba tan grande desde que salí de casa. Desde la distancia, me provocó una ligera sensación de buen ánimo, como la escena que debería quedar en la memoria, pero al acercarme, todo era distinto. La hierba ya no está verde, está entremezclada con muchas hojas amarillas marchitas, y no sé de dónde viene el viento, ya que no hay árboles cercanos. La propia hierba crece torcida, dura y seca al tacto; sin embargo, finalmente me acosté sobre ella.'
+      text: "Al avanzar un poco más, entramos en una zona de obra. Aunque se llama obra, en realidad ya no hay trabajadores allí. Esta área está muy polarizada: la mitad de los edificios ya está terminada, incluso empieza a atraer inquilinos, mientras que la otra mitad solo queda como una estructura esquelética, con la valla a medio derribar y la parte restante todavía cercada, y parece que nadie tiene intención de continuar la construcción. En los últimos años, el mercado inmobiliario chino no ha sido bueno; los precios de la vivienda han estado cayendo constantemente, y probablemente antes de que este proyecto se completara, los precios ya habían descendido más rápido que el avance de la obra. Los promotores se han ido o simplemente se han quedado estancados. Pero precisamente por eso, la parte sin pavimentar está bloqueada por la valla, por lo que normalmente pocos se aventuran allí, dejando una gran zona de césped. Es la primera vez hoy que veo una extensión de hierba tan grande desde que salí de casa. Desde la distancia, me provocó una ligera sensación de buen ánimo, como la escena que debería quedar en la memoria, pero al acercarme, todo era distinto. La hierba ya no está verde, está entremezclada con muchas hojas amarillas marchitas, y no sé de dónde viene el viento, ya que no hay árboles cercanos. La propia hierba crece torcida, dura y seca al tacto; sin embargo, finalmente me acosté sobre ella."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:36.288796Z
@@ -1326,7 +1196,7 @@ segments:
       tokens: 19086
       review: false
     fr-FR:
-      text: 'En avançant davantage, nous sommes arrivés sur un chantier. On l’appelle chantier, mais il n’y a plus aucun ouvrier. Cette zone est très polarisée : la moitié des bâtiments est déjà achevée, voire déjà louée, tandis que l’autre moitié n’est plus qu’une charpente, la clôture à moitié démontée, le reste encore enfermé, et il semble que personne ne prévoie de reprendre les travaux. Ces dernières années, le marché immobilier chinois est en difficulté, les prix des logements ne cessent de baisser ; probablement avant même que le projet ne soit terminé, les prix avaient déjà chuté plus vite que l’avancement des constructions. Les promoteurs ont soit disparu, soit stagné sur place. Paradoxalement, c’est grâce à cela que la partie non pavée, bloquée par la clôture, reste peu fréquentée, laissant place à une vaste étendue d’herbe. C’est la première fois aujourd’hui que je vois une si grande pelouse depuis que je suis sorti. De loin, cela suscite un léger sentiment de bonne humeur, comme si c’était la scène que l’on devrait garder en mémoire, mais de près, cela ne correspond plus. L’herbe n’est plus verte, elle est ponctuée de nombreuses feuilles jaunies, et je ne sais pas d’où vient le vent, car il n’y a pas d’arbres à proximité. L’herbe elle‑même pousse de façon tordue, dure et sèche au toucher ; pourtant, j’ai fini par m’allonger.'
+      text: "En avançant davantage, nous sommes arrivés sur un chantier. On l’appelle chantier, mais il n’y a plus aucun ouvrier. Cette zone est très polarisée : la moitié des bâtiments est déjà achevée, voire déjà louée, tandis que l’autre moitié n’est plus qu’une charpente, la clôture à moitié démontée, le reste encore enfermé, et il semble que personne ne prévoie de reprendre les travaux. Ces dernières années, le marché immobilier chinois est en difficulté, les prix des logements ne cessent de baisser ; probablement avant même que le projet ne soit terminé, les prix avaient déjà chuté plus vite que l’avancement des constructions. Les promoteurs ont soit disparu, soit stagné sur place. Paradoxalement, c’est grâce à cela que la partie non pavée, bloquée par la clôture, reste peu fréquentée, laissant place à une vaste étendue d’herbe. C’est la première fois aujourd’hui que je vois une si grande pelouse depuis que je suis sorti. De loin, cela suscite un léger sentiment de bonne humeur, comme si c’était la scène que l’on devrait garder en mémoire, mais de près, cela ne correspond plus. L’herbe n’est plus verte, elle est ponctuée de nombreuses feuilles jaunies, et je ne sais pas d’où vient le vent, car il n’y a pas d’arbres à proximité. L’herbe elle‑même pousse de façon tordue, dure et sèche au toucher ; pourtant, j’ai fini par m’allonger."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:29:36.288796Z
@@ -1367,7 +1237,7 @@ segments:
       review: false
   a42738995f28441e1a630b3113a058ff:
     de-DE:
-      text: '## In der Stadt {#inside-the-city}'
+      text: "## In der Stadt {#inside-the-city}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.566218Z
@@ -1375,7 +1245,7 @@ segments:
       tokens: 16082
       review: false
     en-US:
-      text: '## Inside the City {#inside-the-city}'
+      text: "## Inside the City {#inside-the-city}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.566218Z
@@ -1383,7 +1253,7 @@ segments:
       tokens: 16082
       review: false
     es-ES:
-      text: '## En la ciudad {#inside-the-city}'
+      text: "## En la ciudad {#inside-the-city}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.566218Z
@@ -1391,7 +1261,7 @@ segments:
       tokens: 16082
       review: false
     fr-FR:
-      text: '## Dans la ville {#inside-the-city}'
+      text: "## Dans la ville {#inside-the-city}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.566218Z
@@ -1399,7 +1269,7 @@ segments:
       tokens: 16082
       review: false
     ja-JP:
-      text: '## 街中 {#inside-the-city}'
+      text: "## 街中 {#inside-the-city}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.566218Z
@@ -1407,7 +1277,7 @@ segments:
       tokens: 16082
       review: false
     ko-KR:
-      text: '## 도시 안 {#inside-the-city}'
+      text: "## 도시 안 {#inside-the-city}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.566218Z
@@ -1415,7 +1285,7 @@ segments:
       tokens: 16082
       review: false
     zh-CN:
-      text: '## 城中 {#inside-the-city}'
+      text: "## 城中 {#inside-the-city}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.566218Z
@@ -1423,7 +1293,7 @@ segments:
       tokens: 16082
       review: false
     zh-TW:
-      text: '## 城中 {#inside-the-city}'
+      text: "## 城中 {#inside-the-city}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.566218Z
@@ -1432,7 +1302,7 @@ segments:
       review: false
   a7ba67efcc47d9c2a021967eb928e0c9:
     de-DE:
-      text: 'Im Moment, in dem ich mich hinlegte, wusste ich, dass es nicht funktionieren würde. Der Boden war so hart wie Zement, nur eine Schicht Gras lag darauf, völlig ohne Polsterung. Wenn man normalerweise auf einer Wiese liegt, will man sie nicht zu nass, aber sie darf auch nicht so trocken und hart sein. Der Boden ist bereits vollständig verdichtet; aus ein paar Metern Entfernung sieht er nicht anders aus als ein normaler Rasen, aber der Körper wird nicht täuschen. Nicht einmal Moskitos sind zu finden ~~wahrscheinlich wollen sogar Insekten an einem Ort wie diesem nicht hin~~. Liegt man dort und schließt die Augen, hört man keine natürlichen Geräusche. Es ist nur der Lärm der Stadt: der Motorenlärm von Verbrennern – obwohl in den letzten Jahren viele Elektroautos unterwegs sind, lässt man sie auf den Straßen nicht entkommen; das entfernte Schritte von Fußgängern; und in dieser kleinen Stadt scheinen die Autos die Regeln nicht zu befolgen, gelegentlich ertönt ein hupendes Geräusch, das plötzlich und schrill ist.'
+      text: "Im Moment, in dem ich mich hinlegte, wusste ich, dass es nicht funktionieren würde. Der Boden war so hart wie Zement, nur eine Schicht Gras lag darauf, völlig ohne Polsterung. Wenn man normalerweise auf einer Wiese liegt, will man sie nicht zu nass, aber sie darf auch nicht so trocken und hart sein. Der Boden ist bereits vollständig verdichtet; aus ein paar Metern Entfernung sieht er nicht anders aus als ein normaler Rasen, aber der Körper wird nicht täuschen. Nicht einmal Moskitos sind zu finden ~~wahrscheinlich wollen sogar Insekten an einem Ort wie diesem nicht hin~~. Liegt man dort und schließt die Augen, hört man keine natürlichen Geräusche. Es ist nur der Lärm der Stadt: der Motorenlärm von Verbrennern – obwohl in den letzten Jahren viele Elektroautos unterwegs sind, lässt man sie auf den Straßen nicht entkommen; das entfernte Schritte von Fußgängern; und in dieser kleinen Stadt scheinen die Autos die Regeln nicht zu befolgen, gelegentlich ertönt ein hupendes Geräusch, das plötzlich und schrill ist."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.569098Z
@@ -1440,7 +1310,7 @@ segments:
       tokens: 19802
       review: false
     en-US:
-      text: 'The moment I lay down, I knew it wouldn''t work. The ground was as hard as cement, only a layer of grass on the surface, with no cushioning at all. When you normally lie on grass you don''t want it too wet, but it shouldn''t be this dry and hard either. The soil has become completely compacted; from a few meters away it looks no different from a normal lawn, but your body won''t be fooled. Not even mosquitoes are present ~~maybe even insects don''t want to come to a place like this~~. Lying there with eyes closed, you don''t hear any natural sounds. It''s all the city''s noise: the roar of gasoline engines—though electric cars have increased in recent years, they’re still unavoidable on the roads; the distant footsteps of pedestrians; and in this small city the cars seem to ignore the rules, occasionally blaring a horn, abrupt and piercing.'
+      text: "The moment I lay down, I knew it wouldn't work. The ground was as hard as cement, only a layer of grass on the surface, with no cushioning at all. When you normally lie on grass you don't want it too wet, but it shouldn't be this dry and hard either. The soil has become completely compacted; from a few meters away it looks no different from a normal lawn, but your body won't be fooled. Not even mosquitoes are present ~~maybe even insects don't want to come to a place like this~~. Lying there with eyes closed, you don't hear any natural sounds. It's all the city's noise: the roar of gasoline engines—though electric cars have increased in recent years, they’re still unavoidable on the roads; the distant footsteps of pedestrians; and in this small city the cars seem to ignore the rules, occasionally blaring a horn, abrupt and piercing."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.569098Z
@@ -1448,7 +1318,7 @@ segments:
       tokens: 19802
       review: false
     es-ES:
-      text: 'En el momento en que me recosté, supe que no iba a funcionar. El suelo era tan duro como cemento, solo cubierto por una capa de hierba, sin ningún tipo de amortiguación. Normalmente, al acostarse en el césped no se quiere que esté demasiado húmedo, pero tampoco debería estar tan seco y duro. La tierra ya está completamente compactada; a pocos metros se ve igual que un césped normal, pero el cuerpo no te engaña. Ni siquiera hay mosquitos ~~probablemente incluso los insectos no quieren venir a este tipo de lugar~~. Acostado ahí, con los ojos cerrados, no se escucha ningún sonido natural. Todo es el ruido de la ciudad: el ruido de los motores de combustión – aunque en los últimos años han aumentado los coches eléctricos, siguen siendo inevitables en las calles; el sonido lejano de los pasos de los peatones; y en esta pequeña ciudad los coches parecen no respetar mucho las normas, de vez en cuando suena una bocina, abrupta y estridente.'
+      text: "En el momento en que me recosté, supe que no iba a funcionar. El suelo era tan duro como cemento, solo cubierto por una capa de hierba, sin ningún tipo de amortiguación. Normalmente, al acostarse en el césped no se quiere que esté demasiado húmedo, pero tampoco debería estar tan seco y duro. La tierra ya está completamente compactada; a pocos metros se ve igual que un césped normal, pero el cuerpo no te engaña. Ni siquiera hay mosquitos ~~probablemente incluso los insectos no quieren venir a este tipo de lugar~~. Acostado ahí, con los ojos cerrados, no se escucha ningún sonido natural. Todo es el ruido de la ciudad: el ruido de los motores de combustión – aunque en los últimos años han aumentado los coches eléctricos, siguen siendo inevitables en las calles; el sonido lejano de los pasos de los peatones; y en esta pequeña ciudad los coches parecen no respetar mucho las normas, de vez en cuando suena una bocina, abrupta y estridente."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.569098Z
@@ -1456,7 +1326,7 @@ segments:
       tokens: 19802
       review: false
     fr-FR:
-      text: 'Le moment où je me suis allongé, j’ai su que cela n’allait pas fonctionner. Le sol était dur comme du ciment, avec seulement une couche d’herbe à la surface, sans aucun amortissement. En général, on ne souhaite pas que l’herbe soit trop humide lorsqu’on s’y allonge, mais elle ne doit pas non plus être aussi sèche et dure. Le sol s’est complètement compacté ; à quelques mètres, il ne diffère pas d’une pelouse ordinaire, mais le corps ne se laisse pas tromper. Même les moustiques ne sont pas là ~~probablement même les insectes n’aiment pas cet endroit~~. En restant allongé, les yeux fermés, aucun bruit naturel ne se fait entendre. C’est seulement le bruit de la ville : le bruit des moteurs à essence – même si les voitures électriques se sont multipliées ces dernières années, elles restent inévitables sur la route ; le bruit des pas des piétons au loin ; et dans cette petite ville, les voitures semblent ne pas trop respecter les règles, faisant parfois retentir un klaxon, soudain et strident.'
+      text: "Le moment où je me suis allongé, j’ai su que cela n’allait pas fonctionner. Le sol était dur comme du ciment, avec seulement une couche d’herbe à la surface, sans aucun amortissement. En général, on ne souhaite pas que l’herbe soit trop humide lorsqu’on s’y allonge, mais elle ne doit pas non plus être aussi sèche et dure. Le sol s’est complètement compacté ; à quelques mètres, il ne diffère pas d’une pelouse ordinaire, mais le corps ne se laisse pas tromper. Même les moustiques ne sont pas là ~~probablement même les insectes n’aiment pas cet endroit~~. En restant allongé, les yeux fermés, aucun bruit naturel ne se fait entendre. C’est seulement le bruit de la ville : le bruit des moteurs à essence – même si les voitures électriques se sont multipliées ces dernières années, elles restent inévitables sur la route ; le bruit des pas des piétons au loin ; et dans cette petite ville, les voitures semblent ne pas trop respecter les règles, faisant parfois retentir un klaxon, soudain et strident."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:14.569098Z
@@ -1627,7 +1497,7 @@ segments:
       review: false
   b5b4c92dd5874dc2b7cc34cc65ebfca3:
     de-DE:
-      text: 'Als ich die Straße überquerte, gab es auf der gegenüberliegenden Grünfläche einen kleinen mit Kopfsteinpflaster ausgelegten Bereich, direkt an der Ecke von Straße und Platz; aus der Ferne wirkte er wie ein ganz passender Ruheplatz, doch bereits aus der Entfernung sah man, dass das Dach irgendwann abgerissen worden war. Beim näheren Hinweg wurde es noch merkwürdiger – es war längst nicht mehr das Gleiche. Ich war als Kind dort gewesen, doch heute fehlt das Dach des Pavillons, es stehen nur noch ein paar Betonpfeiler, die Wände sind rissig, neben dem Steinplattenboden gibt es ein wenig Baum, aber der niedrige Bereich ist bereits von einer Schicht abgefallener Blätter umgeben, niemand kehrt sie weg, niemand kommt. Es gibt noch Sitzmöglichkeiten, aber die Steinplatte ist mit einer Staubschicht bedeckt, sodass man sie kaum berühren möchte. Ich habe einfach irgendetwas als Unterlage genommen, die sauberste Platte ausgewählt und mich hingesetzt, meinen Computer geöffnet und wollte weiter schreiben. Vielleicht ist das ein Vorteil des KI‑Zeitalters: Beim Vibe‑Coding muss man nicht mehr wirklich hinsetzen und konzentriert schreiben, Sprach‑Eingabemethoden wie Typeless, Wispr Flow reichen aus, ein Agent im CLI schreibt für dich, ich bin so faul, dass ich kein einziges Zeichen tippen will, ich habe meine konservative Grundhaltung längst aufgegeben, ein „bypass permissions“ genügt, und beim Codieren bin ich jetzt halbherzig.'
+      text: "Als ich die Straße überquerte, gab es auf der gegenüberliegenden Grünfläche einen kleinen mit Kopfsteinpflaster ausgelegten Bereich, direkt an der Ecke von Straße und Platz; aus der Ferne wirkte er wie ein ganz passender Ruheplatz, doch bereits aus der Entfernung sah man, dass das Dach irgendwann abgerissen worden war. Beim näheren Hinweg wurde es noch merkwürdiger – es war längst nicht mehr das Gleiche. Ich war als Kind dort gewesen, doch heute fehlt das Dach des Pavillons, es stehen nur noch ein paar Betonpfeiler, die Wände sind rissig, neben dem Steinplattenboden gibt es ein wenig Baum, aber der niedrige Bereich ist bereits von einer Schicht abgefallener Blätter umgeben, niemand kehrt sie weg, niemand kommt. Es gibt noch Sitzmöglichkeiten, aber die Steinplatte ist mit einer Staubschicht bedeckt, sodass man sie kaum berühren möchte. Ich habe einfach irgendetwas als Unterlage genommen, die sauberste Platte ausgewählt und mich hingesetzt, meinen Computer geöffnet und wollte weiter schreiben. Vielleicht ist das ein Vorteil des KI‑Zeitalters: Beim Vibe‑Coding muss man nicht mehr wirklich hinsetzen und konzentriert schreiben, Sprach‑Eingabemethoden wie Typeless, Wispr Flow reichen aus, ein Agent im CLI schreibt für dich, ich bin so faul, dass ich kein einziges Zeichen tippen will, ich habe meine konservative Grundhaltung längst aufgegeben, ein „bypass permissions“ genügt, und beim Codieren bin ich jetzt halbherzig."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:22.381167Z
@@ -1643,7 +1513,7 @@ segments:
       tokens: 21873
       review: false
     es-ES:
-      text: 'Al cruzar la calle, del otro lado la zona verde tiene una pequeña área con adoquines de piedra, justo en la esquina de la calle y la plaza; de lejos parece un buen lugar para descansar, pero ya se ve a distancia que el techo se ha derribado en algún momento. Al acercarse, la cosa se ve aún más extraña, ya no es lo mismo. Cuando era niño solía ir allí, pero ahora el techo del cobertizo ha desaparecido, sólo quedan unas cuantas columnas de hormigón, las paredes están agrietadas, junto a la losa de piedra hay un poco de árbol, pero el bajo está ya rodeado por un círculo de hojas caídas, nadie las barre ni viene. Todavía queda un sitio para sentarse, pero la losa está cubierta de una capa de polvo, lo que hace que no quieras tocarla. Simplemente encontré algo para improvisar, elegí la losa que parecía más limpia, me senté, abrí el ordenador y seguí con ganas de escribir. Tal vez ese sea también el beneficio de la era de la IA: cuando haces Vibe coding ya no es necesario sentarse a escribir de verdad, basta con los métodos de entrada de voz como Typeless, Wispr Flow, hay un agente en la CLI que escribe por ti, yo ya estoy tan perezoso que no quiero teclear ni una letra, ya he dejado atrás los principios conservadores, basta con “bypass permissions”, y ahora al escribir código lo hago con medio corazón.'
+      text: "Al cruzar la calle, del otro lado la zona verde tiene una pequeña área con adoquines de piedra, justo en la esquina de la calle y la plaza; de lejos parece un buen lugar para descansar, pero ya se ve a distancia que el techo se ha derribado en algún momento. Al acercarse, la cosa se ve aún más extraña, ya no es lo mismo. Cuando era niño solía ir allí, pero ahora el techo del cobertizo ha desaparecido, sólo quedan unas cuantas columnas de hormigón, las paredes están agrietadas, junto a la losa de piedra hay un poco de árbol, pero el bajo está ya rodeado por un círculo de hojas caídas, nadie las barre ni viene. Todavía queda un sitio para sentarse, pero la losa está cubierta de una capa de polvo, lo que hace que no quieras tocarla. Simplemente encontré algo para improvisar, elegí la losa que parecía más limpia, me senté, abrí el ordenador y seguí con ganas de escribir. Tal vez ese sea también el beneficio de la era de la IA: cuando haces Vibe coding ya no es necesario sentarse a escribir de verdad, basta con los métodos de entrada de voz como Typeless, Wispr Flow, hay un agente en la CLI que escribe por ti, yo ya estoy tan perezoso que no quiero teclear ni una letra, ya he dejado atrás los principios conservadores, basta con “bypass permissions”, y ahora al escribir código lo hago con medio corazón."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:22.381167Z
@@ -1651,7 +1521,7 @@ segments:
       tokens: 21873
       review: false
     fr-FR:
-      text: 'En traversant la rue, de l’autre côté, la bande végétale comporte un petit espace pavé de dalles de pierre, juste à l’angle de la rue et de la place ; de loin, cela ressemble à un agréable coin de repos, mais on voit déjà de loin que le toit a été démoli à un moment donné. En s’approchant, c’est encore plus étrange, ce n’est plus du tout ce que c’était. J’y suis allé enfant, mais aujourd’hui le toit du kiosque a disparu, il ne reste que quelques piliers en béton, les murs sont fissurés, à côté du dallage il y a un peu d’arbre, mais le bas est déjà entouré d’un cercle de feuilles mortes, personne ne balaie ni ne vient. Il reste un endroit où s’asseoir, mais la dalle est recouverte d’une fine couche de poussière, ce qui décourage le toucher. J’ai simplement trouvé quelque chose pour faire un coussin, choisi la dalle la plus propre, me suis assis, ouvert mon ordinateur et j’ai encore envie d’écrire. Peut‑être que c’est aussi l’avantage de l’ère de l’IA : en Vibe coding, il n’est plus vraiment nécessaire de s’asseoir pour écrire correctement, les méthodes de saisie vocale comme Typeless, Wispr Flow suffisent, il y a un Agent dans le CLI qui écrit pour vous, je suis devenu tellement paresseux que je ne veux plus taper un caractère, j’ai déjà abandonné les principes conservateurs, il suffit de « bypass permissions », et maintenant, quand j’écris du code, je suis un peu désengagé.'
+      text: "En traversant la rue, de l’autre côté, la bande végétale comporte un petit espace pavé de dalles de pierre, juste à l’angle de la rue et de la place ; de loin, cela ressemble à un agréable coin de repos, mais on voit déjà de loin que le toit a été démoli à un moment donné. En s’approchant, c’est encore plus étrange, ce n’est plus du tout ce que c’était. J’y suis allé enfant, mais aujourd’hui le toit du kiosque a disparu, il ne reste que quelques piliers en béton, les murs sont fissurés, à côté du dallage il y a un peu d’arbre, mais le bas est déjà entouré d’un cercle de feuilles mortes, personne ne balaie ni ne vient. Il reste un endroit où s’asseoir, mais la dalle est recouverte d’une fine couche de poussière, ce qui décourage le toucher. J’ai simplement trouvé quelque chose pour faire un coussin, choisi la dalle la plus propre, me suis assis, ouvert mon ordinateur et j’ai encore envie d’écrire. Peut‑être que c’est aussi l’avantage de l’ère de l’IA : en Vibe coding, il n’est plus vraiment nécessaire de s’asseoir pour écrire correctement, les méthodes de saisie vocale comme Typeless, Wispr Flow suffisent, il y a un Agent dans le CLI qui écrit pour vous, je suis devenu tellement paresseux que je ne veux plus taper un caractère, j’ai déjà abandonné les principes conservateurs, il suffit de « bypass permissions », et maintenant, quand j’écris du code, je suis un peu désengagé."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:22.381167Z
@@ -2017,7 +1887,7 @@ segments:
       review: false
   e01d8e1e543f16b81140771368abcf4e:
     de-DE:
-      text: 'Als ich das Tor der Wohnanlage verließ und die Straße bis zur Kreuzung mit der Hauptstraße entlangging, strömte plötzlich der Wind zwischen den beiden Gebäuden herein. Ich blieb dort stehen und war einen Moment lang fassungslos: „Wind“!? Wie lange habe ich so etwas nicht mehr gespürt; es war nicht die Klimaanlagenluft, nicht der Ventilatorwind, sondern jener unregelmäßige, warme und leicht sanfte Wind, der aus weiter Ferne weht, ein Wind mit Geräuschen; begleitet vom lärmigen Wind der städtischen Straße. In diesem Moment trug ich AirPods und hörte Musik; das Outdoor‑Gefühl ließ mich unbewusst die Geräuschunterdrückung ausschalten. Ich hielt mit der linken Hand eine Flasche Wasser, mit der rechten das Notebook, und ging die Hauptstraße entlang zum Flussufer. Dieses Mal starrte ich nicht auf den Handy‑Bildschirm, und ich weiß nicht warum – ich wollte einfach zuerst zum Flussufer gehen.'
+      text: "Als ich das Tor der Wohnanlage verließ und die Straße bis zur Kreuzung mit der Hauptstraße entlangging, strömte plötzlich der Wind zwischen den beiden Gebäuden herein. Ich blieb dort stehen und war einen Moment lang fassungslos: „Wind“!? Wie lange habe ich so etwas nicht mehr gespürt; es war nicht die Klimaanlagenluft, nicht der Ventilatorwind, sondern jener unregelmäßige, warme und leicht sanfte Wind, der aus weiter Ferne weht, ein Wind mit Geräuschen; begleitet vom lärmigen Wind der städtischen Straße. In diesem Moment trug ich AirPods und hörte Musik; das Outdoor‑Gefühl ließ mich unbewusst die Geräuschunterdrückung ausschalten. Ich hielt mit der linken Hand eine Flasche Wasser, mit der rechten das Notebook, und ging die Hauptstraße entlang zum Flussufer. Dieses Mal starrte ich nicht auf den Handy‑Bildschirm, und ich weiß nicht warum – ich wollte einfach zuerst zum Flussufer gehen."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:30:50.895482Z
@@ -2144,71 +2014,6 @@ segments:
       at: 2026-08-01T02:30:54.862935Z
       seconds: 5.512867959
       tokens: 15922
-      review: false
-  ece3bf55829edba4e5b445a3313f4642:
-    de-DE:
-      text: Als ich den Bildschirm öffnete, wusste ich, dass es vorbei war. Guoguos Bildschirmhelligkeit reicht im Freien einfach nicht aus. Ich probierte verschiedene Blickwinkel – Gegenlicht, Vorlicht, sogar mich exakt mit der Sonne auszurichten – doch egal, wie ich einstellte, ich konnte nichts erkennen. Ehrlich gesagt war das ziemlich traurig. Drinnen fühlte ich mich noch als Programmierer, doch draußen stellte ich fest, dass der Bildschirm nicht einmal leuchtete. Also ließ ich den Code ruhen, gab aber nicht auf, schloss das Notebook und beschloss, im Schatten eines Baumes gegenüber der Straße mein Glück zu versuchen. Bevor ich das Geländer verließ, warf ich noch einen Blick auf den Fluss. Aus der Ferne sah er noch ganz in Ordnung aus; das Wasser unter bewölktem, sonnigem Himmel sah immer noch nach meiner Erinnerung aus. Doch als ich den Kopf leicht senkte und zum Ufer schaute, bemerkte ich eine Schicht von Algen, Blättern und kleinen Treibern auf der Wasseroberfläche. Nicht viel, aber das Wasser war bereits trüb; die Oberfläche war ruhiger als in meiner Erinnerung, doch das Ufer war eindeutig vernachlässigt. „Vor ein paar Jahren, während der Pandemie, habe ich es tatsächlich besucht, und seitdem ist es so“ ~~aber jedes Mal, wenn ich vorbeigehe, bleibt ein leichter Anflug von Wehmut~~.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:33:37.261834Z
-      seconds: 23.2140635
-      tokens: 20114
-      review: false
-    en-US:
-      text: When I opened the screen I knew it was over. Guoguo’s screen brightness is simply not enough to see outdoors. I tried various angles—backlight, frontlight, even aligning myself with the sun—but no matter how I adjusted, I couldn’t see clearly. It’s pretty pitiful, to be honest. Inside I still felt like a programmer, but once outside I discovered the screen wouldn’t even light up. Fine, I could give up the code, but I wasn’t giving up; I closed the laptop and decided to try my luck under the shade of a tree across the street. Before leaving the railing I glanced again at the river. From a distance it was okay; the water surface under a cloudy, sunny day still looked like the memory. But when I lowered my head slightly and looked toward the bank, I could see a layer of stuff floating on the water—algae, leaves, bits of debris. Not much, but the river was already murky; the surface was calmer than in my memory, yet the bank was clearly abandoned. “A few years ago during the pandemic I actually came out to see it, and it’s been like this ever since” ~~but every time I pass by I still feel a slight melancholy~~.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:33:37.261834Z
-      seconds: 23.2140635
-      tokens: 20114
-      review: false
-    es-ES:
-      text: En abrir la pantalla supe que estaba acabado. El brillo de la pantalla de Guoguo simplemente no basta al aire libre. Probé varios ángulos – contraluz, luz frontal, incluso alinearme con el sol – pero por más que lo ajustaba, no lograba ver nada. Es bastante lamentable, a decir verdad. Dentro me sentía todavía programador, pero al salir al exterior descubrí que la pantalla ni siquiera se encendía. Bueno, podía dejar el código, pero no me rendí; cerré el portátil y decidí probar suerte bajo la sombra de un árbol al otro lado de la calle. Antes de alejarme de la baranda, eché otro vistazo al río. Desde la distancia parecía estar bien; bajo un día nublado con sol, la superficie del agua todavía se veía como en mis recuerdos. Sin embargo, al inclinar ligeramente la cabeza y mirar hacia la orilla, vi una capa de cosas flotando en el agua – algas, hojas, pequeños restos flotantes. No mucho, pero el agua ya estaba turbia; la superficie estaba más tranquila que en mi memoria, aunque la ribera estaba claramente abandonada. “Hace unos años, durante la pandemia, realmente salí a verla, y desde entonces sigue así” ~~pero cada vez que paso siento una ligera melancolía~~.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:33:37.261834Z
-      seconds: 23.2140635
-      tokens: 20114
-      review: false
-    fr-FR:
-      text: À l’instant où j’ai ouvert l’écran, j’ai su que c’était fini. La luminosité de l’écran de Guoguo est tout simplement insuffisante à l’extérieur. J’ai essayé différents angles – contre‑lumière, lumière frontale, même m’aligner avec le soleil – mais quoi que j’aie fait, je ne voyais rien. C’est assez pitoyable, pour être honnête. À l’intérieur, je me sentais encore programmeur, mais une fois dehors, l’écran ne s’allumait même pas. D’accord, je pourrais abandonner le code, mais je ne me suis pas découragé ; j’ai refermé l’ordinateur portable et décidé d’essayer ma chance à l’ombre d’un arbre de l’autre côté de la rue. Avant de quitter la balustrade, j’ai de nouveau jeté un œil sur le fleuve. De loin, il semblait correct ; sous un ciel partiellement nuageux et ensoleillé, la surface de l’eau ressemblait encore à ce que je me rappelais. Mais en baissant légèrement la tête et en regardant vers la rive, j’ai vu une fine couche de choses flottant à la surface – des algues, des feuilles, des débris épars. Pas beaucoup, mais l’eau était déjà trouble ; la surface était plus calme que dans mes souvenirs, tandis que la berge était clairement abandonnée. « Il y a quelques années, pendant la pandémie, je suis effectivement sorti le voir, et depuis c’est ainsi » ~~mais chaque fois que je passe, je ressens encore un léger émoi~~.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:33:37.261834Z
-      seconds: 23.2140635
-      tokens: 20114
-      review: false
-    ja-JP:
-      text: 画面を開いた瞬間、もう終わりだとわかった。ゴゴの画面の明るさは屋外では全く見えないほどだ。背光、順光、さらには太陽と同じラインに自分を合わせても、どう調整しても見えなかった。正直、哀れに思う。室内ではまだプログラマーだと感じていたが、屋外に出ると画面すら点灯しなかった。コードを書かない方がいいかもしれないが、諦めずにノートパソコンを閉じ、向かいの木陰で運を試すことにした。手すりを離れる前に再び川面を見た。遠くからはまだまあまあで、曇りと晴れが混ざった天気の水面は記憶の風景のままだった。しかし少し頭を下げて岸側を見ると、水面に藻や葉、細かい浮遊物が浮かんでいるのが見えた。多くはないが、川はすでに濁っていた。水面は記憶の静けさよりも静かだったが、岸は明らかに誰も手入れしていなかった。「数年前のパンデミックのときに実際に見に行ったが、それ以来ずっとこうだ」~~でも通り過ぎるたびに少し感慨が残る~~。
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:33:37.261834Z
-      seconds: 23.2140635
-      tokens: 20114
-      review: false
-    ko-KR:
-      text: 화면을 연 순간 나는 끝났다는 것을 알았다. 과과의 화면 밝기는 야외에서는 전혀 보이지 않을 정도다. 백라이트, 순라이트, 심지어 태양과 같은 선상에 자신을 맞추어 보았지만, 어떻게 조정해도 선명하게 보이지 않았다. 솔직히 안타깝다. 실내에서는 아직도 내가 프로그래머라고 생각했지만, 야외에 나가 보니 화면조차 켜지지 않았다. 코드를 쓰지 않아도 되겠지만, 나는 포기하지 않았다. 노트북을 닫고 길 건너 나무 그늘에서 운을 시험해 보기로 했다. 난간을 떠나기 전에 다시 한 번 강을 바라보았다. 멀리서는 아직 괜찮아 보였고, 흐린 날에 햇빛이 비치는 물 표면은 기억 속 모습과 같았다. 하지만 머리를 살짝 숙이고 강가를 내려다보니 물 위에 수초, 나뭇잎, 조각조각 떠다니는 물건들이 떠 있는 것을 발견했다. 많지는 않지만 강물은 이미 탁해졌고, 물 표면은 기억 속의 정적보다 차분했지만, 강가에는 분명히 사람이 손길을 주지 않은 것 같다. “몇 해 전 팬데믹 때 실제로 나가서 본 적이 있는데, 그때부터 이렇게 되었다” ~~하지만 매번 지나갈 때마다 약간의 감상이 남는다~~.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:33:37.261834Z
-      seconds: 23.2140635
-      tokens: 20114
-      review: false
-    zh-CN:
-      text: 打开屏幕的那一刻我就知道完了。果果的屏幕亮度在户外根本不够看。稍微尝试了一下各种角度，背光、顺光，甚至把自己调整到和太阳在同一条线上——怎么调都看不清。挺可怜的，说实话。在室内觉得自己还是个程序员，结果到了户外发现连屏幕都点不亮。算了，这代码不写也罢，但是我还是不死心，合上笔记本，决定去马路对面的树荫里碰碰运气。离开栏杆之前，我又往江面看了一眼。远看其实还行，水面在多云伴随阳光的天气下看起来还是那种记忆里的样子。但稍稍低头把视线下压一点看向岸边看，就能发现水面上浮着一层东西——水藻、树叶、零零碎碎的漂浮物。不多，但江水已经不清了，水面比记忆中的静，但岸边很显然已经没人搭理了，「早几年疫情的时候我其实就出来看过，自那时候起其实就这样了」~~但是每次走过还是有些许感慨~~。
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:33:37.261834Z
-      seconds: 23.2140635
-      tokens: 20114
-      review: false
-    zh-TW:
-      text: 打開螢幕的那一刻我就知道完了。果果的螢幕亮度在戶外根本不夠看。稍微嘗試了一下各種角度，背光、順光，甚至把自己調整到和太陽在同一條線上——怎麼調都看不清。挺可憐的，說實話。在室內覺得自己還是個程式設計師，結果到了戶外發現連螢幕都點不亮。算了，這程式碼不寫也罷，但是我還是不死心，合上筆記型電腦，決定去馬路對面的樹蔭裡碰碰運氣。離開欄杆之前，我又往江面看了一眼。遠看其實還行，水面在多雲伴隨陽光的天氣下看起來還是那種記憶裡的樣子。但稍稍低頭把視線下壓一點看向岸邊看，就能發現水面上浮著一層東西——水藻、樹葉、零零碎碎的漂浮物。不多，但江水已經不清了，水面比記憶中的靜，但岸邊很顯然已經沒人搭理了，「早幾年疫情的時候我其實就出來看過，自那時候起其實就這樣了」~~但是每次走過還是有些許感慨~~.
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-03T01:33:37.261834Z
-      seconds: 23.2140635
-      tokens: 20114
       review: false
   ef777fdbb680bf711f96006468b7b38a:
     de-DE:
@@ -2423,7 +2228,7 @@ segments:
       tokens: 20375
       review: false
     es-ES:
-      text: 'Me desvío, pero sigue sin funcionar. La pantalla LCD del MBA me hizo sentir, por primera vez, su duro defecto. En este punto renuncio por completo a programar al aire libre. Tal vez el próximo año deje de buscar la ligereza, y si mi próximo equipo sigue siendo una portátil, probablemente será una MBP. En realidad ya tenía pensado volver y programar, salir un poco a tomar aire es suficiente, así que salí, crucé al otro lado de la carretera junto al río para volver. Pero mientras caminaba, empecé a no querer regresar. No hay un destino concreto, es simplemente algo que no he experimentado en mucho tiempo: el exterior todavía tiene un cierto atractivo para mí, una sensación que ni siquiera sé describir. Sin embargo, cuando intento realmente sentirlo, todo a mi alrededor parece desconectado de mis recuerdos, nada encaja y ya está fuera de sintonía con mis recuerdos vagos.'
+      text: "Me desvío, pero sigue sin funcionar. La pantalla LCD del MBA me hizo sentir, por primera vez, su duro defecto. En este punto renuncio por completo a programar al aire libre. Tal vez el próximo año deje de buscar la ligereza, y si mi próximo equipo sigue siendo una portátil, probablemente será una MBP. En realidad ya tenía pensado volver y programar, salir un poco a tomar aire es suficiente, así que salí, crucé al otro lado de la carretera junto al río para volver. Pero mientras caminaba, empecé a no querer regresar. No hay un destino concreto, es simplemente algo que no he experimentado en mucho tiempo: el exterior todavía tiene un cierto atractivo para mí, una sensación que ni siquiera sé describir. Sin embargo, cuando intento realmente sentirlo, todo a mi alrededor parece desconectado de mis recuerdos, nada encaja y ya está fuera de sintonía con mis recuerdos vagos."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:31:23.132743Z

@@ -11,7 +11,6 @@ pub mod segment;
 pub mod store;
 pub mod tn;
 
-use indicatif::{ProgressBar, ProgressStyle};
 use runner::{Refusal, Runner};
 use segment::Segment;
 use std::path::Path;
@@ -187,39 +186,6 @@ async fn translate(
 }
 
 /// One line, rewritten in place, showing what is being worked on.
-fn bar(total: u64) -> ProgressBar {
-	let bar = ProgressBar::new(total);
-	bar.set_style(
-		ProgressStyle::with_template("  {bar:28} {pos}/{len}  {wide_msg}")
-			.unwrap_or_else(|_| ProgressStyle::default_bar()),
-	);
-	bar
-}
-
-/// A first line of a segment, short enough to sit on one terminal row.
-fn preview(source: &str) -> String {
-	let line = source.lines().find(|l| !l.trim().is_empty()).unwrap_or("");
-	let flat = line.split_whitespace().collect::<Vec<_>>().join(" ");
-	let mut out = String::new();
-	for c in flat.chars() {
-		// Counted in display width, roughly: a CJK glyph occupies two columns, so a character
-		// count would overflow the row on exactly the articles this site publishes.
-		let width = if (c as u32) > 0x2e80 { 2 } else { 1 };
-		if out
-			.chars()
-			.map(|c| if (c as u32) > 0x2e80 { 2 } else { 1 })
-			.sum::<usize>()
-			+ width
-			> 44
-		{
-			out.push('…');
-			break;
-		}
-		out.push(c);
-	}
-	out
-}
-
 /// Translate every article under `articles`.
 pub async fn run(
 	runner: Runner,
@@ -295,7 +261,7 @@ pub async fn run(
 			.collect();
 		budget -= todo.len();
 
-		let progress = bar(todo.len() as u64);
+		let progress = crate::progress::bar(todo.len() as u64);
 		progress.set_message(format!("{}", path.display()));
 
 		let mut queue = todo.into_iter();
@@ -310,7 +276,7 @@ pub async fn run(
 				let Some(item) = queue.next() else {
 					break;
 				};
-				progress.set_message(preview(&item.source));
+				progress.set_message(crate::progress::preview(&item.source, 44));
 				let (before, after) = neighbours(&item.id);
 				let owned = item.clone();
 				let gloss = glosses.find(&item.id).cloned();
@@ -365,22 +331,6 @@ mod tests {
 	use super::*;
 	use std::collections::BTreeMap;
 
-	#[test]
-	fn the_status_line_is_measured_in_columns_not_characters() {
-		// A CJK glyph is two columns wide, so counting characters overflows the row on exactly
-		// the articles this site publishes.
-		let cjk = preview(&"中".repeat(60));
-		assert!(cjk.ends_with('…'));
-		assert!(cjk.chars().count() <= 24);
-
-		let latin = preview(&"a".repeat(60));
-		assert!(latin.chars().count() > 24);
-	}
-
-	#[test]
-	fn the_status_line_collapses_a_block_to_one_row() {
-		assert_eq!(preview("\n\nfirst line\nsecond line"), "first line");
-	}
 
 	#[test]
 	fn frontmatter_scope_never_selects_body_prose() {

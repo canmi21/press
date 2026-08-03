@@ -13,7 +13,6 @@ use crate::i18n::runner::{self, Refusal, Runner};
 use crate::i18n::store::Translation;
 use crate::media::{self, Category, Entry};
 use crate::tags::{self, Tag};
-use indicatif::{ProgressBar, ProgressStyle};
 use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 
@@ -157,15 +156,6 @@ fn parse(reply: &str, registry: &tags::Registry) -> (Option<Category>, Vec<Tagge
 	(category, tags)
 }
 
-fn bar(total: u64) -> ProgressBar {
-	let bar = ProgressBar::new(total);
-	bar.set_style(
-		ProgressStyle::with_template("  {bar:28} {pos}/{len}  {wide_msg}")
-			.unwrap_or_else(|_| ProgressStyle::default_bar()),
-	);
-	bar
-}
-
 /// Originals on hand, by the id they hash to.
 fn originals_by_id(originals: &Path) -> BTreeMap<String, PathBuf> {
 	let Ok(entries) = std::fs::read_dir(originals) else {
@@ -268,7 +258,7 @@ pub async fn run(
 	// One at a time, unlike translation. Each answer changes the list the next request is
 	// shown, and running four in parallel would let four images each invent their own name
 	// for the same thing before any of them could see the others.
-	let progress = bar(todo.len() as u64);
+	let progress = crate::progress::bar(todo.len() as u64);
 	for (cid, path) in todo {
 		progress.set_message(
 			path
