@@ -221,6 +221,18 @@ Colors follow the same shape at a smaller scale: OKLCH values are declared in
 and theme are built from; a palette mirrored from an external convention keeps whatever
 format that convention ships.
 
+Names there are roles the page fills or hues it holds, never the component that first wanted
+one. `--color-note-paper` is the shape to avoid: it makes the palette an inventory of features,
+so the second component needing that blue either inherits a name describing something it is not
+or copies the value. A hue named as a hue -- `--color-blue`, `--color-blue-ink` -- is a pigment
+any surface can pick up, and what a blue box _means_ stays a decision the component makes.
+
+The qualifier on a hue names how it is laid down, borrowing the vocabulary the neutrals already
+use: `paper` is a surface, `ink` is a mark. Not how dark it is. A name like `-deep` reads as a
+promise about lightness that the dark block then breaks, since a page that inverts needs its
+marks to move the other way; `ink` stays true in both because a mark is a mark under either
+light.
+
 `robots.txt` follows the same shared-base shape, and lives in `libs/robots` rather than in
 `libs/urls`. It exports the minimal common definition plus a helper that appends site-specific
 rules -- disallowed paths, sitemap entries -- so each site owns its additions while a change to

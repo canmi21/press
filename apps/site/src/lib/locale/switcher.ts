@@ -57,22 +57,50 @@ export function orderFor(preferred: LocaleCode): readonly TranslationCode[] {
  */
 const COMPACT_SCRIPT = new Set<LocaleCode>(['mw', 'zh', 'tw', 'ja', 'ko']);
 
+/** Subtags that mark a Chinese tag as Traditional. Script wins; the regions are the legacy spelling. */
+function isTraditional(subtags: string[]): boolean {
+	return subtags.some((part) => part === 'hant' || ['tw', 'hk', 'mo'].includes(part));
+}
+
 /**
- * The region of the locale this site publishes a language under.
+ * The view whose language is the one the article was written in, if this site publishes it.
  *
- * Read off `PUBLIC_LANGUAGE` rather than kept as a second table, so a locale that changes its
- * tag changes its short code with it. Traditional Chinese is matched by script before the
+ * Resolved against `PUBLIC_LANGUAGE` rather than kept as a second table, so a locale that
+ * changes its tag changes this with it. Traditional Chinese is matched by script before the
  * language falls through, since `zh-Hant` and `zh` differ in exactly the way the codes do.
+ *
+ * `undefined` means the article is in a language with no view of its own -- the eight are not a
+ * promise about what may be written, only about what may be read.
  */
-function regionOf(sourceLanguage: string): string | undefined {
+export function sourceCode(sourceLanguage: string): TranslationCode | undefined {
 	const [primary = '', ...rest] = sourceLanguage.toLowerCase().split('-');
-	const traditional = rest.some((part) => part === 'hant' || ['tw', 'hk', 'mo'].includes(part));
-	const code = (Object.keys(PUBLIC_LANGUAGE) as TranslationCode[]).find((candidate) => {
+	const traditional = isTraditional(rest);
+	return (Object.keys(PUBLIC_LANGUAGE) as TranslationCode[]).find((candidate) => {
 		const [language, region] = PUBLIC_LANGUAGE[candidate].toLowerCase().split('-');
 		if (language !== primary) return false;
 		return primary === 'zh' ? (traditional ? region === 'tw' : region === 'cn') : true;
 	});
+}
+
+/** The region of the locale this site publishes a language under. */
+function regionOf(sourceLanguage: string): string | undefined {
+	const code = sourceCode(sourceLanguage);
 	return code ? PUBLIC_LANGUAGE[code].split('-')[1] : undefined;
+}
+
+/**
+ * The tag handed to `Intl.DisplayNames`, with the script restored when it carries meaning.
+ *
+ * Frontmatter writes `lang: zh`, and `DisplayNames.of('zh')` answers "中文" / "Chinese" -- a name
+ * covering both scripts, which names neither. Chinese is the only language here whose display
+ * name splits by script, and every interface language already spells that split out (`简体中文`,
+ * `Simplified Chinese`, `簡体中国語`, `중국어(간체)`), so the script is added to the tag rather than
+ * eight names being written by hand. See spec/locale.md.
+ */
+function displayTag(sourceLanguage: string): string {
+	const [primary = sourceLanguage, ...rest] = sourceLanguage.toLowerCase().split('-');
+	if (primary !== 'zh') return primary;
+	return isTraditional(rest) ? 'zh-Hant' : 'zh-Hans';
 }
 
 /**
@@ -91,6 +119,18 @@ export function sourceLabel(sourceLanguage: string, currentCode: LocaleCode): st
 		return new Intl.DisplayNames([tag], { type: 'language' }).of(primary) ?? primary.toUpperCase();
 	} catch {
 		return primary.toUpperCase();
+	}
+}
+
+/** The source language spelled out in full, in the current interface language. */
+export function sourceLanguageName(sourceLanguage: string, currentCode: LocaleCode): string {
+	const tag = displayTag(sourceLanguage);
+	const displayLanguage = currentCode === 'mw' ? sourceLanguage : PUBLIC_LANGUAGE[currentCode];
+	const fallback = tag.split('-')[0]?.toUpperCase() ?? sourceLanguage.toUpperCase();
+	try {
+		return new Intl.DisplayNames([displayLanguage], { type: 'language' }).of(tag) ?? fallback;
+	} catch {
+		return fallback;
 	}
 }
 
@@ -129,8 +169,13 @@ export function selectContentLanguage(
 	navigate: (href: string) => void,
 ): boolean {
 	if (currentCode === selectedCode) return false;
+	navigate(contentLanguageHref(selectedCode, currentUrl));
+	return true;
+}
+
+/** Preserve unrelated query state while asking the worker for another article view. */
+export function contentLanguageHref(selectedCode: LocaleCode, currentUrl: URL): string {
 	const target = new URL(currentUrl);
 	target.searchParams.set('lang', selectedCode);
-	navigate(`${target.pathname}${target.search}${target.hash}`);
-	return true;
+	return `${target.pathname}${target.search}${target.hash}`;
 }

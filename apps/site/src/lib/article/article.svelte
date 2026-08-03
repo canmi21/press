@@ -11,6 +11,7 @@
 	import LanguageSwitcher from '$lib/locale/switcher.svelte';
 	import { formatCompact } from './format';
 	import Toc from './toc.svelte';
+	import TranslationNotice from './translation-notice.svelte';
 
 	type ArticleLocale = {
 		code: LocaleCode;
@@ -135,6 +136,9 @@
 				{/if}
 				<LanguageSwitcher code={locale.code} sourceLanguage={meta.lang} />
 			</div>
+			{#if locale.code !== 'mw'}
+				<TranslationNotice code={locale.code} sourceLanguage={meta.lang} />
+			{/if}
 		</header>
 
 		<div class="article-body mt-8 leading-relaxed">

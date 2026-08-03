@@ -14,6 +14,15 @@
 	--color-selection: oklch(0.97 0.09 105 / 0.7);
 	/* Auxiliary (a11y) color — the focus-ring blue, ~Tailwind blue-500. */
 	--color-accent: oklch(0.623 0.214 259.815);
+	/* Light inks sit at L 0.42 and are chroma-capped by the hue: green tops out near 0.11 in
+	   sRGB where blue and red still have room. Matching them numerically would push green out
+	   of gamut and get silently clipped. */
+	--color-blue: oklch(0.58 0.19 256.7);
+	--color-blue-ink: oklch(0.42 0.12 259.4);
+	--color-green: oklch(0.67 0.17 147.79);
+	--color-green-ink: oklch(0.42 0.11 150.81);
+	--color-red: oklch(0.59 0.19 27);
+	--color-red-ink: oklch(0.42 0.13 29);
 
 	/* Default focus ring: a page-colored 2px gap + a 2px accent ring, sized in rem
 	   so they scale with the root font. Override any of these vars on an element
@@ -63,6 +72,12 @@ html {
 	--color-paper: oklch(0.157 0 0);
 	--color-paper-hover: oklch(0.213 0 0);
 	--color-selection: oklch(0.51 0.064 191 / 0.5);
+	--color-blue: oklch(0.65 0.175 256.7);
+	--color-blue-ink: oklch(0.647 0.175 256.9);
+	--color-green: oklch(0.7398 0.1569 147.79);
+	--color-green-ink: oklch(0.2685 0.0203 150.81);
+	--color-red: oklch(0.6798 0.1769 27);
+	--color-red-ink: oklch(0.2685 0.0213 29);
 }
 
 @theme inline {
@@ -77,4 +92,10 @@ html {
 	--color-paper-hover: var(--color-paper-hover);
 	--color-selection: var(--color-selection);
 	--color-accent: var(--color-accent);
+	--color-blue: var(--color-blue);
+	--color-blue-ink: var(--color-blue-ink);
+	--color-green: var(--color-green);
+	--color-green-ink: var(--color-green-ink);
+	--color-red: var(--color-red);
+	--color-red-ink: var(--color-red-ink);
 }

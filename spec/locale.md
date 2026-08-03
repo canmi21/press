@@ -143,6 +143,77 @@ native activation plus arrow, Home, End, Escape, and Tab keyboard behaviour. End
 reader find the right row without first understanding the current content language; keyboard
 and screen-reader access are part of that same requirement.
 
+## A translated article identifies itself
+
+Every non-original article view places a blue note directly below the metadata row. It says in
+the current view's UI language that the reader is seeing a translation and names the source
+language in that same UI language. The source-language name is the link back to `mw`; it performs
+a full document navigation so the worker updates the language cookie along with the article and
+interface. The original view has no note, because labelling untouched content as untranslated
+would repeat what the language switcher already says.
+
+This notice is a state indicator rather than article content. Keeping it beside the metadata
+makes its scope clear before the reader reaches the body, and blue is reserved here for the
+translated state rather than becoming a general article accent.
+
+### Two states, because a reader may already speak the article's language
+
+A Chinese article read at `zh` is neither the original nor a translation in the ordinary sense.
+The view exists because every language gets one, and what it holds is the article regularised --
+a misspelling corrected, a mark normalised -- not carried across a language boundary. Telling
+that reader they are reading a translation is simply false, and it is false in the one direction
+that costs something: they are the reader best placed to go read the original, and the notice
+would give them no reason to.
+
+So the copy is a matrix of state against interface language rather than one sentence per
+language. When the view's language differs from the article's, the notice names the source
+language and links it. When they match, it states the language plainly, says the version may
+carry small changes in wording, and recommends the original -- with the link on the word for the
+original, since that is what is being recommended rather than merely named.
+
+### `lang` names the main language, not the only one
+
+An article may mix languages. Frontmatter carries one tag because one tag is what an author can
+honestly give: the language most of it is in. Every sentence built on that tag has to stay true
+of an article that is mostly rather than wholly in it, which is why the notice says "mainly",
+"principalmente", "主に" rather than asserting the article simply is in that language. The
+qualifier is not hedging -- it is the actual strength of what `lang` records.
+
+### A third state: the same language, the other script
+
+Chinese is published here under two scripts, so a Simplified article can be read at `tw` by
+someone who reads Simplified perfectly well. That is neither of the first two states. Nothing
+was translated and nothing was polished; characters were mapped. Announcing it as a translation
+overstates the distance by a whole language, and announcing it as a light polish understates why
+the reader should move -- they can read the original exactly as written, and the only thing
+between them and the author is a script they already know.
+
+This state is checked before the translated one, since an article whose language has a sibling
+script would otherwise fall through and be described as translated.
+
+Its copy is keyed by the two Chinese views alone rather than added as a third row to the matrix.
+The state is reachable only from the view that _is_ the sibling script, so six of the eight rows
+could never be shown; a table that can only ever be two-thirds filled is the wrong shape for the
+fact, and an optional row would let a real gap look deliberate.
+
+That word is held separately from the same word as a menu row label. English capitalises a
+label and not a mid-sentence noun, German capitalises both; one string cannot be correct in both
+positions, and merging them would fix one language by breaking another. This is the exception
+that proves the one-fact-one-home rule rather than a violation of it: two grammatical positions
+are two facts.
+
+### The script is part of the name
+
+A source language is named with its script wherever the script distinguishes it. Chinese is the
+only such case here, and `Intl.DisplayNames` already spells the distinction out in every
+interface language, so the script is restored onto the tag before it is handed over rather than
+eight names being written by hand. `zh` alone answers "中文" or "Chinese", which covers both
+scripts and therefore names neither.
+
+This applies to the notice, which spells the language out in full. The switcher's own row for
+the original stays short on purpose -- see the compact-label rule above -- and naming the script
+there would fight the reason that label is abbreviated at all.
+
 Keeping it out also keeps an unvalidated value away from the one attribute where a bad value is
 destructive rather than merely wrong. Frontmatter `lang` still reaches `<html lang>`, where an
 error mislabels a page; in an `hreflang` it would discard the whole set.
