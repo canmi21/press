@@ -33,6 +33,7 @@ fn main() -> ExitCode {
 		Some("tag") => classify_images(&args[1..]),
 		Some("segments") => write_segment_layout(),
 		Some("i18n") => translate_articles(&args[1..]),
+		Some("tn") => scan_notes(&args[1..]),
 		Some("locale") => translate_locales(&args[1..]),
 		Some("alt") => describe_images(&args[1..]),
 		Some("gc") => collect_garbage(&args[1..]),
@@ -721,6 +722,152 @@ fn process_images(args: &[String]) -> ExitCode {
 	}
 }
 
+/// The `cms tn` command: which passages a translation will have to keep and explain.
+///
+/// Whether a passage needs a note depends on whether the rest of the article already carries
+/// its meaning, which is a judgement about the whole text. Translation happens one block at a
+/// time and structurally cannot make it -- four articles produced no notes at all until this
+/// was split out. So a strong model reads the article whole, and what it finds is reviewed
+/// before it steers anything. See spec/i18n.md.
+fn scan_notes(args: &[String]) -> ExitCode {
+	let force = args.iter().any(|arg| arg == "--force");
+	let mut only: Vec<std::path::PathBuf> = Vec::new();
+	let mut runner = i18n::runner::DEFAULT_VISION;
+	let mut skip = false;
+	for (at, arg) in args.iter().enumerate() {
+		if skip {
+			skip = false;
+			continue;
+		}
+		match arg.as_str() {
+			"--force" => {}
+			"--model" => {
+				skip = true;
+				match args
+					.get(at + 1)
+					.and_then(|name| i18n::runner::Runner::parse(name))
+				{
+					Some(chosen) => runner = chosen,
+					None => {
+						eprintln!("--model takes {}", i18n::runner::CHOICES);
+						return ExitCode::FAILURE;
+					}
+				}
+			}
+			other => only.push(std::path::PathBuf::from(other)),
+		}
+	}
+
+	let root = match paths::repo_root() {
+		Ok(root) => root,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
+	};
+	let runtime = match tokio::runtime::Runtime::new() {
+		Ok(runtime) => runtime,
+		Err(error) => {
+			eprintln!("could not start a runtime: {error}");
+			return ExitCode::FAILURE;
+		}
+	};
+
+	let contents = root.join("contents");
+	let path = i18n::tn::path_for(&root);
+	let mut table = i18n::tn::load(&path);
+
+	// Named articles, or every one not yet read. An article scanned and found to need nothing
+	// still counts as read, which is the distinction the table records so that a rerun does not
+	// pay to learn the same nothing twice.
+	let wanted: Vec<std::path::PathBuf> = if only.is_empty() {
+		match refs::markdown_under(&contents) {
+			Ok(all) => all,
+			Err(error) => {
+				eprintln!("could not read {}: {error}", contents.display());
+				return ExitCode::FAILURE;
+			}
+		}
+	} else {
+		only
+			.into_iter()
+			.map(|item| if item.is_absolute() { item } else { root.join(item) })
+			.collect()
+	};
+
+	let mut suggested = 0usize;
+	let mut spent = 0u64;
+	let mut read = 0usize;
+
+	for article in &wanted {
+		let key = article
+			.strip_prefix(&contents)
+			.unwrap_or(article)
+			.to_string_lossy()
+			.replace('\\', "/");
+		if !force && table.scanned(&key) {
+			continue;
+		}
+		let text = match std::fs::read_to_string(article) {
+			Ok(text) => text,
+			Err(error) => {
+				eprintln!("fail  {key}: {error}");
+				continue;
+			}
+		};
+		let (found, model, tokens) = match runtime.block_on(i18n::tn::scan(&text, runner)) {
+			Ok(result) => result,
+			Err(error) => {
+				eprintln!("fail  {key}: {error}");
+				continue;
+			}
+		};
+		spent += tokens;
+		read += 1;
+
+		let segments = i18n::segment::split(&text);
+		let attached = i18n::tn::attach(&segments, &found);
+		println!("{key}");
+		if attached.is_empty() {
+			println!("  nothing worth a note");
+		}
+		let mut entries = std::collections::BTreeMap::new();
+		for (id, source, spans) in attached {
+			println!("  {}", &id[..12.min(id.len())]);
+			for span in &spans {
+				println!("    {}  --  {}", span.phrase, span.guidance);
+			}
+			suggested += spans.len();
+			entries.insert(id, i18n::tn::Entry { source, spans });
+		}
+		// Recorded on sight, findings or none. The scan is paid for either way, so printing
+		// without writing would mean reading the article twice to act on it once. Review is
+		// deleting an entry you disagree with, which costs nothing; re-scanning does not.
+		table.articles.insert(
+			key,
+			i18n::tn::Article {
+				provider: runner.provider().to_owned(),
+				model: i18n::model::normalise(&model),
+				at: image::manifest::now(),
+				tokens,
+				segments: entries,
+			},
+		);
+	}
+
+	if read == 0 {
+		println!("every article already read; pass --force to read one again");
+		return ExitCode::SUCCESS;
+	}
+	if let Err(error) = i18n::tn::save(&path, &table) {
+		eprintln!("could not write {}: {error}", path.display());
+		return ExitCode::FAILURE;
+	}
+	println!("{read} read, {suggested} suggestions in data/tn.yaml; delete any you disagree with");
+	println!("{spent} tokens");
+	ExitCode::SUCCESS
+}
+
 fn usage() {
 	eprintln!("usage: cms <command>");
 	eprintln!();
@@ -736,6 +883,8 @@ fn usage() {
 	eprintln!("  segments                    write article segment ids and source ranges");
 	eprintln!("  i18n [--model M] [--force] [--frontmatter] [--limit N] [article...]");
 	eprintln!("                              translate article segments into every locale");
+	eprintln!("  tn [--model M] [--force] [article...]");
+	eprintln!("                              suggest passages a translation would have to gloss");
 	eprintln!("  locale [--model M] [--force] [--limit N]");
 	eprintln!("                              translate tag labels and image descriptions");
 	eprintln!("  tag [--model M] [--force] [--limit N]");

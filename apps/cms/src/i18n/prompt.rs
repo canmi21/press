@@ -56,6 +56,7 @@ pub fn build(
 	masked: &str,
 	before: Option<&str>,
 	after: Option<&str>,
+	gloss: Option<&super::tn::Entry>,
 ) -> Request {
 	let fence = boundary();
 	let locales = LOCALES
@@ -100,6 +101,10 @@ pub fn build(
 		""
 	};
 
+	// An entry exists because a person chose to record it: `cms tn` prints and only writes when
+	// asked, so the review happened before the file did. See spec/i18n.md.
+	let notes = gloss.map(super::tn::rule).unwrap_or_default();
+
 	let text = format!(
 		"You are translating one block of an article. The article is written in a mixture of \
 		 languages with one dominant, which is normal and deliberate.\n\
@@ -123,6 +128,7 @@ pub fn build(
 		 with characters they cannot read and no gloss is worse than a brief note. At most one \
 		 per block, and none where the surrounding sentence already makes the meaning plain.\n\
 		 - Keep markdown structure: emphasis, links and list markers stay as they are.\n\
+		 {notes}\
 		 {metadata}\n\
 		 {navigation}\n\
 		 \n\
@@ -220,7 +226,7 @@ mod tests {
 
 	#[test]
 	fn the_source_is_fenced_top_and_bottom_with_the_same_string() {
-		let request = build(&segment(Kind::Prose), "hello", None, None);
+		let request = build(&segment(Kind::Prose), "hello", None, None, None);
 		let fences: Vec<&str> = request
 			.text
 			.lines()
@@ -234,7 +240,7 @@ mod tests {
 	fn frontmatter_is_told_to_use_target_locale_typography() {
 		let mut item = segment(Kind::Heading);
 		item.region = Region::Frontmatter;
-		let request = build(&item, "A title.", None, None);
+		let request = build(&item, "A title.", None, None, None);
 
 		assert!(request.text.contains("display metadata"));
 		assert!(request.text.contains("native casing and punctuation"));
@@ -248,7 +254,7 @@ mod tests {
 
 	#[test]
 	fn body_heading_is_told_to_stay_concise_for_navigation() {
-		let request = build(&segment(Kind::Heading), "A long heading", None, None);
+		let request = build(&segment(Kind::Heading), "A long heading", None, None, None);
 
 		assert!(request.text.contains("narrow table of contents"));
 		assert!(request.text.contains("concise navigation label"));
@@ -258,7 +264,7 @@ mod tests {
 	#[test]
 	fn instructions_sit_on_both_sides_of_the_material() {
 		// Rules only before the text leave the last thing read being the untrusted content.
-		let text = build(&segment(Kind::Prose), "hello", None, None).text;
+		let text = build(&segment(Kind::Prose), "hello", None, None, None).text;
 		let first = text.find("Rules:").expect("rules");
 		let fence = text.find(|c: char| c.is_ascii_uppercase()).unwrap_or(0);
 		let closing = text
@@ -319,7 +325,7 @@ mod tests {
 
 	#[test]
 	fn a_directive_is_told_which_attributes_are_addresses() {
-		let text = build(&segment(Kind::Directive), "::image{src=\"a\"}", None, None).text;
+		let text = build(&segment(Kind::Directive), "::image{src=\"a\"}", None, None, None).text;
 		assert!(text.contains("leave"));
 		assert!(text.contains("src"));
 	}

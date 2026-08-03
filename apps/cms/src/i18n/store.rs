@@ -79,18 +79,34 @@ pub fn orphans(sidecar: &Sidecar, live: &BTreeMap<String, super::segment::Segmen
 		.collect()
 }
 
-/// What still needs translating: every (segment, locale) with no entry.
+/// What still needs translating: every (segment, locale) with no entry, or with an outdated one.
+///
+/// A recorded note request makes an existing translation outdated, because it was produced
+/// before anyone decided the phrase had to survive. Detected from the text rather than from a
+/// timestamp: the request says a phrase is kept verbatim, so a translation that does not contain
+/// it cannot be carrying the note. That reads the same fact the instruction states, instead of
+/// keeping a second record of when each was written and trusting the two to stay in step.
 pub fn missing(
 	sidecar: &Sidecar,
 	live: &BTreeMap<String, super::segment::Segment>,
 	locales: &[&str],
+	glosses: &super::tn::Table,
 ) -> BTreeMap<String, Vec<String>> {
 	let mut wanted = BTreeMap::new();
 	for (id, _) in live.iter() {
 		let have = sidecar.segments.get(id);
+		let required = glosses
+			.find(id)
+			.map(|entry| entry.spans.as_slice())
+			.unwrap_or_default();
 		let absent: Vec<String> = locales
 			.iter()
-			.filter(|locale| have.is_none_or(|map| !map.contains_key(**locale)))
+			.filter(|locale| match have.and_then(|map| map.get(**locale)) {
+				None => true,
+				Some(translation) => required
+					.iter()
+					.any(|span| !translation.text.contains(&span.phrase)),
+			})
 			.map(|locale| (*locale).to_owned())
 			.collect();
 		if !absent.is_empty() {
@@ -161,8 +177,62 @@ mod tests {
 			.segments
 			.insert(id.clone(), BTreeMap::from([("ja-JP".to_owned(), entry())]));
 
-		let want = missing(&sidecar, &live, &["ja-JP", "de-DE", "fr-FR"]);
+		let want = missing(
+			&sidecar,
+			&live,
+			&["ja-JP", "de-DE", "fr-FR"],
+			&crate::i18n::tn::Table::default(),
+		);
 		assert_eq!(want[&id], vec!["de-DE", "fr-FR"]);
+	}
+
+	#[test]
+	fn a_recorded_note_request_outdates_the_translations_that_predate_it() {
+		// The closing link in the chain. Without it, agreeing that a phrase needs a note changes
+		// nothing until somebody reruns the whole article with --force, which costs every other
+		// segment as well and is the kind of thing nobody does for one paragraph.
+		let live = segment::translatable("古法 programming");
+		let id = live.keys().next().expect("segment").clone();
+
+		let mut kept = entry();
+		kept.text = "古法 :tn[古法]{is=\"the old method\"} programming".into();
+		let mut lost = entry();
+		lost.text = "old-school programming".into();
+
+		let mut sidecar = Sidecar::default();
+		sidecar.segments.insert(
+			id.clone(),
+			BTreeMap::from([
+				("ja-JP".to_owned(), kept),
+				("de-DE".to_owned(), lost.clone()),
+			]),
+		);
+
+		let mut glosses = crate::i18n::tn::Table::default();
+		glosses.articles.insert(
+			"milestone/a.md".to_owned(),
+			crate::i18n::tn::Article {
+				provider: "openai".to_owned(),
+				model: "gpt-5-6-sol".to_owned(),
+				at: "2026-08-02T00:00:00Z".to_owned(),
+				tokens: 0,
+				segments: BTreeMap::from([(
+					id.clone(),
+					crate::i18n::tn::Entry {
+						source: "古法 programming".to_owned(),
+						spans: vec![crate::i18n::tn::Gloss {
+							phrase: "古法".to_owned(),
+							guidance: "the old method".to_owned(),
+						}],
+					},
+				)]),
+			},
+		);
+
+		// Only the one that translated the phrase away is asked for again.
+		let want = missing(&sidecar, &live, &["ja-JP", "de-DE"], &glosses);
+		assert_eq!(want[&id], vec!["de-DE"]);
+
 	}
 
 	#[test]

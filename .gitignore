@@ -21,6 +21,7 @@ data/**
 !data/metadata.json
 !data/media.yaml
 !data/tags.yaml
+!data/tn.yaml
 !data/build/segments.json
 
 # Dependencies

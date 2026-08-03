@@ -9,6 +9,7 @@ pub mod prompt;
 pub mod runner;
 pub mod segment;
 pub mod store;
+pub mod tn;
 
 use indicatif::{ProgressBar, ProgressStyle};
 use runner::{Refusal, Runner};
@@ -96,6 +97,7 @@ async fn translate(
 	before: Option<String>,
 	after: Option<String>,
 	runner: Runner,
+	gloss: Option<tn::Entry>,
 ) -> Result<(Vec<(String, Translation)>, u64, f64), Refusal> {
 	let masked = segment::mask(&item.source);
 	let started = crate::image::manifest::now();
@@ -106,7 +108,13 @@ async fn translate(
 	let mut backoff = BACKOFF_START;
 
 	while attempt < ATTEMPTS {
-		let request = prompt::build(item, &masked.text, before.as_deref(), after.as_deref());
+		let request = prompt::build(
+			item,
+			&masked.text,
+			before.as_deref(),
+			after.as_deref(),
+			gloss.as_ref(),
+		);
 		let wanted = runner.model_for(item.kind, attempt);
 		let answer = match runner::ask(runner, &request.text, wanted).await {
 			Ok(answer) => answer,
@@ -222,6 +230,9 @@ pub async fn run(
 	scope: Scope,
 ) -> std::io::Result<Outcome> {
 	let mut outcome = Outcome::default();
+	// Loaded once. A suggestion applies to a segment id, so which article it came from stops
+	// mattering the moment it is written down.
+	let glosses = tn::load(&tn::path_for(articles.parent().unwrap_or(articles)));
 	let mut budget = limit.unwrap_or(usize::MAX);
 
 	for path in crate::refs::markdown_under(articles)? {
@@ -250,7 +261,7 @@ pub async fn run(
 		let mut wanted = if force {
 			live.keys().cloned().collect::<Vec<_>>()
 		} else {
-			store::missing(&sidecar, &live, &prompt::LOCALES)
+			store::missing(&sidecar, &live, &prompt::LOCALES, &glosses)
 				.into_keys()
 				.collect()
 		};
@@ -302,9 +313,10 @@ pub async fn run(
 				progress.set_message(preview(&item.source));
 				let (before, after) = neighbours(&item.id);
 				let owned = item.clone();
+				let gloss = glosses.find(&item.id).cloned();
 				running.push(tokio::spawn(async move {
 					let id = owned.id.clone();
-					(id, translate(&owned, before, after, runner).await)
+					(id, translate(&owned, before, after, runner, gloss).await)
 				}));
 			}
 			if running.is_empty() {

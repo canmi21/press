@@ -85,6 +85,23 @@ impl Runner {
 		}
 	}
 
+	/// The model for reading a whole article to decide what will need a note.
+	///
+	/// The strongest tier each runner offers, and unapologetically so. This is one call per
+	/// article against dozens per article for translation, and the judgement it makes -- whether
+	/// the surrounding text already carries a meaning -- is the one a cheap model cannot make.
+	/// Getting it wrong is not a bad sentence but a note nobody needed, or a missing one nobody
+	/// notices.
+	pub fn model_for_scan(self) -> &'static str {
+		match self {
+			Self::Claude => "opus",
+			Self::Gemini => "gemini-3.1-pro-high",
+			Self::GptOss => "gpt-oss-120b-medium",
+			Self::Codex => "gpt-5.6-sol-high",
+			Self::Cursor => "composer-2.5",
+		}
+	}
+
 	/// The model for a task that involves looking at an image.
 	///
 	/// No tiering here. Reading a picture is the whole of the work and there is no structural
