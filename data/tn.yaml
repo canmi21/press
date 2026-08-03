@@ -60,11 +60,6 @@ articles:
         spans:
         - phrase: 亿点点
           guidance: 这是把同音的“一点点”故意写成数量巨大的“亿点点”，以反话夸张借用检查的工作量。
-      e4f45bb1cfbab66a39437d6e7026e471:
-        source: 不许 Cargo 再摸鱼了
-        spans:
-        - phrase: 摸鱼
-          guidance: 本指“摸鱼”，网络口语中指偷懒或消极怠工，标题把 Cargo 拟人化为上班划水者。
   homepage.md:
     provider: openai
     model: gpt-5-6-sol-high
@@ -92,11 +87,6 @@ articles:
         spans:
         - phrase: 手搓
           guidance: Developer slang literally meaning “rub out by hand,” emphasizing an improvised, from-scratch implementation rather than merely writing it manually.
-      b60e899dca8ebe5689336bfe87e8278c:
-        source: 从 Next.js 13 鸽到 Next.js 16
-        spans:
-        - phrase: 鸽
-          guidance: Chinese internet slang for repeatedly postponing or failing to deliver something promised, derived from “放鸽子.”
   mirror/less-than-an-hour.md:
     provider: openai
     model: gpt-5-6-sol-high

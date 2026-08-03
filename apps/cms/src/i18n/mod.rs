@@ -10,6 +10,7 @@ pub mod runner;
 pub mod segment;
 pub mod store;
 pub mod tn;
+pub mod validate;
 
 use runner::{Refusal, Runner};
 use segment::Segment;
@@ -63,41 +64,15 @@ fn body_lines(text: &str) -> usize {
 	text.lines().filter(|line| !line.trim().is_empty()).count()
 }
 
-/// Whether every `:tn` in a reply is a directive rather than a run of stray punctuation.
+/// Accept only locale text that can be restored and rendered under this segment's rules.
 ///
-/// `:tn[words]{is="..."}` fails as a whole if any part of it is off, and the failure is quiet:
-/// the parser stops seeing a directive, the attributes vanish, and the braces print on the page
-/// as text. Measured on the first run that produced notes, 90 of 168 markers were malformed --
-/// usually a missing closing quote -- so this is the common case rather than the exceptional
-/// one.
-///
-/// An ASCII double quote inside the value ends it early and is checked for the same reason: the
-/// syntax has no escape for one, so a note containing it cannot be represented at all.
-fn notes_well_formed(text: &str) -> bool {
-	let mut rest = text;
-	while let Some(at) = rest.find(":tn[") {
-		rest = &rest[at + 4..];
-		let Some(close) = rest.find(']') else {
-			return false;
-		};
-		if rest[..close].contains('\n') || !rest[close + 1..].starts_with("{is=\"") {
-			return false;
-		}
-		rest = &rest[close + 6..];
-		let Some(end) = rest.find('"') else {
-			return false;
-		};
-		if !rest[end + 1..].starts_with('}') {
-			return false;
-		}
-		rest = &rest[end + 2..];
-	}
-	true
-}
-
+/// A failure returns to `translate`, whose attempt counter retries and escalates it. Keeping the
+/// acceptance boundary here makes a malformed successful process no more trusted than a runner
+/// process that explicitly failed.
 fn validate_reply(
 	reply: &str,
 	boundary: &str,
+	region: segment::Region,
 	masked: &segment::Masked,
 ) -> Result<Vec<(String, String)>, Refusal> {
 	let parsed = prompt::parse(reply, Some(boundary)).map_err(|prompt::BoundaryLeak| {
@@ -112,7 +87,9 @@ fn validate_reply(
 	let kept: Vec<(String, String)> = parsed
 		.into_iter()
 		.filter(|(_, text)| {
-			masked.intact(text) && body_lines(text) <= allowed && notes_well_formed(text)
+			masked.intact(text)
+				&& body_lines(text) <= allowed
+				&& validate::translation(region, text).is_ok()
 		})
 		.map(|(locale, text)| (locale, masked.restore(&text)))
 		.collect();
@@ -170,7 +147,7 @@ async fn translate(
 
 		// Every marker back exactly once, or the answer is not usable. This is the point of
 		// masking: not hoping the model left the code alone, but being able to show it did.
-		let kept = match validate_reply(&answer.text, &request.boundary, &masked) {
+		let kept = match validate_reply(&answer.text, &request.boundary, item.region, &masked) {
 			Ok(kept) => kept,
 			Err(error) => {
 				last = error;
@@ -365,7 +342,6 @@ mod tests {
 	use super::*;
 	use std::collections::BTreeMap;
 
-
 	#[test]
 	fn frontmatter_scope_never_selects_body_prose() {
 		let segments = segment::split(
@@ -387,15 +363,40 @@ mod tests {
 		// the parser stops seeing a directive and the braces render as text beside an empty
 		// title. 90 of the first 168 markers were malformed this way, nearly all of them a
 		// missing closing quote.
-		assert!(notes_well_formed("a :tn[word]{is=\"a note\"} b"));
-		assert!(notes_well_formed("nothing to check here"));
+		assert!(validate::notes_well_formed("a :tn[word]{is=\"a note\"} b"));
+		assert!(validate::notes_well_formed("nothing to check here"));
 
 		// The one that reached a page: no closing quote, so the whole attribute block is text.
-		assert!(!notes_well_formed("a :tn[word]{is=\"a note} b"));
+		assert!(!validate::notes_well_formed("a :tn[word]{is=\"a note} b"));
 		// The syntax has no escape for a quote inside the value; it simply ends there.
-		assert!(!notes_well_formed("a :tn[word]{is=\"he said \"no\" loudly\"} b"));
-		assert!(!notes_well_formed("a :tn[word] b"));
-		assert!(!notes_well_formed("a :tn[word]{was=\"wrong key\"} b"));
+		assert!(!validate::notes_well_formed(
+			"a :tn[word]{is=\"he said \"no\" loudly\"} b"
+		));
+		assert!(!validate::notes_well_formed("a :tn[word] b"));
+		assert!(!validate::notes_well_formed(
+			"a :tn[word]{was=\"wrong key\"} b"
+		));
+	}
+
+	#[test]
+	fn a_frontmatter_note_is_refused_before_it_can_be_stored() {
+		// Metadata has no rendering channel for the explanation. Prompt wording is not an
+		// acceptance boundary, so a model that ignores it must enter the retry path here.
+		let boundary = "F7Q2L9DM4KX8V1C6R0PB3HNS5WJATGEU";
+		let reply = format!(
+			"{}\n:tn[Translated title]{{is=\"a gloss\"}}\n",
+			prompt::locale_marker("en-US"),
+		);
+
+		assert!(matches!(
+			validate_reply(
+				&reply,
+				boundary,
+				segment::Region::Frontmatter,
+				&segment::mask("Source title"),
+			),
+			Err(Refusal::Failed(_))
+		));
 	}
 
 	#[test]
@@ -412,7 +413,12 @@ mod tests {
 			prompt::locale_marker("en-US"),
 		);
 		assert!(matches!(
-			validate_reply(&echoed, boundary, &segment::mask(source)),
+			validate_reply(
+				&echoed,
+				boundary,
+				segment::Region::Body,
+				&segment::mask(source)
+			),
 			Err(Refusal::Failed(_))
 		));
 
@@ -421,7 +427,15 @@ mod tests {
 			"{}\n::linkcard{{src=\"a.avif\" url=\"https://example.com\" title=\"Eins\"}}\n",
 			prompt::locale_marker("de-DE"),
 		);
-		assert!(validate_reply(&clean, boundary, &segment::mask(source)).is_ok());
+		assert!(
+			validate_reply(
+				&clean,
+				boundary,
+				segment::Region::Body,
+				&segment::mask(source)
+			)
+			.is_ok()
+		);
 	}
 
 	#[test]
@@ -433,7 +447,15 @@ mod tests {
 			"{}\n- erste\n- zweite\n- dritte\n",
 			prompt::locale_marker("de-DE"),
 		);
-		assert!(validate_reply(&reply, boundary, &segment::mask(source)).is_ok());
+		assert!(
+			validate_reply(
+				&reply,
+				boundary,
+				segment::Region::Body,
+				&segment::mask(source)
+			)
+			.is_ok()
+		);
 	}
 
 	#[test]
@@ -443,7 +465,12 @@ mod tests {
 			"{}\n{boundary}\nPaid-for prose remains intact.\n{boundary}\n",
 			prompt::locale_marker("en-US"),
 		);
-		let result = validate_reply(&reply, boundary, &segment::mask("source"));
+		let result = validate_reply(
+			&reply,
+			boundary,
+			segment::Region::Body,
+			&segment::mask("source"),
+		);
 		assert!(matches!(&result, Err(Refusal::Failed(_))));
 
 		let mut sidecar = store::Sidecar::default();

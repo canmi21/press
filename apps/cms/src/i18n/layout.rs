@@ -35,6 +35,11 @@ pub fn build(root: &Path) -> std::io::Result<Layout> {
 	let mut articles = BTreeMap::new();
 	for path in crate::refs::markdown_under(&contents)? {
 		let article = std::fs::read_to_string(&path)?;
+		let live = super::segment::translatable(&article);
+		let sidecar_path = super::store::path_for(&path);
+		if let Some(sidecar) = super::store::load_checked(&sidecar_path)? {
+			super::validate::sidecar(&sidecar_path, &live, &sidecar)?;
+		}
 		let relative = path
 			.strip_prefix(&contents)
 			.map_err(|error| std::io::Error::other(error.to_string()))?

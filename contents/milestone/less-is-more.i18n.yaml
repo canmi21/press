@@ -1757,7 +1757,7 @@ segments:
       review: false
   b60e899dca8ebe5689336bfe87e8278c:
     de-DE:
-      text: Von Next.js 13 :tn[immer wieder aufgeschoben]{is="Das ursprüngliche 鸽 ist chinesischer Internetslang, abgeleitet von 放鸽子, und bezeichnet scherzhaft das wiederholte Verschieben einer versprochenen Sache"} bis Next.js 16
+      text: Von Next.js 13 immer wieder aufgeschoben bis Next.js 16
       provider: openai
       model: gpt-5-6-luna-medium
       at: 2026-08-03T03:15:27.087993Z
@@ -1765,7 +1765,7 @@ segments:
       tokens: 16384
       review: false
     en-US:
-      text: From Next.js 13 :tn[repeatedly putting off the upgrade]{is="The original word 鸽 is Chinese internet slang derived from 放鸽子, jokingly meaning to keep postponing something promised"} to Next.js 16
+      text: From Next.js 13 repeatedly putting off the upgrade to Next.js 16
       provider: openai
       model: gpt-5-6-luna-medium
       at: 2026-08-03T03:15:27.087993Z
@@ -1773,7 +1773,7 @@ segments:
       tokens: 16384
       review: false
     es-ES:
-      text: De Next.js 13 a Next.js 16, una actualización :tn[pospuesta una y otra vez]{is="La palabra original 鸽 es jerga china de Internet, derivada de 放鸽子, y alude en tono humorístico a aplazar repetidamente algo prometido"}
+      text: De Next.js 13 a Next.js 16, una actualización pospuesta una y otra vez
       provider: openai
       model: gpt-5-6-luna-medium
       at: 2026-08-03T03:15:27.087993Z
@@ -1781,7 +1781,7 @@ segments:
       tokens: 16384
       review: false
     fr-FR:
-      text: De Next.js 13 à Next.js 16, une mise à niveau :tn[repoussée encore et encore]{is="Le mot original 鸽 est un argot chinois d’Internet dérivé de 放鸽子, employé sur le ton de la plaisanterie pour parler d’une promesse sans cesse repoussée"}
+      text: De Next.js 13 à Next.js 16, une mise à niveau repoussée encore et encore
       provider: openai
       model: gpt-5-6-luna-medium
       at: 2026-08-03T03:15:27.087993Z
@@ -1789,7 +1789,7 @@ segments:
       tokens: 16384
       review: false
     ja-JP:
-      text: Next.js 13からNext.js 16まで:tn[先延ばしし続けた]{is="原文の「鸽」は「放鸽子」に由来する中国語ネットスラングで、約束したことを何度も先送りする様子を軽くからかう表現"}アップグレード
+      text: Next.js 13からNext.js 16まで先延ばしし続けたアップグレード
       provider: openai
       model: gpt-5-6-luna-medium
       at: 2026-08-03T03:15:27.087993Z
@@ -1797,7 +1797,7 @@ segments:
       tokens: 16384
       review: false
     ko-KR:
-      text: Next.js 13에서 Next.js 16까지 :tn[계속 미룬]{is="원문의 鸽은 放鸽子에서 유래한 중국어 인터넷 속어로, 약속한 일을 계속 미룬다는 뜻을 익살스럽게 나타냅니다"} 업그레이드
+      text: Next.js 13에서 Next.js 16까지 계속 미룬 업그레이드
       provider: openai
       model: gpt-5-6-luna-medium
       at: 2026-08-03T03:15:27.087993Z
@@ -1805,7 +1805,7 @@ segments:
       tokens: 16384
       review: false
     zh-CN:
-      text: 从 Next.js 13 :tn[一拖再拖]{is="原词“鸽”是源自“放鸽子”的中文网络俚语，带有反复推迟承诺之事的调侃意味"}到 Next.js 16
+      text: 从 Next.js 13 一拖再拖到 Next.js 16
       provider: openai
       model: gpt-5-6-luna-medium
       at: 2026-08-03T03:15:27.087993Z
@@ -1813,7 +1813,7 @@ segments:
       tokens: 16384
       review: false
     zh-TW:
-      text: 從 Next.js 13 :tn[一再拖延]{is="原詞「鸽」是源自「放鸽子」的中文網路俚語，帶有反覆延後承諾之事的調侃意味"}到 Next.js 16
+      text: 從 Next.js 13 一再拖延到 Next.js 16
       provider: openai
       model: gpt-5-6-luna-medium
       at: 2026-08-03T03:15:27.087993Z

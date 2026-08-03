@@ -115,6 +115,7 @@ export async function buildArticles(
 						await compile(raws[code], url, {
 							resolveAsset: createAssetResolver(assets, media, previews, PUBLIC_LANGUAGE[code]),
 							highlight,
+							sourceFile: file,
 						}),
 					]),
 				),
@@ -175,10 +176,10 @@ export async function buildPages(
 		]);
 		const sidecar = parseYaml(sidecarText) as TranslationSidecar;
 		const path = articlePath(paths.contents, file);
-		const source = compilePage(raw);
+		const source = compilePage(raw, file);
 		const { raws } = translatedRaws(file, `${path}.md`, raw, sidecar, layout);
 		const compiled = Object.fromEntries(
-			LOCALE_CODES.map((code) => [code, code === 'mw' ? source : compilePage(raws[code])]),
+			LOCALE_CODES.map((code) => [code, code === 'mw' ? source : compilePage(raws[code], file)]),
 		) as Record<LocaleCode, CompiledPage>;
 		const views = Object.fromEntries(
 			LOCALE_CODES.map((code) => {

@@ -3122,7 +3122,7 @@ segments:
       review: false
   e4f45bb1cfbab66a39437d6e7026e471:
     de-DE:
-      text: Cargo darf nicht länger:tn[bummeln]{is="Der chinesische Ausdruck im Original ist Internet-Slang für Faulenzen oder lustloses Arbeiten. Der Titel personifiziert Cargo als jemanden, der bei der Arbeit trödelt."}
+      text: Cargo darf nicht länger bummeln
       provider: openai
       model: gpt-5-6-luna-medium
       at: 2026-08-03T03:14:18.100783Z
@@ -3130,7 +3130,7 @@ segments:
       tokens: 16091
       review: false
     en-US:
-      text: Don’t let Cargo :tn[slack off]{is="The original Chinese expression is internet slang for slacking or doing little work. The title personifies Cargo as an employee idling on the job."} anymore
+      text: Don’t let Cargo slack off anymore
       provider: openai
       model: gpt-5-6-luna-medium
       at: 2026-08-03T03:14:18.100783Z
@@ -3138,7 +3138,7 @@ segments:
       tokens: 16091
       review: false
     es-ES:
-      text: Que Cargo deje de:tn[escaquearse]{is="La expresión china original es una jerga de internet que significa vaguear o trabajar sin ganas. El título personifica a Cargo como un empleado que se escaquea en el trabajo."}
+      text: Que Cargo deje de escaquearse
       provider: openai
       model: gpt-5-6-luna-medium
       at: 2026-08-03T03:14:18.100783Z
@@ -3146,7 +3146,7 @@ segments:
       tokens: 16091
       review: false
     fr-FR:
-      text: Fini, Cargo, de:tn[paresser]{is="L’expression chinoise originale est un terme d’argot en ligne qui signifie travailler mollement ou ne rien faire. Le titre personnifie Cargo comme un employé qui se tourne les pouces."}
+      text: Fini, Cargo, de paresser
       provider: openai
       model: gpt-5-6-luna-medium
       at: 2026-08-03T03:14:18.100783Z
@@ -3154,7 +3154,7 @@ segments:
       tokens: 16091
       review: false
     ja-JP:
-      text: Cargoをもう:tn[サボらせない]{is="原文の中国語表現は、怠けたり仕事をさぼったりすることを表すネットスラングです。タイトルではCargoを仕事中に怠ける人のように擬人化しています。"}
+      text: Cargoをもうサボらせない
       provider: openai
       model: gpt-5-6-luna-medium
       at: 2026-08-03T03:14:18.100783Z
@@ -3162,7 +3162,7 @@ segments:
       tokens: 16091
       review: false
     ko-KR:
-      text: Cargo가 더 이상:tn[농땡이 피우지 못하게 하자]{is="원문의 중국어 표현은 게으름을 피우거나 일을 대충 하는 것을 뜻하는 인터넷 속어입니다. 제목에서는 Cargo를 근무 중에 농땡이를 피우는 사람처럼 의인화합니다."}
+      text: Cargo가 더 이상 농땡이 피우지 못하게 하자
       provider: openai
       model: gpt-5-6-luna-medium
       at: 2026-08-03T03:14:18.100783Z
@@ -3170,7 +3170,7 @@ segments:
       tokens: 16091
       review: false
     zh-CN:
-      text: 不许 Cargo 再:tn[摸鱼]{is="“摸鱼”是网络口语，指偷懒或消极怠工。标题把 Cargo 拟人化成了上班划水的员工。"}了
+      text: 不许 Cargo 再摸鱼了
       provider: openai
       model: gpt-5-6-luna-medium
       at: 2026-08-03T03:14:18.100783Z
@@ -3178,7 +3178,7 @@ segments:
       tokens: 16091
       review: false
     zh-TW:
-      text: 不准 Cargo 再:tn[摸魚]{is="「摸魚」是網路用語，指偷懶或消極怠工。標題把 Cargo 擬人化成上班摸魚的員工。"}了
+      text: 不准 Cargo 再摸魚了
       provider: openai
       model: gpt-5-6-luna-medium
       at: 2026-08-03T03:14:18.100783Z

@@ -1,6 +1,6 @@
 import { URLS } from '@canmi/urls';
 import { toHtml } from 'hast-util-to-html';
-import { toHast } from 'mdast-util-to-hast';
+import { toHast, type Handler } from 'mdast-util-to-hast';
 import { toString as mdastToString } from 'mdast-util-to-string';
 import remarkDirective from 'remark-directive';
 import remarkFrontmatter from 'remark-frontmatter';
@@ -110,7 +110,7 @@ function proseHtml(node: RootContent): string {
 				properties: {},
 				children: state.all(deleteNode),
 			}),
-			textDirective: (state, directiveNode) => {
+			textDirective: ((state, directiveNode) => {
 				const directive = directiveNode as TextDirective;
 				const attrs = (directive.attributes ?? {}) as DirectiveAttrs;
 				const children = state.all(directive);
@@ -143,30 +143,58 @@ function proseHtml(node: RootContent): string {
 						children,
 					};
 				}
-				// A translator's note: the translated words stay in the sentence, and what the
-				// original did sits underneath them. Rendered as an abbr rather than a footnote
-				// because these explain a word, not a passage -- sending a reader to the end of
-				// the article and back costs more attention than the note is worth. The marker
-				// is a dotted underline, the convention for "there is more here if you want it".
+				// A translator's note explains the marked words in place. It becomes a real button
+				// because a native title tooltip cannot carry these paragraph-length notes on touch
+				// or keyboard; ArticleBody owns the one live popover used by every prose block.
 				if (directive.name === 'tn') {
 					const note = typeof attrs.is === 'string' ? attrs.is : '';
 					return {
 						type: 'element',
-						tagName: 'abbr',
+						tagName: 'button',
 						properties: {
-							title: note,
-							// Focusable so the note is reachable without a pointer; `abbr` alone is
-							// not, and hover is not an interaction every reader has.
-							tabIndex: 0,
-							className: [
-								'decoration-dotted',
-								'underline',
-								'decoration-border',
-								'underline-offset-4',
-								'cursor-help',
-							],
+							type: 'button',
+							className: ['tn-trigger'],
+							'data-tn-note': note,
+							ariaControls: ['translator-note'],
+							ariaExpanded: 'false',
 						},
-						children,
+						children: [
+							...children,
+							{
+								type: 'element' as const,
+								tagName: 'svg',
+								properties: {
+									className: ['tn-icon'],
+									viewBox: '0 0 24 24',
+									fill: 'none',
+									stroke: 'currentColor',
+									strokeWidth: '2',
+									strokeLineCap: 'round',
+									strokeLineJoin: 'round',
+									ariaHidden: 'true',
+								},
+								children: [
+									{
+										type: 'element' as const,
+										tagName: 'circle',
+										properties: { cx: '12', cy: '12', r: '10' },
+										children: [],
+									},
+									{
+										type: 'element' as const,
+										tagName: 'path',
+										properties: { d: 'M12 16v-4' },
+										children: [],
+									},
+									{
+										type: 'element' as const,
+										tagName: 'path',
+										properties: { d: 'M12 8h.01' },
+										children: [],
+									},
+								],
+							},
+						],
 					};
 				}
 				return {
@@ -175,7 +203,7 @@ function proseHtml(node: RootContent): string {
 					properties: { className: styleClasses(attrs) },
 					children,
 				};
-			},
+			}) satisfies Handler,
 		},
 	});
 	return hast ? toHtml(hast) : '';
@@ -219,9 +247,7 @@ function proseMarkdown(node: RootContent): string {
 	// directive and throws on one it has not seen, so this path worked only for as long as every
 	// directive in the corpus happened to be reachable another way -- `:tn` was the first that
 	// was not, and it failed the whole page rather than the one node.
-	return stringifier
-		.stringify({ type: 'root', children: lowerDirectives([node]) } as Root)
-		.trim();
+	return stringifier.stringify({ type: 'root', children: lowerDirectives([node]) } as Root).trim();
 }
 
 // `## Intro {#getting-started}` -> { text: 'Intro', slug: 'getting-started' }.
@@ -305,6 +331,20 @@ export type CompileContext = {
 	sourceFile?: string;
 };
 
+const TRANSLATABLE_FRONTMATTER = ['title', 'subtitle', 'description'] as const;
+
+function assertFrontmatterHasNoTranslatorNotes(
+	meta: Partial<ArticleMeta> | Record<string, string>,
+	file: string,
+): void {
+	for (const key of TRANSLATABLE_FRONTMATTER) {
+		const value = meta[key];
+		if (typeof value === 'string' && value.includes(':tn')) {
+			throw new Error(`${file}: translator's notes are not allowed in frontmatter ${key}`);
+		}
+	}
+}
+
 export async function compile(
 	raw: string,
 	url: string,
@@ -322,6 +362,7 @@ export async function compile(
 		if (node.type === 'yaml') {
 			meta = parseYaml(node.value) as ArticleMeta;
 			if (sourceFile) assertLanguageTag(meta?.lang, sourceFile);
+			assertFrontmatterHasNoTranslatorNotes(meta ?? {}, sourceFile ?? url);
 			continue;
 		}
 
@@ -488,7 +529,7 @@ function inlineSegments(node: Paragraph): InlineSegment[] {
 // A standalone page (e.g. the homepage at contents/homepage.md). Unlike an article
 // it carries free-form frontmatter and produces blocks for the route to render
 // plus the DLC-lowered prose body (getPage wraps it into the served document).
-export function compilePage(raw: string): CompiledPage {
+export function compilePage(raw: string, sourceFile = 'page frontmatter'): CompiledPage {
 	const tree = parser.parse(raw) as Root;
 	let meta: Record<string, string> = {};
 	const blocks: PageBlock[] = [];
@@ -497,6 +538,7 @@ export function compilePage(raw: string): CompiledPage {
 	for (const node of tree.children) {
 		if (node.type === 'yaml') {
 			meta = (parseYaml(node.value) ?? {}) as Record<string, string>;
+			assertFrontmatterHasNoTranslatorNotes(meta, sourceFile);
 			continue;
 		}
 		bodyNodes.push(node);

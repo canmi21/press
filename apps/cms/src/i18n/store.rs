@@ -59,6 +59,17 @@ pub fn load(path: &Path) -> Sidecar {
 		})
 }
 
+pub fn load_checked(path: &Path) -> std::io::Result<Option<Sidecar>> {
+	let text = match std::fs::read_to_string(path) {
+		Ok(text) => text,
+		Err(error) if error.kind() == std::io::ErrorKind::NotFound => return Ok(None),
+		Err(error) => return Err(error),
+	};
+	serde_yaml_ng::from_str(&text)
+		.map(Some)
+		.map_err(|error| std::io::Error::new(std::io::ErrorKind::InvalidData, error.to_string()))
+}
+
 pub fn save(path: &Path, sidecar: &Sidecar) -> std::io::Result<()> {
 	let text =
 		serde_yaml_ng::to_string(sidecar).map_err(|error| std::io::Error::other(error.to_string()))?;
@@ -97,12 +108,16 @@ pub fn missing(
 	glosses: &super::tn::Table,
 ) -> BTreeMap<String, Vec<String>> {
 	let mut wanted = BTreeMap::new();
-	for (id, _) in live.iter() {
+	for (id, segment) in live.iter() {
 		let have = sidecar.segments.get(id);
-		let required = glosses
-			.find(id)
-			.map(|entry| entry.spans.as_slice())
-			.unwrap_or_default();
+		let required = if segment.region == super::segment::Region::Body {
+			glosses
+				.find(id)
+				.map(|entry| entry.spans.as_slice())
+				.unwrap_or_default()
+		} else {
+			&[]
+		};
 		let absent: Vec<String> = locales
 			.iter()
 			.filter(|locale| match have.and_then(|map| map.get(**locale)) {
@@ -199,18 +214,15 @@ mod tests {
 		// The shape a correct translation has: wholly in its own language, with the original
 		// inside the note rather than on the page.
 		let mut noted = entry();
-		noted.text = ":tn[old-school]{is=\"the source reads 古法, an antique-craft word\"} programming"
-			.into();
+		noted.text =
+			":tn[old-school]{is=\"the source reads 古法, an antique-craft word\"} programming".into();
 		let mut plain = entry();
 		plain.text = "old-school programming".into();
 
 		let mut sidecar = Sidecar::default();
 		sidecar.segments.insert(
 			id.clone(),
-			BTreeMap::from([
-				("ja-JP".to_owned(), noted),
-				("de-DE".to_owned(), plain),
-			]),
+			BTreeMap::from([("ja-JP".to_owned(), noted), ("de-DE".to_owned(), plain)]),
 		);
 
 		let mut glosses = crate::i18n::tn::Table::default();
@@ -237,7 +249,6 @@ mod tests {
 		// The annotated one is left alone; the one that lost the note is asked for again.
 		let want = missing(&sidecar, &live, &["ja-JP", "de-DE"], &glosses);
 		assert_eq!(want[&id], vec!["de-DE"]);
-
 	}
 
 	#[test]

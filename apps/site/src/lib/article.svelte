@@ -151,7 +151,7 @@
 			</div>
 		</header>
 
-		<div class="article-body mt-8 space-y-4 leading-relaxed">
+		<div class="article-body mt-8 leading-relaxed">
 			{@render children()}
 		</div>
 	</article>

@@ -93,6 +93,16 @@ pub fn build(
 	} else {
 		""
 	};
+	let note_policy = if segment.region == Region::Frontmatter {
+		"- Translator's notes are forbidden in display metadata. Translate idioms and local \
+		 references directly; never output `:tn` syntax here."
+	} else {
+		"- Where a passage keeps its original form and a reader of the target language would \
+		 then be unable to recover its meaning -- a quoted idiom, a pun, a local reference -- \
+		 add `:tn[word]{{is=\"short explanation\"}}` immediately after it. Leaving a reader \
+		 with characters they cannot read and no gloss is worse than a brief note. At most one \
+		 per block, and none where the surrounding sentence already makes the meaning plain."
+	};
 	let navigation = if segment.kind == Kind::Heading && segment.region == Region::Body {
 		"\n- This heading also appears in a narrow table of contents. Translate it as a concise \
 		 navigation label. Preserve its meaning, tone, and necessary technical terms, but avoid \
@@ -103,7 +113,11 @@ pub fn build(
 
 	// An entry exists because a person chose to record it: `cms tn` prints and only writes when
 	// asked, so the review happened before the file did. See spec/i18n.md.
-	let notes = gloss.map(super::tn::rule).unwrap_or_default();
+	let notes = if segment.region == Region::Body {
+		gloss.map(super::tn::rule).unwrap_or_default()
+	} else {
+		String::new()
+	};
 
 	let text = format!(
 		"You are translating one block of an article. The article is written in a mixture of \
@@ -122,11 +136,7 @@ pub fn build(
 		 names and brands keep their original form -- prose around them is translated.\n\
 		 - Nothing may survive untranslated merely because it is a term of art. If a phrase has \
 		 an established equivalent in the target language, use it.\n\
-		 - Where a passage keeps its original form and a reader of the target language would \
-		 then be unable to recover its meaning -- a quoted idiom, a pun, a local reference -- \
-		 add `:tn[word]{{is=\"short explanation\"}}` immediately after it. Leaving a reader \
-		 with characters they cannot read and no gloss is worse than a brief note. At most one \
-		 per block, and none where the surrounding sentence already makes the meaning plain.\n\
+		 {note_policy}\n\
 		 - Keep markdown structure: emphasis, links and list markers stay as they are.\n\
 		 {notes}\
 		 {metadata}\n\
@@ -250,6 +260,8 @@ mod tests {
 				.contains("Never copy a neighbouring language's punctuation")
 		);
 		assert!(!request.text.contains("narrow table of contents"));
+		assert!(request.text.contains("Translator's notes are forbidden"));
+		assert!(!request.text.contains("add `:tn[word]"));
 	}
 
 	#[test]
@@ -325,7 +337,14 @@ mod tests {
 
 	#[test]
 	fn a_directive_is_told_which_attributes_are_addresses() {
-		let text = build(&segment(Kind::Directive), "::image{src=\"a\"}", None, None, None).text;
+		let text = build(
+			&segment(Kind::Directive),
+			"::image{src=\"a\"}",
+			None,
+			None,
+			None,
+		)
+		.text;
 		assert!(text.contains("leave"));
 		assert!(text.contains("src"));
 	}

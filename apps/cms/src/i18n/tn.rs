@@ -84,7 +84,8 @@ impl Table {
 	/// in each and either answers. Translation asks about a segment and does not care which
 	/// article carried the scan.
 	pub fn find(&self, id: &str) -> Option<&Entry> {
-		self.articles
+		self
+			.articles
 			.values()
 			.find_map(|article| article.segments.get(id))
 	}
@@ -236,10 +237,9 @@ pub fn attach(
 ) -> Vec<(String, String, Vec<Gloss>)> {
 	let mut by_segment: BTreeMap<String, (String, Vec<Gloss>)> = BTreeMap::new();
 	for gloss in found {
-		let Some(segment) = segments
-			.iter()
-			.find(|segment| segment.source.contains(&gloss.phrase))
-		else {
+		let Some(segment) = segments.iter().find(|segment| {
+			segment.region == super::segment::Region::Body && segment.source.contains(&gloss.phrase)
+		}) else {
 			continue;
 		};
 		by_segment
@@ -273,8 +273,7 @@ mod tests {
 			source: "奇怪的是，放手之后质量并没有变差".to_owned(),
 			spans: vec![Gloss {
 				phrase: "古法".to_owned(),
-				guidance: "literally 'the old method': writing every line by hand, before AI"
-					.to_owned(),
+				guidance: "literally 'the old method': writing every line by hand, before AI".to_owned(),
 			}],
 		}
 	}
@@ -291,6 +290,18 @@ mod tests {
 		// The finding still reaches the model, as a finding.
 		assert!(rule.contains("古法"));
 		assert!(rule.contains("the old method"));
+	}
+
+	#[test]
+	fn frontmatter_suggestions_are_never_attached() {
+		let segments =
+			crate::i18n::segment::split("---\ntitle: A local idiom\n---\n\nBody without that phrase.");
+		let found = vec![Gloss {
+			phrase: "local idiom".to_owned(),
+			guidance: "context".to_owned(),
+		}];
+
+		assert!(attach(&segments, &found).is_empty());
 	}
 
 	#[test]
@@ -315,7 +326,9 @@ mod tests {
 	#[test]
 	fn a_table_round_trips_and_finds_a_segment_through_its_article() {
 		let mut table = Table::default();
-		table.articles.insert("milestone/a.md".to_owned(), article());
+		table
+			.articles
+			.insert("milestone/a.md".to_owned(), article());
 		let text = serde_yaml_ng::to_string(&table).expect("yaml");
 		let back: Table = serde_yaml_ng::from_str(&text).expect("parse");
 		assert_eq!(back.find("abc123"), Some(&entry()));
@@ -329,7 +342,9 @@ mod tests {
 		let mut table = Table::default();
 		let mut empty = article();
 		empty.segments.clear();
-		table.articles.insert("milestone/quiet.md".to_owned(), empty);
+		table
+			.articles
+			.insert("milestone/quiet.md".to_owned(), empty);
 		assert!(table.scanned("milestone/quiet.md"));
 		assert!(!table.scanned("milestone/unread.md"));
 	}
