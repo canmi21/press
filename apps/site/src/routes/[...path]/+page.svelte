@@ -7,5 +7,5 @@
 </script>
 
 <Article meta={data.meta} chars={data.chars} locale={data.locale}>
-	<ArticleBody blocks={data.blocks} />
+	<ArticleBody blocks={data.blocks} locale={data.locale.code} />
 </Article>

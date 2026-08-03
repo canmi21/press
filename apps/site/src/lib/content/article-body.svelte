@@ -2,15 +2,19 @@
 	import CodeBlock from '$lib/codeblock.svelte';
 	import Image from '$lib/image.svelte';
 	import LinkCard from '$lib/linkcard.svelte';
+	import { MESSAGES } from '$lib/messages';
 	import Placeholder from '$lib/placeholder.svelte';
 	import Section from '$lib/section.svelte';
 	import SvgCanvas from '$lib/svg-canvas.svelte';
+	import Info from '@lucide/svelte/icons/info';
 	import X from '@lucide/svelte/icons/x';
+	import { cubicOut } from 'svelte/easing';
 	import { tick } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import type { Block } from '$lib/content/types';
+	import type { LocaleCode } from '$lib/locale';
 
-	let { blocks }: { blocks: Block[] } = $props();
+	let { blocks, locale }: { blocks: Block[]; locale: LocaleCode } = $props();
 	let root = $state<HTMLElement>();
 	let panel = $state<HTMLElement>();
 	let trigger: HTMLButtonElement | undefined;
@@ -79,7 +83,7 @@
 	}
 
 	function fadeMs(): number {
-		return globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 0 : 120;
+		return globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 0 : 150;
 	}
 
 	$effect(() => {
@@ -149,22 +153,26 @@
 		bind:this={panel}
 		id="translator-note"
 		role="note"
-		transition:fade={{ duration: fadeMs() }}
+		aria-labelledby="translator-note-label"
+		transition:fade={{ duration: fadeMs(), easing: cubicOut }}
 		style="--tn-top: {top}px; --tn-left: {left}px"
-		class="tn-popover fixed z-40 rounded-lg border border-border bg-paper p-3 text-sm leading-relaxed text-text shadow-lg"
+		class="tn-popover fixed z-40 overflow-hidden rounded-md border border-border bg-paper text-sm leading-relaxed text-text shadow-sm"
 	>
-		<div class="mb-1 flex items-center justify-between gap-4">
-			<span class="text-xs font-medium tracking-wide text-text-soft uppercase">TN</span>
+		<div class="flex items-center gap-2 px-2 py-1 text-text-soft">
+			<Info class="size-3.5 shrink-0" aria-hidden="true" />
+			<span id="translator-note-label" class="flex-1 text-xs font-medium"
+				>{MESSAGES[locale].translatorNote}</span
+			>
 			<button
 				type="button"
 				onclick={() => closeNote(true)}
 				class="-m-1 cursor-pointer rounded-sm p-1 text-text-soft hover:bg-paper-hover hover:text-text-strong"
-				aria-label="Close translator's note"
+				aria-label={MESSAGES[locale].closeTranslatorNote}
 			>
 				<X class="size-3.5" aria-hidden="true" />
 			</button>
 		</div>
-		<p id="translator-note-description">{note}</p>
+		<p id="translator-note-description" class="border-t border-border px-3 py-2">{note}</p>
 	</aside>
 {/if}
 
