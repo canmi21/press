@@ -1,8 +1,14 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import ChevronUp from '@lucide/svelte/icons/chevron-up';
-	import Globe from '@lucide/svelte/icons/globe';
-	import Languages from '@lucide/svelte/icons/languages';
+	// Mingcute rather than Lucide for the language marks: it distinguishes machine translation
+	// from translation in general, which is the distinction this menu is about. Iconify icons
+	// carry their own viewBox, so they are sized by height with an automatic width -- forcing a
+	// square scales them inconsistently against each other. See spec/naming.md for the sizes.
+	import IconTranslate from '~icons/mingcute/translate-line';
+	import IconTranslateAi from '~icons/mingcute/translate-2-ai-line';
+	import IconTranslateSimplified from '~icons/mingcute/translate-2-line';
+	import IconWorld from '~icons/mingcute/world-2-line';
+	import IconUpSmall from '~icons/mingcute/up-small-line';
 	import { tick } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
@@ -24,6 +30,31 @@
 	function fadeMs(): number {
 		return globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 0 : 150;
 	}
+
+	/**
+	 * The mark a language carries, assigned rather than derived.
+	 *
+	 * Three marks across eight languages, chosen per language: there is no property of a locale
+	 * that produces this grouping, so it is written out instead of computed from one. The
+	 * original stands apart with a globe, being the one view nothing was done to.
+	 */
+	const MARKS = {
+		en: IconTranslate,
+		es: IconTranslate,
+		zh: IconTranslateSimplified,
+		tw: IconTranslateAi,
+		ja: IconTranslateAi,
+		ko: IconTranslateAi,
+		de: IconTranslateAi,
+		fr: IconTranslateAi,
+		mw: IconWorld,
+	} as const satisfies Record<LocaleCode, unknown>;
+
+	function markFor(choice: LanguageChoice) {
+		return MARKS[choice.code];
+	}
+
+	const CurrentMark = $derived(markFor(current));
 
 	function optionButtons(): HTMLButtonElement[] {
 		return rootEl
@@ -118,14 +149,10 @@
 		onkeydown={handleTriggerKeydown}
 		class="-mx-1 inline-flex cursor-pointer items-center gap-1 rounded-sm px-1 py-0.5 hover:bg-paper-hover hover:text-text-strong"
 	>
-		{#if code === 'mw'}
-			<Globe class="size-3.5" aria-hidden="true" />
-		{:else}
-			<Languages class="size-3.5" aria-hidden="true" />
-		{/if}
+		<CurrentMark class="h-4 w-auto" aria-hidden="true" />
 		<span>{current?.name}</span>
-		<ChevronUp
-			class="size-3 transition-transform duration-200 ease-out motion-reduce:transition-none {open
+		<IconUpSmall
+			class="h-4 w-auto transition-transform duration-200 ease-out motion-reduce:transition-none {open
 				? ''
 				: 'rotate-180'}"
 			aria-hidden="true"
@@ -142,9 +169,7 @@
 			class="absolute top-[calc(100%+0.5rem)] left-0 z-30 min-w-36 overflow-hidden rounded-md border border-border bg-paper shadow-sm"
 		>
 			{#each choices as choice, index (choice.code)}
-				{#if index === 1}
-					<div role="separator" class="border-t border-border"></div>
-				{/if}
+				{@const Mark = markFor(choice)}
 				<button
 					data-language-option
 					type="button"
@@ -156,17 +181,10 @@
 					class="group flex w-full cursor-pointer items-center justify-between gap-3 px-2 py-1 text-left text-sm whitespace-nowrap hover:bg-paper-hover"
 				>
 					<span class={choice.current ? 'text-text-strong' : 'text-text-soft'}>{choice.name}</span>
-					{#if choice.original}
-						<Globe
-							class="size-3.5 shrink-0 text-text-soft group-hover:text-text-strong"
-							aria-hidden="true"
-						/>
-					{:else}
-						<Languages
-							class="size-3.5 shrink-0 text-text-soft group-hover:text-text-strong"
-							aria-hidden="true"
-						/>
-					{/if}
+					<Mark
+						class="h-4 w-auto shrink-0 text-text-soft group-hover:text-text-strong"
+						aria-hidden="true"
+					/>
 				</button>
 			{/each}
 		</div>

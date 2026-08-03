@@ -36,6 +36,7 @@
 		"@canmi/svg-canvas": "workspace:*",
 		"@canmi/tokens": "workspace:*",
 		"@cloudflare/workers-types": "^5.20260730.1",
+		"@iconify-json/mingcute": "^1.2.8",
 		"@jsquash/webp": "^1.5.0",
 		"@sveltejs/adapter-cloudflare": "^7.2.9",
 		"@sveltejs/kit": "^2.70.1",
@@ -52,6 +53,7 @@
 		"tailwindcss": "^4.3.3",
 		"thumbhash": "^0.1.1",
 		"typescript": "^6.0.3",
+		"unplugin-icons": "^23.0.1",
 		"vite": "^8.2.0",
 		"wrangler": "^4.115.0"
 	}

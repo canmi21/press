@@ -15,7 +15,7 @@ type Messages = {
 };
 
 export const MESSAGES = {
-	mw: { writing: 'Writing', original: 'Original' },
+	mw: { writing: 'Writing', original: '原文' },
 	de: { writing: 'Artikel', original: 'Original' },
 	en: { writing: 'Writing', original: 'Original' },
 	es: { writing: 'Artículos', original: 'Original' },

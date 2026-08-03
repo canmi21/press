@@ -5,6 +5,7 @@ import { URLS } from '@canmi/urls';
 import { sentrySvelteKit } from '@sentry/sveltekit';
 import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
+import Icons from 'unplugin-icons/vite';
 import { defineConfig } from 'vite';
 import { parse as parseYaml } from 'yaml';
 import { buildArticles, buildPages } from './src/lib/server/articles.ts';
@@ -68,6 +69,9 @@ export default defineConfig(({ mode }) => {
 	return {
 		plugins: [
 			tailwindcss(),
+			// Iconify sets compiled to Svelte components at build time, so a set contributes only
+			// the icons actually imported rather than a runtime font or sprite sheet.
+			Icons({ compiler: 'svelte' }),
 			{
 				// Content sources and sidecars are build inputs, not Worker work. Compile every
 				// browser-facing view here and serialize the lookup tables into the server bundle.

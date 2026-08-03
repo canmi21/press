@@ -32,18 +32,34 @@ describe('article language switcher', () => {
 	});
 
 	it('says original in whichever language is being read', () => {
-		expect(languageChoices('ja')[0]).toMatchObject({ code: 'mw', name: '原文' });
-		expect(languageChoices('ko')[0]).toMatchObject({ code: 'mw', name: '원문' });
-		expect(languageChoices('de')[0]).toMatchObject({ code: 'mw', name: 'Original' });
+		expect(languageChoices('ja').at(-1)).toMatchObject({ code: 'mw', name: '原文' });
+		expect(languageChoices('ko').at(-1)).toMatchObject({ code: 'mw', name: '원문' });
+		expect(languageChoices('de').at(-1)).toMatchObject({ code: 'mw', name: 'Original' });
 	});
 
-	it('lists the original first, and never among the eight', () => {
+	it('lists the original last, and never among the eight', () => {
 		for (const current of ['mw', 'de', 'en', 'es', 'fr', 'ja', 'ko', 'zh', 'tw'] as const) {
 			const choices = languageChoices(current);
-			expect(choices[0]?.code).toBe('mw');
+			expect(choices.at(-1)?.code).toBe('mw');
 			expect(choices.filter((choice) => choice.original)).toHaveLength(1);
-			expect(Object.values(LANGUAGE_ENDONYMS)).not.toContain(choices[0]?.name);
+			expect(Object.values(LANGUAGE_ENDONYMS)).not.toContain(choices.at(-1)?.name);
 		}
+	});
+
+	it('opens with the languages this site is read in', () => {
+		// Order is the declaration order of the endonym table, so a reordering there is the only
+		// way to reorder the menu -- there is no second list to forget.
+		expect(languageChoices('en').map((choice) => choice.code)).toEqual([
+			'en',
+			'zh',
+			'tw',
+			'ja',
+			'ko',
+			'de',
+			'fr',
+			'es',
+			'mw',
+		]);
 	});
 
 	it('reaches both Chinese views from either of them', () => {
