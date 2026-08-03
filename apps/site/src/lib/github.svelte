@@ -139,6 +139,15 @@
 		padding: 0.6rem 0.75rem;
 		color: inherit;
 		text-decoration: none;
+		transition:
+			background-color 150ms ease-out,
+			border-color 150ms ease-out;
+	}
+
+	.repo-card:hover,
+	.repo-card:focus-visible {
+		border-color: var(--color-border-strong);
+		background: var(--color-paper-hover);
 	}
 
 	.card-center {

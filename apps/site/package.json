@@ -17,6 +17,7 @@
 		"@chenglou/pretext": "^0.0.8",
 		"@lucide/svelte": "^1.27.0",
 		"@sentry/sveltekit": "^10.69.0",
+		"bits-ui": "^2.18.1",
 		"d3-hierarchy": "^3.1.2",
 		"feedsmith": "^2.9.6",
 		"hast-util-to-html": "^9.0.5",

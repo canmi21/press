@@ -80,6 +80,25 @@ The constraint: this holds only while every consumer bundles. A consumer that ru
 Node against the package would need a build. If that day comes, add the build to that one
 library rather than reinstating it everywhere.
 
+## Web interface primitives
+
+Bits UI is the site's headless behavior layer. It owns the difficult, reusable interaction
+contracts -- focus management, keyboard navigation, dismissal and floating placement -- while
+the site's tokens and local Tailwind classes continue to own every visible decision. Importing
+a styled component kit on top would create a second design system, so project wrappers under
+`apps/site/src/lib/ui/` expose the small set of surfaces the site actually repeats.
+
+Use a primitive where the interaction is conventional and accessibility-heavy, such as a
+menu or popover. Do not force data visualisation through it: Cargo and Tokei deliberately keep
+one specialised tooltip for hundreds of SVG regions rather than instantiating a general
+component per region. Headless is a boundary for shared behaviour, not a requirement that
+every interactive pixel come from the same package.
+
+The visual language stays independent of that boundary. Interface chrome is neutral paper,
+a quiet one-pixel border, compact type and a small shadow only on floating surfaces; colour is
+reserved for focus, state and data. A categorical chart may be colourful, but its controls,
+tooltips and surrounding statistics use the same surfaces as the rest of the site.
+
 ## Workspace wiring
 
 The two package managers disagree about strictness, and the layout has to respect that.

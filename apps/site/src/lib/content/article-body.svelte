@@ -9,21 +9,19 @@
 	import Tokei from '$lib/tokei.svelte';
 	import Cargo from '$lib/cargo.svelte';
 	import GitHub from '$lib/github.svelte';
+	import PopoverContent from '$lib/ui/popover-content.svelte';
 	import Info from '@lucide/svelte/icons/info';
 	import X from '@lucide/svelte/icons/x';
-	import { cubicOut } from 'svelte/easing';
-	import { tick } from 'svelte';
-	import { fade } from 'svelte/transition';
+	import { Popover } from 'bits-ui';
 	import type { Block } from '$lib/content/types';
 	import type { LocaleCode } from '$lib/locale';
 
 	let { blocks, locale }: { blocks: Block[]; locale: LocaleCode } = $props();
 	let root = $state<HTMLElement>();
-	let panel = $state<HTMLElement>();
-	let trigger: HTMLButtonElement | undefined;
+	let trigger = $state<HTMLButtonElement>();
 	let note = $state('');
-	let top = $state(0);
-	let left = $state(0);
+	let open = $state(false);
+	let restoreFocusOnDismiss = false;
 
 	function noteTrigger(target: EventTarget | null): HTMLButtonElement | undefined {
 		if (!(target instanceof Element)) return undefined;
@@ -31,32 +29,16 @@
 		return found && root?.contains(found) ? found : undefined;
 	}
 
-	function positionNote() {
-		if (!trigger || !panel) return;
-		const anchor = trigger.getBoundingClientRect();
-		const box = panel.getBoundingClientRect();
-		const gutter = 12;
-		const below = anchor.bottom + 10;
-		const above = anchor.top - box.height - 10;
-		top = below + box.height <= window.innerHeight - gutter || above < gutter ? below : above;
-		left = Math.min(
-			Math.max(anchor.left + anchor.width / 2 - box.width / 2, gutter),
-			window.innerWidth - box.width - gutter,
-		);
-	}
-
 	function closeNote(restoreFocus: boolean) {
 		if (!trigger) return;
 		trigger.setAttribute('aria-expanded', 'false');
 		trigger.removeAttribute('aria-describedby');
-		const previous = trigger;
-		trigger = undefined;
-		note = '';
-		if (restoreFocus) previous.focus();
+		open = false;
+		if (restoreFocus) trigger.focus();
 	}
 
-	async function openNote(next: HTMLButtonElement) {
-		if (trigger === next) {
+	function openNote(next: HTMLButtonElement) {
+		if (trigger === next && open) {
 			closeNote(true);
 			return;
 		}
@@ -65,13 +47,12 @@
 		note = next.dataset.tnNote ?? '';
 		next.setAttribute('aria-expanded', 'true');
 		next.setAttribute('aria-describedby', 'translator-note-description');
-		await tick();
-		positionNote();
+		open = true;
 	}
 
 	function handleClick(event: MouseEvent) {
 		const next = noteTrigger(event.target);
-		if (next) void openNote(next);
+		if (next) openNote(next);
 	}
 
 	function noteEvents(node: HTMLElement) {
@@ -85,30 +66,20 @@
 		};
 	}
 
-	function fadeMs(): number {
-		return globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 0 : 150;
+	function handleOpenChange(next: boolean) {
+		if (next) {
+			open = true;
+			return;
+		}
+		closeNote(restoreFocusOnDismiss);
+		restoreFocusOnDismiss = false;
 	}
 
-	$effect(() => {
-		if (!note) return;
-		const pointerDown = (event: PointerEvent) => {
-			if (!(event.target instanceof Node)) return;
-			if (!panel?.contains(event.target) && !trigger?.contains(event.target)) closeNote(false);
-		};
-		const keyDown = (event: KeyboardEvent) => {
-			if (event.key === 'Escape') closeNote(true);
-		};
-		document.addEventListener('pointerdown', pointerDown, true);
-		document.addEventListener('keydown', keyDown);
-		window.addEventListener('resize', positionNote);
-		window.addEventListener('scroll', positionNote, true);
-		return () => {
-			document.removeEventListener('pointerdown', pointerDown, true);
-			document.removeEventListener('keydown', keyDown);
-			window.removeEventListener('resize', positionNote);
-			window.removeEventListener('scroll', positionNote, true);
-		};
-	});
+	function finishOpenChange(next: boolean) {
+		if (next) return;
+		trigger = undefined;
+		note = '';
+	}
 </script>
 
 <div use:noteEvents class="article-content space-y-4">
@@ -162,15 +133,16 @@
 	{/each}
 </div>
 
-{#if note}
-	<aside
-		bind:this={panel}
+<Popover.Root {open} onOpenChange={handleOpenChange} onOpenChangeComplete={finishOpenChange}>
+	<PopoverContent
+		anchor={trigger ?? null}
 		id="translator-note"
-		role="note"
-		aria-labelledby="translator-note-label"
-		transition:fade={{ duration: fadeMs(), easing: cubicOut }}
-		style="--tn-top: {top}px; --tn-left: {left}px"
-		class="tn-popover fixed z-40 overflow-hidden rounded-md border border-border bg-paper text-sm leading-relaxed text-text shadow-sm"
+		labelledby="translator-note-label"
+		describedby="translator-note-description"
+		onEscapeKeydown={() => (restoreFocusOnDismiss = true)}
+		onInteractOutside={() => (restoreFocusOnDismiss = false)}
+		onOpenAutoFocus={(event) => event.preventDefault()}
+		onCloseAutoFocus={(event) => event.preventDefault()}
 	>
 		<div class="flex items-center gap-2 px-2 py-1 text-text-soft">
 			<Info class="size-3.5 shrink-0" aria-hidden="true" />
@@ -187,8 +159,8 @@
 			</button>
 		</div>
 		<p id="translator-note-description" class="border-t border-border px-3 py-2">{note}</p>
-	</aside>
-{/if}
+	</PopoverContent>
+</Popover.Root>
 
 <style>
 	:global(.tn-trigger) {
@@ -230,25 +202,4 @@
 		text-decoration: none;
 	}
 
-	.tn-popover {
-		top: var(--tn-top);
-		left: var(--tn-left);
-		width: min(26rem, calc(100vw - 1.5rem));
-	}
-
-	@media (max-width: 40rem) {
-		.tn-popover {
-			top: auto;
-			right: 0.75rem;
-			bottom: 0.75rem;
-			left: 0.75rem;
-			width: auto;
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.tn-popover {
-			transition: none;
-		}
-	}
 </style>

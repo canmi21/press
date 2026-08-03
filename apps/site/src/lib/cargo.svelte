@@ -195,7 +195,7 @@
 				</svg>
 
 				{#if tip}
-					<div class="tooltip" style="left: {tip.x + 16}px; top: {tip.y + 16}px">
+					<div class="tooltip shadow-sm" style="left: {tip.x + 16}px; top: {tip.y + 16}px">
 						<div class="tooltip-head">
 							<span
 								class="tooltip-dot"
@@ -259,7 +259,44 @@
 </div>
 
 <style>
-	.cargo-widget { margin-block: 1.8em; }
+	.cargo-widget {
+		--cargo-1: oklch(0.56 0.09 252);
+		--cargo-2: oklch(0.56 0.09 25);
+		--cargo-3: oklch(0.56 0.08 194);
+		--cargo-4: oklch(0.56 0.08 310);
+		--cargo-5: oklch(0.56 0.08 66);
+		--cargo-6: oklch(0.56 0.08 226);
+		--cargo-7: oklch(0.56 0.08 142);
+		--cargo-8: oklch(0.56 0.075 91);
+		--cargo-9: oklch(0.53 0.085 42);
+		--cargo-10: oklch(0.53 0.075 286);
+		--cargo-11: oklch(0.53 0.075 172);
+		--cargo-12: oklch(0.53 0.07 76);
+		--cargo-13: oklch(0.53 0.075 241);
+		--cargo-14: oklch(0.53 0.075 342);
+		--cargo-15: oklch(0.53 0.07 188);
+		--cargo-16: oklch(0.53 0.07 322);
+		margin-block: 1.8em;
+	}
+	:global(.dark) .cargo-widget,
+	:global([data-theme='dark']) .cargo-widget {
+		--cargo-1: oklch(0.61 0.075 252);
+		--cargo-2: oklch(0.61 0.075 25);
+		--cargo-3: oklch(0.61 0.065 194);
+		--cargo-4: oklch(0.61 0.065 310);
+		--cargo-5: oklch(0.61 0.065 66);
+		--cargo-6: oklch(0.61 0.065 226);
+		--cargo-7: oklch(0.61 0.065 142);
+		--cargo-8: oklch(0.61 0.06 91);
+		--cargo-9: oklch(0.58 0.07 42);
+		--cargo-10: oklch(0.58 0.06 286);
+		--cargo-11: oklch(0.58 0.06 172);
+		--cargo-12: oklch(0.58 0.055 76);
+		--cargo-13: oklch(0.58 0.06 241);
+		--cargo-14: oklch(0.58 0.06 342);
+		--cargo-15: oklch(0.58 0.055 188);
+		--cargo-16: oklch(0.58 0.055 322);
+	}
 	.chart-area { min-height: 3.75rem; }
 	.chart { position: relative; }
 	.chart svg { display: block; width: 100%; height: auto; }
@@ -278,7 +315,7 @@
 	.links { display: flex; gap: 0.5rem; font-size: 0.6875rem; }
 	.links a { display: inline-flex; align-items: center; gap: 0.0625rem; color: var(--color-text-soft); text-decoration: none; transition: color 140ms ease; }
 	.links a:hover { color: var(--color-text-strong); }
-	.tooltip { position: absolute; z-index: 10; min-width: 11.25rem; max-width: 16.25rem; border: 1px solid var(--color-border); border-radius: 0.25rem; background: var(--color-paper); padding: 0.4rem 0.55rem; color: var(--color-text-strong); font-size: 0.75rem; line-height: 1.4; pointer-events: none; }
+	.tooltip { position: absolute; z-index: 10; min-width: 11.25rem; max-width: 16.25rem; border: 1px solid var(--color-border); border-radius: 0.375rem; background: var(--color-paper); padding: 0.4rem 0.55rem; color: var(--color-text); font-size: 0.75rem; line-height: 1.4; pointer-events: none; }
 	.tooltip-head { display: flex; margin-bottom: 0.3rem; align-items: center; gap: 0.3rem; }
 	.tooltip-dot { width: 0.5rem; height: 0.5rem; flex-shrink: 0; border-radius: 0.125rem; }
 	.tooltip-title { font-weight: 560; }

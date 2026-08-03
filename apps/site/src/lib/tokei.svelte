@@ -220,7 +220,7 @@
 						{@const codePercent = percent(tip.stat.code, tip.stat.lines)}
 						{@const commentPercent = percent(tip.stat.comments, tip.stat.lines)}
 						{@const blankPercent = Math.max(0, 100 - codePercent - commentPercent)}
-						<div class="tooltip" style="left: {tip.x + 16}px; top: {tip.y + 16}px">
+						<div class="tooltip shadow-sm" style="left: {tip.x + 16}px; top: {tip.y + 16}px">
 							<div class="tooltip-head">
 								<span class="tooltip-dot" style="background: {langColor(tip.stat.lang)}" aria-hidden="true"></span>
 								<span class="tooltip-title">{tip.stat.lang}</span>
@@ -285,7 +285,7 @@
 	.summary a { display: inline-flex; align-items: center; gap: 0.0625rem; color: var(--color-text-soft); font-size: 0.6875rem; text-decoration: none; transition: color 140ms ease; }
 	.summary a:hover { color: var(--color-text-strong); }
 	.muted { color: var(--color-text-soft); }
-	.tooltip { position: absolute; z-index: 10; min-width: 11.25rem; max-width: 16.25rem; border: 1px solid var(--color-border); border-radius: 0.25rem; background: var(--color-paper); padding: 0.4rem 0.55rem; color: var(--color-text-strong); font-size: 0.75rem; line-height: 1.4; pointer-events: none; }
+	.tooltip { position: absolute; z-index: 10; min-width: 11.25rem; max-width: 16.25rem; border: 1px solid var(--color-border); border-radius: 0.375rem; background: var(--color-paper); padding: 0.4rem 0.55rem; color: var(--color-text); font-size: 0.75rem; line-height: 1.4; pointer-events: none; }
 	.tooltip-head { display: flex; margin-bottom: 0.3rem; align-items: center; gap: 0.3rem; }
 	.tooltip-dot { width: 0.5rem; height: 0.5rem; flex-shrink: 0; border-radius: 0.125rem; }
 	.tooltip-title { font-weight: 560; }
