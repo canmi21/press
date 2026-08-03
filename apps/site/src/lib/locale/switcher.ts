@@ -1,5 +1,5 @@
 import { MESSAGES } from './messages';
-import { PUBLIC_LANGUAGE, type LocaleCode } from './locale';
+import { PUBLIC_LANGUAGE, type LocaleCode } from './index';
 
 type TranslationCode = Exclude<LocaleCode, 'mw'>;
 
@@ -88,9 +88,7 @@ export function sourceLabel(sourceLanguage: string, currentCode: LocaleCode): st
 
 	const tag = currentCode === 'mw' ? sourceLanguage : PUBLIC_LANGUAGE[currentCode];
 	try {
-		return (
-			new Intl.DisplayNames([tag], { type: 'language' }).of(primary) ?? primary.toUpperCase()
-		);
+		return new Intl.DisplayNames([tag], { type: 'language' }).of(primary) ?? primary.toUpperCase();
 	} catch {
 		return primary.toUpperCase();
 	}

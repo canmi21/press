@@ -1,5 +1,16 @@
-import type { ArticleMeta } from '$lib/article.svelte';
-import type { LocaleCode } from '$lib/locale';
+import type { LocaleCode } from '../locale/index.ts';
+
+export type ArticleMeta = {
+	title: string;
+	subtitle: string;
+	description: string;
+	/** The source view's public BCP-47 language tag. */
+	lang: string;
+	created: string;
+	lastmod: string;
+	// Hard-coded view count carried over from the old site; swap for an API later.
+	views?: number;
+};
 
 // One markdown source compiles to several targets; only the custom blocks below
 // need bespoke per-target output. `block` drives page rendering, `feed` is

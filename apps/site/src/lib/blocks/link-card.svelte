@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
 	import { pickUrls } from '@canmi/urls';
-	import Image from '$lib/image.svelte';
+	import Image from './image.svelte';
 	import ArrowUpRight from '@lucide/svelte/icons/arrow-up-right';
 
 	type Props = {

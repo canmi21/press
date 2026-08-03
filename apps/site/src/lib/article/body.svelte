@@ -1,20 +1,20 @@
 <script lang="ts">
-	import CodeBlock from '$lib/codeblock.svelte';
-	import Image from '$lib/image.svelte';
-	import LinkCard from '$lib/linkcard.svelte';
-	import { MESSAGES } from '$lib/messages';
-	import Placeholder from '$lib/placeholder.svelte';
-	import Section from '$lib/section.svelte';
-	import SvgCanvas from '$lib/svg-canvas.svelte';
-	import Tokei from '$lib/tokei.svelte';
-	import Cargo from '$lib/cargo.svelte';
-	import GitHub from '$lib/github.svelte';
-	import PopoverContent from '$lib/ui/popover-content.svelte';
+	import Cargo from '$lib/blocks/cargo/cargo.svelte';
+	import CodeBlock from '$lib/blocks/code-block.svelte';
+	import GitHub from '$lib/blocks/github.svelte';
+	import Image from '$lib/blocks/image.svelte';
+	import LinkCard from '$lib/blocks/link-card.svelte';
+	import Placeholder from '$lib/blocks/placeholder.svelte';
+	import SvgCanvas from '$lib/blocks/svg-canvas.svelte';
+	import Tokei from '$lib/blocks/tokei/tokei.svelte';
+	import PopoverContent from '$lib/components/popover-content.svelte';
+	import { MESSAGES } from '$lib/locale/messages';
 	import Info from '@lucide/svelte/icons/info';
 	import X from '@lucide/svelte/icons/x';
 	import { Popover } from 'bits-ui';
 	import type { Block } from '$lib/content/types';
 	import type { LocaleCode } from '$lib/locale';
+	import Section from './section.svelte';
 
 	let { blocks, locale }: { blocks: Block[]; locale: LocaleCode } = $props();
 	let root = $state<HTMLElement>();

@@ -1,5 +1,5 @@
 import { getArticles, getPage } from '$lib/content';
-import { homepageContent } from '$lib/server/homepage';
+import { homepageContent } from '$lib/home/content';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 

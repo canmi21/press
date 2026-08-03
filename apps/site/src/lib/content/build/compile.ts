@@ -9,9 +9,8 @@ import remarkParse from 'remark-parse';
 import remarkStringify from 'remark-stringify';
 import { unified } from 'unified';
 import { parse as parseYaml, stringify as stringifyYaml } from 'yaml';
-import type { Resolved } from '$lib/assets';
-import type { ArticleMeta } from '$lib/article.svelte';
-import { assertLanguageTag } from '../locale.ts';
+import type { Resolved } from './assets.ts';
+import { assertLanguageTag } from '../../locale/index.ts';
 import type {
 	Block,
 	CardAlign,
@@ -24,7 +23,8 @@ import type {
 	RepoRecord,
 	TokeiView,
 	TocEntry,
-} from './types.ts';
+	ArticleMeta,
+} from '../types.ts';
 import type { TextDirective } from 'mdast-util-directive';
 import type { Heading, Image as MdImage, Paragraph, Root, RootContent } from 'mdast';
 

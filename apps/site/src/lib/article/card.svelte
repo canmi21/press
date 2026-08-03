@@ -28,8 +28,8 @@
 	class="group -mx-2 flex items-center gap-3 rounded-[0.875rem] p-2 hover:bg-paper-hover"
 >
 	<!-- A4-ish sheet. Five bars carry the hand-tuned first-frame widths/gaps; after
-	hydration article-list measures the corpus and animates them to a content-derived
-	shape (normalized list-wide, see article-list.svelte). -->
+	hydration the article list measures the corpus and animates them to a content-derived
+	shape (normalized list-wide, see list.svelte). -->
 	<div
 		data-article-icon
 		aria-hidden="true"

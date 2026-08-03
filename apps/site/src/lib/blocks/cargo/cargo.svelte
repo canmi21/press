@@ -1,5 +1,5 @@
 <script lang="ts">
-	import './cargo-palette.css';
+	import './palette.css';
 	import ArrowUpRight from '@lucide/svelte/icons/arrow-up-right';
 	import { hierarchy, treemap, treemapBinary } from 'd3-hierarchy';
 	import {
@@ -10,7 +10,7 @@
 		kindColor,
 		type DependencyItem,
 	} from './cargo';
-	import type { CargoView, CrateDep, CrateRecord } from './content/types';
+	import type { CargoView, CrateDep, CrateRecord } from '$lib/content/types';
 
 	let { crate, view = 'treemap' }: { crate: CrateRecord; view?: CargoView } = $props();
 	let chart = $state<HTMLDivElement>();

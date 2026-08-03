@@ -8,7 +8,7 @@ import {
 	privateHtml,
 	resolveLocale,
 	withoutLanguageParameter,
-} from './locale';
+} from './index';
 
 describe('locale resolution', () => {
 	it('lets each source win over every source below it', () => {

@@ -1,17 +1,3 @@
-<script module lang="ts">
-	export type ArticleMeta = {
-		title: string;
-		subtitle: string;
-		description: string;
-		/** The source view's public BCP-47 language tag. */
-		lang: string;
-		created: string;
-		lastmod: string;
-		// Hard-coded view count carried over from the old site; swap for an API later.
-		views?: number;
-	};
-</script>
-
 <script lang="ts">
 	import { dev } from '$app/environment';
 	import { page } from '$app/state';
@@ -20,11 +6,11 @@
 	import BookOpenText from '@lucide/svelte/icons/book-open-text';
 	import Type from '@lucide/svelte/icons/type';
 	import type { Snippet } from 'svelte';
-	import type { Alternate } from '$lib/content/types';
+	import type { Alternate, ArticleMeta } from '$lib/content/types';
 	import type { LocaleCode } from '$lib/locale';
-	import { formatCompact } from '$lib/format';
-	import LanguageSwitcher from '$lib/language-switcher.svelte';
-	import Toc from '$lib/toc.svelte';
+	import LanguageSwitcher from '$lib/locale/switcher.svelte';
+	import { formatCompact } from './format';
+	import Toc from './toc.svelte';
 
 	type ArticleLocale = {
 		code: LocaleCode;
@@ -84,7 +70,7 @@
 	});
 
 	// Pin UTC so the shown day matches the authored frontmatter date everywhere it
-	// renders, mirroring the article list (see article-card.svelte).
+	// renders, mirroring the article list (see card.svelte).
 	const date = $derived(
 		new Intl.DateTimeFormat('en-US', {
 			month: 'short',

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Icon from '$lib/icons.svelte';
+	import Icon from './icons.svelte';
 	import type { PageBlock } from '$lib/content/types';
 
 	let { blocks }: { blocks: PageBlock[] } = $props();

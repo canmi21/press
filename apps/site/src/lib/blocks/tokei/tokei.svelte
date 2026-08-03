@@ -2,7 +2,7 @@
 	import ArrowUpRight from '@lucide/svelte/icons/arrow-up-right';
 	import { hierarchy, treemap } from 'd3-hierarchy';
 	import { langColor, parseTokei, type LangStat } from './tokei';
-	import type { TokeiView } from './content/types';
+	import type { TokeiView } from '$lib/content/types';
 
 	let {
 		source,

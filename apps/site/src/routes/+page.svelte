@@ -4,9 +4,9 @@
 	import { pickUrls, URLS } from '@canmi/urls';
 	import GitMerge from '@lucide/svelte/icons/git-merge';
 	import Lollipop from '@lucide/svelte/icons/lollipop';
-	import ArticleList from '$lib/article-list.svelte';
-	import PageBody from '$lib/content/page-body.svelte';
-	import Icon from '$lib/icons.svelte';
+	import ArticleList from '$lib/article/list.svelte';
+	import PageBody from '$lib/home/body.svelte';
+	import Icon from '$lib/home/icons.svelte';
 	import { site } from '$lib/site';
 	import type { PageData } from './$types';
 

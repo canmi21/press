@@ -2,7 +2,7 @@ import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { buildArticles } from './articles';
 
-const ROOT = new URL('../../../../../', import.meta.url);
+const ROOT = new URL('../../../../../../', import.meta.url);
 
 describe('article widget build inputs', () => {
 	it('watches embed records and compiles every widget in the real article', async () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { LOCALE_CODES, type LocaleCode } from '../locale';
-import { indexingMetadata } from './indexing';
+import { LOCALE_CODES, type LocaleCode } from '../locale/index';
+import { indexingMetadata } from './build/indexing';
 import { sitemapViews } from './sitemap';
 import type { Alternate } from './types';
 

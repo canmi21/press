@@ -12,13 +12,13 @@
 	import Check from '@lucide/svelte/icons/check';
 	import Compass from '@lucide/svelte/icons/compass';
 	import { DropdownMenu } from 'bits-ui';
-	import MenuContent from './ui/menu-content.svelte';
+	import MenuContent from '$lib/components/menu-content.svelte';
 	import {
 		languageChoices,
 		selectContentLanguage,
 		type LanguageChoice,
-	} from './language-switcher';
-	import { acceptedLocale, type LocaleCode } from './locale';
+	} from './switcher';
+	import { acceptedLocale, type LocaleCode } from './index';
 
 	let { code, sourceLanguage }: { code: LocaleCode; sourceLanguage: string } = $props();
 	let open = $state(false);

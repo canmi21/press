@@ -1,4 +1,4 @@
-import type { LocaleCode } from './locale';
+import type { LocaleCode } from './index';
 
 type Messages = {
 	writing: string;

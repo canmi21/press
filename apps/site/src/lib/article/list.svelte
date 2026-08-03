@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { measureNaturalWidth, prepareWithSegments } from '@chenglou/pretext';
 	import { animate } from 'motion';
-	import ArticleCard from '$lib/article-card.svelte';
+	import ArticleCard from './card.svelte';
 
 	let {
 		articles,

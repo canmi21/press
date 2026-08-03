@@ -1,6 +1,6 @@
 import type { PageBlock, Page } from '../content/types';
-import type { LocaleCode } from '../locale';
-import { MESSAGES } from '../messages';
+import type { LocaleCode } from '../locale/index';
+import { MESSAGES } from '../locale/messages';
 
 export type HomepageContent = {
 	title: string;

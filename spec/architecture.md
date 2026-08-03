@@ -85,8 +85,13 @@ library rather than reinstating it everywhere.
 Bits UI is the site's headless behavior layer. It owns the difficult, reusable interaction
 contracts -- focus management, keyboard navigation, dismissal and floating placement -- while
 the site's tokens and local Tailwind classes continue to own every visible decision. Importing
-a styled component kit on top would create a second design system, so project wrappers under
-`apps/site/src/lib/ui/` expose the small set of surfaces the site actually repeats.
+a styled component kit on top would create a second design system, so project primitives under
+`apps/site/src/lib/components/` expose the small set of surfaces the site actually repeats.
+
+Feature directories compose those primitives and keep their own state, copy and specialised
+styling. A locale picker, for example, imports the shared menu surface but owns language order,
+selection and navigation itself. A primitive is added for a real repeated interaction, not to
+predict a future component catalogue; unused Button or Input wrappers are not architecture.
 
 Use a primitive where the interaction is conventional and accessibility-heavy, such as a
 menu or popover. Do not force data visualisation through it: Cargo and Tokei deliberately keep

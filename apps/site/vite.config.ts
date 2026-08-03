@@ -8,7 +8,7 @@ import tailwindcss from '@tailwindcss/vite';
 import Icons from 'unplugin-icons/vite';
 import { defineConfig } from 'vite';
 import { parse as parseYaml } from 'yaml';
-import { buildArticles, buildPages } from './src/lib/server/articles.ts';
+import { buildArticles, buildPages } from './src/lib/content/build/articles.ts';
 
 const SITE_CONFIG = fileURLToPath(new URL('./site.config.yaml', import.meta.url));
 const CONTENTS = fileURLToPath(new URL('../../contents', import.meta.url));

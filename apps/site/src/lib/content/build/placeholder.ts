@@ -2,7 +2,7 @@ import { createRequire } from 'node:module';
 import { readFile } from 'node:fs/promises';
 import encode, { init } from '@jsquash/webp/encode.js';
 import { thumbHashToRGBA } from 'thumbhash';
-import type { AssetManifest } from '$lib/assets';
+import type { AssetManifest } from './assets.ts';
 
 /**
  * The inline placeholders, all of them, encoded once at build time.

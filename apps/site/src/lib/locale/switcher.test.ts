@@ -5,8 +5,8 @@ import {
 	orderFor,
 	selectContentLanguage,
 	sourceLabel,
-} from './language-switcher';
-import type { LocaleCode } from './locale';
+} from './switcher';
+import type { LocaleCode } from './index';
 
 function stableEndonyms(current: LocaleCode) {
 	return languageChoices(current, 'zh')

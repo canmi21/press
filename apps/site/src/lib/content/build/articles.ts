@@ -2,10 +2,10 @@ import { readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { URLS } from '@canmi/urls';
 import { parse as parseYaml } from 'yaml';
-import { createAssetResolver, type AssetManifest, type MediaManifest } from '../assets.ts';
-import { assemble, type SegmentLayout, type TranslationSidecar } from '../content/assemble.ts';
-import { compile, compilePage } from '../content/compile.ts';
-import { indexingMetadata } from '../content/indexing.ts';
+import { createAssetResolver, type AssetManifest, type MediaManifest } from './assets.ts';
+import { assemble, type SegmentLayout, type TranslationSidecar } from './assemble.ts';
+import { compile, compilePage } from './compile.ts';
+import { indexingMetadata } from './indexing.ts';
 import type {
 	Article,
 	ArticleView,
@@ -14,8 +14,8 @@ import type {
 	Page,
 	PageView,
 	RepoRecord,
-} from '../content/types.ts';
-import { languageTag, LOCALE_CODES, PUBLIC_LANGUAGE, type LocaleCode } from '../locale.ts';
+} from '../types.ts';
+import { languageTag, LOCALE_CODES, PUBLIC_LANGUAGE, type LocaleCode } from '../../locale/index.ts';
 import { highlight } from './highlight.ts';
 import { buildPreviews } from './placeholder.ts';
 

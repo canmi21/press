@@ -1,6 +1,6 @@
 import { similarity } from './assemble.ts';
-import { localeUrl, LOCALE_CODES, PUBLIC_LANGUAGE, type LocaleCode } from '../locale.ts';
-import type { Alternate } from './types.ts';
+import { localeUrl, LOCALE_CODES, PUBLIC_LANGUAGE, type LocaleCode } from '../../locale/index.ts';
+import type { Alternate } from '../types.ts';
 
 export const CANONICAL_SIMILARITY_THRESHOLD = 0.9;
 

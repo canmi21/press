@@ -1,4 +1,4 @@
-import type { CrateDep } from './content/types';
+import type { CrateDep } from '../../content/types';
 
 export const CRATE_PALETTE = [
 	'var(--cargo-1)',

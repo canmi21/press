@@ -6,8 +6,8 @@
 	import GitFork from '@lucide/svelte/icons/git-fork';
 	import Scale from '@lucide/svelte/icons/scale';
 	import Star from '@lucide/svelte/icons/star';
-	import { langColor } from './tokei';
-	import type { CardAlign, RepoRecord } from './content/types';
+	import type { CardAlign, RepoRecord } from '$lib/content/types';
+	import { langColor } from './tokei/tokei';
 
 	let {
 		repo,

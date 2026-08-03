@@ -3,6 +3,9 @@
 
 # Build output
 build/
+# This is build-time source code, not generated output.
+!apps/site/src/lib/content/build/
+!apps/site/src/lib/content/build/**
 dist/
 target/
 .svelte-kit/
