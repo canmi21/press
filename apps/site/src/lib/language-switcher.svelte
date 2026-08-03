@@ -56,8 +56,6 @@
 		return MARKS[choice.code];
 	}
 
-	const CurrentMark = $derived(markFor(current));
-
 	/**
 	 * What this browser would have asked for, run through the same parser the worker uses.
 	 *
@@ -70,6 +68,16 @@
 		acceptedLocale(globalThis.navigator?.languages?.join(',') ?? globalThis.navigator?.language) ??
 			'en',
 	);
+
+	/**
+	 * The trigger says where the reader stands; the menu says what each language is.
+	 *
+	 * So when the view already matches what this browser asked for, the trigger carries the
+	 * compass rather than a translation mark -- the one thing worth saying at a glance is that
+	 * nothing needs changing. Inside the menu the marks keep naming languages, because there the
+	 * compass has the other job: pointing at a row worth moving to.
+	 */
+	const CurrentMark = $derived(code === preferred ? Compass : markFor(current));
 
 	function optionButtons(): HTMLButtonElement[] {
 		return rootEl
