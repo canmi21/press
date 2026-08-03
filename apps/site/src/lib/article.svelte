@@ -147,7 +147,7 @@
 						{formatCompact(meta.views)}
 					</span>
 				{/if}
-				<LanguageSwitcher code={locale.code} />
+				<LanguageSwitcher code={locale.code} sourceLanguage={meta.lang} />
 			</div>
 		</header>
 

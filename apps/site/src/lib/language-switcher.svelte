@@ -9,6 +9,8 @@
 	import IconTranslateSimplified from '~icons/mingcute/translate-2-line';
 	import IconWorld from '~icons/mingcute/world-2-line';
 	import IconUpSmall from '~icons/mingcute/up-small-line';
+	import Check from '@lucide/svelte/icons/check';
+	import Compass from '@lucide/svelte/icons/compass';
 	import { tick } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
@@ -17,13 +19,13 @@
 		selectContentLanguage,
 		type LanguageChoice,
 	} from './language-switcher';
-	import type { LocaleCode } from './locale';
+	import { acceptedLocale, type LocaleCode } from './locale';
 
-	let { code }: { code: LocaleCode } = $props();
+	let { code, sourceLanguage }: { code: LocaleCode; sourceLanguage: string } = $props();
 	let rootEl = $state<HTMLElement | undefined>();
 	let triggerEl = $state<HTMLButtonElement | undefined>();
 	let open = $state(false);
-	const choices = $derived(languageChoices(code));
+	const choices = $derived(languageChoices(code, sourceLanguage));
 	const current = $derived(choices.find((choice) => choice.current) ?? choices[0]);
 
 	/** A reader who asked for less motion gets none of it; the menu still opens. */
@@ -55,6 +57,19 @@
 	}
 
 	const CurrentMark = $derived(markFor(current));
+
+	/**
+	 * What this browser would have asked for, run through the same parser the worker uses.
+	 *
+	 * `navigator.languages` is already in descending preference, which is the shape an
+	 * Accept-Language header has, so joining it feeds the server's own negotiation rather than a
+	 * second reading of the same preferences. Two implementations would eventually disagree, and
+	 * the disagreement would show up as a marker pointing at the wrong row.
+	 */
+	const preferred = $derived(
+		acceptedLocale(globalThis.navigator?.languages?.join(',') ?? globalThis.navigator?.language) ??
+			'en',
+	);
 
 	function optionButtons(): HTMLButtonElement[] {
 		return rootEl
@@ -175,16 +190,28 @@
 					type="button"
 					role="menuitemradio"
 					aria-checked={choice.current}
+					aria-label={!choice.current && choice.code === preferred
+						? `${choice.name}, your browser's preference`
+						: undefined}
 					tabindex={choice.current ? 0 : -1}
 					onclick={() => choose(choice)}
 					onkeydown={(event) => handleOptionKeydown(event, index)}
-					class="group flex w-full cursor-pointer items-center justify-between gap-3 px-2 py-1 text-left text-sm whitespace-nowrap hover:bg-paper-hover"
+					class="group flex w-full cursor-pointer items-center gap-2 px-2 py-1 text-left text-sm whitespace-nowrap hover:bg-paper-hover"
 				>
-					<span class={choice.current ? 'text-text-strong' : 'text-text-soft'}>{choice.name}</span>
 					<Mark
 						class="h-4 w-auto shrink-0 text-text-soft group-hover:text-text-strong"
 						aria-hidden="true"
 					/>
+					<span class="flex-1 {choice.current ? 'text-text-strong' : 'text-text-soft'}"
+						>{choice.name}</span
+					>
+					<!-- One marker at most: being the current view outranks being the browser's
+					     preference, and showing both on one row would say the same thing twice. -->
+					{#if choice.current}
+						<Check class="size-3.25 shrink-0 text-text-strong" aria-hidden="true" />
+					{:else if choice.code === preferred}
+						<Compass class="size-3.25 shrink-0 text-text-soft" aria-hidden="true" />
+					{/if}
 				</button>
 			{/each}
 		</div>
