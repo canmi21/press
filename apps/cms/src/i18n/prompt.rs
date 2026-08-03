@@ -77,8 +77,10 @@ pub fn build(
 	let context = match (before, after) {
 		(None, None) => String::new(),
 		(b, a) => format!(
-			"\nFor context only -- do not translate these, they are the neighbouring \
-			 paragraphs:\n{}\n{}\n",
+			"\nThe neighbouring paragraphs follow, for context only. They are not part of the \
+			 block and must not appear in your answer -- not translated, not copied, not \
+			 quoted. Your answer covers the fenced block alone, and cannot be longer in lines \
+			 than the fenced block is.\n{}\n{}\n",
 			b.unwrap_or("(start of article)"),
 			a.unwrap_or("(end of article)")
 		),
@@ -108,13 +110,18 @@ pub fn build(
 		 - Produce every locale listed below, in that order.\n\
 		 - {OPEN}tk:N{CLOSE} markers stand for code and identifiers. Reproduce each one exactly \
 		 once. Move them where the target grammar needs them, never translate or alter them.\n\
-		 - Text the author wrote in a language other than the dominant one is usually a \
-		 deliberate choice. Quotations, names and technical terms keep their original form; \
-		 prose around them is translated.\n\
-		 - Where a passage depends on knowledge a reader of the target language would not have \
-		 -- a pun, an idiom, a local reference -- you may add `:tn[word]{{is=\"short \
-		 explanation\"}}` immediately after it. At most one per block, and only when the \
-		 meaning is genuinely unrecoverable from context. Prefer none.\n\
+		 - The dominant language is the one the block is mostly written in, and it is the \
+		 language being translated away from. Ordinary words and technical phrases in it are \
+		 translated like everything else, however specialised they look. Only a *minority* \
+		 language in the block signals a deliberate choice, and even then only quotations, \
+		 names and brands keep their original form -- prose around them is translated.\n\
+		 - Nothing may survive untranslated merely because it is a term of art. If a phrase has \
+		 an established equivalent in the target language, use it.\n\
+		 - Where a passage keeps its original form and a reader of the target language would \
+		 then be unable to recover its meaning -- a quoted idiom, a pun, a local reference -- \
+		 add `:tn[word]{{is=\"short explanation\"}}` immediately after it. Leaving a reader \
+		 with characters they cannot read and no gloss is worse than a brief note. At most one \
+		 per block, and none where the surrounding sentence already makes the meaning plain.\n\
 		 - Keep markdown structure: emphasis, links and list markers stay as they are.\n\
 		 {metadata}\n\
 		 {navigation}\n\

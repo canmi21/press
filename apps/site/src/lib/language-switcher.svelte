@@ -82,6 +82,16 @@
 	 */
 	const CurrentMark = $derived(code === preferred ? Compass : markFor(current));
 
+	/**
+	 * The two icon sets are not sized the same way, and this is the one slot that holds either.
+	 *
+	 * Iconify marks are set by height with an automatic width; a Lucide glyph at that height
+	 * draws taller and lifts the whole metadata row, which is visible as the line shifting the
+	 * moment a reader lands on their own language. Everywhere else a slot holds one set only, so
+	 * this is the single place the difference has to be spelled out.
+	 */
+	const markSize = $derived(code === preferred ? 'size-3.25' : 'h-4 w-auto');
+
 	function optionButtons(): HTMLButtonElement[] {
 		return rootEl
 			? Array.from(rootEl.querySelectorAll<HTMLButtonElement>('[data-language-option]'))
@@ -175,7 +185,7 @@
 		onkeydown={handleTriggerKeydown}
 		class="-mx-1 inline-flex cursor-pointer items-center gap-1 rounded-sm px-1 py-0.5 hover:bg-paper-hover hover:text-text-strong"
 	>
-		<CurrentMark class="h-4 w-auto" aria-hidden="true" />
+		<CurrentMark class={markSize} aria-hidden="true" />
 		<span>{current?.name}</span>
 		<IconUpSmall
 			class="h-4 w-auto transition-transform duration-200 ease-out motion-reduce:transition-none {open

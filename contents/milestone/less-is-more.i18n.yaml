@@ -197,68 +197,68 @@ segments:
       review: false
   03a7b723b0bf91095124a7d8c7cf04c7:
     de-DE:
-      text: Seltsamerweise hat die Qualität nach dem Loslassen nicht nachgelassen. Ich denke, das liegt wahrscheinlich daran, dass die früheren „古法“-Programmierzeiten nicht umsonst waren; bereits in der GPT‑2‑Ära habe ich angefangen, KI zu benutzen, doch damals schrieb ich noch jede Zeile Code gewissenhaft und verstand jedes Konzept. Diese Erfahrung hat mir ein Fundament gegeben, und eher als später Vibe Coding zu bezeichnen, sollte man von Context Coding sprechen; das nötige Urteilsvermögen ist noch vorhanden, und das Loslassen hat nicht zu niedrigen Fehlern oder Unfällen geführt.
+      text: Komischerweise ist die Qualität nach dem Loslassen nicht schlechter geworden. Ich denke, das liegt wahrscheinlich daran, dass die früheren „Altmodisch“-Programmierungstage nicht umsonst waren; schon in der GPT‑2‑Ära habe ich KI eingesetzt, aber damals schrieb ich noch jede Zeile Code gewissenhaft und verstand jedes Konzept. Diese Erfahrung gab mir eine Grundlage; eher würde ich später von Vibe Coding als von Context Coding sprechen, das nötige Urteilsvermögen ist noch da, und das Loslassen hat keine grundsätzlichen Fehler oder Unfälle verursacht.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:25:43.346376Z
-      seconds: 15.652916666
-      tokens: 18290
+      at: 2026-08-03T01:33:20.798668Z
+      seconds: 16.439965583
+      tokens: 18308
       review: false
     en-US:
-      text: Strangely, the quality didn't degrade after letting go. I think this is probably because those “古法” programming days weren't wasted; as early as the GPT‑2 era I started using AI, but back then I was still honestly writing every line of code and understanding every concept. That experience gave me a foundation, and rather than saying it was later Vibe Coding, it's more like Context Coding; the necessary judgment is still there, and letting go hasn't led to any low‑level mistakes or accidents.
+      text: Strangely, the quality didn't degrade after letting go. I think this is probably because those “old‑school” programming days weren't wasted; as early as the GPT‑2 era I started using AI, but back then I was still honestly writing every line of code and understanding each concept. That experience gave me a foundation; rather than saying later it's Vibe Coding, it's more like Context Coding, the necessary judgment is still there, and letting go didn't lead to any low‑level mistakes or accidents.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:25:43.346376Z
-      seconds: 15.652916666
-      tokens: 18290
+      at: 2026-08-03T01:33:20.798668Z
+      seconds: 16.439965583
+      tokens: 18308
       review: false
     es-ES:
-      text: Curiosamente, la calidad no empeoró después de soltar el control. Supongo que se debe a que esos días de programación « 古法 » no fueron en vano; ya en la era de GPT‑2 comencé a usar IA, pero entonces todavía escribía cada línea de código con dedicación y comprendía cada concepto. Esa experiencia me dio una base, y más que llamarlo Vibe Coding después, debería llamarse Context Coding; la capacidad de juicio necesaria sigue ahí, y dejar ir no provocó errores básicos ni accidentes.
+      text: Curiosamente, la calidad no disminuyó después de soltar el control. Creo que esto se debe probablemente a que esos días de programación “a la vieja usanza” no fueron en vano; ya en la era GPT‑2 comencé a usar IA, pero entonces todavía escribía cada línea de código con dedicación y comprendía cada concepto. Esa experiencia me dio una base; más que llamarlo Vibe Coding, diría que es Context Coding, el juicio necesario sigue presente y soltar no provocó errores graves ni incidentes.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:25:43.346376Z
-      seconds: 15.652916666
-      tokens: 18290
+      at: 2026-08-03T01:33:20.798668Z
+      seconds: 16.439965583
+      tokens: 18308
       review: false
     fr-FR:
-      text: Étrangement, la qualité ne s’est pas détériorée après avoir laissé aller. Je pense que c’est probablement parce que les jours de programmation « 古法 » n’ont pas été vains ; dès l’époque GPT‑2, j’ai commencé à utiliser l’IA, mais à l’époque je rédigeais chaque ligne de code avec soin et comprenais chaque concept. Cette expérience m’a donné une base, et plutôt que d’appeler cela Vibe Coding, on pourrait parler de Context Coding ; le jugement nécessaire est toujours présent, et le fait de lâcher prise n’a pas entraîné d’erreurs basiques ni d’accidents.
+      text: Étrangement, la qualité n’a pas diminué après avoir lâché prise. Je pense que c’est probablement parce que ces jours de programmation « à l’ancienne » n’ont pas été vains ; dès l’époque GPT‑2, je me servais déjà de l’IA, mais à l’époque j’écrivais honnêtement chaque ligne de code et comprenais chaque concept. Cette expérience m’a donné des bases ; plutôt que d’appeler cela Vibe Coding, on parlerait davantage de Context Coding, le sens du jugement nécessaire est toujours présent, et le fait de lâcher prise n’a entraîné aucune erreur de bas niveau ni aucun incident.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:25:43.346376Z
-      seconds: 15.652916666
-      tokens: 18290
+      at: 2026-08-03T01:33:20.798668Z
+      seconds: 16.439965583
+      tokens: 18308
       review: false
     ja-JP:
-      text: 不思議なことに、手放した後でも品質は低下しなかった。これはおそらく、以前の「古法」プログラミングの日々が無駄ではなかったからだと思う。GPT‑2 の時代からすでに AI を使い始めていたが、その頃はまだ一行一行を書き、すべての概念を理解しようとしていた。その経験が基盤となり、後の Vibe Coding と呼ぶよりむしろ Context Coding と呼んだ方が適切で、必要な判断力は依然として残っており、手放したからといって低レベルのミスや事故が起きたわけではない。
+      text: 不思議なことに、手放した後でも品質は低下しませんでした。これはおそらく、以前の「古法」プログラミングの時代が無駄ではなかったからだと思います。GPT‑2 時代からすでに AI を使い始めていましたが、その頃はまだ一行一行を誠実に書き、概念をすべて理解していました。その経験が基礎となり、後になると Vibe Coding と呼ぶよりむしろ Context Coding と言えるでしょう。必要な判断力は残っており、手放したからといって低レベルのミスや事故が起きたわけではありません。
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:25:43.346376Z
-      seconds: 15.652916666
-      tokens: 18290
+      at: 2026-08-03T01:33:20.798668Z
+      seconds: 16.439965583
+      tokens: 18308
       review: false
     ko-KR:
-      text: 이상하게도, 손을 놓은 뒤에도 품질이 나빠지지 않았다. 이는 아마도 이전의 “古法” 프로그래밍 시절이 헛되지 않았기 때문이라고 생각한다. GPT‑2 시절부터 이미 AI를 사용하기 시작했지만, 그때는 여전히 모든 코드를 한 줄씩 성실히 작성하고 모든 개념을 이해하려고 했다. 그 경험이 토대가 되었고, 이후의 Vibe Coding이라기보다 Context Coding이라고 부르는 것이 맞으며, 필요한 판단력은 여전히 남아 있고, 손을 놓았다고 해서 저급한 실수나 사고가 발생한 것은 아니다.
+      text: 이상하게도, 놓아버린 뒤에도 품질이 떨어지지 않았습니다. 이는 아마도 이전에 있던 “고전” 프로그래밍 시절이 헛되지 않았기 때문이라고 생각합니다. GPT‑2 시절부터 이미 AI를 사용했지만, 그때는 여전히 모든 코드를 성실히 작성하고 각 개념을 이해하고 있었습니다. 그 경험이 토대가 되었고, 이후에는 Vibe Coding이라기보다 Context Coding이라고 부르는 것이 더 맞습니다. 필요한 판단력은 여전히 존재하며, 놓아버렸다고 해서 저급 실수나 사고가 발생한 것은 아닙니다.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:25:43.346376Z
-      seconds: 15.652916666
-      tokens: 18290
+      at: 2026-08-03T01:33:20.798668Z
+      seconds: 16.439965583
+      tokens: 18308
       review: false
     zh-CN:
       text: 奇怪的是，放手之后质量并没有变差。我想这大概是因为之前那些"古法"编程的日子没有白费；早在 GPT-2 时代我就开始用 AI 了，但那时候我还在老老实实地写每一行代码、理解每一个概念。那段经历给了我底子，与其说后来 Vibe Coding 不如说是 Context Coding，该有的判断力还在，并没有因为放手就出什么低级错误或者说是事故。
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:25:43.346376Z
-      seconds: 15.652916666
-      tokens: 18290
+      at: 2026-08-03T01:33:20.798668Z
+      seconds: 16.439965583
+      tokens: 18308
       review: false
     zh-TW:
-      text: 奇怪的是，放手之後品質並沒有變差。我想這大概是因為之前那些「古法」程式設計的日子沒有白費；早在 GPT-2 時代我就開始使用 AI 了，但那時候我還在老老實實地寫每一行程式碼、理解每一個概念。那段經驗給了我底子，與其說後來 Vibe Coding 不如說是 Context Coding，該有的判斷力還在，並沒有因為放手就出什麼低階錯誤或是事故。
+      text: 奇怪的是，放手之後品質並沒有變差。我想這大概是因為之前那些"古法"編程的日子沒有白費；早在 GPT-2 時代我就開始用 AI 了，但那時候我還在老老實實地寫每一行程式碼、理解每一個概念。那段經歷給了我底子，與其說後來 Vibe Coding 不如說是 Context Coding，該有的判斷力還在，並沒有因為放手就出什麼低級錯誤或者說是事故。
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:25:43.346376Z
-      seconds: 15.652916666
-      tokens: 18290
+      at: 2026-08-03T01:33:20.798668Z
+      seconds: 16.439965583
+      tokens: 18308
       review: false
   0718215ea97d512da49fb3554686b339:
     de-DE:
@@ -1367,92 +1367,68 @@ segments:
       review: false
   a1ddce9aae8d974e6904aa33b0d78d57:
     de-DE:
-      text: |-
-        ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo: Ein schnelles, einfaches und leistungsstarkes Blog-Framework."}
-        再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
-        ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
+      text: ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:26:44.699539Z
-      seconds: 17.747182167
-      tokens: 18781
+      at: 2026-08-03T01:33:20.798714Z
+      seconds: 9.948991083
+      tokens: 17033
       review: false
     en-US:
-      text: |-
-        ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo: A fast, simple & powerful blog framework."}
-        再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
-        ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
+      text: ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:26:44.699539Z
-      seconds: 17.747182167
-      tokens: 18781
+      at: 2026-08-03T01:33:20.798714Z
+      seconds: 9.948991083
+      tokens: 17033
       review: false
     es-ES:
-      text: |-
-        ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo: un framework de blogs rápido, sencillo y potente."}
-        再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
-        ::linkcard{src="ccab92399398f1642024732cc1097abe.avavif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
+      text: ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:26:44.699539Z
-      seconds: 17.747182167
-      tokens: 18781
+      at: 2026-08-03T01:33:20.798714Z
+      seconds: 9.948991083
+      tokens: 17033
       review: false
     fr-FR:
-      text: |-
-        ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo : un framework de blog rapide, simple et puissant."}
-        再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
-        ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
+      text: ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:26:44.699539Z
-      seconds: 17.747182167
-      tokens: 18781
+      at: 2026-08-03T01:33:20.798714Z
+      seconds: 9.948991083
+      tokens: 17033
       review: false
     ja-JP:
-      text: |-
-        ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo：高速でシンプルかつ強力なブログフレームワーク。"}
-        再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
-        ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
+      text: ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:26:44.699539Z
-      seconds: 17.747182167
-      tokens: 18781
+      at: 2026-08-03T01:33:20.798714Z
+      seconds: 9.948991083
+      tokens: 17033
       review: false
     ko-KR:
-      text: |-
-        ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo: 빠르고 간단하며 강력한 블로그 프레임워크."}
-        再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
-        ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
+      text: ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:26:44.699539Z
-      seconds: 17.747182167
-      tokens: 18781
+      at: 2026-08-03T01:33:20.798714Z
+      seconds: 9.948991083
+      tokens: 17033
       review: false
     zh-CN:
-      text: |-
-        ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo：一个快速、简洁且功能强大的博客框架。"}
-        再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
-        ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
+      text: ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:26:44.699539Z
-      seconds: 17.747182167
-      tokens: 18781
+      at: 2026-08-03T01:33:20.798714Z
+      seconds: 9.948991083
+      tokens: 17033
       review: false
     zh-TW:
-      text: |-
-        ::linkcard{src="12faaa76365814de1195d6bdf1e5ba05.avif" url="https://hexo.io" title="Hexo：一個快速、簡潔且功能強大的部落格框架。"}
-        再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
-        ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
+      text: ::linkcard{src="ccab92399398f1642024732cc1097abe.avif" url="https://sakura-ushio.icu" title="ushio" tone="dark" favicon="https://avatars.githubusercontent.com/u/33977278?v=4"}
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:26:44.699539Z
-      seconds: 17.747182167
-      tokens: 18781
+      at: 2026-08-03T01:33:20.798714Z
+      seconds: 9.948991083
+      tokens: 17033
       review: false
   a3f7d18cba4720ead4bdd82c365ffb82:
     de-DE:
@@ -1651,68 +1627,68 @@ segments:
       review: false
   aec1797236cdd7822690c065263deb93:
     de-DE:
-      text: Zu sagen „想开了“ ist eigentlich nicht präzise; ich bin einfach müde.
+      text: Zu sagen, „Loslassen“, ist eigentlich nicht akkurat; ich bin einfach müde.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:27:00.627419Z
-      seconds: 6.149565042
-      tokens: 15823
+      at: 2026-08-03T01:33:20.798729Z
+      seconds: 9.948715375
+      tokens: 16462
       review: false
     en-US:
-      text: Saying “想开了” is actually inaccurate; it’s because I’m tired.
+      text: Saying "let go" is actually inaccurate; I'm just tired.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:27:00.627419Z
-      seconds: 6.149565042
-      tokens: 15823
+      at: 2026-08-03T01:33:20.798729Z
+      seconds: 9.948715375
+      tokens: 16462
       review: false
     es-ES:
-      text: Decir "想开了" en realidad no es preciso; es que estoy cansado/a.
+      text: Decir « dejar ir » en realidad no es preciso; simplemente estoy cansado.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:27:00.627419Z
-      seconds: 6.149565042
-      tokens: 15823
+      at: 2026-08-03T01:33:20.798729Z
+      seconds: 9.948715375
+      tokens: 16462
       review: false
     fr-FR:
-      text: Dire « 想开了 » n’est pas exact ; c’est simplement que je suis fatigué·e.
+      text: Dire « lâcher prise » n’est en réalité pas exact ; je suis simplement fatigué.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:27:00.627419Z
-      seconds: 6.149565042
-      tokens: 15823
+      at: 2026-08-03T01:33:20.798729Z
+      seconds: 9.948715375
+      tokens: 16462
       review: false
     ja-JP:
-      text: 「想开了」と言うのは実際には正確ではなく、私が疲れているからだ。
+      text: 「『手放す』と言うのは実は正確ではなく、私が疲れているだけです。」
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:27:00.627419Z
-      seconds: 6.149565042
-      tokens: 15823
+      at: 2026-08-03T01:33:20.798729Z
+      seconds: 9.948715375
+      tokens: 16462
       review: false
     ko-KR:
-      text: '"想开了"라고 말하는 것은 실제로 정확하지 않으며, 내가 피곤해서다.'
+      text: ‘놓아버리다’라고 말하는 것은 사실 정확하지 않으며, 나는 그냥 피곤할 뿐이다.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:27:00.627419Z
-      seconds: 6.149565042
-      tokens: 15823
+      at: 2026-08-03T01:33:20.798729Z
+      seconds: 9.948715375
+      tokens: 16462
       review: false
     zh-CN:
-      text: 说"想开了"其实不准确，是我累了。
+      text: 说“想开了”其实不准确，是我累了。
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:27:00.627419Z
-      seconds: 6.149565042
-      tokens: 15823
+      at: 2026-08-03T01:33:20.798729Z
+      seconds: 9.948715375
+      tokens: 16462
       review: false
     zh-TW:
-      text: 說"想開了"其實不準確，是我累了。
+      text: 說「想開了」其實不準確，是我累了。
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:27:00.627419Z
-      seconds: 6.149565042
-      tokens: 15823
+      at: 2026-08-03T01:33:20.798729Z
+      seconds: 9.948715375
+      tokens: 16462
       review: false
   b1bc5b37ff66a410010322be52c0979a:
     de-DE:

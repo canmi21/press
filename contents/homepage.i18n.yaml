@@ -130,3 +130,133 @@ segments:
       seconds: 44.6040025
       tokens: 37577
       review: false
+  ae914e773307cf74be41846a9daeeffd:
+    de-DE:
+      text: Canmi
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-03T01:33:01.469576Z
+      seconds: 13.893135917
+      tokens: 15547
+      review: false
+    en-US:
+      text: Canmi
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-03T01:33:01.469576Z
+      seconds: 13.893135917
+      tokens: 15547
+      review: false
+    es-ES:
+      text: Canmi
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-03T01:33:01.469576Z
+      seconds: 13.893135917
+      tokens: 15547
+      review: false
+    fr-FR:
+      text: Canmi
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-03T01:33:01.469576Z
+      seconds: 13.893135917
+      tokens: 15547
+      review: false
+    ja-JP:
+      text: Canmi
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-03T01:33:01.469576Z
+      seconds: 13.893135917
+      tokens: 15547
+      review: false
+    ko-KR:
+      text: Canmi
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-03T01:33:01.469576Z
+      seconds: 13.893135917
+      tokens: 15547
+      review: false
+    zh-CN:
+      text: Canmi
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-03T01:33:01.469576Z
+      seconds: 13.893135917
+      tokens: 15547
+      review: false
+    zh-TW:
+      text: Canmi
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-03T01:33:01.469576Z
+      seconds: 13.893135917
+      tokens: 15547
+      review: false
+  b8de478138706b6f5c1aa10eec4f58ad:
+    de-DE:
+      text: Ein Entwickler, der Software, Hardware und die seltsamen Dinge dazwischen erstellt.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-03T01:33:01.469658Z
+      seconds: 19.320698334
+      tokens: 16335
+      review: false
+    en-US:
+      text: A developer building software, hardware, and the weird things in between.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-03T01:33:01.469658Z
+      seconds: 19.320698334
+      tokens: 16335
+      review: false
+    es-ES:
+      text: Un desarrollador que crea software, hardware y las cosas extrañas entre ambos.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-03T01:33:01.469658Z
+      seconds: 19.320698334
+      tokens: 16335
+      review: false
+    fr-FR:
+      text: Un développeur qui crée des logiciels, du matériel et les choses étranges entre les deux.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-03T01:33:01.469658Z
+      seconds: 19.320698334
+      tokens: 16335
+      review: false
+    ja-JP:
+      text: ソフトウェアとハードウェア、そしてその間にある奇妙なものを作る開発者。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-03T01:33:01.469658Z
+      seconds: 19.320698334
+      tokens: 16335
+      review: false
+    ko-KR:
+      text: 소프트웨어와 하드웨어, 그리고 그 사이의 괴상한 것들을 만드는 개발자。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-03T01:33:01.469658Z
+      seconds: 19.320698334
+      tokens: 16335
+      review: false
+    zh-CN:
+      text: 构建软件、硬件以及介于两者之间的奇异事物的开发者。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-03T01:33:01.469658Z
+      seconds: 19.320698334
+      tokens: 16335
+      review: false
+    zh-TW:
+      text: 構建軟體、硬體以及介於兩者之間的奇異事物的開發者。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-08-03T01:33:01.469658Z
+      seconds: 19.320698334
+      tokens: 16335
+      review: false

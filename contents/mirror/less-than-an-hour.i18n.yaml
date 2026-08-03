@@ -847,92 +847,68 @@ segments:
       review: false
   6e4a0628c90263c33d91336b653e408c:
     de-DE:
-      text: |-
-        Alles wirkt unwirklich, in einem benebelten Moment,
-        ich kehre wieder zurück,
-        und doch scheint es, als hätte ich schon lange nicht mehr zurückkehren können.
+      text: Alles scheint unwirklich; in einem flüchtigen Moment ging ich zurück, und es wirkt, als könnte ich schon lange nicht mehr zurückkehren.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:29:04.718976Z
-      seconds: 8.181364042
-      tokens: 16575
+      at: 2026-08-03T01:33:37.261808Z
+      seconds: 8.443703958
+      tokens: 16750
       review: false
     en-US:
-      text: |-
-        Everything feels unreal, in a daze,
-        then I’m back again,
-        and it seems I had already been unable to return long ago.
+      text: Everything feels unreal; in a fleeting moment I went back, and it seems I have long ago been unable to return.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:29:04.718976Z
-      seconds: 8.181364042
-      tokens: 16575
+      at: 2026-08-03T01:33:37.261808Z
+      seconds: 8.443703958
+      tokens: 16750
       review: false
     es-ES:
-      text: |-
-        Todo parece irreal, en un momento de aturdimiento,
-        vuelvo otra vez,
-        y sin embargo parece que ya hacía tiempo que no podía volver.
+      text: Todo parece irreal; en un instante fugaz regresé, y parece que ya hace tiempo que no puedo volver.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:29:04.718976Z
-      seconds: 8.181364042
-      tokens: 16575
+      at: 2026-08-03T01:33:37.261808Z
+      seconds: 8.443703958
+      tokens: 16750
       review: false
     fr-FR:
-      text: |-
-        Tout semble irréel, dans un moment d'étourdissement,
-        je reviens encore,
-        et pourtant on dirait que je ne pouvais plus revenir depuis longtemps.
+      text: Tout semble irréel ; dans un instant fugace, je suis revenu, et il semble que je ne puisse plus jamais revenir depuis longtemps.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:29:04.718976Z
-      seconds: 8.181364042
-      tokens: 16575
+      at: 2026-08-03T01:33:37.261808Z
+      seconds: 8.443703958
+      tokens: 16750
       review: false
     ja-JP:
-      text: |-
-        すべてが現実離れしたように感じ、朦朧とした瞬間に、
-        また戻ってきて、
-        でもすでにもう戻れないような気がする。
+      text: すべてが現実ではないように感じ、ぼんやりした瞬間に戻ってきたが、すでに戻れなくなっていたように思える。
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:29:04.718976Z
-      seconds: 8.181364042
-      tokens: 16575
+      at: 2026-08-03T01:33:37.261808Z
+      seconds: 8.443703958
+      tokens: 16750
       review: false
     ko-KR:
-      text: |-
-        모든 것이 비현실적인 듯하고, 흐릿한 순간에,
-        다시 돌아왔지만,
-        이미 오래전에 돌아갈 수 없었던 것처럼 보인다.
+      text: 모든 것이 비현실적인 듯하고, 흐릿한 순간에 다시 돌아왔지만, 이미 오래전에 돌아갈 수 없게 된 것 같다.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:29:04.718976Z
-      seconds: 8.181364042
-      tokens: 16575
+      at: 2026-08-03T01:33:37.261808Z
+      seconds: 8.443703958
+      tokens: 16750
       review: false
     zh-CN:
-      text: |-
-        一切都好像不真实，恍惚之间，
-        又回去了，
-        又好像已经早就回不去了
+      text: 一切都好像不真实，恍惚之间，又回去了，又好像已经早就回不去了
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:29:04.718976Z
-      seconds: 8.181364042
-      tokens: 16575
+      at: 2026-08-03T01:33:37.261808Z
+      seconds: 8.443703958
+      tokens: 16750
       review: false
     zh-TW:
-      text: |-
-        一切都好像不真實，恍惚之間，
-        又回去了，
-        又好像已經早就回不去了
+      text: 一切都好像不真實，恍惚之間，又回去了，又好像已經早就回不去了
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:29:04.718976Z
-      seconds: 8.181364042
-      tokens: 16575
+      at: 2026-08-03T01:33:37.261808Z
+      seconds: 8.443703958
+      tokens: 16750
       review: false
   71c02f8a87a99a49dc10fd3318433505:
     de-DE:
@@ -2171,68 +2147,68 @@ segments:
       review: false
   ece3bf55829edba4e5b445a3313f4642:
     de-DE:
-      text: 'In dem Moment, in dem ich den Bildschirm aufklappte, wusste ich, dass es zu Ende war. Die Bildschirmhelligkeit von Guoguo ist im Freien einfach nicht ausreichend. Ich habe ein wenig verschiedene Blickwinkel ausprobiert – Gegenlicht, Sonnenlicht, sogar mich selbst so ausgerichtet, dass ich mit der Sonne auf einer Linie liege – aber wie ich auch einstelle, konnte ich nichts sehen. Ehrlich gesagt, das ist ziemlich beklagenswert. Drinnen fühlte ich mich noch als Programmierer, doch draußen stellte ich fest, dass der Bildschirm überhaupt nicht leuchtete. Na gut, ich könnte den Code einfach nicht schreiben, aber ich gab nicht auf, schloss den Laptop und beschloss, im Schatten eines Baumes gegenüber der Straße mein Glück zu versuchen. Bevor ich das Geländer verließ, warf ich noch einen Blick auf das Wasser. Aus der Ferne sah es eigentlich ganz in Ordnung aus; bei bewölktem Wetter mit Sonne sah die Wasseroberfläche immer noch so aus, wie ich sie in Erinnerung habe. Doch als ich den Blick leicht senkte und zum Ufer schaute, bemerkte ich eine Schicht von etwas auf der Oberfläche – Algen, Blätter, allerlei Treibgut. Nicht viel, aber das Flusswasser war bereits trüb, die Oberfläche blieb still wie in der Erinnerung, aber das Ufer war eindeutig vernachlässigt: „早几年疫情的时候我其实就出来看过，自那时候起其实就这样了“~~Aber jedes Mal, wenn ich vorbeigehe, fühle ich ein wenig Wehmut~~.'
+      text: Als ich den Bildschirm öffnete, wusste ich, dass es vorbei war. Guoguos Bildschirmhelligkeit reicht im Freien einfach nicht aus. Ich probierte verschiedene Blickwinkel – Gegenlicht, Vorlicht, sogar mich exakt mit der Sonne auszurichten – doch egal, wie ich einstellte, ich konnte nichts erkennen. Ehrlich gesagt war das ziemlich traurig. Drinnen fühlte ich mich noch als Programmierer, doch draußen stellte ich fest, dass der Bildschirm nicht einmal leuchtete. Also ließ ich den Code ruhen, gab aber nicht auf, schloss das Notebook und beschloss, im Schatten eines Baumes gegenüber der Straße mein Glück zu versuchen. Bevor ich das Geländer verließ, warf ich noch einen Blick auf den Fluss. Aus der Ferne sah er noch ganz in Ordnung aus; das Wasser unter bewölktem, sonnigem Himmel sah immer noch nach meiner Erinnerung aus. Doch als ich den Kopf leicht senkte und zum Ufer schaute, bemerkte ich eine Schicht von Algen, Blättern und kleinen Treibern auf der Wasseroberfläche. Nicht viel, aber das Wasser war bereits trüb; die Oberfläche war ruhiger als in meiner Erinnerung, doch das Ufer war eindeutig vernachlässigt. „Vor ein paar Jahren, während der Pandemie, habe ich es tatsächlich besucht, und seitdem ist es so“ ~~aber jedes Mal, wenn ich vorbeigehe, bleibt ein leichter Anflug von Wehmut~~.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:54.858598Z
-      seconds: 28.266401958
-      tokens: 21810
+      at: 2026-08-03T01:33:37.261834Z
+      seconds: 23.2140635
+      tokens: 20114
       review: false
     en-US:
-      text: As soon as I opened the screen, I knew it was over. Guoguo's screen brightness is simply insufficient for outdoor viewing. I tried a few different angles—back‑lit, with the light, even aligning myself on the same line as the sun—but no matter how I adjusted, I couldn't see clearly. Honestly, it's pretty pitiful. Indoors I still felt like a programmer, but outside I discovered the screen wouldn't light up at all. Fine, I could just not write the code, but I wasn't giving up; I closed the laptop and decided to try my luck under the shade of a tree across the street. Before leaving the railing, I glanced at the river again. From a distance it actually looked okay; on a cloudy day with sunshine the water surface still looked like the memory. But when I lowered my gaze a bit toward the shore, I could see a layer of stuff floating on the surface—algae, leaves, bits of debris. Not much, but the river water was already not clear; the surface was still as still as in memory, but the shore was clearly neglected, “早几年疫情的时候我其实就出来看过，自那时候起其实就这样了”~~But every time I pass by I still feel a little sentiment~~.
+      text: When I opened the screen I knew it was over. Guoguo’s screen brightness is simply not enough to see outdoors. I tried various angles—backlight, frontlight, even aligning myself with the sun—but no matter how I adjusted, I couldn’t see clearly. It’s pretty pitiful, to be honest. Inside I still felt like a programmer, but once outside I discovered the screen wouldn’t even light up. Fine, I could give up the code, but I wasn’t giving up; I closed the laptop and decided to try my luck under the shade of a tree across the street. Before leaving the railing I glanced again at the river. From a distance it was okay; the water surface under a cloudy, sunny day still looked like the memory. But when I lowered my head slightly and looked toward the bank, I could see a layer of stuff floating on the water—algae, leaves, bits of debris. Not much, but the river was already murky; the surface was calmer than in my memory, yet the bank was clearly abandoned. “A few years ago during the pandemic I actually came out to see it, and it’s been like this ever since” ~~but every time I pass by I still feel a slight melancholy~~.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:54.858598Z
-      seconds: 28.266401958
-      tokens: 21810
+      at: 2026-08-03T01:33:37.261834Z
+      seconds: 23.2140635
+      tokens: 20114
       review: false
     es-ES:
-      text: 'En el momento en que abrí la pantalla supe que había terminado. El brillo de la pantalla de Guoguo simplemente no alcanza para ver al aire libre. Probé un poco con varios ángulos—luz de fondo, luz frontal, incluso alineándome con el sol en la misma línea—pero por más que ajustaba, no se veía nada. Es bastante lamentable, la verdad. En interiores todavía me sentía un programador, pero al salir al exterior descubrí que la pantalla ni siquiera se encendía. Está bien, podría dejar de escribir el código, pero no me rendí, cerré el portátil y decidí probar suerte bajo la sombra de un árbol al otro lado de la calle. Antes de alejarme de la barandilla, eché otra mirada al agua del río. Desde lejos parecía bastante aceptable; con nubes y sol, la superficie del agua aún se veía como la recuerdo. Pero al bajar un poco la vista hacia la orilla, pude observar una capa de cosas flotando en la superficie: algas, hojas, pequeños restos flotantes. No son muchas, pero el agua del río ya no está clara; la superficie sigue tan quieta como en mi memoria, pero la orilla evidentemente está desatendida, « 早几年疫情的时候我其实就出来看过，自那时候起其实就这样了 »~~Sin embargo, cada vez que paso siento una ligera nostalgia~~.'
+      text: En abrir la pantalla supe que estaba acabado. El brillo de la pantalla de Guoguo simplemente no basta al aire libre. Probé varios ángulos – contraluz, luz frontal, incluso alinearme con el sol – pero por más que lo ajustaba, no lograba ver nada. Es bastante lamentable, a decir verdad. Dentro me sentía todavía programador, pero al salir al exterior descubrí que la pantalla ni siquiera se encendía. Bueno, podía dejar el código, pero no me rendí; cerré el portátil y decidí probar suerte bajo la sombra de un árbol al otro lado de la calle. Antes de alejarme de la baranda, eché otro vistazo al río. Desde la distancia parecía estar bien; bajo un día nublado con sol, la superficie del agua todavía se veía como en mis recuerdos. Sin embargo, al inclinar ligeramente la cabeza y mirar hacia la orilla, vi una capa de cosas flotando en el agua – algas, hojas, pequeños restos flotantes. No mucho, pero el agua ya estaba turbia; la superficie estaba más tranquila que en mi memoria, aunque la ribera estaba claramente abandonada. “Hace unos años, durante la pandemia, realmente salí a verla, y desde entonces sigue así” ~~pero cada vez que paso siento una ligera melancolía~~.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:54.858598Z
-      seconds: 28.266401958
-      tokens: 21810
+      at: 2026-08-03T01:33:37.261834Z
+      seconds: 23.2140635
+      tokens: 20114
       review: false
     fr-FR:
-      text: À l’instant où j’ai ouvert l’écran, j’ai immédiatement compris que c’était fini. La luminosité de l’écran de Guoguo est tout simplement insuffisante en extérieur. J’ai tenté, à peine, plusieurs angles – contre‑lumière, lumière directe, jusqu’à m’aligner avec le soleil sur la même ligne – mais quoi que j’ajuste, je ne voyais rien. Honnêtement, c’est assez pitoyable. À l’intérieur, je me sentais encore programmeur, mais en plein air j’ai découvert que l’écran ne s’allumait même pas. Bon, je pourrais ne pas écrire le code, mais je n’ai pas abandonné, j’ai refermé l’ordinateur portable et j’ai décidé d’essayer ma chance sous l’ombre d’un arbre de l’autre côté de la rue. Avant de quitter la balustrade, j’ai jeté un œil à la surface du fleuve. De loin, ça allait plutôt bien; sous un ciel partiellement couvert avec du soleil, la surface de l’eau ressemblait toujours à ce que je me souviens. Mais en baissant légèrement le regard vers la rive, j’ai pu voir une fine couche de choses flottant à la surface – algues, feuilles, petits débris. Ce n’est pas beaucoup, mais l’eau du fleuve était déjà trouble, la surface restait aussi calme que dans mes souvenirs, alors que la rive était clairement négligée, « 早几年疫情的时候我其实就出来看过，自那时候起其实就这样了 »~~Mais chaque fois que je passe, je ressens encore un léger sentiment~~.
+      text: À l’instant où j’ai ouvert l’écran, j’ai su que c’était fini. La luminosité de l’écran de Guoguo est tout simplement insuffisante à l’extérieur. J’ai essayé différents angles – contre‑lumière, lumière frontale, même m’aligner avec le soleil – mais quoi que j’aie fait, je ne voyais rien. C’est assez pitoyable, pour être honnête. À l’intérieur, je me sentais encore programmeur, mais une fois dehors, l’écran ne s’allumait même pas. D’accord, je pourrais abandonner le code, mais je ne me suis pas découragé ; j’ai refermé l’ordinateur portable et décidé d’essayer ma chance à l’ombre d’un arbre de l’autre côté de la rue. Avant de quitter la balustrade, j’ai de nouveau jeté un œil sur le fleuve. De loin, il semblait correct ; sous un ciel partiellement nuageux et ensoleillé, la surface de l’eau ressemblait encore à ce que je me rappelais. Mais en baissant légèrement la tête et en regardant vers la rive, j’ai vu une fine couche de choses flottant à la surface – des algues, des feuilles, des débris épars. Pas beaucoup, mais l’eau était déjà trouble ; la surface était plus calme que dans mes souvenirs, tandis que la berge était clairement abandonnée. « Il y a quelques années, pendant la pandémie, je suis effectivement sorti le voir, et depuis c’est ainsi » ~~mais chaque fois que je passe, je ressens encore un léger émoi~~.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:54.858598Z
-      seconds: 28.266401958
-      tokens: 21810
+      at: 2026-08-03T01:33:37.261834Z
+      seconds: 23.2140635
+      tokens: 20114
       review: false
     ja-JP:
-      text: 画面を開いた瞬間、もう終わりだと分かりました。果果の画面の明るさは屋外では全く見えません。少しだけ様々な角度—バックライト、順光、さらには自分を太陽と同じ線上に合わせる—を試しましたが、どう調整しても見えませんでした。正直、ちょっと哀れです。室内ではまだ自分はプログラマーだと感じていましたが、屋外に出ると画面すら点灯しないことが分かりました。まあ、コードを書かなくてもいいですが、まだ諦めずにノートパソコンを閉じて、向かい側の木陰で運を試すことにしました。手すりを離れる前に、もう一度川面を見ました。遠くからは実際にまあまあで、曇りと日光がある天気の水面は記憶の中の様子と同じように見えました。しかし少し俯き、岸側を見ると、水面に何か層が浮かんでいるのが分かります—藻、葉、細かい浮遊物です。多くはありませんが、川の水はすでに濁っており、水面は記憶の中の静かなものと同じですが、岸は明らかに誰も手入れしていません。「早几年疫情的时候我其实就出来看过，自那时候起其实就这样了」~~でも通り過ぎるたびに少し感慨があります~~。
+      text: 画面を開いた瞬間、もう終わりだとわかった。ゴゴの画面の明るさは屋外では全く見えないほどだ。背光、順光、さらには太陽と同じラインに自分を合わせても、どう調整しても見えなかった。正直、哀れに思う。室内ではまだプログラマーだと感じていたが、屋外に出ると画面すら点灯しなかった。コードを書かない方がいいかもしれないが、諦めずにノートパソコンを閉じ、向かいの木陰で運を試すことにした。手すりを離れる前に再び川面を見た。遠くからはまだまあまあで、曇りと晴れが混ざった天気の水面は記憶の風景のままだった。しかし少し頭を下げて岸側を見ると、水面に藻や葉、細かい浮遊物が浮かんでいるのが見えた。多くはないが、川はすでに濁っていた。水面は記憶の静けさよりも静かだったが、岸は明らかに誰も手入れしていなかった。「数年前のパンデミックのときに実際に見に行ったが、それ以来ずっとこうだ」~~でも通り過ぎるたびに少し感慨が残る~~。
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:54.858598Z
-      seconds: 28.266401958
-      tokens: 21810
+      at: 2026-08-03T01:33:37.261834Z
+      seconds: 23.2140635
+      tokens: 20114
       review: false
     ko-KR:
-      text: 스크린을 열자마자 나는 이미 끝났다는 걸 알았다. 과과의 화면 밝기는 야외에서는 전혀 보이지 않는다. 약간 다양한 각도—백라이트, 순광, 심지어 태양과 같은 라인에 맞추기까지—를 시도했지만, 어떻게 조정해도 선명하게 보이지 않았다. 솔직히 말해서 꽤 안쓰럽다. 실내에서는 아직도 내가 프로그래머라고 생각했지만, 야외에 나가보니 화면조차 켜지지 않았다. 됐어, 코드를 쓰지 않아도 되지만, 나는 포기하지 않고 노트북을 닫고 길 건너 나무 그늘에서 운을 걸기로 했다. 난간을 떠나기 전에 다시 한 번 강물을 바라보았다. 멀리서는 꽤 괜찮아 보였고, 구름이 끼고 햇빛이 있는 날씨에 물표면은 기억 속 모습과도 같았다. 하지만 살짝 고개를 숙여 물가를 보면, 물표면에 얇은 층이 떠 있는 것을 볼 수 있다—수초, 나뭇잎, 조각조각 떠다니는 물건들. 많지는 않지만 강물은 이미 탁해졌고, 물표면은 기억 속의 정적과 같지만, 강가에는 분명히 아무도 손대지 않은 듯하다. 「早几年疫情的时候我其实就出来看过，自那时候起其实就这样了」~~하지만 지나갈 때마다 약간의 감회가 남는다~~.
+      text: 화면을 연 순간 나는 끝났다는 것을 알았다. 과과의 화면 밝기는 야외에서는 전혀 보이지 않을 정도다. 백라이트, 순라이트, 심지어 태양과 같은 선상에 자신을 맞추어 보았지만, 어떻게 조정해도 선명하게 보이지 않았다. 솔직히 안타깝다. 실내에서는 아직도 내가 프로그래머라고 생각했지만, 야외에 나가 보니 화면조차 켜지지 않았다. 코드를 쓰지 않아도 되겠지만, 나는 포기하지 않았다. 노트북을 닫고 길 건너 나무 그늘에서 운을 시험해 보기로 했다. 난간을 떠나기 전에 다시 한 번 강을 바라보았다. 멀리서는 아직 괜찮아 보였고, 흐린 날에 햇빛이 비치는 물 표면은 기억 속 모습과 같았다. 하지만 머리를 살짝 숙이고 강가를 내려다보니 물 위에 수초, 나뭇잎, 조각조각 떠다니는 물건들이 떠 있는 것을 발견했다. 많지는 않지만 강물은 이미 탁해졌고, 물 표면은 기억 속의 정적보다 차분했지만, 강가에는 분명히 사람이 손길을 주지 않은 것 같다. “몇 해 전 팬데믹 때 실제로 나가서 본 적이 있는데, 그때부터 이렇게 되었다” ~~하지만 매번 지나갈 때마다 약간의 감상이 남는다~~.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:54.858598Z
-      seconds: 28.266401958
-      tokens: 21810
+      at: 2026-08-03T01:33:37.261834Z
+      seconds: 23.2140635
+      tokens: 20114
       review: false
     zh-CN:
       text: 打开屏幕的那一刻我就知道完了。果果的屏幕亮度在户外根本不够看。稍微尝试了一下各种角度，背光、顺光，甚至把自己调整到和太阳在同一条线上——怎么调都看不清。挺可怜的，说实话。在室内觉得自己还是个程序员，结果到了户外发现连屏幕都点不亮。算了，这代码不写也罢，但是我还是不死心，合上笔记本，决定去马路对面的树荫里碰碰运气。离开栏杆之前，我又往江面看了一眼。远看其实还行，水面在多云伴随阳光的天气下看起来还是那种记忆里的样子。但稍稍低头把视线下压一点看向岸边看，就能发现水面上浮着一层东西——水藻、树叶、零零碎碎的漂浮物。不多，但江水已经不清了，水面比记忆中的静，但岸边很显然已经没人搭理了，「早几年疫情的时候我其实就出来看过，自那时候起其实就这样了」~~但是每次走过还是有些许感慨~~。
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:54.858598Z
-      seconds: 28.266401958
-      tokens: 21810
+      at: 2026-08-03T01:33:37.261834Z
+      seconds: 23.2140635
+      tokens: 20114
       review: false
     zh-TW:
-      text: 打開螢幕的那一刻我就知道完了。果果的螢幕亮度在戶外根本不夠看。稍微嘗試了一下各種角度，背光、順光，甚至把自己調整到和太陽在同一條線上——怎麼調都看不清。挺可憐的，說實話。在室內覺得自己還是個程式設計師，結果到了戶外發現連螢幕都點不亮。算了，這程式碼不寫也罷，但是我還是沒死心，合上筆記本，決定去馬路對面的樹蔭裡碰碰運氣。離開欄杆之前，我又往江面看了一眼。遠看其實還行，水面在多雲伴隨陽光的天氣下看起來仍是那種記憶裡的樣子。但稍稍低頭把視線下壓一點看向岸邊，就能發現水面上浮著一層東西——水藻、樹葉、零零碎碎的漂浮物。不多，但江水已經不清了，水面比記憶中的靜，但岸邊很顯然已經沒人搭理了，「早几年疫情的时候我其实就出来看过，自那时候起其实就这样了」~~但是每次走過還是有些許感慨~~。
+      text: 打開螢幕的那一刻我就知道完了。果果的螢幕亮度在戶外根本不夠看。稍微嘗試了一下各種角度，背光、順光，甚至把自己調整到和太陽在同一條線上——怎麼調都看不清。挺可憐的，說實話。在室內覺得自己還是個程式設計師，結果到了戶外發現連螢幕都點不亮。算了，這程式碼不寫也罷，但是我還是不死心，合上筆記型電腦，決定去馬路對面的樹蔭裡碰碰運氣。離開欄杆之前，我又往江面看了一眼。遠看其實還行，水面在多雲伴隨陽光的天氣下看起來還是那種記憶裡的樣子。但稍稍低頭把視線下壓一點看向岸邊看，就能發現水面上浮著一層東西——水藻、樹葉、零零碎碎的漂浮物。不多，但江水已經不清了，水面比記憶中的靜，但岸邊很顯然已經沒人搭理了，「早幾年疫情的時候我其實就出來看過，自那時候起其實就這樣了」~~但是每次走過還是有些許感慨~~.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:30:54.858598Z
-      seconds: 28.266401958
-      tokens: 21810
+      at: 2026-08-03T01:33:37.261834Z
+      seconds: 23.2140635
+      tokens: 20114
       review: false
   ef777fdbb680bf711f96006468b7b38a:
     de-DE:
@@ -2366,68 +2342,68 @@ segments:
       review: false
   ff5d22300f32c078cc5833697fcd1828:
     de-DE:
-      text: Als ich den schmalen Weg verließ, hatte ich bereits das Gebiet der Jiangbian‑Straße hinter mir und ging weiter entlang einer Baustelle. Die Stadtgebäude sind mir schon lange zuwider, besonders die dichten Wohnblöcke in zweit‑ und dritt‑Stadt‑Gebieten, die weder das Gefühl von Hochhäusern vermitteln noch ästhetisch ansprechend sind. Deshalb meide ich es bewusst, sie zu fotografieren; ich wollte etwas Himmel einfangen, stellte jedoch fest, dass das schwieriger ist als gedacht. Stehe ich auf dem Bürgersteig und halte das Handy hoch, um Straße und Straßenlampen auszublenden, gelangt trotzdem ein wenig Baumschatten und das gegenüberliegende Wohngebäude ins Bild. Sie sind so dicht gebaut, dass es in dieser Stadt kaum ein sauberes Stück Himmel zu finden gibt. Das Wetter heute ist eigentlich recht angenehm. Es gibt Sonne, aber nicht stark, eher bewölkt. Blickt man nach oben, sind die Wolken nicht dicht, sondern spärlich verteilt, was ein leichtes Nebelgefühl erzeugt, während gleichzeitig große klare Flächen bleiben. Die Wolken sehen schön aus – die Art von Schönheit, die man drinnen „室内“ nie bemerkt, aber sie sind nicht die typischen, in Animes geliebten Himmel; solche Dinge gibt es wohl im realen Japan nicht.
+      text: Als ich den schmalen Weg verließ, war ich bereits aus dem Gebiet der Flussuferstraße heraus und ging weiter entlang einer Baustelle. Die Hochhäuser der Stadt habe ich schon lange satt, besonders die dicht gedrängten Wohnblöcke in zweit‑ und drittgrößeren Städten, die nicht das Gefühl von Wolkenkratzern vermitteln und keinerlei ästhetischen Reiz haben. Deshalb vermeide ich es bewusst, sie zu fotografieren; ich wollte den Himmel einfangen, stellte jedoch fest, dass das schwieriger ist als gedacht. Auf dem Bürgersteig stehend, das Handy hoch emporhaltend und die Straße sowie die Laternen vermeidend, dringen dennoch ein wenig Baumschatten und die gegenüberliegenden Wohngebäude ins Bild. Sie sind so eng gebaut, dass es in dieser Stadt kaum möglich ist, ein sauberes Stück Himmel zu finden. Das heutige Wetter ist tatsächlich recht angenehm. Es scheint die Sonne, aber nicht stark – eher bewölkt. Blickt man nach oben, sind die Wolken nicht dicht, sondern verstreut, was ein leicht nebliges Gefühl erzeugt, zugleich bleibt aber viel klarer Himmel. Die Wolken sind wunderschön. Es ist die Art von Schönheit, die man drinnen kaum bemerken würde, aber nicht die Art von Himmel, die in Anime geliebt wird – „so etwas existiert wohl auch im realen Japan kaum.“
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:31:11.519021Z
-      seconds: 24.505716292
-      tokens: 20732
+      at: 2026-08-03T01:33:37.261867Z
+      seconds: 29.731264042
+      tokens: 21216
       review: false
     en-US:
-      text: Coming out of the narrow path, I had already left the area of Jiangbian Street and continued forward along a construction site. I've grown tired of the city's buildings long ago, especially the dense residential blocks of second- and third-tier cities, which lack the feel of skyscrapers and have no aesthetic appeal. So I deliberately avoid photographing them; I want to capture some sky, but I found that to be harder than imagined. Standing on the sidewalk, holding my phone high to avoid the street and streetlights, the frame still catches bits of tree shadows and the opposite residential buildings. They are built so densely that it's hard to find a clean patch of sky in this city. Today's weather is actually quite pleasant. There's sunshine, but not strong—more like partly cloudy. Looking up, the clouds are not thick, scattered sparsely, giving a misty feeling while leaving large clear expanses. The clouds are beautiful—the kind you wouldn't notice indoors, yet not the stylized skies of anime; that sort of thing probably doesn't exist in real-life Japan either.
+      text: Leaving the narrow alley, I have already moved away from the riverside street area and continue forward along a construction site. I have grown tired of the city’s buildings long ago, especially the densely packed apartment blocks of second‑ and third‑tier cities, which lack the feel of skyscrapers and have no aesthetic appeal. So I deliberately avoid photographing them; I want to capture the sky, but I find this harder than I imagined. Standing on the sidewalk, holding my phone high, avoiding the street and streetlights, the frame still catches a bit of tree shade and the opposite residential buildings. They are built so densely that it is difficult to find a clean patch of sky in this city. Today’s weather is actually quite comfortable. There is sunshine, but not strong—more like it is cloudy. Looking up, the clouds are not dense, scattered sparsely, giving a misty feeling, yet leaving large expanses of clear space. The clouds are beautiful. It’s the kind of beauty you would never notice while being “indoors”, but it’s not the kind of sky loved in anime—“that kind of thing probably doesn’t exist in real‑world Japan either.”
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:31:11.519021Z
-      seconds: 24.505716292
-      tokens: 20732
+      at: 2026-08-03T01:33:37.261867Z
+      seconds: 29.731264042
+      tokens: 21216
       review: false
     es-ES:
-      text: 'Saliendo del pequeño camino, ya había dejado la zona de la calle Jiangbian y seguí caminando por un tramo de obra de construcción. Los edificios de la ciudad ya me cansan, sobre todo esas residencias densas de ciudades de segunda y tercera línea, que no provocan la sensación de rascacielos y carecen totalmente de estética. Así que deliberadamente evito fotografiarlos; quería capturar algo de cielo, pero descubrí que es más difícil de lo que imaginaba. De pie en la acera, levantando el móvil alto para evitar la calle y las farolas, el objetivo aún captura un poco de sombra de árboles y los edificios residenciales opuestos. Están construidos tan densamente que es difícil encontrar un trozo de cielo limpio en esta ciudad. El clima de hoy es realmente agradable. Hay sol, pero no es intenso, más bien parece nublado. Al mirar hacia arriba, las nubes no son densas, están dispersas de forma escasa, lo que da una sensación de niebla mientras deja amplios espacios despejados. Las nubes son hermosas: es ese tipo de belleza que normalmente no notarías «室内», pero tampoco es el cielo que suele gustar en los animes; «ese tipo de cosa probablemente no exista en el Japón real».'
+      text: Saliendo del callejón, ya había dejado la zona de la calle junto al río y seguí avanzando a lo largo de un sitio de construcción. Ya estoy cansado de los edificios de la ciudad, especialmente de estos bloques residenciales densos de ciudades de segunda y tercera línea, que no tienen la sensación de rascacielos y carecen de cualquier estética. Por eso evito deliberadamente fotografiarlos; quiero capturar el cielo, pero descubrí que es más difícil de lo que imaginaba. De pie en la acera, con el móvil levantado muy alto, evitando la calle y los faroles, el encuadre sigue capturando un poco de sombra de árbol y los edificios residenciales frente a mí. Están construidos tan densamente que es difícil encontrar un trozo de cielo limpio en esta ciudad. El clima de hoy es en realidad bastante agradable. Hay sol, pero no es muy intenso, más bien parece nublado. Al mirar hacia arriba, las nubes no son densas, están dispersas esporádicamente, dando una sensación de niebla, pero también dejan grandes espacios despejados. Las nubes son hermosas. Es el tipo de belleza que nunca notarías estando « dentro de casa », pero no es el cielo que suele gustar en los animes; « ese tipo de cosa probablemente tampoco exista en el Japón real ».
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:31:11.519021Z
-      seconds: 24.505716292
-      tokens: 20732
+      at: 2026-08-03T01:33:37.261867Z
+      seconds: 29.731264042
+      tokens: 21216
       review: false
     fr-FR:
-      text: En sortant du petit chemin, j’avais déjà quitté le quartier de la rue Jiangbian et je continuais le long d’un chantier de construction. Les immeubles de la ville m’ennuient depuis longtemps, surtout ces résidences denses des villes de deuxième ou troisième catégorie, qui n’ont pas la sensation de gratte-ciel et manquent totalement d’esthétique. J’ai donc délibérément évité de les photographier ; je voulais capturer le ciel, mais j’ai découvert que c’était plus difficile qu’on ne le croit. Debout sur le trottoir, le téléphone levé haut pour échapper à la rue et aux réverbères, le cadre capture quand même un peu d’ombre d’arbre et les immeubles d’en face. Elles sont construites trop près les unes des autres, rendant difficile de trouver un morceau de ciel propre dans cette ville. Le temps aujourd’hui est en fait assez agréable. Il y a du soleil, mais pas très fort, plus comme un temps partiellement nuageux. En levant les yeux, les nuages ne sont pas denses, ils sont épars, créant une sensation de brume tout en laissant de vastes espaces clairs. Les nuages sont beaux – le genre de beauté que l’on ne remarque jamais « 室内 », mais ce n’est pas le ciel que l’on aime dans les anime ; « ce genre de chose n’existe probablement pas dans le Japon réel ».
+      text: En sortant du petit sentier, j’ai déjà quitté la zone de la rue au bord du fleuve et j’ai continué à avancer le long d’un chantier. Les immeubles de la ville me sont depuis longtemps lassants, surtout ces résidences denses des villes de deuxième et troisième rang, qui n’ont pas l’impression de gratte-ciel et manquent totalement d’esthétique. J’évite donc délibérément de les photographier ; je veux capturer le ciel, mais je me rends compte que c’est plus difficile que prévu. Debout sur le trottoir, le téléphone levé très haut, en évitant la rue et les lampadaires, le cadre capte encore un peu l’ombre des arbres et les immeubles résidentiels en face. Ils sont construits tellement près les uns des autres qu’il est difficile de trouver un morceau de ciel dégagé dans cette ville. Le temps d’aujourd’hui est en fait très agréable. Il y a du soleil, mais pas très fort, plus comme un temps partiellement nuageux. En levant les yeux, les nuages ne sont pas denses, ils sont épars, créant une impression de brume tout en laissant de vastes espaces clairs. Les nuages sont magnifiques. C’est le type de beauté que l’on ne remarque jamais « à l’intérieur », mais ce n’est pas le ciel que l’on voit dans les animés ; « ce genre de chose n’existe probablement pas non plus dans le Japon réel ».
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:31:11.519021Z
-      seconds: 24.505716292
-      tokens: 20732
+      at: 2026-08-03T01:33:37.261867Z
+      seconds: 29.731264042
+      tokens: 21216
       review: false
     ja-JP:
-      text: 小道を出ると、すでに江辺通りのエリアを離れ、工事現場が続く道をさらに進んだ。街のビルはもううんざりしていて、特に二、三線都市の住宅ビルは密集しているが高層ビルのような感覚がなく、まったく美しさを感じない。だからわざわざ撮影しようともしない。空を撮りたかったが、想像以上に難しいことに気付いた。歩道に立ち、スマートフォンを高く持ち上げて道路や街灯を避けても、レンズにはやはり少し木陰や向かい側の住宅が写り込んでしまう。建物が密すぎて、この街で清らかな空を見つけるのは難しい。今日は実に快適な天気だ。日差しはあるが強くはなく、むしろ曇りがちだ。見上げると、雲は密集せず、まばらに散らばり、煙のようなもやが漂う感じだが、広大な開放感も残っている。雲は美しい。普段「室内」では絶対に気づかないほどの美しさだが、アニメのような好きな空ではなく、現実の日本にはそのようなものは存在しないだろうという感じだ。
+      text: 狭い路地を出て、すでに川辺通りのエリアを離れ、工事現場の沿いをさらに前へ進んだ。都市のビルにはもううんざりしていて、特に二、三線都市の集合住宅は密集しているが高層ビルのような感覚がなく、全く美しさがない。だから意図的にそれらを撮らないようにしている。空を撮りたかったが、想像以上に難しいことに気付いた。歩道に立ち、スマートフォンを高く持ち上げ、道路や街灯を避けても、レンズにはやはり少し木陰や向かい側の住宅が写り込んでしまう。建物が密集しすぎて、この街ではきれいな空の一片さえ見つけにくい。今日は実はとても快適な天気だ。日差しはあるが強くはなく、むしろ曇りに近い。顔を上げて見ると、雲は密集しておらず、ところどころにまばらに散らばり、霧が立ち込めているような感じだが、広大な空き領域も残っている。雲はとても美しい。普段「室内」で絶対に気付かないような美しさだが、日漫で好まれるような空でもなく、「そのようなものは現実の日本にはほとんど存在しないだろう」
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:31:11.519021Z
-      seconds: 24.505716292
-      tokens: 20732
+      at: 2026-08-03T01:33:37.261867Z
+      seconds: 29.731264042
+      tokens: 21216
       review: false
     ko-KR:
-      text: 좁은 길을 나와서 이미 강변 거리 구역을 떠났고, 공사 현장을 따라 앞으로 계속 걸었다. 도시의 건물들은 이미 지겨워졌고, 특히 이 같은 2·3선 도시의 아파트들은 빽빽하지만 고층 건물 같은 느낌도 없고 미적 감각도 전혀 없었다. 그래서 나는 일부러 그들을 찍지 않는다. 하늘을 찍고 싶었지만, 생각보다 어렵다는 것을 알았다. 인도에 서서 휴대폰을 높이 들어 거리와 가로등을 피하려 해도, 프레임에는 여전히 약간의 나무 그림자와 맞은편 아파트가 들어온다. 건물들이 너무 촘촘히 지어져 있어 이 도시에서 깨끗한 하늘을 찾기 힘들다. 오늘 날씨는 사실 꽤 쾌적했다. 햇빛은 있지만 강하지 않고, 오히려 흐린 편이다. 하늘을 올려다보면 구름이 촘촘하지 않고 드문드문 흩어져 있어 안개가 낀 듯한 느낌이지만, 동시에 넓은 맑은 공간을 남겨준다. 구름은 아름답다. 평소에 「室内」에서는 절대 눈여겨보지 못하는 아름다움이지만, 일러스트나 애니메이션 속에 나오는 그런 하늘은 아니다. “그런 것은 현실의 일본에도 없을 것 같다”는 느낌이다.
+      text: 골목길을 나와 이미 강변 거리 구역을 벗어나 건설 현장을 따라 계속 앞으로 걸었다. 도심의 건물은 오래전에 지겨워졌고, 특히 이런 2·3선 도시의 아파트는 빽빽하지만 고층 빌딩 같은 느낌이 없으며 전혀 미적 감각이 없다. 그래서 나는 일부러 그것들을 촬영하지 않는다. 하늘을 찍고 싶었지만 생각보다 어렵다는 것을 발견했다. 인도에 서서 휴대폰을 높이 들어 거리와 가로등을 피했지만, 화면에는 여전히 약간의 나무 그림자와 맞은편 주거 건물이 끼어 들어온다. 건물들이 너무 촘촘히 지어져 이 도시에서는 깨끗한 하늘 한 조각을 찾기 어렵다. 오늘 날씨는 사실 꽤 쾌적하다. 햇빛은 있지만 강하지 않고, 오히려 흐린 편이다. 고개를 들어 보면 구름은 촘촘하지 않고, 드문드문 흩어져 있어 안개가 자욱한 느낌을 주지만 큰 넓은 맑은 공간도 남아 있다. 구름은 매우 아름답다. 평소 "실내"에서는 절대 눈에 띄지 않는 아름다움이지만, 일각에서 좋아하는 애니풍 하늘은 아니며, "그런 것은 현실 일본에도 거의 존재하지 않을 것이다"
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:31:11.519021Z
-      seconds: 24.505716292
-      tokens: 20732
+      at: 2026-08-03T01:33:37.261867Z
+      seconds: 29.731264042
+      tokens: 21216
       review: false
     zh-CN:
-      text: 从小道走出来，已经离开了江边街道的区域，沿着一段施工工地继续往前走。城市的楼房我早就看腻了，尤其是这种二三线城市的居民楼，密密麻麻的，但是又没有高楼大厦的感觉，毫无美感。所以我刻意不去拍它们，我想拍点天，但我发现这件事比想象中难。站在人行道上，把手机举得很高，避开街道、避开路灯，镜头里还是会贴进来一点树影和对面的居民楼。它们建得太密了，你很难在这座城市里找到一块干净的天空。今天的天气其实很舒服。有阳光，但不算很大，更像是多云吧，抬头看 云并不密，稀稀疏疏地散在那里，有一种烟雾缭绕的感觉，但又留出了大片大片的净空。云很好看。就是那种你平时在「室内」绝对不会注意到的好看，但是也不是那种日漫里面的喜欢的天，「那种东西大概现实的日本里面也不存在吧」
+      text: 从小道走出来，已经离开了江边街道的区域，沿着一段施工工地继续往前走。城市的楼房我早就看腻了，尤其是这种二三线城市的居民楼，密密麻麻的，但是又没有高楼大厦的感觉，毫无美感。所以我刻意不去拍它们，我想拍点天，但我发现这件事比想象中难。站在人行道上，把手机举得很高，避开街道、避开路灯，镜头里还是会贴进来一点树影和对面的居民楼。它们建得太密了，你很难在这座城市里找到一块干净的天空。今天的天气其实很舒服。有阳光，但不算很大，更像是多云吧，抬头看云并不密，稀稀疏疏地散在那里，有一种烟雾缭绕的感觉，但又留出了大片大片的净空。云很好看。就是那种你平时在「室内」绝对不会注意到的好看，但是也不是那种日漫里面的喜欢的天，「那种东西大概现实的日本里面也不存在吧」
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:31:11.519021Z
-      seconds: 24.505716292
-      tokens: 20732
+      at: 2026-08-03T01:33:37.261867Z
+      seconds: 29.731264042
+      tokens: 21216
       review: false
     zh-TW:
-      text: 從小道走出來，已經離開了江邊街道的區域，沿著一段施工工地繼續往前走。城市的樓房我早就看膩了，尤其是這種二三線城市的住宅樓，密密麻麻的，但卻沒有高樓大廈的感覺，毫無美感。所以我刻意不去拍它們，我想拍點天空，但我發現這件事比想像中難。站在人行道上，把手機舉得很高，避開街道、避開路燈，鏡頭裡還是會貼進來一點樹影和對面的住宅樓。它們建得太密了，你很難在這座城市裡找到一塊乾淨的天空。今天的天氣其實很舒服。有陽光，但不算很大，更像是多雲吧，抬頭看雲並不密，稀稀疏疏地散在那裡，有一種煙霧繚繞的感覺，但又留出了大片大片的淨空。雲很好看。就是那種你平時在「室內」絕對不會注意到的好看，但也不是那種日漫裡喜歡的天，「那種東西大概現實的日本裡面也不存在吧」
+      text: 從小道走出來，已經離開了江邊街道的區域，沿著一段施工工地繼續往前走。城市的樓房我早就看膩了，尤其是這種二三線城市的居民樓，密密麻麻的，但是又沒有高樓大廈的感覺，毫無美感。所以我刻意不去拍它們，我想拍點天，但我發現這件事比想像中難。站在人行道上，把手機舉得很高，避開街道、避開路燈，鏡頭裡還是會貼進來一點樹影和對面的居民樓。它們建得太密了，你很難在這座城市裡找到一塊乾淨的天空。今天的天氣其實很舒服。有陽光，但不算很大，更像是多雲吧，抬頭看雲並不密，稀稀疏疏地散在那裡，有一種煙霧繚繞的感覺，但又留出了大片大片的淨空。雲很好看。就是那種你平時在「室內」絕對不會注意到的好看，但是也不是那種日漫裡面的喜歡的天，「那種東西大概現實的日本裡面也不存在吧」
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-01T02:31:11.519021Z
-      seconds: 24.505716292
-      tokens: 20732
+      at: 2026-08-03T01:33:37.261867Z
+      seconds: 29.731264042
+      tokens: 21216
       review: false
   ff6e6e87eb11c4e2e2e1764bcade3bf6:
     de-DE:

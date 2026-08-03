@@ -58,6 +58,11 @@ pub struct Outcome {
 	pub exhausted: Option<String>,
 }
 
+/// Lines a block occupies, ignoring the blank ones a reply may pad with.
+fn body_lines(text: &str) -> usize {
+	text.lines().filter(|line| !line.trim().is_empty()).count()
+}
+
 fn validate_reply(
 	reply: &str,
 	boundary: &str,
@@ -66,14 +71,20 @@ fn validate_reply(
 	let parsed = prompt::parse(reply, Some(boundary)).map_err(|prompt::BoundaryLeak| {
 		Refusal::Failed("the model echoed the prompt boundary".to_owned())
 	})?;
+	// The neighbouring paragraphs go into the prompt as context, and a reply that includes them
+	// is not a translation of this block -- it is this block plus somebody else's, stored under
+	// this block's id. It shows up as untranslated prose appearing inside an unrelated view,
+	// which is a long way from the reply that caused it. A block cannot gain lines in
+	// translation, so counting them catches it at the point it happens.
+	let allowed = body_lines(masked.text.as_str());
 	let kept: Vec<(String, String)> = parsed
 		.into_iter()
-		.filter(|(_, text)| masked.intact(text))
+		.filter(|(_, text)| masked.intact(text) && body_lines(text) <= allowed)
 		.map(|(locale, text)| (locale, masked.restore(&text)))
 		.collect();
 	if kept.is_empty() {
 		return Err(Refusal::Failed(
-			"no locale survived marker validation".to_owned(),
+			"no locale survived marker and shape validation".to_owned(),
 		));
 	}
 	Ok(kept)
@@ -126,6 +137,22 @@ async fn translate(
 				continue;
 			}
 		};
+
+		// A locale that failed validation is missing, and asking again later reproduces it: the
+		// same prompt to the same model fails the same way, so the gap becomes permanent while
+		// every run reports success. Retry here instead, where the attempt counter escalates the
+		// model. The last attempt keeps whatever survived -- some languages beat none -- and the
+		// gap is then real rather than invisible, because the next run has something new to try.
+		if kept.len() < prompt::LOCALES.len() && attempt + 1 < ATTEMPTS {
+			let lost: Vec<&str> = prompt::LOCALES
+				.iter()
+				.copied()
+				.filter(|locale| !kept.iter().any(|(kept, _)| kept == locale))
+				.collect();
+			last = Refusal::Failed(format!("{} did not survive validation", lost.join(", ")));
+			attempt += 1;
+			continue;
+		}
 
 		let provider = runner.provider().to_owned();
 		let seconds = clock.elapsed().as_secs_f64();
@@ -356,6 +383,44 @@ mod tests {
 		assert_eq!(selected.len(), 1);
 		assert_eq!(selected[0].source, "Visible title");
 		assert_eq!(selected[0].region, segment::Region::Frontmatter);
+	}
+
+	#[test]
+	fn a_reply_carrying_the_neighbouring_paragraphs_is_refused() {
+		// Measured from four articles: seventeen stored translations held their own block plus a
+		// neighbour that had been supplied as context. Filed under this block's id, the extra
+		// prose then surfaced untranslated inside an unrelated view, a long way from the reply
+		// that caused it. A block does not gain lines in translation, so the shape says so.
+		let boundary = "K3QZ7XW1M8ND5VBRTY2LPCFA6GHJ0SEU";
+		let source = "::linkcard{src=\"a.avif\" url=\"https://example.com\" title=\"One\"}";
+		let echoed = format!(
+			"{}\n::linkcard{{src=\"b.avif\" url=\"https://other.com\" title=\"Two\"}}\n\
+			 A paragraph that belongs to the block before this one.\n{source}\n",
+			prompt::locale_marker("en-US"),
+		);
+		assert!(matches!(
+			validate_reply(&echoed, boundary, &segment::mask(source)),
+			Err(Refusal::Failed(_))
+		));
+
+		// The same block answered on its own is kept, so the check costs nothing that is correct.
+		let clean = format!(
+			"{}\n::linkcard{{src=\"a.avif\" url=\"https://example.com\" title=\"Eins\"}}\n",
+			prompt::locale_marker("de-DE"),
+		);
+		assert!(validate_reply(&clean, boundary, &segment::mask(source)).is_ok());
+	}
+
+	#[test]
+	fn a_multi_line_block_may_keep_its_lines() {
+		// A list translates line for line, so the rule is "no more than", never "exactly one".
+		let boundary = "PQ9WZ4WX2TN7VLKD8RYC5MBFA1GHJ0SE";
+		let source = "- first\n- second\n- third";
+		let reply = format!(
+			"{}\n- erste\n- zweite\n- dritte\n",
+			prompt::locale_marker("de-DE"),
+		);
+		assert!(validate_reply(&reply, boundary, &segment::mask(source)).is_ok());
 	}
 
 	#[test]
