@@ -1,4 +1,5 @@
 <script lang="ts">
+	import './cargo-palette.css';
 	import ArrowUpRight from '@lucide/svelte/icons/arrow-up-right';
 	import { hierarchy, treemap, treemapBinary } from 'd3-hierarchy';
 	import {
@@ -259,44 +260,7 @@
 </div>
 
 <style>
-	.cargo-widget {
-		--cargo-1: oklch(0.56 0.09 252);
-		--cargo-2: oklch(0.56 0.09 25);
-		--cargo-3: oklch(0.56 0.08 194);
-		--cargo-4: oklch(0.56 0.08 310);
-		--cargo-5: oklch(0.56 0.08 66);
-		--cargo-6: oklch(0.56 0.08 226);
-		--cargo-7: oklch(0.56 0.08 142);
-		--cargo-8: oklch(0.56 0.075 91);
-		--cargo-9: oklch(0.53 0.085 42);
-		--cargo-10: oklch(0.53 0.075 286);
-		--cargo-11: oklch(0.53 0.075 172);
-		--cargo-12: oklch(0.53 0.07 76);
-		--cargo-13: oklch(0.53 0.075 241);
-		--cargo-14: oklch(0.53 0.075 342);
-		--cargo-15: oklch(0.53 0.07 188);
-		--cargo-16: oklch(0.53 0.07 322);
-		margin-block: 1.8em;
-	}
-	:global(.dark) .cargo-widget,
-	:global([data-theme='dark']) .cargo-widget {
-		--cargo-1: oklch(0.61 0.075 252);
-		--cargo-2: oklch(0.61 0.075 25);
-		--cargo-3: oklch(0.61 0.065 194);
-		--cargo-4: oklch(0.61 0.065 310);
-		--cargo-5: oklch(0.61 0.065 66);
-		--cargo-6: oklch(0.61 0.065 226);
-		--cargo-7: oklch(0.61 0.065 142);
-		--cargo-8: oklch(0.61 0.06 91);
-		--cargo-9: oklch(0.58 0.07 42);
-		--cargo-10: oklch(0.58 0.06 286);
-		--cargo-11: oklch(0.58 0.06 172);
-		--cargo-12: oklch(0.58 0.055 76);
-		--cargo-13: oklch(0.58 0.06 241);
-		--cargo-14: oklch(0.58 0.06 342);
-		--cargo-15: oklch(0.58 0.055 188);
-		--cargo-16: oklch(0.58 0.055 322);
-	}
+	.cargo-widget { margin-block: 1.8em; }
 	.chart-area { min-height: 3.75rem; }
 	.chart { position: relative; }
 	.chart svg { display: block; width: 100%; height: auto; }

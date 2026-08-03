@@ -1,0 +1,31 @@
+.cargo-widget {
+	--cargo-1: #5b8def;
+	--cargo-2: #e06c75;
+	--cargo-3: #56b6c2;
+	--cargo-4: #c678dd;
+	--cargo-5: #d19a66;
+	--cargo-6: #61afef;
+	--cargo-7: #98c379;
+	--cargo-8: #e5c07b;
+	--cargo-9: #be5046;
+	--cargo-10: #7c6ede;
+	--cargo-11: #3da588;
+	--cargo-12: #d4976c;
+	--cargo-13: #6b93d6;
+	--cargo-14: #c95b83;
+	--cargo-15: #4dbfad;
+	--cargo-16: #b07bcc;
+	--cargo-17: #d6956b;
+	--cargo-18: #5e9fd1;
+	--cargo-19: #c2704e;
+	--cargo-20: #72b07b;
+	--cargo-21: #9a8fcc;
+	--cargo-22: #c4a057;
+	--cargo-23: #6eafc9;
+	--cargo-24: #cc7a7a;
+	--cargo-25: #4faf8e;
+	--cargo-kind-normal: #3178c6;
+	--cargo-kind-optional: #7c6ede;
+	--cargo-kind-dev: #b0ada6;
+	--cargo-kind-build: #34d399;
+}

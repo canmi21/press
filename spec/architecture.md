@@ -99,6 +99,10 @@ a quiet one-pixel border, compact type and a small shadow only on floating surfa
 reserved for focus, state and data. A categorical chart may be colourful, but its controls,
 tooltips and surrounding statistics use the same surfaces as the rest of the site.
 
+Data palettes belong to the visualisation that gives them meaning, not to the site theme. The
+Cargo palette lives in a component-only stylesheet scoped below `.cargo-widget`; it stays vivid
+in both page themes and never becomes a token available to unrelated interface chrome.
+
 ## Workspace wiring
 
 The two package managers disagree about strictness, and the layout has to respect that.

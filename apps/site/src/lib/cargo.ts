@@ -17,13 +17,22 @@ export const CRATE_PALETTE = [
 	'var(--cargo-14)',
 	'var(--cargo-15)',
 	'var(--cargo-16)',
+	'var(--cargo-17)',
+	'var(--cargo-18)',
+	'var(--cargo-19)',
+	'var(--cargo-20)',
+	'var(--cargo-21)',
+	'var(--cargo-22)',
+	'var(--cargo-23)',
+	'var(--cargo-24)',
+	'var(--cargo-25)',
 ] as const;
 
 export const KIND_COLORS = {
-	normal: 'oklch(0.57 0.1 251)',
-	optional: 'oklch(0.57 0.09 306)',
-	dev: 'oklch(0.62 0.015 250)',
-	build: 'oklch(0.57 0.09 158)',
+	normal: 'var(--cargo-kind-normal)',
+	optional: 'var(--cargo-kind-optional)',
+	dev: 'var(--cargo-kind-dev)',
+	build: 'var(--cargo-kind-build)',
 } as const;
 
 export type DependencyItem = { dep: CrateDep; key: string };
