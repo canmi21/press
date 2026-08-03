@@ -2407,68 +2407,68 @@ segments:
       review: false
   9f059c827d113b5922837414055cc9cb:
     de-DE:
-      text: Seit langer Zeit hielten wir das für einen Nachteil von Rust, doch in Wirklichkeit können beide genannten Probleme durch das Trainieren unseres Denkens und unserer Erkenntnis gelöst werden, während die langsame Kompiliergeschwindigkeit beständig meinen Arbeitsablauf verlangsamt hat. Vor einigen Jahren schien das noch in Ordnung zu sein, und bevor die KI die Szene eroberte, hatte ich noch Geduld, häufig.
+      text: Seit langem hielten wir das für einen Nachteil von Rust, doch in Wirklichkeit lassen sich die beiden erstgenannten Probleme durch das Training von Denken und Wahrnehmung lösen. Die langsame Kompilierungsgeschwindigkeit dagegen verlangsamt meinen Arbeitsablauf konstant. Vor ein paar Jahren schien das noch in Ordnung zu sein; bevor KI aufkam, hatte ich Geduld und konnte Algorithmen oder Features bis in die frühen Morgenstunden schreiben. Und jetzt? Ich kann kaum behaupten, dass ich mich nicht verändert habe – ich bin völlig ungeduldig geworden, will nicht darüber nachdenken, wie man Rust‑Code schreibt, und kann den langen Fortschrittsbalken von Cargo nicht abwarten, besonders weil im ld‑Schritt keinerlei Fortschritt angezeigt wird und alles stehen bleibt. Das ist wirklich ärgerlich.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-03T01:38:47.062283Z
-      seconds: 18.227787583
-      tokens: 19329
+      at: 2026-08-03T13:38:42.502158Z
+      seconds: 42.680475209
+      tokens: 20777
       review: false
     en-US:
-      text: For a long time we have regarded this as a drawback of Rust, but in fact both of those issues can be solved by training our thinking and cognition, whereas the slow compilation speed has consistently slowed down my workflow. A few years ago this seemed fine, and before AI swept in I still had patience, often.
+      text: For a long time we have considered this a drawback of Rust, but in fact both of those issues can be solved by training our thinking and cognition. However, the slow compilation speed has constantly slowed down my workflow. A few years ago this seemed fine; before AI swept over I had patience and could stay up writing one algorithm or feature until dawn. But now? It’s hard to say I haven’t changed—I’ve become completely impatient, I don’t want to think about how to write Rust code, I can’t wait for Cargo’s long progress bar, especially when the ld stage shows no progress and just hangs. It’s really frustrating.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-03T01:38:47.062283Z
-      seconds: 18.227787583
-      tokens: 19329
+      at: 2026-08-03T13:38:42.502158Z
+      seconds: 42.680475209
+      tokens: 20777
       review: false
     es-ES:
-      text: Durante mucho tiempo hemos considerado esto como una desventaja de Rust, pero en realidad ambos problemas pueden resolverse entrenando nuestro pensamiento y cognición, mientras que la lentitud de la compilación ha ralentizado continuamente mi flujo de trabajo. Hace algunos años todo parecía estar bien, y antes de que la IA se apoderara del escenario todavía tenía paciencia, a menudo.
+      text: Durante mucho tiempo hemos considerado que esto es una desventaja de Rust, pero en realidad los dos primeros problemas pueden resolverse entrenando el pensamiento y la cognición. Sin embargo, la lentitud de la compilación ha estado frenando constantemente mi flujo de trabajo. Hace algunos años parecía estar bien; antes de que la IA se apoderara del escenario, tenía paciencia y podía escribir un algoritmo o una funcionalidad hasta la madrugada. ¿Y ahora? Me cuesta decir que no he cambiado; he perdido toda la paciencia, no quiero pensar en cómo escribir código Rust, no soporto la larga barra de progreso de Cargo, especialmente cuando la fase ld no muestra avance y simplemente se queda bloqueada. Es realmente molesto.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-03T01:38:47.062283Z
-      seconds: 18.227787583
-      tokens: 19329
+      at: 2026-08-03T13:38:42.502158Z
+      seconds: 42.680475209
+      tokens: 20777
       review: false
     fr-FR:
-      text: Depuis longtemps, nous considérons cela comme un inconvénient de Rust, mais en réalité, les deux premiers points peuvent être résolus en entraînant notre pensée et notre cognition, alors que la lenteur de la compilation ralentit constamment mon flux de travail. Il y a quelques années, cela semblait acceptable, et avant que l'IA ne s'empare du domaine, j'avais encore de la patience, souvent.
+      text: 'Pendant longtemps nous avons considéré cela comme un inconvénient de Rust, mais en réalité les deux premiers problèmes peuvent être résolus en entraînant notre esprit et notre perception. En revanche, la lenteur de la compilation ralentit constamment mon flux de travail. Il y a quelques années cela ne posait pas problème ; avant l’avènement de l’IA, j’avais de la patience et je pouvais travailler sur un algorithme ou une fonctionnalité jusqu’au petit matin. Mais aujourd’hui ? Il est difficile de dire que je n’ai pas changé : je suis devenu complètement impatient, je n’ai aucune envie de réfléchir à la manière d’écrire du code Rust, je ne peux plus supporter la longue barre de progression de Cargo, surtout quand l’étape ld n’affiche aucun avancement et reste bloquée. C’est vraiment frustrant.'
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-03T01:38:47.062283Z
-      seconds: 18.227787583
-      tokens: 19329
+      at: 2026-08-03T13:38:42.502158Z
+      seconds: 42.680475209
+      tokens: 20777
       review: false
     ja-JP:
-      text: 長い間、私たちはこれを Rust の欠点だと考えてきましたが、実際には前述の二つは思考と認知を鍛えることで解決できるものです。一方、コンパイル速度の遅さはずっと私の作業フローを遅らせてきました。数年前はこの状況でも問題なかったし、AI が席巻する前はまだ忍耐力があり、頻繁に。
+      text: 長い間、私たちはこれが Rust の欠点だと考えてきましたが、実際には前者二つは思考と認知を鍛えることで解決できます。一方、コンパイル速度の遅さは私の作業フローをずっと遅らせてきました。数年前まではそれでも問題なかったし、AI が現れる前は忍耐力があり、アルゴリズムや機能を深夜まで書き続けることができました。しかし、今はどうでしょうか？自分が変わっていないとは言い難く、全く忍耐力がなくなり、Rust のコードを書く方法を考える気が全く起きず、Cargo の長いプログレスバーを待つことすらできません。特に ld の段階で進捗が見えず、ただ止まってしまうのは本当に辛いです。
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-03T01:38:47.062283Z
-      seconds: 18.227787583
-      tokens: 19329
+      at: 2026-08-03T13:38:42.502158Z
+      seconds: 42.680475209
+      tokens: 20777
       review: false
     ko-KR:
-      text: 오랫동안 우리는 이것을 Rust의 단점이라고 생각했지만, 실제로 앞의 두 문제는 사고와 인지를 훈련함으로써 해결할 수 있습니다. 반면 컴파일 속도가 느린 것은 계속해서 내 작업 흐름을 늦추고 있습니다. 몇 년 전만 해도 상황이 괜찮았고, AI가 몰아치기 전까지 나는 아직도 인내심이 있었으며, 자주.
+      text: 오랫동안 우리는 이것이 Rust의 단점이라고 생각해 왔지만, 실제로는 앞의 두 문제는 사고와 인지를 훈련함으로써 해결할 수 있습니다. 그러나 컴파일 속도가 느린 것은 내 작업 흐름을 지속적으로 늦추고 있습니다. 몇 년 전만 해도 이는 크게 문제되지 않았고, AI가 등장하기 전에는 인내심이 있어서 알고리즘이나 기능을 새벽까지 꾸준히 작성할 수 있었습니다. 그런데 지금은 어떨까요? 나는 변하지 않았다고 말하기 어렵고, 전혀 인내심이 사라져 Rust 코드를 어떻게 작성할지 생각하고 싶지도 않으며, Cargo의 긴 진행 막대를 기다릴 수 없습니다. 특히 ld 단계에서 진행 상황이 표시되지 않고 그냥 멈춰 버리는 것이 정말 답답합니다.
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-03T01:38:47.062283Z
-      seconds: 18.227787583
-      tokens: 19329
+      at: 2026-08-03T13:38:42.502158Z
+      seconds: 42.680475209
+      tokens: 20777
       review: false
     zh-CN:
-      text: 长久以来，我们都认为这是 Rust 的缺点，但是实际上前两者都是可以通过锻炼思维和认知来解决的，而编译速度慢却一直拖慢着我的工作流，这一切在早几年似乎很好，AI 席卷而来之前我可有的就是耐心，常
+      text: 长久以来，我们都认为这是 Rust 的缺点，但是实际上前两者都是可以通过锻炼思维和认知来解决的，而编译速度慢却一直拖慢着我的工作流，这一切在早几年似乎很好，AI 席卷而来之前我可有的就是耐心，常常一个算法一个功能写到凌晨，可，现在呢？我很难说我没有变，我开始变得一点都没有耐心了，一点都不想思考 Rust 代码怎么写，一点都等不了 Cargo 那个漫长的进度条，尤其是 ld 部分还没有进度，每次就干卡着，这真的很难受。
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-03T01:38:47.062283Z
-      seconds: 18.227787583
-      tokens: 19329
+      at: 2026-08-03T13:38:42.502158Z
+      seconds: 42.680475209
+      tokens: 20777
       review: false
     zh-TW:
-      text: 長久以來，我們都認為這是 Rust 的缺點，但是實際上前兩者都是可以通過鍛鍊思維和認知來解決的，而編譯速度慢卻一直拖慢著我的工作流，這一切在早幾年似乎很好，AI 席卷而來之前我可有的就是耐心，常
+      text: 長久以來，我們都認為這是 Rust 的缺點，但是實際上前兩者都是可以透過鍛鍊思維和認知來解決的，而編譯速度慢卻一直拖慢著我的工作流，這一切在早幾年似乎很好，AI 席捲而來之前我可有的就是耐心，常常一個演算法一個功能寫到凌晨，可，現在呢？我很難說我沒有變，我開始變得一點都沒有耐心了，一點都不想思考 Rust 程式碼怎麼寫，一點都等不了 Cargo 那個漫長的進度條，尤其是 ld 部分還沒有進度，每次就卡著，這真的很難受。
       provider: openai
       model: gpt-oss-120b-medium
-      at: 2026-08-03T01:38:47.062283Z
-      seconds: 18.227787583
-      tokens: 19329
+      at: 2026-08-03T13:38:42.502158Z
+      seconds: 42.680475209
+      tokens: 20777
       review: false
   9f7ee025dc7baa3234873cf0497ef03d:
     de-DE:
