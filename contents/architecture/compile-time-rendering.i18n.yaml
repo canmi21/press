@@ -1172,68 +1172,68 @@ segments:
       review: false
   3b94504af8ec2a3de06ab1561f14f389:
     de-DE:
-      text: 'Kommen wir auf `raw HTML slot` zurück: Diese Lösung richtet sich hauptsächlich an Szenarien wie `Markdown` und `Rich Text`. Das gerenderte **HTML** wird über `dangerouslySetInnerHTML` eingefügt; nach der Hydration nimmt dieser Bereich nicht an Interaktionen teil, er ist **„tot“**. Dieser Inhalt sollte auf ein Minimum beschränkt werden: Möchtest du einem Artikel Rahmen oder Styles geben, solltest du dafür React-Komponenten schreiben, statt sie in dieses HTML zu mischen. Der Nachteil dieses Ansatzes ist, dass er sich nach der Hydration nicht mehr ändern kann, doch er senkt die Kosten von „SSR“ unter diesen Voraussetzungen tatsächlich auf ein sehr niedriges Niveau, beinahe auf null. In Szenarien, die wirklich SSR benötigen, sind etwa 60 % Fälle dieser Art statischer HTML-Injektion; nur die übrigen 40 % benötigen RSCs Fähigkeit, beliebige Komponenten auf dem Server auszuführen.'
+      text: 'Kommen wir zu `raw HTML slot` zurück: Diese Lösung richtet sich vor allem an Szenarien wie `Markdown` und `Rich Text`. Das gerenderte **HTML** wird über `dangerouslySetInnerHTML` eingefügt; nach der Hydration nimmt dieser Bereich nicht an Interaktionen teil und ist **„tot“**. Dieser Inhalt sollte auf ein Minimum beschränkt werden: Wenn du einem Artikel Rahmen oder Styles hinzufügen möchtest, solltest du dafür React-Komponenten schreiben, statt sie in dieses HTML zu mischen. Der Nachteil dieses Ansatzes ist, dass er sich nach der Hydration nicht mehr ändern kann, aber er senkt die „SSR“-Kosten unter dieser Voraussetzung tatsächlich auf ein sehr niedriges Niveau, fast auf Zero Cost. Von den Szenarien, die wirklich SSR benötigen, sind ungefähr 60 % solche statischen HTML-Injektionen; nur die übrigen 40 % benötigen die RSC-artige Fähigkeit, beliebige Komponenten auf dem Server auszuführen.'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:54:34.944017Z
-      seconds: 45.04812575
-      tokens: 19023
+      at: 2026-08-03T03:11:35.067115Z
+      seconds: 41.360931625
+      tokens: 19017
       review: false
     en-US:
-      text: 'Coming back to `raw HTML slot`, this solution mainly addresses scenarios like `Markdown` and `Rich Text`. The rendered **HTML** is injected through `dangerouslySetInnerHTML`; after hydration, this area does not participate in interaction—it is **"dead"**. This content should be kept to a minimum: if you want to add borders or styles to an article, write those with React components rather than mixing them into this HTML. The downside is that it cannot change after hydration, but it genuinely reduces the cost of "SSR" under these assumptions to an extremely low level, approaching zero cost. In scenarios that truly need SSR, roughly 60% are cases of this kind of static HTML injection; only the remaining 40% need RSC''s ability to execute arbitrary components on the server.'
+      text: 'Returning to `raw HTML slot`, this solution mainly addresses scenarios such as `Markdown` and `Rich Text`. The rendered **HTML** is injected through `dangerouslySetInnerHTML`; after hydration, this area does not participate in interaction and is **“dead.”** This content should be kept to a minimum: if you want to add borders or styles to an article, write those with React components rather than mixing them into this HTML. The downside is that it cannot change after hydration, but it does reduce the cost of “SSR” under this premise to a very low level, approaching Zero Cost. In scenarios that genuinely need SSR, roughly 60% are cases of this kind of static HTML injection; only the remaining 40% require RSC-style server-side execution of arbitrary components.'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:54:34.944017Z
-      seconds: 45.04812575
-      tokens: 19023
+      at: 2026-08-03T03:11:35.067115Z
+      seconds: 41.360931625
+      tokens: 19017
       review: false
     es-ES:
-      text: 'Volviendo a `raw HTML slot`, esta solución aborda principalmente escenarios como `Markdown` y `Rich Text`. El **HTML** renderizado se inyecta mediante `dangerouslySetInnerHTML`; tras la hidratación, esta zona no participa en la interacción: está **«muerta»**. Esta parte del contenido debería reducirse al mínimo: si quieres añadir bordes o estilos a un artículo, deberías escribirlos con componentes de React, en lugar de mezclarlos con este HTML. La desventaja de este enfoque es que no puede cambiar después de la hidratación, pero realmente reduce el coste de «SSR» bajo estas premisas a un nivel muy bajo, cercano a cero. En los escenarios que realmente necesitan SSR, aproximadamente el 60 % son casos de inyección de HTML estático de este tipo; solo el 40 % restante necesita la capacidad de RSC de ejecutar componentes arbitrarios en el servidor.'
+      text: 'Volviendo a `raw HTML slot`, esta solución aborda principalmente escenarios como `Markdown` y `Rich Text`. El **HTML** renderizado se inyecta mediante `dangerouslySetInnerHTML`; tras la hidratación, esta zona no participa en la interacción y queda **«muerta»**. Esta parte del contenido debería reducirse al mínimo: si quieres añadir bordes o estilos a un artículo, deberías hacerlo con componentes de React, en lugar de mezclarlos en este HTML. La desventaja de este enfoque es que no puede cambiar después de la hidratación, pero sí reduce el coste de «SSR» bajo esta premisa a un nivel muy bajo, cercano a Zero Cost. En los escenarios que realmente necesitan SSR, aproximadamente el 60 % son casos de inyección de HTML estático como este; solo el 40 % restante necesita la capacidad de RSC de ejecutar componentes arbitrarios en el servidor.'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:54:34.944017Z
-      seconds: 45.04812575
-      tokens: 19023
+      at: 2026-08-03T03:11:35.067115Z
+      seconds: 41.360931625
+      tokens: 19017
       review: false
     fr-FR:
-      text: 'Pour revenir à `raw HTML slot`, cette solution vise surtout des cas comme `Markdown` et `Rich Text`. Le **HTML** rendu est injecté via `dangerouslySetInnerHTML` ; après l’hydratation, cette zone ne participe pas aux interactions : elle est **« morte »**. Cette partie doit être réduite au minimum : si vous voulez ajouter des bordures ou des styles à un article, écrivez-les avec des composants React plutôt que de les mélanger à ce HTML. L’inconvénient est qu’elle ne peut plus changer après l’hydratation, mais cela abaisse réellement le coût du « SSR » dans ces conditions à un niveau très faible, proche de zéro. Parmi les cas qui nécessitent véritablement du SSR, environ 60 % sont des injections de HTML statique de ce type ; seuls les 40 % restants requièrent la capacité de RSC à exécuter des composants arbitraires côté serveur.'
+      text: 'Pour revenir à `raw HTML slot`, cette solution vise surtout des cas comme `Markdown` et `Rich Text`. Le **HTML** rendu est injecté via `dangerouslySetInnerHTML` ; après l’hydratation, cette zone ne participe pas aux interactions et est **« morte »**. Cette partie du contenu doit être réduite au minimum : si vous voulez ajouter une bordure ou des styles à un article, écrivez-les avec des composants React plutôt que de les mélanger à ce HTML. L’inconvénient de cette approche est qu’elle ne peut plus changer après l’hydratation, mais elle réduit réellement le coût du « SSR » dans cette configuration à un niveau très bas, proche de Zero Cost. Parmi les cas qui ont réellement besoin de SSR, environ 60 % sont de ce type d’injection de HTML statique ; seuls les 40 % restants nécessitent la capacité, à la manière de RSC, d’exécuter des composants arbitraires côté serveur.'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:54:34.944017Z
-      seconds: 45.04812575
-      tokens: 19023
+      at: 2026-08-03T03:11:35.067115Z
+      seconds: 41.360931625
+      tokens: 19017
       review: false
     ja-JP:
-      text: '`raw HTML slot` に戻ると、この解決策が主に対象とするのは `Markdown` や `Rich Text` のような場面です。レンダリングされた **HTML** は `dangerouslySetInnerHTML` を通じて注入され、ハイドレーション後、この領域はインタラクションに参加しない、つまり **「死んだ」** 状態です。この部分の内容は最小限にすべきです。記事に枠線やスタイルを加えたいなら、React コンポーネントで書くべきで、この HTML に混ぜるべきではありません。この方法の欠点はハイドレーション後に変更できないことですが、この前提での「SSR」のコストを実際に非常に低く、ほぼゼロコストまで抑えられます。本当に SSR が必要な場面の約 60% は、このような静的 HTML 注入です。残る 40% で初めて、RSC のようにサーバーで任意のコンポーネントを実行する能力が必要になります。'
+      text: '`raw HTML slot` に話を戻すと、この解決策が主に対象とするのは `Markdown` や `Rich Text` のような場面です。レンダリングされた **HTML** は `dangerouslySetInnerHTML` を通じて注入され、ハイドレーション後はこの領域がインタラクションに参加しない、つまり**「死んだ」**状態になります。この部分の内容は最小限にすべきです。記事に枠線やスタイルを加えたいなら、React コンポーネントで書くべきであり、この HTML に混ぜるべきではありません。この方法の欠点はハイドレーション後に変更できないことですが、この前提での「SSR」コストを非常に低く、ほぼ Zero Cost まで抑えられます。本当に SSR が必要な場面のうち、およそ 60% はこのような静的 HTML 注入であり、残りの 40% で初めて RSC のようにサーバー側で任意のコンポーネントを実行する能力が必要になります。'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:54:34.944017Z
-      seconds: 45.04812575
-      tokens: 19023
+      at: 2026-08-03T03:11:35.067115Z
+      seconds: 41.360931625
+      tokens: 19017
       review: false
     ko-KR:
-      text: '`raw HTML slot`로 돌아가면, 이 해결책은 주로 `Markdown`, `Rich Text` 같은 상황을 다룹니다. 렌더링된 **HTML**은 `dangerouslySetInnerHTML`를 통해 주입되며, hydration 후 이 영역은 상호작용에 참여하지 않는, 즉 **“죽은”** 영역입니다. 이 부분의 내용은 최소화해야 합니다. 글에 테두리나 스타일을 추가하고 싶다면 React 컴포넌트로 작성해야지, 이 HTML 안에 섞어 넣어서는 안 됩니다. 이 방식의 단점은 hydration 후에는 변경될 수 없다는 것이지만, 이런 전제에서의 “SSR” 비용을 실제로 매우 낮게, 거의 zero cost에 가깝게 낮춥니다. 정말 SSR이 필요한 상황의 약 60%는 이런 정적 HTML 주입이며, 나머지 40%에야 RSC처럼 서버에서 임의의 컴포넌트를 실행하는 능력이 필요합니다.'
+      text: '`raw HTML slot` 이야기로 돌아가면, 이 해결책은 주로 `Markdown`, `Rich Text` 같은 상황을 다룹니다. 렌더링된 **HTML**은 `dangerouslySetInnerHTML`를 통해 주입되며, hydration 후에는 이 영역이 상호작용에 참여하지 않아 **“죽은”** 상태가 됩니다. 이 부분의 콘텐츠는 최소화해야 합니다. 글에 테두리나 스타일을 추가하고 싶다면 React 컴포넌트로 작성해야지, 이 HTML 안에 섞어 넣어서는 안 됩니다. 이 방식의 단점은 hydration 이후 변경될 수 없다는 점이지만, 이 전제에서의 “SSR” 비용을 매우 낮게, Zero Cost에 가깝게 낮춰 줍니다. 실제로 SSR이 필요한 경우 중 약 60%는 이런 정적 HTML 주입이고, 나머지 40%에서야 RSC처럼 서버에서 임의의 컴포넌트를 실행하는 능력이 필요합니다.'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:54:34.944017Z
-      seconds: 45.04812575
-      tokens: 19023
+      at: 2026-08-03T03:11:35.067115Z
+      seconds: 41.360931625
+      tokens: 19017
       review: false
     zh-CN:
-      text: 再说回 `raw HTML slot`，这个解决方案主要面向 `Markdown`、`Rich Text` 这类场景。渲染出的 **HTML** 通过 `dangerouslySetInnerHTML` 注入；水合后，这块区域不参与交互，是 **“死的”**。这部分内容应该尽量少：想给文章加边框或样式，应当用 React 组件来写，而不是混在这段 HTML 里。这种做法的缺点是它无法在水合后改变，但它确实把这种前提下的“SSR”成本压得极低，接近零成本。在真正需要 SSR 的场景中，大约 60% 都属于这种静态 HTML 注入；剩下的 40% 才需要 RSC 那种在服务端执行任意组件的能力。
+      text: 再说回 `raw HTML slot`，这个方案主要解决 `Markdown`、`Rich Text` 这类场景。渲染出来的 **HTML** 通过 `dangerouslySetInnerHTML` 注入，水合后这块区域不参与交互，是**“死的”**；这部分内容应该尽量最小化。想给文章加边框、加样式，应当用 React 组件来写，而不是混在这段 HTML 里。这种做法的缺点是它无法在水合后改变，但它确实把此前提下的“SSR”成本压得非常低，接近 Zero Cost。在真正需要 SSR 的场景里，大约 60% 都是这种静态 HTML 注入；剩下的 40% 才需要 RSC 那种在服务端执行任意组件的能力。
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:54:34.944017Z
-      seconds: 45.04812575
-      tokens: 19023
+      at: 2026-08-03T03:11:35.067115Z
+      seconds: 41.360931625
+      tokens: 19017
       review: false
     zh-TW:
-      text: 再說回 `raw HTML slot`，這個解決方案主要面向 `Markdown`、`Rich Text` 這類情境。渲染出的 **HTML** 透過 `dangerouslySetInnerHTML` 注入；水合後，這塊區域不參與互動，是 **「死的」**。這部分內容應該盡量少：想替文章加邊框或樣式，應當用 React 元件來寫，而不是混在這段 HTML 裡。這種做法的缺點是它無法在水合後改變，但它確實把這種前提下的「SSR」成本壓得極低，接近零成本。在真正需要 SSR 的情境中，大約 60% 都屬於這種靜態 HTML 注入；剩下的 40% 才需要 RSC 那種在伺服器端執行任意元件的能力。
+      text: 再回到 `raw HTML slot`，這個方案主要解決 `Markdown`、`Rich Text` 這類情境。渲染出的 **HTML** 透過 `dangerouslySetInnerHTML` 注入，水合後這個區域不參與互動，是**「死的」**；這部分內容應該盡量最小化。想替文章加邊框、加樣式，應該用 React 元件來寫，而不是混在這段 HTML 裡。這種做法的缺點是它無法在水合後改變，但它確實把這個前提下的「SSR」成本壓得非常低，接近 Zero Cost。在真正需要 SSR 的情境中，大約 60% 都是這種靜態 HTML 注入；剩下的 40% 才需要 RSC 那種在伺服器端執行任意元件的能力。
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:54:34.944017Z
-      seconds: 45.04812575
-      tokens: 19023
+      at: 2026-08-03T03:11:35.067115Z
+      seconds: 41.360931625
+      tokens: 19017
       review: false
   3c3a82fc5efa357a56c52b4baef3eb55:
     de-DE:

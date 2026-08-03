@@ -717,68 +717,68 @@ segments:
       review: false
   62be9102d0da473945e86a0a3b2bb471:
     de-DE:
-      text: 'In diesem Moment tauchte plötzlich ein lange nicht mehr gehabter Gedanke in meinem Kopf auf: „draußen“. Kein bestimmter Ort, nur ein vages Gefühl, als hätte es in meiner Erinnerung einmal so etwas gegeben: Sonnenlicht, Wind, Gras, aber ich konnte es nicht mehr richtig in Worte fassen. Gerade dass ich es nicht in Worte fassen konnte, beschäftigte mich ein wenig. Das Wetter war an dem Tag auch schön, und Claude hatte sein Sitzungslimit erreicht, also klappte ich den Laptop zu, nahm meine Kopfhörer, griff nach einer Flasche Wasser und ging hinaus. Ja, ich nahm mein MacBook Air mit. Wahrscheinlich wollte ich einfach woanders weiterschreiben—vielleicht würde ich sogar etwas Inspiration finden?'
+      text: 'In diesem Moment tauchte plötzlich ein lange vergessener Gedanke in meinem Kopf auf: „draußen“. Kein konkreter Ort, nur ein sehr vages Gefühl, als hätte es in meiner Erinnerung einmal so etwas gegeben: Sonnenlicht, Wind, Gras, aber ich konnte es nicht mehr richtig erklären. Gerade dass ich es nicht erklären konnte, beschäftigte mich ein wenig. Das Wetter war zufällig auch schön, und Claude hatte sein Session Limit erreicht, also klappte ich den Laptop zu, nahm meine Kopfhörer, griff nach einer Flasche Wasser und ging hinaus. Ja, ich nahm mein MacBook Air mit. Vermutlich wollte ich woanders weiterschreiben und vielleicht sogar ein wenig :tn[Frische]{is="Im Original steht nur das chinesische Zeichen 清, aus 清新 herausgelöst. Es deutet eine schwer benennbare Mischung aus Klarheit, Reinheit, Kühle und Ruhe an."} finden?'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:59.454919Z
-      seconds: 34.711049416
-      tokens: 18418
+      at: 2026-08-03T03:16:07.928561Z
+      seconds: 89.297829875
+      tokens: 19154
       review: false
     en-US:
-      text: 'At that moment, a long-forgotten thought suddenly surfaced in my mind: “outside.” Not any particular place—just a vague feeling, as though there had once been something like that in my memory: sunlight, wind, grass, though I could no longer put it into words. The fact that I couldn’t put it into words bothered me a little. The weather was nice that day too, and Claude had reached its session limit, so I closed my laptop, put on my headphones, grabbed a bottle of water, and headed out. Yes, I took my MacBook Air with me. I guess I wanted to keep writing somewhere else—maybe find some inspiration too?'
+      text: 'At that moment, a long-forgotten thought suddenly surfaced: “outside.” Not any particular place, just a very vague feeling, as if there had once been something like it in my memory: sunlight, wind, grass, though I could no longer quite explain it. The very fact that I couldn’t explain it bothered me a little. The weather happened to be nice, and Claude had reached its Session Limit, so I closed my laptop, put on my headphones, grabbed a bottle of water, and headed out. Yes, I took my MacBook Air with me. I suppose the idea was to keep writing somewhere else, maybe even find some :tn[freshness]{is="The original isolates the Chinese character 清 from 清新, a word for freshness, to evoke an elusive mix of clarity, purity, coolness, and quiet."}?'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:59.454919Z
-      seconds: 34.711049416
-      tokens: 18418
+      at: 2026-08-03T03:16:07.928561Z
+      seconds: 89.297829875
+      tokens: 19154
       review: false
     es-ES:
-      text: 'En ese momento, de pronto apareció en mi cabeza un pensamiento que hacía mucho que no tenía: «afuera». No era ningún lugar concreto, sino una sensación muy difusa, como si hubiera existido algo así en mis recuerdos: la luz del sol, el viento, la hierba, aunque ya no supiera explicarlo. El propio hecho de no poder explicarlo me inquietaba un poco. Justo ese día hacía buen tiempo y Claude había alcanzado el límite de sesión, así que cerré el portátil, cogí los auriculares, agarré una botella de agua y salí. Sí, me llevé el MacBook Air. Supongo que quería seguir escribiendo en otro sitio; ¿quizá también podría encontrar algo de inspiración?'
+      text: 'En ese momento, de pronto me vino a la cabeza una idea que hacía mucho que no tenía: «afuera». No era ningún lugar concreto, sino una sensación muy vaga, como si hubiera existido algo así en mis recuerdos: luz del sol, viento, césped, aunque ya no sabía explicarlo bien. El propio hecho de no poder explicarlo me inquietaba un poco. Justo hacía buen tiempo y Claude había llegado al Session Limit, así que cerré el portátil, cogí los auriculares, agarré una botella de agua y salí. Sí, salí con el MacBook Air. Supongo que la idea era seguir escribiendo en otro sitio y quizá encontrar algo de :tn[frescura]{is="El original aísla el carácter chino 清 de 清新, una palabra para frescura. Sugiere una sensación difícil de nombrar, entre claridad, pureza, frescor y calma."}?'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:59.454919Z
-      seconds: 34.711049416
-      tokens: 18418
+      at: 2026-08-03T03:16:07.928561Z
+      seconds: 89.297829875
+      tokens: 19154
       review: false
     fr-FR:
-      text: 'À ce moment-là, une pensée oubliée depuis longtemps a soudain surgi dans ma tête : « dehors ». Pas un lieu précis, juste une sensation très vague, comme s’il avait existé autrefois quelque chose de ce genre dans mes souvenirs : le soleil, le vent, l’herbe, sans que je puisse vraiment le définir. Le fait même de ne pas pouvoir le définir me préoccupait un peu. Il faisait beau ce jour-là, et Claude avait atteint sa limite de session ; j’ai donc fermé mon ordinateur portable, pris mes écouteurs, attrapé une bouteille d’eau au passage et je suis sorti. Oui, j’ai emporté mon MacBook Air. Je voulais sans doute continuer à écrire ailleurs ; peut-être que j’y trouverais aussi un peu d’inspiration ?'
+      text: 'À ce moment-là, une idée oubliée depuis longtemps a soudain surgi dans ma tête : « dehors ». Ce n’était pas un lieu précis, juste une sensation très vague, comme s’il y avait eu autrefois quelque chose de ce genre dans mes souvenirs : du soleil, du vent, de l’herbe, sans que je puisse vraiment l’expliquer. Le fait même de ne pas pouvoir l’expliquer me préoccupait un peu. Il faisait justement beau, et Claude avait atteint sa Session Limit ; j’ai donc fermé mon ordinateur, pris mes écouteurs, attrapé une bouteille d’eau au passage et je suis sorti. Oui, j’ai emporté mon MacBook Air. L’idée était sans doute de continuer à écrire ailleurs et, peut-être, de trouver un peu de :tn[fraîcheur]{is="L’original isole le caractère chinois 清 du mot 清新, qui signifie frais. Il évoque un mélange insaisissable de limpidité, de pureté, de fraîcheur et de calme."} ?'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:59.454919Z
-      seconds: 34.711049416
-      tokens: 18418
+      at: 2026-08-03T03:16:07.928561Z
+      seconds: 89.297829875
+      tokens: 19154
       review: false
     ja-JP:
-      text: そのとき、頭の中にふいに、久しく忘れていた考えが浮かんだ。「外」。特定の場所のことではなく、ただぼんやりした感覚だった。記憶の中に、そんなものがあった気がする。日差し、風、芝生。でも、もううまく言葉にできない。言葉にできないこと自体が、少し気になった。ちょうどその日は天気もよく、Claude もセッション上限に達していたので、私はノートパソコンを閉じ、イヤホンを持ち、手近な水を一本つかんで外へ出た。そう、MacBook Air を持って出かけた。たぶん、場所を変えて続きを書きたかったのだと思う。もしかしたら、少しは着想も見つかるかもしれない？
+      text: そのとき、頭の中にふいに、久しく忘れていた考えが浮かんだ。「外」。どこか特定の場所のことではなく、とても曖昧な感覚だった。記憶の中には、日差しや風や芝生のようなものがあった気がするのに、もううまく説明できない。説明できないこと自体が、少し気になった。ちょうど今日は天気もよく、Claude も Session Limit に達していたので、ノートパソコンを閉じ、イヤホンを持ち、水を一本つかんで出かけた。そう、MacBook Air を持って出た。たぶん場所を変えて続きを書き、もしかしたら :tn[清々しさ]{is="原文は中国語の「清新」から「清」だけを切り出している。澄み、清らかさ、涼しさ、静けさを含む、言い切れない感触を示す。"}も見つかるかと思って。
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:59.454919Z
-      seconds: 34.711049416
-      tokens: 18418
+      at: 2026-08-03T03:16:07.928561Z
+      seconds: 89.297829875
+      tokens: 19154
       review: false
     ko-KR:
-      text: 그때 머릿속에 오래 잊고 있던 생각 하나가 불현듯 떠올랐다. “밖”. 어떤 구체적인 장소가 아니라, 그저 아주 흐릿한 느낌이었다. 기억 속에 한때 그런 것이 있었던 것 같았다. 햇빛, 바람, 잔디밭. 하지만 이제는 뭐라고 설명해야 할지 모르겠다. 설명할 수 없다는 사실 자체가 조금 신경 쓰였다. 마침 그날 날씨도 좋았고 Claude도 세션 한도에 도달해 있었기에, 나는 노트북을 덮고 이어폰을 챙긴 뒤 물 한 병을 집어 들고 밖으로 나갔다. 맞다, MacBook Air를 들고 나갔다. 아마 장소를 바꿔 계속 쓰고 싶었던 것 같다. 어쩌면 영감도 조금 찾을 수 있을까?
+      text: 그때 머릿속에 오래 잊고 있던 생각 하나가 불쑥 떠올랐다. “밖.” 어떤 구체적인 장소가 아니라 아주 흐릿한 감각이었다. 기억 속에 햇빛, 바람, 풀밭 같은 것이 있었던 것 같지만, 이제는 잘 설명할 수 없었다. 설명할 수 없다는 사실 자체가 조금 마음에 걸렸다. 마침 날씨도 좋았고 Claude도 Session Limit에 도달해 있었기에, 노트북을 덮고 이어폰을 챙긴 뒤 물 한 병을 집어 들고 밖으로 나갔다. 맞다, MacBook Air를 들고 나갔다. 아마 장소를 바꿔 계속 쓰고, 어쩌면 약간의 :tn[산뜻함]{is="원문은 중국어 ‘清新’에서 ‘清’ 한 글자만 떼어 쓴다. 맑음, 순수함, 서늘함, 고요함이 섞인 말로 다 하기 어려운 기운을 가리킨다."}도 찾을 수 있지 않을까 싶었다?
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:59.454919Z
-      seconds: 34.711049416
-      tokens: 18418
+      at: 2026-08-03T03:16:07.928561Z
+      seconds: 89.297829875
+      tokens: 19154
       review: false
     zh-CN:
-      text: 这个时候，脑子里突然冒出一个久违的念头：「外面」。不是什么具体的地方，就是一种很模糊的感觉，好像记忆里有过那么一种东西：阳光、风、草地，但又说不清楚了。说不清楚这件事本身让我有点在意。正好今天天气也不错，Claude 也到了会话限额，于是我合上笔记本，带着耳机，随手抓了一瓶水就出了门。对，我带着 MacBook Air 出去了。想的大概就是换个地方接着写，也许还能找点灵感？
+      text: 这个时候，脑子里突然冒出一个久违的念头「外面」。不是什么具体的地方，就是一种很模糊的感觉，好像记忆里有过那么一种东西：阳光、风、草地，但又说不清楚了。说不清楚这件事本身让我有点在意。正好今天天气也不错，Claude 也到了 Session Limit，于是我合上笔记本，带着耳机，随手抓了一瓶水就出了门。对，我带着 MacBook Air 出去了。想的大概就是换个地方接着写，也许还能找点 :tn[清]{is="原文把“清新”拆成单个“清”字，用它勉强指向一种兼有清澈、纯净、微凉与安静意味的气息。"}？
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:59.454919Z
-      seconds: 34.711049416
-      tokens: 18418
+      at: 2026-08-03T03:16:07.928561Z
+      seconds: 89.297829875
+      tokens: 19154
       review: false
     zh-TW:
-      text: 這個時候，腦子裡突然冒出一個久違的念頭：「外面」。不是什麼具體的地方，就是一種很模糊的感覺，好像記憶裡有過那麼一種東西：陽光、風、草地，但又說不清楚了。說不清楚這件事本身讓我有點在意。正好今天天氣也不錯，Claude 也到了工作階段上限，於是我闔上筆記型電腦，帶著耳機，隨手抓了一瓶水就出了門。對，我帶著 MacBook Air 出去了。想的大概就是換個地方接著寫，也許還能找點靈感？
+      text: 這個時候，腦子裡突然冒出一個久違的念頭「外面」。不是什麼具體的地方，就是一種很模糊的感覺，好像記憶裡有過那麼一種東西：陽光、風、草地，但又說不清楚了。說不清楚這件事本身讓我有點在意。正好今天天氣也不錯，Claude 也到了 Session Limit，於是我闔上筆記型電腦，帶著耳機，隨手抓了一瓶水就出了門。對，我帶著 MacBook Air 出去了。想的大概就是換個地方接著寫，也許還能找點 :tn[清]{is="原文把「清新」拆成單個「清」字，用它勉強指向一種兼有清澈、純淨、微涼與安靜意味的氣息。"}？
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:59.454919Z
-      seconds: 34.711049416
-      tokens: 18418
+      at: 2026-08-03T03:16:07.928561Z
+      seconds: 89.297829875
+      tokens: 19154
       review: false
   63369bcee7356a1e29c6cf767944f141:
     de-DE:
@@ -1107,133 +1107,133 @@ segments:
       review: false
   86c5fbdb33d50086883e7552c0b7c428:
     de-DE:
-      text: 'Ich bin ein ziemlicher Stubenhocker, und ich weiß nicht, seit wann „rausgehen“ für mich zu einem so fremden Ausdruck geworden ist. Oft verlasse ich das Haus nur, wenn es nötig ist, manchmal nur einmal im Monat; und selbst dann besteht mein Leben aus :tn[einer Strecke zwischen zwei Punkten]{is="Die ursprüngliche Redewendung bedeutet wörtlich eine gerade Linie zwischen zwei Punkten und beschreibt einen eintönigen Alltag, der sich auf den Weg zwischen Zuhause und einem festen anderen Ort beschränkt."}, und ich fahre häufig mit dem Auto. Wenn ich genauer darüber nachdenke, habe ich seit Langem nicht mehr wirklich Innenräume verlassen. Nach der Blase und den Ängsten des KI-Zeitalters habe ich mir eine schlechte Angewohnheit zugelegt—oft bis tief in die Nacht zu programmieren, als lebte ich nicht mehr in derselben „Zeitzone“ wie die Welt, in der ich lebe. Auch heute Morgen bin ich erst nach zwölf Uhr aufgestanden. Ich esse nur zwei Mahlzeiten am Tag; sobald ich wach bin, setze ich mich ins Arbeitszimmer, schalte den Computer ein und fange an zu schreiben. Programmieren an sich macht großen Spaß, aber Programmieren im KI-Zeitalter nicht mehr. Bis zum Nachmittag starrte ich auf den Bildschirm und brachte nichts zustande: keine Designidee, und alles fühlte sich unvollkommen an.'
+      text: 'Ich bin ein ausgesprochener Stubenhocker, und ich weiß nicht, seit wann „hinausgehen“ für mich zu einem so fremden Wort geworden ist. Oft verlasse ich einen ganzen Monat lang nur dann das Haus, wenn es nötig ist; selbst dann besteht mein Leben aus einer :tn[Routine zwischen Zuhause und einem einzigen festen Ort]{is="Der chinesische Ausdruck liang dian yi xian bedeutet wörtlich eine Linie zwischen zwei Punkten und beschreibt ein eintöniges Leben, das nur zwischen Zuhause und einem festen Ziel pendelt."}, und ich nehme häufig das Auto. Wenn ich darüber nachdenke, habe ich die Innenräume schon sehr lange nicht mehr wirklich verlassen. Nach der Blase und den Ängsten des KI-Zeitalters habe ich mir eine schlechte Gewohnheit angewöhnt: Ich programmiere oft bis tief in die Nacht und scheine nicht mehr in derselben „Zeitzone“ zu leben wie die Welt um mich herum. Auch heute Morgen bin ich erst nach zwölf Uhr aufgestanden. Ich esse nur zwei Mahlzeiten am Tag; sobald ich wach bin, setze ich mich ins Arbeitszimmer, öffne den Computer und fange an zu schreiben. Programmieren an sich macht viel Spaß, aber Programmieren im KI-Zeitalter tut das nicht mehr. Bis zum Nachmittag starrte ich auf den Bildschirm und brachte nichts zustande: keine Designidee, und alles schien unvollkommen.'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:59.454977Z
-      seconds: 54.622526041
-      tokens: 19424
+      at: 2026-08-03T03:16:07.928586Z
+      seconds: 51.9711005
+      tokens: 19394
       review: false
     en-US:
-      text: 'I''m a real homebody, and I don''t know when “going out” became such an unfamiliar phrase to me. Often I only leave the house when necessary, sometimes just once a month; even then, it is a :tn[life along a line between two points]{is="The original expression literally describes a straight line between two points and evokes a monotonous routine of shuttling only between home and one fixed destination."}, and I often take a car. Come to think of it, it has been a long time since I truly left the indoors. After the bubble and anxiety of the AI era, I picked up a bad habit—writing code late into the night, as if I were no longer in the same “time zone” as the world I live in. This morning too, I did not get up until after noon. I eat only two meals a day; when I wake up, I sit down in my study, open my computer, and start writing. Coding itself is great fun, but coding in the AI era is not. I stared at the screen until the afternoon and wrote nothing at all: no design inspiration, and everything felt imperfect.'
+      text: 'I’m a real homebody, and I don’t know when “going out” became such an unfamiliar phrase to me. I often leave home only when necessary, sometimes only once a month; even then, it is a :tn[home-to-one-place routine]{is="The Chinese expression liang dian yi xian literally means a line between two points, describing a monotonous life spent commuting only between home and one fixed destination."}, and I usually take a car. Come to think of it, it has been a long time since I truly left the indoors. After the bubble and anxiety of the AI era, I picked up a bad habit—often coding late at night, as if I were no longer in the same “time zone” as the world I live in. This morning, too, I did not get up until after noon. I eat only two meals a day; once awake, I sit down in my study, open my computer, and start writing. Coding itself is great fun, but coding in the AI era no longer is. I stared at the screen until the afternoon and wrote nothing at all: no design inspiration, and everything felt imperfect.'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:59.454977Z
-      seconds: 54.622526041
-      tokens: 19424
+      at: 2026-08-03T03:16:07.928586Z
+      seconds: 51.9711005
+      tokens: 19394
       review: false
     es-ES:
-      text: 'Soy muy casero, y no sé desde cuándo «salir» se ha convertido para mí en una expresión tan extraña. A menudo solo salgo cuando es necesario, a veces una sola vez al mes; incluso entonces, mi vida es :tn[una línea entre dos puntos]{is="La expresión original alude literalmente a una línea recta entre dos puntos y describe una rutina monótona de ir únicamente entre casa y otro lugar fijo."}, y además suelo ir en coche. Pensándolo bien, hace muchísimo que no salgo realmente de interiores. Tras la burbuja y la ansiedad de la era de la IA, adquirí un mal hábito: escribir código a menudo de madrugada, como si ya no estuviera en la misma «zona horaria» que el mundo en el que vivo. Esta mañana también me levanté pasadas las doce. Solo hago dos comidas al día; al despertar, me siento en el estudio, abro el ordenador y empiezo a escribir. Programar en sí es muy divertido, pero programar en la era de la IA ya no lo es. Me quedé mirando la pantalla hasta la tarde sin poder escribir nada, sin inspiración para el diseño y sintiendo que todo era imperfecto.'
+      text: 'Soy muy casero, y no sé desde cuándo «salir» se convirtió para mí en una palabra tan ajena. A menudo paso un mes entero sin salir salvo cuando es necesario; incluso cuando salgo, llevo una :tn[rutina de ir solo de casa a un lugar fijo]{is="La expresión china liang dian yi xian significa literalmente una línea entre dos puntos y describe una vida monótona de desplazarse únicamente entre casa y un destino fijo."}, y además suelo ir en coche. Pensándolo bien, hace mucho que no salgo realmente de interiores. Tras vivir la burbuja y la ansiedad de la era de la IA, adquirí un mal hábito: a menudo programo de madrugada, como si ya no estuviera en la misma «zona horaria» que el mundo en el que vivo. Esta mañana también me levanté pasada las doce. Solo hago dos comidas al día; al despertarme, me siento en el estudio, abro el ordenador y empiezo a escribir. Programar en sí es muy divertido, pero programar en la era de la IA ya no lo es. Me quedé mirando la pantalla hasta la tarde sin escribir nada, sin inspiración para el diseño y sintiendo que nada era perfecto.'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:59.454977Z
-      seconds: 54.622526041
-      tokens: 19424
+      at: 2026-08-03T03:16:07.928586Z
+      seconds: 51.9711005
+      tokens: 19394
       review: false
     fr-FR:
-      text: Je suis quelqu’un de très casanier, et je ne sais pas depuis quand « sortir » est devenu pour moi une expression si étrangère. Il m’arrive souvent de ne quitter la maison qu’en cas de nécessité, une seule fois par mois; même alors, ma vie se réduit à :tn[un trajet entre deux points]{is="L’expression d’origine évoque littéralement une ligne droite entre deux points et désigne une routine monotone limitée aux allers-retours entre chez soi et un autre lieu fixe."}, et je prends souvent la voiture. À bien y penser, cela fait très longtemps que je n’ai pas vraiment quitté les espaces intérieurs. Après la bulle et l’anxiété de l’ère de l’IA, j’ai pris une mauvaise habitude—coder souvent au milieu de la nuit, comme si je n’étais plus dans le même « fuseau horaire » que le monde où je vis. Ce matin aussi, je ne me suis levé qu’après midi. Je ne mange que deux repas par jour; dès mon réveil, je m’assois dans mon bureau, j’ouvre l’ordinateur et je commence à écrire. Coder est en soi une activité très amusante, mais coder à l’ère de l’IA ne l’est plus. J’ai fixé l’écran jusqu’à l’après-midi sans rien parvenir à écrire, sans inspiration de design, avec l’impression que tout était imparfait.
+      text: 'Je suis très casanier, et je ne sais pas depuis quand « sortir » est devenu pour moi une expression si étrangère. Il m’arrive souvent de ne sortir qu’en cas de nécessité pendant tout un mois ; même quand je sors, ma vie se résume à une :tn[routine entre chez moi et un seul lieu fixe]{is="L’expression chinoise liang dian yi xian signifie littéralement une ligne entre deux points et décrit une vie monotone faite d’allers-retours entre son logement et une destination fixe."}, et je prends souvent la voiture. À bien y réfléchir, cela fait longtemps que je n’ai pas vraiment quitté l’intérieur. Après avoir traversé la bulle et l’anxiété de l’ère de l’IA, j’ai pris une mauvaise habitude : je code souvent au milieu de la nuit, comme si je ne vivais plus dans le même « fuseau horaire » que le monde où je vis. Ce matin encore, je ne me suis levé qu’après midi. Je ne mange que deux repas par jour ; dès mon réveil, je m’assois dans mon bureau, j’ouvre mon ordinateur et je commence à écrire. Coder est en soi très amusant, mais coder à l’ère de l’IA ne l’est plus. J’ai fixé l’écran jusqu’à l’après-midi sans rien parvenir à écrire, sans inspiration de design, avec l’impression que tout était imparfait.'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:59.454977Z
-      seconds: 54.622526041
-      tokens: 19424
+      at: 2026-08-03T03:16:07.928586Z
+      seconds: 51.9711005
+      tokens: 19394
       review: false
     ja-JP:
-      text: 私はかなりの引きこもりで、いつからか「外出」という言葉が自分にとってすっかり馴染みのないものになっていた。必要なときしか外に出ず、一か月に一度しか出ないこともよくある。出かけても、:tn[二点を結ぶ線のような暮らし]{is="原文は文字どおり「二点を結ぶ一本の線」で、家ともう一つの決まった場所だけを往復する単調な生活を指す言い回し。"}で、しかも車に乗ることが多い。考えてみれば、私はもう長いこと本当に室内を離れていない。AI時代のバブルと不安を経験したあと、私は悪い癖を身につけた——夜中によくコードを書くようになり、暮らしている世界と同じ「時間帯」にいないような気さえする。今朝も十二時過ぎまで起きられなかった。一日に食べるのは二食だけで、目を覚ますと書斎に座り、コンピューターを開いて書き始める。コードを書くこと自体はとても楽しいが、AI時代のコーディングはもうそうではない。午後まで画面を見つめても何も書けず、デザインの着想もなく、すべてが不完全に思えた。
+      text: 私はかなりのインドア派で、いつからか「出かける」という言葉が自分にとってとてもよそよそしいものになっていた。必要なときしか外に出ず、一か月に一度しか出ないことも多い。出かけたとしても、 :tn[家と決まった一か所を往復するだけの生活]{is="中国語の liang dian yi xian は字面では二点を結ぶ一本の線で、家ともう一つの決まった場所だけを往復する単調な暮らしを指す。"} で、しかもよく車に乗る。よく考えると、私はもう長いこと本当に屋内を離れていない。AI 時代のバブルと不安を経験したあと、私は悪い習慣を身につけた——深夜によくコードを書くようになり、暮らしている世界と同じ「タイムゾーン」にいないような気がする。今朝も十二時過ぎまで起きられなかった。一日二食だけで、目が覚めると書斎に座り、パソコンを開いて書き始める。コードを書くこと自体はとても楽しいが、AI 時代のコーディングはもうそうではない。午後まで画面を見つめても何も書けず、デザインのひらめきもなく、すべてが不完全に思えた。
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:59.454977Z
-      seconds: 54.622526041
-      tokens: 19424
+      at: 2026-08-03T03:16:07.928586Z
+      seconds: 51.9711005
+      tokens: 19394
       review: false
     ko-KR:
-      text: 나는 꽤 집에만 있는 사람인데, 언제부터인지 ‘외출’이라는 말이 내게 아주 낯선 단어가 되어 버렸다. 한 달에 꼭 필요할 때만 나가는 경우도 많고, 나가더라도 :tn[두 점을 잇는 선 같은 생활]{is="원문의 표현은 글자 그대로 두 점 사이의 직선을 뜻하며, 집과 정해진 한 장소만 오가는 단조로운 일상을 가리킨다.}일 뿐이며, 차를 타는 경우도 많다. 곰곰이 생각해 보니 나는 이미 아주 오랫동안 실내를 진정으로 벗어난 적이 없다. AI 시대의 거품과 불안을 겪은 뒤, 나는 나쁜 습관 하나에 물들었다—새벽에 자주 코드를 쓰게 되었고, 내가 사는 세상과 더는 같은 ‘시간대’에 있지 않은 듯하다. 오늘 아침도 열두 시가 넘어서야 일어났다. 하루에 두 끼만 먹고, 눈을 뜨면 서재에 앉아 컴퓨터를 켜고 글을 쓰기 시작한다. 코딩 자체는 아주 재미있는 일이지만, AI 시대의 코딩은 더는 그렇지 않다. 오후까지 화면을 바라봤지만 아무것도 쓰지 못했고, 디자인 영감도 없었으며, 모든 것이 완벽하지 않게 느껴졌다.
+      text: 나는 아주 집에만 있는 사람인데, 언제부터인가 “외출”이라는 말이 내게 몹시 낯선 단어가 되었다. 한 달 동안 꼭 필요한 때에만 밖에 나가는 경우도 많고, 나가더라도 :tn[집과 한 곳만 오가는 생활]{is="중국어 표현 liang dian yi xian은 글자 그대로 두 점을 잇는 선이며, 집과 하나의 고정된 장소만 오가는 단조로운 생활을 뜻한다."}일 뿐이며, 차를 타는 일도 많다. 곰곰이 생각해 보면, 나는 정말로 실내를 벗어난 지가 이미 오래되었다. AI 시대의 거품과 불안을 겪은 뒤 나는 나쁜 습관이 생겼다. 새벽까지 코드를 쓰는 일이 잦아졌고, 내가 사는 세계와 더는 같은 “시간대”에 있지 않은 듯하다. 오늘 아침에도 열두 시가 넘어서야 일어났다. 하루에 두 끼만 먹고, 일어나면 서재에 앉아 컴퓨터를 켜고 글을 쓰기 시작한다. 코드를 쓰는 일 자체는 아주 재미있지만, AI 시대의 코딩은 더는 그렇지 않다. 오후까지 화면을 들여다봤지만 아무것도 쓰지 못했고, 디자인 영감도 없었으며, 모든 것이 완벽하지 않게 느껴졌다.
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:59.454977Z
-      seconds: 54.622526041
-      tokens: 19424
+      at: 2026-08-03T03:16:07.928586Z
+      seconds: 51.9711005
+      tokens: 19394
       review: false
     zh-CN:
-      text: 我是一个很宅的人，也不知道从什么时候起，“出门”对我来说已经是一个很陌生的词汇了。我常常一个月只在必要的时候才出门，即使出门也是:tn[两点一线]{is="这个说法字面指两点之间的直线，常用来形容只在住处和另一个固定地点之间往返的单调生活。}，还常常坐车。仔细想想，我已经很久没有真正离开过室内了。在经历了 AI 时代的泡沫和焦虑后，我染上了一个坏习惯——常常凌晨写代码，似乎已经和生活的世界不在一个“时区”了。今天早上也是挨到了十二点多才起床，一天只吃两餐，醒来就坐到书房，打开电脑开始写。写代码本身是一件很好玩的事情，但 AI 时代的写代码已经不是了。盯着屏幕盯到下午，什么都写不出来，没有设计灵感，觉得一切都不完美。
+      text: 我是一个很宅的人，也不知道从什么时候起，“出门”对我来说已经是一个很陌生的词汇了。我常常一个月只在必要的时候才出门，即使出门也是 :tn[两点一线]{is="“两点一线”字面是两点之间的一条线，形容每天只在住处和另一个固定地点之间往返的单调生活。"} 的生活，还常常坐车。仔细想想，我已经很久没有真正离开过室内了。在经历了 AI 时代的泡沫和焦虑后，我染上了一个坏习惯——常常凌晨写代码，似乎已经和生活的世界不在一个“时区”了。今天早上也是挨到了十二点多才起床，一天只吃两餐，醒来就坐到书房，打开电脑开始写。写代码本身是一件很好玩的事情，但 AI 时代的写代码已经不是了。盯着屏幕盯到下午，什么都写不出来，没有设计灵感，觉得一切都不完美。
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:59.454977Z
-      seconds: 54.622526041
-      tokens: 19424
+      at: 2026-08-03T03:16:07.928586Z
+      seconds: 51.9711005
+      tokens: 19394
       review: false
     zh-TW:
-      text: 我是個很宅的人，也不知道從什麼時候起，「出門」對我來說已經是個很陌生的詞彙了。我常常一個月只在必要的時候才出門，即使出門也是:tn[兩點一線]{is="這個說法字面指兩點之間的直線，常用來形容只在住處和另一個固定地點之間往返的單調生活。}，還常常坐車。仔細想想，我已經很久沒有真正離開過室內了。在經歷了 AI 時代的泡沫和焦慮後，我染上了一個壞習慣——常常凌晨寫程式，似乎已經和生活的世界不在同一個「時區」了。今天早上也是拖到十二點多才起床，一天只吃兩餐，醒來就坐到書房，打開電腦開始寫。寫程式本身是件很好玩的事，但 AI 時代的寫程式已經不是了。盯著螢幕盯到下午，什麼都寫不出來，沒有設計靈感，覺得一切都不完美。
+      text: 我是一個很宅的人，也不知道從什麼時候起，「出門」對我來說已經是一個很陌生的詞彙了。我常常一個月只在必要的時候才出門，即使出門也是 :tn[兩點一線]{is="「兩點一線」字面是兩點之間的一條線，形容每天只在住處和另一個固定地點之間往返的單調生活。"} 的生活，還常常坐車。仔細想想，我已經很久沒有真正離開過室內了。在經歷了 AI 時代的泡沫和焦慮後，我染上了一個壞習慣——常常凌晨寫程式，似乎已經和生活的世界不在同一個「時區」了。今天早上也是拖到十二點多才起床，一天只吃兩餐，醒來就坐到書房，打開電腦開始寫。寫程式本身是一件很好玩的事情，但 AI 時代的寫程式已經不是了。盯著螢幕盯到下午，什麼都寫不出來，沒有設計靈感，覺得一切都不完美。
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:59.454977Z
-      seconds: 54.622526041
-      tokens: 19424
+      at: 2026-08-03T03:16:07.928586Z
+      seconds: 51.9711005
+      tokens: 19394
       review: false
   8dba1a489980be0aaaa3aa12aa8f1872:
     de-DE:
-      text: 'Ich wechselte auf die andere Seite der Straße am Fluss und ging zurück, dann bog ich in einen kleinen Weg nahe den Wohnhäusern ein. Als Waldweg konnte man ihn eigentlich nicht bezeichnen: Die Bäume standen nur spärlich, und gleich hinter der Mauer daneben erhoben sich die Häuser. Der Weg war asphaltiert; an der Abzweigung lag ein kurzes Stück Holzsteg mit einem Pavillon. Der Asphalt war bereits rissig, aus den Spalten wuchs Gras, und auf der Oberfläche lagen kleine Zweige und Laub verstreut. Auf demselben Abschnitt waren zwei Farben zu erkennen: Die eine Hälfte war offenbar erneuert worden, doch dieses „Neu“ schien ebenfalls mindestens drei bis fünf Jahre zurückzuliegen. Aus der Naht drängten sich wie immer hartnäckig ein paar :tn[kleine Pflanzen]{is="The source first uses kē, a classifier for individual trees or plants, then humorously retracts it because the weeds have grown into rows rather than isolated plants.}? Nein, keine einzelnen Pflanzen mehr, sondern mehrere Reihen Unkraut.'
+      text: 'Für den Rückweg wechselte ich auf die andere Seite der Straße am Fluss und bog in einen Weg nahe den Wohnhäusern ein. Als Waldweg konnte man ihn kaum bezeichnen: Die Bäume standen weit verstreut, und gleich hinter der Mauer daneben erhoben sich die Häuser. Der Weg war asphaltiert; an der Abzweigung schloss sich ein kurzes Stück Holzsteg mit einem Pavillon an. Der Asphalt war bereits rissig, aus den Spalten wuchs Gras, und kleine Zweige sowie Laub lagen über den Belag verstreut. Auf demselben Wegstück waren zwei Farben zu erkennen: Eine Hälfte war offensichtlich erneuert worden, doch dieses :tn[neu]{is="Das Original setzt dieses Wort in Anführungszeichen und bezweifelt damit ironisch, dass es wirklich neu ist."} wirkte ebenfalls mindestens drei bis fünf Jahre alt. Auch aus der Naht hatten sich hartnäckig ein paar Grashalme hervorgezwängt? Als :tn[einzelne Pflänzchen]{is="Der chinesische Zählausdruck 棵 für Bäume oder einzelne Pflanzen wird scherzhaft zurückgenommen: Das Unkraut ist inzwischen zu mehreren Reihen zusammengewachsen."} gingen sie wohl nicht mehr durch; es waren mehrere Reihen Unkraut.'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:47.391483Z
-      seconds: 44.775832541
-      tokens: 19034
+      at: 2026-08-03T03:16:07.928614Z
+      seconds: 102.061600209
+      tokens: 19323
       review: false
     en-US:
-      text: 'I crossed to the other side of the riverside road to head back, then turned onto a small path near some apartment buildings. Calling it a woodland path would be a stretch: the trees were planted sparsely, and the buildings stood just beyond the wall beside it. The path was asphalt, with a short section at the fork made of wooden boardwalk and a pavilion. The asphalt section had already cracked; grass grew from the fissures, while small branches and fallen leaves lay scattered across the surface. Two colors were visible along the same stretch: one half had clearly been resurfaced, though that “new” work looked to be at least three to five years old. Little weeds had stubbornly pushed through the seam as usual—several :tn[small plants]{is="The source first uses kē, a classifier for individual trees or plants, then humorously retracts it because the weeds have grown into rows rather than isolated plants.}?, or rather, several rows of weeds.'
+      text: 'I crossed to the other side of the riverside road for the walk back and turned onto a path near some apartment buildings. Calling it a woodland path would be a stretch: the trees were planted sparsely, and the buildings stood just beyond the wall beside it. The path was asphalt, with a short section of wooden boardwalk and a pavilion at the fork. The asphalt had already cracked, grass had grown through the fissures, and small branches and fallen leaves lay scattered over the surface. Along this same stretch, two colors of pavement were visible: one half had clearly been resurfaced, though that :tn[new]{is="The original puts this word in quotation marks to cast doubt on how new it really is."} looked to be at least three to five years old. A few blades of grass had stubbornly pushed up through the seam as well? They probably no longer counted as :tn[individual plants]{is="The Chinese tree classifier 棵 is humorously withdrawn: the weeds have spread into rows rather than remaining separate plants."}; they were several rows of weeds.'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:47.391483Z
-      seconds: 44.775832541
-      tokens: 19034
+      at: 2026-08-03T03:16:07.928614Z
+      seconds: 102.061600209
+      tokens: 19323
       review: false
     es-ES:
-      text: 'Crucé al otro lado de la carretera junto al río para volver y me desvié por un sendero pequeño cerca de unos bloques de viviendas. Llamarlo sendero entre el bosque sería exagerar: los árboles estaban plantados muy dispersos y, tras el muro de al lado, ya estaban los edificios. El camino era de asfalto; en el cruce había un breve tramo de pasarela de madera con un pabellón. La parte asfaltada ya se había agrietado, crecía hierba en las grietas y había ramitas y hojas caídas esparcidas por la superficie. En el mismo tramo se distinguían dos colores: una mitad había sido claramente renovada, aunque ese «nuevo» parecía ser también de hacía al menos tres o cinco años. Por la junta asomaban, como siempre y con obstinación, unas :tn[plantitas]{is="The source first uses kē, a classifier for individual trees or plants, then humorously retracts it because the weeds have grown into rows rather than isolated plants.}? Mejor dicho, ya no eran unas pocas plantas aisladas, sino varias filas de malas hierbas.'
+      text: 'Para volver, crucé al otro lado de la carretera junto al río y me desvié por un sendero cerca de unos bloques de viviendas. Llamarlo sendero boscoso sería exagerar: los árboles estaban plantados muy separados y, tras el muro de al lado, estaban los edificios. El sendero era de asfalto; en el cruce había un breve tramo de pasarela de madera con un pabellón. La parte asfaltada ya se había agrietado, por las grietas crecía hierba y sobre el pavimento había ramitas y hojas caídas. En el mismo tramo se distinguían dos colores: una mitad se había renovado claramente, aunque aquella :tn[novedad]{is="El original encierra esta palabra entre comillas para dudar con ironía de que realmente sea nueva."} también parecía ser de hacía al menos tres o cinco años. Por la junta también habían brotado obstinadamente unas briznas de hierba, pero ya no contarían como :tn[plantas individuales]{is="El clasificador chino 棵, usado para árboles o plantas separadas, se retira humorísticamente: las malas hierbas ya forman varias filas."}; eran varias filas de malas hierbas.'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:47.391483Z
-      seconds: 44.775832541
-      tokens: 19034
+      at: 2026-08-03T03:16:07.928614Z
+      seconds: 102.061600209
+      tokens: 19323
       review: false
     fr-FR:
-      text: 'J’ai traversé pour revenir par l’autre côté de la route qui longe le fleuve, puis j’ai bifurqué dans un petit chemin près des immeubles d’habitation. L’appeler un sentier forestier serait exagéré : les arbres y étaient plantés très clairsemés, et les immeubles se trouvaient juste derrière le mur voisin. Le chemin était asphalté ; à l’embranchement, un court tronçon de passerelle en bois avec un pavillon avait été assemblé. La partie asphaltée était déjà fissurée, de l’herbe poussait dans les crevasses, et de petites branches ainsi que des feuilles mortes étaient éparpillées sur le sol. Sur un même tronçon, on distinguait deux couleurs : une moitié avait manifestement été refaite, mais ce « neuf » semblait lui aussi dater d’au moins trois à cinq ans. Comme toujours, quelques :tn[petites plantes]{is="The source first uses kē, a classifier for individual trees or plants, then humorously retracts it because the weeds have grown into rows rather than isolated plants.} ? Non, plus vraiment quelques plantes isolées : plusieurs rangées de mauvaises herbes s’étaient obstinément frayé un chemin à travers le joint.'
+      text: 'Pour le retour, j’ai traversé de l’autre côté de la route qui longeait le fleuve et bifurqué sur un petit chemin près d’immeubles d’habitation. L’appeler un sentier forestier serait exagéré : les arbres y étaient plantés de façon clairsemée, et les immeubles se trouvaient juste derrière le mur voisin. Le chemin était asphalté; à l’embranchement, un court passage de passerelle en bois avec un pavillon s’y raccordait. La partie asphaltée était déjà fissurée, de l’herbe poussait dans les crevasses, et de petites branches et des feuilles mortes jonchaient le sol. Sur ce même tronçon, on distinguait deux couleurs : une moitié avait manifestement été refaite, mais ce :tn[neuf]{is="Le mot est mis entre guillemets dans l’original, ce qui exprime avec ironie le doute qu’il soit réellement neuf."} semblait lui aussi dater d’au moins trois à cinq ans. Quelques brins d’herbe avaient tout de même percé obstinément à la jointure; ils ne comptaient sans doute plus comme :tn[plantes isolées]{is="Le classificateur chinois 棵, employé pour les arbres ou les plantes distinctes, est retiré avec humour : les mauvaises herbes forment désormais plusieurs rangées."}, mais comme plusieurs rangées de mauvaises herbes.'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:47.391483Z
-      seconds: 44.775832541
-      tokens: 19034
+      at: 2026-08-03T03:16:07.928614Z
+      seconds: 102.061600209
+      tokens: 19323
       review: false
     ja-JP:
-      text: 川沿いの道路の反対側へ渡って戻り、住宅棟の近くにある小道へ曲がった。林の小道と言うには無理がある。木はまばらに植えられ、脇の壁の向こうはもう建物だった。小道はアスファルト舗装で、分かれ道には東屋つきの短い木道が組まれている。アスファルトの部分にはすでにひびが入り、そのすき間から草が生え、路面には小枝と落ち葉が散っていた。同じ区間でも二色に見え、半分は明らかに舗装し直されていたが、その「新しさ」も少なくとも三、五年前のものらしい。継ぎ目からは相変わらずしぶとく数:tn[本の小さな草]{is="The source first uses kē, a classifier for individual trees or plants, then humorously retracts it because the weeds have grown into rows rather than isolated plants.}？　いや、「本」ではなく、何列もの雑草だった。
+      text: 川沿いの道路の反対側に渡って戻り、住宅棟の近くの小道へ曲がった。林の小道と言うには無理がある。木はまばらに植えられ、脇の壁の向こうはすぐ建物だった。小道はアスファルト舗装で、分かれ道には東屋付きの短い木製遊歩道がつながっていた。アスファルトの部分はすでにひび割れ、隙間から草が生え、路面には小枝と落ち葉が散らばっていた。同じ道筋でも二色に分かれて見え、片側は明らかに舗装し直されていたが、その :tn[新しさ]{is="原文は「新」を引用符で囲み、本当に新しいのか疑う調子を出している。"} も少なくとも三、五年前のものに見えた。継ぎ目からも小さな草が何本かしぶとく顔を出していたが、もはや :tn[数本]{is="中国語の木や独立した草木を数える助数詞「棵」を、雑草が列になって広がったため冗談めかして取り消している。"} とは言えない。数列の雑草だった。
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:47.391483Z
-      seconds: 44.775832541
-      tokens: 19034
+      at: 2026-08-03T03:16:07.928614Z
+      seconds: 102.061600209
+      tokens: 19323
       review: false
     ko-KR:
-      text: 강변 도로의 반대편으로 건너 되돌아가다가 주거 건물 가까이의 작은 길로 꺾어 들어갔다. 숲길이라고 하기에는 무리였다. 나무는 성기게 심겨 있었고, 옆 담장 너머로는 바로 건물이 있었다. 길은 아스팔트였고, 갈림길에는 정자가 딸린 짧은 나무 데크 구간이 이어져 있었다. 아스팔트 구간은 이미 갈라져 틈에서는 풀이 자랐고, 노면에는 작은 나뭇가지와 낙엽이 흩어져 있었다. 같은 구간에서도 두 가지 색이 보였는데, 절반은 분명 새로 포장한 듯했지만 그 “새것”도 적어도 서너 해 전의 일이었던 듯하다. 이음새에서는 여전히 끈질기게 몇 :tn[포기의 작은 풀]{is="The source first uses kē, a classifier for individual trees or plants, then humorously retracts it because the weeds have grown into rows rather than isolated plants.}? 아니, 이제는 몇 포기가 아니라 여러 줄의 잡초였다.
+      text: 강변 도로의 반대편으로 건너 되돌아가다가 주거 건물 가까이의 작은 길로 꺾어 들어갔다. 숲길이라고 하기에는 무리가 있었다. 나무는 성기게 심겨 있었고, 옆 담장 너머로는 바로 건물이 보였다. 길은 아스팔트였고, 갈림길에는 정자가 있는 짧은 나무 데크가 이어져 있었다. 아스팔트 구간은 이미 갈라져 틈에서 풀이 자랐고, 노면에는 작은 나뭇가지와 낙엽이 흩어져 있었다. 같은 길에서도 두 가지 색이 보였는데, 한쪽은 분명 새로 포장한 듯했지만 그 :tn[새것]{is="원문은 이 말을 따옴표로 묶어, 정말 새것인지 의심하는 어조를 만든다."}도 적어도 삼오 년 전의 일처럼 보였다. 이음새에서도 작은 풀이 몇 포기 끈질기게 올라왔지만, 이제는 :tn[몇 포기]{is="중국어에서 나무나 독립된 식물을 세는 단위인 棵를 익살스럽게 거둬들인다. 잡초가 개별 포기가 아니라 여러 줄로 이어졌기 때문이다."}라고 하기는 어려웠다. 여러 줄의 잡초였다.
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:47.391483Z
-      seconds: 44.775832541
-      tokens: 19034
+      at: 2026-08-03T03:16:07.928614Z
+      seconds: 102.061600209
+      tokens: 19323
       review: false
     zh-CN:
-      text: 沿着江边的马路换到另一边往回走，拐进了一条靠近居民楼的小道。说是林间小道，其实算不上，树种得稀稀拉拉的，旁边隔墙就是楼。小道是柏油路，岔路口有一小段带亭子的木栈道拼起来，柏油的那段已经开裂，裂缝里长出了草，路面上散着小树枝和落叶。同一段路上能看出两种颜色，一半明显翻新过，但那个“新”看起来也至少是三五年前的事了，接缝处照样顽强地钻出了几:tn[棵小草]{is="原文先用“棵”这个计量独立树木或植株的量词，随后幽默地撤回，因为这些草已经连成了几排，而不是几棵。}？应该不算“棵”了，是几排杂草。
+      text: 沿着江边的马路换了一边往回走，拐进了一条靠近居民楼的小道。说是林间小道，其实算不上，树种得稀稀拉拉的，旁边隔墙就是楼。小道是柏油路，岔路口有一小段带亭子的木栈道拼起来的，柏油的那段已经开裂了，裂缝里长出了草，路面上散着小树枝和落叶。同一段路上能看出两种颜色，一半明显翻新过，但那个“新”看起来也至少是三五年前的事了，接缝处照样顽强地钻出了几棵小草？应该不算 :tn[棵]{is="“棵”原本是数树木或独立植株的量词，这里幽默地撤回了它：杂草已经连成几排，不再是一株株的。"} 了，是几排杂草。
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:47.391483Z
-      seconds: 44.775832541
-      tokens: 19034
+      at: 2026-08-03T03:16:07.928614Z
+      seconds: 102.061600209
+      tokens: 19323
       review: false
     zh-TW:
-      text: 沿著江邊的馬路換到另一邊往回走，拐進了一條靠近住宅大樓的小道。說是林間小道，其實算不上，樹種得稀稀落落的，旁邊隔著牆就是樓房。小道是柏油路，岔路口有一小段帶亭子的木棧道拼起來，柏油的那段已經開裂，裂縫裡長出了草，路面上散著小樹枝和落葉。同一段路上能看出兩種顏色，一半明顯翻新過，但那個「新」看起來也至少是三五年前的事了，接縫處照樣頑強地鑽出了幾:tn[棵小草]{is="原文先用「棵」這個計量獨立樹木或植株的量詞，隨後幽默地撤回，因為這些草已經連成了幾排，而不是幾棵。}？應該不算「棵」了，是幾排雜草。
+      text: 沿著江邊的馬路換到另一邊往回走，拐進了一條靠近住宅大樓的小道。說是林間小道，其實算不上，樹種得稀稀拉拉的，旁邊隔著牆就是大樓。小道是柏油路，岔路口有一小段帶亭子的木棧道拼起來的，柏油那段已經開裂了，裂縫裡長出了草，路面上散著小樹枝和落葉。同一段路上看得出兩種顏色，一半明顯翻新過，但那個「新」看起來也至少是三五年前的事了，接縫處照樣頑強地鑽出了幾棵小草？應該不算 :tn[棵]{is="「棵」原本是計量樹木或獨立植株的量詞，這裡幽默地撤回了它：雜草已經連成幾排，而不是一株株的。"} 了，是幾排雜草。
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:47.391483Z
-      seconds: 44.775832541
-      tokens: 19034
+      at: 2026-08-03T03:16:07.928614Z
+      seconds: 102.061600209
+      tokens: 19323
       review: false
   8dd73efa60106c920c8055731aad1ccc:
     de-DE:
@@ -2147,68 +2147,68 @@ segments:
       review: false
   ece3bf55829edba4e5b445a3313f4642:
     de-DE:
-      text: 'In dem Moment, als ich den Bildschirm aufklappte, wusste ich, dass es vorbei war. Die Bildschirmhelligkeit von :tn[Guoguo]{is="Im Original ist „果果“ ein verniedlichender Doppelname, der von dem chinesischen Wort für Apfel abgeleitet ist und das Apple-Gerät wie eine vertraute Person behandelt.} reichte draußen einfach nicht aus. Ich probierte kurz alle möglichen Winkel aus—Gegenlicht, Licht von vorn, sogar mich selbst genau zwischen Sonne und Bildschirm auszurichten—doch egal, wie ich es einstellte, ich konnte nichts erkennen. Ziemlich erbärmlich, ehrlich gesagt. Drinnen fühlte ich mich noch wie ein Programmierer, draußen stellte sich heraus, dass ich nicht einmal den Bildschirm zum Leuchten bringen konnte. Na gut, dann muss dieser Code eben nicht geschrieben werden. Aber ich wollte noch nicht aufgeben, klappte den Laptop zu und beschloss, mein Glück im Schatten der Bäume auf der anderen Straßenseite zu versuchen. Bevor ich das Geländer verließ, schaute ich noch einmal auf den Fluss. Aus der Ferne sah es eigentlich ganz in Ordnung aus: Bei wolkigem Wetter mit Sonne wirkte die Wasseroberfläche noch wie in meiner Erinnerung. Senkte ich den Blick jedoch ein wenig zum Ufer, sah ich eine Schicht auf dem Wasser treiben—Algen, Blätter, allerlei kleine Reste. Nicht viel, aber das Flusswasser war nicht mehr klar. Die Oberfläche war ruhiger als in meiner Erinnerung, und das Ufer wurde ganz offensichtlich nicht mehr gepflegt. „Schon während der Pandemie vor ein paar Jahren bin ich eigentlich einmal hergekommen; seitdem ist es so.“ ~~Aber jedes Mal, wenn ich vorbeikomme, empfinde ich doch ein wenig Wehmut.~~'
+      text: 'In dem Moment, als ich den Bildschirm einschaltete, wusste ich: Das war’s. Die Helligkeit von :tn[Apfelchen]{is="Im Original erhält das Apple-Gerät einen niedlichen, verdoppelten Kosenamen, der von Apfel abgeleitet ist und wie ein vertrauter Personenname klingt."} reicht draußen einfach überhaupt nicht aus. Ich probierte ein paar Winkel aus: Gegenlicht, Licht von vorn, sogar mich selbst genau auf eine Linie mit der Sonne zu bringen — doch wie ich es auch drehte, ich konnte nichts erkennen. Ehrlich gesagt ziemlich erbärmlich. Drinnen fühlte ich mich noch wie ein Programmierer, draußen stellte sich heraus, dass ich nicht einmal einen Bildschirm zum Leuchten bringen konnte. Na gut, dann muss dieser Code eben nicht geschrieben werden. Aber ich wollte noch nicht aufgeben, klappte den Laptop zu und beschloss, mein Glück im Schatten der Bäume auf der anderen Straßenseite zu versuchen. Bevor ich das Geländer verließ, warf ich noch einen Blick auf den Fluss. Von weitem sah er eigentlich ganz ordentlich aus; bei wolkigem Wetter mit Sonne wirkte die Wasseroberfläche noch wie in meiner Erinnerung. Senkte man den Blick aber ein wenig zum Ufer hin, sah man eine Schicht auf dem Wasser treiben — Algen, Blätter, allerlei kleine Schwimmreste. Nicht viel, doch das Flusswasser war nicht mehr klar. Die Oberfläche war ruhiger als in meiner Erinnerung, aber um das Ufer kümmerte sich offensichtlich niemand mehr. „Schon während der Pandemie vor ein paar Jahren bin ich eigentlich hergekommen, um nachzusehen; seit damals ist es so.“ ~~Und doch überkommt mich jedes Mal ein kleiner Anflug von Wehmut, wenn ich vorbeikomme.~~'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:47.399208Z
-      seconds: 61.249513041
-      tokens: 20073
+      at: 2026-08-03T03:16:07.928704Z
+      seconds: 66.998742375
+      tokens: 20076
       review: false
     en-US:
-      text: 'The moment I opened the screen, I knew I was done for. :tn[Guoguo]{is="The original calls the Apple device “Guoguo,” a cutesy reduplicated nickname derived from the Chinese word for apple, treating it like an affectionate person’s name.}''s display simply was not bright enough outdoors. I tried all kinds of angles—backlit, front-lit, even positioning myself in line with the sun—but nothing made it readable. Pretty pitiful, honestly. Indoors I still felt like a programmer; outdoors I discovered I could not even light up the screen. Fine, then, no need to write this code—but I was still unwilling to give up. I closed the laptop and decided to try my luck in the shade across the road. Before leaving the railing, I looked out over the river once more. From a distance it was actually all right: under cloudy skies with sunlight, the water still looked the way I remembered it. But lower my gaze slightly toward the bank and I could see a layer floating on the surface—algae, leaves, scattered bits of debris. Not much, but the river was no longer clear. Its surface was calmer than I remembered, while the bank had clearly been neglected. “I actually came out to look during the pandemic a few years ago; it has been like this ever since then.” ~~But every time I pass by, I still feel a little wistful.~~'
+      text: 'The moment I turned on the screen, I knew I was done for. :tn[Apple dear]{is="The original calls the Apple device Guoguo, a cute doubled-syllable pet name derived from Apple."}’s display simply was not bright enough outdoors. I tried every angle—backlit, facing the light, even positioning myself directly in line with the sun—but nothing made it readable. Honestly, it was rather pathetic. Indoors I still felt like a programmer; outdoors I discovered I could not even light up a screen. Fine, no need to write this code after all. But I was not ready to give up: I closed the laptop and decided to try my luck in the shade across the road. Before leaving the railing, I looked once more at the river. From a distance it actually looked fine; under the cloudy-but-sunny sky, the water still looked the way I remembered it. But lower my gaze a little toward the bank and there was a layer floating on top—algae, leaves, bits and pieces of debris. Not much, but the river was no longer clear. The surface was calmer than I remembered, while the bank had clearly been left unattended. “I actually came to look during the pandemic a few years ago; it has been like this since then.” ~~Still, every time I pass by, I feel a small pang.~~'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:47.399208Z
-      seconds: 61.249513041
-      tokens: 20073
+      at: 2026-08-03T03:16:07.928704Z
+      seconds: 66.998742375
+      tokens: 20076
       review: false
     es-ES:
-      text: 'En cuanto abrí la pantalla, supe que estaba acabado. El brillo de la pantalla de :tn[Guoguo]{is="En el original, «果果» es un apodo cariñoso de dos sílabas repetidas, derivado de la palabra china para «manzana», que trata al dispositivo Apple como si fuera una persona cercana.} no bastaba en absoluto al aire libre. Probé un poco con todos los ángulos—con la luz a contraluz, de frente, incluso colocándome en línea con el sol—pero no había forma de verla. Bastante triste, la verdad. En interiores todavía me sentía programador; al salir fuera descubrí que ni siquiera podía encender la pantalla. Da igual, este código puede quedarse sin escribir. Pero aún no quería rendirme: cerré el portátil y decidí probar suerte bajo la sombra de los árboles al otro lado de la calle. Antes de alejarme de la barandilla, miré una vez más hacia el río. Desde lejos no estaba mal: bajo un cielo nublado con sol, la superficie del agua aún tenía el aspecto que recordaba. Pero al bajar un poco la mirada hacia la orilla, se veía una capa de cosas flotando en la superficie—algas, hojas, pequeños restos dispersos. No eran muchas, pero el agua ya no estaba clara. La superficie estaba más quieta que en mi memoria, y era evidente que nadie se ocupaba ya de la orilla. «En realidad ya vine a mirar durante la pandemia, hace unos años; está así desde entonces». ~~Pero cada vez que paso por aquí aún siento cierta emoción.~~'
+      text: 'En cuanto encendí la pantalla, supe que se había acabado. El brillo de :tn[manzanita]{is="El original llama al dispositivo Apple con un apodo cariñoso de sílabas repetidas, derivado de manzana y con aire de nombre de persona."} no bastaba en absoluto al aire libre. Probé varios ángulos: a contraluz, con la luz de frente, incluso colocándome en línea recta con el sol, pero no había manera de ver nada. Bastante patético, la verdad. Dentro todavía me sentía programador; al salir descubrí que ni siquiera podía encender bien una pantalla. Da igual, no hace falta escribir este código. Pero no quería rendirme: cerré el portátil y decidí probar suerte bajo la sombra de los árboles al otro lado de la calle. Antes de alejarme de la barandilla, volví a mirar el río. Desde lejos, en realidad no estaba mal; bajo ese tiempo nublado con sol, la superficie del agua aún se veía como la recordaba. Pero al bajar un poco la mirada hacia la orilla, se distinguía una capa de cosas flotando en el agua: algas, hojas y pequeños restos. No muchas, pero el agua ya no era clara. La superficie estaba más quieta que en mis recuerdos, y era evidente que nadie se ocupaba ya de la orilla. «En realidad ya vine a mirar durante la pandemia, hace unos años; lleva así desde entonces». ~~Aun así, cada vez que paso por aquí siento una leve nostalgia.~~'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:47.399208Z
-      seconds: 61.249513041
-      tokens: 20073
+      at: 2026-08-03T03:16:07.928704Z
+      seconds: 66.998742375
+      tokens: 20076
       review: false
     fr-FR:
-      text: 'Dès que j’ai ouvert l’écran, j’ai su que c’était fichu. La luminosité de l’écran de :tn[Guoguo]{is="Dans l’original, « 果果 » est un surnom redoublé et affectueux dérivé du mot chinois pour « pomme », qui donne à l’appareil Apple l’allure d’une personne familière.} ne suffisait tout simplement pas en extérieur. J’ai essayé quelques angles—à contre-jour, face à la lumière, jusqu’à me placer dans l’axe du soleil—mais, quels que soient les réglages, je n’y voyais rien. C’était assez pathétique, pour être honnête. À l’intérieur, je me sentais encore programmeur ; dehors, je découvrais que je n’arrivais même pas à allumer l’écran. Tant pis, ce code n’avait qu’à ne pas être écrit. Mais je ne voulais pas encore abandonner : j’ai refermé l’ordinateur portable et décidé de tenter ma chance à l’ombre des arbres, de l’autre côté de la route. Avant de quitter la rambarde, j’ai jeté un dernier regard vers le fleuve. De loin, ce n’était pas si mal : par ce temps nuageux avec du soleil, la surface de l’eau avait encore l’air de celle dont je me souvenais. Mais en baissant légèrement les yeux vers la rive, on distinguait une couche de choses flottant à la surface—algues, feuilles, petits débris épars. Il n’y en avait pas beaucoup, mais l’eau n’était déjà plus claire. La surface était plus calme que dans mes souvenirs, et la rive était manifestement laissée à l’abandon. « J’étais déjà venu voir pendant la pandémie, il y a quelques années ; c’est comme ça depuis. » ~~Mais chaque fois que je passe par là, cela m’émeut encore un peu.~~'
+      text: 'Dès que j’ai allumé l’écran, j’ai su que c’était fichu. La luminosité de :tn[pomme-pomme]{is="L’original donne à l’appareil Apple un surnom redoublé dérivé de pomme, avec la tendresse d’un petit nom pour une personne."} ne suffisait tout simplement pas dehors. J’ai essayé plusieurs angles : à contre-jour, face à la lumière, jusqu’à me placer moi-même dans l’axe du soleil — impossible de distinguer quoi que ce soit. C’était assez pathétique, à vrai dire. À l’intérieur, je me sentais encore programmeur ; une fois dehors, je découvrais que je n’arrivais même pas à faire briller un écran. Tant pis, ce code n’a pas besoin d’être écrit. Mais je ne voulais pas lâcher l’affaire : j’ai refermé l’ordinateur portable et décidé de tenter ma chance à l’ombre des arbres de l’autre côté de la route. Avant de quitter la rambarde, j’ai jeté un dernier regard au fleuve. De loin, il n’avait pas si mauvaise allure ; sous ce ciel nuageux traversé de soleil, la surface de l’eau ressemblait encore à celle de mes souvenirs. Mais en baissant légèrement les yeux vers la berge, on distinguait une couche de choses flottant à la surface — algues, feuilles, petits débris. Pas beaucoup, mais l’eau n’était déjà plus claire. La surface était plus calme que dans mon souvenir, tandis que la rive était manifestement abandonnée. « Je suis en fait déjà venu voir pendant la pandémie, il y a quelques années ; c’est comme ça depuis. » ~~Pourtant, chaque fois que je passe ici, cela me laisse encore une légère émotion.~~'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:47.399208Z
-      seconds: 61.249513041
-      tokens: 20073
+      at: 2026-08-03T03:16:07.928704Z
+      seconds: 66.998742375
+      tokens: 20076
       review: false
     ja-JP:
-      text: 画面を開いた瞬間、もう駄目だと分かった。:tn[グオグオ]{is="原文の「果果」は「苹果（リンゴ）」から作った畳語の愛称で、Apple製デバイスを親しげな人名のように呼んでいる。}の画面は、屋外では明るさがまるで足りない。逆光、順光、自分と太陽を一直線に並べることまで、いろいろな角度を少し試したが、どう調整しても見えなかった。正直、かなり哀れだ。室内ではまだ自分をプログラマーだと思えていたのに、屋外に出ると画面すら点けられないと分かる。まあいい、このコードは書かなくてもいい。それでも諦めきれず、ノートPCを閉じて、道路の向かいにある木陰で運を試すことにした。手すりを離れる前に、もう一度川面を見た。遠目には悪くない。雲と日差しが入り交じる空の下では、水面はまだ記憶の中のあの姿に見えた。だが少しうつむき、視線を岸辺へ下げると、水面に何かが一層浮いているのが分かる――藻、落ち葉、細々とした漂流物。多くはないが、川の水はもう澄んでいない。水面は記憶より静かで、岸辺は明らかに誰にも手入れされていなかった。「数年前、コロナ禍の頃にも実は見に来たけれど、その頃からずっとこうだった」~~それでも通るたびに、少し感慨を覚える。~~
+      text: 画面を開いた瞬間、もう駄目だと分かった。:tn[アップルちゃん]{is="原文では Apple の機器を、リンゴから派生した重ね言葉の愛称で、人のように親しんで呼んでいる。"}の画面は、屋外ではまるで明るさが足りない。逆光、順光、さらには自分と太陽が一直線になる位置まで、いろいろ試したが、どう調整しても見えなかった。正直、かなり哀れだ。室内ではまだ自分をプログラマーだと思えていたのに、外へ出た途端、画面すら点けられないと分かる。もういい、このコードは書かなくてもいい。それでも諦めきれず、ノートパソコンを閉じて、道路の向かいの木陰で運試しをすることにした。柵を離れる前に、もう一度川面を見た。遠くからなら、実際悪くない。曇り間に日が差す空の下、水面は記憶の中のあの姿にまだ見えた。だが、少しうつむいて岸辺へ視線を落とすと、水面には一層のものが浮いているのが分かる——藻、葉、細かな漂流物。多くはないが、川の水はもう澄んでいない。水面は記憶より静かで、岸辺は明らかに誰にも構われていなかった。「数年前、感染症流行のときにも実は見に来たけれど、その頃からこうだった」~~それでも通るたびに、少し感慨を覚える。~~
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:47.399208Z
-      seconds: 61.249513041
-      tokens: 20073
+      at: 2026-08-03T03:16:07.928704Z
+      seconds: 66.998742375
+      tokens: 20076
       review: false
     ko-KR:
-      text: 화면을 여는 순간 끝났다는 걸 알았다. :tn[궈궈]{is="원문의 ‘果果’는 중국어로 사과를 뜻하는 말에서 나온 귀여운 반복형 별명으로, Apple 기기를 다정한 사람 이름처럼 부른다.}의 화면 밝기는 야외에서는 도저히 부족했다. 역광, 순광, 심지어 나 자신을 해와 일직선에 놓는 것까지 여러 각도를 조금 시도해 봤지만, 어떻게 해도 보이지 않았다. 솔직히 꽤 처량했다. 실내에서는 아직 내가 프로그래머인 듯했는데, 밖에 나와 보니 화면조차 켤 수 없었다. 됐다, 이 코드는 안 써도 된다. 그래도 포기하지 못해 노트북을 덮고 길 건너 나무 그늘에서 운을 시험해 보기로 했다. 난간을 떠나기 전, 나는 강물 쪽을 한 번 더 보았다. 멀리서 보면 사실 괜찮았다. 구름 사이로 햇빛이 드는 날씨 아래 수면은 아직 기억 속 모습 같았다. 하지만 시선을 조금 낮춰 강둑 쪽을 보면 수면에 한 겹의 무언가가 떠 있는 것이 보였다—물풀, 나뭇잎, 자잘한 부유물. 많지는 않았지만 강물은 이미 맑지 않았다. 수면은 기억보다 고요했지만, 강둑은 분명 아무도 돌보지 않고 있었다. “몇 년 전 팬데믹 때도 사실 나와서 봤는데, 그때부터 계속 이랬다.” ~~그래도 지나갈 때마다 조금은 감회가 남는다.~~
+      text: 화면을 켜는 순간 끝났다는 걸 알았다. :tn[애플이]{is="원문은 Apple 기기를 사과에서 파생한 반복형 애칭으로 부르며, 친근한 사람 이름처럼 의인화한다."}의 화면 밝기는 야외에서는 도저히 부족했다. 역광, 순광, 심지어 내 몸과 태양을 일직선에 놓는 것까지 여러 각도를 조금씩 시험해 봤지만, 어떻게 해도 보이지 않았다. 솔직히 좀 처량했다. 실내에서는 그래도 내가 프로그래머인 줄 알았는데, 밖에 나오니 화면 하나도 밝힐 수 없다는 걸 알게 됐다. 됐다, 이 코드는 안 써도 된다. 그래도 미련을 버리지 못해 노트북을 덮고 길 건너편 나무 그늘에서 운을 시험해 보기로 했다. 난간을 떠나기 전에 강물 쪽을 한 번 더 봤다. 멀리서 보면 사실 괜찮았다. 구름 사이로 햇빛이 비치는 날씨 아래 물빛은 여전히 기억 속 모습 같았다. 하지만 시선을 조금 낮춰 물가 쪽을 보면 수면에 한 겹의 무언가가 떠 있는 것이 보였다. 물이끼, 나뭇잎, 자잘한 부유물들. 많지는 않았지만 강물은 이미 맑지 않았다. 수면은 기억보다 고요했지만, 물가는 분명 아무도 돌보지 않고 있었다. “몇 년 전 팬데믹 때도 사실 와서 봤는데, 그때부터 이랬다.” ~~그래도 지나갈 때마다 조금은 감회가 든다.~~
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:47.399208Z
-      seconds: 61.249513041
-      tokens: 20073
+      at: 2026-08-03T03:16:07.928704Z
+      seconds: 66.998742375
+      tokens: 20076
       review: false
     zh-CN:
-      text: 打开屏幕的那一刻我就知道完了。:tn[果果]{is="“果果”是从“苹果”衍生出的叠字昵称，把 Apple 设备戏称成一个亲昵的人名。}的屏幕亮度在户外根本不够看。稍微尝试了一下各种角度，背光、顺光，甚至把自己调整到和太阳在同一条线上——怎么调都看不清。挺可怜的，说实话。在室内觉得自己还是个程序员，结果到了户外发现连屏幕都点不亮。算了，这代码不写也罢，但是我还是不死心，合上笔记本，决定去马路对面的树荫里碰碰运气。离开栏杆之前，我又往江面看了一眼。远看其实还行，水面在多云伴随阳光的天气下看起来还是那种记忆里的样子。但稍稍低头把视线下压一点看向岸边看，就能发现水面上浮着一层东西——水藻、树叶、零零碎碎的漂浮物。不多，但江水已经不清了，水面比记忆中的静，但岸边很显然已经没人搭理了，「早几年疫情的时候我其实就出来看过，自那时候起其实就这样了」~~但是每次走过还是有些许感慨~~。
+      text: 打开屏幕的那一刻我就知道完了。:tn[果果]{is="原文把 Apple 设备叫作从“苹果”衍生出的叠字昵称，像是在亲昵地称呼一个人。"}的屏幕亮度在户外根本不够看。稍微尝试了一下各种角度，背光、顺光，甚至把自己调整到和太阳在同一条线上——怎么调都看不清。挺可怜的，说实话。在室内觉得自己还是个程序员，结果到了户外发现连屏幕都点不亮。算了，这代码不写也罢，但是我还是不死心，合上笔记本，决定去马路对面的树荫里碰碰运气。离开栏杆之前，我又往江面看了一眼。远看其实还行，水面在多云伴随阳光的天气下看起来还是那种记忆里的样子。但稍稍低头把视线下压一点看向岸边看，就能发现水面上浮着一层东西——水藻、树叶、零零碎碎的漂浮物。不多，但江水已经不清了，水面比记忆中的静，但岸边很显然已经没人搭理了，“早几年疫情的时候我其实就出来看过，自那时候起其实就这样了”~~但是每次走过还是有些许感慨~~。
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:47.399208Z
-      seconds: 61.249513041
-      tokens: 20073
+      at: 2026-08-03T03:16:07.928704Z
+      seconds: 66.998742375
+      tokens: 20076
       review: false
     zh-TW:
-      text: 打開螢幕的那一刻我就知道完了。:tn[果果]{is="「果果」是從「蘋果」衍生出的疊字暱稱，把 Apple 裝置戲稱成一個親暱的人名。}的螢幕亮度在戶外根本不夠看。稍微嘗試了一下各種角度，背光、順光，甚至把自己調整到和太陽在同一條線上——怎麼調都看不清。挺可憐的，說實話。在室內覺得自己還是個程式設計師，結果到了戶外發現連螢幕都點不亮。算了，這程式碼不寫也罷，但是我還是不死心，闔上筆記型電腦，決定去馬路對面的樹蔭裡碰碰運氣。離開欄杆之前，我又往江面看了一眼。遠看其實還行，水面在多雲伴隨陽光的天氣下看起來還是那種記憶裡的樣子。但稍稍低頭把視線下壓一點看向岸邊，就能發現水面上浮著一層東西——水藻、樹葉、零零碎碎的漂浮物。不多，但江水已經不清了，水面比記憶中的靜，但岸邊很顯然已經沒人搭理了，「早幾年疫情的時候我其實就出來看過，自那時候起其實就這樣了」~~但是每次走過還是有些許感慨~~。
+      text: 打開螢幕的那一刻我就知道完了。:tn[果果]{is="原文把 Apple 裝置叫作從「蘋果」衍生出的疊字暱稱，像是在親暱地稱呼一個人。"}的螢幕亮度在戶外根本不夠看。稍微嘗試了一下各種角度，背光、順光，甚至把自己調整到和太陽在同一條線上——怎麼調都看不清。挺可憐的，說實話。在室內覺得自己還是個程式設計師，結果到了戶外發現連螢幕都點不亮。算了，這程式碼不寫也罷，但是我還是不死心，闔上筆記型電腦，決定去馬路對面的樹蔭裡碰碰運氣。離開欄杆之前，我又往江面看了一眼。遠看其實還行，水面在多雲伴隨陽光的天氣下看起來還是那種記憶裡的樣子。但稍稍低頭把視線下壓一點看向岸邊，就能發現水面上浮著一層東西——水藻、樹葉、零零碎碎的漂浮物。不多，但江水已經不清了，水面比記憶中的靜，但岸邊很顯然已經沒人搭理了，「早幾年疫情的時候我其實就出來看過，自那時候起其實就這樣了」~~但是每次走過還是有些許感慨~~。
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:47.399208Z
-      seconds: 61.249513041
-      tokens: 20073
+      at: 2026-08-03T03:16:07.928704Z
+      seconds: 66.998742375
+      tokens: 20076
       review: false
   ef777fdbb680bf711f96006468b7b38a:
     de-DE:
@@ -2277,68 +2277,68 @@ segments:
       review: false
   f487f10aaf6d6c652d00601e193dcaed:
     de-DE:
-      text: Als ich die Augen öffnete, war der Lärm immer noch Lärm. Ich war auch müde davon, mit dem Laptop im Arm dazuliegen, legte ihn neben mich, trank fast das ganze Wasser aus, schüttete den letzten Rest weg und warf die Flasche beiläufig in den Mülleimer. Unterwegs waren viele Nachrichten auf meinem Handy eingegangen, aber ich hatte sie kaum angesehen; nach dem Fotografieren steckte ich es jeweils wieder in die Tasche. Jetzt schien es Zeit, einen Blick darauf zu werfen, doch das :tn[iPhone 17 Pro]{is="Im Original hieß es „17P“, ein Tech-Slang, der die Modellbezeichnung auf Zahl und Anfangsbuchstaben verkürzt."}, auf das ich vor einigen Monaten gewechselt hatte, nutzte bereits eSIM. Ich hatte auch kürzlich die Karten von CMHK und 3HK gewechselt; beim Roaming auf dem chinesischen Festland gibt es nur LTE, nicht einmal eine Spur von 5G, und Apples Empfang ist erstaunlich schlecht.
+      text: 'Als ich die Augen öffnete, war der Lärm immer noch Lärm. Es wurde anstrengend, mit dem Laptop im Arm dazuliegen, also legte ich ihn neben mich. Mein Wasser war fast leer, den letzten Rest schüttete ich weg. Unterwegs waren viele Nachrichten auf meinem Handy eingegangen, aber ich hatte kaum hingesehen; nach dem Fotografieren steckte ich es jeweils wieder in die Tasche. Jetzt schien es Zeit, nachzusehen, doch das :tn[17P]{is="Im Original ist „17P“ die in Tech-Kreisen verkürzte Bezeichnung für das iPhone 17 Pro: Zahl plus Modellinitiale."}, das ich vor Monaten gekauft hatte, nutzte bereits eSIM. Auch mit meinen kürzlich gewechselten SIM-Karten von CMHK und 3HK gab es beim Roaming auf dem chinesischen Festland nur LTE, nicht die kleinste Spur von 5G, und Apples Empfang war erstaunlich schlecht.'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:51.17925Z
-      seconds: 38.284843541
-      tokens: 18578
+      at: 2026-08-03T03:17:37.236478Z
+      seconds: 76.465164791
+      tokens: 18600
       review: false
     en-US:
-      text: When I opened my eyes, the noise was still noise. I got tired of lying there with my laptop, set it aside, finished nearly all my water, dumped the last bit and casually tossed the bottle into the trash. My phone had received many messages along the way, but I had barely looked at them; after taking photos, I just slipped it back into my pocket. Now felt like the time to check, but the :tn[iPhone 17 Pro]{is="The original called it “17P,” tech-community shorthand that compresses the model name into a number and initial."} I switched to months ago already uses eSIM. I had also recently changed to CMHK and 3HK; roaming on the mainland only gets LTE, with no sign of 5G at all, and Apple’s reception is exceptionally bad.
+      text: When I opened my eyes, the noise was still noise. I got tired of lying there hugging my laptop, set it beside me, finished most of my water and tossed the last bit into the trash. My phone had received plenty of messages along the way, but I barely looked at it; after taking photos, I just slipped it back into my pocket. Now seemed like the time to check, but the :tn[17P]{is="The original calls the iPhone 17 Pro ‘17P,’ a clipped piece of tech-community shorthand."} I switched to months ago already used eSIM. I had also recently changed carriers, and both CMHK and 3HK only got LTE while roaming in mainland China—not even a trace of 5G—and Apple’s reception was exceptionally bad.
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:51.17925Z
-      seconds: 38.284843541
-      tokens: 18578
+      at: 2026-08-03T03:17:37.236478Z
+      seconds: 76.465164791
+      tokens: 18600
       review: false
     es-ES:
-      text: Al abrir los ojos, el ruido seguía siendo ruido. También me cansé de estar tumbado con el portátil en brazos, lo dejé a un lado, casi terminé el agua, tiré lo último y arrojé la botella a la papelera sin pensarlo. Durante el camino habían llegado muchos mensajes al móvil, pero apenas los había mirado; después de hacer fotos, volvía a guardarlo en el bolsillo. Ahora parecía el momento de echar un vistazo, pero el :tn[iPhone 17 Pro]{is="El original lo llamaba «17P», una abreviatura del argot tecnológico que comprime el número y la inicial del modelo."} al que me cambié hace meses ya usaba eSIM. También había cambiado hace poco las tarjetas de CMHK y 3HK; al usar roaming en la China continental solo tenía LTE, ni rastro de 5G, y la cobertura de Apple era sorprendentemente mala.
+      text: Al abrir los ojos, el ruido seguía siendo ruido. Me cansé de estar tumbado abrazando el portátil, así que lo dejé a un lado. También estaba a punto de terminarse el agua y tiré lo poco que quedaba. Durante el camino mi móvil recibió muchos mensajes, pero apenas lo miré; después de hacer fotos, volvía a guardarlo en el bolsillo. Ahora parecía momento de echar un vistazo, pero el :tn[17P]{is="En el original, «17P» es la jerga tecnológica que abrevia iPhone 17 Pro con el número y la inicial del modelo."} que cambié hace meses ya usaba eSIM. Además, había cambiado recientemente de operador, y tanto CMHK como 3HK solo tenían LTE al hacer roaming en China continental, sin ni rastro de 5G, y la cobertura de Apple era extraordinariamente mala.
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:51.17925Z
-      seconds: 38.284843541
-      tokens: 18578
+      at: 2026-08-03T03:17:37.236478Z
+      seconds: 76.465164791
+      tokens: 18600
       review: false
     fr-FR:
-      text: En ouvrant les yeux, le bruit était toujours du bruit. Je me suis aussi lassé de rester allongé avec mon ordinateur portable dans les bras, je l’ai posé à côté, j’ai presque fini mon eau, vidé le fond et jeté négligemment la bouteille à la poubelle. Mon téléphone avait reçu beaucoup de messages en chemin, mais je les avais à peine regardés ; après avoir pris des photos, je le remettais dans ma poche. Il me semblait temps d’y jeter un œil, mais l’:tn[iPhone 17 Pro]{is="L’original disait « 17P », un raccourci de jargon tech qui condense le numéro et l’initiale du modèle."} que j’avais pris il y a quelques mois utilisait déjà une eSIM. J’avais aussi récemment changé les cartes CMHK et 3HK ; en itinérance sur le continent chinois, je n’avais que la LTE, pas la moindre trace de 5G, et la réception d’Apple était exceptionnellement mauvaise.
+      text: Quand j’ai ouvert les yeux, le bruit était toujours du bruit. À force de rester allongé avec mon ordinateur portable dans les bras, je me suis fatigué, alors je l’ai posé à côté de moi. J’avais presque fini mon eau et j’ai jeté le dernier fond. Mon téléphone avait reçu beaucoup de messages en chemin, mais je l’avais à peine regardé ; après les photos, je le remettais dans ma poche. Il me semblait temps d’y jeter un œil, mais le :tn[17P]{is="Dans l’original, « 17P » est le raccourci employé dans le milieu tech pour désigner l’iPhone 17 Pro, avec le numéro et l’initiale du modèle."} que j’avais pris il y a plusieurs mois utilisait déjà une eSIM. J’avais aussi récemment changé d’opérateur, et les cartes CMHK comme 3HK n’avaient que la LTE en itinérance en Chine continentale, sans la moindre trace de 5G ; la réception d’Apple était en plus étonnamment mauvaise.
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:51.17925Z
-      seconds: 38.284843541
-      tokens: 18578
+      at: 2026-08-03T03:17:37.236478Z
+      seconds: 76.465164791
+      tokens: 18600
       review: false
     ja-JP:
-      text: 目を開けても、騒音はやはり騒音だった。ノートPCを抱えたまましばらく横になっていたのにも疲れ、脇へ放り出した。水もほとんど飲み終え、最後の少しを捨ててボトルをそのままゴミ箱に放り込んだ。道中、携帯にはたくさんメッセージが届いていたが、ずっとほとんど見ていなかった。写真を撮るとポケットへ戻していた。今こそ確認しようと思ったが、数か月前に替えた :tn[iPhone 17 Pro]{is="原文では「17P」と呼んでいた。数字とモデル名の頭文字に縮めるテック界隈の略称である。} はもう eSIM だった。最近CMHKと3HKのSIMにも替えたが、中国本土でのローミングはLTEだけで、5Gの気配すらない。Appleの電波も驚くほど悪い。
+      text: 目を開けても、騒音はやはり騒音だった。ノートPCを抱えて横になっているのにも疲れ、脇へ置いた。水もほとんど飲み終え、最後の少しは捨てた。道中、スマホにはたくさんメッセージが来ていたが、ほとんど見なかった。写真を撮るとポケットへ戻していた。今なら見る頃合いだと思ったが、数か月前に替えた :tn[17P]{is="原文では iPhone 17 Pro を、数字と型番の頭文字に縮めたテック界の略称「17P」と呼んでいる。"} はすでにeSIMで、最近替えたCMHKと3HKの回線も中国本土でのローミングはLTEだけ。5Gの気配すらなく、Appleの電波は驚くほど悪かった。
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:51.17925Z
-      seconds: 38.284843541
-      tokens: 18578
+      at: 2026-08-03T03:17:37.236478Z
+      seconds: 76.465164791
+      tokens: 18600
       review: false
     ko-KR:
-      text: 눈을 떠도 소음은 여전히 소음이었다. 노트북을 안고 한참 누워 있는 것도 지쳐서 옆에 툭 내려놓았고, 물도 거의 다 마셔 마지막 조금은 버린 뒤 병을 쓰레기통에 아무렇게나 던졌다. 오는 동안 휴대폰에는 메시지가 많이 왔지만 나는 거의 보지 않았고, 사진을 찍고 나면 다시 주머니에 넣었다. 이제 확인할 때가 된 것 같았지만, 몇 달 전에 바꾼 :tn[iPhone 17 Pro]{is="원문은 이를 ‘17P’라고 불렀다. 숫자와 모델명의 첫 글자로 줄여 부르는 테크 업계의 은어다.} 는 이미 eSIM을 쓰고 있었다. 최근에는 CMHK와 3HK 카드도 바꿨는데, 중국 본토 로밍에서는 LTE만 되고 5G는 그림자도 없었으며 Apple의 수신 상태도 유난히 나빴다.
+      text: 눈을 떠도 소음은 여전히 소음이었다. 노트북을 안고 누워 있는 것도 지겨워져 옆에 내려놓았다. 물도 거의 다 마셨고, 마지막 조금은 버렸다. 오는 길에 휴대폰으로 메시지가 많이 왔지만 거의 보지 않았고, 사진을 찍고 나면 다시 주머니에 넣었다. 이제 확인할 때가 된 것 같았지만, 몇 달 전에 바꾼 :tn[17P]{is="원문에서 ‘17P’는 iPhone 17 Pro를 숫자와 모델 첫 글자로 줄여 부르는 테크 업계의 속어다."}는 이미 eSIM을 쓰고 있었다. 최근 바꾼 CMHK와 3HK SIM도 중국 본토 로밍에서는 LTE만 잡혔고 5G는 그림자조차 없었으며, Apple의 수신 상태는 유난히 나빴다.
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:51.17925Z
-      seconds: 38.284843541
-      tokens: 18578
+      at: 2026-08-03T03:17:37.236478Z
+      seconds: 76.465164791
+      tokens: 18600
       review: false
     zh-CN:
-      text: 睁开眼，噪音还是噪音。抱着笔记本躺了一会儿也累了，随手放到旁边，水也快喝完了，最后一点倒掉扔进了垃圾桶。这一路上手机收到了很多条消息，但我一直没怎么看，拍完照就塞回口袋了。现在觉得是时候看一眼了，但是好几个月前换的 :tn[iPhone 17 Pro]{is="原文用“17P”称呼它，是数码圈把数字和型号首字母压缩在一起的行话。} 已经是 eSIM 了，最近也换了 CMHK 和 3HK 的卡，漫游到大陆只有 LTE，连 5G 的影子都没有，苹果的信号又出奇地烂。
+      text: 睁开眼，噪音还是噪音。抱着笔记本躺了一会儿也累了，随手放到旁边，水也快喝完了，最后一点倒掉扔进垃圾桶。这一路上手机收到了很多条消息，但我一直没怎么看；拍完照就塞回口袋了。现在觉得是时候看一眼了，但是几个月前换的 :tn[17P]{is="原文用“17P”称呼 iPhone 17 Pro，是数码圈把数字和型号首字母压缩在一起的行话。"} 已经用上了 eSIM，最近也换了运营商，CMHK 和 3HK 的卡漫游到大陆都只有 LTE，连 5G 的影子都没有，苹果的信号又出奇地烂。
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:51.17925Z
-      seconds: 38.284843541
-      tokens: 18578
+      at: 2026-08-03T03:17:37.236478Z
+      seconds: 76.465164791
+      tokens: 18600
       review: false
     zh-TW:
-      text: 睜開眼，噪音還是噪音。抱著筆電躺了一會兒也累了，隨手放到旁邊，水也快喝完了，最後一點倒掉，隨手把瓶子丟進垃圾桶。這一路上手機收到了很多訊息，但我一直沒怎麼看，拍完照就塞回口袋了。現在覺得是時候看一眼了，但是好幾個月前換的 :tn[iPhone 17 Pro]{is="原文用「17P」稱呼它，是數碼圈把數字和型號首字母壓縮在一起的行話。} 已經是 eSIM 了，最近也換了 CMHK 和 3HK 的卡，漫遊到中國大陸只有 LTE，連 5G 的影子都沒有，Apple 的訊號又出奇地差。
+      text: 睜開眼，噪音還是噪音。抱著筆電躺了一會兒也累了，隨手放到旁邊，水也快喝完了，最後一點倒掉扔進垃圾桶。這一路上手機收到了很多則訊息，但我一直沒怎麼看；拍完照就塞回口袋了。現在覺得是時候看一眼了，但是幾個月前換的 :tn[17P]{is="原文用「17P」稱呼 iPhone 17 Pro，是數碼圈把數字和型號首字母壓縮在一起的行話。"} 已經用上 eSIM，最近也換了電信業者，CMHK 和 3HK 的卡漫遊到中國大陸都只有 LTE，連 5G 的影子都沒有，Apple 的訊號又出奇地爛。
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:58:51.17925Z
-      seconds: 38.284843541
-      tokens: 18578
+      at: 2026-08-03T03:17:37.236478Z
+      seconds: 76.465164791
+      tokens: 18600
       review: false
   ff5d22300f32c078cc5833697fcd1828:
     de-DE:

@@ -143,6 +143,32 @@ function proseHtml(node: RootContent): string {
 						children,
 					};
 				}
+				// A translator's note: the translated words stay in the sentence, and what the
+				// original did sits underneath them. Rendered as an abbr rather than a footnote
+				// because these explain a word, not a passage -- sending a reader to the end of
+				// the article and back costs more attention than the note is worth. The marker
+				// is a dotted underline, the convention for "there is more here if you want it".
+				if (directive.name === 'tn') {
+					const note = typeof attrs.is === 'string' ? attrs.is : '';
+					return {
+						type: 'element',
+						tagName: 'abbr',
+						properties: {
+							title: note,
+							// Focusable so the note is reachable without a pointer; `abbr` alone is
+							// not, and hover is not an interaction every reader has.
+							tabIndex: 0,
+							className: [
+								'decoration-dotted',
+								'underline',
+								'decoration-border',
+								'underline-offset-4',
+								'cursor-help',
+							],
+						},
+						children,
+					};
+				}
 				return {
 					type: 'element',
 					tagName: 'span',
@@ -171,6 +197,15 @@ function lowerDirectives(nodes: RootContent[]): RootContent[] {
 				const { href } = resolveLink(mdastToString(directive), attrs);
 				return [{ type: 'link', url: href, children } as unknown as RootContent];
 			}
+			// Plain text has no way to hide a note behind a word, so it is spelled out in
+			// brackets. Dropping it would lose the one thing the note exists to say, and the
+			// readers of this target are models rather than people scanning a page.
+			if (directive.name === 'tn') {
+				const note = typeof attrs.is === 'string' ? attrs.is : '';
+				return note
+					? [...children, { type: 'text', value: ` [${note}]` } as unknown as RootContent]
+					: children;
+			}
 			if ('bold' in attrs) return [{ type: 'strong', children } as unknown as RootContent];
 			if ('italic' in attrs) return [{ type: 'emphasis', children } as unknown as RootContent];
 			return children;
@@ -180,7 +215,13 @@ function lowerDirectives(nodes: RootContent[]): RootContent[] {
 }
 
 function proseMarkdown(node: RootContent): string {
-	return stringifier.stringify({ type: 'root', children: [node] } as Root).trim();
+	// Lowered first, like the other markdown target. The serialiser has no handler for a
+	// directive and throws on one it has not seen, so this path worked only for as long as every
+	// directive in the corpus happened to be reachable another way -- `:tn` was the first that
+	// was not, and it failed the whole page rather than the one node.
+	return stringifier
+		.stringify({ type: 'root', children: lowerDirectives([node]) } as Root)
+		.trim();
 }
 
 // `## Intro {#getting-started}` -> { text: 'Intro', slug: 'getting-started' }.

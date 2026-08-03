@@ -1042,68 +1042,68 @@ segments:
       review: false
   943bc9082d74c7867db730a57a3c5d75:
     de-DE:
-      text: Das Tempo des KI-Zeitalters ist zu schnell. Ein Modell wird nach dem anderen weiterentwickelt, neue Technologien tauchen Welle um Welle auf. Ich wurde immer ängstlicher, als würde ich überholt, sobald ich stehen bliebe. In meiner verrücktesten Phase programmierte ich 16 Stunden am Tag und verbrannte an einem einzigen Tag $1.9k USD an Token ~~(wohl irgendwann im Februar)~~; ich war fast am Ende. Doch was das alles zum Stillstand brachte, war keine große Erkenntnis, sondern einfach Erschöpfung. Unter dem immer enger werdenden Takt fiel der letzte Strohhalm auf mich, und ich fühlte mich stattdessen erleichtert, konnte loslassen und :tn[ließ es einfach schleifen]{is="Das chinesische Internetwort „摆烂“ bezeichnet das bewusste Aufgeben von Ehrgeiz und das Hinnehmen eines unvollkommenen Zustands.}; und irgendwie war das auch gut.
+      text: Das Tempo im KI-Zeitalter ist viel zu hoch. Ein Modell nach dem anderen wird weiterentwickelt, eine neue Technologie nach der nächsten taucht auf. Ich wurde immer ängstlicher, als würde ich überholt, sobald ich stehen blieb. In meiner verrücktesten Phase programmierte ich 16 Stunden am Tag und verbrannte an einem einzigen Tag $1.9k USD an Tokens ~~(wohl ungefähr im Februar)~~. Ich war fast völlig erledigt. Doch was dem Ganzen ein Ende setzte, war keine große Erkenntnis; ich war einfach nur müde. Als das Tempo immer unerbittlicher wurde und der letzte Strohhalm kam, war ich stattdessen erleichtert, konnte loslassen und :tn[hörte auf, mich noch anzustrengen]{is="Der chinesische Netzbegriff 摆烂 bedeutet, das Streben bewusst aufzugeben und eine unvollkommene Lage einfach so bestehen zu lassen."}; und das war auch in Ordnung.
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:04.008264Z
-      seconds: 44.209699291
-      tokens: 18668
+      at: 2026-08-03T03:15:27.087979Z
+      seconds: 40.817558167
+      tokens: 18862
       review: false
     en-US:
-      text: The pace of the AI era is too fast. Models iterate one after another, and new technologies keep surfacing in wave after wave. I grew increasingly anxious, as though stopping meant being overtaken. At my craziest, I wrote 16 hours of code a day and burned through $1.9k USD in tokens in a single day ~~(probably around February)~~; I was nearly wrecked. But what stopped all of this was no great epiphany—just plain exhaustion. Under an ever-tightening pace, when the last straw finally landed, I instead felt relieved, let go, and :tn[gave up trying]{is="The original uses the contemporary Chinese internet term “摆烂,” a knowingly resigned choice to stop striving and leave an imperfect situation as it is.}; and that, too, is pretty good.
+      text: In the AI era, the pace is too fast. Models iterate one after another, and each new wave of technology appears right on the heels of the last. I grew increasingly anxious, as though pausing meant being overtaken. At my most unhinged, I coded for 16 hours a day and burned through $1.9k USD in Tokens in a single day ~~(around February, I think)~~. I was nearly wrecked. But what stopped all of it was no great revelation; I was simply tired. As the pace kept tightening and the last straw fell, I instead felt relieved, let it go, and :tn[stopped trying to force it]{is="The original Chinese internet term 摆烂 means knowingly abandoning the struggle and letting an imperfect situation stay imperfect."}; and that, too, was fine.
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:04.008264Z
-      seconds: 44.209699291
-      tokens: 18668
+      at: 2026-08-03T03:15:27.087979Z
+      seconds: 40.817558167
+      tokens: 18862
       review: false
     es-ES:
-      text: El ritmo de la era de la IA es demasiado rápido. Los modelos se actualizan uno tras otro y las nuevas tecnologías aparecen oleada tras oleada. Me fui poniendo cada vez más ansioso, como si al parar fuera a quedarme atrás. En mi época más desquiciada, escribía código 16 horas al día y quemaba $1.9k USD en Token en un solo día ~~(probablemente por febrero)~~; estaba a punto de quedar destrozado. Pero lo que detuvo todo aquello no fue ninguna gran revelación, sino simple cansancio. Bajo un ritmo cada vez más apretado, cuando cayó la última gota, sentí alivio, lo acepté y :tn[dejé de esforzarme]{is="El término chino contemporáneo de internet «摆烂» expresa abandonar conscientemente la ambición y dejar que una situación imperfecta siga como está.}; y así también estaba bien.
+      text: 'El ritmo de la era de la IA es demasiado rápido. Los modelos se suceden en iteraciones, y las nuevas tecnologías aparecen oleada tras oleada. Cada vez estaba más ansioso, como si detenerme significara quedarme atrás. En mi momento más desquiciado, programaba 16 horas al día y llegaba a quemar $1.9k USD en Tokens en un solo día ~~(creo que fue hacia febrero)~~. Estaba casi destrozado. Pero lo que detuvo todo aquello no fue ninguna revelación: simplemente estaba cansado. Con el ritmo apretando cada vez más, cuando cayó la gota que colmó el vaso, sentí alivio, lo acepté y :tn[dejé de esforzarme a la fuerza]{is="El término chino de internet 摆烂 significa renunciar conscientemente a seguir esforzándose y dejar una situación imperfecta tal como está."}; y así también estaba bien.'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:04.008264Z
-      seconds: 44.209699291
-      tokens: 18668
+      at: 2026-08-03T03:15:27.087979Z
+      seconds: 40.817558167
+      tokens: 18862
       review: false
     fr-FR:
-      text: 'Le rythme de l’ère de l’IA est trop rapide. Les modèles évoluent les uns après les autres et les nouvelles technologies surgissent vague après vague. Je devenais de plus en plus anxieux, comme si m’arrêter voulait dire me faire dépasser. Au plus fort de ma folie, j’écrivais du code 16 heures par jour et je brûlais $1.9k USD de Token en une journée ~~(sans doute vers février)~~ ; j’étais presque épuisé. Mais ce qui a arrêté tout cela n’était pas une grande révélation : j’étais simplement fatigué. Sous ce rythme toujours plus oppressant, quand la dernière goutte est tombée, je me suis au contraire senti soulagé, j’ai lâché prise et :tn[j’ai cessé de faire des efforts]{is="L’expression chinoise contemporaine « 摆烂 » désigne le fait de renoncer sciemment à s’efforcer et d’accepter qu’une situation imparfaite reste telle quelle.} ; et ce n’était pas si mal.'
+      text: 'Le rythme de l’ère de l’IA est bien trop rapide. Les modèles évoluent les uns après les autres, et les nouvelles technologies surgissent vague après vague. Je devenais de plus en plus anxieux, comme si m’arrêter voulait dire me faire dépasser. À mon pire moment, je codais 16 heures par jour et je brûlais $1.9k USD de Tokens en une journée ~~(vers février, je crois)~~. J’étais presque épuisé. Mais ce qui a tout arrêté n’a pas été une quelconque illumination : j’étais simplement fatigué. Alors que le rythme se resserrait toujours plus et que la goutte de trop est tombée, je me suis au contraire senti soulagé, j’ai lâché prise et :tn[j’ai cessé de m’acharner]{is="Le terme d’internet chinois 摆烂 désigne le fait de renoncer consciemment à faire des efforts et de laisser une situation imparfaite telle quelle."}; et, finalement, ce n’était pas si mal.'
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:04.008264Z
-      seconds: 44.209699291
-      tokens: 18668
+      at: 2026-08-03T03:15:27.087979Z
+      seconds: 40.817558167
+      tokens: 18862
       review: false
     ja-JP:
-      text: AI 時代のペースは速すぎる。モデルは次々と更新され、新技術も次から次へと現れる。立ち止まったら追い越される気がして、私はますます不安になった。いちばん狂っていた頃は、一日に16時間コードを書き、Token を一日で $1.9k USD も燃やしていた ~~（たぶん2月頃）~~。もう駄目になりかけていた。けれど、すべてを止めたのは大した悟りではなく、ただ疲れたからだった。ますます締めつけられるようなペースのなか、最後の藁が載ったとき、私はかえって楽になり、吹っ切れ、:tn[もう頑張るのをやめた]{is="原文の中国語ネット語「摆烂」は、不完全な状況を承知で努力をやめ、そのままにしておくという投げやりな態度を表す。}。それも悪くないと思えた。
+      text: AI時代のペースは速すぎる。モデルは次々と更新され、新技術も次から次へと現れる。立ち止まれば置いていかれるような気がして、私はますます不安になった。いちばん狂っていた頃は、一日に16時間コードを書き、Tokenを一日で$1.9k USDも溶かしていた ~~(たしか2月ごろ)~~。もう人として壊れかけていた。でも、すべてを止めたのは何かの悟りではなく、ただ疲れただけだった。どんどん締め付けられるペースの中で、最後の一押しが来たとき、かえって肩の力が抜け、吹っ切れ、:tn[もう無理に頑張るのをやめた]{is="原文の中国語ネット語「摆烂」は、不完全な状況を承知で努力を放棄し、そのままにしておくことを指す。"}；それも悪くなかった。
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:04.008264Z
-      seconds: 44.209699291
-      tokens: 18668
+      at: 2026-08-03T03:15:27.087979Z
+      seconds: 40.817558167
+      tokens: 18862
       review: false
     ko-KR:
-      text: AI 시대의 속도는 너무 빠르다. 모델은 하나씩 계속 업데이트되고, 새로운 기술은 물결처럼 계속 쏟아진다. 멈추면 곧 추월당할 것 같아 점점 더 불안해졌다. 가장 미쳐 있었을 때는 하루 16시간 코드를 쓰고 하루에 Token으로 $1.9k USD를 태웠다 ~~(아마 2월쯤이었을 것이다)~~. 거의 망가질 지경이었다. 하지만 이 모든 것을 멈추게 한 건 어떤 깨달음이 아니라, 그저 지쳤기 때문이었다. 점점 더 조여 오는 속도 속에서 마지막 지푸라기가 내려앉자, 오히려 마음이 편해지고 내려놓게 되었고 :tn[그냥 포기해 버렸다]{is="원문의 중국 인터넷 표현 “摆烂”은 불완전한 상태를 알면서도 더 이상 애쓰지 않고 그대로 두기로 하는 체념 섞인 태도를 뜻한다.}; 그래도 괜찮았다.
+      text: AI 시대의 속도는 너무 빠르다. 모델은 하나씩 계속 업데이트되고, 새 기술은 한 차례씩 쏟아져 나온다. 멈추면 곧 추월당할 것 같아 점점 더 불안해졌다. 가장 미쳐 있던 때에는 하루 16시간 코드를 쓰고, 하루 만에 Token으로 $1.9k USD를 태웠다 ~~(아마 2월쯤이었을 것이다)~~. 거의 망가질 지경이었다. 하지만 이 모든 것을 멈추게 한 건 어떤 깨달음이 아니라, 그저 지쳤기 때문이었다. 점점 더 조여 오는 속도 속에서 마지막 지푸라기가 내려앉자, 오히려 마음이 놓였고, 내려놓았으며, :tn[더는 애써 버티지 않기로 했다]{is="원문의 중국 인터넷 표현 摆烂은 불완전한 상황을 알면서도 더 애쓰기를 포기하고 그대로 내버려 두는 태도를 뜻한다."}; 그렇게 살아도 괜찮았다.
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:04.008264Z
-      seconds: 44.209699291
-      tokens: 18668
+      at: 2026-08-03T03:15:27.087979Z
+      seconds: 40.817558167
+      tokens: 18862
       review: false
     zh-CN:
-      text: AI 时代的节奏太快了。模型一个接一个迭代，新技术一轮接一轮冒出来，我越来越焦虑，好像停下来就要被超越。最疯的时候一天写 16 个小时代码，一天就能烧掉 $1.9k USD 的 Token ~~（大概是二月的时候吧）~~，人快废了。但让这一切停下来的不是什么顿悟，就是单纯地累了。在越来越紧的节奏下，最后一根稻草压下来，我反而释然了，想开了，:tn[躺平了]{is="原文用了当代中文网络词“摆烂”，指明知情况不完美仍决定不再努力、任其维持的自我放弃式态度。}；这样，也挺好的。
+      text: AI 时代的节奏太快了。模型一个接一个迭代，新技术一轮接一轮冒出来，我越来越焦虑，好像停下来就要被超越。最疯的时候一天写 16 个小时代码，Token 一天就能烧 $1.9k USD ~~(大概 2 月的时候吧)~~，人快废了。但让这一切停下来的不是什么顿悟，就是单纯地累了。在越来越紧的节奏下，最后一根稻草压下来，我反而释然了，想开了，:tn[索性不再硬撑]{is="原词“摆烂”是当代中文网络用语，指明知情况不完美，仍主动放弃继续拼命、任其如此。"}；这样，也挺好的。
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:04.008264Z
-      seconds: 44.209699291
-      tokens: 18668
+      at: 2026-08-03T03:15:27.087979Z
+      seconds: 40.817558167
+      tokens: 18862
       review: false
     zh-TW:
-      text: AI 時代的節奏太快了。模型一個接一個迭代，新技術一輪接一輪冒出來，我越來越焦慮，好像停下來就會被超越。最瘋的時候一天寫 16 個小時程式碼，一天就能燒掉 $1.9k USD 的 Token ~~（大概是二月的時候吧）~~，人快廢了。但讓這一切停下來的不是什麼頓悟，就是單純地累了。在越來越緊的節奏下，最後一根稻草壓下來，我反而釋然了，想開了，:tn[直接躺平了]{is="原文用了當代中文網路詞「擺爛」，指明知情況不完美仍決定不再努力、任其維持的自我放棄式態度。}；這樣，也挺好的。
+      text: AI 時代的節奏太快了。模型一個接一個迭代，新技術一波接一波冒出來，我越來越焦慮，好像一停下來就會被超越。最瘋的時候一天寫 16 個小時程式碼，Token 一天就能燒掉 $1.9k USD ~~(大概是 2 月的時候吧)~~，人都快廢了。但讓這一切停下來的不是什麼頓悟，只是單純地累了。在越來越緊繃的節奏下，最後一根稻草壓下來時，我反而釋然了，想開了，:tn[乾脆不再硬撐]{is="原文的中國網路用語「摆烂」指明知情況不完美，仍主動放棄繼續拚命、任其維持原狀。"}；這樣，也挺好的。
       provider: openai
       model: gpt-5-6-terra-medium
-      at: 2026-08-03T02:57:04.008264Z
-      seconds: 44.209699291
-      tokens: 18668
+      at: 2026-08-03T03:15:27.087979Z
+      seconds: 40.817558167
+      tokens: 18862
       review: false
   9566ed40af060ec2841b1342a8b37c7a:
     de-DE:
@@ -1757,68 +1757,68 @@ segments:
       review: false
   b60e899dca8ebe5689336bfe87e8278c:
     de-DE:
-      text: Von :tn[der wiederholten Verschiebung]{is="„鸽“ ist chinesischer Internet-Slang, abgeleitet von „放鸽子“ („jemanden versetzen“), und macht sich scherzhaft über wiederholtes Verschieben oder Nichterfüllen lustig.} von Next.js 13 auf Next.js 16
+      text: Von Next.js 13 :tn[immer wieder aufgeschoben]{is="Das ursprüngliche 鸽 ist chinesischer Internetslang, abgeleitet von 放鸽子, und bezeichnet scherzhaft das wiederholte Verschieben einer versprochenen Sache"} bis Next.js 16
       provider: openai
       model: gpt-5-6-luna-medium
-      at: 2026-08-03T02:57:35.434941Z
-      seconds: 24.005532708
-      tokens: 16345
+      at: 2026-08-03T03:15:27.087993Z
+      seconds: 27.387015334
+      tokens: 16384
       review: false
     en-US:
-      text: From :tn[putting off]{is="“鸽” is Chinese internet slang derived from “放鸽子” (“stand someone up”), jokingly suggesting repeated postponement or failure to deliver.} Next.js 13 to Next.js 16
+      text: From Next.js 13 :tn[repeatedly putting off the upgrade]{is="The original word 鸽 is Chinese internet slang derived from 放鸽子, jokingly meaning to keep postponing something promised"} to Next.js 16
       provider: openai
       model: gpt-5-6-luna-medium
-      at: 2026-08-03T02:57:35.434941Z
-      seconds: 24.005532708
-      tokens: 16345
+      at: 2026-08-03T03:15:27.087993Z
+      seconds: 27.387015334
+      tokens: 16384
       review: false
     es-ES:
-      text: De :tn[aplazar una y otra vez]{is="«鸽» es una expresión coloquial de Internet en chino, derivada de «放鸽子» («dar plantón»), que se burla de posponer repetidamente algo o no cumplir lo prometido.} Next.js 13 a Next.js 16
+      text: De Next.js 13 a Next.js 16, una actualización :tn[pospuesta una y otra vez]{is="La palabra original 鸽 es jerga china de Internet, derivada de 放鸽子, y alude en tono humorístico a aplazar repetidamente algo prometido"}
       provider: openai
       model: gpt-5-6-luna-medium
-      at: 2026-08-03T02:57:35.434941Z
-      seconds: 24.005532708
-      tokens: 16345
+      at: 2026-08-03T03:15:27.087993Z
+      seconds: 27.387015334
+      tokens: 16384
       review: false
     fr-FR:
-      text: De :tn[repousser sans cesse]{is="« 鸽 » est un terme d’argot Internet chinois, dérivé de « 放鸽子 » (« poser un lapin »), qui évoque avec humour le fait de reporter constamment quelque chose ou de ne pas tenir sa promesse.} Next.js 13 à Next.js 16
+      text: De Next.js 13 à Next.js 16, une mise à niveau :tn[repoussée encore et encore]{is="Le mot original 鸽 est un argot chinois d’Internet dérivé de 放鸽子, employé sur le ton de la plaisanterie pour parler d’une promesse sans cesse repoussée"}
       provider: openai
       model: gpt-5-6-luna-medium
-      at: 2026-08-03T02:57:35.434941Z
-      seconds: 24.005532708
-      tokens: 16345
+      at: 2026-08-03T03:15:27.087993Z
+      seconds: 27.387015334
+      tokens: 16384
       review: false
     ja-JP:
-      text: Next.js 13を :tn[何度も先延ばしにして]{is="原文の「鸽」は、「放鸽子（約束をすっぽかす）」に由来する中国語ネットスラングで、何度も延期したり納品しなかったりすることを茶化す表現です。"} Next.js 16まで
+      text: Next.js 13からNext.js 16まで:tn[先延ばしし続けた]{is="原文の「鸽」は「放鸽子」に由来する中国語ネットスラングで、約束したことを何度も先送りする様子を軽くからかう表現"}アップグレード
       provider: openai
       model: gpt-5-6-luna-medium
-      at: 2026-08-03T02:57:35.434941Z
-      seconds: 24.005532708
-      tokens: 16345
+      at: 2026-08-03T03:15:27.087993Z
+      seconds: 27.387015334
+      tokens: 16384
       review: false
     ko-KR:
-      text: Next.js 13을 :tn[계속 미루다]{is="“鸽”은 “放鸽子”(약속을 어기다)에서 나온 중국어 인터넷 속어로, 하기로 한 일을 계속 미루거나 이행하지 않는 상황을 익살스럽게 표현합니다."} Next.js 16까지
+      text: Next.js 13에서 Next.js 16까지 :tn[계속 미룬]{is="원문의 鸽은 放鸽子에서 유래한 중국어 인터넷 속어로, 약속한 일을 계속 미룬다는 뜻을 익살스럽게 나타냅니다"} 업그레이드
       provider: openai
       model: gpt-5-6-luna-medium
-      at: 2026-08-03T02:57:35.434941Z
-      seconds: 24.005532708
-      tokens: 16345
+      at: 2026-08-03T03:15:27.087993Z
+      seconds: 27.387015334
+      tokens: 16384
       review: false
     zh-CN:
-      text: 从 :tn[鸽掉]{is="“鸽”是中文互联网俚语，源自“放鸽子”，带有反复拖延或爽约的调侃意味。"} Next.js 13 到 Next.js 16
+      text: 从 Next.js 13 :tn[一拖再拖]{is="原词“鸽”是源自“放鸽子”的中文网络俚语，带有反复推迟承诺之事的调侃意味"}到 Next.js 16
       provider: openai
       model: gpt-5-6-luna-medium
-      at: 2026-08-03T02:57:35.434941Z
-      seconds: 24.005532708
-      tokens: 16345
+      at: 2026-08-03T03:15:27.087993Z
+      seconds: 27.387015334
+      tokens: 16384
       review: false
     zh-TW:
-      text: 從 :tn[鴿掉]{is="「鴿」是中文網路俚語，源自「放鴿子」，帶有反覆拖延或爽約的戲謔意味。"} Next.js 13 到 Next.js 16
+      text: 從 Next.js 13 :tn[一再拖延]{is="原詞「鸽」是源自「放鸽子」的中文網路俚語，帶有反覆延後承諾之事的調侃意味"}到 Next.js 16
       provider: openai
       model: gpt-5-6-luna-medium
-      at: 2026-08-03T02:57:35.434941Z
-      seconds: 24.005532708
-      tokens: 16345
+      at: 2026-08-03T03:15:27.087993Z
+      seconds: 27.387015334
+      tokens: 16384
       review: false
   b674eb6b25c4ee3aed166b037ba95e10:
     de-DE:

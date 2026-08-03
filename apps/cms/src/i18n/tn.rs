@@ -131,7 +131,11 @@ pub fn rule(entry: &Entry) -> String {
 		 1. Translate the passage naturally, as you would without this rule. The result must read \
 		 as that language, with no source-language characters left in it.\n\
 		 2. Wrap the translated words that stand where the original effect was in \
-		 `:tn[translated words]{is=\"...\"}`.\n\
+		 `:tn[translated words]{is=\"...\"}`. Copy that shape exactly: a closing `]`, then \
+		 `{is=\"`, the note, then `\"}` with the closing quote present. Never use a straight \
+		 double quote inside the note -- there is no way to escape one there and it ends the \
+		 note early. Use curly quotes or none. A marker missing any of this is discarded whole \
+		 and the block is asked for again.\n\
 		 3. Write `is` for someone who reads only the target language and has not seen the \
 		 original. Say what the original word was, and what it did -- the joke, the tone, the \
 		 register, whatever is actually lost. One or two sentences.\n\

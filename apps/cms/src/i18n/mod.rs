@@ -63,6 +63,38 @@ fn body_lines(text: &str) -> usize {
 	text.lines().filter(|line| !line.trim().is_empty()).count()
 }
 
+/// Whether every `:tn` in a reply is a directive rather than a run of stray punctuation.
+///
+/// `:tn[words]{is="..."}` fails as a whole if any part of it is off, and the failure is quiet:
+/// the parser stops seeing a directive, the attributes vanish, and the braces print on the page
+/// as text. Measured on the first run that produced notes, 90 of 168 markers were malformed --
+/// usually a missing closing quote -- so this is the common case rather than the exceptional
+/// one.
+///
+/// An ASCII double quote inside the value ends it early and is checked for the same reason: the
+/// syntax has no escape for one, so a note containing it cannot be represented at all.
+fn notes_well_formed(text: &str) -> bool {
+	let mut rest = text;
+	while let Some(at) = rest.find(":tn[") {
+		rest = &rest[at + 4..];
+		let Some(close) = rest.find(']') else {
+			return false;
+		};
+		if rest[..close].contains('\n') || !rest[close + 1..].starts_with("{is=\"") {
+			return false;
+		}
+		rest = &rest[close + 6..];
+		let Some(end) = rest.find('"') else {
+			return false;
+		};
+		if !rest[end + 1..].starts_with('}') {
+			return false;
+		}
+		rest = &rest[end + 2..];
+	}
+	true
+}
+
 fn validate_reply(
 	reply: &str,
 	boundary: &str,
@@ -79,7 +111,9 @@ fn validate_reply(
 	let allowed = body_lines(masked.text.as_str());
 	let kept: Vec<(String, String)> = parsed
 		.into_iter()
-		.filter(|(_, text)| masked.intact(text) && body_lines(text) <= allowed)
+		.filter(|(_, text)| {
+			masked.intact(text) && body_lines(text) <= allowed && notes_well_formed(text)
+		})
 		.map(|(locale, text)| (locale, masked.restore(&text)))
 		.collect();
 	if kept.is_empty() {
@@ -345,6 +379,23 @@ mod tests {
 		assert_eq!(selected.len(), 1);
 		assert_eq!(selected[0].source, "Visible title");
 		assert_eq!(selected[0].region, segment::Region::Frontmatter);
+	}
+
+	#[test]
+	fn a_note_that_would_print_its_own_braces_is_refused() {
+		// `:tn[words]{is="..."}` fails as a whole when any part of it is off, and fails quietly:
+		// the parser stops seeing a directive and the braces render as text beside an empty
+		// title. 90 of the first 168 markers were malformed this way, nearly all of them a
+		// missing closing quote.
+		assert!(notes_well_formed("a :tn[word]{is=\"a note\"} b"));
+		assert!(notes_well_formed("nothing to check here"));
+
+		// The one that reached a page: no closing quote, so the whole attribute block is text.
+		assert!(!notes_well_formed("a :tn[word]{is=\"a note} b"));
+		// The syntax has no escape for a quote inside the value; it simply ends there.
+		assert!(!notes_well_formed("a :tn[word]{is=\"he said \"no\" loudly\"} b"));
+		assert!(!notes_well_formed("a :tn[word] b"));
+		assert!(!notes_well_formed("a :tn[word]{was=\"wrong key\"} b"));
 	}
 
 	#[test]
