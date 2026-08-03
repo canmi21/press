@@ -167,6 +167,13 @@ export default defineConfig(({ mode }) => {
 			port: 26511,
 			strictPort: true,
 		},
+		ssr: {
+			// Bits UI publishes Svelte source. Leaving it external in dev hands its `.svelte`
+			// imports to Node through Sentry's loader, which cannot transform them and turns every
+			// article request into an otherwise silent 500. Production bundles it already; make the
+			// development SSR path cross the same compilation boundary.
+			noExternal: ['bits-ui'],
+		},
 		build: {
 			sourcemap: 'hidden',
 			rollupOptions: {
