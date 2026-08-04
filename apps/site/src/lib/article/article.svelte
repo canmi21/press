@@ -9,6 +9,7 @@
 	import IconClaude from '~icons/mingcute/claude-line';
 	import IconGemini from '~icons/mingcute/google-gemini-line';
 	import IconOpenAi from '~icons/mingcute/openai-line';
+	import { layoutWithLines, prepareWithSegments } from '@chenglou/pretext';
 	import * as m from '$lib/paraglide/messages';
 	import type { Snippet } from 'svelte';
 	import type { Alternate, ArticleMeta, ArticleSummary } from '$lib/content/types';
@@ -85,6 +86,77 @@
 	function ldJson(data: unknown): string {
 		const json = JSON.stringify(data).replaceAll('<', String.raw`\u003c`);
 		return `<script type="application/ld+json">${json}</${'script'}>`;
+	}
+
+	/**
+	 * Follow the rendered line above rather than the paragraph box's theoretical right edge.
+	 *
+	 * A wrapped line can stop short by a word or several CJK glyphs, and CSS exposes no value for
+	 * that ink width. Pretext applies the browser's line-breaking rules to exact canvas metrics;
+	 * the mark stays in flow and measurement only supplies the inset wrapping cannot express.
+	 */
+	function alignSummaryProvider(node: HTMLParagraphElement) {
+		let frame = 0;
+		let prepared: ReturnType<typeof prepareWithSegments> | undefined;
+		let preparedText = '';
+		let preparedFont = '';
+		let preparedLetterSpacing = 0;
+		const align = () => {
+			cancelAnimationFrame(frame);
+			frame = requestAnimationFrame(() => {
+				const mark = node.querySelector<HTMLElement>('[data-summary-provider]');
+				const text = Array.from(node.childNodes)
+					.filter((child) => child.nodeType === Node.TEXT_NODE)
+					.map((child) => child.textContent ?? '')
+					.join('')
+					.trim();
+				if (!mark || !text) return;
+
+				const style = getComputedStyle(node);
+				const parsedLetterSpacing = Number.parseFloat(style.letterSpacing);
+				const letterSpacing = Number.isFinite(parsedLetterSpacing) ? parsedLetterSpacing : 0;
+				if (
+					!prepared ||
+					preparedText !== text ||
+					preparedFont !== style.font ||
+					preparedLetterSpacing !== letterSpacing
+				) {
+					prepared = prepareWithSegments(text, style.font, { letterSpacing });
+					preparedText = text;
+					preparedFont = style.font;
+					preparedLetterSpacing = letterSpacing;
+				}
+
+				const width = node.clientWidth;
+				const lineHeight = Number.parseFloat(style.lineHeight);
+				const lines = layoutWithLines(prepared, width, lineHeight).lines;
+				const last = lines.at(-1);
+				if (!last) return;
+
+				const markWidth = mark.getBoundingClientRect().width;
+				const startMargin = Number.parseFloat(getComputedStyle(mark).marginInlineStart) || 0;
+				const sharesLastLine = last.width + startMargin + markWidth <= width;
+				const preceding = sharesLastLine ? (lines.at(-2) ?? last) : last;
+				const room = sharesLastLine
+					? width - last.width - startMargin - markWidth
+					: width - markWidth;
+				const inset = Math.min(Math.max(0, width - preceding.width), Math.max(0, room));
+				mark.style.marginInlineEnd = `${inset}px`;
+			});
+		};
+
+		const resize = new ResizeObserver(align);
+		const content = new MutationObserver(align);
+		resize.observe(node);
+		content.observe(node, { childList: true, characterData: true, subtree: true });
+		align();
+		return {
+			destroy() {
+				cancelAnimationFrame(frame);
+				resize.disconnect();
+				content.disconnect();
+			},
+		};
 	}
 
 	/** What this page is, for a reader that parses rather than renders. */
@@ -197,10 +269,11 @@
 							aria-labelledby={summaryTrigger}
 							class="mt-3 border-l-2 border-border-strong pr-3 pl-3 text-sm leading-relaxed text-text-soft"
 						>
-							<p>
+							<p use:alignSummaryProvider>
 								{summary.text}
 								{#if SummaryProviderIcon && summaryProvider}
 									<span
+										data-summary-provider
 										class="float-right mt-0.75 ml-2 block h-4"
 										aria-label={summaryProvider.name}
 										title={summaryProvider.name}
