@@ -6,7 +6,7 @@ import { sequence } from '@sveltejs/kit/hooks';
 import { getArticle, getPage } from '$lib/content';
 import { app } from '$lib/server/api';
 import { themeScript } from '$lib/theme';
-import { languageTag, privateHtml, resolveLocale, shouldWriteLanguageCookie } from '$lib/locale';
+import { LANGUAGE_COOKIE_MAX_AGE, languageTag, privateHtml, resolveLocale } from '$lib/locale';
 import { registerServerStrategy } from '$lib/locale/paraglide';
 
 registerServerStrategy();
@@ -57,14 +57,14 @@ const pageHandle: Handle = async ({ event, resolve }) => {
 			code,
 			languageTag: languageTag(code, article?.meta.lang ?? 'en-US'),
 		};
-		if (shouldWriteLanguageCookie(cookie, code)) {
-			event.cookies.set('language', code, {
-				path: '/',
-				maxAge: 365 * 24 * 60 * 60,
-				sameSite: 'lax',
-				httpOnly: true,
-			});
-		}
+		// Rewrite even an unchanged value so cookies created before client-side switching was
+		// introduced lose HttpOnly and become writable by the language controls.
+		event.cookies.set('language', code, {
+			path: '/',
+			maxAge: LANGUAGE_COOKIE_MAX_AGE,
+			sameSite: 'lax',
+			httpOnly: false,
+		});
 	}
 	const theme = event.cookies.get('theme');
 	const response = await resolve(event, {
@@ -72,8 +72,8 @@ const pageHandle: Handle = async ({ event, resolve }) => {
 			hoistCharset(
 				html
 					.replace('%language.tag%', event.locals.locale?.languageTag ?? 'en-US')
-					// The internal code, for the client-side Paraglide strategy: the `language`
-					// cookie is httpOnly and a client strategy has to be synchronous.
+					// The internal code for the client-side Paraglide strategy. The rendered
+					// document is the authoritative result of the worker's full negotiation.
 					.replace('%language.code%', event.locals.locale?.code ?? 'mw')
 					.replace('%theme.class%', theme === 'dark' ? 'dark' : '')
 					.replace('%theme.script%', themeScript),

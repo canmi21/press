@@ -28,14 +28,13 @@ export function registerServerStrategy(): void {
 /**
  * The same answer on the client, read from the document the server just rendered.
  *
- * A client strategy has to be synchronous, and the `language` cookie is `httpOnly`, so it is
- * not readable here -- deliberately, and not worth weakening for this. The server already
- * stamps the resolved code onto `<html data-locale>`, the same way it stamps the theme class,
- * which is a value hydration is guaranteed to agree with because it rendered from it.
+ * The server stamps its resolved code onto `<html data-locale>`, the same way it stamps the
+ * theme class. Although the preference cookie is client-readable, it is only one input to
+ * negotiation; the document carries the final answer that hydration is guaranteed to match.
  *
- * `setLocale` is a no-op: switching content language is a full document navigation owned by the
- * switcher, which changes the article and the interface together. Letting Paraglide move the
- * interface on its own would leave it describing a page that had not changed.
+ * `setLocale` is a no-op: switching content language writes the preference and reloads the full
+ * document, changing the article and the interface together. Letting Paraglide move the
+ * interface alone would leave it describing an article that had not changed.
  */
 export function registerClientStrategy(): void {
 	defineCustomClientStrategy(STRATEGY, {

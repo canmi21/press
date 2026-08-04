@@ -3,6 +3,7 @@ import {
 	LOCALE_CODES,
 	acceptedLocale,
 	assertLanguageTag,
+	contentLanguageCookie,
 	languageTag,
 	localeUrl,
 	privateHtml,
@@ -77,6 +78,15 @@ it('removes only lang and keeps unrelated query parameters in their original ord
 		new URL('/post?utm=a&lang=ja&draft=1&utm=b#section', import.meta.url),
 	);
 	expect(clean).toBe('/post?utm=a&draft=1&utm=b#section');
+});
+
+it('serialises the client language preference with the server cookie lifetime', () => {
+	expect(contentLanguageCookie('ja', false)).toBe(
+		'language=ja; Path=/; Max-Age=31536000; SameSite=Lax',
+	);
+	expect(contentLanguageCookie('mw', true)).toBe(
+		'language=mw; Path=/; Max-Age=31536000; SameSite=Lax; Secure',
+	);
 });
 
 it('keeps the source URL bare and gives translated views explicit feed URLs', () => {

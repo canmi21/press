@@ -20,12 +20,10 @@ function stableEndonyms(current: LocaleCode) {
 
 describe('article language switcher', () => {
 	it('closes on the active code without navigating', () => {
-		const navigate = vi.fn();
+		const select = vi.fn();
 
-		expect(
-			selectContentLanguage('ja', 'ja', new URL('/post?draft=1', import.meta.url), navigate),
-		).toBe(false);
-		expect(navigate).not.toHaveBeenCalled();
+		expect(selectContentLanguage('ja', 'ja', select)).toBe(false);
+		expect(select).not.toHaveBeenCalled();
 	});
 
 	it('names the original for its state, never for its language', () => {
@@ -198,15 +196,11 @@ describe('article language switcher', () => {
 	});
 
 	it('reaches both Chinese views from either of them', () => {
-		const navigate = vi.fn();
-		expect(selectContentLanguage('mw', 'zh', new URL('/post', import.meta.url), navigate)).toBe(
-			true,
-		);
-		expect(navigate).toHaveBeenLastCalledWith('/post?lang=zh');
-		expect(selectContentLanguage('zh', 'mw', new URL('/post', import.meta.url), navigate)).toBe(
-			true,
-		);
-		expect(navigate).toHaveBeenLastCalledWith('/post?lang=mw');
+		const select = vi.fn();
+		expect(selectContentLanguage('mw', 'zh', select)).toBe(true);
+		expect(select).toHaveBeenLastCalledWith('zh');
+		expect(selectContentLanguage('zh', 'mw', select)).toBe(true);
+		expect(select).toHaveBeenLastCalledWith('mw');
 	});
 
 	it('keeps unrelated URL state when linking to the original', () => {

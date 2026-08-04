@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { ParaglideMessage } from '@inlang/paraglide-js-svelte';
-	import type { LocaleCode } from '$lib/locale';
+	import { contentLanguageCookie, type LocaleCode } from '$lib/locale';
 	import { contentLanguageHref, sourceCode, sourceLanguageName } from '$lib/locale/switcher';
 	import * as m from '$lib/paraglide/messages';
 
@@ -12,6 +12,22 @@
 	const language = $derived(sourceLanguageName(sourceLanguage, code));
 	const originalHref = $derived(contentLanguageHref('mw', page.url));
 	const source = $derived(sourceCode(sourceLanguage));
+
+	function showOriginal(event: MouseEvent) {
+		if (
+			event.defaultPrevented ||
+			event.button !== 0 ||
+			event.metaKey ||
+			event.ctrlKey ||
+			event.shiftKey ||
+			event.altKey
+		) {
+			return;
+		}
+		event.preventDefault();
+		document.cookie = contentLanguageCookie('mw', window.location.protocol === 'https:');
+		window.location.reload();
+	}
 
 	/**
 	 * Which of the three things this view is, to the article.
@@ -42,6 +58,7 @@
 				<a
 					href={originalHref}
 					data-sveltekit-reload
+					onclick={showOriginal}
 					class="original-link font-medium">{@render children?.()}</a
 				>
 			{/snippet}

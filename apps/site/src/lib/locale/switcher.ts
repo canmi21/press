@@ -163,15 +163,14 @@ export function languageChoices(
 	];
 }
 
-/** Switch through the worker even for `mw`; the existing cookie may name another view. */
+/** Ask the client to persist a different view; selecting the active one is a no-op. */
 export function selectContentLanguage(
 	currentCode: LocaleCode,
 	selectedCode: LocaleCode,
-	currentUrl: URL,
-	navigate: (href: string) => void,
+	select: (code: LocaleCode) => void,
 ): boolean {
 	if (currentCode === selectedCode) return false;
-	navigate(contentLanguageHref(selectedCode, currentUrl));
+	select(selectedCode);
 	return true;
 }
 

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { page } from '$app/state';
 	// Mingcute rather than Lucide for the language marks: it distinguishes machine translation
 	// from translation in general, which is the distinction this menu is about. Iconify icons
 	// carry their own viewBox, so they are sized by height with an automatic width -- forcing a
@@ -18,7 +17,7 @@
 		selectContentLanguage,
 		type LanguageChoice,
 	} from './switcher';
-	import { acceptedLocale, type LocaleCode } from './index';
+	import { acceptedLocale, contentLanguageCookie, type LocaleCode } from './index';
 
 	let { code, sourceLanguage }: { code: LocaleCode; sourceLanguage: string } = $props();
 	let open = $state(false);
@@ -88,8 +87,12 @@
 		open = false;
 		const choice = choices.find(({ code: choiceCode }) => choiceCode === nextCode);
 		if (!choice) return;
-		const navigated = selectContentLanguage(code, choice.code, page.url, (href) => {
-			window.location.replace(href);
+		const navigated = selectContentLanguage(code, choice.code, (selectedCode) => {
+			document.cookie = contentLanguageCookie(
+				selectedCode,
+				window.location.protocol === 'https:',
+			);
+			window.location.reload();
 		});
 		if (!navigated) open = false;
 	}

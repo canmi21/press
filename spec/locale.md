@@ -31,9 +31,11 @@ reader nothing is known about has to be the original; anything else would make `
 a translation. Paraglide's message fallback is the original as well, for an unrelated reason --
 see below, and do not read either as implying the other.
 
-The query parameter wins outright and **also writes the cookie**, so choosing a language once
-is choosing it from then on. That is what makes the parameter a switch rather than a one-off
-override, and it is why the language switcher needs no separate mechanism.
+The query parameter wins outright and **also writes the cookie**, so following a language URL
+once is choosing it from then on rather than making a one-off override. The browser's language
+controls use the other entrance to the same state: they write the closed locale code into that
+cookie and reload the current document. The server still performs the same negotiation on the
+new request; the client chooses an input, never the rendered view.
 
 Selection runs in the worker on the request, before any HTML is rendered. Every input already
 arrives there, and choosing after first paint would make a page render in one language and then
@@ -70,10 +72,15 @@ other language is reachable at `?lang={code}`.** That is the only reason the par
 
 Once the page has loaded, the parameter is removed with `history.replaceState`. The reader
 keeps a clean URL, the cookie already holds the choice, and nothing about the page depends on
-the parameter still being there. A language-menu selection reaches that request with
-`location.replace`, not `location.assign`: the transient query replaces the current history
-entry, then cleanup replaces it again with the bare URL. Switching language must not leave an
-extra, visually identical entry behind the reader.
+the parameter still being there. Interactive selection creates no query at all: it writes the
+cookie and calls `location.reload()` on the clean address. A reload preserves the current
+history entry, so switching language cannot leave an extra, visually identical entry behind
+the reader.
+
+The preference cookie is deliberately client-writable. It contains only one value from the
+closed locale-code set, and the worker validates it again before use. The server rewrites it on
+every locale-aware HTML response, even when its value is unchanged; besides refreshing the
+lifetime, this migrates an older `HttpOnly` cookie that client controls could not replace.
 
 Only `lang` is ever touched. Other query parameters are left exactly as they arrived, including
 their order, because they belong to whatever put them there. `URLSearchParams` is built into
@@ -154,11 +161,11 @@ is marked `Original`, because `mw` names authorship rather than a language. Cons
 original Chinese view and the Simplified Chinese translation may share a displayed language
 name while remaining visibly distinct rows.
 
-Selection compares internal codes. Equal codes close the menu; different codes perform a full
-document navigation to `?lang={code}`, including `?lang=mw`. Comparing public language tags
-would make a same-language translation unreachable, while client routing would leave the
-worker-owned cookie and document language behind the content being shown. The parameter is
-still removed after the resulting document loads, as described above.
+Selection compares internal codes. Equal codes close the menu; different codes write the
+preference cookie and reload the document. Comparing public language tags would make a
+same-language translation unreachable, while client routing would leave the worker's resolved
+document language behind the content being shown. The query URLs remain crawler addresses and
+the no-JavaScript fallback, not the interactive switching transport.
 
 The trigger exposes its expanded state, the selected row is announced, and the menu supports
 native activation plus arrow, Home, End, Escape, and Tab keyboard behaviour. Endonyms help a
@@ -179,9 +186,9 @@ matter. The `url` strategy is absent and there is no `reroute` hook, because a l
 appears in a path here and there is nothing to delocalize.
 
 The client reads that code from `<html data-locale>`, stamped by the server the same way the
-theme class is. A client strategy has to be synchronous and the `language` cookie is `httpOnly`;
-weakening the cookie to satisfy a strategy would trade a real protection for a value the server
-can simply state.
+theme class is. The preference cookie is readable but remains only one input: a query may have
+overridden it, and the article supplies the final fallback. Reading the server's resolved answer
+avoids duplicating negotiation and guarantees hydration describes the view that was rendered.
 
 ### Two fallbacks that are not the same fallback
 
@@ -266,10 +273,10 @@ English, because chrome belongs to the site rather than to the prose.
 
 Every non-original article view places a blue note directly below the metadata row. It says in
 the current view's UI language that the reader is seeing a translation and names the source
-language in that same UI language. The source-language name is the link back to `mw`; it performs
-a full document navigation so the worker updates the language cookie along with the article and
-interface. The original view has no note, because labelling untouched content as untranslated
-would repeat what the language switcher already says.
+language in that same UI language. The source-language name is the link back to `mw`; ordinary
+activation writes the cookie and reloads like the menu, while its `?lang=mw` address remains a
+no-JavaScript and modified-click fallback. The original view has no note, because labelling
+untouched content as untranslated would repeat what the language switcher already says.
 
 This notice is a state indicator rather than article content. Keeping it beside the metadata
 makes its scope clear before the reader reaches the body, and blue is reserved here for the

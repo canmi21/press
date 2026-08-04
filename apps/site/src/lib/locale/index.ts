@@ -1,5 +1,7 @@
 export const LOCALE_CODES = ['mw', 'de', 'en', 'es', 'fr', 'ja', 'ko', 'zh', 'tw'] as const;
 
+export const LANGUAGE_COOKIE_MAX_AGE = 365 * 24 * 60 * 60;
+
 export type LocaleCode = (typeof LOCALE_CODES)[number];
 
 export const PUBLIC_LANGUAGE = {
@@ -106,11 +108,9 @@ export function resolveLocale(inputs: LocaleInputs): LocaleCode {
 	);
 }
 
-export function shouldWriteLanguageCookie(
-	cookie: string | null | undefined,
-	code: LocaleCode,
-): boolean {
-	return cookie !== code;
+/** The client-writable preference consumed by the worker on the next document request. */
+export function contentLanguageCookie(code: LocaleCode, secure: boolean): string {
+	return `language=${code}; Path=/; Max-Age=${LANGUAGE_COOKIE_MAX_AGE}; SameSite=Lax${secure ? '; Secure' : ''}`;
 }
 
 /** Preserve the order and values of every parameter not owned by locale selection. */
