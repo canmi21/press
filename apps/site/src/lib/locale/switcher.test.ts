@@ -57,13 +57,10 @@ describe('article language switcher', () => {
 		expect(sourceLabel('en', 'zh')).toBe('英语');
 		expect(sourceLabel('en', 'fr')).toBe('US');
 
-		// `mw` reads 原文, so it belongs with the compact scripts whatever the article is in.
-		expect(sourceLabel('en', 'mw')).toBe('English');
-		expect(sourceLabel('zh', 'mw')).toBe('中文');
-
-		// `mw` reads 原文, so it belongs with the compact scripts whatever the article is in.
-		expect(sourceLabel('en', 'mw')).toBe('English');
-		expect(sourceLabel('zh', 'mw')).toBe('中文');
+		// `mw` labels itself `Original`, so its parenthetical is a region code like the other
+		// Latin-script views rather than a spelled-out name in the article's own language.
+		expect(sourceLabel('en', 'mw')).toBe('US');
+		expect(sourceLabel('zh', 'mw')).toBe('CN');
 
 		// Traditional Chinese is a different code, which is the distinction CN and TW carry.
 		expect(sourceLabel('zh-Hant', 'en')).toBe('TW');

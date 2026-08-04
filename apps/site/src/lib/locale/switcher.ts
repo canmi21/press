@@ -52,10 +52,12 @@ export function orderFor(preferred: LocaleCode): readonly TranslationCode[] {
 /**
  * Views whose script keeps a language name short enough to spell out.
  *
- * `mw` is among them because the word it sits beside is `原文`; the test is what the label is
- * written in, not which language the article happens to be.
+ * The test is what the label is written in, not which language the article happens to be. `mw`
+ * is not among them: its own label reads `Original`, so the parenthetical beside it is English
+ * too, and `Original (Chinese)` crowds a row that exists to be scanned in exactly the way the
+ * other Latin views do.
  */
-const COMPACT_SCRIPT = new Set<LocaleCode>(['mw', 'zh', 'tw', 'ja', 'ko']);
+const COMPACT_SCRIPT = new Set<LocaleCode>(['zh', 'tw', 'ja', 'ko']);
 
 /** Subtags that mark a Chinese tag as Traditional. Script wins; the regions are the legacy spelling. */
 function isTraditional(subtags: string[]): boolean {

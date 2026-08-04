@@ -128,8 +128,20 @@ claim about its language; it does not stop being served.
 ## The article switcher names languages for their own readers
 
 The article metadata row carries the content-language switcher; it is separate from UI-message
-translation. Its trigger shows a globe on `mw`, a languages icon on
-a translation, and the current view's name in that language's own form.
+translation. Its trigger shows a globe on `mw`, a languages icon on a translation, and the
+current view's name in that language's own form.
+
+### The original view labels itself in English
+
+`mw` is a locale like the other eight and its messages are its own, but the words _around_ the
+article are English there rather than the article's language. The original is where an author
+mixes languages freely; an interface that tried to follow that has nothing to follow. English is
+the one choice that does not claim the chrome belongs to whichever language happens to dominate
+the prose.
+
+That decides the row beside it too. `mw` is not in the compact-script set, because the set is
+about what the label is written in and the label now reads `Original` -- so the language beside
+it is a region code, `Original (CN)`, exactly as it is for every other Latin-script view.
 
 The eight translation rows are fixed endonyms and do not change with the active view. The
 original is a separate first row: its name is derived from the article's own language tag and

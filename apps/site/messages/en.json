@@ -6,5 +6,6 @@
 	"language.original": "Original",
 	"notice.translated": "You're reading a translation. The original is in {#link}{language}{/link}.",
 	"notice.polished": "This article is written mainly in {language}. The version you are reading may carry small changes in wording; the {#link}original{/link} reads as it was published.",
-	"notice.script": "This article is written mainly in {language}. The version you are reading has been converted between scripts; the {#link}original{/link} is closer to the author's own wording."
+	"notice.script": "This article is written mainly in {language}. The version you are reading has been converted between scripts; the {#link}original{/link} is closer to the author's own wording.",
+	"article.summary": "Summary"
 }

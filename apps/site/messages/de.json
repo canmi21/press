@@ -6,5 +6,6 @@
 	"language.original": "Original",
 	"notice.translated": "Du liest eine Übersetzung. Das Original ist auf {#link}{language}{/link}.",
 	"notice.polished": "Dieser Artikel ist überwiegend auf {language} geschrieben. Die Fassung, die du liest, kann leichte sprachliche Glättungen enthalten; empfohlen wird das {#link}Original{/link}.",
-	"notice.script": "Dieser Artikel ist überwiegend auf {language} geschrieben. Die Fassung, die du liest, wurde zwischen Schriften umgesetzt; das {#link}Original{/link} kommt der Formulierung des Autors näher."
+	"notice.script": "Dieser Artikel ist überwiegend auf {language} geschrieben. Die Fassung, die du liest, wurde zwischen Schriften umgesetzt; das {#link}Original{/link} kommt der Formulierung des Autors näher.",
+	"article.summary": "Zusammenfassung"
 }

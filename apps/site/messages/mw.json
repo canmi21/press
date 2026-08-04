@@ -3,8 +3,9 @@
 	"nav.writing": "Writing",
 	"article.translator-note": "来自译者",
 	"article.translator-note.close": "关闭译者注",
-	"language.original": "原文",
+	"language.original": "Original",
 	"notice.translated": "你正在阅读翻译版本，原文是{#link}{language}{/link}。",
 	"notice.polished": "这篇文章主要以{language}写成。你正在阅读的译本可能带有细微的措辞润色，推荐阅读{#link}原文{/link}。",
-	"notice.script": "这篇文章主要以{language}写成。你正在阅读的版本经过字词转换，{#link}原文{/link}更接近作者本来的表达。"
+	"notice.script": "这篇文章主要以{language}写成。你正在阅读的版本经过字词转换，{#link}原文{/link}更接近作者本来的表达。",
+	"article.summary": "Summary"
 }

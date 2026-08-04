@@ -4,7 +4,9 @@
 	import { pickUrls } from '@canmi/urls';
 	import { site } from '$lib/site';
 	import BookOpenText from '@lucide/svelte/icons/book-open-text';
+	import Sparkles from '@lucide/svelte/icons/sparkles';
 	import Type from '@lucide/svelte/icons/type';
+	import * as m from '$lib/paraglide/messages';
 	import type { Snippet } from 'svelte';
 	import type { Alternate, ArticleMeta } from '$lib/content/types';
 	import type { LocaleCode } from '$lib/locale';
@@ -28,6 +30,23 @@
 	}: { meta: ArticleMeta; chars: number; locale: ArticleLocale; children: Snippet } = $props();
 
 	const urls = pickUrls(dev);
+
+	let summaryOpen = $state(false);
+	// One call only -- `$props.id()` may not be used twice in a component -- so the pair is
+	// derived from a single stable base.
+	const summaryId = $props.id();
+	const summaryTrigger = `${summaryId}-trigger`;
+	const summaryPanel = `${summaryId}-panel`;
+
+	/**
+	 * Standing in for a field that does not exist yet.
+	 *
+	 * `description` is the SEO meta description: already translated per view, and the only
+	 * summary-shaped text an article carries today. A reader-facing summary is a different job
+	 * and wants its own frontmatter key, written by the same pipeline that writes alt text and
+	 * tags. Until then this shows the nearest honest thing rather than an empty panel.
+	 */
+	const summary = $derived(meta.description);
 
 	/**
 	 * The card for this article, at a URL nothing had to be told.
@@ -135,7 +154,39 @@
 					</span>
 				{/if}
 				<LanguageSwitcher code={locale.code} sourceLanguage={meta.lang} />
+				{#if summary}
+					<!-- A disclosure, not a menu: it is deliberately not dismissed by clicking
+					     elsewhere, because a reader comparing the summary against the article is
+					     doing exactly that -- clicking elsewhere. Only the trigger closes it. -->
+					<button
+						type="button"
+						id={summaryTrigger}
+						aria-expanded={summaryOpen}
+						aria-controls={summaryPanel}
+						onclick={() => (summaryOpen = !summaryOpen)}
+						class="-mx-1 inline-flex cursor-pointer items-center gap-1 rounded-sm px-1 py-0.5 hover:bg-paper-hover hover:text-text-strong"
+					>
+						<Sparkles class="size-3.5" aria-hidden="true" />
+						<span>{m['article.summary']({}, { locale: locale.code })}</span>
+					</button>
+				{/if}
 			</div>
+			{#if summary}
+				<!-- Rows collapse to 0fr rather than the box to height 0, which is the one way to
+				     animate to a height nobody measured. See spec/architecture.md on motion. -->
+				<div class="summary-shell" data-open={summaryOpen}>
+					<div class="overflow-hidden">
+						<p
+							id={summaryPanel}
+							role="region"
+							aria-labelledby={summaryTrigger}
+							class="mt-3 border-l-2 border-border-strong pr-3 pl-3 text-sm leading-relaxed text-text-soft"
+						>
+							{summary}
+						</p>
+					</div>
+				</div>
+			{/if}
 			{#if locale.code !== 'mw'}
 				<TranslationNotice code={locale.code} sourceLanguage={meta.lang} />
 			{/if}
@@ -148,6 +199,25 @@
 </main>
 
 <style>
+	/* Animating to `height: auto` is not possible, so the grid row is animated instead: 0fr to
+	   1fr resolves against the content's own height without anyone measuring it. The child
+	   needs `overflow: hidden` for the clip to happen. */
+	.summary-shell {
+		display: grid;
+		grid-template-rows: 0fr;
+		transition: grid-template-rows 260ms cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.summary-shell[data-open='true'] {
+		grid-template-rows: 1fr;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.summary-shell {
+			transition: none;
+		}
+	}
+
 	.article-body {
 		font-size: 0.9375rem;
 	}
