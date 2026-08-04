@@ -1,0 +1,10 @@
+version: 1
+summary:
+  zh-CN:
+    text: 面向不满 Next.js 等框架把 SSR 作为默认、却常只需按请求更新少量字段的前端开发者，讨论能否以 JTD 类型约束和编译期穷举替代整页 renderToString()。它比较并质疑 SSG、ISR、React 19.2 PPR、RSC 与 Astro 的取舍，同时保留 Markdown、Rich Text、任意服务端组件及 hydration 一致性等边界。文章还考察跨 Rust、Go、TypeScript 后端与 Serverless、Desktop 场景的可行性，以及为 DX 引入 QuickJS 的代价。
+    provider: openai
+    model: gpt-5-6-terra-medium
+    at: 2026-08-04T03:05:35.689038Z
+    seconds: 8.742394625
+    tokens: 41193
+    review: false

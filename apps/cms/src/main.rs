@@ -22,6 +22,7 @@ mod paths;
 mod port;
 mod progress;
 mod refs;
+mod summary;
 mod tags;
 
 fn main() -> ExitCode {
@@ -39,6 +40,7 @@ fn main() -> ExitCode {
 		Some("embed") => fetch_embeds(&args[1..]),
 		Some("locale") => translate_locales(&args[1..]),
 		Some("alt") => describe_images(&args[1..]),
+		Some("summary") => summarise_articles(&args[1..]),
 		Some("gc") => collect_garbage(&args[1..]),
 		Some(other) => {
 			eprintln!("unknown command: {other}");
@@ -168,6 +170,68 @@ fn selected_runner(
 /// The description is written into the manifest, so it belongs to the picture rather than to
 /// whichever article happened to be open when it was generated. Every reference inherits it,
 /// including ones written later.
+/// Write a reader-facing summary into every article that has none.
+///
+/// The value lands in the article's own frontmatter, in the article's own language, and is
+/// translated from there by `cms i18n` like `title` and `description`. Nothing here knows about
+/// the eight locales.
+fn summarise_articles(args: &[String]) -> ExitCode {
+	let force = args.iter().any(|arg| arg == "--force");
+	let limit = args
+		.iter()
+		.position(|arg| arg == "--limit")
+		.and_then(|at| args.get(at + 1))
+		.and_then(|value| value.parse::<usize>().ok());
+	// Not `DEFAULT_TEXT`. This is the one text task carrying a constraint the model has to hold
+	// against its own training -- summarise, but withhold the conclusion -- and the open-weight
+	// default measurably does not: it handed over the whole design and then appended "reaches a
+	// surprising conclusion", and gave a first-person essay's author a pronoun the article never
+	// uses. Translation has no comparable trap, which is why that one stays on the cheap model.
+	let runner = match selected_runner(args, i18n::runner::Runner::Codex) {
+		Ok(runner) => runner,
+		Err(code) => return code,
+	};
+
+	let root = match paths::repo_root() {
+		Ok(root) => root,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
+	};
+
+	let runtime = match tokio::runtime::Runtime::new() {
+		Ok(runtime) => runtime,
+		Err(error) => {
+			eprintln!("could not start a runtime: {error}");
+			return ExitCode::FAILURE;
+		}
+	};
+	let outcome = runtime.block_on(summary::run(runner, &root.join("contents"), force, limit));
+
+	for (path, error) in &outcome.failed {
+		eprintln!("fail  {path}: {error}");
+	}
+	println!(
+		"{} written, {} already had one, {} reviewed, {} deferred, {} failed",
+		outcome.written,
+		outcome.skipped,
+		outcome.reviewed,
+		outcome.deferred,
+		outcome.failed.len()
+	);
+	if outcome.written > 0 {
+		let spent = outcome.spent;
+		println!("{} in, ${:.2}", spent.total_in(), spent.usd);
+		println!("run `cms i18n` to translate the new values");
+	}
+	if outcome.failed.is_empty() {
+		ExitCode::SUCCESS
+	} else {
+		ExitCode::FAILURE
+	}
+}
+
 fn describe_images(args: &[String]) -> ExitCode {
 	let force = args.iter().any(|arg| arg == "--force");
 	let limit = args

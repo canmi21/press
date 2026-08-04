@@ -1,0 +1,10 @@
+version: 1
+summary:
+  zh-CN:
+    text: 从 Hexo 到 Next.js、Vue、Vercel 与自建服务器，这篇文章追问：为什么一个本该用来记录的博客，反而被自研反向代理、框架、存储和 AI 焦虑不断阻塞。它反思把“以后用得上”的技术完美主义当作前置条件，也比较了自建与 Serverless、模仿式 MVP 与可长期维护之间的取舍，最终在时间、精力和实际发布的约束下作出更克制的工程选择。
+    provider: openai
+    model: gpt-5-6-terra-medium
+    at: 2026-08-04T03:05:35.689037Z
+    seconds: 9.04900125
+    tokens: 19193
+    review: false

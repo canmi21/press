@@ -1,0 +1,10 @@
+version: 1
+summary:
+  zh-CN:
+    text: 从长期室内、深夜 AI coding 的疲惫出发，试着带 MacBook Air 到江边寻找灵感与户外感。它检验了户外继续写代码、借 Typeless、Wispr Flow 与 CLI Agent 绕开手动输入的可能，却受 LCD 亮度、城市噪音、LTE 漫游和衰败公共空间限制。一路对照童年记忆中的江岸、绿地与车库，追问城市、技术和身体感受为何都变得陌生。
+    provider: openai
+    model: gpt-5-6-terra-medium
+    at: 2026-08-04T03:05:35.689038Z
+    seconds: 12.64472425
+    tokens: 20367
+    review: false

@@ -60,7 +60,7 @@ pub struct Spend {
 }
 
 impl Spend {
-	fn add(&mut self, other: Spend) {
+	pub fn add(&mut self, other: Spend) {
 		self.input += other.input;
 		self.output += other.output;
 		self.cache_read += other.cache_read;
