@@ -70,7 +70,10 @@ other language is reachable at `?lang={code}`.** That is the only reason the par
 
 Once the page has loaded, the parameter is removed with `history.replaceState`. The reader
 keeps a clean URL, the cookie already holds the choice, and nothing about the page depends on
-the parameter still being there.
+the parameter still being there. A language-menu selection reaches that request with
+`location.replace`, not `location.assign`: the transient query replaces the current history
+entry, then cleanup replaces it again with the bare URL. Switching language must not leave an
+extra, visually identical entry behind the reader.
 
 Only `lang` is ever touched. Other query parameters are left exactly as they arrived, including
 their order, because they belong to whatever put them there. `URLSearchParams` is built into

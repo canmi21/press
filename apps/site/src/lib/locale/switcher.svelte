@@ -89,7 +89,7 @@
 		const choice = choices.find(({ code: choiceCode }) => choiceCode === nextCode);
 		if (!choice) return;
 		const navigated = selectContentLanguage(code, choice.code, page.url, (href) => {
-			window.location.assign(href);
+			window.location.replace(href);
 		});
 		if (!navigated) open = false;
 	}
