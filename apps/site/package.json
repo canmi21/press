@@ -15,6 +15,7 @@
 		"@canmi/robots": "workspace:*",
 		"@canmi/urls": "workspace:*",
 		"@chenglou/pretext": "^0.0.8",
+		"@inlang/paraglide-js-svelte": "^1.0.3",
 		"@lucide/svelte": "^1.27.0",
 		"@sentry/sveltekit": "^10.69.0",
 		"bits-ui": "^2.18.1",

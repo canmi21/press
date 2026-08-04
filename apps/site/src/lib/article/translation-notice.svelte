@@ -1,28 +1,30 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { ParaglideMessage } from '@inlang/paraglide-js-svelte';
 	import type { LocaleCode } from '$lib/locale';
-	import { SCRIPT_NOTICE, TRANSLATION_NOTICE, type PolishedCopy } from '$lib/locale/messages';
 	import { contentLanguageHref, sourceCode, sourceLanguageName } from '$lib/locale/switcher';
+	import * as m from '$lib/paraglide/messages';
 
 	type TranslationCode = Exclude<LocaleCode, 'mw'>;
 
 	let { code, sourceLanguage }: { code: TranslationCode; sourceLanguage: string } = $props();
 
-	const copy = $derived(TRANSLATION_NOTICE[code]);
-	const originalLanguage = $derived(sourceLanguageName(sourceLanguage, code));
+	const language = $derived(sourceLanguageName(sourceLanguage, code));
 	const originalHref = $derived(contentLanguageHref('mw', page.url));
-
 	const source = $derived(sourceCode(sourceLanguage));
 
-	const sameLanguage = $derived(source === code);
-
-	/** Same language, other script. Compared rather than cast, so the key is known to exist. */
-	const scriptCopy = $derived(
-		code === 'zh' && source === 'tw'
-			? SCRIPT_NOTICE.zh
-			: code === 'tw' && source === 'zh'
-				? SCRIPT_NOTICE.tw
-				: undefined,
+	/**
+	 * Which of the three things this view is, to the article.
+	 *
+	 * Script sibling is tested first: a Simplified article read at `tw` is also not the same
+	 * code, and would otherwise be announced as a translation. See spec/locale.md.
+	 */
+	const message = $derived(
+		(code === 'zh' && source === 'tw') || (code === 'tw' && source === 'zh')
+			? m['notice.script']
+			: source === code
+				? m['notice.polished']
+				: m['notice.translated'],
 	);
 </script>
 
@@ -35,32 +37,17 @@
 	class="notice mt-4 rounded-r-md border-l-2 border-blue-ink py-1.5 pr-3 pl-3 text-sm leading-snug text-text-soft"
 >
 	<p>
-		<!-- Script sibling first, or a Simplified article read at `tw` falls through and gets
-		     announced as a translation. -->
-		{#if scriptCopy}
-			{@render recommendation(scriptCopy)}
-		{:else if sameLanguage}
-			{@render recommendation(copy.polished)}
-		{:else}
-			{copy.translated.beforeLanguage}<a
-				href={originalHref}
-				data-sveltekit-reload
-				class="original-link font-medium"
-				>{originalLanguage}</a
-			>{copy.translated.afterLanguage}
-		{/if}
+		<ParaglideMessage {message} inputs={{ language }} options={{ locale: code }}>
+			{#snippet link({ children })}
+				<a
+					href={originalHref}
+					data-sveltekit-reload
+					class="original-link font-medium">{@render children?.()}</a
+				>
+			{/snippet}
+		</ParaglideMessage>
 	</p>
 </div>
-
-<!-- Both recommending states link the word for the original, not the language name. -->
-{#snippet recommendation(text: PolishedCopy)}
-	{text.beforeLanguage}{originalLanguage}{text.beforeLink}<a
-		href={originalHref}
-		data-sveltekit-reload
-		class="original-link font-medium"
-		>{text.linkLabel}</a
-	>{text.afterLink}
-{/snippet}
 
 <style>
 	.notice {

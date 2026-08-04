@@ -9,7 +9,7 @@ import {
 	sourceLabel,
 	sourceLanguageName,
 } from './switcher';
-import { SCRIPT_NOTICE, TRANSLATION_NOTICE } from './messages';
+import * as m from '../paraglide/messages';
 import type { LocaleCode } from './index';
 
 function stableEndonyms(current: LocaleCode) {
@@ -93,50 +93,45 @@ describe('article language switcher', () => {
 		expect(sourceCode('it-IT')).toBeUndefined();
 	});
 
-	it('covers both notice states in every language', () => {
-		// Neither row may go missing: a language with only one of them would either tell a reader
-		// they are reading a translation of their own language, or say nothing at all.
-		for (const code of ['de', 'en', 'es', 'fr', 'ja', 'ko', 'zh', 'tw'] as const) {
-			const { translated, polished } = TRANSLATION_NOTICE[code];
-			for (const part of [
-				translated.beforeLanguage,
-				translated.afterLanguage,
-				polished.beforeLanguage,
-				polished.beforeLink,
-				polished.linkLabel,
-				polished.afterLink,
-			]) {
-				expect(part.length).toBeGreaterThan(0);
+	it('states the source language as the main one, not the only one', () => {
+		// Frontmatter `lang` picks an article's primary language; a mixed-language original still
+		// gets one tag. The copy has to be true of an article that is mostly, not wholly, in it.
+		const qualifier: Record<string, string> = {
+			zh: '主要',
+			tw: '主要',
+			en: 'mainly',
+			ja: '主に',
+			ko: '주로',
+			es: 'principalmente',
+			fr: 'principalement',
+			de: 'überwiegend',
+		};
+		for (const [locale, word] of Object.entries(qualifier)) {
+			expect(m['notice.polished']({ language: 'X' }, { locale: locale as LocaleCode })).toContain(
+				word,
+			);
+		}
+	});
+
+	it('gives every locale its own sentence rather than the baseLocale falling in', () => {
+		// A missing key resolves to `mw` and renders, so a gap never announces itself -- the
+		// reader simply gets the original's wording where their own language should have been.
+		// Requiring each locale to differ from what it would fall back to is what catches that.
+		// `zh` is exempt: `mw` is written in it, which is the whole point of `mw`.
+		for (const render of [m['notice.translated'], m['notice.polished'], m['notice.script']]) {
+			const original = render({ language: 'X' }, { locale: 'mw' });
+			for (const locale of ['de', 'en', 'es', 'fr', 'ja', 'ko', 'tw'] as const) {
+				const rendered = render({ language: 'X' }, { locale });
+				expect(rendered).toContain('X');
+				expect(rendered).not.toBe(original);
 			}
 		}
 	});
 
-	it('states the source language as the main one, not the only one', () => {
-		// Frontmatter `lang` picks an article's primary language; a mixed-language original still
-		// gets one tag. The copy has to be true of an article that is mostly, not wholly, in it.
-		expect(TRANSLATION_NOTICE.zh.polished.beforeLanguage).toContain('主要');
-		expect(TRANSLATION_NOTICE.tw.polished.beforeLanguage).toContain('主要');
-		expect(TRANSLATION_NOTICE.en.polished.beforeLanguage).toContain('mainly');
-		expect(TRANSLATION_NOTICE.ja.polished.beforeLanguage).toContain('主に');
-		expect(TRANSLATION_NOTICE.ko.polished.beforeLanguage).toContain('주로');
-		expect(TRANSLATION_NOTICE.es.polished.beforeLanguage).toContain('principalmente');
-		expect(TRANSLATION_NOTICE.fr.polished.beforeLanguage).toContain('principalement');
-		expect(TRANSLATION_NOTICE.de.polished.beforeLanguage).toContain('überwiegend');
-	});
-
-	it('carries the script notice only for the pair that can reach it', () => {
-		// One language, two scripts: only the two Chinese views can be the sibling of an article
-		// they can already read as written.
-		expect(Object.keys(SCRIPT_NOTICE).toSorted()).toEqual(['tw', 'zh']);
-
-		// Named for the article's script, not the reader's -- the zh view is reached from a
-		// Traditional original and says so.
-		expect(SCRIPT_NOTICE.zh.beforeLink).toContain('简体版本');
-		expect(SCRIPT_NOTICE.tw.beforeLink).toContain('繁體版本');
-		for (const copy of Object.values(SCRIPT_NOTICE)) {
-			expect(copy.linkLabel).toBe('原文');
-			expect(copy.beforeLanguage).toContain('主要');
-		}
+	it('carries the script sentence in the two views that can reach it', () => {
+		// Only the Chinese pair can be the sibling script of an article they already read.
+		expect(m['notice.script']({ language: 'X' }, { locale: 'zh' })).toContain('简体版本');
+		expect(m['notice.script']({ language: 'X' }, { locale: 'tw' })).toContain('繁體版本');
 	});
 
 	it('separates a script conversion from a translation', () => {

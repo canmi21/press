@@ -1,4 +1,4 @@
-import { defineCustomClientStrategy, defineCustomServerStrategy } from '$lib/paraglide/runtime';
+import { defineCustomClientStrategy, defineCustomServerStrategy } from '../paraglide/runtime';
 import { localeCode } from './index';
 
 /**

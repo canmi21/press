@@ -8,7 +8,7 @@
 	import SvgCanvas from '$lib/blocks/svg-canvas.svelte';
 	import Tokei from '$lib/blocks/tokei/tokei.svelte';
 	import PopoverContent from '$lib/components/popover-content.svelte';
-	import { MESSAGES } from '$lib/locale/messages';
+	import * as m from '$lib/paraglide/messages';
 	import Info from '@lucide/svelte/icons/info';
 	import X from '@lucide/svelte/icons/x';
 	import { Popover } from 'bits-ui';
@@ -147,13 +147,13 @@
 		<div class="flex items-center gap-2 px-2 py-1 text-text-soft">
 			<Info class="size-3.5 shrink-0" aria-hidden="true" />
 			<span id="translator-note-label" class="flex-1 text-xs font-medium"
-				>{MESSAGES[locale].translatorNote}</span
+				>{m['article.translator-note']({}, { locale })}</span
 			>
 			<button
 				type="button"
 				onclick={() => closeNote(true)}
 				class="-m-1 cursor-pointer rounded-sm p-1 text-text-soft hover:bg-paper-hover hover:text-text-strong"
-				aria-label={MESSAGES[locale].closeTranslatorNote}
+				aria-label={m['article.translator-note.close']({}, { locale })}
 			>
 				<X class="size-3.5" aria-hidden="true" />
 			</button>

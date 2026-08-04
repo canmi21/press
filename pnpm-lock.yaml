@@ -100,6 +100,9 @@ importers:
       '@chenglou/pretext':
         specifier: ^0.0.8
         version: 0.0.8
+      '@inlang/paraglide-js-svelte':
+        specifier: ^1.0.3
+        version: 1.0.3(@inlang/paraglide-js@2.23.1(typescript@6.0.3)(vite@8.2.0(@types/node@26.1.2)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.56.8)
       '@lucide/svelte':
         specifier: ^1.27.0
         version: 1.27.0(svelte@5.56.8)
@@ -746,6 +749,12 @@ packages:
     engines: {node: '>=20.9.0'}
     cpu: [x64]
     os: [win32]
+
+  '@inlang/paraglide-js-svelte@1.0.3':
+    resolution: {integrity: sha512-K65UnMaVy5z8+VqhBpX6Mt4dt7wxLFupejQ+sQTSga6Wh5bL7rnUq9ZU3Tn2OIk1Uah7scw9GHVZxSqhjJrWzA==}
+    peerDependencies:
+      '@inlang/paraglide-js': '>=2.11.0 <3'
+      svelte: ^5.0.0
 
   '@inlang/paraglide-js@2.23.1':
     resolution: {integrity: sha512-KEnJhvRLhB1zbGNmt2DHi4SuIbr7ZcZ0tftFYxQDDSpS1GqjJJ+b+ZaxVC2PElpgcQYNgD5Bt9hYUpV+et8IMw==}
@@ -3203,6 +3212,11 @@ snapshots:
 
   '@img/sharp-win32-x64@0.35.2':
     optional: true
+
+  '@inlang/paraglide-js-svelte@1.0.3(@inlang/paraglide-js@2.23.1(typescript@6.0.3)(vite@8.2.0(@types/node@26.1.2)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.56.8)':
+    dependencies:
+      '@inlang/paraglide-js': 2.23.1(typescript@6.0.3)(vite@8.2.0(@types/node@26.1.2)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))
+      svelte: 5.56.8
 
   '@inlang/paraglide-js@2.23.1(typescript@6.0.3)(vite@8.2.0(@types/node@26.1.2)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))':
     dependencies:

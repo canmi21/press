@@ -1,4 +1,10 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"probe.hello": "probe-en"
+	"nav.writing": "Writing",
+	"article.translator-note": "From the translator",
+	"article.translator-note.close": "Close translator's note",
+	"language.original": "Original",
+	"notice.translated": "You're reading a translation. The original is in {#link}{language}{/link}.",
+	"notice.polished": "This article is written mainly in {language}. The version you are reading may carry small changes in wording; the {#link}original{/link} reads as it was published.",
+	"notice.script": "This article is written mainly in {language}. The version you are reading has been converted between scripts; the {#link}original{/link} is closer to the author's own wording."
 }

@@ -24,13 +24,12 @@ An HTML request resolves its locale from the first of these that answers:
 1. A `lang` query parameter.
 2. The locale cookie.
 3. `Accept-Language`.
-4. Failing all three, English.
+4. Failing all three, the article's own language.
 
-**Not the original.** `mw` holds whatever languages its author chose to mix, which makes it the
-one view that cannot be guessed at for a reader the site knows nothing about. It is a view
-readers ask for, never one they are handed by default; English is the widest guess available and
-every other view stays one click away. This is separate from the fallback that fills a missing
-translation -- see below, where the original is exactly the right answer.
+The last step is what keeps the bare URL honest. It is the `x-default`, so what it serves to a
+reader nothing is known about has to be the original; anything else would make `x-default` name
+a translation. Paraglide's message fallback is the original as well, for an unrelated reason --
+see below, and do not read either as implying the other.
 
 The query parameter wins outright and **also writes the cookie**, so choosing a language once
 is choosing it from then on. That is what makes the parameter a switch rather than a one-off
@@ -129,7 +128,7 @@ claim about its language; it does not stop being served.
 ## The article switcher names languages for their own readers
 
 The article metadata row carries the content-language switcher; it is separate from UI-message
-translation and does not use Paraglide. Its trigger shows a globe on `mw`, a languages icon on
+translation. Its trigger shows a globe on `mw`, a languages icon on
 a translation, and the current view's name in that language's own form.
 
 The eight translation rows are fixed endonyms and do not change with the active view. The
@@ -169,13 +168,17 @@ can simply state.
 
 ### Two fallbacks that are not the same fallback
 
-`baseLocale` is `mw`, and it answers a different question from the negotiation default above.
-Negotiation picks which view a reader gets and never picks the original. `baseLocale` supplies a
-string the chosen view is missing, and there the original is exactly right: it is the one text
-always written, so it is the one that can always answer. A reader on English who meets an
-untranslated key sees the original's wording rather than a blank.
+`baseLocale` is `mw`, matching the negotiation default above, and the match is a coincidence of
+answers rather than one rule stated twice.
 
-Confusing the two produces the plausible-sounding mistake of setting both to the same value.
+Negotiation picks **which view** a reader is given, and lands on the original because the bare
+URL is the `x-default`. `baseLocale` supplies **a string the chosen view is missing**, and lands
+on the original because that is the one text always written and so the only one that can always
+answer -- a reader on Korean who meets an untranslated key sees the original's wording rather
+than a blank.
+
+Two questions, two arguments, one answer. Moving either because the other moved would be
+changing a decision that was never made.
 
 ### Locale identifiers stay internal
 
@@ -184,6 +187,35 @@ into a public attribute -- with `url` off they reach no address, and `<html lang
 and `og:locale` still go through the mapping table above. `mw` is a locale like any other here,
 not a placeholder: it is the author's own voice, mixed as they please, and the interface is part
 of what is being read in the original.
+
+### Keys are dotted, and read off the namespace
+
+Message keys are `flat.dot.key`. Paraglide exports each one under its literal string
+(`export { notice_polished as "notice.polished" }`), so a key is always read as
+`m['notice.polished']` from a namespace import.
+
+The obvious alternative does not work. `import { 'notice.polished' as noticePolished }` is valid
+ES2022, type-checks, and survives the production build -- and is `undefined` at runtime under
+the dev server's transform, which turns every article page into a 500 that no check catches
+because the tests and the build both pass. It was tried; the namespace is not a preference.
+
+The cost of dots is therefore paid in the linter: `import/namespace` rejects computed access and
+is turned off, on the grounds that the compiler already performs that check and names the
+offending key when it fails. See `.oxlintrc.json`.
+
+Modules under `src/lib` that tests import use relative paths rather than `$lib`, because the
+root vitest run resolves no alias.
+
+### A markup message must exist in every locale
+
+A message containing markup compiles to a `parts()` accessor. A locale missing that message
+falls back to a plain string function which has no `parts`, and the generated dispatcher then
+reads a property the type does not have -- the runtime guards it, the type check does not.
+
+So `baseLocale` covers a missing _translation_, never a missing _shape_. The script-conversion
+notice is written in all nine even though only the two Chinese views can display it: six of
+those sentences are unreachable today, which is a smaller cost than a type error in generated
+code that nobody can edit.
 
 ### Two traps worth writing down
 

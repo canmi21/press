@@ -1,4 +1,10 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"probe.hello": "probe-ko"
+	"nav.writing": "글",
+	"article.translator-note": "번역자 주",
+	"article.translator-note.close": "번역자 주 닫기",
+	"language.original": "원문",
+	"notice.translated": "번역본을 읽고 있습니다. 원문은 {#link}{language}{/link}입니다.",
+	"notice.polished": "이 글은 주로 {language}로 작성되었습니다. 지금 읽고 있는 판은 표현이 조금 다듬어졌을 수 있습니다. {#link}원문{/link}을 권합니다.",
+	"notice.script": "이 글은 주로 {language}로 작성되었습니다. 지금 읽고 있는 판은 자체 변환을 거쳤으므로 {#link}원문{/link}이 저자의 표현에 더 가깝습니다."
 }

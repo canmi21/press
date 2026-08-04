@@ -1,4 +1,4 @@
-import { MESSAGES } from './messages';
+import * as m from '../paraglide/messages';
 import { PUBLIC_LANGUAGE, type LocaleCode } from './index';
 
 type TranslationCode = Exclude<LocaleCode, 'mw'>;
@@ -154,7 +154,7 @@ export function languageChoices(
 		})),
 		{
 			code: 'mw' as const,
-			name: `${MESSAGES[currentCode].original} (${sourceLabel(sourceLanguage, currentCode)})`,
+			name: `${m['language.original']({}, { locale: currentCode })} (${sourceLabel(sourceLanguage, currentCode)})`,
 			original: true,
 			current: currentCode === 'mw',
 		},

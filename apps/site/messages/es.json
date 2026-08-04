@@ -1,4 +1,10 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"probe.hello": "probe-es"
+	"nav.writing": "Artículos",
+	"article.translator-note": "Nota del traductor",
+	"article.translator-note.close": "Cerrar la nota del traductor",
+	"language.original": "Original",
+	"notice.translated": "Estás leyendo una traducción. El original está en {#link}{language}{/link}.",
+	"notice.polished": "Este artículo está escrito principalmente en {language}. La versión que estás leyendo puede incluir ligeros retoques de redacción; te recomendamos el {#link}original{/link}.",
+	"notice.script": "Este artículo está escrito principalmente en {language}. La versión que estás leyendo se ha convertido entre escrituras; el {#link}original{/link} se acerca más a la redacción del autor."
 }

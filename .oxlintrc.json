@@ -28,6 +28,15 @@
 		// duplication. See spec/lint-format.md.
 		"no-irregular-whitespace": "off",
 
+		// Paraglide exports each message under its literal dotted key, so reading one is a
+		// computed namespace access this rule cannot follow. The check it performs is already
+		// done, and done better, by the compiler: verified that `m['notice.polised']` fails
+		// type checking with "Property 'notice.polised' does not exist ... Did you mean
+		// 'notice.polished'?", naming the typo the linter could only say it was unable to
+		// validate. Same duplication argument as the rules above. See spec/locale.md for why
+		// the keys are dotted and why the named-import spelling is not an option.
+		"import/namespace": "off",
+
 		// Side-effect imports are load-bearing here: `import '@canmi/tokens/colors.css'`
 		// is how every app pulls in styles. Verified: with this rule on, oxlint reports
 		// each one of them. Turning it off is not a preference, it is required by the

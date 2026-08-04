@@ -1,4 +1,10 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"probe.hello": "probe-tw"
+	"nav.writing": "文章",
+	"article.translator-note": "來自譯者",
+	"article.translator-note.close": "關閉譯者註",
+	"language.original": "原文",
+	"notice.translated": "你正在閱讀翻譯版本，原文是{#link}{language}{/link}。",
+	"notice.polished": "這篇文章主要以{language}寫成。你正在閱讀的譯本可能帶有細微的措辭潤飾，推薦閱讀{#link}原文{/link}。",
+	"notice.script": "這篇文章主要以{language}寫成。你正在閱讀的繁體版本經過字詞轉換，{#link}原文{/link}更接近作者本來的表達。"
 }

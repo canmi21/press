@@ -1,4 +1,10 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"probe.hello": "probe-ja"
+	"nav.writing": "記事",
+	"article.translator-note": "訳者より",
+	"article.translator-note.close": "訳注を閉じる",
+	"language.original": "原文",
+	"notice.translated": "翻訳版を読んでいます。原文は{#link}{language}{/link}です。",
+	"notice.polished": "この記事は主に{language}で書かれています。読んでいる版には細かな表現の調整が入っている場合があります。{#link}原文{/link}をおすすめします。",
+	"notice.script": "この記事は主に{language}で書かれています。読んでいる版は字体変換を経ているため、{#link}原文{/link}のほうが著者本来の表現に近くなります。"
 }

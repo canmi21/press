@@ -90,24 +90,19 @@ export type LocaleInputs = {
 };
 
 /**
- * First valid source wins; a reader who stated nothing gets English.
+ * First valid source wins; the article itself is always the final `mw` view.
  *
- * Not `mw`. The original is a view a reader chooses, not one they are given for having no
- * preference -- it is written in whatever languages its author felt like mixing, which is the
- * least safe thing to hand someone the site knows nothing about. English is the widest guess
- * available, and every other view remains one click away.
- *
- * This is not the fallback that fills a missing translation. That one is Paraglide's
- * `baseLocale`, which is `mw` precisely because the original is the one text always written.
- * The two run at different moments and answer different questions: this one picks the view, and
- * `baseLocale` supplies a string the chosen view is missing. See spec/locale.md.
+ * Paraglide's `baseLocale` is `mw` as well, and the two are still separate decisions that
+ * happen to agree. This one picks the view a reader is given; that one supplies a string the
+ * chosen view is missing. Changing either does not imply changing the other.
+ * See spec/locale.md.
  */
 export function resolveLocale(inputs: LocaleInputs): LocaleCode {
 	return (
 		localeCode(inputs.query) ??
 		localeCode(inputs.cookie) ??
 		acceptedLocale(inputs.acceptLanguage) ??
-		'en'
+		'mw'
 	);
 }
 
