@@ -74,3 +74,18 @@ The specific comment worth writing more often than feels natural: the one next t
 looks arbitrary. A config number, a strictness flag, a rule turned off. Those are the ones a
 future reader will "clean up" unless the reason is sitting right there. Larger decisions go in
 `spec/` instead -- see [agent-protocol.md](agent-protocol.md) for which is which.
+
+### Few, short, and only where the reason is not recoverable
+
+Comments are rationed. Write one where a reader would otherwise get it wrong, and nowhere else.
+Ordinary code carrying an ordinary intent gets none -- explaining it adds a second thing to keep
+true without making the first any clearer.
+
+Three prose paragraphs above a token, a docstring on every field of a table, a note restating
+the branch below it: each is a cost paid on every future read, and paid again by whoever has to
+keep it accurate. A file where everything is annotated is one where nothing stands out, which is
+the same as having annotated nothing.
+
+Write for someone scanning, not reading. Lead with the point; if the first line does not carry
+it, cut down to the line that does. The full argument belongs in `spec/`, with the comment
+naming the file rather than repeating it.

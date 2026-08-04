@@ -74,7 +74,7 @@ of truth.
 
 | Topic                                     | File                                             |
 | ----------------------------------------- | ------------------------------------------------ |
-| Cold start, decision authority, selfcheck | [spec/agent-protocol.md](spec/agent-protocol.md) |
+| Cold start, decision authority, verifying | [spec/agent-protocol.md](spec/agent-protocol.md) |
 | Layout, workspaces, data                  | [spec/architecture.md](spec/architecture.md)     |
 | Voice and communication                   | [spec/voice.md](spec/voice.md)                   |
 | Commit conventions                        | [spec/commits.md](spec/commits.md)               |
