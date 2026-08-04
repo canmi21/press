@@ -241,6 +241,22 @@ index; both are resolved relative to the project directory's _parent_. When mess
 check that first rather than the message files. The plugin is a local dependency rather than the
 CDN URL the docs show, which keeps its version in the lockfile and out of `libs/urls`.
 
+## The original view reads in the article's own language throughout
+
+Every view resolves its text at its own locale. `mw` is the exception worth stating, because it
+has no locale of its own to resolve at: the summary and every image description it shows are the
+ones written in the _article's_ language, not translations of them and not the English the
+descriptions happen to be authored in.
+
+The alternative was the accident it replaced. Asset descriptions are generated in `en-US` and
+translated outward, so the original view was resolving them at `en-US` by default -- a reader of
+a Chinese original heard every picture described in a language the article never used. The
+summary would have inherited the same shape.
+
+The rule is one sentence: on `mw`, anything with a per-locale version is taken at the locale the
+article's `lang` names. The interface chrome is the deliberate exception above -- that is
+English, because chrome belongs to the site rather than to the prose.
+
 ## A translated article identifies itself
 
 Every non-original article view places a blue note directly below the metadata row. It says in

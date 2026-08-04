@@ -25,9 +25,17 @@
 	let {
 		meta,
 		chars,
+		summary,
 		locale,
 		children,
-	}: { meta: ArticleMeta; chars: number; locale: ArticleLocale; children: Snippet } = $props();
+	}: {
+		meta: ArticleMeta;
+		chars: number;
+		/** Absent until `cms summary` has been run for this article; the row then omits it. */
+		summary?: string;
+		locale: ArticleLocale;
+		children: Snippet;
+	} = $props();
 
 	const urls = pickUrls(dev);
 
@@ -37,16 +45,6 @@
 	const summaryId = $props.id();
 	const summaryTrigger = `${summaryId}-trigger`;
 	const summaryPanel = `${summaryId}-panel`;
-
-	/**
-	 * Standing in for a field that does not exist yet.
-	 *
-	 * `description` is the SEO meta description: already translated per view, and the only
-	 * summary-shaped text an article carries today. A reader-facing summary is a different job
-	 * and wants its own frontmatter key, written by the same pipeline that writes alt text and
-	 * tags. Until then this shows the nearest honest thing rather than an empty panel.
-	 */
-	const summary = $derived(meta.description);
 
 	/**
 	 * The card for this article, at a URL nothing had to be told.

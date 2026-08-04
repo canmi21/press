@@ -245,7 +245,7 @@ fn body_of(source: &str) -> &str {
 }
 
 /// The `lang` an article declares, if it declares one.
-fn lang_of(source: &str) -> Option<String> {
+pub fn lang_of(source: &str) -> Option<String> {
 	let rest = source.strip_prefix("---\n")?;
 	let end = rest.find("\n---")?;
 	let value: serde_yaml_ng::Value = serde_yaml_ng::from_str(&rest[..end]).ok()?;

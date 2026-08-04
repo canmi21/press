@@ -1,5 +1,53 @@
 version: 1
 summary:
+  de-DE:
+    text: Aus der Erschöpfung langfristigen Indoor‑ und nächtlichen KI‑Codings heraus, versuchte ich, mit dem MacBook Air zum Flussufer zu gehen, um Inspiration und das Gefühl von draußen zu finden. Es prüfte, ob man im Freien weiter programmieren kann, indem man Typeless, Wispr Flow und den CLI‑Agenten nutzt, um manuelle Eingaben zu umgehen, wurde jedoch durch LCD‑Helligkeit, Stadtrauschen, LTE‑Roaming und den Verfall öffentlicher Räume eingeschränkt. Auf dem Weg im Vergleich zu Erinnerungen an Kindheits‑Flussufer, Grünflächen und Garagen fragte ich mich, warum Stadt, Technologie und Körperempfindungen so fremd geworden sind.
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:16:03.569858Z
+    seconds: 8.041294625
+    tokens: 14912
+    review: false
+  en-US:
+    text: Starting from the fatigue of long‑term indoor, late‑night AI coding, I tried taking a MacBook Air to the riverbank to seek inspiration and an outdoor feeling. It tested the possibility of continuing to code outdoors, using Typeless, Wispr Flow, and a CLI Agent to bypass manual input, yet was limited by LCD brightness, city noise, LTE roaming, and deteriorating public spaces. Along the way, I compared the riverbank, green areas, and garages of my childhood memories, questioning why the city, technology, and bodily sensations have all become unfamiliar.
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:15:51.245408Z
+    seconds: 5.342035375
+    tokens: 14740
+    review: false
+  es-ES:
+    text: Partiendo del agotamiento acumulado de codificar con IA en interiores durante largas noches, intento llevar mi MacBook Air a la ribera del río en busca de inspiración y de una sensación al aire libre. Compruebo la posibilidad de seguir programando al aire libre, usando Typeless, Wispr Flow y el CLI Agent para evitar la entrada manual, pero me veo limitado por el brillo de la pantalla LCD, el ruido urbano, la itinerancia LTE y los espacios públicos degradados. A lo largo del camino, comparo con los recuerdos de infancia de las riberas, zonas verdes y garajes, y me pregunto por qué la ciudad, la tecnología y las sensaciones corporales se vuelven tan extrañas.
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:16:23.892263Z
+    seconds: 6.535398
+    tokens: 14930
+    review: false
+  fr-FR:
+    text: Partant de la fatigue accumulée par de longues sessions d’AI coding en intérieur et tard dans la nuit, j’ai tenté d’emmener mon MacBook Air au bord du fleuve pour y chercher inspiration et sensations extérieures. J’ai testé la possibilité de coder à l’extérieur en utilisant Typeless, Wispr Flow et le CLI Agent pour éviter la saisie manuelle, mais j’ai été limité par la luminosité de l’écran LCD, le bruit urbain, l’itinérance LTE et la dégradation des espaces publics. En comparant le rivage, les espaces verts et le garage de mes souvenirs d’enfance, je me suis interrogé sur la raison pour laquelle la ville, la technologie et les sensations corporelles me semblent désormais étrangères.
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:16:17.974671Z
+    seconds: 5.916945542
+    tokens: 14848
+    review: false
+  ja-JP:
+    text: 長期間の室内や深夜のAIコーディングに疲れたことを出発点に、MacBook Air を持って川辺へインスピレーションと屋外感を求めてみた。屋外でコードを書き続け、Typeless、Wispr Flow、CLI Agent を利用して手入力を回避する可能性を検証したが、LCD の明るさ、都市の騒音、LTE ローミング、衰退した公共空間に制約された。子供時代の川岸、緑地、ガレージの記憶と照らし合わせながら、都市や技術、身体感覚がなぜかみな馴染めなくなっていることを問い続ける。
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:15:56.588346Z
+    seconds: 6.980857708
+    tokens: 14824
+    review: false
+  ko-KR:
+    text: 장기적인 실내와 밤늦게 AI 코딩의 피로에서 출발해, MacBook Air를 들고 강변에서 영감과 야외감을 찾으려 시도한다. 그것은 야외에서 코딩을 이어가고 Typeless, Wispr Flow, CLI Agent를 통해 수동 입력을 회피할 가능성을 검증하지만, LCD 밝기, 도시 소음, LTE 로밍, 쇠퇴한 공공 공간의 제약을 받는다. 어린 시절 기억 속 강가, 녹지, 차고와 대조하며, 도시와 기술, 신체 감각이 왜 모두 낯설게 되었는지 질문한다.
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:16:11.611801Z
+    seconds: 6.362295958
+    tokens: 14885
+    review: false
   zh-CN:
     text: 从长期室内、深夜 AI coding 的疲惫出发，试着带 MacBook Air 到江边寻找灵感与户外感。它检验了户外继续写代码、借 Typeless、Wispr Flow 与 CLI Agent 绕开手动输入的可能，却受 LCD 亮度、城市噪音、LTE 漫游和衰败公共空间限制。一路对照童年记忆中的江岸、绿地与车库，追问城市、技术和身体感受为何都变得陌生。
     provider: openai
@@ -7,4 +55,12 @@ summary:
     at: 2026-08-04T03:05:35.689038Z
     seconds: 12.64472425
     tokens: 20367
+    review: false
+  zh-TW:
+    text: 從長期室內、深夜 AI coding 的疲憊出發，嘗試帶 MacBook Air 到江邊尋找靈感與戶外感。它檢驗了戶外繼續寫程式碼、借 Typeless、Wispr Flow 與 CLI Agent 繞開手動輸入的可能，卻受 LCD 亮度、城市噪音、LTE 漫遊和衰敗公共空間限制。一路對照童年記憶中的江岸、綠地與車庫，追問城市、技術和身體感受為何都變得陌生。
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:16:30.42908Z
+    seconds: 11.405644416
+    tokens: 15287
     review: false

@@ -32,12 +32,17 @@ pub struct Outcome {
 enum Destination {
 	Tag(String),
 	Description(String),
+	/// An article's summary, addressed by the path of the article it belongs to.
+	Summary(std::path::PathBuf),
 }
 
 #[derive(Debug, Clone)]
 struct Item {
 	destination: Destination,
 	source: String,
+	/// The locale `source` is written in. `en-US` for everything a vision model produced;
+	/// an article's own language for a summary, which is written where the article was.
+	source_locale: String,
 	meaning: Option<String>,
 	locales: Vec<String>,
 	kind: Kind,
@@ -48,6 +53,7 @@ impl Item {
 		match &self.destination {
 			Destination::Tag(name) => format!("tag {name}/{locale}"),
 			Destination::Description(cid) => format!("description {cid}/{locale}"),
+			Destination::Summary(path) => format!("summary {}/{locale}", path.display()),
 		}
 	}
 }
@@ -55,6 +61,7 @@ impl Item {
 fn targets(
 	translations: &std::collections::BTreeMap<String, Translation>,
 	locales: &[&str],
+	source_locale: &str,
 	force: bool,
 ) -> (Vec<String>, usize) {
 	let mut wanted = Vec::new();
@@ -62,7 +69,9 @@ fn targets(
 	for locale in locales {
 		// The source is input, never output. For an ordinary tag, `cms tag` records the English
 		// label from the same vision answer that created it; even force must preserve that fact.
-		if *locale == SOURCE_LOCALE {
+		// A summary's source is whichever locale the article is written in, so this is passed
+		// rather than assumed.
+		if *locale == source_locale {
 			continue;
 		}
 		if !force && translations.contains_key(*locale) {
@@ -90,11 +99,12 @@ fn pending(
 			continue;
 		};
 		let display = tag.translations().expect("ordinary tag has translations");
-		let (wanted, already) = targets(display, locales, force);
+		let (wanted, already) = targets(display, locales, SOURCE_LOCALE, force);
 		skipped += already;
 		if !wanted.is_empty() {
 			items.push(Item {
 				destination: Destination::Tag(name.clone()),
+				source_locale: SOURCE_LOCALE.to_owned(),
 				source: source.to_owned(),
 				meaning: Some(meaning.to_owned()),
 				locales: wanted,
@@ -107,11 +117,12 @@ fn pending(
 		let Some(source) = entry.description.get(SOURCE_LOCALE) else {
 			continue;
 		};
-		let (wanted, already) = targets(&entry.description, locales, force);
+		let (wanted, already) = targets(&entry.description, locales, SOURCE_LOCALE, force);
 		skipped += already;
 		if !wanted.is_empty() {
 			items.push(Item {
 				destination: Destination::Description(cid.clone()),
+				source_locale: SOURCE_LOCALE.to_owned(),
 				source: source.text.clone(),
 				meaning: None,
 				locales: wanted,
@@ -122,10 +133,70 @@ fn pending(
 	(items, skipped)
 }
 
+/// Every article summary that has a source but not yet every translation.
+///
+/// Walks the sidecars rather than the articles: a summary the command has never been asked to
+/// write simply has no file, and an article is not evidence that one is owed.
+fn pending_summaries(contents: &Path, locales: &[&str], force: bool) -> (Vec<Item>, usize) {
+	let mut items = Vec::new();
+	let mut skipped = 0;
+	let mut stack = vec![contents.to_path_buf()];
+	while let Some(dir) = stack.pop() {
+		let Ok(entries) = std::fs::read_dir(&dir) else {
+			continue;
+		};
+		for entry in entries.flatten() {
+			let path = entry.path();
+			if path.is_dir() {
+				stack.push(path);
+				continue;
+			}
+			if !path.to_string_lossy().ends_with(".summary.yaml") {
+				continue;
+			}
+			// Which locale is the source is not a property of the sidecar -- every entry in it
+			// has the same shape. It is the article's own language, so the article is what
+			// answers, reached back from the sidecar's own name.
+			let article = path.with_extension("").with_extension("md");
+			let Some(source_locale) = std::fs::read_to_string(&article)
+				.ok()
+				.and_then(|source| crate::summary::lang_of(&source))
+				.and_then(|lang| crate::summary::source_locale(&lang))
+			else {
+				continue;
+			};
+			let sidecar = crate::summary::load(&path);
+			let Some(source) = sidecar
+				.summary
+				.get(source_locale)
+				.filter(|entry| !entry.text.trim().is_empty())
+			else {
+				continue;
+			};
+			let (wanted, already) = targets(&sidecar.summary, locales, source_locale, force);
+			skipped += already;
+			if !wanted.is_empty() {
+				items.push(Item {
+					destination: Destination::Summary(path.clone()),
+					source: source.text.clone(),
+					source_locale: source_locale.to_owned(),
+					meaning: None,
+					locales: wanted,
+					kind: Kind::Prose,
+				});
+			}
+		}
+	}
+	items.sort_by(|a, b| a.id("").cmp(&b.id("")));
+	(items, skipped)
+}
+
 fn tag_request(item: &Item) -> String {
 	let name = match &item.destination {
 		Destination::Tag(name) => name,
-		Destination::Description(_) => unreachable!("a tag request needs a tag destination"),
+		Destination::Description(_) | Destination::Summary(_) => {
+			unreachable!("a tag request needs a tag destination")
+		}
 	};
 	let meaning = item.meaning.as_deref().unwrap_or_default();
 	let markers = item
@@ -148,6 +219,21 @@ fn tag_request(item: &Item) -> String {
 		 line.\n{markers}\n\nNothing else. No preamble, quotes, explanation, or markdown.\n\nRaw \
 		 identifier: {name}\nEnglish source label: {}\nMeaning: {meaning}",
 		item.source,
+	)
+}
+
+/// Translating a summary, which is prose that was written to hold something back.
+///
+/// Said explicitly because a translator that "improves" it will complete the thought the
+/// original deliberately left open, and the withholding is the whole point of the text.
+fn summary_request(item: &Item, locale: &str) -> String {
+	format!(
+		"Translate this article summary from {} into {locale}. Keep its meaning, its register \
+		 and its length. It deliberately describes what the article asks without giving away \
+		 what the article concludes -- preserve that exactly; do not complete a thought it \
+		 leaves open, and do not add detail it withholds. Reply with the translation alone: no \
+		 preamble, quotes, explanation, or markdown.\n\n{}",
+		item.source_locale, item.source
 	)
 }
 
@@ -175,7 +261,10 @@ where
 	let mut last = Refusal::Failed(String::new());
 
 	while attempt < ATTEMPTS {
-		let prompt = description_request(item, locale);
+		let prompt = match &item.destination {
+			Destination::Summary(_) => summary_request(item, locale),
+			_ => description_request(item, locale),
+		};
 		let model = runner.model_for(item.kind, attempt).to_owned();
 		let at = crate::image::manifest::now();
 		let clock = std::time::Instant::now();
@@ -317,6 +406,11 @@ where
 	let described_path = media::path_for(repo);
 	let mut described = media::load(&described_path);
 	let (mut items, skipped) = pending(&registry, &described, locales, force);
+	// Summaries ride the same queue: the backoff, the exhausted-allowance stop and the
+	// save-per-answer rule are all already here, and a second loop would have to grow its own.
+	let (summaries, summaries_skipped) = pending_summaries(&repo.join("contents"), locales, force);
+	items.extend(summaries);
+	let skipped = skipped + summaries_skipped;
 	let wanted = items.len();
 	if let Some(limit) = limit {
 		items.truncate(limit);
@@ -332,7 +426,7 @@ where
 		.iter()
 		.map(|item| match item.destination {
 			Destination::Tag(_) => 1,
-			Destination::Description(_) => item.locales.len(),
+			Destination::Description(_) | Destination::Summary(_) => item.locales.len(),
 		})
 		.sum();
 	let progress = crate::progress::bar(calls as u64);
@@ -374,6 +468,32 @@ where
 						.push((format!("tag {name}"), error.to_string())),
 				}
 				progress.inc(1);
+			}
+			Destination::Summary(path) => {
+				for locale in &item.locales {
+					progress.set_message(format!("{} {locale}", path.display()));
+					match translate_description(runner, &item, locale, &mut ask).await {
+						Ok((translation, tokens, usd)) => {
+							// Reloaded per answer rather than held open: an interrupted run has
+							// to leave every translation it paid for on disk.
+							let mut sidecar = crate::summary::load(path);
+							sidecar.version = crate::summary::VERSION;
+							sidecar.summary.insert(locale.clone(), translation);
+							let encoded = serde_yaml_ng::to_string(&sidecar).map_err(std::io::Error::other)?;
+							std::fs::write(path, encoded)?;
+							outcome.translated += 1;
+							outcome.tokens += tokens;
+							outcome.usd += usd;
+						}
+						Err(Refusal::Exhausted(reason)) => {
+							outcome.exhausted = Some(reason);
+							progress.finish_and_clear();
+							return Ok(outcome);
+						}
+						Err(error) => outcome.failed.push((item.id(locale), error.to_string())),
+					}
+					progress.inc(1);
+				}
 			}
 			Destination::Description(cid) => {
 				for locale in &item.locales {
@@ -742,6 +862,7 @@ mod tests {
 		let item = Item {
 			destination: Destination::Tag("cellular-network".to_owned()),
 			source: "Cellular Network".to_owned(),
+			source_locale: SOURCE_LOCALE.to_owned(),
 			meaning: Some("mobile carrier connectivity and SIM service, not biology".to_owned()),
 			locales: vec!["zh-CN".to_owned()],
 			kind: Kind::Heading,

@@ -1,5 +1,53 @@
 version: 1
 summary:
+  de-DE:
+    text: 'Im Kontext von Rust‑Entwicklung werden die von Cargo verursachten Verlangsamungen beim Kompilieren und Linken analysiert: Es wird erörtert, warum das LLVM‑Backend, die Monomorphisierung generischer Typen und die Link‑Phase zu Engpässen führen, und welche Abwägungen bei Cranelift, codegen‑units, opt‑level und LTO zu treffen sind. Außerdem werden die unterschiedlichen Anforderungen von dev‑ und release‑Profilen, die Beschränkungen von FFI/Unsafe für alternative Backends sowie die Zielkonflikte von Werkzeugen wie mold, musl, UPX, cross und zig unter Linux hinsichtlich Geschwindigkeit, Kompatibilität, Größe und Debug‑Möglichkeiten behandelt.'
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:14:36.067437Z
+    seconds: 7.8551716670000005
+    tokens: 14786
+    review: false
+  en-US:
+    text: Around the issue of Cargo compilation and linking slowdown feedback in Rust development, it discusses why the LLVM backend, generic monomorphization, and the linking stage become bottlenecks, and weighs trade‑offs among Cranelift, codegen‑units, opt‑level, LTO, etc. The content also covers the different constraints of dev/release profiles, the limits that FFI/unsafe impose on optional backends, and the conflicts on Linux among tools such as mold, musl, UPX, cross, and zig regarding speed, compatibility, binary size, and debugging capability.
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:14:22.449326Z
+    seconds: 5.842676125
+    tokens: 14720
+    review: false
+  es-ES:
+    text: Se analizan los problemas de ralentización en la compilación y el enlace con Cargo en el desarrollo de Rust, explicando por qué el backend LLVM, la monomorización de genéricos y la fase de enlace son cuellos de botella, y sopesando las decisiones entre Cranelift, codegen‑units, opt‑level y LTO. También se abordan las distintas restricciones de los perfiles dev/release, las limitaciones que FFI/Unsafe impone a los backends opcionales, y los conflictos en Linux entre herramientas como mold, musl, UPX, cross y zig en cuanto a velocidad, compatibilidad, tamaño y capacidad de depuración.
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:14:58.087435Z
+    seconds: 6.081688292
+    tokens: 14747
+    review: false
+  fr-FR:
+    text: Autour du problème de ralentissement de la compilation et de l’édition de liens avec Cargo dans le développement Rust, on discute pourquoi le backend LLVM, la monomorphisation des génériques et l’étape de liaison constituent des goulets d’étranglement, et on pèse les compromis entre Cranelift, codegen‑units, opt‑level, LTO, etc. Le contenu couvre également les différentes contraintes des profils dev/release, les limitations imposées par FFI/Unsafe aux backends optionnels, ainsi que les conflits entre les outils sous Linux comme mold, musl, UPX, cross et zig en termes de vitesse, de compatibilité, de taille et de possibilités de débogage.
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:14:51.488295Z
+    seconds: 6.59830075
+    tokens: 14766
+    review: false
+  ja-JP:
+    text: Rust 開発における Cargo のコンパイルとリンクの遅延に関するフィードバックを中心に、なぜ LLVM バックエンド、ジェネリックの単相化、リンク段階がボトルネックとなるのかを議論し、Cranelift、codegen‑units、opt‑level、LTO などのトレードオフを検討する。内容は dev/release プロファイルの異なる制約、FFI/Unsafe が選択可能なバックエンドに課す制限、さらに Linux 上の mold、musl、UPX、cross、zig といったツールが速度、互換性、サイズ、デバッグ能力の間で抱える対立も網羅する。
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:14:28.292571Z
+    seconds: 7.77400775
+    tokens: 14836
+    review: false
+  ko-KR:
+    text: Rust 개발에서 Cargo 컴파일 및 링크가 느려지는 문제를 중심으로, LLVM 백엔드, 제네릭 단일화 및 링크 단계가 왜 병목이 되는지 논의하고, Cranelift, codegen-units, opt-level, LTO 등의 트레이드오프를 평가한다. 또한 dev/release 프로파일의 서로 다른 제약, FFI/Unsafe가 선택 가능한 백엔드에 미치는 제한, 그리고 Linux에서 mold, musl, UPX, cross, zig와 같은 도구들이 속도, 호환성, 크기 및 디버깅 능력 사이에서 겪는 충돌도 다룬다.
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:14:43.923502Z
+    seconds: 7.564024875
+    tokens: 14772
+    review: false
   zh-CN:
     text: 围绕 Rust 开发中 Cargo 编译与链接拖慢反馈的问题，讨论为何 LLVM 后端、泛型单态化与链接阶段成为瓶颈，并权衡 Cranelift、codegen-units、opt-level、LTO 等取舍。内容也覆盖 dev/release profile 的不同约束、FFI/Unsafe 对可选后端的限制，以及 Linux 上 mold、musl、UPX、cross 与 zig 等工具在速度、兼容性、体积和调试能力之间的冲突。
     provider: openai
@@ -7,4 +55,12 @@ summary:
     at: 2026-08-04T03:05:35.689039Z
     seconds: 8.13516825
     tokens: 28505
+    review: false
+  zh-TW:
+    text: 圍繞 Rust 開發中 Cargo 編譯與連結拖慢回饋的問題，討論為何 LLVM 後端、泛型單態化與連結階段成為瓶頸，並權衡 Cranelift、codegen‑units、opt‑level、LTO 等取捨。內容也涵蓋 dev/release profile 的不同約束、FFI/Unsafe 對可選後端的限制，以及 Linux 上 mold、musl、UPX、cross 與 zig 等工具在速度、相容性、體積與除錯能力之間的衝突。
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:15:04.170089Z
+    seconds: 6.393095
+    tokens: 14770
     review: false

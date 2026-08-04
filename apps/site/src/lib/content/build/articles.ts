@@ -21,6 +21,42 @@ import { buildPreviews } from './placeholder.ts';
 
 const SEGMENT_LAYOUT_VERSION = 3;
 
+type SummarySidecar = { summary?: Record<string, { text?: string }> };
+
+/**
+ * The locale an article's own language names, as the records are keyed.
+ *
+ * Frontmatter writes the short form; every locale-addressed record here uses the public tag.
+ * Traditional Chinese is matched by script before the language falls through -- the same rule
+ * `cms summary` applies on the other side of the file. See spec/i18n.md.
+ */
+function sourceLocale(lang: string): string {
+	const [primary = lang, ...rest] = lang.toLowerCase().split('-');
+	if (primary === 'zh') {
+		const traditional = rest.some((part) => part === 'hant' || ['tw', 'hk', 'mo'].includes(part));
+		return traditional ? 'zh-TW' : 'zh-CN';
+	}
+	const code = (Object.keys(PUBLIC_LANGUAGE) as Exclude<LocaleCode, 'mw'>[]).find(
+		(candidate) => PUBLIC_LANGUAGE[candidate].toLowerCase().split('-')[0] === primary,
+	);
+	return code ? PUBLIC_LANGUAGE[code] : 'en-US';
+}
+
+/** The summary sidecar, which is absent until `cms summary` has been run for that article. */
+async function readSummaries(file: string): Promise<Record<string, string>> {
+	try {
+		const text = await readFile(file.replace(/\.md$/, '.summary.yaml'), 'utf8');
+		const parsed = parseYaml(text) as SummarySidecar;
+		return Object.fromEntries(
+			Object.entries(parsed.summary ?? {})
+				.map(([locale, entry]) => [locale, entry?.text?.trim() ?? ''])
+				.filter(([, value]) => value.length > 0),
+		);
+	} catch {
+		return {};
+	}
+}
+
 type BuildPaths = {
 	contents: string;
 	assets: string;
@@ -130,10 +166,18 @@ export async function buildArticles(
 			readFile(sidecarFile, 'utf8'),
 		]);
 		const sidecar = parseYaml(sidecarText) as TranslationSidecar;
+		const summaries = await readSummaries(file);
 		const path = articlePath(paths.contents, file);
 		const url = `${URLS.apps.production.site}/${path}`;
+		// The original's own locale, read off the frontmatter before anything is compiled --
+		// `compile` reports it, but the resolver below needs it to run at all.
+		const originLocale = sourceLocale(/^lang:\s*(\S+)/m.exec(raw)?.[1] ?? 'en-US');
 		const source = await compile(raw, url, {
-			resolveAsset: createAssetResolver(assets, media, previews, 'en-US'),
+			// Not `en-US`. On the original view an image's alt is read beside prose in the
+			// article's own language, and a description generated in English and translated into
+			// eight is available in that one too. Reading the original meant hearing the pictures
+			// described in a language the article never used.
+			resolveAsset: createAssetResolver(assets, media, previews, originLocale),
 			highlight,
 			sourceFile: file,
 			embeds,
@@ -171,6 +215,10 @@ export async function buildArticles(
 						code,
 						languageTag: languageTag(code, sourceLanguage),
 						canonical: canonical[code],
+						// `mw` takes the summary written in the article's own language rather
+						// than a translation of it, for the same reason it takes that language's
+						// alt text: the original view is the one nothing was done to.
+						summary: summaries[code === 'mw' ? originLocale : PUBLIC_LANGUAGE[code]],
 					} satisfies ArticleView,
 				];
 			}),

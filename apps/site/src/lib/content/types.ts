@@ -86,6 +86,11 @@ export type ArticleView = Pick<Compiled, 'meta' | 'blocks' | 'feed' | 'text'> & 
 	code: LocaleCode;
 	languageTag: string;
 	canonical: string;
+	/**
+	 * What the article is about, withholding what it concludes. Written by `cms summary` into a
+	 * sidecar rather than into the article, so it is absent until that has been run.
+	 */
+	summary?: string;
 };
 
 export type CrateDep = {

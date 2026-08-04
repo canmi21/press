@@ -1,5 +1,53 @@
 version: 1
 summary:
+  de-DE:
+    text: Für Frontend‑Entwickler, die unzufrieden damit sind, dass Frameworks wie Next.js SSR standardmäßig einsetzen, aber häufig nur wenige Felder pro Anfrage aktualisieren müssen, diskutiert der Artikel, ob JTD‑Typbeschränkungen und eine Compile‑Zeit‑Aufzählung den vollen Seiten‑renderToString() ersetzen können. Er vergleicht und hinterfragt die Trade‑offs von SSG, ISR, React 19.2 PPR, RSC und Astro, wobei er die Grenzen von Markdown, Rich Text, beliebigen Server‑Komponenten und der Hydrations‑Konsistenz beibehält. Außerdem untersucht der Text die Machbarkeit in Rust‑, Go‑ und TypeScript‑Backends sowie in Serverless‑ und Desktop‑Szenarien und die Kosten, die die Einführung von QuickJS für die Entwickler‑Erfahrung mit sich bringt.
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:13:43.620171Z
+    seconds: 6.400510125
+    tokens: 14912
+    review: false
+  en-US:
+    text: Targeted at front‑end developers who are dissatisfied with frameworks like Next.js defaulting to SSR yet often only need to update a handful of fields per request, the article discusses whether JTD type constraints and compile‑time exhaustive enumeration can replace full‑page renderToString(). It compares and questions the trade‑offs of SSG, ISR, React 19.2 PPR, RSC and Astro, while preserving boundaries such as Markdown, Rich Text, arbitrary server components, and hydration consistency. The piece also examines feasibility across Rust, Go, and TypeScript back‑ends in Serverless and desktop scenarios, and the cost of introducing QuickJS for developer experience.
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:13:23.028495Z
+    seconds: 6.015326792
+    tokens: 14843
+    review: false
+  es-ES:
+    text: Dirigido a desarrolladores front‑end que están insatisfechos con que frameworks como Next.js adopten SSR como predeterminado, pero que a menudo solo necesitan actualizar unos pocos campos por petición, se debate si es posible reemplazar renderToString() de página completa con restricciones de tipo JTD y exhaustividad en tiempo de compilación. Se comparan y cuestionan los compromisos entre SSG, ISR, React 19.2 PPR, RSC y Astro, manteniendo límites como Markdown, texto enriquecido, componentes de servidor arbitrarios y la consistencia de la hidratación. El artículo también examina la viabilidad en entornos backend de Rust, Go y TypeScript, así como en escenarios Serverless y de escritorio, y el coste de introducir QuickJS para mejorar la experiencia de desarrollo.
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:14:08.297965Z
+    seconds: 6.377596
+    tokens: 14894
+    review: false
+  fr-FR:
+    text: Destiné aux développeurs front‑end mécontents que des cadres comme Next.js imposent le SSR par défaut alors qu’ils n’ont souvent besoin de ne mettre à jour que quelques champs par requête, il discute de la possibilité de remplacer le renderToString() complet par des contraintes de type JTD et une énumération à la compilation. Il compare et remet en question les compromis entre SSG, ISR, React 19.2 PPR, RSC et Astro, tout en conservant les limites du Markdown, du Rich Text, des composants serveur arbitraires et de la cohérence de l’hydratation. L’article examine également la faisabilité sur des back‑ends Rust, Go, TypeScript ainsi que les scénarios Serverless et Desktop, et le coût d’introduire QuickJS pour l’expérience développeur.
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:14:01.540256Z
+    seconds: 6.756685625
+    tokens: 14953
+    review: false
+  ja-JP:
+    text: Next.js などのフレームワークが SSR をデフォルトとしながら、実際にはリクエストごとに少量のフィールドだけを更新すれば良いという不満を抱えるフロントエンド開発者を対象に、JTD 型制約とコンパイル時の全列挙で全ページの renderToString() を代替できるかを議論する。SSG、ISR、React 19.2 の PPR、RSC、Astro のトレードオフを比較・検証しつつ、Markdown、リッチテキスト、任意のサーバーコンポーネント、ハイドレーションの一貫性といった境界は保持する。記事はさらに、Rust、Go、TypeScript のバックエンドと Serverless、デスクトップシーンにおける実現可能性、そして DX に QuickJS を導入するコストも検討する。
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:13:29.044406Z
+    seconds: 14.575205125
+    tokens: 14971
+    review: false
+  ko-KR:
+    text: Next.js 등 프레임워크가 SSR을 기본으로 삼는 것에 불만을 갖고, 실제로는 요청마다 소량의 필드만 업데이트하면 되는 프런트엔드 개발자를 대상으로, JTD 타입 제약과 컴파일 시 전수 검사를 통해 전체 페이지 renderToString()을 대체할 수 있는지 논의한다. 이 글은 SSG, ISR, React 19.2 PPR, RSC, Astro의 트레이드오프를 비교·비판하면서도 Markdown, Rich Text, 任意 서버 컴포넌트 및 hydration 일관성 등의 경계를 유지한다. 또한 Rust, Go, TypeScript 백엔드와 Serverless, Desktop 시나리오에서의 실현 가능성을 살펴보고, DX에 QuickJS를 도입하는 비용도 검토한다.
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:13:50.021394Z
+    seconds: 11.517887375
+    tokens: 14899
+    review: false
   zh-CN:
     text: 面向不满 Next.js 等框架把 SSR 作为默认、却常只需按请求更新少量字段的前端开发者，讨论能否以 JTD 类型约束和编译期穷举替代整页 renderToString()。它比较并质疑 SSG、ISR、React 19.2 PPR、RSC 与 Astro 的取舍，同时保留 Markdown、Rich Text、任意服务端组件及 hydration 一致性等边界。文章还考察跨 Rust、Go、TypeScript 后端与 Serverless、Desktop 场景的可行性，以及为 DX 引入 QuickJS 的代价。
     provider: openai
@@ -7,4 +55,12 @@ summary:
     at: 2026-08-04T03:05:35.689038Z
     seconds: 8.742394625
     tokens: 41193
+    review: false
+  zh-TW:
+    text: 針對不滿 Next.js 等框架將 SSR 設為預設、卻常只需依請求更新少量欄位的前端開發者，討論是否能以 JTD 類型約束與編譯期窮舉取代整頁 renderToString()。它比較並質疑 SSG、ISR、React 19.2 PPR、RSC 與 Astro 的取捨，同時保留 Markdown、Rich Text、任意伺服器端元件及 hydration 一致性等界限。文章亦考察跨 Rust、Go、TypeScript 後端與 Serverless、Desktop 場景的可行性，以及為 DX 引入 QuickJS 的代價。
+    provider: openai
+    model: gpt-oss-120b-medium
+    at: 2026-08-04T03:14:14.676239Z
+    seconds: 7.771868834
+    tokens: 14890
     review: false

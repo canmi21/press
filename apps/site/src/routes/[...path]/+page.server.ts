@@ -15,6 +15,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 	return {
 		meta: view.meta,
 		blocks: view.blocks,
+		summary: view.summary,
 		chars,
 		locale: {
 			code: view.code,
