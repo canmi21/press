@@ -253,18 +253,18 @@ export async function buildPages(
 	const pages: Page[] = [];
 
 	for (const file of files) {
-		const sidecarFile = file.replace(/\.md$/, '.i18n.yaml');
-		const [raw, sidecarText] = await Promise.all([
-			readFile(file, 'utf8'),
-			readFile(sidecarFile, 'utf8'),
-		]);
-		const sidecar = parseYaml(sidecarText) as TranslationSidecar;
+		const raw = await readFile(file, 'utf8');
 		const path = articlePath(paths.contents, file);
 		const source = compilePage(raw, file);
-		const { raws } = translatedRaws(file, `${path}.md`, raw, sidecar, layout);
-		const compiled = Object.fromEntries(
-			LOCALE_CODES.map((code) => [code, code === 'mw' ? source : compilePage(raws[code], file)]),
-		) as Record<LocaleCode, CompiledPage>;
+		// Every view of a page is the source. A page is not an article: the homepage is identity
+		// copy, its bio was always rendered from `mw` whatever the view, and the eight
+		// translations sitting beside it were never read by anything. Keeping them meant a
+		// sidecar the build could not start without, holding text nobody would ever see.
+		// See spec/i18n.md.
+		const compiled = Object.fromEntries(LOCALE_CODES.map((code) => [code, source])) as Record<
+			LocaleCode,
+			CompiledPage
+		>;
 		const views = Object.fromEntries(
 			LOCALE_CODES.map((code) => {
 				const { meta, blocks } = compiled[code];
@@ -275,8 +275,5 @@ export async function buildPages(
 		pages.push({ path, markdown: pageDocument(path, source), views });
 	}
 
-	return {
-		pages,
-		files: [...files, ...files.map((file) => file.replace(/\.md$/, '.i18n.yaml')), paths.segments],
-	};
+	return { pages, files: [...files, paths.segments] };
 }

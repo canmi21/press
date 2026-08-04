@@ -5,10 +5,15 @@ import { assemble, similarity, type SegmentLayout, type TranslationSidecar } fro
 import { CANONICAL_SIMILARITY_THRESHOLD, indexingMetadata } from './indexing';
 import { LOCALE_CODES, PUBLIC_LANGUAGE, type LocaleCode } from '../../locale/index';
 
+// Real articles, measured rather than invented: the threshold is a claim about actual
+// translations and a fixture written to sit on one side of it would prove nothing.
+//
+// `homepage` was here as the one English source until pages stopped being translated. Nothing
+// in `contents/` is authored in English now, so the English-source side of this is unmeasured
+// until an article is.
 const ARTICLES: { path: string; source: Exclude<LocaleCode, 'mw'> }[] = [
 	{ path: 'architecture/compile-time-rendering', source: 'zh' },
 	{ path: 'development/rust-cargo-cranelift-tuning', source: 'zh' },
-	{ path: 'homepage', source: 'en' },
 	{ path: 'milestone/less-is-more', source: 'zh' },
 	{ path: 'mirror/less-than-an-hour', source: 'zh' },
 ];

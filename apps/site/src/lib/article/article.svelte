@@ -151,7 +151,6 @@
 						{formatCompact(meta.views)}
 					</span>
 				{/if}
-				<LanguageSwitcher code={locale.code} sourceLanguage={meta.lang} />
 				{#if summary}
 					<!-- A disclosure, not a menu: it is deliberately not dismissed by clicking
 					     elsewhere, because a reader comparing the summary against the article is
@@ -168,7 +167,11 @@
 						<span>{m['article.summary']({}, { locale: locale.code })}</span>
 					</button>
 				{/if}
+				<LanguageSwitcher code={locale.code} sourceLanguage={meta.lang} />
 			</div>
+			{#if locale.code !== 'mw'}
+				<TranslationNotice code={locale.code} sourceLanguage={meta.lang} />
+			{/if}
 			{#if summary}
 				<!-- Rows collapse to 0fr rather than the box to height 0, which is the one way to
 				     animate to a height nobody measured. See spec/architecture.md on motion. -->
@@ -184,9 +187,6 @@
 						</p>
 					</div>
 				</div>
-			{/if}
-			{#if locale.code !== 'mw'}
-				<TranslationNotice code={locale.code} sourceLanguage={meta.lang} />
 			{/if}
 		</header>
 

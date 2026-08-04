@@ -226,6 +226,13 @@ pub async fn run(
 			break;
 		}
 		let article = std::fs::read_to_string(&path)?;
+		// A page is not an article and is never translated. The test is the same one `cms
+		// summary` applies: no `lang` frontmatter, no language to translate out of. The homepage
+		// is the standing example -- it is identity copy, rendered from the source in every
+		// view, and translations of it were only ever dead weight. See spec/i18n.md.
+		if crate::summary::lang_of(&article).is_none() {
+			continue;
+		}
 		let live = segment::translatable(&article);
 		let sidecar_path = store::path_for(&path);
 		let mut sidecar = store::load(&sidecar_path);
