@@ -15,7 +15,16 @@ describe('locale resolution', () => {
 		expect(resolveLocale({ query: 'fr', cookie: 'de', acceptLanguage: 'ja-JP' })).toBe('fr');
 		expect(resolveLocale({ query: null, cookie: 'de', acceptLanguage: 'ja-JP' })).toBe('de');
 		expect(resolveLocale({ query: null, cookie: null, acceptLanguage: 'ja-JP' })).toBe('ja');
-		expect(resolveLocale({ query: null, cookie: null, acceptLanguage: null })).toBe('mw');
+		expect(resolveLocale({ query: null, cookie: null, acceptLanguage: null })).toBe('en');
+	});
+
+	it('never hands the original to a reader who did not ask for it', () => {
+		// `mw` mixes whatever languages its author wanted, so it is the one view that cannot be
+		// guessed at. It is also Paraglide's baseLocale, which is a different fallback entirely --
+		// that one fills a missing string, this one picks the view. Neither implies the other.
+		for (const acceptLanguage of [null, '', '*', 'klingon', 'xx-YY;q=0.9']) {
+			expect(resolveLocale({ query: null, cookie: null, acceptLanguage })).toBe('en');
+		}
 	});
 
 	it('falls through unknown and malformed values instead of rejecting the request', () => {

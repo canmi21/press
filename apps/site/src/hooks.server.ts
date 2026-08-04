@@ -7,6 +7,9 @@ import { getArticle, getPage } from '$lib/content';
 import { app } from '$lib/server/api';
 import { themeScript } from '$lib/theme';
 import { languageTag, privateHtml, resolveLocale, shouldWriteLanguageCookie } from '$lib/locale';
+import { registerServerStrategy } from '$lib/locale/paraglide';
+
+registerServerStrategy();
 
 // Serve clean markdown at <url>.md (llms.txt convention) generically, without a
 // per-target route — for articles and standalone pages (e.g. /homepage.md).
@@ -69,6 +72,9 @@ const pageHandle: Handle = async ({ event, resolve }) => {
 			hoistCharset(
 				html
 					.replace('%language.tag%', event.locals.locale?.languageTag ?? 'en-US')
+					// The internal code, for the client-side Paraglide strategy: the `language`
+					// cookie is httpOnly and a client strategy has to be synchronous.
+					.replace('%language.code%', event.locals.locale?.code ?? 'mw')
 					.replace('%theme.class%', theme === 'dark' ? 'dark' : '')
 					.replace('%theme.script%', themeScript),
 			),

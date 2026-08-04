@@ -1,5 +1,19 @@
 {
 	"extends": "./.svelte-kit/tsconfig.json",
+	// Repeats SvelteKit's own generated list, because `exclude` replaces rather than extends it.
+	// The paraglide entry is the addition: it is compiler output, and its `new Request(request)`
+	// calls do not typecheck against the Cloudflare Request types this project runs on. Checking
+	// generated code reports on a file nobody can edit.
+	"exclude": [
+		"./node_modules/**",
+		"./src/service-worker.js",
+		"./src/service-worker/**/*.js",
+		"./src/service-worker.ts",
+		"./src/service-worker/**/*.ts",
+		"./src/service-worker.d.ts",
+		"./src/service-worker/**/*.d.ts",
+		"./src/lib/paraglide/**"
+	],
 	"compilerOptions": {
 		"allowJs": true,
 		"allowImportingTsExtensions": true,

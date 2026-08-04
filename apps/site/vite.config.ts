@@ -5,6 +5,7 @@ import { URLS } from '@canmi/urls';
 import { sentrySvelteKit } from '@sentry/sveltekit';
 import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
+import { paraglideVitePlugin } from '@inlang/paraglide-js';
 import Icons from 'unplugin-icons/vite';
 import { defineConfig } from 'vite';
 import { parse as parseYaml } from 'yaml';
@@ -71,6 +72,17 @@ export default defineConfig(({ mode }) => {
 	return {
 		plugins: [
 			tailwindcss(),
+			// One strategy, no built-in fallback: locale negotiation stays in the worker and
+			// Paraglide is told the answer. `url` is deliberately absent -- a locale never appears
+			// in a path here, so there is nothing to delocalize and no `reroute` hook.
+			// See spec/locale.md.
+			paraglideVitePlugin({
+				// The SDK refuses any project path not ending in `.inlang`, so the whole name is
+				// the suffix. See spec/locale.md.
+				project: './.inlang',
+				outdir: './src/lib/paraglide',
+				strategy: ['custom-negotiated'],
+			}),
 			// Iconify sets compiled to Svelte components at build time, so a set contributes only
 			// the icons actually imported rather than a runtime font or sprite sheet.
 			Icons({ compiler: 'svelte' }),

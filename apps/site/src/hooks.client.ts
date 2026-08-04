@@ -2,6 +2,9 @@ import { dev } from '$app/environment';
 import { URLS } from '@canmi/urls';
 import * as Sentry from '@sentry/sveltekit';
 import { withoutLanguageParameter } from '$lib/locale';
+import { registerClientStrategy } from '$lib/locale/paraglide';
+
+registerClientStrategy();
 
 Sentry.init({
 	dsn: URLS.external.sentry.site,

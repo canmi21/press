@@ -9,6 +9,10 @@ build/
 dist/
 target/
 .svelte-kit/
+# Compiled from .inlang on every build; settings.json and messages/ are what is authored.
+apps/site/src/lib/paraglide/
+apps/site/.inlang/cache/
+apps/site/.inlang/.meta.json
 
 # data/ holds assets and the records describing them. The bytes stay out of git -- photos,
 # derived variants, fonts, a geocoding database -- and are mirrored to R2 or backed up

@@ -24,7 +24,13 @@ An HTML request resolves its locale from the first of these that answers:
 1. A `lang` query parameter.
 2. The locale cookie.
 3. `Accept-Language`.
-4. Failing all three, the article's own language.
+4. Failing all three, English.
+
+**Not the original.** `mw` holds whatever languages its author chose to mix, which makes it the
+one view that cannot be guessed at for a reader the site knows nothing about. It is a view
+readers ask for, never one they are handed by default; English is the widest guess available and
+every other view stays one click away. This is separate from the fallback that fills a missing
+translation -- see below, where the original is exactly the right answer.
 
 The query parameter wins outright and **also writes the cookie**, so choosing a language once
 is choosing it from then on. That is what makes the parameter a switch rather than a one-off
@@ -142,6 +148,54 @@ The trigger exposes its expanded state, the selected row is announced, and the m
 native activation plus arrow, Home, End, Escape, and Tab keyboard behaviour. Endonyms help a
 reader find the right row without first understanding the current content language; keyboard
 and screen-reader access are part of that same requirement.
+
+## UI messages come from Paraglide, which negotiates nothing
+
+Interface strings compile through Paraglide JS. Article content does not -- that is a separate
+pipeline, see [i18n.md](i18n.md).
+
+Paraglide is a consumer here, never a decider. Its strategy array holds one entry,
+`custom-negotiated`, with no built-in strategy behind it, and that strategy reads back the code
+the worker already resolved. The reason is the fourth input above: an article's own language is
+content-dependent and no library strategy can see it, so approximating the chain with `cookie`
+plus `preferredLanguage` would leave two negotiations to disagree in exactly the cases that
+matter. The `url` strategy is absent and there is no `reroute` hook, because a locale never
+appears in a path here and there is nothing to delocalize.
+
+The client reads that code from `<html data-locale>`, stamped by the server the same way the
+theme class is. A client strategy has to be synchronous and the `language` cookie is `httpOnly`;
+weakening the cookie to satisfy a strategy would trade a real protection for a value the server
+can simply state.
+
+### Two fallbacks that are not the same fallback
+
+`baseLocale` is `mw`, and it answers a different question from the negotiation default above.
+Negotiation picks which view a reader gets and never picks the original. `baseLocale` supplies a
+string the chosen view is missing, and there the original is exactly right: it is the one text
+always written, so it is the one that can always answer. A reader on English who meets an
+untranslated key sees the original's wording rather than a blank.
+
+Confusing the two produces the plausible-sounding mistake of setting both to the same value.
+
+### Locale identifiers stay internal
+
+Paraglide is configured with the internal codes, `mw` and `tw` included. It never emits them
+into a public attribute -- with `url` off they reach no address, and `<html lang>`, `hreflang`
+and `og:locale` still go through the mapping table above. `mw` is a locale like any other here,
+not a placeholder: it is the author's own voice, mixed as they please, and the interface is part
+of what is being read in the original.
+
+### Two traps worth writing down
+
+The project directory is `apps/site/.inlang/`. The SDK refuses any path not ending in `.inlang`,
+so the entire name is the suffix -- a directory called `inlang` loads fine once its metadata
+exists and fails on a fresh clone, which is the worst way for this to be discovered.
+
+The compiler reports success when it has loaded no plugin and found no messages. A wrong
+`modules` path or a wrong `pathPattern` prints `✔ Successfully compiled` and emits an empty
+index; both are resolved relative to the project directory's _parent_. When messages vanish,
+check that first rather than the message files. The plugin is a local dependency rather than the
+CDN URL the docs show, which keeps its version in the lockfile and out of `libs/urls`.
 
 ## A translated article identifies itself
 

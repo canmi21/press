@@ -39,6 +39,8 @@
 		"@canmi/tokens": "workspace:*",
 		"@cloudflare/workers-types": "^5.20260730.1",
 		"@iconify-json/mingcute": "^1.2.8",
+		"@inlang/paraglide-js": "^2.23.1",
+		"@inlang/plugin-message-format": "^4.4.0",
 		"@jsquash/webp": "^1.5.0",
 		"@sveltejs/adapter-cloudflare": "^7.2.9",
 		"@sveltejs/kit": "^2.70.1",
