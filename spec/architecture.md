@@ -108,6 +108,26 @@ Data palettes belong to the visualisation that gives them meaning, not to the si
 Cargo palette lives in a component-only stylesheet scoped below `.cargo-widget`; it stays vivid
 in both page themes and never becomes a token available to unrelated interface chrome.
 
+### Motion runs at runtime only when the value is not known in advance
+
+`motion` is a dependency, and reaching for `animate()` is the wrong default. It earns its place
+where the target is computed -- the article list measures the corpus before it knows what widths
+to animate to, and no stylesheet can hold a number that does not exist until the page has read
+its own content. A hover, an open, a state flip: those targets are written in the source, and
+running them through a library puts a per-frame JavaScript cost on an animation CSS was going
+to composite anyway.
+
+Wanting spring physics is not a reason to cross that line. A spring is a curve, and a curve can
+be sampled once and written as a CSS `linear()` easing -- which is what the library itself emits
+when it hands an animation to the browser. Sample it from `motion`'s own generator so the
+physics are not reimplemented by hand, then paste the result. The repo keeps the real curve and
+spends nothing at runtime.
+
+One trap worth stating, because it is invisible until someone wonders why the bounce never
+shows: an overshoot has to have somewhere to go. A spring driving `background-size` or a colour
+is clipped at its limit, so the overshoot is spent on nothing and the curve should simply be
+damped out. Only a transform, which can draw outside its own box, shows it.
+
 ## Workspace wiring
 
 The two package managers disagree about strictness, and the layout has to respect that.
