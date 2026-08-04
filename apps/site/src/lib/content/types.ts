@@ -90,7 +90,12 @@ export type ArticleView = Pick<Compiled, 'meta' | 'blocks' | 'feed' | 'text'> & 
 	 * What the article is about, withholding what it concludes. Written by `cms summary` into a
 	 * sidecar rather than into the article, so it is absent until that has been run.
 	 */
-	summary?: string;
+	summary?: ArticleSummary;
+};
+
+export type ArticleSummary = {
+	text: string;
+	provider: string;
 };
 
 export type CrateDep = {

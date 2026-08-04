@@ -8,6 +8,7 @@ import { compile, compilePage } from './compile.ts';
 import { indexingMetadata } from './indexing.ts';
 import type {
 	Article,
+	ArticleSummary,
 	ArticleView,
 	CompiledPage,
 	CrateRecord,
@@ -21,7 +22,7 @@ import { buildPreviews } from './placeholder.ts';
 
 const SEGMENT_LAYOUT_VERSION = 3;
 
-type SummarySidecar = { summary?: Record<string, { text?: string }> };
+type SummarySidecar = { summary?: Record<string, { text?: string; provider?: string }> };
 
 /**
  * The locale an article's own language names, as the records are keyed.
@@ -43,15 +44,20 @@ function sourceLocale(lang: string): string {
 }
 
 /** The summary sidecar, which is absent until `cms summary` has been run for that article. */
-async function readSummaries(file: string): Promise<Record<string, string>> {
+async function readSummaries(file: string): Promise<Record<string, ArticleSummary>> {
 	try {
 		const text = await readFile(file.replace(/\.md$/, '.summary.yaml'), 'utf8');
 		const parsed = parseYaml(text) as SummarySidecar;
-		return Object.fromEntries(
-			Object.entries(parsed.summary ?? {})
-				.map(([locale, entry]) => [locale, entry?.text?.trim() ?? ''])
-				.filter(([, value]) => value.length > 0),
-		);
+		const summaries: Record<string, ArticleSummary> = {};
+		for (const [locale, entry] of Object.entries(parsed.summary ?? {})) {
+			const summary = entry?.text?.trim();
+			if (!summary) continue;
+			summaries[locale] = {
+				text: summary,
+				provider: entry?.provider?.trim() ?? '',
+			};
+		}
+		return summaries;
 	} catch {
 		return {};
 	}
@@ -231,6 +237,7 @@ export async function buildArticles(
 		files: [
 			...files,
 			...files.map((file) => file.replace(/\.md$/, '.i18n.yaml')),
+			...files.map((file) => file.replace(/\.md$/, '.summary.yaml')),
 			paths.assets,
 			paths.media,
 			paths.segments,

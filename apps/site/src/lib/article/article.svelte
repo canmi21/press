@@ -6,9 +6,12 @@
 	import BookOpenText from '@lucide/svelte/icons/book-open-text';
 	import Sparkles from '@lucide/svelte/icons/sparkles';
 	import Type from '@lucide/svelte/icons/type';
+	import IconClaude from '~icons/mingcute/claude-line';
+	import IconGemini from '~icons/mingcute/google-gemini-line';
+	import IconOpenAi from '~icons/mingcute/openai-line';
 	import * as m from '$lib/paraglide/messages';
 	import type { Snippet } from 'svelte';
-	import type { Alternate, ArticleMeta } from '$lib/content/types';
+	import type { Alternate, ArticleMeta, ArticleSummary } from '$lib/content/types';
 	import type { LocaleCode } from '$lib/locale';
 	import LanguageSwitcher from '$lib/locale/switcher.svelte';
 	import { formatCompact } from './format';
@@ -32,14 +35,25 @@
 		meta: ArticleMeta;
 		chars: number;
 		/** Absent until `cms summary` has been run for this article; the row then omits it. */
-		summary?: string;
+		summary?: ArticleSummary;
 		locale: ArticleLocale;
 		children: Snippet;
 	} = $props();
 
 	const urls = pickUrls(dev);
+	const SUMMARY_PROVIDERS = {
+		anthropic: { icon: IconClaude, name: 'Anthropic' },
+		google: { icon: IconGemini, name: 'Google Gemini' },
+		openai: { icon: IconOpenAi, name: 'OpenAI' },
+	} as const;
 
 	let summaryOpen = $state(false);
+	const summaryProvider = $derived(
+		summary
+			? SUMMARY_PROVIDERS[summary.provider as keyof typeof SUMMARY_PROVIDERS]
+			: undefined,
+	);
+	const SummaryProviderIcon = $derived(summaryProvider?.icon);
 	// One call only -- `$props.id()` may not be used twice in a component -- so the pair is
 	// derived from a single stable base.
 	const summaryId = $props.id();
@@ -177,14 +191,23 @@
 				     animate to a height nobody measured. See spec/architecture.md on motion. -->
 				<div class="summary-shell" data-open={summaryOpen}>
 					<div class="overflow-hidden">
-						<p
+						<div
 							id={summaryPanel}
 							role="region"
 							aria-labelledby={summaryTrigger}
 							class="mt-3 border-l-2 border-border-strong pr-3 pl-3 text-sm leading-relaxed text-text-soft"
 						>
-							{summary}
-						</p>
+							<p>{summary.text}</p>
+							{#if SummaryProviderIcon && summaryProvider}
+								<span
+									class="mt-2 flex justify-end"
+									aria-label={summaryProvider.name}
+									title={summaryProvider.name}
+								>
+									<SummaryProviderIcon class="h-4 w-auto" aria-hidden="true" />
+								</span>
+							{/if}
+						</div>
 					</div>
 				</div>
 			{/if}

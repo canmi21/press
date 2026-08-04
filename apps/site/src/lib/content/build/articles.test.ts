@@ -27,6 +27,10 @@ describe('article widget build inputs', () => {
 			expect(view.blocks.filter(({ type }) => type === 'tokei')).toHaveLength(1);
 			expect(view.blocks.filter(({ type }) => type === 'github')).toHaveLength(1);
 			expect(view.blocks.filter(({ type }) => type === 'cargo')).toHaveLength(2);
+			expect(view.summary).toMatchObject({ provider: 'openai' });
 		}
+		expect(files).toContain(
+			fileURLToPath(new URL('contents/development/rust-cargo-cranelift-tuning.summary.yaml', ROOT)),
+		);
 	});
 });
