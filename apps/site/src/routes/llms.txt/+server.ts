@@ -9,6 +9,9 @@ export const prerender = true;
 const DESCRIPTION =
 	"A developer's personal space for daily life, engineering, and research — part FAQ, part archive, a place to record and collect what's worth keeping.";
 
+const LANGUAGE_GUIDE =
+	'To fetch a translated HTML page or Atom feed, append `?lang={code}`, where `code` is one of `de`, `en`, `es`, `fr`, `ja`, `ko`, `zh`, or `tw`; fetch the original with `?lang=mw`, or with the bare URL when no language preference has yet been stored. Markdown (`.md`) endpoints always return the source exactly as written.';
+
 // Collapse YAML-folded whitespace so a subtitle stays on one line.
 function oneline(value: string): string {
 	return value.replace(/\s+/g, ' ').trim();
@@ -30,6 +33,8 @@ export const GET: RequestHandler = async () => {
 		`# ${site.name}`,
 		'',
 		`> ${DESCRIPTION}`,
+		'',
+		LANGUAGE_GUIDE,
 		'',
 		'## Site',
 		'',

@@ -45,7 +45,9 @@ Homepage cards and article lists take their title, subtitle, description, body, 
 from that article's resolved view; `mw` means each article's own original. The homepage bio is
 identity copy and stays in its English source form in every view. Collection UI such as the
 Writing heading resolves from the same code through the UI message table. `llms.txt` keeps its
-existing behaviour and has no indexed language dimension: an LLM can read any of the views.
+existing behaviour and has no indexed language dimension: an LLM can read any of the views. It
+documents the eight translation query codes and `mw` so a machine can ask HTML or Atom for a
+specific view, while every `.md` endpoint continues to return the source exactly as written.
 
 Server-only discovery routes do not inherit this negotiation. The sitemap publishes every
 indexable view at once. Atom selects from `lang` alone, because each query-specific feed is a
