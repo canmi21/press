@@ -197,16 +197,18 @@
 							aria-labelledby={summaryTrigger}
 							class="mt-3 border-l-2 border-border-strong pr-3 pl-3 text-sm leading-relaxed text-text-soft"
 						>
-							<p>{summary.text}</p>
-							{#if SummaryProviderIcon && summaryProvider}
-								<span
-									class="mt-2 flex justify-end"
-									aria-label={summaryProvider.name}
-									title={summaryProvider.name}
-								>
-									<SummaryProviderIcon class="h-4 w-auto" aria-hidden="true" />
-								</span>
-							{/if}
+							<p>
+								{summary.text}
+								{#if SummaryProviderIcon && summaryProvider}
+									<span
+										class="float-right mt-0.75 ml-2 block h-4"
+										aria-label={summaryProvider.name}
+										title={summaryProvider.name}
+									>
+										<SummaryProviderIcon class="h-4 w-auto" aria-hidden="true" />
+									</span>
+								{/if}
+							</p>
 						</div>
 					</div>
 				</div>
