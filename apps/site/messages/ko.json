@@ -7,5 +7,11 @@
 	"notice.translated": "번역본을 읽고 있습니다. 원문은 {#link}{language}{/link}입니다.",
 	"notice.polished": "이 글은 주로 {language}로 작성되었습니다. 지금 읽고 있는 판은 표현이 조금 다듬어졌을 수 있습니다. {#link}원문{/link}을 권합니다.",
 	"notice.script": "이 글은 주로 {language}로 작성되었습니다. 지금 읽고 있는 판은 자체 변환을 거쳤으므로 {#link}원문{/link}이 저자의 표현에 더 가깝습니다.",
-	"article.summary": "요약"
+	"article.summary": "요약",
+	"newsletter.heading": "뉴스레터",
+	"newsletter.pitch": "새 글과 가끔의 작은 선물을 받은 편지함으로. 아직 발송은 시작되지 않았습니다. 지금은 대기 명단이고, 첫 호가 나가면 받아 보게 됩니다.",
+	"newsletter.email": "이메일 주소",
+	"newsletter.subscribe": "구독하기",
+	"newsletter.subscribers": "{#cells}{count}{/cells}명의 구독자와 함께하기",
+	"newsletter.confirm": "명단에 등록됐습니다. 첫 호가 나가기 전까지는 아무것도 도착하지 않습니다."
 }

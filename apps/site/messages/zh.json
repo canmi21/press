@@ -7,5 +7,11 @@
 	"notice.translated": "你正在阅读翻译版本，原文是{#link}{language}{/link}。",
 	"notice.polished": "这篇文章主要以{language}写成。你正在阅读的译本可能带有细微的措辞润色，推荐阅读{#link}原文{/link}。",
 	"notice.script": "这篇文章主要以{language}写成。你正在阅读的简体版本经过字词转换，{#link}原文{/link}更接近作者本来的表达。",
-	"article.summary": "总结"
+	"article.summary": "总结",
+	"newsletter.heading": "邮件订阅",
+	"newsletter.pitch": "新文章，外加偶尔的 fun drop，直接寄到你的邮箱。目前还没开始寄，这是 waiting list，第一期发出时你会收到。",
+	"newsletter.email": "邮箱地址",
+	"newsletter.subscribe": "订阅",
+	"newsletter.subscribers": "加入 {#cells}{count}{/cells} 位订阅者",
+	"newsletter.confirm": "已经加进名单了。第一期发出之前不会收到任何东西。"
 }

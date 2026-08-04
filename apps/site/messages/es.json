@@ -7,5 +7,11 @@
 	"notice.translated": "Estás leyendo una traducción. El original está en {#link}{language}{/link}.",
 	"notice.polished": "Este artículo está escrito principalmente en {language}. La versión que estás leyendo puede incluir ligeros retoques de redacción; te recomendamos el {#link}original{/link}.",
 	"notice.script": "Este artículo está escrito principalmente en {language}. La versión que estás leyendo se ha convertido entre escrituras; el {#link}original{/link} se acerca más a la redacción del autor.",
-	"article.summary": "Resumen"
+	"article.summary": "Resumen",
+	"newsletter.heading": "Newsletter",
+	"newsletter.pitch": "Publicaciones nuevas y alguna sorpresa suelta, directo a tu bandeja. Todavía no se envía nada. Esto es la lista de espera, y recibirás el primer número.",
+	"newsletter.email": "Correo electrónico",
+	"newsletter.subscribe": "Suscribirse",
+	"newsletter.subscribers": "Únete a {#cells}{count}{/cells} suscriptores",
+	"newsletter.confirm": "Estás en la lista. No llegará nada hasta el primer número."
 }

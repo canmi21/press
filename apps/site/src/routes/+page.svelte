@@ -7,6 +7,7 @@
 	import ArticleList from '$lib/article/list.svelte';
 	import PageBody from '$lib/home/body.svelte';
 	import Icon from '$lib/home/icons.svelte';
+	import Newsletter from '$lib/newsletter/newsletter.svelte';
 	import { site } from '$lib/site';
 	import type { PageData } from './$types';
 
@@ -15,6 +16,8 @@
 	const cdnUrl = pickUrls(dev).cdn;
 	const avatarSrc = imgsrc('github:avatar:72544151@192', { cdnUrl });
 	const commitHash = import.meta.env.VITE_COMMIT_HASH;
+	// Standing in for the real figure until the subscriber count is served with the page.
+	const SUBSCRIBERS = 1284;
 
 	// Icons are center-anchored, so each is size-compensated independently. Base
 	// matches the inline text icons (h-4); wide/flat glyphs (Telegram) get a larger
@@ -80,6 +83,8 @@
 		</div>
 
 		<ArticleList articles={data.articles} heading={data.writing} />
+
+		<Newsletter locale={data.locale.code} subscribers={SUBSCRIBERS} />
 
 		<!-- Tune the focus ring for the whole icon group: a 0.125rem (2px) gap with
 		a 0.3125rem (5px) radius, inherited by each link's :focus-visible. Each link

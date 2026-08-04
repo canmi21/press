@@ -7,5 +7,11 @@
 	"notice.translated": "你正在阅读翻译版本，原文是{#link}{language}{/link}。",
 	"notice.polished": "这篇文章主要以{language}写成。你正在阅读的译本可能带有细微的措辞润色，推荐阅读{#link}原文{/link}。",
 	"notice.script": "这篇文章主要以{language}写成。你正在阅读的版本经过字词转换，{#link}原文{/link}更接近作者本来的表达。",
-	"article.summary": "Summary"
+	"article.summary": "Summary",
+	"newsletter.heading": "Newsletter",
+	"newsletter.pitch": "New posts and the occasional fun drop, straight to your inbox. Nothing is sending yet. This is the waiting list, and you get the first issue when it goes out.",
+	"newsletter.email": "Email address",
+	"newsletter.subscribe": "Subscribe",
+	"newsletter.subscribers": "Join {#cells}{count}{/cells} subscribers",
+	"newsletter.confirm": "You're on the list. Nothing arrives until the first issue goes out."
 }

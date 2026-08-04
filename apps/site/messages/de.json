@@ -7,5 +7,11 @@
 	"notice.translated": "Du liest eine Übersetzung. Das Original ist auf {#link}{language}{/link}.",
 	"notice.polished": "Dieser Artikel ist überwiegend auf {language} geschrieben. Die Fassung, die du liest, kann leichte sprachliche Glättungen enthalten; empfohlen wird das {#link}Original{/link}.",
 	"notice.script": "Dieser Artikel ist überwiegend auf {language} geschrieben. Die Fassung, die du liest, wurde zwischen Schriften umgesetzt; das {#link}Original{/link} kommt der Formulierung des Autors näher.",
-	"article.summary": "Zusammenfassung"
+	"article.summary": "Zusammenfassung",
+	"newsletter.heading": "Newsletter",
+	"newsletter.pitch": "Neue Beiträge und gelegentlich eine kleine Überraschung, direkt in dein Postfach. Es wird noch nichts versendet. Das hier ist die Warteliste, und die erste Ausgabe bekommst du.",
+	"newsletter.email": "E-Mail-Adresse",
+	"newsletter.subscribe": "Abonnieren",
+	"newsletter.subscribers": "Schließ dich {#cells}{count}{/cells} Abonnenten an",
+	"newsletter.confirm": "Du stehst auf der Liste. Bis zur ersten Ausgabe kommt nichts an."
 }

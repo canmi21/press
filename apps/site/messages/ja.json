@@ -7,5 +7,11 @@
 	"notice.translated": "翻訳版を読んでいます。原文は{#link}{language}{/link}です。",
 	"notice.polished": "この記事は主に{language}で書かれています。読んでいる版には細かな表現の調整が入っている場合があります。{#link}原文{/link}をおすすめします。",
 	"notice.script": "この記事は主に{language}で書かれています。読んでいる版は字体変換を経ているため、{#link}原文{/link}のほうが著者本来の表現に近くなります。",
-	"article.summary": "要約"
+	"article.summary": "要約",
+	"newsletter.heading": "ニュースレター",
+	"newsletter.pitch": "新しい記事と、ときどきの小さなおまけを受信トレイへ。配信はまだ始まっていません。これは順番待ちのリストで、第一号が出たらお届けします。",
+	"newsletter.email": "メールアドレス",
+	"newsletter.subscribe": "購読する",
+	"newsletter.subscribers": "{#cells}{count}{/cells} 人の購読者に加わる",
+	"newsletter.confirm": "リストに登録しました。第一号が出るまで何も届きません。"
 }
