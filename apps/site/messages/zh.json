@@ -14,13 +14,14 @@
 	"newsletter.subscribe": "订阅",
 	"newsletter.subscribers": "加入 {#cells}{count}{/cells} 位订阅者",
 	"newsletter.confirm": "已经加进名单了。第一期发出之前不会收到任何东西。",
-	"support.heading": "支持",
+	"support.heading": "支持一下",
 	"support.like": "{count} 个赞",
 	"support.follow-short": "关注",
 	"support.follow": "在 GitHub 上关注",
 	"support.google-short": "Google",
-	"support.google": "在 Google 中设为首选",
-	"support.sponsor-short": "赞助",
-	"support.sponsor": "请我喝杯咖啡",
+	"support.google": "设为 Google 偏好",
+	"support.new-tab": "在新标签页中打开",
+	"support.sponsor-short": "Coffee",
+	"support.sponsor": "请我喝杯 Coffee",
 	"support.revision": "查看版本 {commit}"
 }

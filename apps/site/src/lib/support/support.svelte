@@ -8,6 +8,12 @@
 
 	const WIDTH_SPRING = { type: 'spring' as const, stiffness: 420, damping: 28, mass: 0.85 };
 	type AnimationControl = { stop: () => void };
+	type CopyGeometry = {
+		shortWidth: number;
+		longWidth: number;
+		prefix?: { mask: HTMLElement; width: number };
+		suffix?: { mask: HTMLElement; width: number };
+	};
 
 	let {
 		locale,
@@ -41,19 +47,64 @@
 		void onlike?.(liked);
 	}
 
-	function setExpanded(action: HTMLElement, expanded: boolean) {
+	function splitCopy(short: string, long: string) {
+		const start = long.indexOf(short);
+		if (start === -1) return undefined;
+		return {
+			prefix: long.slice(0, start),
+			shared: short,
+			suffix: long.slice(start + short.length),
+		};
+	}
+
+	function measureCopy(action: HTMLElement): CopyGeometry | undefined {
+		const shared = action.querySelector<HTMLElement>('.shared');
+		if (shared) {
+			const prefixMask = action.querySelector<HTMLElement>('.prefix-mask');
+			const prefixText = prefixMask?.firstElementChild as HTMLElement | undefined;
+			const suffixMask = action.querySelector<HTMLElement>('.suffix-mask');
+			const suffixText = suffixMask?.firstElementChild as HTMLElement | undefined;
+			const shortWidth = shared.scrollWidth;
+			const prefixWidth = prefixText?.scrollWidth ?? 0;
+			const suffixWidth = suffixText?.scrollWidth ?? 0;
+			return {
+				shortWidth,
+				longWidth: prefixWidth + shortWidth + suffixWidth,
+				prefix: prefixMask ? { mask: prefixMask, width: prefixWidth } : undefined,
+				suffix: suffixMask ? { mask: suffixMask, width: suffixWidth } : undefined,
+			};
+		}
+
 		const short = action.querySelector<HTMLElement>('.short');
 		const long = action.querySelector<HTMLElement>('.long');
-		if (!short || !long) return;
+		if (!short || !long) return undefined;
+		return { shortWidth: short.scrollWidth, longWidth: long.scrollWidth };
+	}
+
+	function revealCopy(width: number, chromeWidth: number, geometry: CopyGeometry) {
+		const distance = geometry.longWidth - geometry.shortWidth;
+		if (distance <= 0) return;
+		const progress = Math.max(0, (width - chromeWidth - geometry.shortWidth) / distance);
+		if (geometry.prefix) {
+			geometry.prefix.mask.style.width = `${geometry.prefix.width * progress}px`;
+		}
+		if (geometry.suffix) {
+			geometry.suffix.mask.style.width = `${geometry.suffix.width * progress}px`;
+		}
+	}
+
+	function setExpanded(action: HTMLElement, expanded: boolean) {
+		const geometry = measureCopy(action);
+		if (!geometry) return;
 
 		const currentWidth = action.getBoundingClientRect().width;
 		let chromeWidth = actionChromeWidths.get(action);
 		if (chromeWidth === undefined) {
-			chromeWidth = currentWidth - short.scrollWidth;
+			chromeWidth = currentWidth - geometry.shortWidth;
 			actionChromeWidths.set(action, chromeWidth);
 		}
 
-		const targetWidth = chromeWidth + (expanded ? long.scrollWidth : short.scrollWidth);
+		const targetWidth = chromeWidth + (expanded ? geometry.longWidth : geometry.shortWidth);
 		actionAnimations.get(action)?.stop();
 		actionAnimations.delete(action);
 		action.style.width = `${currentWidth}px`;
@@ -61,6 +112,7 @@
 
 		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 			action.style.width = expanded ? `${targetWidth}px` : '';
+			revealCopy(targetWidth, chromeWidth, geometry);
 			return;
 		}
 
@@ -69,6 +121,7 @@
 			...WIDTH_SPRING,
 			onUpdate: (width) => {
 				action.style.width = `${width}px`;
+				revealCopy(width, chromeWidth, geometry);
 			},
 			onComplete: () => {
 				if (actionAnimations.get(action) !== control) return;
@@ -94,10 +147,19 @@
 </script>
 
 {#snippet copy(short: string, long: string)}
-	<span class="copy" aria-hidden="true">
-		<span class="short">{short}</span>
-		<span class="long">{long}</span>
-	</span>
+	{@const parts = splitCopy(short, long)}
+	{#if parts}
+		<span class="copy segmented" aria-hidden="true">
+			<span class="prefix-mask reveal-mask"><span>{parts.prefix}</span></span>
+			<span class="shared">{parts.shared}</span>
+			<span class="suffix-mask reveal-mask"><span>{parts.suffix}</span></span>
+		</span>
+	{:else}
+		<span class="copy fallback" aria-hidden="true">
+			<span class="short">{short}</span>
+			<span class="long">{long}</span>
+		</span>
+	{/if}
 {/snippet}
 
 <section aria-labelledby="support-heading" class="mt-16">
@@ -127,7 +189,7 @@
 			href={sourcePreferenceHref}
 			target="_blank"
 			rel="noopener noreferrer"
-			aria-label={`${m['support.google']({}, { locale })} (opens in new tab)`}
+			aria-label={`${m['support.google']({}, { locale })} (${m['support.new-tab']({}, { locale })})`}
 			data-expanded="false"
 			onmouseenter={expand}
 			onmouseleave={collapse}
@@ -189,10 +251,32 @@
 	}
 
 	.copy {
+		flex: none;
+	}
+
+	.segmented {
+		display: inline-flex;
+		align-items: center;
+	}
+
+	.reveal-mask {
+		width: 0;
+		flex: none;
+		overflow: hidden;
+	}
+
+	.reveal-mask > span,
+	.shared {
+		display: block;
+		width: max-content;
+		white-space: pre;
+	}
+
+	.fallback {
 		display: inline-grid;
 	}
 
-	.copy > span {
+	.fallback > span {
 		grid-area: 1 / 1;
 		justify-self: start;
 		white-space: nowrap;

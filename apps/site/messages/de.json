@@ -14,13 +14,14 @@
 	"newsletter.subscribe": "Abonnieren",
 	"newsletter.subscribers": "Schließ dich {#cells}{count}{/cells} Abonnenten an",
 	"newsletter.confirm": "Du stehst auf der Liste. Bis zur ersten Ausgabe kommt nichts an.",
-	"support.heading": "Unterstützung",
+	"support.heading": "Unterstützen",
 	"support.like": "{count} Likes",
 	"support.follow-short": "Folgen",
 	"support.follow": "Auf GitHub folgen",
 	"support.google-short": "Google",
-	"support.google": "Bei Google bevorzugen",
-	"support.sponsor-short": "Unterstützen",
+	"support.google": "Diese Seite bei Google bevorzugen",
+	"support.new-tab": "öffnet in neuem Tab",
+	"support.sponsor-short": "Kaffee",
 	"support.sponsor": "Spendier mir einen Kaffee",
 	"support.revision": "Revision {commit} ansehen"
 }

@@ -15,12 +15,13 @@
 	"newsletter.subscribers": "{#cells}{count}{/cells} 人の購読者に加わる",
 	"newsletter.confirm": "リストに登録しました。第一号が出るまで何も届きません。",
 	"support.heading": "応援",
-	"support.like": "いいね {count}",
+	"support.like": "{count}件のいいね",
 	"support.follow-short": "フォロー",
 	"support.follow": "GitHub でフォロー",
 	"support.google-short": "Google",
-	"support.google": "Google で優先",
-	"support.sponsor-short": "スポンサー",
+	"support.google": "Googleの優先ソースに追加",
+	"support.new-tab": "新しいタブで開きます",
+	"support.sponsor-short": "コーヒー",
 	"support.sponsor": "コーヒーを一杯おごる",
 	"support.revision": "リビジョン {commit} を表示"
 }

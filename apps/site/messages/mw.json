@@ -20,7 +20,8 @@
 	"support.follow": "Follow on GitHub",
 	"support.google-short": "Google",
 	"support.google": "Prefer on Google",
+	"support.new-tab": "opens in new tab",
 	"support.sponsor-short": "Sponsor",
-	"support.sponsor": "Sponsor me a coffee",
+	"support.sponsor": "Sponsor my next coffee",
 	"support.revision": "View revision {commit}"
 }

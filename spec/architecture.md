@@ -135,8 +135,14 @@ and keyboard focus reveal the full localized instruction in place.
 
 The rail measures each localized short and long label, then springs the button between those live
 widths with `motion`. This is computed geometry rather than a fixed hover target: locale, font and
-the Like count all change the answer. The label crossfade follows the width movement so the control
-reads as unfolding instead of replacing one string with another.
+the Like count all change the answer. When the short label is a substring of the instruction, that
+shared text stays as one DOM segment. Prefix and suffix segments sit in zero-width masks driven by
+the same spring as the pill: a suffix is uncovered after a stationary label, while a prefix pushes
+the shared label right as it is uncovered. This makes the copy read as material revealed by the
+pill rather than one string replacing another. Every shipped locale preserves that substring for
+all three Support actions, with a message contract test guarding the relationship. The component
+keeps a crossfade only as a defensive fallback; these actions must not rely on it. Translations
+choose an idiomatic local short label first rather than forcing an English noun into every locale.
 
 Like keeps its remembered state legible without making the whole rail permanently heavy. A click
 fills the heart and updates the count; leaving returns the button to the ordinary paper surface.
