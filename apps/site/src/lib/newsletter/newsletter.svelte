@@ -5,13 +5,18 @@
 	import type { LocaleCode } from '$lib/locale';
 	import * as m from '$lib/paraglide/messages';
 
+	// Standing in for the real figure until the subscriber count is served with the page.
+	const PLACEHOLDER_SUBSCRIBERS = 1284;
+
 	let {
+		class: className = '',
 		locale,
-		subscribers,
+		subscribers = PLACEHOLDER_SUBSCRIBERS,
 		onsubscribe = pretendToSubscribe,
 	}: {
+		class?: string;
 		locale: LocaleCode;
-		subscribers: number;
+		subscribers?: number;
 		/** The seam the real endpoint plugs into; nothing else here knows where the address goes. */
 		onsubscribe?: (email: string) => Promise<void>;
 	} = $props();
@@ -33,7 +38,7 @@
 	}
 </script>
 
-<section aria-labelledby="newsletter-heading" class="mt-16">
+<section aria-labelledby="newsletter-heading" class="mt-16 {className}">
 	<h2 id="newsletter-heading" class="mb-3 font-medium text-text-strong">
 		{m['newsletter.heading']({}, { locale })}
 	</h2>

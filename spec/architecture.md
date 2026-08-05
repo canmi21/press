@@ -104,6 +104,23 @@ a quiet one-pixel border, compact type and a small shadow only on floating surfa
 reserved for focus, state and data. A categorical chart may be colourful, but its controls,
 tooltips and surrounding statistics use the same surfaces as the rest of the site.
 
+### The subscription surface closes both reading paths
+
+The same Newsletter component appears on the homepage and after the body of every article.
+The homepage reaches somebody browsing the site; the article tail reaches somebody who has
+finished reading. These are two entrances to one subscription, so they share copy, state and
+presentation rather than growing page-specific variants that can drift apart.
+
+An article separates the invitation from its authored body with the same quiet one-pixel rule
+used by the homepage's structural surfaces. The rule belongs to that placement, not to the
+Newsletter default, because the homepage already arrives at it across a section boundary.
+The invitation sits after the semantic `<article>`, not inside it: the table of contents scans
+that boundary, so only headings authored as article content can enter its navigation.
+
+Homepage-only interaction and site metadata stay outside it. Support actions and the colophon
+describe the site as a whole and would turn every article ending into a second homepage footer;
+an article page ends after its subscription invitation instead.
+
 Data palettes belong to the visualisation that gives them meaning, not to the site theme. The
 Cargo palette lives in a component-only stylesheet scoped below `.cargo-widget`; it stays vivid
 in both page themes and never becomes a token available to unrelated interface chrome.

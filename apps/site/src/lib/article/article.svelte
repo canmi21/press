@@ -15,6 +15,7 @@
 	import type { Alternate, ArticleMeta, ArticleSummary } from '$lib/content/types';
 	import type { LocaleCode } from '$lib/locale';
 	import LanguageSwitcher from '$lib/locale/switcher.svelte';
+	import Newsletter from '$lib/newsletter/newsletter.svelte';
 	import { formatCompact } from './format';
 	import Toc from './toc.svelte';
 	import TranslationNotice from './translation-notice.svelte';
@@ -214,84 +215,88 @@
 
 <main class="min-h-screen bg-page text-text">
 	<Toc />
-	<article class="mx-auto max-w-180 px-6 py-24">
-		<header>
-			<h1 class="text-text-strong">{meta.title}</h1>
-			<div class="mt-2 flex flex-wrap items-center gap-2 text-sm text-text-soft">
-				<time datetime={meta.created}>{date}</time>
-				<span
-					class="inline-flex items-center gap-1"
-					title="{chars} characters"
-					aria-label="{chars.toLocaleString('en-US')} characters"
-				>
-					<Type class="size-3.5" aria-hidden="true" />
-					{formatCompact(chars)}
-				</span>
-				{#if meta.views != null}
+	<div class="mx-auto max-w-180 px-6 py-24">
+		<article>
+			<header>
+				<h1 class="text-text-strong">{meta.title}</h1>
+				<div class="mt-2 flex flex-wrap items-center gap-2 text-sm text-text-soft">
+					<time datetime={meta.created}>{date}</time>
 					<span
 						class="inline-flex items-center gap-1"
-						title="{meta.views} views"
-						aria-label="{meta.views.toLocaleString('en-US')} views"
+						title="{chars} characters"
+						aria-label="{chars.toLocaleString('en-US')} characters"
 					>
-						<BookOpenText class="size-3.5" aria-hidden="true" />
-						{formatCompact(meta.views)}
+						<Type class="size-3.5" aria-hidden="true" />
+						{formatCompact(chars)}
 					</span>
+					{#if meta.views != null}
+						<span
+							class="inline-flex items-center gap-1"
+							title="{meta.views} views"
+							aria-label="{meta.views.toLocaleString('en-US')} views"
+						>
+							<BookOpenText class="size-3.5" aria-hidden="true" />
+							{formatCompact(meta.views)}
+						</span>
+					{/if}
+					{#if summary}
+						<!-- A disclosure, not a menu: it is deliberately not dismissed by clicking
+						     elsewhere, because a reader comparing the summary against the article is
+						     doing exactly that -- clicking elsewhere. Only the trigger closes it. -->
+						<button
+							type="button"
+							id={summaryTrigger}
+							aria-expanded={summaryOpen}
+							aria-controls={summaryPanel}
+							onclick={() => (summaryOpen = !summaryOpen)}
+							class="-mx-1 inline-flex cursor-pointer items-center gap-1 rounded-sm px-1 py-0.5 hover:bg-paper-hover hover:text-text-strong"
+						>
+							<Sparkles class="size-3.5" aria-hidden="true" />
+							<span>{m['article.summary']({}, { locale: locale.code })}</span>
+						</button>
+					{/if}
+					<LanguageSwitcher code={locale.code} sourceLanguage={meta.lang} />
+				</div>
+				{#if locale.code !== 'mw'}
+					<TranslationNotice code={locale.code} sourceLanguage={meta.lang} />
 				{/if}
 				{#if summary}
-					<!-- A disclosure, not a menu: it is deliberately not dismissed by clicking
-					     elsewhere, because a reader comparing the summary against the article is
-					     doing exactly that -- clicking elsewhere. Only the trigger closes it. -->
-					<button
-						type="button"
-						id={summaryTrigger}
-						aria-expanded={summaryOpen}
-						aria-controls={summaryPanel}
-						onclick={() => (summaryOpen = !summaryOpen)}
-						class="-mx-1 inline-flex cursor-pointer items-center gap-1 rounded-sm px-1 py-0.5 hover:bg-paper-hover hover:text-text-strong"
-					>
-						<Sparkles class="size-3.5" aria-hidden="true" />
-						<span>{m['article.summary']({}, { locale: locale.code })}</span>
-					</button>
-				{/if}
-				<LanguageSwitcher code={locale.code} sourceLanguage={meta.lang} />
-			</div>
-			{#if locale.code !== 'mw'}
-				<TranslationNotice code={locale.code} sourceLanguage={meta.lang} />
-			{/if}
-			{#if summary}
-				<!-- Rows collapse to 0fr rather than the box to height 0, which is the one way to
-				     animate to a height nobody measured. See spec/architecture.md on motion. -->
-				<div class="summary-shell" data-open={summaryOpen}>
-					<div class="overflow-hidden">
-						<div
-							id={summaryPanel}
-							role="region"
-							aria-labelledby={summaryTrigger}
-							class="mt-3 border-l-2 border-border-strong pr-3 pl-3 text-sm leading-relaxed text-text-soft"
-						>
-							<p use:alignSummaryProvider>
-								{summary.text}
-								{#if SummaryProviderIcon && summaryProvider}
-									<span
-										data-summary-provider
-										class="float-right mt-0.75 ml-2 block h-4"
-										aria-label={summaryProvider.name}
-										title={summaryProvider.name}
-									>
-										<SummaryProviderIcon class="h-4 w-auto" aria-hidden="true" />
-									</span>
-								{/if}
-							</p>
+					<!-- Rows collapse to 0fr rather than the box to height 0, which is the one way to
+					     animate to a height nobody measured. See spec/architecture.md on motion. -->
+					<div class="summary-shell" data-open={summaryOpen}>
+						<div class="overflow-hidden">
+							<div
+								id={summaryPanel}
+								role="region"
+								aria-labelledby={summaryTrigger}
+								class="mt-3 border-l-2 border-border-strong pr-3 pl-3 text-sm leading-relaxed text-text-soft"
+							>
+								<p use:alignSummaryProvider>
+									{summary.text}
+									{#if SummaryProviderIcon && summaryProvider}
+										<span
+											data-summary-provider
+											class="float-right mt-0.75 ml-2 block h-4"
+											aria-label={summaryProvider.name}
+											title={summaryProvider.name}
+										>
+											<SummaryProviderIcon class="h-4 w-auto" aria-hidden="true" />
+										</span>
+									{/if}
+								</p>
+							</div>
 						</div>
 					</div>
-				</div>
-			{/if}
-		</header>
+				{/if}
+			</header>
 
-		<div class="article-body mt-8 leading-relaxed">
-			{@render children()}
-		</div>
-	</article>
+			<div class="article-body mt-8 leading-relaxed">
+				{@render children()}
+			</div>
+		</article>
+
+		<Newsletter locale={locale.code} class="border-t border-border pt-12" />
+	</div>
 </main>
 
 <style>
