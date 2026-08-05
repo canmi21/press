@@ -13,5 +13,19 @@
 	"newsletter.email": "이메일 주소",
 	"newsletter.subscribe": "구독하기",
 	"newsletter.subscribers": "{#cells}{count}{/cells}명의 구독자와 함께하기",
-	"newsletter.confirm": "명단에 등록됐습니다. 첫 호가 나가기 전까지는 아무것도 도착하지 않습니다."
+	"newsletter.confirm": "명단에 등록됐습니다. 첫 호가 나가기 전까지는 아무것도 도착하지 않습니다.",
+	"colophon.heading": "판권",
+	"colophon.likes": "좋아요",
+	"colophon.follow": "팔로우",
+	"colophon.prefer": "Google에서 선호",
+	"colophon.sponsor": "후원하기",
+	"colophon.visitors": "방문자",
+	"colophon.days": "{days}일",
+	"colophon.online": "운영 기간",
+	"colophon.words": "자",
+	"colophon.updated": "{days}일 전",
+	"colophon.last-update": "최근 업데이트",
+	"colophon.revision": "리비전",
+	"colophon.articles": "글",
+	"colophon.code": "코드"
 }

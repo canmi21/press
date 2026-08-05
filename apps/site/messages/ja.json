@@ -13,5 +13,19 @@
 	"newsletter.email": "メールアドレス",
 	"newsletter.subscribe": "購読する",
 	"newsletter.subscribers": "{#cells}{count}{/cells} 人の購読者に加わる",
-	"newsletter.confirm": "リストに登録しました。第一号が出るまで何も届きません。"
+	"newsletter.confirm": "リストに登録しました。第一号が出るまで何も届きません。",
+	"colophon.heading": "奥付",
+	"colophon.likes": "いいね",
+	"colophon.follow": "フォロー",
+	"colophon.prefer": "Google で優先",
+	"colophon.sponsor": "スポンサー",
+	"colophon.visitors": "訪問者",
+	"colophon.days": "{days} 日",
+	"colophon.online": "稼働期間",
+	"colophon.words": "文字",
+	"colophon.updated": "{days} 日前",
+	"colophon.last-update": "最終更新",
+	"colophon.revision": "リビジョン",
+	"colophon.articles": "記事",
+	"colophon.code": "コード"
 }

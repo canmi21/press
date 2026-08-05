@@ -20,6 +20,7 @@ describe('URLS', () => {
 		expect(URLS.internal).toHaveProperty('infra');
 		expect(URLS.internal).toHaveProperty('link');
 		expect(URLS.external.github).toHaveProperty('cdn');
+		expect(URLS.external.google).toHaveProperty('sourcePreferences');
 		expect(URLS.external.social).toHaveProperty('telegram');
 	});
 

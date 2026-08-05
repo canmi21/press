@@ -13,5 +13,19 @@
 	"newsletter.email": "Correo electrónico",
 	"newsletter.subscribe": "Suscribirse",
 	"newsletter.subscribers": "Únete a {#cells}{count}{/cells} suscriptores",
-	"newsletter.confirm": "Estás en la lista. No llegará nada hasta el primer número."
+	"newsletter.confirm": "Estás en la lista. No llegará nada hasta el primer número.",
+	"colophon.heading": "Colofón",
+	"colophon.likes": "me gusta",
+	"colophon.follow": "Seguir",
+	"colophon.prefer": "Preferir en Google",
+	"colophon.sponsor": "Patrocinar",
+	"colophon.visitors": "visitantes",
+	"colophon.days": "{days} días",
+	"colophon.online": "en línea",
+	"colophon.words": "palabras",
+	"colophon.updated": "hace {days} días",
+	"colophon.last-update": "última actualización",
+	"colophon.revision": "Revisión",
+	"colophon.articles": "Artículos",
+	"colophon.code": "Código"
 }

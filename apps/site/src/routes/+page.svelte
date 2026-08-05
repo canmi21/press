@@ -2,9 +2,9 @@
 	import { dev } from '$app/environment';
 	import { imgsrc } from '@canmi/imgsrc';
 	import { pickUrls, URLS } from '@canmi/urls';
-	import GitMerge from '@lucide/svelte/icons/git-merge';
 	import Lollipop from '@lucide/svelte/icons/lollipop';
 	import ArticleList from '$lib/article/list.svelte';
+	import Colophon from '$lib/colophon/colophon.svelte';
 	import PageBody from '$lib/home/body.svelte';
 	import Icon from '$lib/home/icons.svelte';
 	import Newsletter from '$lib/newsletter/newsletter.svelte';
@@ -16,8 +16,18 @@
 	const cdnUrl = pickUrls(dev).cdn;
 	const avatarSrc = imgsrc('github:avatar:72544151@192', { cdnUrl });
 	const commitHash = import.meta.env.VITE_COMMIT_HASH;
-	// Standing in for the real figure until the subscriber count is served with the page.
+	const githubProfileUrl = `${URLS.external.github.web}/canmi21`;
+	const repositoryUrl = `${githubProfileUrl}/workspace`;
+	const commitUrl = `${repositoryUrl}/commit/${commitHash}`;
+	const googleSourceUrl = new URL(URLS.external.google.sourcePreferences);
+	googleSourceUrl.searchParams.set('q', URLS.apps.production.site);
+	// Standing in for the real figures until the counts are served with the page.
 	const SUBSCRIBERS = 1284;
+	const LIKES = 128;
+	const VISITORS = 12845;
+	const DAYS = 426;
+	const UPDATED = 3;
+	const WORDS = 48213;
 
 	// Icons are center-anchored, so each is size-compensated independently. Base
 	// matches the inline text icons (h-4); wide/flat glyphs (Telegram) get a larger
@@ -26,7 +36,7 @@
 	// `document` keeps server-only resources out of the client page router.
 	// See spec/locale.md#server-only-documents-leave-the-page-router.
 	const links = [
-		{ name: 'github', label: 'GitHub', href: 'https://github.com/canmi21', size: base },
+		{ name: 'github', label: 'GitHub', href: repositoryUrl, size: base },
 		{
 			name: 'twitter',
 			label: 'X',
@@ -86,14 +96,31 @@
 
 		<Newsletter locale={data.locale.code} subscribers={SUBSCRIBERS} />
 
-		<!-- Tune the focus ring for the whole icon group: a 0.125rem (2px) gap with
-		a 0.3125rem (5px) radius, inherited by each link's :focus-visible. Each link
-		is a fixed 1.25rem box so the ring is identical across the row regardless of
-		a glyph's optical-compensation size (e.g. Telegram's larger icon). -->
-		<nav
-			aria-label="Find me elsewhere"
-			class="mt-20 flex flex-wrap items-center justify-center gap-3 [--focus-ring-offset:0.125rem] [--focus-ring-radius:0.3125rem]"
-		>
+		<Colophon
+			locale={data.locale.code}
+			likes={LIKES}
+			visitors={VISITORS}
+			days={DAYS}
+			updated={UPDATED}
+			words={WORDS}
+			commit={commitHash}
+			commitHref={commitUrl}
+			followHref={githubProfileUrl}
+			sourcePreferenceHref={googleSourceUrl.href}
+		/>
+
+		<!-- Left-aligned like everything above it: the page is one text column all the way down,
+		and a centred footer was the only thing arguing otherwise. The ICP badge shares the row
+		rather than taking one of its own. -->
+		<div class="mt-12 flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
+			<!-- Tune the focus ring for the whole icon group: a 0.125rem (2px) gap with
+			a 0.3125rem (5px) radius, inherited by each link's :focus-visible. Each link
+			is a fixed 1.25rem box so the ring is identical across the row regardless of
+			a glyph's optical-compensation size (e.g. Telegram's larger icon). -->
+			<nav
+				aria-label="Find me elsewhere"
+				class="flex flex-wrap items-center gap-3 [--focus-ring-offset:0.125rem] [--focus-ring-radius:0.3125rem]"
+			>
 			{#each links as link (link.label)}
 				<a
 					href={link.href}
@@ -110,25 +137,18 @@
 					<Icon name={link.name} class={link.size} />
 				</a>
 			{/each}
-		</nav>
+			</nav>
 
-		<div
-			class="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-text-soft"
-		>
 			<a
 				href="https://icp.gov.moe/?keyword=20260000"
 				target="_blank"
 				rel="noopener noreferrer"
-				class="inline-flex items-center gap-1.5 transition-colors duration-200 hover:text-text-strong"
+				class="inline-flex items-center gap-1.5 text-[0.9375rem] text-text-soft transition-colors duration-200 hover:text-text-strong"
 			>
-				<Lollipop class="h-3.5 w-3.5" aria-hidden="true" />
+				<Lollipop class="h-4 w-4" aria-hidden="true" />
 				<span>ICP 20260000</span>
 				<span class="sr-only">(opens in new tab)</span>
 			</a>
-			<span class="inline-flex items-center gap-1.5">
-				<GitMerge class="h-3.5 w-3.5" aria-hidden="true" />
-				<span class="font-mono">{commitHash}</span>
-			</span>
 		</div>
 	</article>
 </main>

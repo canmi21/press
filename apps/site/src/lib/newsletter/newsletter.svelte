@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Check from '@lucide/svelte/icons/check';
 	import { ParaglideMessage } from '@inlang/paraglide-js-svelte';
+	import Counter from '$lib/components/counter.svelte';
 	import type { LocaleCode } from '$lib/locale';
 	import * as m from '$lib/paraglide/messages';
 
@@ -22,17 +23,6 @@
 	function pretendToSubscribe(_email: string): Promise<void> {
 		return new Promise((resolve) => setTimeout(resolve, 700));
 	}
-
-	const digits = $derived(String(Math.max(0, Math.trunc(subscribers))));
-
-	// One cell per digit, with a wider gap where a thousands separator would otherwise go. The
-	// grouping is drawn rather than formatted, so no locale supplies a separator character.
-	const digitCells = $derived(
-		[...digits].map((digit, index, all) => ({
-			digit,
-			grouped: index > 0 && (all.length - index) % 3 === 0,
-		})),
-	);
 
 	async function submit(event: SubmitEvent) {
 		event.preventDefault();
@@ -91,22 +81,13 @@
 		<p class="mt-3.5 text-[0.9375rem] text-text-soft">
 			<ParaglideMessage
 				message={m['newsletter.subscribers']}
-				inputs={{ count: digits }}
+				inputs={{ count: subscribers }}
 				options={{ locale }}
 			>
+				<!-- The cells are drawn rather than taken from the message's own text; the markup tag
+				only records where a translator wants the number to sit. -->
 				{#snippet cells()}
-					<!-- Drawn from `digitCells` rather than the message's own text, so each digit keeps
-					its box; the markup tag only records where a translator wants the number. -->
-					<!-- Baseline, not text-bottom: an inline-flex takes its baseline from its first item,
-					so the cells hand the digit's own baseline up to the sentence. -->
-					<span class="digit-cells mx-1 inline-flex">
-						{#each digitCells as cell, i (i)}
-							<span
-								class="ml-px flex h-6 w-4.5 items-center justify-center rounded-[0.25rem] border border-border bg-paper font-mono text-[0.8125rem] text-text-strong tabular-nums"
-								class:grouped={cell.grouped}>{cell.digit}</span
-							>
-						{/each}
-					</span>
+					<Counter value={subscribers} />
 				{/snippet}
 			</ParaglideMessage>
 		</p>
@@ -114,17 +95,9 @@
 </section>
 
 <style>
+	/* Both ends sit at the column edge, so both are pulled. The formula is in styles/app.css. */
 	.pill {
-		/* Pinned rather than derived from padding, because the optical compensation below needs a
-		   radius it can compute from. */
 		--pill-height: 3.375rem;
-		--pill-radius: calc(var(--pill-height) / 2);
-		/* A pill's edge, averaged down its own height, sits (1 - pi/4)r inside its box: the two
-		   caps remove exactly that much of the area a flush rectangle would cover. Pushing the box
-		   out by the same amount makes it read as the width of the text column rather than as an
-		   indent. Lower the coefficient if it overshoots; 0 is the uncompensated box. */
-		--pill-overhang: calc(var(--pill-radius) * 0.2146);
-		height: var(--pill-height);
 		margin-inline: calc(-1 * var(--pill-overhang));
 	}
 
@@ -142,22 +115,5 @@
 	.pill input:focus-visible {
 		outline: none;
 		box-shadow: none;
-	}
-
-	/* Digits sit wholly above the baseline, so a box aligned by baseline lands about 0.08em below
-	   the ink centre of the text around it. Measured on this page that centre is 0.370em above
-	   the baseline for Latin and 0.360em for CJK, so one shift serves both scripts and a
-	   per-script calibration would be arguing over 0.15px. Only CJK makes the error visible: its
-	   ink block is taller and denser, so there is something solid to judge the box against.
-
-	   Transform rather than vertical-align, which grows the line box and drags the baseline along
-	   with the cells, cancelling most of its own correction. */
-	.digit-cells {
-		transform: translateY(-0.08em);
-	}
-
-	/* Where the comma was. */
-	.grouped {
-		margin-left: 0.3125rem;
 	}
 </style>

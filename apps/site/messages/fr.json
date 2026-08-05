@@ -13,5 +13,19 @@
 	"newsletter.email": "Adresse e-mail",
 	"newsletter.subscribe": "S'abonner",
 	"newsletter.subscribers": "Rejoignez {#cells}{count}{/cells} abonnés",
-	"newsletter.confirm": "Vous êtes sur la liste. Rien n'arrivera avant le premier numéro."
+	"newsletter.confirm": "Vous êtes sur la liste. Rien n'arrivera avant le premier numéro.",
+	"colophon.heading": "Colophon",
+	"colophon.likes": "j'aime",
+	"colophon.follow": "Suivre",
+	"colophon.prefer": "Préférer sur Google",
+	"colophon.sponsor": "Soutenir",
+	"colophon.visitors": "visiteurs",
+	"colophon.days": "{days} jours",
+	"colophon.online": "en ligne",
+	"colophon.words": "mots",
+	"colophon.updated": "il y a {days} jours",
+	"colophon.last-update": "dernière mise à jour",
+	"colophon.revision": "Révision",
+	"colophon.articles": "Articles",
+	"colophon.code": "Code"
 }

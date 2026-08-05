@@ -25,6 +25,9 @@ export const URLS = {
 			avatars: 'https://avatars.githubusercontent.com',
 			cdn: 'https://cdn.jsdelivr.net/gh',
 		},
+		google: {
+			sourcePreferences: 'https://www.google.com/preferences/source',
+		},
 		robotstxt: 'https://www.robotstxt.org/robotstxt.html',
 		// A Sentry DSN only permits *sending* events to one project -- it grants no read
 		// access -- and the browser SDK compiles it into the bundle, where anyone can read it
