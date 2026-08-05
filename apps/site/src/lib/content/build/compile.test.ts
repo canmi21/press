@@ -63,7 +63,9 @@ it('marks prose links with the shared keyboard focus treatment', async () => {
 	const prose = compiled.blocks[0];
 	if (prose?.type !== 'prose') throw new Error('expected prose');
 
-	expect(prose.html).toContain('<a href="https://example.com" class="focus-link">');
+	expect(prose.html).toContain(
+		'<a href="https://example.com" class="focus-link spring-underline article-link">',
+	);
 });
 
 it('rejects translator notes in translated frontmatter with the article named', async () => {

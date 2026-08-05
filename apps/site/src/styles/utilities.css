@@ -1,3 +1,17 @@
+/* Every focus indicator on this site is the accent outline below, so the browser's own never gets
+   to draw. Chrome renders its default as a two-tone ring, a light contrast edge paired with its
+   blue, which reads as a stray white border against these surfaces; it reaches anything that takes
+   focus without opting into a utility, such as a menu panel that focuses itself as it opens. This
+   replaces that ring rather than removing it: a control nobody gave a focus utility stays visible to
+   the keyboard instead of going silent. Sitting in the base layer lets every rule below win.
+   See spec/styling.md. */
+@layer base {
+	:focus-visible {
+		outline: 0.125rem solid var(--color-accent);
+		outline-offset: 0;
+	}
+}
+
 /* Keyboard focus belongs to the control's visible shape. The direct variant follows the
    focusable box; the inner and within variants move the same outline to a representative child
    or ancestor when the hit area and visible control are different. Keeping this in the components
@@ -8,8 +22,8 @@
 	}
 
 	:where(.focus-link, .focus-link-inner) {
-		border-radius: 0.25rem;
-		line-height: 1.25rem;
+		--focus-link-height: 1.25rem;
+		line-height: var(--focus-link-height);
 	}
 
 	.focus-ring:focus-visible,
@@ -19,6 +33,103 @@
 	.focus-ring-within:has(:focus-visible) {
 		outline: 0.125rem solid var(--color-accent);
 		outline-offset: 0;
+	}
+
+	/* A text link's corner exists only to shape the outline, so it arrives with the outline. Left on
+	   at rest it would also clip the background, and a radius sized for a focus outline is twice the
+	   height of the underline stroke below: the corner arc cuts about 0.25rem off the bottom of each
+	   end and nothing off the top, bowing a straight line into a lens. See spec/styling.md. */
+	.focus-link:focus-visible,
+	:focus-visible > .focus-link-inner {
+		border-radius: 0.25rem;
+	}
+}
+
+@property --underline-progress {
+	syntax: '<length-percentage>';
+	inherits: false;
+	initial-value: 0%;
+}
+
+/* A background can spring from zero width while text-decoration cannot. Three layers make each
+   stroke a real capsule: a rectangular middle plus one circular cap at either end. The first
+   capsule grows over the always-present second one; article links only replace the two colours,
+   while the translation notice keeps the transparent default at rest. */
+.spring-underline {
+	--underline-height: 0.125rem;
+	--underline-radius: calc(var(--underline-height) / 2);
+	--underline-rest: transparent;
+	--underline-active: currentColor;
+	background-image:
+		radial-gradient(
+			circle var(--underline-radius) at right center,
+			var(--underline-active) 99%,
+			transparent 100%
+		),
+		linear-gradient(var(--underline-active), var(--underline-active)),
+		radial-gradient(closest-side, var(--underline-active) 99%, transparent 100%),
+		radial-gradient(
+			circle var(--underline-radius) at center,
+			var(--underline-rest) 99%,
+			transparent 100%
+		),
+		linear-gradient(var(--underline-rest), var(--underline-rest)),
+		radial-gradient(
+			circle var(--underline-radius) at center,
+			var(--underline-rest) 99%,
+			transparent 100%
+		);
+	background-repeat: no-repeat;
+	background-position:
+		left bottom,
+		var(--underline-radius) bottom,
+		left bottom,
+		right bottom,
+		var(--underline-radius) bottom,
+		left bottom;
+	background-size:
+		var(--underline-progress) var(--underline-height),
+		max(0rem, calc(var(--underline-progress) - var(--underline-height))) var(--underline-height),
+		min(var(--underline-progress), var(--underline-height)) var(--underline-height),
+		var(--underline-height) var(--underline-height),
+		calc(100% - var(--underline-height)) var(--underline-height),
+		var(--underline-height) var(--underline-height);
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+	transition: --underline-progress 315ms
+		linear(
+			0,
+			0.149,
+			0.393,
+			0.602,
+			0.752,
+			0.85,
+			0.911,
+			0.948,
+			0.97,
+			0.983,
+			0.99,
+			0.994,
+			0.997,
+			0.998,
+			0.999,
+			0.999,
+			1
+		);
+}
+
+.article-link {
+	--underline-rest: var(--color-border-strong);
+	--underline-active: var(--color-text-soft);
+}
+
+.spring-underline:is(:hover, :focus-visible) {
+	--underline-progress: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.spring-underline {
+		transition: none;
 	}
 }
 

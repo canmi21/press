@@ -170,7 +170,7 @@
 		padding: 0;
 		color: inherit;
 		font: inherit;
-		line-height: inherit;
+		line-height: var(--focus-link-height);
 		text-decoration-line: underline;
 		text-decoration-style: dotted;
 		text-decoration-color: var(--color-border-strong);

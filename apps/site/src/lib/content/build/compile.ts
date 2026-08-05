@@ -114,7 +114,10 @@ function markProseLinks(node: Nodes): void {
 	if (node.type === 'link') {
 		node.data = {
 			...node.data,
-			hProperties: { ...node.data?.hProperties, className: ['focus-link'] },
+			hProperties: {
+				...node.data?.hProperties,
+				className: ['focus-link', 'spring-underline', 'article-link'],
+			},
 		};
 	}
 	if ('children' in node) {
@@ -154,13 +157,7 @@ function proseHtml(node: RootContent): string {
 						tagName: 'a',
 						properties: {
 							href,
-							className: [
-								'focus-link',
-								'text-text-strong',
-								'underline',
-								'decoration-border',
-								'underline-offset-4',
-							],
+							className: ['focus-link', 'spring-underline', 'article-link', 'text-text-strong'],
 							// hast stores space-separated token lists as arrays. Writing this as one
 							// string produced `rel="noopener,noreferrer"` in the output, which is a
 							// single unrecognised token and so left the link unprotected.
