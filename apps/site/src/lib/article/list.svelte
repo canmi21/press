@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { measureNaturalWidth, prepareWithSegments } from '@chenglou/pretext';
 	import { animate } from 'motion';
+	import { remFromDefaultPixels, remFromMeasuredPixels } from '$lib/client/units';
 	import ArticleCard from './card.svelte';
 
 	let {
@@ -33,15 +34,6 @@
 	const SPRING = { type: 'spring' as const, stiffness: 320, damping: 30 };
 	const GAP_EASE = 'cubic-bezier(0.22, 1, 0.36, 1)';
 	const GAP_MS = 560;
-
-	// Bar dimensions above are authored against the 16px root default. We animate in px
-	// (scaled to the live root so springs stay smooth) but commit the resting size in
-	// rem, so bars track the root font for responsive scaling.
-	const REM_BASE = 16;
-	const rootFontPx = () =>
-		parseFloat(getComputedStyle(document.documentElement).fontSize) || REM_BASE;
-	const toRem = (n: number) => `${n / REM_BASE}rem`;
-	const toScaledPx = (n: number, root: number) => (n / REM_BASE) * root;
 
 	let listEl = $state<HTMLElement>();
 
@@ -87,7 +79,6 @@
 		if (icons.length !== articles.length || icons.length === 0) return;
 
 		const raf = requestAnimationFrame(() => {
-			const root = rootFontPx();
 			const font = fontOf(listEl?.querySelector('p') ?? document.body);
 			const natural = (t: string) => measureNaturalWidth(prepareWithSegments(t, font));
 
@@ -124,22 +115,22 @@
 					// Width springs via motion; marginTop is animated with the native
 					// WAAPI because motion only snaps layout props (it tweens width but
 					// jumps margin). Set the final margin as the base, then tween to it.
-					// Both animate in scaled px but rest in rem (see toRem/toScaledPx).
-					const widthPx = toScaledPx(target[i].width, root);
 					animate(
 						bar,
-						{ width: widthPx },
-						{ ...SPRING, onComplete: () => (bar.style.width = toRem(target[i].width)) }
+						{ width: remFromDefaultPixels(target[i].width) },
+						{
+							...SPRING,
+							onComplete: () =>
+								(bar.style.width = remFromDefaultPixels(target[i].width)),
+						}
 					);
-					const from = parseFloat(getComputedStyle(bar).marginTop) || 0;
-					const toPx = toScaledPx(target[i].gap, root);
-					bar.style.marginTop = toRem(target[i].gap);
-					if (Math.abs(from - toPx) > 0.5) {
-						bar.animate([{ marginTop: `${from}px` }, { marginTop: `${toPx}px` }], {
-							duration: GAP_MS,
-							easing: GAP_EASE
-						});
-					}
+					const from = Number.parseFloat(getComputedStyle(bar).marginTop) || 0;
+					const to = remFromDefaultPixels(target[i].gap);
+					bar.style.marginTop = to;
+					bar.animate([{ marginTop: remFromMeasuredPixels(from) }, { marginTop: to }], {
+						duration: GAP_MS,
+						easing: GAP_EASE,
+					});
 				});
 			});
 		});

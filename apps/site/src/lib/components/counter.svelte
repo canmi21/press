@@ -14,7 +14,7 @@
 <!-- The box and its optical alignment are in styles/app.css. -->
 <span class="value">
 	{#each cells as cell, i (i)}
-		<span class="value-cell ml-px w-4.5" class:grouped={cell.grouped}>{cell.digit}</span>
+		<span class="value-cell ml-0.25 w-4.5" class:grouped={cell.grouped}>{cell.digit}</span>
 	{/each}
 </span>
 

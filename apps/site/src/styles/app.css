@@ -29,7 +29,7 @@
    Digits sit wholly above the baseline, so a box aligned by baseline lands about 0.08em below the
    ink centre of the text around it. Measured on this page that centre is 0.370em above the
    baseline for Latin and 0.360em for CJK, so one shift serves both scripts and a per-script
-   calibration would be arguing over 0.15px. Only CJK makes the error visible: its ink block is
+	calibration would be arguing over 0.009375rem. Only CJK makes the error visible: its ink block is
    taller and denser, so there is something solid to judge the box against.
 
    Transform rather than vertical-align, which grows the line box and drags the baseline along with
@@ -44,7 +44,7 @@
 	height: 1.5rem;
 	align-items: center;
 	justify-content: center;
-	border: 1px solid var(--color-border);
+	border: 0.0625rem solid var(--color-border);
 	border-radius: 0.25rem;
 	background: var(--color-paper);
 	font-family: var(--font-mono);

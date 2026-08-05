@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ArrowUpRight from '@lucide/svelte/icons/arrow-up-right';
 	import { hierarchy, treemap } from 'd3-hierarchy';
+	import { remFromMeasuredPixels } from '$lib/client/units';
 	import { langColor, parseTokei, type LangStat } from './tokei';
 	import type { TokeiView } from '$lib/content/types';
 
@@ -220,7 +221,12 @@
 						{@const codePercent = percent(tip.stat.code, tip.stat.lines)}
 						{@const commentPercent = percent(tip.stat.comments, tip.stat.lines)}
 						{@const blankPercent = Math.max(0, 100 - codePercent - commentPercent)}
-						<div class="tooltip shadow-sm" style="left: {tip.x + 16}px; top: {tip.y + 16}px">
+						<div
+							class="tooltip shadow-sm"
+							style="left: calc({remFromMeasuredPixels(tip.x)} + 1rem); top: calc({remFromMeasuredPixels(
+								tip.y,
+							)} + 1rem)"
+						>
 							<div class="tooltip-head">
 								<span class="tooltip-dot" style="background: {langColor(tip.stat.lang)}" aria-hidden="true"></span>
 								<span class="tooltip-title">{tip.stat.lang}</span>
@@ -272,10 +278,10 @@
 	.chart-area { min-height: 6.25rem; }
 	.chart { position: relative; }
 	.chart svg { display: block; width: 100%; height: auto; }
-	.tile-name { fill: white; font-size: 12px; font-weight: 500; pointer-events: none; }
-	.tile-size { fill: rgb(255 255 255 / 75%); font-size: 10px; pointer-events: none; }
+	.tile-name { fill: white; font-size: 0.75rem; font-weight: 500; pointer-events: none; }
+	.tile-size { fill: rgb(255 255 255 / 75%); font-size: 0.625rem; pointer-events: none; }
 	.grid-line { stroke: var(--color-border); stroke-width: 1; }
-	.axis-label { fill: var(--color-text-soft); font-size: 11px; }
+	.axis-label { fill: var(--color-text-soft); font-size: 0.6875rem; }
 	.bottom-bar { display: flex; margin-top: 0.625rem; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.375rem 0.75rem; }
 	.legend { display: flex; gap: 0.75rem; color: var(--color-text-soft); font-size: 0.75rem; }
 	.legend span { display: flex; align-items: center; gap: 0.25rem; }
@@ -285,7 +291,7 @@
 	.summary a { display: inline-flex; align-items: center; gap: 0.0625rem; color: var(--color-text-soft); font-size: 0.6875rem; text-decoration: none; transition: color 140ms ease; }
 	.summary a:hover { color: var(--color-text-strong); }
 	.muted { color: var(--color-text-soft); }
-	.tooltip { position: absolute; z-index: 10; min-width: 11.25rem; max-width: 16.25rem; border: 1px solid var(--color-border); border-radius: 0.375rem; background: var(--color-paper); padding: 0.4rem 0.55rem; color: var(--color-text); font-size: 0.75rem; line-height: 1.4; pointer-events: none; }
+	.tooltip { position: absolute; z-index: 10; min-width: 11.25rem; max-width: 16.25rem; border: 0.0625rem solid var(--color-border); border-radius: 0.375rem; background: var(--color-paper); padding: 0.4rem 0.55rem; color: var(--color-text); font-size: 0.75rem; line-height: 1.4; pointer-events: none; }
 	.tooltip-head { display: flex; margin-bottom: 0.3rem; align-items: center; gap: 0.3rem; }
 	.tooltip-dot { width: 0.5rem; height: 0.5rem; flex-shrink: 0; border-radius: 0.125rem; }
 	.tooltip-title { font-weight: 560; }
@@ -294,13 +300,13 @@
 	.tooltip-grid { display: grid; grid-template-columns: auto 1fr; gap: 0 0.5rem; font-size: 0.6875rem; }
 	.tooltip-grid > :nth-child(even) { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; text-align: right; }
 	.tooltip-grid small { color: var(--color-text-soft); font-size: 0.65625rem; }
-	.nested { display: flex; margin-top: 0.25rem; padding-top: 0.25rem; flex-wrap: wrap; gap: 0.15rem 0.5rem; border-top: 1px solid var(--color-border); }
+	.nested { display: flex; margin-top: 0.25rem; padding-top: 0.25rem; flex-wrap: wrap; gap: 0.15rem 0.5rem; border-top: 0.0625rem solid var(--color-border); }
 	.nested span { display: inline-flex; align-items: center; gap: 0.2rem; color: var(--color-text-soft); font-size: 0.65625rem; white-space: nowrap; }
 	.nested i { width: 0.375rem; height: 0.375rem; }
 	.table-wrap { overflow-x: auto; }
 	table { width: 100%; border-collapse: collapse; color: var(--color-text-strong); font-size: 0.8125rem; }
-	th { border-bottom: 1px solid var(--color-border); padding: 0.5rem 0.375rem; color: var(--color-text-soft); font-size: 0.75rem; font-weight: 400; text-align: right; }
-	td { border-bottom: 0.5px solid var(--color-border); padding: 0.5rem 0.375rem; text-align: right; }
+	th { border-bottom: 0.0625rem solid var(--color-border); padding: 0.5rem 0.375rem; color: var(--color-text-soft); font-size: 0.75rem; font-weight: 400; text-align: right; }
+	td { border-bottom: 0.03125rem solid var(--color-border); padding: 0.5rem 0.375rem; text-align: right; }
 	.left, .language-cell { text-align: left; }
 	.language-cell { font-weight: 500; white-space: nowrap; }
 	.language-dot { display: inline-block; width: 0.625rem; height: 0.625rem; margin-right: 0.375rem; border-radius: 0.125rem; vertical-align: middle; }

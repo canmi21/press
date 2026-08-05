@@ -133,7 +133,7 @@
 		flex-direction: column;
 		gap: 0.35rem;
 		overflow: hidden;
-		border: 1px solid var(--color-border);
+		border: 0.0625rem solid var(--color-border);
 		border-radius: 0.75rem;
 		background: var(--color-paper);
 		padding: 0.6rem 0.75rem;
@@ -223,7 +223,7 @@
 		width: 0.6rem;
 		height: 0.6rem;
 		flex-shrink: 0;
-		border-radius: 9999px;
+		border-radius: 50%;
 	}
 
 	.corner {

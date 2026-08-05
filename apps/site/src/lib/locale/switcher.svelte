@@ -107,7 +107,7 @@
 			<CurrentMark class={markSize} aria-hidden="true" />
 			<span>{current?.name}</span>
 			<!-- Pulled back into the gap: the glyph carries its own padding inside the viewBox, so
-			     the 4px gap reads as noticeably more than it does beside the mark on the left. -->
+			     the 0.25rem gap reads as noticeably more than it does beside the mark on the left. -->
 			<IconUpSmall
 				class="-ml-0.5 h-4 w-auto transition-transform duration-200 ease-out motion-reduce:transition-none {open
 					? ''

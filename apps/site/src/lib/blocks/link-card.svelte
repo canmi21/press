@@ -147,9 +147,9 @@
 {/if}
 
 <style>
-	/* The card image already carries a 2px border, so the focus ring lands right on
+	/* The card image already carries a 0.125rem border, so the focus ring lands right on
 	top of it: drop the box-shadow ring and recolor that border to the accent, so the
-	2px ring overlaps the border exactly with no gap. */
+	0.125rem ring overlaps the border exactly with no gap. */
 	a:focus-visible {
 		outline: 0.125rem solid transparent;
 	}

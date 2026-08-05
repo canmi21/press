@@ -2,6 +2,7 @@
 	import './palette.css';
 	import ArrowUpRight from '@lucide/svelte/icons/arrow-up-right';
 	import { hierarchy, treemap, treemapBinary } from 'd3-hierarchy';
+	import { remFromMeasuredPixels } from '$lib/client/units';
 	import {
 		KIND_COLORS,
 		crateColors,
@@ -196,7 +197,12 @@
 				</svg>
 
 				{#if tip}
-					<div class="tooltip shadow-sm" style="left: {tip.x + 16}px; top: {tip.y + 16}px">
+					<div
+						class="tooltip shadow-sm"
+						style="left: calc({remFromMeasuredPixels(tip.x)} + 1rem); top: calc({remFromMeasuredPixels(
+							tip.y,
+						)} + 1rem)"
+					>
 						<div class="tooltip-head">
 							<span
 								class="tooltip-dot"
@@ -266,8 +272,8 @@
 	.chart svg { display: block; width: 100%; height: auto; }
 	.chart a { outline: none; }
 	.chart a:focus-visible rect:first-child { stroke: white; stroke-width: 2; }
-	.tile-name { fill: white; font-size: 11px; font-weight: 500; pointer-events: none; }
-	.tile-size { fill: rgb(255 255 255 / 70%); font-size: 9px; pointer-events: none; }
+	.tile-name { fill: white; font-size: 0.6875rem; font-weight: 500; pointer-events: none; }
+	.tile-size { fill: rgb(255 255 255 / 70%); font-size: 0.5625rem; pointer-events: none; }
 	.empty { margin: 0; color: var(--color-text-soft); font-size: 0.8125rem; }
 	.footer { display: flex; margin-top: 0.5rem; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.375rem 0.75rem; }
 	.legend { display: flex; gap: 0.75rem; color: var(--color-text-soft); font-size: 0.75rem; }
@@ -279,7 +285,7 @@
 	.links { display: flex; gap: 0.5rem; font-size: 0.6875rem; }
 	.links a { display: inline-flex; align-items: center; gap: 0.0625rem; color: var(--color-text-soft); text-decoration: none; transition: color 140ms ease; }
 	.links a:hover { color: var(--color-text-strong); }
-	.tooltip { position: absolute; z-index: 10; min-width: 11.25rem; max-width: 16.25rem; border: 1px solid var(--color-border); border-radius: 0.375rem; background: var(--color-paper); padding: 0.4rem 0.55rem; color: var(--color-text); font-size: 0.75rem; line-height: 1.4; pointer-events: none; }
+	.tooltip { position: absolute; z-index: 10; min-width: 11.25rem; max-width: 16.25rem; border: 0.0625rem solid var(--color-border); border-radius: 0.375rem; background: var(--color-paper); padding: 0.4rem 0.55rem; color: var(--color-text); font-size: 0.75rem; line-height: 1.4; pointer-events: none; }
 	.tooltip-head { display: flex; margin-bottom: 0.3rem; align-items: center; gap: 0.3rem; }
 	.tooltip-dot { width: 0.5rem; height: 0.5rem; flex-shrink: 0; border-radius: 0.125rem; }
 	.tooltip-title { font-weight: 560; }
@@ -288,8 +294,8 @@
 	.tooltip-grid > :nth-child(even) { overflow-wrap: anywhere; text-align: right; }
 	.table-wrap { overflow-x: auto; }
 	table { width: 100%; border-collapse: collapse; color: var(--color-text-strong); font-size: 0.8125rem; }
-	th { border-bottom: 1px solid var(--color-border); padding: 0.375rem; color: var(--color-text-soft); font-size: 0.75rem; font-weight: 400; text-align: right; }
-	td { border-bottom: 0.5px solid var(--color-border); padding: 0.375rem; text-align: right; }
+	th { border-bottom: 0.0625rem solid var(--color-border); padding: 0.375rem; color: var(--color-text-soft); font-size: 0.75rem; font-weight: 400; text-align: right; }
+	td { border-bottom: 0.03125rem solid var(--color-border); padding: 0.375rem; text-align: right; }
 	.left, .name-cell { text-align: left; }
 	.name-cell { font-weight: 500; white-space: nowrap; }
 	.crate-dot { display: inline-block; width: 0.5rem; height: 0.5rem; margin-right: 0.3125rem; border-radius: 0.125rem; vertical-align: middle; }

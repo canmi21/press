@@ -1,5 +1,23 @@
 # Styling
 
+## Browser lengths are authored in rem
+
+The default authoring ratio is `16 CSS pixels = 1rem`, matching the site's root size on the
+author's device. When the user describes a browser length in pixels without explicitly requiring
+the `px` unit, treat the number as a design measurement and store its rem conversion. This covers
+hairline borders and CSS written through JavaScript as well as ordinary layout declarations.
+
+Geometry read from the DOM is reported in CSS pixels. Calculations may stay numeric in that
+coordinate system, but any value written back to a style is divided by the live root font size and
+serialized as rem. The helpers in [units.ts](../apps/site/src/lib/client/units.ts) keep authored
+measurements and live DOM measurements distinct.
+
+Pixel quantities intrinsic to non-browser-length coordinate systems do not convert: raster asset
+dimensions, codec limits, favicon selection and fixed-size image or canvas composition remain
+pixels. SVG view-box coordinates remain unitless. An external browser API that only accepts pixels
+may keep them when no equivalent percentage is available; that constraint is documented beside the
+call rather than being generalized into a styling exception.
+
 ## Keyboard focus follows the visible control
 
 Keyboard focus uses a real two-pixel outline in the accessibility accent colour. The outline is

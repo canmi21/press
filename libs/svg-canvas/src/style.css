@@ -38,9 +38,9 @@
 	--color-border-warning: #d75f00;
 
 	/* Radius */
-	--border-radius-md: 8px;
-	--border-radius-lg: 12px;
-	--border-radius-xl: 16px;
+	--border-radius-md: 0.5rem;
+	--border-radius-lg: 0.75rem;
+	--border-radius-xl: 1rem;
 
 	/* SVG short aliases */
 	--p: var(--color-text-primary);
@@ -81,17 +81,17 @@
 	font-family: var(--font-sans);
 }
 .svg-canvas svg text.t {
-	font-size: 14px;
+	font-size: 0.875rem;
 	font-weight: 400;
 	fill: var(--color-text-primary);
 }
 .svg-canvas svg text.ts {
-	font-size: 12px;
+	font-size: 0.75rem;
 	font-weight: 400;
 	fill: var(--color-text-secondary);
 }
 .svg-canvas svg text.th {
-	font-size: 14px;
+	font-size: 0.875rem;
 	font-weight: 500;
 	fill: var(--color-text-primary);
 }

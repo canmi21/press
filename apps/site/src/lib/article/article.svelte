@@ -10,6 +10,7 @@
 	import IconGemini from '~icons/mingcute/google-gemini-line';
 	import IconOpenAi from '~icons/mingcute/openai-line';
 	import { layoutWithLines, prepareWithSegments } from '@chenglou/pretext';
+	import { remFromMeasuredPixels } from '$lib/client/units';
 	import * as m from '$lib/paraglide/messages';
 	import type { Snippet } from 'svelte';
 	import type { Alternate, ArticleMeta, ArticleSummary } from '$lib/content/types';
@@ -142,7 +143,7 @@
 					? width - last.width - startMargin - markWidth
 					: width - markWidth;
 				const inset = Math.min(Math.max(0, width - preceding.width), Math.max(0, room));
-				mark.style.marginInlineEnd = `${inset}px`;
+				mark.style.marginInlineEnd = remFromMeasuredPixels(inset);
 			});
 		};
 

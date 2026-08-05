@@ -3,6 +3,7 @@
 	import Heart from '@lucide/svelte/icons/heart';
 	import Star from '@lucide/svelte/icons/star';
 	import { animate } from 'motion';
+	import { remFromMeasuredPixels } from '$lib/client/units';
 	import { PUBLIC_LANGUAGE, type LocaleCode } from '$lib/locale';
 	import * as m from '$lib/paraglide/messages';
 
@@ -86,10 +87,14 @@
 		if (distance <= 0) return;
 		const progress = Math.max(0, (width - chromeWidth - geometry.shortWidth) / distance);
 		if (geometry.prefix) {
-			geometry.prefix.mask.style.width = `${geometry.prefix.width * progress}px`;
+			geometry.prefix.mask.style.width = remFromMeasuredPixels(
+				geometry.prefix.width * progress,
+			);
 		}
 		if (geometry.suffix) {
-			geometry.suffix.mask.style.width = `${geometry.suffix.width * progress}px`;
+			geometry.suffix.mask.style.width = remFromMeasuredPixels(
+				geometry.suffix.width * progress,
+			);
 		}
 	}
 
@@ -107,11 +112,11 @@
 		const targetWidth = chromeWidth + (expanded ? geometry.longWidth : geometry.shortWidth);
 		actionAnimations.get(action)?.stop();
 		actionAnimations.delete(action);
-		action.style.width = `${currentWidth}px`;
+		action.style.width = remFromMeasuredPixels(currentWidth);
 		action.dataset.expanded = String(expanded);
 
 		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-			action.style.width = expanded ? `${targetWidth}px` : '';
+			action.style.width = expanded ? remFromMeasuredPixels(targetWidth) : '';
 			revealCopy(targetWidth, chromeWidth, geometry);
 			return;
 		}
@@ -120,7 +125,7 @@
 		control = animate(currentWidth, targetWidth, {
 			...WIDTH_SPRING,
 			onUpdate: (width) => {
-				action.style.width = `${width}px`;
+				action.style.width = remFromMeasuredPixels(width);
 				revealCopy(width, chromeWidth, geometry);
 			},
 			onComplete: () => {
@@ -231,8 +236,8 @@
 		flex-shrink: 0;
 		align-items: center;
 		overflow: hidden;
-		border: 1px solid var(--color-border);
-		border-radius: 9999px;
+		border: 0.0625rem solid var(--color-border);
+		border-radius: 624.9375rem;
 		background: var(--color-paper);
 		padding-inline: 0.75rem;
 		font-weight: 500;

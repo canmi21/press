@@ -1,6 +1,11 @@
 <script lang="ts">
 	import { measureNaturalWidth, prepareWithSegments } from '@chenglou/pretext';
 	import { animate } from 'motion';
+	import {
+		DEFAULT_PIXELS_PER_REM,
+		remFromDefaultPixels,
+		remFromMeasuredPixels,
+	} from '$lib/client/units';
 
 	const MAX_BAR_WIDTH = 64;
 	const MIN_BAR_WIDTH = 8;
@@ -13,14 +18,13 @@
 	const BAR_SPRING = { type: 'spring' as const, stiffness: 300, damping: 28 };
 	const TEXT_TWEEN = { duration: 0.15 };
 
-	// Bar geometry above is authored against the 16px root default. We animate in px
-	// (scaled to the live root so springs stay smooth) but commit the resting size in
-	// rem, so bars track the root font for responsive scaling.
-	const REM_BASE = 16;
-	const rootFontPx = () =>
-		parseFloat(getComputedStyle(document.documentElement).fontSize) || REM_BASE;
-	const toRem = (n: number) => `${n / REM_BASE}rem`;
-	const toScaledPx = (n: number, root: number) => (n / REM_BASE) * root;
+	// Geometry is authored against the default root and written as rem. Calculations that mix it
+	// with DOM measurements scale it to the live root first.
+	const rootFontPixels = () =>
+		Number.parseFloat(getComputedStyle(document.documentElement).fontSize) ||
+		DEFAULT_PIXELS_PER_REM;
+	const toScaledPixels = (value: number, root: number) =>
+		(value / DEFAULT_PIXELS_PER_REM) * root;
 
 	type Phase = 'collapsed' | 'expanded' | 'revealed';
 	type Entry = { el: HTMLElement; width: number; text: string };
@@ -77,7 +81,8 @@
 		const lineHeight = label ? parseFloat(getComputedStyle(label).lineHeight) : 0;
 		const measuredLines = label && lineHeight > 0 ? Math.round(label.scrollHeight / lineHeight) : 1;
 		const lines = Math.min(2, Math.max(1, measuredLines));
-		const height = toScaledPx(INDICATOR_HEIGHT, rootFontPx()) + lineHeight * (lines - 1);
+		const height =
+			toScaledPixels(INDICATOR_HEIGHT, rootFontPixels()) + lineHeight * (lines - 1);
 		const center = button.offsetTop + button.offsetHeight / 2;
 		return { y: center - height / 2, height };
 	}
@@ -116,7 +121,7 @@
 		const cleanups: Array<() => void> = [];
 
 		for (const el of headings) {
-			el.style.scrollMarginTop = `${SCROLL_OFFSET}px`;
+			el.style.scrollMarginTop = remFromDefaultPixels(SCROLL_OFFSET);
 			cleanups.push(() => {
 				el.style.scrollMarginTop = '';
 			});
@@ -185,7 +190,7 @@
 					}
 				}
 			},
-			{ rootMargin: '0px 0px -70% 0px', threshold: 0 }
+			{ rootMargin: '0% 0% -70% 0%', threshold: 0 }
 		);
 		for (const h of headings) observer.observe(h);
 		cleanups.push(() => observer.disconnect());
@@ -223,19 +228,22 @@
 
 		if (showText) return;
 
-		const root = rootFontPx();
 		for (let i = 0; i < entries.length; i++) {
 			const bw = widths[i] ?? MAX_BAR_WIDTH / 2;
 			const op = i === active ? 0.8 : 0.35;
 			const bar = bars[i];
 			animate(
 				bar,
-				{ width: toScaledPx(bw, root), height: toScaledPx(BAR_HEIGHT, root), opacity: op },
+				{
+					width: remFromDefaultPixels(bw),
+					height: remFromDefaultPixels(BAR_HEIGHT),
+					opacity: op,
+				},
 				{
 					...BAR_SPRING,
 					onComplete: () => {
-						bar.style.width = toRem(bw);
-						bar.style.height = toRem(BAR_HEIGHT);
+						bar.style.width = remFromDefaultPixels(bw);
+						bar.style.height = remFromDefaultPixels(BAR_HEIGHT);
 					}
 				}
 			);
@@ -256,7 +264,6 @@
 			return;
 		}
 
-		const root = rootFontPx();
 		for (let i = 0; i < entries.length; i++) {
 			const bw = widths[i] ?? MAX_BAR_WIDTH / 2;
 			const restOp = i === active ? 0.8 : 0.35;
@@ -266,15 +273,15 @@
 			animate(
 				bar,
 				{
-					width: toScaledPx(targetW, root),
-					height: toScaledPx(targetH, root),
+					width: remFromDefaultPixels(targetW),
+					height: remFromDefaultPixels(targetH),
 					opacity: show ? 0 : restOp
 				},
 				{
 					...BAR_SPRING,
 					onComplete: () => {
-						bar.style.width = toRem(targetW);
-						bar.style.height = toRem(targetH);
+						bar.style.width = remFromDefaultPixels(targetW);
+						bar.style.height = remFromDefaultPixels(targetH);
 					}
 				}
 			);
@@ -327,8 +334,8 @@
 				const btn = asideEl.querySelectorAll<HTMLElement>('[data-toc-button]')[active];
 				if (!btn) return;
 				const target = indicatorGeometry(btn);
-				indicatorEl.style.height = `${target.height}px`;
-				indicatorEl.style.transform = `translateY(${target.y}px)`;
+				indicatorEl.style.height = remFromMeasuredPixels(target.height);
+				indicatorEl.style.transform = `translateY(${remFromMeasuredPixels(target.y)})`;
 			};
 			setLivePos();
 			indicatorEl.style.opacity = '0.8';
@@ -360,12 +367,12 @@
 				onUpdate: (progress) => {
 					const height = startHeight + (target.height - startHeight) * progress;
 					const center = startCenter + (targetCenter - startCenter) * progress;
-					indicator.style.height = `${height}px`;
-					indicator.style.transform = `translateY(${center - height / 2}px)`;
+					indicator.style.height = remFromMeasuredPixels(height);
+					indicator.style.transform = `translateY(${remFromMeasuredPixels(center - height / 2)})`;
 				},
 				onComplete: () => {
-					indicator.style.height = `${target.height}px`;
-					indicator.style.transform = `translateY(${target.y}px)`;
+					indicator.style.height = remFromMeasuredPixels(target.height);
+					indicator.style.transform = `translateY(${remFromMeasuredPixels(target.y)})`;
 					indicatorAnimation = undefined;
 				}
 			});

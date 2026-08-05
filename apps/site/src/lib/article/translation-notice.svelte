@@ -87,7 +87,7 @@
 		background-image: linear-gradient(currentColor, currentColor);
 		background-repeat: no-repeat;
 		background-position: 0 100%;
-		background-size: 0% 1px;
+		background-size: 0% 0.0625rem;
 		-webkit-box-decoration-break: clone;
 		box-decoration-break: clone;
 		transition: background-size 315ms
@@ -114,7 +114,7 @@
 
 	.original-link:hover,
 	.original-link:focus-visible {
-		background-size: 100% 1px;
+		background-size: 100% 0.0625rem;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
