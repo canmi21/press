@@ -117,9 +117,27 @@ Newsletter default, because the homepage already arrives at it across a section 
 The invitation sits after the semantic `<article>`, not inside it: the table of contents scans
 that boundary, so only headings authored as article content can enter its navigation.
 
-Homepage-only interaction and site metadata stay outside it. Support actions and the colophon
-describe the site as a whole and would turn every article ending into a second homepage footer;
-an article page ends after its subscription invitation instead.
+Homepage-only interaction stays outside it. Support actions describe the site as a whole and
+would turn every article ending into a second homepage footer; an article page ends after its
+subscription invitation instead.
+
+### Compact action rails reveal detail on demand
+
+The homepage Support surface stays sparse at rest: every action presents an icon and its shortest
+useful identity, while pointer hover and keyboard focus reveal the full localized instruction in
+place. Revision belongs in this rail beside Like rather than in a separate metadata panel. Visitor,
+uptime, word-count, update-age and license rows do not appear on the homepage.
+
+The rail measures each localized short and long label, then springs the button between those live
+widths with `motion`. This is computed geometry rather than a fixed hover target: locale, font and
+the Like count all change the answer. The label crossfade follows the width movement so the control
+reads as unfolding instead of replacing one string with another.
+
+Like keeps its remembered state legible without making the whole rail permanently heavy. A click
+fills the heart and updates the count; leaving returns the button to the ordinary paper surface.
+Hovering or focusing a remembered Like inverts it to the ink surface. The same state changes must
+remain understandable through `aria-pressed`, and reduced-motion users get the final labels without
+the width transition.
 
 Data palettes belong to the visualisation that gives them meaning, not to the site theme. The
 Cargo palette lives in a component-only stylesheet scoped below `.cargo-widget`; it stays vivid
@@ -130,9 +148,9 @@ in both page themes and never becomes a token available to unrelated interface c
 `motion` is a dependency, and reaching for `animate()` is the wrong default. It earns its place
 where the target is computed -- the article list measures the corpus before it knows what widths
 to animate to, and no stylesheet can hold a number that does not exist until the page has read
-its own content. A hover, an open, a state flip: those targets are written in the source, and
-running them through a library puts a per-frame JavaScript cost on an animation CSS was going
-to composite anyway.
+its own content. When a hover, open or state flip has targets written in the source, running it
+through a library puts a per-frame JavaScript cost on an animation CSS was going to composite
+anyway.
 
 Wanting spring physics is not a reason to cross that line. A spring is a curve, and a curve can
 be sampled once and written as a CSS `linear()` easing -- which is what the library itself emits
@@ -143,7 +161,7 @@ spends nothing at runtime.
 One trap worth stating, because it is invisible until someone wonders why the bounce never
 shows: an overshoot has to have somewhere to go. A spring driving `background-size` or a colour
 is clipped at its limit, so the overshoot is spent on nothing and the curve should simply be
-damped out. Only a transform, which can draw outside its own box, shows it.
+damped out. A transform or an unconstrained layout dimension such as width has room to show it.
 
 ## Workspace wiring
 

@@ -4,11 +4,11 @@
 	import { pickUrls, URLS } from '@canmi/urls';
 	import Lollipop from '@lucide/svelte/icons/lollipop';
 	import ArticleList from '$lib/article/list.svelte';
-	import Colophon from '$lib/colophon/colophon.svelte';
 	import PageBody from '$lib/home/body.svelte';
 	import Icon from '$lib/home/icons.svelte';
 	import Newsletter from '$lib/newsletter/newsletter.svelte';
 	import { site } from '$lib/site';
+	import Support from '$lib/support/support.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -21,13 +21,8 @@
 	const commitUrl = `${repositoryUrl}/commit/${commitHash}`;
 	const googleSourceUrl = new URL(URLS.external.google.sourcePreferences);
 	googleSourceUrl.searchParams.set('q', URLS.apps.production.site);
-	// Standing in for the real figures until the counts are served with the page.
-	const SUBSCRIBERS = 1284;
+	// Standing in for the real figure until the count is served with the page.
 	const LIKES = 128;
-	const VISITORS = 12845;
-	const DAYS = 426;
-	const UPDATED = 3;
-	const WORDS = 48213;
 
 	// Icons are center-anchored, so each is size-compensated independently. Base
 	// matches the inline text icons (h-4); wide/flat glyphs (Telegram) get a larger
@@ -94,15 +89,11 @@
 
 		<ArticleList articles={data.articles} heading={data.writing} />
 
-		<Newsletter locale={data.locale.code} subscribers={SUBSCRIBERS} />
+		<Newsletter locale={data.locale.code} />
 
-		<Colophon
+		<Support
 			locale={data.locale.code}
 			likes={LIKES}
-			visitors={VISITORS}
-			days={DAYS}
-			updated={UPDATED}
-			words={WORDS}
 			commit={commitHash}
 			commitHref={commitUrl}
 			followHref={githubProfileUrl}
