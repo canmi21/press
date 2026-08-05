@@ -39,7 +39,7 @@ it('renders a translator note as an explicit control instead of a native tooltip
 	const prose = compiled.blocks[0];
 	if (prose?.type !== 'prose') throw new Error('expected prose');
 
-	expect(prose.html).toContain('<button type="button" class="tn-trigger"');
+	expect(prose.html).toContain('<button type="button" class="tn-trigger focus-link"');
 	expect(prose.html).toContain('data-tn-note="Its meaning needs context."');
 	expect(prose.html).toContain('aria-controls="translator-note" aria-expanded="false"');
 	expect(prose.html).toContain(
@@ -48,6 +48,22 @@ it('renders a translator note as an explicit control instead of a native tooltip
 	expect(prose.html).toContain('<circle cx="12" cy="12" r="10"></circle>');
 	expect(prose.html).toContain('<path d="M12 16v-4"></path>');
 	expect(prose.html).not.toContain('title=');
+});
+
+it('marks prose links with the shared keyboard focus treatment', async () => {
+	const compiled = await compile(
+		'---\ntitle: Test\nlang: en-US\n---\n\nRead [the notes](https://example.com).\n',
+		'/article',
+		{
+			resolveAsset: () => null,
+			highlight: async () => '',
+			sourceFile: 'contents/example.md',
+		},
+	);
+	const prose = compiled.blocks[0];
+	if (prose?.type !== 'prose') throw new Error('expected prose');
+
+	expect(prose.html).toContain('<a href="https://example.com" class="focus-link">');
 });
 
 it('rejects translator notes in translated frontmatter with the article named', async () => {

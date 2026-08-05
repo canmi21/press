@@ -12,7 +12,7 @@
 	"newsletter.pitch": "新しい記事や、ときどき届くちょっとした寄り道をメールでお送りします。配信はただいま準備中。今のうちに登録しておけば、創刊号からお届けします。",
 	"newsletter.email": "メールアドレス",
 	"newsletter.subscribe": "先行登録する",
-	"newsletter.subscribers": "現在 {#cells}{count}{/cells} 人が創刊号を待っています",
+	"newsletter.subscribers": "現在 {#cells}{count}{/cells} 人が創刊号を待っています。",
 	"newsletter.confirm": "登録しました。創刊号ができるまで、メールはお送りしません。",
 	"support.heading": "応援",
 	"support.like": "{count}件のいいね",

@@ -26,7 +26,7 @@ import type {
 	ArticleMeta,
 } from '../types.ts';
 import type { TextDirective } from 'mdast-util-directive';
-import type { Heading, Image as MdImage, Paragraph, Root, RootContent } from 'mdast';
+import type { Heading, Image as MdImage, Nodes, Paragraph, Root, RootContent } from 'mdast';
 
 // Feed and markdown targets need absolute image URLs, and they must resolve the same way the
 // rendered page does. Both now read the host from libs/urls rather than each spelling it out.
@@ -110,10 +110,23 @@ function styleClasses(attrs: DirectiveAttrs): string[] {
 	return classes;
 }
 
+function markProseLinks(node: Nodes): void {
+	if (node.type === 'link') {
+		node.data = {
+			...node.data,
+			hProperties: { ...node.data?.hProperties, className: ['focus-link'] },
+		};
+	}
+	if ('children' in node) {
+		for (const child of node.children) markProseLinks(child);
+	}
+}
+
 // Render a top-level prose node to HTML. `delete` (gfm strikethrough) maps to
 // <s> so the existing .article-body :global(s) styling keeps working; the DLC
 // `:t` / `:link` text directives expand to spans / anchors.
 function proseHtml(node: RootContent): string {
+	markProseLinks(node);
 	const hast = toHast(node, {
 		handlers: {
 			delete: (state, deleteNode) => ({
@@ -142,6 +155,7 @@ function proseHtml(node: RootContent): string {
 						properties: {
 							href,
 							className: [
+								'focus-link',
 								'text-text-strong',
 								'underline',
 								'decoration-border',
@@ -165,7 +179,7 @@ function proseHtml(node: RootContent): string {
 						tagName: 'button',
 						properties: {
 							type: 'button',
-							className: ['tn-trigger'],
+							className: ['tn-trigger', 'focus-link'],
 							'data-tn-note': note,
 							ariaControls: ['translator-note'],
 							ariaExpanded: 'false',

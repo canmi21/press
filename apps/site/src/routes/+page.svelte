@@ -99,14 +99,7 @@
 		and a centred footer was the only thing arguing otherwise. The ICP badge shares the row
 		rather than taking one of its own. -->
 		<div class="mt-12 flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
-			<!-- Tune the focus ring for the whole icon group: a 0.125rem (2px) gap with
-			a 0.3125rem (5px) radius, inherited by each link's :focus-visible. Each link
-			is a fixed 1.25rem box so the ring is identical across the row regardless of
-			a glyph's optical-compensation size (e.g. Telegram's larger icon). -->
-			<nav
-				aria-label="Find me elsewhere"
-				class="flex flex-wrap items-center gap-3 [--focus-ring-offset:0.125rem] [--focus-ring-radius:0.3125rem]"
-			>
+			<nav aria-label="Find me elsewhere" class="flex flex-wrap items-center gap-3">
 			{#each links as link (link.label)}
 				<a
 					href={link.href}
@@ -115,7 +108,7 @@
 						: `${link.label} (opens in new tab)`}
 					title={link.label}
 					data-sveltekit-reload={'document' in link ? true : undefined}
-					class="inline-flex size-5 items-center justify-center text-text-soft transition-colors duration-200 hover:text-text-strong"
+					class="focus-ring inline-flex size-5 items-center justify-center rounded-[0.3125rem] text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
 					{...link.href.startsWith('/')
 						? {}
 						: { target: '_blank', rel: 'noopener noreferrer' }}
@@ -129,7 +122,7 @@
 				href="https://icp.gov.moe/?keyword=20260000"
 				target="_blank"
 				rel="noopener noreferrer"
-				class="inline-flex items-center gap-1.5 text-[0.9375rem] text-text-soft transition-colors duration-200 hover:text-text-strong"
+				class="focus-link inline-flex items-center gap-1.5 text-[0.9375rem] text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
 			>
 				<Lollipop class="h-4 w-4" aria-hidden="true" />
 				<span>ICP 20260000</span>

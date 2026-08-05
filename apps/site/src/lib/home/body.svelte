@@ -15,7 +15,7 @@
 				{:else}
 					<a
 						href={seg.href}
-						class="inline-flex items-center gap-1 align-middle leading-tight text-text-strong"
+						class="focus-link inline-flex items-center gap-1 align-middle leading-tight text-text-strong"
 						{...seg.newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
 					>
 						{#if seg.icon}<Icon name={seg.icon} />{/if}

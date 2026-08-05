@@ -2,6 +2,7 @@
 	import { dev } from '$app/environment';
 	import { page } from '$app/state';
 	import { URLS, pickUrls } from '@canmi/urls';
+	import { installFocusSourceTracker } from '$lib/client/focus-source';
 	import { localeUrl } from '$lib/locale';
 	import { site } from '$lib/site';
 	import '../styles/app.css';
@@ -17,6 +18,8 @@
 	);
 	const feed = $derived(localeUrl('/atom.xml', locale?.code ?? 'mw'));
 	let { children } = $props();
+
+	$effect(() => installFocusSourceTracker());
 
 	/**
 	 * A JSON-LD block, safe to drop into markup.

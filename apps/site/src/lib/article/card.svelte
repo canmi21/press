@@ -25,7 +25,7 @@
 
 <a
 	href="/{path}"
-	class="group -mx-2 flex items-center gap-3 rounded-[0.875rem] p-2 hover:bg-paper-hover"
+	class="group -mx-2 flex items-center gap-3 rounded-[0.875rem] p-2 hover:bg-paper-hover focus-visible:outline-none"
 >
 	<!-- A4-ish sheet. Five bars carry the hand-tuned first-frame widths/gaps; after
 	hydration the article list measures the corpus and animates them to a content-derived
@@ -33,7 +33,7 @@
 	<div
 		data-article-icon
 		aria-hidden="true"
-		class="flex h-[3.4375rem] w-[2.9375rem] shrink-0 flex-col items-start justify-center rounded-[0.4375rem] border border-border bg-paper px-1.5"
+		class="focus-ring-inner flex h-[3.4375rem] w-[2.9375rem] shrink-0 flex-col items-start justify-center rounded-[0.4375rem] border border-border bg-paper px-1.5"
 	>
 		<span data-icon-bar class="rounded-full bg-border-strong" style="width: 1rem; height: 0.1875rem"
 		></span>
@@ -70,25 +70,3 @@
 		<p class="truncate text-text-soft">{subtitle}</p>
 	</div>
 </a>
-
-<style>
-	/* Keyboard focus lands the ring on the sheet icon, not the full row: the icon
-	is each entry's emblem and the ring hugs its corner. Drop the site-wide row
-	ring (unlayered here beats the @layer base default) and redraw the same token
-	ring on the icon; the transparent outline keeps a forced-colors fallback. */
-	.group:focus-visible {
-		outline: none;
-		box-shadow: none;
-	}
-
-	.group:focus-visible [data-article-icon] {
-		/* No page-color moat here: the ring hugs the icon edge (offset 0), so the
-		accent reads as flush against the sheet rather than floating off it. */
-		--focus-ring-offset: 0px;
-		outline: var(--focus-ring-width) solid transparent;
-		outline-offset: var(--focus-ring-offset);
-		box-shadow:
-			0 0 0 var(--focus-ring-offset) var(--focus-ring-gap),
-			0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--focus-ring-color);
-	}
-</style>

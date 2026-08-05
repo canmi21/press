@@ -1,0 +1,38 @@
+/* Keyboard focus belongs to the control's visible shape. The direct variant follows the
+   focusable box; the inner and within variants move the same outline to a representative child
+   or ancestor when the hit area and visible control are different. Keeping this in the components
+   layer lets each control's rounded utility own its actual silhouette. See spec/styling.md. */
+@layer components {
+	:where(.focus-ring, .focus-ring-inner, .focus-ring-within) {
+		border-radius: 0.25rem;
+	}
+
+	:where(.focus-link, .focus-link-inner) {
+		border-radius: 0.25rem;
+		line-height: 1.25rem;
+	}
+
+	.focus-ring:focus-visible,
+	.focus-link:focus-visible,
+	:focus-visible > .focus-ring-inner,
+	:focus-visible > .focus-link-inner,
+	.focus-ring-within:has(:focus-visible) {
+		outline: 0.125rem solid var(--color-accent);
+		outline-offset: 0;
+	}
+}
+
+/* Text inputs match their bordered shell on pointer focus and add the blue keyboard outline only
+   when navigation, rather than a click, put the caret there. See spec/styling.md. */
+.focus-input {
+	outline: none;
+}
+
+.focus-input-shell:has(.focus-input:focus) {
+	border-color: var(--color-border-strong);
+}
+
+html[data-focus-source='kbd'] .focus-input-shell:has(.focus-input:focus-visible) {
+	outline: 0.125rem solid var(--color-accent);
+	outline-offset: 0;
+}

@@ -59,7 +59,7 @@
 	rel="noopener noreferrer"
 	class:card-center={align === 'center'}
 	class:card-right={align === 'right'}
-	class="repo-card group"
+	class="repo-card group focus-ring"
 >
 	<div class="header">
 		<span class="name">{title || repositoryName(displayName)}</span>

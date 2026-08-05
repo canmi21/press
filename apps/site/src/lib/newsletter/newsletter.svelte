@@ -6,7 +6,7 @@
 	import * as m from '$lib/paraglide/messages';
 
 	// Standing in for the real figure until the subscriber count is served with the page.
-	const PLACEHOLDER_SUBSCRIBERS = 1284;
+	const PLACEHOLDER_SUBSCRIBERS = 23;
 
 	let {
 		class: className = '',
@@ -60,7 +60,7 @@
 		already, it reports before any request is made, and it needs no JavaScript. -->
 		<form
 			onsubmit={submit}
-			class="pill mt-4 flex items-center gap-2 rounded-full border border-border bg-paper p-1.5 pl-5"
+			class="pill focus-input-shell mt-4 flex items-center gap-2 rounded-full border border-border bg-paper p-1.5 pl-5"
 		>
 			<input
 				type="email"
@@ -71,13 +71,13 @@
 				placeholder="you@example.com"
 				aria-label={m['newsletter.email']({}, { locale })}
 				disabled={status === 'sending'}
-				class="min-w-0 flex-1 bg-transparent text-text placeholder:text-text-soft disabled:text-text-soft"
+				class="focus-input min-w-0 flex-1 bg-transparent text-text placeholder:text-text-soft disabled:text-text-soft"
 			/>
 			<button
 				type="submit"
 				disabled={status === 'sending'}
 				aria-busy={status === 'sending'}
-				class="h-full shrink-0 rounded-full bg-ink px-4 font-medium text-page transition-opacity duration-200 hover:opacity-85 disabled:opacity-60"
+				class="focus-ring h-full shrink-0 rounded-full bg-ink px-4 font-medium text-page transition-opacity duration-200 hover:opacity-85 disabled:opacity-60"
 			>
 				{m['newsletter.subscribe']({}, { locale })}
 			</button>
@@ -106,19 +106,4 @@
 		margin-inline: calc(-1 * var(--pill-overhang));
 	}
 
-	/* The input has no border of its own, so its focus ring belongs to the pill around it --
-	otherwise the ring draws inside the pill and reads as a second, misaligned edge. Same move
-	as the article card, which hands its row ring to the sheet icon. */
-	.pill:has(input:focus-visible) {
-		outline: var(--focus-ring-width) solid transparent;
-		outline-offset: var(--focus-ring-offset);
-		box-shadow:
-			0 0 0 var(--focus-ring-offset) var(--focus-ring-gap),
-			0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--focus-ring-color);
-	}
-
-	.pill input:focus-visible {
-		outline: none;
-		box-shadow: none;
-	}
 </style>

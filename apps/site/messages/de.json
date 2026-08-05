@@ -12,7 +12,7 @@
 	"newsletter.pitch": "Neue Beiträge und hin und wieder etwas Unerwartetes, direkt in dein Postfach. Der Newsletter startet erst noch – mit deiner Anmeldung bist du von Anfang an dabei und bekommst die allererste Ausgabe.",
 	"newsletter.email": "Deine E-Mail-Adresse",
 	"newsletter.subscribe": "Auf die Liste",
-	"newsletter.subscribers": "{#cells}{count}{/cells} sind schon dabei",
+	"newsletter.subscribers": "{#cells}{count}{/cells} sind schon dabei.",
 	"newsletter.confirm": "Du bist dabei. Bis zur ersten Ausgabe bleibt dein Postfach ganz ruhig.",
 	"support.heading": "Unterstützen",
 	"support.like": "{count} Likes",

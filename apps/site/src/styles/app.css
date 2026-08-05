@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import '@canmi/tokens/colors.css';
+@import './utilities.css';
 @source '../routes';
 
 @custom-variant dark (&:where(.dark, .dark *, [data-theme='dark'], [data-theme='dark'] *));

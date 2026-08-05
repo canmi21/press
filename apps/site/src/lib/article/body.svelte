@@ -152,7 +152,7 @@
 			<button
 				type="button"
 				onclick={() => closeNote(true)}
-				class="-m-1 cursor-pointer rounded-sm p-1 text-text-soft hover:bg-paper-hover hover:text-text-strong"
+				class="focus-ring -m-1 cursor-pointer rounded-sm p-1 text-text-soft hover:bg-paper-hover hover:text-text-strong focus-visible:text-text-strong"
 				aria-label={m['article.translator-note.close']({}, { locale })}
 			>
 				<X class="size-3.5" aria-hidden="true" />
@@ -183,12 +183,6 @@
 	:global(.tn-trigger[aria-expanded='true']) {
 		color: var(--color-text-strong);
 		text-decoration-color: currentColor;
-	}
-
-	:global(.tn-trigger:focus-visible) {
-		border-radius: 0.125rem;
-		outline: 0.125rem solid var(--color-border-strong);
-		outline-offset: 0.125rem;
 	}
 
 	:global(.tn-trigger .tn-icon) {

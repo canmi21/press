@@ -12,7 +12,7 @@
 	"newsletter.pitch": "新文章，還有偶爾冒出來的小驚喜，都會直接寄到你的信箱。電子報還在準備中，現在先留下信箱，第一期完成時就不會錯過。",
 	"newsletter.email": "你的電子郵件",
 	"newsletter.subscribe": "先加入",
-	"newsletter.subscribers": "已有 {#cells}{count}{/cells} 人在等第一期",
+	"newsletter.subscribers": "已有 {#cells}{count}{/cells} 人在等第一期。",
 	"newsletter.confirm": "好，已經幫你留位子了。第一期出爐前，不會有郵件打擾你。",
 	"support.heading": "支持一下",
 	"support.like": "{count} 個讚",

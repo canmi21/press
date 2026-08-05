@@ -101,18 +101,20 @@
 <DropdownMenu.Root {open} onOpenChange={(next) => (open = next)}>
 	<DropdownMenu.Trigger
 		aria-label="Content language: {current?.name}"
-		class="-mx-1 inline-flex cursor-pointer items-center gap-1 rounded-sm px-1 py-0.5 hover:bg-paper-hover hover:text-text-strong"
+		class="-mx-1 inline-flex cursor-pointer items-center rounded-sm px-1 py-0.5 hover:bg-paper-hover hover:text-text-strong focus-visible:text-text-strong focus-visible:outline-none"
 	>
-		<CurrentMark class={markSize} aria-hidden="true" />
-		<span>{current?.name}</span>
-		<!-- Pulled back into the gap: the glyph carries its own padding inside the viewBox, so
-		     the 4px gap reads as noticeably more than it does beside the mark on the left. -->
-		<IconUpSmall
-			class="-ml-0.5 h-4 w-auto transition-transform duration-200 ease-out motion-reduce:transition-none {open
-				? ''
-				: 'rotate-180'}"
-			aria-hidden="true"
-		/>
+		<span class="focus-link-inner inline-flex items-center gap-1">
+			<CurrentMark class={markSize} aria-hidden="true" />
+			<span>{current?.name}</span>
+			<!-- Pulled back into the gap: the glyph carries its own padding inside the viewBox, so
+			     the 4px gap reads as noticeably more than it does beside the mark on the left. -->
+			<IconUpSmall
+				class="-ml-0.5 h-4 w-auto transition-transform duration-200 ease-out motion-reduce:transition-none {open
+					? ''
+					: 'rotate-180'}"
+				aria-hidden="true"
+			/>
+		</span>
 	</DropdownMenu.Trigger>
 
 	<MenuContent id="article-language-menu">

@@ -12,7 +12,7 @@
 	"newsletter.pitch": "Los artículos nuevos y alguna que otra sorpresa llegarán directamente a tu correo. El boletín todavía está tomando forma; si te apuntas ahora, estarás desde el principio y recibirás la primera entrega en cuanto salga.",
 	"newsletter.email": "Tu correo electrónico",
 	"newsletter.subscribe": "Apuntarme",
-	"newsletter.subscribers": "Ya somos {#cells}{count}{/cells} en la lista",
+	"newsletter.subscribers": "Ya somos {#cells}{count}{/cells} en la lista.",
 	"newsletter.confirm": "Ya estás dentro. Tu bandeja seguirá tranquila hasta el primer número.",
 	"support.heading": "Apóyame",
 	"support.like": "A {count} personas les gusta",

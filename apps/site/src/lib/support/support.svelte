@@ -179,7 +179,7 @@
 			onmouseleave={collapse}
 			onfocus={expandFromFocus}
 			onblur={collapse}
-			class="action like"
+			class="action like focus-ring"
 		>
 			<Heart class="icon" fill={liked ? 'currentColor' : 'none'} aria-hidden="true" />
 			{@render copy(formattedCount, m['support.like']({ count: formattedCount }, { locale }))}
@@ -195,7 +195,7 @@
 			onmouseleave={collapse}
 			onfocus={expandFromFocus}
 			onblur={collapse}
-			class="action"
+			class="action focus-ring"
 		>
 			<Star class="icon" aria-hidden="true" />
 			{@render copy(
@@ -213,7 +213,7 @@
 			onmouseleave={collapse}
 			onfocus={expandFromFocus}
 			onblur={collapse}
-			class="action"
+			class="action focus-ring"
 		>
 			<Coffee class="icon" aria-hidden="true" />
 			{@render copy(

@@ -250,7 +250,7 @@
 					[`https://lib.rs/crates/${crate.name}`, 'lib.rs'],
 					[`https://docs.rs/${crate.name}`, 'docs.rs'],
 				] as [href, label] (label)}
-					<a {href} target="_blank" rel="noopener noreferrer">
+					<a class="focus-link" {href} target="_blank" rel="noopener noreferrer">
 						{label}<ArrowUpRight class="size-2.5" strokeWidth={2} aria-hidden="true" />
 					</a>
 				{/each}

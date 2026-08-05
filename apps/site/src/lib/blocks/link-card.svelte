@@ -151,8 +151,7 @@
 	top of it: drop the box-shadow ring and recolor that border to the accent, so the
 	2px ring overlaps the border exactly with no gap. */
 	a:focus-visible {
-		outline: none;
-		box-shadow: none;
+		outline: 0.125rem solid transparent;
 	}
 
 	a:focus-visible .card-media :global(img) {

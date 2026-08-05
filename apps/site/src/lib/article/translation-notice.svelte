@@ -59,7 +59,7 @@
 					href={originalHref}
 					data-sveltekit-reload
 					onclick={showOriginal}
-					class="original-link font-medium">{@render children?.()}</a
+					class="original-link focus-link font-medium">{@render children?.()}</a
 				>
 			{/snippet}
 		</ParaglideMessage>

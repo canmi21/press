@@ -12,7 +12,7 @@
 	"newsletter.pitch": "새 글과 가끔 찾아오는 작은 이야기를 메일로 보내드려요. 아직은 첫 호를 준비하는 중입니다. 지금 이름을 올려 두면 발행하는 날 가장 먼저 받아볼 수 있어요.",
 	"newsletter.email": "이메일 주소",
 	"newsletter.subscribe": "미리 구독하기",
-	"newsletter.subscribers": "지금 {#cells}{count}{/cells}명이 첫 호를 기다리고 있어요",
+	"newsletter.subscribers": "지금 {#cells}{count}{/cells}명이 첫 호를 기다리고 있어요.",
 	"newsletter.confirm": "등록됐어요. 첫 호가 준비되기 전까지는 메일을 보내지 않을게요.",
 	"support.heading": "응원하기",
 	"support.like": "좋아요 {count}개",

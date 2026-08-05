@@ -406,20 +406,20 @@
 				aria-current={i === activeIndex ? 'location' : undefined}
 				title={entry.text}
 				onclick={() => jumpToSection(entry.el, i)}
-				class="block max-w-full cursor-pointer py-[0.1875rem] text-left"
+				class="block max-w-full cursor-pointer py-[0.1875rem] text-left focus-visible:outline-none"
 			>
 				<!-- Bar and text each sit in a full-opacity ring host: the inner span carries
 				the opacity animation, so drawing the focus ring on the wrapper keeps it crisp
 				instead of inheriting the dimmed opacity. The collapsed/revealed state picks
 				which wrapper shows the ring (see <style>). -->
-				<span class="toc-ring-bar block w-fit rounded-full">
+				<span class:focus-ring-inner={!showText} class="toc-ring-bar block w-fit rounded-full">
 					<span
 						data-toc-bar
 						class="block rounded-full bg-text-soft"
 						style="width: 2rem; height: 0.25rem; opacity: 0.35"
 					></span>
 				</span>
-				<span class="toc-ring-text block w-fit max-w-full">
+				<span class:focus-ring-inner={showText} class="toc-ring-text block w-fit max-w-full">
 					<span
 						data-toc-text
 						class="text-[0.8125rem] leading-snug"
@@ -454,32 +454,4 @@
 		line-clamp: 2;
 	}
 
-	/* Move the focus ring off the padded button onto the visible mark, full-opacity
-	(see the ring-host wrappers in the template). Unlayered here, so it wins over the
-	@layer base :focus-visible default. */
-	[data-toc-button]:focus-visible {
-		outline: none;
-		box-shadow: none;
-	}
-
-	/* Collapsed: ring hugs the bar pill flush (no gap), following its rounded-full. */
-	nav:not(.revealed) [data-toc-button]:focus-visible .toc-ring-bar {
-		--focus-ring-offset: 0px;
-		outline: var(--focus-ring-width) solid transparent;
-		box-shadow:
-			0 0 0 var(--focus-ring-offset) var(--focus-ring-gap),
-			0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--focus-ring-color);
-	}
-
-	/* Revealed: ring hugs the section label with a 0.125rem (2px) gap and radius. */
-	nav.revealed [data-toc-button]:focus-visible .toc-ring-text {
-		--focus-ring-offset: 0.125rem;
-		--focus-ring-radius: 0.125rem;
-		outline: var(--focus-ring-width) solid transparent;
-		outline-offset: var(--focus-ring-offset);
-		border-radius: var(--focus-ring-radius);
-		box-shadow:
-			0 0 0 var(--focus-ring-offset) var(--focus-ring-gap),
-			0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--focus-ring-color);
-	}
 </style>

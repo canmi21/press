@@ -79,6 +79,7 @@ of truth.
 | Voice and communication                   | [spec/voice.md](spec/voice.md)                   |
 | Commit conventions                        | [spec/commits.md](spec/commits.md)               |
 | Naming conventions                        | [spec/naming.md](spec/naming.md)                 |
+| Focus-ring placement and styling          | [spec/styling.md](spec/styling.md)               |
 | Linting and formatting                    | [spec/lint-format.md](spec/lint-format.md)       |
 | Type checking, tests, comments            | [spec/code.md](spec/code.md)                     |
 | Translating article content               | [spec/i18n.md](spec/i18n.md)                     |
