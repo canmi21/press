@@ -1,9 +1,7 @@
 <script lang="ts">
 	import Coffee from '@lucide/svelte/icons/coffee';
-	import GitPullRequestArrow from '@lucide/svelte/icons/git-pull-request-arrow';
 	import Heart from '@lucide/svelte/icons/heart';
 	import Star from '@lucide/svelte/icons/star';
-	import UserPlus from '@lucide/svelte/icons/user-plus';
 	import { animate } from 'motion';
 	import { PUBLIC_LANGUAGE, type LocaleCode } from '$lib/locale';
 	import * as m from '$lib/paraglide/messages';
@@ -14,18 +12,12 @@
 	let {
 		locale,
 		likes,
-		commit,
-		commitHref,
-		followHref,
 		sourcePreferenceHref,
 		onlike,
 		onsponsor,
 	}: {
 		locale: LocaleCode;
 		likes: number;
-		commit: string;
-		commitHref: string;
-		followHref: string;
 		sourcePreferenceHref: string;
 		/** The seam the real endpoint plugs into; the count on screen is the local guess. */
 		onlike?: (liked: boolean) => Promise<void>;
@@ -130,41 +122,6 @@
 			<Heart class="icon" fill={liked ? 'currentColor' : 'none'} aria-hidden="true" />
 			{@render copy(formattedCount, m['support.like']({ count: formattedCount }, { locale }))}
 		</button>
-
-		<a
-			href={commitHref}
-			target="_blank"
-			rel="noopener noreferrer"
-			aria-label={`${m['support.revision']({ commit }, { locale })} (opens in new tab)`}
-			data-expanded="false"
-			onmouseenter={expand}
-			onmouseleave={collapse}
-			onfocus={expandFromFocus}
-			onblur={collapse}
-			class="action"
-		>
-			<GitPullRequestArrow class="icon" aria-hidden="true" />
-			{@render copy(commit, m['support.revision']({ commit }, { locale }))}
-		</a>
-
-		<a
-			href={followHref}
-			target="_blank"
-			rel="noopener noreferrer"
-			aria-label={`${m['support.follow']({}, { locale })} (opens in new tab)`}
-			data-expanded="false"
-			onmouseenter={expand}
-			onmouseleave={collapse}
-			onfocus={expandFromFocus}
-			onblur={collapse}
-			class="action"
-		>
-			<UserPlus class="icon" aria-hidden="true" />
-			{@render copy(
-				m['support.follow-short']({}, { locale }),
-				m['support.follow']({}, { locale }),
-			)}
-		</a>
 
 		<a
 			href={sourcePreferenceHref}

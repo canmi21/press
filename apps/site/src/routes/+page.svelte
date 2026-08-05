@@ -15,10 +15,8 @@
 
 	const cdnUrl = pickUrls(dev).cdn;
 	const avatarSrc = imgsrc('github:avatar:72544151@192', { cdnUrl });
-	const commitHash = import.meta.env.VITE_COMMIT_HASH;
 	const githubProfileUrl = `${URLS.external.github.web}/canmi21`;
 	const repositoryUrl = `${githubProfileUrl}/workspace`;
-	const commitUrl = `${repositoryUrl}/commit/${commitHash}`;
 	const googleSourceUrl = new URL(URLS.external.google.sourcePreferences);
 	googleSourceUrl.searchParams.set('q', URLS.apps.production.site);
 	// Standing in for the real figure until the count is served with the page.
@@ -94,9 +92,6 @@
 		<Support
 			locale={data.locale.code}
 			likes={LIKES}
-			commit={commitHash}
-			commitHref={commitUrl}
-			followHref={githubProfileUrl}
 			sourcePreferenceHref={googleSourceUrl.href}
 		/>
 

@@ -109,7 +109,9 @@ tooltips and surrounding statistics use the same surfaces as the rest of the sit
 The same Newsletter component appears on the homepage and after the body of every article.
 The homepage reaches somebody browsing the site; the article tail reaches somebody who has
 finished reading. These are two entrances to one subscription, so they share copy, state and
-presentation rather than growing page-specific variants that can drift apart.
+presentation rather than growing page-specific variants that can drift apart. On the homepage,
+Newsletter precedes Support so the larger subscription invitation remains part of the reading flow
+and the smaller actions finish the page.
 
 An article separates the invitation from its authored body with the same quiet one-pixel rule
 used by the homepage's structural surfaces. The rule belongs to that placement, not to the
@@ -123,10 +125,13 @@ subscription invitation instead.
 
 ### Compact action rails reveal detail on demand
 
-The homepage Support surface stays sparse at rest: every action presents an icon and its shortest
-useful identity, while pointer hover and keyboard focus reveal the full localized instruction in
-place. Revision belongs in this rail beside Like rather than in a separate metadata panel. Visitor,
-uptime, word-count, update-age and license rows do not appear on the homepage.
+The homepage Support surface holds Like, Google source preference and Sponsor. These are reader
+actions and read as one small section; revision and Follow stay off the page until they have a
+quieter placement of their own. Visitor, uptime, word-count, update-age and license rows do not
+appear on the homepage.
+
+Each Support action presents an icon and its shortest useful identity at rest, while pointer hover
+and keyboard focus reveal the full localized instruction in place.
 
 The rail measures each localized short and long label, then springs the button between those live
 widths with `motion`. This is computed geometry rather than a fixed hover target: locale, font and
