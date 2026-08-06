@@ -14,6 +14,7 @@
 	"newsletter.subscribe": "订阅我！",
 	"newsletter.subscribers": "已经有 {#cells}{count}{/cells} 人在等第一期。",
 	"newsletter.confirm": "已经留好位置啦~ 在我筹备好之前，不会有其他邮件打扰你！",
+	"newsletter.error": "这次没有成功，请再试一次。",
 	"support.heading": "支持一下",
 	"support.like": "{count} 个赞",
 	"support.follow-short": "关注",

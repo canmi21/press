@@ -14,6 +14,7 @@
 	"newsletter.subscribe": "Join the list",
 	"newsletter.subscribers": "Join {#cells}{count}{/cells} readers on the early list.",
 	"newsletter.confirm": "You're in. Your inbox stays quiet until the first issue is ready.",
+	"newsletter.error": "That didn't go through. Please try again.",
 	"support.heading": "Support",
 	"support.like": "{count} likes",
 	"support.follow-short": "Follow",

@@ -4,6 +4,7 @@
 	import Star from '@lucide/svelte/icons/star';
 	import { animate } from 'motion';
 	import { remFromMeasuredPixels } from '$lib/client/units';
+	import { createEngagementQuery, createLikeMutation } from '$lib/engagement/engagement.svelte';
 	import { PUBLIC_LANGUAGE, type LocaleCode } from '$lib/locale';
 	import * as m from '$lib/paraglide/messages';
 
@@ -18,34 +19,28 @@
 
 	let {
 		locale,
-		likes,
 		sourcePreferenceHref,
-		onlike,
 		onsponsor,
 	}: {
 		locale: LocaleCode;
-		likes: number;
 		sourcePreferenceHref: string;
-		/** The seam the real endpoint plugs into; the count on screen is the local guess. */
-		onlike?: (liked: boolean) => Promise<void>;
 		/** Becomes an `<a>` once there is somewhere to send people; see libs/urls. */
 		onsponsor?: () => void;
 	} = $props();
 
-	let liked = $state(false);
+	const engagement = createEngagementQuery();
+	const like = createLikeMutation();
+	const liked = $derived(engagement.data?.liked ?? false);
 	const actionAnimations = new WeakMap<HTMLElement, AnimationControl>();
 	const actionChromeWidths = new WeakMap<HTMLElement, number>();
 
-	// Counted optimistically off the server's figure, so the button answers the click rather
-	// than a round trip.
-	const count = $derived(likes + (liked ? 1 : 0));
+	const count = $derived(engagement.data?.like_count ?? 0);
 	const numberLocale = $derived(locale === 'mw' ? 'en-US' : PUBLIC_LANGUAGE[locale]);
 	const numberFormat = $derived(new Intl.NumberFormat(numberLocale));
 	const formattedCount = $derived(numberFormat.format(count));
 
 	function toggle() {
-		liked = !liked;
-		void onlike?.(liked);
+		if (!like.isPending) like.mutate(!liked);
 	}
 
 	function splitCopy(short: string, long: string) {
@@ -180,6 +175,8 @@
 			data-liked={liked}
 			data-expanded="false"
 			onclick={toggle}
+			disabled={like.isPending}
+			aria-busy={like.isPending}
 			onmouseenter={expand}
 			onmouseleave={collapse}
 			onfocus={expandFromFocus}

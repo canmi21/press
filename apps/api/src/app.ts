@@ -1,8 +1,9 @@
 import { robotsTxt } from '@canmi/robots';
-import type { Bindings } from '@canmi/store';
 import { URLS, isDevHost, pickUrls } from '@canmi/urls';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
+import type { Bindings } from './bindings';
+import engagement from './engagement';
 import image from './image';
 
 /**
@@ -27,6 +28,8 @@ app.use(
 			URLS.internal.link,
 		],
 		allowMethods: ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+		allowHeaders: ['Content-Type'],
+		maxAge: 86_400,
 	}),
 );
 
@@ -45,6 +48,7 @@ app.get('/', (c) => {
 });
 
 app.route('/image', image);
+app.route('/', engagement);
 
 // An API has nothing to index, and its URLs surfacing in search results would compete with
 // the pages that call it.

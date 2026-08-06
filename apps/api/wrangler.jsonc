@@ -5,7 +5,6 @@
 	// Must not exceed what the installed workerd supports, which lags the calendar.
 	"compatibility_date": "2026-07-29",
 	"compatibility_flags": ["nodejs_compat"],
-
 	// Read-only here: the API answers questions about assets and never writes one. The bucket
 	// is the same one the CDN serves, because a record and the bytes it describes are produced
 	// together and should not be able to drift apart.
@@ -15,14 +14,39 @@
 			"bucket_name": "public",
 		},
 	],
-
+	"d1_databases": [
+		{
+			"binding": "DATABASE",
+			"database_name": "api",
+			"database_id": "959379fe-f528-4304-9f40-3e1c957208fe",
+			"migrations_dir": "drizzle",
+		},
+	],
+	// These quotas are intentionally approximate. Cloudflare enforces them close to the caller;
+	// D1 remains the source of truth for subscription and like identity.
+	"ratelimits": [
+		{
+			"name": "ENGAGEMENT_RATE_LIMITER",
+			"namespace_id": "959379523",
+			"simple": { "limit": 60, "period": 60 },
+		},
+		{
+			"name": "NEWSLETTER_RATE_LIMITER",
+			"namespace_id": "959379521",
+			"simple": { "limit": 5, "period": 60 },
+		},
+		{
+			"name": "LIKE_RATE_LIMITER",
+			"namespace_id": "959379522",
+			"simple": { "limit": 10, "period": 60 },
+		},
+	],
 	// The port also appears in libs/urls as the development API URL. wrangler cannot read a
 	// TypeScript library, so the number is written twice on purpose.
 	"dev": {
 		"port": 26512,
 		"inspector_port": 26513,
 	},
-
 	// Development reads data/public directly, the same way apps/cdn does and for the same
 	// reason: the local tree is the source of truth. Without this the simulated bucket is empty
 	// and every metadata lookup is a 404 until `--remote` reaches the real one, which makes
@@ -31,6 +55,33 @@
 	// Under `env.dev` so a plain deploy never uploads data/public alongside the worker.
 	"env": {
 		"dev": {
+			// Bindings do not inherit into a named Wrangler environment. Development repeats the
+			// database and limits explicitly, but Wrangler keeps their state local by default.
+			"d1_databases": [
+				{
+					"binding": "DATABASE",
+					"database_name": "api",
+					"database_id": "959379fe-f528-4304-9f40-3e1c957208fe",
+					"migrations_dir": "drizzle",
+				},
+			],
+			"ratelimits": [
+				{
+					"name": "ENGAGEMENT_RATE_LIMITER",
+					"namespace_id": "959379523",
+					"simple": { "limit": 60, "period": 60 },
+				},
+				{
+					"name": "NEWSLETTER_RATE_LIMITER",
+					"namespace_id": "959379521",
+					"simple": { "limit": 5, "period": 60 },
+				},
+				{
+					"name": "LIKE_RATE_LIMITER",
+					"namespace_id": "959379522",
+					"simple": { "limit": 10, "period": 60 },
+				},
+			],
 			"assets": {
 				"directory": "../../data/public",
 				"binding": "ASSETS",
@@ -38,9 +89,14 @@
 			},
 		},
 	},
-
-	"observability": { "logs": { "enabled": true } },
-	"placement": { "mode": "smart" },
+	"observability": {
+		"logs": {
+			"enabled": true,
+		},
+	},
+	"placement": {
+		"mode": "smart",
+	},
 	// Custom domains only; see apps/cdn for the reasoning.
 	"workers_dev": false,
 	"preview_urls": false,

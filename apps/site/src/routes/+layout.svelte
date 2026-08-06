@@ -1,8 +1,16 @@
 <script lang="ts">
-	import { dev } from '$app/environment';
+	import { browser, dev } from '$app/environment';
 	import { page } from '$app/state';
 	import { URLS, pickUrls } from '@canmi/urls';
+	import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
+	import { QueryClient } from '@tanstack/svelte-query';
+	import { PersistQueryClientProvider } from '@tanstack/svelte-query-persist-client';
 	import { installFocusSourceTracker } from '$lib/client/focus-source';
+	import {
+		ENGAGEMENT_CACHE_MAX_AGE,
+		ENGAGEMENT_QUERY_KEY,
+		ENGAGEMENT_STALE_TIME,
+	} from '$lib/engagement/engagement.svelte';
 	import { localeUrl } from '$lib/locale';
 	import { site } from '$lib/site';
 	import '../styles/app.css';
@@ -17,6 +25,28 @@
 		articleLocale?.canonical ?? `${URLS.apps.production.site}${page.url.pathname}`,
 	);
 	const feed = $derived(localeUrl('/atom.xml', locale?.code ?? 'mw'));
+	const queryClient = new QueryClient({
+		defaultOptions: {
+			queries: {
+				staleTime: ENGAGEMENT_STALE_TIME,
+				gcTime: ENGAGEMENT_CACHE_MAX_AGE,
+			},
+		},
+	});
+	const persister = createSyncStoragePersister({
+		storage: browser ? localStorage : undefined,
+		key: 'engagement',
+	});
+	const persistOptions = {
+		persister,
+		maxAge: ENGAGEMENT_CACHE_MAX_AGE,
+		dehydrateOptions: {
+			shouldDehydrateQuery: (query: { queryKey: readonly unknown[]; state: { status: string } }) =>
+				query.queryKey.length === ENGAGEMENT_QUERY_KEY.length &&
+				query.queryKey[0] === ENGAGEMENT_QUERY_KEY[0] &&
+				query.state.status === 'success',
+		},
+	};
 	let { children } = $props();
 
 	$effect(() => installFocusSourceTracker());
@@ -84,4 +114,6 @@
 	{/if}
 </svelte:head>
 
-{@render children()}
+<PersistQueryClientProvider client={queryClient} {persistOptions}>
+	{@render children()}
+</PersistQueryClientProvider>

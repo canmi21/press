@@ -34,6 +34,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 DOC_GLOBS = ("spec/*.md", "CLAUDE.md")
 CODE_SUFFIXES = {".ts", ".py", ".css", ".toml", ".json", ".jsonc", ".yaml", ".yml"}
 SKIP_DIRS = {"node_modules", ".jj", ".git", "dist", "build", "target", "data", ".svelte-kit", ".wrangler"}
+SKIP_FILES = {"pnpm-lock.yaml"}
 
 MD_LINK = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 SPEC_REF = re.compile(r"spec/[a-z-]+\.md")
@@ -75,6 +76,7 @@ def code_files() -> list[pathlib.Path]:
 		p
 		for p in ROOT.rglob("*")
 		if p.is_file()
+		and p.name not in SKIP_FILES
 		and p.suffix in CODE_SUFFIXES
 		and not SKIP_DIRS & set(p.parts)
 		and "contents" not in p.parts

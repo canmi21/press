@@ -1,8 +1,9 @@
 import { isDevHost } from '@canmi/urls';
 import * as Sentry from '@sentry/cloudflare';
 import app from './app';
+import type { Bindings as WorkerBindings } from './bindings';
 
-type Bindings = {
+type Bindings = WorkerBindings & {
 	/**
 	 * Set with `wrangler secret put SENTRY_DSN`, never committed.
 	 *

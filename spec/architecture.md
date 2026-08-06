@@ -275,6 +275,11 @@ links, and `$schema` keys as citations. `$schema` has to be a URL here precisely
 tools come from mise and there is no `node_modules` to point at -- see
 [toolchain.md](toolchain.md).
 
+Generated dependency lockfiles are vendor metadata, not an application address source. A package
+manager may copy a dependency's deprecation or funding URL into `pnpm-lock.yaml`; the software does
+not resolve it, and the next install owns that line. The reference check therefore skips the
+lockfile rather than asking `libs/urls` to duplicate metadata that this repository does not control.
+
 The measure this exists to protect: **moving a domain costs one edit to one file.** Every
 literal written elsewhere adds one more place that has to be found, and the ones that get
 missed do not fail loudly -- they keep resolving to the old host until someone notices the

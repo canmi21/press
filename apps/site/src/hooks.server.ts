@@ -4,7 +4,6 @@ import { handleErrorWithSentry, initCloudflareSentryHandle, sentryHandle } from 
 import type { Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 import { getArticle, getPage } from '$lib/content';
-import { app } from '$lib/server/api';
 import { themeScript } from '$lib/theme';
 import { LANGUAGE_COOKIE_MAX_AGE, languageTag, privateHtml, resolveLocale } from '$lib/locale';
 import { registerServerStrategy } from '$lib/locale/paraglide';
@@ -32,9 +31,6 @@ const markdownHandle: Handle = async ({ event, resolve }) => {
 
 const pageHandle: Handle = async ({ event, resolve }) => {
 	const { pathname } = event.url;
-	if (pathname.startsWith('/api')) {
-		return app.fetch(event.request, event.platform?.env, event.platform?.context);
-	}
 	// The homepage renders at /, but its source is contents/homepage.md, so the
 	// markdown stays reachable at /homepage.md; bounce the bare page path to /.
 	if (pathname === '/homepage') {

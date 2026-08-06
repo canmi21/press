@@ -1,5 +1,6 @@
-import { type Bindings, read } from '@canmi/store';
+import { read } from '@canmi/store';
 import { Hono } from 'hono';
+import type { Bindings } from './bindings';
 
 /**
  * `GET /image/{cid}` -- what is known about an asset.

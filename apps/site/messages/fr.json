@@ -14,6 +14,7 @@
 	"newsletter.subscribe": "Je m’inscris",
 	"newsletter.subscribers": "Déjà {#cells}{count}{/cells} personnes sur la liste.",
 	"newsletter.confirm": "C’est noté. Votre boîte mail restera tranquille jusqu’au premier numéro.",
+	"newsletter.error": "L’inscription n’a pas abouti. Veuillez réessayer.",
 	"support.heading": "Me soutenir",
 	"support.like": "Aimé par {count} personnes",
 	"support.follow-short": "Suivre",

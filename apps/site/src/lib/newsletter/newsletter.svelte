@@ -2,39 +2,38 @@
 	import Check from '@lucide/svelte/icons/check';
 	import { ParaglideMessage } from '@inlang/paraglide-js-svelte';
 	import Counter from '$lib/components/counter.svelte';
+	import {
+		createEngagementQuery,
+		createNewsletterMutation,
+	} from '$lib/engagement/engagement.svelte';
 	import type { LocaleCode } from '$lib/locale';
 	import * as m from '$lib/paraglide/messages';
-
-	// Standing in for the real figure until the subscriber count is served with the page.
-	const PLACEHOLDER_SUBSCRIBERS = 23;
 
 	let {
 		class: className = '',
 		locale,
-		subscribers = PLACEHOLDER_SUBSCRIBERS,
-		onsubscribe = pretendToSubscribe,
 	}: {
 		class?: string;
 		locale: LocaleCode;
-		subscribers?: number;
-		/** The seam the real endpoint plugs into; nothing else here knows where the address goes. */
-		onsubscribe?: (email: string) => Promise<void>;
 	} = $props();
 
+	const engagement = createEngagementQuery();
+	const subscription = createNewsletterMutation();
+	const subscribers = $derived(engagement.data?.subscriber_count ?? 0);
 	let email = $state('');
-	let status = $state<'idle' | 'sending' | 'done'>('idle');
-
-	// No endpoint yet. The delay exists so the sending state is visible rather than skipped.
-	function pretendToSubscribe(_email: string): Promise<void> {
-		return new Promise((resolve) => setTimeout(resolve, 700));
-	}
+	let status = $state<'idle' | 'sending' | 'done' | 'error'>('idle');
 
 	async function submit(event: SubmitEvent) {
 		event.preventDefault();
 		if (status === 'sending') return;
 		status = 'sending';
-		await onsubscribe(email);
-		status = 'done';
+		try {
+			const result = await subscription.mutateAsync(email);
+			email = result.email;
+			status = 'done';
+		} catch {
+			status = 'error';
+		}
 	}
 </script>
 
@@ -82,6 +81,11 @@
 				{m['newsletter.subscribe']({}, { locale })}
 			</button>
 		</form>
+		{#if status === 'error'}
+			<p role="alert" class="mt-3 text-[0.9375rem] text-text-soft">
+				{m['newsletter.error']({}, { locale })}
+			</p>
+		{/if}
 
 		<p class="mt-3.5 text-[0.9375rem] text-text-soft">
 			<ParaglideMessage

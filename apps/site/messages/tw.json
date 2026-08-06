@@ -14,6 +14,7 @@
 	"newsletter.subscribe": "先加入",
 	"newsletter.subscribers": "已有 {#cells}{count}{/cells} 人在等第一期。",
 	"newsletter.confirm": "好，已經幫你留位子了。第一期出爐前，不會有郵件打擾你。",
+	"newsletter.error": "這次沒有成功，請再試一次。",
 	"support.heading": "支持一下",
 	"support.like": "{count} 個讚",
 	"support.follow-short": "關注",

@@ -19,9 +19,6 @@
 	const repositoryUrl = `${githubProfileUrl}/workspace`;
 	const googleSourceUrl = new URL(URLS.external.google.sourcePreferences);
 	googleSourceUrl.searchParams.set('q', URLS.apps.production.site);
-	// Standing in for the real figure until the count is served with the page.
-	const LIKES = 128;
-
 	// Icons are center-anchored, so each is size-compensated independently. Base
 	// matches the inline text icons (h-4); wide/flat glyphs (Telegram) get a larger
 	// box to read optically equal.
@@ -91,7 +88,6 @@
 
 		<Support
 			locale={data.locale.code}
-			likes={LIKES}
 			sourcePreferenceHref={googleSourceUrl.href}
 		/>
 

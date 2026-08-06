@@ -14,6 +14,7 @@
 	"newsletter.subscribe": "Apuntarme",
 	"newsletter.subscribers": "Ya somos {#cells}{count}{/cells} en la lista.",
 	"newsletter.confirm": "Ya estás dentro. Tu bandeja seguirá tranquila hasta el primer número.",
+	"newsletter.error": "No se ha podido completar. Inténtalo de nuevo.",
 	"support.heading": "Apóyame",
 	"support.like": "A {count} personas les gusta",
 	"support.follow-short": "Seguir",

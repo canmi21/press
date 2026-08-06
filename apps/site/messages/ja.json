@@ -14,6 +14,7 @@
 	"newsletter.subscribe": "先行登録する",
 	"newsletter.subscribers": "現在 {#cells}{count}{/cells} 人が創刊号を待っています。",
 	"newsletter.confirm": "登録しました。創刊号ができるまで、メールはお送りしません。",
+	"newsletter.error": "うまく登録できませんでした。もう一度お試しください。",
 	"support.heading": "応援",
 	"support.like": "{count}件のいいね",
 	"support.follow-short": "フォロー",
