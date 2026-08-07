@@ -213,6 +213,12 @@ compromises are found and yanked inside that window.
 `minimumReleaseAgeExclude` holds the exemptions. Keep the list short: every entry is an
 accepted risk, justified only when the wait costs more than it protects.
 
+**Cargo has no equivalent delay and is not getting one.** The question is asked by the npm rule
+sitting here, and the answer is the user's: they watch that ecosystem themselves. So a crate
+published minutes ago can enter a build, and when one breaks it, the fix is a lockfile pin at the
+version that worked -- named in the commit, with no manifest constraint and no `[patch]`, so that
+a later update takes the repair as soon as it exists.
+
 The rule bites in a way worth expecting: a range that would otherwise resolve to the newest
 release quietly resolves to the newest _mature_ one instead. That is the policy working, not a
 resolution failure, and the declared range should still name the version the fix landed in
