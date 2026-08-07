@@ -10,6 +10,7 @@
 	} from '$lib/engagement/engagement.svelte';
 	import type { LocaleCode } from '$lib/locale';
 	import { maskEmail } from '$lib/newsletter/mask';
+	import { SEQUENCE, SEQUENCE_TOTAL, sequenceStyle } from '$lib/newsletter/sequence';
 	import * as m from '$lib/paraglide/messages';
 
 	let {
@@ -34,12 +35,28 @@
 	 * returning reader arrives at the confirmed pill already still.
 	 */
 	let entering = $state<string | undefined>();
+	/**
+	 * Where the transition has got to. `still` covers both ends of it: nothing is running, either
+	 * because nothing has happened yet or because everything already has.
+	 */
+	let stage = $state<'still' | 'redacting' | 'settling' | 'undoing'>('still');
+	let timers: ReturnType<typeof setTimeout>[] = [];
 
 	// The record is on the reader's device, so the server renders the form and this replaces it
 	// after mount. Both states are one pill tall, so the swap moves nothing around it.
 	$effect(() => {
 		subscription = readSubscription();
+		return stop;
 	});
+
+	function stop() {
+		for (const timer of timers) clearTimeout(timer);
+		timers = [];
+	}
+
+	function after(delay: number, run: () => void) {
+		timers.push(setTimeout(run, delay));
+	}
 
 	// Subscribing twice from a device that never held the token confirms the address without
 	// offering to cancel it. That device genuinely cannot, and an unsubscribe control that always
@@ -55,14 +72,27 @@
 		try {
 			const result = await newsletter.mutateAsync(email);
 			email = '';
-			// Reduced motion arrives at the confirmed pill directly. The typed copy exists only to
-			// be animated away, and leaving it on screen would need a timer to take it back off.
-			if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) entering = typed;
-			// Only for this visit. A reload lands on the subscriber count, since by then the pill
-			// already says the reader is on the list and the sentence has been read.
-			status = 'confirmed';
 			confirmed = result.email;
 			subscription = readSubscription();
+			// Reduced motion arrives at the end of the sequence directly. Every stage of it exists
+			// to be watched, so with nothing to watch there is only the state it lands on.
+			if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				status = 'confirmed';
+				return;
+			}
+			// Only for this visit. A reload lands on the subscriber count, since by then the pill
+			// already says the reader is on the list and the sentence has been read.
+			entering = typed;
+			stage = 'redacting';
+			after(SEQUENCE.row.at, () => {
+				status = 'confirmed';
+				stage = 'settling';
+			});
+			after(SEQUENCE.undo.at, () => (stage = 'undoing'));
+			after(SEQUENCE_TOTAL, () => {
+				entering = undefined;
+				stage = 'still';
+			});
 		} catch {
 			status = 'error';
 		}
@@ -73,9 +103,11 @@
 		const record = subscription;
 		try {
 			await cancellation.mutateAsync(record);
+			stop();
 			subscription = undefined;
 			confirmed = undefined;
 			entering = undefined;
+			stage = 'still';
 			status = 'cancelled';
 		} catch {
 			status = 'error';
@@ -88,13 +120,17 @@ button is as wide as the wider of the two and its edge does not move when the co
 alternative is animating a width the stylesheet cannot know, which is a measurement this does not
 otherwise need. See spec/engagement.md. -->
 {#snippet label(subscribed: boolean)}
-	<span class="labels">
-		<span class:spent={subscribed}>{m['newsletter.subscribe']({}, { locale })}</span>
-		<span class:spent={!subscribed}>{m['newsletter.subscribed']({}, { locale })}</span>
+	<span class="labels" class:crossfading={entering}>
+		<span class:spent={subscribed} aria-hidden={subscribed}>
+			{m['newsletter.subscribe']({}, { locale })}
+		</span>
+		<span class:spent={!subscribed} aria-hidden={!subscribed}>
+			{m['newsletter.subscribed']({}, { locale })}
+		</span>
 	</span>
 {/snippet}
 
-<section aria-labelledby="newsletter-heading" class="mt-16 {className}">
+<section aria-labelledby="newsletter-heading" class="mt-16 {className}" style={sequenceStyle()}>
 	<h2 id="newsletter-heading" class="mb-3 font-medium text-text-strong">
 		{m['newsletter.heading']({}, { locale })}
 	</h2>
@@ -116,13 +152,7 @@ otherwise need. See spec/engagement.md. -->
 					<span class="typed">{entering}</span>
 				{/if}
 				<!-- The address is already unreadable, so nothing is gained by letting it wrap. -->
-				<span
-					class="masked text-text"
-					class:revealing={entering}
-					onanimationend={() => (entering = undefined)}
-				>
-					{masked}
-				</span>
+				<span class="masked text-text" class:revealing={entering}>{masked}</span>
 			</span>
 			<!-- The button's surface stays and its copy states the outcome, so the shape the reader
 			just used becomes the label for what it did. It is inert -- there is nothing left to
@@ -173,9 +203,9 @@ otherwise need. See spec/engagement.md. -->
 		{:else if status === 'cancelled'}
 			<p role="status">{m['newsletter.unsubscribed']({}, { locale })}</p>
 		{:else if status === 'confirmed'}
-			<p role="status">{m['newsletter.confirm']({}, { locale })}</p>
+			<p role="status" class:arriving={entering}>{m['newsletter.confirm']({}, { locale })}</p>
 		{:else}
-			<p>
+			<p class:leaving={entering}>
 				<ParaglideMessage
 					message={m['newsletter.subscribers']}
 					inputs={{ count: subscribers }}
@@ -190,12 +220,16 @@ otherwise need. See spec/engagement.md. -->
 			</p>
 		{/if}
 
-		{#if subscription}
+		<!-- Held back until the sequence reaches it. A control that undoes what the reader is still
+		watching happen has nothing to undo yet, and it arrives directly below the button they just
+		pressed, where a second click would otherwise land on it. -->
+		{#if subscription && (stage === 'still' || stage === 'undoing')}
 			<button
 				type="button"
 				onclick={unsubscribe}
 				disabled={cancellation.isPending}
 				aria-busy={cancellation.isPending}
+				class:arriving={stage === 'undoing'}
 				class="focus-link spring-underline shrink-0 transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong disabled:opacity-60"
 			>
 				{m['newsletter.unsubscribe']({}, { locale })}
@@ -227,7 +261,7 @@ otherwise need. See spec/engagement.md. -->
 
 	.typed {
 		color: var(--color-text);
-		animation: fade 200ms ease both;
+		animation: lift var(--typed-for) ease var(--typed-at) both;
 	}
 
 	/* Ink is for the thing worth pressing. Once pressed this is a label, so it keeps the shape and
@@ -239,7 +273,7 @@ otherwise need. See spec/engagement.md. -->
 	}
 
 	.cooling {
-		animation: cool 460ms var(--ease-spring) both;
+		animation: cool var(--chip-for) var(--ease-spring) var(--chip-at) both;
 	}
 
 	@keyframes cool {
@@ -263,21 +297,78 @@ otherwise need. See spec/engagement.md. -->
 		white-space: nowrap;
 	}
 
-	/* `visibility` rather than `display`, which is the whole point: the box still measures, and a
-	   hidden box is out of the accessibility tree without needing to be marked. */
+	/* `visibility` rather than `display`, which is the whole point: the box still measures. Which
+	   of the two is read aloud is marked separately, since the crossfade below has to turn this
+	   back on to paint it. */
 	.spent {
 		visibility: hidden;
+	}
+
+	.crossfading > span {
+		animation-duration: var(--chip-for);
+		animation-delay: var(--chip-at);
+		animation-timing-function: var(--ease-spring);
+		animation-fill-mode: both;
+	}
+
+	.crossfading > .spent {
+		animation-name: spend;
+	}
+
+	.crossfading > :not(.spent) {
+		animation-name: take;
+	}
+
+	@keyframes spend {
+		from {
+			visibility: visible;
+			opacity: 1;
+		}
+		to {
+			visibility: visible;
+			opacity: 0;
+		}
+	}
+
+	@keyframes take {
+		from {
+			opacity: 0;
+		}
+	}
+
+	/* The line under the pill: the count clears out, then the confirmation arrives in its place. */
+	.leaving {
+		animation: lift var(--count-for) ease var(--count-at) both;
+	}
+
+	.arriving {
+		animation: arrive var(--row-for) var(--ease-spring) both;
+	}
+
+	button.arriving {
+		animation-duration: var(--undo-for);
+	}
+
+	@keyframes arrive {
+		from {
+			transform: translateY(0.375rem);
+			opacity: 0;
+		}
 	}
 
 	/* Uncovered left to right, so the address reads as being redacted in place. A clip needs no
 	   measurement, unlike the Support rail's masks: that geometry depends on the rendered width of
 	   two labels, and this one is always the whole box. See spec/architecture.md. */
+	/* Not the spring. A spring is a settle: it spends 97% of the distance in the first half and
+	   leaves the rest of the stage with nothing visibly happening. This sweep is meant to be
+	   watched across its whole duration, so it eases in and out instead. */
 	.revealing {
-		animation: redact 460ms var(--ease-spring) both;
+		animation: redact var(--redact-for) cubic-bezier(0.65, 0, 0.35, 1) var(--redact-at) both;
 	}
 
-	@keyframes fade {
+	@keyframes lift {
 		to {
+			transform: translateY(-0.375rem);
 			opacity: 0;
 		}
 	}

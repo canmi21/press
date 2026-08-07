@@ -79,15 +79,36 @@ browser -- and an error would leave the reader looking at a subscription they ca
 Cancelling takes one click and no confirmation step. Resubscribing is the same form that is
 already on the page and issues a fresh token, so the mistake costs a click to undo.
 
-### The address is redacted in place, and only when somebody did it
+### Subscribing takes 2.1 seconds, spent in three beats
 
-Subscribing sweeps a clip left to right across the masked address while a plain copy of what was
-typed fades out beneath it, both in one grid cell so the masked form arrives exactly where the
-field's text was. The reading is that the address was redacted rather than swapped, which is the
-truthful account of what happened to it.
+That is a long time for an interface, and it only works as a **sequence**. Two seconds of
+simultaneous motion reads as a page that has stopped responding; the same two seconds spent in
+order reads as three things happening because of each other. Stretching one animation to fill the
+budget was the failure mode to avoid — the fix for a transition that feels rushed is more stages,
+not slower ones.
 
-The button cools out of ink over the same span, which shows one control settling rather than a
-second one appearing in its place.
+The timeline is one object in [sequence.ts](../apps/site/src/lib/newsletter/sequence.ts), handed
+to the stylesheet as custom properties so no duration is written twice. Its tests hold two
+invariants: the stages end exactly on the stated total, and none begins after the previous one has
+finished — a gap is the reader watching nothing, which is the thing the sequence exists to avoid.
+
+1. **The address is taken in.** A clip sweeps left to right across the masked form while a plain
+   copy of what was typed lifts away beneath it, both in one grid cell so the mask arrives exactly
+   where the field's text was. The reading is that the address was redacted rather than swapped,
+   which is the truthful account of what happened to it.
+2. **The button acknowledges it**, cooling out of ink and crossfading its copy, so one control is
+   seen settling rather than a second appearing in its place.
+3. **The line below settles**, the count clearing before the confirmation arrives in its place.
+
+The sweep does not use the shared spring. A spring is a settle — it covers 97% of the distance in
+the first half and leaves the rest of its stage with nothing visibly happening, which is exactly
+what a stage this long cannot afford. It eases in and out instead, and the spring stays where
+something is landing rather than travelling.
+
+The unsubscribe control is last, and is absent rather than merely invisible until its beat. A
+control that undoes what the reader is still watching happen has nothing to undo yet, and it
+arrives directly below the button they just pressed, where a second click would otherwise land on
+it.
 
 **A record read at mount animates nothing.** Someone returning to the page did not just do
 anything, and replaying the confirmation would claim they had. The animation belongs to the
