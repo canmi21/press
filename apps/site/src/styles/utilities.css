@@ -43,6 +43,22 @@
 	:focus-visible > .focus-link-inner {
 		border-radius: 0.25rem;
 	}
+
+	/* `:focus-visible` is the browser's guess at intent, and the guess is unreliable for focus a
+	   script moved -- a menu handing focus back to its trigger as it closes is the case here. Get it
+	   wrong on a phone and a keyboard affordance is drawn for somebody with no keyboard. The tracker
+	   already records what the last input actually was, so a known pointer takes the outline away.
+
+	   Written as suppression rather than as a keyboard requirement, which is the part that matters:
+	   with the attribute absent -- no input yet, or the tracker never installed -- this rule does
+	   not apply and plain `:focus-visible` stands. It can therefore show a ring once too often and
+	   can never leave a keyboard user with no indicator at all. See spec/styling.md. */
+	html[data-focus-source='pointer'] :focus-visible,
+	html[data-focus-source='pointer'] :focus-visible > .focus-ring-inner,
+	html[data-focus-source='pointer'] :focus-visible > .focus-link-inner,
+	html[data-focus-source='pointer'] .focus-ring-within:has(:focus-visible) {
+		outline: none;
+	}
 }
 
 @property --underline-progress {

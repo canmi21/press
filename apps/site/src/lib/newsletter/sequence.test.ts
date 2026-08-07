@@ -14,7 +14,7 @@ describe.each(TIMELINES)('the $name timeline', ({ stages, total }) => {
 	it('never leaves the reader watching nothing', () => {
 		// Every stage has to begin before the one before it has finished, or the transition reads as
 		// having stalled rather than as one thing following another.
-		const ordered = [...all].sort((a, b) => a.at - b.at);
+		const ordered = all.toSorted((a, b) => a.at - b.at);
 		for (const [index, stage] of ordered.entries()) {
 			const previous = ordered[index - 1];
 			if (!previous) continue;

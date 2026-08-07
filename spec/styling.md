@@ -60,11 +60,27 @@ translation notice link. It is a layered background rather than `text-decoration
 animate its width; the resting layer remains visible throughout, so the animation reinforces an
 affordance instead of being the only indication that the text is a link.
 
-Text inputs distinguish pointer focus from keyboard navigation. Pointer focus strengthens the
-existing field border; keyboard focus adds the accessibility outline. Unlike buttons and links,
-text inputs commonly match `:focus-visible` after a click because the caret itself must stay
-visible, so the input pattern tracks the most recent input source rather than relying on that
-pseudo-class alone.
+## `:focus-visible` is the browser's guess, and the site keeps its own answer
+
+The pseudo-class is a heuristic, and it is not ours. Where it is least reliable is focus a script
+moved: a menu handing focus back to its trigger as it closes is the case that matters here, and
+engines disagree about whether that counts. Guess wrong on a phone and a keyboard affordance is
+drawn for somebody who has no keyboard.
+
+So the document records what the last input actually was -- `keydown` of a navigation key marks
+`kbd`, `pointerdown` marks `pointer`, and touch arrives as a pointer like any other. **A
+positively known pointer takes the outline away**; the pseudo-class still decides everything else.
+
+**It is written as a suppression, never as a keyboard requirement**, and that asymmetry is the
+point. With the attribute absent -- no input yet, or the tracker never installed -- the rule does
+not apply and plain `:focus-visible` stands. It can therefore show a ring once too often, and it
+can never leave a keyboard user with no indicator at all. The opposite spelling fails silently in
+exactly the direction that matters.
+
+Text inputs are the older, narrower case of the same idea. Pointer focus strengthens the existing
+field border; keyboard focus adds the accessibility outline. They needed it first because a text
+input commonly matches `:focus-visible` after a click, the caret having to stay visible, so the
+pseudo-class alone was never enough there.
 
 Roving-focus menu items and SVG data marks keep their component-native highlighted surface or
 stroke. Those states already identify the current keyboard target and forcing a rectangular ring
