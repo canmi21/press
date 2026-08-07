@@ -11,17 +11,21 @@ type Timeline = Record<string, Stage>;
  */
 export const SEQUENCE = {
 	/** The address as typed, lifting away. */
-	typed: { at: 0, for: 350 },
-	/** The mask sweeping across it, left to right. */
-	redact: { at: 0, for: 1200 },
+	typed: { at: 0, for: 400 },
+	/**
+	 * The mask sweeping across it, left to right. It takes the better part of the budget on
+	 * purpose: it is the one stage that is about the address itself, and the beats after it are
+	 * acknowledgements, which are cheaper to read.
+	 */
+	redact: { at: 0, for: 1500 },
 	/** The button cooling out of ink and swapping its copy. */
-	chip: { at: 1050, for: 600 },
+	chip: { at: 1350, for: 450 },
 	/** The subscriber count going, to clear the line under the pill. */
 	count: { at: 1500, for: 150 },
 	/** The confirmation arriving on that line. */
-	row: { at: 1650, for: 300 },
+	row: { at: 1650, for: 250 },
 	/** The unsubscribe control, last. */
-	undo: { at: 1800, for: 300 },
+	undo: { at: 1850, for: 250 },
 } as const satisfies Timeline;
 
 export const SEQUENCE_TOTAL = 2100;
