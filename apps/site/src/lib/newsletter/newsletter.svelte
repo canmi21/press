@@ -181,7 +181,7 @@ otherwise need. See spec/engagement.md. -->
 				<span
 					class="masked text-text"
 					class:revealing={entering}
-					class:retreating={stage === 'reverting'}
+					class:dissolving={stage === 'reverting'}
 				>
 					{masked}
 				</span>
@@ -218,6 +218,7 @@ otherwise need. See spec/engagement.md. -->
 					type="submit"
 					disabled={status === 'sending'}
 					aria-busy={status === 'sending'}
+					class:reviving={stage === 'restoring'}
 					class="focus-ring h-full shrink-0 rounded-full bg-ink px-4 font-medium text-page transition-opacity duration-200 hover:opacity-85 disabled:opacity-60"
 				>
 					{@render label(false)}
@@ -239,7 +240,9 @@ otherwise need. See spec/engagement.md. -->
 				{m['newsletter.unsubscribed']({}, { locale })}
 			</p>
 		{:else if status === 'confirmed'}
-			<p role="status" class:arriving={entering}>{m['newsletter.confirm']({}, { locale })}</p>
+			<p role="status" class:arriving={entering} class:departing={stage === 'reverting'}>
+				{m['newsletter.confirm']({}, { locale })}
+			</p>
 		{:else}
 			<p class:leaving={entering}>
 				<ParaglideMessage
@@ -401,17 +404,28 @@ otherwise need. See spec/engagement.md. -->
 		animation-duration: var(--undo-for);
 	}
 
-	/* The reverse: the control that was used goes with the state it undid, and the field it gives
-	   the reader back arrives the same way the confirmation did. */
+	/* The line under the pill leaves along the path it arrived by, so the two states are visibly one
+	   thing changing rather than two that happen to occupy the same row. */
 	.departing {
-		animation: lift var(--back-undo-for) ease var(--back-undo-at) both;
+		animation: arrive var(--back-undo-for) var(--ease-spring) var(--back-undo-at) both reverse;
 	}
 
-	/* The submit button is deliberately absent from this. It is the shape the chip has just finished
-	   warming back into, arriving at the same ink it was handed; fading it in would blink the one
-	   thing that was continuous. */
 	.returning {
 		animation: arrive var(--back-form-for) var(--ease-spring) both;
+	}
+
+	/* The button does not fade in with the rest: it is the shape the chip has just finished warming
+	   back into, arriving at the same ink it was handed, and fading it would blink the one element
+	   that was continuous across the swap. It springs instead -- the moment it can be pressed again
+	   is worth marking, and scale carries that without touching the colour that made it continuous. */
+	.reviving {
+		animation: revive var(--back-form-for) var(--ease-spring) both;
+	}
+
+	@keyframes revive {
+		from {
+			transform: scale(0.92);
+		}
 	}
 
 	@keyframes arrive {
@@ -431,10 +445,20 @@ otherwise need. See spec/engagement.md. -->
 		animation: redact var(--redact-for) cubic-bezier(0.65, 0, 0.35, 1) var(--redact-at) both;
 	}
 
-	/* The same sweep run backwards, so the mask leaves by the edge it came in from. */
-	.retreating {
-		animation: redact var(--back-unredact-for) cubic-bezier(0.65, 0, 0.35, 1)
-			var(--back-unredact-at) both reverse;
+	/* Not the sweep reversed. Redacting is something done to the address, edge and all; letting it
+	   go is not, and a mirrored wipe would say the site was busy taking it back rather than simply
+	   no longer holding it. So it goes soft instead of directional: blurred out of focus, drifting
+	   very slightly, gone. */
+	.dissolving {
+		animation: dissolve var(--back-dissolve-for) ease-in var(--back-dissolve-at) both;
+	}
+
+	@keyframes dissolve {
+		to {
+			transform: translateX(0.5rem);
+			opacity: 0;
+			filter: blur(0.1875rem);
+		}
 	}
 
 	@keyframes lift {

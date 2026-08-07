@@ -33,13 +33,16 @@ export const SEQUENCE_TOTAL = 2100;
  * they are trying to go is the one place a long transition turns hostile.
  */
 export const REVERSE = {
-	/** The control that was just used, going with the state it undid. */
-	undo: { at: 0, for: 200 },
-	/** The mask retreating the way it arrived, right to left. */
-	unredact: { at: 100, for: 450 },
+	/** The line under the pill leaving the way it came, and the control that was just used with it. */
+	undo: { at: 0, for: 250 },
+	/**
+	 * The address dissolving. It is the longest stage of the four and it does not sweep: coming in
+	 * was an act performed on the address, going out is it ceasing to be held.
+	 */
+	dissolve: { at: 0, for: 600 },
 	/** The button warming back to ink and taking its verb back. */
-	chip: { at: 200, for: 400 },
-	/** The field returning, ready to be typed in again. */
+	chip: { at: 300, for: 300 },
+	/** The field returning, and the button springing back to something pressable. */
 	form: { at: 600, for: 300 },
 } as const satisfies Timeline;
 

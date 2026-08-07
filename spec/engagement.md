@@ -117,15 +117,25 @@ thing changing -- but it is deliberately much shorter, and a test holds it under
 forward total. Committing is worth dwelling on; leaving is not, and holding somebody inside an
 animation while they are trying to go is the one place a long transition turns hostile.
 
-The control that was used goes first, the mask retreats by the edge it arrived from, the button
-warms back to ink and takes its verb back, and the field returns. **The pill keeps showing the
-address it is undoing until the mask has taken it back off**, so the record outlives the request
-that cancelled it by exactly that long -- which is also why a second click is refused for the
-duration rather than spent on a subscription that is already gone.
+The line under the pill leaves along the path it arrived by -- the confirmation and the
+unsubscribe control both sink back down and fade, the exact reverse of their entrance -- so the
+two states read as one thing changing rather than two that happen to share a row.
+
+**The address does not reverse its sweep, though.** Redacting is something done to it, edge and
+all; letting it go is not, and a mirrored wipe would say the site was busy taking the address back
+rather than simply no longer holding it. It goes soft instead of directional: blurred out of
+focus, drifting slightly, gone. It is also the longest stage of the four, which is what makes it
+read as dissolving rather than being cleared away.
+
+**The pill keeps showing the address it is undoing until that finishes**, so the record outlives
+the request that cancelled it by exactly that long -- which is also why a second click is refused
+for the duration rather than spent on a subscription that is already gone.
 
 The submit button is the one thing that does not fade in at the end. It is the shape the chip has
-just finished warming back into and arrives at the same ink it was handed; animating it would
-blink the one element that was continuous across the swap.
+just finished warming back into and arrives at the same ink it was handed; fading it would blink
+the one element that was continuous across the swap. It springs up to size instead, because the
+moment it becomes pressable again is worth marking and scale carries that without touching the
+colour that made it continuous.
 
 **A record read at mount animates nothing.** Someone returning to the page did not just do
 anything, and replaying the confirmation would claim they had. The animation belongs to the
