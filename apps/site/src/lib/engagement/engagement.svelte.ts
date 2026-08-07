@@ -1,10 +1,9 @@
 import { browser, dev } from '$app/environment';
 import { pickUrls } from '@canmi/urls';
 import { createMutation, createQuery, useQueryClient } from '@tanstack/svelte-query';
+import { QUERY_CACHE_MAX_AGE, QUERY_STALE_TIME } from '$lib/query';
 
 export const ENGAGEMENT_QUERY_KEY = ['engagement'] as const;
-export const ENGAGEMENT_STALE_TIME = 15 * 60 * 1_000;
-export const ENGAGEMENT_CACHE_MAX_AGE = 7 * 24 * 60 * 60 * 1_000;
 
 export type Engagement = {
 	subscriber_count: number;
@@ -30,8 +29,8 @@ export function createEngagementQuery() {
 		queryKey: ENGAGEMENT_QUERY_KEY,
 		queryFn: fetchEngagement,
 		enabled: browser,
-		staleTime: ENGAGEMENT_STALE_TIME,
-		gcTime: ENGAGEMENT_CACHE_MAX_AGE,
+		staleTime: QUERY_STALE_TIME,
+		gcTime: QUERY_CACHE_MAX_AGE,
 		retry: 1,
 	}));
 }

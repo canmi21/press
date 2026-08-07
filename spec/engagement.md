@@ -56,8 +56,9 @@ strict quota.
 The site fetches engagement state in the browser from the standalone API origin. TanStack Query
 deduplicates the shared request used by Newsletter and Support. Its sync-storage persister writes
 all successful TanStack Query query data into the single global `localStorage["cache"]` container
-across page reloads. Engagement data is fresh for 15 minutes and may remain available as a
-seven-day fallback while a background refetch refreshes stale data.
+across page reloads. All queries remain fresh for five minutes; once stale, normal TanStack Query
+refresh triggers update them. Unused in-memory data and cross-reload persistence may remain for up
+to three days as a fallback while a stale query refreshes in the background.
 
 Mutations and errors are never persisted. Email addresses and cancellation tokens never enter the
 query cache. The dedicated `localStorage["email"]` capability record is independent application

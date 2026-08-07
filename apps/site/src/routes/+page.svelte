@@ -4,6 +4,7 @@
 	import { pickUrls, URLS } from '@canmi/urls';
 	import Lollipop from '@lucide/svelte/icons/lollipop';
 	import ArticleList from '$lib/article/list.svelte';
+	import Modal from '$lib/components/modal.svelte';
 	import PageBody from '$lib/home/body.svelte';
 	import Icon from '$lib/home/icons.svelte';
 	import Newsletter from '$lib/newsletter/newsletter.svelte';
@@ -12,6 +13,7 @@
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
+	let sponsorOpen = $state(false);
 
 	const cdnUrl = pickUrls(dev).cdn;
 	const avatarSrc = imgsrc('github:avatar:72544151@192', { cdnUrl });
@@ -89,6 +91,7 @@
 		<Support
 			locale={data.locale.code}
 			sourcePreferenceHref={googleSourceUrl.href}
+			onsponsor={() => (sponsorOpen = true)}
 		/>
 
 		<!-- Left-aligned like everything above it: the page is one text column all the way down,
@@ -127,3 +130,12 @@
 		</div>
 	</article>
 </main>
+
+<Modal
+	open={sponsorOpen}
+	title="Sponsor unavailable"
+	closeLabel="Close sponsor notice"
+	onOpenChange={(open) => (sponsorOpen = open)}
+>
+	Sponsors are currently unavailable due to U.S. F-1 immigration restrictions.
+</Modal>

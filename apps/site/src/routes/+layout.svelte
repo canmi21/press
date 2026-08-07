@@ -6,11 +6,8 @@
 	import { QueryClient } from '@tanstack/svelte-query';
 	import { PersistQueryClientProvider } from '@tanstack/svelte-query-persist-client';
 	import { installFocusSourceTracker } from '$lib/client/focus-source';
-	import {
-		ENGAGEMENT_CACHE_MAX_AGE,
-		ENGAGEMENT_STALE_TIME,
-	} from '$lib/engagement/engagement.svelte';
 	import { localeUrl } from '$lib/locale';
+	import { QUERY_CACHE_MAX_AGE, QUERY_STALE_TIME } from '$lib/query';
 	import { site } from '$lib/site';
 	import '../styles/app.css';
 	import '@canmi/fonts/mono.css';
@@ -27,8 +24,8 @@
 	const queryClient = new QueryClient({
 		defaultOptions: {
 			queries: {
-				staleTime: ENGAGEMENT_STALE_TIME,
-				gcTime: ENGAGEMENT_CACHE_MAX_AGE,
+				staleTime: QUERY_STALE_TIME,
+				gcTime: QUERY_CACHE_MAX_AGE,
 			},
 		},
 	});
@@ -38,7 +35,7 @@
 	});
 	const persistOptions = {
 		persister,
-		maxAge: ENGAGEMENT_CACHE_MAX_AGE,
+		maxAge: QUERY_CACHE_MAX_AGE,
 		dehydrateOptions: {
 			shouldDehydrateQuery: (query: { state: { status: string } }) =>
 				query.state.status === 'success',

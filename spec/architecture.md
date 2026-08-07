@@ -150,6 +150,10 @@ Hovering or focusing a remembered Like inverts it to the ink surface. The same s
 remain understandable through `aria-pressed`, and reduced-motion users get the final labels without
 the width transition.
 
+Sponsor is deliberately unavailable while U.S. F-1 immigration restrictions apply. Activating it
+opens a modal notice instead of navigating away. The rest of the page blurs behind the modal, and
+either the close control or any point on that background dismisses it.
+
 Data palettes belong to the visualisation that gives them meaning, not to the site theme. The
 Cargo palette lives in a component-only stylesheet scoped below `.cargo-widget`; it stays vivid
 in both page themes and never becomes a token available to unrelated interface chrome.
