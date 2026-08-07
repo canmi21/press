@@ -44,7 +44,15 @@ another visitor cancel the subscription.
 
 That record is the only thing a returning reader is known by. HTML is rendered by a Worker that
 cannot see `localStorage`, so the subscription form is what the server sends and the confirmed
-state replaces it after mount. Both are one pill tall, so the swap moves nothing around it.
+state replaces it after mount.
+
+**The pill itself is one element across both states.** Its box, its border and the place its
+button occupies do not move; only what sits in them is replaced. The submit button keeps its own
+copy after subscribing and becomes inert -- there is nothing left to submit, and it is hidden
+from assistive technology, which has the state from the pill's label and would otherwise be
+offered a control that does not exist. A check mark was there first and was the wrong shape for
+the moment: it re-announced what the sentence below already says, at the cost of the one landmark
+the reader had just aimed at.
 
 A record that does not parse, or whose token is not the 32 hexadecimal characters the API will
 accept, is deleted rather than shown. The alternative is an unsubscribe control whose every use
@@ -58,6 +66,25 @@ browser -- and an error would leave the reader looking at a subscription they ca
 
 Cancelling takes one click and no confirmation step. Resubscribing is the same form that is
 already on the page and issues a fresh token, so the mistake costs a click to undo.
+
+### The address is redacted in place, and only when somebody did it
+
+Subscribing sweeps a clip left to right across the masked address while a plain copy of what was
+typed fades out beneath it, both in one grid cell so the masked form arrives exactly where the
+field's text was. The reading is that the address was redacted rather than swapped, which is the
+truthful account of what happened to it.
+
+**A record read at mount animates nothing.** Someone returning to the page did not just do
+anything, and replaying the confirmation would claim they had. The animation belongs to the
+interaction, not to the state.
+
+Reduced motion goes straight to the confirmed pill. The typed copy exists only to be animated
+away, so without the animation it is not rendered at all rather than left behind for a timer to
+remove.
+
+This is a clip rather than the measured masks the Support rail uses. That geometry depends on the
+rendered width of two labels and cannot be written down in advance; this one is always the whole
+box, which puts it on the CSS side of the rule in [architecture.md](architecture.md).
 
 ### One row under the pill, in every state
 

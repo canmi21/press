@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Check from '@lucide/svelte/icons/check';
 	import { ParaglideMessage } from '@inlang/paraglide-js-svelte';
 	import Counter from '$lib/components/counter.svelte';
 	import {
@@ -29,6 +28,12 @@
 	let status = $state<'idle' | 'sending' | 'confirmed' | 'error' | 'cancelled'>('idle');
 	let subscription = $state<Subscription | undefined>();
 	let confirmed = $state<string | undefined>();
+	/**
+	 * The address as it was typed, kept only long enough to hand the swap something to animate
+	 * away from. Set by an interaction and never by the record read at mount, which is why a
+	 * returning reader arrives at the confirmed pill already still.
+	 */
+	let entering = $state<string | undefined>();
 
 	// The record is on the reader's device, so the server renders the form and this replaces it
 	// after mount. Both states are one pill tall, so the swap moves nothing around it.
@@ -46,9 +51,13 @@
 		event.preventDefault();
 		if (status === 'sending') return;
 		status = 'sending';
+		const typed = email;
 		try {
 			const result = await newsletter.mutateAsync(email);
 			email = '';
+			// Reduced motion arrives at the confirmed pill directly. The typed copy exists only to
+			// be animated away, and leaving it on screen would need a timer to take it back off.
+			if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) entering = typed;
 			// Only for this visit. A reload lands on the subscriber count, since by then the pill
 			// already says the reader is on the list and the sentence has been read.
 			status = 'confirmed';
@@ -66,6 +75,7 @@
 			await cancellation.mutateAsync(record);
 			subscription = undefined;
 			confirmed = undefined;
+			entering = undefined;
 			status = 'cancelled';
 		} catch {
 			status = 'error';
@@ -80,52 +90,66 @@
 
 	<p class="text-pretty text-text-soft">{m['newsletter.pitch']({}, { locale })}</p>
 
-	{#if shown}
-		<!-- Same pill metrics as the form, so confirming does not shift the page under the
-		reader's cursor. The check occupies the submit button's place rather than replacing the
-		whole row, which keeps the shape the reader just used. -->
-		<div
-			role="status"
-			class="pill mt-4 flex items-center gap-2 rounded-full border border-border bg-paper p-1.5 pl-5"
-		>
+	<!-- One pill across both states. The box, its border and the button's place never move; only
+	what sits in them is replaced, which is what leaves the swap something to animate rather than
+	something to jump between. -->
+	<div
+		class="pill focus-input-shell mt-4 flex items-center gap-2 rounded-full border border-border bg-paper p-1.5 pl-5"
+		role={shown ? 'status' : undefined}
+	>
+		{#if shown}
 			<span class="sr-only">{m['newsletter.subscribed']({}, { locale })}</span>
-			<!-- The address is already unreadable, so nothing is gained by letting it wrap or
-			overflow the pill. -->
-			<span aria-hidden="true" class="min-w-0 flex-1 truncate text-text">{masked}</span>
-			<span
-				class="flex aspect-square h-full shrink-0 items-center justify-center rounded-full bg-ink text-page"
-			>
-				<Check class="h-4 w-4" aria-hidden="true" />
+			<span aria-hidden="true" class="swap min-w-0 flex-1">
+				{#if entering}
+					<!-- A plain copy of what was typed, standing in for the field that has just gone so
+					the address appears to be redacted in place rather than replaced. -->
+					<span class="typed">{entering}</span>
+				{/if}
+				<!-- The address is already unreadable, so nothing is gained by letting it wrap. -->
+				<span
+					class="masked text-text"
+					class:revealing={entering}
+					onanimationend={() => (entering = undefined)}
+				>
+					{masked}
+				</span>
 			</span>
-		</div>
-	{:else}
-		<!-- `type="email"` plus `required` leaves validation to the browser: it is localized
-		already, it reports before any request is made, and it needs no JavaScript. -->
-		<form
-			onsubmit={submit}
-			class="pill focus-input-shell mt-4 flex items-center gap-2 rounded-full border border-border bg-paper p-1.5 pl-5"
-		>
-			<input
-				type="email"
-				name="email"
-				bind:value={email}
-				required
-				autocomplete="email"
-				placeholder="you@example.com"
-				aria-label={m['newsletter.email']({}, { locale })}
-				disabled={status === 'sending'}
-				class="focus-input min-w-0 flex-1 bg-transparent text-text placeholder:text-text-soft disabled:text-text-soft"
-			/>
-			<button
-				type="submit"
-				disabled={status === 'sending'}
-				aria-busy={status === 'sending'}
-				class="focus-ring h-full shrink-0 rounded-full bg-ink px-4 font-medium text-page transition-opacity duration-200 hover:opacity-85 disabled:opacity-60"
+			<!-- The button's copy stays, and stays inert: there is nothing left to submit. It is
+			hidden from assistive technology, which has the state from the label above and would
+			otherwise be offered a control that does not exist. -->
+			<span
+				aria-hidden="true"
+				class="flex h-full shrink-0 items-center rounded-full bg-ink px-4 font-medium text-page"
 			>
 				{m['newsletter.subscribe']({}, { locale })}
-			</button>
-		</form>
-	{/if}
+			</span>
+		{:else}
+			<!-- `type="email"` plus `required` leaves validation to the browser: it is localized
+			already, it reports before any request is made, and it needs no JavaScript.
+			`display: contents` keeps the form out of the shared pill's layout. -->
+			<form onsubmit={submit} class="contents">
+				<input
+					type="email"
+					name="email"
+					bind:value={email}
+					required
+					autocomplete="email"
+					placeholder="you@example.com"
+					aria-label={m['newsletter.email']({}, { locale })}
+					disabled={status === 'sending'}
+					class="focus-input min-w-0 flex-1 bg-transparent text-text placeholder:text-text-soft disabled:text-text-soft"
+				/>
+				<button
+					type="submit"
+					disabled={status === 'sending'}
+					aria-busy={status === 'sending'}
+					class="focus-ring h-full shrink-0 rounded-full bg-ink px-4 font-medium text-page transition-opacity duration-200 hover:opacity-85 disabled:opacity-60"
+				>
+					{m['newsletter.subscribe']({}, { locale })}
+				</button>
+			</form>
+		{/if}
+	</div>
 
 	<!-- One row under the pill in every state, so nothing below the section moves as it changes.
 	The left slot carries whatever the reader most recently needs to know and falls back to the
@@ -174,6 +198,48 @@
 	.pill {
 		--pill-height: 3.375rem;
 		margin-inline: calc(-1 * var(--pill-overhang));
+	}
+
+	/* Both addresses occupy one cell, so the masked form arrives exactly where the field's text
+	   was rather than beside it. */
+	.swap {
+		display: inline-grid;
+		align-items: center;
+	}
+
+	.swap > span {
+		grid-area: 1 / 1;
+		min-width: 0;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+
+	.typed {
+		color: var(--color-text);
+		animation: fade 200ms ease both;
+	}
+
+	/* Uncovered left to right, so the address reads as being redacted in place. A clip needs no
+	   measurement, unlike the Support rail's masks: that geometry depends on the rendered width of
+	   two labels, and this one is always the whole box. See spec/architecture.md. */
+	.revealing {
+		animation: redact 460ms var(--ease-spring) both;
+	}
+
+	@keyframes fade {
+		to {
+			opacity: 0;
+		}
+	}
+
+	@keyframes redact {
+		from {
+			/* Vertical slack: an inset of zero would clip descenders against the line box. */
+			clip-path: inset(-0.5rem 100% -0.5rem 0);
+		}
+		to {
+			clip-path: inset(-0.5rem 0 -0.5rem 0);
+		}
 	}
 
 </style>

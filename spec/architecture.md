@@ -186,6 +186,10 @@ when it hands an animation to the browser. Sample it from `motion`'s own generat
 physics are not reimplemented by hand, then paste the result. The repo keeps the real curve and
 spends nothing at runtime.
 
+Sampled once means stored once. The curve lives in `--ease-spring` and every consumer reads it
+from there; a second copy of those points is how two animations meant to feel identical begin to
+drift apart.
+
 One trap worth stating, because it is invisible until someone wonders why the bounce never
 shows: an overshoot has to have somewhere to go. A spring driving `background-size` or a colour
 is clipped at its limit, so the overshoot is spent on nothing and the curve should simply be
