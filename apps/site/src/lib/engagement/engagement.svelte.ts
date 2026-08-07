@@ -17,6 +17,19 @@ type NewsletterResult = {
 	subscriber_count: number;
 };
 
+type CancelResult = {
+	subscriber_count?: number;
+};
+
+/** What the browser holds about its own subscription. See spec/engagement.md. */
+export type Subscription = {
+	email: string;
+	cancel_token: string;
+};
+
+const SUBSCRIPTION_KEY = 'email';
+const CANCEL_TOKEN = /^[0-9a-f]{32}$/;
+
 type LikeResult = {
 	like_count: number;
 	liked: boolean;
@@ -47,6 +60,23 @@ export function createNewsletterMutation() {
 				liked: current?.liked ?? false,
 			}));
 		},
+	}));
+}
+
+export function createCancelMutation() {
+	const client = useQueryClient();
+	return createMutation<CancelResult, Error, Subscription>(() => ({
+		mutationFn: cancel,
+		onSuccess: (result) => {
+			forgetSubscription();
+			if (result.subscriber_count === undefined) return;
+			client.setQueryData<Engagement>(ENGAGEMENT_QUERY_KEY, (current) => ({
+				subscriber_count: result.subscriber_count ?? 0,
+				like_count: current?.like_count ?? 0,
+				liked: current?.liked ?? false,
+			}));
+		},
+		onSettled: () => client.invalidateQueries({ queryKey: ENGAGEMENT_QUERY_KEY }),
 	}));
 }
 
@@ -100,10 +130,26 @@ async function subscribe(email: string): Promise<NewsletterResult> {
 	if (
 		typeof result.email !== 'string' ||
 		!validCount(result.subscriber_count) ||
-		(result.cancel_token !== undefined && !/^[0-9a-f]{32}$/.test(result.cancel_token))
+		(result.cancel_token !== undefined && !CANCEL_TOKEN.test(result.cancel_token))
 	) {
 		throw new Error('invalid newsletter response');
 	}
+	return result;
+}
+
+async function cancel(subscription: Subscription): Promise<CancelResult> {
+	const response = await fetch(`${apiUrl}/newsletter`, {
+		method: 'DELETE',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(subscription),
+	});
+	// A subscription the server no longer has is the state being asked for, not a failure. The
+	// record is stale -- most likely cancelled from another browser -- and reporting an error
+	// would leave the reader looking at a subscription they cannot get rid of.
+	if (response.status === 404) return {};
+
+	const result = await jsonResponse<CancelResult>(response);
+	if (!validCount(result.subscriber_count)) throw new Error('invalid cancellation response');
 	return result;
 }
 
@@ -144,8 +190,53 @@ function validCount(value: unknown): value is number {
 function rememberSubscription(email: string, cancelToken: string): void {
 	if (!browser) return;
 	try {
-		localStorage.setItem('email', JSON.stringify({ email, cancel_token: cancelToken }));
+		localStorage.setItem(SUBSCRIPTION_KEY, JSON.stringify({ email, cancel_token: cancelToken }));
 	} catch {
 		// Storage can be unavailable in privacy modes. The server-side subscription still worked.
+	}
+}
+
+/**
+ * Only ever called after mount: this record is the reader's own device state, so the server
+ * cannot render it and must not try.
+ */
+export function readSubscription(): Subscription | undefined {
+	if (!browser) return undefined;
+	let stored: string | null = null;
+	try {
+		stored = localStorage.getItem(SUBSCRIPTION_KEY);
+	} catch {
+		return undefined;
+	}
+	if (stored === null) return undefined;
+
+	try {
+		const record: unknown = JSON.parse(stored);
+		if (!record || typeof record !== 'object') return undefined;
+		const { email, cancel_token: token } = record as Partial<Subscription>;
+		// A token that cannot be spent is worse than none: it would render an unsubscribe control
+		// whose every use fails. An unreadable record is dropped rather than shown.
+		if (
+			typeof email !== 'string' ||
+			!email ||
+			typeof token !== 'string' ||
+			!CANCEL_TOKEN.test(token)
+		) {
+			forgetSubscription();
+			return undefined;
+		}
+		return { email, cancel_token: token };
+	} catch {
+		forgetSubscription();
+		return undefined;
+	}
+}
+
+export function forgetSubscription(): void {
+	if (!browser) return;
+	try {
+		localStorage.removeItem(SUBSCRIPTION_KEY);
+	} catch {
+		// Nothing to do: the record is unreachable, which is the state being asked for.
 	}
 }

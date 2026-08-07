@@ -36,9 +36,64 @@ for future analysis only; it is not used to identify or deduplicate a subscriber
 A newly created subscription returns its canonical `email` and a `cancel_token`. API payload keys
 use lowercase snake case. The token is 16 cryptographically random bytes encoded as exactly 32
 lowercase hexadecimal characters. The browser stores the canonical email and raw token as JSON in
-`localStorage["email"]` for a future cancellation UI. The API stores only the token's SHA-256 hash.
-A duplicate request without the original token still succeeds, but cannot receive a replacement
-token because that would let another visitor cancel the subscription.
+`localStorage["email"]`. The API stores only the token's SHA-256 hash. A duplicate request without
+the original token still succeeds, but cannot receive a replacement token because that would let
+another visitor cancel the subscription.
+
+## The browser recognises its own subscription
+
+That record is the only thing a returning reader is known by. HTML is rendered by a Worker that
+cannot see `localStorage`, so the subscription form is what the server sends and the confirmed
+state replaces it after mount. Both are one pill tall, so the swap moves nothing around it.
+
+A record that does not parse, or whose token is not the 32 hexadecimal characters the API will
+accept, is deleted rather than shown. The alternative is an unsubscribe control whose every use
+fails, which is worse than not offering one.
+
+**The confirmed state and the ability to cancel are separate facts.** Subscribing again from a
+device that never held the token confirms the address and offers no cancellation, because that
+device genuinely cannot cancel. A cancellation the API answers with `404` clears the local record
+and reports success: the subscription is already gone -- most likely cancelled from another
+browser -- and an error would leave the reader looking at a subscription they cannot get rid of.
+
+Cancelling takes one click and no confirmation step. Resubscribing is the same form that is
+already on the page and issues a fresh token, so the mistake costs a click to undo.
+
+### One row under the pill, in every state
+
+Below the pill sits a single line: status text on the left, the unsubscribe control on the
+right. It is present whether or not anyone is subscribed, so nothing further down the page moves
+as the section changes state.
+
+The left slot carries whatever the reader most recently needs to know -- an error, a
+cancellation, a fresh confirmation -- and otherwise falls back to the subscriber count. The
+confirmation therefore lasts one visit rather than persisting: by the time the page is reloaded
+the pill already says the reader is on the list, and the sentence has been read. Stacking these
+as separate lines was the first attempt and it made the section grow a row at a time as it
+changed state.
+
+The right slot is the only place a destructive action appears, and it is a text link rather than
+a button surface. Reserving one edge for it keeps it from ever being the thing under a cursor
+aimed at the subscribe button.
+
+### The address is shown masked, and the domain is the identifying half
+
+A confirmed subscription shows the address it is for, because the reader needs to tell their
+address from a typo of it, and shows it masked, because a page may be read over somebody's
+shoulder or on a shared screen. The first character of the local part survives and the rest
+becomes bullets.
+
+The domain is treated separately, since the two carry different amounts of identity. A mail
+provider names nobody: thousands of readers share `gmail.com`, so it stays legible and is what
+makes the masked address recognisable at all. A domain the reader controls is the opposite --
+`canmi.net` identifies one person as surely as the full address -- so everything but the final
+label is masked. A short allowlist of providers separates the two; anything absent is treated as
+the reader's own.
+
+The public suffix list is deliberately not used to find the registrable domain. Its payload
+cannot be justified for this, and approximating it would leave `example.co.uk` exposed while
+hiding `example.com` -- a rule that is wrong only for some readers is harder to trust than one
+that always keeps a single label.
 
 ## A like is one active row per IP
 
