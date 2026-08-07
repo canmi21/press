@@ -7,6 +7,7 @@ import { canonicalEmail } from './email';
 import { likes, newsletterSubscriptions } from './schema';
 
 const MAX_BODY_SIZE = 1_024;
+const CANCEL_TOKEN = /^[0-9a-f]{32}$/;
 const NO_STORE = { 'Cache-Control': 'no-store' } as const;
 const JSON_LIMIT = bodyLimit({
 	maxSize: MAX_BODY_SIZE,
@@ -84,7 +85,7 @@ engagement.delete('/newsletter', JSON_LIMIT, async (c) => {
 	const body = await readObject(c.req.raw);
 	const email = canonicalEmail(body?.email);
 	const token = body?.cancel_token;
-	if (!email || typeof token !== 'string' || token.length > 128) {
+	if (!email || typeof token !== 'string' || !CANCEL_TOKEN.test(token)) {
 		return c.json({ error: 'invalid_cancellation' }, 400, NO_STORE);
 	}
 
@@ -162,10 +163,8 @@ async function readObject(request: Request): Promise<Record<string, unknown> | u
 }
 
 function randomToken(): string {
-	const bytes = crypto.getRandomValues(new Uint8Array(32));
-	let binary = '';
-	for (const byte of bytes) binary += String.fromCharCode(byte);
-	return btoa(binary).replaceAll('+', '-').replaceAll('/', '_').replace(/=+$/, '');
+	const bytes = crypto.getRandomValues(new Uint8Array(16));
+	return [...bytes].map((byte) => byte.toString(16).padStart(2, '0')).join('');
 }
 
 async function sha256(value: string): Promise<string> {

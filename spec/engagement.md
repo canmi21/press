@@ -31,10 +31,11 @@ do not create another subscriber. The raw `CF-Connecting-IP` value is stored wit
 for future analysis only; it is not used to identify or deduplicate a subscriber.
 
 A newly created subscription returns its canonical `email` and a `cancel_token`. API payload keys
-use lowercase snake case. The browser stores those two values as JSON in `localStorage["email"]` for
-a future cancellation UI. The API stores only the token's SHA-256 hash. A duplicate request without
-the original token still succeeds, but cannot receive a replacement token because that would let
-another visitor cancel the subscription.
+use lowercase snake case. The token is 16 cryptographically random bytes encoded as exactly 32
+lowercase hexadecimal characters. The browser stores the canonical email and raw token as JSON in
+`localStorage["email"]` for a future cancellation UI. The API stores only the token's SHA-256 hash.
+A duplicate request without the original token still succeeds, but cannot receive a replacement
+token because that would let another visitor cancel the subscription.
 
 ## A like is one active row per IP
 
@@ -50,10 +51,11 @@ strict quota.
 ## Engagement data is a persisted client query
 
 The site fetches engagement state in the browser from the standalone API origin. TanStack Query
-deduplicates the shared request used by Newsletter and Support, and its sync-storage persister keeps
-successful public engagement query data across page reloads. Data is fresh for 15 minutes and may
-remain available as a seven-day fallback while a background refetch refreshes stale data.
+deduplicates the shared request used by Newsletter and Support. Its sync-storage persister writes
+all successful TanStack Query query data into the single global `localStorage["cache"]` container
+across page reloads. Engagement data is fresh for 15 minutes and may remain available as a
+seven-day fallback while a background refetch refreshes stale data.
 
-Only the public engagement query is persisted. Mutations, errors, email addresses and cancellation
-tokens never enter the query cache. The dedicated `localStorage["email"]` capability record is not
-part of cache eviction or hydration.
+Mutations and errors are never persisted. Email addresses and cancellation tokens never enter the
+query cache. The dedicated `localStorage["email"]` capability record is independent application
+logic and is not part of TanStack Query cache eviction or hydration.

@@ -61,7 +61,7 @@ describe('newsletter', () => {
 			subscriber_count: number;
 		}>();
 		expect(created).toMatchObject({ email: 'alice@example.com', subscriber_count: 1 });
-		expect(created.cancel_token).toMatch(/^[A-Za-z0-9_-]{43}$/);
+		expect(created.cancel_token).toMatch(/^[0-9a-f]{32}$/);
 
 		const stored = await database
 			.prepare('SELECT email, cancel_token_hash, ip FROM newsletter_subscriptions WHERE email = ?')
@@ -101,7 +101,7 @@ describe('newsletter', () => {
 		const denied = await api('/newsletter', {
 			method: 'DELETE',
 			ip: IP_TWO,
-			body: { email: 'reader@example.com', cancel_token: 'wrong' },
+			body: { email: 'reader@example.com', cancel_token: '0'.repeat(32) },
 		});
 		expect(denied.status).toBe(404);
 

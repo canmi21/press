@@ -8,7 +8,6 @@
 	import { installFocusSourceTracker } from '$lib/client/focus-source';
 	import {
 		ENGAGEMENT_CACHE_MAX_AGE,
-		ENGAGEMENT_QUERY_KEY,
 		ENGAGEMENT_STALE_TIME,
 	} from '$lib/engagement/engagement.svelte';
 	import { localeUrl } from '$lib/locale';
@@ -35,16 +34,15 @@
 	});
 	const persister = createSyncStoragePersister({
 		storage: browser ? localStorage : undefined,
-		key: 'engagement',
+		key: 'cache',
 	});
 	const persistOptions = {
 		persister,
 		maxAge: ENGAGEMENT_CACHE_MAX_AGE,
 		dehydrateOptions: {
-			shouldDehydrateQuery: (query: { queryKey: readonly unknown[]; state: { status: string } }) =>
-				query.queryKey.length === ENGAGEMENT_QUERY_KEY.length &&
-				query.queryKey[0] === ENGAGEMENT_QUERY_KEY[0] &&
+			shouldDehydrateQuery: (query: { state: { status: string } }) =>
 				query.state.status === 'success',
+			shouldDehydrateMutation: () => false,
 		},
 	};
 	let { children } = $props();

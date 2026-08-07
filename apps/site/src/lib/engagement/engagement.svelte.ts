@@ -101,7 +101,7 @@ async function subscribe(email: string): Promise<NewsletterResult> {
 	if (
 		typeof result.email !== 'string' ||
 		!validCount(result.subscriber_count) ||
-		(result.cancel_token !== undefined && typeof result.cancel_token !== 'string')
+		(result.cancel_token !== undefined && !/^[0-9a-f]{32}$/.test(result.cancel_token))
 	) {
 		throw new Error('invalid newsletter response');
 	}
