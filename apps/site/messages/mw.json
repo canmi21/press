@@ -14,7 +14,7 @@
 	"newsletter.subscribe": "Join the list",
 	"newsletter.subscribers": "Join {#cells}{count}{/cells} readers on the early list.",
 	"newsletter.confirm": "You're in. Your inbox stays quiet until the first issue is ready.",
-	"newsletter.subscribed": "You're on the list",
+	"newsletter.subscribed": "You're in",
 	"newsletter.unsubscribe": "Unsubscribe",
 	"newsletter.unsubscribed": "You're off the list. Come back whenever you like.",
 	"newsletter.error": "That didn't go through. Please try again.",

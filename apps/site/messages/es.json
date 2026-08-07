@@ -14,7 +14,7 @@
 	"newsletter.subscribe": "Apuntarme",
 	"newsletter.subscribers": "Ya somos {#cells}{count}{/cells} en la lista.",
 	"newsletter.confirm": "Ya estás dentro. Tu bandeja seguirá tranquila hasta el primer número.",
-	"newsletter.subscribed": "Ya estás en la lista",
+	"newsletter.subscribed": "En la lista",
 	"newsletter.unsubscribe": "Cancelar la suscripción",
 	"newsletter.unsubscribed": "Ya no estás en la lista. Vuelve cuando quieras.",
 	"newsletter.error": "No se ha podido completar. Inténtalo de nuevo.",

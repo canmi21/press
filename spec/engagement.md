@@ -47,12 +47,24 @@ cannot see `localStorage`, so the subscription form is what the server sends and
 state replaces it after mount.
 
 **The pill itself is one element across both states.** Its box, its border and the place its
-button occupies do not move; only what sits in them is replaced. The submit button keeps its own
-copy after subscribing and becomes inert -- there is nothing left to submit, and it is hidden
-from assistive technology, which has the state from the pill's label and would otherwise be
-offered a control that does not exist. A check mark was there first and was the wrong shape for
-the moment: it re-announced what the sentence below already says, at the cost of the one landmark
-the reader had just aimed at.
+button occupies do not move; only what sits in them is replaced. A check mark was there first and
+was the wrong shape for the moment: it re-announced what the sentence below already says, at the
+cost of the one landmark the reader had just aimed at.
+
+The button's place instead holds the outcome, so the shape somebody just used becomes the label
+for what it did. It is inert -- there is nothing left to submit -- and it is the pill's whole
+accessible content, the masked address being of no use read aloud.
+
+Two things follow from it no longer being an action. It gives up the ink surface for the quiet
+raised one, since ink is reserved for the thing worth pressing. And its copy states the state
+rather than repeating the verb: `You're in` beside an `Unsubscribe` link, never `Subscribe`
+beside it.
+
+**Both labels are laid out in every state and the unused one is only made invisible**, so the
+button is as wide as the wider of the two and its edge does not move when the copy changes. The
+alternative is animating a width no stylesheet can know, which would drag a measurement into a
+component that otherwise needs none. Every locale pays for this in the same place: the subscribe
+button is occasionally a little wider than its own text.
 
 A record that does not parse, or whose token is not the 32 hexadecimal characters the API will
 accept, is deleted rather than shown. The alternative is an unsubscribe control whose every use
@@ -73,6 +85,9 @@ Subscribing sweeps a clip left to right across the masked address while a plain 
 typed fades out beneath it, both in one grid cell so the masked form arrives exactly where the
 field's text was. The reading is that the address was redacted rather than swapped, which is the
 truthful account of what happened to it.
+
+The button cools out of ink over the same span, which shows one control settling rather than a
+second one appearing in its place.
 
 **A record read at mount animates nothing.** Someone returning to the page did not just do
 anything, and replaying the confirmation would claim they had. The animation belongs to the

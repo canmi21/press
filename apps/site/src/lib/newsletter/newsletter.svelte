@@ -83,6 +83,17 @@
 	}
 </script>
 
+<!-- Both labels are laid out in every state and the unused one is only made invisible, so the
+button is as wide as the wider of the two and its edge does not move when the copy changes. The
+alternative is animating a width the stylesheet cannot know, which is a measurement this does not
+otherwise need. See spec/engagement.md. -->
+{#snippet label(subscribed: boolean)}
+	<span class="labels">
+		<span class:spent={subscribed}>{m['newsletter.subscribe']({}, { locale })}</span>
+		<span class:spent={!subscribed}>{m['newsletter.subscribed']({}, { locale })}</span>
+	</span>
+{/snippet}
+
 <section aria-labelledby="newsletter-heading" class="mt-16 {className}">
 	<h2 id="newsletter-heading" class="mb-3 font-medium text-text-strong">
 		{m['newsletter.heading']({}, { locale })}
@@ -98,7 +109,6 @@
 		role={shown ? 'status' : undefined}
 	>
 		{#if shown}
-			<span class="sr-only">{m['newsletter.subscribed']({}, { locale })}</span>
 			<span aria-hidden="true" class="swap min-w-0 flex-1">
 				{#if entering}
 					<!-- A plain copy of what was typed, standing in for the field that has just gone so
@@ -114,14 +124,15 @@
 					{masked}
 				</span>
 			</span>
-			<!-- The button's copy stays, and stays inert: there is nothing left to submit. It is
-			hidden from assistive technology, which has the state from the label above and would
-			otherwise be offered a control that does not exist. -->
+			<!-- The button's surface stays and its copy states the outcome, so the shape the reader
+			just used becomes the label for what it did. It is inert -- there is nothing left to
+			submit -- and it is the pill's whole accessible content, the masked address being of no
+			use read aloud. -->
 			<span
-				aria-hidden="true"
-				class="flex h-full shrink-0 items-center rounded-full bg-ink px-4 font-medium text-page"
+				class="chip flex h-full shrink-0 items-center rounded-full px-4 font-medium"
+				class:cooling={entering}
 			>
-				{m['newsletter.subscribe']({}, { locale })}
+				{@render label(true)}
 			</span>
 		{:else}
 			<!-- `type="email"` plus `required` leaves validation to the browser: it is localized
@@ -145,7 +156,7 @@
 					aria-busy={status === 'sending'}
 					class="focus-ring h-full shrink-0 rounded-full bg-ink px-4 font-medium text-page transition-opacity duration-200 hover:opacity-85 disabled:opacity-60"
 				>
-					{m['newsletter.subscribe']({}, { locale })}
+					{@render label(false)}
 				</button>
 			</form>
 		{/if}
@@ -217,6 +228,45 @@
 	.typed {
 		color: var(--color-text);
 		animation: fade 200ms ease both;
+	}
+
+	/* Ink is for the thing worth pressing. Once pressed this is a label, so it keeps the shape and
+	   gives up the emphasis; cooling out of ink over the same span as the reveal shows it is the
+	   same control settling rather than a different one appearing. */
+	.chip {
+		background: var(--color-paper-hover);
+		color: var(--color-text-soft);
+	}
+
+	.cooling {
+		animation: cool 460ms var(--ease-spring) both;
+	}
+
+	@keyframes cool {
+		from {
+			background-color: var(--color-ink);
+			color: var(--color-page);
+		}
+		to {
+			background-color: var(--color-paper-hover);
+			color: var(--color-text-soft);
+		}
+	}
+
+	.labels {
+		display: inline-grid;
+		place-items: center;
+	}
+
+	.labels > span {
+		grid-area: 1 / 1;
+		white-space: nowrap;
+	}
+
+	/* `visibility` rather than `display`, which is the whole point: the box still measures, and a
+	   hidden box is out of the accessibility tree without needing to be marked. */
+	.spent {
+		visibility: hidden;
 	}
 
 	/* Uncovered left to right, so the address reads as being redacted in place. A clip needs no

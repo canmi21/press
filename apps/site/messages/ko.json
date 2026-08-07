@@ -14,7 +14,7 @@
 	"newsletter.subscribe": "미리 구독하기",
 	"newsletter.subscribers": "지금 {#cells}{count}{/cells}명이 첫 호를 기다리고 있어요.",
 	"newsletter.confirm": "등록됐어요. 첫 호가 준비되기 전까지는 메일을 보내지 않을게요.",
-	"newsletter.subscribed": "이미 등록되어 있어요",
+	"newsletter.subscribed": "구독 중",
 	"newsletter.unsubscribe": "구독 취소",
 	"newsletter.unsubscribed": "구독을 취소했어요. 언제든 다시 오세요.",
 	"newsletter.error": "등록하지 못했어요. 다시 시도해 주세요.",
