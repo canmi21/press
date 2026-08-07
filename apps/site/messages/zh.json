@@ -12,7 +12,7 @@
 	"newsletter.pitch": "不想错过最新的内容和动态？留下你的邮箱地址，准备接受第一封来信吧！",
 	"newsletter.email": "你的邮箱",
 	"newsletter.subscribe": "订阅我！",
-	"newsletter.subscribers": "已经有 {#cells}{count}{/cells} 人在等第一期。",
+	"newsletter.subscribers": "已经有 {#cells}{count}{/cells} 个小可爱在等呢。",
 	"newsletter.confirm": "已经订阅好啦，在我准备好之前不会有其他邮件打扰你！",
 	"newsletter.subscribed": "已订阅",
 	"newsletter.unsubscribe": "取消订阅",
