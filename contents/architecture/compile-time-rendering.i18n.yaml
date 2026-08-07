@@ -75,7 +75,7 @@ segments:
       tokens: 38589
       review: false
     en-US:
-      text: 'Looking at it this way, **CTR** is essentially the most ideal case of **PPR (Partial Prerendering)**: everything cacheable is fully rendered at compile time, with zero runtime overhead — only the bit of data that actually changes carries any cost. So what''s different from `React 19.2`''s PPR? The answer is that I''m more thorough, more aggressive `PPR` Even in the most ideal case, where all the static parts are already cached and only a small piece of dynamic content needs updating, React still has to rerun `renderToReadableStream()` even if that dynamic content is just a simple string change — and that cost is not small.'
+      text: "Looking at it this way, **CTR** is essentially the most ideal case of **PPR (Partial Prerendering)**: everything cacheable is fully rendered at compile time, with zero runtime overhead — only the bit of data that actually changes carries any cost. So what's different from `React 19.2`'s PPR? The answer is that I'm more thorough, more aggressive `PPR` Even in the most ideal case, where all the static parts are already cached and only a small piece of dynamic content needs updating, React still has to rerun `renderToReadableStream()` even if that dynamic content is just a simple string change — and that cost is not small."
       provider: anthropic
       model: claude-sonnet-5
       at: 2026-08-01T01:29:57.186859Z
@@ -91,7 +91,7 @@ segments:
       tokens: 38589
       review: false
     fr-FR:
-      text: 'En comprenant les choses ainsi, **CTR** est essentiellement le cas idéal de **PPR (Partial Prerendering)** : tout ce qui peut être mis en cache est entièrement rendu au moment de la compilation, avec un surcoût d''exécution nul — seule la petite portion de données qui change réellement a un coût. Alors, qu''est-ce qui diffère du PPR de `React 19.2` ? La réponse est que je suis plus radical, plus agressif `PPR` Même dans le cas le plus idéal, où toutes les parties statiques sont déjà mises en cache et où seul un petit fragment de contenu dynamique doit être mis à jour, même si ce contenu dynamique n''est qu''une simple chaîne de caractères qui change, React doit quand même réexécuter `renderToReadableStream()`, et ce coût n''est pas négligeable.'
+      text: "En comprenant les choses ainsi, **CTR** est essentiellement le cas idéal de **PPR (Partial Prerendering)** : tout ce qui peut être mis en cache est entièrement rendu au moment de la compilation, avec un surcoût d'exécution nul — seule la petite portion de données qui change réellement a un coût. Alors, qu'est-ce qui diffère du PPR de `React 19.2` ? La réponse est que je suis plus radical, plus agressif `PPR` Même dans le cas le plus idéal, où toutes les parties statiques sont déjà mises en cache et où seul un petit fragment de contenu dynamique doit être mis à jour, même si ce contenu dynamique n'est qu'une simple chaîne de caractères qui change, React doit quand même réexécuter `renderToReadableStream()`, et ce coût n'est pas négligeable."
       provider: anthropic
       model: claude-sonnet-5
       at: 2026-08-01T01:29:57.186859Z
@@ -156,7 +156,7 @@ segments:
       tokens: 24977
       review: false
     fr-FR:
-      text: '## L''abus de SSR {#abused-ssr}'
+      text: "## L'abus de SSR {#abused-ssr}"
       provider: anthropic
       model: claude-haiku-4-5
       at: 2026-08-01T01:29:57.18681Z
@@ -221,7 +221,7 @@ segments:
       tokens: 37447
       review: false
     fr-FR:
-      text: 'À ce stade, vous avez peut-être déjà compris que ces `slot` sont des **« emplacements typés »**. À partir de là, ce que le runtime côté serveur doit faire devient extrêmement simple : récupérer les données réelles et les insérer dans ces trous, une pure substitution de chaînes. Aucun besoin de `renderToString()`, aucun besoin de runtime JavaScript, aucun besoin de `vDOM`. N''importe quel langage capable d''analyser des commentaires **HTML** et de faire de la **substitution de chaînes** peut servir de backend -- Rust, Go, TypeScript, tous conviennent. C''est pour cela que c''est un protocole et non un framework.'
+      text: "À ce stade, vous avez peut-être déjà compris que ces `slot` sont des **« emplacements typés »**. À partir de là, ce que le runtime côté serveur doit faire devient extrêmement simple : récupérer les données réelles et les insérer dans ces trous, une pure substitution de chaînes. Aucun besoin de `renderToString()`, aucun besoin de runtime JavaScript, aucun besoin de `vDOM`. N'importe quel langage capable d'analyser des commentaires **HTML** et de faire de la **substitution de chaînes** peut servir de backend -- Rust, Go, TypeScript, tous conviennent. C'est pour cela que c'est un protocole et non un framework."
       provider: anthropic
       model: claude-sonnet-5
       at: 2026-08-01T01:29:57.186884Z
@@ -416,7 +416,7 @@ segments:
       tokens: 13171
       review: false
     fr-FR:
-      text: '## Perspectives d''avenir {#outlook}'
+      text: "## Perspectives d'avenir {#outlook}"
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:44:34.364352Z
@@ -595,7 +595,7 @@ segments:
       tokens: 21881
       review: false
     en-US:
-      text: 'Then surely someone will worry again: won''t the combinations of conditional rendering suffer an exponential explosion? For instance, if 3 to 5 variables control conditional rendering, and each variable has 10 possibilities, multiplying them together indeed yields what looks like a huge number. But in reality, this number is just intimidating on the surface. First of all, for many string-typed values, we don''t actually need to exhaustively enumerate their content—we only care whether it has a value or not `nullable`, which is effectively just 2 possibilities here. Second, fields that truly require conditional checks must have enumerable types—for example (you wouldn''t use a `open string` to do a `if` check, right?). Besides, even if we really had to enumerate all combinations, running through them on a modern **CPU** might only take a few `ms`. Moreover, this weight is entirely at compile time—much like **Rust** compilation, where paying a heavier cost at compile time turns runtime into pure string replacement. No matter how you calculate it, it''s a great trade, not to mention there''s no special magic involved here. However, I can drop a small teaser here: later I actually introduced a tiny embedded **JavaScript** execution environment to perform some complex inferences, but this is a compromise; I''ll explain the reasons later, as well as why, in theory, it could be done without.'
+      text: "Then surely someone will worry again: won't the combinations of conditional rendering suffer an exponential explosion? For instance, if 3 to 5 variables control conditional rendering, and each variable has 10 possibilities, multiplying them together indeed yields what looks like a huge number. But in reality, this number is just intimidating on the surface. First of all, for many string-typed values, we don't actually need to exhaustively enumerate their content—we only care whether it has a value or not `nullable`, which is effectively just 2 possibilities here. Second, fields that truly require conditional checks must have enumerable types—for example (you wouldn't use a `open string` to do a `if` check, right?). Besides, even if we really had to enumerate all combinations, running through them on a modern **CPU** might only take a few `ms`. Moreover, this weight is entirely at compile time—much like **Rust** compilation, where paying a heavier cost at compile time turns runtime into pure string replacement. No matter how you calculate it, it's a great trade, not to mention there's no special magic involved here. However, I can drop a small teaser here: later I actually introduced a tiny embedded **JavaScript** execution environment to perform some complex inferences, but this is a compromise; I'll explain the reasons later, as well as why, in theory, it could be done without."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:44:43.50564Z
@@ -611,7 +611,7 @@ segments:
       tokens: 21881
       review: false
     fr-FR:
-      text: 'Alors quelqu''un va sûrement s''inquiéter à nouveau : les combinaisons de rendu conditionnel ne vont-elles pas exploser de manière exponentielle ? Par exemple, si 3 à 5 variables contrôlent le rendu conditionnel et que chaque variable a 10 possibilités, leur produit donne en effet un nombre qui semble énorme. Mais en réalité, ce chiffre n''est impressionnant qu''en apparence. Premièrement, pour de nombreuses valeurs de type chaîne de caractères, nous n''avons pas vraiment besoin d''en énumérer le contenu ; nous nous soucions seulement de savoir si la valeur existe ou non `nullable` — ce qui fait en réalité seulement 2 cas. Deuxièmement, pour les champs qui nécessitent vraiment une évaluation conditionnelle, leur type est forcément énumérable — par exemple (vous n''allez tout de même pas utiliser un `open string` pour faire une évaluation `if`, n''est-ce pas ?). De plus, même s''il fallait vraiment énumérer toutes les combinaisons, les parcourir sur un **CPU** moderne ne prendrait peut-être que quelques `ms`. Et il s''agit entièrement d''un coût à la compilation — tout comme la compilation **Rust**, on paie un prix assez lourd à la compilation, mais à l''exécution, cela devient une pure substitution de chaînes. Peu importe le calcul, l''opération est rentable, d''autant qu''il n''y a aucune magie particulière ici. On peut toutefois glisser un petit détail ici : plus loin, j''ai en fait introduit un tout petit environnement d''exécution **JavaScript** embarqué pour effectuer des déductions complexes, mais c''est un compromis ; j''expliquerai les raisons plus tard, ainsi que le fait qu''en théorie, on pourrait s''en passer.'
+      text: "Alors quelqu'un va sûrement s'inquiéter à nouveau : les combinaisons de rendu conditionnel ne vont-elles pas exploser de manière exponentielle ? Par exemple, si 3 à 5 variables contrôlent le rendu conditionnel et que chaque variable a 10 possibilités, leur produit donne en effet un nombre qui semble énorme. Mais en réalité, ce chiffre n'est impressionnant qu'en apparence. Premièrement, pour de nombreuses valeurs de type chaîne de caractères, nous n'avons pas vraiment besoin d'en énumérer le contenu ; nous nous soucions seulement de savoir si la valeur existe ou non `nullable` — ce qui fait en réalité seulement 2 cas. Deuxièmement, pour les champs qui nécessitent vraiment une évaluation conditionnelle, leur type est forcément énumérable — par exemple (vous n'allez tout de même pas utiliser un `open string` pour faire une évaluation `if`, n'est-ce pas ?). De plus, même s'il fallait vraiment énumérer toutes les combinaisons, les parcourir sur un **CPU** moderne ne prendrait peut-être que quelques `ms`. Et il s'agit entièrement d'un coût à la compilation — tout comme la compilation **Rust**, on paie un prix assez lourd à la compilation, mais à l'exécution, cela devient une pure substitution de chaînes. Peu importe le calcul, l'opération est rentable, d'autant qu'il n'y a aucune magie particulière ici. On peut toutefois glisser un petit détail ici : plus loin, j'ai en fait introduit un tout petit environnement d'exécution **JavaScript** embarqué pour effectuer des déductions complexes, mais c'est un compromis ; j'expliquerai les raisons plus tard, ainsi que le fait qu'en théorie, on pourrait s'en passer."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:44:43.50564Z
@@ -741,7 +741,7 @@ segments:
       tokens: 17368
       review: false
     fr-FR:
-      text: 'Alors, à quoi sert de créer ce truc ? En réalité, ce n''est pas limité au Web. Par exemple, une fois que j''aurai aussi abstrait le canal `Transport`, il sera possible de le porter ultérieurement sur des environnements Desktop tels qu''**Electron** ou **Tauri**. Tant que l''on remplace le pipeline de transport `HTTP` par la communication `IPC`, le protocole Seam exécuté reste exactement le même. Résultat : ces applications Electron n''ont plus besoin d''afficher un écran de loading au lancement, et beaucoup de choses peuvent être directement rendues localement, à la manière du SSR. C''est ça, la magie de CTR !'
+      text: "Alors, à quoi sert de créer ce truc ? En réalité, ce n'est pas limité au Web. Par exemple, une fois que j'aurai aussi abstrait le canal `Transport`, il sera possible de le porter ultérieurement sur des environnements Desktop tels qu'**Electron** ou **Tauri**. Tant que l'on remplace le pipeline de transport `HTTP` par la communication `IPC`, le protocole Seam exécuté reste exactement le même. Résultat : ces applications Electron n'ont plus besoin d'afficher un écran de loading au lancement, et beaucoup de choses peuvent être directement rendues localement, à la manière du SSR. C'est ça, la magie de CTR !"
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:44:46.079163Z
@@ -790,7 +790,7 @@ segments:
       tokens: 14216
       review: false
     en-US:
-      text: 'At this point, you might wonder: what about conditional rendering? For example, when a field is null, an entire block of content shouldn''t appear. But actually, this doesn''t require runtime JavaScript to determine either—instead, the protocol can define this situation.'
+      text: "At this point, you might wonder: what about conditional rendering? For example, when a field is null, an entire block of content shouldn't appear. But actually, this doesn't require runtime JavaScript to determine either—instead, the protocol can define this situation."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:44:46.081172Z
@@ -806,7 +806,7 @@ segments:
       tokens: 14216
       review: false
     fr-FR:
-      text: 'À ce stade, vous vous demandez peut-être : comment gérer le rendu conditionnel ? Par exemple, lorsqu''un champ est null, tout un bloc de contenu ne devrait pas apparaître. Mais en réalité, cela ne nécessite pas non plus de JavaScript au moment de l''exécution pour être évalué ; au contraire, le protocole peut définir cette situation.'
+      text: "À ce stade, vous vous demandez peut-être : comment gérer le rendu conditionnel ? Par exemple, lorsqu'un champ est null, tout un bloc de contenu ne devrait pas apparaître. Mais en réalité, cela ne nécessite pas non plus de JavaScript au moment de l'exécution pour être évalué ; au contraire, le protocole peut définir cette situation."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:44:46.081172Z
@@ -920,7 +920,7 @@ segments:
       tokens: 15676
       review: false
     en-US:
-      text: 'Finally, there is the enticing protocol agnosticism: essentially, we only need to grasp the key point of `renderToString`, as whichever UI framework is used on the frontend actually has nothing to do with the protocol. In that case, how does this differ from **Astro**? Rest assured, though, I am definitely not building just another **Astro**. On the surface, my approach might look a bit similar to **Astro**''s islands concept, but in reality, the differences are significant.'
+      text: "Finally, there is the enticing protocol agnosticism: essentially, we only need to grasp the key point of `renderToString`, as whichever UI framework is used on the frontend actually has nothing to do with the protocol. In that case, how does this differ from **Astro**? Rest assured, though, I am definitely not building just another **Astro**. On the surface, my approach might look a bit similar to **Astro**'s islands concept, but in reality, the differences are significant."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:45:01.259229Z
@@ -936,7 +936,7 @@ segments:
       tokens: 15676
       review: false
     fr-FR:
-      text: 'Enfin, il y a la très attrayante agnosticité vis-à-vis du protocole : en substance, il nous suffit de saisir ce point clé qu''est `renderToString`, le framework UI utilisé en amont n''ayant en réalité aucun rapport avec le protocole. Dès lors, quelle est la différence avec **Astro** ? Mais rassurez-vous, je ne crée certainement pas un autre **Astro**. En apparence, mon approche ressemble un peu au concept d''îles d''**Astro**, mais en réalité, les différences sont majeures.'
+      text: "Enfin, il y a la très attrayante agnosticité vis-à-vis du protocole : en substance, il nous suffit de saisir ce point clé qu'est `renderToString`, le framework UI utilisé en amont n'ayant en réalité aucun rapport avec le protocole. Dès lors, quelle est la différence avec **Astro** ? Mais rassurez-vous, je ne crée certainement pas un autre **Astro**. En apparence, mon approche ressemble un peu au concept d'îles d'**Astro**, mais en réalité, les différences sont majeures."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:45:01.259229Z
@@ -985,7 +985,7 @@ segments:
       tokens: 17391
       review: false
     en-US:
-      text: 'Why, then, did SeamJS end up adding a JS Runtime after all? Because while implementing this solution, I encountered a problem: CTR''s ideal constraints on first-screen data are extremely strict. The data must be a deterministic structure that can be completely derived, without even any computation logic—only conditions. This became exceptionally demanding. As one can imagine regarding developer experience for a framework, traditional React developers naturally expect to perform some calculations inside components and use a few values directly. If one were to strictly follow CTR''s constraints to achieve a `ready-to-display` state, the process would be extremely tedious, sometimes even resulting in writing a component twice.'
+      text: "Why, then, did SeamJS end up adding a JS Runtime after all? Because while implementing this solution, I encountered a problem: CTR's ideal constraints on first-screen data are extremely strict. The data must be a deterministic structure that can be completely derived, without even any computation logic—only conditions. This became exceptionally demanding. As one can imagine regarding developer experience for a framework, traditional React developers naturally expect to perform some calculations inside components and use a few values directly. If one were to strictly follow CTR's constraints to achieve a `ready-to-display` state, the process would be extremely tedious, sometimes even resulting in writing a component twice."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:45:01.262059Z
@@ -1001,7 +1001,7 @@ segments:
       tokens: 17391
       review: false
     fr-FR:
-      text: 'Alors, pourquoi SeamJS a-t-il finalement intégré un JS Runtime ? Parce qu''en mettant en œuvre cette solution, j''ai rencontré un problème : l''idéal de CTR impose des contraintes extrêmement strictes sur les données du premier écran. Les données doivent constituer une structure déterministe pouvant être entièrement dérivée, sans aucune logique de calcul, uniquement des conditions. Cela est devenu très exigeant. Comme on peut l''imaginer en termes d''expérience développeur pour un framework, les développeurs React traditionnels s''attendent naturellement à effectuer quelques calculs au sein des composants et à utiliser directement les valeurs obtenues. Si l''on devait respecter strictement les contraintes de CTR pour atteindre un état `ready-to-display`, le processus deviendrait extrêmement fastidieux, allant même jusqu''à devoir écrire le même composant deux fois.'
+      text: "Alors, pourquoi SeamJS a-t-il finalement intégré un JS Runtime ? Parce qu'en mettant en œuvre cette solution, j'ai rencontré un problème : l'idéal de CTR impose des contraintes extrêmement strictes sur les données du premier écran. Les données doivent constituer une structure déterministe pouvant être entièrement dérivée, sans aucune logique de calcul, uniquement des conditions. Cela est devenu très exigeant. Comme on peut l'imaginer en termes d'expérience développeur pour un framework, les développeurs React traditionnels s'attendent naturellement à effectuer quelques calculs au sein des composants et à utiliser directement les valeurs obtenues. Si l'on devait respecter strictement les contraintes de CTR pour atteindre un état `ready-to-display`, le processus deviendrait extrêmement fastidieux, allant même jusqu'à devoir écrire le même composant deux fois."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:45:01.262059Z
@@ -1131,7 +1131,7 @@ segments:
       tokens: 13047
       review: false
     fr-FR:
-      text: '## L''idéal et la réalité du PPR {#ppr-ideal-vs-reality}'
+      text: "## L'idéal et la réalité du PPR {#ppr-ideal-vs-reality}"
       provider: google
       model: gemini-3-6-flash-medium
       at: 2026-08-01T01:45:13.027914Z
@@ -1391,7 +1391,7 @@ segments:
       tokens: 15068
       review: false
     fr-FR:
-      text: 'C''est la même chose pour la récupération de données au sein des composants : je préfère une approche aux limites claires — les composants sont de purs composants, et la récupération des données devrait en être totalement extraite. Et une fois ce préalable accepté, après avoir séparé les composants purs des données, les choses deviennent intéressantes : on s''aperçoit que les données elles-mêmes peuvent en fait être catégorisées.'
+      text: "C'est la même chose pour la récupération de données au sein des composants : je préfère une approche aux limites claires — les composants sont de purs composants, et la récupération des données devrait en être totalement extraite. Et une fois ce préalable accepté, après avoir séparé les composants purs des données, les choses deviennent intéressantes : on s'aperçoit que les données elles-mêmes peuvent en fait être catégorisées."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:45:17.851413Z
@@ -1440,7 +1440,7 @@ segments:
       tokens: 16193
       review: false
     en-US:
-      text: 'This is the art of comments—comments were chosen here simply because they happen to be valid HTML characters, and nothing more. So how are these conditional and loop blocks determined and generated at **build-time**? It is actually quite a clever approach: although we don''t have a vDOM, we can render the HTML twice and diff them. Take conditional rendering for instance: the first pass renders with full Sentinel data, while the second pass sets a certain `nullable` field to `null` and renders again. By comparing the two outputs, the piece of HTML that disappears is the conditional block controlled by that field, so we can simply wrap it with `<!--seam:if:...-->`. The same principle applies to arrays.'
+      text: "This is the art of comments—comments were chosen here simply because they happen to be valid HTML characters, and nothing more. So how are these conditional and loop blocks determined and generated at **build-time**? It is actually quite a clever approach: although we don't have a vDOM, we can render the HTML twice and diff them. Take conditional rendering for instance: the first pass renders with full Sentinel data, while the second pass sets a certain `nullable` field to `null` and renders again. By comparing the two outputs, the piece of HTML that disappears is the conditional block controlled by that field, so we can simply wrap it with `<!--seam:if:...-->`. The same principle applies to arrays."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:45:27.557677Z
@@ -1456,7 +1456,7 @@ segments:
       tokens: 16193
       review: false
     fr-FR:
-      text: 'C''est là tout l''art des commentaires : les commentaires ont été choisis ici simplement parce qu''ils s''avèrent être des caractères HTML valides, rien de plus. Alors, comment ces blocs conditionnels et ces boucles sont-ils déterminés et générés au **build-time** ? C''est en fait une méthode assez astucieuse : bien que nous n''ayons pas de vDOM, nous pouvons rendre l''HTML deux fois pour effectuer un Diff. Prenons l''exemple du rendu conditionnel : la première fois, on effectue le rendu avec la donnée Sentinel complète, et la deuxième fois, on définit un certain champ `nullable` à `null` avant de refaire le rendu. En comparant les deux sorties, le bloc HTML qui a disparu correspond au bloc conditionnel contrôlé par ce champ, qu''il suffit alors d''entourer avec `<!--seam:if:...-->`. La même logique s''applique aux tableaux.'
+      text: "C'est là tout l'art des commentaires : les commentaires ont été choisis ici simplement parce qu'ils s'avèrent être des caractères HTML valides, rien de plus. Alors, comment ces blocs conditionnels et ces boucles sont-ils déterminés et générés au **build-time** ? C'est en fait une méthode assez astucieuse : bien que nous n'ayons pas de vDOM, nous pouvons rendre l'HTML deux fois pour effectuer un Diff. Prenons l'exemple du rendu conditionnel : la première fois, on effectue le rendu avec la donnée Sentinel complète, et la deuxième fois, on définit un certain champ `nullable` à `null` avant de refaire le rendu. En comparant les deux sorties, le bloc HTML qui a disparu correspond au bloc conditionnel contrôlé par ce champ, qu'il suffit alors d'entourer avec `<!--seam:if:...-->`. La même logique s'applique aux tableaux."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:45:27.557677Z
@@ -1521,7 +1521,7 @@ segments:
       tokens: 13205
       review: false
     fr-FR:
-      text: '## Plus qu''un simple framework web {#beyond-web}'
+      text: "## Plus qu'un simple framework web {#beyond-web}"
       provider: google
       model: gemini-3-6-flash-medium
       at: 2026-08-01T01:45:27.561284Z
@@ -1651,7 +1651,7 @@ segments:
       tokens: 15546
       review: false
     fr-FR:
-      text: 'Commençons par le plus simple : puisque nous savons déjà que chaque valeur dynamique a un type, nous pouvons faire une chose au moment de la compilation : exécuter le composant **React** avec `renderToString()`, mais pas avec de vraies données, plutôt avec des données factices créées avec `Sentinel`. Qu''est-ce que cela signifie ?'
+      text: "Commençons par le plus simple : puisque nous savons déjà que chaque valeur dynamique a un type, nous pouvons faire une chose au moment de la compilation : exécuter le composant **React** avec `renderToString()`, mais pas avec de vraies données, plutôt avec des données factices créées avec `Sentinel`. Qu'est-ce que cela signifie ?"
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:45:28.419425Z
@@ -1700,7 +1700,7 @@ segments:
       tokens: 16746
       review: false
     en-US:
-      text: 'However, since you are going to execute arbitrary code anyway, trying to exhaustively express it with types is virtually impossible—and even if it were possible, the workload wouldn''t necessarily be smaller than writing a React compiler. So this capability of RSC exists for good reason. Can **CTR** and **RSC** coexist? The answer is yes, and they don''t conflict at all. But this is something to be resolved at the framework level, not within the scope of the protocol itself. I haven''t implemented it yet, but it seems we can borrow from **TanStack Start**: as long as we send one extra `html` package and one `js` package, the theoretical implementation is quite easy—at least it''s a clear and visible scope of work.'
+      text: "However, since you are going to execute arbitrary code anyway, trying to exhaustively express it with types is virtually impossible—and even if it were possible, the workload wouldn't necessarily be smaller than writing a React compiler. So this capability of RSC exists for good reason. Can **CTR** and **RSC** coexist? The answer is yes, and they don't conflict at all. But this is something to be resolved at the framework level, not within the scope of the protocol itself. I haven't implemented it yet, but it seems we can borrow from **TanStack Start**: as long as we send one extra `html` package and one `js` package, the theoretical implementation is quite easy—at least it's a clear and visible scope of work."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:45:36.875824Z
@@ -1716,7 +1716,7 @@ segments:
       tokens: 16746
       review: false
     fr-FR:
-      text: 'Cependant, dès lors qu''il s''agit d''exécuter du code arbitraire, il est pratiquement impossible d''en faire l''énumération exhaustive au moyen des types ; et même si c''était possible, la charge de travail ne serait pas nécessairement inférieure à la création d''un compilateur React. Cette capacité de RSC a donc sa raison d''être. **CTR** et **RSC** peuvent-ils coexister ? La réponse est oui, et ils ne sont absolument pas incompatibles. Mais cela relève du framework et n''entre pas dans le périmètre du protocole lui-même. Je ne l''ai pas encore implémenté pour l''instant, mais il semble qu''on puisse s''inspirer de **TanStack Start** : tant qu''on envoie un paquet `html` et un paquet `js` supplémentaires, l''implémentation théorique reste très simple, au moins il s''agit d''une charge de travail clairement identifiable.'
+      text: "Cependant, dès lors qu'il s'agit d'exécuter du code arbitraire, il est pratiquement impossible d'en faire l'énumération exhaustive au moyen des types ; et même si c'était possible, la charge de travail ne serait pas nécessairement inférieure à la création d'un compilateur React. Cette capacité de RSC a donc sa raison d'être. **CTR** et **RSC** peuvent-ils coexister ? La réponse est oui, et ils ne sont absolument pas incompatibles. Mais cela relève du framework et n'entre pas dans le périmètre du protocole lui-même. Je ne l'ai pas encore implémenté pour l'instant, mais il semble qu'on puisse s'inspirer de **TanStack Start** : tant qu'on envoie un paquet `html` et un paquet `js` supplémentaires, l'implémentation théorique reste très simple, au moins il s'agit d'une charge de travail clairement identifiable."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:45:36.875824Z
@@ -1911,7 +1911,7 @@ segments:
       tokens: 15731
       review: false
     fr-FR:
-      text: 'De son côté, **CTR** trace cette frontière très clairement : s''il s''agit de types simples comme les chaînes de caractères, les nombres et les booléens, tout se fait par remplacement direct de chaînes ; seuls les types complexes dont le coût d''énumération est extrêmement élevé, comme Markdown, passent par un véritable processus de **render**. De plus, le **render** n''est plus ici le concept de **SSR** au sens traditionnel ; il peut s''agir du **mode de rendu de n''importe quel langage de programmation**.'
+      text: "De son côté, **CTR** trace cette frontière très clairement : s'il s'agit de types simples comme les chaînes de caractères, les nombres et les booléens, tout se fait par remplacement direct de chaînes ; seuls les types complexes dont le coût d'énumération est extrêmement élevé, comme Markdown, passent par un véritable processus de **render**. De plus, le **render** n'est plus ici le concept de **SSR** au sens traditionnel ; il peut s'agir du **mode de rendu de n'importe quel langage de programmation**."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:45:44.010344Z
@@ -2025,7 +2025,7 @@ segments:
       tokens: 19331
       review: false
     en-US:
-      text: 'However, I face one more challenge than other frameworks: since the backend is liberated from the **JavaScript** runtime, it no longer needs to be tied to the frontend—you can completely use **Rust** or **Go** to write the backend. In a **TypeScript** full-stack framework, frontend-backend consistency can be guaranteed directly through types; but what about other languages? In fact, I used **codegen** here: regardless of what language the backend is written in, the backend serves as the source of truth, and the variables and types usable by the frontend are directly **codegen**ned into **TypeScript** for the frontend to import. This way, although the boundary between frontend and backend is clearly drawn, they can actually live in a single folder just like a **TypeScript** full-stack framework, fitting **Monorepo** conventions and allowing direct mutual invocation without manually writing APIs or things like `gen` **OpenAPI**. In fact, I used a private path `/_seam/` as the framework''s default endpoint (which is configurable, just like Nuxt), so running `JTD Typed-RPC` resolves the issues of data transmission and CORS.'
+      text: "However, I face one more challenge than other frameworks: since the backend is liberated from the **JavaScript** runtime, it no longer needs to be tied to the frontend—you can completely use **Rust** or **Go** to write the backend. In a **TypeScript** full-stack framework, frontend-backend consistency can be guaranteed directly through types; but what about other languages? In fact, I used **codegen** here: regardless of what language the backend is written in, the backend serves as the source of truth, and the variables and types usable by the frontend are directly **codegen**ned into **TypeScript** for the frontend to import. This way, although the boundary between frontend and backend is clearly drawn, they can actually live in a single folder just like a **TypeScript** full-stack framework, fitting **Monorepo** conventions and allowing direct mutual invocation without manually writing APIs or things like `gen` **OpenAPI**. In fact, I used a private path `/_seam/` as the framework's default endpoint (which is configurable, just like Nuxt), so running `JTD Typed-RPC` resolves the issues of data transmission and CORS."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:45:46.187933Z
@@ -2041,7 +2041,7 @@ segments:
       tokens: 19331
       review: false
     fr-FR:
-      text: 'Mais j''avais un défi de plus que les autres frameworks : puisque le backend est libéré du runtime **JavaScript**, il n''a plus besoin de ne faire qu''un avec le frontend — vous pouvez tout à fait utiliser **Rust** ou **Go** pour écrire le backend. Dans un framework full-stack **TypeScript**, la cohérence entre le frontend et le backend peut être directement garantie par les types ; mais qu''en est-il pour les autres langages ? En réalité, j''ai utilisé **codegen** ici : quel que soit le langage utilisé pour le backend, le backend sert de référence, et les variables ainsi que les types utilisables par le frontend sont directement générés par **codegen** en **TypeScript** pour être importés par le frontend. Ainsi, même si la frontière entre frontend et backend est clairement définie, ils peuvent en réalité coexister dans un seul dossier comme dans un framework full-stack **TypeScript**, conformément aux habitudes **Monorepo**, et s''appeler directement sans avoir à écrire manuellement des API ou des éléments comme `gen` **OpenAPI**. En pratique, j''ai utilisé un chemin privé `/_seam/` comme point d''accès par défaut du framework (configurable comme dans Nuxt), de sorte que l''exécution de `JTD Typed-RPC` résout les problèmes de transmission de données et de CORS.'
+      text: "Mais j'avais un défi de plus que les autres frameworks : puisque le backend est libéré du runtime **JavaScript**, il n'a plus besoin de ne faire qu'un avec le frontend — vous pouvez tout à fait utiliser **Rust** ou **Go** pour écrire le backend. Dans un framework full-stack **TypeScript**, la cohérence entre le frontend et le backend peut être directement garantie par les types ; mais qu'en est-il pour les autres langages ? En réalité, j'ai utilisé **codegen** ici : quel que soit le langage utilisé pour le backend, le backend sert de référence, et les variables ainsi que les types utilisables par le frontend sont directement générés par **codegen** en **TypeScript** pour être importés par le frontend. Ainsi, même si la frontière entre frontend et backend est clairement définie, ils peuvent en réalité coexister dans un seul dossier comme dans un framework full-stack **TypeScript**, conformément aux habitudes **Monorepo**, et s'appeler directement sans avoir à écrire manuellement des API ou des éléments comme `gen` **OpenAPI**. En pratique, j'ai utilisé un chemin privé `/_seam/` comme point d'accès par défaut du framework (configurable comme dans Nuxt), de sorte que l'exécution de `JTD Typed-RPC` résout les problèmes de transmission de données et de CORS."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:45:46.187933Z
@@ -2106,7 +2106,7 @@ segments:
       tokens: 16486
       review: false
     fr-FR:
-      text: 'Enfin, il y a la comparaison avec le SSG traditionnel. J''ai accompli la même chose que le SSG : essentiellement pré-rendre tout ce qui peut l''être au moment de la compilation. Mais nous sommes plus **dynamiques**, car les valeurs de `slot` de types simples peuvent être entièrement remplacées au moment de l''exécution. **Vous pouvez voir cela comme le fait de rendre le SSG sous la forme d''un point d''entrée pour une MPA : avant l''hydratation c''est une MPA, après l''hydratation cela devient une SPA, tout en conservant la capacité « dynamique ».**'
+      text: "Enfin, il y a la comparaison avec le SSG traditionnel. J'ai accompli la même chose que le SSG : essentiellement pré-rendre tout ce qui peut l'être au moment de la compilation. Mais nous sommes plus **dynamiques**, car les valeurs de `slot` de types simples peuvent être entièrement remplacées au moment de l'exécution. **Vous pouvez voir cela comme le fait de rendre le SSG sous la forme d'un point d'entrée pour une MPA : avant l'hydratation c'est une MPA, après l'hydratation cela devient une SPA, tout en conservant la capacité « dynamique ».**"
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:45:48.040065Z
@@ -2301,7 +2301,7 @@ segments:
       tokens: 13556
       review: false
     fr-FR:
-      text: '## Agnosticisme de l''UI frontend {#ui-framework-agnostic}'
+      text: "## Agnosticisme de l'UI frontend {#ui-framework-agnostic}"
       provider: google
       model: gemini-3-6-flash-medium
       at: 2026-08-01T01:45:52.329821Z
@@ -2366,7 +2366,7 @@ segments:
       tokens: 14692
       review: false
     fr-FR:
-      text: 'Mettre le rendu dans la phase de compilation semble absurde, car la raison d''être essentielle du SSR est que certains valeurs et conditions ne peuvent absolument pas être résolues avant le runtime : on ne sait pas ce qu''elles sont et on ne peut rien trancher. Il est donc tout à fait compréhensible et non sans raison que la plupart des gens rejettent mon idée d''emblée.'
+      text: "Mettre le rendu dans la phase de compilation semble absurde, car la raison d'être essentielle du SSR est que certains valeurs et conditions ne peuvent absolument pas être résolues avant le runtime : on ne sait pas ce qu'elles sont et on ne peut rien trancher. Il est donc tout à fait compréhensible et non sans raison que la plupart des gens rejettent mon idée d'emblée."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:45:59.626026Z
@@ -2545,7 +2545,7 @@ segments:
       tokens: 17053
       review: false
     en-US:
-      text: 'Now let''s talk about **RSC (React Server Component)**. I mentioned earlier that **RSC** might be a mistake—~~that''s because it blurred too many boundaries between front-end and back-end~~, ~~brought **quite a few security risks**~~ ~~and numerous CVEs~~—but actually, this mistake is more because of **Next.js** and other SSR trends: **users simply have no option not to use it**. It became a situation where if you want dynamic content, you must use **SSR**; however, string replacement like ours is actually completely viable as well. Also, it must be admitted that **RSC** grants the server a crucial capability, which is rendering arbitrary React components—meaning executing arbitrary code.'
+      text: "Now let's talk about **RSC (React Server Component)**. I mentioned earlier that **RSC** might be a mistake—~~that's because it blurred too many boundaries between front-end and back-end~~, ~~brought **quite a few security risks**~~ ~~and numerous CVEs~~—but actually, this mistake is more because of **Next.js** and other SSR trends: **users simply have no option not to use it**. It became a situation where if you want dynamic content, you must use **SSR**; however, string replacement like ours is actually completely viable as well. Also, it must be admitted that **RSC** grants the server a crucial capability, which is rendering arbitrary React components—meaning executing arbitrary code."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:45:59.645053Z
@@ -2561,7 +2561,7 @@ segments:
       tokens: 17053
       review: false
     fr-FR:
-      text: 'Parlons maintenant de **RSC (React Server Component)**. J''ai mentionné plus tôt que **RSC** était peut-être une erreur — ~~parce qu''il floutait trop les frontières entre front-end et back-end~~, ~~apportait **pas mal de risques de sécurité**~~ ~~et de nombreux CVE~~ — mais en réalité, ce problème vient plutôt de **Next.js** et d''autres flux SSR : **les utilisateurs n''ont même pas la possibilité de ne pas l''utiliser**. C''est devenu : si vous voulez du dynamique, il faut du **SSR**. Mais en pratique, un remplacement de chaîne comme le nôtre fonctionne parfaitement aussi. De plus, il faut bien admettre que **RSC** confère au côté serveur une capacité très importante, à savoir rendre n''importe quel composant React, c''est-à-dire exécuter du code arbitraire.'
+      text: "Parlons maintenant de **RSC (React Server Component)**. J'ai mentionné plus tôt que **RSC** était peut-être une erreur — ~~parce qu'il floutait trop les frontières entre front-end et back-end~~, ~~apportait **pas mal de risques de sécurité**~~ ~~et de nombreux CVE~~ — mais en réalité, ce problème vient plutôt de **Next.js** et d'autres flux SSR : **les utilisateurs n'ont même pas la possibilité de ne pas l'utiliser**. C'est devenu : si vous voulez du dynamique, il faut du **SSR**. Mais en pratique, un remplacement de chaîne comme le nôtre fonctionne parfaitement aussi. De plus, il faut bien admettre que **RSC** confère au côté serveur une capacité très importante, à savoir rendre n'importe quel composant React, c'est-à-dire exécuter du code arbitraire."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:45:59.645053Z
@@ -2675,7 +2675,7 @@ segments:
       tokens: 18055
       review: false
     en-US:
-      text: 'Then comes `raw HTML slot`, which actually brings us back to that **5%** **Edge Case**. For things like `Markdown` and `Rich Text`, their values can''t possibly be known at compile time, and **constraining them with types comes at a very high cost**. Of course, you could argue that we could extend the protocol, list every syntax element of Markdown, and parse it at runtime—but that workload is basically equivalent to rewriting a Markdown renderer, isn''t it? In contrast, constraining only those minimum types is a completely different story from rewriting the entire rendering engine, which leads right back to the philosophy I mentioned at the very start: **solving problems at a lower cost and in a more elegant way**.'
+      text: "Then comes `raw HTML slot`, which actually brings us back to that **5%** **Edge Case**. For things like `Markdown` and `Rich Text`, their values can't possibly be known at compile time, and **constraining them with types comes at a very high cost**. Of course, you could argue that we could extend the protocol, list every syntax element of Markdown, and parse it at runtime—but that workload is basically equivalent to rewriting a Markdown renderer, isn't it? In contrast, constraining only those minimum types is a completely different story from rewriting the entire rendering engine, which leads right back to the philosophy I mentioned at the very start: **solving problems at a lower cost and in a more elegant way**."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:46:11.36907Z
@@ -2691,7 +2691,7 @@ segments:
       tokens: 18055
       review: false
     fr-FR:
-      text: 'Ensuite, il y a `raw HTML slot`, ce qui nous ramène en fait à ces **5%** d''**Edge Case**. Pour des éléments comme `Markdown` ou `Rich Text`, il est tout simplement impossible de connaître leur valeur au moment de la compilation, et **les contraindre par des types représenterait un coût très élevé**. Bien sûr, on pourrait dire qu''il suffit d''étendre le protocole, d''énumérer toute la syntaxe de Markdown et de l''analyser à l''exécution, mais cette charge de travail équivaudrait pratiquement à réécrire un moteur de rendu Markdown ? Or, ne contraindre que ces quelques types minimaux n''a absolument rien à voir avec le travail requis pour réécrire l''ensemble du moteur de rendu, ce qui nous ramène à la philosophie que j''évoquais au tout début : **résoudre les problèmes à moindre coût et de manière plus élégante**.'
+      text: "Ensuite, il y a `raw HTML slot`, ce qui nous ramène en fait à ces **5%** d'**Edge Case**. Pour des éléments comme `Markdown` ou `Rich Text`, il est tout simplement impossible de connaître leur valeur au moment de la compilation, et **les contraindre par des types représenterait un coût très élevé**. Bien sûr, on pourrait dire qu'il suffit d'étendre le protocole, d'énumérer toute la syntaxe de Markdown et de l'analyser à l'exécution, mais cette charge de travail équivaudrait pratiquement à réécrire un moteur de rendu Markdown ? Or, ne contraindre que ces quelques types minimaux n'a absolument rien à voir avec le travail requis pour réécrire l'ensemble du moteur de rendu, ce qui nous ramène à la philosophie que j'évoquais au tout début : **résoudre les problèmes à moindre coût et de manière plus élégante**."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:46:11.36907Z
@@ -2821,7 +2821,7 @@ segments:
       tokens: 19765
       review: false
     fr-FR:
-      text: 'Bien sûr, la possibilité du **Serverless** ne doit pas non plus être oubliée. Ces dernières années, l''expérience du **Serverless** s''est avérée excellente, et je l''évaluerais comme « n''ayant aucun inconvénient à part être coûteux ». Cependant, CTR est naturellement très adapté à ce scénario : ce que notre runtime fait est très léger et réduit, donc s''exécuter sur Serverless sera extrêmement rapide, et le temps de réponse tout comme le surcoût seront nettement améliorés. La seule partie restante qui ne peut pas être améliorée concerne les scénarios comme le rendu de Markdown, mais cela devrait être entièrement optimisé dans la logique métier, par exemple en pré-rendant le Markdown pour le stocker afin de ne pas avoir à le rendre à nouveau à chaque requête, tout comme le fait mon site web actuel. C''est un problème de niveau métier et non quelque chose qu''un framework peut résoudre, mais le framework peut vous aider à réduire le surcoût de ces logiques simples en dehors de cela à presque zéro. Comparé au SSR traditionnel, il ne s''agit plus du même ordre de grandeur de surcoût ; à quel point est-ce petit ? Il s''agit d''environ quelques centaines de us ~ 1 ms, ce à quoi le SSR traditionnel n''oserait même pas rêver.'
+      text: "Bien sûr, la possibilité du **Serverless** ne doit pas non plus être oubliée. Ces dernières années, l'expérience du **Serverless** s'est avérée excellente, et je l'évaluerais comme « n'ayant aucun inconvénient à part être coûteux ». Cependant, CTR est naturellement très adapté à ce scénario : ce que notre runtime fait est très léger et réduit, donc s'exécuter sur Serverless sera extrêmement rapide, et le temps de réponse tout comme le surcoût seront nettement améliorés. La seule partie restante qui ne peut pas être améliorée concerne les scénarios comme le rendu de Markdown, mais cela devrait être entièrement optimisé dans la logique métier, par exemple en pré-rendant le Markdown pour le stocker afin de ne pas avoir à le rendre à nouveau à chaque requête, tout comme le fait mon site web actuel. C'est un problème de niveau métier et non quelque chose qu'un framework peut résoudre, mais le framework peut vous aider à réduire le surcoût de ces logiques simples en dehors de cela à presque zéro. Comparé au SSR traditionnel, il ne s'agit plus du même ordre de grandeur de surcoût ; à quel point est-ce petit ? Il s'agit d'environ quelques centaines de us ~ 1 ms, ce à quoi le SSR traditionnel n'oserait même pas rêver."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:46:21.822452Z
@@ -3000,7 +3000,7 @@ segments:
       tokens: 18299
       review: false
     en-US:
-      text: 'Returning to **hydration mismatch**, given that we already know the type of each `slot` at compile time, we can add an extra CTR equivalence check: filling fully expanded HTML with mock data derived from type definitions, running it through traditional `renderToReadableStream()` once, and then comparing whether the semantic structure of their DOM trees is equivalent, without concerning ourselves with formatting (fmt) differences. There might be subtle formatting differences, but as long as the DOM structure is strictly and completely equivalent, ~~it is actually possible to say goodbye to~~ **~~hydration mismatch~~**; why can''t traditional SSR do this? Because they do it at runtime, whereas the CTR structure dictates that you must enforce all these constraints at compile time. Of course, we also have an escape hatch in `any`, but just like with TypeScript, if you use `any`, you have to take responsibility for the consequences; the CLI will warn you during compilation that the `any` escape open string might cause a mismatch.'
+      text: "Returning to **hydration mismatch**, given that we already know the type of each `slot` at compile time, we can add an extra CTR equivalence check: filling fully expanded HTML with mock data derived from type definitions, running it through traditional `renderToReadableStream()` once, and then comparing whether the semantic structure of their DOM trees is equivalent, without concerning ourselves with formatting (fmt) differences. There might be subtle formatting differences, but as long as the DOM structure is strictly and completely equivalent, ~~it is actually possible to say goodbye to~~ **~~hydration mismatch~~**; why can't traditional SSR do this? Because they do it at runtime, whereas the CTR structure dictates that you must enforce all these constraints at compile time. Of course, we also have an escape hatch in `any`, but just like with TypeScript, if you use `any`, you have to take responsibility for the consequences; the CLI will warn you during compilation that the `any` escape open string might cause a mismatch."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:46:22.695261Z
@@ -3016,7 +3016,7 @@ segments:
       tokens: 18299
       review: false
     fr-FR:
-      text: 'Pour en revenir au **hydration mismatch**, sachant que nous connaissons déjà le type de chaque `slot` au moment de la compilation, nous pouvons ajouter une vérification d''équivalence CTR supplémentaire. Celle-ci consiste à injecter des données factices (mock) dérivées des définitions de types dans le HTML entièrement déployé, à l''exécuter une fois avec le `renderToReadableStream()` traditionnel, puis à comparer si la sémantique de l''arbre DOM des deux côtés est équivalente, sans se soucier des différences de formatage (fmt). Il peut y avoir de subtiles variations de format, mais tant que la structure du DOM est strictement et totalement équivalente, ~~il est en fait possible de dire adieu au~~ **~~hydration mismatch~~** ; pourquoi les SSR traditionnels en sont-ils incapables ? Parce qu''ils font cela au moment de l''exécution (runtime), alors que la structure CTR exige que vous appliquiez toutes ces contraintes dès la compilation. Nous disposons bien sûr d''une porte de sortie (escape hatch) avec `any`, mais tout comme avec TypeScript, si vous utilisez `any`, vous devez en assumer les conséquences : le CLI vous avertira (warn) lors de la compilation qu''un open string d''échappement `any` pourrait provoquer un mismatch.'
+      text: "Pour en revenir au **hydration mismatch**, sachant que nous connaissons déjà le type de chaque `slot` au moment de la compilation, nous pouvons ajouter une vérification d'équivalence CTR supplémentaire. Celle-ci consiste à injecter des données factices (mock) dérivées des définitions de types dans le HTML entièrement déployé, à l'exécuter une fois avec le `renderToReadableStream()` traditionnel, puis à comparer si la sémantique de l'arbre DOM des deux côtés est équivalente, sans se soucier des différences de formatage (fmt). Il peut y avoir de subtiles variations de format, mais tant que la structure du DOM est strictement et totalement équivalente, ~~il est en fait possible de dire adieu au~~ **~~hydration mismatch~~** ; pourquoi les SSR traditionnels en sont-ils incapables ? Parce qu'ils font cela au moment de l'exécution (runtime), alors que la structure CTR exige que vous appliquiez toutes ces contraintes dès la compilation. Nous disposons bien sûr d'une porte de sortie (escape hatch) avec `any`, mais tout comme avec TypeScript, si vous utilisez `any`, vous devez en assumer les conséquences : le CLI vous avertira (warn) lors de la compilation qu'un open string d'échappement `any` pourrait provoquer un mismatch."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:46:22.695261Z
@@ -3081,7 +3081,7 @@ segments:
       tokens: 17174
       review: false
     fr-FR:
-      text: 'Alors, que faire si le backend est dans un autre langage ? Prenons l''exemple de Cloudflare Workers : en fait, de nombreux Serverless prennent en charge WASM, et d''autres langages compilés en WASM BIN peuvent tout aussi bien servir de backend. En substance, je compile simplement le frontend en ressources statiques pures, de manière similaire au CSR, mais cet ensemble de ressources statiques, combiné à un pont privé `/_seam/`, permet d''obtenir les mêmes capacités dynamiques que ces véritables frameworks full-stack, le rendant naturellement et entièrement compatible avec Serverless.'
+      text: "Alors, que faire si le backend est dans un autre langage ? Prenons l'exemple de Cloudflare Workers : en fait, de nombreux Serverless prennent en charge WASM, et d'autres langages compilés en WASM BIN peuvent tout aussi bien servir de backend. En substance, je compile simplement le frontend en ressources statiques pures, de manière similaire au CSR, mais cet ensemble de ressources statiques, combiné à un pont privé `/_seam/`, permet d'obtenir les mêmes capacités dynamiques que ces véritables frameworks full-stack, le rendant naturellement et entièrement compatible avec Serverless."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:46:35.304204Z
@@ -3195,7 +3195,7 @@ segments:
       tokens: 20906
       review: false
     en-US:
-      text: 'It may be that I was born with a strong curiosity about underlying principles, and sometimes I persistently ask why something can''t be done; I guess that''s the case, so occasionally I can come up with some unique ideas: this is one of them. It first emerged back in November 2025, and I discussed it with many friends at the time, but due to scheduling conflicts with ongoing projects, it was postponed until around the New Year of **2026**, when I finally built a version. Afterwards it was shelved again—because I went on to set up a website. The blog isn’t fully set up yet, but at least I have a place that can somewhat record things, so I want to bring this matter up again and talk about it.'
+      text: "It may be that I was born with a strong curiosity about underlying principles, and sometimes I persistently ask why something can't be done; I guess that's the case, so occasionally I can come up with some unique ideas: this is one of them. It first emerged back in November 2025, and I discussed it with many friends at the time, but due to scheduling conflicts with ongoing projects, it was postponed until around the New Year of **2026**, when I finally built a version. Afterwards it was shelved again—because I went on to set up a website. The blog isn’t fully set up yet, but at least I have a place that can somewhat record things, so I want to bring this matter up again and talk about it."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-01T02:13:46.177637Z
@@ -3276,7 +3276,7 @@ segments:
       tokens: 17193
       review: false
     fr-FR:
-      text: 'Cependant, React s''est amélioré ces dernières années : **React 19.2** propose [PPR](https://react.dev/blog/2025/10/01/react-19-2#partial-pre-rendering), mais cette solution implique encore des `renderToString()` coûteux au moment de l''exécution, ce qui en fait plutôt un workaround qu''une vraie solution. Je me suis donc demandé : puisque la plupart des éléments sont déjà déterminés au moment du build, pourquoi ne pas effectuer le rendu directement à la compilation ?'
+      text: "Cependant, React s'est amélioré ces dernières années : **React 19.2** propose [PPR](https://react.dev/blog/2025/10/01/react-19-2#partial-pre-rendering), mais cette solution implique encore des `renderToString()` coûteux au moment de l'exécution, ce qui en fait plutôt un workaround qu'une vraie solution. Je me suis donc demandé : puisque la plupart des éléments sont déjà déterminés au moment du build, pourquoi ne pas effectuer le rendu directement à la compilation ?"
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:46:35.324533Z
@@ -3715,7 +3715,7 @@ segments:
       tokens: 15639
       review: false
     en-US:
-      text: 'First of all, let me make one thing clear: I am not saying `SSR` is bad. I just feel that, based on the trends I''ve observed, far too many people are abusing it, going with the flow to avoid addressing an underlying problem. I''ve discussed this with quite a few people, but most of the responses were rather uncertain; I''ve also shared my ideas, but others were always worried about various potential issues and edge cases. To be honest, I don''t really want to explain my entire thought process from start to finish every single time either. So today, I decided to write it all down in detail to try and clarify some of the questions and technical principles.'
+      text: "First of all, let me make one thing clear: I am not saying `SSR` is bad. I just feel that, based on the trends I've observed, far too many people are abusing it, going with the flow to avoid addressing an underlying problem. I've discussed this with quite a few people, but most of the responses were rather uncertain; I've also shared my ideas, but others were always worried about various potential issues and edge cases. To be honest, I don't really want to explain my entire thought process from start to finish every single time either. So today, I decided to write it all down in detail to try and clarify some of the questions and technical principles."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:46:49.723026Z
@@ -3731,7 +3731,7 @@ segments:
       tokens: 15639
       review: false
     fr-FR:
-      text: 'Tout d''abord, une précision s''impose : je ne dis pas que `SSR` est mauvais. J''ai simplement le sentiment, au vu des tendances actuelles, que trop de monde l''utilise à tort et à travers et suit le mouvement pour éviter de confronter un vrai problème. J''en ai discuté avec pas mal de personnes, mais les retours étaient pour la plupart assez indécis ; j''ai également partagé mes idées, mais mes interlocuteurs s''inquiétaient toujours de l''existence de divers problèmes et cas limites. Et pour être honnête, je n''ai pas vraiment envie de réexpliquer l''ensemble de ma réflexion de A à Z à chaque fois. J''ai donc décidé aujourd''hui de tout poser par écrit en détail, afin d''essayer de clarifier certaines interrogations et les principes techniques sous-jacents.'
+      text: "Tout d'abord, une précision s'impose : je ne dis pas que `SSR` est mauvais. J'ai simplement le sentiment, au vu des tendances actuelles, que trop de monde l'utilise à tort et à travers et suit le mouvement pour éviter de confronter un vrai problème. J'en ai discuté avec pas mal de personnes, mais les retours étaient pour la plupart assez indécis ; j'ai également partagé mes idées, mais mes interlocuteurs s'inquiétaient toujours de l'existence de divers problèmes et cas limites. Et pour être honnête, je n'ai pas vraiment envie de réexpliquer l'ensemble de ma réflexion de A à Z à chaque fois. J'ai donc décidé aujourd'hui de tout poser par écrit en détail, afin d'essayer de clarifier certaines interrogations et les principes techniques sous-jacents."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:46:49.723026Z
@@ -3796,7 +3796,7 @@ segments:
       tokens: 21451
       review: false
     fr-FR:
-      text: 'Dans **JTD (JSON Type Definition)** [RFC 8927](https://www.rfc-editor.org/rfc/rfc8927.html), huit **Schema Form** sont définies : Empty, Ref, Type (boolean, string, timestamp ainsi que divers types numériques de différentes précisions), Enum, Elements, Properties, Values, Discriminator, et tout schema peut également être marqué comme `nullable`. L''avantage de JTD est qu''il est agnostique du langage : **JavaScript**, **Rust**, **Go**—presque tous les langages possèdent un mappage de types correspondant, ce qui en fait naturellement un pont entre le frontend et le backend. De plus, son support est le **JSON**, qui est à la base le **plus petit dénominateur commun entre frontend et backend**. Dans le monde réel, **95 %** des applications web ne font rien d''autre qu''afficher des chaînes de caractères, des champs numériques ou faire des évaluations avec des booléens, ce qui entre entièrement dans ce cadre. Une fois cela clarifié, la marge de manœuvre dont nous disposons devient très vaste. Bien sûr, JTD n''est pas parfait et il existe des exceptions comme **Markdown**, mais nous y reviendrons en détail plus tard ; c''est d''ailleurs ici que je reconnais vraiment toute la valeur de `SSR`.'
+      text: "Dans **JTD (JSON Type Definition)** [RFC 8927](https://www.rfc-editor.org/rfc/rfc8927.html), huit **Schema Form** sont définies : Empty, Ref, Type (boolean, string, timestamp ainsi que divers types numériques de différentes précisions), Enum, Elements, Properties, Values, Discriminator, et tout schema peut également être marqué comme `nullable`. L'avantage de JTD est qu'il est agnostique du langage : **JavaScript**, **Rust**, **Go**—presque tous les langages possèdent un mappage de types correspondant, ce qui en fait naturellement un pont entre le frontend et le backend. De plus, son support est le **JSON**, qui est à la base le **plus petit dénominateur commun entre frontend et backend**. Dans le monde réel, **95 %** des applications web ne font rien d'autre qu'afficher des chaînes de caractères, des champs numériques ou faire des évaluations avec des booléens, ce qui entre entièrement dans ce cadre. Une fois cela clarifié, la marge de manœuvre dont nous disposons devient très vaste. Bien sûr, JTD n'est pas parfait et il existe des exceptions comme **Markdown**, mais nous y reviendrons en détail plus tard ; c'est d'ailleurs ici que je reconnais vraiment toute la valeur de `SSR`."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:46:50.053329Z
@@ -4056,7 +4056,7 @@ segments:
       tokens: 17025
       review: false
     fr-FR:
-      text: 'Mais il existe en fait une solution : pour des raisons liées au Web, le frontend ne peut s''exécuter que sur JavaScript, il est donc naturel que les composants ne tournent que sur JS. Le backend doit donc impérativement disposer d''une capacité d''exécution JS pour résoudre ce problème. Dans un projet full-stack TypeScript, le runtime lui-même peut être utilisé pour le résoudre ; tandis que dans Rust, il suffit d''intégrer un tout petit JS Runtime comme QuickJS. Notez qu''ici, le JavaScript Runtime est un sous-ensemble standard de JS, pas du tout un runtime avec des API système complètes comme Bun ou Node – il sert vraiment juste à faire de la déduction, à faire du derive.'
+      text: "Mais il existe en fait une solution : pour des raisons liées au Web, le frontend ne peut s'exécuter que sur JavaScript, il est donc naturel que les composants ne tournent que sur JS. Le backend doit donc impérativement disposer d'une capacité d'exécution JS pour résoudre ce problème. Dans un projet full-stack TypeScript, le runtime lui-même peut être utilisé pour le résoudre ; tandis que dans Rust, il suffit d'intégrer un tout petit JS Runtime comme QuickJS. Notez qu'ici, le JavaScript Runtime est un sous-ensemble standard de JS, pas du tout un runtime avec des API système complètes comme Bun ou Node – il sert vraiment juste à faire de la déduction, à faire du derive."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:47:03.903977Z
@@ -4121,7 +4121,7 @@ segments:
       tokens: 29464
       review: false
     fr-FR:
-      text: 'Lorsque j''ai débuté dans le développement frontend **Web**, le tout premier framework full-stack que j''ai manipulé était probablement **Next.js.** J''admets que c''est un très bon framework. Même s''il présente quelques problèmes de performance, ceux-ci sont le prix à payer pour une vraie expérience **DX**, ce qui est tout à fait justifiable. Cependant, au fur et à mesure que j''ai approfondi ma compréhension des concepts et connaissances du frontend, j''ai réalisé qu''il me convenait de moins en moins — j''aime énormément écrire en Rust, j''adore explorer le bas niveau, j''ai touché à l''embarqué, j''ai donc une obsession très particulière pour la performance ; une obsession qui ne cherche pas l''extrême en tout, mais plutôt : lorsqu''il existe un moyen d''obtenir des performances nettement meilleures avec peut-être très peu d''efforts, pourquoi personne ne le fait ? Ainsi, chaque fois que j''utilise Next, je me demande : pourquoi, même pour une page très simple où la majeure partie est fixe et une seule zone doit changer, l''ensemble de la page doit-il être entièrement rendu à nouveau ? Pourquoi ? Selon ma vision des choses, même si le backend n''est pas écrit en Rust et sans chercher l''extrême, même en s''exécutant sur un interpréteur JavaScript, cette petite donnée modifiée devrait représenter un surcoût relativement faible, permettant d''effectuer le « rendu » à très bas coût plutôt que de tout re-rendre.'
+      text: "Lorsque j'ai débuté dans le développement frontend **Web**, le tout premier framework full-stack que j'ai manipulé était probablement **Next.js.** J'admets que c'est un très bon framework. Même s'il présente quelques problèmes de performance, ceux-ci sont le prix à payer pour une vraie expérience **DX**, ce qui est tout à fait justifiable. Cependant, au fur et à mesure que j'ai approfondi ma compréhension des concepts et connaissances du frontend, j'ai réalisé qu'il me convenait de moins en moins — j'aime énormément écrire en Rust, j'adore explorer le bas niveau, j'ai touché à l'embarqué, j'ai donc une obsession très particulière pour la performance ; une obsession qui ne cherche pas l'extrême en tout, mais plutôt : lorsqu'il existe un moyen d'obtenir des performances nettement meilleures avec peut-être très peu d'efforts, pourquoi personne ne le fait ? Ainsi, chaque fois que j'utilise Next, je me demande : pourquoi, même pour une page très simple où la majeure partie est fixe et une seule zone doit changer, l'ensemble de la page doit-il être entièrement rendu à nouveau ? Pourquoi ? Selon ma vision des choses, même si le backend n'est pas écrit en Rust et sans chercher l'extrême, même en s'exécutant sur un interpréteur JavaScript, cette petite donnée modifiée devrait représenter un surcoût relativement faible, permettant d'effectuer le « rendu » à très bas coût plutôt que de tout re-rendre."
       provider: google
       model: gemini-3-6-flash-high
       at: 2026-08-01T01:47:03.91336Z
@@ -4511,7 +4511,7 @@ segments:
       tokens: 15645
       review: false
     fr-FR:
-      text: '## Peut-être dire adieu aux erreurs d''hydratation ? {#farewell-hydration-mismatch}'
+      text: "## Peut-être dire adieu aux erreurs d'hydratation ? {#farewell-hydration-mismatch}"
       provider: google
       model: gemini-3-6-flash-medium
       at: 2026-08-01T01:47:22.913134Z

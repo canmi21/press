@@ -13,6 +13,9 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 	const view = article.views[locals.locale?.code ?? 'mw'];
 	const chars = view.text.replace(/\s/g, '').length;
 	return {
+		// The article's own path, not the requested one: it is what the read counter is keyed
+		// by on the API side, and the two lists have to name the same thing.
+		slug: article.path,
 		meta: view.meta,
 		blocks: view.blocks,
 		summary: view.summary,

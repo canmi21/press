@@ -6,7 +6,6 @@ description: 从 SSR、SSG、ISR、RSC 的渲染谱系出发，提出 CTR (Compi
 lang: zh
 created: 2026-04-13T19:18:28.488Z
 lastmod: 2026-04-14T01:54:50.646Z
-views: 5250
 ---
 
 这篇文章可能不适合所有人阅读，要理解它在说什么你至少得是一个准前端开发者或全栈开发者，对 `SSR`、`SSG`、`ISR` 这些概念有基本的认知且至少用过 **Next.js**

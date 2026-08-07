@@ -196,6 +196,36 @@ separate Cloudflare Workers Rate Limiting bindings keyed by the raw IP, with a w
 reads. This is deliberately approximate, inexpensive abuse resistance rather than a globally
 strict quota.
 
+## A read is counted by the browser that performed it
+
+An article's read count follows its slug -- the site's own article path, such as
+`development/rust-cargo-cranelift-tuning` -- and not any one of its nine language views. The
+same article read in Japanese and in the original is the same article being read.
+
+`POST /read` takes the slug in the body and answers with the count it now has. The slug is not
+a path parameter because an article path contains a slash. The count is incremented and read in
+one `INSERT ... ON CONFLICT DO UPDATE ... RETURNING` statement, so concurrent readers cannot be
+handed the same number and an article's first read is the row's creation rather than a case of
+its own.
+
+**Which slugs exist is compiled into the Worker, not learned from requests.** The API is built
+from the repository the markdown lives in, so `scripts/slugs.ts` walks `contents/` at build time
+and emits the list; an unrecognised slug is a `404` and never reaches the database. The generated
+module is committed, because the workspace type check, lint and test tasks run from the root and
+never pass through this package's build -- a test regenerates the list and fails if it has gone
+stale. Site and API are separate Workers Builds off the same commit, so a newly published article
+is briefly unknown to the API. It is a few minutes, and it heals itself.
+
+Deduplication is one Cloudflare rate limit of one count per IP per article per minute, with the
+wider per-IP engagement allowance above it to bound somebody walking every slug in turn. **Being
+deduplicated is answered with the current count, not with `429`.** The page still needs the number
+to display, and a second look inside the minute is the same read rather than a failure.
+
+The counts the four original articles carried in their frontmatter came from the old site and are
+not reconstructible; they were seeded once as a data migration and the `views:` key was then
+removed from the markdown. That edit did not touch `lastmod`, because nothing about the articles
+changed.
+
 ## Engagement data is a persisted client query
 
 The site fetches engagement state in the browser from the standalone API origin. TanStack Query
@@ -204,6 +234,11 @@ all successful TanStack Query query data into the single global `localStorage["c
 across page reloads. All queries remain fresh for five minutes; once stale, normal TanStack Query
 refresh triggers update them. Unused in-memory data and cross-reload persistence may remain for up
 to three days as a fallback while a stale query refreshes in the background.
+
+The read count is a query rather than a mutation despite having an effect, because what the page
+wants back is the number and the number is what has to survive a reload. That makes the count and
+the request that produces it the same thing, so its refetch triggers are off: a read is somebody
+opening the article, not somebody returning to the tab.
 
 Mutations and errors are never persisted. Email addresses and cancellation tokens never enter the
 query cache. The dedicated `localStorage["email"]` capability record is independent application

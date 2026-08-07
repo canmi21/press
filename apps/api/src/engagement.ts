@@ -1,10 +1,11 @@
-import { and, count, eq } from 'drizzle-orm';
+import { and, count, eq, sql } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/d1';
 import { Hono } from 'hono';
 import { bodyLimit } from 'hono/body-limit';
 import type { Bindings } from './bindings';
 import { canonicalEmail } from './email';
-import { likes, newsletterSubscriptions } from './schema';
+import { articleReads, likes, newsletterSubscriptions } from './schema';
+import { ARTICLE_SLUGS } from './slugs';
 
 const MAX_BODY_SIZE = 1_024;
 const CANCEL_TOKEN = /^[0-9a-f]{32}$/;
@@ -130,6 +131,57 @@ engagement.put('/like', JSON_LIMIT, async (c) => {
 
 	const likeCount = await rowCount(database, likes);
 	return c.json({ liked: body.liked, like_count: likeCount }, 200, NO_STORE);
+});
+
+/**
+ * Count a read of one article, and answer with the count it now has.
+ *
+ * The slug rides in the body rather than the path because an article path contains a slash --
+ * `development/rust-cargo-cranelift-tuning` -- and a route pattern that has to encode one is a
+ * worse contract than the JSON body every other mutation here already uses.
+ *
+ * Which slugs exist is compiled in, so the database never learns a slug from a request and
+ * cannot be filled with rows for paths that do not name an article.
+ */
+engagement.post('/read', JSON_LIMIT, async (c) => {
+	const ip = clientIp(c.req.raw);
+	if (!ip) return c.json({ error: 'client_ip_unavailable' }, 400, NO_STORE);
+	// The coarse per-IP allowance, shared with the state endpoint: this is a read that happens
+	// to leave a mark, and what it bounds is somebody walking every slug in turn.
+	if (!(await withinLimit(c.env.ENGAGEMENT_RATE_LIMITER, ip))) return rateLimited();
+
+	const body = await readObject(c.req.raw);
+	const slug = body?.slug;
+	if (typeof slug !== 'string' || !ARTICLE_SLUGS.has(slug)) {
+		return c.json({ error: 'unknown_article' }, 404, NO_STORE);
+	}
+
+	const database = drizzle(c.env.DATABASE);
+	// One IP counts a given article once a minute. Refusing the request would be the wrong
+	// answer to it: the reader still needs the number to put on the page, and a second look
+	// within the minute is the same read rather than a failure. So the count comes back
+	// either way and only the increment is withheld.
+	if (!(await withinLimit(c.env.READ_RATE_LIMITER, `${ip}:${slug}`))) {
+		const [existing] = await database
+			.select({ count: articleReads.count })
+			.from(articleReads)
+			.where(eq(articleReads.slug, slug))
+			.limit(1);
+		return c.json({ slug, read_count: existing?.count ?? 0 }, 200, NO_STORE);
+	}
+
+	// Read and increment in one statement so two concurrent readers cannot land on the same
+	// number, and so the row that did not exist yet is the first read rather than a special case.
+	const [row] = await database
+		.insert(articleReads)
+		.values({ slug, count: 1 })
+		.onConflictDoUpdate({
+			target: articleReads.slug,
+			set: { count: sql`${articleReads.count} + 1` },
+		})
+		.returning({ count: articleReads.count });
+
+	return c.json({ slug, read_count: row?.count ?? 1 }, 200, NO_STORE);
 });
 
 function clientIp(request: Request): string | undefined {

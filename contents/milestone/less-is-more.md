@@ -7,7 +7,6 @@ description:
 lang: zh
 created: 2026-03-24T08:49:57.449Z
 lastmod: 2026-04-01T10:36:51.601Z
-views: 2540
 ---
 
 这个博客，我想了两年

@@ -8,6 +8,20 @@
 			"when": 1786025820005,
 			"tag": "0000_shiny_anthem",
 			"breakpoints": true
+		},
+		{
+			"idx": 1,
+			"version": "6",
+			"when": 1786138338086,
+			"tag": "0001_loud_jane_foster",
+			"breakpoints": true
+		},
+		{
+			"idx": 2,
+			"version": "6",
+			"when": 1786138342438,
+			"tag": "0002_eager_phil_sheldon",
+			"breakpoints": true
 		}
 	]
 }

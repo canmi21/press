@@ -5,6 +5,7 @@ import { Miniflare } from 'miniflare';
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import app from './app';
 import type { Bindings } from './bindings';
+import { ARTICLE_SLUGS } from './slugs';
 
 const MIGRATIONS = fileURLToPath(new URL('../drizzle', import.meta.url));
 const IP_ONE = '203.0.113.10';
@@ -40,6 +41,7 @@ beforeEach(async () => {
 	await database.batch([
 		database.prepare('DELETE FROM newsletter_subscriptions'),
 		database.prepare('DELETE FROM likes'),
+		database.prepare('DELETE FROM article_reads'),
 	]);
 });
 
@@ -152,6 +154,74 @@ describe('likes and engagement state', () => {
 	});
 });
 
+describe('article reads', () => {
+	const slug = [...ARTICLE_SLUGS][0] as string;
+
+	it('counts from the first read and answers with the running total', async () => {
+		const first = await api('/read', { method: 'POST', ip: IP_ONE, body: { slug } });
+		expect(first.status).toBe(200);
+		expect(await first.json()).toEqual({ slug, read_count: 1 });
+
+		const second = await api('/read', { method: 'POST', ip: IP_TWO, body: { slug } });
+		expect(await second.json()).toEqual({ slug, read_count: 2 });
+	});
+
+	it('refuses a slug that does not name an article', async () => {
+		const response = await api('/read', {
+			method: 'POST',
+			ip: IP_ONE,
+			body: { slug: 'made/up' },
+		});
+		expect(response.status).toBe(404);
+		expect(await response.json()).toEqual({ error: 'unknown_article' });
+
+		const rows = await database
+			.prepare('SELECT COUNT(*) AS rows FROM article_reads')
+			.first<{ rows: number }>();
+		expect(rows?.rows).toBe(0);
+	});
+
+	// A second look inside the minute is the same read. The reader still needs the number to
+	// put on the page, so the request is answered rather than refused.
+	it('returns the unchanged count instead of an error once deduplicated', async () => {
+		await api('/read', { method: 'POST', ip: IP_ONE, body: { slug } });
+
+		const deny: RateLimit = { limit: async () => ({ success: false }) };
+		const repeated = await api(
+			'/read',
+			{ method: 'POST', ip: IP_ONE, body: { slug } },
+			{ READ_RATE_LIMITER: deny },
+		);
+		expect(repeated.status).toBe(200);
+		expect(await repeated.json()).toEqual({ slug, read_count: 1 });
+	});
+
+	it('reports an unread article as zero rather than creating its row', async () => {
+		const deny: RateLimit = { limit: async () => ({ success: false }) };
+		const response = await api(
+			'/read',
+			{ method: 'POST', ip: IP_ONE, body: { slug } },
+			{ READ_RATE_LIMITER: deny },
+		);
+		expect(await response.json()).toEqual({ slug, read_count: 0 });
+
+		const rows = await database
+			.prepare('SELECT COUNT(*) AS rows FROM article_reads')
+			.first<{ rows: number }>();
+		expect(rows?.rows).toBe(0);
+	});
+
+	it('rejects an IP walking every slug in turn', async () => {
+		const deny: RateLimit = { limit: async () => ({ success: false }) };
+		const response = await api(
+			'/read',
+			{ method: 'POST', ip: IP_ONE, body: { slug } },
+			{ ENGAGEMENT_RATE_LIMITER: deny },
+		);
+		expect(response.status).toBe(429);
+	});
+});
+
 type ApiOptions = {
 	method?: string;
 	ip: string;
@@ -168,6 +238,7 @@ async function api(
 		ENGAGEMENT_RATE_LIMITER: allow,
 		NEWSLETTER_RATE_LIMITER: allow,
 		LIKE_RATE_LIMITER: allow,
+		READ_RATE_LIMITER: allow,
 		...overrides,
 	} satisfies Bindings;
 	return app.fetch(

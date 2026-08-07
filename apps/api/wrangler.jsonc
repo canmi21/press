@@ -40,6 +40,13 @@
 			"namespace_id": "959379522",
 			"simple": { "limit": 10, "period": 60 },
 		},
+		{
+			// One read counted per IP per article per minute. This is the counter's whole
+			// deduplication: a refresh inside the minute is the same read, not a new one.
+			"name": "READ_RATE_LIMITER",
+			"namespace_id": "959379524",
+			"simple": { "limit": 1, "period": 60 },
+		},
 	],
 	// The port also appears in libs/urls as the development API URL. wrangler cannot read a
 	// TypeScript library, so the number is written twice on purpose.
@@ -80,6 +87,13 @@
 					"name": "LIKE_RATE_LIMITER",
 					"namespace_id": "959379522",
 					"simple": { "limit": 10, "period": 60 },
+				},
+				{
+					// One read counted per IP per article per minute. This is the counter's whole
+					// deduplication: a refresh inside the minute is the same read, not a new one.
+					"name": "READ_RATE_LIMITER",
+					"namespace_id": "959379524",
+					"simple": { "limit": 1, "period": 60 },
 				},
 			],
 			"assets": {

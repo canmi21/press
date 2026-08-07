@@ -1,0 +1,115 @@
+{
+	"version": "6",
+	"dialect": "sqlite",
+	"id": "b671c451-781b-47e5-b55b-8f8d63788d97",
+	"prevId": "73f06666-5d4a-432e-88c7-765b453efef1",
+	"tables": {
+		"article_reads": {
+			"name": "article_reads",
+			"columns": {
+				"slug": {
+					"name": "slug",
+					"type": "text",
+					"primaryKey": true,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"count": {
+					"name": "count",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"checkConstraints": {}
+		},
+		"likes": {
+			"name": "likes",
+			"columns": {
+				"ip": {
+					"name": "ip",
+					"type": "text",
+					"primaryKey": true,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"checkConstraints": {}
+		},
+		"newsletter_subscriptions": {
+			"name": "newsletter_subscriptions",
+			"columns": {
+				"email": {
+					"name": "email",
+					"type": "text",
+					"primaryKey": true,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"cancel_token_hash": {
+					"name": "cancel_token_hash",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"ip": {
+					"name": "ip",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				}
+			},
+			"indexes": {
+				"newsletter_subscriptions_cancel_token_hash_unique": {
+					"name": "newsletter_subscriptions_cancel_token_hash_unique",
+					"columns": ["cancel_token_hash"],
+					"isUnique": true
+				},
+				"newsletter_subscriptions_ip_idx": {
+					"name": "newsletter_subscriptions_ip_idx",
+					"columns": ["ip"],
+					"isUnique": false
+				}
+			},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"checkConstraints": {}
+		}
+	},
+	"views": {},
+	"enums": {},
+	"_meta": {
+		"schemas": {},
+		"tables": {},
+		"columns": {}
+	},
+	"internal": {
+		"indexes": {}
+	}
+}

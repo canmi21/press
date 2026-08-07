@@ -400,7 +400,7 @@ segments:
       tokens: 17282
       review: false
     en-US:
-      text: 'There''s another point worth discussing: the use of [UPX](https://github.com/upx/upx); I know I say I like musl, but also pursuing a small size is actually contradictory—it sounds unreasonable.'
+      text: "There's another point worth discussing: the use of [UPX](https://github.com/upx/upx); I know I say I like musl, but also pursuing a small size is actually contradictory—it sounds unreasonable."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:35:21.240688Z
@@ -1456,7 +1456,7 @@ segments:
       tokens: 22274
       review: false
     fr-FR:
-      text: 'De plus, UPX ne doit pas être abusé ; il ne convient qu''aux tâches longues ou peu fréquentes. Les tâches longues sont acceptables parce que UPX doit décompresser le binaire en mémoire une fois au démarrage – ce processus est entièrement automatisé mais impose un léger temps de démarrage à froid, négligeable pour des exécutions rares mais potentiellement fatal sur des chemins très fréquents. Ainsi, un lancement unique en arrière‑plan d’une tâche longue convient bien, mais je ne recommande pas d’enfourner sans discernement UPX dans les images Docker de services à long terme, car cela revient à échanger de la mémoire contre de l’espace disque – une perte importante – et la compression des couches de conteneur offre déjà le même avantage en réduisant la taille du téléchargement. En revanche, l’environnement recommandé concerne certains usages CLI : il économise énormément d’espace disque, le temps de décompression est presque imperceptible, et musl est naturellement adapté aux outils en ligne de commande. Sinon, je me verrais contraint de critiquer l’assistant AUR – écrit en Go mais sans liaison statique – car j’ai déjà rencontré un yay cassé sur ArchLinux qui ne trouvait pas de bibliothèque dynamique ; en tant qu’administrateur système, je n’avais d’autre choix que de démarrer un LiveISO et, en dernier recours, d’utiliser chroot pour sauver le système.'
+      text: "De plus, UPX ne doit pas être abusé ; il ne convient qu'aux tâches longues ou peu fréquentes. Les tâches longues sont acceptables parce que UPX doit décompresser le binaire en mémoire une fois au démarrage – ce processus est entièrement automatisé mais impose un léger temps de démarrage à froid, négligeable pour des exécutions rares mais potentiellement fatal sur des chemins très fréquents. Ainsi, un lancement unique en arrière‑plan d’une tâche longue convient bien, mais je ne recommande pas d’enfourner sans discernement UPX dans les images Docker de services à long terme, car cela revient à échanger de la mémoire contre de l’espace disque – une perte importante – et la compression des couches de conteneur offre déjà le même avantage en réduisant la taille du téléchargement. En revanche, l’environnement recommandé concerne certains usages CLI : il économise énormément d’espace disque, le temps de décompression est presque imperceptible, et musl est naturellement adapté aux outils en ligne de commande. Sinon, je me verrais contraint de critiquer l’assistant AUR – écrit en Go mais sans liaison statique – car j’ai déjà rencontré un yay cassé sur ArchLinux qui ne trouvait pas de bibliothèque dynamique ; en tant qu’administrateur système, je n’avais d’autre choix que de démarrer un LiveISO et, en dernier recours, d’utiliser chroot pour sauver le système."
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:36:45.016589Z
@@ -2366,7 +2366,7 @@ segments:
       tokens: 16392
       review: false
     fr-FR:
-      text: '## Niveau d''optimisation {#opt-level}'
+      text: "## Niveau d'optimisation {#opt-level}"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:38:17.608266Z
@@ -3065,7 +3065,7 @@ segments:
       tokens: 16863
       review: false
     en-US:
-      text: 'There''s also a little trick: `Cargo.toml` can actually set different optimization levels for dependencies and your own code:'
+      text: "There's also a little trick: `Cargo.toml` can actually set different optimization levels for dependencies and your own code:"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:39:27.180288Z
@@ -3081,7 +3081,7 @@ segments:
       tokens: 16863
       review: false
     fr-FR:
-      text: 'Il y a aussi une petite astuce : `Cargo.toml` peut en fait définir des niveaux d''optimisation différents pour les dépendances et votre propre code :'
+      text: "Il y a aussi une petite astuce : `Cargo.toml` peut en fait définir des niveaux d'optimisation différents pour les dépendances et votre propre code :"
       provider: openai
       model: gpt-oss-120b-medium
       at: 2026-08-03T01:39:27.180288Z

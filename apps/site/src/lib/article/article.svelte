@@ -17,6 +17,7 @@
 	import type { LocaleCode } from '$lib/locale';
 	import LanguageSwitcher from '$lib/locale/switcher.svelte';
 	import Newsletter from '$lib/newsletter/newsletter.svelte';
+	import { createReadsQuery } from '$lib/engagement/reads.svelte';
 	import { formatCompact } from './format';
 	import Toc from './toc.svelte';
 	import TranslationNotice from './translation-notice.svelte';
@@ -29,12 +30,15 @@
 	};
 
 	let {
+		slug,
 		meta,
 		chars,
 		summary,
 		locale,
 		children,
 	}: {
+		/** The article's path, which is what the read counter is keyed by. */
+		slug: string;
 		meta: ArticleMeta;
 		chars: number;
 		/** Absent until `cms summary` has been run for this article; the row then omits it. */
@@ -49,6 +53,9 @@
 		google: { icon: IconGemini, name: 'Google Gemini' },
 		openai: { icon: IconOpenAi, name: 'OpenAI' },
 	} as const;
+
+	const reads = createReadsQuery(() => slug);
+	const readCount = $derived(reads.data?.read_count);
 
 	let summaryOpen = $state(false);
 	const summaryProvider = $derived(
@@ -230,14 +237,19 @@
 						<Type class="size-3.5" aria-hidden="true" />
 						{formatCompact(chars)}
 					</span>
-					{#if meta.views != null}
+					<!-- Absent until the count arrives, rather than held open at a guessed width.
+					     The server cannot know this number -- see spec/engagement.md -- and the
+					     width it would need is the rendered width of a figure nobody has yet. A
+					     returning reader is served the previous count out of the persisted query
+					     cache and sees no movement at all. -->
+					{#if readCount != null}
 						<span
 							class="inline-flex items-center gap-1"
-							title="{meta.views} views"
-							aria-label="{meta.views.toLocaleString('en-US')} views"
+							title="{readCount} reads"
+							aria-label="{readCount.toLocaleString('en-US')} reads"
 						>
 							<BookOpenText class="size-3.5" aria-hidden="true" />
-							{formatCompact(meta.views)}
+							{formatCompact(readCount)}
 						</span>
 					{/if}
 					{#if summary}

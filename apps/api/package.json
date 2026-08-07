@@ -4,12 +4,13 @@
 	"type": "module",
 	"scripts": {
 		"db:generate": "drizzle-kit generate",
+		"slugs": "node scripts/slugs.ts",
 		"db:migrate:local": "wrangler d1 migrations apply api --local --env dev",
 		"db:migrate:remote": "wrangler d1 migrations apply api --remote --env=\"\"",
 		"types": "wrangler types --env=\"\" --include-runtime=false",
-		"dev": "pnpm run db:migrate:local && wrangler dev --env dev",
-		"deploy": "pnpm run db:migrate:remote && wrangler deploy --env=\"\"",
-		"build": "pnpm run db:migrate:remote && wrangler deploy --dry-run --outdir=dist --env=\"\""
+		"dev": "pnpm run slugs && pnpm run db:migrate:local && wrangler dev --env dev",
+		"deploy": "pnpm run slugs && pnpm run db:migrate:remote && wrangler deploy --env=\"\"",
+		"build": "pnpm run slugs && pnpm run db:migrate:remote && wrangler deploy --dry-run --outdir=dist --env=\"\""
 	},
 	"dependencies": {
 		"@canmi/robots": "workspace:*",

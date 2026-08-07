@@ -8,8 +8,6 @@ export type ArticleMeta = {
 	lang: string;
 	created: string;
 	lastmod: string;
-	// Hard-coded view count carried over from the old site; swap for an API later.
-	views?: number;
 };
 
 // One markdown source compiles to several targets; only the custom blocks below
