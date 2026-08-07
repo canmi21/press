@@ -24,5 +24,8 @@
 	"support.new-tab": "se abre en una pestaña nueva",
 	"support.sponsor-short": "Un café",
 	"support.sponsor": "Un café para seguir creando",
-	"support.revision": "Ver revisión {commit}"
+	"support.revision": "Ver revisión {commit}",
+	"sponsor.title": "Apoyo no disponible",
+	"sponsor.notice": "Por las restricciones del visado de estudiante F-1 de Estados Unidos, ahora mismo no puedo aceptar donaciones.",
+	"sponsor.close": "Cerrar el aviso"
 }

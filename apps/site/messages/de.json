@@ -24,5 +24,8 @@
 	"support.new-tab": "öffnet in neuem Tab",
 	"support.sponsor-short": "Kaffee",
 	"support.sponsor": "Spendier mir einen Kaffee",
-	"support.revision": "Revision {commit} ansehen"
+	"support.revision": "Revision {commit} ansehen",
+	"sponsor.title": "Unterstützung derzeit nicht möglich",
+	"sponsor.notice": "Wegen der Auflagen des US-amerikanischen F-1-Studentenvisums sind Zuwendungen derzeit nicht möglich.",
+	"sponsor.close": "Hinweis schließen"
 }

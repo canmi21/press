@@ -24,5 +24,8 @@
 	"support.new-tab": "在新分頁開啟",
 	"support.sponsor-short": "咖啡",
 	"support.sponsor": "請我喝杯咖啡",
-	"support.revision": "查看版本 {commit}"
+	"support.revision": "查看版本 {commit}",
+	"sponsor.title": "暫時無法贊助",
+	"sponsor.notice": "受美國 F-1 學生簽證的限制，目前暫時無法接受贊助。",
+	"sponsor.close": "關閉贊助提示"
 }

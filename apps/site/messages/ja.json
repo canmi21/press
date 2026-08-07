@@ -24,5 +24,8 @@
 	"support.new-tab": "新しいタブで開きます",
 	"support.sponsor-short": "コーヒー",
 	"support.sponsor": "コーヒーを一杯おごる",
-	"support.revision": "リビジョン {commit} を表示"
+	"support.revision": "リビジョン {commit} を表示",
+	"sponsor.title": "スポンサーは受付停止中",
+	"sponsor.notice": "米国 F-1 ビザの制限により、現在スポンサーは受け付けていません。",
+	"sponsor.close": "お知らせを閉じる"
 }

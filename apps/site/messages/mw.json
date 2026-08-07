@@ -24,5 +24,8 @@
 	"support.new-tab": "opens in new tab",
 	"support.sponsor-short": "Sponsor",
 	"support.sponsor": "Sponsor my next coffee",
-	"support.revision": "View revision {commit}"
+	"support.revision": "View revision {commit}",
+	"sponsor.title": "Sponsor unavailable",
+	"sponsor.notice": "Sponsors are currently unavailable due to U.S. F-1 immigration restrictions.",
+	"sponsor.close": "Close sponsor notice"
 }

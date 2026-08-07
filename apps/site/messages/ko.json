@@ -24,5 +24,8 @@
 	"support.new-tab": "새 탭에서 열림",
 	"support.sponsor-short": "커피 한 잔",
 	"support.sponsor": "커피 한 잔으로 응원하기",
-	"support.revision": "리비전 {commit} 보기"
+	"support.revision": "리비전 {commit} 보기",
+	"sponsor.title": "후원을 받을 수 없어요",
+	"sponsor.notice": "미국 F-1 학생 비자 제한으로 지금은 후원을 받을 수 없습니다.",
+	"sponsor.close": "안내 닫기"
 }

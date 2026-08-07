@@ -2,12 +2,14 @@
 	import { dev } from '$app/environment';
 	import { imgsrc } from '@canmi/imgsrc';
 	import { pickUrls, URLS } from '@canmi/urls';
+	import Coffee from '@lucide/svelte/icons/coffee';
 	import Lollipop from '@lucide/svelte/icons/lollipop';
 	import ArticleList from '$lib/article/list.svelte';
 	import Modal from '$lib/components/modal.svelte';
 	import PageBody from '$lib/home/body.svelte';
 	import Icon from '$lib/home/icons.svelte';
 	import Newsletter from '$lib/newsletter/newsletter.svelte';
+	import * as m from '$lib/paraglide/messages';
 	import { site } from '$lib/site';
 	import Support from '$lib/support/support.svelte';
 	import type { PageData } from './$types';
@@ -133,9 +135,12 @@
 
 <Modal
 	open={sponsorOpen}
-	title="Sponsor unavailable"
-	closeLabel="Close sponsor notice"
+	title={m['sponsor.title']({}, { locale: data.locale.code })}
+	closeLabel={m['sponsor.close']({}, { locale: data.locale.code })}
 	onOpenChange={(open) => (sponsorOpen = open)}
 >
-	Sponsors are currently unavailable due to U.S. F-1 immigration restrictions.
+	{#snippet icon()}
+		<Coffee class="size-4" aria-hidden="true" />
+	{/snippet}
+	{m['sponsor.notice']({}, { locale: data.locale.code })}
 </Modal>

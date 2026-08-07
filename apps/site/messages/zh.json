@@ -24,5 +24,8 @@
 	"support.new-tab": "在新标签页中打开",
 	"support.sponsor-short": "Coffee",
 	"support.sponsor": "请我喝杯 Coffee",
-	"support.revision": "查看版本 {commit}"
+	"support.revision": "查看版本 {commit}",
+	"sponsor.title": "暂时无法赞助",
+	"sponsor.notice": "受美国 F-1 学生签证的限制，目前暂时无法接受赞助。",
+	"sponsor.close": "关闭赞助提示"
 }

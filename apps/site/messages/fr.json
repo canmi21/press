@@ -24,5 +24,8 @@
 	"support.new-tab": "s’ouvre dans un nouvel onglet",
 	"support.sponsor-short": "Un café",
 	"support.sponsor": "Un café pour continuer à créer",
-	"support.revision": "Voir la révision {commit}"
+	"support.revision": "Voir la révision {commit}",
+	"sponsor.title": "Soutien indisponible",
+	"sponsor.notice": "En raison des restrictions liées au visa étudiant américain F-1, les dons ne sont pas possibles pour le moment.",
+	"sponsor.close": "Fermer l’avis"
 }

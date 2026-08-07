@@ -154,6 +154,19 @@ Sponsor is deliberately unavailable while U.S. F-1 immigration restrictions appl
 opens a modal notice instead of navigating away. The rest of the page blurs behind the modal, and
 either the close control or any point on that background dismisses it.
 
+That notice is interface copy, so it resolves through the UI message table at the page's own
+locale like every other string around it -- heading, sentence and the close control's label
+alike. It names the restriction plainly in all nine views rather than softening to a generic
+"unavailable": the reader is being told why an offered action does not work, and a reason that
+survives translation is the only version of that sentence worth having.
+
+Its heading is visible rather than announced to assistive technology alone. A modal carrying one
+sentence and a bare close control reads as a fragment of the page rather than a surface of its
+own, so the notice opens with the icon of the action that summoned it beside a heading weighted
+like the page's other section headings, with the sentence below in the metadata text colour. The
+icon and the close control are each centred on one line box, so a heading that wraps in a longer
+locale moves the text without dragging them out of line with its first line.
+
 Data palettes belong to the visualisation that gives them meaning, not to the site theme. The
 Cargo palette lives in a component-only stylesheet scoped below `.cargo-widget`; it stays vivid
 in both page themes and never becomes a token available to unrelated interface chrome.
