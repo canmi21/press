@@ -16,9 +16,12 @@ Drizzle's indexed random-word form, such as `0000_word_word.sql`; they are not n
 Wrangler, not Drizzle, applies those migrations so D1 has one migration ledger. CI and deploys apply
 committed SQL but never generate it.
 
-An ordinary API `build` is a dry run and must not mutate a remote database. The API `deploy` command
-applies remote D1 migrations immediately before uploading the Worker. Local development applies
-local migrations before starting Wrangler, whose default local D1 implementation is Miniflare.
+Every API `build` applies remote D1 migrations before producing the dry-run Worker bundle. This
+keeps Cloudflare Workers Builds from deploying code before its schema and deliberately means that
+both local and non-production API builds target the production database. The build credential must
+therefore have D1 edit access. The fallback API `deploy` command independently applies remote
+migrations immediately before uploading the Worker. Local development applies local migrations
+before starting Wrangler, whose default local D1 implementation is Miniflare.
 
 ## Newsletter identity is the email address
 

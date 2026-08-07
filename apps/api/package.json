@@ -9,7 +9,7 @@
 		"types": "wrangler types --env=\"\" --include-runtime=false",
 		"dev": "pnpm run db:migrate:local && wrangler dev --env dev",
 		"deploy": "pnpm run db:migrate:remote && wrangler deploy --env=\"\"",
-		"build": "wrangler deploy --dry-run --outdir=dist --env=\"\""
+		"build": "pnpm run db:migrate:remote && wrangler deploy --dry-run --outdir=dist --env=\"\""
 	},
 	"dependencies": {
 		"@canmi/robots": "workspace:*",
