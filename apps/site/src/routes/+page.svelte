@@ -20,7 +20,6 @@
 	const cdnUrl = pickUrls(dev).cdn;
 	const avatarSrc = imgsrc('github:avatar:72544151@192', { cdnUrl });
 	const githubProfileUrl = `${URLS.external.github.web}/canmi21`;
-	const repositoryUrl = `${githubProfileUrl}/workspace`;
 	const googleSourceUrl = new URL(URLS.external.google.sourcePreferences);
 	googleSourceUrl.searchParams.set('q', URLS.apps.production.site);
 	// Icons are center-anchored, so each is size-compensated independently. Base
@@ -30,7 +29,7 @@
 	// `document` keeps server-only resources out of the client page router.
 	// See spec/locale.md#server-only-documents-leave-the-page-router.
 	const links = [
-		{ name: 'github', label: 'GitHub', href: repositoryUrl, size: base },
+		{ name: 'github', label: 'GitHub', href: githubProfileUrl, size: base },
 		{
 			name: 'twitter',
 			label: 'X',
