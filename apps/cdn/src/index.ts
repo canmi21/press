@@ -15,6 +15,13 @@ const app = new Hono<{ Bindings: Bindings }>();
 // nothing and broke embedding, which is what a CDN is for. The methods stay read-only, so
 // "any origin" grants exactly what a GET already grants.
 //
+// `allowHeaders` is absent by the same argument rather than by oversight. Without it a
+// preflight reflects whatever was asked for, which grants nothing where there are no
+// credentials to reach -- `*` and credentials cannot be combined at all. Naming headers
+// instead means guessing which ones an embedder sends, `Range` among them, and breaking the
+// ones guessed wrong. A scanner flagging the reflection has found a real pattern on a
+// credentialed origin and nothing here.
+//
 // The API is the opposite and stays restricted: it answers about state, and there the origin
 // is the difference between a reader and a caller.
 app.use('*', cors({ origin: '*', allowMethods: ['GET', 'HEAD', 'OPTIONS'] }));
