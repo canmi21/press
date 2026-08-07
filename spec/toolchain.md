@@ -213,6 +213,25 @@ compromises are found and yanked inside that window.
 `minimumReleaseAgeExclude` holds the exemptions. Keep the list short: every entry is an
 accepted risk, justified only when the wait costs more than it protects.
 
+The rule bites in a way worth expecting: a range that would otherwise resolve to the newest
+release quietly resolves to the newest _mature_ one instead. That is the policy working, not a
+resolution failure, and the declared range should still name the version the fix landed in
+rather than whatever happens to be installable today. It becomes an error only when nothing in
+range is old enough, which is what an exemption is for.
+
+### An advisory in a development-only dependency is not a production one
+
+Where a vulnerable package runs decides how much it costs. A deployed Worker uses workerd's own
+fetch and never loads the HTTP client its build tooling depends on; a bundler plugin's glob
+matcher never sees a request. Fixing those clears an alert list, which is worth something --
+a list nobody can read is a list that hides the next real one -- but it is not the same work as
+patching something on the request path, and a security fix that says which of the two it is
+saves the next reader from having to re-derive it.
+
+That ranking decides how much risk a fix may carry. Forcing a patch across an exact upstream pin
+is reasonable for a clean list and unreasonable if it can break a build; where an override does
+that, its comment says what was verified afterwards.
+
 ## Default stacks
 
 | Area                      | Stack                      |

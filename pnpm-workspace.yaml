@@ -11,6 +11,17 @@ packages:
 overrides:
   '@sveltejs/kit@2>cookie@<0.7.0': 0.7.2
 
+  # miniflare pins undici exactly, and the release that carries the fix is only on its alpha
+  # line. Both are development-only -- a deployed Worker uses workerd's own fetch and never
+  # loads undici -- so this buys a clean alert list rather than production safety, at the cost
+  # of a patch-level bump across an exact pin. Drop it once a stable miniflare ships 7.29.
+  'miniflare>undici': ^7.29.0
+
+  # drizzle-kit still pulls the deprecated @esbuild-kit loaders, which pin ~0.18.20 and can
+  # therefore never reach the patched 0.25. The advisory is about esbuild's dev server, which
+  # this chain never starts; the override exists so the alert does not mask a real one later.
+  '@esbuild-kit/core-utils>esbuild': ^0.25.12
+
 # A package listed here may run arbitrary code during install. pnpm blocks that by default,
 # and the default is right -- an install script is the shortest path from a compromised
 # package to a compromised machine, and it runs before anybody reads a line of the code.
