@@ -10,7 +10,13 @@
 	} from '$lib/engagement/engagement.svelte';
 	import type { LocaleCode } from '$lib/locale';
 	import { maskEmail } from '$lib/newsletter/mask';
-	import { SEQUENCE, SEQUENCE_TOTAL, sequenceStyle } from '$lib/newsletter/sequence';
+	import {
+		REVERSE,
+		REVERSE_TOTAL,
+		SEQUENCE,
+		SEQUENCE_TOTAL,
+		sequenceStyle,
+	} from '$lib/newsletter/sequence';
 	import * as m from '$lib/paraglide/messages';
 
 	let {
@@ -39,7 +45,9 @@
 	 * Where the transition has got to. `still` covers both ends of it: nothing is running, either
 	 * because nothing has happened yet or because everything already has.
 	 */
-	let stage = $state<'still' | 'redacting' | 'settling' | 'undoing'>('still');
+	let stage = $state<
+		'still' | 'redacting' | 'settling' | 'undoing' | 'reverting' | 'restoring'
+	>('still');
 	let timers: ReturnType<typeof setTimeout>[] = [];
 
 	// The record is on the reader's device, so the server renders the form and this replaces it
@@ -99,19 +107,37 @@
 	}
 
 	async function unsubscribe() {
-		if (!subscription || cancellation.isPending) return;
+		// `reverting` is part of the guard, not just `isPending`: the record is held on screen after
+		// the request has returned, and a second click would spend it on a subscription that is
+		// already gone.
+		if (!subscription || cancellation.isPending || stage === 'reverting') return;
 		const record = subscription;
 		try {
 			await cancellation.mutateAsync(record);
 			stop();
-			subscription = undefined;
-			confirmed = undefined;
 			entering = undefined;
-			stage = 'still';
-			status = 'cancelled';
+			if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				settle();
+				return;
+			}
+			// The pill keeps showing the address it is undoing until the sequence has taken it back
+			// off, so the record outlives the request that cancelled it by exactly that long.
+			stage = 'reverting';
+			after(REVERSE.form.at, () => {
+				settle();
+				stage = 'restoring';
+			});
+			after(REVERSE_TOTAL, () => (stage = 'still'));
 		} catch {
 			status = 'error';
 		}
+	}
+
+	function settle() {
+		subscription = undefined;
+		confirmed = undefined;
+		stage = 'still';
+		status = 'cancelled';
 	}
 </script>
 
@@ -120,7 +146,7 @@ button is as wide as the wider of the two and its edge does not move when the co
 alternative is animating a width the stylesheet cannot know, which is a measurement this does not
 otherwise need. See spec/engagement.md. -->
 {#snippet label(subscribed: boolean)}
-	<span class="labels" class:crossfading={entering}>
+	<span class="labels" class:crossfading={entering} class:recrossing={stage === 'reverting'}>
 		<span class:spent={subscribed} aria-hidden={subscribed}>
 			{m['newsletter.subscribe']({}, { locale })}
 		</span>
@@ -152,7 +178,13 @@ otherwise need. See spec/engagement.md. -->
 					<span class="typed">{entering}</span>
 				{/if}
 				<!-- The address is already unreadable, so nothing is gained by letting it wrap. -->
-				<span class="masked text-text" class:revealing={entering}>{masked}</span>
+				<span
+					class="masked text-text"
+					class:revealing={entering}
+					class:retreating={stage === 'reverting'}
+				>
+					{masked}
+				</span>
 			</span>
 			<!-- The button's surface stays and its copy states the outcome, so the shape the reader
 			just used becomes the label for what it did. It is inert -- there is nothing left to
@@ -161,8 +193,9 @@ otherwise need. See spec/engagement.md. -->
 			<span
 				class="chip flex h-full shrink-0 items-center rounded-full px-4 font-medium"
 				class:cooling={entering}
+				class:warming={stage === 'reverting'}
 			>
-				{@render label(true)}
+				{@render label(stage !== 'reverting')}
 			</span>
 		{:else}
 			<!-- `type="email"` plus `required` leaves validation to the browser: it is localized
@@ -178,6 +211,7 @@ otherwise need. See spec/engagement.md. -->
 					placeholder="you@example.com"
 					aria-label={m['newsletter.email']({}, { locale })}
 					disabled={status === 'sending'}
+					class:returning={stage === 'restoring'}
 					class="focus-input min-w-0 flex-1 bg-transparent text-text placeholder:text-text-soft disabled:text-text-soft"
 				/>
 				<button
@@ -201,7 +235,9 @@ otherwise need. See spec/engagement.md. -->
 		{#if status === 'error'}
 			<p role="alert">{m['newsletter.error']({}, { locale })}</p>
 		{:else if status === 'cancelled'}
-			<p role="status">{m['newsletter.unsubscribed']({}, { locale })}</p>
+			<p role="status" class:returning={stage === 'restoring'}>
+				{m['newsletter.unsubscribed']({}, { locale })}
+			</p>
 		{:else if status === 'confirmed'}
 			<p role="status" class:arriving={entering}>{m['newsletter.confirm']({}, { locale })}</p>
 		{:else}
@@ -223,13 +259,14 @@ otherwise need. See spec/engagement.md. -->
 		<!-- Held back until the sequence reaches it. A control that undoes what the reader is still
 		watching happen has nothing to undo yet, and it arrives directly below the button they just
 		pressed, where a second click would otherwise land on it. -->
-		{#if subscription && (stage === 'still' || stage === 'undoing')}
+		{#if subscription && stage !== 'redacting' && stage !== 'settling'}
 			<button
 				type="button"
 				onclick={unsubscribe}
-				disabled={cancellation.isPending}
+				disabled={cancellation.isPending || stage === 'reverting'}
 				aria-busy={cancellation.isPending}
 				class:arriving={stage === 'undoing'}
+				class:departing={stage === 'reverting'}
 				class="focus-link spring-underline shrink-0 transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong disabled:opacity-60"
 			>
 				{m['newsletter.unsubscribe']({}, { locale })}
@@ -276,6 +313,10 @@ otherwise need. See spec/engagement.md. -->
 		animation: cool var(--chip-for) var(--ease-spring) var(--chip-at) both;
 	}
 
+	.warming {
+		animation: cool var(--back-chip-for) var(--ease-spring) var(--back-chip-at) both reverse;
+	}
+
 	@keyframes cool {
 		from {
 			background-color: var(--color-ink);
@@ -304,18 +345,29 @@ otherwise need. See spec/engagement.md. -->
 		visibility: hidden;
 	}
 
-	.crossfading > span {
-		animation-duration: var(--chip-for);
-		animation-delay: var(--chip-at);
+	.crossfading > span,
+	.recrossing > span {
 		animation-timing-function: var(--ease-spring);
 		animation-fill-mode: both;
 	}
 
-	.crossfading > .spent {
+	.crossfading > span {
+		animation-duration: var(--chip-for);
+		animation-delay: var(--chip-at);
+	}
+
+	.recrossing > span {
+		animation-duration: var(--back-chip-for);
+		animation-delay: var(--back-chip-at);
+	}
+
+	.crossfading > .spent,
+	.recrossing > .spent {
 		animation-name: spend;
 	}
 
-	.crossfading > :not(.spent) {
+	.crossfading > :not(.spent),
+	.recrossing > :not(.spent) {
 		animation-name: take;
 	}
 
@@ -349,6 +401,19 @@ otherwise need. See spec/engagement.md. -->
 		animation-duration: var(--undo-for);
 	}
 
+	/* The reverse: the control that was used goes with the state it undid, and the field it gives
+	   the reader back arrives the same way the confirmation did. */
+	.departing {
+		animation: lift var(--back-undo-for) ease var(--back-undo-at) both;
+	}
+
+	/* The submit button is deliberately absent from this. It is the shape the chip has just finished
+	   warming back into, arriving at the same ink it was handed; fading it in would blink the one
+	   thing that was continuous. */
+	.returning {
+		animation: arrive var(--back-form-for) var(--ease-spring) both;
+	}
+
 	@keyframes arrive {
 		from {
 			transform: translateY(0.375rem);
@@ -364,6 +429,12 @@ otherwise need. See spec/engagement.md. -->
 	   watched across its whole duration, so it eases in and out instead. */
 	.revealing {
 		animation: redact var(--redact-for) cubic-bezier(0.65, 0, 0.35, 1) var(--redact-at) both;
+	}
+
+	/* The same sweep run backwards, so the mask leaves by the edge it came in from. */
+	.retreating {
+		animation: redact var(--back-unredact-for) cubic-bezier(0.65, 0, 0.35, 1)
+			var(--back-unredact-at) both reverse;
 	}
 
 	@keyframes lift {

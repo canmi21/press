@@ -1,32 +1,43 @@
 import { describe, expect, it } from 'vitest';
-import { SEQUENCE, SEQUENCE_TOTAL, sequenceStyle } from './sequence';
+import { REVERSE_TOTAL, SEQUENCE_TOTAL, sequenceStyle, TIMELINES } from './sequence';
 
-const stages = Object.values(SEQUENCE);
+describe.each(TIMELINES)('the $name timeline', ({ stages, total }) => {
+	const all = Object.values(stages);
 
-describe('the subscribe sequence', () => {
 	it('ends exactly on its stated total', () => {
-		// The number is quoted in spec/engagement.md and read by anyone timing the interaction, so a
-		// stage extended without moving the ones after it must fail here rather than silently run long.
-		expect(Math.max(...stages.map((stage) => stage.at + stage.for))).toBe(SEQUENCE_TOTAL);
+		// Both totals are quoted in spec/engagement.md and are what anyone timing the interaction
+		// measures, so a stage extended without moving the ones after it must fail here rather than
+		// silently run long.
+		expect(Math.max(...all.map((stage) => stage.at + stage.for))).toBe(total);
 	});
 
 	it('never leaves the reader watching nothing', () => {
 		// Every stage has to begin before the one before it has finished, or the transition reads as
 		// having stalled rather than as one thing following another.
-		const ordered = [...stages].sort((a, b) => a.at - b.at);
+		const ordered = [...all].sort((a, b) => a.at - b.at);
 		for (const [index, stage] of ordered.entries()) {
-			if (index === 0) continue;
 			const previous = ordered[index - 1];
 			if (!previous) continue;
 			expect(stage.at).toBeLessThanOrEqual(previous.at + previous.for);
 		}
 	});
+});
 
-	it('publishes every stage to the stylesheet', () => {
+describe('the two timelines together', () => {
+	it('leaves faster than it arrives', () => {
+		// Committing is worth dwelling on; leaving is not. If these ever meet, the undo has become
+		// something the reader has to sit through.
+		expect(REVERSE_TOTAL).toBeLessThan(SEQUENCE_TOTAL / 2);
+	});
+
+	it('publishes every stage of both to the stylesheet, without collision', () => {
 		const style = sequenceStyle();
-		for (const name of Object.keys(SEQUENCE)) {
-			expect(style).toContain(`--${name}-at:`);
-			expect(style).toContain(`--${name}-for:`);
+		for (const { stages, name } of TIMELINES) {
+			const prefix = name === 'reverse' ? 'back-' : '';
+			for (const stage of Object.keys(stages)) {
+				expect(style).toContain(`--${prefix}${stage}-at:`);
+				expect(style).toContain(`--${prefix}${stage}-for:`);
+			}
 		}
 	});
 });

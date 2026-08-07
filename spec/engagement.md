@@ -110,6 +110,23 @@ control that undoes what the reader is still watching happen has nothing to undo
 arrives directly below the button they just pressed, where a second click would otherwise land on
 it.
 
+### Unsubscribing runs the same beats backwards, in 900 milliseconds
+
+Leaving is animated too -- a state that arrives deliberately and then vanishes was never one
+thing changing -- but it is deliberately much shorter, and a test holds it under half the
+forward total. Committing is worth dwelling on; leaving is not, and holding somebody inside an
+animation while they are trying to go is the one place a long transition turns hostile.
+
+The control that was used goes first, the mask retreats by the edge it arrived from, the button
+warms back to ink and takes its verb back, and the field returns. **The pill keeps showing the
+address it is undoing until the mask has taken it back off**, so the record outlives the request
+that cancelled it by exactly that long -- which is also why a second click is refused for the
+duration rather than spent on a subscription that is already gone.
+
+The submit button is the one thing that does not fade in at the end. It is the shape the chip has
+just finished warming back into and arrives at the same ink it was handed; animating it would
+blink the one element that was continuous across the swap.
+
 **A record read at mount animates nothing.** Someone returning to the page did not just do
 anything, and replaying the confirmation would claim they had. The animation belongs to the
 interaction, not to the state.
