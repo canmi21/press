@@ -18,6 +18,7 @@ const MEDIA = fileURLToPath(new URL('../../data/media.yaml', import.meta.url));
 const SEGMENTS = fileURLToPath(new URL('../../data/build/segments.json', import.meta.url));
 const CRATES = fileURLToPath(new URL('../../data/build/crates.json', import.meta.url));
 const REPOS = fileURLToPath(new URL('../../data/build/repos.json', import.meta.url));
+const LICENSES = fileURLToPath(new URL('../../data/build/licenses.json', import.meta.url));
 
 // Built-in 301s, kept out of site.config.yaml because they are product behaviour rather than
 // configuration: feed aliases and the favicon redirect to the CDN.
@@ -157,6 +158,20 @@ export default defineConfig(({ mode }) => {
 						return code.replaceAll('__CDN_URL__', urls.cdn);
 					}
 					return null;
+				},
+			},
+			{
+				// The dependency licence record, baked in. Only the metadata travels: the texts
+				// themselves are published objects the CDN serves, so the Worker carries a few
+				// hundred KB of names and ids rather than several megabytes of legal prose.
+				name: 'virtual-licenses',
+				resolveId(id: string) {
+					return id === 'virtual:licenses' ? '\0virtual:licenses' : null;
+				},
+				load(id: string) {
+					if (id !== '\0virtual:licenses') return null;
+					this.addWatchFile(LICENSES);
+					return `export const licenses = ${readFileSync(LICENSES, 'utf8')};`;
 				},
 			},
 			{

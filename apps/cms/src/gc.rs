@@ -10,6 +10,7 @@
 
 use crate::image::manifest::Merged;
 use crate::image::run::MERGED;
+use crate::licenses;
 use crate::refs;
 use std::collections::BTreeSet;
 use std::path::{Path, PathBuf};
@@ -77,6 +78,27 @@ pub fn plan(repo: &Path, public: &Path, articles: &Path) -> std::io::Result<Swee
 				.map(|meta| meta.len())
 				.sum::<u64>();
 			sweep.orphans.push(directory);
+		}
+	}
+
+	// Licence texts are reachable from the dependency record rather than from an article, so
+	// they are swept against that instead. Without this the whole directory reads as garbage,
+	// because no article will ever name a licence.
+	//
+	// `full.txt` is named rather than content addressed and is rewritten on every run, so it
+	// is kept unconditionally -- there is no id for it to fall out of.
+	let record: licenses::Record = std::fs::read(licenses::record_path(repo))
+		.ok()
+		.and_then(|bytes| serde_json::from_slice(&bytes).ok())
+		.unwrap_or_default();
+	let live = licenses::referenced(&record);
+	for path in files_under(&public.join("license"))? {
+		if path.file_name().is_some_and(|name| name == "full.txt") {
+			continue;
+		}
+		if !live.contains(&stem_of(&path)) {
+			sweep.bytes += path.metadata().map(|meta| meta.len()).unwrap_or_default();
+			sweep.orphans.push(path);
 		}
 	}
 

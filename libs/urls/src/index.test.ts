@@ -24,6 +24,12 @@ describe('URLS', () => {
 		expect(URLS.external.social).toHaveProperty('telegram');
 	});
 
+	// Not under `external`, which is for services somebody else runs. This one is ours, and
+	// the licence routes publish it as the answer to where the code is.
+	it('names the repository the code is published from', () => {
+		expect(URLS.source).toMatch(/^https:\/\/github\.com\/\S+\/\S+$/);
+	});
+
 	it('does not keep discarded app slots', () => {
 		expect('res' in URLS.apps.production).toBe(false);
 		expect('home' in URLS.apps.production).toBe(false);

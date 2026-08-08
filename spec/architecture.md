@@ -484,6 +484,50 @@ change of source bytes alone. The old aggregate manifest record is removed only 
 record exists, or commands that enumerate the manifest would mistake the superseded source for
 an unlabelled asset; deleting its published bytes still waits for an explicit garbage collection.
 
+### A dependency's licence is an asset like any other
+
+`cms licenses` records every third-party package the deployables are built out of: the
+production closure of the three Workers, and every crate this repository's own tooling
+resolves. Workspace packages are excluded -- they are this project, not something it credits.
+
+**Packages are identified by purl**, the Package URL that SPDX and CycloneDX already key an
+SBOM by: `pkg:npm/%40sveltejs/kit@2.0.0`, `pkg:cargo/serde@1.0.219`. Two registries answer the
+same question in different shapes, and adopting the settled vocabulary avoids inventing an
+identity scheme whose escaping rules would then be ours to regret.
+
+**The texts are content addressed**, under `license/{ab}/{cd}/{cid}.txt`, exactly like an
+image. The registry, the package and the version appear nowhere in a key. That is the rule
+above applied rather than an exception to it: package coordinates are not one shape across
+registries -- a scoped npm name carries a slash, a Maven coordinate a colon, a Go module a
+whole URL -- so encoding them into paths means inventing an escaping scheme that can never be
+changed. It also deduplicates by roughly ten to one, because several hundred crates ship the
+same Apache-2.0 text byte for byte, and a registry added later will mostly ship texts already
+stored.
+
+Texts are published exactly as they were shipped. Normalising line endings would deduplicate
+better and would also mean publishing a licence its author did not write, which is not a trade
+available on a legal text.
+
+`license/full.txt` is the exception that proves the layout: one aggregate holding every notice
+in full, named rather than content addressed, like an OpenGraph card. It is what the permissive
+licences actually ask for -- reproducible in one fetch -- and assembling it per request would
+mean a Worker fetching several hundred objects.
+
+Only `data/build/licenses.json` is committed; the texts are published bytes and stay out of
+git like every other asset. The record is produced locally because the crate half reads the
+cargo registry cache, which no CI container has -- so both halves are collected by one command
+into one reviewable diff, rather than half the answer arriving at build time.
+
+**A package that declares no licence fails the command.** It is the one finding in the record
+that needs a person, and `data/licenses.yaml` is where that person's answer goes, with the
+evidence beside it. An entry there only ever fills a gap, never overrides a package's own
+declaration, and the published record marks it as asserted rather than declared -- presenting
+a judgement as the package's own statement is the one dishonest thing this record could do.
+
+A package resolved for another platform is not in the record at all. A dependency tree carries
+an optional binary for every operating system and only one is ever installed; reporting the
+rest as declaring nothing would be false, and would bury the handful that genuinely do.
+
 ### Variants stop where the layout does
 
 An image is published at 640, 1280 and 1920 on its long edge, and no further. Nothing on the

@@ -15,6 +15,7 @@ mod favicon;
 mod gc;
 mod i18n;
 mod image;
+mod licenses;
 mod locale;
 mod media;
 mod opengraph;
@@ -42,6 +43,7 @@ fn main() -> ExitCode {
 		Some("alt") => describe_images(&args[1..]),
 		Some("summary") => summarise_articles(&args[1..]),
 		Some("gc") => collect_garbage(&args[1..]),
+		Some("licenses") => collect_licenses(),
 		Some(other) => {
 			eprintln!("unknown command: {other}");
 			usage();
@@ -723,6 +725,114 @@ fn collect_garbage(args: &[String]) -> ExitCode {
 	ExitCode::SUCCESS
 }
 
+/// Collect the licence of everything the deployables are built out of.
+///
+/// Runs locally and nowhere else. The crate half reads the cargo registry cache, which no CI
+/// container has and no Rust toolchain on the site's build image would populate, so the record
+/// has to be produced here and committed. That settles the npm half too: one command, one
+/// record, one diff to review, rather than half the answer arriving at build time.
+///
+/// A package that declares no licence at all fails the run. It is the one finding that needs a
+/// person -- everything else the record can state plainly -- and a report that scrolls past is
+/// how a dependency with no terms ends up shipped.
+fn collect_licenses() -> ExitCode {
+	let root = match paths::repo_root() {
+		Ok(root) => root,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
+	};
+	let public = root.join("data").join("public");
+
+	let mut found = match licenses::npm::collect(&root) {
+		Ok(found) => found,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
+	};
+	let npm = found.len();
+	match licenses::cargo::collect(&root) {
+		Ok(crates) => found.extend(crates),
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
+	}
+	println!("{npm} npm packages, {} crates", found.len() - npm);
+
+	let assertions = match licenses::read_assertions(&root) {
+		Ok(assertions) => assertions,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
+	};
+
+	let written = match licenses::write(&public, found, &assertions) {
+		Ok(written) => written,
+		Err(error) => {
+			eprintln!("could not publish licence texts: {error}");
+			return ExitCode::FAILURE;
+		}
+	};
+
+	let document = match licenses::full_document(&public, &written.record) {
+		Ok(document) => document,
+		Err(error) => {
+			eprintln!("could not assemble the full notice: {error}");
+			return ExitCode::FAILURE;
+		}
+	};
+	if let Err(error) = image::store::write(&licenses::full_path(&public), document.as_bytes()) {
+		eprintln!("could not write the full notice: {error}");
+		return ExitCode::FAILURE;
+	}
+
+	let record_path = licenses::record_path(&root);
+	let json = match serde_json::to_string_pretty(&written.record) {
+		Ok(json) => json,
+		Err(error) => {
+			eprintln!("could not serialise the record: {error}");
+			return ExitCode::FAILURE;
+		}
+	};
+	if let Err(error) = image::store::write(&record_path, format!("{json}\n").as_bytes()) {
+		eprintln!("could not write {}: {error}", record_path.display());
+		return ExitCode::FAILURE;
+	}
+
+	println!(
+		"{} unique texts, {} KiB in the full notice",
+		written.objects,
+		document.len() / 1024
+	);
+	for purl in &written.stale {
+		println!("stale assertion, the package now declares its own or is gone: {purl}");
+	}
+	if !written.textless.is_empty() {
+		println!(
+			"{} packages declare terms but ship no text",
+			written.textless.len()
+		);
+	}
+	println!("wrote data/build/licenses.json");
+
+	if !written.undeclared.is_empty() {
+		eprintln!();
+		for purl in &written.undeclared {
+			eprintln!("no license declared: {purl}");
+		}
+		eprintln!(
+			"{} packages declare no license at all -- decide about each before shipping them",
+			written.undeclared.len()
+		);
+		return ExitCode::FAILURE;
+	}
+	ExitCode::SUCCESS
+}
+
 /// Derive and publish every image the articles ask for, then rewrite what they say.
 ///
 /// With no file arguments this follows the articles. Named files are imported ahead of the
@@ -1103,6 +1213,7 @@ fn usage() {
 	eprintln!("                              translate tag labels and image descriptions");
 	eprintln!("  tag [--model M] [--force] [--limit N]");
 	eprintln!("                              give each asset a category and tags");
+	eprintln!("  licenses                    record the licence of every dependency the apps ship");
 	eprintln!("  check                       list referenced assets that are not present");
 	eprintln!("  gc [--live]                 drop published assets no article asks for");
 }

@@ -1,0 +1,37 @@
+# Licences worked out by reading a package, because the package never declared one.
+#
+# `cms licenses` refuses to finish while a dependency has no discoverable terms. That is the
+# one finding in the whole record that needs a person: everything else it can simply state.
+# This file is where the person's answer goes, so the decision is made once, in the open, and
+# with the evidence beside it.
+#
+# An entry only ever fills a gap. A package that declares its own licence is never overridden
+# from here -- otherwise this file could quietly disagree with the package it describes.
+# `cms licenses` reports an entry whose package now declares its own, so the list shrinks by
+# itself instead of accumulating.
+#
+# The published record marks these as asserted rather than declared, and the site says so.
+# Recording a judgement as if the package had made it is the one dishonest thing this could do.
+
+version: 1
+
+asserted:
+  pkg:npm/format@0.2.2:
+    spdx: MIT
+    note: >-
+      Ships no LICENSE file and no `license` field. Readme.md carries the heading "License",
+      the line "Copyright 2010 - 2014 Sami Samhuri sami@samhuri.net" and a link to
+      http://sjs.mit-license.org. The package.json author matches that name.
+
+  pkg:npm/sqlite-wasm-kysely@0.3.0:
+    spdx: MIT
+    note: >-
+      Ships a verbatim MIT text as LICENSE, headed "MIT License" with "Copyright (c) 2024
+      Opral US Inc.". Only the package.json field is missing, so the text is the declaration.
+
+  pkg:npm/svelte-toolbelt@0.10.6:
+    spdx: MIT
+    note: >-
+      Ships a verbatim MIT text as LICENSE, headed "MIT License" with "Copyright (c) 2024
+      Hunter Johnston" and "Copyright (c) 2024 Thomas G. Lopes". Only the package.json field
+      is missing, so the text is the declaration.
