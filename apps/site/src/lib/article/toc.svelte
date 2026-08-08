@@ -127,6 +127,9 @@
 			});
 		}
 
+		// Only on a fresh navigation. A reload keeps the position the reader had scrolled to,
+		// which is the browser's own behaviour and what somebody reloading halfway down a page
+		// wants; taking over both alike is what throws that away. See spec/styling.md.
 		const initialHash = window.location.hash.slice(1);
 		const nav = performance.getEntriesByType('navigation')[0] as
 			| PerformanceNavigationTiming

@@ -9,6 +9,31 @@
 
 	let { data }: { data: PageData } = $props();
 	const locale = $derived(data.locale.code);
+
+	/**
+	 * Scroll to a section without writing its id into the address bar.
+	 *
+	 * The contents list is a way around one long page, not a set of addresses worth collecting
+	 * in history: a reader walking six licences would otherwise leave six entries behind and
+	 * have to press Back six times to get out. Arriving *with* a hash still works -- the
+	 * browser jumps natively on load, and restores the reader's own position on a reload rather
+	 * than jumping again -- so nothing is lost by not adding one here.
+	 *
+	 * The element stays an `<a href="#...">`, so without JavaScript the native jump happens
+	 * instead, hash and all. See spec/styling.md.
+	 */
+	function jumpToSection(event: MouseEvent, anchor: string) {
+		// A modified click is the reader asking for a new tab or window, which is the browser's
+		// to answer.
+		if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) {
+			return;
+		}
+		const target = document.getElementById(anchor);
+		if (!target) return;
+		event.preventDefault();
+		const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		target.scrollIntoView({ behavior: still ? 'instant' : 'smooth', block: 'start' });
+	}
 </script>
 
 <svelte:head>
@@ -83,6 +108,7 @@
 			{#each data.groups as group (group.anchor)}
 				<a
 					href="#{group.anchor}"
+					onclick={(event) => jumpToSection(event, group.anchor)}
 					class="focus-ring-within -mx-2 flex items-center gap-3 rounded-[0.5rem] px-2 py-1 hover:bg-paper-hover focus-visible:outline-none"
 				>
 					<span class="focus-link-inner min-w-0 truncate">{group.license}</span>

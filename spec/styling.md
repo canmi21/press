@@ -18,6 +18,32 @@ pixels. SVG view-box coordinates remain unitless. An external browser API that o
 may keep them when no equivalent percentage is available; that constraint is documented beside the
 call rather than being generalized into a styling exception.
 
+## An in-page jump scrolls without becoming an address
+
+Navigation within one page -- an article's table of contents, the licence page's list of
+licences -- moves the reader and leaves the URL alone. These are a way around a long document
+rather than addresses worth collecting: a reader walking six sections would otherwise leave six
+history entries behind and have to press Back six times to get out of a page they never left.
+
+**Arriving with a hash still works, and is the browser's job.** A fresh navigation to
+`/licenses#mpl-2-0` jumps natively on load. A reload of that same URL restores the position the
+reader had scrolled to rather than jumping again, which is what a browser already does and what
+somebody reloading halfway down a page wants. Nothing here re-implements either.
+
+The distinction is `PerformanceNavigationTiming.type`: code that does take over the initial
+jump -- the article ToC, which needs its own offset and a smooth landing -- acts only on
+`navigate` and stands aside on `reload`. Handling both alike is what makes a reload throw away
+the reader's place.
+
+The control stays an `<a href="#id">` and the handler cancels the default. Without JavaScript
+the native jump happens instead, hash and all, which is worse than the scripted behaviour and
+much better than a dead control. A modified click -- meta, control, shift, alt, or any button
+but the first -- is the reader asking for a new tab, so it is left to the browser untouched.
+
+Landing offsets belong to the target, as `scroll-margin-top` on the heading, so a section
+jumped to does not sit flush against the top of the viewport with its own first rows cut off.
+Smooth scrolling is skipped under `prefers-reduced-motion`.
+
 ## Keyboard focus follows the visible control
 
 Keyboard focus uses a real `0.125rem` outline in the accessibility accent colour. The outline is
