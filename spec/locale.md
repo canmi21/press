@@ -61,10 +61,14 @@ Being multilingual is what a page here is, so nothing has to opt in. What
 [hooks.server.ts](../apps/site/src/hooks.server.ts) carries is the exception, and the exception
 is documents: Atom, the sitemap, `robots.txt`, `llms.txt` and the licence text routes.
 
-**A document is recognised by having an extension, and no page has one.** That is a convention
-this site already keeps -- `/atom.xml` and `/licenses/full.txt` against `/` and `/licenses` --
-so the test reads the distinction that exists rather than restating a list beside it. The
-article lookup is tried first, so a slug that happens to carry a dot is still a page.
+**A document is recognised by having an extension, and ordinary pages do not have one.** That
+is a convention this site already keeps -- `/atom.xml` and `/licenses/full.txt` against `/` and
+`/licenses` -- so the test reads the distinction that exists rather than restating a list
+beside it. The article lookup is tried first, so a slug that happens to carry a dot is still a
+page. `/licenses/pkgs/` is the other explicit exception: its HTML package routes end in a
+semantic version containing dots, so that browser namespace is locale-aware before the generic
+document test runs. The stable package notices remain outside it at
+`/licenses/{type}/{name}@{version}.txt`.
 
 Stated the other way round it would be a list of pages, and the two failures are not
 comparable. A page missing from a list of pages serves the original to every reader and says

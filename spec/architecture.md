@@ -524,10 +524,20 @@ evidence beside it. An entry there only ever fills a gap, never overrides a pack
 declaration, and the published record marks it as asserted rather than declared -- presenting
 a judgement as the package's own statement is the one dishonest thing this record could do.
 
-**Only the name survives from an author field.** Both registries pack a name, an address and a
-homepage into one string, in several spellings and sometimes with no brackets around any of
-them. A copyright line carries a name, so that is attribution; the rest is contact detail
-nobody offered for republication, and this record is published.
+**The name survives from every usable author field; a GitHub login survives only when the
+field identifies it explicitly.** Both registries pack a name, an address and a homepage into
+one string, in several spellings and sometimes with no brackets around any of them. A copyright
+line carries the name, so that is attribution. An exact GitHub profile URL or GitHub's own
+no-reply address also names one public account and may supply its login, but no account is ever
+searched for or inferred from a person's name. Other email addresses and personal URLs remain
+contact details nobody offered for republication and are discarded.
+
+The package record also carries the description, homepage, documentation and repository URL
+declared by the registry metadata. Only HTTP(S) URLs become browser links. A GitHub repository
+owner may supply the avatar and profile shown on the repository row, but that owner is not
+presented as a package author; repository ownership and authorship are separate claims. GitHub
+avatars use the CDN's existing avatar proxy, so the site does not add a second live GitHub data
+path or expose readers to a new image origin.
 
 `/licenses` is the page over the same data, grouped by licence and ordered by what each covers.
 **An expression is flattened to the licences it names, and a package is filed under each of
@@ -548,6 +558,19 @@ times, so it becomes a heading and the rows underneath get shorter -- and the gr
 the question somebody arriving actually has, which is what all of this stands on rather than
 what any single package is. An asserted licence is not a group of its own: the packages under
 it are MIT, they simply never said so, and the row carries where that is known from.
+
+The browser surface follows those two kinds of identity instead of nesting one inside the
+other. `/licenses` is the licence directory, `/licenses/{licence}` is one licence's package
+directory, and `/licenses/pkgs/{type}/{name}@{version}` is one package. A package route does not
+sit below a licence route because an expression can place the same package under several
+licences; doing so would give one package several equally plausible addresses. `pkgs` is an
+explicit namespace so a registry type or package name can never be mistaken for a licence slug.
+The version remains part of the address because the resolved tree may contain several versions
+of one package, with different metadata or terms.
+
+The plain-text documents keep their existing addresses: `/licenses.txt`, `/licenses/full.txt`
+and `/licenses/{type}/{name}@{version}.txt`. They are stable legal artefacts rather than the HTML
+package pages, so reorganising the browser surface is not a reason to move them.
 
 The page is locale-negotiated like every other page, while the three plain-text routes beside
 it are prerendered. A licence is not translated, and those routes vary on nothing.

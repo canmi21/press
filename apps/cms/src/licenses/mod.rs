@@ -21,7 +21,7 @@ use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 use std::path::{Path, PathBuf};
 
-pub const VERSION: u32 = 1;
+pub const VERSION: u32 = 2;
 
 /// Extensions that say a file is code or configuration whatever it is called.
 ///
@@ -69,6 +69,14 @@ pub struct Text {
 	/// themselves do not name the expression they satisfy.
 	pub name: String,
 	pub cid: String,
+}
+
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct Person {
+	pub name: String,
+	/// A GitHub login the manifest identifies explicitly, never one inferred from the name.
+	#[serde(skip_serializing_if = "Option::is_none")]
+	pub github: Option<String>,
 }
 
 /// A licence somebody worked out by reading the package, because the package never said.
@@ -122,7 +130,15 @@ pub struct Package {
 	#[serde(default, skip_serializing_if = "std::ops::Not::not")]
 	pub asserted: bool,
 	#[serde(default, skip_serializing_if = "Vec::is_empty")]
-	pub authors: Vec<String>,
+	pub authors: Vec<Person>,
+	#[serde(skip_serializing_if = "Option::is_none")]
+	pub description: Option<String>,
+	#[serde(skip_serializing_if = "Option::is_none")]
+	pub homepage: Option<String>,
+	#[serde(skip_serializing_if = "Option::is_none")]
+	pub documentation: Option<String>,
+	#[serde(skip_serializing_if = "Option::is_none")]
+	pub repository: Option<String>,
 	#[serde(default, skip_serializing_if = "Vec::is_empty")]
 	pub texts: Vec<Text>,
 }
@@ -148,7 +164,11 @@ impl Default for Record {
 pub struct Found {
 	pub purl: String,
 	pub spdx: Option<String>,
-	pub authors: Vec<String>,
+	pub authors: Vec<Person>,
+	pub description: Option<String>,
+	pub homepage: Option<String>,
+	pub documentation: Option<String>,
+	pub repository: Option<String>,
 	pub directory: PathBuf,
 }
 
@@ -227,6 +247,69 @@ pub fn author_name(entry: &str) -> Option<String> {
 		.collect::<Vec<_>>()
 		.join(" ");
 	(!name.is_empty()).then_some(name)
+}
+
+/// Attribution plus a GitHub identity the manifest itself makes unambiguous.
+///
+/// A profile URL and GitHub's own no-reply address both name one account. Other homepages and
+/// email addresses remain discarded, and a person's name is never searched or matched to an
+/// account: a plausible avatar on the wrong person would be worse than no avatar at all.
+pub fn author(entry: &str) -> Option<Person> {
+	let name = author_name(entry)?;
+	Some(Person {
+		name,
+		github: github_profile(entry).or_else(|| github_noreply(entry)),
+	})
+}
+
+pub fn github_profile(value: &str) -> Option<String> {
+	let start = [value.find("https://"), value.find("http://")]
+		.into_iter()
+		.flatten()
+		.min()?;
+	let candidate = value[start..]
+		.split([')', '>', ' ', '\t', '\r', '\n'])
+		.next()
+		.unwrap_or_default();
+	let url = url::Url::parse(candidate).ok()?;
+	if url.host_str() != Some("github.com") || url.query().is_some() || url.fragment().is_some() {
+		return None;
+	}
+	let segments = url
+		.path_segments()?
+		.filter(|segment| !segment.is_empty())
+		.collect::<Vec<_>>();
+	match segments.as_slice() {
+		[login] if github_login(login) => Some((*login).to_owned()),
+		_ => None,
+	}
+}
+
+pub fn github_noreply(value: &str) -> Option<String> {
+	let address = value
+		.split_whitespace()
+		.map(|part| part.trim_matches(['<', '>', '(', ')', ',', ';']))
+		.find(|part| part.ends_with("@users.noreply.github.com"))?;
+	let local = address.strip_suffix("@users.noreply.github.com")?;
+	let login = local.rsplit_once('+').map_or(local, |(_, login)| login);
+	github_login(login).then(|| login.to_owned())
+}
+
+fn github_login(value: &str) -> bool {
+	!value.is_empty()
+		&& value.len() <= 39
+		&& !value.starts_with('-')
+		&& !value.ends_with('-')
+		&& value
+			.bytes()
+			.all(|byte| byte.is_ascii_alphanumeric() || byte == b'-')
+}
+
+/// A manifest URL that is safe and useful as a browser link.
+pub fn web_url(value: Option<String>) -> Option<String> {
+	let value = value?.trim().to_owned();
+	let parsed = url::Url::parse(&value).ok()?;
+	matches!(parsed.scheme(), "http" | "https").then_some(value)
 }
 
 /// Read the licence texts a package ships, in file-name order.
@@ -316,6 +399,10 @@ pub fn write(
 				spdx,
 				asserted,
 				authors: package.authors,
+				description: package.description,
+				homepage: package.homepage,
+				documentation: package.documentation,
+				repository: package.repository,
 				texts,
 			},
 		);
@@ -351,7 +438,15 @@ pub fn full_document(public_root: &Path, record: &Record) -> std::io::Result<Str
 		out.push_str(purl);
 		out.push('\n');
 		if !package.authors.is_empty() {
-			out.push_str(&format!("Authors: {}\n", package.authors.join(", ")));
+			out.push_str(&format!(
+				"Authors: {}\n",
+				package
+					.authors
+					.iter()
+					.map(|author| author.name.as_str())
+					.collect::<Vec<_>>()
+					.join(", ")
+			));
 		}
 		match (&package.spdx, package.asserted) {
 			// Said plainly rather than folded into the same sentence as a declaration: a
@@ -431,6 +526,36 @@ mod tests {
 	}
 
 	#[test]
+	fn keeps_only_explicit_github_identities() {
+		assert_eq!(
+			author("Ada <12345+octo-cat@users.noreply.github.com>").and_then(|person| person.github),
+			Some("octo-cat".to_owned())
+		);
+		assert_eq!(
+			author("Ada (https://github.com/octo-cat)").and_then(|person| person.github),
+			Some("octo-cat".to_owned())
+		);
+		assert_eq!(
+			author("Ada (https://github.com/octo-cat/project)").and_then(|person| person.github),
+			None
+		);
+		assert_eq!(
+			author("Ada (https://notgithub.com/octo-cat)").and_then(|person| person.github),
+			None
+		);
+		assert_eq!(author("Ada <ada@example.com>").unwrap().github, None);
+	}
+
+	#[test]
+	fn keeps_only_browser_urls() {
+		assert_eq!(
+			web_url(Some("https://example.com/project".to_owned())).as_deref(),
+			Some("https://example.com/project")
+		);
+		assert_eq!(web_url(Some("javascript:alert(1)".to_owned())), None);
+	}
+
+	#[test]
 	fn recognises_the_names_a_license_is_shipped_under() {
 		for name in ["LICENSE", "LICENSE-MIT", "licence.md", "COPYING", "NOTICE"] {
 			assert!(is_license_file(name), "{name}");
@@ -471,12 +596,20 @@ mod tests {
 					purl: purl("npm", None, "one", "1.0.0"),
 					spdx: Some("MIT".to_owned()),
 					authors: vec![],
+					description: None,
+					homepage: None,
+					documentation: None,
+					repository: None,
 					directory: one,
 				},
 				Found {
 					purl: purl("npm", None, "two", "1.0.0"),
 					spdx: Some("MIT".to_owned()),
 					authors: vec![],
+					description: None,
+					homepage: None,
+					documentation: None,
+					repository: None,
 					directory: two,
 				},
 			],
@@ -504,12 +637,20 @@ mod tests {
 					purl: purl("npm", None, "bare", "1.0.0"),
 					spdx: Some("MIT".to_owned()),
 					authors: vec![],
+					description: None,
+					homepage: None,
+					documentation: None,
+					repository: None,
 					directory: bare.clone(),
 				},
 				Found {
 					purl: purl("npm", None, "silent", "1.0.0"),
 					spdx: None,
 					authors: vec![],
+					description: None,
+					homepage: None,
+					documentation: None,
+					repository: None,
 					directory: bare,
 				},
 			],
@@ -531,7 +672,14 @@ mod tests {
 			Package {
 				spdx: Some("MIT".to_owned()),
 				asserted: false,
-				authors: vec!["Ada".to_owned()],
+				authors: vec![Person {
+					name: "Ada".to_owned(),
+					github: None,
+				}],
+				description: None,
+				homepage: None,
+				documentation: None,
+				repository: None,
 				texts: vec![],
 			},
 		);

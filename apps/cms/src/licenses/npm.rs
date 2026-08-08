@@ -4,7 +4,7 @@
 //! workspace member ever asked for, including the build toolchain, and the question here is
 //! narrower -- what does each deployable actually ship. `--prod` answers exactly that.
 
-use super::{Found, author_name, purl};
+use super::{Found, Person, author, purl, web_url};
 use serde::Deserialize;
 use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
@@ -38,6 +38,20 @@ struct Manifest {
 	license: Option<serde_json::Value>,
 	#[serde(default)]
 	author: Option<serde_json::Value>,
+	#[serde(default)]
+	description: Option<String>,
+	#[serde(default)]
+	homepage: Option<String>,
+	#[serde(default)]
+	repository: Option<serde_json::Value>,
+}
+
+struct Declared {
+	spdx: Option<String>,
+	authors: Vec<Person>,
+	description: Option<String>,
+	homepage: Option<String>,
+	repository: Option<String>,
 }
 
 /// Every third-party package in the production closure of the Worker apps, deduplicated.
@@ -106,11 +120,15 @@ fn walk(nodes: &BTreeMap<String, Node>, into: &mut BTreeMap<String, Found>) {
 			// No manifest means the package was resolved but never installed here, which is
 			// what an optional binary for another platform looks like. It is left out rather
 			// than recorded as declaring nothing.
-			if let Some((spdx, authors)) = declared(&directory) {
+			if let Some(declared) = declared(&directory) {
 				slot.insert(Found {
 					purl: id,
-					spdx,
-					authors,
+					spdx: declared.spdx,
+					authors: declared.authors,
+					description: declared.description,
+					homepage: declared.homepage,
+					documentation: None,
+					repository: declared.repository,
 					directory,
 				});
 			}
@@ -132,18 +150,21 @@ fn split_scope(name: &str) -> (Option<&str>, &str) {
 /// `None` means the manifest could not be read at all, which is a different fact from a
 /// manifest that declares no licence -- the first is a package that is not installed, the
 /// second is a package somebody has to make a decision about.
-fn declared(directory: &Path) -> Option<(Option<String>, Vec<String>)> {
+fn declared(directory: &Path) -> Option<Declared> {
 	let bytes = std::fs::read(directory.join("package.json")).ok()?;
 	let manifest = serde_json::from_slice::<Manifest>(&bytes).ok()?;
-	Some((
-		manifest.license.as_ref().and_then(license_expression),
-		manifest
+	Some(Declared {
+		spdx: manifest.license.as_ref().and_then(license_expression),
+		authors: manifest
 			.author
 			.as_ref()
 			.and_then(person)
 			.into_iter()
 			.collect(),
-	))
+		description: nonempty_text(manifest.description),
+		homepage: web_url(manifest.homepage),
+		repository: manifest.repository.as_ref().and_then(repository_url),
+	})
 }
 
 /// npm's `license` field, which has outlived two of its own formats.
@@ -160,12 +181,57 @@ fn license_expression(value: &serde_json::Value) -> Option<String> {
 }
 
 /// npm's `author`, which is either a string or a `{ name, email, url }` object.
-fn person(value: &serde_json::Value) -> Option<String> {
+fn person(value: &serde_json::Value) -> Option<Person> {
 	match value {
-		serde_json::Value::String(text) => author_name(text),
-		serde_json::Value::Object(map) => map.get("name")?.as_str().and_then(author_name),
+		serde_json::Value::String(text) => author(text),
+		serde_json::Value::Object(map) => {
+			let name = map.get("name")?.as_str()?;
+			let email = map
+				.get("email")
+				.and_then(serde_json::Value::as_str)
+				.unwrap_or_default();
+			let url = map
+				.get("url")
+				.and_then(serde_json::Value::as_str)
+				.unwrap_or_default();
+			author(&format!("{name} <{email}> ({url})"))
+		}
 		_ => None,
 	}
+}
+
+fn nonempty_text(value: Option<String>) -> Option<String> {
+	value
+		.map(|text| text.trim().to_owned())
+		.filter(|text| !text.is_empty())
+}
+
+/// The repository field's legacy shorthands, reduced to a URL a browser can open.
+fn repository_url(value: &serde_json::Value) -> Option<String> {
+	let raw = match value {
+		serde_json::Value::String(text) => text.as_str(),
+		serde_json::Value::Object(map) => map.get("url")?.as_str()?,
+		_ => return None,
+	}
+	.trim();
+	if raw.is_empty() {
+		return None;
+	}
+
+	let mut url = raw.strip_prefix("git+").unwrap_or(raw).to_owned();
+	if let Some(path) = url.strip_prefix("github:") {
+		url = format!("https://github.com/{path}");
+	} else if let Some(path) = url.strip_prefix("git@github.com:") {
+		url = format!("https://github.com/{path}");
+	} else if let Some(path) = url.strip_prefix("ssh://git@github.com/") {
+		url = format!("https://github.com/{path}");
+	} else if let Some(path) = url.strip_prefix("git://") {
+		url = format!("https://{path}");
+	}
+	if !url.starts_with("https://") && !url.starts_with("http://") {
+		return None;
+	}
+	Some(url.strip_suffix(".git").unwrap_or(&url).to_owned())
 }
 
 #[cfg(test)]
@@ -200,13 +266,33 @@ mod tests {
 			person(&serde_json::json!(
 				"Ada <ada@example.com> (https://example.com)"
 			))
-			.as_deref(),
-			Some("Ada")
+			.map(|person| person.name),
+			Some("Ada".to_owned())
 		);
 		assert_eq!(
-			person(&serde_json::json!({ "name": "Ada", "email": "ada@example.com" })).as_deref(),
-			Some("Ada")
+			person(&serde_json::json!({
+				"name": "Ada",
+				"email": "123+octocat@users.noreply.github.com"
+			})),
+			Some(Person {
+				name: "Ada".to_owned(),
+				github: Some("octocat".to_owned()),
+			})
 		);
+	}
+
+	#[test]
+	fn turns_repository_shorthands_into_browser_urls() {
+		for value in [
+			serde_json::json!("git+https://github.com/owner/project.git"),
+			serde_json::json!({ "type": "git", "url": "github:owner/project" }),
+			serde_json::json!("git@github.com:owner/project.git"),
+		] {
+			assert_eq!(
+				repository_url(&value).as_deref(),
+				Some("https://github.com/owner/project")
+			);
+		}
 	}
 
 	/// A package directory with a manifest, the way an installed package looks.

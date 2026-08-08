@@ -23,7 +23,9 @@ export const GET: RequestHandler = async ({ params }) => {
 		'',
 		found.purl,
 		`License: ${licenseOf(found.package)}`,
-		...(found.package.authors?.length ? [`Authors: ${found.package.authors.join(', ')}`] : []),
+		...(found.package.authors?.length
+			? [`Authors: ${found.package.authors.map(({ name }) => name).join(', ')}`]
+			: []),
 		...(found.package.asserted
 			? [
 					'',

@@ -4,8 +4,13 @@ import { URLS } from '@canmi/urls';
 import { describe, expect, it } from 'vitest';
 import {
 	HEADER,
+	coordinates,
+	githubRepository,
 	licenseOf,
+	licenseSlug,
 	licenseTerms,
+	packagePagePath,
+	registryPackageUrl,
 	routePath,
 	routeTable,
 	textUrl,
@@ -21,6 +26,33 @@ describe('route paths', () => {
 	it('drops the scheme and the escaping a purl only needs to stay one string', () => {
 		expect(routePath('pkg:cargo/serde@1.0.219')).toBe('cargo/serde@1.0.219');
 		expect(routePath('pkg:npm/%40sveltejs/kit@2.0.0')).toBe('npm/@sveltejs/kit@2.0.0');
+	});
+
+	it('builds the separate browser and registry addresses from one purl', () => {
+		const purl = 'pkg:npm/%40sveltejs/kit@2.70.2';
+		const parts = coordinates(purl);
+		expect(parts).toEqual({ registry: 'npm', name: '@sveltejs/kit', version: '2.70.2' });
+		expect(packagePagePath(purl)).toBe('/licenses/pkgs/npm/@sveltejs/kit@2.70.2');
+		expect(registryPackageUrl(parts)).toBe(
+			`${URLS.external.registries.npm}/package/@sveltejs/kit/v/2.70.2`,
+		);
+	});
+
+	it('turns a license into one readable route segment', () => {
+		expect(licenseSlug('Apache-2.0 WITH LLVM-exception')).toBe('apache-2-0-with-llvm-exception');
+	});
+
+	it('recognises a repository without treating deeper GitHub URLs as one', () => {
+		const repository = `${URLS.external.github.web}/sveltejs/kit`;
+		expect(githubRepository(`${repository}.git`)).toEqual({
+			owner: 'sveltejs',
+			name: 'kit',
+			url: repository,
+		});
+		expect(githubRepository(`${repository}/tree/main`)).toBeUndefined();
+		const elsewhere = new URL(repository);
+		elsewhere.hostname = ['gitlab', 'com'].join('.');
+		expect(githubRepository(elsewhere.href)).toBeUndefined();
 	});
 
 	// The reverse lookup is a table rather than a parser, so this is what proves the two
@@ -137,6 +169,9 @@ describe('splitting an SPDX expression', () => {
 });
 
 describe('the record', () => {
+	it('uses the package metadata schema consumed by the directory pages', () => {
+		expect(record.version).toBe(2);
+	});
 	it('says where a license came from when the package did not declare it', () => {
 		expect(licenseOf({ spdx: 'MIT' })).toBe('MIT');
 		expect(licenseOf({ spdx: 'MIT', asserted: true })).toBe('MIT (asserted)');

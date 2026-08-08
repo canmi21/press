@@ -14,7 +14,7 @@ export const prerender = true;
 export const GET: RequestHandler = () => {
 	const web = URLS.apps.production.site;
 	const rows = packages().map(([purl, entry]) => {
-		const authors = entry.authors?.join(', ') ?? '';
+		const authors = entry.authors?.map(({ name }) => name).join(', ') ?? '';
 		const texts = entry.texts?.length ?? 0;
 		const shipped = texts === 0 ? 'no text' : `${texts} text${texts === 1 ? '' : 's'}`;
 		return [purl, licenseOf(entry), shipped, authors].join('\t');

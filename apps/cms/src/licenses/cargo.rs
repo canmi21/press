@@ -6,7 +6,7 @@
 //! directory name does not match `{name}-{version}` -- a git or path dependency -- would be
 //! silently missed by a reconstruction.
 
-use super::{Found, author_name, purl};
+use super::{Found, author, purl, web_url};
 use serde::Deserialize;
 use std::path::{Path, PathBuf};
 use std::process::Command;
@@ -24,6 +24,14 @@ struct CratePackage {
 	license: Option<String>,
 	#[serde(default)]
 	authors: Vec<String>,
+	#[serde(default)]
+	description: Option<String>,
+	#[serde(default)]
+	homepage: Option<String>,
+	#[serde(default)]
+	documentation: Option<String>,
+	#[serde(default)]
+	repository: Option<String>,
 	manifest_path: PathBuf,
 	#[serde(default)]
 	source: Option<String>,
@@ -55,23 +63,31 @@ pub fn collect(repo: &Path) -> Result<Vec<Found>, String> {
 			.packages
 			.into_iter()
 			.filter(|package| package.source.is_some())
-			.map(|package| Found {
-				purl: purl("cargo", None, &package.name, &package.version),
-				spdx: package.license.clone(),
-				authors: package
-					.authors
-					.iter()
-					.filter_map(|entry| author_name(entry))
-					.collect(),
-				// The manifest's directory is the crate root, which is where a licence sits.
-				directory: package
-					.manifest_path
-					.parent()
-					.map(Path::to_path_buf)
-					.unwrap_or_default(),
-			})
+			.map(found)
 			.collect(),
 	)
+}
+
+fn found(package: CratePackage) -> Found {
+	Found {
+		purl: purl("cargo", None, &package.name, &package.version),
+		spdx: package.license,
+		authors: package
+			.authors
+			.iter()
+			.filter_map(|entry| author(entry))
+			.collect(),
+		description: package.description,
+		homepage: web_url(package.homepage),
+		documentation: web_url(package.documentation),
+		repository: web_url(package.repository),
+		// The manifest's directory is the crate root, which is where a licence sits.
+		directory: package
+			.manifest_path
+			.parent()
+			.map(Path::to_path_buf)
+			.unwrap_or_default(),
+	}
 }
 
 #[cfg(test)]
@@ -106,25 +122,12 @@ mod tests {
 			.packages
 			.into_iter()
 			.filter(|package| package.source.is_some())
-			.map(|package| Found {
-				purl: purl("cargo", None, &package.name, &package.version),
-				spdx: package.license.clone(),
-				authors: package
-					.authors
-					.iter()
-					.filter_map(|entry| author_name(entry))
-					.collect(),
-				directory: package
-					.manifest_path
-					.parent()
-					.map(Path::to_path_buf)
-					.unwrap_or_default(),
-			})
+			.map(found)
 			.collect();
 
 		assert_eq!(found.len(), 1);
 		assert_eq!(found[0].purl, "pkg:cargo/serde@1.0.219");
-		assert_eq!(found[0].authors, ["Ada"]);
+		assert_eq!(found[0].authors[0].name, "Ada");
 		assert_eq!(found[0].directory, PathBuf::from("/cache/serde-1.0.219"));
 	}
 }

@@ -56,7 +56,10 @@ const pageHandle: Handle = async ({ event, resolve }) => {
 	const article = getArticle(path);
 	// Browser-facing HTML negotiates from every reader preference, which is every page. The
 	// article lookup comes first so a slug that happens to carry a dot is still a page.
-	const localeAware = article != null || !DOCUMENT_PATH.test(pathname);
+	// Package versions contain dots while the route still serves HTML. The explicit browser
+	// namespace wins over the extension convention before the generic document test runs.
+	const localeAware =
+		pathname.startsWith('/licenses/pkgs/') || article != null || !DOCUMENT_PATH.test(pathname);
 	if (localeAware && !building) {
 		const cookie = event.cookies.get('language');
 		const code = resolveLocale({
