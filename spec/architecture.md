@@ -529,8 +529,21 @@ homepage into one string, in several spellings and sometimes with no brackets ar
 them. A copyright line carries a name, so that is attribution; the rest is contact detail
 nobody offered for republication, and this record is published.
 
-`/licenses` is the page over the same data, grouped by licence expression and ordered by what
-each covers. The licence is the one column that would otherwise repeat itself hundreds of
+`/licenses` is the page over the same data, grouped by licence and ordered by what each covers.
+**An expression is flattened to the licences it names, and a package is filed under each of
+them** -- somebody looking for what is Apache-licensed here wants the packages that offer it as
+one of two. `AND` flattens the same way while meaning the opposite, so the unflattened
+expression stays on the row wherever it is longer than the heading; without that the grouping
+would read as a claim that plain MIT is the whole of a package's terms. The group counts
+therefore add up to more than the number of packages, which the page says out loud.
+
+Splitting is on whole tokens, case-sensitively, because SPDX writes its operators in capitals
+and the tree already contains every way that can go wrong: `LGPL-2.1-or-later` carries a
+lowercase `or` inside one identifier, `FSL-1.1-MIT` and `MIT-0` contain shorter identifiers,
+`Apache-2.0 WITH LLVM-exception` is one licence rather than two, and `(MIT OR Apache-2.0) AND
+NCSA` brackets a disjunction inside a conjunction. `/` is Cargo's deprecated spelling of `OR`.
+Every expression in the record is a case in the splitter's test table, and a test fails when
+the tree grows one the table has not been updated for. The licence is the one column that would otherwise repeat itself hundreds of
 times, so it becomes a heading and the rows underneath get shorter -- and the grouping answers
 the question somebody arriving actually has, which is what all of this stands on rather than
 what any single package is. An asserted licence is not a group of its own: the packages under

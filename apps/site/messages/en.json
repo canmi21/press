@@ -40,5 +40,6 @@
 	"licenses.index": "Index",
 	"licenses.full": "Full notice",
 	"licenses.contents": "What it is all under",
-	"licenses.asserted": "asserted"
+	"licenses.asserted": "asserted",
+	"licenses.multiple": "A package that offers a choice of licenses is listed under each of them, so the counts below add up to more than the number of packages."
 }

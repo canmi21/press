@@ -40,5 +40,6 @@
 	"licenses.index": "목록",
 	"licenses.full": "전문",
 	"licenses.contents": "무엇 위에 서 있는가",
-	"licenses.asserted": "추정"
+	"licenses.asserted": "추정",
+	"licenses.multiple": "여러 라이선스 중에서 고를 수 있는 패키지는 그 모두에 실리므로, 아래 숫자의 합은 패키지 수보다 큽니다."
 }

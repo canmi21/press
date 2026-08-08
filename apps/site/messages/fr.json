@@ -40,5 +40,6 @@
 	"licenses.index": "Index",
 	"licenses.full": "Avis complet",
 	"licenses.contents": "Ce sur quoi tout cela repose",
-	"licenses.asserted": "déduite"
+	"licenses.asserted": "déduite",
+	"licenses.multiple": "Un paquet qui laisse le choix entre plusieurs licences figure sous chacune d’elles : la somme des nombres ci-dessous dépasse donc le nombre de paquets."
 }

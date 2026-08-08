@@ -40,5 +40,6 @@
 	"licenses.index": "一覧",
 	"licenses.full": "全文",
 	"licenses.contents": "どのライセンスの上に立っているか",
-	"licenses.asserted": "推定"
+	"licenses.asserted": "推定",
+	"licenses.multiple": "複数のライセンスから選べるパッケージはそのすべてに載せているため、下の合計はパッケージ数より多くなります。"
 }

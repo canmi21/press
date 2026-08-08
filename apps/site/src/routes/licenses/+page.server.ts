@@ -1,4 +1,4 @@
-import { packages, routePath } from '$lib/licenses';
+import { licenseTerms, packages, routePath } from '$lib/licenses';
 import type { PageServerLoad } from './$types';
 
 // Locale is negotiated per request like every other page here, so this one is rendered rather
@@ -12,6 +12,8 @@ type Entry = {
 	version: string;
 	href: string;
 	authors: string;
+	/** The whole expression, shown when the group heading is only part of it. */
+	spdx: string;
 	texts: number;
 	/** The package declared nothing; the expression was read off what it ships. */
 	asserted: boolean;
@@ -58,20 +60,23 @@ export const load: PageServerLoad = ({ locals }) => {
 	for (const [purl, entry] of packages()) {
 		const { registry, name, version } = coordinates(purl);
 		registries.add(registry);
-		// Grouped by the expression alone. An asserted licence is not a different licence --
-		// the three packages here are MIT, they simply never said so -- and giving it its own
-		// heading would claim otherwise. Where it came from belongs on the row.
-		const license = entry.spdx ?? '';
-		const rows = groups.get(license) ?? [];
-		rows.push({
+		const spdx = entry.spdx ?? '';
+		const row = {
 			name,
 			version,
 			href: `/licenses/${routePath(purl)}.txt`,
 			authors: entry.authors?.join(', ') ?? '',
+			spdx,
 			texts: entry.texts?.length ?? 0,
 			asserted: entry.asserted === true,
-		});
-		groups.set(license, rows);
+		};
+		// Filed under every licence the expression names, so somebody looking for what is
+		// Apache-licensed here finds the packages that merely offer it as one of two. An
+		// asserted licence is not a group of its own: those packages are MIT and simply never
+		// said so, and where that is known from belongs on the row.
+		for (const license of licenseTerms(spdx)) {
+			groups.set(license, [...(groups.get(license) ?? []), row]);
+		}
 	}
 
 	const grouped: Group[] = [...groups]
@@ -86,7 +91,9 @@ export const load: PageServerLoad = ({ locals }) => {
 
 	return {
 		groups: grouped,
-		total: grouped.reduce((sum, group) => sum + group.entries.length, 0),
+		// The package count, not the sum of the groups: a package offering a choice is in more
+		// than one of them, so the groups deliberately add up to more than this.
+		total: packages().length,
 		registries: registries.size,
 		locale: { code: locals.locale?.code ?? 'mw' },
 	};

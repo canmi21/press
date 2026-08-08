@@ -72,9 +72,14 @@
 		<!-- Contents. Every licence in the tree with what it covers, which is both the summary
 		     worth having and the way into a page this long. -->
 		<nav aria-labelledby="licenses-contents" class="mt-16">
-			<h2 id="licenses-contents" class="mb-3 font-medium text-text-strong">
+			<h2 id="licenses-contents" class="font-medium text-text-strong">
 				{m['licenses.contents']({}, { locale })}
 			</h2>
+			<!-- Said once, at the top, because the counts below add up to more than the number
+			     of packages and that would otherwise look like an error. -->
+			<p class="mb-3 text-[0.9375rem] text-pretty text-text-soft">
+				{m['licenses.multiple']({}, { locale })}
+			</p>
 			{#each data.groups as group (group.anchor)}
 				<a
 					href="#{group.anchor}"
@@ -113,8 +118,20 @@
 								>{m['licenses.asserted']({}, { locale })}</span
 							>
 						{/if}
+						<!-- Only when the heading is part of a longer expression. A package filed
+						     under MIT because it offers `MIT OR Apache-2.0` must say so on the row,
+						     or the grouping would read as a claim that plain MIT is the whole of it.
+						     A package whose terms are exactly the heading repeats nothing. -->
+						{#if entry.spdx !== group.license}
+							<span class="hidden shrink-0 text-[0.8125rem] text-text-soft sm:inline"
+								>{entry.spdx}</span
+							>
+						{/if}
+						<!-- `min-w` so a long expression beside a long author list cannot squeeze the
+						     leader out of existence; it is what ties the two ends of the row together
+						     and a row that loses it stops matching the ones above. -->
 						<span
-							class="h-0 flex-1 self-center border-t border-dashed border-border-strong"
+							class="h-0 min-w-6 flex-1 self-center border-t border-dashed border-border-strong"
 						></span>
 						<!-- Blank when the package named nobody. Two registries carry an author field
 						     that a third of packages leave empty, and inventing attribution is worse

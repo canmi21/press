@@ -40,5 +40,6 @@
 	"licenses.index": "Übersicht",
 	"licenses.full": "Vollständiger Hinweis",
 	"licenses.contents": "Worauf das alles steht",
-	"licenses.asserted": "ermittelt"
+	"licenses.asserted": "ermittelt",
+	"licenses.multiple": "Ein Paket, das die Wahl zwischen mehreren Lizenzen lässt, steht unter jeder davon — die Zahlen unten summieren sich deshalb auf mehr als die Zahl der Pakete."
 }

@@ -40,5 +40,6 @@
 	"licenses.index": "索引",
 	"licenses.full": "完整聲明",
 	"licenses.contents": "這些都在什麼條款之下",
-	"licenses.asserted": "推定"
+	"licenses.asserted": "推定",
+	"licenses.multiple": "一個套件若提供多種授權可選，會同時出現在每一種底下，所以下面的計數總和大於套件總數。"
 }

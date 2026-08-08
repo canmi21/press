@@ -6,6 +6,7 @@ export {
 	TEXT_HEADERS,
 	fullUrl,
 	licenseOf,
+	licenseTerms,
 	routePath,
 	textUrl,
 	type LicensePackage,
