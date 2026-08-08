@@ -3,12 +3,38 @@
 	import FileText from '@lucide/svelte/icons/file-text';
 	import Scale from '@lucide/svelte/icons/scale';
 	import { ParaglideMessage } from '@inlang/paraglide-js-svelte';
-	import Counter from '$lib/components/counter.svelte';
+	import { PUBLIC_LANGUAGE } from '$lib/locale';
 	import * as m from '$lib/paraglide/messages';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
 	const locale = $derived(data.locale.code);
+	const numberLocale = $derived(locale === 'mw' ? 'en-US' : PUBLIC_LANGUAGE[locale]);
+	const count = $derived(new Intl.NumberFormat(numberLocale).format(data.total));
+
+	/** What each registry is called where readers know it, and where it lives. */
+	const REGISTRY_NAMES: Record<string, string> = { npm: 'npm', cargo: 'crates.io' };
+
+	/**
+	 * The registries, written as a list in the reader's language with each one a link.
+	 *
+	 * `Intl.ListFormat` supplies the connectives -- "npm and crates.io", "npm と crates.io" --
+	 * which is the one part of this sentence that is neither a proper noun nor a number, and the
+	 * one part no message can carry because the list length is data. `formatToParts` keeps the
+	 * names separable from the words between them, so each stays a link.
+	 *
+	 * A registry with no entry above is still listed, under the identifier the record uses and
+	 * without a link. Dropping it would understate where the code came from.
+	 */
+	const registryParts = $derived(
+		new Intl.ListFormat(numberLocale, { style: 'long', type: 'conjunction' }).formatToParts(
+			data.registries.map((id) => REGISTRY_NAMES[id] ?? id),
+		),
+	);
+	const registryUrl = $derived((name: string) => {
+		const id = data.registries.find((candidate) => (REGISTRY_NAMES[candidate] ?? candidate) === name);
+		return id ? URLS.external.registries[id as keyof typeof URLS.external.registries] : undefined;
+	});
 
 	/**
 	 * Scroll to a section without writing its id into the address bar.
@@ -67,22 +93,31 @@
 			</div>
 		</header>
 
-		<!-- The census, in the boxed cells the newsletter count already uses. It sits after the
-		     thanks rather than before them: the number is what the list amounts to, not what the
-		     page is about. -->
-		<p class="mt-8 text-pretty">
+		<!-- The census sits after the thanks rather than before them: the number is what the list
+		     amounts to, not what the page is about. Plain figures, not the boxed cells the
+		     newsletter uses -- those mark a number somebody just changed, and this one is a
+		     standing fact about the tree. -->
+		<p class="mt-8 text-pretty text-text-soft">
 			<ParaglideMessage
 				message={m['licenses.census']}
-				inputs={{ count: data.total, registries: data.registries, licenses: data.groups.length }}
+				inputs={{ count, licenses: data.groups.length }}
 				options={{ locale }}
 			>
-				{#snippet cells()}<Counter value={data.total} />{/snippet}
+				{#snippet registries()}{#each registryParts as part, i (i)}{#if part.type === 'element'}<a
+								href={registryUrl(part.value)}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="focus-link spring-underline article-link text-text">{part.value}</a
+							>{:else}{part.value}{/if}{/each}{/snippet}
 			</ParaglideMessage>
 		</p>
 
 		<!-- The same three documents the plain-text routes serve. A page is easier to read and a
 		     text file is easier to keep, so both exist and neither is the fallback. -->
 		<nav aria-label={m['licenses.plaintext']({}, { locale })} class="mt-4 flex flex-wrap gap-4">
+			<!-- Named for what each one holds -- one line per package, against every licence text
+			     in full -- rather than for the file it happens to be. The section below is already
+			     called Index, so neither reuses that word. -->
 			<a
 				href="/licenses.txt"
 				data-sveltekit-reload
@@ -104,14 +139,9 @@
 		<!-- Contents. Every licence in the tree with what it covers, which is both the summary
 		     worth having and the way into a page this long. -->
 		<nav aria-labelledby="licenses-contents" class="mt-16">
-			<h2 id="licenses-contents" class="font-medium text-text-strong">
+			<h2 id="licenses-contents" class="mb-3 font-medium text-text-strong">
 				{m['licenses.contents']({}, { locale })}
 			</h2>
-			<!-- Said once, at the top, because the counts below add up to more than the number
-			     of packages and that would otherwise look like an error. -->
-			<p class="mb-3 text-[0.9375rem] text-pretty text-text-soft">
-				{m['licenses.multiple']({}, { locale })}
-			</p>
 			{#each data.groups as group (group.anchor)}
 				<a
 					href="#{group.anchor}"
@@ -125,6 +155,12 @@
 					>
 				</a>
 			{/each}
+			<!-- A footnote rather than a sentence under the heading: what it explains is an oddity
+			     in the column of numbers above -- they add up to more than the number of packages
+			     -- so it belongs after them, at the weight of an aside. -->
+			<p class="mt-3 text-[0.8125rem] text-pretty text-text-soft">
+				<span aria-hidden="true">*&nbsp;</span>{m['licenses.multiple']({}, { locale })}
+			</p>
 		</nav>
 
 		{#each data.groups as group (group.anchor)}

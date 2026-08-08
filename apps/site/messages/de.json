@@ -34,14 +34,14 @@
 	"licenses.title": "Open-Source-Lizenzen",
 	"licenses.description": "Die Open-Source-Projekte und Bibliotheken, auf denen diese Seite steht, die Menschen dahinter und die Bedingungen, unter denen ihre Arbeit steht.",
 	"licenses.repository": "im Repository",
-	"licenses.census": "{#cells}{count}{/cells} Pakete aus {registries} Registries, unter {licenses} verschiedenen Lizenzen.",
+	"licenses.census": "{count} Pakete von {#registries}{/registries}, unter {licenses} verschiedenen Lizenzen.",
 	"licenses.plaintext": "Dasselbe als reiner Text",
-	"licenses.index": "Übersicht",
-	"licenses.full": "Vollständiger Hinweis",
-	"licenses.contents": "Worauf das alles steht",
+	"licenses.contents": "Übersicht",
 	"licenses.asserted": "ermittelt",
-	"licenses.multiple": "Ein Paket, das die Wahl zwischen mehreren Lizenzen lässt, steht unter jeder davon — die Zahlen unten summieren sich deshalb auf mehr als die Zahl der Pakete.",
+	"licenses.multiple": "Ein Paket, das die Wahl zwischen mehreren Lizenzen lässt, steht unter jeder davon — diese Zahlen summieren sich deshalb auf mehr als die Zahl der Pakete.",
 	"licenses.built": "Dieses Projekt steht auf der Arbeit vieler Open-Source-Projekte und Bibliotheken.",
 	"licenses.thanks": "Den Entwicklerinnen und Entwicklern, den Maintainern und allen Mitwirkenden dahinter gilt aufrichtiger Dank — für ihre Arbeit und dafür, dass sie sie mit allen teilen. Ohne diese Arbeit gäbe es dieses Projekt nicht.",
-	"licenses.below": "Unten stehen die Lizenzen und Urhebervermerke der Open-Source-Software, die dieses Projekt verwendet. Alles hier, was keine Abhängigkeit ist, steht unter der MIT-Lizenz — nachzulesen {#link}im Repository{/link}."
+	"licenses.below": "Unten stehen die Lizenzen und Urhebervermerke der Open-Source-Software, die dieses Projekt verwendet. Alles hier, was keine Abhängigkeit ist, steht unter der MIT-Lizenz — nachzulesen {#link}im Repository{/link}.",
+	"licenses.index": "Paketverzeichnis",
+	"licenses.full": "Vollständiger Hinweis"
 }

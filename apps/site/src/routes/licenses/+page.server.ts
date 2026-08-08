@@ -94,7 +94,9 @@ export const load: PageServerLoad = ({ locals }) => {
 		// The package count, not the sum of the groups: a package offering a choice is in more
 		// than one of them, so the groups deliberately add up to more than this.
 		total: packages().length,
-		registries: registries.size,
+		// The purl types present, not a count: the page names them and links to each, so what it
+		// needs is which ones rather than how many.
+		registries: [...registries].toSorted(),
 		locale: { code: locals.locale?.code ?? 'mw' },
 	};
 };

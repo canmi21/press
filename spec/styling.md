@@ -67,6 +67,22 @@ The article ToC keeps its own offset rather than this one. It was measured again
 indicator, which tracks the heading it points at, and a share of the viewport is not the
 geometry that was tuned. An exception with a reason is not a second rule.
 
+## Boxed digits mark a number that moved; a standing fact is plain
+
+The `value` cells in [app.css](../apps/site/src/styles/app.css) give a number its own boxes and
+a monospace face. They were built for the subscriber count, and what earns them is that the
+number is **live and answers to the reader**: it changed because somebody joined, and it may
+change again while the page is open.
+
+A number that is simply true of the site takes the surrounding text's own figures. The licence
+page counts 727 packages, which is a fact about the dependency tree rather than an event, and
+setting it in cells claimed a significance it does not have -- the ink says "watch this", and
+there is nothing to watch. Reserving the cells for the first kind is what keeps them meaning
+anything.
+
+Both remain locale-formatted through `Intl.NumberFormat`. The cells draw their own grouping
+because no locale supplies a separator character to a box; a plain figure gets the reader's.
+
 ## Keyboard focus follows the visible control
 
 Keyboard focus uses a real `0.125rem` outline in the accessibility accent colour. The outline is

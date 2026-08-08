@@ -33,6 +33,12 @@ export const URLS = {
 		google: {
 			sourcePreferences: 'https://www.google.com/preferences/source',
 		},
+		// Where the dependencies come from, named on the licence page. Keyed by purl type, which
+		// is what the record uses, so the page looks a registry up rather than mapping names.
+		registries: {
+			npm: 'https://www.npmjs.com',
+			cargo: 'https://crates.io',
+		},
 		robotstxt: 'https://www.robotstxt.org/robotstxt.html',
 		// A Sentry DSN only permits *sending* events to one project -- it grants no read
 		// access -- and the browser SDK compiles it into the bundle, where anyone can read it
