@@ -29,14 +29,21 @@ pub const VERSION: u32 = 1;
 /// equal: publishing one stray file is untidy, and missing a real licence is the failure this
 /// whole record exists to prevent. An allowlist would also have to guess at
 /// `LICENSE-APACHE-2.0`, whose extension reads as `0`.
-const NOT_A_LICENSE: [&str; 12] = [
+const NOT_A_LICENSE: [&str; 14] = [
 	"js", "mjs", "cjs", "ts", "mts", "cts", "json", "toml", "yaml", "yml", "rs", "lock",
+	// `LICENSE-3rdparty.csv` is a package's own machine-readable inventory of what it depends
+	// on. Publishing it under a heading that says it is a licence text states something untrue
+	// about a document that is not one.
+	"csv", "tsv",
 ];
 
 /// The file names a package uses to ship its terms.
 ///
-/// `NOTICE` is included because Apache-2.0 requires it be carried along, and a package that
-/// ships one is saying something the licence text alone does not.
+/// `NOTICE` is here because Apache-2.0 makes it a second obligation, separate from the copy of
+/// the licence itself: section 4(d) says the attribution notices in that file travel with every
+/// distribution of the work. A package that ships one is therefore saying something the licence
+/// text does not, and dropping it would leave a requirement unmet rather than merely lose a
+/// file. Four packages in the current tree ship one, and all four ship their licence beside it.
 fn is_license_file(name: &str) -> bool {
 	let lower = name.to_ascii_lowercase();
 	let named = lower.starts_with("license")
@@ -428,10 +435,20 @@ mod tests {
 		for name in ["LICENSE", "LICENSE-MIT", "licence.md", "COPYING", "NOTICE"] {
 			assert!(is_license_file(name), "{name}");
 		}
-		// Named for a licence, but code. Several packages ship exactly these.
-		for name in ["README.md", "Cargo.toml", "license_check.js", "license.ts"] {
+		// Named for a licence, but code or data. Every one of these is shipped by a package in
+		// the current tree; `LICENSE-3rdparty.csv` is a machine-readable dependency inventory.
+		for name in [
+			"README.md",
+			"Cargo.toml",
+			"license_check.js",
+			"license.ts",
+			"LICENSE-3rdparty.csv",
+		] {
 			assert!(!is_license_file(name), "{name}");
 		}
+		// A notice is not a licence and is collected anyway: Apache-2.0 section 4(d) makes
+		// carrying it a requirement of its own.
+		assert!(is_license_file("NOTICE"));
 		// The extension reads as `0`, which an allowlist of extensions would have rejected.
 		assert!(is_license_file("LICENSE-APACHE-2.0"));
 	}
