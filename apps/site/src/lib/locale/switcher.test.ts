@@ -45,6 +45,20 @@ describe('article language switcher', () => {
 		expect(languageChoices('de', 'zh').at(-1)).toMatchObject({ code: 'mw', name: 'Original (CN)' });
 	});
 
+	// The switcher also sits on pages, which have no article and so no language for the
+	// qualifier to name. The row stays -- the preference it writes is site-wide, and choosing
+	// the original is a different answer from choosing English once an article is opened -- but
+	// the brackets go rather than being filled from somewhere.
+	it('drops the qualifier when there is no article to name', () => {
+		expect(languageChoices('zh', undefined).at(-1)).toMatchObject({ code: 'mw', name: '原文' });
+		expect(languageChoices('de', undefined).at(-1)).toMatchObject({
+			code: 'mw',
+			name: 'Original',
+		});
+		// Still one row per language, and still last.
+		expect(languageChoices('en', undefined)).toHaveLength(9);
+	});
+
 	it('names the source language briefly, and follows the article rather than assuming Chinese', () => {
 		// A CJK view can spell it out; a Latin one would crowd the row, so it gets the subtag.
 		expect(sourceLabel('zh', 'zh')).toBe('中文');

@@ -157,11 +157,23 @@ and `x-default` already means the version to serve when nothing else matches.
 The original stays reachable by `?lang=mw` and through the language switcher. It stops making a
 claim about its language; it does not stop being served.
 
-## The article switcher names languages for their own readers
+## The switcher names languages for their own readers
 
-The article metadata row carries the content-language switcher; it is separate from UI-message
-translation. Its trigger shows a globe on `mw`, a languages icon on a translation, and the
-current view's name in that language's own form.
+The article metadata row carries the content-language switcher, and so does any page that wants
+it -- `/licenses` does. It is separate from UI-message translation. Its trigger shows a globe on
+`mw`, a languages icon on a translation, and the current view's name in that language's own
+form.
+
+### On a page, the original row loses its qualifier and keeps its place
+
+`Original (CN)` names the language of the thing being read, and a page is not written in one.
+There the row reads `Original` alone rather than borrowing a tag from somewhere to fill the
+brackets.
+
+**The row itself stays.** The switcher writes one cookie that governs the whole site, and
+preferring the original is a different answer from preferring English the moment the reader
+opens an article. Dropping the row on pages would quietly take that choice away from whoever
+happened to be standing on one.
 
 ### The original view labels itself in English
 

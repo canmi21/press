@@ -19,7 +19,9 @@
 	} from './switcher';
 	import { acceptedLocale, contentLanguageCookie, type LocaleCode } from './index';
 
-	let { code, sourceLanguage }: { code: LocaleCode; sourceLanguage: string } = $props();
+	// `sourceLanguage` is an article's own language, and names the qualifier on the original row.
+	// A page has none, and passes nothing; see languageChoices.
+	let { code, sourceLanguage }: { code: LocaleCode; sourceLanguage?: string } = $props();
 	let open = $state(false);
 
 	/**

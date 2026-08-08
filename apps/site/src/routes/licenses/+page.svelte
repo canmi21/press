@@ -5,6 +5,7 @@
 	import { ParaglideMessage } from '@inlang/paraglide-js-svelte';
 	import { PUBLIC_LANGUAGE } from '$lib/locale';
 	import { spaceScriptBoundaries } from '$lib/locale/spacing';
+	import LanguageSwitcher from '$lib/locale/switcher.svelte';
 	import * as m from '$lib/paraglide/messages';
 	import type { PageData } from './$types';
 
@@ -157,6 +158,10 @@
 				<Scale class="size-4" aria-hidden="true" />
 				<span>{m['licenses.full']({}, { locale })}</span>
 			</a>
+			<!-- The same control the article metadata row carries, and the same one preference
+			     behind it. No source language is passed: there is no article here whose language
+			     the original row could name. -->
+			<LanguageSwitcher code={locale} />
 		</nav>
 
 		<!-- Contents. Every licence in the tree with what it covers, which is both the summary

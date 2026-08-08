@@ -141,10 +141,16 @@ export function sourceLanguageName(sourceLanguage: string, currentCode: LocaleCo
  *
  * `mw` is labelled in whichever language is being read rather than in the article's own, because
  * it names a state and not a language. The endonyms above stay fixed for the opposite reason.
+ *
+ * `sourceLanguage` is absent on a page that is not an article. The qualifier in `Original (CN)`
+ * names the language of the thing being read, and a page has no such language to name -- so the
+ * row reads `Original` alone rather than borrowing a tag from somewhere to fill the brackets.
+ * The row itself stays: the choice is written to one site-wide cookie, and preferring the
+ * original is a different answer from preferring English the moment the reader opens an article.
  */
 export function languageChoices(
 	currentCode: LocaleCode,
-	sourceLanguage: string,
+	sourceLanguage: string | undefined,
 	preferred: LocaleCode = 'en',
 ): LanguageChoice[] {
 	return [
@@ -156,7 +162,10 @@ export function languageChoices(
 		})),
 		{
 			code: 'mw' as const,
-			name: `${m['language.original']({}, { locale: currentCode })} (${sourceLabel(sourceLanguage, currentCode)})`,
+			name:
+				sourceLanguage === undefined
+					? m['language.original']({}, { locale: currentCode })
+					: `${m['language.original']({}, { locale: currentCode })} (${sourceLabel(sourceLanguage, currentCode)})`,
 			original: true,
 			current: currentCode === 'mw',
 		},
