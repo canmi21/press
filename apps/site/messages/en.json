@@ -31,15 +31,17 @@
 	"sponsor.title": "Sponsor unavailable",
 	"sponsor.notice": "Sponsors are currently unavailable due to U.S. F-1 immigration restrictions.",
 	"sponsor.close": "Close sponsor notice",
-	"licenses.title": "Licenses",
-	"licenses.description": "Every third-party package this site and its tooling are built out of, who wrote it, and the terms it comes under.",
-	"licenses.own": "Everything here that is not a dependency is released under the MIT License, from {#link}the repository{/link}.",
+	"licenses.title": "Open Source Licenses",
+	"licenses.description": "The open-source projects and libraries this site is built on, the people behind them, and the terms their work comes under.",
 	"licenses.repository": "the repository",
-	"licenses.census": "{#cells}{count}{/cells} packages from {registries} registries, under {licenses} distinct licenses. Every one of them is somebody else’s work.",
+	"licenses.census": "{#cells}{count}{/cells} packages from {registries} registries, under {licenses} distinct licenses.",
 	"licenses.plaintext": "The same thing as plain text",
 	"licenses.index": "Index",
 	"licenses.full": "Full notice",
 	"licenses.contents": "What it is all under",
 	"licenses.asserted": "asserted",
-	"licenses.multiple": "A package that offers a choice of licenses is listed under each of them, so the counts below add up to more than the number of packages."
+	"licenses.multiple": "A package that offers a choice of licenses is listed under each of them, so the counts below add up to more than the number of packages.",
+	"licenses.built": "This project is built with the help of many open-source projects and libraries.",
+	"licenses.thanks": "We sincerely thank the developers, maintainers, and contributors behind these projects for their work and for making their software available to the community. Their contributions make this project possible.",
+	"licenses.below": "Below you can find the licenses and attribution notices for the open-source software used by this project. Everything here that is not a dependency is released under the MIT License, from {#link}the repository{/link}."
 }

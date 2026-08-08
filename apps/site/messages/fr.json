@@ -31,15 +31,17 @@
 	"sponsor.title": "Soutien indisponible",
 	"sponsor.notice": "En raison des restrictions liées au visa étudiant américain F-1, les dons ne sont pas possibles pour le moment.",
 	"sponsor.close": "Fermer l’avis",
-	"licenses.title": "Licences",
-	"licenses.description": "Chaque paquet tiers dont ce site et ses outils sont faits, qui l’a écrit, et les conditions qui s’y appliquent.",
-	"licenses.own": "Tout ce qui n’est pas une dépendance est publié sous licence MIT, depuis {#link}le dépôt{/link}.",
+	"licenses.title": "Licences open source",
+	"licenses.description": "Les projets et bibliothèques open source sur lesquels ce site repose, les personnes derrière eux, et les conditions qui s’appliquent à leur travail.",
 	"licenses.repository": "le dépôt",
-	"licenses.census": "{#cells}{count}{/cells} paquets venus de {registries} registres, sous {licenses} licences différentes. Chacun d’eux est le travail de quelqu’un d’autre.",
+	"licenses.census": "{#cells}{count}{/cells} paquets venus de {registries} registres, sous {licenses} licences différentes.",
 	"licenses.plaintext": "La même chose en texte brut",
 	"licenses.index": "Index",
 	"licenses.full": "Avis complet",
 	"licenses.contents": "Ce sur quoi tout cela repose",
 	"licenses.asserted": "déduite",
-	"licenses.multiple": "Un paquet qui laisse le choix entre plusieurs licences figure sous chacune d’elles : la somme des nombres ci-dessous dépasse donc le nombre de paquets."
+	"licenses.multiple": "Un paquet qui laisse le choix entre plusieurs licences figure sous chacune d’elles : la somme des nombres ci-dessous dépasse donc le nombre de paquets.",
+	"licenses.built": "Ce projet repose sur le travail de nombreux projets et bibliothèques open source.",
+	"licenses.thanks": "Merci sincèrement à celles et ceux qui les développent, les maintiennent et y contribuent — pour leur travail, et pour avoir choisi de le partager avec tout le monde. Sans ce travail, ce projet n’existerait pas.",
+	"licenses.below": "Vous trouverez ci-dessous les licences et les mentions d’attribution des logiciels open source utilisés par ce projet. Tout ce qui n’est pas une dépendance est publié sous licence MIT, depuis {#link}le dépôt{/link}."
 }

@@ -31,15 +31,17 @@
 	"sponsor.title": "暫時無法贊助",
 	"sponsor.notice": "受美國 F-1 學生簽證的限制，目前暫時無法接受贊助。",
 	"sponsor.close": "關閉贊助提示",
-	"licenses.title": "授權條款",
-	"licenses.description": "這個網站與它的工具鏈所依賴的每一個第三方套件、作者，以及它們各自的授權條款。",
-	"licenses.own": "這裡除依賴之外的一切，都以 MIT License 發布，原始碼在{#link}儲存庫{/link}。",
+	"licenses.title": "開源授權條款",
+	"licenses.description": "這個網站建立在哪些開源專案與函式庫之上、它們背後是誰，以及這些工作各自的授權條款。",
 	"licenses.repository": "儲存庫",
-	"licenses.census": "{#cells}{count}{/cells} 個套件，來自 {registries} 個註冊中心，分屬 {licenses} 種授權條款。它們全都是別人的作品。",
+	"licenses.census": "{#cells}{count}{/cells} 個套件，來自 {registries} 個註冊中心，分屬 {licenses} 種授權條款。",
 	"licenses.plaintext": "同樣的內容，純文字版",
 	"licenses.index": "索引",
 	"licenses.full": "完整聲明",
 	"licenses.contents": "這些都在什麼條款之下",
 	"licenses.asserted": "推定",
-	"licenses.multiple": "一個套件若提供多種授權可選，會同時出現在每一種底下，所以下面的計數總和大於套件總數。"
+	"licenses.multiple": "一個套件若提供多種授權可選，會同時出現在每一種底下，所以下面的計數總和大於套件總數。",
+	"licenses.built": "這個專案建立在許多開源專案與函式庫之上。",
+	"licenses.thanks": "謹向這些專案背後的開發者、維護者與貢獻者致上誠摯的謝意——感謝他們的付出，也感謝他們願意把成果開放給所有人。正是這些工作，讓這個專案得以存在。",
+	"licenses.below": "以下是本專案所使用的開源軟體的授權條款與姓名標示聲明。本專案中除相依套件之外的部分，均以 MIT License 發布，原始碼見{#link}儲存庫{/link}。"
 }

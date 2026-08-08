@@ -47,22 +47,29 @@
 	<article class="mx-auto max-w-180 px-6 py-24">
 		<header>
 			<h1 class="text-text-strong">{m['licenses.title']({}, { locale })}</h1>
-			<p class="mt-2 text-pretty text-text-soft">
-				<ParaglideMessage message={m['licenses.own']} inputs={{}} options={{ locale }}>
-					{#snippet link()}<a
-							href={URLS.source}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="focus-link spring-underline article-link text-text"
-							>{m['licenses.repository']({}, { locale })}</a
-						>{/snippet}
-				</ParaglideMessage>
-			</p>
+			<!-- The thanks come before the accounting. What follows is a list of other people's
+			     work, and leading with the count would make the page read as an inventory of
+			     assets rather than as credit. -->
+			<div class="mt-4 space-y-4 leading-relaxed text-pretty">
+				<p>{m['licenses.built']({}, { locale })}</p>
+				<p>{m['licenses.thanks']({}, { locale })}</p>
+				<p class="text-text-soft">
+					<ParaglideMessage message={m['licenses.below']} inputs={{}} options={{ locale }}>
+						{#snippet link()}<a
+								href={URLS.source}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="focus-link spring-underline article-link text-text"
+								>{m['licenses.repository']({}, { locale })}</a
+							>{/snippet}
+					</ParaglideMessage>
+				</p>
+			</div>
 		</header>
 
-		<!-- The census, in the boxed cells the newsletter count already uses. The number is the
-		     first thing worth knowing here and it is the one thing on the page that is not
-		     somebody's name, so it gets the one piece of ink. -->
+		<!-- The census, in the boxed cells the newsletter count already uses. It sits after the
+		     thanks rather than before them: the number is what the list amounts to, not what the
+		     page is about. -->
 		<p class="mt-8 text-pretty">
 			<ParaglideMessage
 				message={m['licenses.census']}

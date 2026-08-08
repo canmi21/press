@@ -29,6 +29,22 @@ const markdownHandle: Handle = async ({ event, resolve }) => {
 	return resolve(event);
 };
 
+/**
+ * A request for a document rather than a page.
+ *
+ * Every server endpoint here is named with an extension -- `/atom.xml`, `/sitemap.xml`,
+ * `/robots.txt`, `/llms.txt`, `/licenses.txt`, `/licenses/full.txt` and the per-package texts
+ * under it -- and no page is. That convention is what this reads, so the rule can be stated
+ * the way it is actually meant: pages negotiate, documents resolve their own language or have
+ * none.
+ *
+ * Written as an exception list rather than a list of pages because being multilingual is what
+ * a page here *is*. A page missing from a list of pages serves the original to everybody and
+ * says nothing about it, which is the failure that goes unnoticed; a document missing from
+ * this one merely negotiates when it did not need to.
+ */
+const DOCUMENT_PATH = /\.[^./]+$/;
+
 const pageHandle: Handle = async ({ event, resolve }) => {
 	const { pathname } = event.url;
 	// The homepage renders at /, but its source is contents/homepage.md, so the
@@ -38,10 +54,9 @@ const pageHandle: Handle = async ({ event, resolve }) => {
 	}
 	const path = pathname.replace(/^\//, '').replace(/\/$/, '');
 	const article = getArticle(path);
-	// Browser-facing HTML negotiates from every reader preference. Two routes are deliberately
-	// absent: the feed resolves from its URL alone, inside its own route, because it lives in a
-	// shared cache; and llms.txt is served in one language so it can stay a prerendered file.
-	const localeAware = article != null || pathname === '/';
+	// Browser-facing HTML negotiates from every reader preference, which is every page. The
+	// article lookup comes first so a slug that happens to carry a dot is still a page.
+	const localeAware = article != null || !DOCUMENT_PATH.test(pathname);
 	if (localeAware && !building) {
 		const cookie = event.cookies.get('language');
 		const code = resolveLocale({

@@ -55,6 +55,26 @@ Server-only discovery routes do not inherit this negotiation. The sitemap publis
 indexable view at once. Atom selects from `lang` alone, because each query-specific feed is a
 shared-cache resource and neither a cookie nor `Accept-Language` is part of its address.
 
+### Every page negotiates; the exceptions are documents
+
+Being multilingual is what a page here is, so nothing has to opt in. What
+[hooks.server.ts](../apps/site/src/hooks.server.ts) carries is the exception, and the exception
+is documents: Atom, the sitemap, `robots.txt`, `llms.txt` and the licence text routes.
+
+**A document is recognised by having an extension, and no page has one.** That is a convention
+this site already keeps -- `/atom.xml` and `/licenses/full.txt` against `/` and `/licenses` --
+so the test reads the distinction that exists rather than restating a list beside it. The
+article lookup is tried first, so a slug that happens to carry a dot is still a page.
+
+Stated the other way round it would be a list of pages, and the two failures are not
+comparable. A page missing from a list of pages serves the original to every reader and says
+nothing about it, which is exactly the kind of thing nobody notices; a document missing from
+this list merely negotiates when it did not need to.
+
+The licence page shows both halves at once. The page negotiates like any other, while
+`/licenses.txt`, `/licenses/full.txt` and the per-package routes beside it do not: a licence is
+not translated, and a translated one would be a different licence.
+
 ### Server-only documents leave the page router
 
 Links from an HTML page to Atom or the sitemap perform a full document navigation. They are

@@ -31,15 +31,17 @@
 	"sponsor.title": "Unterstützung derzeit nicht möglich",
 	"sponsor.notice": "Wegen der Auflagen des US-amerikanischen F-1-Studentenvisums sind Zuwendungen derzeit nicht möglich.",
 	"sponsor.close": "Hinweis schließen",
-	"licenses.title": "Lizenzen",
-	"licenses.description": "Jedes Fremdpaket, aus dem diese Seite und ihr Werkzeug gebaut sind, wer es geschrieben hat und unter welchen Bedingungen es steht.",
-	"licenses.own": "Alles hier, was keine Abhängigkeit ist, steht unter der MIT-Lizenz — nachzulesen {#link}im Repository{/link}.",
+	"licenses.title": "Open-Source-Lizenzen",
+	"licenses.description": "Die Open-Source-Projekte und Bibliotheken, auf denen diese Seite steht, die Menschen dahinter und die Bedingungen, unter denen ihre Arbeit steht.",
 	"licenses.repository": "im Repository",
-	"licenses.census": "{#cells}{count}{/cells} Pakete aus {registries} Registries, unter {licenses} verschiedenen Lizenzen. Jedes einzelne davon ist die Arbeit anderer.",
+	"licenses.census": "{#cells}{count}{/cells} Pakete aus {registries} Registries, unter {licenses} verschiedenen Lizenzen.",
 	"licenses.plaintext": "Dasselbe als reiner Text",
 	"licenses.index": "Übersicht",
 	"licenses.full": "Vollständiger Hinweis",
 	"licenses.contents": "Worauf das alles steht",
 	"licenses.asserted": "ermittelt",
-	"licenses.multiple": "Ein Paket, das die Wahl zwischen mehreren Lizenzen lässt, steht unter jeder davon — die Zahlen unten summieren sich deshalb auf mehr als die Zahl der Pakete."
+	"licenses.multiple": "Ein Paket, das die Wahl zwischen mehreren Lizenzen lässt, steht unter jeder davon — die Zahlen unten summieren sich deshalb auf mehr als die Zahl der Pakete.",
+	"licenses.built": "Dieses Projekt steht auf der Arbeit vieler Open-Source-Projekte und Bibliotheken.",
+	"licenses.thanks": "Den Entwicklerinnen und Entwicklern, den Maintainern und allen Mitwirkenden dahinter gilt aufrichtiger Dank — für ihre Arbeit und dafür, dass sie sie mit allen teilen. Ohne diese Arbeit gäbe es dieses Projekt nicht.",
+	"licenses.below": "Unten stehen die Lizenzen und Urhebervermerke der Open-Source-Software, die dieses Projekt verwendet. Alles hier, was keine Abhängigkeit ist, steht unter der MIT-Lizenz — nachzulesen {#link}im Repository{/link}."
 }
