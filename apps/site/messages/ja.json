@@ -30,5 +30,15 @@
 	"support.revision": "リビジョン {commit} を表示",
 	"sponsor.title": "スポンサーは受付停止中",
 	"sponsor.notice": "米国 F-1 ビザの制限により、現在スポンサーは受け付けていません。",
-	"sponsor.close": "お知らせを閉じる"
+	"sponsor.close": "お知らせを閉じる",
+	"licenses.title": "ライセンス",
+	"licenses.description": "このサイトとその開発ツールが依存しているサードパーティパッケージと、その作者、そしてライセンス条項の一覧です。",
+	"licenses.own": "依存パッケージを除くここのすべては MIT License で公開しています。ソースは{#link}リポジトリ{/link}にあります。",
+	"licenses.repository": "リポジトリ",
+	"licenses.census": "{registries} 種類のレジストリから {#cells}{count}{/cells} 個のパッケージ、{licenses} 種類のライセンス。そのすべてが誰かの仕事です。",
+	"licenses.plaintext": "同じ内容のプレーンテキスト版",
+	"licenses.index": "一覧",
+	"licenses.full": "全文",
+	"licenses.contents": "どのライセンスの上に立っているか",
+	"licenses.asserted": "推定"
 }

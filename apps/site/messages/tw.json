@@ -30,5 +30,15 @@
 	"support.revision": "查看版本 {commit}",
 	"sponsor.title": "暫時無法贊助",
 	"sponsor.notice": "受美國 F-1 學生簽證的限制，目前暫時無法接受贊助。",
-	"sponsor.close": "關閉贊助提示"
+	"sponsor.close": "關閉贊助提示",
+	"licenses.title": "授權條款",
+	"licenses.description": "這個網站與它的工具鏈所依賴的每一個第三方套件、作者，以及它們各自的授權條款。",
+	"licenses.own": "這裡除依賴之外的一切，都以 MIT License 發布，原始碼在{#link}儲存庫{/link}。",
+	"licenses.repository": "儲存庫",
+	"licenses.census": "{#cells}{count}{/cells} 個套件，來自 {registries} 個註冊中心，分屬 {licenses} 種授權條款。它們全都是別人的作品。",
+	"licenses.plaintext": "同樣的內容，純文字版",
+	"licenses.index": "索引",
+	"licenses.full": "完整聲明",
+	"licenses.contents": "這些都在什麼條款之下",
+	"licenses.asserted": "推定"
 }

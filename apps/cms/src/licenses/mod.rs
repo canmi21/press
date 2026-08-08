@@ -204,15 +204,22 @@ pub fn purl(kind: &str, namespace: Option<&str>, name: &str, version: &str) -> S
 	}
 }
 
-/// Strip the address off a `Name <someone@example.com>` author entry.
+/// The name out of a `Name <someone@example.com> (https://example.com)` author entry.
 ///
-/// Both registries carry addresses in that field and this record is published. An address is
-/// not attribution -- the copyright line inside a licence carries a name -- so keeping it
-/// would republish contact details nobody offered for this.
+/// npm's field packs three things into one string and cargo's packs two. Only the name is
+/// attribution -- it is what a copyright line carries -- and the other two are contact details
+/// nobody offered for republication, so both are dropped wherever the string ends.
 pub fn author_name(entry: &str) -> Option<String> {
-	let without_email = entry.split('<').next().unwrap_or(entry);
-	let trimmed = without_email.trim();
-	(!trimmed.is_empty()).then(|| trimmed.to_owned())
+	let head = entry.split(['<', '(']).next().unwrap_or(entry);
+	// Some entries put the address in the name position with no brackets around it at all --
+	// `contact@geoffroycouprie.com`, or `Rich Geldreich richgel99@gmail.com`. Dropping any word
+	// carrying an `@` catches both, and no name contains one, so nothing real is lost.
+	let name = head
+		.split_whitespace()
+		.filter(|word| !word.contains('@'))
+		.collect::<Vec<_>>()
+		.join(" ");
+	(!name.is_empty()).then_some(name)
 }
 
 /// Read the licence texts a package ships, in file-name order.
@@ -394,10 +401,26 @@ mod tests {
 	}
 
 	#[test]
-	fn keeps_the_name_and_drops_the_address() {
+	fn keeps_the_name_and_drops_the_contact_details() {
 		assert_eq!(author_name("Ada <ada@example.com>").as_deref(), Some("Ada"));
 		assert_eq!(author_name("  Ada  ").as_deref(), Some("Ada"));
 		assert_eq!(author_name("<only@example.com>"), None);
+		// npm packs a homepage in after the address, and plenty of packages give only that --
+		// `The Babel Team (https://babel.dev/team)` is the one that surfaced this.
+		assert_eq!(
+			author_name("The Babel Team (https://babel.dev/team)").as_deref(),
+			Some("The Babel Team")
+		);
+		assert_eq!(
+			author_name("Ada <ada@example.com> (https://example.com)").as_deref(),
+			Some("Ada")
+		);
+		// Written with no brackets at all, which several crates and wrangler both do.
+		assert_eq!(
+			author_name("Rich Geldreich richgel99@gmail.com").as_deref(),
+			Some("Rich Geldreich")
+		);
+		assert_eq!(author_name("contact@geoffroycouprie.com"), None);
 	}
 
 	#[test]

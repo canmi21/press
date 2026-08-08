@@ -30,5 +30,15 @@
 	"support.revision": "查看版本 {commit}",
 	"sponsor.title": "暂时无法赞助",
 	"sponsor.notice": "受美国 F-1 学生签证的限制，目前暂时无法接受赞助。",
-	"sponsor.close": "关闭赞助提示"
+	"sponsor.close": "关闭赞助提示",
+	"licenses.title": "许可证",
+	"licenses.description": "这个站点和它的工具链所依赖的每一个第三方包、作者，以及它们各自的许可条款。",
+	"licenses.own": "这里除依赖之外的一切，都以 MIT License 发布，源码在{#link}仓库{/link}。",
+	"licenses.repository": "仓库",
+	"licenses.census": "{#cells}{count}{/cells} 个包，来自 {registries} 个注册局，分属 {licenses} 种许可证。它们全都是别人的作品。",
+	"licenses.plaintext": "同样的内容，纯文本版",
+	"licenses.index": "索引",
+	"licenses.full": "完整声明",
+	"licenses.contents": "这些都在什么条款之下",
+	"licenses.asserted": "推定"
 }

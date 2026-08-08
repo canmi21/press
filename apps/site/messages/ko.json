@@ -30,5 +30,15 @@
 	"support.revision": "리비전 {commit} 보기",
 	"sponsor.title": "후원을 받을 수 없어요",
 	"sponsor.notice": "미국 F-1 학생 비자 제한으로 지금은 후원을 받을 수 없습니다.",
-	"sponsor.close": "안내 닫기"
+	"sponsor.close": "안내 닫기",
+	"licenses.title": "라이선스",
+	"licenses.description": "이 사이트와 도구 체인이 의존하는 모든 서드파티 패키지와 그 저자, 그리고 각각의 라이선스 조항입니다.",
+	"licenses.own": "의존성을 제외한 이곳의 모든 것은 MIT License로 공개합니다. 소스는 {#link}저장소{/link}에 있습니다.",
+	"licenses.repository": "저장소",
+	"licenses.census": "레지스트리 {registries}곳에서 온 패키지 {#cells}{count}{/cells}개, 라이선스 {licenses}종. 하나하나가 모두 다른 사람의 작업입니다.",
+	"licenses.plaintext": "같은 내용의 일반 텍스트",
+	"licenses.index": "목록",
+	"licenses.full": "전문",
+	"licenses.contents": "무엇 위에 서 있는가",
+	"licenses.asserted": "추정"
 }

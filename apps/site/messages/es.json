@@ -30,5 +30,15 @@
 	"support.revision": "Ver revisión {commit}",
 	"sponsor.title": "Apoyo no disponible",
 	"sponsor.notice": "Por las restricciones del visado de estudiante F-1 de Estados Unidos, ahora mismo no puedo aceptar donaciones.",
-	"sponsor.close": "Cerrar el aviso"
+	"sponsor.close": "Cerrar el aviso",
+	"licenses.title": "Licencias",
+	"licenses.description": "Cada paquete de terceros con el que están hechos este sitio y sus herramientas, quién lo escribió y bajo qué condiciones.",
+	"licenses.own": "Todo lo que aquí no es una dependencia se publica bajo la Licencia MIT, desde {#link}el repositorio{/link}.",
+	"licenses.repository": "el repositorio",
+	"licenses.census": "{#cells}{count}{/cells} paquetes de {registries} registros, bajo {licenses} licencias distintas. Todos y cada uno son trabajo de otras personas.",
+	"licenses.plaintext": "Lo mismo en texto plano",
+	"licenses.index": "Índice",
+	"licenses.full": "Aviso completo",
+	"licenses.contents": "Sobre qué se sostiene todo esto",
+	"licenses.asserted": "deducida"
 }

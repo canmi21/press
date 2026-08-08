@@ -524,6 +524,21 @@ evidence beside it. An entry there only ever fills a gap, never overrides a pack
 declaration, and the published record marks it as asserted rather than declared -- presenting
 a judgement as the package's own statement is the one dishonest thing this record could do.
 
+**Only the name survives from an author field.** Both registries pack a name, an address and a
+homepage into one string, in several spellings and sometimes with no brackets around any of
+them. A copyright line carries a name, so that is attribution; the rest is contact detail
+nobody offered for republication, and this record is published.
+
+`/licenses` is the page over the same data, grouped by licence expression and ordered by what
+each covers. The licence is the one column that would otherwise repeat itself hundreds of
+times, so it becomes a heading and the rows underneath get shorter -- and the grouping answers
+the question somebody arriving actually has, which is what all of this stands on rather than
+what any single package is. An asserted licence is not a group of its own: the packages under
+it are MIT, they simply never said so, and the row carries where that is known from.
+
+The page is locale-negotiated like every other page, while the three plain-text routes beside
+it are prerendered. A licence is not translated, and those routes vary on nothing.
+
 A package resolved for another platform is not in the record at all. A dependency tree carries
 an optional binary for every operating system and only one is ever installed; reporting the
 rest as declaring nothing would be false, and would bury the handful that genuinely do.

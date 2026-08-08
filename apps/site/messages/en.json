@@ -30,5 +30,15 @@
 	"support.revision": "View revision {commit}",
 	"sponsor.title": "Sponsor unavailable",
 	"sponsor.notice": "Sponsors are currently unavailable due to U.S. F-1 immigration restrictions.",
-	"sponsor.close": "Close sponsor notice"
+	"sponsor.close": "Close sponsor notice",
+	"licenses.title": "Licenses",
+	"licenses.description": "Every third-party package this site and its tooling are built out of, who wrote it, and the terms it comes under.",
+	"licenses.own": "Everything here that is not a dependency is released under the MIT License, from {#link}the repository{/link}.",
+	"licenses.repository": "the repository",
+	"licenses.census": "{#cells}{count}{/cells} packages from {registries} registries, under {licenses} distinct licenses. Every one of them is somebody else’s work.",
+	"licenses.plaintext": "The same thing as plain text",
+	"licenses.index": "Index",
+	"licenses.full": "Full notice",
+	"licenses.contents": "What it is all under",
+	"licenses.asserted": "asserted"
 }

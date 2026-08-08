@@ -30,5 +30,15 @@
 	"support.revision": "Voir la révision {commit}",
 	"sponsor.title": "Soutien indisponible",
 	"sponsor.notice": "En raison des restrictions liées au visa étudiant américain F-1, les dons ne sont pas possibles pour le moment.",
-	"sponsor.close": "Fermer l’avis"
+	"sponsor.close": "Fermer l’avis",
+	"licenses.title": "Licences",
+	"licenses.description": "Chaque paquet tiers dont ce site et ses outils sont faits, qui l’a écrit, et les conditions qui s’y appliquent.",
+	"licenses.own": "Tout ce qui n’est pas une dépendance est publié sous licence MIT, depuis {#link}le dépôt{/link}.",
+	"licenses.repository": "le dépôt",
+	"licenses.census": "{#cells}{count}{/cells} paquets venus de {registries} registres, sous {licenses} licences différentes. Chacun d’eux est le travail de quelqu’un d’autre.",
+	"licenses.plaintext": "La même chose en texte brut",
+	"licenses.index": "Index",
+	"licenses.full": "Avis complet",
+	"licenses.contents": "Ce sur quoi tout cela repose",
+	"licenses.asserted": "déduite"
 }

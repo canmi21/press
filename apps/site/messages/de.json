@@ -30,5 +30,15 @@
 	"support.revision": "Revision {commit} ansehen",
 	"sponsor.title": "Unterstützung derzeit nicht möglich",
 	"sponsor.notice": "Wegen der Auflagen des US-amerikanischen F-1-Studentenvisums sind Zuwendungen derzeit nicht möglich.",
-	"sponsor.close": "Hinweis schließen"
+	"sponsor.close": "Hinweis schließen",
+	"licenses.title": "Lizenzen",
+	"licenses.description": "Jedes Fremdpaket, aus dem diese Seite und ihr Werkzeug gebaut sind, wer es geschrieben hat und unter welchen Bedingungen es steht.",
+	"licenses.own": "Alles hier, was keine Abhängigkeit ist, steht unter der MIT-Lizenz — nachzulesen {#link}im Repository{/link}.",
+	"licenses.repository": "im Repository",
+	"licenses.census": "{#cells}{count}{/cells} Pakete aus {registries} Registries, unter {licenses} verschiedenen Lizenzen. Jedes einzelne davon ist die Arbeit anderer.",
+	"licenses.plaintext": "Dasselbe als reiner Text",
+	"licenses.index": "Übersicht",
+	"licenses.full": "Vollständiger Hinweis",
+	"licenses.contents": "Worauf das alles steht",
+	"licenses.asserted": "ermittelt"
 }
