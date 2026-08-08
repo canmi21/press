@@ -83,6 +83,38 @@ anything.
 Both remain locale-formatted through `Intl.NumberFormat`. The cells draw their own grouping
 because no locale supplies a separator character to a box; a plain figure gets the reader's.
 
+## Latin inside CJK is spaced with a real space
+
+A Latin word set directly against Chinese or Korean needs air on both sides, or
+`来自crates.io和npm` reads as one unbroken run. The space is a real one, the same character a
+person typing that sentence would use.
+
+Authored copy carries them already, in every locale and in the articles, and they are never to
+be stripped. What needed solving is text this site _assembles_: `Intl.ListFormat` joins two
+registry names with a bare `和`, and no author was there to type anything.
+[spacing.ts](../apps/site/src/lib/locale/spacing.ts) inserts one at each boundary, and the
+component keeps it outside the anchor, or the link's underline is drawn under the gap.
+
+**Only script letters count, never punctuation.** A full-width `，`, `。` or `、` already carries
+its space inside the glyph, so `npm，` stays tight and Japanese lists, which join with `、`,
+gain nothing. Matching on Unicode script properties rather than a block range is what draws
+that line.
+
+`text-autospace: normal` was tried first and removed. It does work -- measured, it applies, and
+it applies across element boundaries -- but Chrome implements the property's eighth of an em,
+which came out at 2px against the 4.4px of a real space, and no other engine ships it. A rule
+that lands on one browser and is invisible when it does is not worth the line it takes.
+
+### A name that is two words is held together
+
+A space inside a product name is a break opportunity, and in a line that is otherwise CJK the
+break lands there: `均以 MIT` at the edge, `License 发布` starting the next. Interface copy
+writes a non-breaking space inside such a name, as the JSON escape `\u00a0` rather than a
+literal, so the next person to edit the file sees the character instead of deleting it by
+accident.
+
+This is for names a reader knows as one thing. Ordinary prose wraps where it likes.
+
 ## Keyboard focus follows the visible control
 
 Keyboard focus uses a real `0.125rem` outline in the accessibility accent colour. The outline is

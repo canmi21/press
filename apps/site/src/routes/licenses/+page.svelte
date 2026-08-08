@@ -4,6 +4,7 @@
 	import Scale from '@lucide/svelte/icons/scale';
 	import { ParaglideMessage } from '@inlang/paraglide-js-svelte';
 	import { PUBLIC_LANGUAGE } from '$lib/locale';
+	import { spaceScriptBoundaries } from '$lib/locale/spacing';
 	import * as m from '$lib/paraglide/messages';
 	import type { PageData } from './$types';
 
@@ -26,11 +27,23 @@
 	 * A registry with no entry above is still listed, under the identifier the record uses and
 	 * without a link. Dropping it would understate where the code came from.
 	 */
-	const registryParts = $derived(
-		new Intl.ListFormat(numberLocale, { style: 'long', type: 'conjunction' }).formatToParts(
-			data.registries.map((id) => REGISTRY_NAMES[id] ?? id),
-		),
-	);
+	const registryParts = $derived.by(() => {
+		const parts = new Intl.ListFormat(numberLocale, {
+			style: 'long',
+			type: 'conjunction',
+		}).formatToParts(data.registries.map((id) => REGISTRY_NAMES[id] ?? id));
+		// Chinese joins with a bare `和`, which leaves `crates.io和npm` reading as one run.
+		// Authored copy carries these spaces already; text assembled here has nobody to type
+		// them. See $lib/locale/spacing.
+		// Carried as a flag rather than folded into the value, because the space belongs outside
+		// the anchor -- inside it, the link's underline would be drawn under the gap too.
+		const spaced = spaceScriptBoundaries(parts.map((part) => part.value));
+		return parts.map((part, index) => ({
+			type: part.type,
+			value: part.value,
+			gapBefore: (spaced[index] ?? '').length > part.value.length,
+		}));
+	});
 	const registryUrl = $derived((name: string) => {
 		const id = data.registries.find((candidate) => (REGISTRY_NAMES[candidate] ?? candidate) === name);
 		return id ? URLS.external.registries[id as keyof typeof URLS.external.registries] : undefined;
@@ -81,6 +94,16 @@
 				<p>{m['licenses.thanks']({}, { locale })}</p>
 				<p class="text-text-soft">
 					<ParaglideMessage message={m['licenses.below']} inputs={{}} options={{ locale }}>
+						<!-- The project's own terms, pointing at the canonical text rather than at a
+						     copy of it. SPDX because that is the address every licence on this page
+						     has, this one included. -->
+						{#snippet license()}<a
+								href="{URLS.external.spdx}/MIT.html"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="focus-link spring-underline article-link text-text"
+								>{m['licenses.mit']({}, { locale })}</a
+							>{/snippet}
 						{#snippet link()}<a
 								href={URLS.source}
 								target="_blank"
@@ -103,7 +126,7 @@
 				inputs={{ count, licenses: data.groups.length }}
 				options={{ locale }}
 			>
-				{#snippet registries()}{#each registryParts as part, i (i)}{#if part.type === 'element'}<a
+				{#snippet registries()}{#each registryParts as part, i (i)}{#if part.gapBefore}{' '}{/if}{#if part.type === 'element'}<a
 								href={registryUrl(part.value)}
 								target="_blank"
 								rel="noopener noreferrer"

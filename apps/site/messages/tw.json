@@ -34,14 +34,15 @@
 	"licenses.title": "開源授權條款",
 	"licenses.description": "這個網站建立在哪些開源專案與函式庫之上、它們背後是誰，以及這些工作各自的授權條款。",
 	"licenses.repository": "儲存庫",
-	"licenses.census": "{count} 個套件，來自{#registries}{/registries}，分屬 {licenses} 種授權條款。",
+	"licenses.census": "{count} 個套件，來自 {#registries}{/registries}，分屬 {licenses} 種授權條款。",
 	"licenses.plaintext": "同樣的內容，純文字版",
 	"licenses.contents": "目錄",
 	"licenses.asserted": "推定",
 	"licenses.multiple": "一個套件若提供多種授權可選，會同時出現在每一種底下，所以這裡的計數總和大於套件總數。",
 	"licenses.built": "這個專案建立在許多開源專案與函式庫之上。",
 	"licenses.thanks": "謹向這些專案背後的開發者、維護者與貢獻者致上誠摯的謝意——感謝他們的付出，也感謝他們願意把成果開放給所有人。正是這些工作，讓這個專案得以存在。",
-	"licenses.below": "以下是本專案所使用的開源軟體的授權條款與姓名標示聲明。本專案中除相依套件之外的部分，均以 MIT License 發布，原始碼見{#link}儲存庫{/link}。",
+	"licenses.below": "以下是本專案所使用的開源軟體的授權條款與姓名標示聲明。本專案中除相依套件之外的部分，均以 {#license}MIT\u00a0License{/license} 發布，原始碼見{#link}儲存庫{/link}。",
 	"licenses.index": "索引表",
-	"licenses.full": "完整聲明"
+	"licenses.full": "完整聲明",
+	"licenses.mit": "MIT\u00a0License"
 }

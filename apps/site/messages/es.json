@@ -41,7 +41,8 @@
 	"licenses.multiple": "Un paquete que ofrece varias licencias a elegir aparece bajo todas ellas, así que estos números suman más que el total de paquetes.",
 	"licenses.built": "Este proyecto se apoya en el trabajo de muchos proyectos y bibliotecas de código abierto.",
 	"licenses.thanks": "Gracias de corazón a quienes los desarrollan, los mantienen y contribuyen a ellos: por su trabajo, y por haber decidido compartirlo con todo el mundo. Sin ese trabajo este proyecto no existiría.",
-	"licenses.below": "Abajo están las licencias y los avisos de atribución del software de código abierto que usa este proyecto. Todo lo que aquí no es una dependencia se publica bajo la Licencia MIT, desde {#link}el repositorio{/link}.",
+	"licenses.below": "Abajo están las licencias y los avisos de atribución del software de código abierto que usa este proyecto. Todo lo que aquí no es una dependencia se publica bajo la {#license}Licencia MIT{/license}, desde {#link}el repositorio{/link}.",
 	"licenses.index": "Índice de paquetes",
-	"licenses.full": "Aviso completo"
+	"licenses.full": "Aviso completo",
+	"licenses.mit": "Licencia MIT"
 }

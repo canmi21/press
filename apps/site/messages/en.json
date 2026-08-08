@@ -41,7 +41,8 @@
 	"licenses.multiple": "A package that offers a choice of licenses is listed under each of them, so these counts add up to more than the number of packages.",
 	"licenses.built": "This project is built with the help of many open-source projects and libraries.",
 	"licenses.thanks": "We sincerely thank the developers, maintainers, and contributors behind these projects for their work and for making their software available to the community. Their contributions make this project possible.",
-	"licenses.below": "Below you can find the licenses and attribution notices for the open-source software used by this project. Everything here that is not a dependency is released under the MIT License, from {#link}the repository{/link}.",
+	"licenses.below": "Below you can find the licenses and attribution notices for the open-source software used by this project. Everything here that is not a dependency is released under the {#license}MIT\u00a0License{/license}, from {#link}the repository{/link}.",
 	"licenses.index": "Package index",
-	"licenses.full": "Full notice"
+	"licenses.full": "Full notice",
+	"licenses.mit": "MIT\u00a0License"
 }

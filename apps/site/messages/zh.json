@@ -34,14 +34,15 @@
 	"licenses.title": "开源许可证",
 	"licenses.description": "这个站点建立在哪些开源项目与库之上、它们背后是谁，以及这些工作各自的许可条款。",
 	"licenses.repository": "仓库",
-	"licenses.census": "{count} 个包，来自{#registries}{/registries}，分属 {licenses} 种许可证。",
+	"licenses.census": "{count} 个包，来自 {#registries}{/registries}，分属 {licenses} 种许可证。",
 	"licenses.plaintext": "同样的内容，纯文本版",
 	"licenses.contents": "目录",
 	"licenses.asserted": "推定",
 	"licenses.multiple": "一个包如果提供多种许可证可选，会同时出现在每一种下面，所以这里的计数之和大于包的总数。",
 	"licenses.built": "这个项目建立在许多开源项目与库之上。",
 	"licenses.thanks": "谨向这些项目背后的开发者、维护者与贡献者致以诚挚的谢意——感谢他们的付出，也感谢他们愿意把成果开放给所有人。正是这些工作，让这个项目得以存在。",
-	"licenses.below": "以下是本项目所使用的开源软件的许可证与署名声明。本项目中除依赖之外的部分，均以 MIT License 发布，源码见{#link}仓库{/link}。",
+	"licenses.below": "以下是本项目所使用的开源软件的许可证与署名声明。本项目中除依赖之外的部分，均以 {#license}MIT\u00a0License{/license} 发布，源码见{#link}仓库{/link}。",
 	"licenses.index": "索引表",
-	"licenses.full": "完整声明"
+	"licenses.full": "完整声明",
+	"licenses.mit": "MIT\u00a0License"
 }

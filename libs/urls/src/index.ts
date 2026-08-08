@@ -39,6 +39,10 @@ export const URLS = {
 			npm: 'https://www.npmjs.com',
 			cargo: 'https://crates.io',
 		},
+		// The canonical page for a licence, joined with `/{id}.html`. SPDX rather than any of the
+		// stewards' own sites, because the whole licence record is keyed by SPDX identifier and
+		// this is the one address that exists for every one of them.
+		spdx: 'https://spdx.org/licenses',
 		robotstxt: 'https://www.robotstxt.org/robotstxt.html',
 		// A Sentry DSN only permits *sending* events to one project -- it grants no read
 		// access -- and the browser SDK compiles it into the bundle, where anyone can read it
