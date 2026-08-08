@@ -61,6 +61,27 @@
 	}
 }
 
+/* Where an in-page jump puts its target: below the top of the viewport, not against it.
+
+   A heading flush with the top edge reads as the end of what came before rather than the start
+   of what follows, and leaves the reader's eye at the one place on screen it does not naturally
+   rest. Holding a margin above it puts the section in the band people actually read from, and
+   keeps the preceding line visible so the jump is legible as a move rather than a page swap.
+
+   Viewport-relative rather than a fixed length, because the thing being reserved is a share of
+   what the reader can see. A constant that reads as a tenth of a laptop window is a fifteenth
+   of a tall monitor and a third of a phone in landscape. See spec/styling.md.
+
+   Applied to the target rather than computed by whatever is doing the jumping, so a native hash
+   jump and a scripted `scrollIntoView` land in the same place without agreeing on anything.
+
+   The article ToC is not on this. Its offset was measured against its own indicator, which
+   tracks the heading it points at, and a share of the viewport is not what that geometry was
+   tuned to. */
+.jump-target {
+	scroll-margin-top: 15vh;
+}
+
 @property --underline-progress {
 	syntax: '<length-percentage>';
 	inherits: false;

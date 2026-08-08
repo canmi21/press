@@ -40,9 +40,32 @@ the native jump happens instead, hash and all, which is worse than the scripted 
 much better than a dead control. A modified click -- meta, control, shift, alt, or any button
 but the first -- is the reader asking for a new tab, so it is left to the browser untouched.
 
-Landing offsets belong to the target, as `scroll-margin-top` on the heading, so a section
-jumped to does not sit flush against the top of the viewport with its own first rows cut off.
 Smooth scrolling is skipped under `prefers-reduced-motion`.
+
+### A jump lands below the top edge, not against it
+
+**A section reached by a jump keeps roughly a tenth to a fifth of the viewport above it.** A
+heading flush with the top edge reads as the end of what came before rather than the start of
+what follows, and it puts the reader's eye at the one place on screen it does not naturally
+rest. Holding a margin above the target lands the section in the band people actually read
+from, and keeps the last line of the previous section visible, so the jump is legible as a move
+through one document rather than as a page being replaced.
+
+The reserved space is **a share of the viewport rather than a fixed length**, because what is
+being reserved is a share of what the reader can see. A constant that reads as a tenth of a
+laptop window is a fifteenth of a tall monitor and a third of a phone held sideways. The default
+answer is the `jump-target` utility in
+[utilities.css](../apps/site/src/styles/utilities.css).
+
+**The offset belongs to the target, as `scroll-margin-top`.** A native hash jump, a scripted
+`scrollIntoView` and anything else that moves to the same element then land in the same place
+without having to agree on a number, and nothing that jumps has to know the offset exists.
+Arithmetic on the caller's side is the version that drifts: only one caller gets corrected when
+the value changes.
+
+The article ToC keeps its own offset rather than this one. It was measured against its own
+indicator, which tracks the heading it points at, and a share of the viewport is not the
+geometry that was tuned. An exception with a reason is not a second rule.
 
 ## Keyboard focus follows the visible control
 

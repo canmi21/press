@@ -122,9 +122,11 @@
 
 		{#each data.groups as group (group.anchor)}
 			<section aria-labelledby={group.anchor} class="mt-16">
-				<!-- `scroll-mt` so a heading jumped to from the contents does not land flush against
-				     the top of the viewport with its own rows cut off above the fold. -->
-				<h2 id={group.anchor} class="mb-3 scroll-mt-6 font-medium text-text-strong">
+				<!-- `jump-target` holds a share of the viewport above the heading, so a section
+				     jumped to starts in the band people read from instead of against the top edge.
+				     See styles/utilities.css and spec/styling.md. -->
+				<h2 id={group.anchor} class="jump-target mb-3 font-medium text-text-strong">
+
 					{group.license}
 				</h2>
 				{#each group.entries as entry (entry.href)}
