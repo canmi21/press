@@ -801,6 +801,13 @@ words** -- a word is not a unit CJK has, and one number that means different thi
 on which article it came from is worse than no number. The source text is counted for every
 view, because the number describes the site rather than the translation being read.
 
+The address is drawn opposite the site name across the top, because the other free corner is
+the bottom-left and that one belongs to X. It lives in `site.config.yaml` rather than in
+`libs/urls`, and the distinction is real: what is drawn there is a label a person reads off a
+picture, not an address anything resolves. The exemption only holds while the two agree, so a
+test compares it against the host `libs/urls` declares -- nothing structural can, since one is
+read by Rust and the other by the bundler.
+
 The portrait is fetched into `data/` once, like the font and for both of the same reasons: it
 is bytes somebody else serves, and `mise run refs` does not allow the address to be written
 outside `libs/urls`. A clone without it still renders every card, with that one lacking a

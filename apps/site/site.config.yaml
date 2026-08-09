@@ -6,6 +6,11 @@
 name: サボり記
 tagline: One developer's journey through code, circuits, pixels — and life in between.
 
+# The site's address as a label, drawn on the OpenGraph card. Not a URL: nothing resolves it,
+# it is read by a person looking at a picture, which is why it may live outside libs/urls. The
+# resolvable address is still declared there alone, and a test holds the two to the same host.
+domain: canmi.net
+
 author:
   name: Canmi
   # How the home page introduces the author, and what its OpenGraph card repeats. Kept here

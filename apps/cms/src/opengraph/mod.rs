@@ -34,6 +34,8 @@ struct SiteConfig {
 	#[serde(default)]
 	name: String,
 	#[serde(default)]
+	domain: String,
+	#[serde(default)]
 	author: SiteAuthor,
 }
 
@@ -193,6 +195,7 @@ pub enum Face {
 		date: Option<String>,
 	},
 	Home {
+		domain: String,
 		name: String,
 		role: String,
 		stats: String,
@@ -297,6 +300,7 @@ fn home_jobs(repo: &Path, public: &Path, config: &SiteConfig, census: &Census) -
 				target: card_path(public, view.code, HOME_SLUG),
 				site: config.name.clone(),
 				face: Face::Home {
+					domain: config.domain.clone(),
 					name: config.author.full_name.clone(),
 					role: config.author.role.clone(),
 					stats,
@@ -365,11 +369,17 @@ pub fn render_all(repo: &Path, jobs: Vec<Job>, force: bool) -> Result<Outcome, S
 							date: date.as_deref(),
 						},
 					),
-					Face::Home { name, role, stats } => layout::render_home(
+					Face::Home {
+						domain,
+						name,
+						role,
+						stats,
+					} => layout::render_home(
 						fonts,
 						FAMILY,
 						&Home {
 							site: &job.site,
+							domain,
 							name,
 							role,
 							stats,

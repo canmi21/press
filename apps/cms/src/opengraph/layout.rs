@@ -67,6 +67,8 @@ pub struct Card<'a> {
 /// for the same reason, which is that the bottom-left belongs to X.
 pub struct Home<'a> {
 	pub site: &'a str,
+	/// The address as a label, set against the name across the top.
+	pub domain: &'a str,
 	pub name: &'a str,
 	pub role: &'a str,
 	/// Already worded and filled by the view's own catalog; the layout only places it.
@@ -87,8 +89,11 @@ const AVATAR_GAP: f32 = 40.0;
 const NAME_SIZE: f32 = 76.0;
 const ROLE_SIZE: f32 = 36.0;
 const STATS_SIZE: f32 = 30.0;
+const DOMAIN_SIZE: f32 = 30.0;
 const ROLE_ALPHA: f32 = 0.48;
 const STATS_ALPHA: f32 = 0.34;
+/// Quieter than the site name it sits opposite: the pair is a name and an address, not two names.
+const DOMAIN_ALPHA: f32 = 0.24;
 
 /// Draw the avatar as a circle, nearest-neighbour sampled from its own pixels.
 ///
@@ -151,6 +156,27 @@ pub fn render_home(fonts: &mut FontSystem, family: &str, card: &Home<'_>) -> Vec
 		(PAD_X, PAD_Y),
 		colour(SITE_ALPHA),
 	);
+
+	// Set against the site name across the top, right-aligned. The other free corner is the
+	// bottom-left, and that one belongs to the domain X draws over every card it renders.
+	if !card.domain.is_empty() {
+		let mut domain = lay(fonts, card.domain, DOMAIN_SIZE, 1.2, TEXT_WIDTH, family);
+		// Sitting on the site name's baseline, which is a larger size, so it is pushed down by
+		// the difference rather than aligned on its own box -- the same correction the article
+		// card's date makes against its category.
+		let at = (
+			WIDTH as f32 - PAD_X - domain.width,
+			PAD_Y + (SITE_SIZE - DOMAIN_SIZE) * 0.8,
+		);
+		paint(
+			&mut pixmap,
+			fonts,
+			&mut cache,
+			&mut domain,
+			at,
+			colour(DOMAIN_ALPHA),
+		);
+	}
 
 	let mut name = lay(fonts, card.name, NAME_SIZE, 1.15, TEXT_WIDTH, family);
 	let mut role = lay(fonts, card.role, ROLE_SIZE, 1.4, TEXT_WIDTH, family);
