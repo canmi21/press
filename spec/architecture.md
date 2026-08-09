@@ -830,6 +830,24 @@ shape in each of the nine -- saying how many other languages this article exists
 "and this many more" without a word for it, which is why the line stays short enough to read at
 thumbnail size and identical in form across scripts that share no vocabulary.
 
+**The licence routes get cards too, drawn by the article template.** A title, a line under it
+and two lines in the corner is already the shape those pages need, so a fourth layout would be
+a second thing to keep in step for no difference a reader could see. What varies is what fills
+the slots, and that is a template's job.
+
+Their facts come from the licence record and their words from the message catalogs the pages
+read, because copy written into the generator would give the site a second voice -- one that
+agrees with the first only until somebody edits one of them. What a card says is deliberately
+**not** the page's meta description: that is written for a search result, where nothing sits
+above it, so it repeats the name the card already shows in large type directly above the line.
+The same distinction the article card makes between `subtitle` and `description`.
+
+A registry card carries no count badge. The only thing left to say in that corner is how many
+other registries exist, which is one, and the catalogs have no plural machinery to say it with;
+a badge that reads `+1 registries` is worse than an empty corner. Where a count does fit, it is
+the `+N` form the article cards use -- `+24 licenses` -- which says "and this many more" without
+a word for it and keeps its shape across scripts that share no vocabulary.
+
 A view with no card falls back to the source view rather than to a 404. Translation arrives
 per segment and per article, so a missing card is a normal intermediate state; a card in the
 wrong language still says what the page is, and a blank rectangle says nothing. An unknown

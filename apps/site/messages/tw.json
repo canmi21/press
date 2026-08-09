@@ -78,5 +78,12 @@
 	"licenses.dependents_direct": "直接相依",
 	"licenses.dependents_indirect": "經由其他套件",
 	"card.stats": "{articles} 篇文章 · {characters} 字 · 提供 {languages} 種語言",
-	"card.languages": "+{count} 種語言"
+	"card.languages": "+{count} 種語言",
+	"card.more_licenses": "+{count} 種授權",
+	"card.registries": "{count} 個註冊中心",
+	"card.licenses": "構成這個站點的開源作品",
+	"card.packages": "{count} 個套件",
+	"card.under_license": "{count} 個套件採用這些條款",
+	"card.from_registry": "{count} 個套件來自這裡",
+	"card.by_registry": "依來源註冊中心分組"
 }

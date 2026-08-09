@@ -78,5 +78,12 @@
 	"licenses.dependents_direct": "直接の依存元",
 	"licenses.dependents_indirect": "他のパッケージ経由",
 	"card.stats": "{articles} 本の記事 · {characters} 文字 · {languages} 言語で公開",
-	"card.languages": "+{count} 言語"
+	"card.languages": "+{count} 言語",
+	"card.more_licenses": "+{count} ライセンス",
+	"card.registries": "{count} レジストリ",
+	"card.licenses": "このサイトを支えるオープンソース",
+	"card.packages": "{count} パッケージ",
+	"card.under_license": "{count} パッケージがこの条項です",
+	"card.from_registry": "ここから {count} パッケージ",
+	"card.by_registry": "取得元のレジストリごと"
 }

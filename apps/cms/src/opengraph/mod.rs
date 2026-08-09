@@ -13,6 +13,7 @@ pub mod layout;
 pub mod locale;
 pub mod manifest;
 pub mod messages;
+pub mod routes;
 
 use crate::i18n::{segment, store};
 use cosmic_text::FontSystem;
@@ -209,6 +210,20 @@ impl Job {
 				parts.push(date.as_deref().unwrap_or_default());
 				parts.push(stats);
 			}
+			Face::Route {
+				title,
+				subtitle,
+				section,
+				qualifier,
+				badge,
+			} => {
+				parts.push("route");
+				parts.push(title);
+				parts.push(subtitle.as_deref().unwrap_or_default());
+				parts.push(section.as_deref().unwrap_or_default());
+				parts.push(qualifier.as_deref().unwrap_or_default());
+				parts.push(badge);
+			}
 			Face::Home { name, role, stats } => {
 				parts.push("home");
 				parts.push(name);
@@ -233,6 +248,22 @@ pub enum Face {
 		name: String,
 		role: String,
 		stats: String,
+	},
+	/// A route that is not an article: the licence directory and everything under it.
+	///
+	/// Drawn by the article renderer rather than a fourth layout, because the shape an article
+	/// card already has -- a title, a line under it, and two lines of metadata in the corner X
+	/// leaves alone -- is the shape these need. What differs is what goes in the slots, and
+	/// that is a template's job rather than a renderer's.
+	Route {
+		title: String,
+		subtitle: Option<String>,
+		/// The larger of the two corner lines: what section this page belongs to.
+		section: Option<String>,
+		/// Set to the left of the section, smaller. A version, or nothing.
+		qualifier: Option<String>,
+		/// The lower corner line, in the badge position an article uses for its languages.
+		badge: String,
 	},
 }
 
@@ -361,6 +392,38 @@ fn home_jobs(repo: &Path, public: &Path, config: &SiteConfig, census: &Census) -
 		.collect()
 }
 
+/// A card for every licence route, in every view.
+///
+/// The record is read here rather than passed in: these cards exist only if it does, and a
+/// tree with no licence record simply has no licence pages to advertise.
+fn route_jobs(repo: &Path, public: &Path, config: &SiteConfig) -> Vec<Job> {
+	let Some(record) = routes::load(&routes::record_path(repo)) else {
+		return Vec::new();
+	};
+
+	let mut jobs = Vec::new();
+	for route in routes::directories(&record) {
+		for view in locale::VIEWS {
+			let catalog = messages::load(repo, view.code);
+			let (title, subtitle, section, badge) = routes::worded(&route, &catalog);
+			jobs.push(Job {
+				label: format!("{} {}", view.code, route.slug),
+				target: card_path(public, view.code, &route.slug),
+				site: config.name.clone(),
+				domain: config.domain.clone(),
+				face: Face::Route {
+					title,
+					subtitle,
+					section,
+					qualifier: route.qualifier.clone(),
+					badge,
+				},
+			});
+		}
+	}
+	jobs
+}
+
 /// The author's portrait, decoded once and shared by every thread that draws it.
 ///
 /// Absent rather than fatal: a clone without the file still gets every card, with the home one
@@ -454,6 +517,25 @@ pub fn render_all(
 							stats,
 						},
 					),
+					Face::Route {
+						title,
+						subtitle,
+						section,
+						qualifier,
+						badge,
+					} => layout::render(
+						fonts,
+						FAMILY,
+						&Card {
+							site: &job.site,
+							domain: &job.domain,
+							title,
+							subtitle: subtitle.as_deref(),
+							category: section.as_deref(),
+							date: qualifier.as_deref(),
+							stats: badge,
+						},
+					),
 					Face::Home { name, role, stats } => layout::render_home(
 						fonts,
 						FAMILY,
@@ -535,6 +617,7 @@ pub fn run(repo: &Path, public: &Path, articles: &Path, force: bool) -> Result<O
 	}
 
 	jobs.extend(home_jobs(repo, public, &config, &census(articles)?));
+	jobs.extend(route_jobs(repo, public, &config));
 	render_all(repo, public, jobs, force)
 }
 

@@ -78,5 +78,12 @@
 	"licenses.dependents_direct": "直接依赖",
 	"licenses.dependents_indirect": "经由其他软件包",
 	"card.stats": "{articles} 篇文章 · {characters} 字 · 提供 {languages} 种语言",
-	"card.languages": "+{count} 种语言"
+	"card.languages": "+{count} 种语言",
+	"card.more_licenses": "+{count} 种协议",
+	"card.registries": "{count} 个注册局",
+	"card.licenses": "构成这个站点的开源作品",
+	"card.packages": "{count} 个软件包",
+	"card.under_license": "{count} 个软件包采用这些条款",
+	"card.from_registry": "{count} 个软件包来自这里",
+	"card.by_registry": "按来源注册局分组"
 }

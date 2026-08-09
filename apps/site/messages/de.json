@@ -78,5 +78,12 @@
 	"licenses.dependents_direct": "Direkt",
 	"licenses.dependents_indirect": "Über andere Pakete",
 	"card.stats": "{articles} Beiträge · {characters} Zeichen · in {languages} Sprachen",
-	"card.languages": "+{count} Sprachen"
+	"card.languages": "+{count} Sprachen",
+	"card.more_licenses": "+{count} Lizenzen",
+	"card.registries": "{count} Registries",
+	"card.licenses": "Die Open-Source-Arbeit hinter dieser Site",
+	"card.packages": "{count} Pakete",
+	"card.under_license": "{count} Pakete stehen unter diesen Bedingungen",
+	"card.from_registry": "{count} Pakete kommen von hier",
+	"card.by_registry": "Nach Registry gruppiert"
 }

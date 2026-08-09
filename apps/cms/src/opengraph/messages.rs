@@ -83,14 +83,24 @@ mod tests {
 		let repo = crate::paths::repo_root().expect("repo");
 		for view in super::super::locale::VIEWS {
 			let catalog = load(&repo, view.code);
-			// The slots are the contract between a catalog and the renderer: a message that
-			// loses one draws a card missing that fact, and nothing else notices.
+			// Every key the renderer looks up, not a sample of them. A missing one resolves to
+			// an empty string and draws a card with a blank where a fact should be -- which is
+			// exactly what happened to `card.packages`, unnoticed until somebody looked at the
+			// picture. The slots are the other half of that contract: a message that loses one
+			// renders without the number it was supposed to carry.
 			for (key, slots) in [
 				(
 					"card.stats",
 					["{articles}", "{characters}", "{languages}"].as_slice(),
 				),
 				("card.languages", ["{count}"].as_slice()),
+				("card.packages", ["{count}"].as_slice()),
+				("card.registries", ["{count}"].as_slice()),
+				("card.more_licenses", ["{count}"].as_slice()),
+				("card.licenses", [].as_slice()),
+				("card.by_registry", [].as_slice()),
+				("card.from_registry", ["{count}"].as_slice()),
+				("card.under_license", ["{count}"].as_slice()),
 			] {
 				let message = catalog.get(key);
 				assert!(message.is_some(), "{} has no {key}", view.code);
