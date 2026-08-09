@@ -11,6 +11,30 @@
 use cosmic_text::{Attrs, Buffer, Color, Family, FontSystem, Metrics, Shaping, SwashCache};
 use tiny_skia::{Paint, PixmapMut, Rect, Transform};
 
+/// Draw the address opposite the site name, right-aligned on its baseline.
+///
+/// Shared by both cards: it is the same fact in the same place, and two copies of the
+/// arithmetic would eventually disagree by a pixel nobody could explain.
+fn paint_domain(
+	pixmap: &mut PixmapMut<'_>,
+	fonts: &mut FontSystem,
+	cache: &mut SwashCache,
+	family: &str,
+	domain: &str,
+) {
+	if domain.is_empty() {
+		return;
+	}
+	let mut laid = lay(fonts, domain, DOMAIN_SIZE, 1.2, TEXT_WIDTH, family);
+	// Sitting on the site name's baseline, which is a larger size, so it is pushed down by the
+	// difference rather than aligned on its own box.
+	let at = (
+		WIDTH as f32 - PAD_X - laid.width,
+		PAD_Y + (SITE_SIZE - DOMAIN_SIZE) * 0.8,
+	);
+	paint(pixmap, fonts, cache, &mut laid, at, colour(DOMAIN_ALPHA));
+}
+
 /// The size every consumer expects, and the one the layout is tuned for.
 pub const WIDTH: u32 = 1200;
 pub const HEIGHT: u32 = 630;
@@ -53,10 +77,14 @@ const BOTTOM_GAP: f32 = 24.0;
 
 pub struct Card<'a> {
 	pub site: &'a str,
+	/// The address, set opposite the site name; the same pair the home card carries.
+	pub domain: &'a str,
 	pub title: &'a str,
 	pub subtitle: Option<&'a str>,
 	pub category: Option<&'a str>,
 	pub date: Option<&'a str>,
+	/// Reads, length and languages, already worded by the view's own catalog.
+	pub stats: &'a str,
 }
 
 /// The home card: who the site is, rather than what one page of it says.
@@ -157,26 +185,9 @@ pub fn render_home(fonts: &mut FontSystem, family: &str, card: &Home<'_>) -> Vec
 		colour(SITE_ALPHA),
 	);
 
-	// Set against the site name across the top, right-aligned. The other free corner is the
-	// bottom-left, and that one belongs to the domain X draws over every card it renders.
-	if !card.domain.is_empty() {
-		let mut domain = lay(fonts, card.domain, DOMAIN_SIZE, 1.2, TEXT_WIDTH, family);
-		// Sitting on the site name's baseline, which is a larger size, so it is pushed down by
-		// the difference rather than aligned on its own box -- the same correction the article
-		// card's date makes against its category.
-		let at = (
-			WIDTH as f32 - PAD_X - domain.width,
-			PAD_Y + (SITE_SIZE - DOMAIN_SIZE) * 0.8,
-		);
-		paint(
-			&mut pixmap,
-			fonts,
-			&mut cache,
-			&mut domain,
-			at,
-			colour(DOMAIN_ALPHA),
-		);
-	}
+	// Set against the site name across the top. The other free corner is the bottom-left, and
+	// that one belongs to the domain X draws over every card it renders.
+	paint_domain(&mut pixmap, fonts, &mut cache, family, card.domain);
 
 	let mut name = lay(fonts, card.name, NAME_SIZE, 1.15, TEXT_WIDTH, family);
 	let mut role = lay(fonts, card.role, ROLE_SIZE, 1.4, TEXT_WIDTH, family);
@@ -341,6 +352,7 @@ pub fn render(fonts: &mut FontSystem, family: &str, card: &Card<'_>) -> Vec<u8> 
 		(PAD_X, PAD_Y),
 		colour(SITE_ALPHA),
 	);
+	paint_domain(&mut pixmap, fonts, &mut cache, family, card.domain);
 
 	let mut title = fit_title(fonts, card.title, family);
 	let mut subtitle = card.subtitle.filter(|text| !text.is_empty()).map(|text| {
@@ -379,7 +391,15 @@ pub fn render(fonts: &mut FontSystem, family: &str, card: &Card<'_>) -> Vec<u8> 
 		);
 	}
 
-	// Bottom band, right-aligned and laid out from the right edge inward.
+	// Bottom band, right-aligned and laid out from the right edge inward, on two lines: what
+	// this article is on the upper one, and how it has done on the lower. Running all five
+	// facts together would make one line nobody reads to the end of, and putting the counts
+	// first would lead with the part that changes rather than the part that identifies it.
+	//
+	// Both rows are measured from the lower one, so the pair stays put when either is absent.
+	let stats_row = HEIGHT as f32 - PAD_Y - STATS_SIZE * 1.2;
+	let meta_row = stats_row - CATEGORY_SIZE * 1.2 - GAP * 0.5;
+
 	let mut right = WIDTH as f32 - PAD_X;
 	if let Some(category) = card.category.filter(|c| !c.is_empty()) {
 		let mut laid = lay(fonts, category, CATEGORY_SIZE, 1.2, TEXT_WIDTH, family);
@@ -389,7 +409,7 @@ pub fn render(fonts: &mut FontSystem, family: &str, card: &Card<'_>) -> Vec<u8> 
 			fonts,
 			&mut cache,
 			&mut laid,
-			(right, HEIGHT as f32 - PAD_Y - CATEGORY_SIZE * 1.2),
+			(right, meta_row),
 			colour(CATEGORY_ALPHA),
 		);
 		right -= BOTTOM_GAP;
@@ -404,11 +424,21 @@ pub fn render(fonts: &mut FontSystem, family: &str, card: &Card<'_>) -> Vec<u8> 
 			fonts,
 			&mut cache,
 			&mut laid,
-			(
-				right,
-				HEIGHT as f32 - PAD_Y - CATEGORY_SIZE * 1.2 + (CATEGORY_SIZE - DATE_SIZE) * 0.8,
-			),
+			(right, meta_row + (CATEGORY_SIZE - DATE_SIZE) * 0.8),
 			colour(DATE_ALPHA),
+		);
+	}
+
+	if !card.stats.is_empty() {
+		let mut stats = lay(fonts, card.stats, STATS_SIZE, 1.2, TEXT_WIDTH, family);
+		let at = (WIDTH as f32 - PAD_X - stats.width, stats_row);
+		paint(
+			&mut pixmap,
+			fonts,
+			&mut cache,
+			&mut stats,
+			at,
+			colour(STATS_ALPHA),
 		);
 	}
 

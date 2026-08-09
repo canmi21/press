@@ -77,5 +77,6 @@
 	"licenses.dependents": "Utilisé par",
 	"licenses.dependents_direct": "Directement",
 	"licenses.dependents_indirect": "Via d'autres paquets",
-	"card.stats": "{articles} articles · {characters} caractères · en {languages} langues"
+	"card.stats": "{articles} articles · {characters} caractères · en {languages} langues",
+	"card.languages": "+{count} langues"
 }

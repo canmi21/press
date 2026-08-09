@@ -83,11 +83,22 @@ mod tests {
 		let repo = crate::paths::repo_root().expect("repo");
 		for view in super::super::locale::VIEWS {
 			let catalog = load(&repo, view.code);
-			assert!(
-				catalog.contains_key("card.stats"),
-				"{} has no card.stats",
-				view.code
-			);
+			// The slots are the contract between a catalog and the renderer: a message that
+			// loses one draws a card missing that fact, and nothing else notices.
+			for (key, slots) in [
+				(
+					"card.stats",
+					["{articles}", "{characters}", "{languages}"].as_slice(),
+				),
+				("card.languages", ["{count}"].as_slice()),
+			] {
+				let message = catalog.get(key);
+				assert!(message.is_some(), "{} has no {key}", view.code);
+				let text = message.expect("checked above");
+				for slot in slots {
+					assert!(text.contains(slot), "{}: {key} has no {slot}", view.code);
+				}
+			}
 		}
 	}
 }

@@ -808,10 +808,27 @@ picture, not an address anything resolves. The exemption only holds while the tw
 test compares it against the host `libs/urls` declares -- nothing structural can, since one is
 read by Rust and the other by the bundler.
 
-The portrait is fetched into `data/` once, like the font and for both of the same reasons: it
-is bytes somebody else serves, and `mise run refs` does not allow the address to be written
-outside `libs/urls`. A clone without it still renders every card, with that one lacking a
-portrait rather than the command refusing to run.
+The portrait is fetched into `data/` once, like the font and for the same reason: it is bytes
+somebody else serves, and a local command should not need the network to draw a card. A clone
+without it still renders every card, with that one lacking a portrait rather than the command
+refusing to run.
+
+**A card is redrawn when its inputs move, not when its file is missing.** `cms og` records a
+hash of everything each card was drawn from in `data/build/opengraph.json` and redraws the ones
+whose hash has changed. The older test -- skip anything already on disk -- was always slightly
+wrong, since an edited title left the previous card in place until somebody remembered
+`--force`; it stopped being defensible once a card started carrying a read count, which changes
+without anything in the repository changing at all. The record holds hashes and not the values
+behind them, so it stays small and nobody is tempted to read an article out of a build artifact.
+
+The article card's bottom band is two lines: its date and category on the upper one, and what
+else the article is available as on the lower. A read count was tried there and dropped -- it is
+the one fact on a card that changes while nothing in the repository does, and a figure that can
+only be as fresh as the last time somebody ran a local command is a number the card would be
+wrong about most of the time. What is left is a badge -- `+8 languages`, and the same
+shape in each of the nine -- saying how many other languages this article exists in. `+` carries
+"and this many more" without a word for it, which is why the line stays short enough to read at
+thumbnail size and identical in form across scripts that share no vocabulary.
 
 A view with no card falls back to the source view rather than to a 404. Translation arrives
 per segment and per article, so a missing card is a normal intermediate state; a card in the

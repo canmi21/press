@@ -1188,7 +1188,7 @@ fn usage() {
 	eprintln!("                              collect the icons the linkcards need");
 	eprintln!("  alt [--model M] [--force] [--limit N]");
 	eprintln!("                              describe assets that have no description yet");
-	eprintln!("  og [--force]                render an OpenGraph card per article");
+	eprintln!("  og [--force]                render an OpenGraph card per page per language");
 	eprintln!("  segments                    write article segment ids and source ranges");
 	eprintln!("  i18n [--model M] [--force] [--frontmatter] [--limit N] [article...]");
 	eprintln!("                              translate article segments into every locale");

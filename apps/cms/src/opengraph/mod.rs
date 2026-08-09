@@ -11,6 +11,7 @@
 
 pub mod layout;
 pub mod locale;
+pub mod manifest;
 pub mod messages;
 
 use crate::i18n::{segment, store};
@@ -24,8 +25,7 @@ use std::path::{Path, PathBuf};
 /// Where the author's portrait lives.
 ///
 /// Kept beside the font and for the same reason: it is bytes somebody else serves, so it is
-/// fetched into `data/` once rather than requested by a local command. That also keeps the
-/// address out of this crate, where `mise run refs` does not allow one to be written.
+/// fetched into `data/` once rather than requested by a command that has to work offline.
 const AVATAR: &str = "data/avatar.png";
 
 /// The identity the home card repeats, read from the file the pages read it from.
@@ -183,7 +183,41 @@ pub struct Job {
 	pub label: String,
 	pub target: PathBuf,
 	pub site: String,
+	pub domain: String,
 	pub face: Face,
+}
+
+impl Job {
+	/// Everything that decides what this card looks like, in a fixed order.
+	///
+	/// The site name and address are in here too: they are drawn on every card, so changing
+	/// either has to redraw all of them rather than only the ones whose text moved.
+	fn inputs(&self) -> String {
+		let mut parts = vec![self.site.as_str(), self.domain.as_str()];
+		match &self.face {
+			Face::Article {
+				title,
+				subtitle,
+				category,
+				date,
+				stats,
+			} => {
+				parts.push("article");
+				parts.push(title);
+				parts.push(subtitle.as_deref().unwrap_or_default());
+				parts.push(category.as_deref().unwrap_or_default());
+				parts.push(date.as_deref().unwrap_or_default());
+				parts.push(stats);
+			}
+			Face::Home { name, role, stats } => {
+				parts.push("home");
+				parts.push(name);
+				parts.push(role);
+				parts.push(stats);
+			}
+		}
+		manifest::digest(&parts)
+	}
 }
 
 /// Which card this is, and the words only that kind has.
@@ -193,9 +227,9 @@ pub enum Face {
 		subtitle: Option<String>,
 		category: Option<String>,
 		date: Option<String>,
+		stats: String,
 	},
 	Home {
-		domain: String,
 		name: String,
 		role: String,
 		stats: String,
@@ -203,7 +237,13 @@ pub enum Face {
 }
 
 /// Every card an article asks for: one per view, each in that view's own words.
-fn article_jobs(public: &Path, site: &str, path: &Path, article: &Article) -> Vec<Job> {
+fn article_jobs(
+	repo: &Path,
+	public: &Path,
+	config: &SiteConfig,
+	path: &Path,
+	article: &Article,
+) -> Vec<Job> {
 	let sidecar = store::load(&store::path_for(path));
 	let date = article.created.as_deref().and_then(short_date);
 
@@ -220,15 +260,26 @@ fn article_jobs(public: &Path, site: &str, path: &Path, article: &Article) -> Ve
 				.as_ref()
 				.map(|text| translated(&sidecar, view, text).unwrap_or_else(|| text.clone()));
 
+			// The other views, not all of them: this card is one of the nine, so what it has
+			// left to offer is eight.
+			let others = locale::VIEWS.len().saturating_sub(1).to_string();
+			let stats = messages::load(repo, view.code)
+				.get("card.languages")
+				.map_or(String::new(), |template| {
+					messages::fill(template, &[("count", &others)])
+				});
+
 			Job {
 				label: format!("{} {}", view.code, article.slug),
 				target: card_path(public, view.code, &article.slug),
-				site: site.to_owned(),
+				site: config.name.clone(),
+				domain: config.domain.clone(),
 				face: Face::Article {
 					title,
 					subtitle,
 					category: article.category.clone(),
 					date: date.clone(),
+					stats,
 				},
 			}
 		})
@@ -299,8 +350,8 @@ fn home_jobs(repo: &Path, public: &Path, config: &SiteConfig, census: &Census) -
 				label: format!("{} {HOME_SLUG}", view.code),
 				target: card_path(public, view.code, HOME_SLUG),
 				site: config.name.clone(),
+				domain: config.domain.clone(),
 				face: Face::Home {
-					domain: config.domain.clone(),
 					name: config.author.full_name.clone(),
 					role: config.author.role.clone(),
 					stats,
@@ -329,57 +380,86 @@ fn load_avatar(repo: &Path) -> Option<Avatar> {
 	})
 }
 
-/// Draw every job that is not already published, in parallel.
+/// One job with the record entry that decides whether it still needs drawing.
+struct Planned {
+	job: Job,
+	/// Where the card sits below the published root; the key it is recorded under.
+	key: String,
+	/// The hash of everything that decides what it looks like.
+	hash: String,
+}
+
+/// Draw every card whose inputs have moved, in parallel.
+///
+/// Staleness is "drawn from different inputs", not "the file is missing". The older test was
+/// already wrong -- an edited title left the old card in place until somebody remembered
+/// `--force` -- and a read count on the card turns that from a rare case into the usual one.
 ///
 /// `map_init` rather than a shared font system: shaping needs `&mut FontSystem`, so the choice
 /// is one per thread or a lock every glyph goes through. One per thread costs a font parse per
 /// worker and nothing after that.
-pub fn render_all(repo: &Path, jobs: Vec<Job>, force: bool) -> Result<Outcome, String> {
+pub fn render_all(
+	repo: &Path,
+	public: &Path,
+	jobs: Vec<Job>,
+	force: bool,
+) -> Result<Outcome, String> {
 	// Parsed once here as well, so a missing font fails before any thread starts rather than
 	// once per worker.
 	load_fonts(repo)?;
 
-	let (todo, skipped): (Vec<Job>, Vec<Job>) = jobs
+	let manifest_path = manifest::path_for(repo);
+	let record = manifest::load(&manifest_path);
+
+	let planned: Vec<Planned> = jobs
 		.into_iter()
-		.partition(|job| force || !job.target.is_file());
+		.map(|job| {
+			let key = manifest::key_for(public, &job.target);
+			let hash = job.inputs();
+			Planned { job, key, hash }
+		})
+		.collect();
+
+	let (todo, current): (Vec<&Planned>, Vec<&Planned>) = planned.iter().partition(|planned| {
+		force || !planned.job.target.is_file() || record.cards.get(&planned.key) != Some(&planned.hash)
+	});
 
 	// Decoded once and shared: it is read-only pixels, and decoding it per thread would repeat
 	// the only part of this that is not text shaping.
 	let avatar = load_avatar(repo);
 
-	let results: Vec<Result<(), (String, String)>> = todo
+	let results: Vec<Result<&Planned, (String, String)>> = todo
 		.par_iter()
 		.map_init(
 			|| load_fonts(repo).expect("font already parsed once above"),
-			|fonts, job| {
+			|fonts, planned| {
+				let job = &planned.job;
 				let pixels = match &job.face {
 					Face::Article {
 						title,
 						subtitle,
 						category,
 						date,
+						stats,
 					} => layout::render(
 						fonts,
 						FAMILY,
 						&Card {
 							site: &job.site,
+							domain: &job.domain,
 							title,
 							subtitle: subtitle.as_deref(),
 							category: category.as_deref(),
 							date: date.as_deref(),
+							stats,
 						},
 					),
-					Face::Home {
-						domain,
-						name,
-						role,
-						stats,
-					} => layout::render_home(
+					Face::Home { name, role, stats } => layout::render_home(
 						fonts,
 						FAMILY,
 						&Home {
 							site: &job.site,
-							domain,
+							domain: &job.domain,
 							name,
 							role,
 							stats,
@@ -389,25 +469,52 @@ pub fn render_all(repo: &Path, jobs: Vec<Job>, force: bool) -> Result<Outcome, S
 				};
 				let png = encode(&pixels).map_err(|error| (job.label.clone(), error))?;
 				crate::image::store::write(&job.target, &png)
-					.map_err(|error| (job.label.clone(), error.to_string()))
+					.map_err(|error| (job.label.clone(), error.to_string()))?;
+				Ok(*planned)
 			},
 		)
 		.collect();
 
+	// Rebuilt rather than merged, so a card that is no longer produced leaves the record with
+	// it. A failed one is left out too, which is what makes the next run retry it.
+	let mut next = manifest::Manifest::default();
+	for planned in &current {
+		next.cards.insert(planned.key.clone(), planned.hash.clone());
+	}
+
 	let mut outcome = Outcome {
-		skipped: skipped.len(),
+		skipped: current.len(),
 		..Outcome::default()
 	};
 	for result in results {
 		match result {
-			Ok(()) => outcome.rendered += 1,
+			Ok(planned) => {
+				outcome.rendered += 1;
+				next.cards.insert(planned.key.clone(), planned.hash.clone());
+			}
 			Err(failure) => outcome.failed.push(failure),
 		}
 	}
+
+	manifest::save(&manifest_path, &next)
+		.map_err(|error| format!("could not write the card record: {error}"))?;
 	Ok(outcome)
 }
 
+/// Characters in an article's body, ignoring whitespace and its frontmatter.
+fn characters_of(path: &Path) -> usize {
+	let Ok(text) = std::fs::read_to_string(path) else {
+		return 0;
+	};
+	let body = text
+		.strip_prefix("---\n")
+		.and_then(|rest| rest.split_once("\n---"))
+		.map_or(text.as_str(), |(_, body)| body);
+	body.chars().filter(|c| !c.is_whitespace()).count()
+}
+
 /// Render every card the site needs, in every view.
+///
 pub fn run(repo: &Path, public: &Path, articles: &Path, force: bool) -> Result<Outcome, String> {
 	let text = std::fs::read_to_string(config_path(repo))
 		.map_err(|error| format!("could not read the site config: {error}"))?;
@@ -424,11 +531,11 @@ pub fn run(repo: &Path, public: &Path, articles: &Path, force: bool) -> Result<O
 		let Some(article) = article_of(articles, &path) else {
 			continue;
 		};
-		jobs.extend(article_jobs(public, &config.name, &path, &article));
+		jobs.extend(article_jobs(repo, public, &config, &path, &article));
 	}
 
 	jobs.extend(home_jobs(repo, public, &config, &census(articles)?));
-	render_all(repo, jobs, force)
+	render_all(repo, public, jobs, force)
 }
 
 fn encode(pixels: &[u8]) -> Result<Vec<u8>, String> {

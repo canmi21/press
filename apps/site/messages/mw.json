@@ -77,5 +77,6 @@
 	"licenses.dependents": "Depended on by",
 	"licenses.dependents_direct": "Directly",
 	"licenses.dependents_indirect": "Through other packages",
-	"card.stats": "{articles} articles · {characters} characters · available in {languages} languages"
+	"card.stats": "{articles} articles · {characters} characters · available in {languages} languages",
+	"card.languages": "+{count} languages"
 }

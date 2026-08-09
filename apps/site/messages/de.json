@@ -77,5 +77,6 @@
 	"licenses.dependents": "Wird benötigt von",
 	"licenses.dependents_direct": "Direkt",
 	"licenses.dependents_indirect": "Über andere Pakete",
-	"card.stats": "{articles} Beiträge · {characters} Zeichen · in {languages} Sprachen"
+	"card.stats": "{articles} Beiträge · {characters} Zeichen · in {languages} Sprachen",
+	"card.languages": "+{count} Sprachen"
 }
