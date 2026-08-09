@@ -103,7 +103,7 @@
 <DropdownMenu.Root {open} onOpenChange={(next) => (open = next)}>
 	<DropdownMenu.Trigger
 		aria-label="Content language: {current?.name}"
-		class="-mx-1 inline-flex cursor-pointer items-center rounded-sm px-1 py-0.5 hover:bg-paper-hover hover:text-text-strong focus-visible:text-text-strong focus-visible:outline-none"
+		class="quiet-control"
 	>
 		<span class="focus-link-inner inline-flex items-center gap-1">
 			<CurrentMark class={markSize} aria-hidden="true" />

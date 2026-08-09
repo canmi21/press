@@ -539,6 +539,15 @@ presented as a package author; repository ownership and authorship are separate 
 avatars use the CDN's existing avatar proxy, so the site does not add a second live GitHub data
 path or expose readers to a new image origin.
 
+Each package also records **one shortest dependency path from every workspace root that reaches
+it**. For npm the roots are the deployed `api`, `cdn` and `site` apps; linked workspace packages
+remain visible as intermediate nodes even though they are not third-party credits. For Cargo the
+roots are Cargo's workspace members and paths follow the resolved dependency graph. Equal-length
+paths settle lexicographically so a regenerated record is stable. Keeping one path per root says
+every distinct reason the package is present without publishing the combinatorial set of all
+equivalent routes through a graph; the page describes these as representative shortest paths,
+not as the only possible paths.
+
 `/licenses` is the page over the same data, grouped by licence and ordered by what each covers.
 **An expression is flattened to the licences it names, and a package is filed under each of
 them** -- somebody looking for what is Apache-licensed here wants the packages that offer it as
@@ -567,6 +576,12 @@ licences; doing so would give one package several equally plausible addresses. `
 explicit namespace so a registry type or package name can never be mistaken for a licence slug.
 The version remains part of the address because the resolved tree may contain several versions
 of one package, with different metadata or terms.
+
+One package page is dense where the source metadata is sparse. Its SPDX expression, credited
+people and shipped licence files share one compact terms-and-attribution section instead of each
+claiming a tall section of their own. A single SPDX term is one link, not plain text followed by
+an identical chip; only a compound expression needs separate links to its terms. Dependency paths
+have their own section because they answer a different question: why this package is present.
 
 The plain-text documents keep their existing addresses: `/licenses.txt`, `/licenses/full.txt`
 and `/licenses/{type}/{name}@{version}.txt`. They are stable legal artefacts rather than the HTML

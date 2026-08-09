@@ -170,7 +170,7 @@ describe('splitting an SPDX expression', () => {
 
 describe('the record', () => {
 	it('uses the package metadata schema consumed by the directory pages', () => {
-		expect(record.version).toBe(2);
+		expect(record.version).toBe(3);
 	});
 	it('says where a license came from when the package did not declare it', () => {
 		expect(licenseOf({ spdx: 'MIT' })).toBe('MIT');
@@ -185,6 +185,21 @@ describe('the record', () => {
 			.filter(([, entry]) => !entry.spdx)
 			.map(([purl]) => purl);
 		expect(missing).toEqual([]);
+	});
+
+	it('explains every package with a resolved path that ends at that package', () => {
+		for (const [purl, entry] of Object.entries(record.packages)) {
+			const origins = Object.entries(entry.origins ?? {});
+			expect(origins.length, purl).toBeGreaterThan(0);
+			for (const [root, path] of origins) {
+				expect(root).not.toBe('');
+				expect(path.at(-1)).toBe(purl);
+				for (const node of path) {
+					if (node.startsWith('workspace:')) continue;
+					expect(record.packages[node], `${purl} through ${node}`).toBeDefined();
+				}
+			}
+		}
 	});
 
 	it('fans a text out over the same two levels the store writes', () => {

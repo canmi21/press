@@ -69,5 +69,10 @@
 	"licenses.asserted_note": "Dieses Paket hat keine Lizenz angegeben. Der Ausdruck wurde aus den mitgelieferten Bedingungen bestimmt.",
 	"licenses.authors": "Autoren",
 	"licenses.files": "Lizenzdateien",
-	"licenses.no_files": "Dieses Paket liefert keine Lizenzdatei mit."
+	"licenses.no_files": "Dieses Paket liefert keine Lizenzdatei mit.",
+	"licenses.terms_attribution": "Lizenz und Attribution",
+	"licenses.license": "Lizenz",
+	"licenses.dependency_paths": "Abhängigkeitspfade",
+	"licenses.dependency_summary": "Je ein kürzester aufgelöster Pfad von jedem Workspace-Stamm, der dieses Paket in das Projekt einbringt.",
+	"licenses.workspace_root": "Workspace-Stamm"
 }

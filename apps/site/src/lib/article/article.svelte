@@ -262,7 +262,7 @@
 							aria-expanded={summaryOpen}
 							aria-controls={summaryPanel}
 							onclick={() => (summaryOpen = !summaryOpen)}
-							class="-mx-1 inline-flex cursor-pointer items-center rounded-sm px-1 py-0.5 hover:bg-paper-hover hover:text-text-strong focus-visible:text-text-strong focus-visible:outline-none"
+							class="quiet-control"
 						>
 							<span class="focus-link-inner inline-flex items-center gap-1">
 								<Sparkles class="size-3.5" aria-hidden="true" />

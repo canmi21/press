@@ -21,7 +21,7 @@ use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 use std::path::{Path, PathBuf};
 
-pub const VERSION: u32 = 2;
+pub const VERSION: u32 = 3;
 
 /// Extensions that say a file is code or configuration whatever it is called.
 ///
@@ -139,6 +139,9 @@ pub struct Package {
 	pub documentation: Option<String>,
 	#[serde(skip_serializing_if = "Option::is_none")]
 	pub repository: Option<String>,
+	/// One shortest resolved path from each workspace root that reaches this package.
+	#[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+	pub origins: BTreeMap<String, Vec<String>>,
 	#[serde(default, skip_serializing_if = "Vec::is_empty")]
 	pub texts: Vec<Text>,
 }
@@ -169,7 +172,25 @@ pub struct Found {
 	pub homepage: Option<String>,
 	pub documentation: Option<String>,
 	pub repository: Option<String>,
+	pub origins: BTreeMap<String, Vec<String>>,
 	pub directory: PathBuf,
+}
+
+/// Keep one deterministic shortest path for a workspace root.
+pub fn prefer_origin(
+	origins: &mut BTreeMap<String, Vec<String>>,
+	root: &str,
+	candidate: Vec<String>,
+) {
+	let replace = match origins.get(root) {
+		None => true,
+		Some(current) => {
+			candidate.len() < current.len() || (candidate.len() == current.len() && candidate < *current)
+		}
+	};
+	if replace {
+		origins.insert(root.to_owned(), candidate);
+	}
 }
 
 pub fn record_path(repo: &Path) -> PathBuf {
@@ -403,6 +424,7 @@ pub fn write(
 				homepage: package.homepage,
 				documentation: package.documentation,
 				repository: package.repository,
+				origins: package.origins,
 				texts,
 			},
 		);
@@ -556,6 +578,31 @@ mod tests {
 	}
 
 	#[test]
+	fn keeps_the_shortest_stable_origin_for_each_root() {
+		let mut origins = BTreeMap::new();
+		prefer_origin(
+			&mut origins,
+			"site",
+			vec!["pkg:npm/z@1".to_owned(), "pkg:npm/target@1".to_owned()],
+		);
+		prefer_origin(
+			&mut origins,
+			"site",
+			vec!["pkg:npm/a@1".to_owned(), "pkg:npm/target@1".to_owned()],
+		);
+		prefer_origin(
+			&mut origins,
+			"site",
+			vec![
+				"pkg:npm/long@1".to_owned(),
+				"pkg:npm/path@1".to_owned(),
+				"pkg:npm/target@1".to_owned(),
+			],
+		);
+		assert_eq!(origins["site"], ["pkg:npm/a@1", "pkg:npm/target@1"]);
+	}
+
+	#[test]
 	fn recognises_the_names_a_license_is_shipped_under() {
 		for name in ["LICENSE", "LICENSE-MIT", "licence.md", "COPYING", "NOTICE"] {
 			assert!(is_license_file(name), "{name}");
@@ -600,6 +647,7 @@ mod tests {
 					homepage: None,
 					documentation: None,
 					repository: None,
+					origins: BTreeMap::new(),
 					directory: one,
 				},
 				Found {
@@ -610,6 +658,7 @@ mod tests {
 					homepage: None,
 					documentation: None,
 					repository: None,
+					origins: BTreeMap::new(),
 					directory: two,
 				},
 			],
@@ -641,6 +690,7 @@ mod tests {
 					homepage: None,
 					documentation: None,
 					repository: None,
+					origins: BTreeMap::new(),
 					directory: bare.clone(),
 				},
 				Found {
@@ -651,6 +701,7 @@ mod tests {
 					homepage: None,
 					documentation: None,
 					repository: None,
+					origins: BTreeMap::new(),
 					directory: bare,
 				},
 			],
@@ -680,6 +731,7 @@ mod tests {
 				homepage: None,
 				documentation: None,
 				repository: None,
+				origins: BTreeMap::new(),
 				texts: vec![],
 			},
 		);

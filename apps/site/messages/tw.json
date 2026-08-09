@@ -69,5 +69,10 @@
 	"licenses.asserted_note": "此軟體套件未聲明授權條款；該表達式依據其隨附條款推定。",
 	"licenses.authors": "作者",
 	"licenses.files": "授權條款檔案",
-	"licenses.no_files": "此軟體套件未隨附授權條款檔案。"
+	"licenses.no_files": "此軟體套件未隨附授權條款檔案。",
+	"licenses.terms_attribution": "授權條款與署名",
+	"licenses.license": "授權條款",
+	"licenses.dependency_paths": "相依路徑",
+	"licenses.dependency_summary": "顯示從每個 workspace root 引入此軟體套件的一條最短解析路徑。",
+	"licenses.workspace_root": "workspace root"
 }

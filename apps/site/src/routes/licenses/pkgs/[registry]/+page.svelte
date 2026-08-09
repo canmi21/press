@@ -43,10 +43,12 @@
 					href={data.registry.href}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="focus-link inline-flex items-center gap-1.5 text-[0.9375rem] text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
+					class="quiet-control text-[0.9375rem]"
 				>
-					<ExternalLink class="size-4" aria-hidden="true" />
-					<span>{m['licenses.registry']({}, { locale })}</span>
+					<span class="focus-link-inner inline-flex items-center gap-1.5">
+						<ExternalLink class="size-3.5" aria-hidden="true" />
+						<span>{m['licenses.registry']({}, { locale })}</span>
+					</span>
 				</a>
 				<LanguageSwitcher code={locale} />
 			</nav>

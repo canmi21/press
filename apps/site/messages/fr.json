@@ -69,5 +69,10 @@
 	"licenses.asserted_note": "Ce paquet n’a déclaré aucune licence. L’expression a été déterminée à partir des conditions qu’il distribue.",
 	"licenses.authors": "Auteurs",
 	"licenses.files": "Fichiers de licence",
-	"licenses.no_files": "Ce paquet ne distribue aucun fichier de licence."
+	"licenses.no_files": "Ce paquet ne distribue aucun fichier de licence.",
+	"licenses.terms_attribution": "Conditions et attribution",
+	"licenses.license": "Licence",
+	"licenses.dependency_paths": "Chemins de dépendance",
+	"licenses.dependency_summary": "Un plus court chemin résolu depuis chaque racine du workspace qui introduit ce paquet dans le projet.",
+	"licenses.workspace_root": "racine du workspace"
 }

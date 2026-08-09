@@ -69,5 +69,10 @@
 	"licenses.asserted_note": "Este paquete no declaró una licencia. La expresión se determinó a partir de los términos que distribuye.",
 	"licenses.authors": "Autores",
 	"licenses.files": "Archivos de licencia",
-	"licenses.no_files": "Este paquete no distribuye un archivo de licencia."
+	"licenses.no_files": "Este paquete no distribuye un archivo de licencia.",
+	"licenses.terms_attribution": "Términos y atribución",
+	"licenses.license": "Licencia",
+	"licenses.dependency_paths": "Rutas de dependencia",
+	"licenses.dependency_summary": "Una ruta resuelta mínima desde cada raíz del workspace que incorpora este paquete al proyecto.",
+	"licenses.workspace_root": "raíz del workspace"
 }

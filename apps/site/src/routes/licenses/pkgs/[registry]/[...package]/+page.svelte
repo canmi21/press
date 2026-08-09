@@ -63,10 +63,12 @@
 				<a
 					href={data.textHref}
 					data-sveltekit-reload
-					class="focus-link inline-flex items-center gap-1.5 text-[0.9375rem] text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
+					class="quiet-control text-[0.9375rem]"
 				>
-					<FileText class="size-4" aria-hidden="true" />
-					<span>{m['licenses.package_notice']({}, { locale })}</span>
+					<span class="focus-link-inner inline-flex items-center gap-1.5">
+						<FileText class="size-3.5" aria-hidden="true" />
+						<span>{m['licenses.package_notice']({}, { locale })}</span>
+					</span>
 				</a>
 				<LanguageSwitcher code={locale} />
 			</nav>
@@ -156,86 +158,127 @@
 			</dl>
 		</section>
 
-		<section aria-labelledby="package-terms" class="mt-16">
+		<section aria-labelledby="package-terms" class="mt-12">
 			<h2 id="package-terms" class="mb-4 font-medium text-text-strong">
-				{m['licenses.terms']({}, { locale })}
+				{m['licenses.terms_attribution']({}, { locale })}
 			</h2>
-			<p class="font-mono text-[0.9375rem] break-words text-text-strong">{data.entry.spdx}</p>
-			{#if data.entry.asserted}
-				<p class="mt-2 text-[0.8125rem] leading-relaxed text-pretty text-text-soft">
-					{m['licenses.asserted_note']({}, { locale })}
-				</p>
-			{/if}
-			<div class="mt-3 flex flex-wrap gap-2">
-				{#each data.licenses as license (license.license)}
-					<a
-						href={license.href}
-						class="focus-ring rounded-[0.375rem] border border-border px-2 py-1 font-mono text-[0.8125rem] text-text-soft transition-colors duration-200 hover:border-border-strong hover:text-text-strong focus-visible:text-text-strong"
-						>{license.license}</a
-					>
-				{/each}
-			</div>
-		</section>
-
-		{#if data.entry.authors?.length}
-			<section aria-labelledby="package-authors" class="mt-16">
-				<h2 id="package-authors" class="mb-4 font-medium text-text-strong">
-					{m['licenses.authors']({}, { locale })}
-				</h2>
-				<ul class="space-y-3">
-					{#each data.entry.authors as author, index (`${author.name}:${author.github ?? ''}:${index}`)}
-						<li class="flex min-w-0 items-center gap-3">
-							{#if author.github}
-								<img
-									src={githubAvatar(cdn, author.github, 64)}
-									alt=""
-									width="32"
-									height="32"
-									loading="lazy"
-									class="size-8 shrink-0 rounded-full bg-paper"
-								/>
-							{/if}
-							<span class="min-w-0">
-								<span class="block truncate text-text-strong">{author.name}</span>
+			<dl class="grid grid-cols-[6.5rem_minmax(0,1fr)] gap-x-4 gap-y-3 text-[0.9375rem]">
+				<dt class="text-text-soft">{m['licenses.license']({}, { locale })}</dt>
+				<dd class="min-w-0">
+					{#if data.licenses.length === 1 && data.licenses[0]?.license === data.entry.spdx}
+						<a
+							href={data.licenses[0].href}
+							class="focus-link spring-underline article-link font-mono break-words text-text-strong"
+							>{data.entry.spdx}</a
+						>
+					{:else}
+						<p class="font-mono break-words text-text-strong">{data.entry.spdx}</p>
+						<p class="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-[0.8125rem] text-text-soft">
+							{#each data.licenses as license (license.license)}
+								<a
+									href={license.href}
+									class="focus-link spring-underline article-link font-mono"
+									>{license.license}</a
+								>
+							{/each}
+						</p>
+					{/if}
+					{#if data.entry.asserted}
+						<p class="mt-2 text-[0.8125rem] leading-relaxed text-pretty text-text-soft">
+							{m['licenses.asserted_note']({}, { locale })}
+						</p>
+					{/if}
+				</dd>
+				{#if data.entry.authors?.length}
+					<dt class="text-text-soft">{m['licenses.authors']({}, { locale })}</dt>
+					<dd class="flex min-w-0 flex-wrap gap-x-5 gap-y-2">
+						{#each data.entry.authors as author, index (`${author.name}:${author.github ?? ''}:${index}`)}
+							<span class="inline-flex min-w-0 items-center gap-2">
 								{#if author.github}
+									<img
+										src={githubAvatar(cdn, author.github, 48)}
+										alt=""
+										width="24"
+										height="24"
+										loading="lazy"
+										class="size-6 shrink-0 rounded-full bg-paper"
+									/>
 									<a
 										href="{data.githubHref}/{author.github}"
 										target="_blank"
 										rel="noopener noreferrer"
-										class="focus-link spring-underline article-link block w-fit text-[0.8125rem] text-text-soft"
-										>@{author.github}</a
+										class="focus-link spring-underline article-link min-w-0 truncate"
+										>{author.name} <span class="text-text-soft">@{author.github}</span></a
 									>
+								{:else}
+									<span class="min-w-0 truncate text-text-strong">{author.name}</span>
 								{/if}
 							</span>
-						</li>
-					{/each}
-				</ul>
-			</section>
-		{/if}
-
-		<section aria-labelledby="license-files" class="mt-16">
-			<h2 id="license-files" class="mb-4 font-medium text-text-strong">
-				{m['licenses.files']({}, { locale })}
-			</h2>
-			{#if data.entry.texts?.length}
-				<ul>
-					{#each data.entry.texts as file (`${file.name}:${file.cid}`)}
-						<li>
+						{/each}
+					</dd>
+				{/if}
+				<dt class="text-text-soft">{m['licenses.files']({}, { locale })}</dt>
+				<dd class="flex min-w-0 flex-wrap gap-x-4 gap-y-1">
+					{#if data.entry.texts?.length}
+						{#each data.entry.texts as file (`${file.name}:${file.cid}`)}
 							<a
 								href={textUrl(cdn, file.cid)}
 								target="_blank"
 								rel="noopener noreferrer"
-								class="focus-ring-within -mx-2 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-[0.5rem] px-2 py-1 hover:bg-paper-hover focus-visible:outline-none"
+								class="focus-link spring-underline article-link font-mono text-[0.8125rem]"
+								>{file.name}</a
 							>
-								<span class="focus-link-inner min-w-0 truncate">{file.name}</span>
-								<span class="font-mono text-[0.75rem] text-text-soft">raw</span>
-							</a>
-						</li>
-					{/each}
-				</ul>
-			{:else}
-				<p class="text-[0.9375rem] text-text-soft">{m['licenses.no_files']({}, { locale })}</p>
-			{/if}
+						{/each}
+					{:else}
+						<span class="text-text-soft">{m['licenses.no_files']({}, { locale })}</span>
+					{/if}
+				</dd>
+			</dl>
+		</section>
+
+		<section aria-labelledby="dependency-paths" class="mt-12">
+			<h2 id="dependency-paths" class="font-medium text-text-strong">
+				{m['licenses.dependency_paths']({}, { locale })}
+			</h2>
+			<p class="mt-2 text-[0.8125rem] leading-relaxed text-pretty text-text-soft">
+				{m['licenses.dependency_summary']({}, { locale })}
+			</p>
+			<div class="mt-5 grid gap-x-8 gap-y-6 sm:grid-cols-2">
+				{#each data.origins as origin (origin.root)}
+					{@const nodes = [
+						{ id: `root:${origin.root}`, name: origin.root, version: '', href: '' },
+						...origin.nodes,
+					]}
+					<ol aria-label={origin.root}>
+						{#each nodes as node, index (node.id)}
+							<li
+								class="relative min-w-0 pb-3 pl-5 last:pb-0 before:absolute before:top-[0.4375rem] before:left-0 before:size-2 before:rounded-full before:border before:border-border-strong before:bg-page after:absolute after:top-[1rem] after:bottom-0 after:left-[0.21875rem] after:border-l after:border-border-strong last:after:hidden"
+							>
+								<div class="flex min-w-0 items-baseline gap-2">
+									{#if node.href}
+										<a
+											href={node.href}
+											class="focus-link min-w-0 truncate text-text-strong transition-colors duration-200 hover:text-text-soft focus-visible:text-text-soft"
+											>{node.name}</a
+										>
+									{:else}
+										<span class="min-w-0 truncate text-text-strong">{node.name}</span>
+									{/if}
+									{#if node.version}
+										<span class="shrink-0 font-mono text-[0.75rem] text-text-soft"
+											>{node.version}</span
+										>
+									{:else if index === 0}
+										<span class="shrink-0 text-[0.75rem] text-text-soft"
+											>{m['licenses.workspace_root']({}, { locale })}</span
+										>
+									{/if}
+								</div>
+							</li>
+						{/each}
+					</ol>
+				{/each}
+			</div>
 		</section>
 	</article>
 </main>

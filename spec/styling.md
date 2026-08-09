@@ -157,6 +157,21 @@ translation notice link. It is a layered background rather than `text-decoration
 animate its width; the resting layer remains visible throughout, so the animation reinforces an
 affordance instead of being the only indication that the text is a link.
 
+### Quiet metadata controls share one surface
+
+Compact icon-and-label controls in metadata rows use the shared `quiet-control` class. At rest
+they are soft text with no surface. Hover and keyboard focus strengthen the text **and** add the
+`paper-hover` background; changing only the ink leaves too little feedback for a padded button,
+while a permanent surface would make secondary actions compete with the content. The article
+summary disclosure is the reference control, and language selection and licence-page actions use
+the same geometry and states rather than copying its utility list.
+
+The visible focus outline stays on a `focus-link-inner` child, matching the text-and-icon shape
+inside the padded hit area. A Lucide icon in this row is `0.875rem`. Mingcute icons use a
+`1rem` height and automatic width, while a Lucide icon occupying that same language-marker slot is
+`0.8125rem`; these are optical calibrations for their different view boxes, not interchangeable
+box sizes.
+
 ## `:focus-visible` is the browser's guess, and the site keeps its own answer
 
 The pseudo-class is a heuristic, and it is not ours. Where it is least reliable is focus a script

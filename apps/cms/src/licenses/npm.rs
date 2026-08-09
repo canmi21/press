@@ -4,7 +4,7 @@
 //! workspace member ever asked for, including the build toolchain, and the question here is
 //! narrower -- what does each deployable actually ship. `--prod` answers exactly that.
 
-use super::{Found, Person, author, purl, web_url};
+use super::{Found, Person, author, prefer_origin, purl, web_url};
 use serde::Deserialize;
 use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
@@ -93,19 +93,26 @@ pub fn collect(repo: &Path) -> Result<Vec<Found>, String> {
 		let projects: Vec<Project> = serde_json::from_slice(&output.stdout)
 			.map_err(|error| format!("could not read pnpm output for {app}: {error}"))?;
 		for project in &projects {
-			walk(&project.dependencies, &mut packages);
+			walk(&project.dependencies, &mut packages, app, &[]);
 		}
 	}
 
 	Ok(packages.into_values().collect())
 }
 
-fn walk(nodes: &BTreeMap<String, Node>, into: &mut BTreeMap<String, Found>) {
+fn walk(
+	nodes: &BTreeMap<String, Node>,
+	into: &mut BTreeMap<String, Found>,
+	root: &str,
+	path: &[String],
+) {
 	for (name, node) in nodes {
 		// A linked workspace package. Its own dependencies are still worth walking, because a
 		// library the Workers use pulls third-party code in with it.
 		if node.version.starts_with("link:") {
-			walk(&node.dependencies, into);
+			let mut next = path.to_vec();
+			next.push(format!("workspace:{name}"));
+			walk(&node.dependencies, into, root, &next);
 			continue;
 		}
 		let Some(directory) = node.path.clone() else {
@@ -122,18 +129,25 @@ fn walk(nodes: &BTreeMap<String, Node>, into: &mut BTreeMap<String, Found>) {
 			// than recorded as declaring nothing.
 			if let Some(declared) = declared(&directory) {
 				slot.insert(Found {
-					purl: id,
+					purl: id.clone(),
 					spdx: declared.spdx,
 					authors: declared.authors,
 					description: declared.description,
 					homepage: declared.homepage,
 					documentation: None,
 					repository: declared.repository,
+					origins: BTreeMap::new(),
 					directory,
 				});
 			}
 		}
-		walk(&node.dependencies, into);
+		let Some(found) = into.get_mut(&id) else {
+			continue;
+		};
+		let mut next = path.to_vec();
+		next.push(id);
+		prefer_origin(&mut found.origins, root, next.clone());
+		walk(&node.dependencies, into, root, &next);
 	}
 }
 
@@ -328,8 +342,12 @@ mod tests {
 			},
 		)]);
 		let mut found = BTreeMap::new();
-		walk(&nodes, &mut found);
+		walk(&nodes, &mut found, "site", &[]);
 		assert_eq!(found.keys().collect::<Vec<_>>(), ["pkg:npm/hono@4.12.34"]);
+		assert_eq!(
+			found["pkg:npm/hono@4.12.34"].origins["site"],
+			["workspace:@canmi/urls", "pkg:npm/hono@4.12.34"]
+		);
 
 		std::fs::remove_dir_all(&root).unwrap();
 	}
@@ -359,7 +377,7 @@ mod tests {
 			),
 		]);
 		let mut found = BTreeMap::new();
-		walk(&nodes, &mut found);
+		walk(&nodes, &mut found, "site", &[]);
 		assert_eq!(found.keys().collect::<Vec<_>>(), ["pkg:npm/here@1.0.0"]);
 
 		std::fs::remove_dir_all(&root).unwrap();

@@ -69,5 +69,10 @@
 	"licenses.asserted_note": "This package did not declare a license. The expression was asserted from the terms it ships.",
 	"licenses.authors": "Authors",
 	"licenses.files": "License files",
-	"licenses.no_files": "This package does not distribute a license file."
+	"licenses.no_files": "This package does not distribute a license file.",
+	"licenses.terms_attribution": "Terms and attribution",
+	"licenses.license": "License",
+	"licenses.dependency_paths": "Dependency paths",
+	"licenses.dependency_summary": "One shortest resolved path from each workspace root that brings this package into the project.",
+	"licenses.workspace_root": "workspace root"
 }

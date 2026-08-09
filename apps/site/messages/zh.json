@@ -69,5 +69,10 @@
 	"licenses.asserted_note": "此软件包没有声明许可证；该表达式依据其随附的条款推定。",
 	"licenses.authors": "作者",
 	"licenses.files": "许可证文件",
-	"licenses.no_files": "此软件包未随附许可证文件。"
+	"licenses.no_files": "此软件包未随附许可证文件。",
+	"licenses.terms_attribution": "许可条款与署名",
+	"licenses.license": "许可证",
+	"licenses.dependency_paths": "依赖路径",
+	"licenses.dependency_summary": "展示从每个 workspace root 引入此软件包的一条最短解析路径。",
+	"licenses.workspace_root": "workspace root"
 }

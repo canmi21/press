@@ -69,5 +69,10 @@
 	"licenses.asserted_note": "このパッケージはライセンスを宣言していません。式は同梱されている条件から判断されています。",
 	"licenses.authors": "作者",
 	"licenses.files": "ライセンスファイル",
-	"licenses.no_files": "このパッケージにはライセンスファイルが同梱されていません。"
+	"licenses.no_files": "このパッケージにはライセンスファイルが同梱されていません。",
+	"licenses.terms_attribution": "条件と帰属",
+	"licenses.license": "ライセンス",
+	"licenses.dependency_paths": "依存経路",
+	"licenses.dependency_summary": "このパッケージをプロジェクトへ導入する、各 workspace root からの最短の解決済み経路を 1 つずつ示します。",
+	"licenses.workspace_root": "workspace root"
 }

@@ -1,6 +1,13 @@
 import { error } from '@sveltejs/kit';
 import { URLS } from '@canmi/urls';
-import { githubRepository, licenseSlug, licenseTerms, registryPackageUrl } from '$lib/licenses';
+import {
+	coordinates,
+	githubRepository,
+	licenseSlug,
+	licenseTerms,
+	packagePagePath,
+	registryPackageUrl,
+} from '$lib/licenses';
 import { packageForRoute, REGISTRY_NAMES } from '$lib/licenses/directory';
 import type { PageServerLoad } from './$types';
 
@@ -27,6 +34,21 @@ export const load: PageServerLoad = ({ params, locals }) => {
 		licenses: licenseTerms(found.package.spdx ?? '').map((license) => ({
 			license,
 			href: `/licenses/${licenseSlug(license)}`,
+		})),
+		origins: Object.entries(found.package.origins ?? {}).map(([root, path]) => ({
+			root,
+			nodes: path.map((node) => {
+				if (node.startsWith('workspace:')) {
+					return { id: node, name: node.slice('workspace:'.length), version: '', href: '' };
+				}
+				const parts = coordinates(node);
+				return {
+					id: node,
+					name: parts.name,
+					version: parts.version,
+					href: node === found.purl ? '' : packagePagePath(node),
+				};
+			}),
 		})),
 		githubHref: URLS.external.github.web,
 		locale: { code: locals.locale?.code ?? 'mw' },

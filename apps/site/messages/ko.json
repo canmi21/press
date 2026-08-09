@@ -69,5 +69,10 @@
 	"licenses.asserted_note": "이 패키지는 라이선스를 선언하지 않았습니다. 함께 배포된 조건을 바탕으로 표현식을 판단했습니다.",
 	"licenses.authors": "작성자",
 	"licenses.files": "라이선스 파일",
-	"licenses.no_files": "이 패키지는 라이선스 파일을 배포하지 않습니다."
+	"licenses.no_files": "이 패키지는 라이선스 파일을 배포하지 않습니다.",
+	"licenses.terms_attribution": "조건 및 저작자 표시",
+	"licenses.license": "라이선스",
+	"licenses.dependency_paths": "의존성 경로",
+	"licenses.dependency_summary": "이 패키지를 프로젝트에 가져오는 각 workspace root의 최단 해석 경로를 하나씩 표시합니다.",
+	"licenses.workspace_root": "workspace root"
 }

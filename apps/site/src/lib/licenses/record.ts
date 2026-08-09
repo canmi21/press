@@ -22,6 +22,8 @@ export type LicensePackage = {
 	homepage?: string;
 	documentation?: string;
 	repository?: string;
+	/** One shortest dependency path from each workspace root that reaches this package. */
+	origins?: Record<string, string[]>;
 	texts?: LicenseText[];
 };
 

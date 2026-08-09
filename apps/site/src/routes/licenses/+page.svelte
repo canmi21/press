@@ -80,26 +80,32 @@
 		<nav aria-label={m['licenses.actions']({}, { locale })} class="mt-4 flex flex-wrap gap-4">
 			<a
 				href="/licenses/pkgs"
-				class="focus-link inline-flex items-center gap-1.5 text-[0.9375rem] text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
+				class="quiet-control text-[0.9375rem]"
 			>
-				<FolderOpen class="size-4" aria-hidden="true" />
-				<span>{m['licenses.packages']({}, { locale })}</span>
+				<span class="focus-link-inner inline-flex items-center gap-1.5">
+					<FolderOpen class="size-3.5" aria-hidden="true" />
+					<span>{m['licenses.packages']({}, { locale })}</span>
+				</span>
 			</a>
 			<a
 				href="/licenses.txt"
 				data-sveltekit-reload
-				class="focus-link inline-flex items-center gap-1.5 text-[0.9375rem] text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
+				class="quiet-control text-[0.9375rem]"
 			>
-				<FileText class="size-4" aria-hidden="true" />
-				<span>{m['licenses.index']({}, { locale })}</span>
+				<span class="focus-link-inner inline-flex items-center gap-1.5">
+					<FileText class="size-3.5" aria-hidden="true" />
+					<span>{m['licenses.index']({}, { locale })}</span>
+				</span>
 			</a>
 			<a
 				href="/licenses/full.txt"
 				data-sveltekit-reload
-				class="focus-link inline-flex items-center gap-1.5 text-[0.9375rem] text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
+				class="quiet-control text-[0.9375rem]"
 			>
-				<Scale class="size-4" aria-hidden="true" />
-				<span>{m['licenses.full']({}, { locale })}</span>
+				<span class="focus-link-inner inline-flex items-center gap-1.5">
+					<Scale class="size-3.5" aria-hidden="true" />
+					<span>{m['licenses.full']({}, { locale })}</span>
+				</span>
 			</a>
 			<LanguageSwitcher code={locale} />
 		</nav>
