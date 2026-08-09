@@ -11,6 +11,23 @@
 	let { data }: { data: PageData } = $props();
 	const locale = $derived(data.locale.code);
 	const cdn = pickUrls(dev).cdn;
+
+	// A package reached only as a direct dependency has no indirect half, and a heading over an
+	// empty list would read as a missing answer rather than as nothing to say.
+	const dependents = $derived(
+		[
+			{
+				key: 'direct',
+				label: m['licenses.dependents_direct']({}, { locale }),
+				nodes: data.dependents.direct,
+			},
+			{
+				key: 'indirect',
+				label: m['licenses.dependents_indirect']({}, { locale }),
+				nodes: data.dependents.indirect,
+			},
+		].filter((group) => group.nodes.length > 0),
+	);
 </script>
 
 <svelte:head>
@@ -240,10 +257,10 @@
 			<h2 id="dependency-paths" class="font-medium text-text-strong">
 				{m['licenses.dependency_paths']({}, { locale })}
 			</h2>
-			<p class="mt-2 text-[0.8125rem] leading-relaxed text-pretty text-text-soft">
-				{m['licenses.dependency_summary']({}, { locale })}
-			</p>
-			<div class="mt-5 grid gap-x-8 gap-y-6 sm:grid-cols-2">
+			<!-- Always one column, however many roots there are. Each chain is read top to
+			bottom, and a second column beside the first asks the eye to start over somewhere
+			it has no reason to look. -->
+			<div class="mt-5 flex flex-col gap-6">
 				{#each data.origins as origin (origin.root)}
 					{@const nodes = [
 						{ id: `root:${origin.root}`, name: origin.root, version: '', href: '' },
@@ -280,5 +297,49 @@
 				{/each}
 			</div>
 		</section>
+
+		{#if data.dependents.direct.length}
+			<section aria-labelledby="dependents" class="mt-12">
+				<h2 id="dependents" class="font-medium text-text-strong">
+					{m['licenses.dependents']({}, { locale })}
+				</h2>
+				<div class="mt-5 flex flex-col gap-6">
+					{#each dependents as group (group.key)}
+						<div class="min-w-0">
+							<h3 class="text-[0.8125rem] text-text-soft">{group.label}</h3>
+							<!-- One run that wraps, rather than columns. The group holds anywhere from
+							one entry to over a hundred, and fixed columns serve neither end: three
+							entries leave two columns empty and break a long name onto its own line,
+							while a hundred in one strip is a column of scrolling. Wrapping fills
+							whatever width there is and lets the count decide the height. -->
+							<ul class="mt-3 flex flex-wrap gap-x-6 gap-y-2">
+								{#each group.nodes as node (node.id)}
+									<li class="flex min-w-0 items-baseline gap-2">
+										{#if node.href}
+											<a
+												href={node.href}
+												class="focus-link min-w-0 break-words text-text-strong transition-colors duration-200 hover:text-text-soft focus-visible:text-text-soft"
+												>{node.name}</a
+											>
+										{:else}
+											<span class="min-w-0 break-words text-text-strong">{node.name}</span>
+										{/if}
+										{#if node.version}
+											<span class="shrink-0 font-mono text-[0.75rem] text-text-soft"
+												>{node.version}</span
+											>
+										{:else}
+											<span class="shrink-0 text-[0.75rem] text-text-soft"
+												>{m['licenses.workspace_root']({}, { locale })}</span
+											>
+										{/if}
+									</li>
+								{/each}
+							</ul>
+						</div>
+					{/each}
+				</div>
+			</section>
+		{/if}
 	</article>
 </main>

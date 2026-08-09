@@ -6,7 +6,7 @@
 
 use super::{Found, Person, author, prefer_origin, purl, web_url};
 use serde::Deserialize;
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
@@ -137,6 +137,7 @@ fn walk(
 					documentation: None,
 					repository: declared.repository,
 					origins: BTreeMap::new(),
+					dependents: BTreeSet::new(),
 					directory,
 				});
 			}
@@ -144,6 +145,16 @@ fn walk(
 		let Some(found) = into.get_mut(&id) else {
 			continue;
 		};
+		// Whatever stands one step back on the path is what pulled this package in. An empty
+		// path means the app itself asked for it, which is a dependent worth naming rather
+		// than a gap: a package the deployable depends on directly is a different fact from
+		// one that only arrived through a library.
+		let parent = path
+			.last()
+			.cloned()
+			.unwrap_or_else(|| format!("workspace:{root}"));
+		found.dependents.insert(parent);
+
 		let mut next = path.to_vec();
 		next.push(id);
 		prefer_origin(&mut found.origins, root, next.clone());
@@ -347,6 +358,57 @@ mod tests {
 		assert_eq!(
 			found["pkg:npm/hono@4.12.34"].origins["site"],
 			["workspace:@canmi/urls", "pkg:npm/hono@4.12.34"]
+		);
+		assert_eq!(
+			found["pkg:npm/hono@4.12.34"]
+				.dependents
+				.iter()
+				.collect::<Vec<_>>(),
+			["workspace:@canmi/urls"]
+		);
+
+		std::fs::remove_dir_all(&root).unwrap();
+	}
+
+	/// The origin path keeps one route in; the dependents keep every package that asked.
+	#[test]
+	fn records_every_parent_of_a_package_two_of_them_share() {
+		let root = std::env::temp_dir().join(format!("cms-npm-dependents-{}", std::process::id()));
+		let shared = installed(&root, "shared", serde_json::json!({ "license": "MIT" }));
+		let middle = installed(&root, "middle", serde_json::json!({ "license": "MIT" }));
+
+		let leaf = |path: &PathBuf| Node {
+			version: "1.0.0".to_owned(),
+			path: Some(path.clone()),
+			dependencies: BTreeMap::new(),
+		};
+		let nodes = BTreeMap::from([
+			("shared".to_owned(), leaf(&shared)),
+			(
+				"middle".to_owned(),
+				Node {
+					version: "2.0.0".to_owned(),
+					path: Some(middle),
+					dependencies: BTreeMap::from([("shared".to_owned(), leaf(&shared))]),
+				},
+			),
+		]);
+		let mut found = BTreeMap::new();
+		walk(&nodes, &mut found, "site", &[]);
+
+		// The app depends on it directly, and so does the package beside it.
+		assert_eq!(
+			found["pkg:npm/shared@1.0.0"]
+				.dependents
+				.iter()
+				.collect::<Vec<_>>(),
+			["pkg:npm/middle@2.0.0", "workspace:site"]
+		);
+		// The shortest path is still the direct one, which is why the second parent needs
+		// somewhere else to be said.
+		assert_eq!(
+			found["pkg:npm/shared@1.0.0"].origins["site"],
+			["pkg:npm/shared@1.0.0"]
 		);
 
 		std::fs::remove_dir_all(&root).unwrap();

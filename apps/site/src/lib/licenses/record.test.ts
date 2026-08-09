@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 import {
 	HEADER,
 	coordinates,
+	dependentsOf,
 	githubRepository,
 	licenseOf,
 	licenseSlug,
@@ -68,6 +69,65 @@ describe('route paths', () => {
 		// One route path per package: a collision would silently serve one package's terms
 		// under another's name.
 		expect(table.size).toBe(purls.length);
+	});
+});
+
+describe('dependents', () => {
+	const tree: LicenseRecord = {
+		version: 0,
+		packages: {
+			'pkg:npm/leaf@1.0.0': { dependents: ['pkg:npm/middle@1.0.0', 'pkg:npm/other@1.0.0'] },
+			'pkg:npm/middle@1.0.0': { dependents: ['workspace:site'] },
+			'pkg:npm/other@1.0.0': { dependents: ['pkg:npm/middle@1.0.0', 'workspace:site'] },
+		},
+	};
+
+	it('splits the packages that name it from the ones that only reach it', () => {
+		expect(dependentsOf(tree, 'pkg:npm/leaf@1.0.0')).toEqual({
+			direct: ['pkg:npm/middle@1.0.0', 'pkg:npm/other@1.0.0'],
+			indirect: ['workspace:site'],
+		});
+	});
+
+	// `middle` is both: `leaf`'s own parent, and reachable again through `other`. Naming it
+	// twice would read as two dependents rather than one arriving by two routes.
+	it('keeps a package that is both direct and indirect on the direct side only', () => {
+		const { direct, indirect } = dependentsOf(tree, 'pkg:npm/leaf@1.0.0');
+		expect(direct).toContain('pkg:npm/middle@1.0.0');
+		expect(indirect).not.toContain('pkg:npm/middle@1.0.0');
+	});
+
+	it('terminates on a cycle', () => {
+		const cycle: LicenseRecord = {
+			version: 0,
+			packages: {
+				'pkg:npm/a@1.0.0': { dependents: ['pkg:npm/b@1.0.0'] },
+				'pkg:npm/b@1.0.0': { dependents: ['pkg:npm/a@1.0.0'] },
+			},
+		};
+		expect(dependentsOf(cycle, 'pkg:npm/a@1.0.0')).toEqual({
+			direct: ['pkg:npm/b@1.0.0'],
+			indirect: [],
+		});
+	});
+
+	// The claim the whole section rests on: every package in the record is here because
+	// something asked for it, so none of them can have an empty direct list.
+	it('gives every package in the real record at least one direct dependent', () => {
+		const orphans = Object.entries(record.packages)
+			.filter(([, entry]) => (entry.dependents ?? []).length === 0)
+			.map(([purl]) => purl);
+		expect(orphans).toEqual([]);
+	});
+
+	// A package can only be reached from a workspace root, so walking back from any of them
+	// has to arrive at one.
+	it('reaches a workspace label from every package in the real record', () => {
+		for (const purl of Object.keys(record.packages)) {
+			const { direct, indirect } = dependentsOf(record, purl);
+			const reached = [...direct, ...indirect];
+			expect(reached.some((label) => label.startsWith('workspace:'))).toBe(true);
+		}
 	});
 });
 
@@ -170,7 +230,7 @@ describe('splitting an SPDX expression', () => {
 
 describe('the record', () => {
 	it('uses the package metadata schema consumed by the directory pages', () => {
-		expect(record.version).toBe(3);
+		expect(record.version).toBe(4);
 	});
 	it('says where a license came from when the package did not declare it', () => {
 		expect(licenseOf({ spdx: 'MIT' })).toBe('MIT');

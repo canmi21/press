@@ -73,6 +73,8 @@
 	"licenses.terms_attribution": "Conditions et attribution",
 	"licenses.license": "Licence",
 	"licenses.dependency_paths": "Chemins de dépendance",
-	"licenses.dependency_summary": "Un plus court chemin résolu depuis chaque racine du workspace qui introduit ce paquet dans le projet.",
-	"licenses.workspace_root": "racine du workspace"
+	"licenses.workspace_root": "racine du workspace",
+	"licenses.dependents": "Utilisé par",
+	"licenses.dependents_direct": "Directement",
+	"licenses.dependents_indirect": "Via d'autres paquets"
 }

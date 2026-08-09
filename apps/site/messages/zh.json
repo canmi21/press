@@ -73,6 +73,8 @@
 	"licenses.terms_attribution": "许可条款与署名",
 	"licenses.license": "许可证",
 	"licenses.dependency_paths": "依赖路径",
-	"licenses.dependency_summary": "展示从每个 workspace root 引入此软件包的一条最短解析路径。",
-	"licenses.workspace_root": "workspace root"
+	"licenses.workspace_root": "workspace root",
+	"licenses.dependents": "被谁依赖",
+	"licenses.dependents_direct": "直接依赖",
+	"licenses.dependents_indirect": "经由其他软件包"
 }

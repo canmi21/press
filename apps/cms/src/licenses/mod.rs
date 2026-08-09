@@ -21,7 +21,7 @@ use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 use std::path::{Path, PathBuf};
 
-pub const VERSION: u32 = 3;
+pub const VERSION: u32 = 4;
 
 /// Extensions that say a file is code or configuration whatever it is called.
 ///
@@ -142,6 +142,12 @@ pub struct Package {
 	/// One shortest resolved path from each workspace root that reaches this package.
 	#[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
 	pub origins: BTreeMap<String, Vec<String>>,
+	/// Every package that depends on this one directly, as purls and `workspace:` labels.
+	///
+	/// Direct edges only. The indirect dependents are the transitive closure of these and are
+	/// derived where they are displayed. See spec/architecture.md.
+	#[serde(default, skip_serializing_if = "Vec::is_empty")]
+	pub dependents: Vec<String>,
 	#[serde(default, skip_serializing_if = "Vec::is_empty")]
 	pub texts: Vec<Text>,
 }
@@ -173,6 +179,8 @@ pub struct Found {
 	pub documentation: Option<String>,
 	pub repository: Option<String>,
 	pub origins: BTreeMap<String, Vec<String>>,
+	/// A set while collecting: the same parent is reached again through every other path to it.
+	pub dependents: BTreeSet<String>,
 	pub directory: PathBuf,
 }
 
@@ -425,6 +433,7 @@ pub fn write(
 				documentation: package.documentation,
 				repository: package.repository,
 				origins: package.origins,
+				dependents: package.dependents.into_iter().collect(),
 				texts,
 			},
 		);
@@ -648,6 +657,7 @@ mod tests {
 					documentation: None,
 					repository: None,
 					origins: BTreeMap::new(),
+					dependents: BTreeSet::new(),
 					directory: one,
 				},
 				Found {
@@ -659,6 +669,7 @@ mod tests {
 					documentation: None,
 					repository: None,
 					origins: BTreeMap::new(),
+					dependents: BTreeSet::new(),
 					directory: two,
 				},
 			],
@@ -691,6 +702,7 @@ mod tests {
 					documentation: None,
 					repository: None,
 					origins: BTreeMap::new(),
+					dependents: BTreeSet::new(),
 					directory: bare.clone(),
 				},
 				Found {
@@ -702,6 +714,7 @@ mod tests {
 					documentation: None,
 					repository: None,
 					origins: BTreeMap::new(),
+					dependents: BTreeSet::new(),
 					directory: bare,
 				},
 			],
@@ -732,6 +745,7 @@ mod tests {
 				documentation: None,
 				repository: None,
 				origins: BTreeMap::new(),
+				dependents: vec![],
 				texts: vec![],
 			},
 		);

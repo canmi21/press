@@ -548,6 +548,21 @@ every distinct reason the package is present without publishing the combinatoria
 equivalent routes through a graph; the page describes these as representative shortest paths,
 not as the only possible paths.
 
+That one path is therefore a representative rather than an inventory, so the record also carries
+**every package that depends on each one directly**, and the page splits those from the packages
+that only reach it through a chain. The shortest path names one parent; a package pulled in by
+four of them was answering a question the paths section cannot. The reverse edges come off the
+full graph rather than out of the origin walk, whose shortest-path pruning discards exactly the
+second and third parent that are the answer here.
+
+**Only the direct edges are stored; the indirect set is derived where it is displayed.** Two
+reasons, and the second is the one that generalises. The record is embedded whole into the site
+bundle, so anything written into it is weight on every page load, while walking a few hundred
+reverse edges per request is free. And a stored closure is a snapshot of the same edges: it can
+only ever agree with them or be wrong, which would leave the record holding two answers to one
+question. A generated record keeps the primitive facts and lets the derived ones be derived. A
+package reachable both ways is listed once, as direct, because the stronger fact is the true one.
+
 `/licenses` is the page over the same data, grouped by licence and ordered by what each covers.
 **An expression is flattened to the licences it names, and a package is filed under each of
 them** -- somebody looking for what is Apache-licensed here wants the packages that offer it as

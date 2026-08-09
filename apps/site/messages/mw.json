@@ -73,6 +73,8 @@
 	"licenses.terms_attribution": "Terms and attribution",
 	"licenses.license": "License",
 	"licenses.dependency_paths": "Dependency paths",
-	"licenses.dependency_summary": "One shortest resolved path from each workspace root that brings this package into the project.",
-	"licenses.workspace_root": "workspace root"
+	"licenses.workspace_root": "workspace root",
+	"licenses.dependents": "Depended on by",
+	"licenses.dependents_direct": "Directly",
+	"licenses.dependents_indirect": "Through other packages"
 }

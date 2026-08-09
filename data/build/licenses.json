@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "packages": {
     "pkg:cargo/adler2@2.0.1": {
       "spdx": "0BSD OR MIT OR Apache-2.0",
@@ -23,6 +23,9 @@
           "pkg:cargo/adler2@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/miniz_oxide@0.8.9"
+      ],
       "texts": [
         {
           "name": "LICENSE-0BSD",
@@ -54,6 +57,10 @@
           "pkg:cargo/aho-corasick@1.1.5"
         ]
       },
+      "dependents": [
+        "pkg:cargo/regex-automata@0.4.18",
+        "pkg:cargo/regex@1.13.1"
+      ],
       "texts": [
         {
           "name": "COPYING",
@@ -81,6 +88,10 @@
           "pkg:cargo/aligned-vec@0.6.4"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rav1e@0.8.1",
+        "pkg:cargo/v_frame@0.3.9"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -101,6 +112,9 @@
           "pkg:cargo/aligned@0.4.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/av-scenechange@0.14.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -131,6 +145,9 @@
           "pkg:cargo/android_system_properties@0.1.6"
         ]
       },
+      "dependents": [
+        "pkg:cargo/iana-time-zone@0.1.65"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -154,6 +171,9 @@
           "pkg:cargo/anstream@1.0.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/clap_builder@4.6.6"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -178,6 +198,9 @@
           "pkg:cargo/anstyle-parse@1.0.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/anstream@1.0.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -202,6 +225,9 @@
           "pkg:cargo/anstyle-query@1.1.5"
         ]
       },
+      "dependents": [
+        "pkg:cargo/anstream@1.0.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -226,6 +252,9 @@
           "pkg:cargo/anstyle-wincon@3.0.11"
         ]
       },
+      "dependents": [
+        "pkg:cargo/anstream@1.0.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -249,6 +278,11 @@
           "pkg:cargo/anstyle@1.0.14"
         ]
       },
+      "dependents": [
+        "pkg:cargo/anstream@1.0.0",
+        "pkg:cargo/anstyle-wincon@3.0.11",
+        "pkg:cargo/clap_builder@4.6.6"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -276,6 +310,13 @@
           "pkg:cargo/anyhow@1.0.104"
         ]
       },
+      "dependents": [
+        "pkg:cargo/av-scenechange@0.14.1",
+        "pkg:cargo/av1-grain@0.2.5",
+        "pkg:cargo/claude-codes@2.1.223",
+        "pkg:cargo/prost-derive@0.14.4",
+        "pkg:cargo/tzf-rs@1.3.7"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -319,6 +360,10 @@
           "pkg:cargo/arbitrary@1.4.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/libfuzzer-sys@0.4.13",
+        "pkg:cargo/rav1e@0.8.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -340,7 +385,10 @@
           "pkg:cargo/archmage@0.9.28",
           "pkg:cargo/archmage-macros@0.9.28"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:cargo/archmage@0.9.28"
+      ]
     },
     "pkg:cargo/archmage@0.9.28": {
       "spdx": "MIT OR Apache-2.0",
@@ -353,6 +401,12 @@
           "pkg:cargo/archmage@0.9.28"
         ]
       },
+      "dependents": [
+        "pkg:cargo/heic@0.1.6",
+        "pkg:cargo/linear-srgb@0.6.12",
+        "pkg:cargo/magetypes@0.9.28",
+        "pkg:cargo/ultrahdr-core@0.4.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -380,6 +434,10 @@
           "pkg:cargo/arg_enum_proc_macro@0.3.4"
         ]
       },
+      "dependents": [
+        "pkg:cargo/av-scenechange@0.14.1",
+        "pkg:cargo/rav1e@0.8.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -403,6 +461,11 @@
           "pkg:cargo/arrayref@0.3.9"
         ]
       },
+      "dependents": [
+        "pkg:cargo/blake3@1.8.6",
+        "pkg:cargo/tiny-skia-path@0.12.0",
+        "pkg:cargo/tiny-skia@0.12.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -426,6 +489,14 @@
           "pkg:cargo/arrayvec@0.7.8"
         ]
       },
+      "dependents": [
+        "pkg:cargo/av-scenechange@0.14.1",
+        "pkg:cargo/av1-grain@0.2.5",
+        "pkg:cargo/avif-serialize@0.8.9",
+        "pkg:cargo/blake3@1.8.6",
+        "pkg:cargo/rav1e@0.8.1",
+        "pkg:cargo/tiny-skia@0.12.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -458,6 +529,9 @@
           "pkg:cargo/as-slice@0.2.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/aligned@0.4.3"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -486,6 +560,9 @@
           "pkg:cargo/autocfg@1.5.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/num-traits@0.2.19"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -513,6 +590,9 @@
           "pkg:cargo/av-scenechange@0.14.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rav1e@0.8.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -533,6 +613,9 @@
           "pkg:cargo/av1-grain@0.2.5"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rav1e@0.8.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -556,6 +639,9 @@
           "pkg:cargo/avif-serialize@0.8.9"
         ]
       },
+      "dependents": [
+        "pkg:cargo/ravif@0.13.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -579,6 +665,10 @@
           "pkg:cargo/base64@0.22.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/ureq-proto@0.6.0",
+        "pkg:cargo/ureq@3.3.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -605,6 +695,9 @@
           "pkg:cargo/base64@0.23.1"
         ]
       },
+      "dependents": [
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -633,6 +726,9 @@
           "pkg:cargo/bit_field@0.10.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/exr@1.74.2"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -662,6 +758,9 @@
           "pkg:cargo/bitflags@1.3.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/defmt@1.1.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -690,6 +789,15 @@
           "pkg:cargo/bitflags@2.13.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cosmic-text@0.19.0",
+        "pkg:cargo/harfrust@0.5.2",
+        "pkg:cargo/png@0.18.1",
+        "pkg:cargo/raw-cpuid@11.6.0",
+        "pkg:cargo/redox_syscall@0.5.18",
+        "pkg:cargo/rustix@1.1.4",
+        "pkg:cargo/selectors@0.38.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -719,6 +827,9 @@
           "pkg:cargo/bitstream-io@4.10.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rav1e@0.8.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -748,6 +859,9 @@
           "pkg:cargo/blake3@1.8.6"
         ]
       },
+      "dependents": [
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE_A2",
@@ -780,6 +894,9 @@
           "pkg:cargo/built@0.8.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rav1e@0.8.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -807,6 +924,9 @@
           "pkg:cargo/bumpalo@3.20.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/wasm-bindgen-macro-support@0.2.126"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -833,6 +953,27 @@
           "pkg:cargo/bytemuck@1.25.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/fast_image_resize@6.1.0",
+        "pkg:cargo/font-types@0.11.3",
+        "pkg:cargo/font-types@0.12.2",
+        "pkg:cargo/harfrust@0.5.2",
+        "pkg:cargo/image@0.25.10",
+        "pkg:cargo/linear-srgb@0.6.12",
+        "pkg:cargo/num-complex@0.4.6",
+        "pkg:cargo/pulp@0.22.3",
+        "pkg:cargo/qoi@0.4.1",
+        "pkg:cargo/read-fonts@0.37.0",
+        "pkg:cargo/read-fonts@0.41.0",
+        "pkg:cargo/rgb@0.8.53",
+        "pkg:cargo/safe_arch@1.1.0",
+        "pkg:cargo/skrifa@0.40.0",
+        "pkg:cargo/skrifa@0.44.0",
+        "pkg:cargo/tiny-skia-path@0.12.0",
+        "pkg:cargo/tiny-skia@0.12.0",
+        "pkg:cargo/ultrahdr-core@0.4.1",
+        "pkg:cargo/wide@1.5.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -864,6 +1005,9 @@
           "pkg:cargo/bytemuck_derive@1.12.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/bytemuck@1.25.2"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -891,6 +1035,10 @@
           "pkg:cargo/byteorder-lite@0.1.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/image-webp@0.2.4",
+        "pkg:cargo/image@0.25.10"
+      ],
       "texts": [
         {
           "name": "LICENSE-MIT",
@@ -917,6 +1065,9 @@
           "pkg:cargo/byteorder@1.5.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/hash32@0.3.1"
+      ],
       "texts": [
         {
           "name": "COPYING",
@@ -946,6 +1097,12 @@
           "pkg:cargo/bytes@1.12.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/http@1.5.0",
+        "pkg:cargo/prost@0.14.4",
+        "pkg:cargo/tokio@1.53.1",
+        "pkg:cargo/tzf-rs@1.3.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -965,6 +1122,14 @@
           "pkg:cargo/cc@1.4.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/blake3@1.8.6",
+        "pkg:cargo/iana-time-zone-haiku@0.1.2",
+        "pkg:cargo/libfuzzer-sys@0.4.13",
+        "pkg:cargo/libwebp-sys@0.9.6",
+        "pkg:cargo/rav1e@0.8.1",
+        "pkg:cargo/ring@0.17.14"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -991,6 +1156,24 @@
           "pkg:cargo/cfg-if@1.0.4"
         ]
       },
+      "dependents": [
+        "pkg:cargo/blake3@1.8.6",
+        "pkg:cargo/chacha20@0.10.1",
+        "pkg:cargo/crc32fast@1.5.0",
+        "pkg:cargo/fast_image_resize@6.1.0",
+        "pkg:cargo/getrandom@0.2.17",
+        "pkg:cargo/getrandom@0.3.4",
+        "pkg:cargo/getrandom@0.4.3",
+        "pkg:cargo/half@2.7.1",
+        "pkg:cargo/js-sys@0.3.103",
+        "pkg:cargo/maybe-rayon@0.1.1",
+        "pkg:cargo/parking_lot_core@0.9.12",
+        "pkg:cargo/pulp@0.22.3",
+        "pkg:cargo/rav1e@0.8.1",
+        "pkg:cargo/ring@0.17.14",
+        "pkg:cargo/tiny-skia@0.12.0",
+        "pkg:cargo/wasm-bindgen@0.2.126"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1018,6 +1201,9 @@
           "pkg:cargo/chacha20@0.10.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rand@0.10.2"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1041,6 +1227,9 @@
           "pkg:cargo/chrono@0.4.45"
         ]
       },
+      "dependents": [
+        "pkg:cargo/claude-codes@2.1.223"
+      ],
       "texts": [
         {
           "name": "LICENSE.txt",
@@ -1058,6 +1247,9 @@
           "pkg:cargo/clap@4.6.6"
         ]
       },
+      "dependents": [
+        "pkg:cargo/tzf-rs@1.3.7"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1080,6 +1272,9 @@
           "pkg:cargo/clap_builder@4.6.6"
         ]
       },
+      "dependents": [
+        "pkg:cargo/clap@4.6.6"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1102,6 +1297,9 @@
           "pkg:cargo/clap_derive@4.6.4"
         ]
       },
+      "dependents": [
+        "pkg:cargo/clap@4.6.6"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1125,6 +1323,9 @@
           "pkg:cargo/clap_lex@1.1.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/clap_builder@4.6.6"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1151,7 +1352,10 @@
         "cms": [
           "pkg:cargo/claude-codes@2.1.223"
         ]
-      }
+      },
+      "dependents": [
+        "workspace:cms"
+      ]
     },
     "pkg:cargo/color_quant@1.1.0": {
       "spdx": "MIT",
@@ -1169,6 +1373,10 @@
           "pkg:cargo/color_quant@1.1.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/gif@0.14.2",
+        "pkg:cargo/image@0.25.10"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -1189,6 +1397,9 @@
           "pkg:cargo/colorchoice@1.0.5"
         ]
       },
+      "dependents": [
+        "pkg:cargo/anstream@1.0.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1212,6 +1423,9 @@
           "pkg:cargo/console@0.16.4"
         ]
       },
+      "dependents": [
+        "pkg:cargo/indicatif@0.18.6"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -1235,6 +1449,9 @@
           "pkg:cargo/constant_time_eq@0.4.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/blake3@1.8.6"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1268,6 +1485,9 @@
           "pkg:cargo/core-foundation-sys@0.8.7"
         ]
       },
+      "dependents": [
+        "pkg:cargo/iana-time-zone@0.1.65"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1295,6 +1515,11 @@
           "pkg:cargo/core_maths@0.1.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/harfrust@0.5.2",
+        "pkg:cargo/read-fonts@0.37.0",
+        "pkg:cargo/ttf-parser@0.25.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -1317,6 +1542,9 @@
           "pkg:cargo/cosmic-text@0.19.0"
         ]
       },
+      "dependents": [
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1344,6 +1572,10 @@
           "pkg:cargo/cpufeatures@0.3.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/blake3@1.8.6",
+        "pkg:cargo/chacha20@0.10.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1374,6 +1606,10 @@
           "pkg:cargo/crc32fast@1.5.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/flate2@1.1.9",
+        "pkg:cargo/png@0.18.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1398,6 +1634,9 @@
           "pkg:cargo/crossbeam-deque@0.8.7"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rayon-core@1.13.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1423,6 +1662,9 @@
           "pkg:cargo/crossbeam-epoch@0.9.20"
         ]
       },
+      "dependents": [
+        "pkg:cargo/crossbeam-deque@0.8.7"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1447,6 +1689,11 @@
           "pkg:cargo/crossbeam-utils@0.8.22"
         ]
       },
+      "dependents": [
+        "pkg:cargo/crossbeam-deque@0.8.7",
+        "pkg:cargo/crossbeam-epoch@0.9.20",
+        "pkg:cargo/rayon-core@1.13.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1476,6 +1723,9 @@
           "pkg:cargo/crunchy@0.2.4"
         ]
       },
+      "dependents": [
+        "pkg:cargo/half@2.7.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -1500,6 +1750,9 @@
           "pkg:cargo/cssparser-macros@0.7.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cssparser@0.37.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -1523,6 +1776,10 @@
           "pkg:cargo/cssparser@0.37.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/scraper@0.27.0",
+        "pkg:cargo/selectors@0.38.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -1546,6 +1803,9 @@
           "pkg:cargo/defmt-macros@1.1.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/defmt@1.1.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1573,7 +1833,10 @@
           "pkg:cargo/defmt-macros@1.1.1",
           "pkg:cargo/defmt-parser@1.0.0"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:cargo/defmt-macros@1.1.1"
+      ]
     },
     "pkg:cargo/defmt@1.1.1": {
       "spdx": "MIT OR Apache-2.0",
@@ -1591,6 +1854,10 @@
           "pkg:cargo/defmt@1.1.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/jiff-core@0.1.0",
+        "pkg:cargo/jiff@0.2.35"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1620,6 +1887,9 @@
           "pkg:cargo/derive_more-impl@2.1.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/derive_more@2.1.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -1644,6 +1914,9 @@
           "pkg:cargo/derive_more@2.1.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/selectors@0.38.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -1672,6 +1945,13 @@
           "pkg:cargo/displaydoc@0.2.7"
         ]
       },
+      "dependents": [
+        "pkg:cargo/icu_collections@2.2.0",
+        "pkg:cargo/icu_locale_core@2.2.0",
+        "pkg:cargo/icu_provider@2.2.0",
+        "pkg:cargo/tinystr@0.8.3",
+        "pkg:cargo/zerotrie@0.2.4"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1699,6 +1979,9 @@
           "pkg:cargo/document-features@0.2.12"
         ]
       },
+      "dependents": [
+        "pkg:cargo/fast_image_resize@6.1.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1726,6 +2009,9 @@
           "pkg:cargo/dtoa-short@0.3.5"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cssparser@0.37.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -1751,6 +2037,9 @@
           "pkg:cargo/dtoa@1.0.11"
         ]
       },
+      "dependents": [
+        "pkg:cargo/dtoa-short@0.3.5"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1780,6 +2069,9 @@
           "pkg:cargo/ego-tree@0.11.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/scraper@0.27.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -1799,6 +2091,10 @@
           "pkg:cargo/either@1.17.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/itertools@0.14.0",
+        "pkg:cargo/rayon@1.12.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1827,6 +2123,9 @@
           "pkg:cargo/encode_unicode@1.0.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/console@0.16.4"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1847,7 +2146,11 @@
           "pkg:cargo/heic@0.1.6",
           "pkg:cargo/enough@0.4.4"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:cargo/heic@0.1.6",
+        "pkg:cargo/ultrahdr-core@0.4.1"
+      ]
     },
     "pkg:cargo/equator-macro@0.4.2": {
       "spdx": "MIT",
@@ -1867,6 +2170,9 @@
           "pkg:cargo/equator-macro@0.4.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/equator@0.4.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -1891,6 +2197,9 @@
           "pkg:cargo/equator@0.4.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/aligned-vec@0.6.4"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -1909,6 +2218,9 @@
           "pkg:cargo/equivalent@1.0.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/indexmap@2.14.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1940,6 +2252,10 @@
           "pkg:cargo/errno@0.3.14"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rustix@1.1.4",
+        "pkg:cargo/signal-hook-registry@1.4.8"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -1966,6 +2282,9 @@
           "pkg:cargo/exr@1.74.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/image@0.25.10"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -1988,6 +2307,9 @@
           "pkg:cargo/fast_image_resize@6.1.0"
         ]
       },
+      "dependents": [
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2016,6 +2338,10 @@
           "pkg:cargo/fastrand@2.5.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/phf_generator@0.13.1",
+        "pkg:cargo/tempfile@3.27.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2043,6 +2369,9 @@
           "pkg:cargo/fax@0.2.7"
         ]
       },
+      "dependents": [
+        "pkg:cargo/tiff@0.11.3"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -2068,6 +2397,9 @@
           "pkg:cargo/fdeflate@0.3.7"
         ]
       },
+      "dependents": [
+        "pkg:cargo/png@0.18.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2091,6 +2423,9 @@
           "pkg:cargo/find-msvc-tools@0.1.10"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cc@1.4.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2120,6 +2455,9 @@
           "pkg:cargo/fixedbitset@0.5.7"
         ]
       },
+      "dependents": [
+        "pkg:cargo/petgraph@0.8.3"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2151,6 +2489,11 @@
           "pkg:cargo/flate2@1.1.9"
         ]
       },
+      "dependents": [
+        "pkg:cargo/png@0.18.1",
+        "pkg:cargo/tiff@0.11.3",
+        "pkg:cargo/ureq@3.3.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2180,6 +2523,9 @@
           "pkg:cargo/foldhash@0.1.5"
         ]
       },
+      "dependents": [
+        "pkg:cargo/hashbrown@0.15.5"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -2199,6 +2545,9 @@
           "pkg:cargo/font-types@0.11.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/read-fonts@0.37.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2223,6 +2572,9 @@
           "pkg:cargo/font-types@0.12.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/read-fonts@0.41.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2247,6 +2599,9 @@
           "pkg:cargo/fontconfig-parser@0.5.8"
         ]
       },
+      "dependents": [
+        "pkg:cargo/fontdb@0.23.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -2270,6 +2625,9 @@
           "pkg:cargo/fontdb@0.23.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cosmic-text@0.19.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -2292,6 +2650,9 @@
           "pkg:cargo/form_urlencoded@1.2.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/url@2.5.8"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2317,6 +2678,9 @@
           "pkg:cargo/futures-core@0.3.33"
         ]
       },
+      "dependents": [
+        "pkg:cargo/futures-util@0.3.33"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2342,6 +2706,9 @@
           "pkg:cargo/futures-task@0.3.33"
         ]
       },
+      "dependents": [
+        "pkg:cargo/futures-util@0.3.33"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2366,6 +2733,9 @@
           "pkg:cargo/futures-util@0.3.33"
         ]
       },
+      "dependents": [
+        "pkg:cargo/js-sys@0.3.103"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2389,6 +2759,9 @@
           "pkg:cargo/geometry-rs@0.5.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/tzf-rs@1.3.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -2411,6 +2784,9 @@
           "pkg:cargo/getopts@0.2.24"
         ]
       },
+      "dependents": [
+        "pkg:cargo/scraper@0.27.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2440,6 +2816,9 @@
           "pkg:cargo/getrandom@0.2.17"
         ]
       },
+      "dependents": [
+        "pkg:cargo/ring@0.17.14"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2470,6 +2849,9 @@
           "pkg:cargo/getrandom@0.3.4"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rand_core@0.9.5"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2497,6 +2879,11 @@
           "pkg:cargo/getrandom@0.4.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/jobserver@0.1.35",
+        "pkg:cargo/rand@0.10.2",
+        "pkg:cargo/uuid@1.24.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2525,6 +2912,9 @@
           "pkg:cargo/gif@0.14.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/image@0.25.10"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2554,6 +2944,9 @@
           "pkg:cargo/glob@0.3.4"
         ]
       },
+      "dependents": [
+        "pkg:cargo/libwebp-sys@0.9.6"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2581,6 +2974,11 @@
           "pkg:cargo/half@2.7.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/exr@1.74.2",
+        "pkg:cargo/tiff@0.11.3",
+        "pkg:cargo/ultrahdr-core@0.4.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2601,7 +2999,10 @@
           "pkg:cargo/cosmic-text@0.19.0",
           "pkg:cargo/harfrust@0.5.2"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:cargo/cosmic-text@0.19.0"
+      ]
     },
     "pkg:cargo/hash32@0.3.1": {
       "spdx": "MIT OR Apache-2.0",
@@ -2619,6 +3020,9 @@
           "pkg:cargo/hash32@0.3.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/heapless@0.8.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2647,6 +3051,9 @@
           "pkg:cargo/hashbrown@0.15.5"
         ]
       },
+      "dependents": [
+        "pkg:cargo/petgraph@0.8.3"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2669,6 +3076,9 @@
           "pkg:cargo/hashbrown@0.17.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/indexmap@2.14.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2702,6 +3112,9 @@
           "pkg:cargo/heapless@0.8.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rstar@0.13.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2724,6 +3137,10 @@
           "pkg:cargo/heck@0.5.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/clap_derive@4.6.4",
+        "pkg:cargo/prost-build@0.14.4"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2744,6 +3161,9 @@
           "pkg:cargo/heic@0.1.6"
         ]
       },
+      "dependents": [
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE-AGPL3",
@@ -2771,6 +3191,9 @@
           "pkg:cargo/html5ever@0.39.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/scraper@0.27.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2805,6 +3228,9 @@
           "pkg:cargo/http@1.5.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/ureq-proto@0.6.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2833,6 +3259,9 @@
           "pkg:cargo/httparse@1.10.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/ureq-proto@0.6.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2861,6 +3290,9 @@
           "pkg:cargo/iana-time-zone-haiku@0.1.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/iana-time-zone@0.1.65"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2894,6 +3326,9 @@
           "pkg:cargo/iana-time-zone@0.1.65"
         ]
       },
+      "dependents": [
+        "pkg:cargo/chrono@0.4.45"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -2924,6 +3359,10 @@
           "pkg:cargo/icu_collections@2.2.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/icu_normalizer@2.2.0",
+        "pkg:cargo/icu_properties@2.2.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -2950,6 +3389,10 @@
           "pkg:cargo/icu_locale_core@2.2.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/icu_properties@2.2.0",
+        "pkg:cargo/icu_provider@2.2.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -2975,6 +3418,9 @@
           "pkg:cargo/icu_normalizer@2.2.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/idna_adapter@1.2.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -3001,6 +3447,9 @@
           "pkg:cargo/icu_normalizer_data@2.2.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/icu_normalizer@2.2.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -3026,6 +3475,10 @@
           "pkg:cargo/icu_properties@2.2.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/icu_normalizer@2.2.0",
+        "pkg:cargo/idna_adapter@1.2.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -3052,6 +3505,9 @@
           "pkg:cargo/icu_properties_data@2.2.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/icu_properties@2.2.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -3078,6 +3534,10 @@
           "pkg:cargo/icu_provider@2.2.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/icu_normalizer@2.2.0",
+        "pkg:cargo/icu_properties@2.2.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -3100,6 +3560,9 @@
           "pkg:cargo/idna@1.1.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/url@2.5.8"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -3129,6 +3592,9 @@
           "pkg:cargo/idna_adapter@1.2.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/idna@1.1.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -3151,6 +3617,9 @@
           "pkg:cargo/image-webp@0.2.4"
         ]
       },
+      "dependents": [
+        "pkg:cargo/image@0.25.10"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -3178,6 +3647,11 @@
           "pkg:cargo/image@0.25.10"
         ]
       },
+      "dependents": [
+        "pkg:cargo/fast_image_resize@6.1.0",
+        "pkg:cargo/webp@0.3.1",
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -3206,6 +3680,10 @@
           "pkg:cargo/imgref@1.12.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/loop9@0.1.5",
+        "pkg:cargo/ravif@0.13.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -3228,6 +3706,11 @@
           "pkg:cargo/indexmap@2.14.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/petgraph@0.8.3",
+        "pkg:cargo/serde_json@1.0.151",
+        "pkg:cargo/serde_yaml_ng@0.10.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -3249,6 +3732,9 @@
           "pkg:cargo/indicatif@0.18.6"
         ]
       },
+      "dependents": [
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -3272,6 +3758,9 @@
           "pkg:cargo/interpolate_name@0.2.4"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rav1e@0.8.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -3292,6 +3781,9 @@
           "pkg:cargo/is_terminal_polyfill@1.70.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/anstream@1.0.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -3320,6 +3812,11 @@
           "pkg:cargo/itertools@0.14.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/prost-build@0.14.4",
+        "pkg:cargo/prost-derive@0.14.4",
+        "pkg:cargo/rav1e@0.8.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -3347,6 +3844,12 @@
           "pkg:cargo/itoa@1.0.18"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cssparser@0.37.0",
+        "pkg:cargo/http@1.5.0",
+        "pkg:cargo/serde_json@1.0.151",
+        "pkg:cargo/serde_yaml_ng@0.10.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -3375,6 +3878,10 @@
           "pkg:cargo/jiff-core@0.1.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/jiff-static@0.2.35",
+        "pkg:cargo/jiff@0.2.35"
+      ],
       "texts": [
         {
           "name": "COPYING",
@@ -3403,6 +3910,9 @@
           "pkg:cargo/jiff-static@0.2.35"
         ]
       },
+      "dependents": [
+        "pkg:cargo/jiff@0.2.35"
+      ],
       "texts": [
         {
           "name": "COPYING",
@@ -3431,6 +3941,9 @@
           "pkg:cargo/jiff-tzdb-platform@0.1.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/jiff@0.2.35"
+      ],
       "texts": [
         {
           "name": "COPYING",
@@ -3460,6 +3973,9 @@
           "pkg:cargo/jiff-tzdb@0.1.8"
         ]
       },
+      "dependents": [
+        "pkg:cargo/jiff-tzdb-platform@0.1.3"
+      ],
       "texts": [
         {
           "name": "COPYING",
@@ -3486,6 +4002,9 @@
           "pkg:cargo/jiff@0.2.35"
         ]
       },
+      "dependents": [
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "COPYING",
@@ -3515,6 +4034,10 @@
           "pkg:cargo/jobserver@0.1.35"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cc@1.4.1",
+        "pkg:cargo/nasm-rs@0.3.2"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -3544,6 +4067,11 @@
           "pkg:cargo/js-sys@0.3.103"
         ]
       },
+      "dependents": [
+        "pkg:cargo/chrono@0.4.45",
+        "pkg:cargo/iana-time-zone@0.1.65",
+        "pkg:cargo/web-time@1.1.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -3571,6 +4099,9 @@
           "pkg:cargo/kamadak-exif@0.6.1"
         ]
       },
+      "dependents": [
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -3595,6 +4126,9 @@
           "pkg:cargo/lebe@0.5.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/exr@1.74.2"
+      ],
       "texts": [
         {
           "name": "LICENSE-BSD-3-Clause",
@@ -3612,6 +4146,28 @@
           "pkg:cargo/libc@0.2.189"
         ]
       },
+      "dependents": [
+        "pkg:cargo/android_system_properties@0.1.6",
+        "pkg:cargo/cc@1.4.1",
+        "pkg:cargo/console@0.16.4",
+        "pkg:cargo/cpufeatures@0.3.0",
+        "pkg:cargo/errno@0.3.14",
+        "pkg:cargo/getrandom@0.2.17",
+        "pkg:cargo/getrandom@0.3.4",
+        "pkg:cargo/getrandom@0.4.3",
+        "pkg:cargo/jobserver@0.1.35",
+        "pkg:cargo/memmap2@0.9.11",
+        "pkg:cargo/mio@1.2.2",
+        "pkg:cargo/parking_lot_core@0.9.12",
+        "pkg:cargo/rav1e@0.8.1",
+        "pkg:cargo/ring@0.17.14",
+        "pkg:cargo/rustix@1.1.4",
+        "pkg:cargo/signal-hook-registry@1.4.8",
+        "pkg:cargo/socket2@0.6.5",
+        "pkg:cargo/sys-locale@0.3.2",
+        "pkg:cargo/tokio@1.53.1",
+        "pkg:cargo/which@8.0.5"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -3639,6 +4195,9 @@
           "pkg:cargo/libfuzzer-sys@0.4.13"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rav1e@0.8.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -3675,6 +4234,11 @@
           "pkg:cargo/libm@0.2.16"
         ]
       },
+      "dependents": [
+        "pkg:cargo/core_maths@0.1.1",
+        "pkg:cargo/num-traits@0.2.19",
+        "pkg:cargo/pulp@0.22.3"
+      ],
       "texts": [
         {
           "name": "LICENSE.txt",
@@ -3700,7 +4264,10 @@
           "pkg:cargo/webp@0.3.1",
           "pkg:cargo/libwebp-sys@0.9.6"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:cargo/webp@0.3.1"
+      ]
     },
     "pkg:cargo/linear-srgb@0.6.12": {
       "spdx": "MIT OR Apache-2.0",
@@ -3718,6 +4285,9 @@
           "pkg:cargo/linear-srgb@0.6.12"
         ]
       },
+      "dependents": [
+        "pkg:cargo/ultrahdr-core@0.4.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -3743,6 +4313,9 @@
           "pkg:cargo/linebender_resource_handle@0.1.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cosmic-text@0.19.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -3773,6 +4346,9 @@
           "pkg:cargo/linux-raw-sys@0.12.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rustix@1.1.4"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -3808,6 +4384,9 @@
           "pkg:cargo/litemap@0.8.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/icu_locale_core@2.2.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -3832,6 +4411,9 @@
           "pkg:cargo/litrs@1.0.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/document-features@0.2.12"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -3859,6 +4441,9 @@
           "pkg:cargo/lock_api@0.4.14"
         ]
       },
+      "dependents": [
+        "pkg:cargo/parking_lot@0.12.5"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -3886,6 +4471,25 @@
           "pkg:cargo/log@0.4.33"
         ]
       },
+      "dependents": [
+        "pkg:cargo/av-scenechange@0.14.1",
+        "pkg:cargo/av1-grain@0.2.5",
+        "pkg:cargo/claude-codes@2.1.223",
+        "pkg:cargo/cosmic-text@0.19.0",
+        "pkg:cargo/fontdb@0.23.0",
+        "pkg:cargo/html5ever@0.39.0",
+        "pkg:cargo/iana-time-zone@0.1.65",
+        "pkg:cargo/jiff@0.2.35",
+        "pkg:cargo/markup5ever@0.39.0",
+        "pkg:cargo/nasm-rs@0.3.2",
+        "pkg:cargo/prost-build@0.14.4",
+        "pkg:cargo/rav1e@0.8.1",
+        "pkg:cargo/rustls@0.23.43",
+        "pkg:cargo/selectors@0.38.0",
+        "pkg:cargo/tiny-skia@0.12.0",
+        "pkg:cargo/ureq-proto@0.6.0",
+        "pkg:cargo/ureq@3.3.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -3913,6 +4517,9 @@
           "pkg:cargo/loop9@0.1.5"
         ]
       },
+      "dependents": [
+        "pkg:cargo/ravif@0.13.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -3930,7 +4537,12 @@
           "pkg:cargo/heic@0.1.6",
           "pkg:cargo/magetypes@0.9.28"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:cargo/heic@0.1.6",
+        "pkg:cargo/linear-srgb@0.6.12",
+        "pkg:cargo/ultrahdr-core@0.4.1"
+      ]
     },
     "pkg:cargo/markup5ever@0.39.0": {
       "spdx": "MIT OR Apache-2.0",
@@ -3949,6 +4561,9 @@
           "pkg:cargo/markup5ever@0.39.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/html5ever@0.39.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -3972,6 +4587,9 @@
           "pkg:cargo/maybe-rayon@0.1.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rav1e@0.8.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -3999,6 +4617,15 @@
           "pkg:cargo/memchr@2.8.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/aho-corasick@1.1.5",
+        "pkg:cargo/heic@0.1.6",
+        "pkg:cargo/no_std_io2@0.9.4",
+        "pkg:cargo/nom@8.0.0",
+        "pkg:cargo/regex-automata@0.4.18",
+        "pkg:cargo/regex@1.13.1",
+        "pkg:cargo/serde_json@1.0.151"
+      ],
       "texts": [
         {
           "name": "COPYING",
@@ -4033,6 +4660,9 @@
           "pkg:cargo/memmap2@0.9.11"
         ]
       },
+      "dependents": [
+        "pkg:cargo/fontdb@0.23.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4069,6 +4699,11 @@
           "pkg:cargo/miniz_oxide@0.8.9"
         ]
       },
+      "dependents": [
+        "pkg:cargo/exr@1.74.2",
+        "pkg:cargo/flate2@1.1.9",
+        "pkg:cargo/png@0.18.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -4110,6 +4745,9 @@
           "pkg:cargo/mio@1.2.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/tokio@1.53.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -4134,6 +4772,9 @@
           "pkg:cargo/moxcms@0.8.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/image@0.25.10"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE.md",
@@ -4162,6 +4803,9 @@
           "pkg:cargo/multimap@0.10.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/prost-build@0.14.4"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4190,6 +4834,9 @@
           "pkg:cargo/mutate_once@0.1.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/kamadak-exif@0.6.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -4227,6 +4874,9 @@
           "pkg:cargo/nasm-rs@0.3.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rav1e@0.8.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4258,6 +4908,12 @@
           "pkg:cargo/new_debug_unreachable@1.0.6"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rav1e@0.8.1",
+        "pkg:cargo/selectors@0.38.0",
+        "pkg:cargo/string_cache@0.9.0",
+        "pkg:cargo/tendril@0.5.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-MIT",
@@ -4277,6 +4933,9 @@
           "pkg:cargo/no_std_io2@0.9.4"
         ]
       },
+      "dependents": [
+        "pkg:cargo/bitstream-io@4.10.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4301,6 +4960,9 @@
           "pkg:cargo/nom@8.0.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/av1-grain@0.2.5"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -4324,6 +4986,9 @@
           "pkg:cargo/noop_proc_macro@0.3.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rav1e@0.8.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -4351,6 +5016,9 @@
           "pkg:cargo/num-bigint@0.4.8"
         ]
       },
+      "dependents": [
+        "pkg:cargo/num-rational@0.4.2"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4380,6 +5048,10 @@
           "pkg:cargo/num-complex@0.4.6"
         ]
       },
+      "dependents": [
+        "pkg:cargo/exr@1.74.2",
+        "pkg:cargo/pulp@0.22.3"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4409,6 +5081,9 @@
           "pkg:cargo/num-derive@0.4.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rav1e@0.8.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4440,6 +5115,10 @@
           "pkg:cargo/num-integer@0.1.46"
         ]
       },
+      "dependents": [
+        "pkg:cargo/num-bigint@0.4.8",
+        "pkg:cargo/num-rational@0.4.2"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4470,6 +5149,10 @@
           "pkg:cargo/num-rational@0.4.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/av-scenechange@0.14.1",
+        "pkg:cargo/av1-grain@0.2.5"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4498,6 +5181,21 @@
           "pkg:cargo/num-traits@0.2.19"
         ]
       },
+      "dependents": [
+        "pkg:cargo/av-scenechange@0.14.1",
+        "pkg:cargo/chrono@0.4.45",
+        "pkg:cargo/fast_image_resize@6.1.0",
+        "pkg:cargo/image@0.25.10",
+        "pkg:cargo/linear-srgb@0.6.12",
+        "pkg:cargo/moxcms@0.8.1",
+        "pkg:cargo/num-bigint@0.4.8",
+        "pkg:cargo/num-complex@0.4.6",
+        "pkg:cargo/num-integer@0.1.46",
+        "pkg:cargo/num-rational@0.4.2",
+        "pkg:cargo/rav1e@0.8.1",
+        "pkg:cargo/rstar@0.13.0",
+        "pkg:cargo/v_frame@0.3.9"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4526,6 +5224,12 @@
           "pkg:cargo/once_cell@1.21.4"
         ]
       },
+      "dependents": [
+        "pkg:cargo/read-fonts@0.41.0",
+        "pkg:cargo/rustls@0.23.43",
+        "pkg:cargo/tempfile@3.27.0",
+        "pkg:cargo/wasm-bindgen@0.2.126"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4551,6 +5255,9 @@
           "pkg:cargo/once_cell_polyfill@1.70.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/anstyle-wincon@3.0.11"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4577,6 +5284,10 @@
           "pkg:cargo/parking_lot@0.12.5"
         ]
       },
+      "dependents": [
+        "pkg:cargo/string_cache@0.9.0",
+        "pkg:cargo/tokio@1.53.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4604,6 +5315,9 @@
           "pkg:cargo/parking_lot_core@0.9.12"
         ]
       },
+      "dependents": [
+        "pkg:cargo/parking_lot@0.12.5"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4632,6 +5346,10 @@
           "pkg:cargo/paste@1.0.15"
         ]
       },
+      "dependents": [
+        "pkg:cargo/pulp@0.22.3",
+        "pkg:cargo/rav1e@0.8.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4663,6 +5381,9 @@
           "pkg:cargo/pastey@0.1.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/av-scenechange@0.14.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4689,6 +5410,11 @@
           "pkg:cargo/percent-encoding@2.3.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/form_urlencoded@1.2.2",
+        "pkg:cargo/ureq@3.3.0",
+        "pkg:cargo/url@2.5.8"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4720,6 +5446,9 @@
           "pkg:cargo/petgraph@0.8.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/prost-build@0.14.4"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4747,6 +5476,11 @@
           "pkg:cargo/phf@0.13.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cssparser@0.37.0",
+        "pkg:cargo/selectors@0.38.0",
+        "pkg:cargo/web_atoms@0.2.5"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -4770,6 +5504,10 @@
           "pkg:cargo/phf_codegen@0.13.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/selectors@0.38.0",
+        "pkg:cargo/web_atoms@0.2.5"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -4794,6 +5532,11 @@
           "pkg:cargo/phf_generator@0.13.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/phf_codegen@0.13.1",
+        "pkg:cargo/phf_macros@0.13.1",
+        "pkg:cargo/string_cache_codegen@0.6.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -4818,6 +5561,9 @@
           "pkg:cargo/phf_macros@0.13.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/phf@0.13.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -4842,6 +5588,14 @@
           "pkg:cargo/phf_shared@0.13.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/phf@0.13.1",
+        "pkg:cargo/phf_codegen@0.13.1",
+        "pkg:cargo/phf_generator@0.13.1",
+        "pkg:cargo/phf_macros@0.13.1",
+        "pkg:cargo/string_cache@0.9.0",
+        "pkg:cargo/string_cache_codegen@0.6.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -4859,6 +5613,10 @@
           "pkg:cargo/pin-project-lite@0.2.17"
         ]
       },
+      "dependents": [
+        "pkg:cargo/futures-util@0.3.33",
+        "pkg:cargo/tokio@1.53.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4885,6 +5643,10 @@
           "pkg:cargo/png@0.18.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/image@0.25.10",
+        "pkg:cargo/tiny-skia@0.12.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4906,6 +5668,9 @@
           "pkg:cargo/portable-atomic-util@0.2.7"
         ]
       },
+      "dependents": [
+        "pkg:cargo/jiff@0.2.35"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4927,6 +5692,11 @@
           "pkg:cargo/portable-atomic@1.14.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/indicatif@0.18.6",
+        "pkg:cargo/jiff@0.2.35",
+        "pkg:cargo/portable-atomic-util@0.2.7"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -4958,6 +5728,9 @@
           "pkg:cargo/potential_utf@0.1.5"
         ]
       },
+      "dependents": [
+        "pkg:cargo/icu_collections@2.2.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -4982,6 +5755,9 @@
           "pkg:cargo/ppv-lite86@0.2.21"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rand_chacha@0.9.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -5011,6 +5787,9 @@
           "pkg:cargo/pqueue@0.1.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rtree_rs@0.1.4"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -5033,6 +5812,11 @@
           "pkg:cargo/precomputed-hash@0.1.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/scraper@0.27.0",
+        "pkg:cargo/selectors@0.38.0",
+        "pkg:cargo/string_cache@0.9.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -5057,6 +5841,9 @@
           "pkg:cargo/prettyplease@0.2.37"
         ]
       },
+      "dependents": [
+        "pkg:cargo/prost-build@0.14.4"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -5088,6 +5875,37 @@
           "pkg:cargo/proc-macro2@1.0.107"
         ]
       },
+      "dependents": [
+        "pkg:cargo/archmage-macros@0.9.28",
+        "pkg:cargo/arg_enum_proc_macro@0.3.4",
+        "pkg:cargo/bytemuck_derive@1.12.0",
+        "pkg:cargo/clap_derive@4.6.4",
+        "pkg:cargo/defmt-macros@1.1.1",
+        "pkg:cargo/derive_more-impl@2.1.1",
+        "pkg:cargo/displaydoc@0.2.7",
+        "pkg:cargo/equator-macro@0.4.2",
+        "pkg:cargo/interpolate_name@0.2.4",
+        "pkg:cargo/jiff-static@0.2.35",
+        "pkg:cargo/num-derive@0.4.2",
+        "pkg:cargo/phf_macros@0.13.1",
+        "pkg:cargo/prettyplease@0.2.37",
+        "pkg:cargo/prost-derive@0.14.4",
+        "pkg:cargo/quote@1.0.47",
+        "pkg:cargo/serde_derive@1.0.229",
+        "pkg:cargo/string_cache_codegen@0.6.1",
+        "pkg:cargo/syn@2.0.119",
+        "pkg:cargo/syn@3.0.3",
+        "pkg:cargo/synstructure@0.13.2",
+        "pkg:cargo/thiserror-impl@2.0.19",
+        "pkg:cargo/tokio-macros@2.7.2",
+        "pkg:cargo/wasm-bindgen-macro-support@0.2.126",
+        "pkg:cargo/windows-implement@0.60.2",
+        "pkg:cargo/windows-interface@0.59.3",
+        "pkg:cargo/yoke-derive@0.8.2",
+        "pkg:cargo/zerocopy-derive@0.8.56",
+        "pkg:cargo/zerofrom-derive@0.1.7",
+        "pkg:cargo/zerovec-derive@0.11.3"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -5116,7 +5934,10 @@
           "pkg:cargo/profiling@1.0.18",
           "pkg:cargo/profiling-procmacros@1.0.18"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:cargo/profiling@1.0.18"
+      ]
     },
     "pkg:cargo/profiling@1.0.18": {
       "spdx": "MIT OR Apache-2.0",
@@ -5134,7 +5955,10 @@
           "pkg:cargo/rav1e@0.8.1",
           "pkg:cargo/profiling@1.0.18"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:cargo/rav1e@0.8.1"
+      ]
     },
     "pkg:cargo/prost-build@0.14.4": {
       "spdx": "Apache-2.0",
@@ -5160,6 +5984,9 @@
           "pkg:cargo/prost-build@0.14.4"
         ]
       },
+      "dependents": [
+        "pkg:cargo/tzf-rs@1.3.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -5192,6 +6019,9 @@
           "pkg:cargo/prost-derive@0.14.4"
         ]
       },
+      "dependents": [
+        "pkg:cargo/prost@0.14.4"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -5224,6 +6054,9 @@
           "pkg:cargo/prost-types@0.14.4"
         ]
       },
+      "dependents": [
+        "pkg:cargo/prost-build@0.14.4"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -5255,6 +6088,11 @@
           "pkg:cargo/prost@0.14.4"
         ]
       },
+      "dependents": [
+        "pkg:cargo/prost-build@0.14.4",
+        "pkg:cargo/prost-types@0.14.4",
+        "pkg:cargo/tzf-rs@1.3.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -5278,7 +6116,10 @@
           "pkg:cargo/pulp@0.22.3",
           "pkg:cargo/pulp-wasm-simd-flag@0.1.1"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:cargo/pulp@0.22.3"
+      ]
     },
     "pkg:cargo/pulp@0.22.3": {
       "spdx": "MIT",
@@ -5296,6 +6137,9 @@
           "pkg:cargo/pulp@0.22.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/exr@1.74.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -5320,6 +6164,9 @@
           "pkg:cargo/pxfm@0.1.30"
         ]
       },
+      "dependents": [
+        "pkg:cargo/moxcms@0.8.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE.md",
@@ -5348,6 +6195,9 @@
           "pkg:cargo/qoi@0.4.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/image@0.25.10"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -5379,6 +6229,11 @@
           "pkg:cargo/quick-error@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/image-webp@0.2.4",
+        "pkg:cargo/ravif@0.13.0",
+        "pkg:cargo/tiff@0.11.3"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -5407,6 +6262,39 @@
           "pkg:cargo/quote@1.0.47"
         ]
       },
+      "dependents": [
+        "pkg:cargo/archmage-macros@0.9.28",
+        "pkg:cargo/arg_enum_proc_macro@0.3.4",
+        "pkg:cargo/bytemuck_derive@1.12.0",
+        "pkg:cargo/clap_derive@4.6.4",
+        "pkg:cargo/cssparser-macros@0.7.0",
+        "pkg:cargo/defmt-macros@1.1.1",
+        "pkg:cargo/derive_more-impl@2.1.1",
+        "pkg:cargo/displaydoc@0.2.7",
+        "pkg:cargo/equator-macro@0.4.2",
+        "pkg:cargo/interpolate_name@0.2.4",
+        "pkg:cargo/jiff-static@0.2.35",
+        "pkg:cargo/num-derive@0.4.2",
+        "pkg:cargo/phf_macros@0.13.1",
+        "pkg:cargo/profiling-procmacros@1.0.18",
+        "pkg:cargo/prost-derive@0.14.4",
+        "pkg:cargo/serde_derive@1.0.229",
+        "pkg:cargo/simd_helpers@0.1.0",
+        "pkg:cargo/string_cache_codegen@0.6.1",
+        "pkg:cargo/syn@2.0.119",
+        "pkg:cargo/syn@3.0.3",
+        "pkg:cargo/synstructure@0.13.2",
+        "pkg:cargo/thiserror-impl@2.0.19",
+        "pkg:cargo/tokio-macros@2.7.2",
+        "pkg:cargo/wasm-bindgen-macro-support@0.2.126",
+        "pkg:cargo/wasm-bindgen-macro@0.2.126",
+        "pkg:cargo/windows-implement@0.60.2",
+        "pkg:cargo/windows-interface@0.59.3",
+        "pkg:cargo/yoke-derive@0.8.2",
+        "pkg:cargo/zerocopy-derive@0.8.56",
+        "pkg:cargo/zerofrom-derive@0.1.7",
+        "pkg:cargo/zerovec-derive@0.11.3"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -5432,7 +6320,10 @@
           "pkg:cargo/getrandom@0.3.4",
           "pkg:cargo/r-efi@5.3.0"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:cargo/getrandom@0.3.4"
+      ]
     },
     "pkg:cargo/r-efi@6.0.0": {
       "spdx": "MIT OR Apache-2.0 OR LGPL-2.1-or-later",
@@ -5445,7 +6336,10 @@
           "pkg:cargo/getrandom@0.4.3",
           "pkg:cargo/r-efi@6.0.0"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:cargo/getrandom@0.4.3"
+      ]
     },
     "pkg:cargo/rand@0.10.2": {
       "spdx": "MIT OR Apache-2.0",
@@ -5466,6 +6360,9 @@
           "pkg:cargo/rand@0.10.2"
         ]
       },
+      "dependents": [
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -5498,6 +6395,9 @@
           "pkg:cargo/rand@0.9.5"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rav1e@0.8.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -5533,6 +6433,10 @@
           "pkg:cargo/rand_chacha@0.9.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rand@0.9.5",
+        "pkg:cargo/rav1e@0.8.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -5561,6 +6465,11 @@
           "pkg:cargo/rand_core@0.10.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/chacha20@0.10.1",
+        "pkg:cargo/getrandom@0.4.3",
+        "pkg:cargo/rand@0.10.2"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -5594,6 +6503,10 @@
           "pkg:cargo/rand_core@0.9.5"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rand@0.9.5",
+        "pkg:cargo/rand_chacha@0.9.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -5622,6 +6535,9 @@
           "pkg:cargo/rangemap@1.7.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cosmic-text@0.19.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -5648,6 +6564,9 @@
           "pkg:cargo/rav1e@0.8.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/ravif@0.13.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -5670,6 +6589,10 @@
           "pkg:cargo/ravif@0.13.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/image@0.25.10",
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -5696,6 +6619,9 @@
           "pkg:cargo/raw-cpuid@11.6.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/pulp@0.22.3"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -5715,6 +6641,10 @@
           "pkg:cargo/rayon-core@1.13.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/exr@1.74.2",
+        "pkg:cargo/rayon@1.12.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -5737,6 +6667,12 @@
           "pkg:cargo/rayon@1.12.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/av-scenechange@0.14.1",
+        "pkg:cargo/image@0.25.10",
+        "pkg:cargo/maybe-rayon@0.1.1",
+        "pkg:cargo/ravif@0.13.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -5759,6 +6695,10 @@
           "pkg:cargo/read-fonts@0.37.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/harfrust@0.5.2",
+        "pkg:cargo/skrifa@0.40.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -5782,6 +6722,9 @@
           "pkg:cargo/read-fonts@0.41.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/skrifa@0.44.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -5810,6 +6753,9 @@
           "pkg:cargo/reborrow@0.5.5"
         ]
       },
+      "dependents": [
+        "pkg:cargo/pulp@0.22.3"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -5835,6 +6781,9 @@
           "pkg:cargo/redox_syscall@0.5.18"
         ]
       },
+      "dependents": [
+        "pkg:cargo/parking_lot_core@0.9.12"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -5862,6 +6811,9 @@
           "pkg:cargo/regex-automata@0.4.18"
         ]
       },
+      "dependents": [
+        "pkg:cargo/regex@1.13.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -5893,6 +6845,10 @@
           "pkg:cargo/regex-syntax@0.8.11"
         ]
       },
+      "dependents": [
+        "pkg:cargo/regex-automata@0.4.18",
+        "pkg:cargo/regex@1.13.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -5923,6 +6879,10 @@
           "pkg:cargo/regex@1.13.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/prost-build@0.14.4",
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -5953,6 +6913,11 @@
           "pkg:cargo/rgb@0.8.53"
         ]
       },
+      "dependents": [
+        "pkg:cargo/image@0.25.10",
+        "pkg:cargo/ravif@0.13.0",
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -5971,6 +6936,10 @@
           "pkg:cargo/ring@0.17.14"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rustls-webpki@0.103.13",
+        "pkg:cargo/rustls@0.23.43"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -6004,6 +6973,9 @@
           "pkg:cargo/roxmltree@0.20.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/fontconfig-parser@0.5.8"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6032,7 +7004,10 @@
         "cms": [
           "pkg:cargo/rstar@0.13.0"
         ]
-      }
+      },
+      "dependents": [
+        "workspace:cms"
+      ]
     },
     "pkg:cargo/rtree_rs@0.1.4": {
       "spdx": "MIT",
@@ -6051,6 +7026,9 @@
           "pkg:cargo/rtree_rs@0.1.4"
         ]
       },
+      "dependents": [
+        "pkg:cargo/geometry-rs@0.5.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -6073,6 +7051,10 @@
           "pkg:cargo/rustc-hash@2.1.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cosmic-text@0.19.0",
+        "pkg:cargo/selectors@0.38.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6098,6 +7080,9 @@
           "pkg:cargo/rustc_version@0.4.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/derive_more-impl@2.1.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6130,6 +7115,9 @@
           "pkg:cargo/rustix@1.1.4"
         ]
       },
+      "dependents": [
+        "pkg:cargo/tempfile@3.27.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6157,6 +7145,12 @@
           "pkg:cargo/rustls-pki-types@1.15.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rustls-webpki@0.103.13",
+        "pkg:cargo/rustls@0.23.43",
+        "pkg:cargo/ureq@3.3.0",
+        "pkg:cargo/webpki-roots@1.0.9"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6179,6 +7173,9 @@
           "pkg:cargo/rustls-webpki@0.103.13"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rustls@0.23.43"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -6197,6 +7194,9 @@
           "pkg:cargo/rustls@0.23.43"
         ]
       },
+      "dependents": [
+        "pkg:cargo/ureq@3.3.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6229,6 +7229,10 @@
           "pkg:cargo/rustversion@1.0.23"
         ]
       },
+      "dependents": [
+        "pkg:cargo/magetypes@0.9.28",
+        "pkg:cargo/wasm-bindgen@0.2.126"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6256,6 +7260,9 @@
           "pkg:cargo/ryu@1.0.23"
         ]
       },
+      "dependents": [
+        "pkg:cargo/serde_yaml_ng@0.10.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6284,6 +7291,9 @@
           "pkg:cargo/safe_arch@1.1.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/wide@1.5.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE.md",
@@ -6310,6 +7320,10 @@
           "pkg:cargo/safe_unaligned_simd@0.2.5"
         ]
       },
+      "dependents": [
+        "pkg:cargo/archmage@0.9.28",
+        "pkg:cargo/heic@0.1.6"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6339,6 +7353,9 @@
           "pkg:cargo/scopeguard@1.2.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/lock_api@0.4.14"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6364,6 +7381,9 @@
           "pkg:cargo/scraper@0.27.0"
         ]
       },
+      "dependents": [
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -6386,7 +7406,10 @@
           "pkg:cargo/scraper@0.27.0",
           "pkg:cargo/selectors@0.38.0"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:cargo/scraper@0.27.0"
+      ]
     },
     "pkg:cargo/self_cell@1.3.0": {
       "spdx": "Apache-2.0 OR GPL-2.0-only",
@@ -6404,6 +7427,9 @@
           "pkg:cargo/self_cell@1.3.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cosmic-text@0.19.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6430,6 +7456,10 @@
           "pkg:cargo/semver@1.0.28"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rustc_version@0.4.1",
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6460,6 +7490,15 @@
           "pkg:cargo/serde@1.0.229"
         ]
       },
+      "dependents": [
+        "pkg:cargo/chrono@0.4.45",
+        "pkg:cargo/claude-codes@2.1.223",
+        "pkg:cargo/phf@0.13.1",
+        "pkg:cargo/serde_json@1.0.151",
+        "pkg:cargo/serde_yaml_ng@0.10.0",
+        "pkg:cargo/url@2.5.8",
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6491,6 +7530,12 @@
           "pkg:cargo/serde_core@1.0.229"
         ]
       },
+      "dependents": [
+        "pkg:cargo/jiff@0.2.35",
+        "pkg:cargo/serde@1.0.229",
+        "pkg:cargo/serde_json@1.0.151",
+        "pkg:cargo/uuid@1.24.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6522,6 +7567,10 @@
           "pkg:cargo/serde_derive@1.0.229"
         ]
       },
+      "dependents": [
+        "pkg:cargo/serde@1.0.229",
+        "pkg:cargo/serde_core@1.0.229"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6551,6 +7600,10 @@
           "pkg:cargo/serde_json@1.0.151"
         ]
       },
+      "dependents": [
+        "pkg:cargo/claude-codes@2.1.223",
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6577,6 +7630,9 @@
           "pkg:cargo/serde_yaml_ng@0.10.0"
         ]
       },
+      "dependents": [
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -6600,6 +7656,9 @@
           "pkg:cargo/servo_arc@0.4.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/selectors@0.38.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6642,6 +7701,9 @@
           "pkg:cargo/shlex@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cc@1.4.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6672,6 +7734,9 @@
           "pkg:cargo/signal-hook-registry@1.4.8"
         ]
       },
+      "dependents": [
+        "pkg:cargo/tokio@1.53.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6700,6 +7765,11 @@
           "pkg:cargo/simd-adler32@0.3.10"
         ]
       },
+      "dependents": [
+        "pkg:cargo/fdeflate@0.3.7",
+        "pkg:cargo/miniz_oxide@0.8.9",
+        "pkg:cargo/zune-inflate@0.2.54"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -6722,7 +7792,10 @@
           "pkg:cargo/rav1e@0.8.1",
           "pkg:cargo/simd_helpers@0.1.0"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:cargo/rav1e@0.8.1"
+      ]
     },
     "pkg:cargo/siphasher@1.0.3": {
       "spdx": "MIT/Apache-2.0",
@@ -6744,6 +7817,9 @@
           "pkg:cargo/siphasher@1.0.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/phf_shared@0.13.1"
+      ],
       "texts": [
         {
           "name": "COPYING",
@@ -6761,6 +7837,9 @@
           "pkg:cargo/skrifa@0.40.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cosmic-text@0.19.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6783,6 +7862,9 @@
           "pkg:cargo/skrifa@0.44.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/swash@0.2.10"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6812,6 +7894,9 @@
           "pkg:cargo/slab@0.4.12"
         ]
       },
+      "dependents": [
+        "pkg:cargo/futures-util@0.3.33"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -6835,6 +7920,9 @@
           "pkg:cargo/slotmap@1.1.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/fontdb@0.23.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -6858,6 +7946,16 @@
           "pkg:cargo/smallvec@1.15.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cssparser@0.37.0",
+        "pkg:cargo/exr@1.74.2",
+        "pkg:cargo/harfrust@0.5.2",
+        "pkg:cargo/icu_normalizer@2.2.0",
+        "pkg:cargo/idna@1.1.0",
+        "pkg:cargo/parking_lot_core@0.9.12",
+        "pkg:cargo/rstar@0.13.0",
+        "pkg:cargo/selectors@0.38.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6887,6 +7985,9 @@
           "pkg:cargo/smol_str@0.3.6"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cosmic-text@0.19.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6918,6 +8019,9 @@
           "pkg:cargo/socket2@0.6.5"
         ]
       },
+      "dependents": [
+        "pkg:cargo/tokio@1.53.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6946,6 +8050,12 @@
           "pkg:cargo/stable_deref_trait@1.2.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/as-slice@0.2.1",
+        "pkg:cargo/heapless@0.8.0",
+        "pkg:cargo/servo_arc@0.4.3",
+        "pkg:cargo/yoke@0.8.3"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -6974,6 +8084,9 @@
           "pkg:cargo/strict-num@0.1.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/tiny-skia-path@0.12.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -7000,6 +8113,9 @@
           "pkg:cargo/string_cache@0.9.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/web_atoms@0.2.5"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -7030,6 +8146,9 @@
           "pkg:cargo/string_cache_codegen@0.6.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/web_atoms@0.2.5"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -7063,6 +8182,9 @@
           "pkg:cargo/strsim@0.11.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/clap_builder@4.6.6"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -7091,6 +8213,9 @@
           "pkg:cargo/subtle@2.6.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rustls@0.23.43"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -7114,6 +8239,9 @@
           "pkg:cargo/swash@0.2.10"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cosmic-text@0.19.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -7142,6 +8270,30 @@
           "pkg:cargo/syn@2.0.119"
         ]
       },
+      "dependents": [
+        "pkg:cargo/archmage-macros@0.9.28",
+        "pkg:cargo/arg_enum_proc_macro@0.3.4",
+        "pkg:cargo/cssparser-macros@0.7.0",
+        "pkg:cargo/defmt-macros@1.1.1",
+        "pkg:cargo/derive_more-impl@2.1.1",
+        "pkg:cargo/equator-macro@0.4.2",
+        "pkg:cargo/interpolate_name@0.2.4",
+        "pkg:cargo/jiff-static@0.2.35",
+        "pkg:cargo/num-derive@0.4.2",
+        "pkg:cargo/phf_macros@0.13.1",
+        "pkg:cargo/prettyplease@0.2.37",
+        "pkg:cargo/profiling-procmacros@1.0.18",
+        "pkg:cargo/prost-build@0.14.4",
+        "pkg:cargo/prost-derive@0.14.4",
+        "pkg:cargo/synstructure@0.13.2",
+        "pkg:cargo/wasm-bindgen-macro-support@0.2.126",
+        "pkg:cargo/windows-implement@0.60.2",
+        "pkg:cargo/windows-interface@0.59.3",
+        "pkg:cargo/yoke-derive@0.8.2",
+        "pkg:cargo/zerocopy-derive@0.8.56",
+        "pkg:cargo/zerofrom-derive@0.1.7",
+        "pkg:cargo/zerovec-derive@0.11.3"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -7170,6 +8322,14 @@
           "pkg:cargo/syn@3.0.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/bytemuck_derive@1.12.0",
+        "pkg:cargo/clap_derive@4.6.4",
+        "pkg:cargo/displaydoc@0.2.7",
+        "pkg:cargo/serde_derive@1.0.229",
+        "pkg:cargo/thiserror-impl@2.0.19",
+        "pkg:cargo/tokio-macros@2.7.2"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -7203,6 +8363,10 @@
           "pkg:cargo/synstructure@0.13.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/yoke-derive@0.8.2",
+        "pkg:cargo/zerofrom-derive@0.1.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -7225,6 +8389,9 @@
           "pkg:cargo/sys-locale@0.3.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cosmic-text@0.19.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -7263,6 +8430,9 @@
           "pkg:cargo/tempfile@3.27.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/prost-build@0.14.4"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -7295,6 +8465,10 @@
           "pkg:cargo/tendril@0.5.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/markup5ever@0.39.0",
+        "pkg:cargo/scraper@0.27.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -7322,6 +8496,9 @@
           "pkg:cargo/thiserror-impl@2.0.19"
         ]
       },
+      "dependents": [
+        "pkg:cargo/thiserror@2.0.19"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -7349,6 +8526,14 @@
           "pkg:cargo/thiserror@2.0.19"
         ]
       },
+      "dependents": [
+        "pkg:cargo/av-scenechange@0.14.1",
+        "pkg:cargo/claude-codes@2.1.223",
+        "pkg:cargo/defmt-parser@1.0.0",
+        "pkg:cargo/fast_image_resize@6.1.0",
+        "pkg:cargo/rav1e@0.8.1",
+        "pkg:cargo/ultrahdr-core@0.4.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -7368,7 +8553,10 @@
         "cms": [
           "pkg:cargo/thumbhash@0.1.0"
         ]
-      }
+      },
+      "dependents": [
+        "workspace:cms"
+      ]
     },
     "pkg:cargo/tiff@0.11.3": {
       "spdx": "MIT",
@@ -7385,6 +8573,9 @@
           "pkg:cargo/tiff@0.11.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/image@0.25.10"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -7408,6 +8599,9 @@
           "pkg:cargo/tiny-skia-path@0.12.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/tiny-skia@0.12.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -7430,6 +8624,9 @@
           "pkg:cargo/tiny-skia@0.12.0"
         ]
       },
+      "dependents": [
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -7456,6 +8653,9 @@
           "pkg:cargo/tinystr@0.8.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/icu_locale_core@2.2.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -7479,6 +8679,9 @@
           "pkg:cargo/tinyvec@1.12.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/fontdb@0.23.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE.md",
@@ -7511,6 +8714,9 @@
           "pkg:cargo/tinyvec_macros@0.1.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/tinyvec@1.12.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE.md",
@@ -7542,6 +8748,9 @@
           "pkg:cargo/tokio-macros@2.7.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/tokio@1.53.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -7564,6 +8773,10 @@
           "pkg:cargo/tokio@1.53.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/claude-codes@2.1.223",
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -7597,6 +8810,9 @@
           "pkg:cargo/ttf-parser@0.25.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/fontdb@0.23.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -7620,6 +8836,9 @@
           "pkg:cargo/tzf-dist@0.0.2026-c-fix1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/tzf-rs@1.3.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -7647,6 +8866,9 @@
           "pkg:cargo/tzf-rs@1.3.7"
         ]
       },
+      "dependents": [
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -7671,7 +8893,10 @@
           "pkg:cargo/heic@0.1.6",
           "pkg:cargo/ultrahdr-core@0.4.1"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:cargo/heic@0.1.6"
+      ]
     },
     "pkg:cargo/unicode-bidi@0.3.18": {
       "spdx": "MIT OR Apache-2.0",
@@ -7689,6 +8914,9 @@
           "pkg:cargo/unicode-bidi@0.3.18"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cosmic-text@0.19.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -7718,6 +8946,12 @@
           "pkg:cargo/unicode-ident@1.0.24"
         ]
       },
+      "dependents": [
+        "pkg:cargo/proc-macro2@1.0.107",
+        "pkg:cargo/syn@2.0.119",
+        "pkg:cargo/syn@3.0.3",
+        "pkg:cargo/wasm-bindgen-shared@0.2.126"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -7749,6 +8983,9 @@
           "pkg:cargo/unicode-linebreak@0.1.5"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cosmic-text@0.19.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -7773,6 +9010,9 @@
           "pkg:cargo/unicode-script@0.5.8"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cosmic-text@0.19.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -7803,6 +9043,9 @@
           "pkg:cargo/unicode-segmentation@1.13.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/cosmic-text@0.19.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -7833,6 +9076,11 @@
           "pkg:cargo/unicode-width@0.2.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/console@0.16.4",
+        "pkg:cargo/getopts@0.2.24",
+        "pkg:cargo/indicatif@0.18.6"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -7862,6 +9110,9 @@
           "pkg:cargo/unit-prefix@0.5.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/indicatif@0.18.6"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -7885,6 +9136,9 @@
           "pkg:cargo/unsafe-libyaml@0.2.11"
         ]
       },
+      "dependents": [
+        "pkg:cargo/serde_yaml_ng@0.10.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-MIT",
@@ -7910,6 +9164,10 @@
           "pkg:cargo/untrusted@0.9.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/ring@0.17.14",
+        "pkg:cargo/rustls-webpki@0.103.13"
+      ],
       "texts": [
         {
           "name": "LICENSE.txt",
@@ -7932,6 +9190,9 @@
           "pkg:cargo/ureq-proto@0.6.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/ureq@3.3.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-MIT.txt",
@@ -7956,6 +9217,9 @@
           "pkg:cargo/ureq@3.3.0"
         ]
       },
+      "dependents": [
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -7982,6 +9246,9 @@
           "pkg:cargo/url@2.5.8"
         ]
       },
+      "dependents": [
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -8011,6 +9278,9 @@
           "pkg:cargo/utf8-zero@0.8.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/ureq@3.3.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -8040,6 +9310,10 @@
           "pkg:cargo/utf8_iter@1.0.4"
         ]
       },
+      "dependents": [
+        "pkg:cargo/icu_collections@2.2.0",
+        "pkg:cargo/idna@1.1.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -8073,6 +9347,10 @@
           "pkg:cargo/utf8parse@0.2.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/anstream@1.0.0",
+        "pkg:cargo/anstyle-parse@1.0.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -8107,6 +9385,9 @@
           "pkg:cargo/uuid@1.24.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/claude-codes@2.1.223"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -8134,6 +9415,11 @@
           "pkg:cargo/v_frame@0.3.9"
         ]
       },
+      "dependents": [
+        "pkg:cargo/av-scenechange@0.14.1",
+        "pkg:cargo/av1-grain@0.2.5",
+        "pkg:cargo/rav1e@0.8.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -8159,6 +9445,10 @@
           "pkg:cargo/version_check@0.9.5"
         ]
       },
+      "dependents": [
+        "pkg:cargo/pulp@0.22.3",
+        "pkg:cargo/slotmap@1.1.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -8187,6 +9477,10 @@
           "pkg:cargo/wasi@0.11.1+wasi-snapshot-preview1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/getrandom@0.2.17",
+        "pkg:cargo/mio@1.2.2"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -8217,6 +9511,9 @@
           "pkg:cargo/wasip2@1.0.4+wasi-0.2.12"
         ]
       },
+      "dependents": [
+        "pkg:cargo/getrandom@0.3.4"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -8252,6 +9549,9 @@
           "pkg:cargo/wasm-bindgen-macro-support@0.2.126"
         ]
       },
+      "dependents": [
+        "pkg:cargo/wasm-bindgen-macro@0.2.126"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -8282,6 +9582,9 @@
           "pkg:cargo/wasm-bindgen-macro@0.2.126"
         ]
       },
+      "dependents": [
+        "pkg:cargo/wasm-bindgen@0.2.126"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -8312,6 +9615,10 @@
           "pkg:cargo/wasm-bindgen-shared@0.2.126"
         ]
       },
+      "dependents": [
+        "pkg:cargo/wasm-bindgen-macro-support@0.2.126",
+        "pkg:cargo/wasm-bindgen@0.2.126"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -8341,6 +9648,14 @@
           "pkg:cargo/wasm-bindgen@0.2.126"
         ]
       },
+      "dependents": [
+        "pkg:cargo/chrono@0.4.45",
+        "pkg:cargo/iana-time-zone@0.1.65",
+        "pkg:cargo/js-sys@0.3.103",
+        "pkg:cargo/rav1e@0.8.1",
+        "pkg:cargo/v_frame@0.3.9",
+        "pkg:cargo/web-time@1.1.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -8362,6 +9677,9 @@
           "pkg:cargo/web-time@1.1.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/indicatif@0.18.6"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -8391,6 +9709,9 @@
           "pkg:cargo/web_atoms@0.2.5"
         ]
       },
+      "dependents": [
+        "pkg:cargo/markup5ever@0.39.0"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -8418,6 +9739,9 @@
           "pkg:cargo/webp@0.3.1"
         ]
       },
+      "dependents": [
+        "workspace:cms"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -8440,6 +9764,9 @@
           "pkg:cargo/webpki-roots@1.0.9"
         ]
       },
+      "dependents": [
+        "pkg:cargo/ureq@3.3.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -8464,6 +9791,10 @@
           "pkg:cargo/weezl@0.1.12"
         ]
       },
+      "dependents": [
+        "pkg:cargo/gif@0.14.2",
+        "pkg:cargo/tiff@0.11.3"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -8485,6 +9816,9 @@
           "pkg:cargo/whereat@0.1.5"
         ]
       },
+      "dependents": [
+        "pkg:cargo/heic@0.1.6"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -8512,6 +9846,9 @@
           "pkg:cargo/which@8.0.5"
         ]
       },
+      "dependents": [
+        "pkg:cargo/claude-codes@2.1.223"
+      ],
       "texts": [
         {
           "name": "LICENSE.txt",
@@ -8535,6 +9872,9 @@
           "pkg:cargo/wide@1.5.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/ultrahdr-core@0.4.1"
+      ],
       "texts": [
         {
           "name": "LICENSE-ZLIB.md",
@@ -8560,6 +9900,9 @@
           "pkg:cargo/winarm-cpufeatures@0.1.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/archmage@0.9.28"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -8583,6 +9926,9 @@
           "pkg:cargo/windows-core@0.62.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/iana-time-zone@0.1.65"
+      ],
       "texts": [
         {
           "name": "license-apache-2.0",
@@ -8607,6 +9953,9 @@
           "pkg:cargo/windows-implement@0.60.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/windows-core@0.62.2"
+      ],
       "texts": [
         {
           "name": "license-apache-2.0",
@@ -8631,6 +9980,9 @@
           "pkg:cargo/windows-interface@0.59.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/windows-core@0.62.2"
+      ],
       "texts": [
         {
           "name": "license-apache-2.0",
@@ -8652,6 +10004,15 @@
           "pkg:cargo/windows-link@0.2.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/chrono@0.4.45",
+        "pkg:cargo/jiff@0.2.35",
+        "pkg:cargo/parking_lot_core@0.9.12",
+        "pkg:cargo/windows-core@0.62.2",
+        "pkg:cargo/windows-result@0.4.1",
+        "pkg:cargo/windows-strings@0.5.1",
+        "pkg:cargo/windows-sys@0.61.2"
+      ],
       "texts": [
         {
           "name": "license-apache-2.0",
@@ -8676,6 +10037,9 @@
           "pkg:cargo/windows-result@0.4.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/windows-core@0.62.2"
+      ],
       "texts": [
         {
           "name": "license-apache-2.0",
@@ -8700,6 +10064,9 @@
           "pkg:cargo/windows-strings@0.5.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/windows-core@0.62.2"
+      ],
       "texts": [
         {
           "name": "license-apache-2.0",
@@ -8728,6 +10095,9 @@
           "pkg:cargo/windows-sys@0.52.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/ring@0.17.14"
+      ],
       "texts": [
         {
           "name": "license-apache-2.0",
@@ -8749,6 +10119,17 @@
           "pkg:cargo/windows-sys@0.61.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/anstyle-query@1.1.5",
+        "pkg:cargo/anstyle-wincon@3.0.11",
+        "pkg:cargo/console@0.16.4",
+        "pkg:cargo/errno@0.3.14",
+        "pkg:cargo/mio@1.2.2",
+        "pkg:cargo/rustix@1.1.4",
+        "pkg:cargo/socket2@0.6.5",
+        "pkg:cargo/tempfile@3.27.0",
+        "pkg:cargo/tokio@1.53.1"
+      ],
       "texts": [
         {
           "name": "license-apache-2.0",
@@ -8778,6 +10159,9 @@
           "pkg:cargo/windows-targets@0.52.6"
         ]
       },
+      "dependents": [
+        "pkg:cargo/windows-sys@0.52.0"
+      ],
       "texts": [
         {
           "name": "license-apache-2.0",
@@ -8808,6 +10192,9 @@
           "pkg:cargo/windows_aarch64_gnullvm@0.52.6"
         ]
       },
+      "dependents": [
+        "pkg:cargo/windows-targets@0.52.6"
+      ],
       "texts": [
         {
           "name": "license-apache-2.0",
@@ -8838,6 +10225,9 @@
           "pkg:cargo/windows_aarch64_msvc@0.52.6"
         ]
       },
+      "dependents": [
+        "pkg:cargo/windows-targets@0.52.6"
+      ],
       "texts": [
         {
           "name": "license-apache-2.0",
@@ -8868,6 +10258,9 @@
           "pkg:cargo/windows_i686_gnu@0.52.6"
         ]
       },
+      "dependents": [
+        "pkg:cargo/windows-targets@0.52.6"
+      ],
       "texts": [
         {
           "name": "license-apache-2.0",
@@ -8898,6 +10291,9 @@
           "pkg:cargo/windows_i686_gnullvm@0.52.6"
         ]
       },
+      "dependents": [
+        "pkg:cargo/windows-targets@0.52.6"
+      ],
       "texts": [
         {
           "name": "license-apache-2.0",
@@ -8928,6 +10324,9 @@
           "pkg:cargo/windows_i686_msvc@0.52.6"
         ]
       },
+      "dependents": [
+        "pkg:cargo/windows-targets@0.52.6"
+      ],
       "texts": [
         {
           "name": "license-apache-2.0",
@@ -8958,6 +10357,9 @@
           "pkg:cargo/windows_x86_64_gnu@0.52.6"
         ]
       },
+      "dependents": [
+        "pkg:cargo/windows-targets@0.52.6"
+      ],
       "texts": [
         {
           "name": "license-apache-2.0",
@@ -8988,6 +10390,9 @@
           "pkg:cargo/windows_x86_64_gnullvm@0.52.6"
         ]
       },
+      "dependents": [
+        "pkg:cargo/windows-targets@0.52.6"
+      ],
       "texts": [
         {
           "name": "license-apache-2.0",
@@ -9018,6 +10423,9 @@
           "pkg:cargo/windows_x86_64_msvc@0.52.6"
         ]
       },
+      "dependents": [
+        "pkg:cargo/windows-targets@0.52.6"
+      ],
       "texts": [
         {
           "name": "license-apache-2.0",
@@ -9050,6 +10458,9 @@
           "pkg:cargo/wit-bindgen@0.57.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/wasip2@1.0.4+wasi-0.2.12"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -9084,6 +10495,10 @@
           "pkg:cargo/writeable@0.6.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/icu_locale_core@2.2.0",
+        "pkg:cargo/icu_provider@2.2.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9110,6 +10525,9 @@
           "pkg:cargo/y4m@0.8.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/av-scenechange@0.14.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9134,6 +10552,9 @@
           "pkg:cargo/yazi@0.2.1"
         ]
       },
+      "dependents": [
+        "pkg:cargo/swash@0.2.10"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -9165,6 +10586,9 @@
           "pkg:cargo/yoke-derive@0.8.2"
         ]
       },
+      "dependents": [
+        "pkg:cargo/yoke@0.8.3"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9191,6 +10615,12 @@
           "pkg:cargo/yoke@0.8.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/icu_collections@2.2.0",
+        "pkg:cargo/icu_provider@2.2.0",
+        "pkg:cargo/zerotrie@0.2.4",
+        "pkg:cargo/zerovec@0.11.6"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9215,6 +10645,9 @@
           "pkg:cargo/zeno@0.3.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/swash@0.2.10"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -9239,6 +10672,9 @@
           "pkg:cargo/zerocopy-derive@0.8.56"
         ]
       },
+      "dependents": [
+        "pkg:cargo/zerocopy@0.8.56"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -9266,6 +10702,10 @@
           "pkg:cargo/zerocopy@0.8.56"
         ]
       },
+      "dependents": [
+        "pkg:cargo/half@2.7.1",
+        "pkg:cargo/ppv-lite86@0.2.21"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -9301,6 +10741,9 @@
           "pkg:cargo/zerofrom-derive@0.1.7"
         ]
       },
+      "dependents": [
+        "pkg:cargo/zerofrom@0.1.8"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9327,6 +10770,13 @@
           "pkg:cargo/zerofrom@0.1.8"
         ]
       },
+      "dependents": [
+        "pkg:cargo/icu_collections@2.2.0",
+        "pkg:cargo/icu_provider@2.2.0",
+        "pkg:cargo/yoke@0.8.3",
+        "pkg:cargo/zerotrie@0.2.4",
+        "pkg:cargo/zerovec@0.11.6"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9351,6 +10801,10 @@
           "pkg:cargo/zeroize@1.9.0"
         ]
       },
+      "dependents": [
+        "pkg:cargo/rustls-pki-types@1.15.1",
+        "pkg:cargo/rustls@0.23.43"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -9381,6 +10835,10 @@
           "pkg:cargo/zerotrie@0.2.4"
         ]
       },
+      "dependents": [
+        "pkg:cargo/icu_properties@2.2.0",
+        "pkg:cargo/icu_provider@2.2.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9407,6 +10865,9 @@
           "pkg:cargo/zerovec-derive@0.11.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/zerovec@0.11.6"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9432,6 +10893,15 @@
           "pkg:cargo/zerovec@0.11.6"
         ]
       },
+      "dependents": [
+        "pkg:cargo/icu_collections@2.2.0",
+        "pkg:cargo/icu_locale_core@2.2.0",
+        "pkg:cargo/icu_normalizer@2.2.0",
+        "pkg:cargo/icu_properties@2.2.0",
+        "pkg:cargo/icu_provider@2.2.0",
+        "pkg:cargo/potential_utf@0.1.5",
+        "pkg:cargo/tinystr@0.8.3"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9455,6 +10925,9 @@
           "pkg:cargo/zmij@1.0.23"
         ]
       },
+      "dependents": [
+        "pkg:cargo/serde_json@1.0.151"
+      ],
       "texts": [
         {
           "name": "LICENSE-MIT",
@@ -9472,6 +10945,10 @@
           "pkg:cargo/zune-core@0.5.3"
         ]
       },
+      "dependents": [
+        "pkg:cargo/image@0.25.10",
+        "pkg:cargo/zune-jpeg@0.5.15"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -9497,7 +10974,10 @@
           "pkg:cargo/exr@1.74.2",
           "pkg:cargo/zune-inflate@0.2.54"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:cargo/exr@1.74.2"
+      ]
     },
     "pkg:cargo/zune-jpeg@0.5.15": {
       "spdx": "MIT OR Apache-2.0 OR Zlib",
@@ -9514,6 +10994,10 @@
           "pkg:cargo/zune-jpeg@0.5.15"
         ]
       },
+      "dependents": [
+        "pkg:cargo/image@0.25.10",
+        "pkg:cargo/tiff@0.11.3"
+      ],
       "texts": [
         {
           "name": "LICENSE-APACHE",
@@ -9545,7 +11029,10 @@
           "pkg:npm/%40sentry/server-utils@10.69.0",
           "pkg:npm/%40apm-js-collab/code-transformer-bundler-plugins@0.7.3"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/%40sentry/server-utils@10.69.0"
+      ]
     },
     "pkg:npm/%40apm-js-collab/code-transformer@0.18.1": {
       "spdx": "Apache-2.0",
@@ -9565,6 +11052,10 @@
           "pkg:npm/%40apm-js-collab/code-transformer@0.18.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40apm-js-collab/code-transformer-bundler-plugins@0.7.3",
+        "pkg:npm/%40apm-js-collab/tracing-hooks@0.13.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9593,6 +11084,9 @@
           "pkg:npm/%40apm-js-collab/tracing-hooks@0.13.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/server-utils@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9619,6 +11113,11 @@
           "pkg:npm/%40babel/code-frame@7.29.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/core@7.29.7",
+        "pkg:npm/%40babel/template@7.29.7",
+        "pkg:npm/%40babel/traverse@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9645,6 +11144,9 @@
           "pkg:npm/%40babel/compat-data@7.29.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/helper-compilation-targets@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9670,6 +11172,10 @@
           "pkg:npm/%40babel/core@7.29.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/helper-module-transforms@7.29.7",
+        "pkg:npm/%40sentry/bundler-plugins@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9696,6 +11202,10 @@
           "pkg:npm/%40babel/generator@7.29.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/core@7.29.7",
+        "pkg:npm/%40babel/traverse@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9721,6 +11231,9 @@
           "pkg:npm/%40babel/helper-compilation-targets@7.29.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/core@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9749,6 +11262,9 @@
           "pkg:npm/%40babel/helper-globals@7.29.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/traverse@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9776,6 +11292,9 @@
           "pkg:npm/%40babel/helper-module-imports@7.29.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/helper-module-transforms@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9802,6 +11321,9 @@
           "pkg:npm/%40babel/helper-module-transforms@7.29.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/core@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9831,6 +11353,9 @@
           "pkg:npm/%40babel/helper-string-parser@7.29.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/types@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9857,6 +11382,11 @@
           "pkg:npm/%40babel/helper-validator-identifier@7.29.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/code-frame@7.29.7",
+        "pkg:npm/%40babel/helper-module-transforms@7.29.7",
+        "pkg:npm/%40babel/types@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9883,6 +11413,9 @@
           "pkg:npm/%40babel/helper-validator-option@7.29.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/helper-compilation-targets@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9909,6 +11442,9 @@
           "pkg:npm/%40babel/helpers@7.29.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/core@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9935,6 +11471,12 @@
           "pkg:npm/%40babel/parser@7.29.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/core@7.29.7",
+        "pkg:npm/%40babel/generator@7.29.7",
+        "pkg:npm/%40babel/template@7.29.7",
+        "pkg:npm/%40babel/traverse@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9961,6 +11503,11 @@
           "pkg:npm/%40babel/template@7.29.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/core@7.29.7",
+        "pkg:npm/%40babel/helpers@7.29.7",
+        "pkg:npm/%40babel/traverse@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -9987,6 +11534,11 @@
           "pkg:npm/%40babel/traverse@7.29.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/core@7.29.7",
+        "pkg:npm/%40babel/helper-module-imports@7.29.7",
+        "pkg:npm/%40babel/helper-module-transforms@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10013,6 +11565,15 @@
           "pkg:npm/%40babel/types@7.29.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/core@7.29.7",
+        "pkg:npm/%40babel/generator@7.29.7",
+        "pkg:npm/%40babel/helper-module-imports@7.29.7",
+        "pkg:npm/%40babel/helpers@7.29.7",
+        "pkg:npm/%40babel/parser@7.29.7",
+        "pkg:npm/%40babel/template@7.29.7",
+        "pkg:npm/%40babel/traverse@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10029,6 +11590,9 @@
           "pkg:npm/%40chenglou/pretext@0.0.8"
         ]
       },
+      "dependents": [
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10053,7 +11617,10 @@
           "pkg:npm/wrangler@4.115.0",
           "pkg:npm/%40cloudflare/kv-asset-handler@0.5.0"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/wrangler@4.115.0"
+      ]
     },
     "pkg:npm/%40cloudflare/unenv-preset@2.16.1": {
       "spdx": "MIT OR Apache-2.0",
@@ -10072,7 +11639,10 @@
           "pkg:npm/wrangler@4.115.0",
           "pkg:npm/%40cloudflare/unenv-preset@2.16.1"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/wrangler@4.115.0"
+      ]
     },
     "pkg:npm/%40cloudflare/workerd-darwin-arm64@1.20260722.1": {
       "spdx": "Apache-2.0",
@@ -10094,7 +11664,10 @@
           "pkg:npm/workerd@1.20260722.1",
           "pkg:npm/%40cloudflare/workerd-darwin-arm64@1.20260722.1"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/workerd@1.20260722.1"
+      ]
     },
     "pkg:npm/%40cloudflare/workers-types@5.20260730.1": {
       "spdx": "MIT OR Apache-2.0",
@@ -10115,7 +11688,12 @@
           "pkg:npm/%40sentry/cloudflare@10.69.0",
           "pkg:npm/%40cloudflare/workers-types@5.20260730.1"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/%40sentry/cloudflare@10.69.0",
+        "pkg:npm/drizzle-orm@0.45.2",
+        "pkg:npm/wrangler@4.115.0"
+      ]
     },
     "pkg:npm/%40cspotcode/source-map-support@0.8.1": {
       "spdx": "MIT",
@@ -10136,6 +11714,9 @@
           "pkg:npm/%40cspotcode/source-map-support@0.8.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/miniflare@4.20260722.1"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -10161,7 +11742,10 @@
           "pkg:npm/esbuild@0.28.1",
           "pkg:npm/%40esbuild/darwin-arm64@0.28.1"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/esbuild@0.28.1"
+      ]
     },
     "pkg:npm/%40floating-ui/core@1.8.0": {
       "spdx": "MIT",
@@ -10179,6 +11763,10 @@
           "pkg:npm/%40floating-ui/core@1.8.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40floating-ui/dom@1.8.0",
+        "pkg:npm/bits-ui@2.18.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10202,6 +11790,9 @@
           "pkg:npm/%40floating-ui/dom@1.8.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/bits-ui@2.18.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10226,6 +11817,10 @@
           "pkg:npm/%40floating-ui/utils@0.2.12"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40floating-ui/core@1.8.0",
+        "pkg:npm/%40floating-ui/dom@1.8.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10254,6 +11849,9 @@
           "pkg:npm/%40img/colour@1.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/sharp@0.35.2"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -10288,6 +11886,9 @@
           "pkg:npm/%40img/sharp-darwin-arm64@0.35.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/sharp@0.35.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10321,7 +11922,11 @@
           "pkg:npm/sharp@0.35.2",
           "pkg:npm/%40img/sharp-libvips-darwin-arm64@1.3.1"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/%40img/sharp-darwin-arm64@0.35.2",
+        "pkg:npm/sharp@0.35.2"
+      ]
     },
     "pkg:npm/%40inlang/paraglide-js-svelte@1.0.3": {
       "spdx": "MIT",
@@ -10337,6 +11942,9 @@
           "pkg:npm/%40inlang/paraglide-js-svelte@1.0.3"
         ]
       },
+      "dependents": [
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10359,6 +11967,9 @@
           "pkg:npm/%40inlang/paraglide-js@2.23.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40inlang/paraglide-js-svelte@1.0.3"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10376,6 +11987,9 @@
           "pkg:npm/%40inlang/recommend-sherlock@0.2.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40inlang/paraglide-js@2.23.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10394,6 +12008,9 @@
           "pkg:npm/%40inlang/sdk@2.10.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40inlang/paraglide-js@2.23.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10411,6 +12028,9 @@
           "pkg:npm/%40internationalized/date@3.12.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/bits-ui@2.18.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10437,6 +12057,10 @@
           "pkg:npm/%40jridgewell/gen-mapping@0.3.13"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/generator@7.29.7",
+        "pkg:npm/%40jridgewell/remapping@2.3.5"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10461,6 +12085,11 @@
           "pkg:npm/%40jridgewell/remapping@2.3.5"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/core@7.29.7",
+        "pkg:npm/svelte@5.56.8",
+        "pkg:npm/unplugin@2.3.11"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10496,6 +12125,10 @@
           "pkg:npm/%40jridgewell/resolve-uri@3.1.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40jridgewell/trace-mapping@0.3.31",
+        "pkg:npm/%40jridgewell/trace-mapping@0.3.9"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10527,6 +12160,15 @@
           "pkg:npm/%40jridgewell/sourcemap-codec@1.5.5"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40jridgewell/gen-mapping@0.3.13",
+        "pkg:npm/%40jridgewell/trace-mapping@0.3.31",
+        "pkg:npm/%40jridgewell/trace-mapping@0.3.9",
+        "pkg:npm/esrap@2.3.0",
+        "pkg:npm/magic-string@0.30.21",
+        "pkg:npm/sorcery@1.0.0",
+        "pkg:npm/svelte@5.56.8"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10553,6 +12195,11 @@
           "pkg:npm/%40jridgewell/trace-mapping@0.3.31"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/generator@7.29.7",
+        "pkg:npm/%40jridgewell/gen-mapping@0.3.13",
+        "pkg:npm/%40jridgewell/remapping@2.3.5"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10586,6 +12233,9 @@
           "pkg:npm/%40jridgewell/trace-mapping@0.3.9"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40cspotcode/source-map-support@0.8.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10606,6 +12256,9 @@
           "pkg:npm/%40jsquash/avif@2.1.1"
         ]
       },
+      "dependents": [
+        "workspace:cdn"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10626,6 +12279,9 @@
           "pkg:npm/%40jsquash/jpeg@1.6.0"
         ]
       },
+      "dependents": [
+        "workspace:cdn"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10647,6 +12303,9 @@
           "pkg:npm/%40jsquash/png@3.1.1"
         ]
       },
+      "dependents": [
+        "workspace:cdn"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10667,6 +12326,9 @@
           "pkg:npm/%40jsquash/webp@1.5.0"
         ]
       },
+      "dependents": [
+        "workspace:cdn"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10684,6 +12346,9 @@
           "pkg:npm/%40lix-js/sdk@0.4.10"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40inlang/sdk@2.10.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10702,6 +12367,9 @@
           "pkg:npm/%40lix-js/server-protocol-schema@0.1.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40lix-js/sdk@0.4.10"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10724,6 +12392,9 @@
           "pkg:npm/%40lucide/svelte@1.27.0"
         ]
       },
+      "dependents": [
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10746,7 +12417,10 @@
           "pkg:npm/fast-xml-parser@5.10.1",
           "pkg:npm/%40nodable/entities@3.0.0"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/fast-xml-parser@5.10.1"
+      ]
     },
     "pkg:npm/%40opentelemetry/api-logs@0.220.0": {
       "spdx": "Apache-2.0",
@@ -10765,6 +12439,9 @@
           "pkg:npm/%40opentelemetry/api-logs@0.220.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40opentelemetry/instrumentation@0.220.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10792,6 +12469,20 @@
           "pkg:npm/%40opentelemetry/api@1.9.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40opentelemetry/api-logs@0.220.0",
+        "pkg:npm/%40opentelemetry/core@2.10.0",
+        "pkg:npm/%40opentelemetry/instrumentation@0.220.0",
+        "pkg:npm/%40opentelemetry/resources@2.10.0",
+        "pkg:npm/%40opentelemetry/sdk-trace-base@2.10.0",
+        "pkg:npm/%40opentelemetry/sdk-trace@2.10.0",
+        "pkg:npm/%40sentry/cloudflare@10.69.0",
+        "pkg:npm/%40sentry/node-core@10.69.0",
+        "pkg:npm/%40sentry/node@10.69.0",
+        "pkg:npm/%40sentry/opentelemetry@10.69.0",
+        "pkg:npm/%40sveltejs/kit@2.70.2",
+        "pkg:npm/drizzle-orm@0.45.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10816,6 +12507,13 @@
           "pkg:npm/%40opentelemetry/core@2.10.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40opentelemetry/resources@2.10.0",
+        "pkg:npm/%40opentelemetry/sdk-trace-base@2.10.0",
+        "pkg:npm/%40opentelemetry/sdk-trace@2.10.0",
+        "pkg:npm/%40sentry/node-core@10.69.0",
+        "pkg:npm/%40sentry/opentelemetry@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10840,6 +12538,10 @@
           "pkg:npm/%40opentelemetry/instrumentation@0.220.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/node-core@10.69.0",
+        "pkg:npm/%40sentry/node@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10864,6 +12566,10 @@
           "pkg:npm/%40opentelemetry/resources@2.10.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40opentelemetry/sdk-trace-base@2.10.0",
+        "pkg:npm/%40opentelemetry/sdk-trace@2.10.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10887,6 +12593,11 @@
           "pkg:npm/%40opentelemetry/sdk-trace-base@2.10.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/node-core@10.69.0",
+        "pkg:npm/%40sentry/node@10.69.0",
+        "pkg:npm/%40sentry/opentelemetry@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10911,6 +12622,9 @@
           "pkg:npm/%40opentelemetry/sdk-trace@2.10.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40opentelemetry/sdk-trace-base@2.10.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10935,6 +12649,12 @@
           "pkg:npm/%40opentelemetry/semantic-conventions@1.43.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40opentelemetry/core@2.10.0",
+        "pkg:npm/%40opentelemetry/resources@2.10.0",
+        "pkg:npm/%40opentelemetry/sdk-trace-base@2.10.0",
+        "pkg:npm/%40opentelemetry/sdk-trace@2.10.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10961,6 +12681,9 @@
           "pkg:npm/%40oxc-project/types@0.143.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/rolldown@1.2.3"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -10983,7 +12706,10 @@
           "pkg:npm/sirv@3.0.2",
           "pkg:npm/%40polka/url@1.0.0-next.29"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/sirv@3.0.2"
+      ]
     },
     "pkg:npm/%40poppinss/colors@4.1.6": {
       "spdx": "MIT",
@@ -11012,6 +12738,10 @@
           "pkg:npm/%40poppinss/colors@4.1.6"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40poppinss/dumper@0.6.5",
+        "pkg:npm/youch@4.1.0-beta.10"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -11046,6 +12776,9 @@
           "pkg:npm/%40poppinss/dumper@0.6.5"
         ]
       },
+      "dependents": [
+        "pkg:npm/youch@4.1.0-beta.10"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -11082,6 +12815,9 @@
           "pkg:npm/%40poppinss/exception@1.2.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/youch-core@0.3.3"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -11102,7 +12838,10 @@
           "pkg:npm/rolldown@1.2.3",
           "pkg:npm/%40rolldown/binding-darwin-arm64@1.2.3"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/rolldown@1.2.3"
+      ]
     },
     "pkg:npm/%40rolldown/pluginutils@1.0.1": {
       "spdx": "MIT",
@@ -11118,6 +12857,9 @@
           "pkg:npm/%40rolldown/pluginutils@1.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/rolldown@1.2.3"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11143,6 +12885,10 @@
           "pkg:npm/%40sentry/browser-utils@10.69.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/browser@10.69.0",
+        "pkg:npm/%40sentry/replay@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11167,6 +12913,9 @@
           "pkg:npm/%40sentry/browser@10.69.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/svelte@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11191,6 +12940,9 @@
           "pkg:npm/%40sentry/bundler-plugins@10.69.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/vite-plugin@5.4.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11210,7 +12962,10 @@
           "pkg:npm/%40sentry/cli@2.58.6",
           "pkg:npm/%40sentry/cli-darwin@2.58.6"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/%40sentry/cli@2.58.6"
+      ]
     },
     "pkg:npm/%40sentry/cli@2.58.6": {
       "spdx": "FSL-1.1-MIT",
@@ -11230,6 +12985,9 @@
           "pkg:npm/%40sentry/cli@2.58.6"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/bundler-plugins@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11256,6 +13014,10 @@
           "pkg:npm/%40sentry/cloudflare@10.69.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/sveltekit@10.69.0",
+        "workspace:api"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11278,6 +13040,16 @@
           "pkg:npm/%40sentry/conventions@0.16.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/browser-utils@10.69.0",
+        "pkg:npm/%40sentry/browser@10.69.0",
+        "pkg:npm/%40sentry/core@10.69.0",
+        "pkg:npm/%40sentry/node-core@10.69.0",
+        "pkg:npm/%40sentry/node@10.69.0",
+        "pkg:npm/%40sentry/opentelemetry@10.69.0",
+        "pkg:npm/%40sentry/server-utils@10.69.0",
+        "pkg:npm/%40sentry/sveltekit@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11305,6 +13077,21 @@
           "pkg:npm/%40sentry/core@10.69.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/browser-utils@10.69.0",
+        "pkg:npm/%40sentry/browser@10.69.0",
+        "pkg:npm/%40sentry/bundler-plugins@10.69.0",
+        "pkg:npm/%40sentry/cloudflare@10.69.0",
+        "pkg:npm/%40sentry/feedback@10.69.0",
+        "pkg:npm/%40sentry/node-core@10.69.0",
+        "pkg:npm/%40sentry/node@10.69.0",
+        "pkg:npm/%40sentry/opentelemetry@10.69.0",
+        "pkg:npm/%40sentry/replay-canvas@10.69.0",
+        "pkg:npm/%40sentry/replay@10.69.0",
+        "pkg:npm/%40sentry/server-utils@10.69.0",
+        "pkg:npm/%40sentry/svelte@10.69.0",
+        "pkg:npm/%40sentry/sveltekit@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11330,6 +13117,9 @@
           "pkg:npm/%40sentry/feedback@10.69.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/browser@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11354,6 +13144,9 @@
           "pkg:npm/%40sentry/node-core@10.69.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/node@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11377,6 +13170,9 @@
           "pkg:npm/%40sentry/node@10.69.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/sveltekit@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11401,6 +13197,10 @@
           "pkg:npm/%40sentry/opentelemetry@10.69.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/node-core@10.69.0",
+        "pkg:npm/%40sentry/node@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11426,6 +13226,9 @@
           "pkg:npm/%40sentry/replay-canvas@10.69.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/browser@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11451,6 +13254,10 @@
           "pkg:npm/%40sentry/replay@10.69.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/browser@10.69.0",
+        "pkg:npm/%40sentry/replay-canvas@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11478,7 +13285,11 @@
           "pkg:npm/%40sentry/cloudflare@10.69.0",
           "pkg:npm/%40sentry/server-utils@10.69.0"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/%40sentry/cloudflare@10.69.0",
+        "pkg:npm/%40sentry/node@10.69.0"
+      ]
     },
     "pkg:npm/%40sentry/svelte@10.69.0": {
       "spdx": "MIT",
@@ -11496,6 +13307,9 @@
           "pkg:npm/%40sentry/svelte@10.69.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/sveltekit@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11518,6 +13332,9 @@
           "pkg:npm/%40sentry/sveltekit@10.69.0"
         ]
       },
+      "dependents": [
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11541,6 +13358,9 @@
           "pkg:npm/%40sentry/vite-plugin@5.4.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/sveltekit@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11564,6 +13384,9 @@
           "pkg:npm/%40shikijs/core@4.3.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/shiki@4.3.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11587,6 +13410,9 @@
           "pkg:npm/%40shikijs/engine-javascript@4.3.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/shiki@4.3.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11610,6 +13436,9 @@
           "pkg:npm/%40shikijs/engine-oniguruma@4.3.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/shiki@4.3.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11633,6 +13462,9 @@
           "pkg:npm/%40shikijs/langs@4.3.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/shiki@4.3.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11657,6 +13489,9 @@
           "pkg:npm/%40shikijs/primitive@4.3.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40shikijs/core@4.3.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11680,6 +13515,9 @@
           "pkg:npm/%40shikijs/themes@4.3.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/shiki@4.3.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11703,6 +13541,15 @@
           "pkg:npm/%40shikijs/types@4.3.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40shikijs/core@4.3.1",
+        "pkg:npm/%40shikijs/engine-javascript@4.3.1",
+        "pkg:npm/%40shikijs/engine-oniguruma@4.3.1",
+        "pkg:npm/%40shikijs/langs@4.3.1",
+        "pkg:npm/%40shikijs/primitive@4.3.1",
+        "pkg:npm/%40shikijs/themes@4.3.1",
+        "pkg:npm/shiki@4.3.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11725,6 +13572,14 @@
           "pkg:npm/%40shikijs/vscode-textmate@10.0.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40shikijs/core@4.3.1",
+        "pkg:npm/%40shikijs/engine-javascript@4.3.1",
+        "pkg:npm/%40shikijs/engine-oniguruma@4.3.1",
+        "pkg:npm/%40shikijs/primitive@4.3.1",
+        "pkg:npm/%40shikijs/types@4.3.1",
+        "pkg:npm/shiki@4.3.1"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -11749,6 +13604,9 @@
           "pkg:npm/%40sinclair/typebox@0.31.30"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40inlang/sdk@2.10.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -11783,6 +13641,9 @@
           "pkg:npm/%40sindresorhus/is@7.2.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40poppinss/dumper@0.6.5"
+      ],
       "texts": [
         {
           "name": "license",
@@ -11817,6 +13678,9 @@
           "pkg:npm/%40speed-highlight/core@1.2.17"
         ]
       },
+      "dependents": [
+        "pkg:npm/youch@4.1.0-beta.10"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11843,7 +13707,10 @@
           "pkg:npm/sqlite-wasm-kysely@0.3.0",
           "pkg:npm/%40sqlite.org/sqlite-wasm@3.48.0-build4"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/sqlite-wasm-kysely@0.3.0"
+      ]
     },
     "pkg:npm/%40standard-schema/spec@1.1.0": {
       "spdx": "MIT",
@@ -11862,6 +13729,9 @@
           "pkg:npm/%40standard-schema/spec@1.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sveltejs/kit@2.70.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11885,6 +13755,11 @@
           "pkg:npm/%40sveltejs/acorn-typescript@1.0.11"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/sveltekit@10.69.0",
+        "pkg:npm/%40sveltejs/kit@2.70.2",
+        "pkg:npm/svelte@5.56.8"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -11903,6 +13778,10 @@
           "pkg:npm/%40sveltejs/kit@2.70.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/sveltekit@10.69.0",
+        "pkg:npm/runed@0.35.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11921,6 +13800,9 @@
           "pkg:npm/%40sveltejs/vite-plugin-svelte@7.2.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sveltejs/kit@2.70.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11945,6 +13827,9 @@
           "pkg:npm/%40swc/helpers@0.5.23"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40internationalized/date@3.12.3"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11968,6 +13853,11 @@
           "pkg:npm/%40tanstack/query-core@5.101.4"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40tanstack/query-persist-client-core@5.101.4",
+        "pkg:npm/%40tanstack/query-sync-storage-persister@5.101.4",
+        "pkg:npm/%40tanstack/svelte-query@6.1.38"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -11991,6 +13881,10 @@
           "pkg:npm/%40tanstack/query-persist-client-core@5.101.4"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40tanstack/query-sync-storage-persister@5.101.4",
+        "pkg:npm/%40tanstack/svelte-query-persist-client@6.1.38"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12013,6 +13907,9 @@
           "pkg:npm/%40tanstack/query-sync-storage-persister@5.101.4"
         ]
       },
+      "dependents": [
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12035,6 +13932,9 @@
           "pkg:npm/%40tanstack/svelte-query-persist-client@6.1.38"
         ]
       },
+      "dependents": [
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12057,6 +13957,10 @@
           "pkg:npm/%40tanstack/svelte-query@6.1.38"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40tanstack/svelte-query-persist-client@6.1.38",
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12076,6 +13980,9 @@
           "pkg:npm/%40types/cookie@0.6.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sveltejs/kit@2.70.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12097,6 +14004,9 @@
           "pkg:npm/%40types/debug@4.1.13"
         ]
       },
+      "dependents": [
+        "pkg:npm/micromark@4.0.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12123,6 +14033,11 @@
           "pkg:npm/%40types/estree@1.0.9"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40apm-js-collab/code-transformer@0.18.1",
+        "pkg:npm/is-reference@3.0.3",
+        "pkg:npm/svelte@5.56.8"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12141,6 +14056,15 @@
           "pkg:npm/%40types/hast@3.0.5"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40shikijs/core@4.3.1",
+        "pkg:npm/%40shikijs/primitive@4.3.1",
+        "pkg:npm/%40shikijs/types@4.3.1",
+        "pkg:npm/hast-util-to-html@9.0.5",
+        "pkg:npm/hast-util-whitespace@3.0.0",
+        "pkg:npm/mdast-util-to-hast@13.2.1",
+        "pkg:npm/shiki@4.3.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12159,6 +14083,26 @@
           "pkg:npm/%40types/mdast@4.0.4"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-directive@3.1.0",
+        "pkg:npm/mdast-util-find-and-replace@3.0.2",
+        "pkg:npm/mdast-util-from-markdown@2.0.3",
+        "pkg:npm/mdast-util-frontmatter@2.0.1",
+        "pkg:npm/mdast-util-gfm-autolink-literal@2.0.1",
+        "pkg:npm/mdast-util-gfm-footnote@2.1.0",
+        "pkg:npm/mdast-util-gfm-strikethrough@2.0.0",
+        "pkg:npm/mdast-util-gfm-table@2.0.0",
+        "pkg:npm/mdast-util-gfm-task-list-item@2.0.0",
+        "pkg:npm/mdast-util-phrasing@4.1.0",
+        "pkg:npm/mdast-util-to-hast@13.2.1",
+        "pkg:npm/mdast-util-to-markdown@2.1.2",
+        "pkg:npm/mdast-util-to-string@4.0.0",
+        "pkg:npm/remark-directive@4.0.0",
+        "pkg:npm/remark-frontmatter@5.0.0",
+        "pkg:npm/remark-gfm@4.0.1",
+        "pkg:npm/remark-parse@11.0.0",
+        "pkg:npm/remark-stringify@11.0.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12181,6 +14125,9 @@
           "pkg:npm/%40types/ms@2.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40types/debug@4.1.13"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12201,6 +14148,9 @@
           "pkg:npm/%40types/node@26.1.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/vite@8.2.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12220,6 +14170,9 @@
           "pkg:npm/%40types/trusted-types@2.0.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/svelte@5.56.8"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12240,6 +14193,9 @@
           "pkg:npm/%40types/unist@2.0.11"
         ]
       },
+      "dependents": [
+        "pkg:npm/parse-entities@4.0.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12258,6 +14214,22 @@
           "pkg:npm/%40types/unist@3.0.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40types/hast@3.0.5",
+        "pkg:npm/%40types/mdast@4.0.4",
+        "pkg:npm/hast-util-to-html@9.0.5",
+        "pkg:npm/mdast-util-directive@3.1.0",
+        "pkg:npm/mdast-util-from-markdown@2.0.3",
+        "pkg:npm/mdast-util-to-markdown@2.1.2",
+        "pkg:npm/unified@11.0.5",
+        "pkg:npm/unist-util-is@6.0.1",
+        "pkg:npm/unist-util-position@5.0.0",
+        "pkg:npm/unist-util-stringify-position@4.0.0",
+        "pkg:npm/unist-util-visit-parents@6.0.2",
+        "pkg:npm/unist-util-visit@5.1.0",
+        "pkg:npm/vfile-message@4.0.3",
+        "pkg:npm/vfile@6.0.3"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12282,6 +14254,9 @@
           "pkg:npm/%40ungap/structured-clone@1.3.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-to-hast@13.2.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12300,6 +14275,13 @@
           "pkg:npm/acorn@8.18.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/sveltekit@10.69.0",
+        "pkg:npm/%40sveltejs/acorn-typescript@1.0.11",
+        "pkg:npm/%40sveltejs/kit@2.70.2",
+        "pkg:npm/svelte@5.56.8",
+        "pkg:npm/unplugin@2.3.11"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12325,7 +14307,10 @@
           "pkg:npm/https-proxy-agent@5.0.1",
           "pkg:npm/agent-base@6.0.2"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/https-proxy-agent@5.0.1"
+      ]
     },
     "pkg:npm/anynum@1.0.1": {
       "spdx": "MIT",
@@ -12344,6 +14329,9 @@
           "pkg:npm/anynum@1.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/strnum@2.4.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12368,6 +14356,9 @@
           "pkg:npm/aria-query@5.3.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/svelte@5.56.8"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12389,6 +14380,9 @@
           "pkg:npm/array-timsort@1.0.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/comment-json@4.6.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12422,6 +14416,9 @@
           "pkg:npm/astring@1.9.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40apm-js-collab/code-transformer@0.18.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12446,6 +14443,9 @@
           "pkg:npm/axobject-query@4.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/svelte@5.56.8"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12468,6 +14468,9 @@
           "pkg:npm/bail@2.0.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/unified@11.0.5"
+      ],
       "texts": [
         {
           "name": "license",
@@ -12490,6 +14493,9 @@
           "pkg:npm/balanced-match@4.0.4"
         ]
       },
+      "dependents": [
+        "pkg:npm/brace-expansion@5.0.9"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -12512,6 +14518,9 @@
           "pkg:npm/baseline-browser-mapping@2.11.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/browserslist@4.28.7"
+      ],
       "texts": [
         {
           "name": "LICENSE.txt",
@@ -12534,6 +14543,9 @@
           "pkg:npm/bits-ui@2.18.1"
         ]
       },
+      "dependents": [
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12564,6 +14576,9 @@
           "pkg:npm/blake3-wasm@2.1.5"
         ]
       },
+      "dependents": [
+        "pkg:npm/wrangler@4.115.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12585,6 +14600,9 @@
           "pkg:npm/brace-expansion@5.0.9"
         ]
       },
+      "dependents": [
+        "pkg:npm/minimatch@10.2.6"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12610,6 +14628,10 @@
           "pkg:npm/browserslist@4.28.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/helper-compilation-targets@7.29.7",
+        "pkg:npm/update-browserslist-db@1.2.3"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12636,6 +14658,9 @@
           "pkg:npm/caniuse-lite@1.0.30001806"
         ]
       },
+      "dependents": [
+        "pkg:npm/browserslist@4.28.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12657,6 +14682,11 @@
           "pkg:npm/ccount@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/hast-util-to-html@9.0.5",
+        "pkg:npm/mdast-util-directive@3.1.0",
+        "pkg:npm/mdast-util-gfm-autolink-literal@2.0.1"
+      ],
       "texts": [
         {
           "name": "license",
@@ -12679,6 +14709,9 @@
           "pkg:npm/character-entities-html4@2.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/stringify-entities@4.0.4"
+      ],
       "texts": [
         {
           "name": "license",
@@ -12701,6 +14734,10 @@
           "pkg:npm/character-entities-legacy@3.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/parse-entities@4.0.2",
+        "pkg:npm/stringify-entities@4.0.4"
+      ],
       "texts": [
         {
           "name": "license",
@@ -12725,6 +14762,9 @@
           "pkg:npm/character-entities@2.0.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/decode-named-character-reference@1.3.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -12748,6 +14788,9 @@
           "pkg:npm/character-reference-invalid@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/parse-entities@4.0.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -12774,6 +14817,9 @@
           "pkg:npm/cjs-module-lexer@2.2.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/import-in-the-middle@3.3.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12796,6 +14842,10 @@
           "pkg:npm/clsx@2.1.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/svelte-toolbelt@0.10.6",
+        "pkg:npm/svelte@5.56.8"
+      ],
       "texts": [
         {
           "name": "license",
@@ -12817,6 +14867,9 @@
           "pkg:npm/comma-separated-tokens@2.0.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/hast-util-to-html@9.0.5"
+      ],
       "texts": [
         {
           "name": "license",
@@ -12840,6 +14893,9 @@
           "pkg:npm/commander@11.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40inlang/paraglide-js@2.23.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12864,6 +14920,9 @@
           "pkg:npm/comment-json@4.6.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40inlang/recommend-sherlock@0.2.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12881,6 +14940,9 @@
           "pkg:npm/consola@3.4.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40inlang/paraglide-js@2.23.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12907,6 +14969,9 @@
           "pkg:npm/convert-source-map@2.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/core@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12929,6 +14994,9 @@
           "pkg:npm/cookie@0.7.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sveltejs/kit@2.70.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12961,6 +15029,9 @@
           "pkg:npm/cookie@1.1.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/youch@4.1.0-beta.10"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -12983,6 +15054,9 @@
           "pkg:npm/d3-hierarchy@3.1.2"
         ]
       },
+      "dependents": [
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -13014,6 +15088,15 @@
           "pkg:npm/debug@4.4.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40apm-js-collab/tracing-hooks@0.13.0",
+        "pkg:npm/%40babel/core@7.29.7",
+        "pkg:npm/%40babel/traverse@7.29.7",
+        "pkg:npm/agent-base@6.0.2",
+        "pkg:npm/https-proxy-agent@5.0.1",
+        "pkg:npm/micromark@4.0.2",
+        "pkg:npm/require-in-the-middle@8.0.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -13037,6 +15120,13 @@
           "pkg:npm/decode-named-character-reference@1.3.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-from-markdown@2.0.3",
+        "pkg:npm/micromark-core-commonmark@2.0.3",
+        "pkg:npm/micromark-util-decode-string@2.0.1",
+        "pkg:npm/micromark@4.0.2",
+        "pkg:npm/parse-entities@4.0.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -13063,6 +15153,9 @@
           "pkg:npm/dedent@1.5.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40lix-js/sdk@0.4.10"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -13083,6 +15176,9 @@
           "pkg:npm/deepmerge@4.3.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sveltejs/vite-plugin-svelte@7.2.0"
+      ],
       "texts": [
         {
           "name": "license.txt",
@@ -13105,6 +15201,10 @@
           "pkg:npm/dequal@2.0.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/devlop@1.1.0",
+        "pkg:npm/runed@0.35.1"
+      ],
       "texts": [
         {
           "name": "license",
@@ -13137,6 +15237,10 @@
           "pkg:npm/detect-libc@2.1.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/lightningcss@1.33.0",
+        "pkg:npm/sharp@0.35.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -13154,6 +15258,10 @@
           "pkg:npm/devalue@5.8.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sveltejs/kit@2.70.2",
+        "pkg:npm/svelte@5.56.8"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -13176,6 +15284,26 @@
           "pkg:npm/devlop@1.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-directive@3.1.0",
+        "pkg:npm/mdast-util-from-markdown@2.0.3",
+        "pkg:npm/mdast-util-frontmatter@2.0.1",
+        "pkg:npm/mdast-util-gfm-autolink-literal@2.0.1",
+        "pkg:npm/mdast-util-gfm-footnote@2.1.0",
+        "pkg:npm/mdast-util-gfm-table@2.0.0",
+        "pkg:npm/mdast-util-gfm-task-list-item@2.0.0",
+        "pkg:npm/mdast-util-to-hast@13.2.1",
+        "pkg:npm/micromark-core-commonmark@2.0.3",
+        "pkg:npm/micromark-extension-directive@4.0.0",
+        "pkg:npm/micromark-extension-gfm-footnote@2.1.0",
+        "pkg:npm/micromark-extension-gfm-strikethrough@2.1.0",
+        "pkg:npm/micromark-extension-gfm-table@2.1.1",
+        "pkg:npm/micromark-extension-gfm-task-list-item@2.1.0",
+        "pkg:npm/micromark-factory-label@2.0.1",
+        "pkg:npm/micromark-util-subtokenize@2.1.0",
+        "pkg:npm/micromark@4.0.2",
+        "pkg:npm/unified@11.0.5"
+      ],
       "texts": [
         {
           "name": "license",
@@ -13196,6 +15324,9 @@
           "pkg:npm/dotenv@17.4.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/bundler-plugins@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -13217,7 +15348,10 @@
         "api": [
           "pkg:npm/drizzle-orm@0.45.2"
         ]
-      }
+      },
+      "dependents": [
+        "workspace:api"
+      ]
     },
     "pkg:npm/electron-to-chromium@1.5.398": {
       "spdx": "ISC",
@@ -13239,6 +15373,9 @@
           "pkg:npm/electron-to-chromium@1.5.398"
         ]
       },
+      "dependents": [
+        "pkg:npm/browserslist@4.28.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -13261,6 +15398,9 @@
           "pkg:npm/entities@7.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/feedsmith@2.9.6"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -13292,6 +15432,9 @@
           "pkg:npm/error-stack-parser-es@1.0.5"
         ]
       },
+      "dependents": [
+        "pkg:npm/youch-core@0.3.3"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -13324,6 +15467,10 @@
           "pkg:npm/es-module-lexer@2.3.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40apm-js-collab/code-transformer-bundler-plugins@0.7.3",
+        "pkg:npm/import-in-the-middle@3.3.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -13348,6 +15495,11 @@
           "pkg:npm/esbuild@0.28.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/tsx@4.23.7",
+        "pkg:npm/vite@8.2.1",
+        "pkg:npm/wrangler@4.115.0"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -13375,6 +15527,9 @@
           "pkg:npm/escalade@3.2.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/update-browserslist-db@1.2.3"
+      ],
       "texts": [
         {
           "name": "license",
@@ -13397,6 +15552,10 @@
           "pkg:npm/escape-string-regexp@5.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-find-and-replace@3.0.2",
+        "pkg:npm/mdast-util-frontmatter@2.0.1"
+      ],
       "texts": [
         {
           "name": "license",
@@ -13419,6 +15578,12 @@
           "pkg:npm/esm-env@1.2.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sveltejs/kit@2.70.2",
+        "pkg:npm/bits-ui@2.18.1",
+        "pkg:npm/runed@0.35.1",
+        "pkg:npm/svelte@5.56.8"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -13445,6 +15610,9 @@
           "pkg:npm/esprima@4.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/comment-json@4.6.2"
+      ],
       "texts": [
         {
           "name": "LICENSE.BSD",
@@ -13479,6 +15647,9 @@
           "pkg:npm/esquery@1.7.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40apm-js-collab/code-transformer@0.18.1"
+      ],
       "texts": [
         {
           "name": "license.txt",
@@ -13497,6 +15668,9 @@
           "pkg:npm/esrap@2.3.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/svelte@5.56.8"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -13528,6 +15702,9 @@
           "pkg:npm/estraverse@5.3.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/esquery@1.7.0"
+      ],
       "texts": [
         {
           "name": "LICENSE.BSD",
@@ -13551,6 +15728,9 @@
           "pkg:npm/extend@3.0.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/unified@11.0.5"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -13574,6 +15754,9 @@
           "pkg:npm/fast-xml-builder@1.3.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/fast-xml-parser@5.10.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -13596,6 +15779,9 @@
           "pkg:npm/fast-xml-parser@5.10.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/feedsmith@2.9.6"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -13619,6 +15805,9 @@
           "pkg:npm/fault@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/micromark-extension-frontmatter@2.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -13645,6 +15834,9 @@
           "pkg:npm/fdir@6.5.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/tinyglobby@0.2.17"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -13667,6 +15859,9 @@
           "pkg:npm/feedsmith@2.9.6"
         ]
       },
+      "dependents": [
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -13690,6 +15885,9 @@
           "pkg:npm/find-up@5.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/bundler-plugins@10.69.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -13716,7 +15914,10 @@
           "pkg:npm/fault@2.0.1",
           "pkg:npm/format@0.2.2"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/fault@2.0.1"
+      ]
     },
     "pkg:npm/framer-motion@12.43.0": {
       "spdx": "MIT",
@@ -13733,6 +15934,9 @@
           "pkg:npm/framer-motion@12.43.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/motion@12.43.0"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -13758,6 +15962,11 @@
           "pkg:npm/fsevents@2.3.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/tsx@4.23.7",
+        "pkg:npm/vite@8.2.1",
+        "pkg:npm/wrangler@4.115.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -13784,6 +15993,9 @@
           "pkg:npm/gensync@1.0.0-beta.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/core@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -13808,6 +16020,9 @@
           "pkg:npm/glob@13.0.6"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/bundler-plugins@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -13832,6 +16047,9 @@
           "pkg:npm/globalyzer@0.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/tiny-glob@0.2.9"
+      ],
       "texts": [
         {
           "name": "license",
@@ -13856,6 +16074,9 @@
           "pkg:npm/globrex@0.1.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/tiny-glob@0.2.9"
+      ],
       "texts": [
         {
           "name": "license",
@@ -13876,6 +16097,10 @@
           "pkg:npm/hast-util-to-html@9.0.5"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40shikijs/core@4.3.1",
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "license",
@@ -13897,6 +16122,9 @@
           "pkg:npm/hast-util-whitespace@3.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/hast-util-to-html@9.0.5"
+      ],
       "texts": [
         {
           "name": "license",
@@ -13923,6 +16151,10 @@
           "pkg:npm/hono@4.13.0"
         ]
       },
+      "dependents": [
+        "workspace:api",
+        "workspace:cdn"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -13944,6 +16176,9 @@
           "pkg:npm/html-void-elements@3.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/hast-util-to-html@9.0.5"
+      ],
       "texts": [
         {
           "name": "license",
@@ -13968,7 +16203,10 @@
           "pkg:npm/%40sentry/cli@2.58.6",
           "pkg:npm/https-proxy-agent@5.0.1"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/%40sentry/cli@2.58.6"
+      ]
     },
     "pkg:npm/human-id@4.2.0": {
       "spdx": "MIT",
@@ -13989,6 +16227,9 @@
           "pkg:npm/human-id@4.2.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40lix-js/sdk@0.4.10"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -14013,6 +16254,11 @@
           "pkg:npm/import-in-the-middle@3.3.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40opentelemetry/instrumentation@0.220.0",
+        "pkg:npm/%40sentry/node-core@10.69.0",
+        "pkg:npm/%40sentry/node@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -14036,6 +16282,9 @@
           "pkg:npm/inline-style-parser@0.2.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/style-to-object@1.0.14"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -14060,6 +16309,9 @@
           "pkg:npm/is-alphabetical@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/is-alphanumerical@2.0.1"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14083,6 +16335,9 @@
           "pkg:npm/is-alphanumerical@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/parse-entities@4.0.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14106,6 +16361,10 @@
           "pkg:npm/is-decimal@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/is-alphanumerical@2.0.1",
+        "pkg:npm/parse-entities@4.0.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14129,6 +16388,9 @@
           "pkg:npm/is-hexadecimal@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/parse-entities@4.0.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14151,6 +16413,9 @@
           "pkg:npm/is-plain-obj@4.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/unified@11.0.5"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14174,7 +16439,10 @@
           "pkg:npm/svelte@5.56.8",
           "pkg:npm/is-reference@3.0.3"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/svelte@5.56.8"
+      ]
     },
     "pkg:npm/is-unsafe@2.0.0": {
       "spdx": "MIT",
@@ -14192,6 +16460,9 @@
           "pkg:npm/is-unsafe@2.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/fast-xml-parser@5.10.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -14219,6 +16490,9 @@
           "pkg:npm/isexe@2.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/which@2.0.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -14237,6 +16511,9 @@
           "pkg:npm/jiti@2.7.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/vite@8.2.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -14263,6 +16540,9 @@
           "pkg:npm/js-sha256@0.11.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40lix-js/sdk@0.4.10"
+      ],
       "texts": [
         {
           "name": "LICENSE.txt",
@@ -14288,6 +16568,9 @@
           "pkg:npm/js-tokens@4.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/code-frame@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -14315,6 +16598,9 @@
           "pkg:npm/jsesc@3.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/generator@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE-MIT.txt",
@@ -14339,6 +16625,10 @@
           "pkg:npm/json5@2.2.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/core@7.29.7",
+        "pkg:npm/%40inlang/paraglide-js@2.23.1"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -14369,6 +16659,10 @@
           "pkg:npm/kleur@4.1.5"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40poppinss/colors@4.1.6",
+        "pkg:npm/%40sveltejs/kit@2.70.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14398,6 +16692,12 @@
           "pkg:npm/kysely@0.28.17"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40inlang/sdk@2.10.2",
+        "pkg:npm/%40lix-js/sdk@0.4.10",
+        "pkg:npm/drizzle-orm@0.45.2",
+        "pkg:npm/sqlite-wasm-kysely@0.3.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -14418,6 +16718,9 @@
           "pkg:npm/lightningcss-darwin-arm64@1.33.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/lightningcss@1.33.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -14437,6 +16740,9 @@
           "pkg:npm/lightningcss@1.33.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/vite@8.2.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -14460,7 +16766,10 @@
           "pkg:npm/svelte@5.56.8",
           "pkg:npm/locate-character@3.0.0"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/svelte@5.56.8"
+      ]
     },
     "pkg:npm/locate-path@6.0.0": {
       "spdx": "MIT",
@@ -14479,6 +16788,9 @@
           "pkg:npm/locate-path@6.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/find-up@5.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14502,6 +16814,9 @@
           "pkg:npm/longest-streak@3.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-to-markdown@2.1.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14528,6 +16843,9 @@
           "pkg:npm/lru-cache@11.5.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/path-scurry@2.0.2"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -14554,6 +16872,9 @@
           "pkg:npm/lru-cache@5.1.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/helper-compilation-targets@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -14578,6 +16899,9 @@
           "pkg:npm/lz-string@1.5.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/runed@0.35.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -14604,6 +16928,16 @@
           "pkg:npm/magic-string@0.30.21"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40apm-js-collab/code-transformer-bundler-plugins@0.7.3",
+        "pkg:npm/%40sentry/bundler-plugins@10.69.0",
+        "pkg:npm/%40sentry/cloudflare@10.69.0",
+        "pkg:npm/%40sentry/svelte@10.69.0",
+        "pkg:npm/%40sentry/sveltekit@10.69.0",
+        "pkg:npm/%40sveltejs/kit@2.70.2",
+        "pkg:npm/%40sveltejs/vite-plugin-svelte@7.2.0",
+        "pkg:npm/svelte@5.56.8"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -14627,6 +16961,9 @@
           "pkg:npm/markdown-table@3.0.4"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-gfm-table@2.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14648,6 +16985,9 @@
           "pkg:npm/mdast-util-directive@3.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/remark-directive@4.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14671,6 +17011,9 @@
           "pkg:npm/mdast-util-find-and-replace@3.0.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-gfm-autolink-literal@2.0.1"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14693,6 +17036,16 @@
           "pkg:npm/mdast-util-from-markdown@2.0.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-directive@3.1.0",
+        "pkg:npm/mdast-util-frontmatter@2.0.1",
+        "pkg:npm/mdast-util-gfm-footnote@2.1.0",
+        "pkg:npm/mdast-util-gfm-strikethrough@2.0.0",
+        "pkg:npm/mdast-util-gfm-table@2.0.0",
+        "pkg:npm/mdast-util-gfm-task-list-item@2.0.0",
+        "pkg:npm/mdast-util-gfm@3.1.0",
+        "pkg:npm/remark-parse@11.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14714,6 +17067,9 @@
           "pkg:npm/mdast-util-frontmatter@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/remark-frontmatter@5.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14736,6 +17092,9 @@
           "pkg:npm/mdast-util-gfm-autolink-literal@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-gfm@3.1.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14758,6 +17117,9 @@
           "pkg:npm/mdast-util-gfm-footnote@2.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-gfm@3.1.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14780,6 +17142,9 @@
           "pkg:npm/mdast-util-gfm-strikethrough@2.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-gfm@3.1.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14802,6 +17167,9 @@
           "pkg:npm/mdast-util-gfm-table@2.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-gfm@3.1.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14824,6 +17192,9 @@
           "pkg:npm/mdast-util-gfm-task-list-item@2.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-gfm@3.1.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14845,6 +17216,9 @@
           "pkg:npm/mdast-util-gfm@3.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/remark-gfm@4.0.1"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14868,6 +17242,9 @@
           "pkg:npm/mdast-util-phrasing@4.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-to-markdown@2.1.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14888,6 +17265,10 @@
           "pkg:npm/mdast-util-to-hast@13.2.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/hast-util-to-html@9.0.5",
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14910,6 +17291,16 @@
           "pkg:npm/mdast-util-to-markdown@2.1.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-directive@3.1.0",
+        "pkg:npm/mdast-util-frontmatter@2.0.1",
+        "pkg:npm/mdast-util-gfm-footnote@2.1.0",
+        "pkg:npm/mdast-util-gfm-strikethrough@2.0.0",
+        "pkg:npm/mdast-util-gfm-table@2.0.0",
+        "pkg:npm/mdast-util-gfm-task-list-item@2.0.0",
+        "pkg:npm/mdast-util-gfm@3.1.0",
+        "pkg:npm/remark-stringify@11.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14930,6 +17321,11 @@
           "pkg:npm/mdast-util-to-string@4.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-from-markdown@2.0.3",
+        "pkg:npm/mdast-util-to-markdown@2.1.2",
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "license",
@@ -14961,6 +17357,10 @@
           "pkg:npm/meriyah@6.1.4"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40apm-js-collab/code-transformer@0.18.1",
+        "pkg:npm/%40sentry/server-utils@10.69.0"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -14985,6 +17385,10 @@
           "pkg:npm/micromark-core-commonmark@2.0.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/micromark-extension-gfm-footnote@2.1.0",
+        "pkg:npm/micromark@4.0.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15006,6 +17410,9 @@
           "pkg:npm/micromark-extension-directive@4.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/remark-directive@4.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15027,6 +17434,10 @@
           "pkg:npm/micromark-extension-frontmatter@2.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-frontmatter@2.0.1",
+        "pkg:npm/remark-frontmatter@5.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15049,6 +17460,9 @@
           "pkg:npm/micromark-extension-gfm-autolink-literal@2.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/micromark-extension-gfm@3.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15071,6 +17485,9 @@
           "pkg:npm/micromark-extension-gfm-footnote@2.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/micromark-extension-gfm@3.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15093,6 +17510,9 @@
           "pkg:npm/micromark-extension-gfm-strikethrough@2.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/micromark-extension-gfm@3.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15115,6 +17535,9 @@
           "pkg:npm/micromark-extension-gfm-table@2.1.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/micromark-extension-gfm@3.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15137,6 +17560,9 @@
           "pkg:npm/micromark-extension-gfm-tagfilter@2.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/micromark-extension-gfm@3.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15159,6 +17585,9 @@
           "pkg:npm/micromark-extension-gfm-task-list-item@2.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/micromark-extension-gfm@3.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15180,6 +17609,9 @@
           "pkg:npm/micromark-extension-gfm@3.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/remark-gfm@4.0.1"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15206,6 +17638,9 @@
           "pkg:npm/micromark-factory-destination@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/micromark-core-commonmark@2.0.3"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15232,6 +17667,9 @@
           "pkg:npm/micromark-factory-label@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/micromark-core-commonmark@2.0.3"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15255,6 +17693,16 @@
           "pkg:npm/micromark-factory-space@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/micromark-core-commonmark@2.0.3",
+        "pkg:npm/micromark-extension-directive@4.0.0",
+        "pkg:npm/micromark-extension-gfm-footnote@2.1.0",
+        "pkg:npm/micromark-extension-gfm-table@2.1.1",
+        "pkg:npm/micromark-extension-gfm-task-list-item@2.1.0",
+        "pkg:npm/micromark-factory-title@2.0.1",
+        "pkg:npm/micromark-factory-whitespace@2.0.1",
+        "pkg:npm/micromark@4.0.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15281,6 +17729,9 @@
           "pkg:npm/micromark-factory-title@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/micromark-core-commonmark@2.0.3"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15304,6 +17755,10 @@
           "pkg:npm/micromark-factory-whitespace@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/micromark-core-commonmark@2.0.3",
+        "pkg:npm/micromark-extension-directive@4.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15327,6 +17782,25 @@
           "pkg:npm/micromark-util-character@2.1.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-gfm-autolink-literal@2.0.1",
+        "pkg:npm/micromark-core-commonmark@2.0.3",
+        "pkg:npm/micromark-extension-directive@4.0.0",
+        "pkg:npm/micromark-extension-frontmatter@2.0.0",
+        "pkg:npm/micromark-extension-gfm-autolink-literal@2.1.0",
+        "pkg:npm/micromark-extension-gfm-footnote@2.1.0",
+        "pkg:npm/micromark-extension-gfm-table@2.1.1",
+        "pkg:npm/micromark-extension-gfm-task-list-item@2.1.0",
+        "pkg:npm/micromark-factory-destination@2.0.1",
+        "pkg:npm/micromark-factory-label@2.0.1",
+        "pkg:npm/micromark-factory-space@2.0.1",
+        "pkg:npm/micromark-factory-title@2.0.1",
+        "pkg:npm/micromark-factory-whitespace@2.0.1",
+        "pkg:npm/micromark-util-classify-character@2.0.1",
+        "pkg:npm/micromark-util-decode-string@2.0.1",
+        "pkg:npm/micromark-util-sanitize-uri@2.0.1",
+        "pkg:npm/micromark@4.0.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15351,6 +17825,13 @@
           "pkg:npm/micromark-util-chunked@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/micromark-core-commonmark@2.0.3",
+        "pkg:npm/micromark-extension-gfm-strikethrough@2.1.0",
+        "pkg:npm/micromark-util-combine-extensions@2.0.1",
+        "pkg:npm/micromark-util-subtokenize@2.1.0",
+        "pkg:npm/micromark@4.0.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15375,6 +17856,11 @@
           "pkg:npm/micromark-util-classify-character@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-to-markdown@2.1.2",
+        "pkg:npm/micromark-core-commonmark@2.0.3",
+        "pkg:npm/micromark-extension-gfm-strikethrough@2.1.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15398,6 +17884,10 @@
           "pkg:npm/micromark-util-combine-extensions@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/micromark-extension-gfm@3.0.0",
+        "pkg:npm/micromark@4.0.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15422,6 +17912,11 @@
           "pkg:npm/micromark-util-decode-numeric-character-reference@2.0.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-from-markdown@2.0.3",
+        "pkg:npm/micromark-util-decode-string@2.0.1",
+        "pkg:npm/micromark@4.0.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15446,6 +17941,10 @@
           "pkg:npm/micromark-util-decode-string@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-from-markdown@2.0.3",
+        "pkg:npm/mdast-util-to-markdown@2.1.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15470,6 +17969,10 @@
           "pkg:npm/micromark-util-encode@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/micromark-util-sanitize-uri@2.0.1",
+        "pkg:npm/micromark@4.0.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15496,6 +17999,9 @@
           "pkg:npm/micromark-util-html-tag-name@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/micromark-core-commonmark@2.0.3"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15520,6 +18026,13 @@
           "pkg:npm/micromark-util-normalize-identifier@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-from-markdown@2.0.3",
+        "pkg:npm/mdast-util-gfm-footnote@2.1.0",
+        "pkg:npm/micromark-core-commonmark@2.0.3",
+        "pkg:npm/micromark-extension-gfm-footnote@2.1.0",
+        "pkg:npm/micromark@4.0.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15544,6 +18057,11 @@
           "pkg:npm/micromark-util-resolve-all@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/micromark-core-commonmark@2.0.3",
+        "pkg:npm/micromark-extension-gfm-strikethrough@2.1.0",
+        "pkg:npm/micromark@4.0.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15567,6 +18085,12 @@
           "pkg:npm/micromark-util-sanitize-uri@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-to-hast@13.2.1",
+        "pkg:npm/micromark-extension-gfm-autolink-literal@2.1.0",
+        "pkg:npm/micromark-extension-gfm-footnote@2.1.0",
+        "pkg:npm/micromark@4.0.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15592,6 +18116,10 @@
           "pkg:npm/micromark-util-subtokenize@2.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/micromark-core-commonmark@2.0.3",
+        "pkg:npm/micromark@4.0.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15615,6 +18143,30 @@
           "pkg:npm/micromark-util-symbol@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-from-markdown@2.0.3",
+        "pkg:npm/micromark-core-commonmark@2.0.3",
+        "pkg:npm/micromark-extension-directive@4.0.0",
+        "pkg:npm/micromark-extension-frontmatter@2.0.0",
+        "pkg:npm/micromark-extension-gfm-autolink-literal@2.1.0",
+        "pkg:npm/micromark-extension-gfm-footnote@2.1.0",
+        "pkg:npm/micromark-extension-gfm-strikethrough@2.1.0",
+        "pkg:npm/micromark-extension-gfm-table@2.1.1",
+        "pkg:npm/micromark-extension-gfm-task-list-item@2.1.0",
+        "pkg:npm/micromark-factory-destination@2.0.1",
+        "pkg:npm/micromark-factory-label@2.0.1",
+        "pkg:npm/micromark-factory-title@2.0.1",
+        "pkg:npm/micromark-factory-whitespace@2.0.1",
+        "pkg:npm/micromark-util-character@2.1.1",
+        "pkg:npm/micromark-util-chunked@2.0.1",
+        "pkg:npm/micromark-util-classify-character@2.0.1",
+        "pkg:npm/micromark-util-decode-numeric-character-reference@2.0.2",
+        "pkg:npm/micromark-util-decode-string@2.0.1",
+        "pkg:npm/micromark-util-normalize-identifier@2.0.1",
+        "pkg:npm/micromark-util-sanitize-uri@2.0.1",
+        "pkg:npm/micromark-util-subtokenize@2.1.0",
+        "pkg:npm/micromark@4.0.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15638,6 +18190,31 @@
           "pkg:npm/micromark-util-types@2.0.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-from-markdown@2.0.3",
+        "pkg:npm/micromark-core-commonmark@2.0.3",
+        "pkg:npm/micromark-extension-directive@4.0.0",
+        "pkg:npm/micromark-extension-frontmatter@2.0.0",
+        "pkg:npm/micromark-extension-gfm-autolink-literal@2.1.0",
+        "pkg:npm/micromark-extension-gfm-footnote@2.1.0",
+        "pkg:npm/micromark-extension-gfm-strikethrough@2.1.0",
+        "pkg:npm/micromark-extension-gfm-table@2.1.1",
+        "pkg:npm/micromark-extension-gfm-tagfilter@2.0.0",
+        "pkg:npm/micromark-extension-gfm-task-list-item@2.1.0",
+        "pkg:npm/micromark-extension-gfm@3.0.0",
+        "pkg:npm/micromark-factory-destination@2.0.1",
+        "pkg:npm/micromark-factory-label@2.0.1",
+        "pkg:npm/micromark-factory-space@2.0.1",
+        "pkg:npm/micromark-factory-title@2.0.1",
+        "pkg:npm/micromark-factory-whitespace@2.0.1",
+        "pkg:npm/micromark-util-character@2.1.1",
+        "pkg:npm/micromark-util-classify-character@2.0.1",
+        "pkg:npm/micromark-util-combine-extensions@2.0.1",
+        "pkg:npm/micromark-util-resolve-all@2.0.1",
+        "pkg:npm/micromark-util-subtokenize@2.1.0",
+        "pkg:npm/micromark@4.0.2",
+        "pkg:npm/remark-parse@11.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15662,6 +18239,9 @@
           "pkg:npm/micromark@4.0.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-from-markdown@2.0.3"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15691,7 +18271,10 @@
           "pkg:npm/wrangler@4.115.0",
           "pkg:npm/miniflare@4.20260722.1"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/wrangler@4.115.0"
+      ]
     },
     "pkg:npm/minimatch@10.2.6": {
       "spdx": "BlueOak-1.0.0",
@@ -15711,6 +18294,9 @@
           "pkg:npm/minimatch@10.2.6"
         ]
       },
+      "dependents": [
+        "pkg:npm/glob@13.0.6"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -15735,6 +18321,9 @@
           "pkg:npm/minimist@1.2.8"
         ]
       },
+      "dependents": [
+        "pkg:npm/sorcery@1.0.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -15760,6 +18349,10 @@
           "pkg:npm/minipass@7.1.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/glob@13.0.6",
+        "pkg:npm/path-scurry@2.0.2"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -15792,6 +18385,12 @@
           "pkg:npm/module-details-from-path@1.0.4"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40apm-js-collab/code-transformer-bundler-plugins@0.7.3",
+        "pkg:npm/%40apm-js-collab/tracing-hooks@0.13.0",
+        "pkg:npm/import-in-the-middle@3.3.2",
+        "pkg:npm/require-in-the-middle@8.0.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -15814,6 +18413,9 @@
           "pkg:npm/motion-dom@12.43.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/framer-motion@12.43.0"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -15836,6 +18438,10 @@
           "pkg:npm/motion-utils@12.39.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/framer-motion@12.43.0",
+        "pkg:npm/motion-dom@12.43.0"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -15857,6 +18463,9 @@
           "pkg:npm/motion@12.43.0"
         ]
       },
+      "dependents": [
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -15879,6 +18488,10 @@
           "pkg:npm/mrmime@2.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sveltejs/kit@2.70.2",
+        "pkg:npm/sirv@3.0.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -15906,6 +18519,9 @@
           "pkg:npm/ms@2.1.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/debug@4.4.3"
+      ],
       "texts": [
         {
           "name": "license.md",
@@ -15930,6 +18546,9 @@
           "pkg:npm/nanoid@3.3.17"
         ]
       },
+      "dependents": [
+        "pkg:npm/postcss@8.5.26"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -15956,6 +18575,9 @@
           "pkg:npm/node-fetch@2.7.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/cli@2.58.6"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -15983,6 +18605,9 @@
           "pkg:npm/node-releases@2.0.51"
         ]
       },
+      "dependents": [
+        "pkg:npm/browserslist@4.28.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16008,6 +18633,9 @@
           "pkg:npm/obug@2.1.4"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sveltejs/vite-plugin-svelte@7.2.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16032,6 +18660,9 @@
           "pkg:npm/oniguruma-parser@0.12.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/oniguruma-to-es@4.3.6"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16055,6 +18686,9 @@
           "pkg:npm/oniguruma-to-es@4.3.6"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40shikijs/engine-javascript@4.3.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16081,6 +18715,9 @@
           "pkg:npm/p-limit@3.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/p-locate@5.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -16106,6 +18743,9 @@
           "pkg:npm/p-locate@5.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/locate-path@6.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -16128,6 +18768,10 @@
           "pkg:npm/parse-entities@4.0.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-directive@3.1.0",
+        "pkg:npm/micromark-extension-directive@4.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -16152,6 +18796,9 @@
           "pkg:npm/path-exists@4.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/find-up@5.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -16176,6 +18823,10 @@
           "pkg:npm/path-expression-matcher@1.6.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/fast-xml-builder@1.3.0",
+        "pkg:npm/fast-xml-parser@5.10.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16201,6 +18852,9 @@
           "pkg:npm/path-scurry@2.0.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/glob@13.0.6"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -16225,6 +18879,9 @@
           "pkg:npm/path-to-regexp@6.3.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/wrangler@4.115.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16252,6 +18909,9 @@
           "pkg:npm/pathe@2.0.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/unenv@2.0.0-rc.24"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16276,6 +18936,11 @@
           "pkg:npm/picocolors@1.1.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/code-frame@7.29.7",
+        "pkg:npm/postcss@8.5.26",
+        "pkg:npm/update-browserslist-db@1.2.3"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16301,6 +18966,12 @@
           "pkg:npm/picomatch@4.0.5"
         ]
       },
+      "dependents": [
+        "pkg:npm/fdir@6.5.0",
+        "pkg:npm/tinyglobby@0.2.17",
+        "pkg:npm/unplugin@2.3.11",
+        "pkg:npm/vite@8.2.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16325,6 +18996,9 @@
           "pkg:npm/postcss@8.5.26"
         ]
       },
+      "dependents": [
+        "pkg:npm/vite@8.2.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16350,6 +19024,9 @@
           "pkg:npm/progress@2.0.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/cli@2.58.6"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16371,6 +19048,9 @@
           "pkg:npm/property-information@7.2.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/hast-util-to-html@9.0.5"
+      ],
       "texts": [
         {
           "name": "license",
@@ -16397,6 +19077,9 @@
           "pkg:npm/proxy-from-env@1.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/cli@2.58.6"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16421,6 +19104,9 @@
           "pkg:npm/regex-recursion@6.0.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/oniguruma-to-es@4.3.6"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16446,6 +19132,10 @@
           "pkg:npm/regex-utilities@2.3.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/regex-recursion@6.0.2",
+        "pkg:npm/regex@6.1.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16470,6 +19160,9 @@
           "pkg:npm/regex@6.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/oniguruma-to-es@4.3.6"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16490,6 +19183,9 @@
           "pkg:npm/remark-directive@4.0.0"
         ]
       },
+      "dependents": [
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "license",
@@ -16510,6 +19206,9 @@
           "pkg:npm/remark-frontmatter@5.0.0"
         ]
       },
+      "dependents": [
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "license",
@@ -16530,6 +19229,9 @@
           "pkg:npm/remark-gfm@4.0.1"
         ]
       },
+      "dependents": [
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "license",
@@ -16552,6 +19254,10 @@
           "pkg:npm/remark-parse@11.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/remark-gfm@4.0.1",
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "license",
@@ -16574,6 +19280,10 @@
           "pkg:npm/remark-stringify@11.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/remark-gfm@4.0.1",
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "license",
@@ -16599,6 +19309,9 @@
           "pkg:npm/require-in-the-middle@8.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40opentelemetry/instrumentation@0.220.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16619,6 +19332,9 @@
           "pkg:npm/rolldown@1.2.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/vite@8.2.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16635,6 +19351,10 @@
           "pkg:npm/runed@0.35.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/bits-ui@2.18.1",
+        "pkg:npm/svelte-toolbelt@0.10.6"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16669,6 +19389,9 @@
           "pkg:npm/semifies@1.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40apm-js-collab/code-transformer@0.18.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16694,6 +19417,10 @@
           "pkg:npm/semver@6.3.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40babel/core@7.29.7",
+        "pkg:npm/%40babel/helper-compilation-targets@7.29.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16727,6 +19454,9 @@
           "pkg:npm/semver@7.8.5"
         ]
       },
+      "dependents": [
+        "pkg:npm/sharp@0.35.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16750,6 +19480,9 @@
           "pkg:npm/set-cookie-parser@3.1.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sveltejs/kit@2.70.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16782,6 +19515,9 @@
           "pkg:npm/sharp@0.35.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/miniflare@4.20260722.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16804,6 +19540,9 @@
           "pkg:npm/shiki@4.3.1"
         ]
       },
+      "dependents": [
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16825,7 +19564,10 @@
           "pkg:npm/%40sveltejs/kit@2.70.2",
           "pkg:npm/sirv@3.0.2"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/%40sveltejs/kit@2.70.2"
+      ]
     },
     "pkg:npm/sorcery@1.0.0": {
       "spdx": "MIT",
@@ -16841,7 +19583,10 @@
           "pkg:npm/%40sentry/sveltekit@10.69.0",
           "pkg:npm/sorcery@1.0.0"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/%40sentry/sveltekit@10.69.0"
+      ]
     },
     "pkg:npm/source-map-js@1.2.1": {
       "spdx": "BSD-3-Clause",
@@ -16861,6 +19606,9 @@
           "pkg:npm/source-map-js@1.2.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/postcss@8.5.26"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16895,6 +19643,9 @@
           "pkg:npm/source-map@0.6.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40apm-js-collab/code-transformer@0.18.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16916,6 +19667,9 @@
           "pkg:npm/space-separated-tokens@2.0.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/hast-util-to-html@9.0.5"
+      ],
       "texts": [
         {
           "name": "license",
@@ -16934,6 +19688,10 @@
           "pkg:npm/sqlite-wasm-kysely@0.3.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40inlang/sdk@2.10.2",
+        "pkg:npm/%40lix-js/sdk@0.4.10"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -16955,6 +19713,10 @@
           "pkg:npm/stringify-entities@4.0.4"
         ]
       },
+      "dependents": [
+        "pkg:npm/hast-util-to-html@9.0.5",
+        "pkg:npm/mdast-util-directive@3.1.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -16978,6 +19740,9 @@
           "pkg:npm/strnum@2.4.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/fast-xml-parser@5.10.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -17001,6 +19766,9 @@
           "pkg:npm/style-to-object@1.0.14"
         ]
       },
+      "dependents": [
+        "pkg:npm/svelte-toolbelt@0.10.6"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -17033,6 +19801,10 @@
           "pkg:npm/supports-color@10.2.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40poppinss/dumper@0.6.5",
+        "pkg:npm/debug@4.4.3"
+      ],
       "texts": [
         {
           "name": "license",
@@ -17049,6 +19821,9 @@
           "pkg:npm/svelte-toolbelt@0.10.6"
         ]
       },
+      "dependents": [
+        "pkg:npm/bits-ui@2.18.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -17067,6 +19842,18 @@
           "pkg:npm/svelte@5.56.8"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40inlang/paraglide-js-svelte@1.0.3",
+        "pkg:npm/%40lucide/svelte@1.27.0",
+        "pkg:npm/%40sentry/svelte@10.69.0",
+        "pkg:npm/%40sveltejs/kit@2.70.2",
+        "pkg:npm/%40sveltejs/vite-plugin-svelte@7.2.0",
+        "pkg:npm/%40tanstack/svelte-query-persist-client@6.1.38",
+        "pkg:npm/%40tanstack/svelte-query@6.1.38",
+        "pkg:npm/bits-ui@2.18.1",
+        "pkg:npm/runed@0.35.1",
+        "pkg:npm/svelte-toolbelt@0.10.6"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -17090,6 +19877,9 @@
           "pkg:npm/tabbable@6.5.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/bits-ui@2.18.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -17112,6 +19902,9 @@
           "pkg:npm/tiny-glob@0.2.9"
         ]
       },
+      "dependents": [
+        "pkg:npm/sorcery@1.0.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -17137,6 +19930,9 @@
           "pkg:npm/tinyglobby@0.2.17"
         ]
       },
+      "dependents": [
+        "pkg:npm/vite@8.2.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -17160,6 +19956,9 @@
           "pkg:npm/totalist@3.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/sirv@3.0.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -17187,7 +19986,10 @@
           "pkg:npm/whatwg-url@5.0.0",
           "pkg:npm/tr46@0.0.3"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/whatwg-url@5.0.0"
+      ]
     },
     "pkg:npm/trim-lines@3.0.1": {
       "spdx": "MIT",
@@ -17204,6 +20006,9 @@
           "pkg:npm/trim-lines@3.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-to-hast@13.2.1"
+      ],
       "texts": [
         {
           "name": "license",
@@ -17226,6 +20031,9 @@
           "pkg:npm/trough@2.2.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/unified@11.0.5"
+      ],
       "texts": [
         {
           "name": "license",
@@ -17249,6 +20057,11 @@
           "pkg:npm/tslib@2.8.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40swc/helpers@0.5.23",
+        "pkg:npm/framer-motion@12.43.0",
+        "pkg:npm/motion@12.43.0"
+      ],
       "texts": [
         {
           "name": "LICENSE.txt",
@@ -17273,6 +20086,9 @@
           "pkg:npm/tsx@4.23.7"
         ]
       },
+      "dependents": [
+        "pkg:npm/vite@8.2.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -17297,6 +20113,10 @@
           "pkg:npm/typescript@6.0.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40inlang/paraglide-js@2.23.1",
+        "pkg:npm/%40sveltejs/kit@2.70.2"
+      ],
       "texts": [
         {
           "name": "LICENSE.txt",
@@ -17318,6 +20138,9 @@
           "pkg:npm/undici-types@8.3.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40types/node@26.1.2"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -17345,6 +20168,9 @@
           "pkg:npm/undici@7.29.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/miniflare@4.20260722.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -17367,6 +20193,10 @@
           "pkg:npm/unenv@2.0.0-rc.24"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40cloudflare/unenv-preset@2.16.1",
+        "pkg:npm/wrangler@4.115.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -17388,6 +20218,14 @@
           "pkg:npm/unified@11.0.5"
         ]
       },
+      "dependents": [
+        "pkg:npm/remark-directive@4.0.0",
+        "pkg:npm/remark-frontmatter@5.0.0",
+        "pkg:npm/remark-gfm@4.0.1",
+        "pkg:npm/remark-parse@11.0.0",
+        "pkg:npm/remark-stringify@11.0.0",
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "license",
@@ -17411,6 +20249,12 @@
           "pkg:npm/unist-util-is@6.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-find-and-replace@3.0.2",
+        "pkg:npm/mdast-util-phrasing@4.1.0",
+        "pkg:npm/unist-util-visit-parents@6.0.2",
+        "pkg:npm/unist-util-visit@5.1.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -17433,6 +20277,9 @@
           "pkg:npm/unist-util-position@5.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-to-hast@13.2.1"
+      ],
       "texts": [
         {
           "name": "license",
@@ -17456,6 +20303,10 @@
           "pkg:npm/unist-util-stringify-position@4.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-from-markdown@2.0.3",
+        "pkg:npm/vfile-message@4.0.3"
+      ],
       "texts": [
         {
           "name": "license",
@@ -17478,6 +20329,11 @@
           "pkg:npm/unist-util-visit-parents@6.0.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-directive@3.1.0",
+        "pkg:npm/mdast-util-find-and-replace@3.0.2",
+        "pkg:npm/unist-util-visit@5.1.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -17500,6 +20356,10 @@
           "pkg:npm/unist-util-visit@5.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-to-hast@13.2.1",
+        "pkg:npm/mdast-util-to-markdown@2.1.2"
+      ],
       "texts": [
         {
           "name": "license",
@@ -17519,6 +20379,9 @@
           "pkg:npm/unplugin@2.3.11"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40inlang/paraglide-js@2.23.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -17545,6 +20408,9 @@
           "pkg:npm/update-browserslist-db@1.2.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/browserslist@4.28.7"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -17563,6 +20429,9 @@
           "pkg:npm/urlpattern-polyfill@10.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40inlang/paraglide-js@2.23.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -17582,6 +20451,10 @@
           "pkg:npm/uuid@14.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40inlang/sdk@2.10.2",
+        "pkg:npm/%40lix-js/sdk@0.4.10"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -17605,6 +20478,9 @@
           "pkg:npm/vfile-message@4.0.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/vfile@6.0.3"
+      ],
       "texts": [
         {
           "name": "license",
@@ -17627,6 +20503,10 @@
           "pkg:npm/vfile@6.0.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/mdast-util-to-hast@13.2.1",
+        "pkg:npm/unified@11.0.5"
+      ],
       "texts": [
         {
           "name": "license",
@@ -17650,6 +20530,13 @@
           "pkg:npm/vite@8.2.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40inlang/paraglide-js@2.23.1",
+        "pkg:npm/%40sentry/sveltekit@10.69.0",
+        "pkg:npm/%40sveltejs/kit@2.70.2",
+        "pkg:npm/%40sveltejs/vite-plugin-svelte@7.2.0",
+        "pkg:npm/vitefu@1.1.3"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -17669,6 +20556,9 @@
           "pkg:npm/vitefu@1.1.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sveltejs/vite-plugin-svelte@7.2.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -17690,6 +20580,10 @@
           "pkg:npm/wasm-feature-detect@1.8.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40jsquash/avif@2.1.1",
+        "pkg:npm/%40jsquash/webp@1.5.0"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -17716,6 +20610,9 @@
           "pkg:npm/webidl-conversions@3.0.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/whatwg-url@5.0.0"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -17741,6 +20638,9 @@
           "pkg:npm/webpack-virtual-modules@0.6.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/unplugin@2.3.11"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -17766,6 +20666,9 @@
           "pkg:npm/whatwg-url@5.0.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/node-fetch@2.7.0"
+      ],
       "texts": [
         {
           "name": "LICENSE.txt",
@@ -17791,6 +20694,9 @@
           "pkg:npm/which@2.0.2"
         ]
       },
+      "dependents": [
+        "pkg:npm/%40sentry/cli@2.58.6"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -17814,7 +20720,12 @@
           "pkg:npm/wrangler@4.115.0",
           "pkg:npm/workerd@1.20260722.1"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/%40cloudflare/unenv-preset@2.16.1",
+        "pkg:npm/miniflare@4.20260722.1",
+        "pkg:npm/wrangler@4.115.0"
+      ]
     },
     "pkg:npm/wrangler@4.115.0": {
       "spdx": "MIT OR Apache-2.0",
@@ -17831,7 +20742,10 @@
           "pkg:npm/%40sentry/cloudflare@10.69.0",
           "pkg:npm/wrangler@4.115.0"
         ]
-      }
+      },
+      "dependents": [
+        "pkg:npm/%40sentry/cloudflare@10.69.0"
+      ]
     },
     "pkg:npm/ws@8.21.0": {
       "spdx": "MIT",
@@ -17858,6 +20772,9 @@
           "pkg:npm/ws@8.21.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/miniflare@4.20260722.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -17881,6 +20798,10 @@
           "pkg:npm/xml-naming@0.3.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/fast-xml-builder@1.3.0",
+        "pkg:npm/fast-xml-parser@5.10.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -17908,6 +20829,9 @@
           "pkg:npm/yallist@3.1.1"
         ]
       },
+      "dependents": [
+        "pkg:npm/lru-cache@5.1.1"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -17930,6 +20854,10 @@
           "pkg:npm/yaml@2.9.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/vite@8.2.1",
+        "workspace:site"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -17957,6 +20885,9 @@
           "pkg:npm/yocto-queue@0.1.0"
         ]
       },
+      "dependents": [
+        "pkg:npm/p-limit@3.1.0"
+      ],
       "texts": [
         {
           "name": "license",
@@ -17991,6 +20922,9 @@
           "pkg:npm/youch-core@0.3.3"
         ]
       },
+      "dependents": [
+        "pkg:npm/youch@4.1.0-beta.10"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -18023,6 +20957,9 @@
           "pkg:npm/youch@4.1.0-beta.10"
         ]
       },
+      "dependents": [
+        "pkg:npm/miniflare@4.20260722.1"
+      ],
       "texts": [
         {
           "name": "LICENSE.md",
@@ -18041,6 +20978,9 @@
           "pkg:npm/zimmerframe@1.1.4"
         ]
       },
+      "dependents": [
+        "pkg:npm/svelte@5.56.8"
+      ],
       "texts": [
         {
           "name": "LICENSE",
@@ -18062,6 +21002,10 @@
           "pkg:npm/zwitch@2.0.4"
         ]
       },
+      "dependents": [
+        "pkg:npm/hast-util-to-html@9.0.5",
+        "pkg:npm/mdast-util-to-markdown@2.1.2"
+      ],
       "texts": [
         {
           "name": "license",

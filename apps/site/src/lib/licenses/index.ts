@@ -1,5 +1,11 @@
 import { licenses } from 'virtual:licenses';
-import { routeTable, type LicensePackage, type LicenseRecord } from './record.ts';
+import {
+	dependentsOf,
+	routeTable,
+	type Dependents,
+	type LicensePackage,
+	type LicenseRecord,
+} from './record.ts';
 
 export {
 	HEADER,
@@ -15,6 +21,7 @@ export {
 	registryPackageUrl,
 	routePath,
 	textUrl,
+	type Dependents,
 	type GithubRepository,
 	type LicensePackage,
 	type LicensePerson,
@@ -30,6 +37,10 @@ const byRoute = routeTable(record);
 
 export function packages(): [string, LicensePackage][] {
 	return Object.entries(record.packages);
+}
+
+export function dependents(purl: string): Dependents {
+	return dependentsOf(record, purl);
 }
 
 export function find(route: string): { purl: string; package: LicensePackage } | undefined {

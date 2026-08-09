@@ -8,7 +8,7 @@
 
 use super::{Found, author, prefer_origin, purl, web_url};
 use serde::Deserialize;
-use std::collections::{BTreeMap, VecDeque};
+use std::collections::{BTreeMap, BTreeSet, VecDeque};
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
@@ -94,6 +94,7 @@ fn found(package: CratePackage) -> Found {
 		documentation: web_url(package.documentation),
 		repository: web_url(package.repository),
 		origins: BTreeMap::new(),
+		dependents: BTreeSet::new(),
 		// The manifest's directory is the crate root, which is where a licence sits.
 		directory: package
 			.manifest_path
@@ -149,6 +150,8 @@ fn from_metadata(metadata: Metadata) -> Vec<Found> {
 			(node.id, node.dependencies)
 		})
 		.collect();
+	collect_dependents(&graph, &labels, &package_purls, &mut found);
+
 	for root in metadata.workspace_members {
 		let Some(root_name) = root_names.get(&root) else {
 			continue;
@@ -164,6 +167,38 @@ fn from_metadata(metadata: Metadata) -> Vec<Found> {
 	}
 
 	found.into_values().collect()
+}
+
+/// Every reverse edge in the resolved graph, read straight off it.
+///
+/// Deliberately not folded into `trace_origins`: that walk keeps only the shortest path to
+/// each crate and prunes every edge that does not improve one, so the edges it discards are
+/// exactly the second and third crate that also depend on something. Those are the answer
+/// here, not noise.
+fn collect_dependents(
+	graph: &BTreeMap<String, Vec<String>>,
+	labels: &BTreeMap<String, String>,
+	package_purls: &BTreeMap<String, String>,
+	found: &mut BTreeMap<String, Found>,
+) {
+	for (parent, dependencies) in graph {
+		let Some(label) = labels.get(parent) else {
+			continue;
+		};
+		for dependency in dependencies {
+			let Some(purl) = package_purls.get(dependency) else {
+				continue;
+			};
+			// A crate reached from itself is a feature-resolution artefact, not a dependency
+			// anybody can act on.
+			if purl == label {
+				continue;
+			}
+			if let Some(package) = found.get_mut(purl) {
+				package.dependents.insert(label.clone());
+			}
+		}
+	}
 }
 
 fn trace_origins(
@@ -254,6 +289,10 @@ mod tests {
 		assert_eq!(found[0].purl, "pkg:cargo/serde@1.0.219");
 		assert_eq!(found[0].authors[0].name, "Ada");
 		assert_eq!(found[0].origins["cms"], ["pkg:cargo/serde@1.0.219"]);
+		assert_eq!(
+			found[0].dependents.iter().collect::<Vec<_>>(),
+			["workspace:cms"]
+		);
 		assert_eq!(found[0].directory, PathBuf::from("/cache/serde-1.0.219"));
 	}
 }

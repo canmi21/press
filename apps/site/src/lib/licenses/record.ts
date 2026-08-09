@@ -24,6 +24,8 @@ export type LicensePackage = {
 	repository?: string;
 	/** One shortest dependency path from each workspace root that reaches this package. */
 	origins?: Record<string, string[]>;
+	/** Every package depending on this one directly, as purls and `workspace:` labels. */
+	dependents?: string[];
 	texts?: LicenseText[];
 };
 
@@ -119,6 +121,43 @@ export function githubRepository(value: string | undefined): GithubRepository | 
 
 export function githubAvatar(cdn: string, login: string, width: number): string {
 	return `${cdn}/github/avatar/${encodeURIComponent(login)}?width=${width}`;
+}
+
+export type Dependents = {
+	/** Packages naming this one in their own manifest. */
+	direct: string[];
+	/** Packages reaching it only through a chain of other packages. */
+	indirect: string[];
+};
+
+/**
+ * Who depends on a package, split by whether they asked for it themselves.
+ *
+ * The record stores direct edges only, so the indirect half is walked here rather than read,
+ * and a package reachable both ways is listed once as direct. See spec/architecture.md.
+ *
+ * The walk is breadth-first from the direct set with a seen set, so a cycle terminates and
+ * nothing is visited twice. Cycles are real: npm packages depend on each other in both
+ * directions often enough that a naive recursion would not survive the current tree.
+ */
+export function dependentsOf(record: LicenseRecord, purl: string): Dependents {
+	const direct = record.packages[purl]?.dependents ?? [];
+	const seen = new Set([purl, ...direct]);
+	const indirect: string[] = [];
+	const queue = [...direct];
+
+	for (let at = 0; at < queue.length; at += 1) {
+		const node = queue[at];
+		if (node === undefined) continue;
+		for (const parent of record.packages[node]?.dependents ?? []) {
+			if (seen.has(parent)) continue;
+			seen.add(parent);
+			indirect.push(parent);
+			queue.push(parent);
+		}
+	}
+
+	return { direct: [...direct], indirect };
 }
 
 export function routeTable(record: LicenseRecord): Map<string, string> {

@@ -73,6 +73,8 @@
 	"licenses.terms_attribution": "조건 및 저작자 표시",
 	"licenses.license": "라이선스",
 	"licenses.dependency_paths": "의존성 경로",
-	"licenses.dependency_summary": "이 패키지를 프로젝트에 가져오는 각 workspace root의 최단 해석 경로를 하나씩 표시합니다.",
-	"licenses.workspace_root": "workspace root"
+	"licenses.workspace_root": "workspace root",
+	"licenses.dependents": "이 패키지를 쓰는 곳",
+	"licenses.dependents_direct": "직접 의존",
+	"licenses.dependents_indirect": "다른 패키지를 거쳐"
 }
