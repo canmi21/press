@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { keyFor, parseName, validatorFor } from './key';
+import { keyFor, licenseKeyFor, parseName, validatorFor } from './key';
 
 describe('validatorFor', () => {
 	it('distinguishes the formats one id serves', () => {
@@ -29,6 +29,22 @@ describe('keyFor', () => {
 		const key = keyFor('abcdef0123456789abcdef0123456789', 'png');
 		expect(key.split('/').slice(0, 3)).toEqual(['image', 'ab', 'cd']);
 		expect(key.split('/').pop()).toBe('abcdef0123456789abcdef0123456789.png');
+	});
+});
+
+describe('licenseKeyFor', () => {
+	it('fans out the same way, under its own prefix', () => {
+		expect(licenseKeyFor('7ed218d2928b1ff56267b33a04541b5f')).toBe(
+			'license/7e/d2/7ed218d2928b1ff56267b33a04541b5f.txt',
+		);
+	});
+
+	// The point of the route is that this key is never a URL. If the two ever diverge the
+	// worker stops finding what apps/cms wrote, which is the failure this pins down.
+	it('matches the layout apps/cms writes', () => {
+		const key = licenseKeyFor('abcdef0123456789abcdef0123456789');
+		expect(key.split('/').slice(0, 3)).toEqual(['license', 'ab', 'cd']);
+		expect(key.split('/').pop()).toBe('abcdef0123456789abcdef0123456789.txt');
 	});
 });
 

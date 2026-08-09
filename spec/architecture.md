@@ -464,6 +464,15 @@ remember. A content-addressed key cannot denote different bytes than it did befo
 changing the bytes changes the key. Re-encoding at a new quality produces a new object rather
 than a redefinition of an old one.
 
+**The key is not the URL.** Objects are stored fanned out over the first four characters of the
+id -- `{kind}/{ab}/{cd}/{cid}.{ext}` -- and that split exists for a filesystem mirror, which has
+a directory that overflows. R2 has no directories to overflow at all. So the fanout is a storage
+detail: a caller asks for `{cid}.{ext}` and the worker puts the prefix and the split back on.
+Spelling it into a link would publish the bucket's layout as an interface, and an interface is
+the one thing that cannot be reorganised later. The licence texts leaked it for exactly as long
+as they had no route of their own and fell through to the direct-key handler; adding one was the
+fix, not changing where the bytes live.
+
 The relationships -- which variants belong to which asset, their sizes and formats -- live in
 the manifest, not in the key layout. The store answers "give me these bytes"; the manifest
 answers "which bytes do I want". Deriving one from the other would mean encoding relationships
@@ -495,8 +504,9 @@ SBOM by: `pkg:npm/%40sveltejs/kit@2.0.0`, `pkg:cargo/serde@1.0.219`. Two registr
 same question in different shapes, and adopting the settled vocabulary avoids inventing an
 identity scheme whose escaping rules would then be ours to regret.
 
-**The texts are content addressed**, under `license/{ab}/{cd}/{cid}.txt`, exactly like an
-image. The registry, the package and the version appear nowhere in a key. That is the rule
+**The texts are content addressed**, stored under `license/{ab}/{cd}/{cid}.txt` and served as
+`/license/{cid}.txt`, exactly like an image and with the fanout hidden the same way. The
+registry, the package and the version appear nowhere in a key. That is the rule
 above applied rather than an exception to it: package coordinates are not one shape across
 registries -- a scoped npm name carries a slash, a Maven coordinate a colon, a Go module a
 whole URL -- so encoding them into paths means inventing an escaping scheme that can never be

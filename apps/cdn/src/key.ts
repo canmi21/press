@@ -9,9 +9,25 @@
 /** Content ids are BLAKE3 truncated to 128 bits, hex encoded. */
 const CID = /^[0-9a-f]{32}$/;
 
-/** `image/{ab}/{cd}/{cid}.{ext}`, matching the layout apps/cms writes. */
+/**
+ * `{prefix}/{ab}/{cd}/{cid}.{ext}`, matching the layout apps/cms writes.
+ *
+ * The fanout exists for a filesystem mirror, which has a directory that overflows; R2 has no
+ * directories at all. It is therefore a storage detail and never appears in a URL -- a caller
+ * asks for `{cid}.{ext}` and the prefix and the split are put back on here. Publishing it
+ * would make the bucket's layout an interface nobody could change afterwards.
+ */
+function fanned(prefix: string, cid: string, extension: string): string {
+	return `${prefix}/${cid.slice(0, 2)}/${cid.slice(2, 4)}/${cid}.${extension}`;
+}
+
 export function keyFor(cid: string, extension: string): string {
-	return `image/${cid.slice(0, 2)}/${cid.slice(2, 4)}/${cid}.${extension}`;
+	return fanned('image', cid, extension);
+}
+
+/** Licence texts are stored the same way, and are always plain text. */
+export function licenseKeyFor(cid: string): string {
+	return fanned('license', cid, 'txt');
 }
 
 /** Split `{cid}.{ext}`, or null if it is not that shape. */

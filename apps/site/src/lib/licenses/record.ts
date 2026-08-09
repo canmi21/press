@@ -221,8 +221,15 @@ export function licenseOf(entry: LicensePackage): string {
 	return entry.asserted ? `${entry.spdx} (asserted)` : entry.spdx;
 }
 
+/**
+ * A licence text is addressed by its content id and nothing else.
+ *
+ * The bucket fans the id out into directories, and that split stays behind the CDN route the
+ * way an image's does. A link is an interface; the layout an object happens to be stored under
+ * is not one, and spelling it into a URL would freeze it. See spec/architecture.md.
+ */
 export function textUrl(cdn: string, cid: string): string {
-	return `${cdn}/license/${cid.slice(0, 2)}/${cid.slice(2, 4)}/${cid}.txt`;
+	return `${cdn}/license/${cid}.txt`;
 }
 
 export function fullUrl(cdn: string): string {
