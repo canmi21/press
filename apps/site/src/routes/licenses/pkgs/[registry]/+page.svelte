@@ -18,7 +18,6 @@
 		name="description"
 		content={m['licenses.registry_description']({ registry: data.registry.name, count }, { locale })}
 	/>
-	<meta name="robots" content="noindex, follow" />
 </svelte:head>
 
 <main class="min-h-screen bg-page text-text">

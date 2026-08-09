@@ -608,6 +608,21 @@ claiming a tall section of their own. A single SPDX term is one link, not plain 
 an identical chip; only a compound expression needs separate links to its terms. Dependency paths
 have their own section because they answer a different question: why this package is present.
 
+**The sitemap enters the licence directories and stops there.** `/licenses`, `/licenses/pkgs`,
+each registry and each licence term are pages somebody could search for -- what is Apache
+licensed here, what comes from crates.io -- and there are a few dozen of them. One package page
+is a single row of a directory that is already listed, there are several hundred, and entering
+them would make the dependency tree the bulk of this site's sitemap. They stay `noindex,
+follow`, so a crawler still walks them and the links out of them count. The entries are derived
+from the record rather than written down, because the set of licence terms is whatever the tree
+currently resolves to.
+
+That directive is emitted once per page, by the root layout, defaulting to `index, follow` and
+overridden by a page returning `robots` from its loader. It was a fixed tag in `app.html`, which
+meant a page wanting anything else appended a second one and shipped two contradicting
+directives -- working only because crawlers resolve a conflict by taking the most restrictive.
+A default that can be replaced is not the same as a default that has to be argued with.
+
 The plain-text documents keep their existing addresses: `/licenses.txt`, `/licenses/full.txt`
 and `/licenses/{type}/{name}@{version}.txt`. They are stable legal artefacts rather than the HTML
 package pages, so reorganising the browser surface is not a reason to move them.

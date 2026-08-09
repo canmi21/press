@@ -13,7 +13,6 @@
 <svelte:head>
 	<title>{m['licenses.packages']({}, { locale })} · {m['licenses.title']({}, { locale })}</title>
 	<meta name="description" content={m['licenses.packages_description']({ count }, { locale })} />
-	<meta name="robots" content="noindex, follow" />
 </svelte:head>
 
 <main class="min-h-screen bg-page text-text">

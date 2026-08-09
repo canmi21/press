@@ -31,7 +31,11 @@
 <svelte:head>
 	<title>{m['licenses.title']({}, { locale })}</title>
 	<meta name="description" content={m['licenses.description']({}, { locale })} />
-	<meta name="robots" content="noindex, follow" />
+	<!--
+		No robots meta: the directory pages of the licence surface are indexable, which is what
+		app.html already says by default. Only one page here departs from it, and that is the
+		individual package page, which sets `noindex, follow` itself. See the sitemap route.
+	-->
 </svelte:head>
 
 <main class="min-h-screen bg-page text-text">

@@ -60,6 +60,10 @@ export const load: PageServerLoad = ({ params, locals }) => {
 	const reverse = dependents(found.purl);
 
 	return {
+		// The one page of the licence surface kept out of the index. There are several hundred
+		// of them and each is one row of a directory that is indexed; `follow` because the links
+		// out of a package -- its repository, its licence, its dependents -- still count.
+		robots: 'noindex, follow',
 		purl: found.purl,
 		entry: found.package,
 		coordinates: found.coordinates,

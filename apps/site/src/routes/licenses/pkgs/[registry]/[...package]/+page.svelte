@@ -40,7 +40,6 @@
 				{ locale },
 			)}
 	/>
-	<meta name="robots" content="noindex, follow" />
 </svelte:head>
 
 <main class="min-h-screen bg-page text-text">

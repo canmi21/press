@@ -21,6 +21,20 @@
 		articleLocale?.canonical ?? `${URLS.apps.production.site}${page.url.pathname}`,
 	);
 	const feed = $derived(localeUrl('/atom.xml', locale?.code ?? 'mw'));
+	/**
+	 * One robots directive per page, emitted in one place.
+	 *
+	 * It used to be a fixed `index, follow` in app.html, which meant a page wanting anything
+	 * else appended a second, contradicting tag -- two directives that only behave because
+	 * crawlers resolve a conflict by taking the most restrictive. Defaulting here instead lets
+	 * a page replace the value rather than argue with it, and the default stays visible in the
+	 * markup for every page that never thinks about it.
+	 */
+	const robots = $derived(
+		'robots' in page.data && typeof page.data.robots === 'string'
+			? page.data.robots
+			: 'index, follow',
+	);
 	const queryClient = new QueryClient({
 		defaultOptions: {
 			queries: {
@@ -83,6 +97,7 @@
 <svelte:head>
 	<link rel="preconnect" href={cdn} crossorigin="anonymous" />
 	<link rel="canonical" href={canonical} />
+	<meta name="robots" content={robots} />
 	{#each articleLocale?.alternates ?? [] as alternate (alternate.code)}
 		<link rel="alternate" hreflang={alternate.languageTag} href={alternate.href} />
 	{/each}
