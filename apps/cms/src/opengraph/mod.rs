@@ -10,10 +10,13 @@
 //! crawlers for X, Slack, Discord and the rest, and they do not read it.
 
 pub mod layout;
+pub mod locale;
 
+use crate::i18n::{segment, store};
 use cosmic_text::FontSystem;
 use cosmic_text::fontdb;
 use layout::Card;
+use rayon::prelude::*;
 use std::path::{Path, PathBuf};
 
 /// The family name inside the TTF, which is what the layout asks for by name.
@@ -96,9 +99,33 @@ pub fn short_date(iso: &str) -> Option<String> {
 	Some(stamp.strftime("%b %-d, %Y").to_string())
 }
 
-/// Where a card is published, mirroring the article tree.
-pub fn card_path(public: &Path, slug: &str) -> PathBuf {
-	public.join("opengraph").join(format!("{slug}.png"))
+/// Where a card is published: one tree per view, each mirroring the article tree.
+///
+/// The view is a directory rather than a suffix on the name so a locale can be synced or
+/// dropped as a unit, and so the fallback is one prefix substitution rather than a filename
+/// rewrite. Nothing outside this repository ever sees the layout -- a reader asks for
+/// `/opengraph/{slug}.png?lang=ja` and the CDN resolves it. See spec/architecture.md.
+pub fn card_path(public: &Path, view: &str, slug: &str) -> PathBuf {
+	public
+		.join("opengraph")
+		.join(view)
+		.join(format!("{slug}.png"))
+}
+
+/// The translation of one frontmatter value, or `None` when this view has none.
+///
+/// A segment id is the hash of its own text, so the title's id can be computed from the title
+/// rather than found by re-splitting the article. The source view asks for nothing: it is the
+/// article's own words.
+fn translated(sidecar: &store::Sidecar, view: &locale::View, source: &str) -> Option<String> {
+	let tag = view.tag?;
+	let text = sidecar
+		.segments
+		.get(&segment::id_of(source))?
+		.get(tag)?
+		.text
+		.clone();
+	(!text.trim().is_empty()).then_some(text)
 }
 
 fn load_fonts(repo: &Path) -> Result<FontSystem, String> {
@@ -115,7 +142,100 @@ fn load_fonts(repo: &Path) -> Result<FontSystem, String> {
 	Ok(FontSystem::new_with_locale_and_db("en-US".to_owned(), db))
 }
 
-/// Render a card for every article, skipping those already published unless `force`.
+/// One card to draw: everything decided, nothing rendered yet.
+///
+/// Enumerated before any drawing so the work can be counted, skipped and spread across threads
+/// without the decisions being repeated on each one.
+pub struct Job {
+	/// What names the card in a report, including its view: `ja development/a-thing`.
+	pub label: String,
+	pub target: PathBuf,
+	pub site: String,
+	pub title: String,
+	pub subtitle: Option<String>,
+	pub category: Option<String>,
+	pub date: Option<String>,
+}
+
+/// Every card an article asks for: one per view, each in that view's own words.
+fn article_jobs(public: &Path, site: &str, path: &Path, article: &Article) -> Vec<Job> {
+	let sidecar = store::load(&store::path_for(path));
+	let date = article.created.as_deref().and_then(short_date);
+
+	locale::VIEWS
+		.iter()
+		.map(|view| {
+			// The source view is the article's own words; every other view falls back to them
+			// when that segment has not been translated yet, because a card in the wrong
+			// language still says more than no card at all.
+			let title =
+				translated(&sidecar, view, &article.title).unwrap_or_else(|| article.title.clone());
+			let subtitle = article
+				.subtitle
+				.as_ref()
+				.map(|text| translated(&sidecar, view, text).unwrap_or_else(|| text.clone()));
+
+			Job {
+				label: format!("{} {}", view.code, article.slug),
+				target: card_path(public, view.code, &article.slug),
+				site: site.to_owned(),
+				title,
+				subtitle,
+				category: article.category.clone(),
+				date: date.clone(),
+			}
+		})
+		.collect()
+}
+
+/// Draw every job that is not already published, in parallel.
+///
+/// `map_init` rather than a shared font system: shaping needs `&mut FontSystem`, so the choice
+/// is one per thread or a lock every glyph goes through. One per thread costs a font parse per
+/// worker and nothing after that.
+pub fn render_all(repo: &Path, jobs: Vec<Job>, force: bool) -> Result<Outcome, String> {
+	// Parsed once here as well, so a missing font fails before any thread starts rather than
+	// once per worker.
+	load_fonts(repo)?;
+
+	let (todo, skipped): (Vec<Job>, Vec<Job>) = jobs
+		.into_iter()
+		.partition(|job| force || !job.target.is_file());
+
+	let results: Vec<Result<(), (String, String)>> = todo
+		.par_iter()
+		.map_init(
+			|| load_fonts(repo).expect("font already parsed once above"),
+			|fonts, job| {
+				let card = Card {
+					site: &job.site,
+					title: &job.title,
+					subtitle: job.subtitle.as_deref(),
+					category: job.category.as_deref(),
+					date: job.date.as_deref(),
+				};
+				let pixels = layout::render(fonts, FAMILY, &card);
+				let png = encode(&pixels).map_err(|error| (job.label.clone(), error))?;
+				crate::image::store::write(&job.target, &png)
+					.map_err(|error| (job.label.clone(), error.to_string()))
+			},
+		)
+		.collect();
+
+	let mut outcome = Outcome {
+		skipped: skipped.len(),
+		..Outcome::default()
+	};
+	for result in results {
+		match result {
+			Ok(()) => outcome.rendered += 1,
+			Err(failure) => outcome.failed.push(failure),
+		}
+	}
+	Ok(outcome)
+}
+
+/// Render a card for every article, in every view.
 pub fn run(
 	repo: &Path,
 	public: &Path,
@@ -123,38 +243,14 @@ pub fn run(
 	site: &str,
 	force: bool,
 ) -> Result<Outcome, String> {
-	let mut fonts = load_fonts(repo)?;
-	let mut outcome = Outcome::default();
-
+	let mut jobs = Vec::new();
 	for path in crate::refs::markdown_under(articles).map_err(|e| e.to_string())? {
 		let Some(article) = article_of(articles, &path) else {
 			continue;
 		};
-		let target = card_path(public, &article.slug);
-		if !force && target.is_file() {
-			outcome.skipped += 1;
-			continue;
-		}
-
-		let date = article.created.as_deref().and_then(short_date);
-		let card = Card {
-			site,
-			title: &article.title,
-			subtitle: article.subtitle.as_deref(),
-			category: article.category.as_deref(),
-			date: date.as_deref(),
-		};
-
-		let pixels = layout::render(&mut fonts, FAMILY, &card);
-		match encode(&pixels) {
-			Ok(png) => match crate::image::store::write(&target, &png) {
-				Ok(()) => outcome.rendered += 1,
-				Err(error) => outcome.failed.push((article.slug, error.to_string())),
-			},
-			Err(error) => outcome.failed.push((article.slug, error)),
-		}
+		jobs.extend(article_jobs(public, site, &path, &article));
 	}
-	Ok(outcome)
+	render_all(repo, jobs, force)
 }
 
 fn encode(pixels: &[u8]) -> Result<Vec<u8>, String> {
@@ -213,10 +309,14 @@ mod tests {
 	}
 
 	#[test]
-	fn a_card_is_published_where_the_article_sits() {
+	fn a_card_is_published_under_its_view_where_the_article_sits() {
 		assert!(
-			card_path(Path::new("/p"), "development/a-thing")
-				.ends_with("opengraph/development/a-thing.png")
+			card_path(Path::new("/p"), "mw", "development/a-thing")
+				.ends_with("opengraph/mw/development/a-thing.png")
+		);
+		assert!(
+			card_path(Path::new("/p"), "ja", "development/a-thing")
+				.ends_with("opengraph/ja/development/a-thing.png")
 		);
 	}
 }

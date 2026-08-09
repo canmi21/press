@@ -777,6 +777,20 @@ The cost is that the name is mutable, and the cache rule already prices it: no h
 week rather than a year, which is also what X caches a card for. An edited title takes that
 long to circulate, and that is the accepted trade rather than an oversight.
 
+**A card is rendered once per view, and asked for by `?lang=`.** A page served in Japanese that
+advertises a Chinese card is telling a reader one thing and a crawler another, so the nine
+views each get their own card, with the title and subtitle the sidecar already holds for that
+locale. The address is the page's own slug plus the same `?lang=` that selects the page --
+`/opengraph/{slug}.png?lang=ja` -- while the bytes are stored under `opengraph/{view}/{slug}.png`.
+That is the key-is-not-the-URL rule again: one parameter names what the reader wants and the
+worker decides where to read from.
+
+A view with no card falls back to the source view rather than to a 404. Translation arrives
+per segment and per article, so a missing card is a normal intermediate state; a card in the
+wrong language still says what the page is, and a blank rectangle says nothing. An unknown
+`?lang=` collapses the same way, which is also what keeps the code from reaching the bucket as
+an arbitrary prefix.
+
 PNG, not AVIF, against the rule that says store the newest format. The consumers here are
 crawlers for X, Slack and Discord, and they do not read AVIF. When the format a thing is
 stored in is decided by software nobody here controls, the rule bends to the reader.

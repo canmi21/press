@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { keyFor, licenseKeyFor, parseName, validatorFor } from './key';
+import { cardKeys, keyFor, licenseKeyFor, parseName, validatorFor } from './key';
 
 describe('validatorFor', () => {
 	it('distinguishes the formats one id serves', () => {
@@ -45,6 +45,33 @@ describe('licenseKeyFor', () => {
 		const key = licenseKeyFor('abcdef0123456789abcdef0123456789');
 		expect(key.split('/').slice(0, 3)).toEqual(['license', 'ab', 'cd']);
 		expect(key.split('/').pop()).toBe('abcdef0123456789abcdef0123456789.txt');
+	});
+});
+
+describe('cardKeys', () => {
+	it('resolves a language to its own view, with the source view behind it', () => {
+		expect(cardKeys('/opengraph/development/a-thing.png', 'ja')).toEqual([
+			'opengraph/ja/development/a-thing.png',
+			'opengraph/mw/development/a-thing.png',
+		]);
+	});
+
+	it('asks only for the source view when that is what was requested', () => {
+		// A fallback to itself would be a second bucket round trip that can only miss again.
+		expect(cardKeys('/opengraph/homepage.png', null)).toEqual(['opengraph/mw/homepage.png']);
+		expect(cardKeys('/opengraph/homepage.png', 'mw')).toEqual(['opengraph/mw/homepage.png']);
+	});
+
+	it('treats an unknown language as none rather than as a prefix', () => {
+		// The code becomes a path segment, so anything not on the list has to collapse to the
+		// source view instead of reaching the bucket.
+		expect(cardKeys('/opengraph/homepage.png', 'klingon')).toEqual(['opengraph/mw/homepage.png']);
+		expect(cardKeys('/opengraph/homepage.png', '../image')).toEqual(['opengraph/mw/homepage.png']);
+	});
+
+	it('refuses a path that is not a card address', () => {
+		expect(cardKeys('/opengraph/', null)).toBeNull();
+		expect(cardKeys('/opengraph/../secret.png', null)).toBeNull();
 	});
 });
 

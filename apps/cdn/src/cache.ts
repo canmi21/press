@@ -15,6 +15,15 @@ export const FOREVER = `public, max-age=${IMMUTABLE}, immutable`;
 export const BRIEFLY = `public, max-age=${ERROR}`;
 
 /**
+ * What a name without a hash in it earns.
+ *
+ * An OpenGraph card is addressed by the slug of the page it belongs to, so editing a title
+ * rewrites the bytes under an unchanged URL. A week is the accepted staleness and is also how
+ * long X holds a card, so a shorter value would only cost fetches without shortening the wait.
+ */
+export const WEEKLY = `public, max-age=${WEEK}`;
+
+/**
  * A path whose last segment is a content hash, so its bytes cannot change under that name.
  *
  * This is the whole basis for the year: an observation about the URL rather than a promise

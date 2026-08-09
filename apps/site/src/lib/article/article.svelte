@@ -16,6 +16,7 @@
 	import type { Alternate, ArticleMeta, ArticleSummary } from '$lib/content/types';
 	import type { LocaleCode } from '$lib/locale';
 	import LanguageSwitcher from '$lib/locale/switcher.svelte';
+	import { CARD_HEIGHT, CARD_WIDTH, cardUrl } from '$lib/opengraph';
 	import Newsletter from '$lib/newsletter/newsletter.svelte';
 	import { createReadsQuery } from '$lib/engagement/reads.svelte';
 	import { formatCompact } from './format';
@@ -78,7 +79,7 @@
 	 * mutable -- an edited title reuses this URL -- which is why the CDN serves these for a
 	 * week rather than a year. See spec/architecture.md.
 	 */
-	const card = $derived(`${urls.cdn}/opengraph${page.url.pathname.replace(/\/$/, '')}.png`);
+	const card = $derived(cardUrl(urls.cdn, page.url.pathname, locale.code));
 
 	$effect(() => {
 		document.documentElement.lang = locale.languageTag;
@@ -205,8 +206,8 @@
 	<meta property="og:locale" content={locale.languageTag} />
 	<meta property="og:image" content={card} />
 	<!-- Stated because a crawler that reserves the box before fetching draws it right. -->
-	<meta property="og:image:width" content="1200" />
-	<meta property="og:image:height" content="630" />
+	<meta property="og:image:width" content={CARD_WIDTH} />
+	<meta property="og:image:height" content={CARD_HEIGHT} />
 	<meta property="og:image:alt" content={meta.title} />
 	<meta property="article:published_time" content={meta.created} />
 

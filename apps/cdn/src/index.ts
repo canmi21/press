@@ -7,6 +7,7 @@ import favicon from './favicon';
 import image from './image';
 import github from './github';
 import license from './license';
+import opengraph from './opengraph';
 import { type Bindings, read, toResponse } from '@canmi/store';
 
 const app = new Hono<{ Bindings: Bindings }>();
@@ -59,6 +60,7 @@ app.route('/favicon', favicon);
 app.route('/image', image);
 app.route('/github', github);
 app.route('/license', license);
+app.route('/opengraph', opengraph);
 
 // Everything else is a direct key lookup: fonts, the site's own icons, whatever else lands in
 // data/public. The path is the key, because the bucket mirrors that directory exactly.

@@ -30,6 +30,35 @@ export function licenseKeyFor(cid: string): string {
 	return fanned('license', cid, 'txt');
 }
 
+/** The source view: what `?lang=` absent, or naming something unknown, resolves to. */
+export const SOURCE_VIEW = 'mw';
+
+/**
+ * Every view `cms og` writes. A code outside this set is a typo rather than a language.
+ *
+ * Listed rather than accepted blindly, because the code becomes a path segment: an unchecked
+ * one is a way to ask the bucket for an arbitrary prefix.
+ */
+export const VIEWS = new Set([SOURCE_VIEW, 'de', 'en', 'es', 'fr', 'ja', 'ko', 'zh', 'tw']);
+
+/**
+ * The keys to try for an OpenGraph card, best first.
+ *
+ * A card is addressed by the slug of the page it belongs to plus `?lang=`; it is stored under
+ * `opengraph/{view}/{slug}.png`. Returns the asked-for view followed by the source view, or
+ * `null` when the path is not a card address at all.
+ */
+export function cardKeys(pathname: string, lang: string | null): string[] | null {
+	const slug = pathname.replace(/^\/opengraph\/+/, '').replace(/\.png$/, '');
+	// `..` would climb out of the prefix, and an empty slug names the directory rather than a card.
+	if (!slug || slug.includes('..')) return null;
+
+	const view = lang && VIEWS.has(lang) ? lang : SOURCE_VIEW;
+	const keys = [`opengraph/${view}/${slug}.png`];
+	if (view !== SOURCE_VIEW) keys.push(`opengraph/${SOURCE_VIEW}/${slug}.png`);
+	return keys;
+}
+
 /** Split `{cid}.{ext}`, or null if it is not that shape. */
 export function parseName(name: string): { cid: string; extension: string } | null {
 	const dot = name.lastIndexOf('.');

@@ -422,6 +422,7 @@ dependencies = [
  "kamadak-exif",
  "rand 0.10.2",
  "ravif",
+ "rayon",
  "regex",
  "rgb",
  "rstar",
