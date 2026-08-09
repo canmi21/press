@@ -18,6 +18,35 @@ pixels. SVG view-box coordinates remain unitless. An external browser API that o
 may keep them when no equivalent percentage is available; that constraint is documented beside the
 call rather than being generalized into a styling exception.
 
+## A decoration painted on a box needs the box to hug the text
+
+The spring underline is a background pinned to the bottom of its element, because a background
+can grow from zero width and `text-decoration` cannot. That buys the animation and takes on one
+liability: a background knows where the box is and nothing about where the baseline is.
+
+Flex and grid stretch their items by default, so a link inside either gets whatever height the
+row grew to, and paints its stroke at the bottom of that. Measured on a licence page, the same
+class of link sat 27.5px under its glyphs in one row and 2.5px in the next -- the difference was
+a neighbouring cell being tall, not anything about the link. `align-self: baseline` on the class
+is the fix, declared once rather than at each call site: the failure is invisible until some
+unrelated cell in the same row happens to grow, which is exactly the kind of thing nobody
+remembers to guard at the point of use. It is ignored outside a flex or grid container.
+
+## A label column is measured, never guessed
+
+A two-column definition list whose label column is a fixed width is a bet that no translation
+is wider than the number. The licence pages lost that bet in five of nine locales at
+`6.5rem`: `Documentación` needs 111px against 104px and had nowhere to go, while
+`Archivos de licencia` and `ライセンスファイル` wrapped to a second line beside a single-line
+value. Both are the same fault wearing two faces, one for a word that cannot break and one for
+a phrase that can, which is why a wider number only moves the boundary.
+
+So the column is intrinsic -- `auto` -- and shared across the sections that have to line up,
+through `grid-template-columns: subgrid`. Sizing each list separately would also never overflow
+and would leave two lists on one page disagreeing about where their values begin, by 45px in
+Japanese. Intrinsic sizing answers the translation, subgrid answers the alignment, and neither
+answer is a measurement anybody has to maintain.
+
 ## An in-page jump scrolls without becoming an address
 
 Navigation within one page -- an article's table of contents, the licence page's list of

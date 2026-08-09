@@ -90,167 +90,177 @@
 			</nav>
 		</header>
 
-		<section aria-labelledby="package-metadata" class="mt-16">
-			<h2 id="package-metadata" class="mb-4 font-medium text-text-strong">
-				{m['licenses.package']({}, { locale })}
-			</h2>
-			<dl class="grid grid-cols-[6.5rem_minmax(0,1fr)] gap-x-4 gap-y-3 text-[0.9375rem]">
-				<dt class="text-text-soft">{m['licenses.registry']({}, { locale })}</dt>
-				<dd class="min-w-0">
-					<a
-						href={data.registry.packageHref}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="focus-link spring-underline article-link inline-flex max-w-full items-center gap-1.5"
-					>
-						<span class="truncate">{data.registry.name}</span>
-						<ExternalLink class="size-3.5 shrink-0" aria-hidden="true" />
-					</a>
-				</dd>
-				{#if data.repository.href}
-					<dt class="text-text-soft">{m['licenses.repository_label']({}, { locale })}</dt>
-					<dd class="min-w-0">
-						{#if data.repository.github}
-							<span class="inline-flex min-w-0 items-center gap-2">
-								<img
-									src={githubAvatar(cdn, data.repository.github.owner, 48)}
-									alt=""
-									width="24"
-									height="24"
-									loading="lazy"
-									class="size-6 shrink-0 rounded-full bg-paper"
-								/>
-								<span class="min-w-0 truncate">
-									<a
-										href="{data.githubHref}/{data.repository.github.owner}"
-										target="_blank"
-										rel="noopener noreferrer"
-										class="focus-link spring-underline article-link"
-										>{data.repository.github.owner}</a
-									>/<a
-										href={data.repository.github.url}
-										target="_blank"
-										rel="noopener noreferrer"
-										class="focus-link spring-underline article-link"
-										>{data.repository.github.name}</a
-									>
-								</span>
-							</span>
-						{:else}
-							<a
-								href={data.repository.href}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="focus-link spring-underline article-link block w-fit max-w-full truncate"
-								>{data.repository.href}</a
-							>
-						{/if}
-					</dd>
-				{/if}
-				{#if data.entry.homepage}
-					<dt class="text-text-soft">{m['licenses.homepage']({}, { locale })}</dt>
+		<!--
+			One grid across both sections, so the label column is measured against every label on the
+			page at once. A fixed width cannot hold: `Documentación` is 111px against the 104px this
+			used to be, and `Archivos de licencia` wants 142px, so five of the nine locales either
+			spilled into the gutter or wrapped to a second line. Sizing each list on its own would fix
+			that and leave the two sections disagreeing about where their values start, by up to 45px
+			in Japanese. Subgrid is what lets the column be intrinsic and shared at the same time.
+		-->
+		<div class="mt-16 grid grid-cols-[auto_minmax(0,1fr)] gap-x-4">
+			<section aria-labelledby="package-metadata" class="col-span-2 grid grid-cols-subgrid">
+				<h2 id="package-metadata" class="col-span-2 mb-4 font-medium text-text-strong">
+					{m['licenses.package']({}, { locale })}
+				</h2>
+				<dl class="col-span-2 grid grid-cols-subgrid gap-y-3 text-[0.9375rem]">
+					<dt class="text-text-soft">{m['licenses.registry']({}, { locale })}</dt>
 					<dd class="min-w-0">
 						<a
-							href={data.entry.homepage}
+							href={data.registry.packageHref}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="focus-link spring-underline article-link block w-fit max-w-full truncate"
-							>{data.entry.homepage}</a
+							class="focus-link spring-underline article-link inline-flex max-w-full items-center gap-1.5"
 						>
+							<span class="truncate">{data.registry.name}</span>
+							<ExternalLink class="size-3.5 shrink-0" aria-hidden="true" />
+						</a>
 					</dd>
-				{/if}
-				{#if data.entry.documentation}
-					<dt class="text-text-soft">{m['licenses.documentation']({}, { locale })}</dt>
-					<dd class="min-w-0">
-						<a
-							href={data.entry.documentation}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="focus-link spring-underline article-link block w-fit max-w-full truncate"
-							>{data.entry.documentation}</a
-						>
-					</dd>
-				{/if}
-			</dl>
-		</section>
-
-		<section aria-labelledby="package-terms" class="mt-12">
-			<h2 id="package-terms" class="mb-4 font-medium text-text-strong">
-				{m['licenses.terms_attribution']({}, { locale })}
-			</h2>
-			<dl class="grid grid-cols-[6.5rem_minmax(0,1fr)] gap-x-4 gap-y-3 text-[0.9375rem]">
-				<dt class="text-text-soft">{m['licenses.license']({}, { locale })}</dt>
-				<dd class="min-w-0">
-					{#if data.licenses.length === 1 && data.licenses[0]?.license === data.entry.spdx}
-						<a
-							href={data.licenses[0].href}
-							class="focus-link spring-underline article-link font-mono break-words text-text-strong"
-							>{data.entry.spdx}</a
-						>
-					{:else}
-						<p class="font-mono break-words text-text-strong">{data.entry.spdx}</p>
-						<p class="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-[0.8125rem] text-text-soft">
-							{#each data.licenses as license (license.license)}
-								<a
-									href={license.href}
-									class="focus-link spring-underline article-link font-mono"
-									>{license.license}</a
-								>
-							{/each}
-						</p>
-					{/if}
-					{#if data.entry.asserted}
-						<p class="mt-2 text-[0.8125rem] leading-relaxed text-pretty text-text-soft">
-							{m['licenses.asserted_note']({}, { locale })}
-						</p>
-					{/if}
-				</dd>
-				{#if data.entry.authors?.length}
-					<dt class="text-text-soft">{m['licenses.authors']({}, { locale })}</dt>
-					<dd class="flex min-w-0 flex-wrap gap-x-5 gap-y-2">
-						{#each data.entry.authors as author, index (`${author.name}:${author.github ?? ''}:${index}`)}
-							<span class="inline-flex min-w-0 items-center gap-2">
-								{#if author.github}
+					{#if data.repository.href}
+						<dt class="text-text-soft">{m['licenses.repository_label']({}, { locale })}</dt>
+						<dd class="min-w-0">
+							{#if data.repository.github}
+								<span class="inline-flex min-w-0 items-center gap-2">
 									<img
-										src={githubAvatar(cdn, author.github, 48)}
+										src={githubAvatar(cdn, data.repository.github.owner, 48)}
 										alt=""
 										width="24"
 										height="24"
 										loading="lazy"
 										class="size-6 shrink-0 rounded-full bg-paper"
 									/>
-									<a
-										href="{data.githubHref}/{author.github}"
-										target="_blank"
-										rel="noopener noreferrer"
-										class="focus-link spring-underline article-link min-w-0 truncate"
-										>{author.name} <span class="text-text-soft">@{author.github}</span></a
-									>
-								{:else}
-									<span class="min-w-0 truncate text-text-strong">{author.name}</span>
-								{/if}
-							</span>
-						{/each}
-					</dd>
-				{/if}
-				<dt class="text-text-soft">{m['licenses.files']({}, { locale })}</dt>
-				<dd class="flex min-w-0 flex-wrap gap-x-4 gap-y-1">
-					{#if data.entry.texts?.length}
-						{#each data.entry.texts as file (`${file.name}:${file.cid}`)}
+									<span class="min-w-0 truncate">
+										<a
+											href="{data.githubHref}/{data.repository.github.owner}"
+											target="_blank"
+											rel="noopener noreferrer"
+											class="focus-link spring-underline article-link"
+											>{data.repository.github.owner}</a
+										>/<a
+											href={data.repository.github.url}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="focus-link spring-underline article-link"
+											>{data.repository.github.name}</a
+										>
+									</span>
+								</span>
+							{:else}
+								<a
+									href={data.repository.href}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="focus-link spring-underline article-link block w-fit max-w-full truncate"
+									>{data.repository.href}</a
+								>
+							{/if}
+						</dd>
+					{/if}
+					{#if data.entry.homepage}
+						<dt class="text-text-soft">{m['licenses.homepage']({}, { locale })}</dt>
+						<dd class="min-w-0">
 							<a
-								href={textUrl(cdn, file.cid)}
+								href={data.entry.homepage}
 								target="_blank"
 								rel="noopener noreferrer"
-								class="focus-link spring-underline article-link font-mono text-[0.8125rem]"
-								>{file.name}</a
+								class="focus-link spring-underline article-link block w-fit max-w-full truncate"
+								>{data.entry.homepage}</a
 							>
-						{/each}
-					{:else}
-						<span class="text-text-soft">{m['licenses.no_files']({}, { locale })}</span>
+						</dd>
 					{/if}
-				</dd>
-			</dl>
-		</section>
+					{#if data.entry.documentation}
+						<dt class="text-text-soft">{m['licenses.documentation']({}, { locale })}</dt>
+						<dd class="min-w-0">
+							<a
+								href={data.entry.documentation}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="focus-link spring-underline article-link block w-fit max-w-full truncate"
+								>{data.entry.documentation}</a
+							>
+						</dd>
+					{/if}
+				</dl>
+			</section>
+
+			<section aria-labelledby="package-terms" class="col-span-2 mt-12 grid grid-cols-subgrid">
+				<h2 id="package-terms" class="col-span-2 mb-4 font-medium text-text-strong">
+					{m['licenses.terms_attribution']({}, { locale })}
+				</h2>
+				<dl class="col-span-2 grid grid-cols-subgrid gap-y-3 text-[0.9375rem]">
+					<dt class="text-text-soft">{m['licenses.license']({}, { locale })}</dt>
+					<dd class="min-w-0">
+						{#if data.licenses.length === 1 && data.licenses[0]?.license === data.entry.spdx}
+							<a
+								href={data.licenses[0].href}
+								class="focus-link spring-underline article-link font-mono break-words text-text-strong"
+								>{data.entry.spdx}</a
+							>
+						{:else}
+							<p class="font-mono break-words text-text-strong">{data.entry.spdx}</p>
+							<p class="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-[0.8125rem] text-text-soft">
+								{#each data.licenses as license (license.license)}
+									<a
+										href={license.href}
+										class="focus-link spring-underline article-link font-mono"
+										>{license.license}</a
+									>
+								{/each}
+							</p>
+						{/if}
+						{#if data.entry.asserted}
+							<p class="mt-2 text-[0.8125rem] leading-relaxed text-pretty text-text-soft">
+								{m['licenses.asserted_note']({}, { locale })}
+							</p>
+						{/if}
+					</dd>
+					{#if data.entry.authors?.length}
+						<dt class="text-text-soft">{m['licenses.authors']({}, { locale })}</dt>
+						<dd class="flex min-w-0 flex-wrap gap-x-5 gap-y-2">
+							{#each data.entry.authors as author, index (`${author.name}:${author.github ?? ''}:${index}`)}
+								<span class="inline-flex min-w-0 items-center gap-2">
+									{#if author.github}
+										<img
+											src={githubAvatar(cdn, author.github, 48)}
+											alt=""
+											width="24"
+											height="24"
+											loading="lazy"
+											class="size-6 shrink-0 rounded-full bg-paper"
+										/>
+										<a
+											href="{data.githubHref}/{author.github}"
+											target="_blank"
+											rel="noopener noreferrer"
+											class="focus-link spring-underline article-link min-w-0 truncate"
+											>{author.name} <span class="text-text-soft">@{author.github}</span></a
+										>
+									{:else}
+										<span class="min-w-0 truncate text-text-strong">{author.name}</span>
+									{/if}
+								</span>
+							{/each}
+						</dd>
+					{/if}
+					<dt class="text-text-soft">{m['licenses.files']({}, { locale })}</dt>
+					<dd class="flex min-w-0 flex-wrap gap-x-4 gap-y-1">
+						{#if data.entry.texts?.length}
+							{#each data.entry.texts as file (`${file.name}:${file.cid}`)}
+								<a
+									href={textUrl(cdn, file.cid)}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="focus-link spring-underline article-link font-mono text-[0.8125rem]"
+									>{file.name}</a
+								>
+							{/each}
+						{:else}
+							<span class="text-text-soft">{m['licenses.no_files']({}, { locale })}</span>
+						{/if}
+					</dd>
+				</dl>
+			</section>
+		</div>
 
 		<section aria-labelledby="dependency-paths" class="mt-12">
 			<h2 id="dependency-paths" class="font-medium text-text-strong">
