@@ -76,5 +76,6 @@
 	"licenses.workspace_root": "workspace root",
 	"licenses.dependents": "被谁依赖",
 	"licenses.dependents_direct": "直接依赖",
-	"licenses.dependents_indirect": "经由其他软件包"
+	"licenses.dependents_indirect": "经由其他软件包",
+	"card.stats": "{articles} 篇文章 · {characters} 字 · 提供 {languages} 种语言"
 }

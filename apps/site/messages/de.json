@@ -76,5 +76,6 @@
 	"licenses.workspace_root": "Workspace-Stamm",
 	"licenses.dependents": "Wird benötigt von",
 	"licenses.dependents_direct": "Direkt",
-	"licenses.dependents_indirect": "Über andere Pakete"
+	"licenses.dependents_indirect": "Über andere Pakete",
+	"card.stats": "{articles} Beiträge · {characters} Zeichen · in {languages} Sprachen"
 }

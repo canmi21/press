@@ -76,5 +76,6 @@
 	"licenses.workspace_root": "workspace root",
 	"licenses.dependents": "이 패키지를 쓰는 곳",
 	"licenses.dependents_direct": "직접 의존",
-	"licenses.dependents_indirect": "다른 패키지를 거쳐"
+	"licenses.dependents_indirect": "다른 패키지를 거쳐",
+	"card.stats": "글 {articles}편 · {characters}자 · {languages}개 언어 제공"
 }

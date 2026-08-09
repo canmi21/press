@@ -76,5 +76,6 @@
 	"licenses.workspace_root": "raíz del workspace",
 	"licenses.dependents": "Lo necesitan",
 	"licenses.dependents_direct": "Directamente",
-	"licenses.dependents_indirect": "A través de otros paquetes"
+	"licenses.dependents_indirect": "A través de otros paquetes",
+	"card.stats": "{articles} artículos · {characters} caracteres · en {languages} idiomas"
 }

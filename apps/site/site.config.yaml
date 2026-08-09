@@ -8,6 +8,12 @@ tagline: One developer's journey through code, circuits, pixels — and life in 
 
 author:
   name: Canmi
+  # How the home page introduces the author, and what its OpenGraph card repeats. Kept here
+  # rather than written into the page, because a card rendered by `cms og` and a page rendered
+  # by SvelteKit have no other way to agree. Not translated: a name is a name, and a job title
+  # is one of the things this site leaves in English on purpose.
+  fullName: Canmi Wu
+  role: Systems Engineer
   email: t@canmi.net
   # Handles, not URLs. Where to reach them is libs/urls' business; who they identify lives here.
   telegram: canmimua

@@ -524,24 +524,12 @@ fn render_cards(args: &[String]) -> ExitCode {
 		}
 	};
 
-	// The site name on the card comes from the same file the pages read it from, under the
-	// key those pages use: `name`, not `title`. An article has a title; the site has a name.
-	let config = root.join("apps").join("site").join("site.config.yaml");
-	let site = std::fs::read_to_string(&config)
-		.ok()
-		.and_then(|text| {
-			text
-				.lines()
-				.find_map(|line| line.strip_prefix("name:"))
-				.map(|value| value.trim().trim_matches('"').trim_matches('\'').to_owned())
-		})
-		.unwrap_or_default();
-
+	// The site name, the author and their role all come from the file the pages read them
+	// from, so a card and the page it belongs to cannot introduce the site differently.
 	let outcome = match opengraph::run(
 		&root,
 		&root.join("data").join("public"),
 		&root.join("contents"),
-		&site,
 		force,
 	) {
 		Ok(outcome) => outcome,

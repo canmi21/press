@@ -1,4 +1,4 @@
-//! The `cms og` command: one card per article, rendered here and published as-is.
+//! The `cms og` command: one card per page per language, rendered here and published as-is.
 //!
 //! Named by slug rather than by content id, which is the one place this repository does not
 //! content-address something. A card is not an asset an article references -- the page emits
@@ -11,13 +11,43 @@
 
 pub mod layout;
 pub mod locale;
+pub mod messages;
 
 use crate::i18n::{segment, store};
 use cosmic_text::FontSystem;
 use cosmic_text::fontdb;
-use layout::Card;
+use layout::{Avatar, Card, Home};
 use rayon::prelude::*;
+use serde::Deserialize;
 use std::path::{Path, PathBuf};
+
+/// Where the author's portrait lives.
+///
+/// Kept beside the font and for the same reason: it is bytes somebody else serves, so it is
+/// fetched into `data/` once rather than requested by a local command. That also keeps the
+/// address out of this crate, where `mise run refs` does not allow one to be written.
+const AVATAR: &str = "data/avatar.png";
+
+/// The identity the home card repeats, read from the file the pages read it from.
+#[derive(Debug, Deserialize)]
+struct SiteConfig {
+	#[serde(default)]
+	name: String,
+	#[serde(default)]
+	author: SiteAuthor,
+}
+
+#[derive(Debug, Default, Deserialize)]
+struct SiteAuthor {
+	#[serde(default, rename = "fullName")]
+	full_name: String,
+	#[serde(default)]
+	role: String,
+}
+
+pub fn config_path(repo: &Path) -> PathBuf {
+	repo.join("apps").join("site").join("site.config.yaml")
+}
 
 /// The family name inside the TTF, which is what the layout asks for by name.
 const FAMILY: &str = "LXGW WenKai";
@@ -151,10 +181,22 @@ pub struct Job {
 	pub label: String,
 	pub target: PathBuf,
 	pub site: String,
-	pub title: String,
-	pub subtitle: Option<String>,
-	pub category: Option<String>,
-	pub date: Option<String>,
+	pub face: Face,
+}
+
+/// Which card this is, and the words only that kind has.
+pub enum Face {
+	Article {
+		title: String,
+		subtitle: Option<String>,
+		category: Option<String>,
+		date: Option<String>,
+	},
+	Home {
+		name: String,
+		role: String,
+		stats: String,
+	},
 }
 
 /// Every card an article asks for: one per view, each in that view's own words.
@@ -179,13 +221,108 @@ fn article_jobs(public: &Path, site: &str, path: &Path, article: &Article) -> Ve
 				label: format!("{} {}", view.code, article.slug),
 				target: card_path(public, view.code, &article.slug),
 				site: site.to_owned(),
-				title,
-				subtitle,
-				category: article.category.clone(),
-				date: date.clone(),
+				face: Face::Article {
+					title,
+					subtitle,
+					category: article.category.clone(),
+					date: date.clone(),
+				},
 			}
 		})
 		.collect()
+}
+
+/// The home page's card, which is a page rather than an article and has its own slug.
+pub const HOME_SLUG: &str = "homepage";
+
+/// What the site amounts to, counted once and shown on every view of the home card.
+///
+/// Characters rather than words, and the source text rather than each translation. A word is
+/// not a unit CJK has, so counting them would produce a number that means something different
+/// depending on which article it came from; a character is the same thing everywhere. The
+/// source is counted for all nine views because the number describes the site, not the
+/// translation somebody happens to be reading.
+pub struct Census {
+	pub articles: usize,
+	pub characters: usize,
+	pub languages: usize,
+}
+
+pub fn census(articles: &Path) -> Result<Census, String> {
+	let mut counted = 0;
+	let mut characters = 0;
+
+	for path in crate::refs::markdown_under(articles).map_err(|e| e.to_string())? {
+		// The bio page is content, not an article, and the pages do not list it as one either.
+		if path.file_stem().and_then(|name| name.to_str()) == Some(HOME_SLUG) {
+			continue;
+		}
+		let Ok(text) = std::fs::read_to_string(&path) else {
+			continue;
+		};
+		let body = text
+			.strip_prefix("---\n")
+			.and_then(|rest| rest.split_once("\n---"))
+			.map_or(text.as_str(), |(_, body)| body);
+		counted += 1;
+		characters += body.chars().filter(|c| !c.is_whitespace()).count();
+	}
+
+	Ok(Census {
+		articles: counted,
+		characters,
+		languages: locale::VIEWS.len(),
+	})
+}
+
+/// The home card, once per view, worded by that view's own catalog.
+fn home_jobs(repo: &Path, public: &Path, config: &SiteConfig, census: &Census) -> Vec<Job> {
+	locale::VIEWS
+		.iter()
+		.map(|view| {
+			let catalog = messages::load(repo, view.code);
+			let stats = catalog.get("card.stats").map_or(String::new(), |template| {
+				messages::fill(
+					template,
+					&[
+						("articles", &census.articles.to_string()),
+						("characters", &messages::compact(census.characters)),
+						("languages", &census.languages.to_string()),
+					],
+				)
+			});
+
+			Job {
+				label: format!("{} {HOME_SLUG}", view.code),
+				target: card_path(public, view.code, HOME_SLUG),
+				site: config.name.clone(),
+				face: Face::Home {
+					name: config.author.full_name.clone(),
+					role: config.author.role.clone(),
+					stats,
+				},
+			}
+		})
+		.collect()
+}
+
+/// The author's portrait, decoded once and shared by every thread that draws it.
+///
+/// Absent rather than fatal: a clone without the file still gets every card, with the home one
+/// missing a portrait instead of the whole command refusing to run.
+fn load_avatar(repo: &Path) -> Option<Avatar> {
+	let bytes = std::fs::read(repo.join(AVATAR)).ok()?;
+	let decoded = image::load_from_memory(&bytes).ok()?.to_rgba8();
+	let size = decoded.width().min(decoded.height());
+	// Square, from the top-left, because the portrait is already square and a rectangle here
+	// would mean choosing a crop nobody asked for.
+	Some(Avatar {
+		rgba: image::DynamicImage::ImageRgba8(decoded)
+			.crop_imm(0, 0, size, size)
+			.to_rgba8()
+			.into_raw(),
+		size,
+	})
 }
 
 /// Draw every job that is not already published, in parallel.
@@ -202,19 +339,44 @@ pub fn render_all(repo: &Path, jobs: Vec<Job>, force: bool) -> Result<Outcome, S
 		.into_iter()
 		.partition(|job| force || !job.target.is_file());
 
+	// Decoded once and shared: it is read-only pixels, and decoding it per thread would repeat
+	// the only part of this that is not text shaping.
+	let avatar = load_avatar(repo);
+
 	let results: Vec<Result<(), (String, String)>> = todo
 		.par_iter()
 		.map_init(
 			|| load_fonts(repo).expect("font already parsed once above"),
 			|fonts, job| {
-				let card = Card {
-					site: &job.site,
-					title: &job.title,
-					subtitle: job.subtitle.as_deref(),
-					category: job.category.as_deref(),
-					date: job.date.as_deref(),
+				let pixels = match &job.face {
+					Face::Article {
+						title,
+						subtitle,
+						category,
+						date,
+					} => layout::render(
+						fonts,
+						FAMILY,
+						&Card {
+							site: &job.site,
+							title,
+							subtitle: subtitle.as_deref(),
+							category: category.as_deref(),
+							date: date.as_deref(),
+						},
+					),
+					Face::Home { name, role, stats } => layout::render_home(
+						fonts,
+						FAMILY,
+						&Home {
+							site: &job.site,
+							name,
+							role,
+							stats,
+							avatar: avatar.as_ref(),
+						},
+					),
 				};
-				let pixels = layout::render(fonts, FAMILY, &card);
 				let png = encode(&pixels).map_err(|error| (job.label.clone(), error))?;
 				crate::image::store::write(&job.target, &png)
 					.map_err(|error| (job.label.clone(), error.to_string()))
@@ -235,21 +397,27 @@ pub fn render_all(repo: &Path, jobs: Vec<Job>, force: bool) -> Result<Outcome, S
 	Ok(outcome)
 }
 
-/// Render a card for every article, in every view.
-pub fn run(
-	repo: &Path,
-	public: &Path,
-	articles: &Path,
-	site: &str,
-	force: bool,
-) -> Result<Outcome, String> {
+/// Render every card the site needs, in every view.
+pub fn run(repo: &Path, public: &Path, articles: &Path, force: bool) -> Result<Outcome, String> {
+	let text = std::fs::read_to_string(config_path(repo))
+		.map_err(|error| format!("could not read the site config: {error}"))?;
+	let config: SiteConfig =
+		serde_yaml_ng::from_str(&text).map_err(|error| format!("site config: {error}"))?;
+
 	let mut jobs = Vec::new();
 	for path in crate::refs::markdown_under(articles).map_err(|e| e.to_string())? {
+		// The bio page gets the home card rather than an article one, so it is not an article
+		// here either.
+		if path.file_stem().and_then(|name| name.to_str()) == Some(HOME_SLUG) {
+			continue;
+		}
 		let Some(article) = article_of(articles, &path) else {
 			continue;
 		};
-		jobs.extend(article_jobs(public, site, &path, &article));
+		jobs.extend(article_jobs(public, &config.name, &path, &article));
 	}
+
+	jobs.extend(home_jobs(repo, public, &config, &census(articles)?));
 	render_all(repo, jobs, force)
 }
 

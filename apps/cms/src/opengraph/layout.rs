@@ -59,6 +59,161 @@ pub struct Card<'a> {
 	pub date: Option<&'a str>,
 }
 
+/// The home card: who the site is, rather than what one page of it says.
+///
+/// It keeps the article card's three bands and puts something different in each, so the two
+/// read as one site: the name at the top, the person in the middle, and what there is to read
+/// in the bottom-right -- the same corner an article card uses for its date and category, and
+/// for the same reason, which is that the bottom-left belongs to X.
+pub struct Home<'a> {
+	pub site: &'a str,
+	pub name: &'a str,
+	pub role: &'a str,
+	/// Already worded and filled by the view's own catalog; the layout only places it.
+	pub stats: &'a str,
+	/// Decoded RGBA, square. `None` renders the card without it rather than failing.
+	pub avatar: Option<&'a Avatar>,
+}
+
+/// A decoded square image, ready to be drawn as a circle.
+pub struct Avatar {
+	pub rgba: Vec<u8>,
+	pub size: u32,
+}
+
+/// How large the avatar is drawn, and how far the text beside it is pushed.
+const AVATAR: f32 = 168.0;
+const AVATAR_GAP: f32 = 40.0;
+const NAME_SIZE: f32 = 76.0;
+const ROLE_SIZE: f32 = 36.0;
+const STATS_SIZE: f32 = 30.0;
+const ROLE_ALPHA: f32 = 0.48;
+const STATS_ALPHA: f32 = 0.34;
+
+/// Draw the avatar as a circle, nearest-neighbour sampled from its own pixels.
+///
+/// A circle rather than the square GitHub serves, because that is how the page shows it and a
+/// card that framed it differently would read as a different person's site.
+///
+/// The edge is smoothed by coverage rather than by a rasteriser: a pixel one unit inside the
+/// radius is opaque, one unit outside is skipped, and the band between them fades. That is a
+/// subtraction per pixel against pulling in a path renderer for the one shape here that is not
+/// a rectangle.
+fn draw_avatar(pixmap: &mut PixmapMut<'_>, avatar: &Avatar, at: (f32, f32), size: f32) {
+	let radius = size / 2.0;
+	let side = size.round() as i32;
+	for y in 0..side {
+		for x in 0..side {
+			let dx = x as f32 + 0.5 - radius;
+			let dy = y as f32 + 0.5 - radius;
+			let distance = (dx * dx + dy * dy).sqrt();
+			let coverage = (radius + 0.5 - distance).clamp(0.0, 1.0);
+			if coverage <= 0.0 {
+				continue;
+			}
+			// Nearest neighbour: the source is 400px and the target 168px, so every target
+			// pixel has a source pixel to itself and filtering would only soften it.
+			let sx = ((x as f32 / size) * avatar.size as f32) as u32;
+			let sy = ((y as f32 / size) * avatar.size as f32) as u32;
+			let index = ((sy.min(avatar.size - 1) * avatar.size + sx.min(avatar.size - 1)) * 4) as usize;
+			let Some(pixel) = avatar.rgba.get(index..index + 4) else {
+				continue;
+			};
+			let mut paint = Paint::default();
+			paint.set_color_rgba8(
+				pixel[0],
+				pixel[1],
+				pixel[2],
+				(pixel[3] as f32 * coverage).round() as u8,
+			);
+			paint.anti_alias = false;
+			if let Some(rect) = Rect::from_xywh(at.0 + x as f32, at.1 + y as f32, 1.0, 1.0) {
+				pixmap.fill_rect(rect, &paint, Transform::identity(), None);
+			}
+		}
+	}
+}
+
+/// Render the home card to raw RGBA pixels.
+pub fn render_home(fonts: &mut FontSystem, family: &str, card: &Home<'_>) -> Vec<u8> {
+	let mut pixels = vec![0u8; (WIDTH * HEIGHT * 4) as usize];
+	let mut pixmap = PixmapMut::from_bytes(&mut pixels, WIDTH, HEIGHT).expect("canvas");
+	pixmap.fill(tiny_skia::Color::from_rgba8(PAPER.0, PAPER.1, PAPER.2, 255));
+
+	let mut cache = SwashCache::new();
+
+	let mut site = lay(fonts, card.site, SITE_SIZE, 1.2, TEXT_WIDTH, family);
+	paint(
+		&mut pixmap,
+		fonts,
+		&mut cache,
+		&mut site,
+		(PAD_X, PAD_Y),
+		colour(SITE_ALPHA),
+	);
+
+	let mut name = lay(fonts, card.name, NAME_SIZE, 1.15, TEXT_WIDTH, family);
+	let mut role = lay(fonts, card.role, ROLE_SIZE, 1.4, TEXT_WIDTH, family);
+
+	// The middle band is centred on the canvas the way the article card's is, and its height is
+	// whichever is taller: the avatar, or the two lines of text beside it.
+	let text_height = name.height + GAP * 0.5 + role.height;
+	let band = text_height.max(if card.avatar.is_some() { AVATAR } else { 0.0 });
+	let top = (HEIGHT as f32 - band) / 2.0;
+
+	let mut left = PAD_X;
+	if let Some(avatar) = card.avatar {
+		draw_avatar(
+			&mut pixmap,
+			avatar,
+			(left, top + (band - AVATAR) / 2.0),
+			AVATAR,
+		);
+		left += AVATAR + AVATAR_GAP;
+	}
+
+	// Text is centred against the avatar rather than sharing its top edge, so a short name and
+	// a tall portrait still look set on one line.
+	let mut y = top + (band - text_height) / 2.0;
+	paint(
+		&mut pixmap,
+		fonts,
+		&mut cache,
+		&mut name,
+		(left, y),
+		colour(1.0),
+	);
+	y += name.height + GAP * 0.5;
+	paint(
+		&mut pixmap,
+		fonts,
+		&mut cache,
+		&mut role,
+		(left, y),
+		colour(ROLE_ALPHA),
+	);
+
+	// Bottom band, right-aligned, in the corner the article card uses for its own metadata.
+	if !card.stats.is_empty() {
+		let mut stats = lay(fonts, card.stats, STATS_SIZE, 1.2, TEXT_WIDTH, family);
+		// Read before the borrow the paint call takes, since the position depends on the width.
+		let at = (
+			WIDTH as f32 - PAD_X - stats.width,
+			HEIGHT as f32 - PAD_Y - STATS_SIZE * 1.2,
+		);
+		paint(
+			&mut pixmap,
+			fonts,
+			&mut cache,
+			&mut stats,
+			at,
+			colour(STATS_ALPHA),
+		);
+	}
+
+	pixels
+}
+
 fn colour(alpha: f32) -> Color {
 	Color::rgba(INK.0, INK.1, INK.2, (alpha * 255.0).round() as u8)
 }

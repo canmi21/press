@@ -785,6 +785,27 @@ locale. The address is the page's own slug plus the same `?lang=` that selects t
 That is the key-is-not-the-URL rule again: one parameter names what the reader wants and the
 worker decides where to read from.
 
+**The home card is a different card, not an article card with the site's name in it.** An
+article card answers "what does this page say"; the home card answers "whose site is this", so
+it keeps the same three bands and puts a different thing in each: the site name at the top, the
+portrait with the author's name and role in the middle, and what there is to read in the
+bottom-right -- the corner an article card uses for its date and category, chosen there because
+the bottom-left belongs to X. Two cards that share a grammar read as one site; two that share a
+template read as one card with a field swapped.
+
+The name and role come from `site.config.yaml`, which is where the page reads them from, and
+are not translated: a name is a name, and the job title is one of the things this site leaves
+in English. The counts beside them are worded by the same message catalogs the pages use, so a
+card and a page never phrase the same fact differently, and they are **characters rather than
+words** -- a word is not a unit CJK has, and one number that means different things depending
+on which article it came from is worse than no number. The source text is counted for every
+view, because the number describes the site rather than the translation being read.
+
+The portrait is fetched into `data/` once, like the font and for both of the same reasons: it
+is bytes somebody else serves, and `mise run refs` does not allow the address to be written
+outside `libs/urls`. A clone without it still renders every card, with that one lacking a
+portrait rather than the command refusing to run.
+
 A view with no card falls back to the source view rather than to a 404. Translation arrives
 per segment and per article, so a missing card is a normal intermediate state; a card in the
 wrong language still says what the page is, and a blank rectangle says nothing. An unknown
