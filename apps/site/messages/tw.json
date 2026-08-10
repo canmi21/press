@@ -9,6 +9,7 @@
 	"notice.translated": "你正在閱讀翻譯版本，原文是{#link}{language}{/link}。",
 	"notice.polished": "這篇文章主要以{language}寫成。你正在閱讀的譯本可能帶有細微的措辭潤飾，推薦閱讀{#link}原文{/link}。",
 	"notice.script": "這篇文章主要以{language}寫成。你正在閱讀的繁體版本經過字詞轉換，{#link}原文{/link}更接近作者本來的表達。",
+	"notice.unavailable": "這篇文章還沒有{language}版本，已為你顯示原文。",
 	"article.summary": "總結",
 	"newsletter.heading": "電子報",
 	"newsletter.pitch": "新文章，還有偶爾冒出來的小驚喜，都會直接寄到你的信箱。電子報還在準備中，現在先留下信箱，第一期完成時就不會錯過。",

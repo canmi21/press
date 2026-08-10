@@ -66,7 +66,7 @@ impl Provider {
 /// from this list still gets recorded -- see `normalise` -- but only what is listed here is a
 /// name this project claims to understand.
 #[allow(dead_code)]
-pub const KNOWN: [&str; 26] = [
+pub const KNOWN: [&str; 27] = [
 	// anthropic: family, variant, version
 	"claude-opus-5",
 	"claude-opus-4-8",
@@ -85,6 +85,7 @@ pub const KNOWN: [&str; 26] = [
 	"gpt-5-6-luna-medium",
 	"gpt-5-6-terra-medium",
 	"gpt-5-6-terra-high",
+	"gpt-5-6-sol-xhigh",
 	// alibaba
 	"qwen-3",
 	"qwen-2-5",

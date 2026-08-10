@@ -258,8 +258,9 @@ pub fn attach(
 pub async fn scan(
 	article: &str,
 	runner: super::runner::Runner,
+	model_override: Option<&str>,
 ) -> Result<(Vec<Gloss>, String, u64), super::runner::Refusal> {
-	let model = runner.model_for_scan();
+	let model = model_override.unwrap_or_else(|| runner.model_for_scan());
 	let answer = super::runner::ask(runner, &scan_prompt(article), model).await?;
 	Ok((parse_scan(&answer.text), answer.model, answer.tokens))
 }

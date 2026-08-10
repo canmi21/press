@@ -315,10 +315,16 @@ struct Generated {
 	entry: Translation,
 }
 
-async fn summarise(runner: Runner, article: &Article) -> Result<Generated, Refusal> {
+async fn summarise(
+	runner: Runner,
+	model_override: Option<String>,
+	article: &Article,
+) -> Result<Generated, Refusal> {
 	let source =
 		std::fs::read_to_string(&article.path).map_err(|error| Refusal::Failed(error.to_string()))?;
-	let model = runner.model_for(Kind::Prose, 0);
+	let model = model_override
+		.as_deref()
+		.unwrap_or_else(|| runner.model_for(Kind::Prose, 0));
 
 	// Stamped before the request rather than after it, so `at` says when the article was read
 	// and not when the queue happened to drain.
@@ -353,7 +359,13 @@ async fn summarise(runner: Runner, article: &Article) -> Result<Generated, Refus
 	})
 }
 
-pub async fn run(runner: Runner, contents: &Path, force: bool, limit: Option<usize>) -> Outcome {
+pub async fn run(
+	runner: Runner,
+	model_override: Option<String>,
+	contents: &Path,
+	force: bool,
+	limit: Option<usize>,
+) -> Outcome {
 	let (mut todo, skipped, reviewed) = pending(contents, force);
 	let wanted = todo.len();
 	if let Some(limit) = limit {
@@ -382,8 +394,9 @@ pub async fn run(runner: Runner, contents: &Path, force: bool, limit: Option<usi
 			let Some(article) = queue.next() else {
 				break;
 			};
+			let model_override = model_override.clone();
 			running.push(tokio::spawn(async move {
-				let result = summarise(runner, &article).await;
+				let result = summarise(runner, model_override, &article).await;
 				(article.path, result)
 			}));
 		}

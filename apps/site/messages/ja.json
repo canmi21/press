@@ -9,6 +9,7 @@
 	"notice.translated": "翻訳版を読んでいます。原文は{#link}{language}{/link}です。",
 	"notice.polished": "この記事は主に{language}で書かれています。読んでいる版には細かな表現の調整が入っている場合があります。{#link}原文{/link}をおすすめします。",
 	"notice.script": "この記事は主に{language}で書かれています。読んでいる版は字体変換を経ているため、{#link}原文{/link}のほうが著者本来の表現に近くなります。",
+	"notice.unavailable": "この記事にはまだ{language}版がないため、原文を表示しています。",
 	"article.summary": "要約",
 	"newsletter.heading": "ニュースレター",
 	"newsletter.pitch": "新しい記事や、ときどき届くちょっとした寄り道をメールでお送りします。配信はただいま準備中。今のうちに登録しておけば、創刊号からお届けします。",

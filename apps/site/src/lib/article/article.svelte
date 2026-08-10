@@ -29,6 +29,7 @@
 		languageTag: string;
 		canonical: string;
 		alternates: Alternate[];
+		translationAvailable: boolean;
 	};
 
 	let {
@@ -45,7 +46,7 @@
 		meta: ArticleMeta;
 		toc: TocEntry[];
 		chars: number;
-		/** Absent until `cms summary` has been run for this article; the row then omits it. */
+		/** The selected locale, or its English fallback. Absent only when neither exists. */
 		summary?: ArticleSummary;
 		locale: ArticleLocale;
 		children: Snippet;
@@ -257,28 +258,34 @@
 							{formatCompact(readCount)}
 						</span>
 					{/if}
-					{#if summary}
-						<!-- A disclosure, not a menu: it is deliberately not dismissed by clicking
-						     elsewhere, because a reader comparing the summary against the article is
-						     doing exactly that -- clicking elsewhere. Only the trigger closes it. -->
-						<button
-							type="button"
-							id={summaryTrigger}
-							aria-expanded={summaryOpen}
-							aria-controls={summaryPanel}
-							onclick={() => (summaryOpen = !summaryOpen)}
-							class="quiet-control"
-						>
-							<span class="focus-link-inner inline-flex items-center gap-1">
-								<Sparkles class="size-3.5" aria-hidden="true" />
-								<span>{m['article.summary']({}, { locale: locale.code })}</span>
-							</span>
-						</button>
-					{/if}
+					<!-- A disclosure, not a menu: it is deliberately not dismissed by clicking
+					     elsewhere, because a reader comparing the summary against the article is
+					     doing exactly that -- clicking elsewhere. Only the trigger closes it. The
+					     disabled control keeps this metadata row stable while generated copy is absent. -->
+					<button
+						type="button"
+						id={summaryTrigger}
+						disabled={!summary}
+						aria-expanded={summary ? summaryOpen : false}
+						aria-controls={summary ? summaryPanel : undefined}
+						onclick={() => {
+							if (summary) summaryOpen = !summaryOpen;
+						}}
+						class="quiet-control disabled:cursor-not-allowed disabled:opacity-45 disabled:hover:bg-transparent disabled:hover:text-text-soft"
+					>
+						<span class="focus-link-inner inline-flex items-center gap-1">
+							<Sparkles class="size-3.5" aria-hidden="true" />
+							<span>{m['article.summary']({}, { locale: locale.code })}</span>
+						</span>
+					</button>
 					<LanguageSwitcher code={locale.code} sourceLanguage={meta.lang} />
 				</div>
 				{#if locale.code !== 'mw'}
-					<TranslationNotice code={locale.code} sourceLanguage={meta.lang} />
+					<TranslationNotice
+						code={locale.code}
+						sourceLanguage={meta.lang}
+						available={locale.translationAvailable}
+					/>
 				{/if}
 				{#if summary}
 					<!-- Rows collapse to 0fr rather than the box to height 0, which is the one way to

@@ -248,6 +248,7 @@ fn description_request(item: &Item, locale: &str) -> String {
 
 async fn translate_description<F, Fut>(
 	runner: Runner,
+	model_override: Option<&str>,
 	item: &Item,
 	locale: &str,
 	ask: &mut F,
@@ -265,7 +266,9 @@ where
 			Destination::Summary(_) => summary_request(item, locale),
 			_ => description_request(item, locale),
 		};
-		let model = runner.model_for(item.kind, attempt).to_owned();
+		let model = model_override
+			.unwrap_or_else(|| runner.model_for(item.kind, attempt))
+			.to_owned();
 		let at = crate::image::manifest::now();
 		let clock = std::time::Instant::now();
 		match ask(runner, prompt, model).await {
@@ -308,6 +311,7 @@ where
 
 async fn translate_tag<F, Fut>(
 	runner: Runner,
+	model_override: Option<&str>,
 	item: &Item,
 	ask: &mut F,
 ) -> Result<(Vec<(String, Translation)>, u64, f64), Refusal>
@@ -321,7 +325,9 @@ where
 
 	while attempt < ATTEMPTS {
 		let prompt = tag_request(item);
-		let model = runner.model_for(item.kind, attempt).to_owned();
+		let model = model_override
+			.unwrap_or_else(|| runner.model_for(item.kind, attempt))
+			.to_owned();
 		let at = crate::image::manifest::now();
 		let clock = std::time::Instant::now();
 		match ask(runner, prompt, model).await {
@@ -375,12 +381,14 @@ where
 pub async fn run(
 	repo: &Path,
 	runner: Runner,
+	model_override: Option<String>,
 	force: bool,
 	limit: Option<usize>,
 ) -> std::io::Result<Outcome> {
-	run_with(
+	run_with_model(
 		repo,
 		runner,
+		model_override.as_deref(),
 		force,
 		limit,
 		&crate::i18n::prompt::LOCALES,
@@ -389,9 +397,26 @@ pub async fn run(
 	.await
 }
 
+#[cfg(test)]
 async fn run_with<F, Fut>(
 	repo: &Path,
 	runner: Runner,
+	force: bool,
+	limit: Option<usize>,
+	locales: &[&str],
+	ask: F,
+) -> std::io::Result<Outcome>
+where
+	F: FnMut(Runner, String, String) -> Fut,
+	Fut: Future<Output = Result<Answer, Refusal>>,
+{
+	run_with_model(repo, runner, None, force, limit, locales, ask).await
+}
+
+async fn run_with_model<F, Fut>(
+	repo: &Path,
+	runner: Runner,
+	model_override: Option<&str>,
 	force: bool,
 	limit: Option<usize>,
 	locales: &[&str],
@@ -435,7 +460,7 @@ where
 		match &item.destination {
 			Destination::Tag(name) => {
 				progress.set_message(name.clone());
-				match translate_tag(runner, &item, &mut ask).await {
+				match translate_tag(runner, model_override, &item, &mut ask).await {
 					Ok((entries, tokens, usd)) => {
 						let Some(display) = registry
 							.tags
@@ -472,7 +497,7 @@ where
 			Destination::Summary(path) => {
 				for locale in &item.locales {
 					progress.set_message(format!("{} {locale}", path.display()));
-					match translate_description(runner, &item, locale, &mut ask).await {
+					match translate_description(runner, model_override, &item, locale, &mut ask).await {
 						Ok((translation, tokens, usd)) => {
 							// Reloaded per answer rather than held open: an interrupted run has
 							// to leave every translation it paid for on disk.
@@ -498,7 +523,7 @@ where
 			Destination::Description(cid) => {
 				for locale in &item.locales {
 					progress.set_message(format!("{cid} {locale}"));
-					match translate_description(runner, &item, locale, &mut ask).await {
+					match translate_description(runner, model_override, &item, locale, &mut ask).await {
 						Ok((translation, tokens, usd)) => {
 							described
 								.media

@@ -127,7 +127,12 @@ describe('article language switcher', () => {
 		// reader simply gets the original's wording where their own language should have been.
 		// Requiring each locale to differ from what it would fall back to is what catches that.
 		// `zh` is exempt: `mw` is written in it, which is the whole point of `mw`.
-		for (const render of [m['notice.translated'], m['notice.polished'], m['notice.script']]) {
+		for (const render of [
+			m['notice.translated'],
+			m['notice.polished'],
+			m['notice.script'],
+			m['notice.unavailable'],
+		]) {
 			const original = render({ language: 'X' }, { locale: 'mw' });
 			for (const locale of ['de', 'en', 'es', 'fr', 'ja', 'ko', 'tw'] as const) {
 				const rendered = render({ language: 'X' }, { locale });

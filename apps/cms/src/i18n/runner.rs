@@ -32,6 +32,44 @@ pub const DEFAULT_TEXT: Runner = Runner::GptOss;
 pub const DEFAULT_VISION: Runner = Runner::Codex;
 
 pub const CHOICES: &str = "claude, gemini, gpt-oss, codex, or cursor";
+pub const EFFORT_CHOICES: &str = "low, medium, high, xhigh, max, or ultra";
+
+/// Build the concrete tier name stored by the CMS and split at the Codex boundary later.
+///
+/// The runner remains a separate choice because it determines the binary and response envelope.
+/// A concrete model is currently useful only at the Codex binding, whose CLI takes model and
+/// effort as independent settings.
+pub fn model_override(
+	runner: Runner,
+	model: Option<&str>,
+	effort: Option<&str>,
+) -> Result<Option<String>, String> {
+	let Some(model) = model else {
+		return if effort.is_some() {
+			Err("--effort requires --model-id".to_owned())
+		} else {
+			Ok(None)
+		};
+	};
+	if runner != Runner::Codex {
+		return Err("--model-id requires --model codex".to_owned());
+	}
+	let model = model.trim();
+	if model.is_empty() || model.starts_with('-') {
+		return Err("--model-id takes a model id".to_owned());
+	}
+	let Some(effort) = effort else {
+		return Ok(Some(model.to_owned()));
+	};
+	let effort = effort.trim().to_ascii_lowercase();
+	if !matches!(
+		effort.as_str(),
+		"low" | "medium" | "high" | "xhigh" | "max" | "ultra"
+	) {
+		return Err(format!("--effort takes {EFFORT_CHOICES}"));
+	}
+	Ok(Some(format!("{model}-{effort}")))
+}
 
 impl Runner {
 	pub fn parse(name: &str) -> Option<Self> {
@@ -312,7 +350,9 @@ fn codex_error(stdout: &[u8]) -> Option<String> {
 /// everywhere else -- including in what gets recorded, which should say what was asked for.
 fn split_effort(model: &str) -> (&str, Option<&str>) {
 	match model.rsplit_once('-') {
-		Some((family, effort @ ("low" | "medium" | "high"))) => (family, Some(effort)),
+		Some((family, effort @ ("low" | "medium" | "high" | "xhigh" | "max" | "ultra"))) => {
+			(family, Some(effort))
+		}
 		_ => (model, None),
 	}
 }
@@ -569,11 +609,30 @@ mod tests {
 		);
 		// A name that merely ends in a word is not an effort.
 		assert_eq!(split_effort("gpt-5.6-sol"), ("gpt-5.6-sol", None));
+		assert_eq!(
+			split_effort("gpt-5.6-sol-xhigh"),
+			("gpt-5.6-sol", Some("xhigh"))
+		);
 
 		let args = codex_args("hi", "gpt-5.6-terra-medium", None);
 		assert!(args.contains(&OsString::from("gpt-5.6-terra")));
 		assert!(args.contains(&OsString::from("model_reasoning_effort=medium")));
 		assert!(!args.contains(&OsString::from("gpt-5.6-terra-medium")));
+	}
+
+	#[test]
+	fn an_explicit_codex_model_can_carry_an_explicit_effort() {
+		assert_eq!(
+			model_override(Runner::Codex, Some("gpt-5.6-sol"), Some("xhigh")).unwrap(),
+			Some("gpt-5.6-sol-xhigh".to_owned())
+		);
+		assert_eq!(model_override(Runner::Codex, None, None).unwrap(), None);
+		assert!(model_override(Runner::GptOss, Some("gpt-5.6-sol"), None).is_err());
+		assert!(model_override(Runner::Codex, None, Some("xhigh")).is_err());
+
+		let args = codex_args("translate", "gpt-5.6-sol-xhigh", None);
+		assert!(args.contains(&OsString::from("gpt-5.6-sol")));
+		assert!(args.contains(&OsString::from("model_reasoning_effort=xhigh")));
 	}
 
 	#[test]

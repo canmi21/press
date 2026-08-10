@@ -63,6 +63,14 @@ async function readSummaries(file: string): Promise<Record<string, ArticleSummar
 	}
 }
 
+/** Prefer the requested summary, then the one fallback language every view can name. */
+export function summaryFor(
+	summaries: Readonly<Record<string, ArticleSummary>>,
+	locale: string,
+): ArticleSummary | undefined {
+	return summaries[locale] ?? summaries['en-US'];
+}
+
 type BuildPaths = {
 	contents: string;
 	assets: string;
@@ -107,30 +115,41 @@ function pageDocument(path: string, { meta, body }: Pick<CompiledPage, 'meta' | 
 	return `${lines.join('\n').trim()}\n`;
 }
 
-function translatedRaws(
+export function translatedRaws(
 	file: string,
 	article: string,
 	raw: string,
 	sidecar: TranslationSidecar,
 	layout: SegmentLayout,
-): { raws: Record<LocaleCode, string>; translatable: Record<LocaleCode, string> } {
+): {
+	raws: Record<LocaleCode, string>;
+	translatable: Record<LocaleCode, string>;
+	translationAvailable: Record<LocaleCode, boolean>;
+} {
 	const spans = layout.articles[article];
 	if (!spans) throw new Error(`${file}: missing from data/build/segments.json`);
 	const raws = { mw: raw } as Record<LocaleCode, string>;
 	const translatable = {} as Record<LocaleCode, string>;
+	const translationAvailable = { mw: true } as Record<LocaleCode, boolean>;
 	for (const [code, locale] of Object.entries(PUBLIC_LANGUAGE) as [
 		Exclude<LocaleCode, 'mw'>,
 		(typeof PUBLIC_LANGUAGE)[Exclude<LocaleCode, 'mw'>],
 	][]) {
 		const assembled = assemble(raw, spans, sidecar, locale, file);
 		if (assembled.missing.length > 0) {
-			throw new Error(`${file}: ${locale} is missing ${assembled.missing.length} live segments`);
+			// One missing body block falls back the whole view. Mixing translated and source
+			// paragraphs would look complete while changing language halfway through the article.
+			raws[code] = raw;
+			translatable[code] = assembled.translatable.source;
+			translationAvailable[code] = false;
+		} else {
+			raws[code] = assembled.raw;
+			translatable[code] = assembled.translatable.translated;
+			translationAvailable[code] = true;
 		}
-		raws[code] = assembled.raw;
 		translatable.mw = assembled.translatable.source;
-		translatable[code] = assembled.translatable.translated;
 	}
-	return { raws, translatable };
+	return { raws, translatable, translationAvailable };
 }
 
 export async function buildArticles(
@@ -169,9 +188,11 @@ export async function buildArticles(
 		const sidecarFile = file.replace(/\.md$/, '.i18n.yaml');
 		const [raw, sidecarText] = await Promise.all([
 			readFile(file, 'utf8'),
-			readFile(sidecarFile, 'utf8'),
+			// A translation sidecar is generated output. Its absence is a source-only article,
+			// not a reason the site cannot render that article at all.
+			readFile(sidecarFile, 'utf8').catch(() => ''),
 		]);
-		const sidecar = parseYaml(sidecarText) as TranslationSidecar;
+		const sidecar = (parseYaml(sidecarText) ?? {}) as TranslationSidecar;
 		const summaries = await readSummaries(file);
 		const path = articlePath(paths.contents, file);
 		const url = `${URLS.apps.production.site}/${path}`;
@@ -188,19 +209,27 @@ export async function buildArticles(
 			sourceFile: file,
 			embeds,
 		});
-		const { raws, translatable } = translatedRaws(file, `${path}.md`, raw, sidecar, layout);
+		const { raws, translatable, translationAvailable } = translatedRaws(
+			file,
+			`${path}.md`,
+			raw,
+			sidecar,
+			layout,
+		);
 		const compiled = {
 			mw: source,
 			...Object.fromEntries(
 				await Promise.all(
 					(Object.keys(PUBLIC_LANGUAGE) as Exclude<LocaleCode, 'mw'>[]).map(async (code) => [
 						code,
-						await compile(raws[code], url, {
-							resolveAsset: createAssetResolver(assets, media, previews, PUBLIC_LANGUAGE[code]),
-							highlight,
-							sourceFile: file,
-							embeds,
-						}),
+						translationAvailable[code]
+							? await compile(raws[code], url, {
+									resolveAsset: createAssetResolver(assets, media, previews, PUBLIC_LANGUAGE[code]),
+									highlight,
+									sourceFile: file,
+									embeds,
+								})
+							: source,
 					]),
 				),
 			),
@@ -211,6 +240,7 @@ export async function buildArticles(
 		const views = Object.fromEntries(
 			LOCALE_CODES.map((code) => {
 				const view = compiled[code];
+				const summaryLocale = code === 'mw' ? originLocale : PUBLIC_LANGUAGE[code];
 				return [
 					code,
 					{
@@ -222,10 +252,11 @@ export async function buildArticles(
 						code,
 						languageTag: languageTag(code, sourceLanguage),
 						canonical: canonical[code],
+						translationAvailable: translationAvailable[code],
 						// `mw` takes the summary written in the article's own language rather
 						// than a translation of it, for the same reason it takes that language's
 						// alt text: the original view is the one nothing was done to.
-						summary: summaries[code === 'mw' ? originLocale : PUBLIC_LANGUAGE[code]],
+						summary: summaryFor(summaries, summaryLocale),
 					} satisfies ArticleView,
 				];
 			}),

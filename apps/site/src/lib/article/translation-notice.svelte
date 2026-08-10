@@ -2,16 +2,26 @@
 	import { page } from '$app/state';
 	import { ParaglideMessage } from '@inlang/paraglide-js-svelte';
 	import { contentLanguageCookie, type LocaleCode } from '$lib/locale';
-	import { contentLanguageHref, sourceCode, sourceLanguageName } from '$lib/locale/switcher';
+	import {
+		contentLanguageHref,
+		LANGUAGE_ENDONYMS,
+		sourceCode,
+		sourceLanguageName,
+	} from '$lib/locale/switcher';
 	import * as m from '$lib/paraglide/messages';
 
 	type TranslationCode = Exclude<LocaleCode, 'mw'>;
 
-	let { code, sourceLanguage }: { code: TranslationCode; sourceLanguage: string } = $props();
+	let {
+		code,
+		sourceLanguage,
+		available,
+	}: { code: TranslationCode; sourceLanguage: string; available: boolean } = $props();
 
 	const language = $derived(sourceLanguageName(sourceLanguage, code));
 	const originalHref = $derived(contentLanguageHref('mw', page.url));
 	const source = $derived(sourceCode(sourceLanguage));
+	const requestedLanguage = $derived(LANGUAGE_ENDONYMS[code]);
 
 	function showOriginal(event: MouseEvent) {
 		if (
@@ -52,18 +62,22 @@
 	role="note"
 	class="notice mt-4 rounded-r-md border-l-2 border-blue-ink py-1.5 pr-3 pl-3 text-sm leading-snug text-text-soft"
 >
-	<p>
-		<ParaglideMessage {message} inputs={{ language }} options={{ locale: code }}>
-			{#snippet link({ children })}
-				<a
-					href={originalHref}
-					data-sveltekit-reload
-					onclick={showOriginal}
-					class="focus-link spring-underline font-medium">{@render children?.()}</a
-				>
-			{/snippet}
-		</ParaglideMessage>
-	</p>
+	{#if available}
+		<p>
+			<ParaglideMessage {message} inputs={{ language }} options={{ locale: code }}>
+				{#snippet link({ children })}
+					<a
+						href={originalHref}
+						data-sveltekit-reload
+						onclick={showOriginal}
+						class="focus-link spring-underline font-medium">{@render children?.()}</a
+					>
+				{/snippet}
+			</ParaglideMessage>
+		</p>
+	{:else}
+		<p>{m['notice.unavailable']({ language: requestedLanguage }, { locale: code })}</p>
+	{/if}
 </div>
 
 <style>

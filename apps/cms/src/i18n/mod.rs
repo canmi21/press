@@ -107,6 +107,7 @@ async fn translate(
 	before: Option<String>,
 	after: Option<String>,
 	runner: Runner,
+	model_override: Option<String>,
 	gloss: Option<tn::Entry>,
 ) -> Result<(Vec<(String, Translation)>, u64, f64), Refusal> {
 	let masked = segment::mask(&item.source);
@@ -125,7 +126,9 @@ async fn translate(
 			after.as_deref(),
 			gloss.as_ref(),
 		);
-		let wanted = runner.model_for(item.kind, attempt);
+		let wanted = model_override
+			.as_deref()
+			.unwrap_or_else(|| runner.model_for(item.kind, attempt));
 		let answer = match runner::ask(runner, &request.text, wanted).await {
 			Ok(answer) => answer,
 			// No point trying a stronger model against an allowance that is gone; it is the
@@ -200,6 +203,7 @@ async fn translate(
 /// Translate every article under `articles`.
 pub async fn run(
 	runner: Runner,
+	model_override: Option<String>,
 	articles: &Path,
 	only: &[std::path::PathBuf],
 	limit: Option<usize>,
@@ -297,10 +301,14 @@ pub async fn run(
 				progress.set_message(crate::progress::preview(&item.source, 44));
 				let (before, after) = neighbours(&item.id);
 				let owned = item.clone();
+				let model_override = model_override.clone();
 				let gloss = glosses.find(&item.id).cloned();
 				running.push(tokio::spawn(async move {
 					let id = owned.id.clone();
-					(id, translate(&owned, before, after, runner, gloss).await)
+					(
+						id,
+						translate(&owned, before, after, runner, model_override, gloss).await,
+					)
 				}));
 			}
 			if running.is_empty() {

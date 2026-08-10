@@ -26,6 +26,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 			languageTag: view.languageTag,
 			canonical: view.canonical,
 			alternates: article.alternates,
+			translationAvailable: view.translationAvailable,
 		},
 	};
 };

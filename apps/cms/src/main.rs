@@ -167,6 +167,29 @@ fn selected_runner(
 	Ok(runner)
 }
 
+fn option_value<'a>(args: &'a [String], option: &str) -> Result<Option<&'a str>, ExitCode> {
+	let Some(at) = args.iter().position(|arg| arg == option) else {
+		return Ok(None);
+	};
+	let Some(value) = args.get(at + 1).filter(|value| !value.starts_with('-')) else {
+		eprintln!("{option} takes a value");
+		return Err(ExitCode::FAILURE);
+	};
+	Ok(Some(value))
+}
+
+fn selected_model_override(
+	args: &[String],
+	runner: i18n::runner::Runner,
+) -> Result<Option<String>, ExitCode> {
+	let model = option_value(args, "--model-id")?;
+	let effort = option_value(args, "--effort")?;
+	i18n::runner::model_override(runner, model, effort).map_err(|error| {
+		eprintln!("{error}");
+		ExitCode::FAILURE
+	})
+}
+
 /// Describe every asset that has no description yet.
 ///
 /// The description is written into the manifest, so it belongs to the picture rather than to
@@ -174,9 +197,8 @@ fn selected_runner(
 /// including ones written later.
 /// Write a reader-facing summary into every article that has none.
 ///
-/// The value lands in the article's own frontmatter, in the article's own language, and is
-/// translated from there by `cms i18n` like `title` and `description`. Nothing here knows about
-/// the eight locales.
+/// The value lands in a sidecar beside the article, in the article's own language. `cms locale`
+/// translates it into the other locales afterwards.
 fn summarise_articles(args: &[String]) -> ExitCode {
 	let force = args.iter().any(|arg| arg == "--force");
 	let limit = args
@@ -191,6 +213,10 @@ fn summarise_articles(args: &[String]) -> ExitCode {
 	// uses. Translation has no comparable trap, which is why that one stays on the cheap model.
 	let runner = match selected_runner(args, i18n::runner::Runner::Codex) {
 		Ok(runner) => runner,
+		Err(code) => return code,
+	};
+	let model_override = match selected_model_override(args, runner) {
+		Ok(model) => model,
 		Err(code) => return code,
 	};
 
@@ -209,7 +235,13 @@ fn summarise_articles(args: &[String]) -> ExitCode {
 			return ExitCode::FAILURE;
 		}
 	};
-	let outcome = runtime.block_on(summary::run(runner, &root.join("contents"), force, limit));
+	let outcome = runtime.block_on(summary::run(
+		runner,
+		model_override,
+		&root.join("contents"),
+		force,
+		limit,
+	));
 
 	for (path, error) in &outcome.failed {
 		eprintln!("fail  {path}: {error}");
@@ -225,7 +257,7 @@ fn summarise_articles(args: &[String]) -> ExitCode {
 	if outcome.written > 0 {
 		let spent = outcome.spent;
 		println!("{} in, ${:.2}", spent.total_in(), spent.usd);
-		println!("run `cms i18n` to translate the new values");
+		println!("run `cms locale` to translate the new values");
 	}
 	if outcome.failed.is_empty() {
 		ExitCode::SUCCESS
@@ -347,7 +379,7 @@ fn translate_articles(args: &[String]) -> ExitCode {
 		}
 		match arg.as_str() {
 			"--force" | "--frontmatter" => {}
-			"--limit" => skip = true,
+			"--limit" | "--model-id" | "--effort" => skip = true,
 			"--model" => {
 				skip = true;
 				match args
@@ -364,6 +396,10 @@ fn translate_articles(args: &[String]) -> ExitCode {
 			other => only.push(std::path::PathBuf::from(other)),
 		}
 	}
+	let model_override = match selected_model_override(args, runner) {
+		Ok(model) => model,
+		Err(code) => return code,
+	};
 
 	let root = match paths::repo_root() {
 		Ok(root) => root,
@@ -386,6 +422,7 @@ fn translate_articles(args: &[String]) -> ExitCode {
 	};
 	let outcome = match runtime.block_on(i18n::run(
 		runner,
+		model_override,
 		&root.join("contents"),
 		&only,
 		limit,
@@ -461,6 +498,10 @@ fn translate_locales(args: &[String]) -> ExitCode {
 		Ok(runner) => runner,
 		Err(code) => return code,
 	};
+	let model_override = match selected_model_override(args, runner) {
+		Ok(model) => model,
+		Err(code) => return code,
+	};
 
 	let root = match paths::repo_root() {
 		Ok(root) => root,
@@ -476,7 +517,7 @@ fn translate_locales(args: &[String]) -> ExitCode {
 			return ExitCode::FAILURE;
 		}
 	};
-	let outcome = match runtime.block_on(locale::run(&root, runner, force, limit)) {
+	let outcome = match runtime.block_on(locale::run(&root, runner, model_override, force, limit)) {
 		Ok(outcome) => outcome,
 		Err(error) => {
 			eprintln!("could not write: {error}");
@@ -906,6 +947,7 @@ fn scan_notes(args: &[String]) -> ExitCode {
 		}
 		match arg.as_str() {
 			"--force" => {}
+			"--model-id" | "--effort" => skip = true,
 			"--model" => {
 				skip = true;
 				match args
@@ -922,6 +964,10 @@ fn scan_notes(args: &[String]) -> ExitCode {
 			other => only.push(std::path::PathBuf::from(other)),
 		}
 	}
+	let model_override = match selected_model_override(args, runner) {
+		Ok(model) => model,
+		Err(code) => return code,
+	};
 
 	let root = match paths::repo_root() {
 		Ok(root) => root,
@@ -941,6 +987,22 @@ fn scan_notes(args: &[String]) -> ExitCode {
 	let contents = root.join("contents");
 	let path = i18n::tn::path_for(&root);
 	let mut table = i18n::tn::load(&path);
+	// Pages without `lang` are not articles. Keep them out of both new scans and the durable
+	// registry, including records written by older versions of this command.
+	let recorded = table.articles.len();
+	table.articles.retain(|key, _| {
+		std::fs::read_to_string(contents.join(key))
+			.map(|source| summary::lang_of(&source).is_some())
+			// A missing source cannot prove the record belongs to a page. Preserve paid history
+			// until a source file exists that positively identifies itself as one.
+			.unwrap_or(true)
+	});
+	if table.articles.len() != recorded
+		&& let Err(error) = i18n::tn::save(&path, &table)
+	{
+		eprintln!("could not write {}: {error}", path.display());
+		return ExitCode::FAILURE;
+	}
 
 	// Named articles, or every one not yet read. An article scanned and found to need nothing
 	// still counts as read, which is the distinction the table records so that a rerun does not
@@ -964,7 +1026,15 @@ fn scan_notes(args: &[String]) -> ExitCode {
 				}
 			})
 			.collect()
-	};
+	}
+	.into_iter()
+	.filter(|article| {
+		std::fs::read_to_string(article)
+			.ok()
+			.and_then(|source| summary::lang_of(&source))
+			.is_some()
+	})
+	.collect();
 
 	let mut suggested = 0usize;
 	let mut spent = 0u64;
@@ -992,14 +1062,15 @@ fn scan_notes(args: &[String]) -> ExitCode {
 				continue;
 			}
 		};
-		let (found, model, tokens) = match runtime.block_on(i18n::tn::scan(&text, runner)) {
-			Ok(result) => result,
-			Err(error) => {
-				progress.suspend(|| eprintln!("fail  {key}: {error}"));
-				progress.inc(1);
-				continue;
-			}
-		};
+		let (found, model, tokens) =
+			match runtime.block_on(i18n::tn::scan(&text, runner, model_override.as_deref())) {
+				Ok(result) => result,
+				Err(error) => {
+					progress.suspend(|| eprintln!("fail  {key}: {error}"));
+					progress.inc(1);
+					continue;
+				}
+			};
 		spent += tokens;
 		read += 1;
 
@@ -1190,15 +1261,19 @@ fn usage() {
 	eprintln!("                              describe assets that have no description yet");
 	eprintln!("  og [--force]                render an OpenGraph card per page per language");
 	eprintln!("  segments                    write article segment ids and source ranges");
-	eprintln!("  i18n [--model M] [--force] [--frontmatter] [--limit N] [article...]");
+	eprintln!(
+		"  i18n [--model M] [--model-id ID] [--effort E] [--force] [--frontmatter] [--limit N] [article...]"
+	);
 	eprintln!("                              translate article segments into every locale");
-	eprintln!("  tn [--model M] [--force] [article...]");
+	eprintln!("  tn [--model M] [--model-id ID] [--effort E] [--force] [article...]");
 	eprintln!(
 		"  embed [--force]              fetch the crate and repository data the articles embed"
 	);
 	eprintln!("                              suggest passages a translation would have to gloss");
-	eprintln!("  locale [--model M] [--force] [--limit N]");
+	eprintln!("  locale [--model M] [--model-id ID] [--effort E] [--force] [--limit N]");
 	eprintln!("                              translate tag labels and image descriptions");
+	eprintln!("  summary [--model M] [--model-id ID] [--effort E] [--force] [--limit N]");
+	eprintln!("                              write a reader-facing summary for each article");
 	eprintln!("  tag [--model M] [--force] [--limit N]");
 	eprintln!("                              give each asset a category and tags");
 	eprintln!("  licenses                    record the licence of every dependency the apps ship");

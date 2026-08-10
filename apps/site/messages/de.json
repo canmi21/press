@@ -9,6 +9,7 @@
 	"notice.translated": "Du liest eine Übersetzung. Das Original ist auf {#link}{language}{/link}.",
 	"notice.polished": "Dieser Artikel ist überwiegend auf {language} geschrieben. Die Fassung, die du liest, kann leichte sprachliche Glättungen enthalten; empfohlen wird das {#link}Original{/link}.",
 	"notice.script": "Dieser Artikel ist überwiegend auf {language} geschrieben. Die Fassung, die du liest, wurde zwischen Schriften umgesetzt; das {#link}Original{/link} kommt der Formulierung des Autors näher.",
+	"notice.unavailable": "Dieser Artikel ist noch nicht auf {language} verfügbar. Stattdessen wird das Original angezeigt.",
 	"article.summary": "Zusammenfassung",
 	"newsletter.heading": "Newsletter",
 	"newsletter.pitch": "Neue Beiträge und hin und wieder etwas Unerwartetes, direkt in dein Postfach. Der Newsletter startet erst noch – mit deiner Anmeldung bist du von Anfang an dabei und bekommst die allererste Ausgabe.",
