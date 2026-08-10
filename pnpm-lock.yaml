@@ -99,6 +99,9 @@ importers:
 
   apps/cms:
     dependencies:
+      '@canmi/theme':
+        specifier: workspace:*
+        version: link:../../libs/theme
       '@canmi/urls':
         specifier: workspace:*
         version: link:../../libs/urls
@@ -136,6 +139,9 @@ importers:
       '@canmi/robots':
         specifier: workspace:*
         version: link:../../libs/robots
+      '@canmi/theme':
+        specifier: workspace:*
+        version: link:../../libs/theme
       '@canmi/urls':
         specifier: workspace:*
         version: link:../../libs/urls
@@ -306,6 +312,8 @@ importers:
         version: 5.20260730.1
 
   libs/svg-canvas: {}
+
+  libs/theme: {}
 
   libs/tokens: {}
 

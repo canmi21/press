@@ -11,8 +11,12 @@
 	"app": {
 		"windows": [
 			{
+				"center": true,
+				"height": 720,
 				"label": "main",
-				"title": "CMS"
+				"title": "CMS",
+				"visible": false,
+				"width": 1280
 			}
 		]
 	},

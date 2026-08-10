@@ -9,6 +9,7 @@
 		"build:web": "vite build"
 	},
 	"dependencies": {
+		"@canmi/theme": "workspace:*",
 		"@canmi/urls": "workspace:*",
 		"@tauri-apps/api": "^2.11.1"
 	},

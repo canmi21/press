@@ -1,11 +1,11 @@
 import { building, dev } from '$app/environment';
+import { themeScript } from '@canmi/theme';
 import { URLS } from '@canmi/urls';
 import { handleErrorWithSentry, initCloudflareSentryHandle, sentryHandle } from '@sentry/sveltekit';
 import type { Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 import { articleRailScript } from '$lib/article/rail';
 import { getArticle, getPage } from '$lib/content';
-import { themeScript } from '$lib/theme';
 import { LANGUAGE_COOKIE_MAX_AGE, languageTag, privateHtml, resolveLocale } from '$lib/locale';
 import { registerServerStrategy } from '$lib/locale/paraglide';
 

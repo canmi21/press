@@ -1,5 +1,8 @@
+import { followSystemTheme } from '@canmi/theme';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import './style.css';
+
+followSystemTheme();
 
 if ('__TAURI_INTERNALS__' in window) {
 	const currentWindow = getCurrentWindow();

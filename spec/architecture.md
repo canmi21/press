@@ -216,6 +216,22 @@ desktop client consumes the same Tailwind-facing token surface as the site rathe
 an adapter of its own. Tauri's capability schemas under `src-tauri/gen` are generated build
 output: they stay untracked and are excluded from repository reference checks.
 
+The first window is a centred 1280 by 720 logical pixels, a 16:9 default rather than a minimum or
+a fixed canvas. After that first launch, geometry belongs to the native shell: Tauri's window-state
+plugin saves size, position and maximised state in the application's config directory and restores
+them before showing the next window. `localStorage` holds page state, not coordinates whose meaning
+depends on monitors and their scale factors. The configured window begins hidden so restoration
+does not flash the default rectangle before moving to the saved one.
+
+Theme behaviour is shared separately from its colour values. `@canmi/tokens` remains the palette;
+`@canmi/theme` owns the system dark-mode query and the site's pre-paint bootstrap. The desktop shell
+follows that system query live, while the public site can still honour its explicit `theme` cookie.
+
+`dev-cms` enables the MCP bridge as an optional Cargo feature and exposes Tauri's JavaScript global
+only through its runtime development config. The bridge is additionally gated by Rust debug
+assertions and binds to loopback, so an agent can inspect and evaluate the native WebView without
+putting a debugging server in a release client or on the local network.
+
 The two package managers disagree about strictness, and the layout has to respect that.
 
 **pnpm globs.** `pnpm-workspace.yaml` uses `libs/*` and `apps/*`. pnpm only picks up
