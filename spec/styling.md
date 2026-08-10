@@ -124,6 +124,22 @@ The control is absent with the ToC rail on narrow viewports. Moving it into the 
 there would turn a desktop spatial aid into another piece of article content and compete with
 the title for the first line of attention.
 
+At the other end of the article, its bottom edge becomes the side rail's lower boundary. The
+resting layout does not move until the ToC would cross that edge. After contact, the ToC follows
+the article end upward as the reader scrolls; expanding it keeps its bottom pinned and grows only
+upward. The boundary is the end of `<article>`, before the blank interval and Newsletter divider,
+so article navigation does not continue into the page's next region.
+
+The return control applies the same midpoint rule to the ToC's constrained top. Once the article
+end is moving the rail, that top is allowed to become negative instead of being clamped to the
+viewport edge, which lets both controls leave the viewport with the article. Scroll handling uses
+a cached document-space article end and observed box sizes: a scroll frame performs arithmetic
+and compositor writes, not fresh layout reads. The return spring still interpolates between its
+own collapsed and expanded endpoints, so pinning the ToC does not make their trajectories depend
+on one another. A pre-hydration frame applies the collapsed endpoints after browser scroll
+restoration, before the component observers take over, so reloading at the article end does not
+leave the rail centered until hydration.
+
 ## Boxed digits mark a number that moved; a standing fact is plain
 
 The `value` cells in [app.css](../apps/site/src/styles/app.css) give a number its own boxes and

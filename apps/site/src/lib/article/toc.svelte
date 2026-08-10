@@ -7,6 +7,7 @@
 		remFromMeasuredPixels,
 	} from '$lib/client/units';
 	import type { TocEntry } from '$lib/content/types';
+	import { railEndOffset } from './rail';
 
 	let { toc }: { toc: TocEntry[] } = $props();
 
@@ -95,6 +96,83 @@
 			toScaledPixels(INDICATOR_HEIGHT, rootFontPixels()) + lineHeight * (lines - 1);
 		const center = button.offsetTop + button.offsetHeight / 2;
 		return { y: center - height / 2, height };
+	}
+
+	function followArticleEnd(node: HTMLElement) {
+		const article = document.querySelector<HTMLElement>('article');
+		let frame = 0;
+		let rootPixels = rootFontPixels();
+		let navHeight = node.getBoundingClientRect().height;
+		let articleTop = 0;
+		let articleEnd = Number.POSITIVE_INFINITY;
+		let renderedOffset = '';
+		let destroyed = false;
+		let measureNext = false;
+
+		const position = () => {
+			const offset = railEndOffset(
+				window.innerHeight,
+				navHeight,
+				articleEnd - window.scrollY,
+			);
+			const rendered = remFromMeasuredPixels(offset, rootPixels);
+			if (rendered === renderedOffset) return;
+			renderedOffset = rendered;
+			node.style.setProperty('--toc-end-offset', rendered);
+		};
+
+		const calibrate = () => {
+			rootPixels = rootFontPixels();
+			navHeight = node.getBoundingClientRect().height;
+			if (article) {
+				const rect = article.getBoundingClientRect();
+				articleTop = rect.top + window.scrollY;
+				articleEnd = rect.bottom + window.scrollY;
+			}
+			position();
+		};
+
+		const schedule = (measure = false) => {
+			measureNext ||= measure;
+			cancelAnimationFrame(frame);
+			frame = requestAnimationFrame(() => {
+				if (measureNext) {
+					measureNext = false;
+					calibrate();
+				} else {
+					position();
+				}
+			});
+		};
+
+		const resize = new ResizeObserver((observations) => {
+			for (const entry of observations) {
+				const height = entry.borderBoxSize[0]?.blockSize ?? entry.contentRect.height;
+				if (entry.target === node) navHeight = height;
+				if (entry.target === article) articleEnd = articleTop + height;
+			}
+			position();
+		});
+		resize.observe(node);
+		if (article) resize.observe(article);
+		const onScroll = () => schedule();
+		const onResize = () => schedule(true);
+		window.addEventListener('scroll', onScroll, { passive: true });
+		window.addEventListener('resize', onResize);
+		calibrate();
+		document.fonts.ready.then(() => {
+			if (!destroyed) calibrate();
+		});
+
+		return {
+			destroy() {
+				destroyed = true;
+				cancelAnimationFrame(frame);
+				resize.disconnect();
+				window.removeEventListener('scroll', onScroll);
+				window.removeEventListener('resize', onResize);
+			},
+		};
 	}
 
 	const barWidths = $derived(linearBars(entries.map((e) => e.width)));
@@ -415,6 +493,7 @@
 {#if entries.length > 0}
 	<nav
 		bind:this={asideEl}
+		use:followArticleEnd
 		aria-label="Table of contents"
 		onmouseenter={handleEnter}
 		onmouseleave={handleLeave}
@@ -468,6 +547,7 @@
 	and preserve the same viewport gutter at the lg breakpoint. */
 	.toc-nav {
 		right: calc(50% + 24rem);
+		transform: translateY(var(--toc-end-offset, 0rem));
 		width: min(12rem, calc(50vw - 25.5rem));
 	}
 

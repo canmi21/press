@@ -3,6 +3,7 @@ import { URLS } from '@canmi/urls';
 import { handleErrorWithSentry, initCloudflareSentryHandle, sentryHandle } from '@sentry/sveltekit';
 import type { Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
+import { articleRailScript } from '$lib/article/rail';
 import { getArticle, getPage } from '$lib/content';
 import { themeScript } from '$lib/theme';
 import { LANGUAGE_COOKIE_MAX_AGE, languageTag, privateHtml, resolveLocale } from '$lib/locale';
@@ -90,7 +91,8 @@ const pageHandle: Handle = async ({ event, resolve }) => {
 					// document is the authoritative result of the worker's full negotiation.
 					.replace('%language.code%', event.locals.locale?.code ?? 'mw')
 					.replace('%theme.class%', theme === 'dark' ? 'dark' : '')
-					.replace('%theme.script%', themeScript),
+					.replace('%theme.script%', themeScript)
+					.replace('%article.rail.script%', articleRailScript),
 			),
 	});
 	return privateHtml(response);

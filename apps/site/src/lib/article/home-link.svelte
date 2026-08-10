@@ -4,6 +4,7 @@
 	import { DEFAULT_PIXELS_PER_REM, remFromMeasuredPixels } from '$lib/client/units';
 	import type { LocaleCode } from '$lib/locale';
 	import * as m from '$lib/paraglide/messages';
+	import { homeCenter } from './rail';
 
 	const DEFAULT_TOP_REM = 6.75;
 	const COLLAPSED_BAR_REM = 0.25;
@@ -49,32 +50,45 @@
 	function followToc(node: HTMLElement, _locale: LocaleCode) {
 		let frame = 0;
 		let toc: HTMLElement | undefined;
-		let currentOffset = 0;
+		let article: HTMLElement | undefined;
+		let articleTop = 0;
+		let articleEnd = Number.POSITIVE_INFINITY;
+		let restingCenter = 0;
+		let renderedOffset = '';
+		let heights: Record<TocState, number> = { collapsed: 0, expanded: 0 };
+		let progress = 0;
 		let rootPixels = DEFAULT_PIXELS_PER_REM;
 		let endpoints: Record<TocState, number> = { collapsed: 0, expanded: 0 };
 		let motion: AnimationControl | undefined;
 		let state: TocState = 'collapsed';
+		let articleResize: ResizeObserver | undefined;
 		let stateChanges: MutationObserver | undefined;
 		let insertion: MutationObserver | undefined;
 		let destroyed = false;
+		let calibrateNext = false;
 
-		const render = (offset: number) => {
-			currentOffset = offset;
-			node.style.setProperty('--home-offset', remFromMeasuredPixels(offset, rootPixels));
+		const render = (nextProgress: number) => {
+			progress = nextProgress;
+			const offset =
+				endpoints.collapsed + (endpoints.expanded - endpoints.collapsed) * nextProgress;
+			const rendered = remFromMeasuredPixels(offset, rootPixels);
+			if (rendered === renderedOffset) return;
+			renderedOffset = rendered;
+			node.style.setProperty('--home-offset', rendered);
 		};
 
-		const move = (target: number, immediate = false) => {
+		const move = (nextState: TocState) => {
+			const target = nextState === 'expanded' ? 1 : 0;
 			motion?.stop();
 			motion = undefined;
 			if (
-				immediate ||
 				window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-				Math.abs(currentOffset - target) < 0.01
+				Math.abs(progress - target) < 0.001
 			) {
 				render(target);
 				return;
 			}
-			motion = animate(currentOffset, target, {
+			motion = animate(progress, target, {
 				...HOME_SPRING,
 				onUpdate: render,
 				onComplete: () => {
@@ -85,63 +99,116 @@
 		};
 
 		const endpoint = (restingTop: number, height: number) => {
-			const boundary = (window.innerHeight - height) / 2;
-			// Title alignment yields only when the ToC consumes that space. See spec/styling.md.
-			const target = Math.min(restingTop, Math.max(0, boundary) / 2);
+			const target = homeCenter(
+				restingTop,
+				window.innerHeight,
+				height,
+				articleEnd - window.scrollY,
+			);
 			return target - DEFAULT_TOP_REM * rootPixels;
 		};
 
-		const calibrate = (immediate = true) => {
-			rootPixels =
-				Number.parseFloat(getComputedStyle(document.documentElement).fontSize) ||
-				DEFAULT_PIXELS_PER_REM;
-			const restingTop = titleCenter() ?? window.innerHeight / 4;
+		const position = () => {
 			if (!toc) {
 				endpoints = { collapsed: 0, expanded: 0 };
 			} else {
 				endpoints = {
-					collapsed: endpoint(restingTop, tocHeight(toc, 'collapsed', rootPixels)),
-					expanded: endpoint(restingTop, tocHeight(toc, 'expanded', rootPixels)),
+					collapsed: endpoint(restingCenter, heights.collapsed),
+					expanded: endpoint(restingCenter, heights.expanded),
 				};
 			}
-			move(endpoints[state], immediate);
+			render(progress);
+		};
+
+		const calibrate = () => {
+			rootPixels =
+				Number.parseFloat(getComputedStyle(document.documentElement).fontSize) ||
+				DEFAULT_PIXELS_PER_REM;
+			restingCenter = titleCenter() ?? window.innerHeight / 4;
+		if (toc) {
+				heights = {
+					collapsed: tocHeight(toc, 'collapsed', rootPixels),
+					expanded: tocHeight(toc, 'expanded', rootPixels),
+				};
+			}
+			if (article) {
+				const rect = article.getBoundingClientRect();
+				articleTop = rect.top + window.scrollY;
+				articleEnd = rect.bottom + window.scrollY;
+			}
+			position();
 		};
 
 		const connect = () => {
-			const next = document.querySelector<HTMLElement>('.toc-nav');
-			if (next === toc) return;
-			stateChanges?.disconnect();
-			toc = next ?? undefined;
-			state = toc?.classList.contains('revealed') ? 'expanded' : 'collapsed';
-			if (toc) {
-				stateChanges = new MutationObserver(() => {
-					if (!toc) return;
-					const nextState = toc.classList.contains('revealed') ? 'expanded' : 'collapsed';
-					if (nextState === state) return;
-					state = nextState;
-					move(endpoints[state]);
-				});
-				stateChanges.observe(toc, { attributes: true, attributeFilter: ['class'] });
+			const nextToc = document.querySelector<HTMLElement>('.toc-nav') ?? undefined;
+			const nextArticle = document.querySelector<HTMLElement>('article') ?? undefined;
+			if (nextToc === toc && nextArticle === article) return;
+
+			if (nextToc !== toc) {
+				motion?.stop();
+				motion = undefined;
+				stateChanges?.disconnect();
+				toc = nextToc;
+				state = toc?.classList.contains('revealed') ? 'expanded' : 'collapsed';
+				progress = state === 'expanded' ? 1 : 0;
+				if (toc) {
+					stateChanges = new MutationObserver(() => {
+						if (!toc) return;
+						const nextState = toc.classList.contains('revealed') ? 'expanded' : 'collapsed';
+						if (nextState === state) return;
+						state = nextState;
+						move(state);
+					});
+					stateChanges.observe(toc, { attributes: true, attributeFilter: ['class'] });
+				}
+			}
+
+			if (nextArticle !== article) {
+				articleResize?.disconnect();
+				article = nextArticle;
+				articleTop = 0;
+				articleEnd = Number.POSITIVE_INFINITY;
+				if (article && typeof ResizeObserver !== 'undefined') {
+					articleResize = new ResizeObserver(([entry]) => {
+						if (!entry) return;
+						const height = entry.borderBoxSize[0]?.blockSize ?? entry.contentRect.height;
+						articleEnd = articleTop + height;
+						position();
+					});
+					articleResize.observe(article);
+				}
 			}
 			calibrate();
 		};
 
-		const scheduleCalibration = () => {
+		const schedule = (needsCalibration = false) => {
+			calibrateNext ||= needsCalibration;
 			cancelAnimationFrame(frame);
-			frame = requestAnimationFrame(() => calibrate());
+			frame = requestAnimationFrame(() => {
+				if (calibrateNext) {
+					calibrateNext = false;
+					calibrate();
+				} else {
+					position();
+				}
+			});
 		};
 		insertion = new MutationObserver((records) => {
-			const next = document.querySelector<HTMLElement>('.toc-nav');
-			if (next !== toc) {
+			const nextToc = document.querySelector<HTMLElement>('.toc-nav') ?? undefined;
+			const nextArticle = document.querySelector<HTMLElement>('article') ?? undefined;
+			if (nextToc !== toc || nextArticle !== article) {
 				connect();
 				return;
 			}
 			if (toc && records.some(({ target }) => toc?.contains(target))) {
-				scheduleCalibration();
+				schedule(true);
 			}
 		});
 		insertion.observe(document.body, { childList: true, characterData: true, subtree: true });
-		window.addEventListener('resize', scheduleCalibration);
+		const onResize = () => schedule(true);
+		const onScroll = () => schedule();
+		window.addEventListener('resize', onResize);
+		window.addEventListener('scroll', onScroll, { passive: true });
 		connect();
 		document.fonts.ready.then(() => {
 			if (!destroyed) calibrate();
@@ -149,15 +216,17 @@
 
 		return {
 			update(_nextLocale: LocaleCode) {
-				calibrate();
+				schedule(true);
 			},
 			destroy() {
 				destroyed = true;
 				cancelAnimationFrame(frame);
 				motion?.stop();
+				articleResize?.disconnect();
 				stateChanges?.disconnect();
 				insertion?.disconnect();
-				window.removeEventListener('resize', scheduleCalibration);
+				window.removeEventListener('resize', onResize);
+				window.removeEventListener('scroll', onScroll);
 			},
 		};
 	}
