@@ -2,6 +2,7 @@
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"nav.writing": "文章",
 	"nav.home": "主页",
+	"article.back": "返回",
 	"article.translator-note": "来自译者",
 	"article.translator-note.close": "关闭译者注",
 	"language.original": "原文",

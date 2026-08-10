@@ -6,6 +6,14 @@
 
 	let { locale }: { locale: LocaleCode } = $props();
 
+	function titleCenter() {
+		const title = document.querySelector<HTMLElement>('article h1');
+		if (!title) return;
+		const rect = title.getBoundingClientRect();
+		// Scrolling the article must not move fixed navigation away from its default alignment.
+		return rect.top + window.scrollY + rect.height / 2;
+	}
+
 	function followToc(node: HTMLElement) {
 		let frame = 0;
 		let toc: HTMLElement | undefined;
@@ -16,7 +24,9 @@
 			cancelAnimationFrame(frame);
 			frame = requestAnimationFrame(() => {
 				const boundary = toc?.getBoundingClientRect().top ?? window.innerHeight / 2;
-				node.style.top = remFromMeasuredPixels(Math.max(0, boundary) / 2);
+				const title = titleCenter() ?? window.innerHeight / 4;
+				// Title alignment yields only when the ToC consumes that space. See spec/styling.md.
+				node.style.top = remFromMeasuredPixels(Math.min(title, Math.max(0, boundary) / 2));
 			});
 		};
 
@@ -50,17 +60,21 @@
 	}
 </script>
 
-<a
+<div
 	use:followToc
-	href="/"
-	class="home-link focus-link fixed hidden -translate-y-1/2 items-center gap-1.5 text-[0.9375rem] text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong lg:inline-flex"
+	class="home-slot pointer-events-none fixed hidden -translate-y-1/2 items-center lg:flex"
 >
-	<Undo2 class="size-4" aria-hidden="true" />
-	<span>{m['nav.home']({}, { locale })}</span>
-</a>
+	<a
+		href="/"
+		class="home-link focus-link pointer-events-auto inline-flex -translate-x-[1.375rem] items-center gap-1.5 whitespace-nowrap text-sm text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
+	>
+		<Undo2 class="size-4 shrink-0" aria-hidden="true" />
+		<span>{m['article.back']({}, { locale })}</span>
+	</a>
+</div>
 
 <style>
-	.home-link {
+	.home-slot {
 		top: 25vh;
 		right: calc(50% + 24rem);
 		width: min(12rem, calc(50vw - 25.5rem));

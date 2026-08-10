@@ -2,6 +2,7 @@
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"nav.writing": "Artículos",
 	"nav.home": "Inicio",
+	"article.back": "Volver",
 	"article.translator-note": "Nota del traductor",
 	"article.translator-note.close": "Cerrar la nota del traductor",
 	"language.original": "Original",

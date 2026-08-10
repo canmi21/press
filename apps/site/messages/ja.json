@@ -2,6 +2,7 @@
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"nav.writing": "記事",
 	"nav.home": "ホーム",
+	"article.back": "戻る",
 	"article.translator-note": "訳者より",
 	"article.translator-note.close": "訳注を閉じる",
 	"language.original": "原文",

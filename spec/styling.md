@@ -98,11 +98,15 @@ geometry that was tuned. An exception with a reason is not a second rule.
 
 ## Article home navigation yields to the table of contents
 
-On a wide article viewport, the return to Home occupies the vertical midpoint between the top
-of the viewport and the rendered top of the table of contents. That empty interval gives the
-site-level exit a stable place without making it another article heading or ToC entry. The
-midpoint follows the ToC's live boundary rather than a guessed height: when translated labels
-expand or wrap, Home rises with them and the existing ToC remains where its own layout puts it.
+On a wide article viewport, the return control occupies the empty interval between the top of
+the viewport and the rendered top of the table of contents. Its icon aligns vertically with the
+article title in the collapsed default, giving that interval a deliberate upper bias rather than
+an arbitrary fixed offset. Expansion keeps that alignment while there is room. Only when the ToC
+would cross the corresponding midpoint does the control rise to the live midpoint between the
+viewport and the ToC, splitting the remaining space evenly without moving the ToC itself.
+
+The text begins on the same vertical line as the ToC labels and bars. The return icon sits beyond
+that line, making direction peripheral while the words preserve the rail's alignment.
 
 The control is absent with the ToC rail on narrow viewports. Moving it into the article column
 there would turn a desktop spatial aid into another piece of article content and compete with
