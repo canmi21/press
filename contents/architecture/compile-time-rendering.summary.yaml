@@ -1,66 +1,66 @@
 version: 1
 summary:
   de-DE:
-    text: Für Frontend‑Entwickler, die unzufrieden damit sind, dass Frameworks wie Next.js SSR standardmäßig einsetzen, aber häufig nur wenige Felder pro Anfrage aktualisieren müssen, diskutiert der Artikel, ob JTD‑Typbeschränkungen und eine Compile‑Zeit‑Aufzählung den vollen Seiten‑renderToString() ersetzen können. Er vergleicht und hinterfragt die Trade‑offs von SSG, ISR, React 19.2 PPR, RSC und Astro, wobei er die Grenzen von Markdown, Rich Text, beliebigen Server‑Komponenten und der Hydrations‑Konsistenz beibehält. Außerdem untersucht der Text die Machbarkeit in Rust‑, Go‑ und TypeScript‑Backends sowie in Serverless‑ und Desktop‑Szenarien und die Kosten, die die Einführung von QuickJS für die Entwickler‑Erfahrung mit sich bringt.
+    text: Ausgehend von Next.js’ standardmäßigem SSR und dem Aufwand, wegen weniger dynamischer Daten den gesamten Baum neu zu rendern, wird gefragt, ob sich anfragespezifische Daten, SPA-Hydration und ein sprachübergreifendes Backend beibehalten lassen, während der Großteil des React-Renderings aus der Laufzeit verlagert wird. Abgewogen werden SSG, ISR/CDN-Caching und React 19.2 PPR, ebenso werden RSC und Astro untersucht; zu den Einschränkungen zählen JTD-Typverträge, offene Inhalte wie Markdown, bedingte Kombinationen, Hydration Mismatches, Serverless-Kosten und DX, der Prototyp ist noch nicht ausgereift.
     provider: openai
-    model: gpt-oss-120b-medium
-    at: 2026-08-04T03:13:43.620171Z
-    seconds: 6.400510125
-    tokens: 14912
+    model: gpt-5-6-sol-xhigh
+    at: 2026-08-10T05:07:13.370859Z
+    seconds: 12.83782775
+    tokens: 16087
     review: false
   en-US:
-    text: Targeted at front‑end developers who are dissatisfied with frameworks like Next.js defaulting to SSR yet often only need to update a handful of fields per request, the article discusses whether JTD type constraints and compile‑time exhaustive enumeration can replace full‑page renderToString(). It compares and questions the trade‑offs of SSG, ISR, React 19.2 PPR, RSC and Astro, while preserving boundaries such as Markdown, Rich Text, arbitrary server components, and hydration consistency. The piece also examines feasibility across Rust, Go, and TypeScript back‑ends in Serverless and desktop scenarios, and the cost of introducing QuickJS for developer experience.
+    text: Starting from the cost of Next.js’s default SSR rerendering the entire tree for a small amount of dynamic data, it asks whether per-request data, SPA hydration, and polyglot backends can be preserved while moving most React rendering out of the runtime. It weighs SSG, ISR/CDN caching, and React 19.2 PPR, while also examining RSC and Astro; constraints include JTD type contracts, open-ended content such as Markdown, conditional combinations, hydration mismatches, Serverless costs, and DX, and the prototype remains immature.
     provider: openai
-    model: gpt-oss-120b-medium
-    at: 2026-08-04T03:13:23.028495Z
-    seconds: 6.015326792
-    tokens: 14843
+    model: gpt-5-6-sol-xhigh
+    at: 2026-08-10T05:06:47.503041Z
+    seconds: 10.524026125
+    tokens: 16010
     review: false
   es-ES:
-    text: Dirigido a desarrolladores front‑end que están insatisfechos con que frameworks como Next.js adopten SSR como predeterminado, pero que a menudo solo necesitan actualizar unos pocos campos por petición, se debate si es posible reemplazar renderToString() de página completa con restricciones de tipo JTD y exhaustividad en tiempo de compilación. Se comparan y cuestionan los compromisos entre SSG, ISR, React 19.2 PPR, RSC y Astro, manteniendo límites como Markdown, texto enriquecido, componentes de servidor arbitrarios y la consistencia de la hidratación. El artículo también examina la viabilidad en entornos backend de Rust, Go y TypeScript, así como en escenarios Serverless y de escritorio, y el coste de introducir QuickJS para mejorar la experiencia de desarrollo.
+    text: Partiendo del coste del SSR predeterminado de Next.js, que vuelve a renderizar todo el árbol por unos pocos datos dinámicos, se pregunta si es posible conservar los datos por solicitud, la hidratación de la SPA y un backend multilenguaje, trasladando a la vez la mayor parte del renderizado de React fuera del runtime. Sopesa SSG, ISR/caché de CDN y PPR de React 19.2, y también examina RSC y Astro; las limitaciones incluyen contratos de tipos JTD, contenido abierto como Markdown, combinaciones condicionales, hydration mismatch, costes Serverless y DX, y el prototipo aún no está maduro.
     provider: openai
-    model: gpt-oss-120b-medium
-    at: 2026-08-04T03:14:08.297965Z
-    seconds: 6.377596
-    tokens: 14894
+    model: gpt-5-6-sol-xhigh
+    at: 2026-08-10T05:07:53.158765Z
+    seconds: 9.692346625
+    tokens: 16063
     review: false
   fr-FR:
-    text: Destiné aux développeurs front‑end mécontents que des cadres comme Next.js imposent le SSR par défaut alors qu’ils n’ont souvent besoin de ne mettre à jour que quelques champs par requête, il discute de la possibilité de remplacer le renderToString() complet par des contraintes de type JTD et une énumération à la compilation. Il compare et remet en question les compromis entre SSG, ISR, React 19.2 PPR, RSC et Astro, tout en conservant les limites du Markdown, du Rich Text, des composants serveur arbitraires et de la cohérence de l’hydratation. L’article examine également la faisabilité sur des back‑ends Rust, Go, TypeScript ainsi que les scénarios Serverless et Desktop, et le coût d’introduire QuickJS pour l’expérience développeur.
+    text: Partant du SSR par défaut de Next.js et du coût lié au nouveau rendu de l’arbre entier pour quelques données dynamiques, il demande s’il serait possible de conserver les données propres à chaque requête, l’hydratation SPA et des backends multilingues, tout en déplaçant l’essentiel du rendu React hors du runtime. Il compare SSG, le cache ISR/CDN et PPR de React 19.2, et examine également RSC et Astro ; parmi les contraintes figurent les contrats de types JTD, les contenus ouverts comme Markdown, les combinaisons conditionnelles, les hydration mismatches, les coûts Serverless et la DX, le prototype n’étant pas encore mature.
     provider: openai
-    model: gpt-oss-120b-medium
-    at: 2026-08-04T03:14:01.540256Z
-    seconds: 6.756685625
-    tokens: 14953
+    model: gpt-5-6-sol-xhigh
+    at: 2026-08-10T05:07:40.889393Z
+    seconds: 12.268049334
+    tokens: 16220
     review: false
   ja-JP:
-    text: Next.js などのフレームワークが SSR をデフォルトとしながら、実際にはリクエストごとに少量のフィールドだけを更新すれば良いという不満を抱えるフロントエンド開発者を対象に、JTD 型制約とコンパイル時の全列挙で全ページの renderToString() を代替できるかを議論する。SSG、ISR、React 19.2 の PPR、RSC、Astro のトレードオフを比較・検証しつつ、Markdown、リッチテキスト、任意のサーバーコンポーネント、ハイドレーションの一貫性といった境界は保持する。記事はさらに、Rust、Go、TypeScript のバックエンドと Serverless、デスクトップシーンにおける実現可能性、そして DX に QuickJS を導入するコストも検討する。
+    text: Next.js のデフォルト SSR が、わずかな動的データのためにツリー全体を再レンダリングするコストを起点に、リクエスト単位のデータ、SPA の hydration、言語横断のバックエンドを維持しつつ、React rendering の大半を runtime の外へ移せないかを問う。SSG、ISR/CDN cache、React 19.2 PPR を比較検討し、RSC と Astro も精査する。制約には JTD の型 contract、Markdown などのオープンな content、条件の組み合わせ、hydration mismatch、Serverless のコスト、DX があり、prototype はまだ成熟していない。
     provider: openai
-    model: gpt-oss-120b-medium
-    at: 2026-08-04T03:13:29.044406Z
-    seconds: 14.575205125
-    tokens: 14971
+    model: gpt-5-6-sol-xhigh
+    at: 2026-08-10T05:06:58.028346Z
+    seconds: 15.341075292
+    tokens: 16321
     review: false
   ko-KR:
-    text: Next.js 등 프레임워크가 SSR을 기본으로 삼는 것에 불만을 갖고, 실제로는 요청마다 소량의 필드만 업데이트하면 되는 프런트엔드 개발자를 대상으로, JTD 타입 제약과 컴파일 시 전수 검사를 통해 전체 페이지 renderToString()을 대체할 수 있는지 논의한다. 이 글은 SSG, ISR, React 19.2 PPR, RSC, Astro의 트레이드오프를 비교·비판하면서도 Markdown, Rich Text, 任意 서버 컴포넌트 및 hydration 일관성 등의 경계를 유지한다. 또한 Rust, Go, TypeScript 백엔드와 Serverless, Desktop 시나리오에서의 실현 가능성을 살펴보고, DX에 QuickJS를 도입하는 비용도 검토한다.
+    text: Next.js 기본 SSR과 소량의 동적 데이터를 위해 전체 트리를 다시 렌더링하는 비용에서 출발해, 요청별 데이터와 SPA hydration, 여러 언어로 된 백엔드를 유지하면서도 React 렌더링 대부분을 런타임 밖으로 옮길 수 있는지 묻는다. SSG, ISR/CDN 캐시, React 19.2 PPR을 저울질하고 RSC와 Astro도 검토한다. 제약에는 JTD 타입 계약, Markdown 같은 개방형 콘텐츠, 조건 조합, hydration mismatch, Serverless 비용, DX가 포함되며, 프로토타입은 아직 성숙하지 않았다.
     provider: openai
-    model: gpt-oss-120b-medium
-    at: 2026-08-04T03:13:50.021394Z
-    seconds: 11.517887375
-    tokens: 14899
+    model: gpt-5-6-sol-xhigh
+    at: 2026-08-10T05:07:26.209753Z
+    seconds: 14.67857825
+    tokens: 16269
     review: false
   zh-CN:
-    text: 面向不满 Next.js 等框架把 SSR 作为默认、却常只需按请求更新少量字段的前端开发者，讨论能否以 JTD 类型约束和编译期穷举替代整页 renderToString()。它比较并质疑 SSG、ISR、React 19.2 PPR、RSC 与 Astro 的取舍，同时保留 Markdown、Rich Text、任意服务端组件及 hydration 一致性等边界。文章还考察跨 Rust、Go、TypeScript 后端与 Serverless、Desktop 场景的可行性，以及为 DX 引入 QuickJS 的代价。
+    text: 从 Next.js 默认 SSR、为少量动态数据整树重渲染的开销出发，追问能否保留逐请求数据、SPA 水合与跨语言后端，却把多数 React 渲染移出运行时。它权衡 SSG、ISR/CDN 缓存和 React 19.2 PPR，也审视 RSC 与 Astro；限制包括 JTD 类型契约、Markdown 等开放内容、条件组合、hydration mismatch、Serverless 成本和 DX，原型尚未成熟。
     provider: openai
-    model: gpt-5-6-terra-medium
-    at: 2026-08-04T03:05:35.689038Z
-    seconds: 8.742394625
-    tokens: 41193
+    model: gpt-5-6-sol-xhigh
+    at: 2026-08-10T05:06:07.631561Z
+    seconds: 24.764505167
+    tokens: 41601
     review: false
   zh-TW:
-    text: 針對不滿 Next.js 等框架將 SSR 設為預設、卻常只需依請求更新少量欄位的前端開發者，討論是否能以 JTD 類型約束與編譯期窮舉取代整頁 renderToString()。它比較並質疑 SSG、ISR、React 19.2 PPR、RSC 與 Astro 的取捨，同時保留 Markdown、Rich Text、任意伺服器端元件及 hydration 一致性等界限。文章亦考察跨 Rust、Go、TypeScript 後端與 Serverless、Desktop 場景的可行性，以及為 DX 引入 QuickJS 的代價。
+    text: 從 Next.js 預設 SSR、為少量動態資料整棵樹重新渲染的開銷出發，追問能否保留逐請求資料、SPA 水合與跨語言後端，卻將多數 React 渲染移出執行期。它權衡 SSG、ISR/CDN 快取和 React 19.2 PPR，也檢視 RSC 與 Astro；限制包括 JTD 型別契約、Markdown 等開放內容、條件組合、hydration mismatch、Serverless 成本和 DX，原型尚未成熟。
     provider: openai
-    model: gpt-oss-120b-medium
-    at: 2026-08-04T03:14:14.676239Z
-    seconds: 7.771868834
-    tokens: 14890
+    model: gpt-5-6-sol-xhigh
+    at: 2026-08-10T05:08:02.852158Z
+    seconds: 9.355689208
+    tokens: 16036
     review: false

@@ -354,10 +354,11 @@ fn describe_images(args: &[String]) -> ExitCode {
 
 /// Translate every article segment that has no translation yet.
 ///
-/// One request covers one segment in all eight locales, so an edited paragraph costs one call
-/// and updates every language together.
+/// One request covers one segment's missing locales, so an edited paragraph costs one call while
+/// a partial repair does not repay for completed languages.
 fn translate_articles(args: &[String]) -> ExitCode {
 	let force = args.iter().any(|arg| arg == "--force");
+	let check = args.iter().any(|arg| arg == "--check");
 	let scope = if args.iter().any(|arg| arg == "--frontmatter") {
 		i18n::Scope::Frontmatter
 	} else {
@@ -377,6 +378,23 @@ fn translate_articles(args: &[String]) -> ExitCode {
 		Ok(parallel) => parallel,
 		Err(code) => return code,
 	};
+	let mut locale_values = Vec::new();
+	for (at, arg) in args.iter().enumerate() {
+		if arg == "--locale" {
+			let Some(value) = args.get(at + 1).filter(|value| !value.starts_with('-')) else {
+				eprintln!("--locale takes a value");
+				return ExitCode::FAILURE;
+			};
+			locale_values.push(value.clone());
+		}
+	}
+	let locales = match i18n::selected_locales(&locale_values) {
+		Ok(locales) => locales,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
+	};
 
 	let mut only: Vec<std::path::PathBuf> = Vec::new();
 	let mut runner = i18n::runner::DEFAULT_TEXT;
@@ -387,8 +405,8 @@ fn translate_articles(args: &[String]) -> ExitCode {
 			continue;
 		}
 		match arg.as_str() {
-			"--force" | "--frontmatter" => {}
-			"--limit" | "--parallel" | "--model-id" | "--effort" => skip = true,
+			"--force" | "--frontmatter" | "--check" => {}
+			"--limit" | "--parallel" | "--model-id" | "--effort" | "--locale" => skip = true,
 			"--model" => {
 				skip = true;
 				match args
@@ -430,14 +448,18 @@ fn translate_articles(args: &[String]) -> ExitCode {
 		}
 	};
 	let outcome = match runtime.block_on(i18n::run(
-		runner,
-		model_override,
 		&root.join("contents"),
 		&only,
-		limit,
-		parallel,
-		force,
-		scope,
+		i18n::RunOptions {
+			runner,
+			model_override,
+			limit,
+			parallel,
+			force,
+			scope,
+			locales: &locales,
+			check,
+		},
 	)) {
 		Ok(outcome) => outcome,
 		Err(error) => {
@@ -460,16 +482,20 @@ fn translate_articles(args: &[String]) -> ExitCode {
 		println!("stopped: {reason}");
 	}
 	println!(
-		"{} translations across {} segments, {} failed",
+		"{} translations across {} segments, {} failed; {} incomplete segments ({} missing locale entries)",
 		outcome.translated,
 		outcome.segments,
-		outcome.failed.len()
+		outcome.failed.len(),
+		outcome.incomplete_segments,
+		outcome.missing_locales,
 	);
 	if outcome.translated > 0 {
 		println!("{} tokens, ${:.2}", outcome.tokens, outcome.usd);
 	}
 	// A spent allowance is a normal state to stop in, not an error to report as one.
-	if outcome.failed.is_empty() {
+	if outcome.failed.is_empty()
+		&& (outcome.incomplete_segments == 0 || limit.is_some() || outcome.exhausted.is_some())
+	{
 		ExitCode::SUCCESS
 	} else {
 		ExitCode::FAILURE
@@ -1272,7 +1298,7 @@ fn usage() {
 	eprintln!("  og [--force]                render an OpenGraph card per page per language");
 	eprintln!("  segments                    write article segment ids and source ranges");
 	eprintln!(
-		"  i18n [--model M] [--model-id ID] [--effort E] [--parallel N] [--force] [--frontmatter] [--limit N] [article...]"
+		"  i18n [--model M] [--model-id ID] [--effort E] [--parallel N] [--locale L] [--force] [--check] [--frontmatter] [--limit N] [article...]"
 	);
 	eprintln!("                              translate article segments into every locale");
 	eprintln!("  tn [--model M] [--model-id ID] [--effort E] [--force] [article...]");

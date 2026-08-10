@@ -1,7 +1,8 @@
 //! The `cms i18n` command: translating what the articles say.
 //!
-//! Segment by segment, all locales at once, because a paragraph edited on its own should cost
-//! one request and update every language together. See spec/architecture.md.
+//! Segment by segment, with every missing locale in one request, because a paragraph edited on
+//! its own should cost one call while a partial repair should never repay for finished work. See
+//! spec/architecture.md.
 
 pub mod layout;
 pub mod model;
@@ -65,8 +66,43 @@ pub struct Outcome {
 	pub usd: f64,
 	pub failed: Vec<(String, String)>,
 	pub orphans: usize,
+	pub incomplete_segments: usize,
+	pub missing_locales: usize,
 	/// Set when the allowance ran out, carrying what the runner said about the reset.
 	pub exhausted: Option<String>,
+}
+
+pub fn selected_locales(values: &[String]) -> Result<Vec<&'static str>, String> {
+	if values.is_empty() {
+		return Ok(prompt::LOCALES.to_vec());
+	}
+	for value in values {
+		if !prompt::LOCALES.contains(&value.as_str()) {
+			return Err(format!(
+				"--locale takes one of {}",
+				prompt::LOCALES.join(", ")
+			));
+		}
+	}
+	Ok(
+		prompt::LOCALES
+			.iter()
+			.copied()
+			.filter(|locale| values.iter().any(|value| value == locale))
+			.collect(),
+	)
+}
+
+fn source_translation(text: &str) -> Translation {
+	Translation {
+		text: text.to_owned(),
+		provider: "source".to_owned(),
+		model: "source".to_owned(),
+		at: crate::image::manifest::now(),
+		seconds: 0.0,
+		tokens: 0,
+		review: false,
+	}
 }
 
 /// Lines a block occupies, ignoring the blank ones a reply may pad with.
@@ -79,11 +115,23 @@ fn body_lines(text: &str) -> usize {
 /// A failure returns to `translate`, whose attempt counter retries and escalates it. Keeping the
 /// acceptance boundary here makes a malformed successful process no more trusted than a runner
 /// process that explicitly failed.
+#[cfg(test)]
 fn validate_reply(
 	reply: &str,
 	boundary: &str,
 	region: segment::Region,
 	masked: &segment::Masked,
+) -> Result<Vec<(String, String)>, Refusal> {
+	validate_reply_for(reply, boundary, region, masked, &prompt::LOCALES, None)
+}
+
+fn validate_reply_for(
+	reply: &str,
+	boundary: &str,
+	region: segment::Region,
+	masked: &segment::Masked,
+	locales: &[&str],
+	source_locale: Option<&str>,
 ) -> Result<Vec<(String, String)>, Refusal> {
 	let parsed = prompt::parse(reply, Some(boundary)).map_err(|prompt::BoundaryLeak| {
 		Refusal::Failed("the model echoed the prompt boundary".to_owned())
@@ -96,10 +144,13 @@ fn validate_reply(
 	let allowed = body_lines(masked.text.as_str());
 	let kept: Vec<(String, String)> = parsed
 		.into_iter()
-		.filter(|(_, text)| {
-			masked.intact(text)
+		.filter(|(locale, text)| {
+			locales.contains(&locale.as_str())
+				&& masked.intact(text)
 				&& body_lines(text) <= allowed
 				&& validate::translation(region, text).is_ok()
+				&& (source_locale != Some(locale.as_str())
+					|| store::similarity(&masked.text, text) >= store::SOURCE_SIMILARITY)
 		})
 		.map(|(locale, text)| (locale, masked.restore(&text)))
 		.collect();
@@ -112,34 +163,48 @@ fn validate_reply(
 }
 
 /// Translate one segment into every locale it is missing.
+#[derive(Clone)]
+struct TranslationOptions {
+	runner: Runner,
+	model_override: Option<String>,
+	locales: Vec<String>,
+	source_locale: Option<String>,
+	gloss: Option<tn::Entry>,
+}
+
 async fn translate(
 	item: &Segment,
 	before: Option<String>,
 	after: Option<String>,
-	runner: Runner,
-	model_override: Option<String>,
-	gloss: Option<tn::Entry>,
-) -> Result<(Vec<(String, Translation)>, u64, f64), Refusal> {
+	options: TranslationOptions,
+) -> Result<(Vec<(String, Translation)>, u64, f64, Vec<String>), Refusal> {
 	let masked = segment::mask(&item.source);
-	let started = crate::image::manifest::now();
-	let clock = std::time::Instant::now();
 	let mut last = Refusal::Failed(String::new());
-
 	let mut attempt = 0usize;
 	let mut backoff = BACKOFF_START;
+	let mut pending = options.locales;
+	let mut entries = Vec::new();
+	let mut total_tokens = 0u64;
+	let mut total_usd = 0.0;
 
 	while attempt < ATTEMPTS {
-		let request = prompt::build(
+		let locale_refs = pending.iter().map(String::as_str).collect::<Vec<_>>();
+		let request = prompt::build_for(
 			item,
 			&masked.text,
 			before.as_deref(),
 			after.as_deref(),
-			gloss.as_ref(),
+			&locale_refs,
+			options.source_locale.as_deref(),
+			options.gloss.as_ref(),
 		);
-		let wanted = model_override
+		let wanted = options
+			.model_override
 			.as_deref()
-			.unwrap_or_else(|| runner.model_for(item.kind, attempt));
-		let answer = match runner::ask(runner, &request.text, wanted).await {
+			.unwrap_or_else(|| options.runner.model_for(item.kind, attempt));
+		let started = crate::image::manifest::now();
+		let clock = std::time::Instant::now();
+		let answer = match runner::ask(options.runner, &request.text, wanted).await {
 			Ok(answer) => answer,
 			// No point trying a stronger model against an allowance that is gone; it is the
 			// same account either way. Stop and say so.
@@ -157,10 +222,19 @@ async fn translate(
 				continue;
 			}
 		};
+		total_tokens += answer.tokens;
+		total_usd += answer.usd;
 
 		// Every marker back exactly once, or the answer is not usable. This is the point of
 		// masking: not hoping the model left the code alone, but being able to show it did.
-		let kept = match validate_reply(&answer.text, &request.boundary, item.region, &masked) {
+		let kept = match validate_reply_for(
+			&answer.text,
+			&request.boundary,
+			item.region,
+			&masked,
+			&locale_refs,
+			options.source_locale.as_deref(),
+		) {
 			Ok(kept) => kept,
 			Err(error) => {
 				last = error;
@@ -169,58 +243,67 @@ async fn translate(
 			}
 		};
 
-		// A locale that failed validation is missing, and asking again later reproduces it: the
-		// same prompt to the same model fails the same way, so the gap becomes permanent while
-		// every run reports success. Retry here instead, where the attempt counter escalates the
-		// model. The last attempt keeps whatever survived -- some languages beat none -- and the
-		// gap is then real rather than invisible, because the next run has something new to try.
-		if kept.len() < prompt::LOCALES.len() && attempt + 1 < ATTEMPTS {
-			let lost: Vec<&str> = prompt::LOCALES
-				.iter()
-				.copied()
-				.filter(|locale| !kept.iter().any(|(kept, _)| kept == locale))
-				.collect();
-			last = Refusal::Failed(format!("{} did not survive validation", lost.join(", ")));
-			attempt += 1;
-			continue;
+		let provider = options.runner.provider().to_owned();
+		let seconds = clock.elapsed().as_secs_f64();
+		for (locale, text) in kept {
+			entries.push((
+				locale.clone(),
+				Translation {
+					text,
+					provider: provider.clone(),
+					model: answer.model.clone(),
+					at: started.clone(),
+					seconds,
+					tokens: answer.tokens,
+					review: false,
+				},
+			));
+			pending.retain(|wanted| wanted != &locale);
+		}
+		if pending.is_empty() {
+			return Ok((entries, total_tokens, total_usd, pending));
 		}
 
-		let provider = runner.provider().to_owned();
-		let seconds = clock.elapsed().as_secs_f64();
-		let entries = kept
-			.into_iter()
-			.map(|(locale, text)| {
-				(
-					locale,
-					Translation {
-						text,
-						provider: provider.clone(),
-						model: answer.model.clone(),
-						at: started.clone(),
-						seconds,
-						tokens: answer.tokens,
-						review: false,
-					},
-				)
-			})
-			.collect();
-		return Ok((entries, answer.tokens, answer.usd));
+		// Keep every locale that survived this attempt. The retry asks only for the remainder,
+		// so one malformed language cannot make the other paid-for answers disposable.
+		last = Refusal::Failed(format!("{} did not survive validation", pending.join(", ")));
+		attempt += 1;
 	}
-	Err(last)
+	if entries.is_empty() {
+		Err(last)
+	} else {
+		Ok((entries, total_tokens, total_usd, pending))
+	}
 }
 
 /// One line, rewritten in place, showing what is being worked on.
 /// Translate every article under `articles`.
+pub struct RunOptions<'a> {
+	pub runner: Runner,
+	pub model_override: Option<String>,
+	pub limit: Option<usize>,
+	pub parallel: usize,
+	pub force: bool,
+	pub scope: Scope,
+	pub locales: &'a [&'a str],
+	pub check: bool,
+}
+
 pub async fn run(
-	runner: Runner,
-	model_override: Option<String>,
 	articles: &Path,
 	only: &[std::path::PathBuf],
-	limit: Option<usize>,
-	parallel: usize,
-	force: bool,
-	scope: Scope,
+	options: RunOptions<'_>,
 ) -> std::io::Result<Outcome> {
+	let RunOptions {
+		runner,
+		model_override,
+		limit,
+		parallel,
+		force,
+		scope,
+		locales,
+		check,
+	} = options;
 	let mut outcome = Outcome::default();
 	// Loaded once. A suggestion applies to a segment id, so which article it came from stops
 	// mattering the moment it is written down.
@@ -245,9 +328,10 @@ pub async fn run(
 		// summary` applies: no `lang` frontmatter, no language to translate out of. The homepage
 		// is the standing example -- it is identity copy, rendered from the source in every
 		// view, and translations of it were only ever dead weight. See spec/i18n.md.
-		if crate::summary::lang_of(&article).is_none() {
+		let Some(lang) = crate::summary::lang_of(&article) else {
 			continue;
-		}
+		};
+		let source_locale = crate::summary::source_locale(&lang).map(str::to_owned);
 		let live = segment::translatable(&article);
 		let sidecar_path = store::path_for(&path);
 		let mut sidecar = store::load(&sidecar_path);
@@ -257,14 +341,51 @@ pub async fn run(
 			.count();
 		outcome.orphans += store::orphans(&sidecar, &live).len();
 
-		let mut wanted = if force {
-			live.keys().cloned().collect::<Vec<_>>()
+		let mut wanted = if force && !check {
+			live
+				.keys()
+				.map(|id| {
+					(
+						id.clone(),
+						locales.iter().map(|locale| (*locale).to_owned()).collect(),
+					)
+				})
+				.collect::<std::collections::BTreeMap<_, _>>()
 		} else {
-			store::missing(&sidecar, &live, &prompt::LOCALES, &glosses)
-				.into_keys()
-				.collect()
+			store::missing(&sidecar, &live, locales, source_locale.as_deref(), &glosses)
 		};
-		wanted.retain(|id| live.get(id).is_some_and(|segment| scope.includes(segment)));
+		wanted.retain(|id, _| live.get(id).is_some_and(|segment| scope.includes(segment)));
+		if check {
+			outcome.incomplete_segments += wanted.len();
+			outcome.missing_locales += wanted.values().map(Vec::len).sum::<usize>();
+			continue;
+		}
+
+		// The exact source locale is a view of the article, not a translation task. Copy it
+		// locally: a model can only spend tokens paraphrasing wording the author already supplied.
+		// A same-language sibling such as zh-TW still goes through the runner because its script
+		// genuinely differs. See spec/i18n.md.
+		if let Some(source_locale) = source_locale.as_deref() {
+			let mut materialised = 0usize;
+			for (id, missing) in &mut wanted {
+				let Some(at) = missing.iter().position(|locale| locale == source_locale) else {
+					continue;
+				};
+				let segment = &live[id];
+				sidecar.segments.entry(id.clone()).or_default().insert(
+					source_locale.to_owned(),
+					source_translation(&segment.source),
+				);
+				missing.remove(at);
+				materialised += 1;
+			}
+			if materialised > 0 {
+				outcome.translated += materialised;
+				sidecar.version = store::VERSION;
+				store::save(&sidecar_path, &sidecar)?;
+			}
+			wanted.retain(|_, missing| !missing.is_empty());
+		}
 		if wanted.is_empty() {
 			continue;
 		}
@@ -287,9 +408,13 @@ pub async fn run(
 			})
 		};
 
-		let todo: Vec<&Segment> = wanted
+		let todo: Vec<(Segment, Vec<String>)> = wanted
 			.iter()
-			.filter_map(|id| live.get(id))
+			.filter_map(|(id, locales)| {
+				live
+					.get(id)
+					.map(|segment| (segment.clone(), locales.clone()))
+			})
 			.take(budget)
 			.collect();
 		budget -= todo.len();
@@ -300,25 +425,45 @@ pub async fn run(
 		let mut queue = todo.into_iter();
 		type Finished = (
 			String,
-			Result<(Vec<(String, Translation)>, u64, f64), Refusal>,
+			Result<(Vec<(String, Translation)>, u64, f64, Vec<String>), Refusal>,
 		);
 		let mut running = tokio::task::JoinSet::<Finished>::new();
 
 		loop {
 			while running.len() < parallel {
-				let Some(item) = queue.next() else {
+				let Some((item, locales)) = queue.next() else {
 					break;
 				};
 				progress.set_message(crate::progress::preview(&item.source, 44));
 				let (before, after) = neighbours(&item.id);
-				let owned = item.clone();
 				let model_override = model_override.clone();
-				let gloss = glosses.find(&item.id).cloned();
+				let only_same_language = source_locale.as_deref().is_some_and(|source| {
+					locales
+						.iter()
+						.all(|locale| source.split('-').next() == locale.split('-').next())
+				});
+				let gloss = (!only_same_language)
+					.then(|| glosses.find(&item.id).cloned())
+					.flatten();
+				let source_locale = source_locale.clone();
+				let owned = item;
 				running.spawn(async move {
 					let id = owned.id.clone();
 					(
 						id,
-						translate(&owned, before, after, runner, model_override, gloss).await,
+						translate(
+							&owned,
+							before,
+							after,
+							TranslationOptions {
+								runner,
+								model_override,
+								locales,
+								source_locale,
+								gloss,
+							},
+						)
+						.await,
 					)
 				});
 			}
@@ -335,8 +480,8 @@ pub async fn run(
 
 			let (id, result) = finished;
 			match result {
-				Ok((entries, tokens, usd)) => {
-					let slot = sidecar.segments.entry(id).or_default();
+				Ok((entries, tokens, usd, lost)) => {
+					let slot = sidecar.segments.entry(id.clone()).or_default();
 					for (locale, entry) in entries {
 						slot.insert(locale, entry);
 						outcome.translated += 1;
@@ -348,6 +493,12 @@ pub async fn run(
 					// exactly what happened the first time this ran for real.
 					sidecar.version = store::VERSION;
 					store::save(&sidecar_path, &sidecar)?;
+					if !lost.is_empty() {
+						outcome.failed.push((
+							id,
+							format!("{} did not survive validation", lost.join(", ")),
+						));
+					}
 				}
 				// One spent allowance ends the run. Every request after it would fail the same
 				// way, and firing a hundred more only fills the screen with one fact repeated.
@@ -360,6 +511,11 @@ pub async fn run(
 			}
 		}
 		progress.finish_and_clear();
+		let mut incomplete =
+			store::missing(&sidecar, &live, locales, source_locale.as_deref(), &glosses);
+		incomplete.retain(|id, _| live.get(id).is_some_and(|segment| scope.includes(segment)));
+		outcome.incomplete_segments += incomplete.len();
+		outcome.missing_locales += incomplete.values().map(Vec::len).sum::<usize>();
 	}
 	Ok(outcome)
 }
@@ -375,6 +531,24 @@ mod tests {
 		assert_eq!(parallelism(Some("10")).unwrap(), 10);
 		assert!(parallelism(Some("0")).is_err());
 		assert!(parallelism(Some("many")).is_err());
+	}
+
+	#[test]
+	fn locale_selection_is_validated_and_keeps_canonical_order() {
+		assert_eq!(
+			selected_locales(&["zh-TW".into(), "en-US".into(), "zh-TW".into()]).unwrap(),
+			vec!["en-US", "zh-TW"]
+		);
+		assert!(selected_locales(&["mw".into()]).is_err());
+	}
+
+	#[test]
+	fn a_source_entry_is_local_and_exact() {
+		let entry = source_translation("Author's exact words.");
+		assert_eq!(entry.text, "Author's exact words.");
+		assert_eq!(entry.provider, "source");
+		assert_eq!(entry.model, "source");
+		assert_eq!(entry.tokens, 0);
 	}
 
 	#[test]
@@ -490,6 +664,44 @@ mod tests {
 				&segment::mask(source)
 			)
 			.is_ok()
+		);
+	}
+
+	#[test]
+	fn an_exact_source_locale_may_be_polished_but_not_rewritten() {
+		let boundary = "JQ8WZ4MX2TN7VLKD9RYC5PBFA1GH30SE";
+		let source = "这是一段作者写下来的原文，它的措辞、节奏和判断都应该保持不变。";
+		let polished = format!(
+			"{}\n这是一段作者写下来的原文，它的措辞、节奏和判断都应该保持不变！\n",
+			prompt::locale_marker("zh-CN"),
+		);
+		let rewritten = format!(
+			"{}\n作者在这里主张，编辑应当完整保存文章的核心思想和表达方式。\n",
+			prompt::locale_marker("zh-CN"),
+		);
+		let masked = segment::mask(source);
+
+		assert!(
+			validate_reply_for(
+				&polished,
+				boundary,
+				segment::Region::Body,
+				&masked,
+				&["zh-CN"],
+				Some("zh-CN"),
+			)
+			.is_ok()
+		);
+		assert!(
+			validate_reply_for(
+				&rewritten,
+				boundary,
+				segment::Region::Body,
+				&masked,
+				&["zh-CN"],
+				Some("zh-CN"),
+			)
+			.is_err()
 		);
 	}
 

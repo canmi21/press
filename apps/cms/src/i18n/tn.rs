@@ -126,8 +126,9 @@ pub fn save(path: &Path, table: &Table) -> std::io::Result<()> {
 /// not seen -- reproducing it verbatim would put an internal memo on the page.
 pub fn rule(entry: &Entry) -> String {
 	let mut rule = String::from(
-		"- Some wording in this block carries an effect that does not survive translation. Handle \
-		 each item below like this:\n\
+		"- For targets whose language differs from the source only, some wording in this block \
+		 carries an effect that does not survive translation. Handle each item below like this; \
+		 same-language targets must not carry these notes:\n\
 		 \n\
 		 1. Translate the passage naturally, as you would without this rule. The result must read \
 		 as that language, with no source-language characters left in it.\n\
@@ -175,6 +176,8 @@ fn scan_prompt(article: &str) -> String {
 		 oddly, the word inside it is what you want -- `鸽` and not `从 Next.js 13 鸽到 Next.js \
 		 16`, `摸鱼` and not `不许 Cargo 再摸鱼了`. A note attaches to a word; naming a whole \
 		 sentence produces a footnote longer than the thing it explains.\n\
+		 If that shortest span occurs more than once in the article, include just enough adjacent \
+		 characters to identify this occurrence uniquely, while staying within eight characters.\n\
 		 \n\
 		 Some effects have no word to attach to: a rhythm across two sentences, a callback \
 		 between a title and an ending. Those are real losses and there is nothing to point at, \
@@ -237,11 +240,15 @@ pub fn attach(
 ) -> Vec<(String, String, Vec<Gloss>)> {
 	let mut by_segment: BTreeMap<String, (String, Vec<Gloss>)> = BTreeMap::new();
 	for gloss in found {
-		let Some(segment) = segments.iter().find(|segment| {
+		let mut matches = segments.iter().filter(|segment| {
 			segment.region == super::segment::Region::Body && segment.source.contains(&gloss.phrase)
-		}) else {
+		});
+		let Some(segment) = matches.next() else {
 			continue;
 		};
+		if matches.next().is_some() {
+			continue;
+		}
 		by_segment
 			.entry(segment.id.clone())
 			.or_insert_with(|| (segment.source.clone(), Vec::new()))
@@ -386,6 +393,19 @@ mod tests {
 		assert_eq!(attached.len(), 1);
 		assert_eq!(attached[0].2.len(), 1);
 		assert_eq!(attached[0].2[0].phrase, "古法");
+	}
+
+	#[test]
+	fn an_ambiguous_phrase_is_dropped_instead_of_attached_to_the_first_match() {
+		let segments = crate::i18n::segment::split(
+			"---\nlang: zh\n---\n\n第一段有一个清字。\n\n第二段也有一个清字。",
+		);
+		let found = vec![Gloss {
+			phrase: "清".to_owned(),
+			guidance: "a word whose effect depends on this occurrence".to_owned(),
+		}];
+
+		assert!(attach(&segments, &found).is_empty());
 	}
 
 	#[test]

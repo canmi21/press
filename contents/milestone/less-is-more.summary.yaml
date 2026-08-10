@@ -1,66 +1,66 @@
 version: 1
 summary:
   de-DE:
-    text: 'Von Hexo zu Next.js, Vue, Vercel und eigenen Servern fragt dieser Beitrag: Warum wird ein Blog, der eigentlich zum Festhalten gedacht ist, stattdessen ständig von selbst entwickelten Reverse Proxies, Frameworks, Speicherlösungen und KI‑Angst blockiert? Er reflektiert, dass der Perfektionismus „für später nützlich“ als Vorbedingung dient, vergleicht Selbsthosting mit Serverless sowie ein nachgeahmtes MVP mit langfristig wartbaren Lösungen und trifft letztlich unter den Zwängen von Zeit, Aufwand und tatsächlichem Release eine zurückhaltendere technische Entscheidung.'
+    text: Ausgehend vom Dilemma eines um zwei Jahre verzögerten Blogs zeichnet der Artikel die mehrfachen Neufassungen mit Hexo, Next.js, Vue/React sowie SSR/SSG/ISR nach und beleuchtet die Blockaden durch die für einen „künftigen Bedarf“ selbst entwickelten Systeme Vane, Seam, RFS und Canopy. Er vergleicht eigene Server, Docker/Nginx, Vercel und Cloudflare Serverless und untersucht im Zeitalter der Beschleunigung durch AI/Vibe Coding die Zwänge bei Zeit, Kosten, Verständnis und langfristiger Wartung sowie die Frage, warum Overengineering den Launch selbst verschwinden lässt.
     provider: openai
-    model: gpt-oss-120b-medium
-    at: 2026-08-04T03:15:23.122945Z
-    seconds: 5.958430084
-    tokens: 14770
+    model: gpt-5-6-sol-xhigh
+    at: 2026-08-10T05:10:03.742109Z
+    seconds: 15.159209375
+    tokens: 16043
     review: false
   en-US:
-    text: From Hexo to Next.js, Vue, Vercel, and self‑hosted servers, the article asks why a blog intended for recording ends up blocked by custom reverse proxies, frameworks, storage, and AI anxiety. It reflects on treating the perfectionism of “future‑useful” technologies as a prerequisite, compares the trade‑offs between self‑hosting and serverless, and between imitation‑style MVPs and long‑term maintainability, ultimately choosing a more restrained engineering approach under constraints of time, effort, and actual publishing.
+    text: Starting from a two-year struggle with procrastinating on a blog, this article traces multiple rewrites involving Hexo, Next.js, Vue/React, and SSR/SSG/ISR, along with the roadblocks created by building Vane, Seam, RFS, and Canopy for “future needs.” It compares self-hosted servers, Docker/Nginx, Vercel, and Cloudflare Serverless, examining constraints on time, cost, depth of understanding, and long-term maintenance amid AI/Vibe Coding acceleration, and why overengineering made shipping itself disappear.
     provider: openai
-    model: gpt-oss-120b-medium
-    at: 2026-08-04T03:15:10.564152Z
-    seconds: 4.801797375
-    tokens: 14699
+    model: gpt-5-6-sol-xhigh
+    at: 2026-08-10T05:09:40.712Z
+    seconds: 11.397264625
+    tokens: 16046
     review: false
   es-ES:
-    text: 'Desde Hexo hasta Next.js, Vue, Vercel y servidores autohospedados, este artículo se pregunta: ¿por qué un blog que debería servir para registrar cosas se ve continuamente bloqueado por proxies inversos desarrollados internamente, frameworks, almacenamiento y la ansiedad provocada por la IA? Reflexiona sobre el perfeccionismo de considerar “tecnologías útiles más adelante” como condición previa, y compara las decisiones entre auto‑hosting y Serverless, entre un MVP imitativo y una solución mantenible a largo plazo, para finalmente optar por una opción de ingeniería más contenida bajo las limitaciones de tiempo, esfuerzo y publicación real.'
+    text: Partiendo del dilema de haber pospuesto el blog durante dos años, recorre las múltiples reescrituras con Hexo, Next.js, Vue/React y SSR/SSG/ISR, así como el bloqueo provocado por crear Vane, Seam, RFS y Canopy para «necesidades futuras». Compara servidores propios, Docker/Nginx, Vercel y Cloudflare Serverless, y examina las restricciones de tiempo, coste, profundidad de comprensión y mantenimiento a largo plazo bajo la aceleración de la AI/Vibe Coding, además de por qué la sobreingeniería hace desaparecer el propio lanzamiento.
     provider: openai
-    model: gpt-oss-120b-medium
-    at: 2026-08-04T03:15:40.04928Z
-    seconds: 5.799462917
-    tokens: 14772
+    model: gpt-5-6-sol-xhigh
+    at: 2026-08-10T05:10:50.321527Z
+    seconds: 15.090316084
+    tokens: 16035
     review: false
   fr-FR:
-    text: 'De Hexo à Next.js, Vue, Vercel et aux serveurs auto‑hébergés, cet article se demande : pourquoi un blog, censé servir à consigner, se retrouve-t-il constamment bloqué par un proxy inverse, des frameworks, du stockage développés en interne et l’anxiété liée à l’IA ? Il critique l’idée de faire du perfectionnisme technologique « utile plus tard » une condition préalable, compare les compromis entre auto‑hébergement et serverless, ainsi qu’entre un MVP imitateur et une solution pérenne, pour finalement choisir, sous les contraintes de temps, d’énergie et de mise en ligne, une approche plus mesurée.'
+    text: Partant de l’impasse d’un blog repoussé pendant deux ans, l’article retrace les multiples réécritures avec Hexo, Next.js, Vue/React et SSR/SSG/ISR, ainsi que les blocages nés de la création de Vane, Seam, RFS et Canopy pour de « futurs besoins ». Il compare l’auto-hébergement, Docker/Nginx, Vercel et le Serverless de Cloudflare, puis examine, face à l’accélération apportée par l’AI/Vibe Coding, les contraintes de temps, de coût, de profondeur de compréhension et de maintenance à long terme, ainsi que les raisons pour lesquelles la suringénierie fait disparaître la mise en ligne elle-même.
     provider: openai
-    model: gpt-oss-120b-medium
-    at: 2026-08-04T03:15:34.868551Z
-    seconds: 5.179791375
-    tokens: 14792
+    model: gpt-5-6-sol-xhigh
+    at: 2026-08-10T05:10:30.489663Z
+    seconds: 19.830427084
+    tokens: 16417
     review: false
   ja-JP:
-    text: Hexo から Next.js、Vue、Vercel、そして自前のサーバーまで、この記事は問う：本来記録のためのブログが、なぜ自作のリバースプロキシ、フレームワーク、ストレージ、AI に対する不安に次々と阻まれるのか。『将来的に使える』技術への完璧主義を前提条件としたことを反省し、また自前とサーバーレス、模倣的 MVP と長期的に保守可能な選択肢のトレードオフを比較し、最終的に時間・労力・実際のリリースという制約の下で、より抑制的なエンジニアリング選択を行った。
+    text: ブログを2年間先延ばしにした苦境を起点に、Hexo、Next.js、Vue/React、SSR/SSG/ISRによる度重なる書き直しと、「将来の必要」のためにVane、Seam、RFS、Canopyを自作したことで生じた停滞をたどる。自前サーバー、Docker/Nginx、Vercel、Cloudflare Serverlessを比較し、AI/Vibe Codingによる高速化のもとでの時間、コスト、理解の深さ、長期保守の制約、そして過剰なエンジニアリングがなぜ公開そのものを消し去るのかを検討する。
     provider: openai
-    model: gpt-oss-120b-medium
-    at: 2026-08-04T03:15:15.366769Z
-    seconds: 7.75539825
-    tokens: 14874
+    model: gpt-5-6-sol-xhigh
+    at: 2026-08-10T05:09:52.109936Z
+    seconds: 11.631333375
+    tokens: 16038
     review: false
   ko-KR:
-    text: 'Hexo에서 Next.js, Vue, Vercel 그리고 자체 서버까지, 이 글은 질문한다: 기록을 위해 만든 블로그가 왜 자사 개발 역방향 프록시, 프레임워크, 스토리지 그리고 AI 불안에 끊임없이 방해받는가. ‘앞으로 쓸 수 있을 것’이라는 기술 완벽주의를 전제조건으로 삼는 것을 반성하고, 자체 구축과 Serverless, 모방형 MVP와 장기 유지 가능한 선택 사이의 타협을 비교한다. 결국 시간·노력·실제 배포 제약 아래 더 절제된 엔지니어링 선택을 한다.'
+    text: 블로그를 2년간 미뤄 온 난관에서 출발해 Hexo, Next.js, Vue/React와 SSR/SSG/ISR을 거치며 여러 차례 다시 작성한 과정, 그리고 ‘미래의 필요’를 위해 Vane, Seam, RFS, Canopy를 직접 만들면서 빚어진 정체를 되짚는다. 자체 서버, Docker/Nginx, Vercel과 Cloudflare Serverless를 비교하고, AI/Vibe Coding의 가속 속에서 시간, 비용, 이해의 깊이와 장기 유지보수의 제약, 그리고 과도한 엔지니어링이 왜 출시 자체를 사라지게 하는지 살펴본다.
     provider: openai
-    model: gpt-oss-120b-medium
-    at: 2026-08-04T03:15:29.082025Z
-    seconds: 5.78564125
-    tokens: 14777
+    model: gpt-5-6-sol-xhigh
+    at: 2026-08-10T05:10:18.902488Z
+    seconds: 11.586245334000001
+    tokens: 16085
     review: false
   zh-CN:
-    text: 从 Hexo 到 Next.js、Vue、Vercel 与自建服务器，这篇文章追问：为什么一个本该用来记录的博客，反而被自研反向代理、框架、存储和 AI 焦虑不断阻塞。它反思把“以后用得上”的技术完美主义当作前置条件，也比较了自建与 Serverless、模仿式 MVP 与可长期维护之间的取舍，最终在时间、精力和实际发布的约束下作出更克制的工程选择。
+    text: 从博客拖延两年的困境出发，追溯 Hexo、Next.js、Vue/React 与 SSR/SSG/ISR 的多次重写，以及为“未来需要”自造 Vane、Seam、RFS、Canopy 所形成的阻塞。比较自建服务器、Docker/Nginx、Vercel 与 Cloudflare Serverless，审视 AI/Vibe Coding 加速下的时间、成本、理解深度和长期维护约束，以及过度工程为何让上线本身消失。
     provider: openai
-    model: gpt-5-6-terra-medium
-    at: 2026-08-04T03:05:35.689037Z
-    seconds: 9.04900125
-    tokens: 19193
+    model: gpt-5-6-sol-xhigh
+    at: 2026-08-10T05:06:07.631529Z
+    seconds: 19.380335167
+    tokens: 19393
     review: false
   zh-TW:
-    text: 從 Hexo 到 Next.js、Vue、Vercel 與自建伺服器，這篇文章追問：為什麼一個本該用來記錄的部落格，卻被自研反向代理、框架、儲存與 AI 焦慮不斷阻塞。它反思把「以後用得上」的技術完美主義當作前置條件，也比較了自建與 Serverless、模仿式 MVP 與可長期維護之間的取捨，最終在時間、精力和實際發布的限制下作出更克制的工程選擇。
+    text: 從部落格拖延兩年的困境出發，追溯 Hexo、Next.js、Vue/React 與 SSR/SSG/ISR 的多次重寫，以及為「未來需要」自造 Vane、Seam、RFS、Canopy 所形成的阻塞。比較自建伺服器、Docker/Nginx、Vercel 與 Cloudflare Serverless，審視 AI/Vibe Coding 加速下的時間、成本、理解深度和長期維護限制，以及過度工程為何讓上線本身消失。
     provider: openai
-    model: gpt-oss-120b-medium
-    at: 2026-08-04T03:15:45.849525Z
-    seconds: 5.394966166
-    tokens: 14803
+    model: gpt-5-6-sol-xhigh
+    at: 2026-08-10T05:11:05.41252Z
+    seconds: 7.203196834
+    tokens: 15936
     review: false

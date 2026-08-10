@@ -9,15 +9,63 @@
 //! a person sets by hand after reading. See spec/architecture.md.
 
 use serde::{Deserialize, Serialize};
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, HashMap};
 use std::path::{Path, PathBuf};
 
 pub const VERSION: u32 = 1;
+pub const SOURCE_SIMILARITY: f64 = 0.9;
+
+fn normalise_similarity(text: &str) -> Vec<char> {
+	let mut normalised = String::new();
+	let mut space = false;
+	for character in text.to_lowercase().chars() {
+		let character = match character {
+			'“' | '”' => '"',
+			'‘' | '’' => '\'',
+			other => other,
+		};
+		if character.is_whitespace() {
+			space = !normalised.is_empty();
+		} else {
+			if space {
+				normalised.push(' ');
+				space = false;
+			}
+			normalised.push(character);
+		}
+	}
+	normalised.chars().collect()
+}
+
+pub fn similarity(left: &str, right: &str) -> f64 {
+	let left = normalise_similarity(left);
+	let right = normalise_similarity(right);
+	if left == right {
+		return 1.0;
+	}
+	if left.len() < 2 || right.len() < 2 {
+		return 0.0;
+	}
+	let mut left_pairs: HashMap<(char, char), usize> = HashMap::new();
+	for pair in left.windows(2) {
+		*left_pairs.entry((pair[0], pair[1])).or_default() += 1;
+	}
+	let mut shared = 0usize;
+	for pair in right.windows(2) {
+		if let Some(count) = left_pairs.get_mut(&(pair[0], pair[1]))
+			&& *count > 0
+		{
+			*count -= 1;
+			shared += 1;
+		}
+	}
+	(2 * shared) as f64 / (left.len() + right.len() - 2) as f64
+}
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct Translation {
 	pub text: String,
-	/// Who made it. `anthropic`, `openai`, `alibaba`, `deepseek`.
+	/// Who made it. `anthropic`, `openai`, `alibaba`, `deepseek`, or local `source` copy.
 	pub provider: String,
 	/// Normalised model id; see `model::Id`.
 	pub model: String,
@@ -105,6 +153,7 @@ pub fn missing(
 	sidecar: &Sidecar,
 	live: &BTreeMap<String, super::segment::Segment>,
 	locales: &[&str],
+	source_locale: Option<&str>,
 	glosses: &super::tn::Table,
 ) -> BTreeMap<String, Vec<String>> {
 	let mut wanted = BTreeMap::new();
@@ -122,7 +171,13 @@ pub fn missing(
 			.iter()
 			.filter(|locale| match have.and_then(|map| map.get(**locale)) {
 				None => true,
-				Some(translation) => !required.is_empty() && !translation.text.contains(":tn["),
+				Some(translation) => {
+					let exact_source = source_locale == Some(**locale);
+					let same_language = source_locale
+						.is_some_and(|source| source.split('-').next() == (**locale).split('-').next());
+					(exact_source && similarity(&segment.source, &translation.text) < SOURCE_SIMILARITY)
+						|| (!same_language && !required.is_empty() && !translation.text.contains(":tn["))
+				}
 			})
 			.map(|locale| (*locale).to_owned())
 			.collect();
@@ -198,9 +253,32 @@ mod tests {
 			&sidecar,
 			&live,
 			&["ja-JP", "de-DE", "fr-FR"],
+			Some("en-US"),
 			&crate::i18n::tn::Table::default(),
 		);
 		assert_eq!(want[&id], vec!["de-DE", "fr-FR"]);
+	}
+
+	#[test]
+	fn an_existing_source_view_that_was_rewritten_is_still_missing() {
+		let live = segment::translatable("作者原本的句子和语气应该完整保留。这里还有第二句话。");
+		let id = live.keys().next().expect("segment").clone();
+		let mut rewritten = entry();
+		rewritten.text = "这段文字主要说明翻译应当尊重作者。".to_owned();
+		let mut sidecar = Sidecar::default();
+		sidecar.segments.insert(
+			id.clone(),
+			BTreeMap::from([("zh-CN".to_owned(), rewritten)]),
+		);
+
+		let wanted = missing(
+			&sidecar,
+			&live,
+			&["zh-CN"],
+			Some("zh-CN"),
+			&crate::i18n::tn::Table::default(),
+		);
+		assert_eq!(wanted[&id], vec!["zh-CN"]);
 	}
 
 	#[test]
@@ -247,8 +325,61 @@ mod tests {
 		);
 
 		// The annotated one is left alone; the one that lost the note is asked for again.
-		let want = missing(&sidecar, &live, &["ja-JP", "de-DE"], &glosses);
+		let want = missing(
+			&sidecar,
+			&live,
+			&["ja-JP", "de-DE"],
+			Some("zh-CN"),
+			&glosses,
+		);
 		assert_eq!(want[&id], vec!["de-DE"]);
+	}
+
+	#[test]
+	fn a_note_does_not_outdate_same_language_views() {
+		let live = segment::translatable("古法 programming");
+		let id = live.keys().next().expect("segment").clone();
+		let mut same_language = entry();
+		same_language.text = "古法 programming".to_owned();
+		let mut sidecar = Sidecar::default();
+		sidecar.segments.insert(
+			id.clone(),
+			BTreeMap::from([
+				("zh-CN".to_owned(), same_language.clone()),
+				("zh-TW".to_owned(), same_language),
+			]),
+		);
+		let mut glosses = crate::i18n::tn::Table::default();
+		glosses.articles.insert(
+			"article.md".to_owned(),
+			crate::i18n::tn::Article {
+				provider: "openai".to_owned(),
+				model: "gpt-5-6-sol".to_owned(),
+				at: "2026-08-02T00:00:00Z".to_owned(),
+				tokens: 0,
+				segments: BTreeMap::from([(
+					id,
+					crate::i18n::tn::Entry {
+						source: "古法 programming".to_owned(),
+						spans: vec![crate::i18n::tn::Gloss {
+							phrase: "古法".to_owned(),
+							guidance: "the old method".to_owned(),
+						}],
+					},
+				)]),
+			},
+		);
+
+		assert!(
+			missing(
+				&sidecar,
+				&live,
+				&["zh-CN", "zh-TW"],
+				Some("zh-CN"),
+				&glosses,
+			)
+			.is_empty()
+		);
 	}
 
 	#[test]

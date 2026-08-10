@@ -51,6 +51,7 @@ pub fn locale_marker(locale: &str) -> String {
 }
 
 /// Build the instruction around a masked segment.
+#[cfg(test)]
 pub fn build(
 	segment: &Segment,
 	masked: &str,
@@ -58,12 +59,45 @@ pub fn build(
 	after: Option<&str>,
 	gloss: Option<&super::tn::Entry>,
 ) -> Request {
+	build_for(segment, masked, before, after, &LOCALES, None, gloss)
+}
+
+/// Build a request for exactly the locales that still need work.
+pub fn build_for(
+	segment: &Segment,
+	masked: &str,
+	before: Option<&str>,
+	after: Option<&str>,
+	locales: &[&str],
+	source_locale: Option<&str>,
+	gloss: Option<&super::tn::Entry>,
+) -> Request {
 	let fence = boundary();
-	let locales = LOCALES
+	let locale_markers = locales
 		.iter()
 		.map(|l| locale_marker(l))
 		.collect::<Vec<_>>()
 		.join("\n");
+	let source_language = source_locale.and_then(|source| source.split('-').next());
+	let same_language = locales
+		.iter()
+		.copied()
+		.filter(|locale| locale.split('-').next() == source_language)
+		.collect::<Vec<_>>();
+	let same_language_policy = if same_language.is_empty() {
+		String::new()
+	} else {
+		format!(
+			"\n- {} use the same language as the source. For those targets, regularise script and \
+			 orthography rather than translating or rewriting. This rule overrides the translate-away \
+			 rule and the directive-title rule above. Preserve every claim, sentence boundary, word \
+			 choice, joke, emphasis, deliberate minority-language passage and the author's voice. \
+			 Change only what the target script or orthography requires, plus clear typographical \
+			 errors. If the source already conforms, reproduce it exactly. Translator's notes are \
+			 forbidden for those targets because their readers can already read the original wording.",
+			same_language.join(", ")
+		)
+	};
 
 	let role = match segment.kind {
 		Kind::Heading => "a heading",
@@ -137,13 +171,14 @@ pub fn build(
 		 - Nothing may survive untranslated merely because it is a term of art. If a phrase has \
 		 an established equivalent in the target language, use it.\n\
 		 {note_policy}\n\
+		 {same_language_policy}\n\
 		 - Keep markdown structure: emphasis, links and list markers stay as they are.\n\
 		 {notes}\
 		 {metadata}\n\
 		 {navigation}\n\
 		 \n\
 		 Output format, exactly. One marker line, then the translation, then a blank line:\n\
-		 {locales}\n\
+		 {locale_markers}\n\
 		 \n\
 		 Nothing else. No preamble, no notes about your work, no code fences around the answer.\n\
 		 \n\
@@ -357,5 +392,44 @@ mod tests {
 		assert!(!LOCALES.contains(&"mw"));
 		assert_eq!(LOCALES.len(), 8);
 		let _ = segment::OPEN;
+	}
+
+	#[test]
+	fn an_incremental_request_lists_only_the_missing_locales() {
+		let request = build_for(
+			&segment(Kind::Prose),
+			"hello",
+			None,
+			None,
+			&["de-DE", "fr-FR"],
+			Some("en-US"),
+			None,
+		);
+
+		assert!(request.text.contains(&locale_marker("de-DE")));
+		assert!(request.text.contains(&locale_marker("fr-FR")));
+		assert!(!request.text.contains(&locale_marker("ja-JP")));
+	}
+
+	#[test]
+	fn same_language_targets_are_told_to_preserve_the_source() {
+		let request = build_for(
+			&segment(Kind::Prose),
+			"原文",
+			None,
+			None,
+			&["zh-CN", "zh-TW"],
+			Some("zh-CN"),
+			None,
+		);
+
+		assert!(request.text.contains("zh-CN, zh-TW use the same language"));
+		assert!(
+			request
+				.text
+				.contains("rather than translating or rewriting")
+		);
+		assert!(request.text.contains("overrides the translate-away rule"));
+		assert!(request.text.contains("Translator's notes are forbidden"));
 	}
 }
