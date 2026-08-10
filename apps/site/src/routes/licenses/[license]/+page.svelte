@@ -1,8 +1,12 @@
 <script lang="ts">
+	import { dev } from '$app/environment';
+	import { pickUrls, URLS } from '@canmi/urls';
 	import ArrowLeft from '@lucide/svelte/icons/arrow-left';
 	import ExternalLink from '@lucide/svelte/icons/external-link';
+	import { localeUrl } from '$lib/locale';
 	import LanguageSwitcher from '$lib/locale/switcher.svelte';
 	import PackageList from '$lib/licenses/package-list.svelte';
+	import { CARD_HEIGHT, CARD_WIDTH, cardUrl } from '$lib/opengraph';
 	import * as m from '$lib/paraglide/messages';
 	import type { PageData } from './$types';
 
@@ -10,17 +14,28 @@
 	const locale = $derived(data.locale.code);
 	const numberLocale = $derived(locale === 'mw' ? 'en' : locale === 'tw' ? 'zh-TW' : locale);
 	const count = $derived(new Intl.NumberFormat(numberLocale).format(data.license.count));
+	const title = $derived(data.license.license);
+	const description = $derived(
+		m['licenses.license_description']({ license: data.license.license, count }, { locale }),
+	);
+	const slug = $derived(`licenses/${data.license.slug}`);
+	const cdn = pickUrls(dev).cdn;
+	const canonical = $derived(localeUrl(`${URLS.apps.production.site}/${slug}`, locale));
+	const card = $derived(cardUrl(cdn, slug, locale));
 </script>
 
 <svelte:head>
-	<title>{data.license.license} · {m['licenses.title']({}, { locale })}</title>
-	<meta
-		name="description"
-		content={m['licenses.license_description'](
-			{ license: data.license.license, count },
-			{ locale },
-		)}
-	/>
+	<title>{title} · {m['licenses.title']({}, { locale })}</title>
+	<meta name="description" content={description} />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:url" content={canonical} />
+	<meta property="og:image" content={card} />
+	<meta property="og:image:width" content={CARD_WIDTH} />
+	<meta property="og:image:height" content={CARD_HEIGHT} />
+	<meta property="og:image:alt" content={title} />
+	<meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
 
 <main class="min-h-screen bg-page text-text">

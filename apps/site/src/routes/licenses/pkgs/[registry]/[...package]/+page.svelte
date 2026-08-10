@@ -1,16 +1,31 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
-	import { pickUrls } from '@canmi/urls';
+	import { pickUrls, URLS } from '@canmi/urls';
 	import ExternalLink from '@lucide/svelte/icons/external-link';
 	import FileText from '@lucide/svelte/icons/file-text';
+	import { localeUrl } from '$lib/locale';
 	import LanguageSwitcher from '$lib/locale/switcher.svelte';
 	import { githubAvatar, textUrl } from '$lib/licenses';
+	import { CARD_HEIGHT, CARD_WIDTH, cardUrl } from '$lib/opengraph';
 	import * as m from '$lib/paraglide/messages';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
 	const locale = $derived(data.locale.code);
 	const cdn = pickUrls(dev).cdn;
+	const title = $derived(data.coordinates.name);
+	const description = $derived(
+		data.entry.description
+			?? m['licenses.package_description'](
+				{ name: data.coordinates.name, version: data.coordinates.version },
+				{ locale },
+			),
+	);
+	const slug = $derived(
+		`licenses/pkgs/${data.coordinates.registry}/${data.coordinates.name}@${data.coordinates.version}`,
+	);
+	const canonical = $derived(localeUrl(`${URLS.apps.production.site}/${slug}`, locale));
+	const card = $derived(cardUrl(cdn, slug, locale));
 
 	// A package reached only as a direct dependency has no indirect half, and a heading over an
 	// empty list would read as a missing answer rather than as nothing to say.
@@ -31,15 +46,17 @@
 </script>
 
 <svelte:head>
-	<title>{data.coordinates.name} {data.coordinates.version} · {m['licenses.title']({}, { locale })}</title>
-	<meta
-		name="description"
-		content={data.entry.description
-			?? m['licenses.package_description'](
-				{ name: data.coordinates.name, version: data.coordinates.version },
-				{ locale },
-			)}
-	/>
+	<title>{title} {data.coordinates.version} · {m['licenses.title']({}, { locale })}</title>
+	<meta name="description" content={description} />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:url" content={canonical} />
+	<meta property="og:image" content={card} />
+	<meta property="og:image:width" content={CARD_WIDTH} />
+	<meta property="og:image:height" content={CARD_HEIGHT} />
+	<meta property="og:image:alt" content={title} />
+	<meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
 
 <main class="min-h-screen bg-page text-text">

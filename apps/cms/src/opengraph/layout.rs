@@ -59,6 +59,8 @@ const TITLE_LINE: f32 = 1.15;
 const TITLE_MIN_SIZE: f32 = 56.0;
 const TITLE_STEP: f32 = 4.0;
 const SUBTITLE_LINE: f32 = 1.4;
+const SUBTITLE_MIN_SIZE: f32 = 20.0;
+const SUBTITLE_STEP: f32 = 2.0;
 
 /// Ink, and the opacities each band is knocked back to.
 const INK: (u8, u8, u8) = (0x33, 0x33, 0x33);
@@ -335,6 +337,22 @@ fn fit_title(fonts: &mut FontSystem, text: &str, family: &str) -> Line {
 	}
 }
 
+/// Lay the subtitle out large when it fits, and step it down when package metadata runs long.
+fn fit_subtitle(fonts: &mut FontSystem, text: &str, title_height: f32, family: &str) -> Line {
+	let middle_top = PAD_Y + SITE_SIZE * 1.2 + GAP;
+	let stats_row = HEIGHT as f32 - PAD_Y - STATS_SIZE * 1.2;
+	let meta_row = stats_row - CATEGORY_SIZE * 1.2 - GAP * 0.5;
+	let available = meta_row - GAP - middle_top;
+	let mut size = SUBTITLE_SIZE;
+	loop {
+		let laid = lay(fonts, text, size, SUBTITLE_LINE, TEXT_WIDTH, family);
+		if title_height + GAP + laid.height <= available || size <= SUBTITLE_MIN_SIZE {
+			return laid;
+		}
+		size -= SUBTITLE_STEP;
+	}
+}
+
 /// Render a card to raw RGBA pixels.
 pub fn render(fonts: &mut FontSystem, family: &str, card: &Card<'_>) -> Vec<u8> {
 	let mut pixels = vec![0u8; (WIDTH * HEIGHT * 4) as usize];
@@ -355,21 +373,21 @@ pub fn render(fonts: &mut FontSystem, family: &str, card: &Card<'_>) -> Vec<u8> 
 	paint_domain(&mut pixmap, fonts, &mut cache, family, card.domain);
 
 	let mut title = fit_title(fonts, card.title, family);
-	let mut subtitle = card.subtitle.filter(|text| !text.is_empty()).map(|text| {
-		lay(
-			fonts,
-			text,
-			SUBTITLE_SIZE,
-			SUBTITLE_LINE,
-			TEXT_WIDTH,
-			family,
-		)
-	});
+	let mut subtitle = card
+		.subtitle
+		.filter(|text| !text.is_empty())
+		.map(|text| fit_subtitle(fonts, text, title.height, family));
 
 	// The middle band is centred on the canvas rather than pinned, so a one-line title and a
-	// three-line one both sit in the optical middle instead of drifting downward.
+	// three-line one both sit in the optical middle instead of drifting downward. Its bounds
+	// keep a long package description out of the header and bottom metadata.
 	let middle = title.height + subtitle.as_ref().map_or(0.0, |s| s.height + GAP);
-	let mut y = (HEIGHT as f32 - middle) / 2.0;
+	let middle_top = PAD_Y + SITE_SIZE * 1.2 + GAP;
+	let stats_row = HEIGHT as f32 - PAD_Y - STATS_SIZE * 1.2;
+	let meta_row = stats_row - CATEGORY_SIZE * 1.2 - GAP * 0.5;
+	let middle_bottom = meta_row - GAP;
+	let latest = (middle_bottom - middle).max(middle_top);
+	let mut y = ((HEIGHT as f32 - middle) / 2.0).clamp(middle_top, latest);
 
 	paint(
 		&mut pixmap,

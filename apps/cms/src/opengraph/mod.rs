@@ -402,7 +402,10 @@ fn route_jobs(repo: &Path, public: &Path, config: &SiteConfig) -> Vec<Job> {
 	};
 
 	let mut jobs = Vec::new();
-	for route in routes::directories(&record) {
+	for route in routes::directories(&record)
+		.into_iter()
+		.chain(routes::packages(&record))
+	{
 		for view in locale::VIEWS {
 			let catalog = messages::load(repo, view.code);
 			let (title, subtitle, section, badge) = routes::worded(&route, &catalog);

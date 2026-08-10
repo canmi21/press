@@ -24,6 +24,9 @@ regex = "1"
 # Resolving a possibly-relative href against the page it came from is the one piece of URL
 # handling worth not writing by hand.
 url = "2"
+# Package URLs percent-encode reserved characters in names and versions. OpenGraph route slugs
+# use the readable browser spelling, so the record key has to be decoded rather than copied.
+percent-encoding = "2"
 
 # Content addressing. BLAKE3 truncated to 128 bits, which leaves roughly 64-bit collision
 # resistance -- ample for addressing personal assets, and deliberately not a tamper-evidence

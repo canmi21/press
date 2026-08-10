@@ -848,6 +848,18 @@ a badge that reads `+1 registries` is worse than an empty corner. Where a count 
 the `+N` form the article cards use -- `+24 licenses` -- which says "and this many more" without
 a word for it and keeps its shape across scripts that share no vocabulary.
 
+**Every package page gets its own card.** There are 727 packages and nine views, so this accepts
+6,543 files and roughly 445 MB of published bytes rather than collapsing packages into one
+generic card that does not identify the shared page. The manifest makes that cost incremental:
+the full set is paid once, then only a package whose inputs moved is redrawn.
+
+Package facts stay literal in every view: its name and description, version, registry display
+name and SPDX expression identify the same release whatever language surrounds them. The
+description occupies the subtitle rather than borrowing the page's meta description, which
+would repeat the package name already drawn above it. An absent description leaves that line
+empty, and an absent declared licence leaves an empty badge; inventing English copy for either
+would turn missing package metadata into a translated claim the package never made.
+
 A view with no card falls back to the source view rather than to a 404. Translation arrives
 per segment and per article, so a missing card is a normal intermediate state; a card in the
 wrong language still says what the page is, and a blank rectangle says nothing. An unknown
@@ -876,6 +888,13 @@ A card's title is shaped at 96px and stepped down until it occupies a single lin
 56px and wrapping below that. Measured, never estimated: where a CJK title breaks has no
 relation to its character count, so the only way to know whether a size fits is to lay it out
 and look. The same measurement decides where the band below it starts.
+
+A subtitle begins at 38px and stays there when it fits. Package descriptions are authored by
+hundreds of upstream projects and can run much longer than an article subtitle, so a long one
+steps down to 20px to keep the complete description between the header and the bottom metadata.
+Clipping would make the package's own sentence incomplete; allowing it to overlap would make
+the version and licence unreadable. This is measured from shaped lines for the same reason as
+the title rather than guessed from character count.
 
 The bottom band is aligned right because X draws the domain over the bottom left of every card
 it renders. Anything placed there is covered by somebody else's chrome.
