@@ -1,6 +1,7 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"nav.writing": "Writing",
+	"nav.home": "Home",
 	"article.translator-note": "From the translator",
 	"article.translator-note.close": "Close translator's note",
 	"language.original": "Original",

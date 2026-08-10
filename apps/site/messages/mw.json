@@ -1,6 +1,7 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"nav.writing": "Writing",
+	"nav.home": "Home",
 	"article.translator-note": "来自译者",
 	"article.translator-note.close": "关闭译者注",
 	"language.original": "Original",

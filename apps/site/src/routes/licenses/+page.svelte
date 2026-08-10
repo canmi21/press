@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
 	import { pickUrls, URLS } from '@canmi/urls';
+	import ArrowLeft from '@lucide/svelte/icons/arrow-left';
 	import FileText from '@lucide/svelte/icons/file-text';
 	import FolderOpen from '@lucide/svelte/icons/folder-open';
 	import Scale from '@lucide/svelte/icons/scale';
@@ -58,7 +59,17 @@
 
 <main class="min-h-screen bg-page text-text">
 	<article class="mx-auto max-w-180 px-6 py-24">
-		<header>
+		<nav aria-label={m['licenses.breadcrumb']({}, { locale })}>
+			<a
+				href="/"
+				class="focus-link inline-flex items-center gap-1.5 text-[0.9375rem] text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
+			>
+				<ArrowLeft class="size-4" aria-hidden="true" />
+				<span>{m['nav.home']({}, { locale })}</span>
+			</a>
+		</nav>
+
+		<header class="mt-8">
 			<h1 class="text-text-strong">{m['licenses.title']({}, { locale })}</h1>
 			<div class="mt-4 space-y-4 leading-relaxed text-pretty">
 				<p>{m['licenses.built']({}, { locale })}</p>

@@ -593,6 +593,12 @@ the question somebody arriving actually has, which is what all of this stands on
 what any single package is. An asserted licence is not a group of its own: the packages under
 it are MIT, they simply never said so, and the row carries where that is known from.
 
+An identifier is not a family label, so `MIT-0` remains separate from `MIT`. SPDX gives
+[MIT No Attribution](https://spdx.org/licenses/MIT-0.html) its own identifier because it removes
+the attribution paragraph from the [MIT License](https://spdx.org/licenses/MIT.html). Collapsing
+the two would make the directory state a notice-preservation condition the package's terms do
+not carry; grouping legal terms by resemblance is not normalisation.
+
 The browser surface follows those two kinds of identity instead of nesting one inside the
 other. `/licenses` is the licence directory, `/licenses/{licence}` is one licence's package
 directory, and `/licenses/pkgs/{type}/{name}@{version}` is one package. A package route does not
@@ -601,6 +607,10 @@ licences; doing so would give one package several equally plausible addresses. `
 explicit namespace so a registry type or package name can never be mistaken for a licence slug.
 The version remains part of the address because the resolved tree may contain several versions
 of one package, with different metadata or terms.
+
+The directory root completes that hierarchy with a back link to the homepage above its heading,
+in the same place each child route links to its parent. Home is navigation rather than a licence
+action, so it stays out of the Packages, index and full-notice control row.
 
 One package page is dense where the source metadata is sparse. Its SPDX expression, credited
 people and shipped licence files share one compact terms-and-attribution section instead of each

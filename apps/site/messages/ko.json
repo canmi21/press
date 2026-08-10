@@ -1,6 +1,7 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"nav.writing": "글",
+	"nav.home": "홈",
 	"article.translator-note": "번역자 주",
 	"article.translator-note.close": "번역자 주 닫기",
 	"language.original": "원문",
