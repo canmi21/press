@@ -96,6 +96,18 @@ The article ToC keeps its own offset rather than this one. It was measured again
 indicator, which tracks the heading it points at, and a share of the viewport is not the
 geometry that was tuned. An exception with a reason is not a second rule.
 
+## Article home navigation yields to the table of contents
+
+On a wide article viewport, the return to Home occupies the vertical midpoint between the top
+of the viewport and the rendered top of the table of contents. That empty interval gives the
+site-level exit a stable place without making it another article heading or ToC entry. The
+midpoint follows the ToC's live boundary rather than a guessed height: when translated labels
+expand or wrap, Home rises with them and the existing ToC remains where its own layout puts it.
+
+The control is absent with the ToC rail on narrow viewports. Moving it into the article column
+there would turn a desktop spatial aid into another piece of article content and compete with
+the title for the first line of attention.
+
 ## Boxed digits mark a number that moved; a standing fact is plain
 
 The `value` cells in [app.css](../apps/site/src/styles/app.css) give a number its own boxes and

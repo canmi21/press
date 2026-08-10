@@ -20,6 +20,7 @@
 	import Newsletter from '$lib/newsletter/newsletter.svelte';
 	import { createReadsQuery } from '$lib/engagement/reads.svelte';
 	import { formatCompact } from './format';
+	import HomeLink from './home-link.svelte';
 	import Toc from './toc.svelte';
 	import TranslationNotice from './translation-notice.svelte';
 
@@ -224,6 +225,7 @@
 
 <main class="min-h-screen bg-page text-text">
 	<Toc />
+	<HomeLink locale={locale.code} />
 	<div class="mx-auto max-w-180 px-6 py-24">
 		<article>
 			<header>
