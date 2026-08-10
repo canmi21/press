@@ -104,6 +104,9 @@ article title in the collapsed default, giving that interval a deliberate upper 
 an arbitrary fixed offset. Expansion keeps that alignment while there is room. Only when the ToC
 would cross the corresponding midpoint does the control rise to the live midpoint between the
 viewport and the ToC, splitting the remaining space evenly without moving the ToC itself.
+Following that boundary must not add a second layout loop to the ToC animation: the return control
+uses the observer's completed box size and moves itself with a compositor transform. It neither
+reads the ToC's live geometry again nor writes a layout property while the ToC is in motion.
 
 The text begins on the same vertical line as the ToC labels and bars. The return icon sits beyond
 that line, making direction peripheral while the words preserve the rail's alignment.

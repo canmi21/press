@@ -1,8 +1,10 @@
 <script lang="ts">
 	import Undo2 from '@lucide/svelte/icons/undo-2';
-	import { remFromMeasuredPixels } from '$lib/client/units';
+	import { DEFAULT_PIXELS_PER_REM, remFromMeasuredPixels } from '$lib/client/units';
 	import type { LocaleCode } from '$lib/locale';
 	import * as m from '$lib/paraglide/messages';
+
+	const DEFAULT_TOP_REM = 6.75;
 
 	let { locale }: { locale: LocaleCode } = $props();
 
@@ -18,36 +20,62 @@
 	function followToc(node: HTMLElement) {
 		let frame = 0;
 		let toc: HTMLElement | undefined;
+		let restingTop = 0;
+		let pendingBoundary = window.innerHeight / 2;
+		let renderedOffset = '';
+		let rootPixels = DEFAULT_PIXELS_PER_REM;
 		let resize: ResizeObserver | undefined;
 		let insertion: MutationObserver | undefined;
 
-		const position = () => {
+		const position = (boundary: number) => {
+			pendingBoundary = boundary;
 			cancelAnimationFrame(frame);
 			frame = requestAnimationFrame(() => {
-				const boundary = toc?.getBoundingClientRect().top ?? window.innerHeight / 2;
-				const title = titleCenter() ?? window.innerHeight / 4;
 				// Title alignment yields only when the ToC consumes that space. See spec/styling.md.
-				node.style.top = remFromMeasuredPixels(Math.min(title, Math.max(0, boundary) / 2));
+				const target = Math.min(restingTop, Math.max(0, pendingBoundary) / 2);
+				const offset = remFromMeasuredPixels(
+					target - DEFAULT_TOP_REM * rootPixels,
+					rootPixels,
+				);
+				if (offset === renderedOffset) return;
+				renderedOffset = offset;
+				node.style.setProperty('--home-offset', offset);
 			});
+		};
+
+		const calibrate = () => {
+			rootPixels =
+				Number.parseFloat(getComputedStyle(document.documentElement).fontSize) ||
+				DEFAULT_PIXELS_PER_REM;
+			restingTop = titleCenter() ?? window.innerHeight / 4;
+			position(toc?.getBoundingClientRect().top ?? window.innerHeight / 2);
 		};
 
 		const connect = () => {
 			const next = document.querySelector<HTMLElement>('.toc-nav');
 			if (!next) {
-				position();
+				calibrate();
 				return;
 			}
 
 			toc = next;
 			resize?.observe(toc);
 			insertion?.disconnect();
-			position();
+			calibrate();
 		};
 
-		if (typeof ResizeObserver !== 'undefined') resize = new ResizeObserver(position);
+		if (typeof ResizeObserver !== 'undefined') {
+			resize = new ResizeObserver(([entry]) => {
+				if (!entry) return;
+				// Layout is already complete here; deriving the fixed midpoint from box size avoids
+				// making the ToC animation pay for another geometry read. See spec/styling.md.
+				const size = entry.borderBoxSize[0]?.blockSize ?? entry.contentRect.height;
+				position((window.innerHeight - size) / 2);
+			});
+		}
 		insertion = new MutationObserver(connect);
 		insertion.observe(document.body, { childList: true, subtree: true });
-		window.addEventListener('resize', position);
+		window.addEventListener('resize', calibrate);
 		connect();
 
 		return {
@@ -55,7 +83,7 @@
 				cancelAnimationFrame(frame);
 				resize?.disconnect();
 				insertion?.disconnect();
-				window.removeEventListener('resize', position);
+				window.removeEventListener('resize', calibrate);
 			},
 		};
 	}
@@ -63,7 +91,7 @@
 
 <div
 	use:followToc
-	class="home-slot pointer-events-none fixed hidden -translate-y-1/2 items-center lg:flex"
+	class="home-slot pointer-events-none fixed hidden items-center lg:flex"
 >
 	<a
 		href="/"
@@ -78,6 +106,7 @@
 	.home-slot {
 		top: 6.75rem;
 		right: calc(50% + 24rem);
+		transform: translateY(calc(-50% + var(--home-offset, 0rem)));
 		width: min(12rem, calc(50vw - 25.5rem));
 	}
 </style>
