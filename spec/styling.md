@@ -104,9 +104,12 @@ article title in the collapsed default, giving that interval a deliberate upper 
 an arbitrary fixed offset. Expansion keeps that alignment while there is room. Only when the ToC
 would cross the corresponding midpoint does the control rise to the live midpoint between the
 viewport and the ToC, splitting the remaining space evenly without moving the ToC itself.
-Following that boundary must not add a second layout loop to the ToC animation: the return control
-uses the observer's completed box size and moves itself with a compositor transform. It neither
-reads the ToC's live geometry again nor writes a layout property while the ToC is in motion.
+Following that boundary must not add a second layout loop to the ToC animation. The return control
+calculates its collapsed and expanded endpoints before the state changes, then runs its own spring
+between them with a compositor transform. It does not sample the ToC's intermediate geometry or
+inherit its trajectory, but the spring is tuned so both controls visually arrive and settle
+together. A reversal starts from the control's current position, and reduced-motion preference
+changes snap to the corresponding endpoint.
 
 The text begins on the same vertical line as the ToC labels and bars. The return icon sits beyond
 that line, making direction peripheral while the words preserve the rail's alignment.
