@@ -9,6 +9,7 @@
 <Article
 	slug={data.slug}
 	meta={data.meta}
+	toc={data.toc}
 	chars={data.chars}
 	summary={data.summary}
 	locale={data.locale}

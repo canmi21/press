@@ -24,6 +24,14 @@ describe('article widget build inputs', () => {
 		expect(article).toBeDefined();
 		if (!article) throw new Error('missing rust-cargo-cranelift-tuning');
 		for (const view of Object.values(article.views)) {
+			// The initial document needs the ToC before browser-side heading measurement can run.
+			expect(view.toc).toEqual(
+				view.blocks.flatMap((block) =>
+					block.type === 'heading'
+						? [{ slug: block.slug, text: block.text, depth: block.depth }]
+						: [],
+				),
+			);
 			expect(view.blocks.filter(({ type }) => type === 'tokei')).toHaveLength(1);
 			expect(view.blocks.filter(({ type }) => type === 'github')).toHaveLength(1);
 			expect(view.blocks.filter(({ type }) => type === 'cargo')).toHaveLength(2);

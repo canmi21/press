@@ -80,7 +80,7 @@ export type Compiled = {
 	text: string;
 };
 
-export type ArticleView = Pick<Compiled, 'meta' | 'blocks' | 'feed' | 'text'> & {
+export type ArticleView = Pick<Compiled, 'meta' | 'toc' | 'blocks' | 'feed' | 'text'> & {
 	code: LocaleCode;
 	languageTag: string;
 	canonical: string;

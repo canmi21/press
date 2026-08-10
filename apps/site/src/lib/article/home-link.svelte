@@ -10,8 +10,9 @@
 		const title = document.querySelector<HTMLElement>('article h1');
 		if (!title) return;
 		const rect = title.getBoundingClientRect();
+		const lineHeight = Number.parseFloat(getComputedStyle(title).lineHeight) || rect.height;
 		// Scrolling the article must not move fixed navigation away from its default alignment.
-		return rect.top + window.scrollY + rect.height / 2;
+		return rect.top + window.scrollY + lineHeight / 2;
 	}
 
 	function followToc(node: HTMLElement) {
@@ -66,16 +67,16 @@
 >
 	<a
 		href="/"
-		class="home-link focus-link pointer-events-auto inline-flex -translate-x-[1.375rem] items-center gap-1.5 whitespace-nowrap text-sm text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
+		class="home-link focus-link pointer-events-auto inline-flex -translate-x-5 items-center gap-1.5 whitespace-nowrap text-sm text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
 	>
-		<Undo2 class="size-4 shrink-0" aria-hidden="true" />
+		<Undo2 class="size-3.5 shrink-0 -translate-y-[0.03125rem]" aria-hidden="true" />
 		<span>{m['article.back']({}, { locale })}</span>
 	</a>
 </div>
 
 <style>
 	.home-slot {
-		top: 25vh;
+		top: 6.75rem;
 		right: calc(50% + 24rem);
 		width: min(12rem, calc(50vw - 25.5rem));
 	}

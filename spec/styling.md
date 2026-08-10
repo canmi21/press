@@ -108,6 +108,12 @@ viewport and the ToC, splitting the remaining space evenly without moving the To
 The text begins on the same vertical line as the ToC labels and bars. The return icon sits beyond
 that line, making direction peripheral while the words preserve the rail's alignment.
 
+The initial document already contains the collapsed ToC and the return control in their resting
+positions. Heading identity and order are compile-time article structure, so withholding them
+until the browser scans rendered headings only creates a late structural insertion. Browser-side
+measurement progressively replaces the ToC's equal placeholder bars with widths derived from the
+rendered labels; it does not create the navigation itself.
+
 The control is absent with the ToC rail on narrow viewports. Moving it into the article column
 there would turn a desktop spatial aid into another piece of article content and compete with
 the title for the first line of attention.

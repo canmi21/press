@@ -6,6 +6,9 @@
 		remFromDefaultPixels,
 		remFromMeasuredPixels,
 	} from '$lib/client/units';
+	import type { TocEntry } from '$lib/content/types';
+
+	let { toc }: { toc: TocEntry[] } = $props();
 
 	const MAX_BAR_WIDTH = 64;
 	const MIN_BAR_WIDTH = 8;
@@ -27,11 +30,17 @@
 		(value / DEFAULT_PIXELS_PER_REM) * root;
 
 	type Phase = 'collapsed' | 'expanded' | 'revealed';
-	type Entry = { el: HTMLElement; width: number; text: string };
+	type Entry = { el?: HTMLHeadingElement; slug: string; width: number; text: string };
+	type HydratedEntries = { source: TocEntry[]; entries: Entry[] };
 	type IndicatorGeometry = { y: number; height: number };
 	type AnimationControl = { stop: () => void };
 
-	let entries = $state<Entry[]>([]);
+	let hydratedEntries = $state.raw<HydratedEntries>();
+	const entries = $derived(
+		hydratedEntries?.source === toc
+			? hydratedEntries.entries
+			: toc.map<Entry>(({ slug, text }) => ({ slug, width: 0, text })),
+	);
 	let asideEl = $state<HTMLElement | undefined>();
 	let indicatorEl = $state<HTMLElement | undefined>();
 	let phase = $state<Phase>('collapsed');
@@ -50,7 +59,8 @@
 	let indicatorAnimation: AnimationControl | undefined;
 	let geometryVersion = $state(0);
 
-	function jumpToSection(el: HTMLElement, idx: number) {
+	function jumpToSection(el: HTMLHeadingElement | undefined, idx: number) {
+		if (!el) return;
 		isClickScrolling = true;
 		activeIndex = idx;
 		el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -108,15 +118,23 @@
 	}
 
 	$effect(() => {
-		const headings = Array.from(
-			document.querySelectorAll<HTMLHeadingElement>('article h2, article h3')
-		).filter((el) => (el.textContent?.trim() ?? '') !== '');
+		const source = toc;
+		const headings = source
+			.map(({ slug }) => document.getElementById(slug))
+			.filter(
+				(el): el is HTMLHeadingElement =>
+					el instanceof HTMLHeadingElement && (el.textContent?.trim() ?? '') !== '',
+			);
 
-		entries = headings.map((el) => ({
-			el,
-			width: 0,
-			text: el.textContent?.trim() ?? ''
-		}));
+		hydratedEntries = {
+			source,
+			entries: headings.map((el) => ({
+				el,
+				slug: el.id,
+				width: 0,
+				text: el.textContent?.trim() ?? '',
+			})),
+		};
 
 		const cleanups: Array<() => void> = [];
 
@@ -162,9 +180,9 @@
 				const text = el.textContent?.trim() ?? '';
 				const prepared = prepareWithSegments(text, fontOf(el));
 				const w = measureNaturalWidth(prepared);
-				measured.push({ el, width: w, text });
+				measured.push({ el, slug: el.id, width: w, text });
 			}
-			entries = measured;
+			hydratedEntries = { source, entries: measured };
 		});
 
 		const onScroll = () => {
@@ -408,7 +426,7 @@
 			class="pointer-events-none absolute w-0.5 rounded-full bg-text-soft"
 			style="left: -0.5rem; top: 0; height: 0.75rem; opacity: 0"
 		></span>
-		{#each entries as entry, i (entry.el)}
+		{#each entries as entry, i (entry.slug)}
 			<button
 				data-toc-button
 				type="button"

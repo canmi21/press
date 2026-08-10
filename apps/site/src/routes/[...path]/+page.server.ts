@@ -17,6 +17,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 		// by on the API side, and the two lists have to name the same thing.
 		slug: article.path,
 		meta: view.meta,
+		toc: view.toc,
 		blocks: view.blocks,
 		summary: view.summary,
 		chars,

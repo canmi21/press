@@ -13,7 +13,7 @@
 	import { remFromMeasuredPixels } from '$lib/client/units';
 	import * as m from '$lib/paraglide/messages';
 	import type { Snippet } from 'svelte';
-	import type { Alternate, ArticleMeta, ArticleSummary } from '$lib/content/types';
+	import type { Alternate, ArticleMeta, ArticleSummary, TocEntry } from '$lib/content/types';
 	import type { LocaleCode } from '$lib/locale';
 	import LanguageSwitcher from '$lib/locale/switcher.svelte';
 	import { CARD_HEIGHT, CARD_WIDTH, cardUrl } from '$lib/opengraph';
@@ -34,6 +34,7 @@
 	let {
 		slug,
 		meta,
+		toc,
 		chars,
 		summary,
 		locale,
@@ -42,6 +43,7 @@
 		/** The article's path, which is what the read counter is keyed by. */
 		slug: string;
 		meta: ArticleMeta;
+		toc: TocEntry[];
 		chars: number;
 		/** Absent until `cms summary` has been run for this article; the row then omits it. */
 		summary?: ArticleSummary;
@@ -224,7 +226,7 @@
 </svelte:head>
 
 <main class="min-h-screen bg-page text-text">
-	<Toc />
+	<Toc {toc} />
 	<HomeLink locale={locale.code} />
 	<div class="mx-auto max-w-180 px-6 py-24">
 		<article>

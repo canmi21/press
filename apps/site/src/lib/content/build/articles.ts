@@ -215,6 +215,7 @@ export async function buildArticles(
 					code,
 					{
 						meta: view.meta,
+						toc: view.toc,
 						blocks: view.blocks,
 						text: view.text,
 						feed: view.feed,
