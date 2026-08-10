@@ -368,6 +368,15 @@ fn translate_articles(args: &[String]) -> ExitCode {
 		.position(|arg| arg == "--limit")
 		.and_then(|at| args.get(at + 1))
 		.and_then(|value| value.parse::<usize>().ok());
+	let parallel = match option_value(args, "--parallel").and_then(|value| {
+		i18n::parallelism(value).map_err(|error| {
+			eprintln!("{error}");
+			ExitCode::FAILURE
+		})
+	}) {
+		Ok(parallel) => parallel,
+		Err(code) => return code,
+	};
 
 	let mut only: Vec<std::path::PathBuf> = Vec::new();
 	let mut runner = i18n::runner::DEFAULT_TEXT;
@@ -379,7 +388,7 @@ fn translate_articles(args: &[String]) -> ExitCode {
 		}
 		match arg.as_str() {
 			"--force" | "--frontmatter" => {}
-			"--limit" | "--model-id" | "--effort" => skip = true,
+			"--limit" | "--parallel" | "--model-id" | "--effort" => skip = true,
 			"--model" => {
 				skip = true;
 				match args
@@ -426,6 +435,7 @@ fn translate_articles(args: &[String]) -> ExitCode {
 		&root.join("contents"),
 		&only,
 		limit,
+		parallel,
 		force,
 		scope,
 	)) {
@@ -1262,7 +1272,7 @@ fn usage() {
 	eprintln!("  og [--force]                render an OpenGraph card per page per language");
 	eprintln!("  segments                    write article segment ids and source ranges");
 	eprintln!(
-		"  i18n [--model M] [--model-id ID] [--effort E] [--force] [--frontmatter] [--limit N] [article...]"
+		"  i18n [--model M] [--model-id ID] [--effort E] [--parallel N] [--force] [--frontmatter] [--limit N] [article...]"
 	);
 	eprintln!("                              translate article segments into every locale");
 	eprintln!("  tn [--model M] [--model-id ID] [--effort E] [--force] [article...]");

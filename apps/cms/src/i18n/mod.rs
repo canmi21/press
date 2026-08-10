@@ -30,7 +30,17 @@ impl Scope {
 }
 
 /// Requests in flight. The same reasoning as `cms alt`: politeness rather than local limits.
-pub const PARALLEL: usize = 4;
+pub const DEFAULT_PARALLEL: usize = 4;
+
+pub fn parallelism(value: Option<&str>) -> Result<usize, String> {
+	let Some(value) = value else {
+		return Ok(DEFAULT_PARALLEL);
+	};
+	match value.parse::<usize>() {
+		Ok(value) if value > 0 => Ok(value),
+		_ => Err("--parallel takes a positive integer".to_owned()),
+	}
+}
 
 /// How many times a segment is asked for again before it is reported as failed.
 ///
@@ -207,6 +217,7 @@ pub async fn run(
 	articles: &Path,
 	only: &[std::path::PathBuf],
 	limit: Option<usize>,
+	parallel: usize,
 	force: bool,
 	scope: Scope,
 ) -> std::io::Result<Outcome> {
@@ -291,10 +302,10 @@ pub async fn run(
 			String,
 			Result<(Vec<(String, Translation)>, u64, f64), Refusal>,
 		);
-		let mut running: Vec<tokio::task::JoinHandle<Finished>> = Vec::new();
+		let mut running = tokio::task::JoinSet::<Finished>::new();
 
 		loop {
-			while running.len() < PARALLEL {
+			while running.len() < parallel {
 				let Some(item) = queue.next() else {
 					break;
 				};
@@ -303,21 +314,22 @@ pub async fn run(
 				let owned = item.clone();
 				let model_override = model_override.clone();
 				let gloss = glosses.find(&item.id).cloned();
-				running.push(tokio::spawn(async move {
+				running.spawn(async move {
 					let id = owned.id.clone();
 					(
 						id,
 						translate(&owned, before, after, runner, model_override, gloss).await,
 					)
-				}));
+				});
 			}
 			if running.is_empty() {
 				break;
 			}
 
-			let finished = match running.remove(0).await {
-				Ok(result) => result,
-				Err(error) => (String::new(), Err(Refusal::Failed(error.to_string()))),
+			let finished = match running.join_next().await {
+				None => break,
+				Some(Ok(result)) => result,
+				Some(Err(error)) => (String::new(), Err(Refusal::Failed(error.to_string()))),
 			};
 			progress.inc(1);
 
@@ -356,6 +368,14 @@ pub async fn run(
 mod tests {
 	use super::*;
 	use std::collections::BTreeMap;
+
+	#[test]
+	fn parallelism_defaults_to_four_and_rejects_zero() {
+		assert_eq!(parallelism(None).unwrap(), 4);
+		assert_eq!(parallelism(Some("10")).unwrap(), 10);
+		assert!(parallelism(Some("0")).is_err());
+		assert!(parallelism(Some("many")).is_err());
+	}
 
 	#[test]
 	fn frontmatter_scope_never_selects_body_prose() {
