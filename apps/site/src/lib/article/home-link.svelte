@@ -4,7 +4,7 @@
 	import { DEFAULT_PIXELS_PER_REM, remFromMeasuredPixels } from '$lib/client/units';
 	import type { LocaleCode } from '$lib/locale';
 	import * as m from '$lib/paraglide/messages';
-	import { homeCenter } from './rail';
+	import { homeRestingCenter, railEndOffset } from './rail';
 
 	const DEFAULT_TOP_REM = 6.75;
 	const COLLAPSED_BAR_REM = 0.25;
@@ -53,9 +53,9 @@
 		let article: HTMLElement | undefined;
 		let articleTop = 0;
 		let articleEnd = Number.POSITIVE_INFINITY;
-		let restingCenter = 0;
 		let renderedOffset = '';
 		let heights: Record<TocState, number> = { collapsed: 0, expanded: 0 };
+		let restingEndpoints: Record<TocState, number> = { collapsed: 0, expanded: 0 };
 		let progress = 0;
 		let rootPixels = DEFAULT_PIXELS_PER_REM;
 		let endpoints: Record<TocState, number> = { collapsed: 0, expanded: 0 };
@@ -98,23 +98,25 @@
 			});
 		};
 
-		const endpoint = (restingTop: number, height: number) => {
-			const target = homeCenter(
-				restingTop,
-				window.innerHeight,
-				height,
-				articleEnd - window.scrollY,
-			);
-			return target - DEFAULT_TOP_REM * rootPixels;
-		};
-
 		const position = () => {
 			if (!toc) {
 				endpoints = { collapsed: 0, expanded: 0 };
 			} else {
 				endpoints = {
-					collapsed: endpoint(restingCenter, heights.collapsed),
-					expanded: endpoint(restingCenter, heights.expanded),
+					collapsed:
+						restingEndpoints.collapsed +
+						railEndOffset(
+							window.innerHeight,
+							heights.collapsed,
+							articleEnd - window.scrollY,
+						),
+					expanded:
+						restingEndpoints.expanded +
+						railEndOffset(
+							window.innerHeight,
+							heights.expanded,
+							articleEnd - window.scrollY,
+						),
 				};
 			}
 			render(progress);
@@ -124,11 +126,19 @@
 			rootPixels =
 				Number.parseFloat(getComputedStyle(document.documentElement).fontSize) ||
 				DEFAULT_PIXELS_PER_REM;
-			restingCenter = titleCenter() ?? window.innerHeight / 4;
-		if (toc) {
+			const restingCenter = titleCenter() ?? window.innerHeight / 4;
+			if (toc) {
 				heights = {
 					collapsed: tocHeight(toc, 'collapsed', rootPixels),
 					expanded: tocHeight(toc, 'expanded', rootPixels),
+				};
+				restingEndpoints = {
+					collapsed:
+						homeRestingCenter(restingCenter, window.innerHeight, heights.collapsed) -
+						DEFAULT_TOP_REM * rootPixels,
+					expanded:
+						homeRestingCenter(restingCenter, window.innerHeight, heights.expanded) -
+						DEFAULT_TOP_REM * rootPixels,
 				};
 			}
 			if (article) {

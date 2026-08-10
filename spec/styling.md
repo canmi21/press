@@ -130,15 +130,17 @@ the article end upward as the reader scrolls; expanding it keeps its bottom pinn
 upward. The boundary is the end of `<article>`, before the blank interval and Newsletter divider,
 so article navigation does not continue into the page's next region.
 
-The return control applies the same midpoint rule to the ToC's constrained top. Once the article
-end is moving the rail, that top is allowed to become negative instead of being clamped to the
-viewport edge, which lets both controls leave the viewport with the article. Scroll handling uses
-a cached document-space article end and observed box sizes: a scroll frame performs arithmetic
-and compositor writes, not fresh layout reads. The return spring still interpolates between its
-own collapsed and expanded endpoints, so pinning the ToC does not make their trajectories depend
-on one another. A pre-hydration frame applies the collapsed endpoints after browser scroll
-restoration, before the component observers take over, so reloading at the article end does not
-leave the rail centered until hydration.
+The return control applies the midpoint rule once to each resting ToC state, fixing the distance
+between them until viewport resize or rail geometry changes. When the article end moves the rail,
+the same lower-bound offset is added to both controls instead of dividing their new gap again.
+They therefore leave the viewport as one spatial group. The return spring still interpolates
+between its own collapsed and expanded endpoints, so a hover transition keeps an independent
+trajectory even while both endpoints share the scroll displacement.
+
+Scroll handling uses a cached document-space article end and observed box sizes: a scroll frame
+performs arithmetic and compositor writes, not fresh layout reads. A pre-hydration frame applies
+the collapsed endpoints after browser scroll restoration, before the component observers take
+over, so reloading at the article end does not leave the rail centered until hydration.
 
 ## Boxed digits mark a number that moved; a standing fact is plain
 
