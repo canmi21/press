@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { isDevHost, pickUrls, URLS } from './index';
+import { isDevHost, loopbackUrl, pickUrls, URLS } from './index';
 
 describe('pickUrls', () => {
 	it('returns development app URLs when isDev=true', () => {
@@ -62,6 +62,12 @@ describe('isDevHost', () => {
 	it('rejects empty and arbitrary strings', () => {
 		expect(isDevHost('')).toBe(false);
 		expect(isDevHost('localhost.evil.com')).toBe(false);
+	});
+});
+
+describe('loopbackUrl', () => {
+	it('puts a local tool on its assigned port', () => {
+		expect(loopbackUrl(26521)).toBe('http://127.0.0.1:26521');
 	});
 });
 

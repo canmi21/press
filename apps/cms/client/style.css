@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+@import '@canmi/tokens/colors.css';
+
+body {
+	min-width: 20rem;
+	min-height: 100vh;
+	margin: 0;
+	background: var(--color-page);
+	color: var(--color-text);
+}

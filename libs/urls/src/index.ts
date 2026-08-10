@@ -81,3 +81,9 @@ export function pickUrls(isDev: boolean): UrlMap {
 export function isDevHost(hostname: string): boolean {
 	return hostname === 'localhost' || hostname === '127.0.0.1';
 }
+
+export function loopbackUrl(port: number): string {
+	const url = new URL('http://127.0.0.1');
+	url.port = String(port);
+	return url.origin;
+}

@@ -6,7 +6,7 @@ resolver = "3"
 # matched directory without a Cargo.toml, and that breaks every cargo command in the
 # repo. Listing crates by hand costs one line per Rust crate and makes adding a
 # TypeScript library a no-op on this side.
-members = ["apps/cms"]
+members = ["apps/cms", "apps/cms/src-tauri"]
 
 [workspace.package]
 edition = "2024"

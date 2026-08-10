@@ -33,7 +33,18 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 DOC_GLOBS = ("spec/*.md", "CLAUDE.md")
 CODE_SUFFIXES = {".ts", ".py", ".css", ".toml", ".json", ".jsonc", ".yaml", ".yml"}
-SKIP_DIRS = {"node_modules", ".jj", ".git", "dist", "build", "target", "data", ".svelte-kit", ".wrangler"}
+SKIP_DIRS = {
+	"node_modules",
+	".jj",
+	".git",
+	"dist",
+	"build",
+	"target",
+	"data",
+	"gen",
+	".svelte-kit",
+	".wrangler",
+}
 SKIP_FILES = {"pnpm-lock.yaml"}
 
 MD_LINK = re.compile(r"\[[^\]]*\]\(([^)]+)\)")

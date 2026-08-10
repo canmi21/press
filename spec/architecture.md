@@ -197,6 +197,25 @@ damped out. A transform or an unconstrained layout dimension such as width has r
 
 ## Workspace wiring
 
+### The CMS has two shells and one home
+
+`apps/cms` owns both ways a person reaches content management. Its existing Rust binary is the
+scriptable shell used by builds and local workflows; the Tauri client is the interactive shell.
+They remain in one app because deployment shape does not create a second responsibility. The
+Tauri crate is nested at the framework-defined `src-tauri` boundary while the frontend stays a
+small Vite entry beside it. Shared CMS operations move behind modules both shells can call when
+the interface begins to expose them.
+
+The desktop entry starts empty and takes its colours from `@canmi/tokens`; a second design system
+does not begin at the window edge. Its native title follows the HTML `<title>` as that value
+changes, and the frontend receives only the Tauri permission needed to do that. `app.canmi.cms`
+is the application identifier: it follows reverse-domain order for `canmi.app` and does not end
+in macOS's `.app` bundle extension. Platform icon variants live at Tauri's `src-tauri/icons`
+boundary and the bundle names them explicitly. Both browser interfaces use Tailwind, so the
+desktop client consumes the same Tailwind-facing token surface as the site rather than maintaining
+an adapter of its own. Tauri's capability schemas under `src-tauri/gen` are generated build
+output: they stay untracked and are excluded from repository reference checks.
+
 The two package managers disagree about strictness, and the layout has to respect that.
 
 **pnpm globs.** `pnpm-workspace.yaml` uses `libs/*` and `apps/*`. pnpm only picks up
