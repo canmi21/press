@@ -2,7 +2,7 @@
 
 use crate::{
 	alt, articles, check, classify, derived, embed, favicon, gc, i18n, image, licenses, locale,
-	media, opengraph, overview, paths, port, progress, refs, summary,
+	media, opengraph, overview, paths, port, progress, refs, summary, task,
 };
 use std::process::ExitCode;
 
@@ -12,6 +12,7 @@ pub fn run() -> ExitCode {
 		Some("overview") => print_overview(),
 		Some("articles") => print_articles(),
 		Some("derived") => print_derived(),
+		Some("tasks") => print_tasks(),
 		Some("port") => print_port(),
 		Some("favicon") => fetch_favicons(&args[1..]),
 		Some("image") => process_images(&args[1..]),
@@ -91,6 +92,19 @@ fn print_derived() -> ExitCode {
 		},
 		Err(error) => {
 			eprintln!("could not read the derived report: {error}");
+			ExitCode::FAILURE
+		}
+	}
+}
+
+fn print_tasks() -> ExitCode {
+	match serde_json::to_string_pretty(task::CATALOG) {
+		Ok(json) => {
+			println!("{json}");
+			ExitCode::SUCCESS
+		}
+		Err(error) => {
+			eprintln!("could not encode the task catalogue: {error}");
 			ExitCode::FAILURE
 		}
 	}
@@ -1340,6 +1354,7 @@ fn usage() {
 	eprintln!("  overview                    print the workspace overview as JSON");
 	eprintln!("  articles                    print the article listing and translation coverage");
 	eprintln!("  derived                     print what each derived record class still owes");
+	eprintln!("  tasks                       print the catalogue of long-running operations");
 	eprintln!("  port                        print the port the web UI will bind");
 	eprintln!("  image [--force] [--original] [file...]");
 	eprintln!("                              derive what the articles reference, then rewrite them");

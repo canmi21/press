@@ -116,7 +116,7 @@ pub fn listing_at(repository: &Path) -> std::io::Result<Listing> {
 				})
 			})
 			.collect();
-		gaps.sort_by(|left, right| right.segments.cmp(&left.segments));
+		gaps.sort_by_key(|gap| std::cmp::Reverse(gap.segments));
 
 		let summaries = summary::load(&summary::sidecar_for(&path));
 		let summary_gaps: Vec<String> = locales

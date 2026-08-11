@@ -85,4 +85,5 @@ of truth.
 | Translating article content               | [spec/i18n.md](spec/i18n.md)                     |
 | Serving a reader their language           | [spec/locale.md](spec/locale.md)                 |
 | Newsletter, likes, D1, and client cache   | [spec/engagement.md](spec/engagement.md)         |
+| Long-running tasks and their execution    | [spec/tasks.md](spec/tasks.md)                   |
 | Toolchain and default stacks              | [spec/toolchain.md](spec/toolchain.md)           |

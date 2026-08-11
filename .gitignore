@@ -1,6 +1,11 @@
 # Dependencies, runtime build output, caches, and generated code stay out by default.
 # Committed derived records are named explicitly in the data allowlist below.
 
+# CMS runtime state: the run registry, work-item claims and their lock files. Not `data/`,
+# because a process id and a progress count are not records anyone would read a diff of.
+# See spec/tasks.md.
+.cms/
+
 # Build output
 build/
 # This is build-time source code, not generated output.
