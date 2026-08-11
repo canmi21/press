@@ -64,13 +64,14 @@
 				</nav>
 			</aside>
 
-			<section class="page-shell" aria-labelledby="page-title">
+			<!-- The page's name is the highlighted item in the sidebar and the window's own title
+			     bar; repeating it as an <h1> at the top of the content spent the first fold of
+			     every page restating what two other things already said. The accessible name stays,
+			     because "which region am I in" is a question a screen reader still has to answer
+			     without either of those cues. `data-page-label` is kept in sync with the window
+			     title rather than being a second source for it. -->
+			<section class="page-shell" aria-label="Overview" data-page-label>
 				<main class="page-content">
-					<header class="page-heading">
-						<h1 id="page-title" data-page-title>Overview</h1>
-						<p data-page-description>A live view of content and the resources it depends on.</p>
-					</header>
-
 					<div class="overview" data-overview aria-live="polite">
 						<section class="dashboard-metrics" aria-label="Workspace metrics">
 							<article class="metric">

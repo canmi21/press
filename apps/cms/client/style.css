@@ -145,30 +145,11 @@ button {
 	scrollbar-color: var(--color-border-strong) transparent;
 }
 
-.page-heading {
+.overview,
+.articles,
+.derived {
 	width: min(100%, 72rem);
 	margin: 0 auto;
-}
-
-.page-heading h1 {
-	margin: 0;
-	color: var(--color-text-strong);
-	font-size: 1.25rem;
-	font-weight: 600;
-	letter-spacing: -0.015em;
-}
-
-.page-heading p {
-	max-width: 32rem;
-	margin: 0.375rem 0 0;
-	color: var(--color-text-soft);
-	font-size: 0.9375rem;
-	line-height: 1.6;
-}
-
-.overview {
-	width: min(100%, 72rem);
-	margin: 1.75rem auto 0;
 }
 
 .dashboard-metrics {
@@ -266,8 +247,9 @@ button {
 /* A quantity reads as a rule, not as a filled block. The previous charts poured `--color-blue`
    across a third of the page; the token is an ink, sized for a mark or a stroke, and the palette
    has no surface colour anywhere near that saturation. Keeping the bar at stroke height is what
-   lets colour go back to meaning state rather than meaning "bar". */
-/* The label column is intrinsic and shared, never a number. Sizing it per row -- which is what a
+   lets colour go back to meaning state rather than meaning "bar".
+
+   The label column is intrinsic and shared, never a number. Sizing it per row -- which is what a
    `grid-template-columns` on the `li` does -- let every bar start at its own label's right edge,
    so four sections drew four tracks beginning at four different offsets. `auto` answers the label
    that has no width anybody can predict, subgrid answers the alignment between rows, and neither
@@ -348,11 +330,6 @@ button {
 .health-list strong {
 	color: inherit;
 	font-weight: 500;
-}
-
-.articles {
-	width: min(100%, 72rem);
-	margin: 1.75rem auto 0;
 }
 
 .page-subheading {
@@ -505,11 +482,6 @@ button {
 .locale-cell[data-state='short'] {
 	background: color-mix(in oklch, var(--color-red) 18%, transparent);
 	color: var(--color-red);
-}
-
-.derived {
-	width: min(100%, 72rem);
-	margin: 1.75rem auto 0;
 }
 
 .derived-list {

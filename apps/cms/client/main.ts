@@ -11,27 +11,21 @@ followSystemTheme();
 const pages = {
 	overview: {
 		title: 'Overview',
-		description: 'A live view of content and the resources it depends on.',
 	},
 	articles: {
 		title: 'Articles',
-		description: 'Everything written here, and what the derived records still owe it.',
 	},
 	media: {
 		title: 'Media',
-		description: 'Imported resources and their processing state will appear here.',
 	},
 	derived: {
 		title: 'Derived',
-		description: 'What every generated record still owes the writing.',
 	},
 	automations: {
 		title: 'Automations',
-		description: 'Scheduled content and resource tasks will appear here.',
 	},
 	activity: {
 		title: 'Activity',
-		description: 'Task progress and run history will appear here.',
 	},
 } as const;
 
@@ -50,8 +44,7 @@ function pageOf(link: HTMLButtonElement): Page {
 }
 
 const pageLinks = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-page]'));
-const pageTitle = requiredElement<HTMLElement>('[data-page-title]');
-const pageDescription = requiredElement<HTMLElement>('[data-page-description]');
+const pageLabel = requiredElement<HTMLElement>('[data-page-label]');
 const overview = requiredElement<HTMLElement>('[data-overview]');
 const articles = requiredElement<HTMLElement>('[data-articles]');
 const derived = requiredElement<HTMLElement>('[data-derived]');
@@ -63,8 +56,7 @@ function selectPage(page: Page): void {
 		else link.removeAttribute('aria-current');
 	}
 
-	pageTitle.textContent = selected.title;
-	pageDescription.textContent = selected.description;
+	pageLabel.setAttribute('aria-label', selected.title);
 	overview.hidden = page !== 'overview';
 	articles.hidden = page !== 'articles';
 	derived.hidden = page !== 'derived';
