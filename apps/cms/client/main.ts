@@ -1,5 +1,7 @@
 import { followSystemTheme } from '@canmi/theme';
+import { invoke } from '@tauri-apps/api/core';
 import { getCurrentWindow } from '@tauri-apps/api/window';
+import { renderOverview, renderOverviewError, type OverviewSnapshot } from './overview';
 import './style.css';
 
 followSystemTheme();
@@ -7,7 +9,7 @@ followSystemTheme();
 const pages = {
 	overview: {
 		title: 'Overview',
-		description: 'Content status and scheduled work will appear here.',
+		description: 'A live view of content and the resources it depends on.',
 	},
 	articles: {
 		title: 'Articles',
@@ -44,6 +46,7 @@ function pageOf(link: HTMLButtonElement): Page {
 const pageLinks = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-page]'));
 const pageTitle = requiredElement<HTMLElement>('[data-page-title]');
 const pageDescription = requiredElement<HTMLElement>('[data-page-description]');
+const overview = requiredElement<HTMLElement>('[data-overview]');
 
 function selectPage(page: Page): void {
 	const selected = pages[page];
@@ -54,11 +57,21 @@ function selectPage(page: Page): void {
 
 	pageTitle.textContent = selected.title;
 	pageDescription.textContent = selected.description;
+	overview.hidden = page !== 'overview';
 	document.title = selected.title;
 }
 
 for (const link of pageLinks) {
 	link.addEventListener('click', () => selectPage(pageOf(link)));
+}
+
+if ('__TAURI_INTERNALS__' in window) {
+	void invoke<OverviewSnapshot>('overview_snapshot').then(
+		(snapshot) => renderOverview(overview, snapshot),
+		(error: unknown) => renderOverviewError(overview, error),
+	);
+} else {
+	renderOverviewError(overview, new Error('Workspace data is available in the desktop app.'));
 }
 
 if ('__TAURI_INTERNALS__' in window) {

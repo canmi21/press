@@ -11,6 +11,7 @@ workspace = true
 tauri-build = { version = "2.6.3", features = [] }
 
 [dependencies]
+cms = { path = ".." }
 tauri = { version = "2.11.5", features = [] }
 
 [target.'cfg(any(target_os = "macos", windows, target_os = "linux"))'.dependencies]

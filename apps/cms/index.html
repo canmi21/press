@@ -61,8 +61,69 @@
 				<main class="page-content">
 					<header class="page-heading">
 						<h1 id="page-title" data-page-title>Overview</h1>
-						<p data-page-description>Content status and scheduled work will appear here.</p>
+						<p data-page-description>A live view of content and the resources it depends on.</p>
 					</header>
+
+					<div class="overview" data-overview aria-live="polite">
+						<section class="dashboard-metrics" aria-label="Workspace metrics">
+							<article class="metric">
+								<span>Articles</span>
+								<strong data-kpi-articles data-kpi-value>—</strong>
+								<small data-kpi-sections>— sections</small>
+							</article>
+							<article class="metric">
+								<span>Media</span>
+								<strong data-kpi-media data-kpi-value>—</strong>
+								<small>Referenced resources</small>
+							</article>
+							<article class="metric">
+								<span>Published</span>
+								<strong data-kpi-published data-kpi-value>—</strong>
+								<small><span data-kpi-described>—</span> described</small>
+							</article>
+							<article class="metric">
+								<span>Needs attention</span>
+								<strong data-kpi-issues data-kpi-value>—</strong>
+								<small data-kpi-issue-detail>— warnings · — notices</small>
+							</article>
+						</section>
+
+						<div class="dashboard-grid">
+							<section class="dashboard-panel content-panel" aria-labelledby="content-heading">
+								<header class="panel-heading">
+									<div>
+										<h2 id="content-heading">Content distribution</h2>
+										<p>Articles grouped by their workspace section.</p>
+									</div>
+									<span data-content-total>— total</span>
+								</header>
+								<ul class="meter-list section-list" data-content-list></ul>
+							</section>
+
+							<section class="dashboard-panel readiness-panel" aria-labelledby="readiness-heading">
+								<header class="panel-heading">
+									<div>
+										<h2 id="readiness-heading">Media readiness</h2>
+										<p>Published records and accessible descriptions.</p>
+									</div>
+									<span data-readiness-total>— resources</span>
+								</header>
+								<ul class="meter-list readiness-list" data-readiness-list></ul>
+							</section>
+
+							<section class="dashboard-panel health-panel" aria-labelledby="attention-heading">
+								<header class="panel-heading">
+									<div>
+										<h2 id="attention-heading">Needs attention</h2>
+										<p>References that need processing or metadata.</p>
+									</div>
+									<span data-health-total>Checking…</span>
+								</header>
+								<p class="overview-state" data-health-state>Reading workspace health…</p>
+								<ul class="health-list" data-health-list hidden></ul>
+							</section>
+						</div>
+					</div>
 				</main>
 			</section>
 		</div>

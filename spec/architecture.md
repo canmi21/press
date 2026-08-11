@@ -206,6 +206,16 @@ Tauri crate is nested at the framework-defined `src-tauri` boundary while the fr
 small Vite entry beside it. Shared CMS operations move behind modules both shells can call when
 the interface begins to expose them.
 
+Every CMS capability has one in-process application operation and two optional adapters. The CLI
+may expose that operation as a command, and the GUI may expose it through a typed Tauri command,
+but neither adapter owns the work. In particular, the GUI never spawns the CLI as a subprocess:
+doing so would turn terminal output and exit codes into an accidental internal API, duplicate
+process lifecycle concerns, and make the desktop application depend on a separately discoverable
+binary. Keeping the operation below both shells gives interactive actions, scripts and scheduled
+tasks the same validation, effects and errors. The cost is an explicit library boundary and a
+small adapter in each shell; capabilities that exist in only one interface have not yet reached
+the shared CMS application surface.
+
 The desktop entry starts empty and takes its colours from `@canmi/tokens`; a second design system
 does not begin at the window edge. Its native title follows the HTML `<title>` as that value
 changes, and the frontend receives only the Tauri permission needed to do that. The active page
@@ -220,9 +230,13 @@ and are excluded from repository reference checks.
 
 The shared visual language extends beyond the palette. The CMS uses the site's quiet text
 hierarchy, generous content spacing, hairline borders, paper only for contained surfaces and
-restrained line icons. Being an operations tool does not give it a separate generic admin-dashboard
-aesthetic: navigation does not introduce branded tiles, gratuitous cards or ornamental status
-chrome that the reader-facing site would never use.
+restrained line icons. Task pages do not acquire branded tiles or ornamental status chrome merely
+because the CMS is an operations tool. Overview is deliberately the exception: its job is to make
+workspace state legible at a glance, so it is a real operational dashboard with compact metric
+surfaces and D3 charts. Those charts encode relationships the live snapshot actually carries, such
+as content distribution and resource readiness; they do not invent scores or decorative trends to
+fill the grid. This keeps the dashboard density useful without giving the rest of the application a
+generic admin-product aesthetic.
 
 The first window is a centred 1280 by 720 logical pixels, a 16:9 default rather than a minimum or
 a fixed canvas. After that first launch, geometry belongs to the native shell: Tauri's window-state

@@ -1,5 +1,10 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+#[tauri::command]
+fn overview_snapshot() -> Result<cms::overview::Snapshot, String> {
+	cms::overview::snapshot().map_err(|error| error.to_string())
+}
+
 fn main() {
 	let builder = tauri::Builder::default();
 	#[cfg(desktop)]
@@ -12,6 +17,7 @@ fn main() {
 	);
 
 	builder
+		.invoke_handler(tauri::generate_handler![overview_snapshot])
 		.run(tauri::generate_context!())
 		.expect("could not run the CMS desktop client");
 }

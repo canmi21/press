@@ -5,6 +5,10 @@
 	box-sizing: border-box;
 }
 
+[hidden] {
+	display: none !important;
+}
+
 :focus-visible {
 	outline: 0.125rem solid var(--color-accent);
 	outline-offset: -0.125rem;
@@ -82,6 +86,10 @@ button {
 		color 200ms;
 }
 
+.page-link + .page-link {
+	margin-top: 0.25rem;
+}
+
 .page-link:hover {
 	background: var(--color-paper-hover);
 	color: var(--color-text-strong);
@@ -122,11 +130,23 @@ button {
 	min-height: 0;
 	flex: 1;
 	overflow: auto;
-	padding: 4.5rem clamp(1.5rem, 6vw, 4rem);
+	padding: 3rem clamp(1.5rem, 6vw, 4rem) 3rem;
+}
+
+/* The scrollbar is drawn from the same tokens as everything else, so it flips with the theme
+   rather than being whatever the engine picks. `color-scheme` alone -- which is all the site
+   needs, because a page scrolls in the browser's own chrome -- leaves an app window's inner
+   scroll containers to the platform default, and a desktop shell has several of them.
+   The track stays transparent: a filled groove draws a permanent vertical rule down the edge of
+   a panel that is only sometimes scrollable. */
+.page-content,
+.sidebar-nav {
+	scrollbar-width: thin;
+	scrollbar-color: var(--color-border-strong) transparent;
 }
 
 .page-heading {
-	width: min(100%, 45rem);
+	width: min(100%, 72rem);
 	margin: 0 auto;
 }
 
@@ -144,4 +164,274 @@ button {
 	color: var(--color-text-soft);
 	font-size: 0.9375rem;
 	line-height: 1.6;
+}
+
+.overview {
+	width: min(100%, 72rem);
+	margin: 1.75rem auto 0;
+}
+
+.dashboard-metrics {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 0.75rem;
+}
+
+.metric,
+.dashboard-panel {
+	border: 0.0625rem solid var(--color-border);
+	border-radius: 0.75rem;
+	background: var(--color-paper);
+}
+
+.metric {
+	display: grid;
+	min-width: 0;
+	gap: 0.25rem;
+	padding: 1rem 1.125rem;
+}
+
+.metric > span,
+.metric small,
+.panel-heading p,
+.panel-heading > span {
+	color: var(--color-text-soft);
+}
+
+.metric > span {
+	font-size: 0.75rem;
+	font-weight: 500;
+}
+
+.metric strong {
+	margin-top: 0.375rem;
+	color: var(--color-text-strong);
+	font-size: 1.625rem;
+	font-weight: 550;
+	font-variant-numeric: tabular-nums;
+	letter-spacing: -0.04em;
+	line-height: 1;
+}
+
+.metric small {
+	overflow: hidden;
+	font-size: 0.6875rem;
+	line-height: 1.4;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.dashboard-grid {
+	display: grid;
+	grid-template-columns: minmax(0, 1.6fr) minmax(17rem, 1fr);
+	gap: 0.75rem;
+	margin-top: 0.75rem;
+}
+
+.dashboard-panel {
+	min-width: 0;
+	padding: 1.25rem;
+}
+
+.health-panel {
+	grid-column: 1 / -1;
+}
+
+.panel-heading {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.panel-heading h2 {
+	margin: 0;
+	color: var(--color-text-strong);
+	font-size: 0.875rem;
+	font-weight: 600;
+}
+
+.panel-heading p {
+	margin: 0.25rem 0 0;
+	font-size: 0.75rem;
+	line-height: 1.45;
+}
+
+.panel-heading > span {
+	flex: none;
+	font-size: 0.75rem;
+	font-variant-numeric: tabular-nums;
+}
+
+/* A quantity reads as a rule, not as a filled block. The previous charts poured `--color-blue`
+   across a third of the page; the token is an ink, sized for a mark or a stroke, and the palette
+   has no surface colour anywhere near that saturation. Keeping the bar at stroke height is what
+   lets colour go back to meaning state rather than meaning "bar". */
+/* The label column is intrinsic and shared, never a number. Sizing it per row -- which is what a
+   `grid-template-columns` on the `li` does -- let every bar start at its own label's right edge,
+   so four sections drew four tracks beginning at four different offsets. `auto` answers the label
+   that has no width anybody can predict, subgrid answers the alignment between rows, and neither
+   is a measurement to maintain. See spec/styling.md. */
+.meter-list {
+	display: grid;
+	grid-template-columns: auto minmax(3rem, 1fr) auto;
+	margin: 1rem 0 0;
+	padding: 0;
+	gap: 0.6875rem 0.75rem;
+	list-style: none;
+}
+
+.meter-list li {
+	display: grid;
+	grid-column: 1 / -1;
+	grid-template-columns: subgrid;
+	align-items: center;
+}
+
+.meter-label {
+	overflow: hidden;
+	color: var(--color-text);
+	font-size: 0.75rem;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.meter-value {
+	color: var(--color-text-soft);
+	font-size: 0.75rem;
+	font-variant-numeric: tabular-nums;
+}
+
+.meter-track {
+	position: relative;
+	height: 0.25rem;
+	border-radius: 0.125rem;
+	background: var(--color-border);
+}
+
+.meter-fill {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: var(--meter-fill, 0%);
+	height: 100%;
+	border-radius: inherit;
+	background: var(--color-text-soft);
+}
+
+/* A section that exists is drawn, however small its share. One article against a section holding
+   two hundred is 0.5% of the track -- a sliver narrower than the bar is tall, which renders as a
+   smear or as nothing at all, and reads as "no articles here" rather than "few".
+
+   The floor is a length rather than a percentage because what it protects is legibility at the
+   drawn size, which a percentage of an unknown track width cannot promise. At the bar's own
+   height it comes out as a round stub, the same shape the rounded cap already implies, so the
+   limit looks intended rather than clipped. The ratio itself is left honest in `sectionFill`;
+   only the drawing is clamped, and the exact count sits next to every bar regardless.
+
+   Readiness meters are excluded: 0 of 24 published is a real zero and must draw nothing. */
+.section-list .meter-fill {
+	width: max(0.25rem, var(--meter-fill, 0%));
+}
+
+/* Quantity is neutral; only state takes a hue. A section holding three articles is not "good", so
+   its bar stays on the text ramp, and green is spent on the one row that actually reports whether
+   the workspace is ready. */
+.meter-list li[data-tone='ready'] .meter-fill {
+	background: var(--color-green);
+}
+
+.meter-list li[data-tone='short'] .meter-fill {
+	background: var(--color-blue);
+}
+
+.health-list strong {
+	color: inherit;
+	font-weight: 500;
+}
+
+.health-action {
+	justify-self: start;
+	margin-top: 0.125rem;
+	padding: 0.0625rem 0.3125rem;
+	border: 0.0625rem solid var(--color-border);
+	border-radius: 0.25rem;
+	background: var(--color-page);
+	color: var(--color-text-soft);
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: 0.6875rem;
+}
+
+.health-list strong {
+	color: var(--color-text-strong);
+}
+
+.health-list span,
+.overview-state {
+	color: var(--color-text-soft);
+	font-size: 0.8125rem;
+	line-height: 1.5;
+}
+
+.overview-state {
+	margin: 1rem 0 0;
+	padding: 1rem;
+	border: 0.0625rem solid var(--color-border);
+	border-radius: 0.5rem;
+	background: var(--color-page);
+}
+
+.overview-state[data-state='clear'] {
+	color: var(--color-green);
+}
+
+.overview-state[data-state='error'] {
+	color: var(--color-red);
+}
+
+.health-list {
+	margin: 1rem 0 0;
+	padding: 0;
+	border-top: 0.0625rem solid var(--color-border);
+	list-style: none;
+}
+
+.health-list li {
+	display: grid;
+	grid-template-columns: 0.5rem minmax(0, 1fr);
+	gap: 0.75rem;
+	align-items: start;
+	padding: 0.875rem 0;
+	border-bottom: 0.0625rem solid var(--color-border);
+}
+
+.health-list li > div {
+	display: grid;
+	gap: 0.1875rem;
+}
+
+.health-marker {
+	width: 0.375rem;
+	height: 0.375rem;
+	margin-top: 0.4375rem;
+	border-radius: 50%;
+	background: var(--color-blue);
+}
+
+.health-list li[data-level='warn'] .health-marker {
+	background: var(--color-red);
+}
+
+@media (max-width: 58rem) {
+	.dashboard-metrics {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.dashboard-grid {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.health-panel {
+		grid-column: auto;
+	}
 }

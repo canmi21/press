@@ -17,6 +17,23 @@ pub enum Level {
 	Info,
 }
 
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+pub enum Action {
+	Image,
+	Alt,
+	Favicon,
+}
+
+impl Action {
+	pub fn command(self) -> &'static str {
+		match self {
+			Self::Image => "image",
+			Self::Alt => "alt",
+			Self::Favicon => "favicon",
+		}
+	}
+}
+
 impl Level {
 	pub fn label(self) -> &'static str {
 		match self {
@@ -31,6 +48,7 @@ pub struct Gap {
 	pub level: Level,
 	pub what: String,
 	pub detail: String,
+	pub action: Option<Action>,
 }
 
 /// Everything an article references that `data/public` cannot answer for.
@@ -47,7 +65,8 @@ fn gaps(scan: &Scan, public: &Path, described: &crate::media::Media) -> Vec<Gap>
 		found.push(Gap {
 			level: Level::Warn,
 			what: image.value.clone(),
-			detail: "not derived yet -- run cms image".to_owned(),
+			detail: "not derived yet".to_owned(),
+			action: Some(Action::Image),
 		});
 	}
 
@@ -57,6 +76,7 @@ fn gaps(scan: &Scan, public: &Path, described: &crate::media::Media) -> Vec<Gap>
 				level: Level::Warn,
 				what: cid,
 				detail: "referenced but not published".to_owned(),
+				action: Some(Action::Image),
 			});
 		}
 	}
@@ -68,7 +88,8 @@ fn gaps(scan: &Scan, public: &Path, described: &crate::media::Media) -> Vec<Gap>
 			found.push(Gap {
 				level: Level::Info,
 				what: cid,
-				detail: "no description -- run cms alt".to_owned(),
+				detail: "no description".to_owned(),
+				action: Some(Action::Alt),
 			});
 		}
 	}
@@ -76,13 +97,14 @@ fn gaps(scan: &Scan, public: &Path, described: &crate::media::Media) -> Vec<Gap>
 	for (domain, tone) in scan.icons() {
 		if favicon::stored(public, &domain, tone.as_deref()).is_none() {
 			let detail = match &tone {
-				Some(tone) => format!("no {tone} icon collected -- run cms favicon"),
-				None => "no icon collected -- run cms favicon".to_owned(),
+				Some(tone) => format!("no {tone} icon collected"),
+				None => "no icon collected".to_owned(),
 			};
 			found.push(Gap {
 				level: Level::Info,
 				what: domain,
 				detail,
+				action: Some(Action::Favicon),
 			});
 		}
 	}
