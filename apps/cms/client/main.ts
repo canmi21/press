@@ -1,6 +1,8 @@
 import { followSystemTheme } from '@canmi/theme';
 import { invoke } from '@tauri-apps/api/core';
 import { getCurrentWindow } from '@tauri-apps/api/window';
+import { renderArticles, renderArticlesError, type ArticleListing } from './articles';
+import { renderDerived, renderDerivedError, type DerivedReport } from './derived';
 import { renderOverview, renderOverviewError, type OverviewSnapshot } from './overview';
 import './style.css';
 
@@ -13,11 +15,15 @@ const pages = {
 	},
 	articles: {
 		title: 'Articles',
-		description: 'Article browsing and editing will appear here.',
+		description: 'Everything written here, and what the derived records still owe it.',
 	},
 	media: {
 		title: 'Media',
 		description: 'Imported resources and their processing state will appear here.',
+	},
+	derived: {
+		title: 'Derived',
+		description: 'What every generated record still owes the writing.',
 	},
 	automations: {
 		title: 'Automations',
@@ -47,6 +53,8 @@ const pageLinks = Array.from(document.querySelectorAll<HTMLButtonElement>('[data
 const pageTitle = requiredElement<HTMLElement>('[data-page-title]');
 const pageDescription = requiredElement<HTMLElement>('[data-page-description]');
 const overview = requiredElement<HTMLElement>('[data-overview]');
+const articles = requiredElement<HTMLElement>('[data-articles]');
+const derived = requiredElement<HTMLElement>('[data-derived]');
 
 function selectPage(page: Page): void {
 	const selected = pages[page];
@@ -58,6 +66,8 @@ function selectPage(page: Page): void {
 	pageTitle.textContent = selected.title;
 	pageDescription.textContent = selected.description;
 	overview.hidden = page !== 'overview';
+	articles.hidden = page !== 'articles';
+	derived.hidden = page !== 'derived';
 	document.title = selected.title;
 }
 
@@ -70,8 +80,19 @@ if ('__TAURI_INTERNALS__' in window) {
 		(snapshot) => renderOverview(overview, snapshot),
 		(error: unknown) => renderOverviewError(overview, error),
 	);
+	void invoke<ArticleListing>('article_listing').then(
+		(listing) => renderArticles(articles, listing),
+		(error: unknown) => renderArticlesError(articles, error),
+	);
+	void invoke<DerivedReport>('derived_report').then(
+		(report) => renderDerived(derived, report),
+		(error: unknown) => renderDerivedError(derived, error),
+	);
 } else {
-	renderOverviewError(overview, new Error('Workspace data is available in the desktop app.'));
+	const absent = new Error('Workspace data is available in the desktop app.');
+	renderOverviewError(overview, absent);
+	renderArticlesError(articles, absent);
+	renderDerivedError(derived, absent);
 }
 
 if ('__TAURI_INTERNALS__' in window) {

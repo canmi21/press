@@ -5,6 +5,16 @@ fn overview_snapshot() -> Result<cms::overview::Snapshot, String> {
 	cms::overview::snapshot().map_err(|error| error.to_string())
 }
 
+#[tauri::command]
+fn article_listing() -> Result<cms::articles::Listing, String> {
+	cms::articles::listing().map_err(|error| error.to_string())
+}
+
+#[tauri::command]
+fn derived_report() -> Result<cms::derived::Report, String> {
+	cms::derived::report().map_err(|error| error.to_string())
+}
+
 fn main() {
 	let builder = tauri::Builder::default();
 	#[cfg(desktop)]
@@ -17,7 +27,11 @@ fn main() {
 	);
 
 	builder
-		.invoke_handler(tauri::generate_handler![overview_snapshot])
+		.invoke_handler(tauri::generate_handler![
+			overview_snapshot,
+			article_listing,
+			derived_report
+		])
 		.run(tauri::generate_context!())
 		.expect("could not run the CMS desktop client");
 }

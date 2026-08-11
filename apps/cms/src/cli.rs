@@ -1,8 +1,8 @@
 //! The command-line adapter for shared CMS operations. See spec/architecture.md.
 
 use crate::{
-	alt, check, classify, embed, favicon, gc, i18n, image, licenses, locale, media, opengraph,
-	overview, paths, port, progress, refs, summary,
+	alt, articles, check, classify, derived, embed, favicon, gc, i18n, image, licenses, locale,
+	media, opengraph, overview, paths, port, progress, refs, summary,
 };
 use std::process::ExitCode;
 
@@ -10,6 +10,8 @@ pub fn run() -> ExitCode {
 	let args: Vec<String> = std::env::args().skip(1).collect();
 	match args.first().map(String::as_str) {
 		Some("overview") => print_overview(),
+		Some("articles") => print_articles(),
+		Some("derived") => print_derived(),
 		Some("port") => print_port(),
 		Some("favicon") => fetch_favicons(&args[1..]),
 		Some("image") => process_images(&args[1..]),
@@ -51,6 +53,44 @@ fn print_overview() -> ExitCode {
 		},
 		Err(error) => {
 			eprintln!("could not read overview: {error}");
+			ExitCode::FAILURE
+		}
+	}
+}
+
+fn print_articles() -> ExitCode {
+	match articles::listing() {
+		Ok(listing) => match serde_json::to_string_pretty(&listing) {
+			Ok(json) => {
+				println!("{json}");
+				ExitCode::SUCCESS
+			}
+			Err(error) => {
+				eprintln!("could not encode the article listing: {error}");
+				ExitCode::FAILURE
+			}
+		},
+		Err(error) => {
+			eprintln!("could not read the article listing: {error}");
+			ExitCode::FAILURE
+		}
+	}
+}
+
+fn print_derived() -> ExitCode {
+	match derived::report() {
+		Ok(report) => match serde_json::to_string_pretty(&report) {
+			Ok(json) => {
+				println!("{json}");
+				ExitCode::SUCCESS
+			}
+			Err(error) => {
+				eprintln!("could not encode the derived report: {error}");
+				ExitCode::FAILURE
+			}
+		},
+		Err(error) => {
+			eprintln!("could not read the derived report: {error}");
 			ExitCode::FAILURE
 		}
 	}
@@ -190,11 +230,6 @@ fn selected_model_override(
 	})
 }
 
-/// Describe every asset that has no description yet.
-///
-/// The description is written into the manifest, so it belongs to the picture rather than to
-/// whichever article happened to be open when it was generated. Every reference inherits it,
-/// including ones written later.
 /// Write a reader-facing summary into every article that has none.
 ///
 /// The value lands in a sidecar beside the article, in the article's own language. `cms locale`
@@ -266,6 +301,11 @@ fn summarise_articles(args: &[String]) -> ExitCode {
 	}
 }
 
+/// Describe every asset that has no description yet.
+///
+/// The description is written into the manifest, so it belongs to the picture rather than to
+/// whichever article happened to be open when it was generated. Every reference inherits it,
+/// including ones written later.
 fn describe_images(args: &[String]) -> ExitCode {
 	let force = args.iter().any(|arg| arg == "--force");
 	let limit = args
@@ -1298,6 +1338,8 @@ fn usage() {
 	eprintln!();
 	eprintln!("commands:");
 	eprintln!("  overview                    print the workspace overview as JSON");
+	eprintln!("  articles                    print the article listing and translation coverage");
+	eprintln!("  derived                     print what each derived record class still owes");
 	eprintln!("  port                        print the port the web UI will bind");
 	eprintln!("  image [--force] [--original] [file...]");
 	eprintln!("                              derive what the articles reference, then rewrite them");

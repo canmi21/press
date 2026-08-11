@@ -37,6 +37,13 @@
 						</svg>
 						<span>Media</span>
 					</button>
+					<button class="page-link" type="button" data-page="derived">
+						<svg aria-hidden="true" viewBox="0 0 24 24">
+							<path d="M3 12a9 9 0 0 1 9-9 9 9 0 0 1 9 9 9 9 0 0 1-9 9 9 9 0 0 1-9-9Z" />
+							<path d="M12 7v5l3 3" />
+						</svg>
+						<span>Derived</span>
+					</button>
 
 					<hr />
 
@@ -123,6 +130,22 @@
 								<ul class="health-list" data-health-list hidden></ul>
 							</section>
 						</div>
+					</div>
+
+					<div class="articles" data-articles aria-live="polite" hidden>
+						<header class="page-subheading">
+							<span data-articles-total>— articles</span>
+							<span data-articles-state>Reading…</span>
+						</header>
+						<div data-articles-list></div>
+					</div>
+
+					<div class="derived" data-derived aria-live="polite" hidden>
+						<header class="page-subheading">
+							<span data-derived-total>— record classes</span>
+							<span data-derived-state>Reading…</span>
+						</header>
+						<ul class="derived-list" data-derived-list></ul>
 					</div>
 				</main>
 			</section>

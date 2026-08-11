@@ -244,16 +244,30 @@ fn body_of(source: &str) -> &str {
 		.trim_start_matches(['\n', '\r'])
 }
 
-/// The `lang` an article declares, if it declares one.
-pub fn lang_of(source: &str) -> Option<String> {
+/// A string field from the frontmatter block, if the file opens with one.
+///
+/// One parser rather than one per field: the second caller is where a copy starts disagreeing
+/// with the first about what counts as frontmatter, and the answer to that question decides
+/// whether a file is an article at all.
+fn field_of(source: &str, key: &str) -> Option<String> {
 	let rest = source.strip_prefix("---\n")?;
 	let end = rest.find("\n---")?;
 	let value: serde_yaml_ng::Value = serde_yaml_ng::from_str(&rest[..end]).ok()?;
 	value
 		.as_mapping()?
-		.get(serde_yaml_ng::Value::from("lang"))
+		.get(serde_yaml_ng::Value::from(key))
 		.and_then(serde_yaml_ng::Value::as_str)
 		.map(str::to_owned)
+}
+
+/// The `lang` an article declares, if it declares one.
+pub fn lang_of(source: &str) -> Option<String> {
+	field_of(source, "lang")
+}
+
+/// The `title` an article declares, if it declares one.
+pub fn title_of(source: &str) -> Option<String> {
+	field_of(source, "title")
 }
 
 /// Which articles still want a summary in their own language.

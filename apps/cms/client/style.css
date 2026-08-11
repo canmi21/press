@@ -350,6 +350,258 @@ button {
 	font-weight: 500;
 }
 
+.articles {
+	width: min(100%, 72rem);
+	margin: 1.75rem auto 0;
+}
+
+.page-subheading {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 1rem;
+	padding-bottom: 0.75rem;
+	border-bottom: 0.0625rem solid var(--color-border);
+	color: var(--color-text-soft);
+	font-size: 0.75rem;
+	font-variant-numeric: tabular-nums;
+}
+
+.page-subheading [data-state='error'] {
+	color: var(--color-red);
+}
+
+.article-group + .article-group {
+	margin-top: 1.75rem;
+}
+
+.article-group > header {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 1rem;
+	margin: 1.25rem 0 0.5rem;
+}
+
+.article-group h2 {
+	margin: 0;
+	color: var(--color-text-strong);
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+}
+
+.article-group > header span {
+	color: var(--color-text-soft);
+	font-size: 0.75rem;
+	font-variant-numeric: tabular-nums;
+}
+
+.article-list {
+	display: grid;
+	margin: 0;
+	padding: 0;
+	gap: 0.5rem;
+	list-style: none;
+}
+
+/* A row is a card rather than a table line because the four things it carries -- name, coverage,
+   what is missing, and which locales -- are not four values of one kind, and a table would have
+   to pretend they were. The locale strip is the part a reader scans, so it gets the right edge
+   where the eye already ends up. */
+.article-list li {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	align-items: center;
+	gap: 0.375rem 1.25rem;
+	padding: 0.875rem 1rem;
+	border: 0.0625rem solid var(--color-border);
+	border-radius: 0.75rem;
+	background: var(--color-paper);
+}
+
+.article-heading {
+	display: flex;
+	min-width: 0;
+	align-items: baseline;
+	gap: 0.5rem;
+}
+
+.article-heading strong {
+	overflow: hidden;
+	color: var(--color-text-strong);
+	font-size: 0.8125rem;
+	font-weight: 550;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.article-path {
+	flex: none;
+	color: var(--color-text-soft);
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: 0.6875rem;
+}
+
+.article-coverage {
+	display: grid;
+	grid-row: 1;
+	grid-column: 2;
+	grid-template-columns: 5rem auto;
+	align-items: center;
+	gap: 0.625rem;
+}
+
+.article-detail {
+	grid-column: 1;
+	color: var(--color-text-soft);
+	font-size: 0.6875rem;
+	line-height: 1.45;
+}
+
+.article-list li[data-tone='untranslated'] .article-detail {
+	color: var(--color-red);
+}
+
+.article-list li[data-tone='complete'] .meter-fill {
+	background: var(--color-green);
+}
+
+.article-list li[data-tone='partial'] .meter-fill {
+	background: var(--color-blue);
+}
+
+.article-list li[data-tone='untranslated'] .meter-fill {
+	background: var(--color-red);
+}
+
+.locale-grid {
+	display: flex;
+	grid-column: 2;
+	gap: 0.1875rem;
+}
+
+/* Two letters, not a flag and not the full tag: the strip has to stay scannable at eight columns,
+   and a flag names a country rather than a language. Colour carries the state and the letters
+   carry which language it is, so neither has to be read to get the other. */
+.locale-cell {
+	display: flex;
+	width: 1.375rem;
+	padding: 0.125rem 0;
+	align-items: center;
+	justify-content: center;
+	border-radius: 0.25rem;
+	font-size: 0.625rem;
+	font-variant-numeric: tabular-nums;
+	text-transform: uppercase;
+}
+
+.locale-cell[data-state='covered'] {
+	background: var(--color-paper-hover);
+	color: var(--color-text-soft);
+}
+
+.locale-cell[data-state='short'] {
+	background: color-mix(in oklch, var(--color-red) 18%, transparent);
+	color: var(--color-red);
+}
+
+.derived {
+	width: min(100%, 72rem);
+	margin: 1.75rem auto 0;
+}
+
+.derived-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+	margin: 1.25rem 0 0;
+	padding: 0;
+	gap: 0.75rem;
+	list-style: none;
+}
+
+.derived-list li {
+	display: grid;
+	align-content: start;
+	gap: 0.625rem;
+	padding: 1.125rem;
+	border: 0.0625rem solid var(--color-border);
+	border-radius: 0.75rem;
+	background: var(--color-paper);
+}
+
+.derived-heading {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 0.75rem;
+}
+
+.derived-heading strong {
+	color: var(--color-text-strong);
+	font-size: 0.8125rem;
+	font-weight: 600;
+}
+
+.derived-count {
+	color: var(--color-text-soft);
+	font-size: 0.75rem;
+	font-variant-numeric: tabular-nums;
+}
+
+.derived-list p {
+	margin: 0;
+	color: var(--color-text-soft);
+	font-size: 0.6875rem;
+	line-height: 1.5;
+}
+
+.derived-footer {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.375rem 0.5rem;
+}
+
+.derived-state {
+	font-size: 0.6875rem;
+	font-variant-numeric: tabular-nums;
+}
+
+.derived-list li[data-tone='complete'] .meter-fill {
+	background: var(--color-green);
+}
+
+.derived-list li[data-tone='complete'] .derived-state {
+	color: var(--color-text-soft);
+}
+
+.derived-list li[data-tone='short'] .meter-fill {
+	background: var(--color-blue);
+}
+
+.derived-list li[data-tone='short'] .derived-state {
+	color: var(--color-text-strong);
+}
+
+.derived-list li[data-tone='empty'] .meter-fill {
+	background: var(--color-red);
+}
+
+.derived-list li[data-tone='empty'] .derived-state {
+	color: var(--color-red);
+}
+
+/* A class whose command spends money says so before anybody reaches for it. */
+.derived-paid {
+	padding: 0.0625rem 0.375rem;
+	border-radius: 0.625rem;
+	background: var(--color-paper-hover);
+	color: var(--color-text-soft);
+	font-size: 0.625rem;
+}
+
 .health-action {
 	justify-self: start;
 	margin-top: 0.125rem;

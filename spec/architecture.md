@@ -217,6 +217,26 @@ An operation that runs on a schedule needs things a one-shot command never did -
 whether it succeeded, what it spent, and what must run before it. Recording that is the
 application layer's job under the rule below, not a page's.
 
+#### A page names the work; it does not start it
+
+A view that has found outstanding work shows the command that closes it. Starting that command is
+the task centre's, and until the task centre exists a page offers the command as text rather than
+as a button.
+
+The reason is what these operations are. They run for minutes, several of them spend money on a
+model, and they are not safe to run twice at once over the same files. Anything that starts one
+therefore has to report progress while it runs, refuse a second copy of itself, and record what
+it cost -- and a control that can do none of those is a worse version of copying the line, because
+it looks like it did something. Half of a run mechanism is not a smaller version of one; it is the
+part that lies.
+
+This also fixes what has to be built before an interactive run exists at all: the operations
+currently live inside the command-line adapter as functions returning an exit code and writing to
+a terminal progress bar. An operation the GUI can start is one that has moved below both shells
+and reports progress to a caller rather than to standard output.
+
+A class that spends money says so wherever it is offered, before anybody reaches for it.
+
 ### The CMS has two shells and one home
 
 `apps/cms` owns both ways a person reaches content management. Its existing Rust binary is the

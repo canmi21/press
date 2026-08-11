@@ -20,5 +20,7 @@ mod refs;
 mod summary;
 mod tags;
 
+pub mod articles;
 pub mod cli;
+pub mod derived;
 pub mod overview;
