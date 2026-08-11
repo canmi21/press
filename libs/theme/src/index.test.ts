@@ -1,5 +1,14 @@
 import { describe, expect, it } from 'vitest';
+import { inlineScriptString } from './inline-script';
 import { followSystemTheme, themeScript } from './index';
+
+describe('inlineScriptString', () => {
+	it('keeps serialized values inside the inline script element', () => {
+		expect(inlineScriptString('</script>\u2028\u2029')).toBe(
+			'"\\u003C/script\\u003E\\u2028\\u2029"',
+		);
+	});
+});
 
 describe('themeScript', () => {
 	it('keeps the site theme cookie contract', () => {
