@@ -208,13 +208,21 @@ the interface begins to expose them.
 
 The desktop entry starts empty and takes its colours from `@canmi/tokens`; a second design system
 does not begin at the window edge. Its native title follows the HTML `<title>` as that value
-changes, and the frontend receives only the Tauri permission needed to do that. `app.canmi.cms`
-is the application identifier: it follows reverse-domain order for `canmi.app` and does not end
-in macOS's `.app` bundle extension. Platform icon variants live at Tauri's `src-tauri/icons`
-boundary and the bundle names them explicitly. Both browser interfaces use Tailwind, so the
-desktop client consumes the same Tailwind-facing token surface as the site rather than maintaining
-an adapter of its own. Tauri's capability schemas under `src-tauri/gen` are generated build
-output: they stay untracked and are excluded from repository reference checks.
+changes, and the frontend receives only the Tauri permission needed to do that. The active page
+owns that title: an outer page starts with its own name alone and may append the detail it opens,
+while the shell does not repeat `CMS` as a parent suffix on every page. `app.canmi.cms` is the
+application identifier: it follows reverse-domain order for `canmi.app` and does not end in macOS's
+`.app` bundle extension. Platform icon variants live at Tauri's `src-tauri/icons` boundary and the
+bundle names them explicitly. Both browser interfaces use Tailwind, so the desktop client consumes
+the same Tailwind-facing token surface as the site rather than maintaining an adapter of its own.
+Tauri's capability schemas under `src-tauri/gen` are generated build output: they stay untracked
+and are excluded from repository reference checks.
+
+The shared visual language extends beyond the palette. The CMS uses the site's quiet text
+hierarchy, generous content spacing, hairline borders, paper only for contained surfaces and
+restrained line icons. Being an operations tool does not give it a separate generic admin-dashboard
+aesthetic: navigation does not introduce branded tiles, gratuitous cards or ornamental status
+chrome that the reader-facing site would never use.
 
 The first window is a centred 1280 by 720 logical pixels, a 16:9 default rather than a minimum or
 a fixed canvas. After that first launch, geometry belongs to the native shell: Tauri's window-state
@@ -226,6 +234,18 @@ does not flash the default rectangle before moving to the saved one.
 Theme behaviour is shared separately from its colour values. `@canmi/tokens` remains the palette;
 `@canmi/theme` owns the system dark-mode query and the site's pre-paint bootstrap. The desktop shell
 follows that system query live, while the public site can still honour its explicit `theme` cookie.
+
+The WebView is one application shell with a persistent left sidebar. Its top-level destinations are
+Overview, Articles, Media, Automations and Activity: content and resources are things to manage,
+while scheduled work and its history are separate views of what the CMS does to them. Individual
+CLI commands do not become navigation destinations. They become tasks inside Automations, with
+their runs reported by Activity, so adding another operation does not make the application's
+information architecture wider.
+
+The CMS interface is `en-US` only. It is an authoring and operations tool for the local workspace,
+not a reader-facing surface, so it does not carry a locale selector, message catalog or translated
+UI copy. Internationalisation belongs to interfaces the site's readers use; the CMS manages that
+content without localising itself.
 
 `dev-cms` enables the MCP bridge as an optional Cargo feature and exposes Tauri's JavaScript global
 only through its runtime development config. The bridge is additionally gated by Rust debug
