@@ -197,6 +197,26 @@ damped out. A transform or an unconstrained layout dimension such as width has r
 
 ## Workspace wiring
 
+### The desktop CMS is a resident process, not a viewer
+
+The Tauri client stays running. It exists to do two things the command-line shell structurally
+cannot: **run the periodic work on a schedule**, and **be the editor articles are written in**.
+Everything else it displays is in service of those two.
+
+That is what makes it resident rather than a window someone opens to look at numbers. A schedule
+kept by a process that is only alive while a person is watching is not a schedule, and an editor
+that has to be relaunched to save is not an editor. Both requirements land on the same place: the
+application layer below the shells has to own long-running work and its record, because a CLI
+invocation exits and takes its state with it.
+
+The scriptable shell keeps its own reason to exist: builds and local workflows drive it, and a
+scheduled task must remain runnable by hand without the desktop app installed. Neither shell is
+the fallback for the other.
+
+An operation that runs on a schedule needs things a one-shot command never did -- what ran, when,
+whether it succeeded, what it spent, and what must run before it. Recording that is the
+application layer's job under the rule below, not a page's.
+
 ### The CMS has two shells and one home
 
 `apps/cms` owns both ways a person reaches content management. Its existing Rust binary is the
