@@ -1,0 +1,10 @@
+{
+	"mcpServers": {
+		"tauri": {
+			"type": "stdio",
+			"command": "./apps/cms/node_modules/.bin/mcp-server-tauri",
+			"args": [],
+			"env": {}
+		}
+	}
+}

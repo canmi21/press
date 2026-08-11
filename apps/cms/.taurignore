@@ -1,0 +1,16 @@
+# The dev watcher follows Cargo path dependencies, and `cms-app` depends on `cms = { path = ".." }`,
+# so it watches all of apps/cms rather than just src-tauri. The frontend sources live in that same
+# directory, so every edit to a .ts, .css or .html file triggered a cargo rebuild and an app
+# restart -- which then threw away the Vite hot update that had already applied. Vite owns these
+# files; nothing under here changes a byte of the Rust binary.
+#
+# This file belongs beside the crate the watcher is following, not in src-tauri. Patterns are
+# gitignore syntax resolved against the directory holding the file, so a copy in src-tauri reads
+# `client/` as `src-tauri/client/` and silently matches nothing -- measured: the app still
+# restarted. See spec/toolchain.md.
+client/
+index.html
+package.json
+vite.config.ts
+node_modules/
+dist/

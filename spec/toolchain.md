@@ -126,6 +126,28 @@ file, and a TypeScript library cannot be read by a Rust process -- putting a cro
 fact there would force the duplication the rule exists to prevent. URLs only the TypeScript
 side resolves still belong in [architecture.md](architecture.md)'s URL map.
 
+## The Tauri dev watcher is told where the frontend is
+
+`tauri dev` watches every directory Cargo reaches through a local `path` dependency, not just
+`src-tauri`. `cms-app` depends on `cms = { path = ".." }`, so the watched set includes all of
+`apps/cms` -- which is also where the frontend sources live. Editing a `.ts` or `.css` file
+therefore triggered a cargo rebuild and an app restart, and the restart discarded the Vite hot
+update that had already applied. The symptom reads as "HMR is broken"; HMR was fine and was
+being overwritten a second later.
+
+The fix is a `.taurignore` listing the paths Vite owns. **It belongs beside the crate being
+watched -- `apps/cms/.taurignore` -- and not in `src-tauri`,** which is where the obvious guess
+puts it. Patterns are gitignore syntax resolved against the directory holding the file, so a
+copy in `src-tauri` reads `client/` as `src-tauri/client/`, matches nothing, and fails silently:
+the app goes on restarting and the file looks like it was ignored rather than misplaced. Both
+directions were measured by touching a file and watching the process id.
+
+Ignoring too much fails the same way round the other side, so the list names frontend paths
+explicitly rather than excluding everything but `src/`. A Rust edit must still rebuild.
+
+This is a consequence of the frontend and the Rust crate sharing one directory. An app whose
+crate lives entirely under `src-tauri` never sees it, and is not the layout here.
+
 ## Version control
 
 jj (Jujutsu), colocated with git -- `.jj` and `.git` sit side by side in the repo root. Use
