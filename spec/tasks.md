@@ -95,3 +95,10 @@ belongs to, and a path is not a directory name, so the key becomes a hash -- and
 tell which checkout a directory belongs to without resolving it. Putting the state _in_ the
 repository dissolves the question: processes working on one checkout share a directory because it
 is the same directory, and two checkouts are independent because they are.
+
+**A claim file's name is still a hash, and that is a different case.** What made hashing the wrong
+answer above was that somebody looking at the directory could no longer tell which repository it
+served. An item key -- an article path with slashes in it, a segment id and a locale -- also
+cannot be a file name, but nothing needs to recover it _from_ the name: the key is written inside
+the file, so `cms claims` and a person reading the directory both get the readable answer. The
+hash costs no legibility there, which is the only thing it cost above.

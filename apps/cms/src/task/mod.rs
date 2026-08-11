@@ -16,6 +16,11 @@
 //! no scheduler exists. Declaring it now means the scheduler can be written without reopening
 //! thirteen operations to ask what they depend on.
 
+pub mod claim;
+pub mod progress;
+pub mod registry;
+pub mod writer;
+
 use serde::Serialize;
 
 /// A record store a task reads or mutates.
