@@ -493,6 +493,63 @@ button {
 	list-style: none;
 }
 
+.task-runs {
+	margin-top: 1.25rem;
+	padding: 1rem 1.125rem;
+	border: 0.0625rem solid var(--color-border);
+	border-radius: 0.75rem;
+	background: var(--color-paper);
+}
+
+.task-runs ul {
+	display: grid;
+	margin: 0;
+	padding: 0;
+	gap: 0.875rem;
+	list-style: none;
+}
+
+.task-runs li {
+	display: grid;
+	gap: 0.5rem;
+}
+
+.task-run-heading,
+.task-run-detail {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.task-run-heading strong {
+	color: var(--color-text-strong);
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: 0.75rem;
+	font-weight: 550;
+}
+
+.task-run-heading span,
+.task-run-detail {
+	color: var(--color-text-soft);
+	font-size: 0.6875rem;
+}
+
+.task-run-detail span:first-child {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.task-run-detail span:last-child {
+	flex: none;
+	font-variant-numeric: tabular-nums;
+}
+
+.task-runs .meter-fill {
+	background: var(--color-blue);
+}
+
 .derived-list li {
 	display: grid;
 	align-content: start;
@@ -584,6 +641,20 @@ button {
 	color: var(--color-text-soft);
 	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 	font-size: 0.6875rem;
+}
+
+button.health-action {
+	cursor: pointer;
+}
+
+button.health-action:hover:not(:disabled) {
+	border-color: var(--color-border-strong);
+	color: var(--color-text-strong);
+}
+
+button.health-action:disabled {
+	cursor: default;
+	opacity: 0.55;
 }
 
 .health-list strong {

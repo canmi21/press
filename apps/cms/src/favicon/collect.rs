@@ -36,6 +36,22 @@ pub struct Options<'a> {
 	pub sink: Box<dyn progress::Sink>,
 }
 
+pub fn from_articles(
+	repository: &Path,
+	force: bool,
+	shell: registry::Shell,
+	sink: Box<dyn progress::Sink>,
+) -> std::io::Result<Outcome> {
+	let wanted = crate::refs::scan(&repository.join("contents"))?.wanted();
+	run(Options {
+		repository,
+		wanted: &wanted,
+		force,
+		shell,
+		sink,
+	})
+}
+
 /// Collect every icon in `wanted` that this process can claim.
 pub fn run(options: Options<'_>) -> std::io::Result<Outcome> {
 	let Options {

@@ -2,7 +2,13 @@ import { followSystemTheme } from '@canmi/theme';
 import { invoke } from '@tauri-apps/api/core';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { renderArticles, renderArticlesError, type ArticleListing } from './articles';
-import { renderDerived, renderDerivedError, type DerivedReport } from './derived';
+import {
+	renderDerived,
+	renderDerivedError,
+	renderTaskRuns,
+	type DerivedReport,
+	type TaskRun,
+} from './derived';
 import { renderOverview, renderOverviewError, type OverviewSnapshot } from './overview';
 import './style.css';
 
@@ -48,6 +54,48 @@ const pageLabel = requiredElement<HTMLElement>('[data-page-label]');
 const overview = requiredElement<HTMLElement>('[data-overview]');
 const articles = requiredElement<HTMLElement>('[data-articles]');
 const derived = requiredElement<HTMLElement>('[data-derived]');
+let liveTaskRuns: TaskRun[] = [];
+let taskPoll: number | undefined;
+
+// A one-second cadence keeps minute-long work visibly current without scanning the machine-wide
+// lock directory more often than a person can use the updates.
+const taskPollInterval = 1_000;
+
+function showDerivedReport(report: DerivedReport): void {
+	renderDerived(derived, report, liveTaskRuns, startTask);
+}
+
+function scheduleTaskPoll(): void {
+	if (taskPoll !== undefined) window.clearTimeout(taskPoll);
+	taskPoll = window.setTimeout(() => {
+		taskPoll = undefined;
+		void refreshTaskRuns();
+	}, taskPollInterval);
+}
+
+async function refreshTaskRuns(): Promise<void> {
+	const hadLiveRuns = liveTaskRuns.length > 0;
+	try {
+		liveTaskRuns = await invoke<TaskRun[]>('live_task_runs');
+		renderTaskRuns(derived, liveTaskRuns);
+		if (liveTaskRuns.length > 0) scheduleTaskPoll();
+		else if (hadLiveRuns) {
+			void invoke<DerivedReport>('derived_report').then(showDerivedReport, (error: unknown) =>
+				renderDerivedError(derived, error),
+			);
+		}
+	} catch (error: unknown) {
+		renderDerivedError(derived, error);
+	}
+}
+
+function startTask(task: 'favicon'): void {
+	if (liveTaskRuns.some((run) => run.task === task)) return;
+	void invoke<number>('start_favicon_collection').then(
+		() => scheduleTaskPoll(),
+		(error: unknown) => renderDerivedError(derived, error),
+	);
+}
 
 function selectPage(page: Page): void {
 	const selected = pages[page];
@@ -76,10 +124,13 @@ if ('__TAURI_INTERNALS__' in window) {
 		(listing) => renderArticles(articles, listing),
 		(error: unknown) => renderArticlesError(articles, error),
 	);
-	void invoke<DerivedReport>('derived_report').then(
-		(report) => renderDerived(derived, report),
-		(error: unknown) => renderDerivedError(derived, error),
+	void invoke<DerivedReport>('derived_report').then(showDerivedReport, (error: unknown) =>
+		renderDerivedError(derived, error),
 	);
+	void refreshTaskRuns();
+	window.addEventListener('focus', () => {
+		if (taskPoll === undefined) void refreshTaskRuns();
+	});
 } else {
 	const absent = new Error('Workspace data is available in the desktop app.');
 	renderOverviewError(overview, absent);

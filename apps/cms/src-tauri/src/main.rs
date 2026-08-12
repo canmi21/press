@@ -15,6 +15,40 @@ fn derived_report() -> Result<cms::derived::Report, String> {
 	cms::derived::report().map_err(|error| error.to_string())
 }
 
+#[tauri::command]
+fn start_favicon_collection() -> Result<u32, String> {
+	let repository = cms::paths::repo_root().map_err(|error| error.to_string())?;
+	if let Some(run) =
+		cms::task::registry::running(&repository, "favicon").map_err(|error| error.to_string())?
+	{
+		return Ok(run.pid);
+	}
+
+	let pid = std::process::id();
+	std::thread::Builder::new()
+		.name("favicon-collection".to_owned())
+		.spawn(move || {
+			if let Err(error) = cms::favicon::collect::from_articles(
+				&repository,
+				false,
+				cms::task::registry::Shell::Desktop,
+				Box::new(cms::task::progress::Silent),
+			) {
+				eprintln!("favicon collection failed: {error}");
+			}
+		})
+		.map_err(|error| error.to_string())?;
+	Ok(pid)
+}
+
+#[tauri::command]
+fn live_task_runs() -> Result<Vec<cms::task::registry::Run>, String> {
+	let repository = cms::paths::repo_root().map_err(|error| error.to_string())?;
+	// Poll the machine-wide registry instead of subscribing to Tauri events: events could only
+	// expose runs started by this window, while the registry also includes terminal commands.
+	cms::task::registry::live(&repository).map_err(|error| error.to_string())
+}
+
 fn main() {
 	let builder = tauri::Builder::default();
 	#[cfg(desktop)]
@@ -30,7 +64,9 @@ fn main() {
 		.invoke_handler(tauri::generate_handler![
 			overview_snapshot,
 			article_listing,
-			derived_report
+			derived_report,
+			start_favicon_collection,
+			live_task_runs
 		])
 		.run(tauri::generate_context!())
 		.expect("could not run the CMS desktop client");

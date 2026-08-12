@@ -6,6 +6,12 @@
 # See spec/tasks.md.
 .cms/
 
+# pnpm keeps its content-addressable store in ~/Library/pnpm. A copy appears here only when
+# something runs pnpm inside a sandbox that cannot reach the home directory -- a coding agent
+# confined to the workspace is the case that produced it -- and pnpm silently falls back to the
+# project root. Harmless, never wanted in a diff.
+.pnpm-store/
+
 # Build output
 build/
 # This is build-time source code, not generated output.

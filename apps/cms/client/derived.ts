@@ -10,7 +10,18 @@ export type DerivedReport = {
 	}>;
 };
 
+export type TaskRun = {
+	task: string;
+	pid: number;
+	shell: 'cli' | 'desktop';
+	started: string;
+	done: number;
+	total: number;
+	message: string;
+};
+
 type Class = DerivedReport['classes'][number];
+type StartTask = (task: 'favicon') => void;
 
 function requiredElement<T extends Element>(root: Element, selector: string): T {
 	const element = root.querySelector<T>(selector);
@@ -23,7 +34,7 @@ function toneOf(entry: Class): 'complete' | 'short' | 'empty' {
 	return entry.have === 0 ? 'empty' : 'short';
 }
 
-function renderClass(entry: Class): HTMLLIElement {
+function renderClass(entry: Class, runs: readonly TaskRun[], startTask: StartTask): HTMLLIElement {
 	const item = document.createElement('li');
 	const short = entry.want - entry.have;
 	item.dataset.tone = toneOf(entry);
@@ -53,14 +64,21 @@ function renderClass(entry: Class): HTMLLIElement {
 	state.textContent = short === 0 ? 'Complete' : `${short} outstanding`;
 	footer.appendChild(state);
 
-	// The command is shown rather than run. Running it is the task centre's job -- these
-	// operations take minutes and several of them spend money, so the thing that starts one has
-	// to be able to report progress, refuse a second copy of itself, and record what it cost.
-	// A button that could do none of that would be a worse version of copying this line.
+	// Only migrated free tasks become controls. Paid tasks stay as text until a warning flow exists,
+	// and known-but-unmigrated tasks stay as text until they can use the substrate. See spec/tasks.md.
 	if (entry.action !== null && short > 0) {
-		const command = document.createElement('code');
+		const command =
+			entry.action === 'favicon' && !entry.paid
+				? document.createElement('button')
+				: document.createElement('code');
 		command.className = 'health-action';
 		command.textContent = `cms ${entry.action}`;
+		if (command instanceof HTMLButtonElement) {
+			command.type = 'button';
+			command.dataset.taskAction = 'favicon';
+			command.disabled = runs.some((run) => run.task === 'favicon');
+			command.addEventListener('click', () => startTask('favicon'));
+		}
 		footer.appendChild(command);
 	}
 	if (entry.paid && short > 0) {
@@ -82,7 +100,12 @@ function renderClass(entry: Class): HTMLLIElement {
 	return item;
 }
 
-export function renderDerived(root: HTMLElement, report: DerivedReport): void {
+export function renderDerived(
+	root: HTMLElement,
+	report: DerivedReport,
+	runs: readonly TaskRun[],
+	startTask: StartTask,
+): void {
 	const outstanding = report.classes.reduce(
 		(total, entry) => total + Math.max(0, entry.want - entry.have),
 		0,
@@ -97,7 +120,52 @@ export function renderDerived(root: HTMLElement, report: DerivedReport): void {
 
 	const list = requiredElement<HTMLUListElement>(root, '[data-derived-list]');
 	list.replaceChildren();
-	for (const entry of report.classes) list.appendChild(renderClass(entry));
+	for (const entry of report.classes) list.appendChild(renderClass(entry, runs, startTask));
+}
+
+export function renderTaskRuns(root: HTMLElement, runs: readonly TaskRun[]): void {
+	for (const button of root.querySelectorAll<HTMLButtonElement>('[data-task-action]')) {
+		button.disabled = runs.some((run) => run.task === button.dataset.taskAction);
+	}
+
+	const section = requiredElement<HTMLElement>(root, '[data-task-runs]');
+	const list = requiredElement<HTMLUListElement>(root, '[data-task-run-list]');
+	section.hidden = runs.length === 0;
+	list.replaceChildren();
+	for (const run of runs) {
+		const item = document.createElement('li');
+
+		const heading = document.createElement('div');
+		heading.className = 'task-run-heading';
+		const name = document.createElement('strong');
+		name.textContent = `cms ${run.task}`;
+		const source = document.createElement('span');
+		source.textContent = `${run.shell} · pid ${run.pid}`;
+		heading.appendChild(name);
+		heading.appendChild(source);
+
+		const track = document.createElement('span');
+		track.className = 'meter-track';
+		const fill = document.createElement('span');
+		fill.className = 'meter-fill';
+		const ratio = run.total === 0 ? 0 : Math.min(1, run.done / run.total);
+		fill.style.setProperty('--meter-fill', `${(ratio * 100).toFixed(2)}%`);
+		track.appendChild(fill);
+
+		const detail = document.createElement('div');
+		detail.className = 'task-run-detail';
+		const message = document.createElement('span');
+		message.textContent = run.message || 'Starting…';
+		const count = document.createElement('span');
+		count.textContent = `${run.done}/${run.total}`;
+		detail.appendChild(message);
+		detail.appendChild(count);
+
+		item.appendChild(heading);
+		item.appendChild(track);
+		item.appendChild(detail);
+		list.appendChild(item);
+	}
 }
 
 export function renderDerivedError(root: HTMLElement, error: unknown): void {

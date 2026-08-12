@@ -86,6 +86,46 @@ done this instant".
 A forced run skips the check by definition: `--force` says redo it, and there is nothing to
 observe that would change the answer.
 
+## Rewriting article text is a compatibility path, not the design
+
+`cms image` is the only task that edits `contents/**/*.md`, and a test asserts that. It does so
+because an author wrote a temporary filename -- `![](shot.png)` -- and the reference has to become
+the content id once the picture is derived. Every other task reading `Articles` declares
+`after: ["image"]` largely to stay clear of that rewrite.
+
+**It exists only because there is no editor yet.** An editor that derives a picture at the moment
+it is inserted -- store it, then write the content id into the article -- produces an article that
+never held a temporary name, so nothing is left to rewrite. The rewrite is compensation for
+authoring markdown by hand, not a permanent step.
+
+Two things follow. The split between deriving a picture and writing it is still wanted, because
+that is exactly the pair an editor calls synchronously for one image. And `cms image` keeps a
+narrower job afterwards: content that arrived without passing through the editor -- a migration, a
+batch somebody dropped in, an article written in another editor. That is a run a person starts,
+not one a schedule fires, which is what keeps it away from an open draft.
+
+Do not build anything new on the assumption that article text is rewritten behind the author's
+back. The `after: ["image"]` edges are expected to weaken once insertion handles its own images.
+
+## A finished run leaves nothing behind, and that is the gap
+
+The registry answers what is running. Nothing answers what ran. An entry disappears when its
+process lets go, so a run that failed and a run that succeeded look identical from outside: both
+are simply absent.
+
+This is visible today. `favicon::collect` deliberately survives a dead domain and reports it in
+`Outcome.failed`, which the CLI prints; the desktop adapter starts the same operation on a thread
+and drops the outcome entirely. The counts on the Derived page still tell the truth -- work that
+did not happen is still outstanding -- but the reason is gone.
+
+Recording it means run history: what ran, when, how it ended, what it cost. That is the Activity
+page, and it needs to be durable, because a history held in memory is emptied by the restart that
+most often follows a crash worth reading about. Half of it is worse than none: a control that
+reports success it did not verify is the failure mode this whole layer exists to avoid.
+
+So the outcome is dropped on purpose until there is somewhere durable to put it, rather than being
+kept somewhere that would have to be unbuilt.
+
 ## Liveness is a held lock, never a written status
 
 A run that records `status: running` in a file and is then killed with `SIGKILL`, panics, or loses

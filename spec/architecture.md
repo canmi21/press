@@ -217,25 +217,26 @@ An operation that runs on a schedule needs things a one-shot command never did -
 whether it succeeded, what it spent, and what must run before it. Recording that is the
 application layer's job under the rule below, not a page's.
 
-#### A page names the work; it does not start it
+#### A page offers only work the task substrate can run
 
-A view that has found outstanding work shows the command that closes it. Starting that command is
-the task centre's, and until the task centre exists a page offers the command as text rather than
-as a button.
+A view that has found outstanding work shows the command that closes it. The command becomes a
+button only after the operation has moved below both shells and the task substrate can report its
+progress and refuse a second copy; known but unmigrated operations remain text. The Derived page
+implements that boundary in [derived.ts](../apps/cms/client/derived.ts), while the task centre will
+eventually provide the complete catalogue and scheduling surface.
 
 The reason is what these operations are. They run for minutes, several of them spend money on a
-model, and they are not safe to run twice at once over the same files. Anything that starts one
-therefore has to report progress while it runs, refuse a second copy of itself, and record what
-it cost -- and a control that can do none of those is a worse version of copying the line, because
-it looks like it did something. Half of a run mechanism is not a smaller version of one; it is the
-part that lies.
+model, and they are not safe to run twice at once over the same files. A control that cannot be
+watched and cannot reject duplication is a worse version of copying the command, because it looks
+like it did something. Half of a run mechanism is not a smaller version of one; it is the part that
+lies.
 
-This also fixes what has to be built before an interactive run exists at all: the operations
-currently live inside the command-line adapter as functions returning an exit code and writing to
-a terminal progress bar. An operation the GUI can start is one that has moved below both shells
-and reports progress to a caller rather than to standard output.
+An interactive run calls the same in-process application operation as the CLI. The GUI never owns
+a second implementation and never turns terminal output into an API. The Tauri adapter is in
+[main.rs](../apps/cms/src-tauri/src/main.rs).
 
-A class that spends money says so wherever it is offered, before anybody reaches for it.
+A class that spends money says so wherever it is offered, before anybody reaches for it. A paid
+operation does not become a button until that warning is part of the path that starts it.
 
 ### The CMS has two shells and one home
 

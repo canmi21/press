@@ -498,11 +498,7 @@ pub async fn run(
 
 				// Claimed before anything is spent. A segment another process is translating right
 				// now is left to it; the run reports it rather than paying for the same answer.
-				let claimed = match claim::take(
-					repository,
-					"i18n",
-					&format!("{article_key}#{}", item.id),
-				) {
+				let claimed = match claim::take(repository, "i18n", &format!("{article_key}#{}", item.id)) {
 					Ok(claimed) => claimed,
 					Err(claim::Denied::Taken(_)) => {
 						outcome.claimed_elsewhere += 1;
