@@ -13,6 +13,7 @@ pub fn run() -> ExitCode {
 		Some("articles") => print_articles(),
 		Some("derived") => print_derived(),
 		Some("tasks") => print_tasks(),
+		Some("runs") => print_runs(),
 		Some("port") => print_port(),
 		Some("favicon") => fetch_favicons(&args[1..]),
 		Some("image") => process_images(&args[1..]),
@@ -133,7 +134,6 @@ fn print_port() -> ExitCode {
 fn fetch_favicons(args: &[String]) -> ExitCode {
 	let mut force = false;
 	let mut inputs: Vec<&str> = Vec::new();
-
 	for arg in args {
 		match arg.as_str() {
 			"--force" => force = true,
@@ -148,7 +148,6 @@ fn fetch_favicons(args: &[String]) -> ExitCode {
 			return ExitCode::FAILURE;
 		}
 	};
-	let public = root.join("data").join("public");
 
 	let wanted: Vec<refs::Wanted> = if inputs.is_empty() {
 		match refs::scan(&root.join("contents")) {
@@ -174,34 +173,64 @@ fn fetch_favicons(args: &[String]) -> ExitCode {
 		return ExitCode::SUCCESS;
 	}
 
-	// One unreachable site must not abandon the rest: a run over an article's links should
-	// collect what it can and report the gaps, not stop at the first dead domain.
-	let mut failed = 0;
-	for icon in &wanted {
-		let host = &icon.domain;
-		let result = match &icon.source {
-			Some(url) => favicon::store_named(&public, host, url, icon.tone.as_deref(), force),
-			None => favicon::store(&public, host, force),
-		};
-		match result {
-			Ok(stored) if stored.skipped => println!("skip  {host}"),
-			Ok(stored) => {
-				let names: Vec<&str> = stored
-					.written
-					.iter()
-					.filter_map(|path| path.file_name()?.to_str())
-					.collect();
-				println!("saved {host}/{{{}}}", names.join(", "));
-			}
-			Err(error) => {
-				eprintln!("fail  {host}: {error}");
-				failed += 1;
-			}
+	let outcome = match favicon::collect::run(favicon::collect::Options {
+		repository: &root,
+		wanted: &wanted,
+		force,
+		shell: task::registry::Shell::Cli,
+		sink: Box::new(task::progress::Terminal::new()),
+	}) {
+		Ok(outcome) => outcome,
+		Err(error) => {
+			eprintln!("could not collect icons: {error}");
+			return ExitCode::FAILURE;
+		}
+	};
+
+	for (domain, reason) in &outcome.failed {
+		eprintln!("fail  {domain}: {reason}");
+	}
+	// Named rather than counted: "three were somebody else's" is a different thing from "three
+	// failed", and a person deciding whether to rerun needs to know which domains to expect.
+	for domain in &outcome.claimed_elsewhere {
+		println!("held  {domain} (another run has it)");
+	}
+	println!(
+		"{} collected, {} already present, {} failed, {} held elsewhere",
+		outcome.collected,
+		outcome.skipped,
+		outcome.failed.len(),
+		outcome.claimed_elsewhere.len()
+	);
+	ExitCode::SUCCESS
+}
+
+/// What is running anywhere on this machine for this repository.
+fn print_runs() -> ExitCode {
+	let root = match paths::repo_root() {
+		Ok(root) => root,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
+	};
+	let runs = match task::registry::live(&root) {
+		Ok(runs) => runs,
+		Err(error) => {
+			eprintln!("could not read the run registry: {error}");
+			return ExitCode::FAILURE;
+		}
+	};
+	match serde_json::to_string_pretty(&runs) {
+		Ok(json) => {
+			println!("{json}");
+			ExitCode::SUCCESS
+		}
+		Err(error) => {
+			eprintln!("could not encode the run registry: {error}");
+			ExitCode::FAILURE
 		}
 	}
-
-	println!("{} of {} resolved", wanted.len() - failed, wanted.len());
-	ExitCode::SUCCESS
 }
 
 fn selected_runner(
@@ -1355,6 +1384,7 @@ fn usage() {
 	eprintln!("  articles                    print the article listing and translation coverage");
 	eprintln!("  derived                     print what each derived record class still owes");
 	eprintln!("  tasks                       print the catalogue of long-running operations");
+	eprintln!("  runs                        print what is running right now, machine-wide");
 	eprintln!("  port                        print the port the web UI will bind");
 	eprintln!("  image [--force] [--original] [file...]");
 	eprintln!("                              derive what the articles reference, then rewrite them");

@@ -10,6 +10,7 @@
 //! re-fetched forever looking for one. A flat `<domain>-dark.<ext>` cannot express "asked,
 //! and the answer was no", because a missing file and an unasked question look identical.
 
+pub mod collect;
 pub mod fetch;
 pub mod host;
 pub mod parse;
@@ -20,6 +21,33 @@ use std::path::{Path, PathBuf};
 pub struct Stored {
 	pub written: Vec<PathBuf>,
 	pub skipped: bool,
+}
+
+/// Icons fetched for one domain, before anything is written.
+///
+/// The split exists so the network call and the disk write can be separated by the caller: the
+/// fetch is seconds of somebody else's server, the write is microseconds, and holding the record
+/// across both would serialise every domain behind the slowest one. See spec/tasks.md.
+#[derive(Debug)]
+pub struct Icons {
+	/// File name to bytes, already expanded to every tone the icon should be written under.
+	pub files: Vec<(String, Vec<u8>)>,
+}
+
+/// Write what a fetch produced. No network, and no decisions -- those were made during the fetch.
+pub fn write_fetched(root: &Path, domain: &str, icons: &Icons) -> Result<Stored, Error> {
+	let directory = root.join("favicon").join(domain);
+	std::fs::create_dir_all(&directory).map_err(Error::Write)?;
+	let mut written = Vec::new();
+	for (name, bytes) in &icons.files {
+		let path = directory.join(name);
+		std::fs::write(&path, bytes).map_err(Error::Write)?;
+		written.push(path);
+	}
+	Ok(Stored {
+		written,
+		skipped: false,
+	})
 }
 
 #[derive(Debug)]
@@ -33,6 +61,15 @@ impl std::fmt::Display for Error {
 		match self {
 			Self::NotResolved => write!(f, "no icon found"),
 			Self::Write(error) => write!(f, "could not write: {error}"),
+		}
+	}
+}
+
+impl std::error::Error for Error {
+	fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
+		match self {
+			Self::NotResolved => None,
+			Self::Write(error) => Some(error),
 		}
 	}
 }
@@ -76,56 +113,59 @@ pub fn store_named(
 	tone: Option<&str>,
 	force: bool,
 ) -> Result<Stored, Error> {
-	let directory = root.join("favicon").join(domain);
-	if !force && directory.is_dir() {
+	let Some(icons) = fetch_named(root, domain, source, tone, force)? else {
 		return Ok(Stored {
 			written: Vec::new(),
 			skipped: true,
 		});
-	}
+	};
+	write_fetched(root, domain, &icons)
+}
 
+/// The network half of `store_named`.
+pub fn fetch_named(
+	root: &Path,
+	domain: &str,
+	source: &str,
+	tone: Option<&str>,
+	force: bool,
+) -> Result<Option<Icons>, Error> {
+	if !force && root.join("favicon").join(domain).is_dir() {
+		return Ok(None);
+	}
 	let icon = fetch::bytes(source).ok_or(Error::NotResolved)?;
 	let extension = fetch::extension_for(&icon.content_type).ok_or(Error::NotResolved)?;
-
-	std::fs::create_dir_all(&directory).map_err(Error::Write)?;
 	let tones: &[Tone] = match tone {
 		Some("dark") => &[Tone::Dark],
 		Some("light") => &[Tone::Light],
 		_ => &[Tone::Light, Tone::Dark],
 	};
-
-	let mut written = Vec::new();
-	for tone in tones {
-		let path = directory.join(format!("{}.{extension}", tone.suffix()));
-		std::fs::write(&path, &icon.bytes).map_err(Error::Write)?;
-		written.push(path);
-	}
-	Ok(Stored {
-		written,
-		skipped: false,
-	})
+	Ok(Some(Icons {
+		files: tones
+			.iter()
+			.map(|tone| (format!("{}.{extension}", tone.suffix()), icon.bytes.clone()))
+			.collect(),
+	}))
 }
 
-/// Fetch every variant a site offers and store them, unless the domain was already checked.
+/// Fetch every variant a site offers, deciding what each file should be called.
+///
+/// The network half of `store`. Returns `None` when the domain was already collected and this is
+/// not a forced run, which is a skip rather than a failure.
 ///
 /// Resolving all tones in one pass rather than once per tone: the tones are decided by a
 /// single reading of one page, so fetching that page three times would triple the load on
 /// somebody else's server to learn the same thing.
-pub fn store(root: &Path, domain: &str, force: bool) -> Result<Stored, Error> {
+pub fn fetch_for(root: &Path, domain: &str, force: bool) -> Result<Option<Icons>, Error> {
 	let directory = root.join("favicon").join(domain);
 	if !force && directory.is_dir() {
-		return Ok(Stored {
-			written: Vec::new(),
-			skipped: true,
-		});
+		return Ok(None);
 	}
 
 	let variants = resolve(domain);
 	if variants.is_empty() {
 		return Err(Error::NotResolved);
 	}
-
-	std::fs::create_dir_all(&directory).map_err(Error::Write)?;
 
 	// A site that publishes one icon publishes it for every context: the browser draws that
 	// same file on light and dark chrome alike, and an icon meant for only one of them is
@@ -137,7 +177,7 @@ pub fn store(root: &Path, domain: &str, force: bool) -> Result<Stored, Error> {
 	// SVG carrying its own opaque backdrop, which is what makes it legible either way.
 	let single = variants.len() == 1;
 
-	let mut written = Vec::new();
+	let mut files = Vec::new();
 	for (tone, icon) in variants {
 		let Some(extension) = fetch::extension_for(&icon.content_type) else {
 			continue;
@@ -148,19 +188,25 @@ pub fn store(root: &Path, domain: &str, force: bool) -> Result<Stored, Error> {
 			std::slice::from_ref(&tone)
 		};
 		for tone in tones {
-			let path = directory.join(format!("{}.{extension}", tone.suffix()));
-			std::fs::write(&path, &icon.bytes).map_err(Error::Write)?;
-			written.push(path);
+			files.push((format!("{}.{extension}", tone.suffix()), icon.bytes.clone()));
 		}
 	}
 
-	if written.is_empty() {
+	if files.is_empty() {
 		return Err(Error::NotResolved);
 	}
-	Ok(Stored {
-		written,
-		skipped: false,
-	})
+	Ok(Some(Icons { files }))
+}
+
+/// Fetch every variant a site offers and store them, unless the domain was already checked.
+pub fn store(root: &Path, domain: &str, force: bool) -> Result<Stored, Error> {
+	let Some(icons) = fetch_for(root, domain, force)? else {
+		return Ok(Stored {
+			written: Vec::new(),
+			skipped: true,
+		});
+	};
+	write_fetched(root, domain, &icons)
 }
 
 fn resolve(domain: &str) -> Vec<(Tone, fetch::Fetched)> {

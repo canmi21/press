@@ -66,6 +66,26 @@ report accurate: it says what it did and what somebody else was already doing.
 
 A task declared `Items::Whole` cannot divide, so a second runner can only stand aside.
 
+### A claim stops concurrent duplication; only re-reading stops sequential duplication
+
+Claims are taken and released per item, so two runs overlapping in time still each do an item the
+other finished before it was reached. Measured, with two `cms favicon --force` processes over the
+same five domains: each collected three and stood aside on two, which is six pieces of work for
+five domains. One domain was fetched twice because the second run arrived after the first had let
+go of it.
+
+For favicons that is a wasted request. For anything that asks a model it is the same answer paid
+for twice.
+
+So the claim is only half of it. **After taking the claim, an item is re-read from the record
+before the work starts**, and an item that has since been done is dropped. The claim makes that
+check safe -- nothing can complete between reading and working, because the claim is held across
+both -- and the check is what makes the claim mean "still needed" rather than merely "not being
+done this instant".
+
+A forced run skips the check by definition: `--force` says redo it, and there is nothing to
+observe that would change the answer.
+
 ## Liveness is a held lock, never a written status
 
 A run that records `status: running` in a file and is then killed with `SIGKILL`, panics, or loses
