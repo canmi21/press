@@ -22,6 +22,16 @@ pub trait Sink: Send + Sync {
 	fn advanced(&self, done: u64, total: u64, message: &str);
 	/// The run is over. A sink that drew something clears it.
 	fn finished(&self);
+
+	/// Run `body` without whatever this sink drew getting in the way.
+	///
+	/// A terminal bar redraws over the cursor, so a line printed while it is on screen lands in
+	/// the middle of it. A sink that draws nothing has nothing to move, which is why the default
+	/// is simply to call the closure -- most sinks want this and none of them should have to say
+	/// so.
+	fn suspend(&self, body: &mut dyn FnMut()) {
+		body();
+	}
 }
 
 /// A run's progress, counted here and reported to whatever is listening.
@@ -56,6 +66,11 @@ impl Progress {
 		Self::new(total, Box::new(Silent))
 	}
 
+	/// A run drawing the terminal bar, for the commands the CLI still owns end to end.
+	pub fn new_terminal(total: u64) -> Self {
+		Self::new(total, Box::new(Terminal::new()))
+	}
+
 	pub fn total(&self) -> u64 {
 		self.total
 	}
@@ -84,6 +99,11 @@ impl Progress {
 
 	pub fn finish_and_clear(&self) {
 		self.sink.finished();
+	}
+
+	/// Print, or otherwise interrupt, without the sink's own output colliding with it.
+	pub fn suspend<F: FnMut()>(&self, mut body: F) {
+		self.sink.suspend(&mut body);
 	}
 }
 
@@ -140,6 +160,10 @@ impl Sink for Terminal {
 
 	fn finished(&self) {
 		self.bar.finish_and_clear();
+	}
+
+	fn suspend(&self, body: &mut dyn FnMut()) {
+		self.bar.suspend(body);
 	}
 }
 

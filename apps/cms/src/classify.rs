@@ -258,7 +258,7 @@ pub async fn run(
 	// One at a time, unlike translation. Each answer changes the list the next request is
 	// shown, and running four in parallel would let four images each invent their own name
 	// for the same thing before any of them could see the others.
-	let progress = crate::progress::bar(todo.len() as u64);
+	let progress = crate::task::progress::Progress::new_terminal(todo.len() as u64);
 	for (cid, path) in todo {
 		progress.set_message(
 			path

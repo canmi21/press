@@ -454,7 +454,7 @@ where
 			Destination::Description(_) | Destination::Summary(_) => item.locales.len(),
 		})
 		.sum();
-	let progress = crate::progress::bar(calls as u64);
+	let progress = crate::task::progress::Progress::new_terminal(calls as u64);
 
 	for item in items {
 		match &item.destination {

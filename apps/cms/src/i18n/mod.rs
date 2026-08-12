@@ -13,10 +13,18 @@ pub mod store;
 pub mod tn;
 pub mod validate;
 
+use crate::task::{Record, claim, progress, registry, writer};
 use runner::{Refusal, Runner};
 use segment::Segment;
 use std::path::Path;
 use store::Translation;
+
+/// Makes the sink each article's progress bar reports to.
+///
+/// A factory rather than one sink, because the terminal draws a bar per article and a bar that has
+/// been finished cannot be started again. The desktop will pass something that folds them into one
+/// view; that is its decision to make, not this function's.
+pub type Sinks = Box<dyn Fn() -> Box<dyn progress::Sink> + Send + Sync>;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Scope {
@@ -68,8 +76,21 @@ pub struct Outcome {
 	pub orphans: usize,
 	pub incomplete_segments: usize,
 	pub missing_locales: usize,
+	/// Segments another live run was translating, left to it.
+	pub claimed_elsewhere: usize,
+	/// Segments that turned out to be translated already once the claim was held -- work another
+	/// run finished between the list being built and this item being reached.
+	pub already_done: usize,
 	/// Set when the allowance ran out, carrying what the runner said about the reset.
 	pub exhausted: Option<String>,
+}
+
+/// When a file was last written, or `None` if it does not exist yet.
+///
+/// Used to notice another process having touched a sidecar without re-reading it every time. A
+/// missing file and an unreadable one are the same answer here: reload and find out.
+fn modified_at(path: &Path) -> Option<std::time::SystemTime> {
+	std::fs::metadata(path).ok()?.modified().ok()
 }
 
 pub fn selected_locales(values: &[String]) -> Result<Vec<&'static str>, String> {
@@ -287,6 +308,10 @@ pub struct RunOptions<'a> {
 	pub scope: Scope,
 	pub locales: &'a [&'a str],
 	pub check: bool,
+	/// The repository root, for the run registry, the claims and the record lock.
+	pub repository: &'a Path,
+	pub shell: registry::Shell,
+	pub sinks: Sinks,
 }
 
 pub async fn run(
@@ -303,6 +328,9 @@ pub async fn run(
 		scope,
 		locales,
 		check,
+		repository,
+		shell,
+		sinks,
 	} = options;
 	let mut outcome = Outcome::default();
 	// Loaded once. A suggestion applies to a segment id, so which article it came from stops
@@ -310,18 +338,36 @@ pub async fn run(
 	let glosses = tn::load(&tn::path_for(articles.parent().unwrap_or(articles)));
 	let mut budget = limit.unwrap_or(usize::MAX);
 
-	for path in crate::refs::markdown_under(articles)? {
+	// Walked up front so the registry can publish a total rather than a number that grows while
+	// somebody watches it. Reading the articles twice is local file I/O against a run that spends
+	// minutes per article on a model.
+	let planned: Vec<std::path::PathBuf> = crate::refs::markdown_under(articles)?
+		.into_iter()
 		// Named articles narrow the run. Retranslating one edited piece should not mean walking
 		// everything before it in the tree.
-		if !only.is_empty()
-			&& !only
-				.iter()
-				.any(|wanted| path.ends_with(wanted) || &path == wanted)
-		{
-			continue;
-		}
+		.filter(|path| {
+			only.is_empty()
+				|| only
+					.iter()
+					.any(|wanted| path.ends_with(wanted) || path == wanted)
+		})
+		.collect();
+
+	// One entry for the whole run, counted in articles. The per-article bars below count segments;
+	// the two are different units on purpose and each says which it is.
+	let planned_total = planned.len() as u64;
+	let entry = registry::publish(repository, "i18n", shell, planned_total)?;
+	let published = registry::Published::new(entry);
+	let translations = writer::Writer::start(repository, Record::Translations)?;
+	let mut articles_done = 0u64;
+
+	for path in planned {
 		if budget == 0 {
 			break;
+		}
+		{
+			use progress::Sink as _;
+			published.advanced(articles_done, planned_total, &path.display().to_string());
 		}
 		let article = std::fs::read_to_string(&path)?;
 		// A page is not an article and is never translated. The test is the same one `cms
@@ -419,8 +465,23 @@ pub async fn run(
 			.collect();
 		budget -= todo.len();
 
-		let progress = crate::progress::bar(todo.len() as u64);
+		let progress = progress::Progress::new(todo.len() as u64, sinks());
 		progress.set_message(format!("{}", path.display()));
+
+		// The claim on each in-flight segment, released when its result has been stored. Kept
+		// beside the JoinSet rather than moved into the task so that a claim outlives the request
+		// and covers the write as well: releasing at the end of the model call would let another
+		// process start the same segment while this one was still saving it.
+		let mut held: std::collections::HashMap<String, claim::Claim> =
+			std::collections::HashMap::new();
+		// The article key claims are namespaced by, so two articles holding a segment with the
+		// same id -- which happens, since an id is the hash of the text -- are two items.
+		let article_key = path
+			.strip_prefix(articles)
+			.unwrap_or(&path)
+			.display()
+			.to_string();
+		let mut sidecar_seen = modified_at(&sidecar_path);
 
 		let mut queue = todo.into_iter();
 		type Finished = (
@@ -434,7 +495,48 @@ pub async fn run(
 				let Some((item, locales)) = queue.next() else {
 					break;
 				};
-				progress.set_message(crate::progress::preview(&item.source, 44));
+
+				// Claimed before anything is spent. A segment another process is translating right
+				// now is left to it; the run reports it rather than paying for the same answer.
+				let claimed = match claim::take(
+					repository,
+					"i18n",
+					&format!("{article_key}#{}", item.id),
+				) {
+					Ok(claimed) => claimed,
+					Err(claim::Denied::Taken(_)) => {
+						outcome.claimed_elsewhere += 1;
+						progress.inc(1);
+						continue;
+					}
+					Err(claim::Denied::Io(error)) => return Err(error),
+				};
+
+				// The claim only stops two runs translating this segment at the same instant. A
+				// run that finished it a moment ago and let go is invisible to the claim, and the
+				// answer would simply be bought twice -- measured on favicons, where it cost a
+				// request; here it costs the price of a translation. So the sidecar is re-read
+				// whenever another process has touched it since we last looked, and a segment that
+				// is no longer missing is dropped. See spec/tasks.md.
+				let latest = modified_at(&sidecar_path);
+				if latest != sidecar_seen {
+					sidecar = store::load(&sidecar_path);
+					sidecar_seen = latest;
+				}
+				if !force
+					&& sidecar
+						.segments
+						.get(&item.id)
+						.is_some_and(|have| locales.iter().all(|locale| have.contains_key(locale)))
+				{
+					outcome.already_done += 1;
+					progress.inc(1);
+					drop(claimed);
+					continue;
+				}
+				held.insert(item.id.clone(), claimed);
+
+				progress.set_message(progress::preview(&item.source, 44));
 				let (before, after) = neighbours(&item.id);
 				let model_override = model_override.clone();
 				let only_same_language = source_locale.as_deref().is_some_and(|source| {
@@ -479,6 +581,9 @@ pub async fn run(
 			progress.inc(1);
 
 			let (id, result) = finished;
+			// Released once the result is in hand and about to be stored, not when the request
+			// returned: the write below is part of the work this claim covers.
+			let claimed = held.remove(&id);
 			match result {
 				Ok((entries, tokens, usd, lost)) => {
 					let slot = sidecar.segments.entry(id.clone()).or_default();
@@ -491,8 +596,18 @@ pub async fn run(
 					// Written the moment it arrives. Every segment cost real money, and keeping a
 					// run's worth in memory means one interrupt throws all of it away -- which is
 					// exactly what happened the first time this ran for real.
+					//
+					// Through the writer, so the sidecar is never open in two places: a second CMS
+					// translating a different segment of this same article would otherwise read,
+					// change and write the file underneath this one, and one of the two paid
+					// results would vanish. The lock is held for the write alone.
 					sidecar.version = store::VERSION;
-					store::save(&sidecar_path, &sidecar)?;
+					{
+						let path = sidecar_path.clone();
+						let snapshot = sidecar.clone();
+						translations.apply(move || store::save(&path, &snapshot))?;
+					}
+					sidecar_seen = modified_at(&sidecar_path);
 					if !lost.is_empty() {
 						outcome.failed.push((
 							id,
@@ -509,8 +624,13 @@ pub async fn run(
 				}
 				Err(error) => outcome.failed.push((id, error.to_string())),
 			}
+			drop(claimed);
 		}
 		progress.finish_and_clear();
+		// Anything still in flight when the loop ended keeps nothing: dropping the map releases
+		// every remaining claim so an interrupted run does not leave items locked behind it.
+		held.clear();
+		articles_done += 1;
 		let mut incomplete =
 			store::missing(&sidecar, &live, locales, source_locale.as_deref(), &glosses);
 		incomplete.retain(|id, _| live.get(id).is_some_and(|segment| scope.includes(segment)));

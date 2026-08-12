@@ -2,7 +2,7 @@
 
 use crate::{
 	alt, articles, check, classify, derived, embed, favicon, gc, i18n, image, licenses, locale,
-	media, opengraph, overview, paths, port, progress, refs, summary, task,
+	media, opengraph, overview, paths, port, refs, summary, task,
 };
 use std::process::ExitCode;
 
@@ -542,6 +542,9 @@ fn translate_articles(args: &[String]) -> ExitCode {
 			scope,
 			locales: &locales,
 			check,
+			repository: &root,
+			shell: task::registry::Shell::Cli,
+			sinks: Box::new(|| Box::new(task::progress::Terminal::new())),
 		},
 	)) {
 		Ok(outcome) => outcome,
@@ -1170,7 +1173,7 @@ fn scan_notes(args: &[String]) -> ExitCode {
 
 	// Counted over everything named, including articles already read: a bar that shrank as it
 	// skipped would report a total that had never been true.
-	let progress = progress::bar(wanted.len() as u64);
+	let progress = task::progress::Progress::new_terminal(wanted.len() as u64);
 	for article in &wanted {
 		let key = article
 			.strip_prefix(&contents)
@@ -1311,7 +1314,7 @@ fn fetch_embeds(args: &[String]) -> ExitCode {
 		.filter(|name| !repos.repos.contains_key(*name))
 		.collect();
 
-	let progress = progress::bar((todo.len() + todo_repos.len()) as u64);
+	let progress = task::progress::Progress::new_terminal((todo.len() + todo_repos.len()) as u64);
 	let mut failed = 0usize;
 	for name in todo {
 		progress.set_message(name.clone());

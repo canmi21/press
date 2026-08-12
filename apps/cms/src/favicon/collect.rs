@@ -159,6 +159,12 @@ impl progress::Sink for Both {
 		self.first.finished();
 		self.second.finished();
 	}
+
+	/// Only the first sink can be drawing on a terminal; the registry writes to a file and has
+	/// nothing to move out of the way.
+	fn suspend(&self, body: &mut dyn FnMut()) {
+		self.first.suspend(body);
+	}
 }
 
 #[cfg(test)]

@@ -15,7 +15,6 @@ mod media;
 mod opengraph;
 mod paths;
 mod port;
-mod progress;
 mod refs;
 mod summary;
 mod tags;
