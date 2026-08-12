@@ -7,7 +7,7 @@
 //! the state lives in the article rather than in a log beside it.
 
 use super::manifest::{self, Media, Merged};
-use super::{derive, store};
+use super::{mime_of, store};
 use crate::refs::{self, Scan};
 use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
@@ -101,7 +101,14 @@ pub fn run(
 			continue;
 		}
 
-		match publish(&bytes, &path, public, previous, keep, gazetteer.as_ref()) {
+		match super::publish(
+			&bytes,
+			mime_of(&path),
+			public,
+			previous,
+			keep,
+			gazetteer.as_ref(),
+		) {
 			Ok(media) => {
 				if let Some(target) = reference.as_deref() {
 					note(&mut rewrites, target, &id, Some(&media));
@@ -109,7 +116,7 @@ pub fn run(
 				merged.media.insert(id, media);
 				outcome.processed += 1;
 			}
-			Err(error) => outcome.failed.push((path, error)),
+			Err(error) => outcome.failed.push((path, error.to_string())),
 		}
 	}
 
@@ -141,6 +148,10 @@ pub fn run(
 		.as_bytes(),
 	)?;
 
+	// Bytes and manifest land first because a crash after publishing can only leave a derived
+	// image no article references yet; that is harmless and a rerun repairs it. Rewriting first
+	// could crash before the bytes land, leaving an article pointing at something nonexistent,
+	// and the lost original filename would leave a later run no way to repair it. See spec/tasks.md.
 	outcome.rewritten = rewrite_references(articles, &rewrites)?;
 	Ok(outcome)
 }
@@ -255,52 +266,6 @@ fn extension_of(mime: &str) -> &'static str {
 	}
 }
 
-fn publish(
-	bytes: &[u8],
-	path: &Path,
-	public: &Path,
-	previous: Option<&Media>,
-	keep_original: bool,
-	gazetteer: Option<&super::geo::Gazetteer>,
-) -> Result<Media, String> {
-	let derived = derive(bytes, keep_original).map_err(|error| error.to_string())?;
-	let mime = mime_of(path);
-	// Read once, at import. The published variants are stripped, so this is the only place the
-	// camera's account of the picture survives.
-	let mut metadata = super::exif::read(bytes);
-	// The address is the one part not read from the file: it is looked up from the position,
-	// which is why it is filled here rather than in the reader.
-	if let Some(found) = metadata.as_mut()
-		&& let Some(location) = found.location.clone()
-		&& let (Some(lat), Some(lon)) = (location.latitude, location.longitude)
-		&& let Some(gazetteer) = gazetteer
-	{
-		found.address = gazetteer.lookup(lat, lon);
-	}
-	let media = manifest::media_for(
-		&derived,
-		mime,
-		bytes.len() as u64,
-		previous.map(|media| media.created.as_str()),
-		metadata,
-	);
-
-	for variant in &derived.variants {
-		let target = store::variant_path(public, &variant.cid, variant.format.extension());
-		store::write(&target, &variant.bytes).map_err(|error| error.to_string())?;
-	}
-
-	let document = manifest::Document {
-		version: manifest::VERSION,
-		media: media.clone(),
-	};
-	let json = serde_json::to_string_pretty(&document).map_err(|error| error.to_string())?;
-	store::write(&store::meta_path(public, &derived.cid), json.as_bytes())
-		.map_err(|error| error.to_string())?;
-
-	Ok(media)
-}
-
 /// Write one asset's record again from what the merged manifest already says.
 ///
 /// Used by the migration and by `cms alt`, both of which change a record without touching a
@@ -347,24 +312,6 @@ fn is_hidden(path: &Path) -> bool {
 		.file_name()
 		.and_then(|name| name.to_str())
 		.is_some_and(|name| name.starts_with('.'))
-}
-
-fn mime_of(path: &Path) -> &'static str {
-	match path
-		.extension()
-		.and_then(|e| e.to_str())
-		.unwrap_or_default()
-		.to_ascii_lowercase()
-		.as_str()
-	{
-		"png" => "image/png",
-		"jpg" | "jpeg" => "image/jpeg",
-		"webp" => "image/webp",
-		"avif" => "image/avif",
-		"gif" => "image/gif",
-		"heic" | "heif" => "image/heic",
-		_ => "application/octet-stream",
-	}
 }
 
 /// Point every rewritten reference at what it became.

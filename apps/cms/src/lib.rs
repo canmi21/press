@@ -8,7 +8,7 @@ mod embed;
 pub mod favicon;
 mod gc;
 mod i18n;
-mod image;
+pub mod image;
 mod licenses;
 mod locale;
 mod media;

@@ -17,6 +17,8 @@ use fast_image_resize::images::Image as FirImage;
 use fast_image_resize::{PixelType, ResizeOptions, Resizer};
 use image::DynamicImage;
 use ladder::Size;
+use manifest::Media;
+use std::path::Path;
 
 /// A content id: BLAKE3 truncated to 128 bits, hex encoded.
 ///
@@ -48,17 +50,40 @@ pub struct Derived {
 	pub variants: Vec<Variant>,
 }
 
+/// One image after every decision has been made and before anything is written.
+#[derive(Debug)]
+pub struct Prepared {
+	pub derived: Derived,
+	pub media: Media,
+}
+
 #[derive(Debug)]
 pub enum Error {
+	Read(std::io::Error),
 	Decode,
 	Encode(encode::Error),
+	Serialize(serde_json::Error),
+	Write(std::io::Error),
 }
 
 impl std::fmt::Display for Error {
 	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
 		match self {
+			Self::Read(error) => write!(f, "could not read: {error}"),
 			Self::Decode => write!(f, "not a readable image"),
 			Self::Encode(error) => write!(f, "{error}"),
+			Self::Serialize(error) => write!(f, "could not encode record: {error}"),
+			Self::Write(error) => write!(f, "could not write: {error}"),
+		}
+	}
+}
+
+impl std::error::Error for Error {
+	fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
+		match self {
+			Self::Read(error) | Self::Write(error) => Some(error),
+			Self::Serialize(error) => Some(error),
+			Self::Decode | Self::Encode(_) => None,
 		}
 	}
 }
@@ -134,6 +159,113 @@ pub fn derive(original: &[u8], keep_original: bool) -> Result<Derived, Error> {
 	})
 }
 
+/// Derive one source into a value ready to write, without touching the published tree.
+pub fn derive_for(
+	original: &[u8],
+	source_mime: &str,
+	previous: Option<&Media>,
+	keep_original: bool,
+	gazetteer: Option<&geo::Gazetteer>,
+) -> Result<Prepared, Error> {
+	let derived = derive(original, keep_original)?;
+	// Read once, at import. The published variants are stripped, so this is the only place the
+	// camera's account of the picture survives.
+	let mut metadata = exif::read(original);
+	// The address is derived from the recorded position rather than read from the file.
+	if let Some(found) = metadata.as_mut()
+		&& let Some(location) = found.location.clone()
+		&& let (Some(lat), Some(lon)) = (location.latitude, location.longitude)
+		&& let Some(gazetteer) = gazetteer
+	{
+		found.address = gazetteer.lookup(lat, lon);
+	}
+	let media = manifest::media_for(
+		&derived,
+		source_mime,
+		original.len() as u64,
+		previous.map(|media| media.created.as_str()),
+		metadata,
+	);
+	Ok(Prepared { derived, media })
+}
+
+/// Write a completed derivation. No decoding or record decisions happen here.
+pub fn write_derived(public: &Path, prepared: &Prepared) -> Result<(), Error> {
+	for variant in &prepared.derived.variants {
+		let target = store::variant_path(public, &variant.cid, variant.format.extension());
+		store::write(&target, &variant.bytes).map_err(Error::Write)?;
+	}
+
+	let document = manifest::Document {
+		version: manifest::VERSION,
+		media: prepared.media.clone(),
+	};
+	let json = serde_json::to_string_pretty(&document).map_err(Error::Serialize)?;
+	store::write(
+		&store::meta_path(public, &prepared.derived.cid),
+		json.as_bytes(),
+	)
+	.map_err(Error::Write)
+}
+
+/// Derive and publish one image, preserving its first-seen timestamp when it already exists.
+pub fn publish(
+	original: &[u8],
+	source_mime: &str,
+	public: &Path,
+	previous: Option<&Media>,
+	keep_original: bool,
+	gazetteer: Option<&geo::Gazetteer>,
+) -> Result<Media, Error> {
+	let prepared = derive_for(original, source_mime, previous, keep_original, gazetteer)?;
+	let media = prepared.media.clone();
+	write_derived(public, &prepared)?;
+	Ok(media)
+}
+
+/// Derive and store one source synchronously, returning the content id an editor should insert.
+pub fn store_one(repository: &Path, source: &Path, keep_original: bool) -> Result<String, Error> {
+	let bytes = std::fs::read(source).map_err(Error::Read)?;
+	let id = cid(&bytes);
+	let merged_path = repository.join(run::MERGED);
+	let mut merged = run::load(&merged_path);
+
+	// The returned id may be inserted into an article immediately. Published bytes and records
+	// must exist first so a crash can only leave an unreferenced image. See spec/tasks.md.
+	let media = publish(
+		&bytes,
+		mime_of(source),
+		&repository.join("data/public"),
+		merged.media.get(&id),
+		keep_original,
+		geo::Gazetteer::open(repository).as_ref(),
+	)?;
+	merged.media.insert(id.clone(), media);
+	merged.updated = manifest::now();
+	let json = serde_json::to_string_pretty(&merged).map_err(Error::Serialize)?;
+	store::write(&merged_path, format!("{json}\n").as_bytes()).map_err(Error::Write)?;
+
+	Ok(id)
+}
+
+pub(crate) fn mime_of(path: &Path) -> &'static str {
+	match path
+		.extension()
+		.and_then(|extension| extension.to_str())
+		.unwrap_or_default()
+		.to_ascii_lowercase()
+		.as_str()
+	{
+		"png" => "image/png",
+		"jpg" | "jpeg" => "image/jpeg",
+		"webp" => "image/webp",
+		"avif" => "image/avif",
+		"gif" => "image/gif",
+		"heic" | "heif" => "image/heic",
+		_ => "application/octet-stream",
+	}
+}
+
 fn resize(image: &DynamicImage, target: Size) -> DynamicImage {
 	if target.width == image.width() && target.height == image.height() {
 		return image.clone();
@@ -177,6 +309,13 @@ fn placeholder(image: &DynamicImage) -> Result<Vec<u8>, Error> {
 mod tests {
 	use super::*;
 	use image::{Rgba, RgbaImage};
+
+	fn temp(name: &str) -> std::path::PathBuf {
+		let path = std::env::temp_dir().join(format!("cms-image-{name}-{}", std::process::id()));
+		let _ = std::fs::remove_dir_all(&path);
+		std::fs::create_dir_all(&path).expect("temp");
+		path
+	}
 
 	fn photo(width: u32, height: u32) -> Vec<u8> {
 		let mut buffer = RgbaImage::new(width, height);
@@ -281,5 +420,54 @@ mod tests {
 		);
 		// The decoded form the site inlines is no longer produced here, so there is nothing
 		// else to assert: the hash is the whole output.
+	}
+
+	#[test]
+	fn deriving_prepares_the_record_without_writing_public_data() {
+		let root = temp("derive-only");
+		let public = root.join("data/public");
+		let original = photo(20, 12);
+		let prepared = derive_for(&original, "image/png", None, false, None).expect("derive for write");
+
+		assert!(!public.exists());
+		assert_eq!(prepared.derived.cid, cid(&original));
+		assert_eq!(prepared.media.blake3, prepared.derived.cid);
+
+		write_derived(&public, &prepared).expect("write derivation");
+		for variant in &prepared.derived.variants {
+			assert!(store::variant_path(&public, &variant.cid, variant.format.extension()).is_file());
+		}
+		let document: manifest::Document = serde_json::from_str(
+			&std::fs::read_to_string(store::meta_path(&public, &prepared.derived.cid)).expect("record"),
+		)
+		.expect("document");
+		assert_eq!(document.media, prepared.media);
+		std::fs::remove_dir_all(root).ok();
+	}
+
+	#[test]
+	fn a_single_image_returns_only_after_its_bytes_and_records_exist() {
+		let root = temp("store-one");
+		let source = root.join("source.png");
+		let original = photo(20, 12);
+		std::fs::write(&source, &original).expect("source");
+
+		let id = store_one(&root, &source, false).expect("store one");
+
+		assert_eq!(id, cid(&original));
+		let merged = run::load(&root.join(run::MERGED));
+		let media = merged.media.get(&id).expect("merged record");
+		assert!(store::meta_path(&root.join("data/public"), &id).is_file());
+		for (variant, record) in &media.variants {
+			assert!(
+				store::variant_path(
+					&root.join("data/public"),
+					variant,
+					record.mime.strip_prefix("image/").expect("image mime"),
+				)
+				.is_file()
+			);
+		}
+		std::fs::remove_dir_all(root).ok();
 	}
 }

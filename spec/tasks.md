@@ -107,6 +107,12 @@ not one a schedule fires, which is what keeps it away from an open draft.
 Do not build anything new on the assumption that article text is rewritten behind the author's
 back. The `after: ["image"]` edges are expected to weaken once insertion handles its own images.
 
+**Published bytes and their manifest must exist before an article is rewritten.** A crash on the
+safe side of that boundary leaves an unreferenced derived image, and another run can finish the
+rewrite. The reverse order can leave an article pointing at bytes that do not exist after the
+rewrite has destroyed the original filename -- and with it the information a later run needed to
+repair the article. The same rule holds when an editor stores one image before inserting its id.
+
 ## A finished run leaves nothing behind, and that is the gap
 
 The registry answers what is running. Nothing answers what ran. An entry disappears when its
