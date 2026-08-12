@@ -38,8 +38,8 @@ allowBuilds:
   '@sentry/cli': true
   cn-font-split: true
   esbuild: true
-  koffi: set this to true or false
-  protobufjs: set this to true or false
+  koffi: true
+  protobufjs: true
   workerd: true
 
 # Supply-chain delay: a version must have been public for at least 24 hours before it

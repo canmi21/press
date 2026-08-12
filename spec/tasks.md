@@ -113,6 +113,38 @@ rewrite. The reverse order can leave an article pointing at bytes that do not ex
 rewrite has destroyed the original filename -- and with it the information a later run needed to
 repair the article. The same rule holds when an editor stores one image before inserting its id.
 
+## The editor's round trip is byte-identical, and stays that way by test
+
+Opening an article and saving it without editing leaves the file unchanged, byte for byte. All
+four articles pass. That was not a foregone conclusion and it is not free: it holds because three
+specific things were fixed, and it will stop holding the moment a fourth is missed.
+
+It matters here more than in most repositories. A segment id is the hash of the block's text, so a
+serializer that rewrites syntax it was not asked to touch silently orphans that block's
+translations -- there are over sixteen hundred of them. Whitespace is normalised before hashing, so
+reflowing a paragraph is safe; changing a bullet marker or an emphasis character is not. A round
+trip that is merely close would do that damage on every open rather than once.
+
+What had to be fixed, and the shape they share:
+
+- Frontmatter needs both a remark plugin to parse it and a schema node to hold it. Parsing alone
+  leaves an mdast node the editor refuses, because ProseMirror has nowhere to put it. Nothing reads
+  the YAML: not reordering or requoting it is the whole point, since `cms i18n` hashes frontmatter
+  values into ids too.
+- A code fence's `meta` -- everything after the language word -- is carried by mdast and dropped by
+  the stock schema, which keeps only `language`. It is written back as a separate mdast field, not
+  appended to the language: a space terminates the language word, so packing both together makes
+  remark escape it and the fence returns as `tokei&#x20;title=...`.
+
+**Every one of those is the same journey: an mdast field, a place in the schema to hold it, and a
+serializer that writes it back.** That is what a custom block type costs here, and the estimate is
+measured rather than guessed. `:::` directives and parameterised fences will each pay it.
+
+[markdown-roundtrip.ts](../apps/cms/scripts/markdown-roundtrip.ts) checks the claim and reports
+what changed by category. It has been confirmed to fail: a `*` bullet marker comes back as `-` and
+is caught. Run it after touching the parse or serialize path, because the damage it guards against
+is invisible in a diff of the editor's own code.
+
 ## A finished run leaves nothing behind, and that is the gap
 
 The registry answers what is running. Nothing answers what ran. An entry disappears when its
