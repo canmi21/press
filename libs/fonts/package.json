@@ -3,7 +3,9 @@
 	"private": true,
 	"type": "module",
 	"exports": {
+		".": "./src/index.ts",
 		"./mono.css": "./src/mono.css",
+		"./tang-guo-wei-de-xia-tian.css": "./src/tang-guo-wei-de-xia-tian.css",
 		"./wenkai.css": "./src/wenkai.css"
 	}
 }

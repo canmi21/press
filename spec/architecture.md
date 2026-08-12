@@ -564,15 +564,16 @@ resolved:
 
 ### Assets are addressed by their content
 
-Every published asset -- an original and each variant derived from it -- is stored under the
-hash of its own bytes, BLAKE3 truncated to 128 bits. The identity of a whole asset is its
+Every published image asset -- an original and each variant derived from it -- is stored under
+the hash of its own bytes, BLAKE3 truncated to 128 bits. The identity of a whole asset is its
 original's hash; a variant is a separate object with a separate one.
 
-This is what makes long caching safe without a promise to keep. The fonts above are cached for
-a year under names carrying no hash, so "these bytes never change" is a rule someone has to
-remember. A content-addressed key cannot denote different bytes than it did before, because
-changing the bytes changes the key. Re-encoding at a new quality produces a new object rather
-than a redefinition of an old one.
+This is what makes long caching safe without a promise to keep. CJK font chunks use the same
+property through `cn-font-split`'s own 128-bit content hash, while the small Latin subsets
+deliberately keep readable Google-Fonts-style names and therefore still carry the promise that
+bytes at an existing name never change. A content-addressed key cannot denote different bytes
+than it did before, because changing the bytes changes the key. Re-encoding at a new quality
+produces a new object rather than a redefinition of an old one.
 
 **The key is not the URL.** Objects are stored fanned out over the first four characters of the
 id -- `{kind}/{ab}/{cd}/{cid}.{ext}` -- and that split exists for a filesystem mirror, which has
@@ -1056,17 +1057,42 @@ The scanner reads `::image` for its `src` alone. Missing that would be worse tha
 asset referenced only in cropped form would look unreferenced, and the next sweep would delete
 it.
 
-### A font is kept twice, on purpose
+### A font pipeline input is disposable
 
-`data/fonts` holds the whole TTF and is never published; `data/public/fonts/{family}` holds
-the subset the web loads. That is the same shape as images -- originals outside the published
-tree, derived things inside -- and here the two copies are not redundant but different modes
-of use.
+The font pipeline only moves in one direction: a full face under `data/fonts` is input, and web
+chunks under `data/public/fonts/{family}` are output. The input is useful only while somebody
+may slice that face again. Once the chunks exist it may be deleted, and a family with prebuilt
+chunks needs no input at all. Keeping every original forever would turn a temporary build need
+into repository policy without buying the browser anything.
 
-A browser wants the smallest slice that covers the page, so a 24MB CJK face is split into
-hundreds of chunks by `unicode-range` and a reader fetches a handful. `cms og` wants the
-opposite: a title may contain any character, and a subset cannot answer for one it does not
-have.
+The authored [font manifest](../data/fonts.json) records that distinction. Ioskeley Mono has
+eight prebuilt chunks and no retained input; that is a complete family, not a missing source.
+
+That manifest stays in `data/` because it is a curated asset record and the slicing pipeline must
+read it without depending on a TypeScript runtime. Consumers do not cross that directory boundary:
+the root export of [`@canmi/fonts`](../libs/fonts/package.json) provides the typed family list and
+its package stylesheet paths. This keeps one authored list while making the library the public
+answer to what a family is and where its stylesheet lives.
+
+### A runtime font is a separate dependency
+
+An application may independently need a full face at runtime. `cms og` renders arbitrary titles
+with LXGW WenKai and therefore loads that one full TTF by path; a web subset cannot answer for a
+character it does not contain. That runtime dependency is why the 24MB file stays. No other
+published family gets a retained full face merely because this one has two roles.
+
+### Latin and CJK use different slicing strategies
+
+Latin faces are a few hundred kilobytes and are split into the handful of named writing-system
+subsets Google Fonts uses -- `latin`, `latin-ext`, and the other groups a face publishes. Their
+readable filenames are stable cache interfaces. CJK faces are tens of megabytes, so they are
+split by character frequency into hundreds of `unicode-range` chunks: common characters arrive
+first, and content hashes name the output because no person benefits from reading those names.
+
+The strategy is explicit in the manifest rather than inferred from glyph coverage. Coverage says
+what a face contains, but not whether its existing readable URLs are a compatibility promise;
+inferring would let a font update silently change both its publication layout and cache identity.
+See the [font runbook](../libs/fonts/README.md) for the operational side.
 
 The stylesheets live in `libs/fonts`, apart from the colour tokens. They are a different kind
 of fact -- what a family is and where its files are, rather than what the site looks like --
@@ -1083,9 +1109,9 @@ locale cookie. See [locale.md](locale.md).
 
 The year is an observation, not a promise. Changing the bytes changes the hash and therefore
 the URL, so a hashed name cannot come to mean anything else and nobody has to remember to bust
-it. `/fonts/` is kept for a year too and is the exception that shows the difference: those
-filenames carry no hash, so re-subsetting a font has to produce a new filename or every reader
-holds the old one for a year.
+it. CJK font chunks work that way too. Latin subset names are the deliberate exception: a name
+such as `IoskeleyMono-Regular-latin.woff2` is readable and stable, so re-subsetting must publish
+a new filename or every reader keeps the old bytes for a year.
 
 Errors get five minutes rather than nothing. A missing favicon is requested on every page
 view, and without any caching each one is a full trip to the origin. Five rather than a year
@@ -1141,11 +1167,11 @@ a `_headers` file: `/fonts/*` for one year, `immutable`. That file has no equiva
 worker reads from R2, so the policy has to be reasserted in worker code or it is silently lost
 -- the assets keep working while being re-fetched on every visit.
 
-The trap inside the old policy is worth keeping in view. Those font filenames carry no content
+The trap inside the old policy is worth keeping in view. Latin font filenames carry no content
 hash: `IoskeleyMono-Regular-latin.woff2` is a stable name. Declaring it `immutable` for a year
 promises that the bytes at that name never change, so re-subsetting the font requires a new
-filename. Whatever replaces `_headers` inherits that promise, or breaks it for everyone
-holding a cached copy.
+filename. CJK chunks already carry content hashes and need no such promise. Whatever replaces
+`_headers` has to preserve both cases rather than pretending all font names have one shape.
 
 ### Three ignore lists, no sharing
 

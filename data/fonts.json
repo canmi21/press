@@ -1,0 +1,91 @@
+{
+	"families": [
+		{
+			"id": "ioskeley-mono",
+			"family": "Ioskeley Mono",
+			"strategy": "named-subsets",
+			"chunks": "prebuilt",
+			"output": "data/public/fonts/ioskeley-mono",
+			"stylesheet": "libs/fonts/src/mono.css",
+			"stylesheetExport": "@canmi/fonts/mono.css",
+			"runtimeInput": null,
+			"faces": [
+				{
+					"input": null,
+					"stem": "IoskeleyMono-Regular",
+					"style": "normal",
+					"weight": "400",
+					"subsets": ["latin", "latin-ext"]
+				},
+				{
+					"input": null,
+					"stem": "IoskeleyMono-Italic",
+					"style": "italic",
+					"weight": "400",
+					"subsets": ["latin", "latin-ext"]
+				},
+				{
+					"input": null,
+					"stem": "IoskeleyMono-Bold",
+					"style": "normal",
+					"weight": "700",
+					"subsets": ["latin", "latin-ext"]
+				},
+				{
+					"input": null,
+					"stem": "IoskeleyMono-BoldItalic",
+					"style": "italic",
+					"weight": "700",
+					"subsets": ["latin", "latin-ext"]
+				}
+			]
+		},
+		{
+			"id": "lxgw-wenkai",
+			"family": "LXGW WenKai",
+			"strategy": "frequency-chunks",
+			"chunks": "generated",
+			"output": "data/public/fonts/lxgw-wenkai",
+			"stylesheet": "libs/fonts/src/wenkai.css",
+			"stylesheetExport": "@canmi/fonts/wenkai.css",
+			"runtimeInput": {
+				"path": "data/fonts/LXGWWenKai-Regular.ttf",
+				"consumer": "apps/cms/src/opengraph/mod.rs"
+			},
+			"faces": [
+				{
+					"input": "data/fonts/LXGWWenKai-Regular.ttf",
+					"stem": "LXGWWenKai-Regular",
+					"style": "normal",
+					"weight": "400"
+				}
+			]
+		},
+		{
+			"id": "tang-guo-wei-de-xia-tian",
+			"family": "糖果味的夏天",
+			"strategy": "frequency-chunks",
+			"chunks": "generated",
+			"output": "data/public/fonts/tang-guo-wei-de-xia-tian",
+			"stylesheet": "libs/fonts/src/tang-guo-wei-de-xia-tian.css",
+			"stylesheetExport": "@canmi/fonts/tang-guo-wei-de-xia-tian.css",
+			"runtimeInput": null,
+			"coverage": {
+				"total": 7864,
+				"cjk": 6864,
+				"latin": 95,
+				"hiragana": 83,
+				"katakana": 86
+			},
+			"faces": [
+				{
+					"input": "data/fonts/TangGuoWeiDeXiaTian-2-Regular.ttf.ttf",
+					"internalName": "TGWDXT",
+					"stem": "TangGuoWeiDeXiaTian-2-Regular",
+					"style": "normal",
+					"weight": "400"
+				}
+			]
+		}
+	]
+}

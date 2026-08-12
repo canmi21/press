@@ -35,6 +35,10 @@ run = "pnpm exec vitest run"
 description = "Type check every workspace package"
 run = "pnpm exec tsc --noEmit"
 
+[tasks.check-fonts]
+description = "Check the font manifest, published chunks, stylesheets, and splitter runtime"
+run = ".mise/tasks/fonts --check"
+
 [tasks.lint]
 description = "Lint the workspace"
 run = "oxlint ."
@@ -105,7 +109,17 @@ run = "pnpm run check"
 
 [tasks.verify]
 description = "Everything a change has to pass, across both languages"
-depends = ["secrets", "check", "check-site", "lint", "test", "refs", "lint-rust", "test-rust"]
+depends = [
+	"secrets",
+	"check",
+	"check-site",
+	"check-fonts",
+	"lint",
+	"test",
+	"refs",
+	"lint-rust",
+	"test-rust",
+]
 
 [tools]
 node = "latest"

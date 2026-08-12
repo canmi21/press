@@ -36,6 +36,7 @@ overrides:
 # go away.
 allowBuilds:
   '@sentry/cli': true
+  cn-font-split: true
   esbuild: true
   workerd: true
 
