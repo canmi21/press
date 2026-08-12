@@ -4,8 +4,13 @@
 	"type": "module",
 	"exports": {
 		".": "./src/index.ts",
+		"./arial.css": "./src/arial.css",
+		"./georgia.css": "./src/georgia.css",
+		"./helvetica.css": "./src/helvetica.css",
+		"./klee-one.css": "./src/klee-one.css",
 		"./mono.css": "./src/mono.css",
 		"./tang-guo-wei-de-xia-tian.css": "./src/tang-guo-wei-de-xia-tian.css",
+		"./times-new-roman.css": "./src/times-new-roman.css",
 		"./wenkai.css": "./src/wenkai.css"
 	}
 }

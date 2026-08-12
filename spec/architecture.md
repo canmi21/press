@@ -1062,8 +1062,9 @@ it.
 The font pipeline only moves in one direction: a full face under `data/fonts` is input, and web
 chunks under `data/public/fonts/{family}` are output. The input is useful only while somebody
 may slice that face again. Once the chunks exist it may be deleted, and a family with prebuilt
-chunks needs no input at all. Keeping every original forever would turn a temporary build need
-into repository policy without buying the browser anything.
+chunks needs no input of its own. It may still name an input retained by a different family that
+owns their shared chunks. Keeping every original forever would turn a temporary build need into
+repository policy without buying the browser anything.
 
 The authored [font manifest](../data/fonts.json) records that distinction. Ioskeley Mono has
 eight prebuilt chunks and no retained input; that is a complete family, not a missing source.
@@ -1093,6 +1094,13 @@ The strategy is explicit in the manifest rather than inferred from glyph coverag
 what a face contains, but not whether its existing readable URLs are a compatibility promise;
 inferring would let a font update silently change both its publication layout and cache identity.
 See the [font runbook](../libs/fonts/README.md) for the operational side.
+
+A selectable family is the name a person picks, not a set of bytes. Its generic fallback completes
+the CSS stack, and its faces say which local or redistributable typefaces may satisfy that choice.
+Metric compatibility decides what may substitute; it does not decide which choices are offered.
+Two families therefore remain separate entries when their local-first stacks differ, even if they
+share the same published chunks. Keeping the choice and its sources together prevents a second
+selectable-font list from disagreeing with the published faces.
 
 The stylesheets live in `libs/fonts`, apart from the colour tokens. They are a different kind
 of fact -- what a family is and where its files are, rather than what the site looks like --

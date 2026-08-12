@@ -3,6 +3,7 @@
 		{
 			"id": "ioskeley-mono",
 			"family": "Ioskeley Mono",
+			"generic": "monospace",
 			"strategy": "named-subsets",
 			"chunks": "prebuilt",
 			"output": "data/public/fonts/ioskeley-mono",
@@ -43,6 +44,7 @@
 		{
 			"id": "lxgw-wenkai",
 			"family": "LXGW WenKai",
+			"generic": "cursive",
 			"strategy": "frequency-chunks",
 			"chunks": "generated",
 			"output": "data/public/fonts/lxgw-wenkai",
@@ -64,6 +66,7 @@
 		{
 			"id": "tang-guo-wei-de-xia-tian",
 			"family": "糖果味的夏天",
+			"generic": "cursive",
 			"strategy": "frequency-chunks",
 			"chunks": "generated",
 			"output": "data/public/fonts/tang-guo-wei-de-xia-tian",
@@ -79,11 +82,121 @@
 			},
 			"faces": [
 				{
-					"input": "data/fonts/TangGuoWeiDeXiaTian-2-Regular.ttf.ttf",
+					"input": "data/fonts/TangGuoWeiDeXiaTian-2-Regular.ttf",
 					"internalName": "TGWDXT",
 					"stem": "TangGuoWeiDeXiaTian-2-Regular",
 					"style": "normal",
 					"weight": "400"
+				}
+			]
+		},
+		{
+			"id": "klee-one",
+			"family": "Klee One",
+			"generic": "cursive",
+			"strategy": "frequency-chunks",
+			"chunks": "generated",
+			"output": "data/public/fonts/klee-one",
+			"stylesheet": "libs/fonts/src/klee-one.css",
+			"stylesheetExport": "@canmi/fonts/klee-one.css",
+			"runtimeInput": null,
+			"coverage": {
+				"total": 10178,
+				"cjk": 7917,
+				"kana": 185,
+				"latin": 231
+			},
+			"faces": [
+				{
+					"input": "data/fonts/KleeOne-Regular.ttf",
+					"local": ["Klee One"],
+					"stem": "KleeOne-Regular",
+					"style": "normal",
+					"weight": "400"
+				}
+			]
+		},
+		{
+			"id": "arial",
+			"family": "Arial",
+			"generic": "sans-serif",
+			"strategy": "named-subsets",
+			"chunks": "generated",
+			"output": "data/public/fonts/arial",
+			"stylesheet": "libs/fonts/src/arial.css",
+			"stylesheetExport": "@canmi/fonts/arial.css",
+			"runtimeInput": null,
+			"faces": [
+				{
+					"input": "data/fonts/Arimo-Regular.ttf",
+					"local": ["Arial", "Helvetica", "Arimo"],
+					"stem": "Arimo-Regular-v1",
+					"style": "normal",
+					"weight": "400",
+					"subsets": ["latin", "latin-ext"]
+				}
+			]
+		},
+		{
+			"id": "helvetica",
+			"family": "Helvetica",
+			"generic": "sans-serif",
+			"strategy": "named-subsets",
+			"chunks": "prebuilt",
+			"output": "data/public/fonts/arial",
+			"stylesheet": "libs/fonts/src/helvetica.css",
+			"stylesheetExport": "@canmi/fonts/helvetica.css",
+			"runtimeInput": null,
+			"faces": [
+				{
+					"input": "data/fonts/Arimo-Regular.ttf",
+					"local": ["Helvetica", "Arial", "Arimo"],
+					"stem": "Arimo-Regular-v1",
+					"style": "normal",
+					"weight": "400",
+					"subsets": ["latin", "latin-ext"]
+				}
+			]
+		},
+		{
+			"id": "times-new-roman",
+			"family": "Times New Roman",
+			"generic": "serif",
+			"strategy": "named-subsets",
+			"chunks": "generated",
+			"output": "data/public/fonts/times-new-roman",
+			"stylesheet": "libs/fonts/src/times-new-roman.css",
+			"stylesheetExport": "@canmi/fonts/times-new-roman.css",
+			"runtimeInput": null,
+			"faces": [
+				{
+					"input": "data/fonts/Tinos-Regular.ttf",
+					"local": ["Times New Roman", "Tinos"],
+					"stem": "Tinos-Regular-v1",
+					"style": "normal",
+					"weight": "400",
+					"subsets": ["latin", "latin-ext"]
+				}
+			]
+		},
+		{
+			"id": "georgia",
+			"family": "Georgia",
+			"generic": "serif",
+			"strategy": "named-subsets",
+			"chunks": "generated",
+			"output": "data/public/fonts/georgia",
+			"stylesheet": "libs/fonts/src/georgia.css",
+			"stylesheetExport": "@canmi/fonts/georgia.css",
+			"runtimeInput": null,
+			"faces": [
+				{
+					"input": "data/fonts/Gelasio-Regular.ttf",
+					"local": ["Georgia", "Gelasio"],
+					"stem": "Gelasio-Regular-v1",
+					"style": "normal",
+					"weight": "400",
+					"subsets": ["latin", "latin-ext"]
 				}
 			]
 		}
