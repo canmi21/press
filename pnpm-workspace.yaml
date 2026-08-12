@@ -11,6 +11,11 @@ packages:
 overrides:
   '@sveltejs/kit@2>cookie@<0.7.0': 0.7.2
 
+  # tauri-mcp-server pins ws 8.18.3 exactly. Keep the override on that exact edge so a future
+  # server release owns its dependency again, while the current development tool gets both
+  # the memory-disclosure and fragmented-message DoS fixes in ws 8.21.
+  '@hypothesi/tauri-mcp-server@0.12.0>ws@8.18.3': 8.21.0
+
   # miniflare pins undici exactly, and the release that carries the fix is only on its alpha
   # line. Both are development-only -- a deployed Worker uses workerd's own fetch and never
   # loads undici -- so this buys a clean alert list rather than production safety, at the cost

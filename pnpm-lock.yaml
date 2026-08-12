@@ -6,6 +6,7 @@ settings:
 
 overrides:
   '@sveltejs/kit@2>cookie@<0.7.0': 0.7.2
+  '@hypothesi/tauri-mcp-server@0.12.0>ws@8.18.3': 8.21.0
   miniflare>undici: ^7.29.0
   '@esbuild-kit/core-utils>esbuild': ^0.25.12
 
@@ -3348,18 +3349,6 @@ packages:
       '@cloudflare/workers-types':
         optional: true
 
-  ws@8.18.3:
-    resolution: {integrity: sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: '>=5.0.2'
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
-
   ws@8.21.0:
     resolution: {integrity: sha512-Vsp28b7DRcimFQvrqu2Wek3z1iYxDCWqHYB8Qsnk/S4RfaCQzPGPyBNuVjJV3cd6UiKtUtp6sNM77gWvzcCH+g==}
     engines: {node: '>=10.0.0'}
@@ -3766,7 +3755,7 @@ snapshots:
       aria-api: 0.8.0
       execa: 9.6.0
       html2canvas-pro: 1.6.6
-      ws: 8.18.3
+      ws: 8.21.0
       zod: 3.25.76
       zod-to-json-schema: 3.25.0(zod@3.25.76)
     transitivePeerDependencies:
@@ -6253,8 +6242,6 @@ snapshots:
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
-
-  ws@8.18.3: {}
 
   ws@8.21.0: {}
 
