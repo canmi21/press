@@ -61,8 +61,10 @@ somebody reloading halfway down a page wants. Nothing here re-implements either.
 
 The distinction is `PerformanceNavigationTiming.type`: code that does take over the initial
 jump -- the article ToC, which needs its own offset and a smooth landing -- acts only on
-`navigate` and stands aside on `reload`. Handling both alike is what makes a reload throw away
-the reader's place.
+`navigate` and stands aside on `reload`. A fresh article navigation suppresses the native
+fragment jump before the body is parsed, begins at the article top, then restores the hash
+without moving and scrolls smoothly to it after hydration. Handling reload the same way would
+throw away the reader's place.
 
 The control stays an `<a href="#id">` and the handler cancels the default. Without JavaScript
 the native jump happens instead, hash and all, which is worse than the scripted behaviour and

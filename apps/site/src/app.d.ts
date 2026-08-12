@@ -29,6 +29,10 @@ declare global {
 	interface ImportMeta {
 		readonly env: ImportMetaEnv;
 	}
+
+	interface Window {
+		canmiArticleInitialHash?: string;
+	}
 }
 
 export {};

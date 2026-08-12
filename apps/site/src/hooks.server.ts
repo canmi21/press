@@ -5,6 +5,7 @@ import { handleErrorWithSentry, initCloudflareSentryHandle, sentryHandle } from 
 import type { Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 import { articleRailScript } from '$lib/article/rail';
+import { articleHashScript } from '$lib/article/toc';
 import { getArticle, getPage } from '$lib/content';
 import { LANGUAGE_COOKIE_MAX_AGE, languageTag, privateHtml, resolveLocale } from '$lib/locale';
 import { registerServerStrategy } from '$lib/locale/paraglide';
@@ -92,6 +93,7 @@ const pageHandle: Handle = async ({ event, resolve }) => {
 					.replace('%language.code%', event.locals.locale?.code ?? 'mw')
 					.replace('%theme.class%', theme === 'dark' ? 'dark' : '')
 					.replace('%theme.script%', themeScript)
+					.replace('%article.hash.script%', article ? articleHashScript : '')
 					.replace('%article.rail.script%', articleRailScript),
 			),
 	});

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { measureNaturalWidth, prepareWithSegments } from '@chenglou/pretext';
-	import { animate } from 'motion';
+	import { animate, frame as motionFrame } from 'motion';
 	import {
 		DEFAULT_PIXELS_PER_REM,
 		remFromDefaultPixels,
@@ -8,6 +8,7 @@
 	} from '$lib/client/units';
 	import type { TocEntry } from '$lib/content/types';
 	import { railEndOffset } from './rail';
+	import { scheduleInitialHashJump } from './toc';
 
 	let { toc }: { toc: TocEntry[] } = $props();
 
@@ -226,31 +227,28 @@
 		// Only on a fresh navigation. A reload keeps the position the reader had scrolled to,
 		// which is the browser's own behaviour and what somebody reloading halfway down a page
 		// wants; taking over both alike is what throws that away. See spec/styling.md.
-		const initialHash = window.location.hash.slice(1);
+		const interceptedHash = window.canmiArticleInitialHash;
+		const initialHash = interceptedHash ?? window.location.hash.slice(1);
 		const nav = performance.getEntriesByType('navigation')[0] as
 			| PerformanceNavigationTiming
 			| undefined;
-		if (initialHash && nav?.type === 'navigate') {
-			const target = document.getElementById(initialHash);
-			if (target) {
-				const targetIdx = headings.indexOf(target as HTMLHeadingElement);
-				if (targetIdx >= 0) activeIndex = targetIdx;
-				isClickScrolling = true;
-				window.scrollTo({ top: 0, behavior: 'instant' });
-				requestAnimationFrame(() => {
-					const top = target.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET / 2;
-					window.scrollTo({ top, behavior: 'smooth' });
-					const onEnd = () => {
-						isClickScrolling = false;
-					};
-					if ('onscrollend' in window) {
-						window.addEventListener('scrollend', onEnd, { once: true });
-					} else {
-						setTimeout(onEnd, 1500);
-					}
-				});
-			}
+		if (interceptedHash) {
+			history.replaceState(
+				history.state,
+				'',
+				`${window.location.pathname}${window.location.search}#${interceptedHash}`,
+			);
+			delete window.canmiArticleInitialHash;
 		}
+		const initialTarget =
+			initialHash && nav?.type === 'navigate' ? document.getElementById(initialHash) : null;
+		if (initialTarget) {
+			const targetIdx = headings.indexOf(initialTarget as HTMLHeadingElement);
+			if (targetIdx >= 0) activeIndex = targetIdx;
+			isClickScrolling = true;
+		}
+
+		let cancelInitialJump: (() => void) | undefined;
 
 		const raf = requestAnimationFrame(() => {
 			const measured: Entry[] = [];
@@ -261,6 +259,29 @@
 				measured.push({ el, slug: el.id, width: w, text });
 			}
 			hydratedEntries = { source, entries: measured };
+			if (initialTarget) {
+				// Bar-width animation snapshots scrollY while resolving keyframes. Start after that
+				// restoration phase or it cancels this smooth jump and leaves a cold load at the top.
+				cancelInitialJump = scheduleInitialHashJump(
+					motionFrame.postRender,
+					requestAnimationFrame,
+					cancelAnimationFrame,
+					() => window.scrollTo({ top: 0, behavior: 'instant' }),
+					() => {
+						const top =
+							initialTarget.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET / 2;
+						window.scrollTo({ top, behavior: 'smooth' });
+						const onEnd = () => {
+							isClickScrolling = false;
+						};
+						if ('onscrollend' in window) {
+							window.addEventListener('scrollend', onEnd, { once: true });
+						} else {
+							setTimeout(onEnd, 1500);
+						}
+					},
+				);
+			}
 		});
 
 		const onScroll = () => {
@@ -306,6 +327,7 @@
 
 		return () => {
 			cancelAnimationFrame(raf);
+			cancelInitialJump?.();
 			for (const c of cleanups) c();
 			if (phaseTimer) clearTimeout(phaseTimer);
 			if (leaveTimer) clearTimeout(leaveTimer);
