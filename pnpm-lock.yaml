@@ -103,6 +103,9 @@ importers:
 
   apps/cms:
     dependencies:
+      '@canmi/fonts':
+        specifier: workspace:*
+        version: link:../../libs/fonts
       '@canmi/theme':
         specifier: workspace:*
         version: link:../../libs/theme
@@ -124,6 +127,9 @@ importers:
       '@tauri-apps/api':
         specifier: ^2.11.1
         version: 2.11.1
+      remark-directive:
+        specifier: ^4.0.0
+        version: 4.0.0(supports-color@10.2.2)
       remark-frontmatter:
         specifier: 5.0.0
         version: 5.0.0(supports-color@10.2.2)

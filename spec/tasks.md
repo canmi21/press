@@ -115,6 +115,13 @@ repair the article. The same rule holds when an editor stores one image before i
 
 ## The editor's round trip is byte-identical, and stays that way by test
 
+**This requirement is being retired.** [i18n.md](i18n.md) now takes a segment id from a block's
+canonical form rather than from its bytes, and stores articles already normalised -- so the file
+becomes a projection of the canonical form rather than the authority, and the editor is free to
+write whatever the normaliser produces. Byte equality was the right bar while the bytes were what
+ids were taken from. Until the migration lands, it still is, so what follows continues to hold and
+the harness continues to run.
+
 Opening an article and saving it without editing leaves the file unchanged, byte for byte. All
 four articles pass. That was not a foregone conclusion and it is not free: it holds because three
 specific things were fixed, and it will stop holding the moment a fourth is missed.
@@ -138,7 +145,29 @@ What had to be fixed, and the shape they share:
 
 **Every one of those is the same journey: an mdast field, a place in the schema to hold it, and a
 serializer that writes it back.** That is what a custom block type costs here, and the estimate is
-measured rather than guessed. `:::` directives and parameterised fences will each pay it.
+measured rather than guessed. The three directive forms confirm it independently: container,
+leaf, and text directives each need their mdast fields carried into a schema node and written back
+by a serializer. A parameterised fence is the cheaper variation because it can extend the existing
+code-block node instead of adding another node, but its structured parameters still need a schema
+attribute and the raw mdast fields still need a serializer.
+
+The stock commonmark preset remains the foundation, not the home for repository syntax. The
+project extensions form a preset layered after it, so the directive parser, all three schemas, and
+the code-block override are installed as one unit by both the editor and the round-trip harness.
+Forking commonmark would make upstream behavior ours to maintain; scattering the extensions would
+let the harness and editor silently test different pipelines. Milkdown does not provide a generic
+unknown-node escape hatch here: every directive form needs an explicit schema and transformer,
+which is the measured cost rather than an implementation accident.
+
+For an opening fence whose info string is `{abc lang}`, remark's lexical split is kept verbatim:
+`lang` is `{abc` and `meta` is `lang}`. The schema additionally carries
+`{ name: "abc", values: ["lang"] }` for the block owner. Replacing the raw fields with the
+interpreted values would require reconstructing the author's spelling at serialization time and
+weaken the byte-identical guarantee for no benefit; renderers read the structured attribute
+instead. A `font` directive's `family` attribute and a `font` fence's sole value must be ids
+exported by `@canmi/fonts`, and are rejected otherwise. That single catalogue prevents the editor
+syntax and renderer capabilities from drifting apart. See
+[markdown.ts](../apps/cms/client/markdown.ts).
 
 [markdown-roundtrip.ts](../apps/cms/scripts/markdown-roundtrip.ts) checks the claim and reports
 what changed by category. It has been confirmed to fail: a `*` bullet marker comes back as `-` and

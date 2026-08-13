@@ -16,85 +16,22 @@ import {
 	serializer,
 	serializerCtx,
 } from '@milkdown/core';
-import { $nodeSchema, $remark } from '@milkdown/utils';
-import remarkFrontmatter from 'remark-frontmatter';
 import {
 	remarkAddOrderInListPlugin,
 	remarkHtmlTransformer,
 	remarkInlineLinkPlugin,
 	remarkLineBreak,
-	codeBlockSchema,
 	remarkMarker,
 	remarkPreserveEmptyLinePlugin,
 	schema as commonmarkSchema,
 } from '@milkdown/preset-commonmark';
 
-// Without this, `---\ntitle: ...\n---` parses as a thematic break, a paragraph and a setext
-// heading underline, and serializing that back writes the closing fence as a long run of dashes.
-// The block is kept as an opaque node rather than being understood, which is what preserves the
-// author's own YAML spelling.
-const frontmatterPlugin = $remark('frontmatter', () => remarkFrontmatter, ['yaml']);
-
-// Parsing frontmatter is only half of it: mdast then carries a `yaml` node that the ProseMirror
-// schema has nowhere to put, and the transformer refuses a node it cannot match. So the block
-// gets a node of its own, holding the author's YAML verbatim as an atom. Nothing here understands
-// the YAML -- not reordering or requoting it is the entire point, since `cms i18n` hashes
-// frontmatter values into segment ids.
-//
-// This is the same shape every custom block will need: an mdast field, a schema node or attribute
-// to hold it, and a serializer that writes it back. See spec/tasks.md.
-const frontmatterNode = $nodeSchema('frontmatter', () => ({
-	atom: true,
-	group: 'block',
-	attrs: { value: { default: '' } },
-	parseDOM: [{ tag: 'div[data-frontmatter]' }],
-	toDOM: (node: any) => ['div', { 'data-frontmatter': String(node.attrs.value ?? '') }],
-	parseMarkdown: {
-		match: ({ type }: { type: string }) => type === 'yaml',
-		runner: (state: any, node: any, type: any) => {
-			state.addNode(type, { value: node.value ?? '' });
-		},
-	},
-	toMarkdown: {
-		match: (node: any) => node.type.name === 'frontmatter',
-		runner: (state: any, node: any) => {
-			state.addNode('yaml', undefined, node.attrs.value);
-		},
-	},
-}));
-
-// The stock code_block schema keeps only `language`, so everything after the language word --
-// ```tokei title="Seam language statistics" -- is read, dropped on the way into ProseMirror, and
-// never written back. That string is not decoration: it is where this repository is about to put
-// the parameters of its own block types. Overriding the node adds a `meta` attribute beside the
-// language and writes both back.
-const codeBlockWithMeta = codeBlockSchema.extendSchema((prev) => (ctx) => {
-	const base = prev(ctx);
-	return {
-		...base,
-		attrs: { ...base.attrs, meta: { default: '' } },
-		parseMarkdown: {
-			match: ({ type }: { type: string }) => type === 'code',
-			runner: (state: any, node: any, type: any) => {
-				state.openNode(type, { language: node.lang ?? '', meta: node.meta ?? '' });
-				if (node.value) state.addText(node.value);
-				state.closeNode();
-			},
-		},
-		toMarkdown: {
-			match: (node: any) => node.type.name === 'code_block',
-			runner: (state: any, node: any) => {
-				// `lang` and `meta` are separate mdast fields and have to stay that way. Packing
-				// both into `lang` makes remark escape the spaces -- a space terminates the
-				// language word -- and the fence comes back as `tokei&#x20;title=...`.
-				state.addNode('code', undefined, node.content.firstChild?.text ?? '', {
-					lang: node.attrs.language || null,
-					meta: node.attrs.meta || null,
-				});
-			},
-		},
-	};
-});
+// Node's native TypeScript loader requires the source suffix, while the repository's bundler
+// module resolution rejects it in static imports. The URL keeps the runtime path explicit and
+// the type-only import keeps the shared extension surface checked.
+const { markdownExtensions } = (await import(
+	new URL('../client/markdown.ts', import.meta.url).href
+)) as typeof import('../client/markdown');
 
 const articlePaths = [
 	'contents/architecture/compile-time-rendering.md',
@@ -102,6 +39,8 @@ const articlePaths = [
 	'contents/milestone/less-is-more.md',
 	'contents/mirror/less-than-an-hour.md',
 ] as const;
+
+const fixturePath = 'apps/cms/scripts/fixtures/custom-blocks.md';
 
 const repositoryRoot = fileURLToPath(new URL('../../../', import.meta.url));
 
@@ -319,9 +258,7 @@ async function createRoundTripper() {
 		...remarkLineBreak,
 		...remarkMarker,
 		...remarkPreserveEmptyLinePlugin,
-		...frontmatterPlugin,
-		...frontmatterNode,
-		...codeBlockWithMeta,
+		...markdownExtensions,
 	];
 
 	const handlers = plugins.map((plugin) => plugin(ctx.produce()));
@@ -331,20 +268,71 @@ async function createRoundTripper() {
 		const doc = ctx.get(parserCtx)(markdown);
 		// Paragraph serialization only needs this state lookup; no DOM editor view is created.
 		ctx.set(editorViewCtx, { state: { doc } } as never);
-		return ctx.get(serializerCtx)(doc);
+		return { doc, markdown: ctx.get(serializerCtx)(doc) };
 	};
+}
+
+function assertCustomNodes(doc: any) {
+	const directiveTypes = new Set<string>();
+	let fontFence: any;
+
+	doc.descendants((node: any) => {
+		if (
+			node.type.name === 'container_directive' ||
+			node.type.name === 'leaf_directive' ||
+			node.type.name === 'text_directive'
+		) {
+			directiveTypes.add(node.type.name);
+			if (node.attrs.name !== 'font' || node.attrs.attributes.family !== 'georgia') {
+				throw new Error(`${node.type.name} did not retain its font name and attributes`);
+			}
+		}
+
+		if (node.type.name === 'code_block' && node.attrs.parameters?.name === 'font') {
+			fontFence = node;
+		}
+	});
+
+	for (const type of ['container_directive', 'leaf_directive', 'text_directive']) {
+		if (!directiveTypes.has(type)) throw new Error(`fixture did not produce ${type}`);
+	}
+
+	if (
+		fontFence?.attrs.language !== '{font' ||
+		fontFence?.attrs.meta !== 'georgia}' ||
+		fontFence?.attrs.parameters.values.length !== 1 ||
+		fontFence?.attrs.parameters.values[0] !== 'georgia'
+	) {
+		throw new Error('fixture did not produce structured font fence parameters');
+	}
+}
+
+function assertUnavailableFontIsRejected(
+	roundTrip: (markdown: string) => unknown,
+	markdown: string,
+	source: string,
+) {
+	try {
+		roundTrip(markdown);
+	} catch (error) {
+		if (error instanceof Error && error.message.includes('unavailable font family')) return;
+		throw error;
+	}
+
+	throw new Error(`${source} accepted an unavailable font family`);
 }
 
 const roundTrip = await createRoundTripper();
 const temporaryDirectory = await mkdtemp(join(tmpdir(), 'cms-markdown-roundtrip-'));
 let results: { identical: boolean; report: string }[] = [];
+let fixtureIdentical = false;
 
 try {
 	results = await Promise.all(
 		articlePaths.map(async (relativePath) => {
 			const sourcePath = join(repositoryRoot, relativePath);
 			const source = await readFile(sourcePath, 'utf8');
-			const output = roundTrip(source);
+			const { markdown: output } = roundTrip(source);
 
 			if (source === output) {
 				return { identical: true, report: `IDENTICAL ${relativePath}` };
@@ -367,6 +355,21 @@ try {
 			return { identical: false, report: report.join('\n') };
 		}),
 	);
+
+	const fixture = await readFile(join(repositoryRoot, fixturePath), 'utf8');
+	const fixtureResult = roundTrip(fixture);
+	fixtureIdentical = fixture === fixtureResult.markdown;
+	assertCustomNodes(fixtureResult.doc);
+	assertUnavailableFontIsRejected(
+		roundTrip,
+		':font[Unavailable]{family="comic-sans"}\n',
+		'font directive',
+	);
+	assertUnavailableFontIsRejected(
+		roundTrip,
+		'```{font comic-sans}\nUnavailable\n```\n',
+		'font fence',
+	);
 } finally {
 	await rm(temporaryDirectory, { recursive: true });
 }
@@ -374,4 +377,5 @@ try {
 for (const { report } of results) console.log(report);
 const failures = results.filter(({ identical }) => !identical).length;
 console.log(`\n${articlePaths.length - failures} identical; ${failures} different`);
-process.exitCode = failures === 0 ? 0 : 1;
+console.log(`${fixtureIdentical ? 'IDENTICAL' : 'DIFFERENT'} ${fixturePath}`);
+process.exitCode = failures === 0 && fixtureIdentical ? 0 : 1;
