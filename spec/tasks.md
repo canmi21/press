@@ -113,31 +113,19 @@ rewrite. The reverse order can leave an article pointing at bytes that do not ex
 rewrite has destroyed the original filename -- and with it the information a later run needed to
 repair the article. The same rule holds when an editor stores one image before inserting its id.
 
-## The editor's round trip is byte-identical, and stays that way by test
+## The editor's canonical round trip stays idempotent by test
 
-**This requirement is being retired.** [i18n.md](i18n.md) now takes a segment id from a block's
-canonical form rather than from its bytes, and stores articles already normalised -- so the file
-becomes a projection of the canonical form rather than the authority, and the editor is free to
-write whatever the normaliser produces. Byte equality was the right bar while the bytes were what
-ids were taken from. Until the migration lands, it still is, so what follows continues to hold and
-the harness continues to run.
-
-Opening an article and saving it without editing leaves the file unchanged, byte for byte. All
-four articles pass. That was not a foregone conclusion and it is not free: it holds because three
-specific things were fixed, and it will stop holding the moment a fourth is missed.
-
-It matters here more than in most repositories. A segment id is the hash of the block's text, so a
-serializer that rewrites syntax it was not asked to touch silently orphans that block's
-translations -- there are over sixteen hundred of them. Whitespace is normalised before hashing, so
-reflowing a paragraph is safe; changing a bullet marker or an emphasis character is not. A round
-trip that is merely close would do that damage on every open rather than once.
+[i18n.md](i18n.md) takes a segment id from a block's canonical form and stores articles already
+normalised. Opening and saving a canonical article therefore leaves it byte-identical, but that is
+now an idempotence check rather than a promise to preserve an imported spelling. The file is a
+projection of the canonical form, and the editor writes whatever the normaliser produces.
 
 What had to be fixed, and the shape they share:
 
-- Frontmatter needs both a remark plugin to parse it and a schema node to hold it. Parsing alone
-  leaves an mdast node the editor refuses, because ProseMirror has nowhere to put it. Nothing reads
-  the YAML: not reordering or requoting it is the whole point, since `cms i18n` hashes frontmatter
-  values into ids too.
+- Frontmatter needs a remark plugin to parse it, a normalisation pass to re-emit its YAML, and a
+  schema node to hold the result. Parsing alone leaves an mdast node the editor refuses, because
+  ProseMirror has nowhere to put it. The opaque schema preserves the canonical YAML rather than
+  interpreting metadata as editable prose.
 - A code fence's `meta` -- everything after the language word -- is carried by mdast and dropped by
   the stock schema, which keeps only `language`. It is written back as a separate mdast field, not
   appended to the language: a space terminates the language word, so packing both together makes
@@ -169,10 +157,11 @@ exported by `@canmi/fonts`, and are rejected otherwise. That single catalogue pr
 syntax and renderer capabilities from drifting apart. See
 [markdown.ts](../apps/cms/client/markdown.ts).
 
-[markdown-roundtrip.ts](../apps/cms/scripts/markdown-roundtrip.ts) checks the claim and reports
-what changed by category. It has been confirmed to fail: a `*` bullet marker comes back as `-` and
-is caught. Run it after touching the parse or serialize path, because the damage it guards against
-is invisible in a diff of the editor's own code.
+[markdown-roundtrip.ts](../apps/cms/scripts/markdown-roundtrip.ts) checks idempotence on the stored
+articles and reports semantic-risk changes by category. This is a weaker guarantee than the old
+arbitrary-input byte round trip: a normalised article round-trips trivially. It remains useful for
+detecting a serializer change or a custom node that drops meaning. Run it after touching the parse
+or serialize path, because that damage is invisible in a diff of the editor's own code.
 
 ## A finished run leaves nothing behind, and that is the gap
 

@@ -133,6 +133,9 @@ importers:
       remark-frontmatter:
         specifier: 5.0.0
         version: 5.0.0(supports-color@10.2.2)
+      yaml:
+        specifier: 2.9.0
+        version: 2.9.0
     devDependencies:
       '@canmi/tokens':
         specifier: workspace:*

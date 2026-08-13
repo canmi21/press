@@ -19,7 +19,8 @@
 		"@milkdown/utils": "7.20.0",
 		"@tauri-apps/api": "^2.11.1",
 		"remark-directive": "^4.0.0",
-		"remark-frontmatter": "5.0.0"
+		"remark-frontmatter": "5.0.0",
+		"yaml": "2.9.0"
 	},
 	"devDependencies": {
 		"@canmi/tokens": "workspace:*",

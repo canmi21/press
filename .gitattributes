@@ -1,5 +1,15 @@
-# cn-font-split output: 318 @font-face rules, one per unicode-range chunk.
-libs/fonts/src/wenkai.css linguist-generated=true
+# Font stylesheets are machine output, and there are 8837 lines of them against a few hundred
+# lines of CSS anybody wrote. Left counted, the language statistics describe the subsetter rather
+# than the repository.
+#
+# A glob rather than a list of families: adding a font is three steps and coming back here is not
+# one anybody would remember. Nothing in this directory is hand-authored -- every file is
+# @font-face rules and unicode-ranges, whether `mise run fonts` produced them or they arrived in a
+# prebuilt web package. See spec/architecture.md.
+#
+# Every other stylesheet stays counted. `libs/tokens/src/colors.css`, `apps/site/src/styles/` and
+# the rest are decisions somebody made and should weigh what they weigh.
+libs/fonts/src/*.css linguist-generated=true
 
 # Written by `cms image`, and tracked only because a build resolves every image from it
 # without a byte of data/ present. It is a record, not source.

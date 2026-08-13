@@ -1,9 +1,9 @@
 //! Cutting an article into the units a translation is addressed by.
 //!
-//! A segment is a markdown block, and its id is the hash of its own text. That is the whole
+//! A segment is a markdown block, and its id is the hash of its canonical text. That is the whole
 //! synchronisation mechanism: edit a paragraph and only that paragraph's id changes, so only
 //! its translations go stale. Move a paragraph and nothing changes at all, because order lives
-//! in the article and never in the sidecar. See spec/architecture.md.
+//! in the article and never in the sidecar. See spec/i18n.md.
 
 use std::collections::BTreeMap;
 
@@ -28,13 +28,13 @@ pub enum Kind {
 	/// Code. Never translated, never sent -- including any comments inside it. A code block is
 	/// an executable fact, and editing it would raise the question of where to stop.
 	Code,
-	/// A directive. Only named attributes are translatable; `src` and `url` are addresses.
+	/// A directive. Structure only, never translated.
 	Directive,
 }
 
 impl Kind {
 	pub fn translatable(self) -> bool {
-		self != Self::Code
+		!matches!(self, Self::Code | Self::Directive)
 	}
 
 	/// Whether this block is structural enough that a light model is not a gamble.
@@ -43,7 +43,7 @@ impl Kind {
 	/// density are weak proxies for difficulty, and the things that actually make a passage
 	/// hard -- a pun, a register, a cultural reference -- are exactly what cannot be counted.
 	pub fn is_light(self) -> bool {
-		matches!(self, Self::Heading | Self::Directive)
+		self == Self::Heading
 	}
 }
 
@@ -126,15 +126,13 @@ pub fn mask(source: &str) -> Masked {
 	Masked { text, slots }
 }
 
-/// The id of a block: the hash of its text, truncated the same way asset ids are.
+/// The id of a block: the hash of its canonical bytes, truncated the same way asset ids are.
+///
+/// The TypeScript write path makes the article canonical before Rust sees it. Reimplementing
+/// remark here would create a second canonical form instead of strengthening the first. See
+/// spec/i18n.md.
 pub fn id_of(source: &str) -> String {
-	crate::image::cid(normalise(source).as_bytes())
-}
-
-/// Whitespace differences must not invalidate a translation, so they are removed before
-/// hashing. A reflowed paragraph is the same paragraph.
-fn normalise(source: &str) -> String {
-	source.split_whitespace().collect::<Vec<_>>().join(" ")
+	crate::image::cid(source.as_bytes())
 }
 
 /// Split allowlisted frontmatter values and body blocks; the frontmatter block itself is never
@@ -367,8 +365,10 @@ mod tests {
 	}
 
 	#[test]
-	fn reflowing_is_not_editing() {
-		assert_eq!(id_of("one two\nthree"), id_of("one   two\n\tthree  "));
+	fn the_id_is_the_hash_of_the_canonical_bytes_on_disk() {
+		let source = "one two three";
+		assert_eq!(id_of(source), crate::image::cid(source.as_bytes()));
+		assert_ne!(id_of(source), id_of("one two\nthree"));
 	}
 
 	#[test]
@@ -383,6 +383,13 @@ mod tests {
 	fn code_is_never_sent_anywhere() {
 		assert!(!Kind::Code.translatable());
 		let kept = translatable("prose\n\n```\nlet x = 1;\n```");
+		assert_eq!(kept.len(), 1);
+	}
+
+	#[test]
+	fn directives_are_never_sent_anywhere() {
+		assert!(!Kind::Directive.translatable());
+		let kept = translatable("prose\n\n::image{src=\"asset.avif\"}");
 		assert_eq!(kept.len(), 1);
 	}
 
@@ -413,10 +420,10 @@ mod tests {
 	#[test]
 	fn structure_decides_the_model_not_a_difficulty_score() {
 		assert!(Kind::Heading.is_light());
-		assert!(Kind::Directive.is_light());
 		// Prose and quotations carry register and idiom, which is what a light model loses.
 		assert!(!Kind::Prose.is_light());
 		assert!(!Kind::Quote.is_light());
+		assert!(!Kind::Directive.is_light());
 	}
 
 	#[test]

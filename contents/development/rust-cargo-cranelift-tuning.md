@@ -1,8 +1,7 @@
 ---
 title: 不许 Cargo 再摸鱼了
 subtitle: 来看看实践中的 Rust 开发配置调优吧
-description:
-  从 Rust 编译流程谈起，逐项介绍 Cargo.toml 与链接器层面的编译速度与产物体积调优手段——Cranelift
+description: 从 Rust 编译流程谈起，逐项介绍 Cargo.toml 与链接器层面的编译速度与产物体积调优手段——Cranelift
   后端、codegen-units、opt-level、LTO、strip、panic=abort、lld 与 MUSL，附实测对比。
 lang: zh
 created: 2026-04-05T14:48:43.726Z

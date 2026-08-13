@@ -3,33 +3,11 @@ import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { basename, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { Clock, Container, Ctx } from '@milkdown/ctx';
-import {
-	config,
-	Editor,
-	editorViewCtx,
-	init,
-	parser,
-	parserCtx,
-	remarkStringifyOptionsCtx,
-	schema,
-	serializer,
-	serializerCtx,
-} from '@milkdown/core';
-import {
-	remarkAddOrderInListPlugin,
-	remarkHtmlTransformer,
-	remarkInlineLinkPlugin,
-	remarkLineBreak,
-	remarkMarker,
-	remarkPreserveEmptyLinePlugin,
-	schema as commonmarkSchema,
-} from '@milkdown/preset-commonmark';
 
 // Node's native TypeScript loader requires the source suffix, while the repository's bundler
 // module resolution rejects it in static imports. The URL keeps the runtime path explicit and
 // the type-only import keeps the shared extension surface checked.
-const { markdownExtensions } = (await import(
+const { createMarkdownNormalizer } = (await import(
 	new URL('../client/markdown.ts', import.meta.url).href
 )) as typeof import('../client/markdown');
 
@@ -43,34 +21,6 @@ const articlePaths = [
 const fixturePath = 'apps/cms/scripts/fixtures/custom-blocks.md';
 
 const repositoryRoot = fileURLToPath(new URL('../../../', import.meta.url));
-
-const preserveStringifyOptions = {
-	bullet: '-',
-	bulletOrdered: '.',
-	bulletOther: '*',
-	closeAtx: false,
-	emphasis: '*',
-	fence: '`',
-	fences: true,
-	incrementListMarker: true,
-	listItemIndent: 'one',
-	quote: '"',
-	resourceLink: true,
-	rule: '-',
-	ruleRepetition: 3,
-	ruleSpaces: false,
-	setext: false,
-	strong: '*',
-	tightDefinitions: false,
-} as const;
-
-// Milkdown timers use browser event globals even when only its parser and serializer run.
-const eventTarget = new EventTarget();
-Object.assign(globalThis, {
-	addEventListener: eventTarget.addEventListener.bind(eventTarget),
-	removeEventListener: eventTarget.removeEventListener.bind(eventTarget),
-	dispatchEvent: eventTarget.dispatchEvent.bind(eventTarget),
-});
 
 function arraysEqual(left: readonly string[], right: readonly string[]) {
 	return left.length === right.length && left.every((value, index) => value === right[index]);
@@ -236,42 +186,6 @@ function describeChanges(source: string, output: string) {
 	};
 }
 
-async function createRoundTripper() {
-	const ctx = new Ctx(new Container(), new Clock());
-	ctx.inject(editorViewCtx, {} as never);
-
-	const plugins = [
-		schema,
-		parser,
-		serializer,
-		init(Editor.make()),
-		config((configCtx) => {
-			configCtx.update(remarkStringifyOptionsCtx, (options) => ({
-				...options,
-				...preserveStringifyOptions,
-			}));
-		}),
-		...commonmarkSchema,
-		...remarkAddOrderInListPlugin,
-		...remarkHtmlTransformer,
-		...remarkInlineLinkPlugin,
-		...remarkLineBreak,
-		...remarkMarker,
-		...remarkPreserveEmptyLinePlugin,
-		...markdownExtensions,
-	];
-
-	const handlers = plugins.map((plugin) => plugin(ctx.produce()));
-	await Promise.all(handlers.map((handler) => handler()));
-
-	return (markdown: string) => {
-		const doc = ctx.get(parserCtx)(markdown);
-		// Paragraph serialization only needs this state lookup; no DOM editor view is created.
-		ctx.set(editorViewCtx, { state: { doc } } as never);
-		return { doc, markdown: ctx.get(serializerCtx)(doc) };
-	};
-}
-
 function assertCustomNodes(doc: any) {
 	const directiveTypes = new Set<string>();
 	let fontFence: any;
@@ -322,7 +236,24 @@ function assertUnavailableFontIsRejected(
 	throw new Error(`${source} accepted an unavailable font family`);
 }
 
-const roundTrip = await createRoundTripper();
+function assertEquivalentSpellingsConverge(roundTrip: (markdown: string) => { markdown: string }) {
+	const pairs = [
+		['one two\nthree\n', 'one two three\n'],
+		['_emphasis_ and __strong__\n', '*emphasis* and **strong**\n'],
+		["::github{repo='canmi21/seam'}\n", '::github{repo="canmi21/seam"}\n'],
+		[
+			"---\ncreated: '2026-04-04T10:31:17.297Z'\n---\n",
+			'---\ncreated: 2026-04-04T10:31:17.297Z\n---\n',
+		],
+	] as const;
+	for (const [left, right] of pairs) {
+		if (roundTrip(left).markdown !== roundTrip(right).markdown) {
+			throw new Error(`equivalent spellings did not converge: ${JSON.stringify(left)}`);
+		}
+	}
+}
+
+const roundTrip = await createMarkdownNormalizer();
 const temporaryDirectory = await mkdtemp(join(tmpdir(), 'cms-markdown-roundtrip-'));
 let results: { identical: boolean; report: string }[] = [];
 let fixtureIdentical = false;
@@ -360,6 +291,7 @@ try {
 	const fixtureResult = roundTrip(fixture);
 	fixtureIdentical = fixture === fixtureResult.markdown;
 	assertCustomNodes(fixtureResult.doc);
+	assertEquivalentSpellingsConverge(roundTrip);
 	assertUnavailableFontIsRejected(
 		roundTrip,
 		':font[Unavailable]{family="comic-sans"}\n',

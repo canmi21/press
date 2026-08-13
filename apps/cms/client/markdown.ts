@@ -1,8 +1,29 @@
 import { fontFamilies } from '@canmi/fonts';
-import { codeBlockSchema } from '@milkdown/preset-commonmark';
+import { Clock, Container, Ctx } from '@milkdown/ctx';
+import {
+	config,
+	Editor,
+	editorViewCtx,
+	init,
+	parser,
+	parserCtx,
+	remarkStringifyOptionsCtx,
+	schema,
+	serializer,
+	serializerCtx,
+} from '@milkdown/core';
+import {
+	codeBlockSchema,
+	remarkAddOrderInListPlugin,
+	remarkHtmlTransformer,
+	remarkInlineLinkPlugin,
+	remarkPreserveEmptyLinePlugin,
+	schema as commonmarkSchema,
+} from '@milkdown/preset-commonmark';
 import { $nodeSchema, $remark } from '@milkdown/utils';
 import remarkDirective from 'remark-directive';
 import remarkFrontmatter from 'remark-frontmatter';
+import { isScalar, parseDocument, Scalar, visit } from 'yaml';
 
 type DirectiveAttributes = Record<string, string | null>;
 
@@ -17,6 +38,30 @@ type DirectiveNode = {
 	attributes?: DirectiveAttributes;
 	children?: any[];
 };
+
+type MarkdownDocument = {
+	descendants: (visitor: (node: any) => void) => void;
+};
+
+export const canonicalStringifyOptions = {
+	bullet: '-',
+	bulletOrdered: '.',
+	bulletOther: '*',
+	closeAtx: false,
+	emphasis: '*',
+	fence: '`',
+	fences: true,
+	incrementListMarker: false,
+	listItemIndent: 'one',
+	quote: '"',
+	resourceLink: true,
+	rule: '-',
+	ruleRepetition: 3,
+	ruleSpaces: false,
+	setext: false,
+	strong: '*',
+	tightDefinitions: false,
+} as const;
 
 const fontFamilyIds = new Set(fontFamilies.map(({ id }) => id));
 
@@ -78,8 +123,42 @@ function parseDomAttributes(dom: HTMLElement) {
 	};
 }
 
-// The opaque schema node prevents parsed YAML from being rejected or rewritten. See spec/tasks.md.
+// The opaque schema node keeps canonical YAML out of the prose editor. See spec/tasks.md.
 const frontmatterPlugin = $remark('frontmatter', () => remarkFrontmatter, ['yaml']);
+
+const normaliseFrontmatterPlugin = $remark('normalise-frontmatter', () => () => (tree: any) => {
+	const stack = [tree];
+	while (stack.length > 0) {
+		const node = stack.pop();
+		if (node?.type === 'yaml') {
+			const document = parseDocument(String(node.value ?? ''));
+			const error = document.errors[0];
+			if (error) throw error;
+			visit(document, (_key, value) => {
+				if (
+					isScalar(value) &&
+					typeof value.value === 'string' &&
+					(value.type === Scalar.QUOTE_DOUBLE || value.type === Scalar.QUOTE_SINGLE)
+				) {
+					value.type = undefined;
+				}
+			});
+			node.value = document.toString().trimEnd();
+		}
+		if (Array.isArray(node?.children)) stack.push(...node.children);
+	}
+});
+
+const normaliseSoftBreaksPlugin = $remark('normalise-soft-breaks', () => () => (tree: any) => {
+	const stack = [tree];
+	while (stack.length > 0) {
+		const node = stack.pop();
+		if (node?.type === 'text' && typeof node.value === 'string') {
+			node.value = node.value.replace(/[\t ]*(?:\r?\n|\r)[\t ]*/g, ' ');
+		}
+		if (Array.isArray(node?.children)) stack.push(...node.children);
+	}
+});
 
 const frontmatterNode = $nodeSchema('frontmatter', () => ({
 	atom: true,
@@ -235,8 +314,18 @@ const codeBlockWithParameters = codeBlockSchema.extendSchema((prev) => (ctx) => 
 	};
 });
 
+const normaliseMarkdownPlugin = config((ctx) => {
+	ctx.update(remarkStringifyOptionsCtx, (options) => ({
+		...options,
+		...canonicalStringifyOptions,
+	}));
+});
+
 export const markdownExtensions = [
+	normaliseMarkdownPlugin,
 	...frontmatterPlugin,
+	...normaliseFrontmatterPlugin,
+	...normaliseSoftBreaksPlugin,
 	...frontmatterNode,
 	...directivePlugin,
 	...containerDirectiveNode,
@@ -244,3 +333,40 @@ export const markdownExtensions = [
 	...textDirectiveNode,
 	...codeBlockWithParameters,
 ];
+
+function installEventTarget() {
+	if (typeof globalThis.addEventListener === 'function') return;
+	const eventTarget = new EventTarget();
+	Object.assign(globalThis, {
+		addEventListener: eventTarget.addEventListener.bind(eventTarget),
+		removeEventListener: eventTarget.removeEventListener.bind(eventTarget),
+		dispatchEvent: eventTarget.dispatchEvent.bind(eventTarget),
+	});
+}
+
+export async function createMarkdownNormalizer() {
+	installEventTarget();
+	const ctx = new Ctx(new Container(), new Clock());
+	ctx.inject(editorViewCtx, {} as never);
+
+	const plugins = [
+		schema,
+		parser,
+		serializer,
+		init(Editor.make()),
+		...commonmarkSchema,
+		...remarkAddOrderInListPlugin,
+		...remarkHtmlTransformer,
+		...remarkInlineLinkPlugin,
+		...remarkPreserveEmptyLinePlugin,
+		...markdownExtensions,
+	];
+	const handlers = plugins.map((plugin) => plugin(ctx.produce()));
+	await Promise.all(handlers.map((handler) => handler()));
+
+	return (markdown: string): { doc: MarkdownDocument; markdown: string } => {
+		const doc = ctx.get(parserCtx)(markdown) as MarkdownDocument;
+		ctx.set(editorViewCtx, { state: { doc } } as never);
+		return { doc, markdown: ctx.get(serializerCtx)(doc as never) };
+	};
+}

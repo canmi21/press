@@ -90,7 +90,7 @@ pub fn build_for(
 		format!(
 			"\n- {} use the same language as the source. For those targets, regularise script and \
 			 orthography rather than translating or rewriting. This rule overrides the translate-away \
-			 rule and the directive-title rule above. Preserve every claim, sentence boundary, word \
+			 rule above. Preserve every claim, sentence boundary, word \
 			 choice, joke, emphasis, deliberate minority-language passage and the author's voice. \
 			 Change only what the target script or orthography requires, plus clear typographical \
 			 errors. If the source already conforms, reproduce it exactly. Translator's notes are \
@@ -98,15 +98,16 @@ pub fn build_for(
 			same_language.join(", ")
 		)
 	};
+	assert!(
+		segment.kind.translatable(),
+		"non-translatable segment reached the prompt"
+	);
 
 	let role = match segment.kind {
 		Kind::Heading => "a heading",
 		Kind::Quote => "a quotation the author included",
-		Kind::Directive => {
-			"a directive; translate only the alt and title attributes, and leave \
-		                    src, url and every other attribute exactly as they are"
-		}
-		_ => "a paragraph of prose",
+		Kind::Prose => "a paragraph of prose",
+		Kind::Code | Kind::Directive => unreachable!(),
 	};
 
 	let context = match (before, after) {
@@ -371,17 +372,15 @@ mod tests {
 	}
 
 	#[test]
-	fn a_directive_is_told_which_attributes_are_addresses() {
-		let text = build(
+	#[should_panic(expected = "non-translatable segment reached the prompt")]
+	fn a_directive_cannot_reach_a_translation_prompt() {
+		let _ = build(
 			&segment(Kind::Directive),
 			"::image{src=\"a\"}",
 			None,
 			None,
 			None,
-		)
-		.text;
-		assert!(text.contains("leave"));
-		assert!(text.contains("src"));
+		);
 	}
 
 	#[test]
