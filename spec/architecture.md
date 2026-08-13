@@ -255,7 +255,8 @@ process lifecycle concerns, and make the desktop application depend on a separat
 binary. Keeping the operation below both shells gives interactive actions, scripts and scheduled
 tasks the same validation, effects and errors. The cost is an explicit library boundary and a
 small adapter in each shell; capabilities that exist in only one interface have not yet reached
-the shared CMS application surface.
+the shared CMS application surface. An operation that exists for only one provider is still a
+shared operation, just not a runner choice -- see [x.md](x.md).
 
 The desktop entry starts empty and takes its colours from `@canmi/tokens`; a second design system
 does not begin at the window edge. Its native title follows the HTML `<title>` as that value

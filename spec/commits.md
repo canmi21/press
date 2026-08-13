@@ -66,17 +66,19 @@ how much scrutiny a change received.
 ```
 Co-Authored-By: Claude Opus-5 <noreply@anthropic.com>
 Co-Authored-By: Codex GPT-5 <codex@openai.com>
+Co-Authored-By: Grok 4.6 <noreply@x.ai>
 ```
 
-Claude models use the first address, GPT models the second. Fill in the actual model short name
-rather than copying the example -- the point of the trailer is to record which model, so a stale
-version defeats it. Only these two addresses are used; a new vendor needs a decision here
-first.
+Claude models use the first address, GPT models the second, Grok the third. Fill in the actual
+model short name rather than copying the example -- the point of the trailer is to record which
+model, so a stale version defeats it. A new vendor needs a decision here first, which is one line
+in this list.
 
-A model with no address that resolves to an account is credited in the body instead, by name.
-Grok is the standing case. A trailer exists so a person can be found behind the work, and one
-carrying an address nobody answers is a worse record than a sentence saying who did it -- the
-first looks like an attribution and is not, while the second is exactly what it appears to be.
+**The address identifies a vendor, not a mailbox.** None of the three reaches anybody, and that is
+not a defect. A trailer here answers "which model wrote this" so a later reader knows how much
+scrutiny the change had; it was never a way to contact the author. An argument that a model
+without a reachable address should be credited in prose instead was made and is wrong -- it would
+apply equally to the two that came first.
 
 Applies going forward only. Earlier commits are not rewritten to add trailers.
 

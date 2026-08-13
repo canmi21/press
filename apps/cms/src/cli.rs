@@ -2,7 +2,7 @@
 
 use crate::{
 	alt, articles, check, classify, derived, embed, favicon, gc, i18n, image, licenses, locale,
-	media, opengraph, overview, paths, port, refs, summary, task,
+	media, opengraph, overview, paths, port, refs, summary, task, x,
 };
 use std::process::ExitCode;
 
@@ -29,6 +29,7 @@ pub fn run() -> ExitCode {
 		Some("summary") => summarise_articles(&args[1..]),
 		Some("gc") => collect_garbage(&args[1..]),
 		Some("licenses") => collect_licenses(),
+		Some("x") => x_command(&args[1..]),
 		Some(other) => {
 			eprintln!("unknown command: {other}");
 			usage();
@@ -1379,6 +1380,241 @@ fn fetch_embeds(args: &[String]) -> ExitCode {
 	ExitCode::SUCCESS
 }
 
+fn x_command(args: &[String]) -> ExitCode {
+	match args.first().map(String::as_str) {
+		Some("user") => x_user(&args[1..]),
+		Some("keyword") => x_keyword(&args[1..]),
+		Some("thread") => x_thread(&args[1..]),
+		Some("semantic") => x_semantic(&args[1..]),
+		Some(other) => {
+			eprintln!("unknown x command: {other}");
+			x_usage();
+			ExitCode::FAILURE
+		}
+		None => {
+			x_usage();
+			ExitCode::FAILURE
+		}
+	}
+}
+
+fn x_usage() {
+	eprintln!("usage: cms x <user|keyword|thread|semantic>");
+}
+
+fn x_user(args: &[String]) -> ExitCode {
+	let mut count = x::DEFAULT_COUNT;
+	let mut query = Vec::new();
+	let mut index = 0;
+	while index < args.len() {
+		match args[index].as_str() {
+			"--count" => match next_value(args, index, "--count") {
+				Ok(value) => {
+					count = match value.parse() {
+						Ok(value) => value,
+						Err(_) => {
+							eprintln!("--count takes a positive integer");
+							return ExitCode::FAILURE;
+						}
+					};
+					index += 2;
+				}
+				Err(code) => return code,
+			},
+			other if other.starts_with('-') => {
+				eprintln!("unknown option: {other}");
+				return ExitCode::FAILURE;
+			}
+			other => {
+				query.push(other);
+				index += 1;
+			}
+		}
+	}
+	let query = query.join(" ");
+	run_x(x::users(&query, count), "user search")
+}
+
+fn x_keyword(args: &[String]) -> ExitCode {
+	let mut limit = x::DEFAULT_LIMIT;
+	let mut mode = x::Mode::default();
+	let mut query = Vec::new();
+	let mut index = 0;
+	while index < args.len() {
+		match args[index].as_str() {
+			"--limit" => match next_value(args, index, "--limit") {
+				Ok(value) => {
+					limit = match value.parse() {
+						Ok(value) => value,
+						Err(_) => {
+							eprintln!("--limit takes a positive integer");
+							return ExitCode::FAILURE;
+						}
+					};
+					index += 2;
+				}
+				Err(code) => return code,
+			},
+			"--mode" => match next_value(args, index, "--mode") {
+				Ok(value) => {
+					mode = match x::Mode::parse(value) {
+						Some(mode) => mode,
+						None => {
+							eprintln!("--mode takes Top or Latest");
+							return ExitCode::FAILURE;
+						}
+					};
+					index += 2;
+				}
+				Err(code) => return code,
+			},
+			other if other.starts_with('-') => {
+				eprintln!("unknown option: {other}");
+				return ExitCode::FAILURE;
+			}
+			other => {
+				query.push(other);
+				index += 1;
+			}
+		}
+	}
+	let query = query.join(" ");
+	run_x(x::keyword(&query, limit, mode), "keyword search")
+}
+
+fn x_thread(args: &[String]) -> ExitCode {
+	let mut post_id = None;
+	for arg in args {
+		if arg.starts_with('-') {
+			eprintln!("unknown option: {arg}");
+			return ExitCode::FAILURE;
+		}
+		if post_id.replace(arg.as_str()).is_some() {
+			eprintln!("x thread takes one post id");
+			return ExitCode::FAILURE;
+		}
+	}
+	let Some(post_id) = post_id else {
+		eprintln!("x thread takes a post id");
+		return ExitCode::FAILURE;
+	};
+	run_x(x::thread(post_id), "thread")
+}
+
+fn x_semantic(args: &[String]) -> ExitCode {
+	let mut options = x::Semantic::new("");
+	let mut query = Vec::new();
+	let mut index = 0;
+	while index < args.len() {
+		match args[index].as_str() {
+			"--limit" => match next_value(args, index, "--limit") {
+				Ok(value) => {
+					options.limit = match value.parse() {
+						Ok(value) => value,
+						Err(_) => {
+							eprintln!("--limit takes a positive integer");
+							return ExitCode::FAILURE;
+						}
+					};
+					index += 2;
+				}
+				Err(code) => return code,
+			},
+			"--from" => match next_value(args, index, "--from") {
+				Ok(value) => {
+					options.from_date = Some(value.to_owned());
+					index += 2;
+				}
+				Err(code) => return code,
+			},
+			"--to" => match next_value(args, index, "--to") {
+				Ok(value) => {
+					options.to_date = Some(value.to_owned());
+					index += 2;
+				}
+				Err(code) => return code,
+			},
+			"--user" => match next_value(args, index, "--user") {
+				Ok(value) => {
+					options.usernames.push(value.to_owned());
+					index += 2;
+				}
+				Err(code) => return code,
+			},
+			"--exclude-user" => match next_value(args, index, "--exclude-user") {
+				Ok(value) => {
+					options.exclude_usernames.push(value.to_owned());
+					index += 2;
+				}
+				Err(code) => return code,
+			},
+			"--min-score" => match next_value(args, index, "--min-score") {
+				Ok(value) => {
+					options.min_score = match value.parse() {
+						Ok(value) => value,
+						Err(_) => {
+							eprintln!("--min-score takes a number");
+							return ExitCode::FAILURE;
+						}
+					};
+					index += 2;
+				}
+				Err(code) => return code,
+			},
+			other if other.starts_with('-') => {
+				eprintln!("unknown option: {other}");
+				return ExitCode::FAILURE;
+			}
+			other => {
+				query.push(other);
+				index += 1;
+			}
+		}
+	}
+	options.query = query.join(" ");
+	run_x(x::semantic(options), "semantic search")
+}
+
+fn next_value<'a>(args: &'a [String], index: usize, option: &str) -> Result<&'a str, ExitCode> {
+	match args.get(index + 1).map(String::as_str) {
+		Some(value) if !value.starts_with('-') => Ok(value),
+		_ => {
+			eprintln!("{option} takes a value");
+			Err(ExitCode::FAILURE)
+		}
+	}
+}
+
+fn run_x<F, T>(work: F, what: &str) -> ExitCode
+where
+	F: std::future::Future<Output = Result<T, x::Error>>,
+	T: serde::Serialize,
+{
+	let runtime = match tokio::runtime::Runtime::new() {
+		Ok(runtime) => runtime,
+		Err(error) => {
+			eprintln!("could not start a runtime: {error}");
+			return ExitCode::FAILURE;
+		}
+	};
+	match runtime.block_on(work) {
+		Ok(value) => match serde_json::to_string_pretty(&value) {
+			Ok(json) => {
+				println!("{json}");
+				ExitCode::SUCCESS
+			}
+			Err(error) => {
+				eprintln!("could not encode {what}: {error}");
+				ExitCode::FAILURE
+			}
+		},
+		Err(error) => {
+			eprintln!("{error}");
+			ExitCode::FAILURE
+		}
+	}
+}
+
 fn usage() {
 	eprintln!("usage: cms <command>");
 	eprintln!();
@@ -1415,4 +1651,12 @@ fn usage() {
 	eprintln!("  licenses                    record the licence of every dependency the apps ship");
 	eprintln!("  check                       list referenced assets that are not present");
 	eprintln!("  gc [--live]                 drop published assets no article asks for");
+	eprintln!("  x user <query> [--count N]  search X users");
+	eprintln!("  x keyword <query> [--limit N] [--mode Top|Latest]");
+	eprintln!("                             search X posts by keyword");
+	eprintln!("  x thread <post-id>          fetch an X post and its replies");
+	eprintln!(
+		"  x semantic <query> [--limit N] [--from DATE] [--to DATE] [--user NAME] [--exclude-user NAME] [--min-score N]"
+	);
+	eprintln!("                             search X posts by meaning");
 }

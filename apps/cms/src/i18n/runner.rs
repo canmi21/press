@@ -460,14 +460,30 @@ async fn cursor(prompt: &str, model: &str) -> Result<Answer, Refusal> {
 /// Separated from the call so the shape can be asserted. The model id is a flag, the same
 /// as Codex and Cursor; baking it into the prompt would silently ask the default instead.
 fn grok_args(prompt: &str, model: &str) -> Vec<OsString> {
-	vec![
+	grok_text_args(prompt, model, &[])
+}
+
+fn grok_text_args(prompt: &str, model: &str, extra: &[&str]) -> Vec<OsString> {
+	let mut args = vec![
 		"-p".into(),
 		prompt.into(),
 		"-m".into(),
 		model.into(),
 		"--permission-mode".into(),
 		"bypassPermissions".into(),
-	]
+	];
+	for flag in extra {
+		args.push((*flag).into());
+	}
+	args
+}
+
+/// Ask Grok with extra CLI flags. Used by jobs that are not a runner choice.
+///
+/// Translation goes through `ask(Runner::Grok, ...)`. Lookups that exist only on Grok
+/// pass the flags that job needs -- see spec/x.md.
+pub async fn ask_grok(prompt: &str, model: &str, extra: &[&str]) -> Result<Answer, Refusal> {
+	grok_spawn(grok_text_args(prompt, model, extra), model).await
 }
 
 /// The argument list for one visual `grok` run.
@@ -512,6 +528,10 @@ async fn grok(prompt: &str, model: &str, image: Option<&Path>) -> Result<Answer,
 		}
 		None => grok_args(prompt, model),
 	};
+	grok_spawn(args, model).await
+}
+
+async fn grok_spawn(args: Vec<OsString>, model: &str) -> Result<Answer, Refusal> {
 	let output = tokio::process::Command::new("grok")
 		.args(args)
 		.output()
@@ -819,6 +839,21 @@ mod tests {
 		assert!(args.contains(&OsString::from("translate this")));
 		assert!(args.contains(&OsString::from("bypassPermissions")));
 		assert!(!args.contains(&OsString::from("--prompt-json")));
+	}
+
+	#[test]
+	fn grok_accepts_extra_flags_after_the_common_ones() {
+		// X lookups pass these; translation does not. The common shape stays in one
+		// function so a second binding cannot drift. See spec/x.md.
+		let args = grok_text_args(
+			"find this",
+			"grok-4.6",
+			&["--disable-web-search", "--max-turns", "8"],
+		);
+		assert!(args.contains(&OsString::from("--disable-web-search")));
+		assert!(args.contains(&OsString::from("--max-turns")));
+		assert!(args.contains(&OsString::from("8")));
+		assert_eq!(grok_args("find this", "grok-4.6").len() + 3, args.len());
 	}
 
 	#[test]

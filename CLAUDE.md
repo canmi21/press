@@ -86,4 +86,5 @@ of truth.
 | Serving a reader their language           | [spec/locale.md](spec/locale.md)                 |
 | Newsletter, likes, D1, and client cache   | [spec/engagement.md](spec/engagement.md)         |
 | Long-running tasks and their execution    | [spec/tasks.md](spec/tasks.md)                   |
+| Single-provider X lookups                 | [spec/x.md](spec/x.md)                           |
 | Toolchain and default stacks              | [spec/toolchain.md](spec/toolchain.md)           |
