@@ -12,6 +12,7 @@
 	"dependencies": {
 		"@canmi/fonts": "workspace:*",
 		"@canmi/imgsrc": "workspace:*",
+		"@canmi/primitives": "workspace:*",
 		"@canmi/robots": "workspace:*",
 		"@canmi/theme": "workspace:*",
 		"@canmi/urls": "workspace:*",

@@ -105,6 +105,7 @@ function selectPage(page: Page): void {
 	}
 
 	pageLabel.setAttribute('aria-label', selected.title);
+	pageLabel.dataset.page = page;
 	overview.hidden = page !== 'overview';
 	articles.hidden = page !== 'articles';
 	derived.hidden = page !== 'derived';

@@ -270,6 +270,19 @@ pub fn title_of(source: &str) -> Option<String> {
 	field_of(source, "title")
 }
 
+/// The `subtitle` an article declares, if it declares one.
+pub fn subtitle_of(source: &str) -> Option<String> {
+	field_of(source, "subtitle")
+}
+
+/// The best authored timestamp for ordering an article by its latest change.
+///
+/// A newly created article may not have been revised yet, so `created` is its first modification
+/// rather than a reason to leave it out of a recent-articles list.
+pub fn modified_of(source: &str) -> Option<String> {
+	field_of(source, "lastmod").or_else(|| field_of(source, "created"))
+}
+
 /// Which articles still want a summary in their own language.
 ///
 /// A page without `lang` is not an article -- the homepage is the standing example, and its

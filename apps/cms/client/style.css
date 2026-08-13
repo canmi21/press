@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import '@canmi/tokens/colors.css';
+@import '@canmi/primitives/style.css';
 
 * {
 	box-sizing: border-box;
@@ -157,10 +158,16 @@ button {
 }
 
 .page-content {
+	--page-content-inset: clamp(1.5rem, 6vw, 4rem);
+
 	min-height: 0;
 	flex: 1;
 	overflow: auto;
-	padding: 3rem clamp(1.5rem, 6vw, 4rem) 3rem;
+	padding: 3rem var(--page-content-inset);
+}
+
+.page-shell[data-page='overview'] .page-content {
+	padding-top: var(--page-content-inset);
 }
 
 /* The scrollbar is drawn from the same tokens as everything else, so it flips with the theme
@@ -175,159 +182,152 @@ button {
 	scrollbar-color: var(--color-border-strong) transparent;
 }
 
-.overview,
 .articles,
 .derived {
 	width: min(100%, 72rem);
 	margin: 0 auto;
 }
 
-.dashboard-metrics {
-	display: grid;
-	grid-template-columns: repeat(4, minmax(0, 1fr));
-	padding-bottom: 1.5rem;
-	border-bottom: 0.0625rem solid var(--color-border);
+.overview {
+	width: min(100%, 45rem);
+	margin: 0 auto;
 }
 
-.metric {
-	display: grid;
-	min-width: 0;
-	gap: 0.25rem;
-	padding: 0 1.5rem;
+.overview-title {
+	display: block;
+	position: relative;
+	width: fit-content;
 }
 
-.metric:first-child {
-	padding-left: 0;
-}
-
-.metric:last-child {
-	padding-right: 0;
-}
-
-.metric + .metric {
-	border-left: 0.0625rem solid var(--color-border);
-}
-
-.metric > span,
-.metric small,
-.panel-heading p,
-.panel-heading > span {
-	color: var(--color-text-soft);
-}
-
-.metric > span {
-	font-size: 0.75rem;
-	font-weight: 500;
-}
-
-.metric strong {
-	margin-top: 0.375rem;
+.overview-title h1 {
+	margin: 0;
 	color: var(--color-text-strong);
-	font-size: 1.625rem;
-	font-weight: 550;
-	font-variant-numeric: tabular-nums;
-	letter-spacing: -0.04em;
+	font-size: 1.5rem;
+	font-weight: 600;
+	letter-spacing: -0.025em;
+	line-height: 1.25;
+}
+
+.overview-status-icon {
+	display: none;
+	position: absolute;
+	top: calc(50% + 0.0625rem);
+	left: calc(100% + 0.5rem);
+	transform: translateY(-50%);
+	align-items: center;
+	justify-content: center;
+	font-family: 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
 	line-height: 1;
 }
 
-.metric small {
-	overflow: hidden;
-	font-size: 0.6875rem;
-	line-height: 1.4;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+.overview-status-icon svg {
+	width: 1.125rem;
+	height: 1.125rem;
+	fill: none;
+	stroke: currentColor;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-width: 1.75;
 }
 
-.dashboard-grid {
-	display: grid;
-	grid-template-columns: minmax(0, 1.6fr) minmax(17rem, 1fr);
-	gap: 0;
+.overview-status-icon[data-state='ready'],
+.overview-status-icon[data-state='warning'],
+.overview-status-icon[data-state='notice'],
+.overview-status-icon[data-state='error'] {
+	display: inline-flex;
 }
 
-.dashboard-panel {
-	min-width: 0;
-	padding-top: 1.5rem;
+.overview-status-icon > [data-state-icon] {
+	display: none;
 }
 
-.content-panel {
-	padding-right: 1.5rem;
-	border-right: 0.0625rem solid var(--color-border);
+.overview-ready-emoji {
+	font-size: 1.25rem;
 }
 
-.readiness-panel {
-	padding-left: 1.5rem;
+.overview-status-icon[data-state='warning'],
+.overview-status-icon[data-state='error'] {
+	color: var(--color-red);
 }
 
-.health-panel {
-	grid-column: 1 / -1;
-	margin-top: 1.5rem;
-	border-top: 0.0625rem solid var(--color-border);
+.overview-status-icon[data-state='notice'] {
+	color: var(--color-blue);
 }
 
-.panel-heading {
+.overview-status-icon[data-state='ready'] [data-state-icon='ready'],
+.overview-status-icon:is([data-state='warning'], [data-state='notice'])
+	> [data-state-icon='attention'],
+.overview-status-icon[data-state='error'] [data-state-icon='error'] {
+	display: block;
+}
+
+.overview-lede {
+	margin: 0.625rem 0 0;
+	color: var(--color-text);
+	font-size: 0.9375rem;
+	line-height: 1.55;
+}
+
+.overview-lede[data-state='error'] {
+	color: var(--color-red);
+}
+
+.overview-meta {
 	display: flex;
-	align-items: flex-start;
-	justify-content: space-between;
-	gap: 1rem;
+	margin-top: 0.625rem;
+	flex-wrap: wrap;
+	gap: 0.25rem 0.625rem;
+	color: var(--color-text-soft);
+	font-size: 0.75rem;
+	line-height: 1.5;
 }
 
-.panel-heading h2 {
+.overview-section {
+	margin-top: 2.75rem;
+}
+
+.overview-section-title {
+	display: block;
+	position: relative;
+	width: fit-content;
+}
+
+.overview-section-title svg {
+	position: absolute;
+	top: 50%;
+	left: calc(100% + 0.5rem);
+	width: 1rem;
+	height: 1rem;
+	transform: translateY(-50%);
+	fill: none;
+	stroke: var(--color-text-soft);
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-width: 1.75;
+}
+
+.overview-section-title h2 {
 	margin: 0;
 	color: var(--color-text-strong);
-	font-size: 0.875rem;
+	font-size: 1rem;
 	font-weight: 600;
 }
 
-.panel-heading p {
-	margin: 0.25rem 0 0;
-	font-size: 0.75rem;
-	line-height: 1.45;
+.recent-section > h2 {
+	margin: 0;
+	color: var(--color-text-strong);
+	font-size: 1rem;
+	font-weight: 600;
 }
 
-.panel-heading > span {
-	flex: none;
-	font-size: 0.75rem;
-	font-variant-numeric: tabular-nums;
-}
-
-/* A quantity reads as a rule, not as a filled block. The previous charts poured `--color-blue`
-   across a third of the page; the token is an ink, sized for a mark or a stroke, and the palette
-   has no surface colour anywhere near that saturation. Keeping the bar at stroke height is what
-   lets colour go back to meaning state rather than meaning "bar".
-
-   The label column is intrinsic and shared, never a number. Sizing it per row -- which is what a
-   `grid-template-columns` on the `li` does -- let every bar start at its own label's right edge,
-   so four sections drew four tracks beginning at four different offsets. `auto` answers the label
-   that has no width anybody can predict, subgrid answers the alignment between rows, and neither
-   is a measurement to maintain. See spec/styling.md. */
-.meter-list {
-	display: grid;
-	grid-template-columns: auto minmax(3rem, 1fr) auto;
-	margin: 1rem 0 0;
+.recent-list {
+	margin: 0.75rem 0 0;
 	padding: 0;
-	gap: 0.6875rem 0.75rem;
 	list-style: none;
 }
 
-.meter-list li {
-	display: grid;
-	grid-column: 1 / -1;
-	grid-template-columns: subgrid;
-	align-items: center;
-}
-
-.meter-label {
-	overflow: hidden;
-	color: var(--color-text);
-	font-size: 0.75rem;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-.meter-value {
-	color: var(--color-text-soft);
-	font-size: 0.75rem;
-	font-variant-numeric: tabular-nums;
+.recent-list .article-preview + .article-preview {
+	margin-top: 0.125rem;
 }
 
 .meter-track {
@@ -345,32 +345,6 @@ button {
 	height: 100%;
 	border-radius: inherit;
 	background: var(--color-text-soft);
-}
-
-/* A section that exists is drawn, however small its share. One article against a section holding
-   two hundred is 0.5% of the track -- a sliver narrower than the bar is tall, which renders as a
-   smear or as nothing at all, and reads as "no articles here" rather than "few".
-
-   The floor is a length rather than a percentage because what it protects is legibility at the
-   drawn size, which a percentage of an unknown track width cannot promise. At the bar's own
-   height it comes out as a round stub, the same shape the rounded cap already implies, so the
-   limit looks intended rather than clipped. The ratio itself is left honest in `sectionFill`;
-   only the drawing is clamped, and the exact count sits next to every bar regardless.
-
-   Readiness meters are excluded: 0 of 24 published is a real zero and must draw nothing. */
-.section-list .meter-fill {
-	width: max(0.25rem, var(--meter-fill, 0%));
-}
-
-/* Quantity is neutral; only state takes a hue. A section holding three articles is not "good", so
-   its bar stays on the text ramp, and green is spent on the one row that actually reports whether
-   the workspace is ready. */
-.meter-list li[data-tone='ready'] .meter-fill {
-	background: var(--color-green);
-}
-
-.meter-list li[data-tone='short'] .meter-fill {
-	background: var(--color-blue);
 }
 
 .health-list strong {
@@ -707,23 +681,10 @@ button.health-action:disabled {
 	color: var(--color-text-strong);
 }
 
-.health-list span,
-.overview-state {
+.health-list span {
 	color: var(--color-text-soft);
 	font-size: 0.8125rem;
 	line-height: 1.5;
-}
-
-.overview-state {
-	margin: 0.75rem 0 0;
-}
-
-.overview-state[data-state='clear'] {
-	color: var(--color-green);
-}
-
-.overview-state[data-state='error'] {
-	color: var(--color-red);
 }
 
 .health-list {
@@ -757,46 +718,4 @@ button.health-action:disabled {
 
 .health-list li[data-level='warn'] .health-marker {
 	background: var(--color-red);
-}
-
-@media (max-width: 58rem) {
-	.dashboard-metrics {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-	}
-
-	.metric {
-		padding: 0 1.25rem 1.25rem;
-	}
-
-	.metric:nth-child(odd) {
-		padding-left: 0;
-		border-left: 0;
-	}
-
-	.metric:nth-child(even) {
-		padding-right: 0;
-	}
-
-	.metric:nth-child(n + 3) {
-		padding-top: 1.25rem;
-		padding-bottom: 0;
-		border-top: 0.0625rem solid var(--color-border);
-	}
-
-	.dashboard-grid {
-		grid-template-columns: minmax(0, 1fr);
-	}
-
-	.content-panel {
-		padding-right: 0;
-		border-right: 0;
-	}
-
-	.readiness-panel,
-	.health-panel {
-		grid-column: auto;
-		margin-top: 1.5rem;
-		padding-left: 0;
-		border-top: 0.0625rem solid var(--color-border);
-	}
 }

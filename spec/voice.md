@@ -5,7 +5,9 @@
 - **Chat / spoken reply**: simplified Chinese mixed with English technical nouns. Don't translate established English terminology (e.g., "fetchpriority", "viewBox", "Hono", "OKLCH", "preset") — keep them as proper nouns inside Chinese sentences.
 - **File content, including code comments**: English only. No Chinese.
 - **Commit messages**: English only.
-- **No emoji** anywhere — code, comments, commits, chat.
+- **No emoji by default** anywhere. An explicit user request may add one or two visible emoji to
+  the requested interface, including the source literal needed to render them. That permission is
+  local: it does not extend to unrelated UI, prose, comments, commit messages or chat.
 
 ## Tone
 

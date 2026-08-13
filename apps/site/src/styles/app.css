@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import '@canmi/tokens/colors.css';
+@import '@canmi/primitives/style.css';
 @import './utilities.css';
 @source '../routes';
 

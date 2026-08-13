@@ -19,6 +19,7 @@ pub struct Snapshot {
 pub struct Articles {
 	pub total: usize,
 	pub sections: Vec<ArticleSection>,
+	pub recent: Vec<RecentArticle>,
 }
 
 #[derive(Debug, Serialize, PartialEq, Eq)]
@@ -26,6 +27,14 @@ pub struct Articles {
 pub struct ArticleSection {
 	pub name: String,
 	pub articles: usize,
+}
+
+#[derive(Debug, Serialize, PartialEq, Eq)]
+#[serde(rename_all = "camelCase")]
+pub struct RecentArticle {
+	pub title: String,
+	pub subtitle: Option<String>,
+	pub modified: String,
 }
 
 #[derive(Debug, Serialize, PartialEq, Eq)]
@@ -94,6 +103,7 @@ fn snapshot_at(repository: &Path) -> std::io::Result<Snapshot> {
 	let article_paths = refs::markdown_under(&contents)?;
 	let mut article_count = 0;
 	let mut article_sections = BTreeMap::<String, usize>::new();
+	let mut recent_articles = Vec::new();
 	for path in article_paths {
 		let source = std::fs::read_to_string(&path)?;
 		if summary::lang_of(&source).is_some() {
@@ -108,8 +118,31 @@ fn snapshot_at(repository: &Path) -> std::io::Result<Snapshot> {
 				.unwrap_or("other")
 				.to_owned();
 			*article_sections.entry(section).or_default() += 1;
+
+			if let (Some(title), Some(modified)) =
+				(summary::title_of(&source), summary::modified_of(&source))
+			{
+				// A malformed date should not make the whole Overview fail. It is absent from the
+				// recent list, where it could not be ordered truthfully, while the article still
+				// contributes to the workspace counts above.
+				if modified.parse::<jiff::Timestamp>().is_ok() {
+					recent_articles.push(RecentArticle {
+						title,
+						subtitle: summary::subtitle_of(&source),
+						modified,
+					});
+				}
+			}
 		}
 	}
+	recent_articles.sort_by(|left, right| {
+		let left_stamp: jiff::Timestamp = left.modified.parse().expect("validated timestamp");
+		let right_stamp: jiff::Timestamp = right.modified.parse().expect("validated timestamp");
+		right_stamp
+			.cmp(&left_stamp)
+			.then_with(|| left.title.cmp(&right.title))
+	});
+	recent_articles.truncate(3);
 
 	let scan = refs::scan(&contents)?;
 	let content_ids = scan.cids();
@@ -146,6 +179,7 @@ fn snapshot_at(repository: &Path) -> std::io::Result<Snapshot> {
 				.into_iter()
 				.map(|(name, articles)| ArticleSection { name, articles })
 				.collect(),
+			recent: recent_articles,
 		},
 		media: Media {
 			referenced,
@@ -173,7 +207,7 @@ mod tests {
 		std::fs::create_dir_all(root.join("contents/notes")).expect("section");
 		std::fs::write(
 			root.join("contents/notes/article.md"),
-			"---\ntitle: Article\nlang: en\n---\n\n![](44b6081deaf0242ca3bf83d62a3b6c95.avif)\n![](draft.png)",
+			"---\ntitle: Article\nsubtitle: About the article\nlang: en\ncreated: 2026-08-01T00:00:00Z\n---\n\n![](44b6081deaf0242ca3bf83d62a3b6c95.avif)\n![](draft.png)",
 		)
 		.expect("article");
 		std::fs::write(root.join("contents/homepage.md"), "---\ntitle: Home\n---\n").expect("homepage");
@@ -191,11 +225,60 @@ mod tests {
 				articles: 1,
 			}]
 		);
+		assert_eq!(
+			found.articles.recent,
+			vec![RecentArticle {
+				title: "Article".to_owned(),
+				subtitle: Some("About the article".to_owned()),
+				modified: "2026-08-01T00:00:00Z".to_owned(),
+			}]
+		);
 		assert_eq!(found.media.referenced, 2);
 		assert_eq!(found.media.published, 1);
 		assert_eq!(found.media.described, 0);
 		assert_eq!(found.health.warnings, 1);
 		assert_eq!(found.health.notices, 1);
+
+		std::fs::remove_dir_all(root).ok();
+	}
+
+	#[test]
+	fn recent_articles_use_the_latest_authored_timestamp_and_stop_at_three() {
+		let root = std::env::temp_dir().join(format!("cms-overview-recent-{}", std::process::id()));
+		let _ = std::fs::remove_dir_all(&root);
+		std::fs::create_dir_all(root.join("contents/notes")).expect("contents");
+		std::fs::create_dir_all(root.join("data/public")).expect("public data");
+		for (name, created, lastmod) in [
+			("First", "2026-08-01T00:00:00Z", None),
+			(
+				"Revised",
+				"2026-08-02T00:00:00Z",
+				Some("2026-08-05T00:00:00Z"),
+			),
+			("Third", "2026-08-03T00:00:00Z", None),
+			("Fourth", "2026-08-04T00:00:00Z", None),
+		] {
+			let revision = lastmod.map_or_else(String::new, |value| format!("lastmod: {value}\n"));
+			std::fs::write(
+				root
+					.join("contents/notes")
+					.join(format!("{}.md", name.to_lowercase())),
+				format!("---\ntitle: {name}\nlang: en\ncreated: {created}\n{revision}---\n\nBody"),
+			)
+			.expect("article");
+		}
+
+		let found = snapshot_at(&root).expect("snapshot");
+		assert_eq!(
+			found
+				.articles
+				.recent
+				.iter()
+				.map(|article| article.title.as_str())
+				.collect::<Vec<_>>(),
+			vec!["Revised", "Fourth", "Third"]
+		);
+		assert_eq!(found.articles.recent[0].modified, "2026-08-05T00:00:00Z");
 
 		std::fs::remove_dir_all(root).ok();
 	}

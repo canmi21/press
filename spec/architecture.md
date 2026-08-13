@@ -84,9 +84,16 @@ library rather than reinstating it everywhere.
 
 Bits UI is the site's headless behavior layer. It owns the difficult, reusable interaction
 contracts -- focus management, keyboard navigation, dismissal and floating placement -- while
-the site's tokens and local Tailwind classes continue to own every visible decision. Importing
-a styled component kit on top would create a second design system, so project primitives under
-`apps/site/src/lib/components/` expose the small set of surfaces the site actually repeats.
+the site's tokens and local Tailwind classes continue to own site-only visible decisions.
+Importing a styled component kit on top would create a second design system, so project primitives
+under `apps/site/src/lib/components/` expose the small set of surfaces the site alone repeats.
+
+A visible primitive repeated by both the public site and CMS belongs to
+[`@canmi/primitives`](../libs/primitives/src/style.css). Both applications consume it directly;
+neither becomes the other's template, and extracting it must leave the established consumer
+visually unchanged. Two real consumers justify that boundary. A single speculative component does
+not, because opening a package per primitive turns reuse into directory ceremony rather than a
+coherent shared vocabulary.
 
 Feature directories compose those primitives and keep their own state, copy and specialised
 styling. A locale picker, for example, imports the shared menu surface but owns language order,
@@ -301,10 +308,25 @@ restrained line icons. Task pages do not acquire branded tiles or ornamental sta
 because the CMS is an operations tool. The opaque main pane is already the content surface, so
 Overview does not subdivide it into a dashboard of cards. Metrics and sections sit directly on that
 surface and use spacing and hairline dividers for grouping; even an empty health state remains text
-rather than acquiring another inset box. Charts encode relationships the live snapshot actually
-carries, such as content distribution and resource readiness; they do not invent scores or
-decorative trends to fill the grid. This keeps the overview useful at a glance without making it a
-generic web admin product embedded inside native chrome.
+rather than acquiring another inset box.
+
+Overview is a workspace brief, not an inventory dashboard. Its one headline says whether anything
+needs attention, and real check findings become the body when the answer is yes. Article and media
+counts are a quiet metadata sentence beneath that state instead of four equally weighted metrics.
+Distribution charts are absent: they describe the corpus without giving the writer an object to act
+on. Recently modified article titles and subtitles supply those objects, ordered by authored
+`lastmod` with `created` as the first modification. The brief follows the public site's article
+column width so one subject owns the reading path; wider inventory views keep their own geometry.
+Its top inset is the same responsive length as its horizontal inset, making the brief one balanced
+sheet within the main pane. Compact marks identify the live workspace state and actionable
+attention; they sit immediately after their labels without entering the text flow, while ordinary
+section labels remain text-only. Recently updated rows reuse the public homepage's article preview:
+row geometry, paper thumbnail, title, dotted leader, date and subtitle are one
+`@canmi/primitives` surface. The site keeps its link, focus, hover and content-derived line motion;
+the CMS keeps a read-only static rendering. Those are consumer behaviours rather than two visual
+definitions. Labels and article copy retain one uninterrupted left edge, and individual facts stay
+unbadged so the icons establish hierarchy without turning every piece of content back into
+interface chrome.
 
 The first window is a centred 1280 by 720 logical pixels, a 16:9 default rather than a minimum or
 a fixed canvas. After that first launch, geometry belongs to the native shell: Tauri's window-state

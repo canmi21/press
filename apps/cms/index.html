@@ -71,67 +71,53 @@
 			     because "which region am I in" is a question a screen reader still has to answer
 			     without either of those cues. `data-page-label` is kept in sync with the window
 			     title rather than being a second source for it. -->
-			<section class="page-shell" aria-label="Overview" data-page-label>
+			<section class="page-shell" aria-label="Overview" data-page="overview" data-page-label>
 				<main class="page-content">
 					<div class="overview" data-overview aria-live="polite">
-						<section class="dashboard-metrics" aria-label="Workspace metrics">
-							<article class="metric">
-								<span>Articles</span>
-								<strong data-kpi-articles data-kpi-value>—</strong>
-								<small data-kpi-sections>— sections</small>
-							</article>
-							<article class="metric">
-								<span>Media</span>
-								<strong data-kpi-media data-kpi-value>—</strong>
-								<small>Referenced resources</small>
-							</article>
-							<article class="metric">
-								<span>Published</span>
-								<strong data-kpi-published data-kpi-value>—</strong>
-								<small><span data-kpi-described>—</span> described</small>
-							</article>
-							<article class="metric">
-								<span>Needs attention</span>
-								<strong data-kpi-issues data-kpi-value>—</strong>
-								<small data-kpi-issue-detail>— warnings · — notices</small>
-							</article>
+						<header class="overview-brief">
+							<div class="overview-title">
+								<span
+									class="overview-status-icon"
+									data-overview-status-icon
+									data-state="loading"
+									aria-hidden="true"
+								>
+									<span class="overview-ready-emoji" data-state-icon="ready">🎉</span>
+									<svg data-state-icon="attention" aria-hidden="true" viewBox="0 0 24 24">
+										<path d="M10.3 3.7 2.6 17a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 3.7a2 2 0 0 0-3.4 0Z" />
+										<path d="M12 9v4M12 17h.01" />
+									</svg>
+									<svg data-state-icon="error" aria-hidden="true" viewBox="0 0 24 24">
+										<circle cx="12" cy="12" r="9" />
+										<path d="m9 9 6 6M15 9l-6 6" />
+									</svg>
+								</span>
+								<h1 data-overview-title>Reading workspace…</h1>
+							</div>
+							<p class="overview-lede" data-overview-lede>
+								Checking content and referenced media.
+							</p>
+							<div class="overview-meta" aria-label="Workspace summary">
+								<span data-overview-content>Reading articles…</span>
+								<span data-overview-media>Reading media…</span>
+							</div>
+						</header>
+
+						<section class="overview-section attention-section" data-attention hidden>
+							<div class="overview-section-title">
+								<svg aria-hidden="true" viewBox="0 0 24 24">
+									<path d="M10.3 3.7 2.6 17a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 3.7a2 2 0 0 0-3.4 0Z" />
+									<path d="M12 9v4M12 17h.01" />
+								</svg>
+								<h2>Needs attention</h2>
+							</div>
+							<ul class="health-list" data-health-list></ul>
 						</section>
 
-						<div class="dashboard-grid">
-							<section class="dashboard-panel content-panel" aria-labelledby="content-heading">
-								<header class="panel-heading">
-									<div>
-										<h2 id="content-heading">Content distribution</h2>
-										<p>Articles grouped by their workspace section.</p>
-									</div>
-									<span data-content-total>— total</span>
-								</header>
-								<ul class="meter-list section-list" data-content-list></ul>
-							</section>
-
-							<section class="dashboard-panel readiness-panel" aria-labelledby="readiness-heading">
-								<header class="panel-heading">
-									<div>
-										<h2 id="readiness-heading">Media readiness</h2>
-										<p>Published records and accessible descriptions.</p>
-									</div>
-									<span data-readiness-total>— resources</span>
-								</header>
-								<ul class="meter-list readiness-list" data-readiness-list></ul>
-							</section>
-
-							<section class="dashboard-panel health-panel" aria-labelledby="attention-heading">
-								<header class="panel-heading">
-									<div>
-										<h2 id="attention-heading">Needs attention</h2>
-										<p>References that need processing or metadata.</p>
-									</div>
-									<span data-health-total>Checking…</span>
-								</header>
-								<p class="overview-state" data-health-state>Reading workspace health…</p>
-								<ul class="health-list" data-health-list hidden></ul>
-							</section>
-						</div>
+						<section class="overview-section recent-section" data-recent>
+							<h2>Recently updated</h2>
+							<ul class="recent-list" data-recent-list></ul>
+						</section>
 					</div>
 
 					<div class="articles" data-articles aria-live="polite" hidden>

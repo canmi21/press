@@ -1,9 +1,16 @@
+import { ARTICLE_THUMBNAIL_LINES } from '@canmi/primitives';
+
 export type OverviewSnapshot = {
 	articles: {
 		total: number;
 		sections: Array<{
 			name: string;
 			articles: number;
+		}>;
+		recent: Array<{
+			title: string;
+			subtitle: string | null;
+			modified: string;
 		}>;
 	};
 	media: {
@@ -29,120 +36,63 @@ function requiredElement<T extends Element>(root: Element, selector: string): T 
 	return element;
 }
 
-function percentage(value: number, total: number): number {
-	return total === 0 ? 0 : Math.round((value / total) * 100);
+function countLabel(count: number, singular: string, plural = `${singular}s`): string {
+	return `${count} ${count === 1 ? singular : plural}`;
 }
 
-function sectionLabel(name: string): string {
-	return name
-		.split('-')
-		.map((part) => `${part.charAt(0).toUpperCase()}${part.slice(1)}`)
-		.join(' ');
+function contentSummary(snapshot: OverviewSnapshot): string {
+	const articles = snapshot.articles.total;
+	const sections = snapshot.articles.sections.length;
+	if (articles === 0) return 'No articles yet.';
+	if (sections === 1) return `${countLabel(articles, 'article')} in one section.`;
+	return `${countLabel(articles, 'article')} across ${countLabel(sections, 'section')}.`;
 }
 
-/**
- * How wide a section's bar is drawn, as a fraction of the track.
- *
- * The full width means "all of the writing", not "as much as the biggest section has". Scaling
- * against the largest section is what the previous chart did, and it makes the bar a ranking
- * rather than a quantity: the leader is pinned to the full track whether it holds forty articles
- * or one, so four sections holding one article each drew four full-width bars. That is the
- * ordinary state of a small workspace, not an unlucky one, and a panel that looks identical when
- * full and when nearly empty is one nobody reads twice.
- *
- * Against the total, the same workspace draws four quarter-width bars -- visibly a four-way split
- * -- and the bars keep meaning the same thing as the workspace grows. The cost is that a lopsided
- * workspace makes every minor section very short, which is a true statement about it; the ratio
- * returned here stays exact, and `.section-list .meter-fill` holds the drawn bar to a minimum
- * visible stub so a small share never renders as an absent one.
- *
- * @param articles - Articles in this section.
- * @param total - Articles across every section.
- * @returns A fraction in [0, 1].
- */
-function sectionFill(articles: number, total: number): number {
-	return total === 0 ? 0 : articles / total;
-}
-
-type Meter = {
-	label: string;
-	value: string;
-	fill: number;
-	tone?: 'neutral' | 'ready' | 'short';
-};
-
-function renderMeters(list: HTMLUListElement, meters: readonly Meter[]): void {
-	list.replaceChildren();
-	for (const meter of meters) {
-		const item = document.createElement('li');
-		item.dataset.tone = meter.tone ?? 'neutral';
-
-		const label = document.createElement('span');
-		label.className = 'meter-label';
-		label.textContent = meter.label;
-
-		const track = document.createElement('span');
-		track.className = 'meter-track';
-		const fill = document.createElement('span');
-		fill.className = 'meter-fill';
-		fill.style.setProperty('--meter-fill', `${(meter.fill * 100).toFixed(2)}%`);
-		track.appendChild(fill);
-
-		const value = document.createElement('span');
-		value.className = 'meter-value';
-		value.textContent = meter.value;
-
-		item.appendChild(label);
-		item.appendChild(track);
-		item.appendChild(value);
-		list.appendChild(item);
+function mediaSummary(snapshot: OverviewSnapshot): string {
+	const { referenced, published, described } = snapshot.media;
+	if (referenced === 0) return 'No referenced media.';
+	if (published === referenced && described === referenced) {
+		return referenced === 1
+			? 'The referenced media item is published and described.'
+			: `All ${referenced} referenced media items are published and described.`;
 	}
+	return `${published} of ${referenced} media items published; ${described} described.`;
 }
 
-function renderSections(list: HTMLUListElement, snapshot: OverviewSnapshot): void {
-	const total = snapshot.articles.total;
-	renderMeters(
-		list,
-		snapshot.articles.sections.map((section) => ({
-			label: sectionLabel(section.name),
-			value: String(section.articles),
-			fill: sectionFill(section.articles, total),
-		})),
-	);
-}
-
-function renderReadiness(list: HTMLUListElement, snapshot: OverviewSnapshot): void {
-	const referenced = snapshot.media.referenced;
-	const rows = [
-		{ label: 'Published', value: snapshot.media.published },
-		{ label: 'Described', value: snapshot.media.described },
-	];
-	renderMeters(
-		list,
-		rows.map((row) => ({
-			label: row.label,
-			value: `${row.value}/${referenced}`,
-			fill: referenced === 0 ? 0 : row.value / referenced,
-			tone: row.value === referenced && referenced > 0 ? ('ready' as const) : ('short' as const),
-		})),
-	);
+function issueSummary(warnings: number, notices: number): string {
+	const parts = [
+		warnings > 0 ? countLabel(warnings, 'warning') : undefined,
+		notices > 0 ? countLabel(notices, 'notice') : undefined,
+	].filter((part): part is string => part !== undefined);
+	return parts.length === 2 ? `${parts[0]} and ${parts[1]}` : (parts[0] ?? 'no open checks');
 }
 
 function renderHealth(root: HTMLElement, snapshot: OverviewSnapshot): void {
-	const healthState = requiredElement<HTMLElement>(root, '[data-health-state]');
+	const title = requiredElement<HTMLElement>(root, '[data-overview-title]');
+	const lede = requiredElement<HTMLElement>(root, '[data-overview-lede]');
+	const icon = requiredElement<HTMLElement>(root, '[data-overview-status-icon]');
+	const attention = requiredElement<HTMLElement>(root, '[data-attention]');
 	const healthList = requiredElement<HTMLUListElement>(root, '[data-health-list]');
+	const issueCount = snapshot.health.warnings + snapshot.health.notices;
 	healthList.replaceChildren();
+	delete lede.dataset.state;
 
 	if (snapshot.health.gaps.length === 0) {
-		healthState.textContent = 'Every referenced resource is ready.';
-		healthState.dataset.state = 'clear';
-		healthState.hidden = false;
-		healthList.hidden = true;
+		icon.dataset.state = 'ready';
+		title.textContent = 'Everything is ready.';
+		lede.textContent = 'There are no open workspace checks.';
+		attention.hidden = true;
 		return;
 	}
 
-	healthState.hidden = true;
-	healthList.hidden = false;
+	icon.dataset.state = snapshot.health.warnings > 0 ? 'warning' : 'notice';
+	title.textContent = `${countLabel(issueCount, 'thing')} need${issueCount === 1 ? 's' : ''} attention.`;
+	lede.textContent = `Workspace checks found ${issueSummary(
+		snapshot.health.warnings,
+		snapshot.health.notices,
+	)}.`;
+	attention.hidden = false;
+
 	for (const gap of snapshot.health.gaps) {
 		const item = document.createElement('li');
 		item.dataset.level = gap.level;
@@ -156,8 +106,6 @@ function renderHealth(root: HTMLElement, snapshot: OverviewSnapshot): void {
 		detail.textContent = gap.detail;
 		copy.appendChild(subject);
 		copy.appendChild(detail);
-		// The snapshot already names the subcommand that closes each gap; dropping it left the one
-		// actionable field on the page unread.
 		if (gap.action !== undefined) {
 			const remedy = document.createElement('code');
 			remedy.className = 'health-action';
@@ -170,40 +118,89 @@ function renderHealth(root: HTMLElement, snapshot: OverviewSnapshot): void {
 	}
 }
 
-export function renderOverview(root: HTMLElement, snapshot: OverviewSnapshot): void {
-	const issueCount = snapshot.health.warnings + snapshot.health.notices;
-	requiredElement<HTMLElement>(root, '[data-kpi-articles]').textContent = String(
-		snapshot.articles.total,
-	);
-	requiredElement<HTMLElement>(root, '[data-kpi-sections]').textContent =
-		`${snapshot.articles.sections.length} sections`;
-	requiredElement<HTMLElement>(root, '[data-kpi-media]').textContent = String(
-		snapshot.media.referenced,
-	);
-	requiredElement<HTMLElement>(root, '[data-kpi-published]').textContent =
-		`${percentage(snapshot.media.published, snapshot.media.referenced)}%`;
-	requiredElement<HTMLElement>(root, '[data-kpi-described]').textContent =
-		`${percentage(snapshot.media.described, snapshot.media.referenced)}%`;
-	requiredElement<HTMLElement>(root, '[data-kpi-issues]').textContent = String(issueCount);
-	requiredElement<HTMLElement>(root, '[data-kpi-issue-detail]').textContent =
-		`${snapshot.health.warnings} warnings · ${snapshot.health.notices} notices`;
-	requiredElement<HTMLElement>(root, '[data-content-total]').textContent =
-		`${snapshot.articles.total} total`;
-	requiredElement<HTMLElement>(root, '[data-readiness-total]').textContent =
-		`${snapshot.media.referenced} resources`;
-	requiredElement<HTMLElement>(root, '[data-health-total]').textContent =
-		issueCount === 0 ? 'Clear' : `${issueCount} open`;
+const recentDate = new Intl.DateTimeFormat('en-US', {
+	month: 'short',
+	day: 'numeric',
+	year: 'numeric',
+	timeZone: 'UTC',
+});
 
-	renderSections(requiredElement(root, '[data-content-list]'), snapshot);
-	renderReadiness(requiredElement(root, '[data-readiness-list]'), snapshot);
+function formatRecentDate(value: string): string {
+	const date = new Date(value);
+	return Number.isNaN(date.getTime()) ? value : recentDate.format(date);
+}
+
+function articleThumbnail(): HTMLElement {
+	const thumbnail = document.createElement('div');
+	thumbnail.className = 'article-preview-thumbnail';
+	thumbnail.dataset.articleIcon = '';
+	thumbnail.setAttribute('aria-hidden', 'true');
+	for (const line of ARTICLE_THUMBNAIL_LINES) {
+		const bar = document.createElement('span');
+		bar.dataset.iconBar = '';
+		bar.style.width = line.width;
+		bar.style.marginTop = line.marginTop;
+		thumbnail.appendChild(bar);
+	}
+	return thumbnail;
+}
+
+function renderRecent(root: HTMLElement, snapshot: OverviewSnapshot): void {
+	const section = requiredElement<HTMLElement>(root, '[data-recent]');
+	const list = requiredElement<HTMLUListElement>(root, '[data-recent-list]');
+	list.replaceChildren();
+	section.hidden = snapshot.articles.recent.length === 0;
+
+	for (const article of snapshot.articles.recent) {
+		const item = document.createElement('li');
+		item.className = 'article-preview';
+		const copy = document.createElement('div');
+		copy.className = 'article-preview-copy';
+		const heading = document.createElement('div');
+		heading.className = 'article-preview-heading';
+		const title = document.createElement('strong');
+		title.className = 'article-preview-title';
+		title.textContent = article.title;
+		const leader = document.createElement('span');
+		leader.className = 'article-preview-leader';
+		const modified = document.createElement('time');
+		modified.className = 'article-preview-date';
+		modified.dateTime = article.modified;
+		modified.textContent = formatRecentDate(article.modified);
+		heading.appendChild(title);
+		heading.appendChild(leader);
+		heading.appendChild(modified);
+		copy.appendChild(heading);
+		if (article.subtitle !== null) {
+			const subtitle = document.createElement('p');
+			subtitle.className = 'article-preview-subtitle';
+			subtitle.textContent = article.subtitle;
+			copy.appendChild(subtitle);
+		}
+		item.appendChild(articleThumbnail());
+		item.appendChild(copy);
+		list.appendChild(item);
+	}
+}
+
+export function renderOverview(root: HTMLElement, snapshot: OverviewSnapshot): void {
+	const meta = requiredElement<HTMLElement>(root, '.overview-meta');
+	meta.hidden = false;
+	requiredElement<HTMLElement>(root, '[data-overview-content]').textContent =
+		contentSummary(snapshot);
+	requiredElement<HTMLElement>(root, '[data-overview-media]').textContent = mediaSummary(snapshot);
 	renderHealth(root, snapshot);
+	renderRecent(root, snapshot);
 }
 
 export function renderOverviewError(root: HTMLElement, error: unknown): void {
-	for (const element of root.querySelectorAll<HTMLElement>('[data-kpi-value]')) {
-		element.textContent = '—';
-	}
-	const healthState = requiredElement<HTMLElement>(root, '[data-health-state]');
-	healthState.textContent = error instanceof Error ? error.message : String(error);
-	healthState.dataset.state = 'error';
+	requiredElement<HTMLElement>(root, '[data-overview-status-icon]').dataset.state = 'error';
+	requiredElement<HTMLElement>(root, '[data-overview-title]').textContent =
+		'Workspace unavailable.';
+	const lede = requiredElement<HTMLElement>(root, '[data-overview-lede]');
+	lede.textContent = error instanceof Error ? error.message : String(error);
+	lede.dataset.state = 'error';
+	requiredElement<HTMLElement>(root, '.overview-meta').hidden = true;
+	requiredElement<HTMLElement>(root, '[data-attention]').hidden = true;
+	requiredElement<HTMLElement>(root, '[data-recent]').hidden = true;
 }

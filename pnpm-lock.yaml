@@ -106,6 +106,9 @@ importers:
       '@canmi/fonts':
         specifier: workspace:*
         version: link:../../libs/fonts
+      '@canmi/primitives':
+        specifier: workspace:*
+        version: link:../../libs/primitives
       '@canmi/theme':
         specifier: workspace:*
         version: link:../../libs/theme
@@ -167,6 +170,9 @@ importers:
       '@canmi/imgsrc':
         specifier: workspace:*
         version: link:../../libs/imgsrc
+      '@canmi/primitives':
+        specifier: workspace:*
+        version: link:../../libs/primitives
       '@canmi/robots':
         specifier: workspace:*
         version: link:../../libs/robots
@@ -329,6 +335,8 @@ importers:
       '@canmi/urls':
         specifier: workspace:*
         version: link:../urls
+
+  libs/primitives: {}
 
   libs/robots:
     dependencies:
