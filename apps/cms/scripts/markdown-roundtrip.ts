@@ -48,7 +48,7 @@ const frontmatterNode = $nodeSchema('frontmatter', () => ({
 	group: 'block',
 	attrs: { value: { default: '' } },
 	parseDOM: [{ tag: 'div[data-frontmatter]' }],
-	toDOM: (node: { attrs: { value: string } }) => ['div', { 'data-frontmatter': node.attrs.value }],
+	toDOM: (node: any) => ['div', { 'data-frontmatter': String(node.attrs.value ?? '') }],
 	parseMarkdown: {
 		match: ({ type }: { type: string }) => type === 'yaml',
 		runner: (state: any, node: any, type: any) => {
