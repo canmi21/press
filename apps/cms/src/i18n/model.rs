@@ -22,6 +22,7 @@ pub enum Provider {
 	Alibaba,
 	Deepseek,
 	Cursor,
+	Xai,
 }
 
 #[allow(dead_code)]
@@ -33,6 +34,7 @@ impl Provider {
 			Self::Alibaba => "alibaba",
 			Self::Deepseek => "deepseek",
 			Self::Cursor => "cursor",
+			Self::Xai => "xai",
 		}
 	}
 
@@ -44,6 +46,7 @@ impl Provider {
 			Self::Alibaba => "qwen",
 			Self::Deepseek => "deepseek",
 			Self::Cursor => "composer",
+			Self::Xai => "grok",
 		}
 	}
 
@@ -54,6 +57,7 @@ impl Provider {
 			"qwen" => Some(Self::Alibaba),
 			"deepseek" => Some(Self::Deepseek),
 			"composer" => Some(Self::Cursor),
+			"grok" => Some(Self::Xai),
 			_ => None,
 		}
 	}
@@ -66,7 +70,7 @@ impl Provider {
 /// from this list still gets recorded -- see `normalise` -- but only what is listed here is a
 /// name this project claims to understand.
 #[allow(dead_code)]
-pub const KNOWN: [&str; 27] = [
+pub const KNOWN: [&str; 29] = [
 	// anthropic: family, variant, version
 	"claude-opus-5",
 	"claude-opus-4-8",
@@ -98,6 +102,9 @@ pub const KNOWN: [&str; 27] = [
 	"deepseek-prover-v2",
 	// cursor
 	"composer-2-5",
+	// xai
+	"grok-4-5",
+	"grok-4-6",
 	// the light Claude, kept last so the list reads by provider
 	"claude-haiku-4-6",
 ];
@@ -145,6 +152,7 @@ Report the model that produced this answer on a single line, as `provider/model`
   alibaba/qwen-{version}[-{variant}]     qwen-3, qwen-2-5, qwen-2-5-max, qwen-3-235b-a22b
   deepseek/deepseek-{variant}            deepseek-v3, deepseek-r1, deepseek-coder-v2
   cursor/composer-{version}              composer-2-5
+  xai/grok-{version}                     grok-4-5, grok-4-6
 
 Anthropic names the variant before the version; OpenAI names the version before the variant.
 Write every dot as a hyphen, and use lower case throughout.";
@@ -177,6 +185,7 @@ mod tests {
 	fn dots_become_hyphens() {
 		assert_eq!(normalise("Claude-Sonnet-4.5"), "claude-sonnet-4-5");
 		assert_eq!(normalise("qwen-2.5-max"), "qwen-2-5-max");
+		assert_eq!(normalise("grok-4.5"), "grok-4-5");
 	}
 
 	#[test]
@@ -201,6 +210,8 @@ mod tests {
 		assert!(known("gpt-5-6-luna-medium"));
 		assert!(known("gpt-5-6-terra-high"));
 		assert!(known("composer-2-5"));
+		assert!(known("grok-4-5"));
+		assert!(known("grok-4-6"));
 		assert!(known("deepseek-prover-v2"));
 		// Recognition is not a gate: an unfamiliar id is still recorded as it arrived.
 		assert!(!known("claude-something-9"));
@@ -214,6 +225,7 @@ mod tests {
 		assert!(NAMING_RULE.contains("claude-{variant}-{version}"));
 		assert!(NAMING_RULE.contains("gpt-{version}[-{variant}][-{effort}]"));
 		assert!(NAMING_RULE.contains("composer-{version}"));
+		assert!(NAMING_RULE.contains("grok-{version}"));
 	}
 
 	#[test]
@@ -232,6 +244,7 @@ mod tests {
 			Some(Provider::Deepseek)
 		);
 		assert_eq!(Provider::of_model("composer-2-5"), Some(Provider::Cursor));
+		assert_eq!(Provider::of_model("grok-4-6"), Some(Provider::Xai));
 		assert_eq!(Provider::of_model("something-else"), None);
 	}
 

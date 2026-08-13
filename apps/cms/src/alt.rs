@@ -4,8 +4,8 @@
 //! into the manifest once and every reference inherits it. See spec/architecture.md.
 //!
 //! Work is handed to a local agent CLI rather than to an API. The runner either attaches the
-//! image or reads the named path itself, so there is no multimodal request to assemble, no image
-//! to base64, and no key to hold.
+//! image or reads the named path itself, so there is no API request to assemble and no key
+//! to hold.
 
 use crate::i18n::runner::{self, Refusal, Runner};
 use crate::image::manifest::Merged;

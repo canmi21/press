@@ -10,6 +10,8 @@
 
 use super::model;
 use super::segment::Kind;
+use base64::Engine as _;
+use base64::engine::general_purpose::STANDARD;
 use claude_codes::{AsyncClient, ClaudeOutput, cli::ClaudeCliBuilder};
 use std::ffi::OsString;
 use std::path::Path;
@@ -23,6 +25,7 @@ pub enum Runner {
 	GptOss,
 	Codex,
 	Cursor,
+	Grok,
 }
 
 /// Pure text stays on the open-weight model unless a runner is named explicitly.
@@ -31,7 +34,7 @@ pub const DEFAULT_TEXT: Runner = Runner::GptOss;
 /// Tasks that need to see an image use Codex's balanced vision model by default.
 pub const DEFAULT_VISION: Runner = Runner::Codex;
 
-pub const CHOICES: &str = "claude, gemini, gpt-oss, codex, or cursor";
+pub const CHOICES: &str = "claude, gemini, gpt-oss, codex, cursor, or grok";
 pub const EFFORT_CHOICES: &str = "low, medium, high, xhigh, max, or ultra";
 
 /// Build the concrete tier name stored by the CMS and split at the Codex boundary later.
@@ -79,6 +82,7 @@ impl Runner {
 			"gpt-oss" | "oss" => Some(Self::GptOss),
 			"codex" => Some(Self::Codex),
 			"cursor" | "cursor-agent" => Some(Self::Cursor),
+			"grok" => Some(Self::Grok),
 			_ => None,
 		}
 	}
@@ -91,6 +95,7 @@ impl Runner {
 			Self::GptOss => "openai",
 			Self::Codex => "openai",
 			Self::Cursor => "cursor",
+			Self::Grok => "xai",
 		}
 	}
 
@@ -120,6 +125,12 @@ impl Runner {
 				_ => "gpt-5.6-terra-high",
 			},
 			Self::Cursor => "composer-2.5",
+			// Two models, mapped onto the same three arms. 4.5 is structural; 4.6 is prose
+			// and the retry. There is no third model to escalate to.
+			Self::Grok => match (kind.is_light(), attempt) {
+				(true, 0) => "grok-4.5",
+				_ => "grok-4.6",
+			},
 		}
 	}
 
@@ -137,6 +148,7 @@ impl Runner {
 			Self::GptOss => "gpt-oss-120b-medium",
 			Self::Codex => "gpt-5.6-sol-high",
 			Self::Cursor => "composer-2.5",
+			Self::Grok => "grok-4.6",
 		}
 	}
 
@@ -155,6 +167,10 @@ impl Runner {
 			// all, so a caller that tried anyway would see an empty answer and no reason for
 			// it. Measured: the same model answers a text prompt in the same breath.
 			Self::GptOss => None,
+			// 4.6 is the prose model. A look is quality work with no structural signal, and
+			// there is no third model to escalate to, so the one-shot is the better of the
+			// two. 4.5 also sees -- measured -- but is the structural tier.
+			Self::Grok => Some("grok-4.6"),
 		}
 	}
 }
@@ -213,6 +229,7 @@ async fn dispatch(
 		Runner::Gemini | Runner::GptOss => agy(prompt, model).await,
 		Runner::Codex => codex(prompt, model, image).await,
 		Runner::Cursor => cursor(prompt, model).await,
+		Runner::Grok => grok(prompt, model, image).await,
 	}
 }
 
@@ -432,6 +449,81 @@ async fn cursor(prompt: &str, model: &str) -> Result<Answer, Refusal> {
 	Ok(Answer {
 		text: String::from_utf8_lossy(&output.stdout).into_owned(),
 		// Text output identifies neither the resolved model nor usage.
+		model: model::normalise(model),
+		tokens: 0,
+		usd: 0.0,
+	})
+}
+
+/// The argument list for one `grok -p` run.
+///
+/// Separated from the call so the shape can be asserted. The model id is a flag, the same
+/// as Codex and Cursor; baking it into the prompt would silently ask the default instead.
+fn grok_args(prompt: &str, model: &str) -> Vec<OsString> {
+	vec![
+		"-p".into(),
+		prompt.into(),
+		"-m".into(),
+		model.into(),
+		"--permission-mode".into(),
+		"bypassPermissions".into(),
+	]
+}
+
+/// The argument list for one visual `grok` run.
+///
+/// The text path uses `-p`. This one cannot: the image has to travel as an ACP content
+/// block on `--prompt-json`. The help text names that flag but not the block shape. The
+/// working shape has `data` and `mimeType` at the top of the block; the Anthropic-style
+/// `{"source":{"type":"base64",...}}` nesting is rejected with `missing field 'data'`.
+fn grok_vision_args(prompt: &str, model: &str, mime: &str, data: &str) -> Vec<OsString> {
+	let blocks = serde_json::json!([
+		{
+			"type": "image",
+			"mimeType": mime,
+			"data": data,
+		},
+		{
+			"type": "text",
+			"text": prompt,
+		},
+	]);
+	vec![
+		"--prompt-json".into(),
+		blocks.to_string().into(),
+		"-m".into(),
+		model.into(),
+		"--permission-mode".into(),
+		"bypassPermissions".into(),
+	]
+}
+
+async fn grok(prompt: &str, model: &str, image: Option<&Path>) -> Result<Answer, Refusal> {
+	let args = match image {
+		Some(path) => {
+			let bytes = std::fs::read(path)
+				.map_err(|error| Refusal::Failed(format!("could not read {}: {error}", path.display())))?;
+			grok_vision_args(
+				prompt,
+				model,
+				crate::image::mime_of(path),
+				&STANDARD.encode(bytes),
+			)
+		}
+		None => grok_args(prompt, model),
+	};
+	let output = tokio::process::Command::new("grok")
+		.args(args)
+		.output()
+		.await
+		.map_err(|error| Refusal::Failed(format!("could not run grok: {error}")))?;
+	if !output.status.success() {
+		return Err(failed_command("grok", &output));
+	}
+
+	Ok(Answer {
+		text: String::from_utf8_lossy(&output.stdout).into_owned(),
+		// Plain stdout identifies neither the resolved model nor usage.
 		model: model::normalise(model),
 		tokens: 0,
 		usd: 0.0,
@@ -667,6 +759,7 @@ mod tests {
 		assert_eq!(Runner::parse("agy"), Some(Runner::Gemini));
 		assert_eq!(Runner::parse("codex"), Some(Runner::Codex));
 		assert_eq!(Runner::parse("cursor-agent"), Some(Runner::Cursor));
+		assert_eq!(Runner::parse("grok"), Some(Runner::Grok));
 		assert_eq!(Runner::parse("gpt"), None);
 	}
 
@@ -707,6 +800,55 @@ mod tests {
 	}
 
 	#[test]
+	fn grok_uses_the_two_requested_tiers() {
+		assert_eq!(Runner::Grok.model_for(Kind::Heading, 0), "grok-4.5");
+		assert_eq!(Runner::Grok.model_for(Kind::Prose, 0), "grok-4.6");
+		assert_eq!(Runner::Grok.model_for(Kind::Prose, 1), "grok-4.6");
+		assert_eq!(Runner::Grok.model_for(Kind::Prose, 2), "grok-4.6");
+		assert_eq!(Runner::Grok.model_for_scan(), "grok-4.6");
+	}
+
+	#[test]
+	fn grok_is_given_the_model_on_the_command_line() {
+		// Same shape as Codex and Cursor: the id is a flag. A prompt-only invocation would
+		// silently run the CLI default instead of the tier this file chose.
+		let args = grok_args("translate this", "grok-4.5");
+		assert!(args.contains(&OsString::from("-m")));
+		assert!(args.contains(&OsString::from("grok-4.5")));
+		assert!(args.contains(&OsString::from("-p")));
+		assert!(args.contains(&OsString::from("translate this")));
+		assert!(args.contains(&OsString::from("bypassPermissions")));
+		assert!(!args.contains(&OsString::from("--prompt-json")));
+	}
+
+	#[test]
+	fn grok_attaches_an_image_as_a_content_block() {
+		// `--prompt-json` is how the image lands. `-p` cannot carry it, and the help text
+		// does not document the block shape -- `data` and `mimeType` sit at the top; a
+		// nested Anthropic `source` is rejected.
+		let args = grok_vision_args("what is this", "grok-4.6", "image/png", "QUJD");
+		assert!(args.contains(&OsString::from("--prompt-json")));
+		assert!(!args.contains(&OsString::from("-p")));
+		assert!(args.contains(&OsString::from("-m")));
+		assert!(args.contains(&OsString::from("grok-4.6")));
+		assert!(args.contains(&OsString::from("bypassPermissions")));
+
+		let json = args
+			.iter()
+			.position(|arg| arg == "--prompt-json")
+			.and_then(|at| args.get(at + 1))
+			.expect("prompt-json value");
+		let blocks: serde_json::Value =
+			serde_json::from_str(&json.to_string_lossy()).expect("prompt-json");
+		assert_eq!(blocks[0]["type"], "image");
+		assert_eq!(blocks[0]["mimeType"], "image/png");
+		assert_eq!(blocks[0]["data"], "QUJD");
+		assert!(blocks[0].get("source").is_none());
+		assert_eq!(blocks[1]["type"], "text");
+		assert_eq!(blocks[1]["text"], "what is this");
+	}
+
+	#[test]
 	fn text_and_vision_have_separate_defaults() {
 		assert_eq!(DEFAULT_TEXT, Runner::GptOss);
 		assert_eq!(DEFAULT_VISION, Runner::Codex);
@@ -719,6 +861,8 @@ mod tests {
 		// option. Measured: asked to look at a file it cancels the turn and fills in no error,
 		// so a caller handed a model name anyway would see an empty answer and no cause.
 		assert_eq!(Runner::GptOss.model_for_vision(), None);
+		// Both Grok tiers can see. Vision is quality work, so it takes the prose model.
+		assert_eq!(Runner::Grok.model_for_vision(), Some("grok-4.6"));
 	}
 
 	#[test]
@@ -750,6 +894,18 @@ mod tests {
 		assert_eq!(
 			model::normalise(Runner::Gemini.model_for(Kind::Heading, 0)),
 			"gemini-3-6-flash-medium"
+		);
+	}
+
+	#[test]
+	fn a_grok_model_normalises_to_the_recorded_spelling() {
+		assert_eq!(
+			model::normalise(Runner::Grok.model_for(Kind::Heading, 0)),
+			"grok-4-5"
+		);
+		assert_eq!(
+			model::normalise(Runner::Grok.model_for(Kind::Prose, 0)),
+			"grok-4-6"
 		);
 	}
 
@@ -787,5 +943,6 @@ mod tests {
 		assert_eq!(Runner::GptOss.provider(), "openai");
 		assert_eq!(Runner::Codex.provider(), "openai");
 		assert_eq!(Runner::Cursor.provider(), "cursor");
+		assert_eq!(Runner::Grok.provider(), "xai");
 	}
 }

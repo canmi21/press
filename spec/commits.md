@@ -73,6 +73,11 @@ rather than copying the example -- the point of the trailer is to record which m
 version defeats it. Only these two addresses are used; a new vendor needs a decision here
 first.
 
+A model with no address that resolves to an account is credited in the body instead, by name.
+Grok is the standing case. A trailer exists so a person can be found behind the work, and one
+carrying an address nobody answers is a worse record than a sentence saying who did it -- the
+first looks like an attribution and is not, while the second is exactly what it appears to be.
+
 Applies going forward only. Earlier commits are not rewritten to add trailers.
 
 ## Tooling

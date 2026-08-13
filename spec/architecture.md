@@ -776,9 +776,8 @@ once is inherited by every reference, including the ones written years later. An
 needs different wording for its own context overrides it; nothing else has to say anything.
 
 `cms alt` fills them by handing the work to a local agent CLI rather than to an API. The
-default is `gpt-5.6-terra-medium` through Codex, with the image attached to the invocation;
-other runners may read the path named in the prompt instead. There is no multimodal request to
-assemble, no image to encode, and no key to hold.
+default is `gpt-5.6-terra-medium` through Codex. How each runner is shown the file is
+in [i18n.md](i18n.md). There is no API request to assemble and no key to hold.
 
 The framing in the prompt is the instruction that matters. "Describe this image" produces a
 caption -- a label naming the subject. Asking for what someone who cannot see it would need
