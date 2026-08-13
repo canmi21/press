@@ -298,12 +298,13 @@ geometry is independent of both the window controls above and the navigation bel
 The shared visual language extends beyond the palette. The CMS uses the site's quiet text
 hierarchy, generous content spacing, hairline borders, paper only for contained surfaces and
 restrained line icons. Task pages do not acquire branded tiles or ornamental status chrome merely
-because the CMS is an operations tool. Overview is deliberately the exception: its job is to make
-workspace state legible at a glance, so it is a real operational dashboard with compact metric
-surfaces and D3 charts. Those charts encode relationships the live snapshot actually carries, such
-as content distribution and resource readiness; they do not invent scores or decorative trends to
-fill the grid. This keeps the dashboard density useful without giving the rest of the application a
-generic admin-product aesthetic.
+because the CMS is an operations tool. The opaque main pane is already the content surface, so
+Overview does not subdivide it into a dashboard of cards. Metrics and sections sit directly on that
+surface and use spacing and hairline dividers for grouping; even an empty health state remains text
+rather than acquiring another inset box. Charts encode relationships the live snapshot actually
+carries, such as content distribution and resource readiness; they do not invent scores or
+decorative trends to fill the grid. This keeps the overview useful at a glance without making it a
+generic web admin product embedded inside native chrome.
 
 The first window is a centred 1280 by 720 logical pixels, a 16:9 default rather than a minimum or
 a fixed canvas. After that first launch, geometry belongs to the native shell: Tauri's window-state
