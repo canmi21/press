@@ -11,6 +11,12 @@
 	--color-ink: oklch(0.241 0 0);
 	--color-paper: oklch(1 0 0);
 	--color-paper-hover: oklch(0.962 0 0);
+	/* Native application chrome remains translucent over the platform material. Alpha belongs to
+	   the surface colour rather than `opacity`, which would fade its content as well. */
+	--color-native-sidebar: oklch(0.97 0 0 / 0.72);
+	--color-native-divider: oklch(0.52 0 0 / 0.22);
+	--color-native-hover: oklch(0.88 0 0 / 0.52);
+	--color-native-selected: oklch(0.76 0 0 / 0.5);
 	--color-selection: oklch(0.97 0.09 105 / 0.7);
 	/* Auxiliary (a11y) color — the focus-ring blue, ~Tailwind blue-500. */
 	--color-accent: oklch(0.623 0.214 259.815);
@@ -46,6 +52,10 @@ html {
 	--color-ink: oklch(0.892 0 0);
 	--color-paper: oklch(0.157 0 0);
 	--color-paper-hover: oklch(0.213 0 0);
+	--color-native-sidebar: oklch(0.15 0 0 / 0.7);
+	--color-native-divider: oklch(0.72 0 0 / 0.2);
+	--color-native-hover: oklch(0.38 0 0 / 0.48);
+	--color-native-selected: oklch(0.48 0 0 / 0.52);
 	--color-selection: oklch(0.51 0.064 191 / 0.5);
 	--color-blue: oklch(0.65 0.175 256.7);
 	--color-blue-ink: oklch(0.647 0.175 256.9);
@@ -65,6 +75,10 @@ html {
 	--color-ink: var(--color-ink);
 	--color-paper: var(--color-paper);
 	--color-paper-hover: var(--color-paper-hover);
+	--color-native-sidebar: var(--color-native-sidebar);
+	--color-native-divider: var(--color-native-divider);
+	--color-native-hover: var(--color-native-hover);
+	--color-native-selected: var(--color-native-selected);
 	--color-selection: var(--color-selection);
 	--color-accent: var(--color-accent);
 	--color-blue: var(--color-blue);

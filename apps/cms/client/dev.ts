@@ -14,7 +14,12 @@ const config = JSON.stringify({
 					identifier: 'main-development',
 					description: 'Expose the CMS development window to local MCP tooling.',
 					windows: ['main'],
-					permissions: ['core:window:allow-set-title', 'mcp-bridge:default'],
+					permissions: [
+						'core:window:allow-set-title',
+						'core:window:allow-start-dragging',
+						'core:window:allow-internal-toggle-maximize',
+						'mcp-bridge:default',
+					],
 				},
 			],
 		},

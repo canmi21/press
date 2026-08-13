@@ -1,7 +1,11 @@
 {
 	"$schema": "../gen/schemas/desktop-schema.json",
 	"identifier": "main",
-	"description": "Allow the CMS page to keep the native window title in sync with its HTML title.",
+	"description": "Allow the CMS shell to manage its native title and title-bar interactions.",
 	"windows": ["main"],
-	"permissions": ["core:window:allow-set-title"]
+	"permissions": [
+		"core:window:allow-set-title",
+		"core:window:allow-start-dragging",
+		"core:window:allow-internal-toggle-maximize"
+	]
 }

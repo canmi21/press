@@ -27,7 +27,7 @@ body {
 		BlinkMacSystemFont,
 		sans-serif;
 	font-size: 0.875rem;
-	background: var(--color-page);
+	background: transparent;
 	color: var(--color-text);
 }
 
@@ -36,9 +36,30 @@ button {
 }
 
 .app-shell {
+	/* Measured from AppKit with this window's full-size content view: the traffic lights begin
+	   9pt from the top and are 14pt tall. Reusing that inset makes the panel follow the native
+	   controls instead of introducing a second piece of window geometry. */
+	--native-window-inset: 0.5625rem;
+	--native-traffic-light-height: 0.875rem;
+	--native-titlebar-height: calc(
+		var(--native-window-inset) * 2 + var(--native-traffic-light-height)
+	);
+
 	display: grid;
+	position: relative;
 	grid-template-columns: clamp(11.5rem, 19vw, 13rem) minmax(0, 1fr);
 	height: 100%;
+}
+
+.native-titlebar {
+	position: fixed;
+	z-index: 2147483647;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: var(--native-titlebar-height);
+	background: transparent;
+	pointer-events: auto;
 }
 
 .sidebar {
@@ -46,15 +67,21 @@ button {
 	min-width: 0;
 	min-height: 0;
 	flex-direction: column;
-	border-right: 0.0625rem solid var(--color-border);
-	background: var(--color-page);
+	background: transparent;
 }
 
 .sidebar-header {
 	display: flex;
-	padding: 1.5rem 1.25rem 1rem;
+	height: 3.75rem;
+	flex: none;
+	align-items: center;
+	justify-content: flex-start;
+	margin-top: var(--native-titlebar-height);
+	padding: 0 1.25rem;
 	color: var(--color-text-strong);
-	font-size: 0.875rem;
+	font-size: 1.125rem;
+	line-height: 1.5rem;
+	text-align: left;
 }
 
 .sidebar-header strong {
@@ -73,13 +100,13 @@ button {
 	width: 100%;
 	align-items: center;
 	gap: 0.625rem;
-	padding: 0.5rem 0.625rem;
+	padding: 0.375rem 0.625rem;
 	border: 0;
 	border-radius: 0.75rem;
 	background: transparent;
 	color: var(--color-text-soft);
 	cursor: pointer;
-	font-size: 0.875rem;
+	font-size: 1rem;
 	text-align: left;
 	transition:
 		background-color 200ms,
@@ -91,19 +118,18 @@ button {
 }
 
 .page-link:hover {
-	background: var(--color-paper-hover);
+	background: var(--color-native-hover);
 	color: var(--color-text-strong);
 }
 
 .page-link[aria-current='page'] {
-	background: var(--color-paper-hover);
+	background: var(--color-native-selected);
 	color: var(--color-text-strong);
-	font-weight: 500;
 }
 
 .page-link svg {
-	width: 1rem;
-	height: 1rem;
+	width: 1.125rem;
+	height: 1.125rem;
 	flex: none;
 	fill: none;
 	stroke: currentColor;
@@ -116,7 +142,7 @@ button {
 	height: 0;
 	margin: 0.75rem 0.625rem;
 	border: 0;
-	border-top: 0.0625rem solid var(--color-border);
+	border-top: 0.0625rem solid var(--color-native-divider);
 }
 
 .page-shell {
@@ -124,6 +150,10 @@ button {
 	min-width: 0;
 	min-height: 0;
 	flex-direction: column;
+	margin: var(--native-window-inset) var(--native-window-inset) var(--native-window-inset) 0;
+	overflow: hidden;
+	border-radius: 0.625rem;
+	background: var(--color-page);
 }
 
 .page-content {

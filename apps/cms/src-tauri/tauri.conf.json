@@ -9,14 +9,22 @@
 		"frontendDist": "../dist"
 	},
 	"app": {
+		"macOSPrivateApi": true,
 		"windows": [
 			{
 				"center": true,
 				"height": 720,
+				"hiddenTitle": true,
 				"label": "main",
 				"title": "CMS",
+				"titleBarStyle": "Overlay",
+				"transparent": true,
 				"visible": false,
-				"width": 1280
+				"width": 1280,
+				"windowEffects": {
+					"effects": ["sidebar"],
+					"state": "followsWindowActiveState"
+				}
 			}
 		]
 	},

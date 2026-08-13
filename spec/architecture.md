@@ -270,6 +270,31 @@ the same Tailwind-facing token surface as the site rather than maintaining an ad
 Tauri's capability schemas under `src-tauri/gen` are generated build output: they stay untracked
 and are excluded from repository reference checks.
 
+On macOS the WebView extends through the title-bar area. The native title and title-bar surface are
+hidden, while the native traffic lights remain independently visible over the interface. Keeping
+the decorated window with an overlay preserves those platform controls; removing decorations would
+remove them as well and turn their behaviour into application code.
+
+The window and sidebar are unpainted, revealing macOS's semantic Sidebar material, while the main
+content is one opaque Web surface inset from the top, bottom and right edges. That inset matches the
+native traffic lights' distance from the window edge instead of introducing an unrelated frame.
+The sidebar begins below a dead zone containing that inset, the controls' height and the same inset
+again, so navigation never competes with window chrome. That dead zone extends across the full
+window as a fixed, topmost transparent hit surface, so content paint order cannot intermittently
+take the drag gesture; double-clicking it retains the platform title bar's maximise behaviour. Native
+chrome colours remain a small light-and-dark token group in `@canmi/tokens`: surface, divider, hover
+and selection. Selection is deliberately stronger than hover because a persistent location must
+remain identifiable without pointer movement. Their alpha is part of each colour rather than an
+element-wide `opacity`, because chrome may be translucent without fading its text and icons. The
+transparent WebView support this requires macOS private API and therefore trades away Mac App Store
+eligibility; the CMS is a local workspace tool, so the native material is the chosen side of that
+trade.
+
+The sidebar reads the site's name from `site.config.yaml` rather than carrying a second identity.
+It sits in a row of its own immediately below the drag region. The row is two and a half times the
+text's line height and centres the line vertically while keeping its own left inset, so title
+geometry is independent of both the window controls above and the navigation below.
+
 The shared visual language extends beyond the palette. The CMS uses the site's quiet text
 hierarchy, generous content spacing, hairline borders, paper only for contained surfaces and
 restrained line icons. Task pages do not acquire branded tiles or ornamental status chrome merely
