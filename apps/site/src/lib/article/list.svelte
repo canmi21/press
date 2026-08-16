@@ -91,41 +91,46 @@
 				const bars = icon.querySelectorAll<HTMLElement>('[data-icon-bar]');
 				if (bars.length !== 5) return;
 
-				const tFill = tHi > tLo ? (titleW[ai] - tLo) / (tHi - tLo) : 0.5;
+				const article = articles[ai];
+				const titleWidth = titleW[ai];
+				const lines = bodyW[ai];
+				if (article === undefined || titleWidth === undefined || lines === undefined) return;
+
+				const tFill = tHi > tLo ? (titleWidth - tLo) / (tHi - tLo) : 0.5;
 				const target = [{ width: Math.round(lerp(TITLE_MIN, TITLE_MAX, tFill)), gap: 0 }];
 
-				const lines = bodyW[ai];
 				const lo = lines.length ? Math.min(...lines) : 0;
 				const hi = lines.length ? Math.max(...lines) : 1;
-				const sep = separatorGap(articles[ai].path);
-				for (let i = 0; i < 4; i++) {
+				const sep = separatorGap(article.path);
+				IDEAL_BODY.forEach((ideal, i) => {
 					const w = lines[i];
 					const content =
 						w === undefined
-							? IDEAL_BODY[i]
+							? ideal
 							: lerp(BODY_MIN, BODY_MAX, hi > lo ? (w - lo) / (hi - lo) : 0.7);
 					// Lean the ideal shape toward the measured proportion by BLEND.
-					const width = Math.round(IDEAL_BODY[i] * (1 - BLEND) + content * BLEND);
+					const width = Math.round(ideal * (1 - BLEND) + content * BLEND);
 					// Title gap and the chosen body separator share TITLE_GAP; rest small.
 					const gap = i === 0 || i === sep ? TITLE_GAP : LINE_GAP;
 					target.push({ width, gap });
-				}
+				});
 
 				bars.forEach((bar, i) => {
+					const shape = target[i];
+					if (shape === undefined) return;
 					// Width springs via motion; marginTop is animated with the native
 					// WAAPI because motion only snaps layout props (it tweens width but
 					// jumps margin). Set the final margin as the base, then tween to it.
 					animate(
 						bar,
-						{ width: remFromDefaultPixels(target[i].width) },
+						{ width: remFromDefaultPixels(shape.width) },
 						{
 							...SPRING,
-							onComplete: () =>
-								(bar.style.width = remFromDefaultPixels(target[i].width)),
+							onComplete: () => (bar.style.width = remFromDefaultPixels(shape.width)),
 						}
 					);
 					const from = Number.parseFloat(getComputedStyle(bar).marginTop) || 0;
-					const to = remFromDefaultPixels(target[i].gap);
+					const to = remFromDefaultPixels(shape.gap);
 					bar.style.marginTop = to;
 					bar.animate([{ marginTop: remFromMeasuredPixels(from) }, { marginTop: to }], {
 						duration: GAP_MS,

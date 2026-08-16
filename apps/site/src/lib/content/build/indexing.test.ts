@@ -60,7 +60,9 @@ describe('indexing metadata', () => {
 	});
 
 	it('makes every hreflang name a canonical without reading frontmatter language', () => {
-		const content = articleContent(ARTICLES[0].path);
+		const first = ARTICLES[0];
+		if (first === undefined) throw new Error('the tracked corpus has no articles to probe');
+		const content = articleContent(first.path);
 		const indexing = indexingMetadata('/article', content);
 
 		expect(indexing.canonical.mw).toBe('/article');

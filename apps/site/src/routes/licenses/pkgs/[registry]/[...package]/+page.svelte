@@ -27,6 +27,14 @@
 	const canonical = $derived(localeUrl(`${URLS.apps.production.site}/${slug}`, locale));
 	const card = $derived(cardUrl(cdn, slug, locale));
 
+	// A single licence whose identifier is the whole SPDX expression renders as one link; a
+	// compound expression keeps the plain expression with separate links to its terms.
+	const soleLicense = $derived(
+		data.licenses.length === 1 && data.licenses[0]?.license === data.entry.spdx
+			? data.licenses[0]
+			: undefined
+	);
+
 	// A package reached only as a direct dependency has no indirect half, and a heading over an
 	// empty list would read as a missing answer rather than as nothing to say.
 	const dependents = $derived(
@@ -207,9 +215,9 @@
 				<dl class="col-span-2 grid grid-cols-subgrid gap-y-3 text-[0.9375rem]">
 					<dt class="text-text-soft">{m['licenses.license']({}, { locale })}</dt>
 					<dd class="min-w-0">
-						{#if data.licenses.length === 1 && data.licenses[0]?.license === data.entry.spdx}
+						{#if soleLicense}
 							<a
-								href={data.licenses[0].href}
+								href={soleLicense.href}
 								class="focus-link spring-underline article-link font-mono break-words text-text-strong"
 								>{data.entry.spdx}</a
 							>

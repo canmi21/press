@@ -24,6 +24,13 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
+		// Root tsconfig sets these for every other package; the exclusion of apps/site there is
+		// about SvelteKit's generated aliases, not a waiver of the flags. The other two strictness
+		// flags it carries, verbatimModuleSyntax and isolatedModules, already come from the
+		// generated base this file extends. See spec/code.md.
+		"noUncheckedIndexedAccess": true,
+		"noImplicitOverride": true,
+		"noFallthroughCasesInSwitch": true,
 		"moduleResolution": "bundler"
 	}
 }

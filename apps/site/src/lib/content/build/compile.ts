@@ -277,8 +277,10 @@ function proseMarkdown(node: RootContent): string {
 // Falls back to a slug derived from the text when no explicit id is present.
 function headingParts(node: Heading): { slug: string; text: string } {
 	const raw = mdastToString(node).trim();
-	const explicit = raw.match(/^(.*?)\s*\{#([\w-]+)\}$/);
-	if (explicit) return { text: explicit[1].trim(), slug: explicit[2] };
+	const [, explicitText, explicitSlug] = raw.match(/^(.*?)\s*\{#([\w-]+)\}$/) ?? [];
+	if (explicitText !== undefined && explicitSlug !== undefined) {
+		return { text: explicitText.trim(), slug: explicitSlug };
+	}
 	const slug = raw
 		.toLowerCase()
 		.replace(/[^\w]+/g, '-')
@@ -287,14 +289,9 @@ function headingParts(node: Heading): { slug: string; text: string } {
 }
 
 function imageOf(node: RootContent): MdImage | null {
-	if (
-		node.type === 'paragraph' &&
-		node.children.length === 1 &&
-		node.children[0].type === 'image'
-	) {
-		return node.children[0];
-	}
-	return null;
+	if (node.type !== 'paragraph' || node.children.length !== 1) return null;
+	const only = node.children[0];
+	return only?.type === 'image' ? only : null;
 }
 
 /**

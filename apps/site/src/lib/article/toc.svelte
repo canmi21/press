@@ -318,10 +318,10 @@
 		if (window.scrollY > TOP_DEAD_ZONE) {
 			const threshold = window.scrollY + window.innerHeight * 0.3;
 			let initialIdx = -1;
-			for (let i = 0; i < headings.length; i++) {
-				const top = headings[i].getBoundingClientRect().top + window.scrollY;
+			headings.forEach((heading, i) => {
+				const top = heading.getBoundingClientRect().top + window.scrollY;
 				if (top <= threshold) initialIdx = i;
-			}
+			});
 			if (initialIdx >= 0) activeIndex = initialIdx;
 		}
 
@@ -353,6 +353,7 @@
 			const bw = widths[i] ?? MAX_BAR_WIDTH / 2;
 			const op = i === active ? 0.8 : 0.35;
 			const bar = bars[i];
+			if (bar === undefined) continue;
 			animate(
 				bar,
 				{
@@ -389,6 +390,8 @@
 			const bw = widths[i] ?? MAX_BAR_WIDTH / 2;
 			const restOp = i === active ? 0.8 : 0.35;
 			const bar = bars[i];
+			const text = texts[i];
+			if (bar === undefined || text === undefined) continue;
 			const targetW = show ? 0 : bw;
 			const targetH = show ? 0 : BAR_HEIGHT;
 			animate(
@@ -407,7 +410,7 @@
 				}
 			);
 			animate(
-				texts[i],
+				text,
 				{
 					height: show ? 'auto' : 0,
 					opacity: show ? 1 : 0
@@ -476,7 +479,9 @@
 				trackingRAF = requestAnimationFrame(tick);
 			}
 		} else {
-			const target = indicatorGeometry(buttons[active]);
+			const activeButton = buttons[active];
+			if (activeButton === undefined) return;
+			const target = indicatorGeometry(activeButton);
 			const indicator = indicatorEl;
 			const navRect = asideEl.getBoundingClientRect();
 			const indicatorRect = indicator.getBoundingClientRect();

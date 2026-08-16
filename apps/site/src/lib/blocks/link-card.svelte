@@ -50,10 +50,12 @@
 			const { data } = ctx.getImageData(0, 0, size, size);
 			const buckets = new Map<number, { r: number; g: number; b: number; count: number }>();
 			for (let i = 0; i < data.length; i += 4) {
-				if (data[i + 3] < 128) continue;
 				const r = data[i];
 				const g = data[i + 1];
 				const b = data[i + 2];
+				const a = data[i + 3];
+				if (r === undefined || g === undefined || b === undefined || a === undefined) continue;
+				if (a < 128) continue;
 				const key = ((r >> 5) << 6) | ((g >> 5) << 3) | (b >> 5);
 				const entry = buckets.get(key);
 				if (entry) {

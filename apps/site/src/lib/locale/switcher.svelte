@@ -73,7 +73,9 @@
 	 * nothing needs changing. Inside the menu the marks keep naming languages, because there the
 	 * compass has the other job: pointing at a row worth moving to.
 	 */
-	const CurrentMark = $derived(code === preferred ? Compass : markFor(current));
+	const CurrentMark = $derived(
+		code === preferred || current === undefined ? Compass : markFor(current)
+	);
 
 	/**
 	 * The two icon sets are not sized the same way, and this is the one slot that holds either.
