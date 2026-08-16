@@ -69,14 +69,36 @@ ordinary comment on the line above and keep the directive bare:
 // eslint-disable-next-line no-new
 ```
 
-The suffix form appears once in `apps/site/src/routes/+layout.svelte` on a `svelte/` rule. It
-does nothing today for a second reason -- `.oxlintrc.json` does not load a svelte plugin, so
-that rule is not enabled at all -- which is why the broken syntax never surfaced. Do not copy
-it as a precedent.
+The suffix form appears once in `apps/site/src/routes/+layout.svelte` on a `svelte/` rule, where
+the broken syntax never surfaced because that rule can never fire -- see the section below. Do
+not copy it as a precedent.
 
 **clippy carries no style lints.** When Rust code lands, clippy stays on `correctness`,
 `suspicious`, and `complexity`. The `style` group overlaps rustfmt and stays off unless a
 specific rule is shown to cover something rustfmt does not touch.
+
+## What oxlint sees in a `.svelte` file
+
+Verified against oxlint 1.75.0 by probing a file that violates two rules at once:
+
+| Region                        | Linted                                            |
+| ----------------------------- | ------------------------------------------------- |
+| `<script>` block              | Yes -- `no-debugger` reports normally             |
+| Unused bindings in that block | No -- suppressed, since the template may use them |
+| Template markup               | No -- not parsed at all                           |
+
+**There is no svelte plugin and none is being written.** oxlint ships fifteen built-in plugins
+and `vue` is the only framework among them; there is no `--svelte-plugin` to match
+`--vue-plugin`. The upstream compatibility table records "No template linting yet" for Svelte
+and Vue alike, and template support is an open issue with no date.
+
+The consequence: any `svelte/*` rule name is inert here. It is not disabled, it does not exist,
+and a disable comment naming one is decoration. Write the reason as a plain comment.
+
+Do not reach for ESLint to close the gap. Running `eslint-plugin-svelte` beside oxlint puts two
+linters over the same files, which is the arrangement the boundary at the top of this file
+exists to prevent. What covers svelte templates today is `svelte-check`, which `verify` already
+runs; it answers a type question rather than a lint one, and that is the coverage there is.
 
 ## Indentation
 

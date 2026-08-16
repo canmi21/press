@@ -107,7 +107,10 @@
 		<meta name="twitter:site" content="@{site.author.x}" />
 		<meta name="twitter:creator" content="@{site.author.x}" />
 	{/if}
-	<!-- eslint-disable-next-line svelte/no-at-html-tags -- escaped by ldJson above -->
+	<!-- Safe despite the raw insertion: ldJson escapes what it serialises. Stated rather than
+	     suppressed, because no linter here checks it -- oxlint does not parse svelte templates
+	     and has no svelte plugin, so a `svelte/no-at-html-tags` directive would be decoration.
+	     See spec/lint-format.md. -->
 	{@html ldJson(website)}
 	<link rel="alternate" type="application/atom+xml" href={feed} title={site.name} />
 	<link rel="llms" type="text/markdown" href="/llms.txt" />
