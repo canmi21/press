@@ -19,11 +19,16 @@ const CLIENT_ID = 'fb80587a-c39c-4171-9e1f-c14f73d31bc1';
 /**
  * Start reporting page views, outgoing link clicks, and `data-track` elements.
  *
- * Constructing the client is what arms it, so development is excluded by not constructing one
- * rather than by an option. The two options that look like an off switch are not: `disabled`
- * queues events until `ready()` and then sends the backlog, and `filter` drops payloads only
- * after the constructor has already patched `history.pushState` and bound a document-level
- * click listener. Neither leaves a dev session as it found it.
+ * Development loads the client fully and reports nothing, matching how umami is set up in
+ * `app.html` -- its `data-domains` keeps the script running on localhost while sending no
+ * hits. Keeping the three analytics paths on one rule means a dev session exercises the same
+ * wiring production does, so a broken `data-track` attribute shows up before it ships.
+ *
+ * `filter` is what implements that, and it is the only option that does. `send()` calls it
+ * before the queue check and simply resolves when it returns false, so the payload is dropped
+ * rather than held; `disabled` is the trap, since it queues events and flushes the backlog on
+ * `ready()`. Every reporting path -- `track`, `screenView`, `identify`, the group calls --
+ * funnels through that one `send()`, so there is nothing else to switch off.
  *
  * `trackScreenViews` works on SvelteKit's client-side navigation because it wraps
  * `history.pushState`, which is what the router calls; there is no route hook to register.
@@ -32,8 +37,6 @@ const CLIENT_ID = 'fb80587a-c39c-4171-9e1f-c14f73d31bc1';
  * came, which is a different bargain with the reader and belongs to a decision of its own.
  */
 export function registerAnalytics(): void {
-	if (dev) return;
-
 	// Constructing is the entire API here: the SDK arms its listeners in the constructor and
 	// registers itself nowhere, so there is no instance to keep until something needs to report
 	// a custom event by hand.
@@ -43,5 +46,6 @@ export function registerAnalytics(): void {
 		trackScreenViews: true,
 		trackOutgoingLinks: true,
 		trackAttributes: true,
+		filter: () => !dev,
 	});
 }
