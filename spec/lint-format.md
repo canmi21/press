@@ -58,6 +58,22 @@ Whenever a new tool of either kind is added, do this before committing it:
 file: oxfmt rewrites it to a plain space unprompted. Leaving the rule on would report a
 problem the formatter has already solved.
 
+**An oxlint disable comment takes no reason suffix.** ESLint 9 allows
+`// eslint-disable-next-line rule -- why`, and oxlint does not: the ` -- why` is read as part of
+the rule list, matches no rule, and the whole directive is silently ignored. Nothing is
+reported, so the only symptom is the original warning still being there. Write the reason as an
+ordinary comment on the line above and keep the directive bare:
+
+```ts
+// Reason the rule does not apply here.
+// eslint-disable-next-line no-new
+```
+
+The suffix form appears once in `apps/site/src/routes/+layout.svelte` on a `svelte/` rule. It
+does nothing today for a second reason -- `.oxlintrc.json` does not load a svelte plugin, so
+that rule is not enabled at all -- which is why the broken syntax never surfaced. Do not copy
+it as a precedent.
+
 **clippy carries no style lints.** When Rust code lands, clippy stays on `correctness`,
 `suspicious`, and `complexity`. The `style` group overlaps rustfmt and stays off unless a
 specific rule is shown to cover something rustfmt does not touch.
