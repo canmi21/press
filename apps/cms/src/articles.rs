@@ -26,6 +26,9 @@ pub struct Article {
 	pub path: String,
 	pub section: String,
 	pub title: String,
+	pub subtitle: Option<String>,
+	/// Authored `lastmod`, falling back to `created` for an article not yet revised.
+	pub modified: Option<String>,
 	/// The `lang` frontmatter. A file without one is a page, not an article, and is absent here.
 	pub lang: String,
 	/// Translatable segments the article currently holds.
@@ -148,6 +151,8 @@ pub fn listing_at(repository: &Path) -> std::io::Result<Listing> {
 					.unwrap_or("untitled")
 					.to_owned()
 			}),
+			subtitle: summary::subtitle_of(&source),
+			modified: summary::modified_of(&source),
 			lang,
 			segments: live.len(),
 			translated: wanted.saturating_sub(absent),

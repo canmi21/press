@@ -328,6 +328,15 @@ definitions. Labels and article copy retain one uninterrupted left edge, and ind
 unbadged so the icons establish hierarchy without turning every piece of content back into
 interface chrome.
 
+Articles is the writing library rather than a translation-coverage dashboard. It keeps section
+grouping but presents each article with the same title, paper thumbnail, authored date and subtitle
+primitive used by Overview and the public homepage. A healthy article carries no completion badge,
+progress bar or repeated locale strip: completion is the resting state, and repeating it across the
+page makes status look like the subject instead of the writing. Only work that needs attention --
+missing translation segments, missing summaries or stale segments left by an edit -- adds a detail
+line to its article. This flat inventory may be wider than Overview's reading column, but it stays on
+the main pane instead of dividing every article into a separate card.
+
 The first window is a centred 1280 by 720 logical pixels, a 16:9 default rather than a minimum or
 a fixed canvas. After that first launch, geometry belongs to the native shell: Tauri's window-state
 plugin saves size, position and maximised state in the application's config directory and restores

@@ -1,4 +1,4 @@
-import { ARTICLE_THUMBNAIL_LINES } from '@canmi/primitives';
+import { articleThumbnail, formatArticleDate } from './article-preview';
 
 export type OverviewSnapshot = {
 	articles: {
@@ -118,33 +118,6 @@ function renderHealth(root: HTMLElement, snapshot: OverviewSnapshot): void {
 	}
 }
 
-const recentDate = new Intl.DateTimeFormat('en-US', {
-	month: 'short',
-	day: 'numeric',
-	year: 'numeric',
-	timeZone: 'UTC',
-});
-
-function formatRecentDate(value: string): string {
-	const date = new Date(value);
-	return Number.isNaN(date.getTime()) ? value : recentDate.format(date);
-}
-
-function articleThumbnail(): HTMLElement {
-	const thumbnail = document.createElement('div');
-	thumbnail.className = 'article-preview-thumbnail';
-	thumbnail.dataset.articleIcon = '';
-	thumbnail.setAttribute('aria-hidden', 'true');
-	for (const line of ARTICLE_THUMBNAIL_LINES) {
-		const bar = document.createElement('span');
-		bar.dataset.iconBar = '';
-		bar.style.width = line.width;
-		bar.style.marginTop = line.marginTop;
-		thumbnail.appendChild(bar);
-	}
-	return thumbnail;
-}
-
 function renderRecent(root: HTMLElement, snapshot: OverviewSnapshot): void {
 	const section = requiredElement<HTMLElement>(root, '[data-recent]');
 	const list = requiredElement<HTMLUListElement>(root, '[data-recent-list]');
@@ -166,7 +139,7 @@ function renderRecent(root: HTMLElement, snapshot: OverviewSnapshot): void {
 		const modified = document.createElement('time');
 		modified.className = 'article-preview-date';
 		modified.dateTime = article.modified;
-		modified.textContent = formatRecentDate(article.modified);
+		modified.textContent = formatArticleDate(article.modified);
 		heading.appendChild(title);
 		heading.appendChild(leader);
 		heading.appendChild(modified);
