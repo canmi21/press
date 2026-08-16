@@ -64,9 +64,7 @@
 
 	let summaryOpen = $state(false);
 	const summaryProvider = $derived(
-		summary
-			? SUMMARY_PROVIDERS[summary.provider as keyof typeof SUMMARY_PROVIDERS]
-			: undefined,
+		summary ? SUMMARY_PROVIDERS[summary.provider as keyof typeof SUMMARY_PROVIDERS] : undefined,
 	);
 	const SummaryProviderIcon = $derived(summaryProvider?.icon);
 	// One call only -- `$props.id()` may not be used twice in a component -- so the pair is
@@ -194,8 +192,8 @@
 			month: 'short',
 			day: 'numeric',
 			year: 'numeric',
-			timeZone: 'UTC'
-		}).format(new Date(meta.created))
+			timeZone: 'UTC',
+		}).format(new Date(meta.created)),
 	);
 </script>
 
@@ -222,7 +220,8 @@
 	<meta name="twitter:description" content={meta.description} />
 	<meta name="twitter:image" content={card} />
 
-	<!-- eslint-disable-next-line svelte/no-at-html-tags -- escaped by ldJson above -->
+	<!-- Safe despite the raw insertion: ldJson escapes what it serialises. Stated rather than
+	     suppressed; see +layout.svelte and spec/lint-format.md. -->
 	{@html ldJson(article)}
 </svelte:head>
 

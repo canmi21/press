@@ -38,32 +38,37 @@
 						name: 'twitter',
 						label: 'X',
 						href: `${URLS.external.social.twitterIntent}?screen_name=${site.author.x}`,
-						size: base
-					}
+						size: base,
+					},
 				] as const)
 			: []),
 		{
 			name: 'nyaone',
 			label: 'Nya.one',
 			href: `${URLS.external.social.fediverse}/@${site.author.fediverse}`,
-			size: base
+			size: base,
 		},
 		{
 			name: 'bluesky',
 			label: 'Bluesky',
 			href: `${URLS.external.social.bluesky}/${site.author.bluesky}`,
-			size: base
+			size: base,
 		},
 		{
 			name: 'telegram',
 			label: 'Telegram',
 			href: `${URLS.external.social.telegram}/${site.author.telegram}`,
-			size: 'h-5 w-5'
+			size: 'h-5 w-5',
 		},
 		{ name: 'sitemap', label: 'Sitemap', href: '/sitemap.xml', size: base, document: true },
-		{ name: 'travellings', label: 'Travellings', href: URLS.external.webring.travellings, size: base },
+		{
+			name: 'travellings',
+			label: 'Travellings',
+			href: URLS.external.webring.travellings,
+			size: base,
+		},
 		{ name: 'moe', label: 'Travellings Moe', href: URLS.external.webring.moe, size: base },
-		{ name: 'rss', label: 'RSS feed', href: '/atom.xml', size: base, document: true }
+		{ name: 'rss', label: 'RSS feed', href: '/atom.xml', size: base, document: true },
 	] as const;
 </script>
 
@@ -125,22 +130,18 @@
 		rather than taking one of its own. -->
 		<div class="mt-12 flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
 			<nav aria-label="Find me elsewhere" class="flex flex-wrap items-center gap-3">
-			{#each links as link (link.label)}
-				<a
-					href={link.href}
-					aria-label={link.href.startsWith('/')
-						? link.label
-						: `${link.label} (opens in new tab)`}
-					title={link.label}
-					data-sveltekit-reload={'document' in link ? true : undefined}
-					class="focus-ring inline-flex size-5 items-center justify-center rounded-[0.3125rem] text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
-					{...link.href.startsWith('/')
-						? {}
-						: { target: '_blank', rel: 'noopener noreferrer' }}
-				>
-					<Icon name={link.name} class={link.size} />
-				</a>
-			{/each}
+				{#each links as link (link.label)}
+					<a
+						href={link.href}
+						aria-label={link.href.startsWith('/') ? link.label : `${link.label} (opens in new tab)`}
+						title={link.label}
+						data-sveltekit-reload={'document' in link ? true : undefined}
+						class="focus-ring inline-flex size-5 items-center justify-center rounded-[0.3125rem] text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
+						{...link.href.startsWith('/') ? {} : { target: '_blank', rel: 'noopener noreferrer' }}
+					>
+						<Icon name={link.name} class={link.size} />
+					</a>
+				{/each}
 			</nav>
 
 			<a

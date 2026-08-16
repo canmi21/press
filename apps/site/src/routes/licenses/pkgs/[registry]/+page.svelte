@@ -76,7 +76,9 @@
 				<h2 id="package-list" class="font-medium text-text-strong">
 					{m['licenses.packages']({}, { locale })}
 				</h2>
-				<span class="font-mono text-[0.8125rem] tabular-nums text-text-soft">{data.rows.length}</span>
+				<span class="font-mono text-[0.8125rem] tabular-nums text-text-soft"
+					>{data.rows.length}</span
+				>
 			</div>
 			<PackageList rows={data.rows} {locale} />
 		</section>

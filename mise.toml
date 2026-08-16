@@ -15,6 +15,12 @@ CMS_PORT = "26521"
 # is JSON rather than a dotenv.
 _.file = "secrets.json"
 
+# oxfmt lives in package.json rather than [tools] below: its svelte option resolves
+# `svelte/compiler` through node's module graph, which a mise-installed binary can never
+# reach. This keeps `oxfmt` and everything else pnpm carries invocable from the shell and
+# from `jj fix`. See spec/toolchain.md.
+_.path = ["{{config_root}}/node_modules/.bin"]
+
 # rclone is configured entirely through the environment, so there is no rclone.conf holding a
 # second copy of anything. Only the parts that are actually secret live in secrets.json; these
 # three are public facts about which service it is.
@@ -127,7 +133,6 @@ rust = "stable"
 pnpm = "latest"
 jj = "latest"
 oxlint = "latest"
-oxfmt = "latest"
 rclone = "latest"
 
 [tasks.gc]

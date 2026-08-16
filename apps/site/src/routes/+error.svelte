@@ -12,13 +12,13 @@
 		500: 'Internal Server Error',
 		502: 'Bad Gateway',
 		503: 'Service Unavailable',
-		504: 'Gateway Timeout'
+		504: 'Gateway Timeout',
 	};
 
 	const message = $derived(
 		page.status === 404
 			? 'This page could not be found.'
-			: (page.error?.message ?? 'Something went wrong.')
+			: (page.error?.message ?? 'Something went wrong.'),
 	);
 	const titleText = $derived(STATUS_TEXT[page.status] ?? 'Error');
 </script>

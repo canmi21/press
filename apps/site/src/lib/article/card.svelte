@@ -5,7 +5,7 @@
 		title,
 		subtitle,
 		created,
-		path
+		path,
 	}: {
 		title: string;
 		subtitle: string;
@@ -20,23 +20,16 @@
 			month: 'short',
 			day: 'numeric',
 			year: 'numeric',
-			timeZone: 'UTC'
-		}).format(new Date(created))
+			timeZone: 'UTC',
+		}).format(new Date(created)),
 	);
 </script>
 
-<a
-	href="/{path}"
-	class="article-preview group hover:bg-paper-hover focus-visible:outline-none"
->
+<a href="/{path}" class="article-preview group hover:bg-paper-hover focus-visible:outline-none">
 	<!-- A4-ish sheet. Five bars carry the hand-tuned first-frame widths/gaps; after
 	hydration the article list measures the corpus and animates them to a content-derived
 	shape (normalized list-wide, see list.svelte). -->
-	<div
-		data-article-icon
-		aria-hidden="true"
-		class="article-preview-thumbnail focus-ring-inner"
-	>
+	<div data-article-icon aria-hidden="true" class="article-preview-thumbnail focus-ring-inner">
 		{#each ARTICLE_THUMBNAIL_LINES as line}
 			<span data-icon-bar style:width={line.width} style:margin-top={line.marginTop}></span>
 		{/each}

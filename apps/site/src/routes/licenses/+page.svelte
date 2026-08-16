@@ -24,16 +24,19 @@
 	const numberLocale = $derived(locale === 'mw' ? 'en' : locale === 'tw' ? 'zh-TW' : locale);
 	const count = $derived(new Intl.NumberFormat(numberLocale).format(data.total));
 	const registryParts = $derived.by(() => {
-		const parts = new Intl.ListFormat(numberLocale, { style: 'long', type: 'conjunction' })
-			.formatToParts(data.registries.map(({ name }) => name));
+		const parts = new Intl.ListFormat(numberLocale, {
+			style: 'long',
+			type: 'conjunction',
+		}).formatToParts(data.registries.map(({ name }) => name));
 		const spaced = spaceScriptBoundaries(parts.map(({ value }) => value));
 		return parts.map((part, index) => ({
 			type: part.type,
 			value: part.value,
 			gapBefore: (spaced[index] ?? '').length > part.value.length,
-			registry: part.type === 'element'
-				? data.registries.find(({ name }) => name === part.value)
-				: undefined,
+			registry:
+				part.type === 'element'
+					? data.registries.find(({ name }) => name === part.value)
+					: undefined,
 		}));
 	});
 </script>
@@ -102,39 +105,28 @@
 				options={{ locale }}
 			>
 				{#snippet registries()}{#each registryParts as part, index (index)}{#if part.gapBefore}{' '}{/if}{#if part.registry}<a
-							href={part.registry.href}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="focus-link spring-underline article-link text-text">{part.value}</a
-						>{:else}{part.value}{/if}{/each}{/snippet}
+								href={part.registry.href}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="focus-link spring-underline article-link text-text">{part.value}</a
+							>{:else}{part.value}{/if}{/each}{/snippet}
 			</ParaglideMessage>
 		</p>
 
 		<nav aria-label={m['licenses.actions']({}, { locale })} class="mt-4 flex flex-wrap gap-4">
-			<a
-				href="/licenses/pkgs"
-				class="quiet-control text-[0.9375rem]"
-			>
+			<a href="/licenses/pkgs" class="quiet-control text-[0.9375rem]">
 				<span class="focus-link-inner inline-flex items-center gap-1.5">
 					<FolderOpen class="size-3.5" aria-hidden="true" />
 					<span>{m['licenses.packages']({}, { locale })}</span>
 				</span>
 			</a>
-			<a
-				href="/licenses.txt"
-				data-sveltekit-reload
-				class="quiet-control text-[0.9375rem]"
-			>
+			<a href="/licenses.txt" data-sveltekit-reload class="quiet-control text-[0.9375rem]">
 				<span class="focus-link-inner inline-flex items-center gap-1.5">
 					<FileText class="size-3.5" aria-hidden="true" />
 					<span>{m['licenses.index']({}, { locale })}</span>
 				</span>
 			</a>
-			<a
-				href="/licenses/full.txt"
-				data-sveltekit-reload
-				class="quiet-control text-[0.9375rem]"
-			>
+			<a href="/licenses/full.txt" data-sveltekit-reload class="quiet-control text-[0.9375rem]">
 				<span class="focus-link-inner inline-flex items-center gap-1.5">
 					<Scale class="size-3.5" aria-hidden="true" />
 					<span>{m['licenses.full']({}, { locale })}</span>

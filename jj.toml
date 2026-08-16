@@ -23,6 +23,7 @@ patterns = [
 	"glob:'**/*.json'",
 	"glob:'**/*.jsonc'",
 	"glob:'**/*.md'",
+	"glob:'**/*.svelte'",
 ]
 
 [fix.tools.rustfmt]

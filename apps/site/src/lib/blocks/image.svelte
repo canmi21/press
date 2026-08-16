@@ -83,6 +83,6 @@
 		decoding="async"
 		crossorigin="anonymous"
 		class="block w-full rounded-2xl border-2 border-border object-cover"
-		style={style}
+		{style}
 	/>
 </picture>

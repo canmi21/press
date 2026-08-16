@@ -15,8 +15,8 @@
 	const cdn = pickUrls(dev).cdn;
 	const title = $derived(data.coordinates.name);
 	const description = $derived(
-		data.entry.description
-			?? m['licenses.package_description'](
+		data.entry.description ??
+			m['licenses.package_description'](
 				{ name: data.coordinates.name, version: data.coordinates.version },
 				{ locale },
 			),
@@ -32,7 +32,7 @@
 	const soleLicense = $derived(
 		data.licenses.length === 1 && data.licenses[0]?.license === data.entry.spdx
 			? data.licenses[0]
-			: undefined
+			: undefined,
 	);
 
 	// A package reached only as a direct dependency has no indirect half, and a heading over an
@@ -101,11 +101,7 @@
 				<p class="mt-4 leading-relaxed text-pretty text-text-soft">{data.entry.description}</p>
 			{/if}
 			<nav aria-label={m['licenses.actions']({}, { locale })} class="mt-4 flex flex-wrap gap-4">
-				<a
-					href={data.textHref}
-					data-sveltekit-reload
-					class="quiet-control text-[0.9375rem]"
-				>
+				<a href={data.textHref} data-sveltekit-reload class="quiet-control text-[0.9375rem]">
 					<span class="focus-link-inner inline-flex items-center gap-1.5">
 						<FileText class="size-3.5" aria-hidden="true" />
 						<span>{m['licenses.package_notice']({}, { locale })}</span>
@@ -225,9 +221,7 @@
 							<p class="font-mono break-words text-text-strong">{data.entry.spdx}</p>
 							<p class="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-[0.8125rem] text-text-soft">
 								{#each data.licenses as license (license.license)}
-									<a
-										href={license.href}
-										class="focus-link spring-underline article-link font-mono"
+									<a href={license.href} class="focus-link spring-underline article-link font-mono"
 										>{license.license}</a
 									>
 								{/each}

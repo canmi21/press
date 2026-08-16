@@ -82,14 +82,10 @@
 		if (distance <= 0) return;
 		const progress = Math.max(0, (width - chromeWidth - geometry.shortWidth) / distance);
 		if (geometry.prefix) {
-			geometry.prefix.mask.style.width = remFromMeasuredPixels(
-				geometry.prefix.width * progress,
-			);
+			geometry.prefix.mask.style.width = remFromMeasuredPixels(geometry.prefix.width * progress);
 		}
 		if (geometry.suffix) {
-			geometry.suffix.mask.style.width = remFromMeasuredPixels(
-				geometry.suffix.width * progress,
-			);
+			geometry.suffix.mask.style.width = remFromMeasuredPixels(geometry.suffix.width * progress);
 		}
 	}
 
@@ -200,10 +196,7 @@
 			class="action focus-ring"
 		>
 			<Star class="icon" aria-hidden="true" />
-			{@render copy(
-				m['support.google-short']({}, { locale }),
-				m['support.google']({}, { locale }),
-			)}
+			{@render copy(m['support.google-short']({}, { locale }), m['support.google']({}, { locale }))}
 		</a>
 
 		<button

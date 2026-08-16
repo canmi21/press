@@ -34,7 +34,7 @@ brackets -- which is why JSON is even less appropriate here than it was there. `
 `⟧` are U+27E6 and U+27E7; [segment.rs](../apps/cms/src/i18n/segment.rs) explains the
 choice. The sentinels stay defined there; this module imports them.
 
-A line that *ends* with a marker is still a marker. The workspace voice rule made one
+A line that _ends_ with a marker is still a marker. The workspace voice rule made one
 reply open with a Chinese sentence and the count marker on the same line; requiring
 the marker to be the whole line would have thrown away a complete transcription.
 

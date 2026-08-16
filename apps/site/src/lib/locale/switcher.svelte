@@ -12,11 +12,7 @@
 	import Compass from '@lucide/svelte/icons/compass';
 	import { DropdownMenu } from 'bits-ui';
 	import MenuContent from '$lib/components/menu-content.svelte';
-	import {
-		languageChoices,
-		selectContentLanguage,
-		type LanguageChoice,
-	} from './switcher';
+	import { languageChoices, selectContentLanguage, type LanguageChoice } from './switcher';
 	import { acceptedLocale, contentLanguageCookie, type LocaleCode } from './index';
 
 	// `sourceLanguage` is an article's own language, and names the qualifier on the original row.
@@ -74,7 +70,7 @@
 	 * compass has the other job: pointing at a row worth moving to.
 	 */
 	const CurrentMark = $derived(
-		code === preferred || current === undefined ? Compass : markFor(current)
+		code === preferred || current === undefined ? Compass : markFor(current),
 	);
 
 	/**
@@ -92,10 +88,7 @@
 		const choice = choices.find(({ code: choiceCode }) => choiceCode === nextCode);
 		if (!choice) return;
 		const navigated = selectContentLanguage(code, choice.code, (selectedCode) => {
-			document.cookie = contentLanguageCookie(
-				selectedCode,
-				window.location.protocol === 'https:',
-			);
+			document.cookie = contentLanguageCookie(selectedCode, window.location.protocol === 'https:');
 			window.location.reload();
 		});
 		if (!navigated) open = false;
@@ -103,10 +96,7 @@
 </script>
 
 <DropdownMenu.Root {open} onOpenChange={(next) => (open = next)}>
-	<DropdownMenu.Trigger
-		aria-label="Content language: {current?.name}"
-		class="quiet-control"
-	>
+	<DropdownMenu.Trigger aria-label="Content language: {current?.name}" class="quiet-control">
 		<span class="focus-link-inner inline-flex items-center gap-1">
 			<CurrentMark class={markSize} aria-hidden="true" />
 			<span>{current?.name}</span>

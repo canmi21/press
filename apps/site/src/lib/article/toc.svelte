@@ -28,8 +28,7 @@
 	const rootFontPixels = () =>
 		Number.parseFloat(getComputedStyle(document.documentElement).fontSize) ||
 		DEFAULT_PIXELS_PER_REM;
-	const toScaledPixels = (value: number, root: number) =>
-		(value / DEFAULT_PIXELS_PER_REM) * root;
+	const toScaledPixels = (value: number, root: number) => (value / DEFAULT_PIXELS_PER_REM) * root;
 
 	type Phase = 'collapsed' | 'expanded' | 'revealed';
 	type Entry = { el?: HTMLHeadingElement; slug: string; width: number; text: string };
@@ -93,8 +92,7 @@
 		const lineHeight = label ? parseFloat(getComputedStyle(label).lineHeight) : 0;
 		const measuredLines = label && lineHeight > 0 ? Math.round(label.scrollHeight / lineHeight) : 1;
 		const lines = Math.min(2, Math.max(1, measuredLines));
-		const height =
-			toScaledPixels(INDICATOR_HEIGHT, rootFontPixels()) + lineHeight * (lines - 1);
+		const height = toScaledPixels(INDICATOR_HEIGHT, rootFontPixels()) + lineHeight * (lines - 1);
 		const center = button.offsetTop + button.offsetHeight / 2;
 		return { y: center - height / 2, height };
 	}
@@ -111,11 +109,7 @@
 		let measureNext = false;
 
 		const position = () => {
-			const offset = railEndOffset(
-				window.innerHeight,
-				navHeight,
-				articleEnd - window.scrollY,
-			);
+			const offset = railEndOffset(window.innerHeight, navHeight, articleEnd - window.scrollY);
 			const rendered = remFromMeasuredPixels(offset, rootPixels);
 			if (rendered === renderedOffset) return;
 			renderedOffset = rendered;
@@ -310,7 +304,7 @@
 					}
 				}
 			},
-			{ rootMargin: '0% 0% -70% 0%', threshold: 0 }
+			{ rootMargin: '0% 0% -70% 0%', threshold: 0 },
 		);
 		for (const h of headings) observer.observe(h);
 		cleanups.push(() => observer.disconnect());
@@ -366,8 +360,8 @@
 					onComplete: () => {
 						bar.style.width = remFromDefaultPixels(bw);
 						bar.style.height = remFromDefaultPixels(BAR_HEIGHT);
-					}
-				}
+					},
+				},
 			);
 		}
 	});
@@ -399,23 +393,23 @@
 				{
 					width: remFromDefaultPixels(targetW),
 					height: remFromDefaultPixels(targetH),
-					opacity: show ? 0 : restOp
+					opacity: show ? 0 : restOp,
 				},
 				{
 					...BAR_SPRING,
 					onComplete: () => {
 						bar.style.width = remFromDefaultPixels(targetW);
 						bar.style.height = remFromDefaultPixels(targetH);
-					}
-				}
+					},
+				},
 			);
 			animate(
 				text,
 				{
 					height: show ? 'auto' : 0,
-					opacity: show ? 1 : 0
+					opacity: show ? 1 : 0,
 				},
-				TEXT_TWEEN
+				TEXT_TWEEN,
 			);
 		}
 	});
@@ -500,7 +494,7 @@
 					indicator.style.height = remFromMeasuredPixels(target.height);
 					indicator.style.transform = `translateY(${remFromMeasuredPixels(target.y)})`;
 					indicatorAnimation = undefined;
-				}
+				},
 			});
 		}
 		prevIndicatorVisible = visible;
@@ -588,5 +582,4 @@
 		-webkit-line-clamp: 2;
 		line-clamp: 2;
 	}
-
 </style>

@@ -3,11 +3,8 @@
 	import type { LocaleCode } from '$lib/locale';
 	import type { PackageRow } from './directory';
 
-	let {
-		rows,
-		locale,
-		license,
-	}: { rows: PackageRow[]; locale: LocaleCode; license?: string } = $props();
+	let { rows, locale, license }: { rows: PackageRow[]; locale: LocaleCode; license?: string } =
+		$props();
 </script>
 
 <div>
@@ -22,12 +19,15 @@
 			</span>
 			<span class="flex min-w-0 items-center gap-2">
 				{#if entry.asserted}
-					<span class="shrink-0 rounded-[0.25rem] border border-border px-1 text-[0.75rem] text-text-soft"
+					<span
+						class="shrink-0 rounded-[0.25rem] border border-border px-1 text-[0.75rem] text-text-soft"
 						>{m['licenses.asserted']({}, { locale })}</span
 					>
 				{/if}
 				{#if entry.spdx !== license}
-					<span class="max-w-56 truncate text-right text-[0.8125rem] text-text-soft">{entry.spdx}</span>
+					<span class="max-w-56 truncate text-right text-[0.8125rem] text-text-soft"
+						>{entry.spdx}</span
+					>
 				{/if}
 			</span>
 		</a>

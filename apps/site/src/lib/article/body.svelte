@@ -85,7 +85,8 @@
 <div use:noteEvents class="article-content space-y-4">
 	{#each blocks as block, i (i)}
 		{#if block.type === 'prose'}
-			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+			<!-- Compiled at build time from the tracked corpus, not reader input. Stated rather
+			     than suppressed; see spec/lint-format.md. -->
 			{@html block.html}
 		{:else if block.type === 'heading'}
 			<Section slug={block.slug}>{block.text}</Section>
@@ -123,12 +124,7 @@
 		{:else if block.type === 'cargo'}
 			<Cargo crate={block.crate} view={block.view} />
 		{:else if block.type === 'github'}
-			<GitHub
-				repo={block.repo}
-				gitRef={block.gitRef}
-				title={block.title}
-				align={block.align}
-			/>
+			<GitHub repo={block.repo} gitRef={block.gitRef} title={block.title} align={block.align} />
 		{/if}
 	{/each}
 </div>
@@ -195,5 +191,4 @@
 		color: var(--color-text-soft);
 		text-decoration: none;
 	}
-
 </style>

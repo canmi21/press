@@ -87,5 +87,4 @@
 		--wash: 10%;
 		background: color-mix(in oklab, var(--color-blue) var(--wash), transparent);
 	}
-
 </style>

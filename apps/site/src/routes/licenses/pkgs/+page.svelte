@@ -67,7 +67,9 @@
 						<span class="focus-link-inner min-w-0 truncate">{registry.name}</span>
 						<span class="h-0 min-w-6 flex-1 border-t border-dashed border-border-strong"></span>
 					</span>
-					<span class="font-mono text-[0.9375rem] tabular-nums text-text-soft">{registry.count}</span>
+					<span class="font-mono text-[0.9375rem] tabular-nums text-text-soft"
+						>{registry.count}</span
+					>
 				</a>
 			{/each}
 		</section>

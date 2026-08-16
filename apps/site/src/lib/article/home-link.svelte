@@ -105,18 +105,10 @@
 				endpoints = {
 					collapsed:
 						restingEndpoints.collapsed +
-						railEndOffset(
-							window.innerHeight,
-							heights.collapsed,
-							articleEnd - window.scrollY,
-						),
+						railEndOffset(window.innerHeight, heights.collapsed, articleEnd - window.scrollY),
 					expanded:
 						restingEndpoints.expanded +
-						railEndOffset(
-							window.innerHeight,
-							heights.expanded,
-							articleEnd - window.scrollY,
-						),
+						railEndOffset(window.innerHeight, heights.expanded, articleEnd - window.scrollY),
 				};
 			}
 			render(progress);
@@ -242,10 +234,7 @@
 	}
 </script>
 
-<div
-	use:followToc={locale}
-	class="home-slot pointer-events-none fixed hidden items-center lg:flex"
->
+<div use:followToc={locale} class="home-slot pointer-events-none fixed hidden items-center lg:flex">
 	<a
 		href="/"
 		class="home-link focus-link pointer-events-auto inline-flex -translate-x-5 items-center gap-1.5 whitespace-nowrap text-sm text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"

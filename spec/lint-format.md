@@ -69,13 +69,23 @@ ordinary comment on the line above and keep the directive bare:
 // eslint-disable-next-line no-new
 ```
 
-The suffix form appears once in `apps/site/src/routes/+layout.svelte` on a `svelte/` rule, where
-the broken syntax never surfaced because that rule can never fire -- see the section below. Do
-not copy it as a precedent.
+The suffix form used to survive in the tree on `svelte/` rules, where the broken syntax never
+surfaced because those rules can never fire -- see the section below. Every such directive has
+since been replaced by a plain comment stating the reason, which is also the only correct form
+for a `svelte/*` rule name: a directive naming a rule that does not exist is decoration.
 
 **clippy carries no style lints.** When Rust code lands, clippy stays on `correctness`,
 `suspicious`, and `complexity`. The `style` group overlaps rustfmt and stays off unless a
 specific rule is shown to cover something rustfmt does not touch.
+
+**oxfmt never touches `contents/`.** An article's bytes are load-bearing in a way code's are
+not: `data/build/segments.json` fingerprints byte ranges of each article, and the translation
+sidecars key paid work off those fingerprints. A formatter reflowing frontmatter produces a
+semantically identical file whose segments all read as edited -- a stale layout error at build
+time, and re-translation charges for prose nobody changed. Verified when the svelte option
+landed: reflowing one article's frontmatter broke the corpus tests until the file was
+restored. `.oxfmtrc.json` ignores the directory, and the ignore holds for `--stdin-filepath`
+runs too, so `jj fix` inherits it.
 
 ## What oxlint sees in a `.svelte` file
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	let {
 		name,
-		class: className = 'h-4 w-4'
+		class: className = 'h-4 w-4',
 	}: {
 		name:
 			| 'twitter'

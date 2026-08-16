@@ -6,7 +6,7 @@
 
 	let {
 		articles,
-		heading
+		heading,
 	}: {
 		articles: {
 			title: string;
@@ -62,7 +62,7 @@
 				...p
 					.split(/[。．.!?！？，,;；\n]+/)
 					.map((s) => s.trim())
-					.filter((s) => s.length >= 2)
+					.filter((s) => s.length >= 2),
 			);
 			if (out.length >= 4) break;
 		}
@@ -127,7 +127,7 @@
 						{
 							...SPRING,
 							onComplete: () => (bar.style.width = remFromDefaultPixels(shape.width)),
-						}
+						},
 					);
 					const from = Number.parseFloat(getComputedStyle(bar).marginTop) || 0;
 					const to = remFromDefaultPixels(shape.gap);

@@ -177,10 +177,14 @@ Three consequences worth knowing:
 - mise activation is directory-scoped, so these versions resolve only inside this repo.
 - Tools installed via mise have no `node_modules` presence, so JSON `$schema` keys must point
   at a hosted URL rather than a local path. `.oxlintrc.json` does this.
-- A mise-installed tool cannot load a plugin that lives in `node_modules`. oxfmt's `svelte`
-  option needs to resolve `svelte/compiler`, so it stays out of `.oxfmtrc.json` until an app
-  actually depends on svelte. Enabling it early does not fail quietly -- it aborts the whole
-  format run. The same trap waits for any other plugin-shaped option.
+- A mise-installed tool cannot load a plugin that lives in `node_modules` -- node resolves
+  modules from the requiring file's own path, so a binary under mise's install tree never
+  reaches this repo's packages however it is invoked. That is why oxfmt moved to
+  `package.json` when its `svelte` option (which resolves `svelte/compiler`) was switched on:
+  the option is not gated on an app depending on svelte, it is structurally unreachable from a
+  mise install. Enabling a plugin-shaped option on a mise-installed tool does not fail
+  quietly -- it aborts the whole format run. `mise.toml` adds `node_modules/.bin` to the
+  directory-scoped path so `oxfmt` stays invocable exactly as before.
 
 Prefer the mise registry short name (`oxlint`) over a backend-qualified one (`npm:oxlint`);
 both resolve to the same package, and the short form keeps `mise.toml` readable.
@@ -196,8 +200,10 @@ carries none of them, and that is the right outcome rather than a gap:
 - `vite` is what vitest runs on, and every web app will depend on it directly.
 
 The general rule behind the exception: **a tool belongs to the package manager whose
-resolution model it participates in.** oxlint and oxfmt read files and write files, so mise
-carries them. Anything the code itself imports, or that another JS tool resolves by module
+resolution model it participates in.** oxlint reads files and writes files, so mise carries
+it. oxfmt did too until its `svelte` option made it resolve `svelte/compiler` through node's
+module graph -- participation that moved it here, with `svelte` beside it to satisfy that
+peer dependency. Anything the code itself imports, or that another JS tool resolves by module
 name, belongs in `package.json`.
 
 Task entry points stay in mise regardless of where the tool lives, so there is one place to

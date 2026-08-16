@@ -45,9 +45,9 @@
 	 * Where the transition has got to. `still` covers both ends of it: nothing is running, either
 	 * because nothing has happened yet or because everything already has.
 	 */
-	let stage = $state<
-		'still' | 'redacting' | 'settling' | 'undoing' | 'reverting' | 'restoring'
-	>('still');
+	let stage = $state<'still' | 'redacting' | 'settling' | 'undoing' | 'reverting' | 'restoring'>(
+		'still',
+	);
 	let timers: ReturnType<typeof setTimeout>[] = [];
 
 	// The record is on the reader's device, so the server renders the form and this replaces it
@@ -230,9 +230,7 @@ otherwise need. See spec/engagement.md. -->
 	<!-- One row under the pill in every state, so nothing below the section moves as it changes.
 	The left slot carries whatever the reader most recently needs to know and falls back to the
 	count; the right slot is the only place a destructive action appears. -->
-	<div
-		class="mt-3.5 flex items-baseline justify-between gap-6 text-[0.9375rem] text-text-soft"
-	>
+	<div class="mt-3.5 flex items-baseline justify-between gap-6 text-[0.9375rem] text-text-soft">
 		{#if status === 'error'}
 			<p role="alert">{m['newsletter.error']({}, { locale })}</p>
 		{:else if status === 'cancelled'}
@@ -477,5 +475,4 @@ otherwise need. See spec/engagement.md. -->
 			clip-path: inset(-0.5rem 0 -0.5rem 0);
 		}
 	}
-
 </style>

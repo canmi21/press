@@ -3,5 +3,6 @@
 	"singleQuote": true,
 	"trailingComma": "all",
 	"printWidth": 100,
-	"ignorePatterns": ["data/", ".claude/"]
+	"svelte": true,
+	"ignorePatterns": ["data/", ".claude/", "contents/"]
 }

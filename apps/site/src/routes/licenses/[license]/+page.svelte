@@ -75,7 +75,9 @@
 			<section aria-labelledby="registry-{group.registry}" class="mt-16">
 				<div class="mb-3 flex items-baseline justify-between gap-4">
 					<h2 id="registry-{group.registry}" class="font-medium text-text-strong">{group.name}</h2>
-					<span class="font-mono text-[0.8125rem] tabular-nums text-text-soft">{group.rows.length}</span>
+					<span class="font-mono text-[0.8125rem] tabular-nums text-text-soft"
+						>{group.rows.length}</span
+					>
 				</div>
 				<PackageList rows={group.rows} {locale} license={data.license.license} />
 			</section>

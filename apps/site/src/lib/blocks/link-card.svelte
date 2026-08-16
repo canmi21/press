@@ -31,9 +31,7 @@
 
 	const cdnUrl = pickUrls(dev).cdn;
 	const domain = $derived(new URL(url).hostname);
-	const faviconSrc = $derived(
-		`${cdnUrl}/favicon/${domain}${tone ? `?tone=${tone}` : ''}`,
-	);
+	const faviconSrc = $derived(`${cdnUrl}/favicon/${domain}${tone ? `?tone=${tone}` : ''}`);
 
 	let imgEl = $state<HTMLImageElement | undefined>();
 	let hoverTint = $state<'black' | 'white' | null>(null);

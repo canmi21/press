@@ -10,7 +10,8 @@
 		<p>
 			{#each block.segments as seg, j (j)}
 				{#if seg.type === 'html'}
-					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+					<!-- Compiled at build time from the tracked corpus, not reader input. Stated
+					     rather than suppressed; see spec/lint-format.md. -->
 					{@html seg.html}
 				{:else}
 					<a
@@ -26,7 +27,8 @@
 			{/each}
 		</p>
 	{:else}
-		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+		<!-- Compiled at build time from the tracked corpus, not reader input. Stated rather
+		     than suppressed; see spec/lint-format.md. -->
 		{@html block.html}
 	{/if}
 {/each}

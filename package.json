@@ -5,6 +5,8 @@
 	"devDependencies": {
 		"@typescript/native": "npm:typescript@^7.0.2",
 		"cn-font-split": "7.4.3",
+		"oxfmt": "^0.63.0",
+		"svelte": "^5.56.9",
 		"typescript": "^6.0.3",
 		"vite": "^8.2.1",
 		"vitest": "^4.1.10"

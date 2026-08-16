@@ -36,5 +36,6 @@
 	const safe = $derived(contain(svg));
 </script>
 
-<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+<!-- Authored SVG from the tracked corpus, wrapped by contain() above; not reader input.
+     Stated rather than suppressed; see spec/lint-format.md. -->
 <div class="svg-canvas">{@html safe}</div>
