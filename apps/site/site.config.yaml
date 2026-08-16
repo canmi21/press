@@ -23,6 +23,10 @@ author:
   # Handles, not URLs. Where to reach them is libs/urls' business; who they identify lives here.
   telegram: canmimua
   x: canmi21
+  fediverse: canmi
+  # Bluesky identifies an account by a domain the owner proves; the handle being the site's
+  # domain is that proof, not a second copy of the address.
+  bluesky: canmi.net
 
 feed:
   id: tag:canmi.net,2023:atom

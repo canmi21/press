@@ -6,6 +6,7 @@
 	import GitFork from '@lucide/svelte/icons/git-fork';
 	import Scale from '@lucide/svelte/icons/scale';
 	import Star from '@lucide/svelte/icons/star';
+	import { URLS } from '@canmi/urls';
 	import type { CardAlign, RepoRecord } from '$lib/content/types';
 	import { langColor } from './tokei/tokei';
 
@@ -23,8 +24,8 @@
 
 	const href = $derived(
 		gitRef
-			? `https://github.com/${repo.full_name}/tree/${gitRef}`
-			: `https://github.com/${repo.full_name}`,
+			? `${URLS.external.github.web}/${repo.full_name}/tree/${gitRef}`
+			: `${URLS.external.github.web}/${repo.full_name}`,
 	);
 	const displayName = $derived(title || repo.full_name.split('/').at(-1) || repo.full_name);
 	const pushed = $derived(

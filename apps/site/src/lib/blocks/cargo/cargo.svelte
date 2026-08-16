@@ -1,6 +1,7 @@
 <script lang="ts">
 	import './palette.css';
 	import ArrowUpRight from '@lucide/svelte/icons/arrow-up-right';
+	import { URLS } from '@canmi/urls';
 	import { hierarchy, treemap, treemapBinary } from 'd3-hierarchy';
 	import { remFromMeasuredPixels } from '$lib/client/units';
 	import {
@@ -143,7 +144,7 @@
 					</defs>
 					{#each tiles as tile, index (tile.key)}
 						<a
-							href="https://crates.io/crates/{tile.dep.name}/{tile.dep.version}"
+							href="{URLS.external.registries.cargo}/crates/{tile.dep.name}/{tile.dep.version}"
 							target="_blank"
 							rel="noopener noreferrer"
 							aria-label="{tile.dep.name} {tile.dep.version}, {tile.dep.depth === 0
@@ -252,9 +253,9 @@
 			<span><span class="muted">Size</span> <b>{formatBytes(crate.total_dep_size)}</b></span>
 			<span class="links">
 				{#each [
-					[`https://crates.io/crates/${crate.name}`, 'crates.io'],
-					[`https://lib.rs/crates/${crate.name}`, 'lib.rs'],
-					[`https://docs.rs/${crate.name}`, 'docs.rs'],
+					[`${URLS.external.registries.cargo}/crates/${crate.name}`, 'crates.io'],
+					[`${URLS.external.rust.lib}/crates/${crate.name}`, 'lib.rs'],
+					[`${URLS.external.rust.docs}/${crate.name}`, 'docs.rs'],
 				] as [href, label] (label)}
 					<a class="focus-link" {href} target="_blank" rel="noopener noreferrer">
 						{label}<ArrowUpRight class="size-2.5" strokeWidth={2} aria-hidden="true" />

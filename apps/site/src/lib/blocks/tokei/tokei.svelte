@@ -2,6 +2,7 @@
 	import ArrowUpRight from '@lucide/svelte/icons/arrow-up-right';
 	import { hierarchy, treemap } from 'd3-hierarchy';
 	import { remFromMeasuredPixels } from '$lib/client/units';
+	import { URLS } from '@canmi/urls';
 	import { langColor, parseTokei, type LangStat } from './tokei';
 	import type { TokeiView } from '$lib/content/types';
 
@@ -267,7 +268,7 @@
 				<span><span class="muted">Total lines</span> <b>{compact(totals.lines)}</b></span>
 				<span><span class="muted">Code lines</span> <b>{compact(totals.code)}</b></span>
 				<span><span class="muted">Comment ratio</span> <b>{percent(totals.comments, totals.lines)}%</b></span>
-				<a class="focus-link" href="https://github.com/XAMPPRocky/tokei" target="_blank" rel="noopener noreferrer">tokei<ArrowUpRight class="size-2.5" strokeWidth={2} aria-hidden="true" /></a>
+				<a class="focus-link" href="{URLS.external.github.web}/XAMPPRocky/tokei" target="_blank" rel="noopener noreferrer">tokei<ArrowUpRight class="size-2.5" strokeWidth={2} aria-hidden="true" /></a>
 			</div>
 		</div>
 	</div>

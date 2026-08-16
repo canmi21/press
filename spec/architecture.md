@@ -462,7 +462,9 @@ exceptions.
 `mise run refs` enforces the first case and skips the second, treating comments, markdown
 links, and `$schema` keys as citations. `$schema` has to be a URL here precisely because these
 tools come from mise and there is no `node_modules` to point at -- see
-[toolchain.md](toolchain.md).
+[toolchain.md](toolchain.md). JSON-LD `@context` values and XML namespaces are exempt for a
+different reason: each is a namespace identifier, not an endpoint -- changing one changes what
+the document means rather than where anything points.
 
 Generated dependency lockfiles are vendor metadata, not an application address source. A package
 manager may copy a dependency's deprecation or funding URL into `pnpm-lock.yaml`; the software does

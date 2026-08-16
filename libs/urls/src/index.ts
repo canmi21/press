@@ -61,11 +61,36 @@ export const URLS = {
 		feedsmith: 'https://feedsmith.dev',
 		// Bases for social profile links. `x` and `twitter` are the same
 		// service under two hostnames: profiles moved and the intent endpoint did not, so both
-		// are still live and both are still needed.
+		// are still live and both are still needed. Handles stay in `site.config.yaml`; these
+		// are only where a handle is reachable.
 		social: {
 			telegram: 'https://t.me',
 			x: 'https://x.com',
 			twitterIntent: 'https://twitter.com/intent/follow',
+			fediverse: 'https://nya.one',
+			bluesky: 'https://bsky.app/profile',
+		},
+		// Companion sites the cargo widget links a crate to, beside the registry above. Keyed by
+		// what each serves, joined with `/{crate}` (docs) and `/crates/{crate}` (lib).
+		rust: {
+			docs: 'https://docs.rs',
+			lib: 'https://lib.rs',
+		},
+		// Webring gateways the homepage footer links into. Whole navigation URLs rather than
+		// bases: the path and query are the gateway's interface, not something assembled here.
+		webring: {
+			travellings: 'https://www.travellings.cn/go.html',
+			moe: 'https://travel.moe/go?travel=on',
+		},
+		// Registration directory behind the homepage badge, joined with `?keyword={id}`.
+		icpmoe: 'https://icp.gov.moe',
+		// Analytics loader fetched by the browser. The website id rides on the script tag: it is
+		// an identity, not an address.
+		umami: 'https://cloud.umami.is/script.js',
+		// Hosts the Latin webfont stylesheet resolves through; preconnected before it is fetched.
+		googleFonts: {
+			css: 'https://fonts.googleapis.com',
+			static: 'https://fonts.gstatic.com',
 		},
 	},
 } as const;

@@ -32,14 +32,28 @@
 	// See spec/locale.md#server-only-documents-leave-the-page-router.
 	const links = [
 		{ name: 'github', label: 'GitHub', href: githubProfileUrl, size: base },
+		...(site.author.x
+			? ([
+					{
+						name: 'twitter',
+						label: 'X',
+						href: `${URLS.external.social.twitterIntent}?screen_name=${site.author.x}`,
+						size: base
+					}
+				] as const)
+			: []),
 		{
-			name: 'twitter',
-			label: 'X',
-			href: 'https://twitter.com/intent/follow?screen_name=canmi21',
+			name: 'nyaone',
+			label: 'Nya.one',
+			href: `${URLS.external.social.fediverse}/@${site.author.fediverse}`,
 			size: base
 		},
-		{ name: 'nyaone', label: 'Nya.one', href: 'https://nya.one/@canmi', size: base },
-		{ name: 'bluesky', label: 'Bluesky', href: 'https://bsky.app/profile/canmi.net', size: base },
+		{
+			name: 'bluesky',
+			label: 'Bluesky',
+			href: `${URLS.external.social.bluesky}/${site.author.bluesky}`,
+			size: base
+		},
 		{
 			name: 'telegram',
 			label: 'Telegram',
@@ -47,13 +61,8 @@
 			size: 'h-5 w-5'
 		},
 		{ name: 'sitemap', label: 'Sitemap', href: '/sitemap.xml', size: base, document: true },
-		{
-			name: 'travellings',
-			label: 'Travellings',
-			href: 'https://www.travellings.cn/go.html',
-			size: base
-		},
-		{ name: 'moe', label: 'Travellings Moe', href: 'https://travel.moe/go?travel=on', size: base },
+		{ name: 'travellings', label: 'Travellings', href: URLS.external.webring.travellings, size: base },
+		{ name: 'moe', label: 'Travellings Moe', href: URLS.external.webring.moe, size: base },
 		{ name: 'rss', label: 'RSS feed', href: '/atom.xml', size: base, document: true }
 	] as const;
 </script>
@@ -135,7 +144,7 @@
 			</nav>
 
 			<a
-				href="https://icp.gov.moe/?keyword=20260000"
+				href="{URLS.external.icpmoe}/?keyword=20260000"
 				target="_blank"
 				rel="noopener noreferrer"
 				class="focus-link inline-flex items-center gap-1.5 text-[0.9375rem] text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"

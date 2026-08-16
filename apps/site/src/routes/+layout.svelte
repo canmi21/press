@@ -96,6 +96,14 @@
 
 <svelte:head>
 	<link rel="preconnect" href={cdn} crossorigin="anonymous" />
+	<link rel="preconnect" href={URLS.external.googleFonts.css} />
+	<link rel="preconnect" href={URLS.external.googleFonts.static} crossorigin="anonymous" />
+	<link rel="preconnect" href={new URL(URLS.external.github.cdn).origin} crossorigin="anonymous" />
+	<link
+		rel="stylesheet"
+		href="{URLS.external.googleFonts
+			.css}/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:ital@1&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+	/>
 	<link rel="canonical" href={canonical} />
 	<meta name="robots" content={robots} />
 	{#each articleLocale?.alternates ?? [] as alternate (alternate.code)}
@@ -118,6 +126,16 @@
 	<link rel="icon" type="image/png" sizes="512x512" href="{cdn}/favicon-512x512.png" />
 	<link rel="icon" type="image/svg+xml" sizes="any" href="{cdn}/favicon.svg" />
 	<link rel="apple-touch-icon" href="{cdn}/apple-touch-icon.png" />
+	<!-- Loaded in development too; data-domains keeps a dev session from reporting.
+	     See spec/analytics.md. -->
+	<script
+		defer
+		fetchpriority="low"
+		src={URLS.external.umami}
+		data-website-id="2b0a1e79-405a-47c0-a263-05732e0a130c"
+		data-domains={new URL(URLS.apps.production.site).hostname}
+		data-exclude="/@/*"
+	></script>
 	{#if !dev}
 		<script
 			defer

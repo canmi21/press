@@ -190,8 +190,9 @@ export default defineConfig(({ mode }) => {
 			},
 		],
 		server: {
-			// Pinned, never auto-incremented; see spec/toolchain.md.
-			port: 26511,
+			// Pinned, never auto-incremented; see spec/toolchain.md. The number itself lives in
+			// the URL map, so moving the dev server stays a one-file edit.
+			port: Number(new URL(URLS.apps.development.site).port),
 			strictPort: true,
 		},
 		ssr: {
