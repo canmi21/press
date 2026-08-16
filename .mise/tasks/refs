@@ -40,6 +40,7 @@ CODE_SUFFIXES = {
 	".mjs",
 	".svelte",
 	".html",
+	".rs",
 	".py",
 	".css",
 	".toml",
@@ -55,26 +56,37 @@ SKIP_FILES = {"pnpm-lock.yaml"}
 
 MD_LINK = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 SPEC_REF = re.compile(r"spec/[a-z0-9-]+\.md")
-URL = re.compile(r"https?://[^\s\"'`)\],;]+")
+# The backslash ends a match so `url=\"https://a.example\"` inside a Rust format string reads
+# as the address alone, not the address plus its escape.
+URL = re.compile(r"https?://[^\s\"'`)\],;\\]+")
 COMMENT = re.compile(r"^\s*(//|#|\*|/\*|<!--)")
-URL_HOME = "libs/urls/"
+# The library itself, and the generated Rust mirror a `mise run urls` writes from it -- one
+# map, two languages. rust.test.ts holds the mirror to the map, so the exemption cannot hide
+# an edit made to the Rust side alone.
+URL_HOMES = ("libs/urls/", "apps/cms/src/urls.rs")
 # `$schema` keys have to be URLs because mise-installed tools have no node_modules to point
 # at (spec/toolchain.md). JSON-LD's `@context` is a namespace identifier like an xmlns:
-# changing it changes what the document means, not where anything points.
-URL_EXEMPT = ('"$schema"', "'@context'", '"@context"')
+# changing it changes what the document means, not where anything points. `registry+https://`
+# is cargo's own source-id syntax, quoted in test fixtures in cargo's spelling -- an
+# identifier again, and not this software's to respell.
+URL_EXEMPT = ('"$schema"', "'@context'", '"@context"', "registry+https://")
 # Names RFC 2606 reserves so they can never resolve to anything. A URL on one of these is a
 # placeholder -- for an API that demands an absolute URL, or for a value a test needs to be
 # rejected -- and by definition never an endpoint, so it cannot be what this check looks for.
 # Exempting them by rule rather than case by case is what keeps this from collecting
 # exceptions.
+# Case-insensitive because DNS is: a test probing host lowercasing spells a reserved name in
+# mixed case on purpose.
 URL_UNRESOLVABLE = re.compile(
 	r"https?://(?:[^/\s]*\.)?(?:test|example|invalid|localhost)(?:[/:?#]|$)"
-	r"|https?://(?:[^/\s]*\.)?example\.(?:com|net|org)(?:[/:?#]|$)"
+	r"|https?://(?:[^/\s]*\.)?example\.(?:com|net|org)(?:[/:?#]|$)",
+	re.IGNORECASE,
 )
 # An XML namespace is an identifier that the specification explicitly does not require to be
 # dereferenceable, and changing one changes the document's meaning rather than where it points.
 # Treating these as endpoints would demand they be declared alongside hosts we actually call.
 XML_NAMESPACE = re.compile(r"xmlns(?::[\w-]+)?\s*=|schemaLocation")
+TEMPLATE_AUTHORITY = re.compile(r"https?://[{$]")
 
 
 def docs() -> list[pathlib.Path]:
@@ -154,7 +166,7 @@ def stray_urls() -> list[str]:
 	stray = []
 	for path in code_files():
 		rel = str(path.relative_to(ROOT))
-		if rel.startswith(URL_HOME):
+		if rel.startswith(URL_HOMES):
 			continue
 		for number, line in enumerate(read(path).splitlines(), 1):
 			if COMMENT.match(line) or any(token in line for token in URL_EXEMPT):
@@ -163,6 +175,10 @@ def stray_urls() -> list[str]:
 				continue
 			for match in URL.finditer(line):
 				if URL_UNRESOLVABLE.match(match.group(0)):
+					continue
+				# `https://{domain}/` and `https://${host}` are scheme templates: the authority
+				# arrives at runtime, so there is no address here to single-source.
+				if TEMPLATE_AUTHORITY.match(match.group(0)):
 					continue
 				stray.append(f"{rel}:{number} {match.group(0)}")
 	return stray
@@ -193,7 +209,7 @@ def main() -> int:
 		for cited in [", ".join(cited)]
 	]
 	problems += [
-		f"URL outside {URL_HOME}: {u}  (declare it there, or make it a comment if it is a"
+		f"URL outside {URL_HOMES[0]}: {u}  (declare it there, or make it a comment if it is a"
 		f" citation -- see spec/architecture.md)"
 		for u in stray_urls()
 	]

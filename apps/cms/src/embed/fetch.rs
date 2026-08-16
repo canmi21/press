@@ -11,14 +11,19 @@ const TIMEOUT: Duration = Duration::from_secs(15);
 
 /// Identifies the build and points at the site. crates.io asks for this and answers 403 without
 /// one, so it is a requirement here rather than a courtesy.
-const USER_AGENT: &str = "canmi-workspace-cms (+https://canmi.net)";
+fn user_agent() -> String {
+	format!(
+		"canmi-workspace-cms (+{})",
+		crate::urls::APPS_PRODUCTION_SITE
+	)
+}
 
 fn agent() -> &'static ureq::Agent {
 	static AGENT: OnceLock<ureq::Agent> = OnceLock::new();
 	AGENT.get_or_init(|| {
 		ureq::Agent::config_builder()
 			.timeout_global(Some(TIMEOUT))
-			.user_agent(USER_AGENT)
+			.user_agent(user_agent())
 			.build()
 			.into()
 	})
@@ -30,7 +35,8 @@ fn agent() -> &'static ureq::Agent {
 /// that version instead of the crate.
 fn index(name: &str) -> Option<Vec<IndexEntry>> {
 	let url = format!(
-		"https://index.crates.io/{}",
+		"{}/{}",
+		crate::urls::EXTERNAL_REGISTRIES_CARGO_INDEX,
 		super::crates::index_path(name)
 	);
 	let mut response = agent().get(&url).call().ok()?;
@@ -49,7 +55,10 @@ fn index(name: &str) -> Option<Vec<IndexEntry>> {
 
 /// The published archive size, which the index does not carry.
 fn crate_size(name: &str, version: &str) -> Option<u64> {
-	let url = format!("https://crates.io/api/v1/crates/{name}/{version}");
+	let url = format!(
+		"{}/api/v1/crates/{name}/{version}",
+		crate::urls::EXTERNAL_REGISTRIES_CARGO
+	);
 	let mut response = agent().get(&url).call().ok()?;
 	if !response.status().is_success() {
 		return None;
@@ -82,7 +91,7 @@ pub fn krate(name: &str) -> Option<Crate> {
 
 /// Public repository metadata, unauthenticated.
 pub fn repo(full_name: &str) -> Option<Repo> {
-	let url = format!("https://api.github.com/repos/{full_name}");
+	let url = format!("{}/repos/{full_name}", crate::urls::EXTERNAL_GITHUB_API);
 	let mut response = agent()
 		.get(&url)
 		.header("Accept", "application/vnd.github+json")

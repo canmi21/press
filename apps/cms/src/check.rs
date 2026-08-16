@@ -137,7 +137,7 @@ mod tests {
 		article(
 			&root,
 			r#"![](shot.png)
-			::linkcard{url="https://a.com"}"#,
+			::linkcard{url="https://a.example"}"#,
 		);
 
 		let found = report(&root, &root.join("public"), &root.join("contents")).expect("report");
@@ -145,7 +145,10 @@ mod tests {
 			.iter()
 			.find(|gap| gap.what == "shot.png")
 			.expect("image");
-		let icon = found.iter().find(|gap| gap.what == "a.com").expect("icon");
+		let icon = found
+			.iter()
+			.find(|gap| gap.what == "a.example")
+			.expect("icon");
 
 		assert_eq!(image.level, Level::Warn);
 		assert_eq!(icon.level, Level::Info);

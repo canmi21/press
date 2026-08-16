@@ -26,6 +26,7 @@ export const URLS = {
 	external: {
 		github: {
 			web: 'https://github.com',
+			api: 'https://api.github.com',
 			raw: 'https://raw.githubusercontent.com',
 			avatars: 'https://avatars.githubusercontent.com',
 			cdn: 'https://cdn.jsdelivr.net/gh',
@@ -38,6 +39,8 @@ export const URLS = {
 		registries: {
 			npm: 'https://www.npmjs.com',
 			cargo: 'https://crates.io',
+			// The sparse index the embed collector reads crate metadata from.
+			cargoIndex: 'https://index.crates.io',
 		},
 		// The canonical page for a licence, joined with `/{id}.html`. SPDX rather than any of the
 		// stewards' own sites, because the whole licence record is keyed by SPDX identifier and

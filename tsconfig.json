@@ -9,6 +9,9 @@
 		"resolveJsonModule": true,
 		"moduleDetection": "force",
 		"strict": true,
+		// Scripts run by bare node (libs/urls/scripts) need explicit .ts specifiers, which node's
+		// type stripping requires and this flag permits; safe because noEmit holds above.
+		"allowImportingTsExtensions": true,
 		"noUncheckedIndexedAccess": true,
 		"noImplicitOverride": true,
 		"noFallthroughCasesInSwitch": true,

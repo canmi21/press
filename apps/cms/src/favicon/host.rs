@@ -167,8 +167,8 @@ mod tests {
 	#[test]
 	fn leaves_an_absolute_href_alone() {
 		assert_eq!(
-			absolute("example.com", None, "https://cdn.other.net/i.svg").as_deref(),
-			Some("https://cdn.other.net/i.svg")
+			absolute("example.com", None, "https://cdn.other.example/i.svg").as_deref(),
+			Some("https://cdn.other.example/i.svg")
 		);
 	}
 }

@@ -243,13 +243,14 @@ fn repository_url(value: &serde_json::Value) -> Option<String> {
 		return None;
 	}
 
+	let github = crate::urls::EXTERNAL_GITHUB_WEB;
 	let mut url = raw.strip_prefix("git+").unwrap_or(raw).to_owned();
 	if let Some(path) = url.strip_prefix("github:") {
-		url = format!("https://github.com/{path}");
+		url = format!("{github}/{path}");
 	} else if let Some(path) = url.strip_prefix("git@github.com:") {
-		url = format!("https://github.com/{path}");
+		url = format!("{github}/{path}");
 	} else if let Some(path) = url.strip_prefix("ssh://git@github.com/") {
-		url = format!("https://github.com/{path}");
+		url = format!("{github}/{path}");
 	} else if let Some(path) = url.strip_prefix("git://") {
 		url = format!("https://{path}");
 	}
@@ -308,15 +309,14 @@ mod tests {
 
 	#[test]
 	fn turns_repository_shorthands_into_browser_urls() {
+		let github = crate::urls::EXTERNAL_GITHUB_WEB;
+		let expected = format!("{github}/owner/project");
 		for value in [
-			serde_json::json!("git+https://github.com/owner/project.git"),
+			serde_json::json!(format!("git+{github}/owner/project.git")),
 			serde_json::json!({ "type": "git", "url": "github:owner/project" }),
 			serde_json::json!("git@github.com:owner/project.git"),
 		] {
-			assert_eq!(
-				repository_url(&value).as_deref(),
-				Some("https://github.com/owner/project")
-			);
+			assert_eq!(repository_url(&value).as_deref(), Some(expected.as_str()));
 		}
 	}
 

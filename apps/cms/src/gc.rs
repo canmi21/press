@@ -313,12 +313,12 @@ mod tests {
 		std::fs::create_dir_all(root.join("contents")).expect("dir");
 		std::fs::write(
 			root.join("contents/a.md"),
-			r#"::linkcard{url="https://kept.com"}"#,
+			r#"::linkcard{url="https://kept.example"}"#,
 		)
 		.expect("write");
 
 		let public = root.join("public");
-		for domain in ["kept.com", "gone.com"] {
+		for domain in ["kept.example", "gone.example"] {
 			let directory = public.join("favicon").join(domain);
 			std::fs::create_dir_all(&directory).expect("dir");
 			std::fs::write(directory.join("light.png"), b"icon").expect("write");
@@ -326,7 +326,7 @@ mod tests {
 
 		let sweep = plan(&root, &public, &root.join("contents")).expect("plan");
 		assert_eq!(sweep.orphans.len(), 1);
-		assert!(sweep.orphans[0].ends_with("gone.com"));
+		assert!(sweep.orphans[0].ends_with("gone.example"));
 		std::fs::remove_dir_all(&root).ok();
 	}
 }

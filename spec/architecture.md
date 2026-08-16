@@ -478,6 +478,15 @@ traffic. This has already happened here once: a `cdn.canmi.net` literal survived
 library long after that host stopped being part of the URL map, invisible because nothing
 referenced it by name.
 
+**Rust reads the map through a generated mirror.** A Rust process cannot import a TypeScript
+library, so `mise run urls` renders the map into
+[`apps/cms/src/urls.rs`](../apps/cms/src/urls.rs) -- committed, like the records under
+`data/build/`, so a checkout compiles without Node having run first. The mirror is never
+edited by hand: [`rust.test.ts`](../libs/urls/src/rust.test.ts) fails `verify` the moment it
+disagrees with the map, so the one-edit measure survives the language boundary. The
+alternative, exempting Rust from the rule, would have left half the repo carrying literals
+that the check answers for everywhere else.
+
 Colors follow the same shape at a smaller scale: OKLCH values are declared in
 `libs/tokens` and consumed by name. The rule covers the design system that the site's own UI
 and theme are built from; a palette mirrored from an external convention keeps whatever

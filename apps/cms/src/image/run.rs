@@ -392,7 +392,7 @@ mod tests {
 		std::fs::write(root.join("a.md"), "![](shot.png) and ![](shot.png)").expect("write");
 		std::fs::write(
 			root.join("deep/b.md"),
-			r#"::linkcard{src="shot.png" url="https://a.com"}"#,
+			r#"::linkcard{src="shot.png" url="https://a.example"}"#,
 		)
 		.expect("write");
 

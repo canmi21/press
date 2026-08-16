@@ -25,15 +25,21 @@ fn agent() -> &'static ureq::Agent {
 	AGENT.get_or_init(|| {
 		ureq::Agent::config_builder()
 			.timeout_global(Some(TIMEOUT))
-			.user_agent(USER_AGENT)
+			.user_agent(user_agent())
 			.build()
 			.into()
 	})
 }
 
 // Identifies the crawler and points at the site, so anyone reading their logs can tell what
-// this is. The URL is a citation for a human, not something this program resolves.
-const USER_AGENT: &str = "Mozilla/5.0 (compatible; favicon/1.0; +https://canmi.net)";
+// this is. The URL is a citation for a human, not something this program resolves -- but it
+// is still the site's address, so it comes from the map rather than being a second copy.
+fn user_agent() -> String {
+	format!(
+		"Mozilla/5.0 (compatible; favicon/1.0; +{})",
+		crate::urls::APPS_PRODUCTION_SITE
+	)
+}
 
 /// The site's home page, or None for anything that is not reachable HTML.
 pub fn html(domain: &str) -> Option<String> {

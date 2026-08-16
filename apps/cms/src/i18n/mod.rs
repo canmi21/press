@@ -733,7 +733,7 @@ mod tests {
 		let boundary = "K3QZ7XW1M8ND5VBRTY2LPCFA6GHJ0SEU";
 		let source = "::linkcard{src=\"a.avif\" url=\"https://example.com\" title=\"One\"}";
 		let echoed = format!(
-			"{}\n::linkcard{{src=\"b.avif\" url=\"https://other.com\" title=\"Two\"}}\n\
+			"{}\n::linkcard{{src=\"b.avif\" url=\"https://other.example\" title=\"Two\"}}\n\
 			 A paragraph that belongs to the block before this one.\n{source}\n",
 			prompt::locale_marker("en-US"),
 		);

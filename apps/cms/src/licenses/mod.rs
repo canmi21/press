@@ -301,7 +301,8 @@ pub fn github_profile(value: &str) -> Option<String> {
 		.next()
 		.unwrap_or_default();
 	let url = url::Url::parse(candidate).ok()?;
-	if url.host_str() != Some("github.com") || url.query().is_some() || url.fragment().is_some() {
+	let github = url::Url::parse(crate::urls::EXTERNAL_GITHUB_WEB).ok()?;
+	if url.host_str() != github.host_str() || url.query().is_some() || url.fragment().is_some() {
 		return None;
 	}
 	let segments = url
@@ -541,7 +542,7 @@ mod tests {
 		// npm packs a homepage in after the address, and plenty of packages give only that --
 		// `The Babel Team (https://babel.dev/team)` is the one that surfaced this.
 		assert_eq!(
-			author_name("The Babel Team (https://babel.dev/team)").as_deref(),
+			author_name("The Babel Team (https://babel.example/team)").as_deref(),
 			Some("The Babel Team")
 		);
 		assert_eq!(
@@ -562,16 +563,17 @@ mod tests {
 			author("Ada <12345+octo-cat@users.noreply.github.com>").and_then(|person| person.github),
 			Some("octo-cat".to_owned())
 		);
+		let github = crate::urls::EXTERNAL_GITHUB_WEB;
 		assert_eq!(
-			author("Ada (https://github.com/octo-cat)").and_then(|person| person.github),
+			author(&format!("Ada ({github}/octo-cat)")).and_then(|person| person.github),
 			Some("octo-cat".to_owned())
 		);
 		assert_eq!(
-			author("Ada (https://github.com/octo-cat/project)").and_then(|person| person.github),
+			author(&format!("Ada ({github}/octo-cat/project)")).and_then(|person| person.github),
 			None
 		);
 		assert_eq!(
-			author("Ada (https://notgithub.com/octo-cat)").and_then(|person| person.github),
+			author("Ada (https://not-github.example/octo-cat)").and_then(|person| person.github),
 			None
 		);
 		assert_eq!(author("Ada <ada@example.com>").unwrap().github, None);

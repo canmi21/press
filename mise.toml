@@ -113,6 +113,10 @@ description = "Type check the site, which needs SvelteKit's generated declaratio
 dir = "apps/site"
 run = "pnpm run check"
 
+[tasks.urls]
+description = "Regenerate the Rust mirror of the URL map from libs/urls"
+run = "node libs/urls/scripts/rust.ts"
+
 [tasks.verify]
 description = "Everything a change has to pass, across both languages"
 depends = [

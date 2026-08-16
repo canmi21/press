@@ -602,7 +602,7 @@ mod tests {
 	#[test]
 	fn post_text_may_hold_quotes_urls_and_brackets() {
 		// The reason not to ask for JSON: one escaping mistake would lose the record.
-		let body = r#"see "this" (and {that}) https://x.com/a [1]"#;
+		let body = r#"see "this" (and {that}) https://example.com/a [1]"#;
 		let text = reply(&[
 			&mark("count"),
 			"1",

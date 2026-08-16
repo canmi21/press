@@ -284,14 +284,14 @@ mod tests {
 	#[test]
 	fn reads_both_halves_of_a_linkcard() {
 		let found =
-			scan_text(r#"::linkcard{src="shot.png" url="https://GitHub.com/x" title="t" tone="dark"}"#);
+			scan_text(r#"::linkcard{src="shot.png" url="https://ExAmple.com/x" title="t" tone="dark"}"#);
 		assert_eq!(found.images.len(), 1);
 		assert_eq!(found.images[0].value, "shot.png");
 
 		let icon = &found.favicons[0];
 		// Lowercased, because a domain is a name for a directory here and two spellings would
 		// become two directories holding the same icon.
-		assert_eq!(icon.domain, "github.com");
+		assert_eq!(icon.domain, "example.com");
 		assert_eq!(icon.tone.as_deref(), Some("dark"));
 		assert_eq!(icon.source, None);
 	}
@@ -299,11 +299,11 @@ mod tests {
 	#[test]
 	fn keeps_a_named_icon_source() {
 		let found = scan_text(
-			r#"::linkcard{url="https://sakura-ushio.icu" favicon="https://avatars.githubusercontent.com/u/1?v=4"}"#,
+			r#"::linkcard{url="https://sakura.example" favicon="https://cdn.example/u/1.png"}"#,
 		);
 		assert_eq!(
 			found.favicons[0].source.as_deref(),
-			Some("https://avatars.githubusercontent.com/u/1?v=4")
+			Some("https://cdn.example/u/1.png")
 		);
 	}
 
@@ -353,13 +353,13 @@ mod tests {
 		// Two articles link to one site and only one of them says where the icon comes from.
 		// Collecting the default for the other would overwrite the chosen icon on every run.
 		let found = scan_text(
-			r#"::linkcard{url="https://a.com"}
-			::linkcard{url="https://a.com" favicon="https://cdn.example/a.svg"}"#,
+			r#"::linkcard{url="https://a.example"}
+			::linkcard{url="https://a.example" favicon="https://cdn.example/a.svg"}"#,
 		);
 		assert_eq!(
 			found.wanted(),
 			vec![Wanted {
-				domain: "a.com".to_owned(),
+				domain: "a.example".to_owned(),
 				source: Some("https://cdn.example/a.svg".to_owned()),
 				tone: None,
 			}]
@@ -370,20 +370,21 @@ mod tests {
 	fn a_tone_qualifies_the_icon_a_card_names_and_nothing_else() {
 		// Alongside a source the tone says which shade that file *is*. Alone it only says what
 		// the card renders against, which is no instruction to the collector.
-		let named =
-			scan_text(r#"::linkcard{url="https://a.com" tone="dark" favicon="https://x/i.png"}"#);
+		let named = scan_text(
+			r#"::linkcard{url="https://a.example" tone="dark" favicon="https://x.invalid/i.png"}"#,
+		);
 		assert_eq!(named.wanted()[0].tone.as_deref(), Some("dark"));
 
-		let plain = scan_text(r#"::linkcard{url="https://a.com" tone="dark"}"#);
+		let plain = scan_text(r#"::linkcard{url="https://a.example" tone="dark"}"#);
 		assert_eq!(plain.wanted()[0].tone, None);
 	}
 
 	#[test]
 	fn an_icon_is_wanted_once_per_tone() {
 		let found = scan_text(
-			r#"::linkcard{url="https://a.com" tone="dark"}
-			::linkcard{url="https://a.com" tone="dark"}
-			::linkcard{url="https://a.com"}"#,
+			r#"::linkcard{url="https://a.example" tone="dark"}
+			::linkcard{url="https://a.example" tone="dark"}
+			::linkcard{url="https://a.example"}"#,
 		);
 		assert_eq!(found.icons().len(), 2);
 	}
