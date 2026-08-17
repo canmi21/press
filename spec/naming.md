@@ -85,7 +85,7 @@ the point of use you want to know what a module _does_, not who invoices for it.
 One. If the answer is more, the vendor has leaked past the boundary.
 
 This rule and the "name for responsibility" rule in
-[architecture.md](architecture.md) are the same instinct at two scales: the volatile fact --
+[workspace.md](architecture/workspace.md) are the same instinct at two scales: the volatile fact --
 product, domain, deployment shape, supplier -- never gets carved into the part that is
 expensive to change.
 

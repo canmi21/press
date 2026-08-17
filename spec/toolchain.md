@@ -105,7 +105,7 @@ worker has to be created before its settings exist. Using one means production n
 something no commit accounts for, which is worth doing knowingly and not by habit.
 
 Two things follow from CI holding the build. It compiles what is in git and derives nothing --
-see [architecture.md](architecture.md) -- and the toolchain has to be pinned in files CI can
+see [workspace.md](architecture/workspace.md) -- and the toolchain has to be pinned in files CI can
 read, because `mise.toml` is not one of them.
 
 ## Dev ports are pinned
@@ -124,7 +124,7 @@ A port both a TypeScript tool and a Rust binary need is declared in `mise.toml` 
 not in `libs/urls`. The single-source rule asks for one place to edit, not one particular
 file, and a TypeScript library cannot be read by a Rust process -- putting a cross-language
 fact there would force the duplication the rule exists to prevent. URLs only the TypeScript
-side resolves still belong in [architecture.md](architecture.md)'s URL map.
+side resolves still belong in [workspace.md](architecture/workspace.md)'s URL map.
 
 ## The Tauri dev watcher is told where the frontend is
 

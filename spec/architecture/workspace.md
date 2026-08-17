@@ -1,4 +1,4 @@
-# Architecture
+# The shape of the workspace
 
 ## What this repo is
 
@@ -19,8 +19,8 @@ projs/      Reserved for large standalone projects. Not created yet.
 ```
 
 Which of `data/` git keeps, and what happens to an asset once it is stored, are their own
-subjects: [data.md](architecture/data.md), [media.md](architecture/media.md),
-[fonts.md](architecture/fonts.md) and [delivery.md](architecture/delivery.md).
+subjects: [data.md](data.md), [media.md](media.md),
+[fonts.md](fonts.md) and [delivery.md](delivery.md).
 
 ## One name, one thing
 
@@ -33,10 +33,10 @@ wasm and whose surface is TypeScript is still one directory with one name. Split
 libraries by language at the top level would tear that library in half.
 
 The same applies to `apps/`. A Rust binary and a SvelteKit site sit side by side, named for
-what they do. What a member may be called is [naming.md](naming.md)'s.
+what they do. What a member may be called is [naming.md](../naming.md)'s.
 
 How the desktop CMS and the command-line shell divide one application between them is its own
-subject: [cms.md](architecture/cms.md).
+subject: [cms.md](cms.md).
 
 ## Libraries export source
 
@@ -61,7 +61,7 @@ Importing a styled component kit on top would create a second design system, so 
 under `apps/site/src/lib/components/` expose the small set of surfaces the site alone repeats.
 
 A visible primitive repeated by both the public site and CMS belongs to
-[`@canmi/primitives`](../libs/primitives/src/style.css). Both applications consume it directly;
+[`@canmi/primitives`](../../libs/primitives/src/style.css). Both applications consume it directly;
 neither becomes the other's template, and extracting it must leave the established consumer
 visually unchanged. Two real consumers justify that boundary. A single speculative component does
 not, because opening a package per primitive turns reuse into directory ceremony rather than a
@@ -154,7 +154,7 @@ exceptions.
 `mise run refs` enforces the first case and skips the second, treating comments, markdown
 links, and `$schema` keys as citations. `$schema` has to be a URL here precisely because these
 tools come from mise and there is no `node_modules` to point at -- see
-[toolchain.md](toolchain.md). JSON-LD `@context` values and XML namespaces are exempt for a
+[toolchain.md](../toolchain.md). JSON-LD `@context` values and XML namespaces are exempt for a
 different reason: each is a namespace identifier, not an endpoint -- changing one changes what
 the document means rather than where anything points.
 
@@ -172,9 +172,9 @@ referenced it by name.
 
 **Rust reads the map through a generated mirror.** A Rust process cannot import a TypeScript
 library, so `mise run urls` renders the map into
-[`apps/cms/src/urls.rs`](../apps/cms/src/urls.rs) -- committed, like the records under
+[`apps/cms/src/urls.rs`](../../apps/cms/src/urls.rs) -- committed, like the records under
 `data/build/`, so a checkout compiles without Node having run first. The mirror is never
-edited by hand: [`rust.test.ts`](../libs/urls/src/rust.test.ts) fails `verify` the moment it
+edited by hand: [`rust.test.ts`](../../libs/urls/src/rust.test.ts) fails `verify` the moment it
 disagrees with the map, so the one-edit measure survives the language boundary. The
 alternative, exempting Rust from the rule, would have left half the repo carrying literals
 that the check answers for everywhere else.

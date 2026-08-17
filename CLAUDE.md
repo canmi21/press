@@ -52,7 +52,7 @@ A directory under `libs/` is a namespace, not a language choice -- one name, one
 when a Rust core and a TypeScript wrapper live inside it. `pnpm-workspace.yaml` globs;
 `Cargo.toml` lists members by hand because a glob there breaks every cargo command the moment
 a TypeScript-only directory appears. Name for responsibility, never for deployment shape or
-product. See [spec/architecture.md](spec/architecture.md).
+product. See [spec/architecture/workspace.md](spec/architecture/workspace.md).
 
 ## Toolchain
 
@@ -72,20 +72,55 @@ of truth.
 
 ## Index
 
+Grouped by what you are about to do. A topic that grew past one file became a directory, and
+each of its files is listed here rather than behind a second index.
+
+**Starting, and working with the user**
+
 | Topic                                     | File                                             |
 | ----------------------------------------- | ------------------------------------------------ |
 | Cold start, decision authority, verifying | [spec/agent-protocol.md](spec/agent-protocol.md) |
-| Layout, workspaces, data                  | [spec/architecture.md](spec/architecture.md)     |
 | Voice and communication                   | [spec/voice.md](spec/voice.md)                   |
-| Commit conventions                        | [spec/commits.md](spec/commits.md)               |
-| Naming conventions                        | [spec/naming.md](spec/naming.md)                 |
-| Focus-ring placement and styling          | [spec/styling.md](spec/styling.md)               |
-| Linting and formatting                    | [spec/lint-format.md](spec/lint-format.md)       |
-| Type checking, tests, comments            | [spec/code.md](spec/code.md)                     |
-| Translating article content               | [spec/i18n.md](spec/i18n.md)                     |
-| Serving a reader their language           | [spec/locale.md](spec/locale.md)                 |
-| Newsletter, likes, D1, and client cache   | [spec/engagement.md](spec/engagement.md)         |
-| Analytics clients, dev behaviour, ids     | [spec/analytics.md](spec/analytics.md)           |
-| Long-running tasks and their execution    | [spec/tasks.md](spec/tasks.md)                   |
-| Single-provider X lookups                 | [spec/x.md](spec/x.md)                           |
-| Toolchain and default stacks              | [spec/toolchain.md](spec/toolchain.md)           |
+| Commit conventions and their enforcement  | [spec/commits.md](spec/commits.md)               |
+
+**How the repository is shaped**
+
+| Topic                                     | File                                                             |
+| ----------------------------------------- | ---------------------------------------------------------------- |
+| Layout, namespaces, extraction thresholds | [spec/architecture/workspace.md](spec/architecture/workspace.md) |
+| What git keeps, what sync publishes       | [spec/architecture/data.md](spec/architecture/data.md)           |
+| The two CMS shells and one application    | [spec/architecture/cms.md](spec/architecture/cms.md)             |
+| Naming conventions                        | [spec/naming.md](spec/naming.md)                                 |
+
+**Assets, and how they reach a reader**
+
+| Topic                                     | File                                                           |
+| ----------------------------------------- | -------------------------------------------------------------- |
+| Image variants, descriptions, tags, cards | [spec/architecture/media.md](spec/architecture/media.md)       |
+| The font pipeline                         | [spec/architecture/fonts.md](spec/architecture/fonts.md)       |
+| Formats and caching at the edge           | [spec/architecture/delivery.md](spec/architecture/delivery.md) |
+
+**Writing code**
+
+| Topic                          | File                                       |
+| ------------------------------ | ------------------------------------------ |
+| Type checking, tests, comments | [spec/code.md](spec/code.md)               |
+| Linting and formatting         | [spec/lint-format.md](spec/lint-format.md) |
+| Toolchain and default stacks   | [spec/toolchain.md](spec/toolchain.md)     |
+
+**The site a reader sees**
+
+| Topic                                     | File                                     |
+| ----------------------------------------- | ---------------------------------------- |
+| Interface behaviour, focus rings, styling | [spec/styling.md](spec/styling.md)       |
+| Serving a reader their language           | [spec/locale.md](spec/locale.md)         |
+| Newsletter, likes, D1, and client cache   | [spec/engagement.md](spec/engagement.md) |
+| Analytics clients, dev behaviour, ids     | [spec/analytics.md](spec/analytics.md)   |
+
+**Work that takes minutes and spends money**
+
+| Topic                                  | File                           |
+| -------------------------------------- | ------------------------------ |
+| Long-running tasks and their execution | [spec/tasks.md](spec/tasks.md) |
+| Translating article content            | [spec/i18n.md](spec/i18n.md)   |
+| Single-provider X lookups              | [spec/x.md](spec/x.md)         |

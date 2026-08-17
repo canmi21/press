@@ -462,7 +462,7 @@ private, no-store`**. A cached page is a page some other reader's language is ab
 served from. Atom is the deliberate opposite: its language is wholly in the URL, so it remains
 `public, max-age=360, s-maxage=360` and is safe in shared caches.
 
-This is the deliberate exception to the rule in [architecture.md](architecture.md) that a
+This is the deliberate exception to the rule in [fonts.md](architecture/fonts.md) that a
 hashed name is cached for a year. HTML carries no hash in its name, so it was never covered by
 that rule; saying so here is what stops a later reader from assuming the general case applies.
 Everything the page references — images, fonts, styles — keeps its usual lifetime, because none

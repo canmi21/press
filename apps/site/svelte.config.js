@@ -16,7 +16,7 @@ const config = {
 		},
 		alias: {
 			// Articles live at the repository root, not inside this app, because they are
-			// written and revised rather than compiled -- see spec/architecture.md. An alias
+			// written and revised rather than compiled -- see spec/architecture/workspace.md. An alias
 			// rather than a relative path, so moving a source file cannot silently change how
 			// many `../` are needed.
 			$contents: '../../contents',

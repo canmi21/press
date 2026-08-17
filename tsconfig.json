@@ -1,6 +1,6 @@
 {
 	// Type checking only. Libraries export .ts straight from src and consumers bundle it,
-	// so nothing here ever emits JavaScript. See spec/architecture.md.
+	// so nothing here ever emits JavaScript. See spec/architecture/workspace.md.
 	"compilerOptions": {
 		"target": "es2023",
 		"lib": ["es2023", "dom"],

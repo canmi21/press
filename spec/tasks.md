@@ -1,7 +1,7 @@
 # Long-running tasks
 
 The desktop CMS is a resident process because it holds the schedule and the editor; see
-[architecture.md](architecture.md). This is how the work it schedules is described, kept from
+[cms.md](architecture/cms.md). This is how the work it schedules is described, kept from
 colliding with itself, and observed.
 
 ## The catalogue is data, and it is complete before the runner

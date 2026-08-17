@@ -148,7 +148,7 @@ remove.
 
 This is a clip rather than the measured masks the Support rail uses. That geometry depends on the
 rendered width of two labels and cannot be written down in advance; this one is always the whole
-box, which puts it on the CSS side of the rule in [architecture.md](architecture.md).
+box, which puts it on the CSS side of the rule in [styling.md](styling.md).
 
 ### One row under the pill, in every state
 

@@ -55,7 +55,7 @@ const buildTime = new Date().toISOString();
  * silently means every stack trace it ever produces is minified -- discovered weeks later,
  * while trying to read an error that no longer maps to any source. CI has no age private key,
  * so `secrets.json` cannot supply it there; it comes from the platform's own encrypted build
- * variables instead. See spec/architecture.md.
+ * variables instead. See spec/architecture/workspace.md.
  */
 function sentryToken(): string | undefined {
 	const token = process.env.SENTRY_AUTH_TOKEN;
@@ -151,7 +151,7 @@ export default defineConfig(({ mode }) => {
 			{
 				// The font stylesheets in @canmi/fonts carry a placeholder rather than a
 				// host, because which CDN answers depends on the mode and a library cannot
-				// know that. See spec/architecture.md on where URLs are declared.
+				// know that. See spec/architecture/workspace.md on where URLs are declared.
 				name: 'replace-cdn-url',
 				transform(code: string, id: string) {
 					if (/\.css($|\?)/.test(id) && code.includes('__CDN_URL__')) {

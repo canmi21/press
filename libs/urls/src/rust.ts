@@ -7,7 +7,7 @@ import { URLS } from './index.ts';
  * `apps/cms/src/urls.rs` instead -- committed like the records under `data/build/`, because a
  * checkout must compile without a Node toolchain having run first. `mise run urls` rewrites it;
  * `rust.test.ts` fails when the committed file no longer matches this render, so drift between
- * the two languages cannot survive `mise run verify`. See spec/architecture.md.
+ * the two languages cannot survive `mise run verify`. See spec/architecture/workspace.md.
  */
 export function rustUrlMap(): string {
 	const pairs: Array<[name: string, value: string]> = [];
@@ -17,7 +17,7 @@ export function rustUrlMap(): string {
 		.join('\n');
 	return [
 		'//! Generated from libs/urls/src/index.ts by `mise run urls`; do not edit.',
-		'//! One URL map for both languages -- see spec/architecture.md.',
+		'//! One URL map for both languages -- see spec/architecture/workspace.md.',
 		'',
 		constants,
 		'',
