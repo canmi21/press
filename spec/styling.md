@@ -152,7 +152,7 @@ number is **live and answers to the reader**: it changed because somebody joined
 change again while the page is open.
 
 A number that is simply true of the site takes the surrounding text's own figures. The licence
-page counts 727 packages, which is a fact about the dependency tree rather than an event, and
+page counts the packages it lists, which is a fact about the dependency tree rather than an event, and
 setting it in cells claimed a significance it does not have -- the ink says "watch this", and
 there is nothing to watch. Reserving the cells for the first kind is what keeps them meaning
 anything.

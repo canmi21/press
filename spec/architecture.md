@@ -1048,10 +1048,12 @@ a badge that reads `+1 registries` is worse than an empty corner. Where a count 
 the `+N` form the article cards use -- `+24 licenses` -- which says "and this many more" without
 a word for it and keeps its shape across scripts that share no vocabulary.
 
-**Every package page gets its own card.** There are 727 packages and nine views, so this accepts
-6,543 files and roughly 445 MB of published bytes rather than collapsing packages into one
-generic card that does not identify the shared page. The manifest makes that cost incremental:
-the full set is paid once, then only a package whose inputs moved is redrawn.
+**Every package page gets its own card.** The dependency tree runs to several hundred packages --
+[licenses.json](../data/build/licenses.json) is the count -- and there are nine views, so this
+accepts a card file per package per view, tens of thousands of published bytes each, rather than
+collapsing packages into one generic card that does not identify the shared page. The manifest
+makes that cost incremental: the full set is paid once, then only a package whose inputs moved is
+redrawn.
 
 Package facts stay literal in every view: its name and description, version, registry display
 name and SPDX expression identify the same release whatever language surrounds them. The

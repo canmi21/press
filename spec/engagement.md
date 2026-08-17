@@ -9,7 +9,8 @@ that was available at build time.
 
 The API has one Cloudflare D1 database for all of its relational state. Both the database name and
 the Worker name are `api`; its binding is the complete word `DATABASE`. The production database is
-in WNAM and has ID `959379fe-f528-4304-9f40-3e1c957208fe`.
+in WNAM, and its id lives in [wrangler.jsonc](../apps/api/wrangler.jsonc) -- the only file that
+consumes it. Copying the id here would make a third home for it, and the only one nothing checks.
 
 Drizzle owns the TypeScript schema and generates committed SQL migrations. Migration filenames use
 Drizzle's indexed random-word form, such as `0000_word_word.sql`; they are not named by hand.
