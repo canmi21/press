@@ -5,7 +5,7 @@
 Three checks, all chosen because they are objective rather than stylistic:
 
 1. A markdown link in a doc points at a file that exists.
-2. A `spec/*.md` cited from code exists.
+2. A `spec/**/*.md` cited from code exists.
 3. No URL the running system resolves is written outside `libs/urls`.
 
 The first two break silently on rename -- nothing fails, the reader just follows a dead path.
@@ -33,7 +33,9 @@ import subprocess
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-DOC_GLOBS = ("spec/*.md", "CLAUDE.md")
+# Recursive, because a spec topic large enough to need several files gets a directory rather
+# than a longer file. A non-recursive glob would silently stop checking the moment one did.
+DOC_GLOBS = ("spec/**/*.md", "CLAUDE.md")
 CODE_SUFFIXES = {
 	".ts",
 	".js",
@@ -55,7 +57,7 @@ SKIP_DIRS = {"data", "contents"}
 SKIP_FILES = {"pnpm-lock.yaml"}
 
 MD_LINK = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
-SPEC_REF = re.compile(r"spec/[a-z0-9-]+\.md")
+SPEC_REF = re.compile(r"spec/[a-z0-9-]+(?:/[a-z0-9-]+)*\.md")
 # The backslash ends a match so `url=\"https://a.example\"` inside a Rust format string reads
 # as the address alone, not the address plus its escape.
 URL = re.compile(r"https?://[^\s\"'`)\],;\\]+")
