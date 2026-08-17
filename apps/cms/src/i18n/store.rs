@@ -97,16 +97,22 @@ pub fn path_for(article: &Path) -> PathBuf {
 	article.with_extension("i18n.yaml")
 }
 
-pub fn load(path: &Path) -> Sidecar {
-	std::fs::read_to_string(path)
-		.ok()
-		.and_then(|text| serde_yaml_ng::from_str(&text).ok())
-		.unwrap_or_else(|| Sidecar {
-			version: VERSION,
-			segments: BTreeMap::new(),
-		})
+/// The sidecar beside an article, empty when the article has none yet.
+///
+/// A missing sidecar is an untranslated article, which is ordinary. A sidecar that does not
+/// parse is not, and must never be read as an empty one: every locale would report as missing,
+/// `cms i18n` would buy the whole article again, and the save at the end would write the result
+/// over the file. This one is meant to be edited by hand -- see spec/i18n.md -- so a stray colon
+/// is the expected way to break it, and the translations and `review` flags underneath are what
+/// a silent overwrite would destroy.
+pub fn load(path: &Path) -> std::io::Result<Sidecar> {
+	Ok(load_checked(path)?.unwrap_or_else(|| Sidecar {
+		version: VERSION,
+		segments: BTreeMap::new(),
+	}))
 }
 
+/// As `load`, but tells a missing sidecar apart from an empty one.
 pub fn load_checked(path: &Path) -> std::io::Result<Option<Sidecar>> {
 	let text = match std::fs::read_to_string(path) {
 		Ok(text) => text,
@@ -380,6 +386,24 @@ mod tests {
 			)
 			.is_empty()
 		);
+	}
+
+	#[test]
+	fn a_broken_sidecar_is_an_error_rather_than_an_empty_one() {
+		// The whole point of the checked read. Treated as empty, every locale reports missing,
+		// `cms i18n` buys the article again, and the save at the end writes over the file a
+		// person was hand-editing when they left the colon out. See spec/i18n.md.
+		let path = std::env::temp_dir().join(format!("cms-sidecar-{}.i18n.yaml", std::process::id()));
+		std::fs::write(&path, "segments: [this is not a map\n").expect("write");
+		let error = load(&path).expect_err("a broken sidecar must not read as empty");
+		assert_eq!(error.kind(), std::io::ErrorKind::InvalidData);
+		let _ = std::fs::remove_file(&path);
+	}
+
+	#[test]
+	fn a_missing_sidecar_is_an_untranslated_article() {
+		let sidecar = load(Path::new("/nonexistent/a.i18n.yaml")).expect("missing is not an error");
+		assert!(sidecar.segments.is_empty());
 	}
 
 	#[test]

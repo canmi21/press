@@ -274,47 +274,49 @@ fn article_jobs(
 	config: &SiteConfig,
 	path: &Path,
 	article: &Article,
-) -> Vec<Job> {
-	let sidecar = store::load(&store::path_for(path));
+) -> std::io::Result<Vec<Job>> {
+	let sidecar = store::load(&store::path_for(path))?;
 	let date = article.created.as_deref().and_then(short_date);
 
-	locale::VIEWS
-		.iter()
-		.map(|view| {
-			// The source view is the article's own words; every other view falls back to them
-			// when that segment has not been translated yet, because a card in the wrong
-			// language still says more than no card at all.
-			let title =
-				translated(&sidecar, view, &article.title).unwrap_or_else(|| article.title.clone());
-			let subtitle = article
-				.subtitle
-				.as_ref()
-				.map(|text| translated(&sidecar, view, text).unwrap_or_else(|| text.clone()));
+	Ok(
+		locale::VIEWS
+			.iter()
+			.map(|view| {
+				// The source view is the article's own words; every other view falls back to them
+				// when that segment has not been translated yet, because a card in the wrong
+				// language still says more than no card at all.
+				let title =
+					translated(&sidecar, view, &article.title).unwrap_or_else(|| article.title.clone());
+				let subtitle = article
+					.subtitle
+					.as_ref()
+					.map(|text| translated(&sidecar, view, text).unwrap_or_else(|| text.clone()));
 
-			// The other views, not all of them: this card is one of the nine, so what it has
-			// left to offer is eight.
-			let others = locale::VIEWS.len().saturating_sub(1).to_string();
-			let stats = messages::load(repo, view.code)
-				.get("card.languages")
-				.map_or(String::new(), |template| {
-					messages::fill(template, &[("count", &others)])
-				});
+				// The other views, not all of them: this card is one of the nine, so what it has
+				// left to offer is eight.
+				let others = locale::VIEWS.len().saturating_sub(1).to_string();
+				let stats = messages::load(repo, view.code)
+					.get("card.languages")
+					.map_or(String::new(), |template| {
+						messages::fill(template, &[("count", &others)])
+					});
 
-			Job {
-				label: format!("{} {}", view.code, article.slug),
-				target: card_path(public, view.code, &article.slug),
-				site: config.name.clone(),
-				domain: config.domain.clone(),
-				face: Face::Article {
-					title,
-					subtitle,
-					category: article.category.clone(),
-					date: date.clone(),
-					stats,
-				},
-			}
-		})
-		.collect()
+				Job {
+					label: format!("{} {}", view.code, article.slug),
+					target: card_path(public, view.code, &article.slug),
+					site: config.name.clone(),
+					domain: config.domain.clone(),
+					face: Face::Article {
+						title,
+						subtitle,
+						category: article.category.clone(),
+						date: date.clone(),
+						stats,
+					},
+				}
+			})
+			.collect(),
+	)
 }
 
 /// The home page's card, which is a page rather than an article and has its own slug.
@@ -616,7 +618,7 @@ pub fn run(repo: &Path, public: &Path, articles: &Path, force: bool) -> Result<O
 		let Some(article) = article_of(articles, &path) else {
 			continue;
 		};
-		jobs.extend(article_jobs(repo, public, &config, &path, &article));
+		jobs.extend(article_jobs(repo, public, &config, &path, &article).map_err(|e| e.to_string())?);
 	}
 
 	jobs.extend(home_jobs(repo, public, &config, &census(articles)?));

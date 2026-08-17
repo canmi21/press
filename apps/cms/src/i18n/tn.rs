@@ -100,11 +100,19 @@ pub fn path_for(repo: &Path) -> PathBuf {
 	repo.join("data").join("tn.yaml")
 }
 
-pub fn load(path: &Path) -> Table {
-	std::fs::read_to_string(path)
-		.ok()
-		.and_then(|text| serde_yaml_ng::from_str(&text).ok())
-		.unwrap_or_default()
+/// The gloss table, empty when nothing has been scanned yet.
+///
+/// A parse failure is an error rather than an empty table for the reason the sidecar has the
+/// same rule: the table is paid for, `cms tn` saves over it at the end of a scan, and reading a
+/// broken file as empty would spend the money again and then erase what it replaced.
+pub fn load(path: &Path) -> std::io::Result<Table> {
+	let text = match std::fs::read_to_string(path) {
+		Ok(text) => text,
+		Err(error) if error.kind() == std::io::ErrorKind::NotFound => return Ok(Table::default()),
+		Err(error) => return Err(error),
+	};
+	serde_yaml_ng::from_str(&text)
+		.map_err(|error| std::io::Error::new(std::io::ErrorKind::InvalidData, error.to_string()))
 }
 
 pub fn save(path: &Path, table: &Table) -> std::io::Result<()> {
@@ -425,6 +433,17 @@ mod tests {
 		);
 		assert_eq!(found.len(), 1);
 		assert_eq!(found[0].phrase, "鸽");
+	}
+
+	#[test]
+	fn a_broken_table_is_an_error_rather_than_an_empty_one() {
+		// `cms tn` saves the whole table back at the end of a scan, so reading a broken one as
+		// empty would pay for every gloss again and then erase what it replaced.
+		let path = std::env::temp_dir().join(format!("cms-tn-{}.yaml", std::process::id()));
+		std::fs::write(&path, "articles: [not a map\n").expect("write");
+		let error = load(&path).expect_err("a broken table must not read as empty");
+		assert_eq!(error.kind(), std::io::ErrorKind::InvalidData);
+		let _ = std::fs::remove_file(&path);
 	}
 
 	#[test]

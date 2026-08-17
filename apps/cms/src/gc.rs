@@ -8,8 +8,7 @@
 //!
 //! Dry by default, like `mise run sync`, and for the same reason: the output is the review.
 
-use crate::image::manifest::Merged;
-use crate::image::run::MERGED;
+use crate::image::run::{MERGED, load};
 use crate::licenses;
 use crate::refs;
 use std::collections::BTreeSet;
@@ -27,7 +26,7 @@ pub struct Sweep {
 /// Everything in `data/public` that nothing reachable from an article accounts for.
 pub fn plan(repo: &Path, public: &Path, articles: &Path) -> std::io::Result<Sweep> {
 	let scan = refs::scan(articles)?;
-	let merged = load(&repo.join(MERGED));
+	let merged = load(&repo.join(MERGED))?;
 	let wanted = scan.cids();
 
 	// An article names the original; the objects on disk are its variants and its record. The
@@ -107,7 +106,25 @@ pub fn plan(repo: &Path, public: &Path, articles: &Path) -> std::io::Result<Swee
 }
 
 /// Carry out a plan, and rewrite the manifest without the entries it dropped.
+///
+/// The manifest is rewritten before a single byte is removed, and the whole document is read
+/// and serialised before either. Deleting first and then failing to record it leaves the
+/// manifest pointing at files that are gone, which a site build resolves into missing images;
+/// recording first and then failing to delete leaves bytes nothing references, which the next
+/// sweep finds and offers again. Only one of those two repairs itself.
 pub fn apply(repo: &Path, sweep: &Sweep) -> std::io::Result<()> {
+	if !sweep.entries.is_empty() {
+		let merged_path = repo.join(MERGED);
+		let mut merged = load(&merged_path)?;
+		for cid in &sweep.entries {
+			merged.media.remove(cid);
+		}
+		merged.updated = crate::image::manifest::now();
+		let json = serde_json::to_string_pretty(&merged)
+			.map_err(|error| std::io::Error::other(error.to_string()))?;
+		crate::image::store::write(&merged_path, format!("{json}\n").as_bytes())?;
+	}
+
 	for path in &sweep.orphans {
 		if path.is_dir() {
 			std::fs::remove_dir_all(path)?;
@@ -115,36 +132,7 @@ pub fn apply(repo: &Path, sweep: &Sweep) -> std::io::Result<()> {
 			std::fs::remove_file(path)?;
 		}
 	}
-
-	if sweep.entries.is_empty() {
-		return Ok(());
-	}
-	let merged_path = repo.join(MERGED);
-	let mut merged = load(&merged_path);
-	for cid in &sweep.entries {
-		merged.media.remove(cid);
-	}
-	merged.updated = crate::image::manifest::now();
-	crate::image::store::write(
-		&merged_path,
-		format!(
-			"{}\n",
-			serde_json::to_string_pretty(&merged).unwrap_or_default()
-		)
-		.as_bytes(),
-	)
-}
-
-fn load(path: &Path) -> Merged {
-	std::fs::read_to_string(path)
-		.ok()
-		.and_then(|text| serde_json::from_str(&text).ok())
-		.unwrap_or_else(|| Merged {
-			version: crate::image::manifest::VERSION,
-			created: crate::image::manifest::now(),
-			updated: crate::image::manifest::now(),
-			media: std::collections::BTreeMap::new(),
-		})
+	Ok(())
 }
 
 /// The content id a stored file is named by, whatever it is nested under.
@@ -188,7 +176,7 @@ fn directories_under(directory: &Path) -> std::io::Result<Vec<PathBuf>> {
 #[cfg(test)]
 mod tests {
 	use super::*;
-	use crate::image::manifest::{Media, Source, VariantRecord};
+	use crate::image::manifest::{Media, Merged, Source, VariantRecord};
 	use std::collections::BTreeMap;
 
 	fn temp(name: &str) -> PathBuf {
@@ -286,7 +274,7 @@ mod tests {
 		assert_eq!(sweep.entries, vec!["12faaa76365814de1195d6bdf1e5ba05"]);
 
 		apply(&root, &sweep).expect("apply");
-		let merged = load(&root.join(MERGED));
+		let merged = load(&root.join(MERGED)).expect("merged");
 		assert_eq!(merged.media.len(), 1);
 		assert!(
 			merged

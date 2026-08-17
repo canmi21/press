@@ -87,7 +87,7 @@ pub fn listing_at(repository: &Path) -> std::io::Result<Listing> {
 	let locales = i18n::prompt::LOCALES;
 	// Loaded once for the whole walk: a gloss applies to a segment id, so which article recorded
 	// it stops mattering the moment it is written down.
-	let glosses = i18n::tn::load(&i18n::tn::path_for(&contents));
+	let glosses = i18n::tn::load(&i18n::tn::path_for(&contents))?;
 
 	let mut articles = Vec::new();
 	for path in refs::markdown_under(&contents)? {
@@ -101,7 +101,7 @@ pub fn listing_at(repository: &Path) -> std::io::Result<Listing> {
 		let source_locale = summary::source_locale(&lang);
 
 		let live = i18n::segment::translatable(&source);
-		let sidecar = i18n::store::load(&i18n::store::path_for(&path));
+		let sidecar = i18n::store::load(&i18n::store::path_for(&path))?;
 		let missing = i18n::store::missing(&sidecar, &live, &locales, source_locale, &glosses);
 
 		let wanted = live.len() * locales.len();

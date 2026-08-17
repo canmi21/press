@@ -335,7 +335,7 @@ pub async fn run(
 	let mut outcome = Outcome::default();
 	// Loaded once. A suggestion applies to a segment id, so which article it came from stops
 	// mattering the moment it is written down.
-	let glosses = tn::load(&tn::path_for(articles.parent().unwrap_or(articles)));
+	let glosses = tn::load(&tn::path_for(articles.parent().unwrap_or(articles)))?;
 	let mut budget = limit.unwrap_or(usize::MAX);
 
 	// Walked up front so the registry can publish a total rather than a number that grows while
@@ -380,7 +380,7 @@ pub async fn run(
 		let source_locale = crate::summary::source_locale(&lang).map(str::to_owned);
 		let live = segment::translatable(&article);
 		let sidecar_path = store::path_for(&path);
-		let mut sidecar = store::load(&sidecar_path);
+		let mut sidecar = store::load(&sidecar_path)?;
 		outcome.segments += live
 			.values()
 			.filter(|segment| scope.includes(segment))
@@ -516,7 +516,7 @@ pub async fn run(
 				// is no longer missing is dropped. See spec/tasks.md.
 				let latest = modified_at(&sidecar_path);
 				if latest != sidecar_seen {
-					sidecar = store::load(&sidecar_path);
+					sidecar = store::load(&sidecar_path)?;
 					sidecar_seen = latest;
 				}
 				if !force

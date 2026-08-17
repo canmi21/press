@@ -228,7 +228,7 @@ pub fn store_one(repository: &Path, source: &Path, keep_original: bool) -> Resul
 	let bytes = std::fs::read(source).map_err(Error::Read)?;
 	let id = cid(&bytes);
 	let merged_path = repository.join(run::MERGED);
-	let mut merged = run::load(&merged_path);
+	let mut merged = run::load(&merged_path).map_err(Error::Read)?;
 
 	// The returned id may be inserted into an article immediately. Published bytes and records
 	// must exist first so a crash can only leave an unreferenced image. See spec/tasks.md.
@@ -455,7 +455,7 @@ mod tests {
 		let id = store_one(&root, &source, false).expect("store one");
 
 		assert_eq!(id, cid(&original));
-		let merged = run::load(&root.join(run::MERGED));
+		let merged = run::load(&root.join(run::MERGED)).expect("merged");
 		let media = merged.media.get(&id).expect("merged record");
 		assert!(store::meta_path(&root.join("data/public"), &id).is_file());
 		for (variant, record) in &media.variants {

@@ -208,7 +208,7 @@ pub async fn run(
 	force: bool,
 	limit: Option<usize>,
 ) -> std::io::Result<Outcome> {
-	let merged = crate::image::run::load(&repo.join(crate::image::run::MERGED));
+	let merged = crate::image::run::load(&repo.join(crate::image::run::MERGED))?;
 	let described_path = media::path_for(repo);
 	let mut described = media::load(&described_path);
 	let registry_path = tags::path_for(repo);

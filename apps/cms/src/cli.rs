@@ -371,7 +371,13 @@ fn describe_images(args: &[String]) -> ExitCode {
 	};
 	let originals = root.join("data").join("image");
 	let public = root.join("data").join("public");
-	let merged = image::run::load(&root.join(image::run::MERGED));
+	let merged = match image::run::load(&root.join(image::run::MERGED)) {
+		Ok(merged) => merged,
+		Err(error) => {
+			eprintln!("could not read {}: {error}", image::run::MERGED);
+			return ExitCode::FAILURE;
+		}
+	};
 	let described_path = media::path_for(&root);
 	let mut described = media::load(&described_path);
 
@@ -1118,7 +1124,13 @@ fn scan_notes(args: &[String]) -> ExitCode {
 
 	let contents = root.join("contents");
 	let path = i18n::tn::path_for(&root);
-	let mut table = i18n::tn::load(&path);
+	let mut table = match i18n::tn::load(&path) {
+		Ok(table) => table,
+		Err(error) => {
+			eprintln!("could not read {}: {error}", path.display());
+			return ExitCode::FAILURE;
+		}
+	};
 	// Pages without `lang` are not articles. Keep them out of both new scans and the durable
 	// registry, including records written by older versions of this command.
 	let recorded = table.articles.len();

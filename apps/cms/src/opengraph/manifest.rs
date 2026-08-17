@@ -55,7 +55,8 @@ pub fn save(path: &Path, manifest: &Manifest) -> std::io::Result<()> {
 	if let Some(parent) = path.parent() {
 		std::fs::create_dir_all(parent)?;
 	}
-	let mut text = serde_json::to_string_pretty(manifest).unwrap_or_default();
+	let mut text = serde_json::to_string_pretty(manifest)
+		.map_err(|error| std::io::Error::other(error.to_string()))?;
 	text.push('\n');
 	std::fs::write(path, text)
 }

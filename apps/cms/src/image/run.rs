@@ -50,7 +50,7 @@ pub fn run(
 	options: &Options<'_>,
 ) -> std::io::Result<Outcome> {
 	let merged_path = repo.join(MERGED);
-	let mut merged = load(&merged_path);
+	let mut merged = load(&merged_path)?;
 	let mut outcome = Outcome::default();
 	let scan = refs::scan(articles)?;
 	// Opened once for the whole run, and absent when the data has not been fetched -- which
@@ -139,14 +139,9 @@ pub fn run(
 	}
 
 	merged.updated = manifest::now();
-	store::write(
-		&merged_path,
-		format!(
-			"{}\n",
-			serde_json::to_string_pretty(&merged).unwrap_or_default()
-		)
-		.as_bytes(),
-	)?;
+	let json = serde_json::to_string_pretty(&merged)
+		.map_err(|error| std::io::Error::other(error.to_string()))?;
+	store::write(&merged_path, format!("{json}\n").as_bytes())?;
 
 	// Bytes and manifest land first because a crash after publishing can only leave a derived
 	// image no article references yet; that is harmless and a rerun repairs it. Rewriting first
@@ -276,20 +271,32 @@ pub fn republish(public: &Path, cid: &str, media: &Media) -> std::io::Result<()>
 		version: manifest::VERSION,
 		media: media.clone(),
 	};
-	let json = serde_json::to_string_pretty(&document).unwrap_or_default();
+	let json = serde_json::to_string_pretty(&document)
+		.map_err(|error| std::io::Error::other(error.to_string()))?;
 	store::write(&store::meta_path(public, cid), json.as_bytes())
 }
 
-pub fn load(path: &Path) -> Merged {
-	std::fs::read_to_string(path)
-		.ok()
-		.and_then(|text| serde_json::from_str(&text).ok())
-		.unwrap_or_else(|| Merged {
-			version: manifest::VERSION,
-			created: manifest::now(),
-			updated: manifest::now(),
-			media: BTreeMap::new(),
-		})
+/// The merged manifest, fresh and empty when the repository has none yet.
+///
+/// `data/metadata.json` is committed, a whole site build resolves its images out of it, and the
+/// descriptions in it were paid for one model call at a time. Every writer here loads it,
+/// removes or adds a few entries, and saves the whole document back, so reading an unparseable
+/// file as an empty one would not degrade -- it would replace the manifest with four fields.
+pub fn load(path: &Path) -> std::io::Result<Merged> {
+	let text = match std::fs::read_to_string(path) {
+		Ok(text) => text,
+		Err(error) if error.kind() == std::io::ErrorKind::NotFound => {
+			return Ok(Merged {
+				version: manifest::VERSION,
+				created: manifest::now(),
+				updated: manifest::now(),
+				media: BTreeMap::new(),
+			});
+		}
+		Err(error) => return Err(error),
+	};
+	serde_json::from_str(&text)
+		.map_err(|error| std::io::Error::new(std::io::ErrorKind::InvalidData, error.to_string()))
 }
 
 fn sources(directory: &Path) -> std::io::Result<Vec<PathBuf>> {
@@ -357,6 +364,25 @@ mod tests {
 		let _ = std::fs::remove_dir_all(&path);
 		std::fs::create_dir_all(&path).expect("temp");
 		path
+	}
+
+	#[test]
+	fn a_broken_manifest_is_an_error_rather_than_an_empty_one() {
+		// Every writer loads the whole document, edits a few entries and saves it back. Read as
+		// empty, the next save replaces a committed manifest -- and the paid descriptions in it
+		// -- with four fields. See spec/architecture.md.
+		let root = temp("broken-manifest");
+		let path = root.join("metadata.json");
+		std::fs::write(&path, "{ not json").expect("write");
+		let error = load(&path).expect_err("a broken manifest must not read as empty");
+		assert_eq!(error.kind(), std::io::ErrorKind::InvalidData);
+	}
+
+	#[test]
+	fn a_missing_manifest_is_a_fresh_repository() {
+		let root = temp("missing-manifest");
+		let merged = load(&root.join("metadata.json")).expect("missing is not an error");
+		assert!(merged.media.is_empty());
 	}
 
 	#[test]
