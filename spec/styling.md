@@ -274,3 +274,94 @@ pseudo-class alone was never enough there.
 Roving-focus menu items and SVG data marks keep their component-native highlighted surface or
 stroke. Those states already identify the current keyboard target and forcing a rectangular ring
 around them would describe the wrong shape.
+
+## The subscription surface closes both reading paths
+
+The same Newsletter component appears on the homepage and after the body of every article.
+The homepage reaches somebody browsing the site; the article tail reaches somebody who has
+finished reading. These are two entrances to one subscription, so they share copy, state and
+presentation rather than growing page-specific variants that can drift apart. On the homepage,
+Newsletter precedes Support so the larger subscription invitation remains part of the reading flow
+and the smaller actions finish the page.
+
+An article separates the invitation from its authored body with the same quiet one-pixel rule
+used by the homepage's structural surfaces. The rule belongs to that placement, not to the
+Newsletter default, because the homepage already arrives at it across a section boundary.
+The invitation sits after the semantic `<article>`, not inside it: the table of contents scans
+that boundary, so only headings authored as article content can enter its navigation.
+
+Homepage-only interaction stays outside it. Support actions describe the site as a whole and
+would turn every article ending into a second homepage footer; an article page ends after its
+subscription invitation instead.
+
+## Compact action rails reveal detail on demand
+
+The homepage Support surface holds Like, Google source preference and Sponsor. These are reader
+actions and read as one small section; revision and Follow stay off the page until they have a
+quieter placement of their own. Visitor, uptime, word-count, update-age and license rows do not
+appear on the homepage.
+
+Each Support action presents an icon and its shortest useful identity at rest, while pointer hover
+and keyboard focus reveal the full localized instruction in place.
+
+The rail measures each localized short and long label, then springs the button between those live
+widths with `motion`. This is computed geometry rather than a fixed hover target: locale, font and
+the Like count all change the answer. When the short label is a substring of the instruction, that
+shared text stays as one DOM segment. Prefix and suffix segments sit in zero-width masks driven by
+the same spring as the pill: a suffix is uncovered after a stationary label, while a prefix pushes
+the shared label right as it is uncovered. This makes the copy read as material revealed by the
+pill rather than one string replacing another. Every shipped locale preserves that substring for
+all three Support actions, with a message contract test guarding the relationship. The component
+keeps a crossfade only as a defensive fallback; these actions must not rely on it. Translations
+choose an idiomatic local short label first rather than forcing an English noun into every locale.
+
+Like keeps its remembered state legible without making the whole rail permanently heavy. A click
+fills the heart and updates the count; leaving returns the button to the ordinary paper surface.
+Hovering or focusing a remembered Like inverts it to the ink surface. The same state changes must
+remain understandable through `aria-pressed`, and reduced-motion users get the final labels without
+the width transition.
+
+Sponsor is deliberately unavailable while U.S. F-1 immigration restrictions apply. Activating it
+opens a modal notice instead of navigating away. The rest of the page blurs behind the modal, and
+either the close control or any point on that background dismisses it.
+
+That notice is interface copy, so it resolves through the UI message table at the page's own
+locale like every other string around it -- heading, sentence and the close control's label
+alike. It names the restriction plainly in all nine views rather than softening to a generic
+"unavailable": the reader is being told why an offered action does not work, and a reason that
+survives translation is the only version of that sentence worth having.
+
+Its heading is visible rather than announced to assistive technology alone. A modal carrying one
+sentence and a bare close control reads as a fragment of the page rather than a surface of its
+own, so the notice opens with the icon of the action that summoned it beside a heading weighted
+like the page's other section headings, with the sentence below in the metadata text colour. The
+icon and the close control are each centred on one line box, so a heading that wraps in a longer
+locale moves the text without dragging them out of line with its first line.
+
+Data palettes belong to the visualisation that gives them meaning, not to the site theme. The
+Cargo palette lives in a component-only stylesheet scoped below `.cargo-widget`; it stays vivid
+in both page themes and never becomes a token available to unrelated interface chrome.
+
+## Motion runs at runtime only when the value is not known in advance
+
+`motion` is a dependency, and reaching for `animate()` is the wrong default. It earns its place
+where the target is computed -- the article list measures the corpus before it knows what widths
+to animate to, and no stylesheet can hold a number that does not exist until the page has read
+its own content. When a hover, open or state flip has targets written in the source, running it
+through a library puts a per-frame JavaScript cost on an animation CSS was going to composite
+anyway.
+
+Wanting spring physics is not a reason to cross that line. A spring is a curve, and a curve can
+be sampled once and written as a CSS `linear()` easing -- which is what the library itself emits
+when it hands an animation to the browser. Sample it from `motion`'s own generator so the
+physics are not reimplemented by hand, then paste the result. The repo keeps the real curve and
+spends nothing at runtime.
+
+Sampled once means stored once. The curve lives in `--ease-spring` and every consumer reads it
+from there; a second copy of those points is how two animations meant to feel identical begin to
+drift apart.
+
+One trap worth stating, because it is invisible until someone wonders why the bounce never
+shows: an overshoot has to have somewhere to go. A spring driving `background-size` or a colour
+is clipped at its limit, so the overshoot is spent on nothing and the curve should simply be
+damped out. A transform or an unconstrained layout dimension such as width has room to show it.

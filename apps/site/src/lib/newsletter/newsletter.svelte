@@ -435,7 +435,7 @@ otherwise need. See spec/engagement.md. -->
 
 	/* Uncovered left to right, so the address reads as being redacted in place. A clip needs no
 	   measurement, unlike the Support rail's masks: that geometry depends on the rendered width of
-	   two labels, and this one is always the whole box. See spec/architecture.md. */
+	   two labels, and this one is always the whole box. See spec/styling.md. */
 	/* Not the spring. A spring is a settle: it spends 97% of the distance in the first half and
 	   leaves the rest of the stage with nothing visibly happening. This sweep is meant to be
 	   watched across its whole duration, so it eases in and out instead. */

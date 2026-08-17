@@ -79,7 +79,7 @@
 	 * `cms og` writes one card per article under the same path the article has, so the address
 	 * follows from the route and no reference is stored anywhere. The cost is that the name is
 	 * mutable -- an edited title reuses this URL -- which is why the CDN serves these for a
-	 * week rather than a year. See spec/architecture.md.
+	 * week rather than a year. See spec/architecture/media.md.
 	 */
 	const card = $derived(cardUrl(urls.cdn, page.url.pathname, locale.code));
 
@@ -288,7 +288,7 @@
 				{/if}
 				{#if summary}
 					<!-- Rows collapse to 0fr rather than the box to height 0, which is the one way to
-					     animate to a height nobody measured. See spec/architecture.md on motion. -->
+					     animate to a height nobody measured. See spec/architecture/media.md on motion. -->
 					<div class="summary-shell" data-open={summaryOpen}>
 						<div class="overflow-hidden">
 							<div

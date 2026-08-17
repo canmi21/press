@@ -7,7 +7,7 @@
 //! checkout.
 //!
 //! Rebuildable from what git already holds -- an article names the crate, and crates.io answers
-//! for free -- which is why the result belongs under `data/build/`. See spec/architecture.md.
+//! for free -- which is why the result belongs under `data/build/`. See spec/architecture/data.md.
 
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, HashSet, VecDeque};

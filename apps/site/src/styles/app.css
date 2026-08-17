@@ -8,7 +8,7 @@
 
 /* One spring, sampled once. `motion`'s generator produced these points and the browser composites
    them for free; running the library at paint time would spend JavaScript per frame on a curve
-   that is already known. See spec/architecture.md.
+   that is already known. See spec/styling.md.
 
    Every consumer that wants this physics reads it from here. Pasting the points a second time is
    how two animations that were meant to feel identical start drifting apart. */

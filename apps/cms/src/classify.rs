@@ -6,7 +6,7 @@
 //!
 //! Existing tags go into the prompt in full. Left to itself a model writes `terminal-window`
 //! beside `terminal` and `cli` beside both; telling it to be consistent achieves nothing when
-//! it has nothing to be consistent with. See spec/architecture.md.
+//! it has nothing to be consistent with. See spec/architecture/media.md.
 
 use crate::alt::SOURCE_LOCALE;
 use crate::i18n::runner::{self, Refusal, Runner};

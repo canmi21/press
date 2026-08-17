@@ -3,6 +3,17 @@
 This document covers filesystem names only: files and directories. Identifiers inside source
 code are governed by the language, not by this document -- see [Inside code](#inside-code).
 
+## A workspace member is named in one word
+
+A directory under `apps/` or `libs/` gets one word, or an abbreviation that can be read aloud.
+Roughly 4 to 8 characters, lowercase, no hyphen unless the name is genuinely two words. What
+goes inside follows the rules below.
+
+Name for responsibility, never for deployment shape or product. `cdn` describes what it is;
+`res` described a slot it happened to occupy. Product and domain names are the worst
+candidates of all -- they change. A domain that was a content site can become a redirect
+without a single line of its code changing.
+
 ## Default
 
 Lowercase English, hyphen-separated:

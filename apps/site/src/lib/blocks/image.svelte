@@ -35,7 +35,7 @@
 	// be a second way to say the same thing -- and one that fragments the cache key.
 	//
 	// These two fallbacks are only ever fetched by a browser that cannot read AVIF, and the
-	// result is cached at the edge under a name that carries a hash. See spec/architecture.md.
+	// result is cached at the edge under a name that carries a hash. See spec/architecture/media.md.
 	function asFormat(set: string | undefined, extension: string): string | undefined {
 		return set?.replaceAll('.avif ', `.${extension} `);
 	}

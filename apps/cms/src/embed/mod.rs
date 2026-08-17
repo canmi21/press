@@ -4,7 +4,7 @@
 //! checkout with no proxy route, no request per reader, and no key. Both records are
 //! rebuildable from what git already holds -- an article names the crate and the repo, and both
 //! services answer for free -- which is what puts them there rather than beside the curated
-//! records. See spec/architecture.md.
+//! records. See spec/architecture/data.md.
 
 pub mod crates;
 pub mod fetch;

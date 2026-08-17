@@ -2,7 +2,7 @@
 //!
 //! Segment by segment, with every missing locale in one request, because a paragraph edited on
 //! its own should cost one call while a partial repair should never repay for finished work. See
-//! spec/architecture.md.
+//! spec/i18n.md.
 
 pub mod layout;
 pub mod model;

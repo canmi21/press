@@ -1,5 +1,5 @@
 /* A visual enters this package only after the site and CMS both consume it.
-   See spec/architecture.md. */
+   See spec/styling.md. */
 .article-preview {
 	display: flex;
 	min-width: 0;

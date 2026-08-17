@@ -1,5 +1,5 @@
 //! Content management operations shared by the command-line and desktop adapters.
-//! See spec/architecture.md.
+//! See spec/architecture/cms.md.
 
 mod alt;
 mod check;

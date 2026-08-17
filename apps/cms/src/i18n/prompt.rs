@@ -3,7 +3,7 @@
 //! Two things here are defensive rather than merely tidy. The source is fenced between two
 //! copies of a random string so that prose cannot be read as instruction, and the reply is
 //! line-anchored rather than JSON so that one malformed language costs one language. See
-//! spec/architecture.md.
+//! spec/i18n.md.
 
 use super::segment::{CLOSE, Kind, OPEN, Region, Segment};
 use rand::RngExt as _;

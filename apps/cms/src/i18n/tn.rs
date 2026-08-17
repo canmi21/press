@@ -12,7 +12,7 @@
 //!
 //! Not under `data/build/`. That directory holds records rebuildable from what git already has;
 //! this one costs a paid request and a person's agreement, which puts it beside `media.yaml`
-//! and `tags.yaml`. See spec/architecture.md.
+//! and `tags.yaml`. See spec/architecture/data.md.
 
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;

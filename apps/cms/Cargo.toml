@@ -30,7 +30,7 @@ percent-encoding = "2"
 
 # Content addressing. BLAKE3 truncated to 128 bits, which leaves roughly 64-bit collision
 # resistance -- ample for addressing personal assets, and deliberately not a tamper-evidence
-# claim. See spec/architecture.md.
+# claim. See spec/architecture/data.md.
 blake3 = "1"
 # Decoding whatever was handed to us, and encoding PNG where lossy formats are the wrong tool.
 image = "0.25"

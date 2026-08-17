@@ -1,0 +1,177 @@
+# The CMS as an application
+
+## The desktop CMS is a resident process, not a viewer
+
+The Tauri client stays running. It exists to do two things the command-line shell structurally
+cannot: **run the periodic work on a schedule**, and **be the editor articles are written in**.
+Everything else it displays is in service of those two.
+
+That is what makes it resident rather than a window someone opens to look at numbers. A schedule
+kept by a process that is only alive while a person is watching is not a schedule, and an editor
+that has to be relaunched to save is not an editor. Both requirements land on the same place: the
+application layer below the shells has to own long-running work and its record, because a CLI
+invocation exits and takes its state with it.
+
+The scriptable shell keeps its own reason to exist: builds and local workflows drive it, and a
+scheduled task must remain runnable by hand without the desktop app installed. Neither shell is
+the fallback for the other.
+
+An operation that runs on a schedule needs things a one-shot command never did -- what ran, when,
+whether it succeeded, what it spent, and what must run before it. Recording that is the
+application layer's job under the rule below, not a page's.
+
+#### A page offers only work the task substrate can run
+
+A view that has found outstanding work shows the command that closes it. The command becomes a
+button only after the operation has moved below both shells and the task substrate can report its
+progress and refuse a second copy; known but unmigrated operations remain text. The Derived page
+implements that boundary in [derived.ts](../../apps/cms/client/derived.ts), while the task centre will
+eventually provide the complete catalogue and scheduling surface.
+
+The reason is what these operations are. They run for minutes, several of them spend money on a
+model, and they are not safe to run twice at once over the same files. A control that cannot be
+watched and cannot reject duplication is a worse version of copying the command, because it looks
+like it did something. Half of a run mechanism is not a smaller version of one; it is the part that
+lies.
+
+An interactive run calls the same in-process application operation as the CLI. The GUI never owns
+a second implementation and never turns terminal output into an API. The Tauri adapter is in
+[main.rs](../../apps/cms/src-tauri/src/main.rs).
+
+A class that spends money says so wherever it is offered, before anybody reaches for it. A paid
+operation does not become a button until that warning is part of the path that starts it.
+
+## The CMS has two shells and one home
+
+`apps/cms` owns both ways a person reaches content management. Its existing Rust binary is the
+scriptable shell used by builds and local workflows; the Tauri client is the interactive shell.
+They remain in one app because deployment shape does not create a second responsibility. The
+Tauri crate is nested at the framework-defined `src-tauri` boundary while the frontend stays a
+small Vite entry beside it. Shared CMS operations move behind modules both shells can call when
+the interface begins to expose them.
+
+Every CMS capability has one in-process application operation and two optional adapters. The CLI
+may expose that operation as a command, and the GUI may expose it through a typed Tauri command,
+but neither adapter owns the work. In particular, the GUI never spawns the CLI as a subprocess:
+doing so would turn terminal output and exit codes into an accidental internal API, duplicate
+process lifecycle concerns, and make the desktop application depend on a separately discoverable
+binary. Keeping the operation below both shells gives interactive actions, scripts and scheduled
+tasks the same validation, effects and errors. The cost is an explicit library boundary and a
+small adapter in each shell; capabilities that exist in only one interface have not yet reached
+the shared CMS application surface. An operation that exists for only one provider is still a
+shared operation, just not a runner choice -- see [x.md](../x.md).
+
+The desktop entry starts empty and takes its colours from `@canmi/tokens`; a second design system
+does not begin at the window edge. Its native title follows the HTML `<title>` as that value
+changes, and the frontend receives only the Tauri permission needed to do that. The active page
+owns that title: an outer page starts with its own name alone and may append the detail it opens,
+while the shell does not repeat `CMS` as a parent suffix on every page. `app.canmi.cms` is the
+application identifier: it follows reverse-domain order for `canmi.app` and does not end in macOS's
+`.app` bundle extension. Platform icon variants live at Tauri's `src-tauri/icons` boundary and the
+bundle names them explicitly. Both browser interfaces use Tailwind, so the desktop client consumes
+the same Tailwind-facing token surface as the site rather than maintaining an adapter of its own.
+Tauri's capability schemas under `src-tauri/gen` are generated build output: they stay untracked
+and are excluded from repository reference checks.
+
+On macOS the WebView extends through the title-bar area. The native title and title-bar surface are
+hidden, while the native traffic lights remain independently visible over the interface. Keeping
+the decorated window with an overlay preserves those platform controls; removing decorations would
+remove them as well and turn their behaviour into application code.
+
+The window and sidebar are unpainted, revealing macOS's semantic Sidebar material, while the main
+content is one opaque Web surface inset from the top, bottom and right edges. That inset matches the
+native traffic lights' distance from the window edge instead of introducing an unrelated frame.
+The sidebar begins below a dead zone containing that inset, the controls' height and the same inset
+again, so navigation never competes with window chrome. That dead zone extends across the full
+window as a fixed, topmost transparent hit surface, so content paint order cannot intermittently
+take the drag gesture; double-clicking it retains the platform title bar's maximise behaviour. Native
+chrome colours remain a small light-and-dark token group in `@canmi/tokens`: surface, divider, hover
+and selection. Selection is deliberately stronger than hover because a persistent location must
+remain identifiable without pointer movement. Their alpha is part of each colour rather than an
+element-wide `opacity`, because chrome may be translucent without fading its text and icons. The
+transparent WebView support this requires macOS private API and therefore trades away Mac App Store
+eligibility; the CMS is a local workspace tool, so the native material is the chosen side of that
+trade.
+
+The sidebar reads the site's name from `site.config.yaml` rather than carrying a second identity.
+It sits in a row of its own immediately below the drag region. The row is two and a half times the
+text's line height and centres the line vertically while keeping its own left inset, so title
+geometry is independent of both the window controls above and the navigation below.
+
+The shared visual language extends beyond the palette. The CMS uses the site's quiet text
+hierarchy, generous content spacing, hairline borders, paper only for contained surfaces and
+restrained line icons. Task pages do not acquire branded tiles or ornamental status chrome merely
+because the CMS is an operations tool. The opaque main pane is already the content surface, so
+Overview does not subdivide it into a dashboard of cards. Metrics and sections sit directly on that
+surface and use spacing and hairline dividers for grouping; even an empty health state remains text
+rather than acquiring another inset box.
+
+Overview is a workspace brief, not an inventory dashboard. Its one headline says whether anything
+needs attention, and real check findings become the body when the answer is yes. Article and media
+counts are a quiet metadata sentence beneath that state instead of four equally weighted metrics.
+Distribution charts are absent: they describe the corpus without giving the writer an object to act
+on. Recently modified article titles and subtitles supply those objects, ordered by authored
+`lastmod` with `created` as the first modification. The brief follows the public site's article
+column width so one subject owns the reading path; wider inventory views keep their own geometry.
+Its top inset is the same responsive length as its horizontal inset, making the brief one balanced
+sheet within the main pane. Compact marks identify the live workspace state and actionable
+attention; they sit immediately after their labels without entering the text flow, while ordinary
+section labels remain text-only. Recently updated rows reuse the public homepage's article preview:
+row geometry, paper thumbnail, title, dotted leader, date and subtitle are one
+`@canmi/primitives` surface. The site keeps its link, focus, hover and content-derived line motion;
+the CMS keeps a read-only static rendering. Those are consumer behaviours rather than two visual
+definitions. Labels and article copy retain one uninterrupted left edge, and individual facts stay
+unbadged so the icons establish hierarchy without turning every piece of content back into
+interface chrome.
+
+Articles is the writing library rather than a translation-coverage dashboard. It keeps section
+grouping but presents each article with the same title, paper thumbnail, authored date and subtitle
+primitive used by Overview and the public homepage. A healthy article carries no completion badge,
+progress bar or repeated locale strip: completion is the resting state, and repeating it across the
+page makes status look like the subject instead of the writing. Only work that needs attention --
+missing translation segments, missing summaries or stale segments left by an edit -- adds a detail
+line to its article. This flat inventory may be wider than Overview's reading column, but it stays on
+the main pane instead of dividing every article into a separate card.
+
+The first window is a centred 1280 by 720 logical pixels, a 16:9 default rather than a minimum or
+a fixed canvas. After that first launch, geometry belongs to the native shell: Tauri's window-state
+plugin saves size, position and maximised state in the application's config directory and restores
+them before showing the next window. `localStorage` holds page state, not coordinates whose meaning
+depends on monitors and their scale factors. The configured window begins hidden so restoration
+does not flash the default rectangle before moving to the saved one.
+
+Theme behaviour is shared separately from its colour values. `@canmi/tokens` remains the palette;
+`@canmi/theme` owns the system dark-mode query and the site's pre-paint bootstrap. The desktop shell
+follows that system query live, while the public site can still honour its explicit `theme` cookie.
+
+The WebView is one application shell with a persistent left sidebar. Its top-level destinations are
+Overview, Articles, Media, Automations and Activity: content and resources are things to manage,
+while scheduled work and its history are separate views of what the CMS does to them. Individual
+CLI commands do not become navigation destinations. They become tasks inside Automations, with
+their runs reported by Activity, so adding another operation does not make the application's
+information architecture wider.
+
+The CMS interface is `en-US` only. It is an authoring and operations tool for the local workspace,
+not a reader-facing surface, so it does not carry a locale selector, message catalog or translated
+UI copy. Internationalisation belongs to interfaces the site's readers use; the CMS manages that
+content without localising itself.
+
+`dev-cms` enables the MCP bridge as an optional Cargo feature and exposes Tauri's JavaScript global
+only through its runtime development config. The bridge is additionally gated by Rust debug
+assertions and binds to loopback, so an agent can inspect and evaluate the native WebView without
+putting a debugging server in a release client or on the local network.
+
+The two package managers disagree about strictness, and the layout has to respect that.
+
+**pnpm globs.** `pnpm-workspace.yaml` uses `libs/*` and `apps/*`. pnpm only picks up
+directories containing a `package.json`; Rust-only directories are invisible to it. Adding a
+Rust library requires no pnpm change.
+
+**Cargo does not glob.** `Cargo.toml` lists members by hand. Cargo errors on any
+glob-matched directory that has no `Cargo.toml`, and that error breaks _every_ cargo command
+in the repo, not just the one crate. Verified: with `members = ["libs/*"]` plus an `exclude`
+list, adding one TypeScript library and forgetting to exclude it takes the whole workspace
+down. With explicit members, new TypeScript libraries have no effect at all.
+
+The cost is one line in `Cargo.toml` per Rust crate. The failure it buys off is a hard stop
+triggered by the most routine action in the repo.

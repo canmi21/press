@@ -144,7 +144,7 @@ export type Dependents = {
  * Who depends on a package, split by whether they asked for it themselves.
  *
  * The record stores direct edges only, so the indirect half is walked here rather than read,
- * and a package reachable both ways is listed once as direct. See spec/architecture.md.
+ * and a package reachable both ways is listed once as direct. See spec/architecture/data.md.
  *
  * The walk is breadth-first from the direct set with a seen set, so a cycle terminates and
  * nothing is visited twice. Cycles are real: npm packages depend on each other in both
@@ -236,7 +236,7 @@ export function licenseOf(entry: LicensePackage): string {
  *
  * The bucket fans the id out into directories, and that split stays behind the CDN route the
  * way an image's does. A link is an interface; the layout an object happens to be stored under
- * is not one, and spelling it into a URL would freeze it. See spec/architecture.md.
+ * is not one, and spelling it into a URL would freeze it. See spec/architecture/data.md.
  */
 export function textUrl(cdn: string, cid: string): string {
 	return `${cdn}/license/${cid}.txt`;

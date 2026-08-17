@@ -6,7 +6,7 @@ import { localeUrl, type LocaleCode } from '$lib/locale';
  * One card per page per language. The slug is the page's own path, so nothing stores a
  * reference and the address follows from the route; the language rides on `?lang=`, the same
  * parameter that selects the page itself. The CDN turns the pair into a key, so the layout the
- * cards are stored under stays private. See spec/architecture.md.
+ * cards are stored under stays private. See spec/architecture/media.md.
  */
 
 /**

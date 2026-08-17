@@ -4,7 +4,7 @@ import { HEADER, TEXT_HEADERS, fullUrl } from '$lib/licenses';
 import type { RequestHandler } from './$types';
 
 // Not prerendered, because prerendering means fetching the CDN during the build and CI
-// compiles rather than derives. See spec/architecture.md.
+// compiles rather than derives. See spec/architecture/data.md.
 export const prerender = false;
 
 /**

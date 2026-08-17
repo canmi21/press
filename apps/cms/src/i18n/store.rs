@@ -6,7 +6,7 @@
 //!
 //! YAML rather than JSON, and this one is meant to be edited. Translations are prose, which
 //! JSON turns into a single escaped line that cannot be reviewed or diffed; `review` is a flag
-//! a person sets by hand after reading. See spec/architecture.md.
+//! a person sets by hand after reading. See spec/architecture/data.md.
 
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, HashMap};

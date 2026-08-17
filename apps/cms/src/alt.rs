@@ -1,7 +1,7 @@
 //! The `cms alt` command: describing an image for someone who cannot see it.
 //!
 //! The description belongs to the asset, not to any article referencing it, so it is written
-//! into the manifest once and every reference inherits it. See spec/architecture.md.
+//! into the manifest once and every reference inherits it. See spec/architecture/media.md.
 //!
 //! Work is handed to a local agent CLI rather than to an API. The runner either attaches the
 //! image or reads the named path itself, so there is no API request to assemble and no key
