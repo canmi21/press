@@ -137,7 +137,11 @@ fn pending(
 ///
 /// Walks the sidecars rather than the articles: a summary the command has never been asked to
 /// write simply has no file, and an article is not evidence that one is owed.
-fn pending_summaries(contents: &Path, locales: &[&str], force: bool) -> (Vec<Item>, usize) {
+fn pending_summaries(
+	contents: &Path,
+	locales: &[&str],
+	force: bool,
+) -> std::io::Result<(Vec<Item>, usize)> {
 	let mut items = Vec::new();
 	let mut skipped = 0;
 	let mut stack = vec![contents.to_path_buf()];
@@ -165,7 +169,7 @@ fn pending_summaries(contents: &Path, locales: &[&str], force: bool) -> (Vec<Ite
 			else {
 				continue;
 			};
-			let sidecar = crate::summary::load(&path);
+			let sidecar = crate::summary::load(&path)?;
 			let Some(source) = sidecar
 				.summary
 				.get(source_locale)
@@ -188,7 +192,7 @@ fn pending_summaries(contents: &Path, locales: &[&str], force: bool) -> (Vec<Ite
 		}
 	}
 	items.sort_by(|a, b| a.id("").cmp(&b.id("")));
-	(items, skipped)
+	Ok((items, skipped))
 }
 
 fn tag_request(item: &Item) -> String {
@@ -433,7 +437,7 @@ where
 	let (mut items, skipped) = pending(&registry, &described, locales, force);
 	// Summaries ride the same queue: the backoff, the exhausted-allowance stop and the
 	// save-per-answer rule are all already here, and a second loop would have to grow its own.
-	let (summaries, summaries_skipped) = pending_summaries(&repo.join("contents"), locales, force);
+	let (summaries, summaries_skipped) = pending_summaries(&repo.join("contents"), locales, force)?;
 	items.extend(summaries);
 	let skipped = skipped + summaries_skipped;
 	let wanted = items.len();
@@ -501,7 +505,7 @@ where
 						Ok((translation, tokens, usd)) => {
 							// Reloaded per answer rather than held open: an interrupted run has
 							// to leave every translation it paid for on disk.
-							let mut sidecar = crate::summary::load(path);
+							let mut sidecar = crate::summary::load(path)?;
 							sidecar.version = crate::summary::VERSION;
 							sidecar.summary.insert(locale.clone(), translation);
 							let encoded = serde_yaml_ng::to_string(&sidecar).map_err(std::io::Error::other)?;

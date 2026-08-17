@@ -12,7 +12,7 @@
 use crate::i18n::runner::{self, Refusal, Runner};
 use crate::i18n::segment::Kind;
 use crate::i18n::store::Translation;
-use indicatif::{ProgressBar, ProgressStyle};
+use crate::task::{Record, claim, progress, registry, writer};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
@@ -46,11 +46,19 @@ pub fn sidecar_for(article: &Path) -> PathBuf {
 	article.with_extension("summary.yaml")
 }
 
-pub fn load(path: &Path) -> Sidecar {
-	std::fs::read_to_string(path)
-		.ok()
-		.and_then(|text| serde_yaml_ng::from_str(&text).ok())
-		.unwrap_or_default()
+/// An article's summary sidecar, empty when it has none yet.
+///
+/// A parse failure is an error rather than an empty sidecar, for the reason the translation
+/// sidecar has the same rule: the summaries in it were paid for and every save rewrites the whole
+/// file, so reading a broken one as empty erases what it could not read.
+pub fn load(path: &Path) -> std::io::Result<Sidecar> {
+	let text = match std::fs::read_to_string(path) {
+		Ok(text) => text,
+		Err(error) if error.kind() == std::io::ErrorKind::NotFound => return Ok(Sidecar::default()),
+		Err(error) => return Err(error),
+	};
+	serde_yaml_ng::from_str(&text)
+		.map_err(|error| std::io::Error::new(std::io::ErrorKind::InvalidData, error.to_string()))
 }
 
 /// The public locale an article's `lang` frontmatter names.
@@ -225,6 +233,8 @@ pub struct Outcome {
 	/// Articles still owed one, held back by `--limit`.
 	pub deferred: usize,
 	pub failed: Vec<(String, String)>,
+	/// Articles another run holds a claim on, left to it rather than summarised twice.
+	pub claimed_elsewhere: usize,
 }
 
 /// An article the command can act on.
@@ -287,7 +297,7 @@ pub fn modified_of(source: &str) -> Option<String> {
 ///
 /// A page without `lang` is not an article -- the homepage is the standing example, and its
 /// hand-written summary is neither generated nor translated.
-fn pending(contents: &Path, force: bool) -> (Vec<Article>, usize, usize) {
+fn pending(contents: &Path, force: bool) -> std::io::Result<(Vec<Article>, usize, usize)> {
 	let mut found = Vec::new();
 	let mut skipped = 0;
 	let mut reviewed = 0;
@@ -318,7 +328,7 @@ fn pending(contents: &Path, force: bool) -> (Vec<Article>, usize, usize) {
 			// A summary somebody has read and vouched for is not the machine's to replace, and
 			// `--force` does not change that: the flag means "the model's last answer was
 			// wrong", not "discard a person's judgement".
-			if let Some(existing) = load(&sidecar_for(&path)).summary.get(locale) {
+			if let Some(existing) = load(&sidecar_for(&path))?.summary.get(locale) {
 				if existing.review {
 					reviewed += 1;
 					continue;
@@ -332,7 +342,7 @@ fn pending(contents: &Path, force: bool) -> (Vec<Article>, usize, usize) {
 		}
 	}
 	found.sort_by(|a, b| a.path.cmp(&b.path));
-	(found, skipped, reviewed)
+	Ok((found, skipped, reviewed))
 }
 
 /// The generated summary, with everything needed to say where it came from.
@@ -386,14 +396,29 @@ async fn summarise(
 	})
 }
 
-pub async fn run(
-	runner: Runner,
-	model_override: Option<String>,
-	contents: &Path,
-	force: bool,
-	limit: Option<usize>,
-) -> Outcome {
-	let (mut todo, skipped, reviewed) = pending(contents, force);
+pub struct Options<'a> {
+	pub repository: &'a Path,
+	pub runner: Runner,
+	pub model_override: Option<String>,
+	pub force: bool,
+	pub limit: Option<usize>,
+	pub shell: registry::Shell,
+	/// Where to report progress. The CLI passes a terminal bar; the desktop passes its own.
+	pub sink: Box<dyn progress::Sink>,
+}
+
+pub async fn run(options: Options<'_>) -> std::io::Result<Outcome> {
+	let Options {
+		repository,
+		runner,
+		model_override,
+		force,
+		limit,
+		shell,
+		sink,
+	} = options;
+	let contents = repository.join("contents");
+	let (mut todo, skipped, reviewed) = pending(&contents, force)?;
 	let wanted = todo.len();
 	if let Some(limit) = limit {
 		todo.truncate(limit);
@@ -405,22 +430,40 @@ pub async fn run(
 		..Outcome::default()
 	};
 
-	let bar = ProgressBar::new(todo.len() as u64);
-	bar.set_style(
-		ProgressStyle::with_template("  {bar:32} {pos}/{len}  {msg}")
-			.unwrap_or_else(|_| ProgressStyle::default_bar()),
-	);
+	let progress = crate::task::start(repository, "summary", shell, todo.len() as u64, sink)?;
+	let writer = writer::Writer::start(repository, Record::Summaries)?;
 
 	let mut queue = todo.into_iter();
 	let mut running = Vec::new();
-	type Finished = (PathBuf, Result<Generated, Refusal>);
-	let mut results: Vec<Finished> = Vec::new();
+
+	// The claim on each article in flight, released once its summary is on disk. Keyed by the
+	// path below `contents`, so two checkouts of the same repository do not collide and two runs
+	// over one do. See spec/tasks.md.
+	let mut held: std::collections::HashMap<PathBuf, claim::Claim> = std::collections::HashMap::new();
 
 	loop {
 		while running.len() < PARALLEL {
 			let Some(article) = queue.next() else {
 				break;
 			};
+			let key = article
+				.path
+				.strip_prefix(&contents)
+				.unwrap_or(&article.path)
+				.to_path_buf();
+			// Claimed before anything is spent: an article another run is summarising right now
+			// is left to it rather than paid for twice.
+			match claim::take(repository, "summary", &key.display().to_string()) {
+				Ok(claim) => {
+					held.insert(article.path.clone(), claim);
+				}
+				Err(claim::Denied::Taken(_)) => {
+					outcome.claimed_elsewhere += 1;
+					progress.inc(1);
+					continue;
+				}
+				Err(claim::Denied::Io(error)) => return Err(error),
+			}
 			let model_override = model_override.clone();
 			running.push(tokio::spawn(async move {
 				let result = summarise(runner, model_override, &article).await;
@@ -431,50 +474,102 @@ pub async fn run(
 			break;
 		}
 		let finished = running.remove(0);
-		match finished.await {
-			Ok(result) => results.push(result),
-			Err(error) => results.push((PathBuf::new(), Err(Refusal::Failed(error.to_string())))),
-		}
-		bar.inc(1);
-	}
-	bar.finish_and_clear();
+		let (path, result) = match finished.await {
+			Ok(result) => result,
+			Err(error) => (PathBuf::new(), Err(Refusal::Failed(error.to_string()))),
+		};
 
-	for (path, result) in results {
 		let name = path.display().to_string();
 		match result {
 			Ok(generated) => {
 				outcome.spent.add(generated.spend);
-				let sidecar_path = sidecar_for(&path);
-				let mut sidecar = load(&sidecar_path);
-				sidecar.version = VERSION;
 				let model = generated.entry.model.clone();
 				let seconds = generated.entry.seconds;
-				// Only the source locale is touched. Translations of a previous summary are left
-				// for the translating pass to notice and replace, rather than dropped here where
-				// nothing would report the gap.
-				sidecar
-					.summary
-					.insert(generated.locale.to_owned(), generated.entry);
-				match serde_yaml_ng::to_string(&sidecar)
-					.map_err(std::io::Error::other)
-					.and_then(|text| std::fs::write(&sidecar_path, text))
-				{
+				let sidecar_path = sidecar_for(&path);
+				// Written as it arrives rather than gathered and saved at the end: each of these
+				// was paid for, and one interrupt used to discard the whole run. Re-read inside
+				// the writer so a translation another process added since is not overwritten.
+				let locale = generated.locale.to_owned();
+				let entry = generated.entry;
+				let applied = writer.apply(move || {
+					let mut sidecar = load(&sidecar_path)?;
+					sidecar.version = VERSION;
+					// Only the source locale is touched. Translations of a previous summary are
+					// left for the translating pass to notice and replace, rather than dropped
+					// here where nothing would report the gap.
+					sidecar.summary.insert(locale, entry);
+					let text = serde_yaml_ng::to_string(&sidecar).map_err(std::io::Error::other)?;
+					std::fs::write(&sidecar_path, text)
+				});
+				match applied {
 					Ok(()) => {
 						outcome.written += 1;
-						println!("  {name}  [{model}, {seconds:.1}s]");
+						progress.suspend(&mut || println!("  {name}  [{model}, {seconds:.1}s]"));
 					}
-					Err(error) => outcome.failed.push((name, error.to_string())),
+					Err(error) => outcome.failed.push((name.clone(), error.to_string())),
 				}
 			}
 			Err(error) => outcome.failed.push((name, error.to_string())),
 		}
+
+		held.remove(&path);
+		progress.inc(1);
 	}
-	outcome
+	progress.finish_and_clear();
+	Ok(outcome)
 }
 
 #[cfg(test)]
 mod tests {
 	use super::*;
+
+	/// An article another run holds a claim on is left to it rather than summarised twice.
+	///
+	/// Every candidate is claimed up front, so nothing is spawned and no runner is reached --
+	/// which is what makes the property testable without one.
+	#[tokio::test]
+	async fn an_article_another_run_claimed_is_not_summarised_again() {
+		let root = std::env::temp_dir().join(format!("cms-summary-claimed-{}", std::process::id()));
+		let _ = std::fs::remove_dir_all(&root);
+		let contents = root.join("contents");
+		std::fs::create_dir_all(&contents).expect("contents");
+		std::fs::write(
+			contents.join("a.md"),
+			"---\nlang: en\ntitle: A\n---\n\nSome body text that wants a summary.\n",
+		)
+		.expect("article");
+
+		let held = claim::take(&root, "summary", "a.md").expect("claim");
+		let outcome = run(Options {
+			repository: &root,
+			runner: Runner::Claude,
+			model_override: None,
+			force: false,
+			limit: None,
+			shell: registry::Shell::Cli,
+			sink: Box::new(progress::Silent),
+		})
+		.await
+		.expect("run");
+		drop(held);
+
+		assert_eq!(outcome.claimed_elsewhere, 1);
+		assert_eq!(outcome.written, 0);
+		assert!(outcome.failed.is_empty());
+		let _ = std::fs::remove_dir_all(&root);
+	}
+
+	/// A broken sidecar stops the walk rather than reading as a missing summary, which would
+	/// make the article a candidate and buy the summary it already has a second time.
+	#[test]
+	fn a_broken_sidecar_is_an_error_rather_than_an_absent_summary() {
+		let path =
+			std::env::temp_dir().join(format!("cms-summary-{}.summary.yaml", std::process::id()));
+		std::fs::write(&path, "summary: [not a map\n").expect("write");
+		let error = load(&path).expect_err("a broken sidecar must not read as empty");
+		assert_eq!(error.kind(), std::io::ErrorKind::InvalidData);
+		let _ = std::fs::remove_file(&path);
+	}
 
 	#[test]
 	fn the_prompt_asks_for_the_question_and_withholds_the_answer() {
@@ -554,7 +649,7 @@ mod tests {
 			"---\ntitle: B\nlang: zh\n---\n\nBody\n",
 		)
 		.unwrap();
-		let (todo, _, _) = pending(&dir, false);
+		let (todo, _, _) = pending(&dir, false).expect("pending");
 		assert_eq!(todo.len(), 1);
 		assert!(todo[0].path.ends_with("post.md"));
 		let _ = std::fs::remove_dir_all(&dir);
@@ -586,7 +681,7 @@ mod tests {
 		)
 		.unwrap();
 
-		let (todo, _, reviewed) = pending(&dir, true);
+		let (todo, _, reviewed) = pending(&dir, true).expect("pending");
 		assert!(todo.is_empty());
 		assert_eq!(reviewed, 1);
 		let _ = std::fs::remove_dir_all(&dir);

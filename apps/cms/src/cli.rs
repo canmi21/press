@@ -314,16 +314,30 @@ fn summarise_articles(args: &[String]) -> ExitCode {
 			return ExitCode::FAILURE;
 		}
 	};
-	let outcome = runtime.block_on(summary::run(
+	let outcome = match runtime.block_on(summary::run(summary::Options {
+		repository: &root,
 		runner,
 		model_override,
-		&root.join("contents"),
 		force,
 		limit,
-	));
+		shell: task::registry::Shell::Cli,
+		sink: Box::new(task::progress::Terminal::new()),
+	})) {
+		Ok(outcome) => outcome,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
+	};
 
 	for (path, error) in &outcome.failed {
 		eprintln!("fail  {path}: {error}");
+	}
+	if outcome.claimed_elsewhere > 0 {
+		eprintln!(
+			"note  {} left to a run already summarising them",
+			outcome.claimed_elsewhere
+		);
 	}
 	println!(
 		"{} written, {} already had one, {} reviewed, {} deferred, {} failed",
