@@ -6,7 +6,7 @@
 //! anything put there is covered by somebody else's chrome.
 //!
 //! Sizes and opacities are carried over from the previous generator rather than reinvented;
-//! only the engine changed. See spec/architecture.md.
+//! only the engine changed. See spec/architecture/media.md.
 
 use cosmic_text::{Attrs, Buffer, Color, Family, FontSystem, Metrics, Shaping, SwashCache};
 use tiny_skia::{Paint, PixmapMut, Rect, Transform};

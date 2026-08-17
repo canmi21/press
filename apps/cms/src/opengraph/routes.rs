@@ -3,7 +3,7 @@
 //! These are generated rather than authored, so what a card says has to come from the same two
 //! places the page says it from -- the licence record for the facts, the message catalogs for
 //! the words. Writing the copy here would give the site a second voice that agrees with the
-//! first only until one of them is edited. See spec/architecture.md.
+//! first only until one of them is edited. See spec/architecture/media.md.
 
 use super::messages;
 use percent_encoding::percent_decode_str;

@@ -2,7 +2,7 @@
 //!
 //! Read from the original and stored in the record; the published variants carry none of it,
 //! so a reader downloads pixels and nothing else. Extraction happens once, at import, because
-//! the original may not always be on hand later. See spec/architecture.md.
+//! the original may not always be on hand later. See spec/architecture/media.md.
 //!
 //! Nothing here is trusted about the *file*. EXIF describes what the sensor did, and the two
 //! disagree the moment an image is cropped -- one sample reports 4032x3024 in

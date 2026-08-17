@@ -10,7 +10,7 @@ import { DECODABLE, type Decodable, isEncodable, transcode } from './transcode';
  * A direct key lookup when the stored object is already the format asked for; otherwise the
  * stored object is decoded and re-encoded in this worker. The extension is the whole request:
  * there is no size parameter, so only sizes that were actually derived exist, and no caller
- * can invent dimensions to burn CPU on. See spec/architecture.md.
+ * can invent dimensions to burn CPU on. See spec/architecture/delivery.md.
  */
 const image = new Hono<{ Bindings: Bindings }>();
 

@@ -37,7 +37,7 @@ const HASHED = /\/[0-9a-f]{32}\.[a-z0-9]+$/;
  * Font filenames carry no content hash, which makes this a promise rather than an
  * observation: re-subsetting a font has to produce a new filename, or everyone holding a
  * cached copy keeps the old one for a year. Inherited from the `_headers` file the old
- * static-assets deployment used. See spec/architecture.md.
+ * static-assets deployment used. See spec/architecture/delivery.md.
  */
 const IMMUTABLE_PREFIXES = ['/fonts/'];
 

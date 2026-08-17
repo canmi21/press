@@ -4,7 +4,7 @@
 //! nearest settlement. Offline on purpose: a reverse geocoding service would make importing a
 //! photograph depend on somebody else's uptime, their rate limit and their opinion about what
 //! we may do with the answer -- for a fact that never changes once written. See
-//! spec/architecture.md.
+//! spec/architecture/media.md.
 //!
 //! The data is 39MB of text and lives outside git, like the photographs it describes. `mise
 //! run geo` fetches it; without it, addresses are simply absent, which is the same state as an

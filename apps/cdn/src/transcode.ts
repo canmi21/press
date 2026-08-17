@@ -20,7 +20,7 @@ import WEBP_ENC_WASM from '@jsquash/webp/codec/enc/webp_enc.wasm';
  * chose to store is the one format that pipeline cannot open. Measured: an AVIF source
  * returns `ERROR 9520: Original image has unsupported format` while the same request against
  * a PNG source succeeds. Doing it in the worker removes the plan tier, the monthly quota and
- * the dimension ceiling in one move. See spec/architecture.md.
+ * the dimension ceiling in one move. See spec/architecture/delivery.md.
  *
  * Only decoders for what is actually stored, and only encoders for what is actually asked
  * for. The AVIF *encoder* is deliberately absent: it is 1.1MB compressed against 332KB for

@@ -4,7 +4,7 @@
 //! content-address something. A card is not an asset an article references -- the page emits
 //! `/opengraph/{slug}.png` and nothing writes that URL down -- so there is no reference to
 //! rewrite and nothing to look an id up in. The cost is that the name is mutable, which is
-//! why these are cached for a week rather than a year. See spec/architecture.md.
+//! why these are cached for a week rather than a year. See spec/architecture/media.md.
 //!
 //! PNG, not AVIF. Every other image here is stored AVIF, but the consumers of these are
 //! crawlers for X, Slack, Discord and the rest, and they do not read it.
@@ -137,7 +137,7 @@ pub fn short_date(iso: &str) -> Option<String> {
 /// The view is a directory rather than a suffix on the name so a locale can be synced or
 /// dropped as a unit, and so the fallback is one prefix substitution rather than a filename
 /// rewrite. Nothing outside this repository ever sees the layout -- a reader asks for
-/// `/opengraph/{slug}.png?lang=ja` and the CDN resolves it. See spec/architecture.md.
+/// `/opengraph/{slug}.png?lang=ja` and the CDN resolves it. See spec/architecture/media.md.
 pub fn card_path(public: &Path, view: &str, slug: &str) -> PathBuf {
 	public
 		.join("opengraph")

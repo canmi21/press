@@ -3,7 +3,7 @@
 //! Quality settings were measured rather than guessed, on real articles' images: at 1272px a
 //! screenshot is 46 KB as AVIF q68 against 508 KB as optimised PNG, and a photo at 1624px is
 //! 364 KB against 3094 KB. Lossless formats lost by five to eleven times on every sample, so
-//! there is no lossless tier. See spec/architecture.md.
+//! there is no lossless tier. See spec/architecture/media.md.
 
 use image::DynamicImage;
 
@@ -81,7 +81,7 @@ impl std::fmt::Display for Error {
 /// converting at the edge rather than by keeping a second copy of everything: Cloudflare
 /// counts a format conversion once per image regardless of how many formats it hands out, so
 /// the fallback costs one transformation rather than a permanent duplicate of the whole
-/// library. See spec/architecture.md.
+/// library. See spec/architecture/delivery.md.
 pub fn formats_for(image: &DynamicImage) -> Vec<Format> {
 	if is_flat_colour(image) {
 		vec![Format::Png]
