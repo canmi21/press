@@ -9,6 +9,14 @@
   explicit user request may add one or two visible emoji to the requested interface, including the
   source literal needed to render them. That permission is local: it does not extend to unrelated
   UI, prose, comments, commit messages or chat.
+- **The default governs writing, not auditing. An emoji already in the tree stays.** It is there
+  because somebody put it there, and nothing in the file records whether that was asked for --
+  a permission is granted in conversation and leaves no trace beside the glyph. So an assistant
+  reading one cannot tell an approved emoji from an unapproved one, and must not guess.
+  Removing on the guess destroys an intent that was expressed; leaving it costs a glyph nobody
+  minds. Ask if it matters, and take silence as leave it alone. This rule exists because the
+  opposite was done: `index.html` lost a 🎉 to a question that was asked and then answered by
+  the assistant on the user's behalf.
 - **Never in a name.** The permission above covers displayed content and nothing else. Identifiers
   -- variables, functions, types, CSS classes, file and directory names -- are never emoji and are
   never named after one, so `overview-ready-emoji` is wrong even though the class name is ASCII.
