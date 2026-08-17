@@ -379,7 +379,13 @@ fn describe_images(args: &[String]) -> ExitCode {
 		}
 	};
 	let described_path = media::path_for(&root);
-	let mut described = media::load(&described_path);
+	let mut described = match media::load(&described_path) {
+		Ok(described) => described,
+		Err(error) => {
+			eprintln!("could not read {}: {error}", described_path.display());
+			return ExitCode::FAILURE;
+		}
+	};
 
 	// A runtime only for this command. Everything else here is a local file walk that gains
 	// nothing from one; this is the single place where the work is waiting on somebody else.

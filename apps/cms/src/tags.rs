@@ -84,11 +84,19 @@ pub fn path_for(repo: &Path) -> PathBuf {
 	repo.join("data").join("tags.yaml")
 }
 
-pub fn load(path: &Path) -> Registry {
-	std::fs::read_to_string(path)
-		.ok()
-		.and_then(|text| serde_yaml_ng::from_str(&text).ok())
-		.unwrap_or_default()
+/// The tag registry, empty when the repository has none yet.
+///
+/// A parse failure is an error, never an empty registry: every writer loads the whole file,
+/// edits a few entries and saves it back, so reading a broken one as empty would replace a vocabulary a person curated
+/// with nothing. Same rule as the sidecar and the image manifest.
+pub fn load(path: &Path) -> std::io::Result<Registry> {
+	let text = match std::fs::read_to_string(path) {
+		Ok(text) => text,
+		Err(error) if error.kind() == std::io::ErrorKind::NotFound => return Ok(Registry::default()),
+		Err(error) => return Err(error),
+	};
+	serde_yaml_ng::from_str(&text)
+		.map_err(|error| std::io::Error::new(std::io::ErrorKind::InvalidData, error.to_string()))
 }
 
 pub fn save(path: &Path, registry: &Registry) -> std::io::Result<()> {
@@ -121,6 +129,16 @@ pub fn known(registry: &Registry) -> Vec<String> {
 
 #[cfg(test)]
 mod tests {
+	#[test]
+	fn a_broken_registry_is_an_error_rather_than_an_empty_one() {
+		// The tag vocabulary is curated by a person and rewritten whole on every save.
+		let path = std::env::temp_dir().join(format!("cms-tags-{}.yaml", std::process::id()));
+		std::fs::write(&path, "tags: [not a map\n").expect("write");
+		let error = super::load(&path).expect_err("a broken registry must not read as empty");
+		assert_eq!(error.kind(), std::io::ErrorKind::InvalidData);
+		let _ = std::fs::remove_file(&path);
+	}
+
 	use super::*;
 
 	fn display(text: &str) -> Translation {

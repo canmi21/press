@@ -427,9 +427,9 @@ where
 	Fut: Future<Output = Result<Answer, Refusal>>,
 {
 	let registry_path = tags::path_for(repo);
-	let mut registry = tags::load(&registry_path);
+	let mut registry = tags::load(&registry_path)?;
 	let described_path = media::path_for(repo);
-	let mut described = media::load(&described_path);
+	let mut described = media::load(&described_path)?;
 	let (mut items, skipped) = pending(&registry, &described, locales, force);
 	// Summaries ride the same queue: the backoff, the exhausted-allowance stop and the
 	// save-per-answer rule are all already here, and a second loop would have to grow its own.
@@ -662,7 +662,7 @@ mod tests {
 		assert_eq!(requests, 0);
 		assert_eq!(outcome.skipped, 1);
 		assert_eq!(
-			tags::load(&tags::path_for(&temp.root)).tags["terminal"]
+			tags::load(&tags::path_for(&temp.root)).expect("tags").tags["terminal"]
 				.translations()
 				.expect("ordinary")["zh-CN"],
 			registry.tags["terminal"].translations().expect("ordinary")["zh-CN"]
@@ -697,7 +697,7 @@ mod tests {
 		.expect("run");
 
 		assert_eq!(outcome.translated, 1);
-		let saved_media = media::load(&media::path_for(&temp.root));
+		let saved_media = media::load(&media::path_for(&temp.root)).expect("media");
 		assert_eq!(
 			saved_media.media["asset"].description[SOURCE_LOCALE].text,
 			"Original description"
@@ -738,7 +738,7 @@ mod tests {
 
 		assert_eq!(outcome.failed.len(), 1);
 		assert_eq!(outcome.translated, 1);
-		let saved = tags::load(&tags::path_for(&temp.root));
+		let saved = tags::load(&tags::path_for(&temp.root)).expect("tags");
 		assert_eq!(
 			saved.tags["first"].translations().expect("ordinary").len(),
 			1
@@ -821,7 +821,7 @@ mod tests {
 
 		assert_eq!(requests, 1);
 		assert_eq!(outcome.translated, crate::i18n::prompt::LOCALES.len() - 1);
-		let saved = tags::load(&tags::path_for(&temp.root));
+		let saved = tags::load(&tags::path_for(&temp.root)).expect("tags");
 		let display = saved.tags["browser"].translations().expect("ordinary");
 		assert_eq!(display.len(), crate::i18n::prompt::LOCALES.len());
 		assert_eq!(display[SOURCE_LOCALE].model, "claude-sonnet-5");
@@ -876,7 +876,9 @@ mod tests {
 		assert!(prompts[0].contains("Raw identifier: terminal"));
 		assert_eq!(outcome.deferred, 1);
 		assert!(
-			!media::load(&media::path_for(&temp.root)).media["000-first-by-key"]
+			!media::load(&media::path_for(&temp.root))
+				.expect("media")
+				.media["000-first-by-key"]
 				.description
 				.contains_key("zh-CN")
 		);

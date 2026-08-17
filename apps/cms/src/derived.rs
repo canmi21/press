@@ -92,7 +92,7 @@ pub fn report_at(repository: &Path) -> std::io::Result<Report> {
 
 	let scan = refs::scan(&contents)?;
 	let cids = scan.cids();
-	let described = media::load(&media::path_for(repository));
+	let described = media::load(&media::path_for(repository))?;
 
 	let published = cids
 		.iter()

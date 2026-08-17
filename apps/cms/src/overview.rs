@@ -146,7 +146,7 @@ fn snapshot_at(repository: &Path) -> std::io::Result<Snapshot> {
 
 	let scan = refs::scan(&contents)?;
 	let content_ids = scan.cids();
-	let described = media::load(&media::path_for(repository));
+	let described = media::load(&media::path_for(repository))?;
 	let referenced = content_ids.len() + scan.unresolved().len();
 	let published = content_ids
 		.iter()
