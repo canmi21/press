@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { URLS } from '@canmi/urls';
+	import { dev } from '$app/environment';
+	import { pickUrls } from '@canmi/urls';
 
 	let {
 		src,
@@ -60,7 +61,7 @@
 
 	// An article can name an image that has not been imported yet. That should cost a
 	// placeholder rather than a build, so an unresolved reference still renders.
-	const fallback = $derived(`${URLS.apps.production.cdn}/image/${src}`);
+	const fallback = $derived(`${pickUrls(dev).cdn}/image/${src}`);
 	// The `img` is what a browser understanding none of the sources falls back to, so it names
 	// the widest-supported format rather than the best one.
 	const largestJpeg = $derived(jpeg?.split(', ').pop()?.split(' ')[0] ?? fallback);

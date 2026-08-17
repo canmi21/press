@@ -106,12 +106,22 @@ export function pickUrls(isDev: boolean): UrlMap {
 	return isDev ? URLS.apps.development : URLS.apps.production;
 }
 
+/**
+ * The address a dev server binds to and is reached on.
+ *
+ * A bare hostname rather than a URL, because the two consumers want different shapes: a Vite
+ * `server.host` takes the host alone, while everything else wants an origin from `loopbackUrl`.
+ * Exported so neither has to write the literal, which is how the same four numbers came to sit
+ * in this file twice and in a Vite config besides.
+ */
+export const LOOPBACK_HOST = '127.0.0.1';
+
 export function isDevHost(hostname: string): boolean {
-	return hostname === 'localhost' || hostname === '127.0.0.1';
+	return hostname === 'localhost' || hostname === LOOPBACK_HOST;
 }
 
 export function loopbackUrl(port: number): string {
-	const url = new URL('http://127.0.0.1');
+	const url = new URL(`http://${LOOPBACK_HOST}`);
 	url.port = String(port);
 	return url.origin;
 }

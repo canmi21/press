@@ -1,3 +1,4 @@
+import { LOOPBACK_HOST } from '@canmi/urls';
 import tailwindcss from '@tailwindcss/vite';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -37,7 +38,7 @@ export default defineConfig({
 		},
 	],
 	server: {
-		host: '127.0.0.1',
+		host: LOOPBACK_HOST,
 		port,
 		strictPort: true,
 	},

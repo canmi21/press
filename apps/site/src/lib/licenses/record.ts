@@ -103,12 +103,22 @@ export type GithubRepository = {
 	url: string;
 };
 
+/**
+ * The host this function recognises, taken from the same declaration it rewrites URLs to.
+ *
+ * Written out as a literal, the test and the rewrite below would be two halves of one fact with
+ * nothing holding them together: a host change would follow the rewrite and leave the test
+ * matching nothing, so every repository link would quietly become undefined rather than break.
+ */
+const GITHUB_HOST = new URL(URLS.external.github.web).hostname;
+
 /** A GitHub repository only when the manifest URL names both owner and repository. */
 export function githubRepository(value: string | undefined): GithubRepository | undefined {
 	if (!value) return undefined;
 	try {
 		const url = new URL(value);
-		if (url.hostname !== 'github.com' && url.hostname !== 'www.github.com') return undefined;
+		const hostname = url.hostname.replace(/^www\./, '');
+		if (hostname !== GITHUB_HOST) return undefined;
 		const [owner, rawName, ...rest] = url.pathname.split('/').filter(Boolean);
 		if (!owner || !rawName || rest.length > 0) return undefined;
 		const name = rawName.replace(/\.git$/, '');
