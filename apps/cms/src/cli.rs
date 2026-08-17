@@ -1073,6 +1073,13 @@ fn process_images(args: &[String]) -> ExitCode {
 /// time and structurally cannot make it -- four articles produced no notes at all until this
 /// was split out. So a strong model reads the article whole, and what it finds is reviewed
 /// before it steers anything. See spec/i18n.md.
+///
+/// FIXME: this is the operation, not an adapter for one. spec/architecture.md gives every CMS
+/// capability one in-process application operation with a CLI and a GUI adapter over it, and the
+/// work below -- argument handling aside -- belongs beside the module it drives rather than in
+/// this file. It is left here deliberately rather than exempted in the spec: moving it is the
+/// same edit as putting it under the task substrate, and both wait on the desktop shell reaching
+/// the point where it offers this command. Whoever gets there first should do the two together.
 fn scan_notes(args: &[String]) -> ExitCode {
 	let force = args.iter().any(|arg| arg == "--force");
 	let mut only: Vec<std::path::PathBuf> = Vec::new();
@@ -1275,6 +1282,13 @@ fn scan_notes(args: &[String]) -> ExitCode {
 /// Fetched here rather than in the browser, so a page renders from a checkout with no proxy
 /// route, no request per reader and no key. Both records rebuild from what git already holds,
 /// which is what puts them under `data/build/`. See spec/architecture.md.
+///
+/// FIXME: this is the operation, not an adapter for one. spec/architecture.md gives every CMS
+/// capability one in-process application operation with a CLI and a GUI adapter over it, and the
+/// work below -- argument handling aside -- belongs beside the module it drives rather than in
+/// this file. It is left here deliberately rather than exempted in the spec: moving it is the
+/// same edit as putting it under the task substrate, and both wait on the desktop shell reaching
+/// the point where it offers this command. Whoever gets there first should do the two together.
 fn fetch_embeds(args: &[String]) -> ExitCode {
 	let force = args.iter().any(|arg| arg == "--force");
 	let root = match paths::repo_root() {

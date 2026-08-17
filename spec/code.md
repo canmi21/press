@@ -89,3 +89,19 @@ the same as having annotated nothing.
 Write for someone scanning, not reading. Lead with the point; if the first line does not carry
 it, cut down to the line that does. The full argument belongs in `spec/`, with the comment
 naming the file rather than repeating it.
+
+### `FIXME` marks a spec violation that is waiting on something
+
+Code that knowingly departs from `spec/` carries a `FIXME` saying which rule it breaks, why it
+has not been fixed, and what has to happen first. Nothing else uses the word, and `TODO` is not
+used at all -- a wish about the future is not a defect, and mixing the two makes the marker
+worth ignoring.
+
+**The alternative is worse, which is why the marker exists.** A departure that stays unmarked
+gets rediscovered by every review as if it were new, and each rediscovery costs the same
+conversation about whether it was a decision or an oversight. The other way out -- writing an
+exemption into `spec/` -- is worse still: an exemption reads as settled, so the thing stops
+being a departure at all and the code silently becomes the rule.
+
+So the debt is recorded where the code is, and it stays visible to a plain search. Deleting one
+means either fixing the code or moving the decision into `spec/` on purpose.
