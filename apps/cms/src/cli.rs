@@ -2,7 +2,7 @@
 
 use crate::{
 	alt, articles, check, classify, derived, embed, favicon, gc, i18n, image, licenses, locale,
-	media, opengraph, overview, paths, port, refs, summary, task, x,
+	opengraph, overview, paths, port, refs, summary, task, x,
 };
 use std::process::ExitCode;
 
@@ -770,7 +770,14 @@ fn classify_images(args: &[String]) -> ExitCode {
 			return ExitCode::FAILURE;
 		}
 	};
-	let outcome = match runtime.block_on(classify::run(&root, runner, force, limit)) {
+	let outcome = match runtime.block_on(classify::run(classify::Options {
+		repository: &root,
+		runner,
+		force,
+		limit,
+		shell: task::registry::Shell::Cli,
+		sink: Box::new(task::progress::Terminal::new()),
+	})) {
 		Ok(outcome) => outcome,
 		Err(error) => {
 			eprintln!("could not write: {error}");

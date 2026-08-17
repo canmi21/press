@@ -13,6 +13,7 @@ use crate::i18n::runner::{self, Refusal, Runner};
 use crate::i18n::store::Translation;
 use crate::media::{self, Category, Entry};
 use crate::tags::{self, Tag};
+use crate::task::{Record, claim, progress, registry as task_registry, writer};
 use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 
@@ -36,6 +37,8 @@ pub struct Outcome {
 	pub tokens: u64,
 	pub usd: f64,
 	pub failed: Vec<(String, String)>,
+	/// Pictures another run holds a claim on, left to it rather than classified twice.
+	pub claimed_elsewhere: usize,
 	pub unreadable: Vec<String>,
 	pub exhausted: Option<String>,
 	/// Tags the model asked for that were not already in the registry.
@@ -202,12 +205,25 @@ fn insert_new_tag(registry: &mut tags::Registry, tagged: &Tagged, creator: &Tran
 }
 
 /// Classify every asset missing either its own labels or the registry records behind them.
-pub async fn run(
-	repo: &Path,
-	runner: Runner,
-	force: bool,
-	limit: Option<usize>,
-) -> std::io::Result<Outcome> {
+pub struct Options<'a> {
+	pub repository: &'a Path,
+	pub runner: Runner,
+	pub force: bool,
+	pub limit: Option<usize>,
+	pub shell: task_registry::Shell,
+	/// Where to report progress. The CLI passes a terminal bar; the desktop passes its own.
+	pub sink: Box<dyn progress::Sink>,
+}
+
+pub async fn run(options: Options<'_>) -> std::io::Result<Outcome> {
+	let Options {
+		repository: repo,
+		runner,
+		force,
+		limit,
+		shell,
+		sink,
+	} = options;
 	let merged = crate::image::run::load(&repo.join(crate::image::run::MERGED))?;
 	let described_path = media::path_for(repo);
 	let mut described = media::load(&described_path)?;
@@ -258,8 +274,28 @@ pub async fn run(
 	// One at a time, unlike translation. Each answer changes the list the next request is
 	// shown, and running four in parallel would let four images each invent their own name
 	// for the same thing before any of them could see the others.
-	let progress = crate::task::progress::Progress::new_terminal(todo.len() as u64);
+	let progress = crate::task::start(repo, "tag", shell, todo.len() as u64, sink)?;
+
+	// Two records, and the order they are applied in is the invariant. A tag named on an asset
+	// has to exist in the registry, so the registry is written first: a definition nothing
+	// references yet is harmless, and a reference to a definition that is not there yet is a
+	// dangling name another process can read. The window between the two applies is a pair of
+	// file writes. See spec/tasks.md.
+	let tag_writer = writer::Writer::start(repo, Record::Tags)?;
+	let media_writer = writer::Writer::start(repo, Record::Media)?;
+
 	for (cid, path) in todo {
+		// Claimed before the model is asked, so a picture another run is classifying now is left
+		// to it rather than paid for twice.
+		let claimed = match claim::take(repo, "tag", &cid) {
+			Ok(claimed) => claimed,
+			Err(claim::Denied::Taken(_)) => {
+				outcome.claimed_elsewhere += 1;
+				progress.inc(1);
+				continue;
+			}
+			Err(claim::Denied::Io(error)) => return Err(error),
+		};
 		progress.set_message(
 			path
 				.file_name()
@@ -302,24 +338,62 @@ pub async fn run(
 			tokens: answer.tokens,
 			review: false,
 		};
+		// Kept in memory too, because the next prompt is shown the vocabulary so far and has to
+		// see what this answer just minted. The copies on disk are what the writers maintain.
 		for tagged in &found {
 			if insert_new_tag(&mut registry, tagged, &creator) {
 				outcome.minted.push(tagged.name.clone());
 			}
 		}
-
-		let entry = described.media.entry(cid).or_insert_with(Entry::default);
-		entry.category = category;
-		entry.tags = found.into_iter().map(|tagged| tagged.name).collect();
-		outcome.classified += 1;
-		outcome.tokens += answer.tokens;
-		outcome.usd += answer.usd;
+		let names: Vec<String> = found.iter().map(|tagged| tagged.name.clone()).collect();
+		described
+			.media
+			.entry(cid.clone())
+			.or_insert_with(Entry::default)
+			.tags
+			.clone_from(&names);
 
 		// Written as they arrive, for the reason every other command here writes as it goes:
 		// each of these was paid for, and holding a run's worth in memory means one interrupt
-		// discards all of it.
-		media::save(&described_path, &described)?;
-		tags::save(&registry_path, &registry)?;
+		// discards all of it. Each writer re-reads inside its lock, so a concurrent run's tags
+		// and descriptions survive rather than being replaced by a copy taken before they landed.
+		let registry_path_for_write = registry_path.clone();
+		let minted = found.clone();
+		let creator_for_write = creator.clone();
+		let applied = tag_writer.apply(move || {
+			let mut current = tags::load(&registry_path_for_write)?;
+			for tagged in &minted {
+				insert_new_tag(&mut current, tagged, &creator_for_write);
+			}
+			tags::save(&registry_path_for_write, &current)
+		});
+		if let Err(error) = applied {
+			outcome.failed.push((cid.clone(), error.to_string()));
+			progress.inc(1);
+			continue;
+		}
+
+		let described_path_for_write = described_path.clone();
+		let key = cid.clone();
+		let applied = media_writer.apply(move || {
+			let mut current = media::load(&described_path_for_write)?;
+			let entry = current.media.entry(key).or_insert_with(Entry::default);
+			entry.category = category;
+			entry.tags = names;
+			media::save(&described_path_for_write, &current)
+		});
+		match applied {
+			Ok(()) => {
+				outcome.classified += 1;
+				outcome.tokens += answer.tokens;
+				outcome.usd += answer.usd;
+			}
+			Err(error) => outcome.failed.push((cid.clone(), error.to_string())),
+		}
+
+		// Released here rather than at the end of the loop body, to say the claim covers asking
+		// about this picture and storing both halves of the answer, and nothing after.
+		drop(claimed);
 		progress.inc(1);
 	}
 	progress.finish_and_clear();
@@ -329,6 +403,68 @@ pub async fn run(
 #[cfg(test)]
 mod tests {
 	use super::*;
+
+	/// A picture another run claimed is left to it rather than classified twice.
+	#[tokio::test]
+	async fn a_picture_another_run_claimed_is_not_classified_again() {
+		let root = std::env::temp_dir().join(format!("cms-tag-claimed-{}", std::process::id()));
+		let _ = std::fs::remove_dir_all(&root);
+		let originals = root.join("data").join("image");
+		std::fs::create_dir_all(&originals).expect("originals");
+
+		let bytes = b"stand-in for an original".to_vec();
+		std::fs::write(originals.join("a.png"), &bytes).expect("original");
+		let id = crate::image::cid(&bytes);
+
+		let manifest = crate::image::manifest::Merged {
+			version: crate::image::manifest::VERSION,
+			created: "2026-08-01T00:00:00Z".into(),
+			updated: "2026-08-01T00:00:00Z".into(),
+			media: BTreeMap::from([(id.clone(), bare_media())]),
+		};
+		std::fs::create_dir_all(root.join("data")).expect("data");
+		std::fs::write(
+			root.join(crate::image::run::MERGED),
+			serde_json::to_string(&manifest).expect("json"),
+		)
+		.expect("manifest");
+
+		let held = claim::take(&root, "tag", &id).expect("claim");
+		let outcome = run(Options {
+			repository: &root,
+			runner: Runner::Claude,
+			force: false,
+			limit: None,
+			shell: task_registry::Shell::Cli,
+			sink: Box::new(progress::Silent),
+		})
+		.await
+		.expect("run");
+		drop(held);
+
+		assert_eq!(outcome.claimed_elsewhere, 1);
+		assert_eq!(outcome.classified, 0);
+		let _ = std::fs::remove_dir_all(&root);
+	}
+
+	fn bare_media() -> crate::image::manifest::Media {
+		crate::image::manifest::Media {
+			kind: "image".into(),
+			created: "2026-08-01T00:00:00Z".into(),
+			updated: "2026-08-01T00:00:00Z".into(),
+			blake3: String::new(),
+			thumbhash: String::new(),
+			source: crate::image::manifest::Source {
+				mime: "image/png".into(),
+				width: 10,
+				height: 10,
+				ratio: "1:1".into(),
+				bytes: 1,
+			},
+			metadata: None,
+			variants: BTreeMap::new(),
+		}
+	}
 
 	fn registry() -> tags::Registry {
 		let mut registry = tags::Registry::default();
