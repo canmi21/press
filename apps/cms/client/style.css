@@ -220,7 +220,6 @@ button {
 	transform: translateY(-50%);
 	align-items: center;
 	justify-content: center;
-	font-family: 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
 	line-height: 1;
 }
 
@@ -243,10 +242,6 @@ button {
 
 .overview-status-icon > [data-state-icon] {
 	display: none;
-}
-
-.overview-ready-emoji {
-	font-size: 1.25rem;
 }
 
 .overview-status-icon[data-state='warning'],

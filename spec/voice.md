@@ -5,9 +5,15 @@
 - **Chat / spoken reply**: simplified Chinese mixed with English technical nouns. Don't translate established English terminology (e.g., "fetchpriority", "viewBox", "Hono", "OKLCH", "preset") — keep them as proper nouns inside Chinese sentences.
 - **File content, including code comments**: English only. No Chinese.
 - **Commit messages**: English only.
-- **No emoji by default** anywhere. An explicit user request may add one or two visible emoji to
-  the requested interface, including the source literal needed to render them. That permission is
-  local: it does not extend to unrelated UI, prose, comments, commit messages or chat.
+- **No emoji by default** anywhere, and an assistant never adds one on its own initiative. An
+  explicit user request may add one or two visible emoji to the requested interface, including the
+  source literal needed to render them. That permission is local: it does not extend to unrelated
+  UI, prose, comments, commit messages or chat.
+- **Never in a name.** The permission above covers displayed content and nothing else. Identifiers
+  -- variables, functions, types, CSS classes, file and directory names -- are never emoji and are
+  never named after one, so `overview-ready-emoji` is wrong even though the class name is ASCII.
+  A name says what a thing is for; which glyph happens to sit inside it today is content, and
+  putting content in the name means the name is wrong the moment the content changes.
 
 ## Tone
 
