@@ -75,7 +75,7 @@ pub fn ladder(original: Size, keep_original: bool) -> Vec<Size> {
 }
 
 /// The largest tier. An original above this is only kept when asked for by name.
-const CAP: u32 = TIERS[TIERS.len() - 1];
+pub const CAP: u32 = TIERS[TIERS.len() - 1];
 
 #[cfg(test)]
 mod tests {

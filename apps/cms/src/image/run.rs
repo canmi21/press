@@ -81,17 +81,7 @@ pub fn run(
 
 		let id = super::cid(&bytes);
 		let previous = merged.media.get(&id);
-		// The published variants already answer this: a rung at exactly the source's width can
-		// only exist because the full frame was kept. Below the cap the top rung is the source
-		// either way, so there is nothing to infer and nothing that could be inferred wrong.
-		let keep = options.keep_original
-			|| previous.is_some_and(|media| {
-				media
-					.variants
-					.values()
-					.any(|record| record.width == media.source.width)
-					&& media.source.width > super::ladder::TIERS[super::ladder::TIERS.len() - 1]
-			});
+		let keep = options.keep_original || previous.is_some_and(keeps_full_frame);
 
 		if !options.force && previous.is_some() && published(public, previous) {
 			outcome.skipped += 1;
@@ -212,6 +202,29 @@ fn originals_by_id(originals: &Path) -> BTreeMap<String, PathBuf> {
 			Some((super::cid(&bytes), path))
 		})
 		.collect()
+}
+
+/// Whether a published record was derived with the full frame kept.
+///
+/// The published variants already answer this: a rung at exactly the source's long edge can only
+/// exist because the full frame was kept. Below the cap the top rung is the source either way,
+/// so there is nothing to infer and nothing that could be inferred wrong.
+///
+/// Measured on the long edge, never on width, for the reason `ladder` gives: a portrait
+/// photograph is not a small image, it is a tall one. Asking whether the width cleared the cap
+/// answered no for every tall image, and re-deriving then dropped a full-frame rung that was
+/// already published.
+///
+/// FIXME: this infers a choice spec/architecture.md says is recorded on the record. Recording it
+/// is deliberately not done yet -- the input directory, and the retained originals it implies,
+/// exist only because the CLI is the one way an image enters. Once the desktop app derives on
+/// insert there is no original to re-derive from and nothing left to infer, and the question
+/// becomes a metadata version migration instead. Revisit when the app owns image insertion.
+fn keeps_full_frame(media: &Media) -> bool {
+	let source = super::ladder::Size::new(media.source.width, media.source.height);
+	media.variants.values().any(|record| {
+		super::ladder::Size::new(record.width, record.height).long_edge() == source.long_edge()
+	}) && source.long_edge() > super::ladder::CAP
 }
 
 /// Whether every variant a record claims is actually on disk.
@@ -466,6 +479,76 @@ mod tests {
 		rewrites.insert("shot.png".to_owned(), "newcid.avif".to_owned());
 		assert_eq!(rewrite_references(&root, &rewrites).expect("rewrite"), 0);
 		std::fs::remove_dir_all(&root).ok();
+	}
+
+	/// A record whose published rungs are `sizes`, derived from a `width` x `height` source.
+	fn derived(width: u32, height: u32, sizes: &[(u32, u32)]) -> manifest::Media {
+		let mut variants = BTreeMap::new();
+		for (index, (w, h)) in sizes.iter().enumerate() {
+			variants.insert(
+				format!("r{index}"),
+				manifest::VariantRecord {
+					mime: "image/avif".into(),
+					width: *w,
+					height: *h,
+					quality: 0.68,
+					bytes: 1,
+				},
+			);
+		}
+		manifest::Media {
+			kind: "image".into(),
+			created: "2026-07-31T00:00:00Z".into(),
+			updated: "2026-07-31T00:00:00Z".into(),
+			blake3: String::new(),
+			thumbhash: String::new(),
+			source: manifest::Source {
+				mime: "image/png".into(),
+				width,
+				height,
+				ratio: "x".into(),
+				bytes: 1,
+			},
+			metadata: None,
+			variants,
+		}
+	}
+
+	#[test]
+	fn a_tall_image_keeps_the_full_frame_it_published() {
+		// 1000x2400 with --original: the ladder caps at 1920 on the long edge, so the full frame
+		// is a rung of its own. Re-deriving used to ask whether the *width* cleared the cap --
+		// 1000 does not -- and dropped a variant that was already published. See ladder::Size.
+		let tall = derived(
+			1000,
+			2400,
+			&[(267, 640), (533, 1280), (800, 1920), (1000, 2400)],
+		);
+		assert!(keeps_full_frame(&tall));
+	}
+
+	#[test]
+	fn a_wide_image_keeps_the_full_frame_it_published() {
+		let wide = derived(
+			2400,
+			1000,
+			&[(640, 267), (1280, 533), (1920, 800), (2400, 1000)],
+		);
+		assert!(keeps_full_frame(&wide));
+	}
+
+	#[test]
+	fn a_tall_image_derived_without_the_full_frame_does_not_gain_one() {
+		let tall = derived(1000, 2400, &[(267, 640), (533, 1280), (800, 1920)]);
+		assert!(!keeps_full_frame(&tall));
+	}
+
+	#[test]
+	fn an_image_under_the_cap_has_no_separate_full_frame_to_keep() {
+		// The top rung is the source, so there is nothing --original could have added and
+		// nothing to infer from the top rung matching it.
+		let small = derived(800, 1200, &[(427, 640), (800, 1200)]);
+		assert!(!keeps_full_frame(&small));
 	}
 
 	#[test]
