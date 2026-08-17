@@ -378,15 +378,6 @@ fn describe_images(args: &[String]) -> ExitCode {
 			return ExitCode::FAILURE;
 		}
 	};
-	let described_path = media::path_for(&root);
-	let mut described = match media::load(&described_path) {
-		Ok(described) => described,
-		Err(error) => {
-			eprintln!("could not read {}: {error}", described_path.display());
-			return ExitCode::FAILURE;
-		}
-	};
-
 	// A runtime only for this command. Everything else here is a local file walk that gains
 	// nothing from one; this is the single place where the work is waiting on somebody else.
 	let runtime = match tokio::runtime::Runtime::new() {
@@ -396,14 +387,22 @@ fn describe_images(args: &[String]) -> ExitCode {
 			return ExitCode::FAILURE;
 		}
 	};
-	let outcome = runtime.block_on(alt::run(
+	let outcome = match runtime.block_on(alt::run(alt::Options {
+		repository: &root,
 		runner,
-		&merged,
-		&mut described,
-		&originals,
+		merged: &merged,
+		originals: &originals,
 		force,
 		limit,
-	));
+		shell: task::registry::Shell::Cli,
+		sink: Box::new(task::progress::Terminal::new()),
+	})) {
+		Ok(outcome) => outcome,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
+	};
 
 	for (cid, error) in &outcome.failed {
 		eprintln!("fail  {cid}: {error}");
@@ -413,12 +412,11 @@ fn describe_images(args: &[String]) -> ExitCode {
 	for cid in &outcome.unreadable {
 		eprintln!("warn  no original on hand for {cid}");
 	}
-
-	if outcome.described > 0
-		&& let Err(error) = media::save(&described_path, &described)
-	{
-		eprintln!("could not write media.yaml: {error}");
-		return ExitCode::FAILURE;
+	if outcome.claimed_elsewhere > 0 {
+		eprintln!(
+			"note  {} left to a run already describing them",
+			outcome.claimed_elsewhere
+		);
 	}
 	let _ = public;
 

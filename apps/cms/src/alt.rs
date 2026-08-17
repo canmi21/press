@@ -10,7 +10,7 @@
 use crate::i18n::runner::{self, Refusal, Runner};
 use crate::image::manifest::Merged;
 use crate::media::{self, Entry};
-use indicatif::{ProgressBar, ProgressStyle};
+use crate::task::{Record, claim, progress, registry, writer};
 use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 
@@ -87,6 +87,8 @@ pub struct Outcome {
 	/// finished when it had barely started.
 	pub deferred: usize,
 	pub failed: Vec<(String, String)>,
+	/// Assets another run holds a claim on, left to it rather than described twice.
+	pub claimed_elsewhere: usize,
 	/// Assets with no original on hand, which cannot be looked at.
 	pub unreadable: Vec<String>,
 }
@@ -172,16 +174,34 @@ async fn describe(runner: Runner, path: &Path) -> Result<(String, Spend, String)
 	Ok((text, spend, answer.model))
 }
 
+pub struct Options<'a> {
+	pub repository: &'a Path,
+	pub runner: Runner,
+	pub merged: &'a Merged,
+	pub originals: &'a Path,
+	pub force: bool,
+	pub limit: Option<usize>,
+	pub shell: registry::Shell,
+	/// Where to report progress. The CLI passes a terminal bar; the desktop passes its own.
+	pub sink: Box<dyn progress::Sink>,
+}
+
 /// Describe every asset that has no description yet, and record what came back.
-pub async fn run(
-	runner: Runner,
-	merged: &Merged,
-	described: &mut media::Media,
-	originals: &Path,
-	force: bool,
-	limit: Option<usize>,
-) -> Outcome {
-	let (mut todo, unreadable) = pending(merged, described, originals, force);
+pub async fn run(options: Options<'_>) -> std::io::Result<Outcome> {
+	let Options {
+		repository,
+		runner,
+		merged,
+		originals,
+		force,
+		limit,
+		shell,
+		sink,
+	} = options;
+	let described_path = media::path_for(repository);
+	let described = media::load(&described_path)?;
+
+	let (mut todo, unreadable) = pending(merged, &described, originals, force);
 	let wanted = todo.len();
 	// Each call costs real money, so a whole library should be something asked for rather than
 	// the only option. Trying two first is how you find out the prompt is wrong for cheap.
@@ -197,23 +217,38 @@ pub async fn run(
 
 	// A call takes tens of seconds and there is nothing to read while it does, so silence for
 	// several minutes is indistinguishable from a hang.
-	let bar = ProgressBar::new(todo.len() as u64);
-	bar.set_style(
-		ProgressStyle::with_template("  {bar:32} {pos}/{len}  {msg}")
-			.unwrap_or_else(|_| ProgressStyle::default_bar()),
-	);
+	let progress = crate::task::start(repository, "alt", shell, todo.len() as u64, sink)?;
+	let writer = writer::Writer::start(repository, Record::Media)?;
 
 	// Bounded rather than unbounded: the point of the limit is that it holds.
 	let mut queue = todo.into_iter();
 	let mut running = Vec::new();
 	type Finished = (String, Result<(String, Spend, String), Refusal>);
-	let mut results: Vec<Finished> = Vec::new();
+
+	// The claim on each description in flight, released once its result is on disk. Held beside
+	// the join list rather than moved into the task so that it covers the write as well:
+	// releasing at the end of the model call would let another process start the same picture
+	// while this one was still saving it. See spec/tasks.md.
+	let mut held: std::collections::HashMap<String, claim::Claim> = std::collections::HashMap::new();
 
 	loop {
 		while running.len() < PARALLEL {
 			let Some((cid, path)) = queue.next() else {
 				break;
 			};
+			// Claimed before anything is spent. A picture another process is describing right now
+			// is left to it rather than paid for twice.
+			match claim::take(repository, "alt", &cid) {
+				Ok(claim) => {
+					held.insert(cid.clone(), claim);
+				}
+				Err(claim::Denied::Taken(_)) => {
+					outcome.claimed_elsewhere += 1;
+					progress.inc(1);
+					continue;
+				}
+				Err(claim::Denied::Io(error)) => return Err(error),
+			}
 			running.push(tokio::spawn(
 				async move { (cid, describe(runner, &path).await) },
 			));
@@ -224,39 +259,57 @@ pub async fn run(
 		// One failure must not abandon the rest; a batch over a library should record what it
 		// managed and report the gaps.
 		let finished = running.remove(0);
-		match finished.await {
-			Ok(result) => results.push(result),
-			Err(error) => results.push((String::new(), Err(Refusal::Failed(error.to_string())))),
-		}
-		bar.inc(1);
-	}
-	bar.finish_and_clear();
+		let (cid, result) = match finished.await {
+			Ok(result) => result,
+			Err(error) => (String::new(), Err(Refusal::Failed(error.to_string()))),
+		};
 
-	for (cid, result) in results {
 		match result {
 			Ok((text, spend, model)) => {
 				outcome.spent.add(spend);
-				let entry = described.media.entry(cid).or_insert_with(Entry::default);
 				// Written under the source locale the article is authored in. `cms locale` fills
 				// the rest from here, through the same pipeline a paragraph goes through.
-				entry.description.insert(
-					SOURCE_LOCALE.to_owned(),
-					crate::i18n::store::Translation {
-						text,
-						provider: runner.provider().to_owned(),
-						model,
-						at: crate::image::manifest::now(),
-						seconds: 0.0,
-						tokens: spend.total_in() + spend.output,
-						review: false,
-					},
-				);
-				outcome.described += 1;
+				let entry = crate::i18n::store::Translation {
+					text,
+					provider: runner.provider().to_owned(),
+					model,
+					at: crate::image::manifest::now(),
+					seconds: 0.0,
+					tokens: spend.total_in() + spend.output,
+					review: false,
+				};
+				// Applied as it arrives rather than collected and written at the end. This was
+				// paid for; holding a run's worth in memory means one interrupt discards all of
+				// it. Re-read inside the writer because another process may have described a
+				// different picture since this run started, and saving a copy taken before that
+				// would drop their work.
+				let path = described_path.clone();
+				let key = cid.clone();
+				let applied = writer.apply(move || {
+					let mut current = media::load(&path)?;
+					current
+						.media
+						.entry(key)
+						.or_insert_with(Entry::default)
+						.description
+						.insert(SOURCE_LOCALE.to_owned(), entry);
+					media::save(&path, &current)
+				});
+				match applied {
+					Ok(()) => outcome.described += 1,
+					Err(error) => outcome.failed.push((cid.clone(), error.to_string())),
+				}
 			}
-			Err(error) => outcome.failed.push((cid, error.to_string())),
+			Err(error) => outcome.failed.push((cid.clone(), error.to_string())),
 		}
+
+		// Released here rather than at the end of the run, to say that the claim covers asking
+		// about this picture and storing the answer, and nothing after.
+		held.remove(&cid);
+		progress.inc(1);
 	}
-	outcome
+	progress.finish_and_clear();
+	Ok(outcome)
 }
 
 /// Whether this asset still wants a description.
@@ -270,6 +323,71 @@ pub fn wants_description(described: &media::Media, cid: &str) -> bool {
 #[cfg(test)]
 mod tests {
 	use super::*;
+
+	/// A picture another run holds a claim on is left to it rather than described a second time.
+	///
+	/// This is the property the claim exists for, and the only one worth a test here: every
+	/// duplicate is a model call somebody pays for. Every candidate is claimed up front, so
+	/// nothing is spawned and no runner is reached -- which is also what makes this test able to
+	/// run without one.
+	#[tokio::test]
+	async fn a_picture_another_run_claimed_is_not_described_again() {
+		let root = std::env::temp_dir().join(format!("cms-alt-claimed-{}", std::process::id()));
+		let _ = std::fs::remove_dir_all(&root);
+		let originals = root.join("data").join("image");
+		std::fs::create_dir_all(&originals).expect("originals");
+
+		let bytes = b"not really a png, but it hashes".to_vec();
+		std::fs::write(originals.join("a.png"), &bytes).expect("original");
+		let id = crate::image::cid(&bytes);
+
+		let merged = Merged {
+			version: crate::image::manifest::VERSION,
+			created: "2026-08-01T00:00:00Z".into(),
+			updated: "2026-08-01T00:00:00Z".into(),
+			media: BTreeMap::from([(id.clone(), described_media())]),
+		};
+
+		let held = claim::take(&root, "alt", &id).expect("claim");
+		let outcome = run(Options {
+			repository: &root,
+			runner: Runner::Claude,
+			merged: &merged,
+			originals: &originals,
+			force: false,
+			limit: None,
+			shell: registry::Shell::Cli,
+			sink: Box::new(progress::Silent),
+		})
+		.await
+		.expect("run");
+		drop(held);
+
+		assert_eq!(outcome.claimed_elsewhere, 1);
+		assert_eq!(outcome.described, 0);
+		assert!(outcome.failed.is_empty());
+		let _ = std::fs::remove_dir_all(&root);
+	}
+
+	/// A manifest record with no description yet, which is what makes it a candidate.
+	fn described_media() -> crate::image::manifest::Media {
+		crate::image::manifest::Media {
+			kind: "image".into(),
+			created: "2026-08-01T00:00:00Z".into(),
+			updated: "2026-08-01T00:00:00Z".into(),
+			blake3: String::new(),
+			thumbhash: String::new(),
+			source: crate::image::manifest::Source {
+				mime: "image/png".into(),
+				width: 10,
+				height: 10,
+				ratio: "1:1".into(),
+				bytes: 1,
+			},
+			metadata: None,
+			variants: BTreeMap::new(),
+		}
+	}
 
 	#[test]
 	fn the_prompt_names_the_file_and_asks_for_prose() {
