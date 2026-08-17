@@ -115,7 +115,10 @@ run = "pnpm run check"
 
 [tasks.urls]
 description = "Regenerate the Rust mirror of the URL map from libs/urls"
-run = "node libs/urls/scripts/rust.ts"
+# Formatted here rather than left for the next `cargo fmt`, so the file this writes is the file
+# that gets committed. The generator emits one constant per line and rustfmt wraps the long ones,
+# so skipping this step means the mirror changes shape after it is generated.
+run = ["node libs/urls/scripts/rust.ts", "cargo fmt -- apps/cms/src/urls.rs"]
 
 [tasks.verify]
 description = "Everything a change has to pass, across both languages"
