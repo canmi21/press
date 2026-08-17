@@ -35,9 +35,18 @@ rather than a decision.
 
 The split is there to keep the top of `data/` readable. Everything directly under it is
 something a person curates and may be asked about; `data/build/` is output, and it may grow a
-file whenever a consumer needs one without that growth being a question. Committed all the
-same, for the reason the segment layout exists at all: a site-only CI build must not need a
-Rust toolchain to produce its own inputs.
+file whenever a consumer needs one without that growth being a question.
+
+**Which of them git keeps is decided by one question: does a CI build read it?** A site-only CI
+build must not need a Rust toolchain to produce its own inputs, so everything it reads is
+committed -- `segments.json`, `crates.json`, `repos.json` and `licenses.json`, each named by the
+site's Vite config or its content build. A file only the tool that wrote it ever reads is a
+cache, not a build input, and stays out: `opengraph.json` records which cards are current so
+`cms og` can skip them, and losing it costs one slow rerun rather than a broken build.
+
+The question is deliberately about the consumer rather than about how the file was produced.
+Both kinds are generated, both are text, and a rule phrased on "is it derived" would have to
+decide the same case twice.
 
 The rule was first written as "`data/` is never in git", which held until it needed several
 exceptions. Those exceptions mean the line was drawn around the wrong thing: the directory
@@ -512,14 +521,16 @@ file is not the same job as mapping URLs, even though it consumes them.
 
 ## Data
 
-Git holds code. `data/` holds everything else -- photos, fetched favicons, drafts -- and none
-of it is ever committed. Only the empty skeleton is tracked so a fresh clone has somewhere to
-put things.
+Git holds code. `data/` holds everything else -- photos, fetched favicons, drafts -- and the
+bytes of it are never committed; the records describing them are, by the allowlist described in
+[what `data/` keeps out of git](#what-data-keeps-out-of-git). The skeleton is tracked either way,
+so a fresh clone has somewhere to put things.
 
 ```
 data/
   public/   mirrored to R2, 1:1 with the bucket layout
   draft/    never leaves this machine
+  build/    generated records; see below for which of them git keeps
 ```
 
 **The local directory is the source of truth, not a cache of one.** It is R2 laid out as

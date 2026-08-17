@@ -46,6 +46,11 @@ data/**
 # Authored, not derived: the licence a person worked out for a package that declared none.
 !data/licenses.yaml
 !data/tn.yaml
+# Under data/build/ the test is whether a CI build reads the file. These four are named by the
+# site's Vite config or its content build, and a site-only CI job has no Rust toolchain to
+# regenerate them. data/build/opengraph.json is absent on purpose: only `cms og` reads it, to
+# skip cards it has already drawn, so losing it costs a slow rerun rather than a build. See
+# spec/architecture.md.
 !data/build/segments.json
 !data/build/crates.json
 !data/build/repos.json
