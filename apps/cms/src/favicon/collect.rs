@@ -63,16 +63,7 @@ pub fn run(options: Options<'_>) -> std::io::Result<Outcome> {
 	} = options;
 	let public = repository.join("data").join("public");
 
-	// Published before any work, so a second process asking "is favicon running" during the first
-	// fetch gets yes rather than a gap.
-	let entry = registry::publish(repository, "favicon", shell, wanted.len() as u64)?;
-	let progress = progress::Progress::new(
-		wanted.len() as u64,
-		Box::new(Both {
-			first: sink,
-			second: Box::new(registry::Published::new(entry)),
-		}),
-	);
+	let progress = crate::task::start(repository, "favicon", shell, wanted.len() as u64, sink)?;
 	let writer = writer::Writer::start(repository, Record::PublicFavicon)?;
 
 	let mut outcome = Outcome::default();
@@ -152,35 +143,6 @@ pub fn run(options: Options<'_>) -> std::io::Result<Outcome> {
 
 	progress.finish_and_clear();
 	Ok(outcome)
-}
-
-/// Reports to two sinks. A run is watched by whoever started it and by the registry at once.
-struct Both {
-	first: Box<dyn progress::Sink>,
-	second: Box<dyn progress::Sink>,
-}
-
-impl progress::Sink for Both {
-	fn started(&self, total: u64) {
-		self.first.started(total);
-		self.second.started(total);
-	}
-
-	fn advanced(&self, done: u64, total: u64, message: &str) {
-		self.first.advanced(done, total, message);
-		self.second.advanced(done, total, message);
-	}
-
-	fn finished(&self) {
-		self.first.finished();
-		self.second.finished();
-	}
-
-	/// Only the first sink can be drawing on a terminal; the registry writes to a file and has
-	/// nothing to move out of the way.
-	fn suspend(&self, body: &mut dyn FnMut()) {
-		self.first.suspend(body);
-	}
 }
 
 #[cfg(test)]

@@ -254,6 +254,63 @@ pub fn find(id: &str) -> Option<&'static Spec> {
 	CATALOG.iter().find(|spec| spec.id == id)
 }
 
+/// Publish a run and hand back the progress it reports through.
+///
+/// One call rather than three, because the three belong together and the interesting failure is
+/// forgetting one of them. An operation that built its own bar and skipped `registry::publish`
+/// still looked finished to whoever started it while being invisible to `cms runs`, to the
+/// desktop Activity view, and to the next process asking whether this task was already running.
+/// Four of them had drifted into exactly that shape. Made unavailable by construction here: the
+/// bar cannot be obtained without the run being published first.
+///
+/// Published before any work, so a second process asking during the first item gets yes rather
+/// than a gap. See spec/tasks.md.
+pub fn start(
+	repository: &std::path::Path,
+	task: &str,
+	shell: registry::Shell,
+	total: u64,
+	sink: Box<dyn progress::Sink>,
+) -> std::io::Result<progress::Progress> {
+	let entry = registry::publish(repository, task, shell, total)?;
+	Ok(progress::Progress::new(
+		total,
+		Box::new(Both {
+			first: sink,
+			second: Box::new(registry::Published::new(entry)),
+		}),
+	))
+}
+
+/// Reports to two sinks. A run is watched by whoever started it and by the registry at once.
+struct Both {
+	first: Box<dyn progress::Sink>,
+	second: Box<dyn progress::Sink>,
+}
+
+impl progress::Sink for Both {
+	fn started(&self, total: u64) {
+		self.first.started(total);
+		self.second.started(total);
+	}
+
+	fn advanced(&self, done: u64, total: u64, message: &str) {
+		self.first.advanced(done, total, message);
+		self.second.advanced(done, total, message);
+	}
+
+	fn finished(&self) {
+		self.first.finished();
+		self.second.finished();
+	}
+
+	/// Only the first sink can be drawing on a terminal; the registry writes to a file and has
+	/// nothing to move out of the way.
+	fn suspend(&self, body: &mut dyn FnMut()) {
+		self.first.suspend(body);
+	}
+}
+
 #[cfg(test)]
 mod tests {
 	use super::*;
