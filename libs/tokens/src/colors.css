@@ -13,7 +13,6 @@
 	--color-paper-hover: oklch(0.962 0 0);
 	/* Native application chrome remains translucent over the platform material. Alpha belongs to
 	   the surface colour rather than `opacity`, which would fade its content as well. */
-	--color-native-sidebar: oklch(0.97 0 0 / 0.72);
 	--color-native-divider: oklch(0.52 0 0 / 0.22);
 	--color-native-hover: oklch(0.88 0 0 / 0.52);
 	--color-native-selected: oklch(0.76 0 0 / 0.5);
@@ -52,7 +51,6 @@ html {
 	--color-ink: oklch(0.892 0 0);
 	--color-paper: oklch(0.157 0 0);
 	--color-paper-hover: oklch(0.213 0 0);
-	--color-native-sidebar: oklch(0.15 0 0 / 0.7);
 	--color-native-divider: oklch(0.72 0 0 / 0.2);
 	--color-native-hover: oklch(0.38 0 0 / 0.48);
 	--color-native-selected: oklch(0.48 0 0 / 0.52);
@@ -75,7 +73,6 @@ html {
 	--color-ink: var(--color-ink);
 	--color-paper: var(--color-paper);
 	--color-paper-hover: var(--color-paper-hover);
-	--color-native-sidebar: var(--color-native-sidebar);
 	--color-native-divider: var(--color-native-divider);
 	--color-native-hover: var(--color-native-hover);
 	--color-native-selected: var(--color-native-selected);

@@ -63,6 +63,10 @@ button {
 	pointer-events: auto;
 }
 
+/* Transparent on purpose: the window declares the macOS `sidebar` material in tauri.conf.json,
+   so the platform paints this panel and CSS must not put a second surface in front of it. An
+   approximation in the token set would be a colour that only ever looks right on one OS at one
+   accent setting. See spec/architecture.md. */
 .sidebar {
 	display: flex;
 	min-width: 0;
