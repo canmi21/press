@@ -8,6 +8,7 @@ use crate::alt::SOURCE_LOCALE;
 use crate::i18n::runner::{self, Answer, Refusal, Runner};
 use crate::i18n::segment::Kind;
 use crate::i18n::store::Translation;
+use crate::task::{Record, claim, progress, registry as task_registry, writer};
 use crate::{media, tags};
 use std::future::Future;
 use std::path::Path;
@@ -25,6 +26,8 @@ pub struct Outcome {
 	pub tokens: u64,
 	pub usd: f64,
 	pub failed: Vec<(String, String)>,
+	/// Values another run holds a claim on, left to it rather than translated twice.
+	pub claimed_elsewhere: usize,
 	pub exhausted: Option<String>,
 }
 
@@ -382,20 +385,36 @@ where
 	Err(last)
 }
 
-pub async fn run(
-	repo: &Path,
-	runner: Runner,
-	model_override: Option<String>,
-	force: bool,
-	limit: Option<usize>,
-) -> std::io::Result<Outcome> {
+pub struct Options<'a> {
+	pub repository: &'a Path,
+	pub runner: Runner,
+	pub model_override: Option<String>,
+	pub force: bool,
+	pub limit: Option<usize>,
+	pub shell: task_registry::Shell,
+	/// Where to report progress. The CLI passes a terminal bar; the desktop passes its own.
+	pub sink: Box<dyn progress::Sink>,
+}
+
+pub async fn run(options: Options<'_>) -> std::io::Result<Outcome> {
+	let Options {
+		repository,
+		runner,
+		model_override,
+		force,
+		limit,
+		shell,
+		sink,
+	} = options;
 	run_with_model(
-		repo,
+		repository,
 		runner,
 		model_override.as_deref(),
 		force,
 		limit,
 		&crate::i18n::prompt::LOCALES,
+		shell,
+		sink,
 		|runner, prompt, model| async move { runner::ask(runner, &prompt, &model).await },
 	)
 	.await
@@ -414,9 +433,21 @@ where
 	F: FnMut(Runner, String, String) -> Fut,
 	Fut: Future<Output = Result<Answer, Refusal>>,
 {
-	run_with_model(repo, runner, None, force, limit, locales, ask).await
+	run_with_model(
+		repo,
+		runner,
+		None,
+		force,
+		limit,
+		locales,
+		task_registry::Shell::Cli,
+		Box::new(progress::Silent),
+		ask,
+	)
+	.await
 }
 
+#[allow(clippy::too_many_arguments)]
 async fn run_with_model<F, Fut>(
 	repo: &Path,
 	runner: Runner,
@@ -424,6 +455,8 @@ async fn run_with_model<F, Fut>(
 	force: bool,
 	limit: Option<usize>,
 	locales: &[&str],
+	shell: task_registry::Shell,
+	sink: Box<dyn progress::Sink>,
 	mut ask: F,
 ) -> std::io::Result<Outcome>
 where
@@ -433,7 +466,9 @@ where
 	let registry_path = tags::path_for(repo);
 	let mut registry = tags::load(&registry_path)?;
 	let described_path = media::path_for(repo);
-	let mut described = media::load(&described_path)?;
+	// Read once to plan against. Every write below goes through a writer that re-reads inside its
+	// own lock, so this copy is never what gets saved.
+	let described = media::load(&described_path)?;
 	let (mut items, skipped) = pending(&registry, &described, locales, force);
 	// Summaries ride the same queue: the backoff, the exhausted-allowance stop and the
 	// save-per-answer rule are all already here, and a second loop would have to grow its own.
@@ -458,12 +493,31 @@ where
 			Destination::Description(_) | Destination::Summary(_) => item.locales.len(),
 		})
 		.sum();
-	let progress = crate::task::progress::Progress::new_terminal(calls as u64);
+	let progress = crate::task::start(repo, "locale", shell, calls as u64, sink)?;
+
+	// Three records, one per destination: a tag lands in the registry, a description in
+	// media.yaml, a summary in its own sidecar. No answer touches two, so unlike `cms tag` there
+	// is no order between them to get right -- each writer serialises its own record and they
+	// never meet.
+	let tag_writer = writer::Writer::start(repo, Record::Tags)?;
+	let media_writer = writer::Writer::start(repo, Record::Media)?;
+	let summary_writer = writer::Writer::start(repo, Record::Summaries)?;
 
 	for item in items {
 		match &item.destination {
 			Destination::Tag(name) => {
 				progress.set_message(name.clone());
+				// Claimed before the model is asked: a label another run is translating now is
+				// left to it rather than paid for twice.
+				let claimed = match claim::take(repo, "locale", &item.id("")) {
+					Ok(claimed) => claimed,
+					Err(claim::Denied::Taken(_)) => {
+						outcome.claimed_elsewhere += 1;
+						progress.inc(1);
+						continue;
+					}
+					Err(claim::Denied::Io(error)) => return Err(error),
+				};
 				match translate_tag(runner, model_override, &item, &mut ask).await {
 					Ok((entries, tokens, usd)) => {
 						let Some(display) = registry
@@ -485,7 +539,22 @@ where
 						outcome.tokens += tokens;
 						outcome.usd += usd;
 						// One paid turn produced the whole tag, so one durable write commits it.
-						tags::save(&registry_path, &registry)?;
+						// Re-read inside the writer: another run may have minted a tag since this
+						// one started, and saving the copy read at the top would drop it.
+						let path = registry_path.clone();
+						let updated = registry.tags.get(name).cloned();
+						let key = name.clone();
+						if let Err(error) = tag_writer.apply(move || {
+							let mut current = tags::load(&path)?;
+							if let Some(tag) = updated {
+								current.tags.insert(key, tag);
+							}
+							tags::save(&path, &current)
+						}) {
+							outcome
+								.failed
+								.push((format!("tag {name}"), error.to_string()));
+						}
 					}
 					Err(Refusal::Exhausted(reason)) => {
 						outcome.exhausted = Some(reason);
@@ -496,20 +565,41 @@ where
 						.failed
 						.push((format!("tag {name}"), error.to_string())),
 				}
+				drop(claimed);
 				progress.inc(1);
 			}
 			Destination::Summary(path) => {
 				for locale in &item.locales {
 					progress.set_message(format!("{} {locale}", path.display()));
+					let claimed = match claim::take(repo, "locale", &item.id(locale)) {
+						Ok(claimed) => claimed,
+						Err(claim::Denied::Taken(_)) => {
+							outcome.claimed_elsewhere += 1;
+							progress.inc(1);
+							continue;
+						}
+						Err(claim::Denied::Io(error)) => return Err(error),
+					};
 					match translate_description(runner, model_override, &item, locale, &mut ask).await {
 						Ok((translation, tokens, usd)) => {
 							// Reloaded per answer rather than held open: an interrupted run has
 							// to leave every translation it paid for on disk.
-							let mut sidecar = crate::summary::load(path)?;
-							sidecar.version = crate::summary::VERSION;
-							sidecar.summary.insert(locale.clone(), translation);
-							let encoded = serde_yaml_ng::to_string(&sidecar).map_err(std::io::Error::other)?;
-							std::fs::write(path, encoded)?;
+							let id = item.id(locale);
+							let sidecar_path = path.clone();
+							let locale = locale.clone();
+							let applied = summary_writer.apply(move || {
+								let mut sidecar = crate::summary::load(&sidecar_path)?;
+								sidecar.version = crate::summary::VERSION;
+								sidecar.summary.insert(locale, translation);
+								let encoded = serde_yaml_ng::to_string(&sidecar).map_err(std::io::Error::other)?;
+								std::fs::write(&sidecar_path, encoded)
+							});
+							if let Err(error) = applied {
+								outcome.failed.push((id, error.to_string()));
+								drop(claimed);
+								progress.inc(1);
+								continue;
+							}
 							outcome.translated += 1;
 							outcome.tokens += tokens;
 							outcome.usd += usd;
@@ -527,15 +617,37 @@ where
 			Destination::Description(cid) => {
 				for locale in &item.locales {
 					progress.set_message(format!("{cid} {locale}"));
+					let claimed = match claim::take(repo, "locale", &item.id(locale)) {
+						Ok(claimed) => claimed,
+						Err(claim::Denied::Taken(_)) => {
+							outcome.claimed_elsewhere += 1;
+							progress.inc(1);
+							continue;
+						}
+						Err(claim::Denied::Io(error)) => return Err(error),
+					};
 					match translate_description(runner, model_override, &item, locale, &mut ask).await {
 						Ok((translation, tokens, usd)) => {
-							described
-								.media
-								.entry(cid.clone())
-								.or_default()
-								.description
-								.insert(locale.clone(), translation);
-							media::save(&described_path, &described)?;
+							let id = item.id(locale);
+							let path = described_path.clone();
+							let key = cid.clone();
+							let locale = locale.clone();
+							let applied = media_writer.apply(move || {
+								let mut current = media::load(&path)?;
+								current
+									.media
+									.entry(key)
+									.or_default()
+									.description
+									.insert(locale, translation);
+								media::save(&path, &current)
+							});
+							if let Err(error) = applied {
+								outcome.failed.push((id, error.to_string()));
+								drop(claimed);
+								progress.inc(1);
+								continue;
+							}
 							outcome.translated += 1;
 							outcome.tokens += tokens;
 							outcome.usd += usd;
@@ -632,6 +744,43 @@ mod tests {
 			.map(|(locale, text)| format!("{}\n{text}\n", crate::i18n::prompt::locale_marker(locale)))
 			.collect::<Vec<_>>()
 			.join("\n")
+	}
+
+	/// A value another run holds a claim on is left to it, and no request is made for it.
+	///
+	/// The claim is what stops two runs paying for the same translation. Counting requests is
+	/// the check that matters: a run that skipped the write but still asked would have spent
+	/// the money anyway.
+	#[tokio::test]
+	async fn a_value_another_run_claimed_is_not_translated_again() {
+		let temp = Temp::new("claimed");
+		let mut registry = tags::Registry::default();
+		registry.tags.insert(
+			"terminal".to_owned(),
+			ordinary("Terminal", "terminal emulator or command-line window", []),
+		);
+		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
+
+		let held = claim::take(&temp.root, "locale", "tag terminal/").expect("claim");
+		let mut requests = 0;
+		let outcome = run_with(
+			&temp.root,
+			Runner::GptOss,
+			false,
+			None,
+			&["zh-CN"],
+			|_, _, _| {
+				requests += 1;
+				async { Ok(answer("终端")) }
+			},
+		)
+		.await
+		.expect("run");
+		drop(held);
+
+		assert_eq!(requests, 0);
+		assert_eq!(outcome.claimed_elsewhere, 1);
+		assert_eq!(outcome.translated, 0);
 	}
 
 	#[tokio::test]

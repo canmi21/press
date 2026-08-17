@@ -664,7 +664,15 @@ fn translate_locales(args: &[String]) -> ExitCode {
 			return ExitCode::FAILURE;
 		}
 	};
-	let outcome = match runtime.block_on(locale::run(&root, runner, model_override, force, limit)) {
+	let outcome = match runtime.block_on(locale::run(locale::Options {
+		repository: &root,
+		runner,
+		model_override,
+		force,
+		limit,
+		shell: task::registry::Shell::Cli,
+		sink: Box::new(task::progress::Terminal::new()),
+	})) {
 		Ok(outcome) => outcome,
 		Err(error) => {
 			eprintln!("could not write: {error}");
@@ -674,6 +682,12 @@ fn translate_locales(args: &[String]) -> ExitCode {
 
 	for (id, error) in &outcome.failed {
 		eprintln!("fail  {id}: {error}");
+	}
+	if outcome.claimed_elsewhere > 0 {
+		eprintln!(
+			"note  {} left to a run already translating them",
+			outcome.claimed_elsewhere
+		);
 	}
 	if let Some(reason) = &outcome.exhausted {
 		println!("stopped: {reason}");

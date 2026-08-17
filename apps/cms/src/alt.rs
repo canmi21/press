@@ -223,7 +223,6 @@ pub async fn run(options: Options<'_>) -> std::io::Result<Outcome> {
 	// Bounded rather than unbounded: the point of the limit is that it holds.
 	let mut queue = todo.into_iter();
 	let mut running = Vec::new();
-	type Finished = (String, Result<(String, Spend, String), Refusal>);
 
 	// The claim on each description in flight, released once its result is on disk. Held beside
 	// the join list rather than moved into the task so that it covers the write as well:
