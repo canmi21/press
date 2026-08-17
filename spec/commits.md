@@ -140,12 +140,33 @@ moment when the answer is still cheap to write -- before the conversation that p
 gone. Bug fixes are excluded on purpose: a fix records its cause at the regression test, not
 in the rules.
 
+`hooks/bookmark.py` runs at the end of a turn and refuses to hand the result back while `main`
+does not cover what was committed. It is the only hook here bound to something other than a tool
+call, and it has to be: the other two watch the Bash tool, and the moment the completion rule
+above talks about is the moment the agent _stops_ calling tools. A turn that ends on its last
+`jj describe` runs nothing afterwards for a tool hook to inspect, so the bookmark half of the
+rule held only as long as it was remembered -- and it was not. Seventeen commits went by in one
+session with the bookmark never moving.
+
+**It refuses rather than moving the bookmark itself**, and that is the whole point of it. jj
+ships the move as `experimental-advance-branches`, which [toolchain.md](toolchain.md) leaves off
+so that a bookmark's position stays something somebody claimed. A hook that advanced `main`
+would be that setting again under another name, and would take the claim away while looking
+like enforcement.
+
+It counts only commits that are described and non-empty. Undescribed working-copy changes are
+the shape partial work is supposed to have -- the rule above says it stays uncommitted -- so
+firing on those would turn a rule that protects unfinished work into one that demands it be
+published.
+
 What all of this does not cover, and why the rules above still have to be read rather than
 merely enforced:
 
 - Only Claude Code and Codex. Opencode and any other harness need their own adapter.
 - Only the `-m` form. `jj commit` with no message opens an editor, which the hook cannot see.
 - Not a human typing in a terminal.
+- The bookmark check blocks once. A second stop is let through, because nothing can tell a
+  refusal to move it from an inability to, and a gate with no exit is worse than a missed one.
 
 Enforcement is a fast feedback loop, not a fence. The rules hold whether or not something is
 watching.

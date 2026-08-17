@@ -26,6 +26,18 @@
 					}
 				]
 			}
+		],
+		"Stop": [
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "/usr/bin/python3 \"$(jj workspace root)/hooks/bookmark.py\"",
+						"timeout": 30,
+						"statusMessage": "Checking the main bookmark covers what was committed"
+					}
+				]
+			}
 		]
 	}
 }
