@@ -50,6 +50,34 @@ A mutation is flushed as it is applied rather than batched to the end of a run. 
 protected is paid output: losing an hour of translations to a crash costs money, and the write is
 cheap next to the call that produced the value.
 
+### A mutation re-reads the record; it never saves the copy the run planned against
+
+A run reads a store once to work out what is owed, and that copy goes stale the moment another
+process writes. Saving it back would not merge -- it would replace, so the other run's paid output
+disappears with no error anywhere. So an apply loads the record inside the lock, changes the
+entries this answer produced, and saves. The in-memory copy is for planning and for prompts that
+have to show what exists so far; it is never what reaches disk.
+
+This is the difference the lock alone does not make. A short exclusive lock stops two writes from
+interleaving; it does nothing about a write whose _contents_ were decided before the other one
+landed.
+
+### A task writing several records applies them in dependency order
+
+Records are locked one at a time, so a task that writes more than one cannot make its writes
+atomic together. It does not need to. What it needs is that every state in between is one a
+reader can live with, and that is a property of the order.
+
+`cms tag` is the case that sets it: it writes a tag registry and the assets that name those tags.
+The registry goes first. A definition nothing references yet is inert, and the next run simply
+finds it already there; an asset naming a definition that has not landed is a dangling name, and
+a reader resolving it gets nothing. Between the two applies is a pair of file writes.
+
+So the rule is to write what is pointed _at_ before what points, and the general form of it is
+that the readable intermediate state decides the order. Where no answer touches two records the
+question does not arise -- `cms locale` writes three and each answer lands in exactly one, so its
+writers never meet.
+
 ## Contention is resolved per item, and the loser does not wait
 
 Work is claimed one item at a time -- a content id, an article, a (segment, locale) pair -- and the

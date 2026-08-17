@@ -495,10 +495,8 @@ where
 		.sum();
 	let progress = crate::task::start(repo, "locale", shell, calls as u64, sink)?;
 
-	// Three records, one per destination: a tag lands in the registry, a description in
-	// media.yaml, a summary in its own sidecar. No answer touches two, so unlike `cms tag` there
-	// is no order between them to get right -- each writer serialises its own record and they
-	// never meet.
+	// One record per destination and no answer touching two, so the ordering rule spec/tasks.md
+	// gives for multi-record tasks has nothing to decide here.
 	let tag_writer = writer::Writer::start(repo, Record::Tags)?;
 	let media_writer = writer::Writer::start(repo, Record::Media)?;
 	let summary_writer = writer::Writer::start(repo, Record::Summaries)?;

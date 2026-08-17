@@ -276,11 +276,8 @@ pub async fn run(options: Options<'_>) -> std::io::Result<Outcome> {
 	// for the same thing before any of them could see the others.
 	let progress = crate::task::start(repo, "tag", shell, todo.len() as u64, sink)?;
 
-	// Two records, and the order they are applied in is the invariant. A tag named on an asset
-	// has to exist in the registry, so the registry is written first: a definition nothing
-	// references yet is harmless, and a reference to a definition that is not there yet is a
-	// dangling name another process can read. The window between the two applies is a pair of
-	// file writes. See spec/tasks.md.
+	// Registry first, then the assets naming it: written the other way round, an asset points at
+	// a tag that has not landed. See spec/tasks.md for why the order is what carries this.
 	let tag_writer = writer::Writer::start(repo, Record::Tags)?;
 	let media_writer = writer::Writer::start(repo, Record::Media)?;
 
