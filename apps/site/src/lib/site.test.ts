@@ -32,4 +32,27 @@ describe('site config', () => {
 		expect(scalar('  fullName')).toBeTruthy();
 		expect(scalar('  role')).toBeTruthy();
 	});
+
+	/**
+	 * The reason the author block sits in this file at all: a card drawn by `cms og` and a page
+	 * rendered by SvelteKit have no other way to agree. That only holds while the page reads the
+	 * config, and it had drifted -- the name, the role, the GitHub handle and the avatar id were
+	 * all written into the markup, where changing the config would have left the card saying one
+	 * thing and the page another.
+	 *
+	 * Checked against the source text rather than a render, because the failure being prevented
+	 * is a literal appearing in the file, and a render would agree with a hardcoded value just
+	 * as happily as with a read one.
+	 */
+	it('leaves the author out of the page that introduces them', () => {
+		const home = readFileSync(
+			fileURLToPath(new URL('../routes/+page.svelte', import.meta.url)),
+			'utf8',
+		);
+		for (const key of ['name', 'fullName', 'role', 'github', 'githubId']) {
+			const value = scalar(`  ${key}`);
+			expect(value, `site.config.yaml is missing ${key}`).toBeTruthy();
+			expect(home, `+page.svelte hardcodes author.${key}`).not.toContain(value);
+		}
+	});
 });

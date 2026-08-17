@@ -23,6 +23,11 @@ author:
   # Handles, not URLs. Where to reach them is libs/urls' business; who they identify lives here.
   telegram: canmimua
   x: canmi21
+  github: canmi21
+  # GitHub addresses an avatar by the account's numeric id, which never changes when the handle
+  # does. A handle in its place would break the picture the day the account is renamed, and the
+  # two are the same fact -- who this is -- so both belong here rather than in the page.
+  githubId: 72544151
   fediverse: canmi
   # Bluesky identifies an account by a domain the owner proves; the handle being the site's
   # domain is that proof, not a second copy of the address.

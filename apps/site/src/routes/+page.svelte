@@ -19,9 +19,9 @@
 	let sponsorOpen = $state(false);
 
 	const cdnUrl = pickUrls(dev).cdn;
-	const avatarSrc = imgsrc('github:avatar:72544151@192', { cdnUrl });
+	const avatarSrc = imgsrc(`github:avatar:${site.author.githubId}@192`, { cdnUrl });
 	const card = $derived(cardUrl(cdnUrl, HOME_SLUG, data.locale.code));
-	const githubProfileUrl = `${URLS.external.github.web}/canmi21`;
+	const githubProfileUrl = `${URLS.external.github.web}/${site.author.github}`;
 	const googleSourceUrl = new URL(URLS.external.google.sourcePreferences);
 	googleSourceUrl.searchParams.set('q', URLS.apps.production.site);
 	// Icons are center-anchored, so each is size-compensated independently. Base
@@ -96,15 +96,15 @@
 		<header class="flex items-center gap-3">
 			<img
 				src={avatarSrc}
-				alt="Canmi's avatar"
+				alt={`${site.author.name}'s avatar`}
 				width="52"
 				height="52"
 				fetchpriority="high"
 				class="h-13 w-13 rounded-full border-2 border-border"
 			/>
 			<div>
-				<h1 class="text-text-strong">Canmi Wu</h1>
-				<p class="text-text-soft">Systems Engineer</p>
+				<h1 class="text-text-strong">{site.author.fullName}</h1>
+				<p class="text-text-soft">{site.author.role}</p>
 			</div>
 		</header>
 
