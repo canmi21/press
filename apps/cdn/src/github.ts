@@ -7,7 +7,7 @@ import { Hono } from 'hono';
  * Unlike favicons this stays a live fetch, because an avatar is per-user, changes whenever
  * its owner changes it, and there is no bounded set to prepare in advance. It writes nothing,
  * so the mirror stays one-directional: the rule is that the cloud never authors bytes in
- * `data/public`, not that it never makes a request. See spec/architecture.md.
+ * `data/public`, not that it never makes a request. See spec/architecture/data.md.
  */
 const github = new Hono();
 

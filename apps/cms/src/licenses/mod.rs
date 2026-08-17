@@ -10,7 +10,7 @@
 //! (`@scope/name`, `group:artifact`, a whole module URL), and encoding them into keys means
 //! inventing an escaping scheme that can never be changed afterwards. Addressing the bytes
 //! sidesteps all of it, and deduplicates for free: several hundred crates ship the same
-//! Apache-2.0 text byte for byte. See spec/architecture.md on content addressing.
+//! Apache-2.0 text byte for byte. See spec/architecture/data.md on content addressing.
 
 pub mod cargo;
 pub mod npm;
@@ -145,7 +145,7 @@ pub struct Package {
 	/// Every package that depends on this one directly, as purls and `workspace:` labels.
 	///
 	/// Direct edges only. The indirect dependents are the transitive closure of these and are
-	/// derived where they are displayed. See spec/architecture.md.
+	/// derived where they are displayed. See spec/architecture/data.md.
 	#[serde(default, skip_serializing_if = "Vec::is_empty")]
 	pub dependents: Vec<String>,
 	#[serde(default, skip_serializing_if = "Vec::is_empty")]

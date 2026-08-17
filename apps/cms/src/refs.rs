@@ -3,7 +3,7 @@
 //! Every command that touches `data/public` starts here. What to derive, what to fetch, what
 //! is missing and what is no longer wanted are all answers to one question: which assets do
 //! the articles reference. Articles are the only authority -- something nothing links to is
-//! not an asset, it is a leftover. See spec/architecture.md.
+//! not an asset, it is a leftover. See spec/architecture/data.md.
 
 use regex::Regex;
 use std::collections::BTreeSet;

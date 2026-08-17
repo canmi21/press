@@ -215,7 +215,7 @@ fn originals_by_id(originals: &Path) -> BTreeMap<String, PathBuf> {
 /// answered no for every tall image, and re-deriving then dropped a full-frame rung that was
 /// already published.
 ///
-/// FIXME: this infers a choice spec/architecture.md says is recorded on the record. Recording it
+/// FIXME: this infers a choice spec/architecture/data.md says is recorded on the record. Recording it
 /// is deliberately not done yet -- the input directory, and the retained originals it implies,
 /// exist only because the CLI is the one way an image enters. Once the desktop app derives on
 /// insert there is no original to re-derive from and nothing left to infer, and the question
@@ -383,7 +383,7 @@ mod tests {
 	fn a_broken_manifest_is_an_error_rather_than_an_empty_one() {
 		// Every writer loads the whole document, edits a few entries and saves it back. Read as
 		// empty, the next save replaces a committed manifest -- and the paid descriptions in it
-		// -- with four fields. See spec/architecture.md.
+		// -- with four fields. See spec/architecture/data.md.
 		let root = temp("broken-manifest");
 		let path = root.join("metadata.json");
 		std::fs::write(&path, "{ not json").expect("write");

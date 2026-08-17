@@ -6,7 +6,7 @@
 //!
 //! The raw form is constrained -- lower case, digits, hyphens -- because it is an identifier
 //! that happens to be readable. Every entry also states what concept it names, so a translator
-//! never has to guess whether `cellular` means a network or a cell. See spec/architecture.md.
+//! never has to guess whether `cellular` means a network or a cell. See spec/architecture/media.md.
 
 use crate::i18n::store::Translation;
 use serde::{Deserialize, Serialize};

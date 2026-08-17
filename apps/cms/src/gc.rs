@@ -4,7 +4,7 @@
 //! deleting one are opposite risks: the first can be repeated until it is right, the second
 //! is only safe because `data/image` still holds the originals and `cms image` can rebuild
 //! from a content id alone. That safety is a property of this repository, not of the
-//! algorithm, so the deletion waits to be asked for. See spec/architecture.md.
+//! algorithm, so the deletion waits to be asked for. See spec/architecture/data.md.
 //!
 //! Dry by default, like `mise run sync`, and for the same reason: the output is the review.
 

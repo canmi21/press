@@ -6,7 +6,7 @@
 //! the two apart is what stops `cms image --force` from spending a rebuild's worth of pixels
 //! and taking the words with it, which is exactly what it did while they shared a struct.
 //!
-//! YAML, and meant to be edited. See spec/architecture.md.
+//! YAML, and meant to be edited. See spec/architecture/data.md.
 
 use crate::i18n::store::Translation;
 use serde::{Deserialize, Serialize};

@@ -2,7 +2,7 @@
 //!
 //! The original never leaves this machine by default. What gets published are the derived
 //! variants, each addressed by the hash of its own bytes, so a key can never denote different
-//! content than it did before. See spec/architecture.md.
+//! content than it did before. See spec/architecture/data.md.
 
 pub mod encode;
 pub mod exif;

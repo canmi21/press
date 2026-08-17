@@ -9,7 +9,7 @@ import { licenseKeyFor, parseName, validatorFor } from './key';
  * The same shape as the image route and for the same reason: a caller names the object by its
  * content id alone, and the fanned-out key it is stored under is put together here. Before
  * this route existed the site linked the storage key verbatim, which made the bucket's layout
- * a public interface. See spec/architecture.md.
+ * a public interface. See spec/architecture/data.md.
  *
  * Nothing is transcoded -- a licence is bytes that must be served exactly as the package
  * shipped them -- so this is a lookup and a validator, and no more.

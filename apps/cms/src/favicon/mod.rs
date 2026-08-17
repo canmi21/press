@@ -2,7 +2,7 @@
 //!
 //! Everything here writes locally and nothing reaches R2; publishing is `mise run sync`'s
 //! job. There is no allowlist any more -- the worker no longer writes, so there is nothing to
-//! gate. See spec/architecture.md.
+//! gate. See spec/architecture/data.md.
 //!
 //! One directory per domain, holding `light.<ext>` and optionally `dark.<ext>`. The layout is
 //! doing two jobs. It groups the variants, and **the directory existing is the record that

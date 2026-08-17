@@ -7,7 +7,7 @@ import { type Bindings, findOne, read, toResponse } from '@canmi/store';
  * This worker never fetches from another site and never writes to the bucket. Both used to
  * happen here, and moving them into the CMS is what makes the mirror one-directional -- a
  * worker writing into `data/public`'s bucket would make the cloud authoritative for those
- * bytes. See spec/architecture.md.
+ * bytes. See spec/architecture/data.md.
  *
  * A miss is a 404, not a placeholder. The caller knows what it wants to draw when a site has
  * no icon, and an image response would deny it the chance to decide.

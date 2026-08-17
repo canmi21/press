@@ -9,7 +9,7 @@ import { cardKeys } from './key';
  * The address is the page's own path with `?lang=` on it -- `/opengraph/development/x.png?lang=ja`
  * -- and the view is a directory in the bucket. Same separation as everywhere else here: the URL
  * says what the reader wants, the key says where the bytes are, and the second is free to move.
- * See spec/architecture.md.
+ * See spec/architecture/data.md.
  *
  * A card is named by its slug rather than by a hash of its bytes, so unlike the licence texts
  * these cannot be immutable. The lifetime is a week, which is also how long X holds a card.
