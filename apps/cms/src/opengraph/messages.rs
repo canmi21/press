@@ -26,6 +26,32 @@ pub fn load(repo: &Path, view: &str) -> BTreeMap<String, String> {
 		.unwrap_or_default()
 }
 
+/// Every view's catalogue, read once for a whole run.
+///
+/// The nine files do not change while `cms og` is running -- they are build input, and this
+/// command does not write them -- so reading one per card meant reading nine files several
+/// thousand times to get nine answers. Loading them up front turns that into nine reads.
+pub fn load_all(repo: &Path) -> BTreeMap<&'static str, BTreeMap<String, String>> {
+	super::locale::VIEWS
+		.iter()
+		.map(|view| (view.code, load(repo, view.code)))
+		.collect()
+}
+
+/// The catalogue for one view, or an empty one when that view has none.
+///
+/// Borrowed from the set above rather than looked up by path, so a caller cannot reach past it
+/// and read the file again.
+pub fn for_view<'a>(
+	catalogs: &'a BTreeMap<&'static str, BTreeMap<String, String>>,
+	view: &str,
+) -> &'a BTreeMap<String, String> {
+	static EMPTY: std::sync::OnceLock<BTreeMap<String, String>> = std::sync::OnceLock::new();
+	catalogs
+		.get(view)
+		.unwrap_or_else(|| EMPTY.get_or_init(BTreeMap::new))
+}
+
 /// Fill `{slot}` from the pairs given, leaving anything unnamed as it stands.
 ///
 /// An unknown slot survives rather than being blanked: a message with a typo in it should be

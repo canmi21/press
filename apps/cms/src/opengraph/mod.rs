@@ -21,6 +21,7 @@ use cosmic_text::fontdb;
 use layout::{Avatar, Card, Home};
 use rayon::prelude::*;
 use serde::Deserialize;
+use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 
 /// Where the author's portrait lives.
@@ -272,6 +273,7 @@ fn article_jobs(
 	repo: &Path,
 	public: &Path,
 	config: &SiteConfig,
+	catalogs: &BTreeMap<&'static str, BTreeMap<String, String>>,
 	path: &Path,
 	article: &Article,
 ) -> std::io::Result<Vec<Job>> {
@@ -295,7 +297,7 @@ fn article_jobs(
 				// The other views, not all of them: this card is one of the nine, so what it has
 				// left to offer is eight.
 				let others = locale::VIEWS.len().saturating_sub(1).to_string();
-				let stats = messages::load(repo, view.code)
+				let stats = messages::for_view(catalogs, view.code)
 					.get("card.languages")
 					.map_or(String::new(), |template| {
 						messages::fill(template, &[("count", &others)])
@@ -363,11 +365,17 @@ pub fn census(articles: &Path) -> Result<Census, String> {
 }
 
 /// The home card, once per view, worded by that view's own catalog.
-fn home_jobs(repo: &Path, public: &Path, config: &SiteConfig, census: &Census) -> Vec<Job> {
+fn home_jobs(
+	repo: &Path,
+	public: &Path,
+	config: &SiteConfig,
+	catalogs: &BTreeMap<&'static str, BTreeMap<String, String>>,
+	census: &Census,
+) -> Vec<Job> {
 	locale::VIEWS
 		.iter()
 		.map(|view| {
-			let catalog = messages::load(repo, view.code);
+			let catalog = messages::for_view(catalogs, view.code);
 			let stats = catalog.get("card.stats").map_or(String::new(), |template| {
 				messages::fill(
 					template,
@@ -398,7 +406,12 @@ fn home_jobs(repo: &Path, public: &Path, config: &SiteConfig, census: &Census) -
 ///
 /// The record is read here rather than passed in: these cards exist only if it does, and a
 /// tree with no licence record simply has no licence pages to advertise.
-fn route_jobs(repo: &Path, public: &Path, config: &SiteConfig) -> Vec<Job> {
+fn route_jobs(
+	repo: &Path,
+	public: &Path,
+	config: &SiteConfig,
+	catalogs: &BTreeMap<&'static str, BTreeMap<String, String>>,
+) -> Vec<Job> {
 	let Some(record) = routes::load(&routes::record_path(repo)) else {
 		return Vec::new();
 	};
@@ -409,8 +422,8 @@ fn route_jobs(repo: &Path, public: &Path, config: &SiteConfig) -> Vec<Job> {
 		.chain(routes::packages(&record))
 	{
 		for view in locale::VIEWS {
-			let catalog = messages::load(repo, view.code);
-			let (title, subtitle, section, badge) = routes::worded(&route, &catalog);
+			let catalog = messages::for_view(catalogs, view.code);
+			let (title, subtitle, section, badge) = routes::worded(&route, catalog);
 			jobs.push(Job {
 				label: format!("{} {}", view.code, route.slug),
 				target: card_path(public, view.code, &route.slug),
@@ -608,6 +621,10 @@ pub fn run(repo: &Path, public: &Path, articles: &Path, force: bool) -> Result<O
 	let config: SiteConfig =
 		serde_yaml_ng::from_str(&text).map_err(|error| format!("site config: {error}"))?;
 
+	// Nine files, read here and nowhere else. Each card wants the catalogue for its own view, and
+	// asking per card meant several thousand reads and parses to arrive at nine answers.
+	let catalogs = messages::load_all(repo);
+
 	let mut jobs = Vec::new();
 	for path in crate::refs::markdown_under(articles).map_err(|e| e.to_string())? {
 		// The bio page gets the home card rather than an article one, so it is not an article
@@ -618,11 +635,19 @@ pub fn run(repo: &Path, public: &Path, articles: &Path, force: bool) -> Result<O
 		let Some(article) = article_of(articles, &path) else {
 			continue;
 		};
-		jobs.extend(article_jobs(repo, public, &config, &path, &article).map_err(|e| e.to_string())?);
+		jobs.extend(
+			article_jobs(repo, public, &config, &catalogs, &path, &article).map_err(|e| e.to_string())?,
+		);
 	}
 
-	jobs.extend(home_jobs(repo, public, &config, &census(articles)?));
-	jobs.extend(route_jobs(repo, public, &config));
+	jobs.extend(home_jobs(
+		repo,
+		public,
+		&config,
+		&catalogs,
+		&census(articles)?,
+	));
+	jobs.extend(route_jobs(repo, public, &config, &catalogs));
 	render_all(repo, public, jobs, force)
 }
 
