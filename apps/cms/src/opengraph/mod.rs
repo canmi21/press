@@ -86,24 +86,21 @@ pub fn article_of(root: &Path, path: &Path) -> Option<Article> {
 	let text = std::fs::read_to_string(path).ok()?;
 	let front = text.strip_prefix("---\n")?.split_once("\n---")?.0;
 
-	let mut title = None;
-	let mut subtitle = None;
-	let mut created = None;
-	for line in front.lines() {
-		let Some((key, value)) = line.split_once(':') else {
-			continue;
-		};
-		let value = value.trim().trim_matches('"').trim_matches('\'');
-		if value.is_empty() {
-			continue;
-		}
-		match key.trim() {
-			"title" => title = Some(value.to_owned()),
-			"subtitle" => subtitle = Some(value.to_owned()),
-			"created" => created = Some(value.to_owned()),
-			_ => {}
-		}
-	}
+	// Read with the same parser the segment layout uses, deliberately. These two read one
+	// frontmatter and the card looks its translation up by the title *string*, so a byte of
+	// disagreement between them is not a wrong card -- it is a card that silently falls back to
+	// the source language, with nothing reporting why. A hand-rolled `split_once(':')` disagrees
+	// on the first folded or quoted scalar it meets, and the corpus already uses folded scalars
+	// elsewhere. See spec/code.md on not hand-rolling a standard.
+	let values: serde_yaml_ng::Value = serde_yaml_ng::from_str(front).ok()?;
+	let field = |key: &str| {
+		values
+			.get(key)
+			.and_then(serde_yaml_ng::Value::as_str)
+			.map(str::to_owned)
+			.filter(|value| !value.is_empty())
+	};
+	let (title, subtitle, created) = (field("title"), field("subtitle"), field("created"));
 
 	let relative = path.strip_prefix(root).ok()?.with_extension("");
 	let slug = relative.to_str()?.to_owned();
@@ -664,6 +661,47 @@ fn encode(pixels: &[u8]) -> Result<Vec<u8>, String> {
 #[cfg(test)]
 mod tests {
 	use super::*;
+
+	/// A title the hand-rolled reader got wrong, and the reason the reader was replaced.
+	///
+	/// `split_once(':')` on a folded scalar returns the fold marker, so the card was drawn
+	/// titled `>-` and, worse, looked its translation up under the hash of that -- finding
+	/// nothing, and falling back to the source language on every view without saying so.
+	#[test]
+	fn reads_a_folded_title_as_the_text_it_folds_to() {
+		let root = std::env::temp_dir().join(format!("cms-og-folded-{}", std::process::id()));
+		let _ = std::fs::remove_dir_all(&root);
+		std::fs::create_dir_all(root.join("essay")).expect("dir");
+		let path = root.join("essay/a.md");
+		std::fs::write(
+			&path,
+			"---\nlang: en\ntitle: >-\n  One title that was\n  written across two lines\ncreated: 2026-04-13T00:00:00.000Z\n---\n\nBody.\n",
+		)
+		.expect("write");
+
+		let article = article_of(&root, &path).expect("an article");
+		assert_eq!(article.title, "One title that was written across two lines");
+		let _ = std::fs::remove_dir_all(&root);
+	}
+
+	/// Quoted scalars are the other shape the old reader mangled: it stripped one layer of
+	/// quotes by hand, which is not what a quoted scalar means the moment one is escaped.
+	#[test]
+	fn reads_a_quoted_title_without_hand_stripping_quotes() {
+		let root = std::env::temp_dir().join(format!("cms-og-quoted-{}", std::process::id()));
+		let _ = std::fs::remove_dir_all(&root);
+		std::fs::create_dir_all(root.join("essay")).expect("dir");
+		let path = root.join("essay/a.md");
+		std::fs::write(
+			&path,
+			"---\nlang: en\ntitle: \"A title with a \\\"quote\\\" inside\"\n---\n\nBody.\n",
+		)
+		.expect("write");
+
+		let article = article_of(&root, &path).expect("an article");
+		assert_eq!(article.title, "A title with a \"quote\" inside");
+		let _ = std::fs::remove_dir_all(&root);
+	}
 
 	#[test]
 	fn reads_the_fields_the_card_shows() {

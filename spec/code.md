@@ -40,6 +40,30 @@ three wrong icons, none of which announce themselves.
 So when a dependency looks heavy, the question is not "is this too big" but **"who pays for
 this size, and what does refusing it cost instead?"**
 
+### Local code does not hand-roll a standard
+
+The budget above is a permission. This is the obligation that goes with it: **where a format has
+a de-facto standard and a known library implements it, local code uses the library**, even to
+reach one small corner of what it does. Not a regex over the shape that usually appears, not a
+`split_once` that covers the cases seen so far.
+
+The cost of refusing is not a bug so much as a _disagreement_, and disagreements in a parser are
+the quiet kind. `cms og` read article frontmatter with a hand-rolled split while the segment
+layout read the same frontmatter with `serde_yaml_ng`, and the card looks its translation up by
+the title string the first one produced. A folded scalar -- `title: >-` across two lines -- gives
+the hand-rolled reader `>-`, so the card is titled with the fold marker and, worse, finds no
+translation under it and falls back to the source language in every view, reporting nothing.
+Quoted scalars with an escaped quote inside fail the same way. Nothing is wrong; something is
+merely different, everywhere, silently.
+
+**Two readings of one format is the shape to watch for.** Wherever a second reader appears for
+something already parsed elsewhere, it is the same library or it is a defect waiting for the
+first input that separates them.
+
+This licence is bounded by destination exactly as the table above is. Nothing here permits a
+library into a Worker or a browser bundle to save writing twenty lines; there, the payload is the
+constraint and the trade runs the other way.
+
 ## Unused is not the same as dead
 
 A thing with no consumer today is not automatically waste. **The question is whether it completes
