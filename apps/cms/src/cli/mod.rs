@@ -9,6 +9,7 @@ use crate::{
 	alt, articles, check, classify, derived, embed, favicon, gc, i18n, image, licenses, locale,
 	opengraph, overview, paths, port, refs, summary, task, twitter,
 };
+use anyhow::Context as _;
 use args::{Cli, Command, ModelArgs, TwitterCommand};
 use clap::Parser;
 use std::process::ExitCode;
@@ -28,7 +29,27 @@ pub fn run() -> ExitCode {
 		}
 	};
 
-	match cli.command {
+	match dispatch(cli.command) {
+		Ok(code) => code,
+		// `{:#}` is anyhow's flattened form: the failure and every context it collected on the way
+		// up, on one line. Nothing above this point printed anything, so this is the only place a
+		// person is told what went wrong -- and the only place the chain stops being a chain. See
+		// spec/code.md.
+		Err(error) => {
+			eprintln!("{error:#}");
+			ExitCode::FAILURE
+		}
+	}
+}
+
+/// Run one command.
+///
+/// `Err` means the command could not run. `Ok(ExitCode::FAILURE)` means it ran and has something
+/// to report -- items that failed inside a batch that otherwise finished. Collapsing the two would
+/// make `cms alt` on a library where one description failed indistinguishable from `cms alt` in a
+/// directory that is not a repository.
+fn dispatch(command: Command) -> anyhow::Result<ExitCode> {
+	match command {
 		Command::Overview => print_overview(),
 		Command::Articles => print_articles(),
 		Command::Derived => print_derived(),
@@ -107,85 +128,85 @@ struct I18nArgs<'a> {
 	articles: &'a [std::path::PathBuf],
 }
 
-fn print_overview() -> ExitCode {
+fn print_overview() -> anyhow::Result<ExitCode> {
 	match overview::snapshot() {
 		Ok(snapshot) => match serde_json::to_string_pretty(&snapshot) {
 			Ok(json) => {
 				println!("{json}");
-				ExitCode::SUCCESS
+				Ok(ExitCode::SUCCESS)
 			}
 			Err(error) => {
 				eprintln!("could not encode overview: {error}");
-				ExitCode::FAILURE
+				Ok(ExitCode::FAILURE)
 			}
 		},
 		Err(error) => {
 			eprintln!("could not read overview: {error}");
-			ExitCode::FAILURE
+			Ok(ExitCode::FAILURE)
 		}
 	}
 }
 
-fn print_articles() -> ExitCode {
+fn print_articles() -> anyhow::Result<ExitCode> {
 	match articles::listing() {
 		Ok(listing) => match serde_json::to_string_pretty(&listing) {
 			Ok(json) => {
 				println!("{json}");
-				ExitCode::SUCCESS
+				Ok(ExitCode::SUCCESS)
 			}
 			Err(error) => {
 				eprintln!("could not encode the article listing: {error}");
-				ExitCode::FAILURE
+				Ok(ExitCode::FAILURE)
 			}
 		},
 		Err(error) => {
 			eprintln!("could not read the article listing: {error}");
-			ExitCode::FAILURE
+			Ok(ExitCode::FAILURE)
 		}
 	}
 }
 
-fn print_derived() -> ExitCode {
+fn print_derived() -> anyhow::Result<ExitCode> {
 	match derived::report() {
 		Ok(report) => match serde_json::to_string_pretty(&report) {
 			Ok(json) => {
 				println!("{json}");
-				ExitCode::SUCCESS
+				Ok(ExitCode::SUCCESS)
 			}
 			Err(error) => {
 				eprintln!("could not encode the derived report: {error}");
-				ExitCode::FAILURE
+				Ok(ExitCode::FAILURE)
 			}
 		},
 		Err(error) => {
 			eprintln!("could not read the derived report: {error}");
-			ExitCode::FAILURE
+			Ok(ExitCode::FAILURE)
 		}
 	}
 }
 
-fn print_tasks() -> ExitCode {
+fn print_tasks() -> anyhow::Result<ExitCode> {
 	match serde_json::to_string_pretty(task::CATALOG) {
 		Ok(json) => {
 			println!("{json}");
-			ExitCode::SUCCESS
+			Ok(ExitCode::SUCCESS)
 		}
 		Err(error) => {
 			eprintln!("could not encode the task catalogue: {error}");
-			ExitCode::FAILURE
+			Ok(ExitCode::FAILURE)
 		}
 	}
 }
 
-fn print_port() -> ExitCode {
+fn print_port() -> anyhow::Result<ExitCode> {
 	match port::from_env() {
 		Ok(port) => {
 			println!("{port}");
-			ExitCode::SUCCESS
+			Ok(ExitCode::SUCCESS)
 		}
 		Err(error) => {
 			eprintln!("{error}");
-			ExitCode::FAILURE
+			Ok(ExitCode::FAILURE)
 		}
 	}
 }
@@ -197,23 +218,17 @@ fn print_port() -> ExitCode {
 /// from. Nothing is rewritten afterwards -- the attribute is an instruction to this command,
 /// while the page always draws `/favicon/{domain}`. Explicit domains remain accepted for
 /// collecting one ahead of the article that will link to it.
-fn fetch_favicons(force: bool, domains: &[String]) -> ExitCode {
+fn fetch_favicons(force: bool, domains: &[String]) -> anyhow::Result<ExitCode> {
 	let inputs: Vec<&str> = domains.iter().map(String::as_str).collect();
 
-	let root = match paths::repo_root() {
-		Ok(root) => root,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let root = paths::repo_root()?;
 
 	let wanted: Vec<refs::Wanted> = if inputs.is_empty() {
 		match refs::scan(&root.join("contents")) {
 			Ok(scan) => scan.wanted(),
 			Err(error) => {
 				eprintln!("could not read articles: {error}");
-				return ExitCode::FAILURE;
+				return Ok(ExitCode::FAILURE);
 			}
 		}
 	} else {
@@ -229,7 +244,7 @@ fn fetch_favicons(force: bool, domains: &[String]) -> ExitCode {
 
 	if wanted.is_empty() {
 		println!("no linkcards ask for an icon");
-		return ExitCode::SUCCESS;
+		return Ok(ExitCode::SUCCESS);
 	}
 
 	let outcome = match favicon::collect::run(favicon::collect::Options {
@@ -242,7 +257,7 @@ fn fetch_favicons(force: bool, domains: &[String]) -> ExitCode {
 		Ok(outcome) => outcome,
 		Err(error) => {
 			eprintln!("could not collect icons: {error}");
-			return ExitCode::FAILURE;
+			return Ok(ExitCode::FAILURE);
 		}
 	};
 
@@ -261,33 +276,21 @@ fn fetch_favicons(force: bool, domains: &[String]) -> ExitCode {
 		outcome.failed.len(),
 		outcome.claimed_elsewhere.len()
 	);
-	ExitCode::SUCCESS
+	Ok(ExitCode::SUCCESS)
 }
 
 /// What is running anywhere on this machine for this repository.
-fn print_runs() -> ExitCode {
-	let root = match paths::repo_root() {
-		Ok(root) => root,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
-	let runs = match task::registry::live(&root) {
-		Ok(runs) => runs,
-		Err(error) => {
-			eprintln!("could not read the run registry: {error}");
-			return ExitCode::FAILURE;
-		}
-	};
+fn print_runs() -> anyhow::Result<ExitCode> {
+	let root = paths::repo_root()?;
+	let runs = task::registry::live(&root).context("could not read the run registry")?;
 	match serde_json::to_string_pretty(&runs) {
 		Ok(json) => {
 			println!("{json}");
-			ExitCode::SUCCESS
+			Ok(ExitCode::SUCCESS)
 		}
 		Err(error) => {
 			eprintln!("could not encode the run registry: {error}");
-			ExitCode::FAILURE
+			Ok(ExitCode::FAILURE)
 		}
 	}
 }
@@ -296,36 +299,22 @@ fn print_runs() -> ExitCode {
 ///
 /// The value lands in a sidecar beside the article, in the article's own language. `cms locale`
 /// translates it into the other locales afterwards.
-fn summarise_articles(model: &ModelArgs, force: bool, limit: Option<usize>) -> ExitCode {
+fn summarise_articles(
+	model: &ModelArgs,
+	force: bool,
+	limit: Option<usize>,
+) -> anyhow::Result<ExitCode> {
 	// Not `DEFAULT_TEXT`. This is the one text task carrying a constraint the model has to hold
 	// against its own training -- summarise, but withhold the conclusion -- and the open-weight
 	// default measurably does not: it handed over the whole design and then appended "reaches a
 	// surprising conclusion", and gave a first-person essay's author a pronoun the article never
 	// uses. Translation has no comparable trap, which is why that one stays on the cheap model.
 	let runner = model.runner(i18n::runner::Runner::Codex);
-	let model_override = match model.overrides(runner) {
-		Ok(model) => model,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let model_override = model.overrides(runner).map_err(anyhow::Error::msg)?;
 
-	let root = match paths::repo_root() {
-		Ok(root) => root,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let root = paths::repo_root()?;
 
-	let runtime = match tokio::runtime::Runtime::new() {
-		Ok(runtime) => runtime,
-		Err(error) => {
-			eprintln!("could not start a runtime: {error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let runtime = tokio::runtime::Runtime::new().context("could not start a runtime")?;
 	let outcome = match runtime.block_on(summary::run(summary::Options {
 		repository: &root,
 		runner,
@@ -338,7 +327,7 @@ fn summarise_articles(model: &ModelArgs, force: bool, limit: Option<usize>) -> E
 		Ok(outcome) => outcome,
 		Err(error) => {
 			eprintln!("{error}");
-			return ExitCode::FAILURE;
+			return Ok(ExitCode::FAILURE);
 		}
 	};
 
@@ -365,9 +354,9 @@ fn summarise_articles(model: &ModelArgs, force: bool, limit: Option<usize>) -> E
 		println!("run `cms locale` to translate the new values");
 	}
 	if outcome.failed.is_empty() {
-		ExitCode::SUCCESS
+		Ok(ExitCode::SUCCESS)
 	} else {
-		ExitCode::FAILURE
+		Ok(ExitCode::FAILURE)
 	}
 }
 
@@ -376,34 +365,26 @@ fn summarise_articles(model: &ModelArgs, force: bool, limit: Option<usize>) -> E
 /// The description is written into the manifest, so it belongs to the picture rather than to
 /// whichever article happened to be open when it was generated. Every reference inherits it,
 /// including ones written later.
-fn describe_images(model: &ModelArgs, force: bool, limit: Option<usize>) -> ExitCode {
+fn describe_images(
+	model: &ModelArgs,
+	force: bool,
+	limit: Option<usize>,
+) -> anyhow::Result<ExitCode> {
 	let runner = model.runner(i18n::runner::DEFAULT_VISION);
 
-	let root = match paths::repo_root() {
-		Ok(root) => root,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let root = paths::repo_root()?;
 	let originals = root.join("data").join("image");
 	let public = root.join("data").join("public");
 	let merged = match image::run::load(&root.join(image::run::MERGED)) {
 		Ok(merged) => merged,
 		Err(error) => {
 			eprintln!("could not read {}: {error}", image::run::MERGED);
-			return ExitCode::FAILURE;
+			return Ok(ExitCode::FAILURE);
 		}
 	};
 	// A runtime only for this command. Everything else here is a local file walk that gains
 	// nothing from one; this is the single place where the work is waiting on somebody else.
-	let runtime = match tokio::runtime::Runtime::new() {
-		Ok(runtime) => runtime,
-		Err(error) => {
-			eprintln!("could not start a runtime: {error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let runtime = tokio::runtime::Runtime::new().context("could not start a runtime")?;
 	let outcome = match runtime.block_on(alt::run(alt::Options {
 		repository: &root,
 		runner,
@@ -417,7 +398,7 @@ fn describe_images(model: &ModelArgs, force: bool, limit: Option<usize>) -> Exit
 		Ok(outcome) => outcome,
 		Err(error) => {
 			eprintln!("{error}");
-			return ExitCode::FAILURE;
+			return Ok(ExitCode::FAILURE);
 		}
 	};
 
@@ -457,9 +438,9 @@ fn describe_images(model: &ModelArgs, force: bool, limit: Option<usize>) -> Exit
 		);
 	}
 	if outcome.failed.is_empty() {
-		ExitCode::SUCCESS
+		Ok(ExitCode::SUCCESS)
 	} else {
-		ExitCode::FAILURE
+		Ok(ExitCode::FAILURE)
 	}
 }
 
@@ -467,7 +448,7 @@ fn describe_images(model: &ModelArgs, force: bool, limit: Option<usize>) -> Exit
 ///
 /// One request covers one segment's missing locales, so an edited paragraph costs one call while
 /// a partial repair does not repay for completed languages.
-fn translate_articles(args: I18nArgs<'_>) -> ExitCode {
+fn translate_articles(args: I18nArgs<'_>) -> anyhow::Result<ExitCode> {
 	let I18nArgs {
 		model,
 		force,
@@ -483,49 +464,20 @@ fn translate_articles(args: I18nArgs<'_>) -> ExitCode {
 	} else {
 		i18n::Scope::All
 	};
-	let parallel = match i18n::parallelism(parallel.map(|n| n.to_string()).as_deref()) {
-		Ok(parallel) => parallel,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
-	let locales = match i18n::selected_locales(locale) {
-		Ok(locales) => locales,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let parallel =
+		i18n::parallelism(parallel.map(|n| n.to_string()).as_deref()).map_err(anyhow::Error::msg)?;
+	let locales = i18n::selected_locales(locale).map_err(anyhow::Error::msg)?;
 	let only = articles.to_vec();
 	let runner = model.runner(i18n::runner::DEFAULT_TEXT);
-	let model_override = match model.overrides(runner) {
-		Ok(model) => model,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let model_override = model.overrides(runner).map_err(anyhow::Error::msg)?;
 
-	let root = match paths::repo_root() {
-		Ok(root) => root,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let root = paths::repo_root()?;
 	if let Err(error) = i18n::layout::sync(&root) {
 		eprintln!("could not write {}: {error}", i18n::layout::FILE);
-		return ExitCode::FAILURE;
+		return Ok(ExitCode::FAILURE);
 	}
 
-	let runtime = match tokio::runtime::Runtime::new() {
-		Ok(runtime) => runtime,
-		Err(error) => {
-			eprintln!("could not start a runtime: {error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let runtime = tokio::runtime::Runtime::new().context("could not start a runtime")?;
 	let outcome = match runtime.block_on(i18n::run(
 		&root.join("contents"),
 		&only,
@@ -546,7 +498,7 @@ fn translate_articles(args: I18nArgs<'_>) -> ExitCode {
 		Ok(outcome) => outcome,
 		Err(error) => {
 			eprintln!("could not write: {error}");
-			return ExitCode::FAILURE;
+			return Ok(ExitCode::FAILURE);
 		}
 	};
 
@@ -578,57 +530,37 @@ fn translate_articles(args: I18nArgs<'_>) -> ExitCode {
 	if outcome.failed.is_empty()
 		&& (outcome.incomplete_segments == 0 || limit.is_some() || outcome.exhausted.is_some())
 	{
-		ExitCode::SUCCESS
+		Ok(ExitCode::SUCCESS)
 	} else {
-		ExitCode::FAILURE
+		Ok(ExitCode::FAILURE)
 	}
 }
 
 /// Materialise the Rust segment ids and source ranges for builds that do not have Rust.
-fn write_segment_layout() -> ExitCode {
-	let root = match paths::repo_root() {
-		Ok(root) => root,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
+fn write_segment_layout() -> anyhow::Result<ExitCode> {
+	let root = paths::repo_root()?;
 	match i18n::layout::sync(&root) {
 		Ok(true) => println!("wrote {}", i18n::layout::FILE),
 		Ok(false) => println!("{} unchanged", i18n::layout::FILE),
 		Err(error) => {
 			eprintln!("could not write {}: {error}", i18n::layout::FILE);
-			return ExitCode::FAILURE;
+			return Ok(ExitCode::FAILURE);
 		}
 	}
-	ExitCode::SUCCESS
+	Ok(ExitCode::SUCCESS)
 }
 
 /// Translate tag labels and image descriptions from their English source text.
-fn translate_locales(model: &ModelArgs, force: bool, limit: Option<usize>) -> ExitCode {
+fn translate_locales(
+	model: &ModelArgs,
+	force: bool,
+	limit: Option<usize>,
+) -> anyhow::Result<ExitCode> {
 	let runner = model.runner(i18n::runner::DEFAULT_TEXT);
-	let model_override = match model.overrides(runner) {
-		Ok(model) => model,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let model_override = model.overrides(runner).map_err(anyhow::Error::msg)?;
 
-	let root = match paths::repo_root() {
-		Ok(root) => root,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
-	let runtime = match tokio::runtime::Runtime::new() {
-		Ok(runtime) => runtime,
-		Err(error) => {
-			eprintln!("could not start a runtime: {error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let root = paths::repo_root()?;
+	let runtime = tokio::runtime::Runtime::new().context("could not start a runtime")?;
 	let outcome = match runtime.block_on(locale::run(locale::Options {
 		repository: &root,
 		runner,
@@ -641,7 +573,7 @@ fn translate_locales(model: &ModelArgs, force: bool, limit: Option<usize>) -> Ex
 		Ok(outcome) => outcome,
 		Err(error) => {
 			eprintln!("could not write: {error}");
-			return ExitCode::FAILURE;
+			return Ok(ExitCode::FAILURE);
 		}
 	};
 
@@ -670,9 +602,9 @@ fn translate_locales(model: &ModelArgs, force: bool, limit: Option<usize>) -> Ex
 	}
 	// Exhaustion is a normal stopping point even if an earlier independent unit failed.
 	if outcome.exhausted.is_some() || outcome.failed.is_empty() {
-		ExitCode::SUCCESS
+		Ok(ExitCode::SUCCESS)
 	} else {
-		ExitCode::FAILURE
+		Ok(ExitCode::FAILURE)
 	}
 }
 
@@ -680,14 +612,8 @@ fn translate_locales(model: &ModelArgs, force: bool, limit: Option<usize>) -> Ex
 ///
 /// Nothing references these: the page emits `/opengraph/{slug}.png` and no article writes the
 /// URL down, so there is no reference to rewrite and the slug is the name.
-fn render_cards(force: bool) -> ExitCode {
-	let root = match paths::repo_root() {
-		Ok(root) => root,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
+fn render_cards(force: bool) -> anyhow::Result<ExitCode> {
+	let root = paths::repo_root()?;
 
 	// The site name, the author and their role all come from the file the pages read them
 	// from, so a card and the page it belongs to cannot introduce the site differently.
@@ -700,7 +626,7 @@ fn render_cards(force: bool) -> ExitCode {
 		Ok(outcome) => outcome,
 		Err(error) => {
 			eprintln!("{error}");
-			return ExitCode::FAILURE;
+			return Ok(ExitCode::FAILURE);
 		}
 	};
 
@@ -714,30 +640,22 @@ fn render_cards(force: bool) -> ExitCode {
 		outcome.failed.len()
 	);
 	if outcome.failed.is_empty() {
-		ExitCode::SUCCESS
+		Ok(ExitCode::SUCCESS)
 	} else {
-		ExitCode::FAILURE
+		Ok(ExitCode::FAILURE)
 	}
 }
 
 /// Give every asset a category and a handful of tags.
-fn classify_images(model: &ModelArgs, force: bool, limit: Option<usize>) -> ExitCode {
+fn classify_images(
+	model: &ModelArgs,
+	force: bool,
+	limit: Option<usize>,
+) -> anyhow::Result<ExitCode> {
 	let runner = model.runner(i18n::runner::DEFAULT_VISION);
 
-	let root = match paths::repo_root() {
-		Ok(root) => root,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
-	let runtime = match tokio::runtime::Runtime::new() {
-		Ok(runtime) => runtime,
-		Err(error) => {
-			eprintln!("could not start a runtime: {error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let root = paths::repo_root()?;
+	let runtime = tokio::runtime::Runtime::new().context("could not start a runtime")?;
 	let outcome = match runtime.block_on(classify::run(classify::Options {
 		repository: &root,
 		runner,
@@ -749,7 +667,7 @@ fn classify_images(model: &ModelArgs, force: bool, limit: Option<usize>) -> Exit
 		Ok(outcome) => outcome,
 		Err(error) => {
 			eprintln!("could not write: {error}");
-			return ExitCode::FAILURE;
+			return Ok(ExitCode::FAILURE);
 		}
 	};
 
@@ -775,9 +693,9 @@ fn classify_images(model: &ModelArgs, force: bool, limit: Option<usize>) -> Exit
 		println!("{} tokens, ${:.2}", outcome.tokens, outcome.usd);
 	}
 	if outcome.failed.is_empty() {
-		ExitCode::SUCCESS
+		Ok(ExitCode::SUCCESS)
 	} else {
-		ExitCode::FAILURE
+		Ok(ExitCode::FAILURE)
 	}
 }
 
@@ -785,14 +703,8 @@ fn classify_images(model: &ModelArgs, force: bool, limit: Option<usize>) -> Exit
 ///
 /// Always succeeds. This is a report, and a report that can fail a build is a gate wearing a
 /// report's name.
-fn check_assets() -> ExitCode {
-	let root = match paths::repo_root() {
-		Ok(root) => root,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
+fn check_assets() -> anyhow::Result<ExitCode> {
+	let root = paths::repo_root()?;
 
 	let gaps = match check::report(
 		&root,
@@ -802,13 +714,13 @@ fn check_assets() -> ExitCode {
 		Ok(gaps) => gaps,
 		Err(error) => {
 			eprintln!("could not read articles: {error}");
-			return ExitCode::FAILURE;
+			return Ok(ExitCode::FAILURE);
 		}
 	};
 
 	if gaps.is_empty() {
 		println!("every referenced asset is present");
-		return ExitCode::SUCCESS;
+		return Ok(ExitCode::SUCCESS);
 	}
 
 	for gap in &gaps {
@@ -828,33 +740,21 @@ fn check_assets() -> ExitCode {
 		.filter(|gap| gap.level == check::Level::Warn)
 		.count();
 	println!("{} missing, {warnings} of them images", gaps.len());
-	ExitCode::SUCCESS
+	Ok(ExitCode::SUCCESS)
 }
 
 /// Drop everything in `data/public` that no article asks for.
 ///
 /// Dry by default. The listing is the review, and `--live` is the answer to it.
-fn collect_garbage(live: bool) -> ExitCode {
-	let root = match paths::repo_root() {
-		Ok(root) => root,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
+fn collect_garbage(live: bool) -> anyhow::Result<ExitCode> {
+	let root = paths::repo_root()?;
 	let public = root.join("data").join("public");
 
-	let sweep = match gc::plan(&root, &public, &root.join("contents")) {
-		Ok(sweep) => sweep,
-		Err(error) => {
-			eprintln!("could not plan: {error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let sweep = gc::plan(&root, &public, &root.join("contents")).context("could not plan")?;
 
 	if sweep.orphans.is_empty() && sweep.entries.is_empty() {
 		println!("nothing to collect");
-		return ExitCode::SUCCESS;
+		return Ok(ExitCode::SUCCESS);
 	}
 
 	for path in &sweep.orphans {
@@ -873,14 +773,14 @@ fn collect_garbage(live: bool) -> ExitCode {
 
 	if !live {
 		println!("dry run -- pass --live to delete");
-		return ExitCode::SUCCESS;
+		return Ok(ExitCode::SUCCESS);
 	}
 	if let Err(error) = gc::apply(&root, &sweep) {
 		eprintln!("could not delete: {error}");
-		return ExitCode::FAILURE;
+		return Ok(ExitCode::FAILURE);
 	}
 	println!("collected");
-	ExitCode::SUCCESS
+	Ok(ExitCode::SUCCESS)
 }
 
 /// Collect the licence of everything the deployables are built out of.
@@ -893,72 +793,33 @@ fn collect_garbage(live: bool) -> ExitCode {
 /// A package that declares no licence at all fails the run. It is the one finding that needs a
 /// person -- everything else the record can state plainly -- and a report that scrolls past is
 /// how a dependency with no terms ends up shipped.
-fn collect_licenses() -> ExitCode {
-	let root = match paths::repo_root() {
-		Ok(root) => root,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
+fn collect_licenses() -> anyhow::Result<ExitCode> {
+	let root = paths::repo_root()?;
 	let public = root.join("data").join("public");
 
-	let mut found = match licenses::npm::collect(&root) {
-		Ok(found) => found,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let mut found = licenses::npm::collect(&root).map_err(anyhow::Error::msg)?;
 	let npm = found.len();
-	match licenses::cargo::collect(&root) {
-		Ok(crates) => found.extend(crates),
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	}
+	found.extend(licenses::cargo::collect(&root).map_err(anyhow::Error::msg)?);
 	println!("{npm} npm packages, {} crates", found.len() - npm);
 
-	let assertions = match licenses::read_assertions(&root) {
-		Ok(assertions) => assertions,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let assertions = licenses::read_assertions(&root).map_err(anyhow::Error::msg)?;
 
-	let written = match licenses::write(&public, found, &assertions) {
-		Ok(written) => written,
-		Err(error) => {
-			eprintln!("could not publish licence texts: {error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let written =
+		licenses::write(&public, found, &assertions).context("could not publish licence texts")?;
 
-	let document = match licenses::full_document(&public, &written.record) {
-		Ok(document) => document,
-		Err(error) => {
-			eprintln!("could not assemble the full notice: {error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let document = licenses::full_document(&public, &written.record)
+		.context("could not assemble the full notice")?;
 	if let Err(error) = image::store::write(&licenses::full_path(&public), document.as_bytes()) {
 		eprintln!("could not write the full notice: {error}");
-		return ExitCode::FAILURE;
+		return Ok(ExitCode::FAILURE);
 	}
 
 	let record_path = licenses::record_path(&root);
-	let json = match serde_json::to_string_pretty(&written.record) {
-		Ok(json) => json,
-		Err(error) => {
-			eprintln!("could not serialise the record: {error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let json =
+		serde_json::to_string_pretty(&written.record).context("could not serialise the record")?;
 	if let Err(error) = image::store::write(&record_path, format!("{json}\n").as_bytes()) {
 		eprintln!("could not write {}: {error}", record_path.display());
-		return ExitCode::FAILURE;
+		return Ok(ExitCode::FAILURE);
 	}
 
 	println!(
@@ -986,9 +847,9 @@ fn collect_licenses() -> ExitCode {
 			"{} packages declare no license at all -- decide about each before shipping them",
 			written.undeclared.len()
 		);
-		return ExitCode::FAILURE;
+		return Ok(ExitCode::FAILURE);
 	}
-	ExitCode::SUCCESS
+	Ok(ExitCode::SUCCESS)
 }
 
 /// Derive and publish every image the articles ask for, then rewrite what they say.
@@ -996,16 +857,14 @@ fn collect_licenses() -> ExitCode {
 /// With no file arguments this follows the articles. Named files are imported ahead of the
 /// article that will use them, which is how `--original` gets attached to a photograph before
 /// anything references it.
-fn process_images(force: bool, keep_original: bool, files: &[std::path::PathBuf]) -> ExitCode {
+fn process_images(
+	force: bool,
+	keep_original: bool,
+	files: &[std::path::PathBuf],
+) -> anyhow::Result<ExitCode> {
 	let only = files.to_vec();
 
-	let root = match paths::repo_root() {
-		Ok(root) => root,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let root = paths::repo_root()?;
 	let originals = root.join("data").join("image");
 	let public = root.join("data").join("public");
 	let articles = root.join("contents");
@@ -1015,13 +874,8 @@ fn process_images(force: bool, keep_original: bool, files: &[std::path::PathBuf]
 		keep_original,
 		only: &only,
 	};
-	let outcome = match image::run::run(&root, &originals, &public, &articles, &options) {
-		Ok(outcome) => outcome,
-		Err(error) => {
-			eprintln!("could not write: {error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let outcome =
+		image::run::run(&root, &originals, &public, &articles, &options).context("could not write")?;
 
 	for (path, error) in &outcome.failed {
 		eprintln!("fail  {}: {error}", path.display());
@@ -1041,9 +895,9 @@ fn process_images(force: bool, keep_original: bool, files: &[std::path::PathBuf]
 	);
 
 	if outcome.failed.is_empty() {
-		ExitCode::SUCCESS
+		Ok(ExitCode::SUCCESS)
 	} else {
-		ExitCode::FAILURE
+		Ok(ExitCode::FAILURE)
 	}
 }
 
@@ -1061,31 +915,17 @@ fn process_images(force: bool, keep_original: bool, files: &[std::path::PathBuf]
 /// this file. It is left here deliberately rather than exempted in the spec: moving it is the
 /// same edit as putting it under the task substrate, and both wait on the desktop shell reaching
 /// the point where it offers this command. Whoever gets there first should do the two together.
-fn scan_notes(model: &ModelArgs, force: bool, articles: &[std::path::PathBuf]) -> ExitCode {
+fn scan_notes(
+	model: &ModelArgs,
+	force: bool,
+	articles: &[std::path::PathBuf],
+) -> anyhow::Result<ExitCode> {
 	let only = articles.to_vec();
 	let runner = model.runner(i18n::runner::DEFAULT_VISION);
-	let model_override = match model.overrides(runner) {
-		Ok(model) => model,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let model_override = model.overrides(runner).map_err(anyhow::Error::msg)?;
 
-	let root = match paths::repo_root() {
-		Ok(root) => root,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
-	let runtime = match tokio::runtime::Runtime::new() {
-		Ok(runtime) => runtime,
-		Err(error) => {
-			eprintln!("could not start a runtime: {error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let root = paths::repo_root()?;
+	let runtime = tokio::runtime::Runtime::new().context("could not start a runtime")?;
 
 	let contents = root.join("contents");
 	let path = i18n::tn::path_for(&root);
@@ -1093,7 +933,7 @@ fn scan_notes(model: &ModelArgs, force: bool, articles: &[std::path::PathBuf]) -
 		Ok(table) => table,
 		Err(error) => {
 			eprintln!("could not read {}: {error}", path.display());
-			return ExitCode::FAILURE;
+			return Ok(ExitCode::FAILURE);
 		}
 	};
 	// Pages without `lang` are not articles. Keep them out of both new scans and the durable
@@ -1112,7 +952,7 @@ fn scan_notes(model: &ModelArgs, force: bool, articles: &[std::path::PathBuf]) -
 		&& let Err(error) = i18n::tn::save(&path, &table)
 	{
 		eprintln!("could not write {}: {error}", path.display());
-		return ExitCode::FAILURE;
+		return Ok(ExitCode::FAILURE);
 	}
 
 	// Named articles, or every one not yet read. An article scanned and found to need nothing
@@ -1123,7 +963,7 @@ fn scan_notes(model: &ModelArgs, force: bool, articles: &[std::path::PathBuf]) -
 			Ok(all) => all,
 			Err(error) => {
 				eprintln!("could not read {}: {error}", contents.display());
-				return ExitCode::FAILURE;
+				return Ok(ExitCode::FAILURE);
 			}
 		}
 	} else {
@@ -1189,7 +1029,7 @@ fn scan_notes(model: &ModelArgs, force: bool, articles: &[std::path::PathBuf]) -
 			Ok(segments) => segments,
 			Err(error) => {
 				eprintln!("{}: {error}", path.display());
-				return ExitCode::FAILURE;
+				return Ok(ExitCode::FAILURE);
 			}
 		};
 		let attached = i18n::tn::attach(&segments, &found);
@@ -1228,7 +1068,7 @@ fn scan_notes(model: &ModelArgs, force: bool, articles: &[std::path::PathBuf]) -
 		// bitten by before: a paid result is a purchase, not an intermediate.
 		if let Err(error) = i18n::tn::save(&path, &table) {
 			progress.suspend(|| eprintln!("could not write {}: {error}", path.display()));
-			return ExitCode::FAILURE;
+			return Ok(ExitCode::FAILURE);
 		}
 		progress.inc(1);
 	}
@@ -1236,11 +1076,11 @@ fn scan_notes(model: &ModelArgs, force: bool, articles: &[std::path::PathBuf]) -
 
 	if read == 0 {
 		println!("every article already read; pass --force to read one again");
-		return ExitCode::SUCCESS;
+		return Ok(ExitCode::SUCCESS);
 	}
 	println!("{read} read, {suggested} suggestions in data/tn.yaml; delete any you disagree with");
 	println!("{spent} tokens");
-	ExitCode::SUCCESS
+	Ok(ExitCode::SUCCESS)
 }
 
 /// The `cms embed` command: the crate trees and repository facts the articles show.
@@ -1255,14 +1095,8 @@ fn scan_notes(model: &ModelArgs, force: bool, articles: &[std::path::PathBuf]) -
 /// this file. It is left here deliberately rather than exempted in the spec: moving it is the
 /// same edit as putting it under the task substrate, and both wait on the desktop shell reaching
 /// the point where it offers this command. Whoever gets there first should do the two together.
-fn fetch_embeds(force: bool) -> ExitCode {
-	let root = match paths::repo_root() {
-		Ok(root) => root,
-		Err(error) => {
-			eprintln!("{error}");
-			return ExitCode::FAILURE;
-		}
-	};
+fn fetch_embeds(force: bool) -> anyhow::Result<ExitCode> {
+	let root = paths::repo_root()?;
 
 	let mut crates = embed::Crates::default();
 	let mut repos = embed::Repos::default();
@@ -1275,13 +1109,7 @@ fn fetch_embeds(force: bool) -> ExitCode {
 		}
 	}
 
-	let articles = match refs::markdown_under(&root.join("contents")) {
-		Ok(articles) => articles,
-		Err(error) => {
-			eprintln!("could not read contents: {error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let articles = refs::markdown_under(&root.join("contents")).context("could not read contents")?;
 	let mut want = embed::Wanted::default();
 	for path in &articles {
 		if let Ok(text) = std::fs::read_to_string(path) {
@@ -1351,7 +1179,7 @@ fn fetch_embeds(force: bool) -> ExitCode {
 			.as_bytes(),
 	) {
 		eprintln!("could not write crates.json: {error}");
-		return ExitCode::FAILURE;
+		return Ok(ExitCode::FAILURE);
 	}
 	if let Err(error) = image::store::write(
 		&embed::repos_path(&root),
@@ -1360,7 +1188,7 @@ fn fetch_embeds(force: bool) -> ExitCode {
 			.as_bytes(),
 	) {
 		eprintln!("could not write repos.json: {error}");
-		return ExitCode::FAILURE;
+		return Ok(ExitCode::FAILURE);
 	}
 
 	println!(
@@ -1368,10 +1196,10 @@ fn fetch_embeds(force: bool) -> ExitCode {
 		crates.crates.len(),
 		repos.repos.len()
 	);
-	ExitCode::SUCCESS
+	Ok(ExitCode::SUCCESS)
 }
 
-fn twitter_command(command: TwitterCommand) -> ExitCode {
+fn twitter_command(command: TwitterCommand) -> anyhow::Result<ExitCode> {
 	match command {
 		TwitterCommand::User { query, count } => {
 			let query = query.join(" ");
@@ -1386,7 +1214,7 @@ fn twitter_command(command: TwitterCommand) -> ExitCode {
 				Some(Some(mode)) => mode,
 				Some(None) => {
 					eprintln!("--mode takes Top or Latest");
-					return ExitCode::FAILURE;
+					return Ok(ExitCode::FAILURE);
 				}
 			};
 			let query = query.join(" ");
@@ -1421,32 +1249,26 @@ fn twitter_command(command: TwitterCommand) -> ExitCode {
 	}
 }
 
-fn run_lookup<F, T>(work: F, what: &str) -> ExitCode
+fn run_lookup<F, T>(work: F, what: &str) -> anyhow::Result<ExitCode>
 where
 	F: std::future::Future<Output = Result<T, twitter::Error>>,
 	T: serde::Serialize,
 {
-	let runtime = match tokio::runtime::Runtime::new() {
-		Ok(runtime) => runtime,
-		Err(error) => {
-			eprintln!("could not start a runtime: {error}");
-			return ExitCode::FAILURE;
-		}
-	};
+	let runtime = tokio::runtime::Runtime::new().context("could not start a runtime")?;
 	match runtime.block_on(work) {
 		Ok(value) => match serde_json::to_string_pretty(&value) {
 			Ok(json) => {
 				println!("{json}");
-				ExitCode::SUCCESS
+				Ok(ExitCode::SUCCESS)
 			}
 			Err(error) => {
 				eprintln!("could not encode {what}: {error}");
-				ExitCode::FAILURE
+				Ok(ExitCode::FAILURE)
 			}
 		},
 		Err(error) => {
 			eprintln!("{error}");
-			ExitCode::FAILURE
+			Ok(ExitCode::FAILURE)
 		}
 	}
 }

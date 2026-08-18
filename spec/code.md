@@ -97,10 +97,20 @@ useless as the message.
 So the rule is directional. Types going up, one message coming out, and the flattening happens
 once, at the shell, never in the middle.
 
-**Adoption is partial and deliberate.** `Malformed` is the first type carrying this shape;
-`std::io::Error` with a formatted message is what most of the tree still returns, and the
-opengraph renderer still returns `String`. Converting them is worth doing as its own work rather
-than folded into unrelated changes, so they are named here rather than left to be rediscovered.
+**Adoption is partial and deliberate.** The CLI boundary is in place: every command returns
+`anyhow::Result<ExitCode>`, and `run` is the one place that prints. What still returns a bare
+`String` is named rather than left to be found -- `licenses::npm::collect`, `i18n::parallelism`,
+`i18n::selected_locales`, `runner::model_override` and the opengraph renderer. Each is bridged
+with `anyhow::Error::msg` at the call, which makes the string the message and loses it as a
+cause; converting them to `thiserror` is worth doing as its own work.
+
+### `Err` is "could not run"; a failing exit code is not
+
+A command returns `Ok(ExitCode::FAILURE)` when it ran and has something to report -- items that
+failed inside a batch that finished -- and `Err` only when it could not run at all. Collapsing
+the two would make `cms alt` over a library where one description failed indistinguishable from
+`cms alt` in a directory that is not a repository, and the second is worth a different reaction
+from whoever typed it.
 
 ## Unused is not the same as dead
 

@@ -189,6 +189,26 @@ Three consequences worth knowing:
 Prefer the mise registry short name (`oxlint`) over a backend-qualified one (`npm:oxlint`);
 both resolve to the same package, and the short form keeps `mise.toml` readable.
 
+### `latest` is the pin, until something breaks
+
+Most tools here are declared `latest` on purpose. A version number is a claim that _this_
+release is the one this repository works with, and for a linter or a CLI that claim is almost
+never true -- it is simply the release that happened to be current on the day somebody typed it.
+What the number then buys is a tool that stops improving until a person remembers to raise it,
+and a diff every few months that says nothing except that time passed.
+
+**A pin is a bug report, not hygiene.** It is written when a specific release actually breaks
+this repository, and it carries the reason beside it: which version, what it broke, and what
+would let the pin be lifted. A pin with no such note is indistinguishable from one nobody has
+revisited, so the next reader cannot tell whether it is still needed.
+
+`rust = "stable"` is the same rule wearing a channel name rather than `latest`.
+
+The exposure this accepts is real and is the point: a tool can change under a build nobody
+touched. `mise run verify` is what makes that survivable -- the change surfaces as a failing
+check on the next run rather than as behaviour nobody notices, which is the trade a pin makes in
+the opposite direction and worse, by deferring the same discovery indefinitely.
+
 ### The JavaScript toolchain lives in package.json
 
 `typescript`, `vite`, and `vitest` are root `devDependencies`, not mise tools. mise's registry

@@ -6,18 +6,11 @@
 
 use std::path::{Path, PathBuf};
 
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, thiserror::Error)]
+#[error(
+	"could not find data/public above the current directory -- run this from inside the repository"
+)]
 pub struct NotFound;
-
-impl std::fmt::Display for NotFound {
-	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-		write!(
-			f,
-			"could not find data/public above the current directory -- run this from inside the \
-			 repository"
-		)
-	}
-}
 
 /// The repository root, found by looking for `data/public` above the working directory.
 ///

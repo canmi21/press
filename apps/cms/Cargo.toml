@@ -76,3 +76,4 @@ anstyle = "1.0.14"
 # can match on the case rather than read a string, and the derive is what keeps that cheap enough
 # to be worth doing every time. See spec/code.md.
 thiserror = "2.0.20"
+anyhow = "1.0.104"
