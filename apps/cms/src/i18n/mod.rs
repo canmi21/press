@@ -374,10 +374,11 @@ pub async fn run(
 		// summary` applies: no `lang` frontmatter, no language to translate out of. The homepage
 		// is the standing example -- it is identity copy, rendered from the source in every
 		// view, and translations of it were only ever dead weight. See spec/i18n.md.
-		let Some(lang) = crate::summary::lang_of(&article) else {
+		let fields = crate::document::fields_of(&article, &path)?;
+		let Some(lang) = crate::summary::lang_of(&fields) else {
 			continue;
 		};
-		let source_locale = crate::summary::source_locale(&lang).map(str::to_owned);
+		let source_locale = crate::summary::source_locale(lang).map(str::to_owned);
 		let live = segment::translatable(&article).map_err(|error| {
 			std::io::Error::new(
 				std::io::ErrorKind::InvalidData,

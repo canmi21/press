@@ -9,6 +9,7 @@
 //! is read by somebody standing in front of the article deciding whether to spend twenty minutes
 //! on it. See spec/i18n.md.
 
+use crate::document::Fields;
 use crate::i18n::runner::{self, Refusal, Runner};
 use crate::i18n::segment::Kind;
 use crate::i18n::store::Translation;
@@ -247,11 +248,13 @@ struct Article {
 
 /// The prose, without the frontmatter block the model has no use for.
 fn body_of(source: &str) -> &str {
-	source
-		.strip_prefix("---\n")
-		.and_then(|rest| rest.find("\n---").map(|end| &rest[end + 4..]))
-		.unwrap_or(source)
-		.trim_start_matches(['\n', '\r'])
+	match crate::document::split(source) {
+		Ok(document) => document.prose(),
+		// A file whose fence never closes has no readable body either; handing back the whole
+		// text is what every caller here already did, and the malformed reading is reported by
+		// whoever asks for the fields rather than twice.
+		Err(_) => source,
+	}
 }
 
 /// A string field from the frontmatter block, if the file opens with one.
@@ -259,38 +262,33 @@ fn body_of(source: &str) -> &str {
 /// One parser rather than one per field: the second caller is where a copy starts disagreeing
 /// with the first about what counts as frontmatter, and the answer to that question decides
 /// whether a file is an article at all.
-fn field_of(source: &str, key: &str) -> Option<String> {
-	let rest = source.strip_prefix("---\n")?;
-	let end = rest.find("\n---")?;
-	let value: serde_yaml_ng::Value = serde_yaml_ng::from_str(&rest[..end]).ok()?;
-	value
-		.as_mapping()?
-		.get(serde_yaml_ng::Value::from(key))
-		.and_then(serde_yaml_ng::Value::as_str)
-		.map(str::to_owned)
-}
-
 /// The `lang` an article declares, if it declares one.
-pub fn lang_of(source: &str) -> Option<String> {
-	field_of(source, "lang")
+///
+/// The presence of this key is what separates an article from a page: a page has no language to
+/// translate out of, so it is neither summarised nor translated. See spec/i18n.md.
+pub fn lang_of(fields: &Fields) -> Option<&str> {
+	fields.get("lang").map(String::as_str)
 }
 
 /// The `title` an article declares, if it declares one.
-pub fn title_of(source: &str) -> Option<String> {
-	field_of(source, "title")
+pub fn title_of(fields: &Fields) -> Option<&str> {
+	fields.get("title").map(String::as_str)
 }
 
 /// The `subtitle` an article declares, if it declares one.
-pub fn subtitle_of(source: &str) -> Option<String> {
-	field_of(source, "subtitle")
+pub fn subtitle_of(fields: &Fields) -> Option<&str> {
+	fields.get("subtitle").map(String::as_str)
 }
 
 /// The best authored timestamp for ordering an article by its latest change.
 ///
-/// A newly created article may not have been revised yet, so `created` is its first modification
-/// rather than a reason to leave it out of a recent-articles list.
-pub fn modified_of(source: &str) -> Option<String> {
-	field_of(source, "lastmod").or_else(|| field_of(source, "created"))
+/// `lastmod` when the author set one, and the creation date otherwise. The rule lives here rather
+/// than at each call site so the two keys cannot be consulted in different orders in two places.
+pub fn modified_of(fields: &Fields) -> Option<&str> {
+	fields
+		.get("lastmod")
+		.or_else(|| fields.get("created"))
+		.map(String::as_str)
 }
 
 /// Which articles still want a summary in their own language.
@@ -318,9 +316,11 @@ fn pending(contents: &Path, force: bool) -> std::io::Result<(Vec<Article>, usize
 			let Ok(source) = std::fs::read_to_string(&path) else {
 				continue;
 			};
-			let Some(lang) = lang_of(&source) else {
+			let fields = crate::document::fields_of(&source, &path)?;
+			let Some(lang) = lang_of(&fields) else {
 				continue;
 			};
+			let lang = lang.to_owned();
 			let Some(locale) = source_locale(&lang) else {
 				continue;
 			};
@@ -620,7 +620,8 @@ mod tests {
 	fn the_frontmatter_is_not_sent() {
 		let source = "---\ntitle: A\nlang: zh\n---\n\nThe prose.\n";
 		assert_eq!(body_of(source), "The prose.\n");
-		assert_eq!(lang_of(source).as_deref(), Some("zh"));
+		let fields = crate::document::fields(source).expect("fields");
+		assert_eq!(lang_of(&fields), Some("zh"));
 	}
 
 	#[test]

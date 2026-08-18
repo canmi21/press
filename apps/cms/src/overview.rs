@@ -106,7 +106,8 @@ fn snapshot_at(repository: &Path) -> std::io::Result<Snapshot> {
 	let mut recent_articles = Vec::new();
 	for path in article_paths {
 		let source = std::fs::read_to_string(&path)?;
-		if summary::lang_of(&source).is_some() {
+		let fields = crate::document::fields_of(&source, &path)?;
+		if summary::lang_of(&fields).is_some() {
 			article_count += 1;
 			let section = path
 				.strip_prefix(&contents)
@@ -120,16 +121,16 @@ fn snapshot_at(repository: &Path) -> std::io::Result<Snapshot> {
 			*article_sections.entry(section).or_default() += 1;
 
 			if let (Some(title), Some(modified)) =
-				(summary::title_of(&source), summary::modified_of(&source))
+				(summary::title_of(&fields), summary::modified_of(&fields))
 			{
 				// A malformed date should not make the whole Overview fail. It is absent from the
 				// recent list, where it could not be ordered truthfully, while the article still
 				// contributes to the workspace counts above.
 				if modified.parse::<jiff::Timestamp>().is_ok() {
 					recent_articles.push(RecentArticle {
-						title,
-						subtitle: summary::subtitle_of(&source),
-						modified,
+						title: title.to_owned(),
+						subtitle: summary::subtitle_of(&fields).map(str::to_owned),
+						modified: modified.to_owned(),
 					});
 				}
 			}

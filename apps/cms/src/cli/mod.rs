@@ -1101,7 +1101,9 @@ fn scan_notes(model: &ModelArgs, force: bool, articles: &[std::path::PathBuf]) -
 	let recorded = table.articles.len();
 	table.articles.retain(|key, _| {
 		std::fs::read_to_string(contents.join(key))
-			.map(|source| summary::lang_of(&source).is_some())
+			.map(|source| {
+				crate::document::fields(&source).is_ok_and(|fields| summary::lang_of(&fields).is_some())
+			})
 			// A missing source cannot prove the record belongs to a page. Preserve paid history
 			// until a source file exists that positively identifies itself as one.
 			.unwrap_or(true)
@@ -1140,8 +1142,8 @@ fn scan_notes(model: &ModelArgs, force: bool, articles: &[std::path::PathBuf]) -
 	.filter(|article| {
 		std::fs::read_to_string(article)
 			.ok()
-			.and_then(|source| summary::lang_of(&source))
-			.is_some()
+			.and_then(|source| crate::document::fields(&source).ok())
+			.is_some_and(|fields| summary::lang_of(&fields).is_some())
 	})
 	.collect();
 

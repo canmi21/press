@@ -24,5 +24,6 @@ pub mod urls;
 pub mod articles;
 pub mod cli;
 pub mod derived;
+pub mod document;
 pub mod overview;
 pub mod task;

@@ -5,35 +5,10 @@
 //! its translations go stale. Move a paragraph and nothing changes at all, because order lives
 //! in the article and never in the sidecar. See spec/i18n.md.
 
+use crate::document::{self, Malformed};
 use std::collections::BTreeMap;
 
 const TRANSLATABLE_FRONTMATTER: [&str; 3] = ["title", "subtitle", "description"];
-
-/// Frontmatter that cannot be read.
-///
-/// Returned rather than panicked on. A person writes this by hand, so a stray colon or a
-/// mis-indented line is an ordinary event and not a broken invariant -- and a panic here took
-/// down `cms i18n`, `cms segments` and `cms articles` with a message that named the fault and
-/// not the file, leaving a binary search through the corpus as the way to find out which one.
-///
-/// The article's path is not in here. This function is handed text, and a caller that reads a
-/// file already knows which one it read; adding the path as a parameter only for a message would
-/// make every caller pass something the work itself never uses.
-#[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
-pub enum Malformed {
-	#[error("frontmatter is not valid YAML: {0}")]
-	NotYaml(String),
-	#[error("frontmatter is not a mapping of keys to values")]
-	NotAMapping,
-	#[error("frontmatter `{0}` must be text")]
-	NotText(String),
-}
-
-impl From<Malformed> for std::io::Error {
-	fn from(error: Malformed) -> Self {
-		std::io::Error::new(std::io::ErrorKind::InvalidData, error.to_string())
-	}
-}
 
 /// Where a segment is spliced back into the article.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -164,15 +139,15 @@ pub fn id_of(source: &str) -> String {
 /// Split allowlisted frontmatter values and body blocks; the frontmatter block itself is never
 /// a segment.
 pub fn split(article: &str) -> Result<Vec<Segment>, Malformed> {
-	let (body, body_start, frontmatter) = match article.strip_prefix("---\n") {
-		Some(rest) => rest.find("\n---").map_or((rest, 4, None), |end| {
-			(&rest[end + 4..], end + 8, Some((&rest[..end], 4)))
-		}),
-		None => (article, 0, None),
-	};
+	let document::Document {
+		frontmatter,
+		frontmatter_start,
+		body,
+		body_start,
+	} = document::split(article)?;
 
 	let mut segments = match frontmatter {
-		Some((source, start)) => frontmatter_segments(source, start)?,
+		Some(source) => frontmatter_segments(source, frontmatter_start)?,
 		None => Vec::new(),
 	};
 	let mut block: Vec<&str> = Vec::new();

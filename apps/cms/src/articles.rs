@@ -95,9 +95,11 @@ pub fn listing_at(repository: &Path) -> std::io::Result<Listing> {
 		// The same test `cms summary` and `cms i18n` apply: no `lang`, no language to translate
 		// out of, so the file is a page rather than an article. The homepage is the standing
 		// example. See spec/i18n.md.
-		let Some(lang) = summary::lang_of(&source) else {
+		let fields = crate::document::fields_of(&source, &path)?;
+		let Some(lang) = summary::lang_of(&fields) else {
 			continue;
 		};
+		let lang = lang.to_owned();
 		let source_locale = summary::source_locale(&lang);
 
 		let live = i18n::segment::translatable(&source).map_err(|error| {
@@ -149,15 +151,17 @@ pub fn listing_at(repository: &Path) -> std::io::Result<Listing> {
 				.collect::<Vec<_>>()
 				.join("/"),
 			section,
-			title: summary::title_of(&source).unwrap_or_else(|| {
-				relative
-					.file_stem()
-					.and_then(|stem| stem.to_str())
-					.unwrap_or("untitled")
-					.to_owned()
-			}),
-			subtitle: summary::subtitle_of(&source),
-			modified: summary::modified_of(&source),
+			title: summary::title_of(&fields)
+				.map(str::to_owned)
+				.unwrap_or_else(|| {
+					relative
+						.file_stem()
+						.and_then(|stem| stem.to_str())
+						.unwrap_or("untitled")
+						.to_owned()
+				}),
+			subtitle: summary::subtitle_of(&fields).map(str::to_owned),
+			modified: summary::modified_of(&fields).map(str::to_owned),
 			lang,
 			segments: live.len(),
 			translated: wanted.saturating_sub(absent),

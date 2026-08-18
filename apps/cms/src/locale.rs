@@ -167,7 +167,8 @@ fn pending_summaries(
 			let article = path.with_extension("").with_extension("md");
 			let Some(source_locale) = std::fs::read_to_string(&article)
 				.ok()
-				.and_then(|source| crate::summary::lang_of(&source))
+				.and_then(|source| crate::document::fields(&source).ok())
+				.and_then(|fields| crate::summary::lang_of(&fields).map(str::to_owned))
 				.and_then(|lang| crate::summary::source_locale(&lang))
 			else {
 				continue;

@@ -84,7 +84,7 @@ pub struct Article {
 /// support.
 pub fn article_of(root: &Path, path: &Path) -> Option<Article> {
 	let text = std::fs::read_to_string(path).ok()?;
-	let front = text.strip_prefix("---\n")?.split_once("\n---")?.0;
+	let front = crate::document::split(&text).ok()?.frontmatter?;
 
 	// Read with the same parser the segment layout uses, deliberately. These two read one
 	// frontmatter and the card looks its translation up by the title *string*, so a byte of
@@ -267,7 +267,6 @@ pub enum Face {
 
 /// Every card an article asks for: one per view, each in that view's own words.
 fn article_jobs(
-	repo: &Path,
 	public: &Path,
 	config: &SiteConfig,
 	catalogs: &BTreeMap<&'static str, BTreeMap<String, String>>,
@@ -346,10 +345,7 @@ pub fn census(articles: &Path) -> Result<Census, String> {
 		let Ok(text) = std::fs::read_to_string(&path) else {
 			continue;
 		};
-		let body = text
-			.strip_prefix("---\n")
-			.and_then(|rest| rest.split_once("\n---"))
-			.map_or(text.as_str(), |(_, body)| body);
+		let body = crate::document::split(&text).map_or(text.as_str(), |document| document.body);
 		counted += 1;
 		characters += body.chars().filter(|c| !c.is_whitespace()).count();
 	}
@@ -363,7 +359,6 @@ pub fn census(articles: &Path) -> Result<Census, String> {
 
 /// The home card, once per view, worded by that view's own catalog.
 fn home_jobs(
-	repo: &Path,
 	public: &Path,
 	config: &SiteConfig,
 	catalogs: &BTreeMap<&'static str, BTreeMap<String, String>>,
@@ -598,20 +593,7 @@ pub fn render_all(
 	Ok(outcome)
 }
 
-/// Characters in an article's body, ignoring whitespace and its frontmatter.
-fn characters_of(path: &Path) -> usize {
-	let Ok(text) = std::fs::read_to_string(path) else {
-		return 0;
-	};
-	let body = text
-		.strip_prefix("---\n")
-		.and_then(|rest| rest.split_once("\n---"))
-		.map_or(text.as_str(), |(_, body)| body);
-	body.chars().filter(|c| !c.is_whitespace()).count()
-}
-
 /// Render every card the site needs, in every view.
-///
 pub fn run(repo: &Path, public: &Path, articles: &Path, force: bool) -> Result<Outcome, String> {
 	let text = std::fs::read_to_string(config_path(repo))
 		.map_err(|error| format!("could not read the site config: {error}"))?;
@@ -633,17 +615,11 @@ pub fn run(repo: &Path, public: &Path, articles: &Path, force: bool) -> Result<O
 			continue;
 		};
 		jobs.extend(
-			article_jobs(repo, public, &config, &catalogs, &path, &article).map_err(|e| e.to_string())?,
+			article_jobs(public, &config, &catalogs, &path, &article).map_err(|e| e.to_string())?,
 		);
 	}
 
-	jobs.extend(home_jobs(
-		repo,
-		public,
-		&config,
-		&catalogs,
-		&census(articles)?,
-	));
+	jobs.extend(home_jobs(public, &config, &catalogs, &census(articles)?));
 	jobs.extend(route_jobs(repo, public, &config, &catalogs));
 	render_all(repo, public, jobs, force)
 }
