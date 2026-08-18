@@ -81,6 +81,33 @@ Calibration matters in both directions. Escalating every trivial choice wastes t
 attention; silently settling a structural one takes a decision that was never yours. When
 genuinely unsure, ask one focused question instead of a list.
 
+### Working a backlog: one item, proposed and accepted, then done
+
+A list of known problems -- an audit, a review, a set of findings -- is worked one item at a
+time, and each one is **proposed and explicitly accepted before anything is written**. The
+proposal states the problem, the evidence for it, the options with what each costs, and a
+recommendation. Then it stops. Silence is not acceptance, and neither is the user having
+accepted the item before it.
+
+The ordinary calibration above is not enough here, for two reasons a backlog has and ordinary
+work does not.
+
+**Every item on the list was already judged once, by whoever wrote the list, and that judgement
+is the thing least worth trusting.** The findings that survive review are rarely the ones that
+looked most obvious in it -- three separate items in the audit this rule came out of were
+overturned by the user: a colour token that read as dead was a deliberate reservation, an emoji
+that read as unapproved was wanted, and a fix recommended as too small to be worth a dependency
+got the dependency instead. A list presents each entry with equal confidence, and the confidence
+is the author's, not the reader's.
+
+**A list also carries momentum.** Having done four items unaided makes the fifth feel
+pre-approved, and nothing in the list marks which entry is the structural one. The rule removes
+the judgement call rather than asking for it to be made well four times running.
+
+Read-only investigation is exempt and needs no approval: searching, reading, type-checking,
+running the test suite, taking a screenshot. That is the material a proposal is made of, and
+none of it changes the tree.
+
 ## Checking your own work
 
 Make the change and hand it back. Do not stand up a browser to confirm that a colour is the
