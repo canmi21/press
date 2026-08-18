@@ -70,9 +70,21 @@ const readyPngEncode = once(() => initPngEncode(PNG_WASM));
 const readyJpegEncode = once(() => initJpegEncode(JPEG_ENC_WASM));
 const readyWebpEncode = once(() => initWebpEncode(WEBP_ENC_WASM));
 
-/** What a stored object can be, and what a request can ask to be given. */
+/**
+ * What a stored object can be, and what a request can ask to be given.
+ *
+ * `jpg` is deliberately not here. It is not a format, it is JPEG spelled for an eight-character
+ * filename limit that stopped mattering decades ago -- the same history that leaves `yml` beside
+ * `yaml`. Carried as a member it would put a format that does not exist into the type, make every
+ * table list one MIME twice, and split the cache in two: `cid.jpg` and `cid.jpeg` are separate
+ * validators and separate edge entries holding identical bytes. The route redirects it instead.
+ *
+ * There is no AVIF encoder, only the decoder. Measured, the encoder is 1.1MB compressed against
+ * 332KB for the decoder, which is most of a Worker's whole budget spent producing what apps/cms
+ * already produces locally where the time costs nothing.
+ */
 export const DECODABLE = ['avif', 'png'] as const;
-export const ENCODABLE = ['webp', 'jpeg', 'jpg', 'png'] as const;
+export const ENCODABLE = ['webp', 'jpeg', 'png'] as const;
 
 export type Decodable = (typeof DECODABLE)[number];
 export type Encodable = (typeof ENCODABLE)[number];
@@ -116,7 +128,6 @@ async function fromPixels(pixels: ImageData, to: Encodable): Promise<ArrayBuffer
 			await readyWebpEncode();
 			return encodeWebp(pixels, { quality: QUALITY });
 		case 'jpeg':
-		case 'jpg':
 			await readyJpegEncode();
 			return encodeJpeg(pixels, { quality: QUALITY });
 		case 'png':

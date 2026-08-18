@@ -68,6 +68,21 @@ export function parseName(name: string): { cid: string; extension: string } | nu
 	return CID.test(cid) ? { cid, extension } : null;
 }
 
+/**
+ * The spelling a request should have used, or `null` when it already has it.
+ *
+ * `jpg` is JPEG written for an eight-character filename limit that outlived the system imposing
+ * it -- the same history that leaves `yml` beside `yaml`. Treating it as a second format would
+ * put two of everything downstream: two validators, two edge cache entries and two transcodes,
+ * over identical bytes. Normalising at the door leaves one of each.
+ *
+ * Here rather than beside the codecs because it is a fact about how a name is written, not about
+ * what can be decoded.
+ */
+export function canonicalSpelling(extension: string): string | null {
+	return extension === 'jpg' ? 'jpeg' : null;
+}
+
 /** One id serves several formats, so the format is part of what the tag identifies. */
 export function validatorFor(cid: string, extension: string): string {
 	return `"${cid}.${extension}"`;

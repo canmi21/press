@@ -30,7 +30,19 @@ copy of the library. Storage would be nearly free either way -- what a stored fa
 costs is the sync, the derive time, and a second thing to keep consistent.
 
 No `?format=` parameter, because the extension already says which format is wanted and two
-spellings of one request fragment the cache key. It also caps the exposure: only a size that
+spellings of one request fragment the cache key.
+
+**And for the same reason there is no `.jpg`.** It is not a second format, it is JPEG written
+for an eight-character filename limit that outlived the system that imposed it -- the history
+that leaves `yml` beside `yaml`. Carried as one, it would fragment exactly what the paragraph
+above refuses to fragment: two validators, two edge entries and two conversions over identical
+bytes. A request for it is answered with a permanent redirect to `.jpeg`, so a reader pays one
+extra hop once and their browser never asks again.
+
+The id is checked before that redirect is issued, and a missing one is answered `404` directly.
+Redirecting first would make a client spend two round trips to learn that nothing is there. The
+lookup that buys the difference is only ever reached when somebody types the address by hand:
+every URL this repository generates already carries the resolved name. It also caps the exposure: only a size that
 was derived exists as an object, so nobody can burn the monthly transformation quota by
 asking for arbitrary dimensions.
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { cardKeys, keyFor, licenseKeyFor, parseName, validatorFor } from './key';
+import { canonicalSpelling, cardKeys, keyFor, licenseKeyFor, parseName, validatorFor } from './key';
 
 describe('validatorFor', () => {
 	it('distinguishes the formats one id serves', () => {
@@ -108,5 +108,22 @@ describe('parseName', () => {
 		// it would mean two names resolving to the same object, and a content address that is
 		// not unique stops being an address.
 		expect(parseName('44b6081deaf0242ca3bf83d62a3b6c95.avif.webp')).toBeNull();
+	});
+});
+
+describe('canonicalSpelling', () => {
+	/**
+	 * One format with two spellings is two validators, two edge cache entries and two transcodes
+	 * over identical bytes. The route redirects rather than serving the short form, so this is
+	 * what decides that there is anything to redirect.
+	 */
+	it('names jpeg as the spelling jpg should have used', () => {
+		expect(canonicalSpelling('jpg')).toBe('jpeg');
+	});
+
+	it('leaves every spelling that is already canonical alone', () => {
+		for (const extension of ['jpeg', 'webp', 'png', 'avif']) {
+			expect(canonicalSpelling(extension)).toBeNull();
+		}
 	});
 });

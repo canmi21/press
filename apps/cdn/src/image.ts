@@ -1,8 +1,8 @@
 import { Hono } from 'hono';
 import { type Bindings, read, toResponse } from '@canmi/store';
 import { FOREVER } from './cache';
-import { keyFor, parseName, validatorFor } from './key';
-import { DECODABLE, type Decodable, isEncodable, transcode } from './transcode';
+import { canonicalSpelling, keyFor, parseName, validatorFor } from './key';
+import { DECODABLE, type Decodable, type Encodable, isEncodable, transcode } from './transcode';
 
 /**
  * Serving content-addressed assets.
@@ -14,12 +14,19 @@ import { DECODABLE, type Decodable, isEncodable, transcode } from './transcode';
  */
 const image = new Hono<{ Bindings: Bindings }>();
 
-/** What a re-encoded response is served as. */
-const TYPES: Record<string, string> = {
-	avif: 'image/avif',
+/**
+ * What a re-encoded response is served as.
+ *
+ * Keyed by `Encodable` rather than by string, so the table is complete by construction. Typed
+ * loosely it was not: indexing it returned `string | undefined`, and the missing case was
+ * answered with a fallback of `image/jpeg` -- a wrong answer, silently, for bytes that were not
+ * JPEG. Nothing could reach it, because the guard below narrows the extension first, so the
+ * fallback existed only to quiet the checker that was right. Adding a format without its MIME
+ * type is now a compile error instead.
+ */
+const TYPES: Record<Encodable, string> = {
 	webp: 'image/webp',
 	jpeg: 'image/jpeg',
-	jpg: 'image/jpeg',
 	png: 'image/png',
 };
 
@@ -29,6 +36,16 @@ image.get('/:name', async (c) => {
 		return c.json({ error: 'not a content id' }, 400);
 	}
 	const { cid, extension } = parsed;
+
+	// Normalised before anything else looks at the extension, so nothing downstream has to know
+	// the alternative spelling exists.
+	const canonical = canonicalSpelling(extension);
+	if (canonical) {
+		if (!(await findStored(c.env, cid))) {
+			return c.json({ error: 'not found' }, 404);
+		}
+		return c.redirect(`/image/${cid}.${canonical}`, 301);
+	}
 
 	// Answered before the bucket is touched. The id is a hash of the bytes, so a client
 	// holding this tag holds these bytes; nothing on the far side could change that, and
@@ -66,7 +83,7 @@ image.get('/:name', async (c) => {
 
 	const bytes = await transcode(await source.bytes, source.format, extension);
 	const response = finish(
-		new Response(bytes, { headers: { 'Content-Type': TYPES[extension] ?? 'image/jpeg' } }),
+		new Response(bytes, { headers: { 'Content-Type': TYPES[extension] } }),
 		cid,
 		extension,
 	);
