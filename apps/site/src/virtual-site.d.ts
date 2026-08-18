@@ -8,7 +8,7 @@ declare module 'virtual:site' {
 			role: string;
 			email: string;
 			telegram: string;
-			x?: string;
+			twitter?: string;
 			github: string;
 			githubId: number;
 			fediverse: string;

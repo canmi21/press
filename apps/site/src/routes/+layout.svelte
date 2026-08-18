@@ -89,7 +89,9 @@
 		author: {
 			'@type': 'Person',
 			name: site.author.name,
-			...(site.author.x ? { url: `${URLS.external.social.x}/${site.author.x}` } : {}),
+			...(site.author.twitter
+				? { url: `${URLS.external.social.twitter}/${site.author.twitter}` }
+				: {}),
 		},
 	};
 </script>
@@ -111,9 +113,9 @@
 	{/each}
 	<!-- Site-wide, so it sits here rather than being repeated by every page that has a card. -->
 	<meta property="og:site_name" content={site.name} />
-	{#if site.author.x}
-		<meta name="twitter:site" content="@{site.author.x}" />
-		<meta name="twitter:creator" content="@{site.author.x}" />
+	{#if site.author.twitter}
+		<meta name="twitter:site" content="@{site.author.twitter}" />
+		<meta name="twitter:creator" content="@{site.author.twitter}" />
 	{/if}
 	<!-- Safe despite the raw insertion: ldJson escapes what it serialises. Stated rather than
 	     suppressed, because no linter here checks it -- oxlint does not parse svelte templates

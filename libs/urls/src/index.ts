@@ -62,13 +62,16 @@ export const URLS = {
 		// Named as the feed's generator. Nothing fetches it, but it is emitted into published
 		// output, so it belongs with the other URLs rather than inline in a route.
 		feedsmith: 'https://feedsmith.dev',
-		// Bases for social profile links. `x` and `twitter` are the same
-		// service under two hostnames: profiles moved and the intent endpoint did not, so both
-		// are still live and both are still needed. Handles stay in `site.config.yaml`; these
-		// are only where a handle is reachable.
+		// Bases for social profile links. Handles stay in `site.config.yaml`; these are only
+		// where a handle is reachable.
+		//
+		// `twitter.com` rather than `x.com`, on both. The service renamed itself and kept the
+		// old host as a permanent redirect, which it will go on keeping -- too much of the web
+		// points at it to drop. So the choice is between a name its owner picked and the name
+		// everybody uses, at the cost of one redirect nobody waits on. See spec/twitter.md.
 		social: {
 			telegram: 'https://t.me',
-			x: 'https://x.com',
+			twitter: 'https://twitter.com',
 			twitterIntent: 'https://twitter.com/intent/follow',
 			fediverse: 'https://nya.one',
 			bluesky: 'https://bsky.app/profile',

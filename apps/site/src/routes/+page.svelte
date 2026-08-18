@@ -32,12 +32,12 @@
 	// See spec/locale.md#server-only-documents-leave-the-page-router.
 	const links = [
 		{ name: 'github', label: 'GitHub', href: githubProfileUrl, size: base },
-		...(site.author.x
+		...(site.author.twitter
 			? ([
 					{
 						name: 'twitter',
-						label: 'X',
-						href: `${URLS.external.social.twitterIntent}?screen_name=${site.author.x}`,
+						label: 'Twitter',
+						href: `${URLS.external.social.twitterIntent}?screen_name=${site.author.twitter}`,
 						size: base,
 					},
 				] as const)

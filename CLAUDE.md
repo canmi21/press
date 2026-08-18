@@ -119,8 +119,8 @@ each of its files is listed here rather than behind a second index.
 
 **Work that takes minutes and spends money**
 
-| Topic                                  | File                           |
-| -------------------------------------- | ------------------------------ |
-| Long-running tasks and their execution | [spec/tasks.md](spec/tasks.md) |
-| Translating article content            | [spec/i18n.md](spec/i18n.md)   |
-| Single-provider X lookups              | [spec/x.md](spec/x.md)         |
+| Topic                                  | File                               |
+| -------------------------------------- | ---------------------------------- |
+| Long-running tasks and their execution | [spec/tasks.md](spec/tasks.md)     |
+| Translating article content            | [spec/i18n.md](spec/i18n.md)       |
+| Single-provider Twitter lookups        | [spec/twitter.md](spec/twitter.md) |

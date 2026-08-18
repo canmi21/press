@@ -1,7 +1,10 @@
-//! Asking Grok to call an X tool and reading the line-anchored reply.
+//! Asking Grok to call a Twitter tool and reading the line-anchored reply.
+//!
+//! The tool names below keep their `x_` spelling. They are Grok's, not this repository's, and a
+//! vendor's identifier stays as the vendor writes it -- see spec/naming.md.
 //!
 //! The tool's own text is not parsed: its shape is undocumented and a parser tied to it
-//! breaks when the wording shifts. The model is asked for this format instead. See spec/x.md.
+//! breaks when the wording shifts. The model is asked for this format instead. See spec/twitter.md.
 //! The sentinels live with the first format that used them; see spec/i18n.md.
 
 use crate::i18n::prompt::boundary;
@@ -51,7 +54,7 @@ pub fn mark(name: &str) -> String {
 pub fn users_request(query: &str, count: u32) -> Request {
 	let fence = boundary();
 	let text = format!(
-		"You are reporting the results of one X lookup. Call the named tool exactly once with \
+		"You are reporting the results of one Twitter lookup. Call the named tool exactly once with \
 		 the parameters given, then transcribe every result into the format below. The tool's \
 		 own wording is not the answer; only the format below is.\n\
 		 \n\
@@ -108,7 +111,7 @@ pub fn users_request(query: &str, count: u32) -> Request {
 pub fn keyword_request(query: &str, limit: u32, mode: Mode) -> Request {
 	let fence = boundary();
 	let text = format!(
-		"You are reporting the results of one X lookup. Call the named tool exactly once with \
+		"You are reporting the results of one Twitter lookup. Call the named tool exactly once with \
 		 the parameters given, then transcribe every result into the format below. The tool's \
 		 own wording is not the answer; only the format below is.\n\
 		 \n\
@@ -118,7 +121,7 @@ pub fn keyword_request(query: &str, limit: u32, mode: Mode) -> Request {
 		 \n\
 		 Rules:\n\
 		 - Call the tool. Do not invent posts, and do not use any other search.\n\
-		 - The query may contain from:username and other X search operators; pass it to the \
+		 - The query may contain from:username and other Twitter search operators; pass it to the \
 		 tool unchanged.\n\
 		 - If the tool returns nothing, output a count of 0 and no post blocks.\n\
 		 - The first line of the reply is the count marker and nothing else.\n\
@@ -150,7 +153,7 @@ pub fn keyword_request(query: &str, limit: u32, mode: Mode) -> Request {
 pub fn thread_request(post_id: &str) -> Request {
 	let fence = boundary();
 	let text = format!(
-		"You are reporting the results of one X lookup. Call the named tool exactly once with \
+		"You are reporting the results of one Twitter lookup. Call the named tool exactly once with \
 		 the parameters given, then transcribe every result into the format below. The tool's \
 		 own wording is not the answer; only the format below is.\n\
 		 \n\
@@ -210,7 +213,7 @@ pub fn semantic_request(options: &Semantic) -> Request {
 		));
 	}
 	let text = format!(
-		"You are reporting the results of one X lookup. Call the named tool exactly once with \
+		"You are reporting the results of one Twitter lookup. Call the named tool exactly once with \
 		 the parameters given, then transcribe every result into the format below. The tool's \
 		 own wording is not the answer; only the format below is.\n\
 		 \n\
@@ -518,7 +521,7 @@ pub fn snowflake(value: &str) -> bool {
 #[cfg(test)]
 mod tests {
 	use super::*;
-	use crate::x::{Mode, Semantic};
+	use crate::twitter::{Mode, Semantic};
 
 	fn reply(parts: &[&str]) -> String {
 		parts.join("\n")

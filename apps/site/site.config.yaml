@@ -22,7 +22,7 @@ author:
   email: t@canmi.net
   # Handles, not URLs. Where to reach them is libs/urls' business; who they identify lives here.
   telegram: canmimua
-  x: canmi21
+  twitter: canmi21
   github: canmi21
   # GitHub addresses an avatar by the account's numeric id, which never changes when the handle
   # does. A handle in its place would break the picture the day the account is renamed, and the

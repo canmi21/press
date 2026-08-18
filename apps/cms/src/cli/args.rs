@@ -241,16 +241,16 @@ pub enum Command {
 		live: bool,
 	},
 
-	/// Search X
-	X {
+	/// Search Twitter
+	Twitter {
 		#[command(subcommand)]
-		command: XCommand,
+		command: TwitterCommand,
 	},
 }
 
 #[derive(Subcommand, Debug)]
-pub enum XCommand {
-	/// Search X users
+pub enum TwitterCommand {
+	/// Search Twitter users
 	User {
 		/// Words to search for; joined with spaces
 		#[arg(value_name = "QUERY", required = true)]
@@ -258,7 +258,7 @@ pub enum XCommand {
 		#[arg(long, value_name = "N", value_parser = positive_u32)]
 		count: Option<u32>,
 	},
-	/// Search X posts by keyword
+	/// Search Twitter posts by keyword
 	Keyword {
 		#[arg(value_name = "QUERY", required = true)]
 		query: Vec<String>,
@@ -268,12 +268,12 @@ pub enum XCommand {
 		#[arg(long, value_name = "MODE")]
 		mode: Option<String>,
 	},
-	/// Fetch an X post and its replies
+	/// Fetch a Twitter post and its replies
 	Thread {
 		#[arg(value_name = "POST_ID")]
 		id: String,
 	},
-	/// Search X posts by meaning
+	/// Search Twitter posts by meaning
 	Semantic {
 		#[arg(value_name = "QUERY", required = true)]
 		query: Vec<String>,
@@ -376,17 +376,17 @@ mod tests {
 	}
 
 	#[test]
-	fn x_keeps_its_nested_commands() {
+	fn twitter_keeps_its_nested_commands() {
 		let cli =
-			Cli::try_parse_from(["cms", "x", "semantic", "a", "b", "--limit", "5"]).expect("parse");
+			Cli::try_parse_from(["cms", "twitter", "semantic", "a", "b", "--limit", "5"]).expect("parse");
 		match cli.command {
-			Command::X {
-				command: XCommand::Semantic { query, limit, .. },
+			Command::Twitter {
+				command: TwitterCommand::Semantic { query, limit, .. },
 			} => {
 				assert_eq!(query, ["a", "b"]);
 				assert_eq!(limit, Some(5));
 			}
-			other => panic!("expected x semantic, got {other:?}"),
+			other => panic!("expected twitter semantic, got {other:?}"),
 		}
 	}
 }

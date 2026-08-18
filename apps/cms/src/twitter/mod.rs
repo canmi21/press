@@ -2,7 +2,7 @@
 //!
 //! `Runner` answers which assistant does a job every assistant can do. These tools exist
 //! only for Grok, so the provider is a fact of the operation rather than a parameter of
-//! the run. See spec/x.md.
+//! the run. See spec/twitter.md.
 
 mod prompt;
 
@@ -16,7 +16,7 @@ use std::future::Future;
 const MODEL: &str = "grok-4.6";
 
 /// So the model cannot substitute web search, spawn helpers, or wander past a lookup.
-/// Translation does not pass these; they belong to this job. See spec/x.md.
+/// Translation does not pass these; they belong to this job. See spec/twitter.md.
 const GROK_FLAGS: &[&str] = &["--disable-web-search", "--no-subagents", "--max-turns", "8"];
 
 /// Cheap default. The tools cap at 10; asking for more would be rejected after a paid call.
@@ -26,7 +26,7 @@ pub const MAX_RESULTS: u32 = 10;
 
 /// Measured: the tool's own default returned nothing on a reasonable query; 0.1 produced
 /// results. Silence from this tool more often means the threshold was too high than that
-/// nothing exists. See spec/x.md.
+/// nothing exists. See spec/twitter.md.
 pub const DEFAULT_MIN_SCORE: f64 = 0.1;
 
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq, Serialize)]

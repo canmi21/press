@@ -481,7 +481,7 @@ fn grok_text_args(prompt: &str, model: &str, extra: &[&str]) -> Vec<OsString> {
 /// Ask Grok with extra CLI flags. Used by jobs that are not a runner choice.
 ///
 /// Translation goes through `ask(Runner::Grok, ...)`. Lookups that exist only on Grok
-/// pass the flags that job needs -- see spec/x.md.
+/// pass the flags that job needs -- see spec/twitter.md.
 pub async fn ask_grok(prompt: &str, model: &str, extra: &[&str]) -> Result<Answer, Refusal> {
 	grok_spawn(grok_text_args(prompt, model, extra), model).await
 }
@@ -843,8 +843,8 @@ mod tests {
 
 	#[test]
 	fn grok_accepts_extra_flags_after_the_common_ones() {
-		// X lookups pass these; translation does not. The common shape stays in one
-		// function so a second binding cannot drift. See spec/x.md.
+		// Twitter lookups pass these; translation does not. The common shape stays in one
+		// function so a second binding cannot drift. See spec/twitter.md.
 		let args = grok_text_args(
 			"find this",
 			"grok-4.6",

@@ -7,9 +7,9 @@ mod args;
 
 use crate::{
 	alt, articles, check, classify, derived, embed, favicon, gc, i18n, image, licenses, locale,
-	opengraph, overview, paths, port, refs, summary, task, x,
+	opengraph, overview, paths, port, refs, summary, task, twitter,
 };
-use args::{Cli, Command, ModelArgs, XCommand};
+use args::{Cli, Command, ModelArgs, TwitterCommand};
 use clap::Parser;
 use std::process::ExitCode;
 
@@ -91,7 +91,7 @@ pub fn run() -> ExitCode {
 			limit,
 		} => translate_locales(&model, force, limit),
 		Command::Gc { live } => collect_garbage(live),
-		Command::X { command } => x_command(command),
+		Command::Twitter { command } => twitter_command(command),
 	}
 }
 
@@ -1363,18 +1363,18 @@ fn fetch_embeds(force: bool) -> ExitCode {
 	ExitCode::SUCCESS
 }
 
-fn x_command(command: XCommand) -> ExitCode {
+fn twitter_command(command: TwitterCommand) -> ExitCode {
 	match command {
-		XCommand::User { query, count } => {
+		TwitterCommand::User { query, count } => {
 			let query = query.join(" ");
-			run_x(
-				x::users(&query, count.unwrap_or(x::DEFAULT_COUNT)),
+			run_lookup(
+				twitter::users(&query, count.unwrap_or(twitter::DEFAULT_COUNT)),
 				"user search",
 			)
 		}
-		XCommand::Keyword { query, limit, mode } => {
-			let mode = match mode.as_deref().map(x::Mode::parse) {
-				None => x::Mode::default(),
+		TwitterCommand::Keyword { query, limit, mode } => {
+			let mode = match mode.as_deref().map(twitter::Mode::parse) {
+				None => twitter::Mode::default(),
 				Some(Some(mode)) => mode,
 				Some(None) => {
 					eprintln!("--mode takes Top or Latest");
@@ -1382,13 +1382,13 @@ fn x_command(command: XCommand) -> ExitCode {
 				}
 			};
 			let query = query.join(" ");
-			run_x(
-				x::keyword(&query, limit.unwrap_or(x::DEFAULT_LIMIT), mode),
+			run_lookup(
+				twitter::keyword(&query, limit.unwrap_or(twitter::DEFAULT_LIMIT), mode),
 				"keyword search",
 			)
 		}
-		XCommand::Thread { id } => run_x(x::thread(&id), "thread"),
-		XCommand::Semantic {
+		TwitterCommand::Thread { id } => run_lookup(twitter::thread(&id), "thread"),
+		TwitterCommand::Semantic {
 			query,
 			limit,
 			from,
@@ -1397,7 +1397,7 @@ fn x_command(command: XCommand) -> ExitCode {
 			exclude_user,
 			min_score,
 		} => {
-			let mut options = x::Semantic::new(query.join(" "));
+			let mut options = twitter::Semantic::new(query.join(" "));
 			if let Some(limit) = limit {
 				options.limit = limit;
 			}
@@ -1408,14 +1408,14 @@ fn x_command(command: XCommand) -> ExitCode {
 			if let Some(score) = min_score {
 				options.min_score = score;
 			}
-			run_x(x::semantic(options), "semantic search")
+			run_lookup(twitter::semantic(options), "semantic search")
 		}
 	}
 }
 
-fn run_x<F, T>(work: F, what: &str) -> ExitCode
+fn run_lookup<F, T>(work: F, what: &str) -> ExitCode
 where
-	F: std::future::Future<Output = Result<T, x::Error>>,
+	F: std::future::Future<Output = Result<T, twitter::Error>>,
 	T: serde::Serialize,
 {
 	let runtime = match tokio::runtime::Runtime::new() {

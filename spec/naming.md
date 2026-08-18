@@ -84,6 +84,24 @@ the point of use you want to know what a module _does_, not who invoices for it.
 **The test.** If the vendor were replaced tomorrow, how many names would have to change?
 One. If the answer is more, the vendor has leaked past the boundary.
 
+### A rebrand does not oblige a rename, and a one-letter name is refused outright
+
+**Twitter is Twitter here**, in identifiers, module names, spec files, commands and URLs, and it
+stays that way whatever the service calls itself. See [twitter.md](twitter.md) for that case in
+full; the rule it stands for is general.
+
+A name has one job: to say which thing this is, at the point somebody reads it. `X` cannot do
+that job in a codebase, where a single letter already means an axis, an unknown, a placeholder
+and a coordinate -- `crate::x` and `cms x` read as something nobody got round to naming. A
+rebrand is the owner's decision about their product; what a name has to accomplish in source is
+unaffected by it, so following one is a cost with no matching benefit.
+
+Two things are still the vendor's, exactly as the rule above says. Their **identifiers** --
+Grok's `x_user_search` is the name of a real tool and renaming it breaks the call. And their
+**hosts**, where nothing else resolves: `twitter.com` is used because it is still live and
+permanently redirects, not because the old name is willed into being. Were it switched off, the
+address would follow and the name in the source would not.
+
 This rule and the "name for responsibility" rule in
 [workspace.md](architecture/workspace.md) are the same instinct at two scales: the volatile fact --
 product, domain, deployment shape, supplier -- never gets carved into the part that is

@@ -69,7 +69,7 @@ const SOCIAL: Record<
 	{ href: (handle: string) => string; follow?: (handle: string) => string; newTab: boolean }
 > = {
 	twitter: {
-		href: (h) => `${URLS.external.social.x}/${h}`,
+		href: (h) => `${URLS.external.social.twitter}/${h}`,
 		follow: (h) => `${URLS.external.social.twitterIntent}?screen_name=${h}`,
 		newTab: true,
 	},

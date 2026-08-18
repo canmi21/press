@@ -1,13 +1,13 @@
-# X lookups
+# Twitter lookups
 
-Grok can search X. No other runner can. This file is the decision about what that means for
+Grok can search Twitter. No other runner can. This file is the decision about what that means for
 the CMS, not a description of the four operations; those live in
-[x/mod.rs](../apps/cms/src/x/mod.rs).
+[twitter/mod.rs](../apps/cms/src/twitter/mod.rs).
 
 ## A single-provider job is not a runner choice
 
 `Runner` answers which assistant does a piece of work that every assistant can do. Every
-variant can translate, summarise, tag. The X tools exist only for Grok.
+variant can translate, summarise, tag. The Twitter tools exist only for Grok.
 
 Putting them on that enum -- a `model_for_x` that returns `None` for five of six variants --
 would make the type look like it is choosing among assistants when it is really choosing
@@ -61,8 +61,28 @@ The operations return a value. They do not write a `data/build` record, do not j
 task catalogue, and have no GUI adapter. Inventing a storage format before there is a
 consumer is how you get the wrong one.
 
-## Reached as `cms x`
+## Reached as `cms twitter`
 
-The four operations sit behind one command named for the vendor, which is the correct
-place for a vendor name -- see [naming.md](naming.md). They print JSON on stdout the way
-`cms overview` does. Nothing consumes that JSON yet.
+The four operations sit behind one command named for the service, and they print JSON on stdout
+the way `cms overview` does. Nothing consumes that JSON yet.
+
+## It is Twitter here, and the addresses are `twitter.com`
+
+The service renamed itself; this repository did not follow, and that is a decision rather than an
+oversight.
+
+**The name.** `X` is a single letter that already means a dozen things in a codebase -- an axis,
+an unknown, a placeholder, a coordinate, a cross. `spec/x.md`, `crate::x`, `x_command`, `cms x`:
+each of those reads as a variable somebody forgot to name. `Twitter` says which service it is at
+every point of use, which is the whole job of a name. A rename that makes identifiers ambiguous
+buys currency at the cost of the thing names are for.
+
+**The addresses.** `twitter.com` is still live and permanently redirects, and it will stay that
+way: too much of the written web points at it for the owner to drop it. That makes the choice a
+free one, paid for with a redirect nobody waits on, and spent on the name that reads.
+
+Two exceptions, both the same rule. **Grok's tool names keep their `x_` spelling** --
+`x_user_search` and its siblings are the vendor's identifiers, not this repository's, and
+[naming.md](naming.md) puts a vendor's name at the binding edge and nowhere else. And **article
+prose is the author's**: what `contents/` calls the service, and which of its hosts an article
+links to, is writing rather than configuration, and nothing here reaches into it.
