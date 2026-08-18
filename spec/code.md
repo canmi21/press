@@ -40,6 +40,30 @@ three wrong icons, none of which announce themselves.
 So when a dependency looks heavy, the question is not "is this too big" but **"who pays for
 this size, and what does refusing it cost instead?"**
 
+## Unused is not the same as dead
+
+A thing with no consumer today is not automatically waste. **The question is whether it completes
+a set that would be incoherent without it**, and if so it stays -- reported once here rather than
+rediscovered as a defect by every review that greps for callers.
+
+Two members of the tree are there on exactly this basis:
+
+- `--color-green-ink` and `--color-red-ink` in `libs/tokens`. Blue's is in use; the three are one
+  set of hues under one naming scheme, and deleting two of them leaves the next component wanting
+  a green mark either inventing an `oklch` or borrowing a name that means something else.
+- The italic and bold cuts of Ioskeley Mono. Only the regular weight is reachable under the
+  current highlighting themes -- see [fonts.md](architecture/fonts.md) for the measurement -- and
+  a monospace family cut down to one weight is a family that has to be re-cut the first time
+  anything wants emphasis.
+
+**What makes this safe rather than an excuse is the cost.** Both are paid in storage nobody reads
+and bytes nobody downloads: a `@font-face` is a declaration, not a request, so an unreachable cut
+costs a reader nothing at all. The same argument does not licence an unused dependency, an unused
+export or an unreachable branch, each of which is paid on every build, every audit and every read.
+
+So the test has two halves, and both must hold: **would the set be incoherent without it, and is
+its cost paid by nobody?** Where the answer to either is no, it is dead and goes.
+
 ## Tests
 
 Colocated with source as `src/*.test.ts`, run by vitest from the repo root.

@@ -50,6 +50,26 @@ of fact -- what a family is and where its files are, rather than what the site l
 and the CJK sheet alone is 75KB gzipped, which nothing should import until the site actually
 sets that family.
 
+## Only the regular cut of the monospace face is reachable, and the rest stay
+
+`mono.css` declares eight cuts of Ioskeley Mono: regular, italic, bold and bold-italic, each split
+latin and latin-ext. `code` and `pre` are the only selectors naming the family, so what a reader
+ever fetches is decided by what appears inside them.
+
+Measured, nothing there is ever emphasised. Neither `one-light` nor `one-dark-pro` emits
+`font-style` or `font-weight` for any token, no article writes code inside bold or italic markup,
+and no rule gives `code` a weight of its own. Six of the eight cuts therefore cannot be requested,
+and the latin-ext regular waits on an article whose code contains a character above U+00FF.
+
+They stay, under the rule in [code.md](../code.md): a monospace family cut to a single weight has
+to be re-cut the moment anything wants emphasis, and until then it costs a reader nothing. A
+`@font-face` is a declaration; the browser fetches a cut only when text matches its family, its
+style and weight, and its `unicode-range`. The unreachable six are bytes in the bucket, not bytes
+on the wire.
+
+This is written down because it reads as waste from the outside, and has been reported as waste
+before.
+
 ## A hash in the name buys a year
 
 Cache lifetime follows one rule everywhere: **a name carrying a content hash is cached for a
