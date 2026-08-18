@@ -638,8 +638,10 @@ dependencies = [
 name = "cms"
 version = "0.1.0"
 dependencies = [
+ "anstyle",
  "base64 0.23.1",
  "blake3",
+ "clap",
  "claude-codes",
  "cosmic-text",
  "fast_image_resize",

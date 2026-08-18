@@ -1,45 +1,110 @@
 //! The command-line adapter for shared CMS operations. See spec/architecture/cms.md.
+//!
+//! What it accepts is declared in [args], so an argument nothing names is refused rather than
+//! ignored. The functions here take the parsed values and do no parsing of their own.
+
+mod args;
 
 use crate::{
 	alt, articles, check, classify, derived, embed, favicon, gc, i18n, image, licenses, locale,
 	opengraph, overview, paths, port, refs, summary, task, x,
 };
+use args::{Cli, Command, ModelArgs, XCommand};
+use clap::Parser;
 use std::process::ExitCode;
 
 pub fn run() -> ExitCode {
-	let args: Vec<String> = std::env::args().skip(1).collect();
-	match args.first().map(String::as_str) {
-		Some("overview") => print_overview(),
-		Some("articles") => print_articles(),
-		Some("derived") => print_derived(),
-		Some("tasks") => print_tasks(),
-		Some("runs") => print_runs(),
-		Some("port") => print_port(),
-		Some("favicon") => fetch_favicons(&args[1..]),
-		Some("image") => process_images(&args[1..]),
-		Some("check") => check_assets(),
-		Some("og") => render_cards(&args[1..]),
-		Some("tag") => classify_images(&args[1..]),
-		Some("segments") => write_segment_layout(),
-		Some("i18n") => translate_articles(&args[1..]),
-		Some("tn") => scan_notes(&args[1..]),
-		Some("embed") => fetch_embeds(&args[1..]),
-		Some("locale") => translate_locales(&args[1..]),
-		Some("alt") => describe_images(&args[1..]),
-		Some("summary") => summarise_articles(&args[1..]),
-		Some("gc") => collect_garbage(&args[1..]),
-		Some("licenses") => collect_licenses(),
-		Some("x") => x_command(&args[1..]),
-		Some(other) => {
-			eprintln!("unknown command: {other}");
-			usage();
-			ExitCode::FAILURE
+	let cli = match Cli::try_parse() {
+		Ok(cli) => cli,
+		// clap has already written the message -- a help request, a version, or a rejection that
+		// names what was wrong. Its own exit code carries which of those it was.
+		Err(error) => {
+			let _ = error.print();
+			return if error.use_stderr() {
+				ExitCode::FAILURE
+			} else {
+				ExitCode::SUCCESS
+			};
 		}
-		None => {
-			usage();
-			ExitCode::FAILURE
-		}
+	};
+
+	match cli.command {
+		Command::Overview => print_overview(),
+		Command::Articles => print_articles(),
+		Command::Derived => print_derived(),
+		Command::Tasks => print_tasks(),
+		Command::Runs => print_runs(),
+		Command::Port => print_port(),
+		Command::Segments => write_segment_layout(),
+		Command::Check => check_assets(),
+		Command::Licenses => collect_licenses(),
+		Command::Favicon { force, domains } => fetch_favicons(force, &domains),
+		Command::Image {
+			force,
+			original,
+			files,
+		} => process_images(force, original, &files),
+		Command::Og { force } => render_cards(force),
+		Command::Alt {
+			model,
+			force,
+			limit,
+		} => describe_images(&model, force, limit),
+		Command::Tag {
+			model,
+			force,
+			limit,
+		} => classify_images(&model, force, limit),
+		Command::Summary {
+			model,
+			force,
+			limit,
+		} => summarise_articles(&model, force, limit),
+		Command::I18n {
+			model,
+			force,
+			check,
+			frontmatter,
+			limit,
+			parallel,
+			locale,
+			articles,
+		} => translate_articles(I18nArgs {
+			model: &model,
+			force,
+			check,
+			frontmatter,
+			limit,
+			parallel,
+			locale: &locale,
+			articles: &articles,
+		}),
+		Command::Tn {
+			model,
+			force,
+			articles,
+		} => scan_notes(&model, force, &articles),
+		Command::Embed { force } => fetch_embeds(force),
+		Command::Locale {
+			model,
+			force,
+			limit,
+		} => translate_locales(&model, force, limit),
+		Command::Gc { live } => collect_garbage(live),
+		Command::X { command } => x_command(command),
 	}
+}
+
+/// `cms i18n` takes eight of them, which is past the point where positional parameters read.
+struct I18nArgs<'a> {
+	model: &'a ModelArgs,
+	force: bool,
+	check: bool,
+	frontmatter: bool,
+	limit: Option<usize>,
+	parallel: Option<usize>,
+	locale: &'a [String],
+	articles: &'a [std::path::PathBuf],
 }
 
 fn print_overview() -> ExitCode {
@@ -132,15 +197,8 @@ fn print_port() -> ExitCode {
 /// from. Nothing is rewritten afterwards -- the attribute is an instruction to this command,
 /// while the page always draws `/favicon/{domain}`. Explicit domains remain accepted for
 /// collecting one ahead of the article that will link to it.
-fn fetch_favicons(args: &[String]) -> ExitCode {
-	let mut force = false;
-	let mut inputs: Vec<&str> = Vec::new();
-	for arg in args {
-		match arg.as_str() {
-			"--force" => force = true,
-			other => inputs.push(other),
-		}
-	}
+fn fetch_favicons(force: bool, domains: &[String]) -> ExitCode {
+	let inputs: Vec<&str> = domains.iter().map(String::as_str).collect();
 
 	let root = match paths::repo_root() {
 		Ok(root) => root,
@@ -234,69 +292,23 @@ fn print_runs() -> ExitCode {
 	}
 }
 
-fn selected_runner(
-	args: &[String],
-	default: i18n::runner::Runner,
-) -> Result<i18n::runner::Runner, ExitCode> {
-	let Some(at) = args.iter().position(|arg| arg == "--model") else {
-		return Ok(default);
-	};
-	let Some(runner) = args
-		.get(at + 1)
-		.and_then(|name| i18n::runner::Runner::parse(name))
-	else {
-		eprintln!("--model takes {}", i18n::runner::CHOICES);
-		return Err(ExitCode::FAILURE);
-	};
-	Ok(runner)
-}
-
-fn option_value<'a>(args: &'a [String], option: &str) -> Result<Option<&'a str>, ExitCode> {
-	let Some(at) = args.iter().position(|arg| arg == option) else {
-		return Ok(None);
-	};
-	let Some(value) = args.get(at + 1).filter(|value| !value.starts_with('-')) else {
-		eprintln!("{option} takes a value");
-		return Err(ExitCode::FAILURE);
-	};
-	Ok(Some(value))
-}
-
-fn selected_model_override(
-	args: &[String],
-	runner: i18n::runner::Runner,
-) -> Result<Option<String>, ExitCode> {
-	let model = option_value(args, "--model-id")?;
-	let effort = option_value(args, "--effort")?;
-	i18n::runner::model_override(runner, model, effort).map_err(|error| {
-		eprintln!("{error}");
-		ExitCode::FAILURE
-	})
-}
-
 /// Write a reader-facing summary into every article that has none.
 ///
 /// The value lands in a sidecar beside the article, in the article's own language. `cms locale`
 /// translates it into the other locales afterwards.
-fn summarise_articles(args: &[String]) -> ExitCode {
-	let force = args.iter().any(|arg| arg == "--force");
-	let limit = args
-		.iter()
-		.position(|arg| arg == "--limit")
-		.and_then(|at| args.get(at + 1))
-		.and_then(|value| value.parse::<usize>().ok());
+fn summarise_articles(model: &ModelArgs, force: bool, limit: Option<usize>) -> ExitCode {
 	// Not `DEFAULT_TEXT`. This is the one text task carrying a constraint the model has to hold
 	// against its own training -- summarise, but withhold the conclusion -- and the open-weight
 	// default measurably does not: it handed over the whole design and then appended "reaches a
 	// surprising conclusion", and gave a first-person essay's author a pronoun the article never
 	// uses. Translation has no comparable trap, which is why that one stays on the cheap model.
-	let runner = match selected_runner(args, i18n::runner::Runner::Codex) {
-		Ok(runner) => runner,
-		Err(code) => return code,
-	};
-	let model_override = match selected_model_override(args, runner) {
+	let runner = model.runner(i18n::runner::Runner::Codex);
+	let model_override = match model.overrides(runner) {
 		Ok(model) => model,
-		Err(code) => return code,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
 	};
 
 	let root = match paths::repo_root() {
@@ -364,17 +376,8 @@ fn summarise_articles(args: &[String]) -> ExitCode {
 /// The description is written into the manifest, so it belongs to the picture rather than to
 /// whichever article happened to be open when it was generated. Every reference inherits it,
 /// including ones written later.
-fn describe_images(args: &[String]) -> ExitCode {
-	let force = args.iter().any(|arg| arg == "--force");
-	let limit = args
-		.iter()
-		.position(|arg| arg == "--limit")
-		.and_then(|at| args.get(at + 1))
-		.and_then(|value| value.parse::<usize>().ok());
-	let runner = match selected_runner(args, i18n::runner::DEFAULT_VISION) {
-		Ok(runner) => runner,
-		Err(code) => return code,
-	};
+fn describe_images(model: &ModelArgs, force: bool, limit: Option<usize>) -> ExitCode {
+	let runner = model.runner(i18n::runner::DEFAULT_VISION);
 
 	let root = match paths::repo_root() {
 		Ok(root) => root,
@@ -464,76 +467,44 @@ fn describe_images(args: &[String]) -> ExitCode {
 ///
 /// One request covers one segment's missing locales, so an edited paragraph costs one call while
 /// a partial repair does not repay for completed languages.
-fn translate_articles(args: &[String]) -> ExitCode {
-	let force = args.iter().any(|arg| arg == "--force");
-	let check = args.iter().any(|arg| arg == "--check");
-	let scope = if args.iter().any(|arg| arg == "--frontmatter") {
+fn translate_articles(args: I18nArgs<'_>) -> ExitCode {
+	let I18nArgs {
+		model,
+		force,
+		check,
+		frontmatter,
+		limit,
+		parallel,
+		locale,
+		articles,
+	} = args;
+	let scope = if frontmatter {
 		i18n::Scope::Frontmatter
 	} else {
 		i18n::Scope::All
 	};
-	let limit = args
-		.iter()
-		.position(|arg| arg == "--limit")
-		.and_then(|at| args.get(at + 1))
-		.and_then(|value| value.parse::<usize>().ok());
-	let parallel = match option_value(args, "--parallel").and_then(|value| {
-		i18n::parallelism(value).map_err(|error| {
-			eprintln!("{error}");
-			ExitCode::FAILURE
-		})
-	}) {
+	let parallel = match i18n::parallelism(parallel.map(|n| n.to_string()).as_deref()) {
 		Ok(parallel) => parallel,
-		Err(code) => return code,
-	};
-	let mut locale_values = Vec::new();
-	for (at, arg) in args.iter().enumerate() {
-		if arg == "--locale" {
-			let Some(value) = args.get(at + 1).filter(|value| !value.starts_with('-')) else {
-				eprintln!("--locale takes a value");
-				return ExitCode::FAILURE;
-			};
-			locale_values.push(value.clone());
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
 		}
-	}
-	let locales = match i18n::selected_locales(&locale_values) {
+	};
+	let locales = match i18n::selected_locales(locale) {
 		Ok(locales) => locales,
 		Err(error) => {
 			eprintln!("{error}");
 			return ExitCode::FAILURE;
 		}
 	};
-
-	let mut only: Vec<std::path::PathBuf> = Vec::new();
-	let mut runner = i18n::runner::DEFAULT_TEXT;
-	let mut skip = false;
-	for (at, arg) in args.iter().enumerate() {
-		if skip {
-			skip = false;
-			continue;
-		}
-		match arg.as_str() {
-			"--force" | "--frontmatter" | "--check" => {}
-			"--limit" | "--parallel" | "--model-id" | "--effort" | "--locale" => skip = true,
-			"--model" => {
-				skip = true;
-				match args
-					.get(at + 1)
-					.and_then(|name| i18n::runner::Runner::parse(name))
-				{
-					Some(chosen) => runner = chosen,
-					None => {
-						eprintln!("--model takes {}", i18n::runner::CHOICES);
-						return ExitCode::FAILURE;
-					}
-				}
-			}
-			other => only.push(std::path::PathBuf::from(other)),
-		}
-	}
-	let model_override = match selected_model_override(args, runner) {
+	let only = articles.to_vec();
+	let runner = model.runner(i18n::runner::DEFAULT_TEXT);
+	let model_override = match model.overrides(runner) {
 		Ok(model) => model,
-		Err(code) => return code,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
 	};
 
 	let root = match paths::repo_root() {
@@ -634,20 +605,14 @@ fn write_segment_layout() -> ExitCode {
 }
 
 /// Translate tag labels and image descriptions from their English source text.
-fn translate_locales(args: &[String]) -> ExitCode {
-	let force = args.iter().any(|arg| arg == "--force");
-	let limit = args
-		.iter()
-		.position(|arg| arg == "--limit")
-		.and_then(|at| args.get(at + 1))
-		.and_then(|value| value.parse::<usize>().ok());
-	let runner = match selected_runner(args, i18n::runner::DEFAULT_TEXT) {
-		Ok(runner) => runner,
-		Err(code) => return code,
-	};
-	let model_override = match selected_model_override(args, runner) {
+fn translate_locales(model: &ModelArgs, force: bool, limit: Option<usize>) -> ExitCode {
+	let runner = model.runner(i18n::runner::DEFAULT_TEXT);
+	let model_override = match model.overrides(runner) {
 		Ok(model) => model,
-		Err(code) => return code,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
 	};
 
 	let root = match paths::repo_root() {
@@ -715,9 +680,7 @@ fn translate_locales(args: &[String]) -> ExitCode {
 ///
 /// Nothing references these: the page emits `/opengraph/{slug}.png` and no article writes the
 /// URL down, so there is no reference to rewrite and the slug is the name.
-fn render_cards(args: &[String]) -> ExitCode {
-	let force = args.iter().any(|arg| arg == "--force");
-
+fn render_cards(force: bool) -> ExitCode {
 	let root = match paths::repo_root() {
 		Ok(root) => root,
 		Err(error) => {
@@ -758,17 +721,8 @@ fn render_cards(args: &[String]) -> ExitCode {
 }
 
 /// Give every asset a category and a handful of tags.
-fn classify_images(args: &[String]) -> ExitCode {
-	let force = args.iter().any(|arg| arg == "--force");
-	let limit = args
-		.iter()
-		.position(|arg| arg == "--limit")
-		.and_then(|at| args.get(at + 1))
-		.and_then(|value| value.parse::<usize>().ok());
-	let runner = match selected_runner(args, i18n::runner::DEFAULT_VISION) {
-		Ok(runner) => runner,
-		Err(code) => return code,
-	};
+fn classify_images(model: &ModelArgs, force: bool, limit: Option<usize>) -> ExitCode {
+	let runner = model.runner(i18n::runner::DEFAULT_VISION);
 
 	let root = match paths::repo_root() {
 		Ok(root) => root,
@@ -880,9 +834,7 @@ fn check_assets() -> ExitCode {
 /// Drop everything in `data/public` that no article asks for.
 ///
 /// Dry by default. The listing is the review, and `--live` is the answer to it.
-fn collect_garbage(args: &[String]) -> ExitCode {
-	let live = args.iter().any(|arg| arg == "--live");
-
+fn collect_garbage(live: bool) -> ExitCode {
 	let root = match paths::repo_root() {
 		Ok(root) => root,
 		Err(error) => {
@@ -1044,18 +996,8 @@ fn collect_licenses() -> ExitCode {
 /// With no file arguments this follows the articles. Named files are imported ahead of the
 /// article that will use them, which is how `--original` gets attached to a photograph before
 /// anything references it.
-fn process_images(args: &[String]) -> ExitCode {
-	let mut force = false;
-	let mut keep_original = false;
-	let mut only: Vec<std::path::PathBuf> = Vec::new();
-
-	for arg in args {
-		match arg.as_str() {
-			"--force" => force = true,
-			"--original" => keep_original = true,
-			other => only.push(std::path::PathBuf::from(other)),
-		}
-	}
+fn process_images(force: bool, keep_original: bool, files: &[std::path::PathBuf]) -> ExitCode {
+	let only = files.to_vec();
 
 	let root = match paths::repo_root() {
 		Ok(root) => root,
@@ -1119,38 +1061,15 @@ fn process_images(args: &[String]) -> ExitCode {
 /// this file. It is left here deliberately rather than exempted in the spec: moving it is the
 /// same edit as putting it under the task substrate, and both wait on the desktop shell reaching
 /// the point where it offers this command. Whoever gets there first should do the two together.
-fn scan_notes(args: &[String]) -> ExitCode {
-	let force = args.iter().any(|arg| arg == "--force");
-	let mut only: Vec<std::path::PathBuf> = Vec::new();
-	let mut runner = i18n::runner::DEFAULT_VISION;
-	let mut skip = false;
-	for (at, arg) in args.iter().enumerate() {
-		if skip {
-			skip = false;
-			continue;
-		}
-		match arg.as_str() {
-			"--force" => {}
-			"--model-id" | "--effort" => skip = true,
-			"--model" => {
-				skip = true;
-				match args
-					.get(at + 1)
-					.and_then(|name| i18n::runner::Runner::parse(name))
-				{
-					Some(chosen) => runner = chosen,
-					None => {
-						eprintln!("--model takes {}", i18n::runner::CHOICES);
-						return ExitCode::FAILURE;
-					}
-				}
-			}
-			other => only.push(std::path::PathBuf::from(other)),
-		}
-	}
-	let model_override = match selected_model_override(args, runner) {
+fn scan_notes(model: &ModelArgs, force: bool, articles: &[std::path::PathBuf]) -> ExitCode {
+	let only = articles.to_vec();
+	let runner = model.runner(i18n::runner::DEFAULT_VISION);
+	let model_override = match model.overrides(runner) {
 		Ok(model) => model,
-		Err(code) => return code,
+		Err(error) => {
+			eprintln!("{error}");
+			return ExitCode::FAILURE;
+		}
 	};
 
 	let root = match paths::repo_root() {
@@ -1328,8 +1247,7 @@ fn scan_notes(args: &[String]) -> ExitCode {
 /// this file. It is left here deliberately rather than exempted in the spec: moving it is the
 /// same edit as putting it under the task substrate, and both wait on the desktop shell reaching
 /// the point where it offers this command. Whoever gets there first should do the two together.
-fn fetch_embeds(args: &[String]) -> ExitCode {
-	let force = args.iter().any(|arg| arg == "--force");
+fn fetch_embeds(force: bool) -> ExitCode {
 	let root = match paths::repo_root() {
 		Ok(root) => root,
 		Err(error) => {
@@ -1445,207 +1363,52 @@ fn fetch_embeds(args: &[String]) -> ExitCode {
 	ExitCode::SUCCESS
 }
 
-fn x_command(args: &[String]) -> ExitCode {
-	match args.first().map(String::as_str) {
-		Some("user") => x_user(&args[1..]),
-		Some("keyword") => x_keyword(&args[1..]),
-		Some("thread") => x_thread(&args[1..]),
-		Some("semantic") => x_semantic(&args[1..]),
-		Some(other) => {
-			eprintln!("unknown x command: {other}");
-			x_usage();
-			ExitCode::FAILURE
+fn x_command(command: XCommand) -> ExitCode {
+	match command {
+		XCommand::User { query, count } => {
+			let query = query.join(" ");
+			run_x(
+				x::users(&query, count.unwrap_or(x::DEFAULT_COUNT)),
+				"user search",
+			)
 		}
-		None => {
-			x_usage();
-			ExitCode::FAILURE
-		}
-	}
-}
-
-fn x_usage() {
-	eprintln!("usage: cms x <user|keyword|thread|semantic>");
-}
-
-fn x_user(args: &[String]) -> ExitCode {
-	let mut count = x::DEFAULT_COUNT;
-	let mut query = Vec::new();
-	let mut index = 0;
-	while index < args.len() {
-		match args[index].as_str() {
-			"--count" => match next_value(args, index, "--count") {
-				Ok(value) => {
-					count = match value.parse() {
-						Ok(value) => value,
-						Err(_) => {
-							eprintln!("--count takes a positive integer");
-							return ExitCode::FAILURE;
-						}
-					};
-					index += 2;
+		XCommand::Keyword { query, limit, mode } => {
+			let mode = match mode.as_deref().map(x::Mode::parse) {
+				None => x::Mode::default(),
+				Some(Some(mode)) => mode,
+				Some(None) => {
+					eprintln!("--mode takes Top or Latest");
+					return ExitCode::FAILURE;
 				}
-				Err(code) => return code,
-			},
-			other if other.starts_with('-') => {
-				eprintln!("unknown option: {other}");
-				return ExitCode::FAILURE;
+			};
+			let query = query.join(" ");
+			run_x(
+				x::keyword(&query, limit.unwrap_or(x::DEFAULT_LIMIT), mode),
+				"keyword search",
+			)
+		}
+		XCommand::Thread { id } => run_x(x::thread(&id), "thread"),
+		XCommand::Semantic {
+			query,
+			limit,
+			from,
+			to,
+			user,
+			exclude_user,
+			min_score,
+		} => {
+			let mut options = x::Semantic::new(query.join(" "));
+			if let Some(limit) = limit {
+				options.limit = limit;
 			}
-			other => {
-				query.push(other);
-				index += 1;
+			options.from_date = from;
+			options.to_date = to;
+			options.usernames = user;
+			options.exclude_usernames = exclude_user;
+			if let Some(score) = min_score {
+				options.min_score = score;
 			}
-		}
-	}
-	let query = query.join(" ");
-	run_x(x::users(&query, count), "user search")
-}
-
-fn x_keyword(args: &[String]) -> ExitCode {
-	let mut limit = x::DEFAULT_LIMIT;
-	let mut mode = x::Mode::default();
-	let mut query = Vec::new();
-	let mut index = 0;
-	while index < args.len() {
-		match args[index].as_str() {
-			"--limit" => match next_value(args, index, "--limit") {
-				Ok(value) => {
-					limit = match value.parse() {
-						Ok(value) => value,
-						Err(_) => {
-							eprintln!("--limit takes a positive integer");
-							return ExitCode::FAILURE;
-						}
-					};
-					index += 2;
-				}
-				Err(code) => return code,
-			},
-			"--mode" => match next_value(args, index, "--mode") {
-				Ok(value) => {
-					mode = match x::Mode::parse(value) {
-						Some(mode) => mode,
-						None => {
-							eprintln!("--mode takes Top or Latest");
-							return ExitCode::FAILURE;
-						}
-					};
-					index += 2;
-				}
-				Err(code) => return code,
-			},
-			other if other.starts_with('-') => {
-				eprintln!("unknown option: {other}");
-				return ExitCode::FAILURE;
-			}
-			other => {
-				query.push(other);
-				index += 1;
-			}
-		}
-	}
-	let query = query.join(" ");
-	run_x(x::keyword(&query, limit, mode), "keyword search")
-}
-
-fn x_thread(args: &[String]) -> ExitCode {
-	let mut post_id = None;
-	for arg in args {
-		if arg.starts_with('-') {
-			eprintln!("unknown option: {arg}");
-			return ExitCode::FAILURE;
-		}
-		if post_id.replace(arg.as_str()).is_some() {
-			eprintln!("x thread takes one post id");
-			return ExitCode::FAILURE;
-		}
-	}
-	let Some(post_id) = post_id else {
-		eprintln!("x thread takes a post id");
-		return ExitCode::FAILURE;
-	};
-	run_x(x::thread(post_id), "thread")
-}
-
-fn x_semantic(args: &[String]) -> ExitCode {
-	let mut options = x::Semantic::new("");
-	let mut query = Vec::new();
-	let mut index = 0;
-	while index < args.len() {
-		match args[index].as_str() {
-			"--limit" => match next_value(args, index, "--limit") {
-				Ok(value) => {
-					options.limit = match value.parse() {
-						Ok(value) => value,
-						Err(_) => {
-							eprintln!("--limit takes a positive integer");
-							return ExitCode::FAILURE;
-						}
-					};
-					index += 2;
-				}
-				Err(code) => return code,
-			},
-			"--from" => match next_value(args, index, "--from") {
-				Ok(value) => {
-					options.from_date = Some(value.to_owned());
-					index += 2;
-				}
-				Err(code) => return code,
-			},
-			"--to" => match next_value(args, index, "--to") {
-				Ok(value) => {
-					options.to_date = Some(value.to_owned());
-					index += 2;
-				}
-				Err(code) => return code,
-			},
-			"--user" => match next_value(args, index, "--user") {
-				Ok(value) => {
-					options.usernames.push(value.to_owned());
-					index += 2;
-				}
-				Err(code) => return code,
-			},
-			"--exclude-user" => match next_value(args, index, "--exclude-user") {
-				Ok(value) => {
-					options.exclude_usernames.push(value.to_owned());
-					index += 2;
-				}
-				Err(code) => return code,
-			},
-			"--min-score" => match next_value(args, index, "--min-score") {
-				Ok(value) => {
-					options.min_score = match value.parse() {
-						Ok(value) => value,
-						Err(_) => {
-							eprintln!("--min-score takes a number");
-							return ExitCode::FAILURE;
-						}
-					};
-					index += 2;
-				}
-				Err(code) => return code,
-			},
-			other if other.starts_with('-') => {
-				eprintln!("unknown option: {other}");
-				return ExitCode::FAILURE;
-			}
-			other => {
-				query.push(other);
-				index += 1;
-			}
-		}
-	}
-	options.query = query.join(" ");
-	run_x(x::semantic(options), "semantic search")
-}
-
-fn next_value<'a>(args: &'a [String], index: usize, option: &str) -> Result<&'a str, ExitCode> {
-	match args.get(index + 1).map(String::as_str) {
-		Some(value) if !value.starts_with('-') => Ok(value),
-		_ => {
-			eprintln!("{option} takes a value");
-			Err(ExitCode::FAILURE)
+			run_x(x::semantic(options), "semantic search")
 		}
 	}
 }
@@ -1678,50 +1441,4 @@ where
 			ExitCode::FAILURE
 		}
 	}
-}
-
-fn usage() {
-	eprintln!("usage: cms <command>");
-	eprintln!();
-	eprintln!("commands:");
-	eprintln!("  overview                    print the workspace overview as JSON");
-	eprintln!("  articles                    print the article listing and translation coverage");
-	eprintln!("  derived                     print what each derived record class still owes");
-	eprintln!("  tasks                       print the catalogue of long-running operations");
-	eprintln!("  runs                        print what is running right now, machine-wide");
-	eprintln!("  port                        print the port the web UI will bind");
-	eprintln!("  image [--force] [--original] [file...]");
-	eprintln!("                              derive what the articles reference, then rewrite them");
-	eprintln!("  favicon [--force] [domain...]");
-	eprintln!("                              collect the icons the linkcards need");
-	eprintln!("  alt [--model M] [--force] [--limit N]");
-	eprintln!("                              describe assets that have no description yet");
-	eprintln!("  og [--force]                render an OpenGraph card per page per language");
-	eprintln!("  segments                    write article segment ids and source ranges");
-	eprintln!(
-		"  i18n [--model M] [--model-id ID] [--effort E] [--parallel N] [--locale L] [--force] [--check] [--frontmatter] [--limit N] [article...]"
-	);
-	eprintln!("                              translate article segments into every locale");
-	eprintln!("  tn [--model M] [--model-id ID] [--effort E] [--force] [article...]");
-	eprintln!(
-		"  embed [--force]              fetch the crate and repository data the articles embed"
-	);
-	eprintln!("                              suggest passages a translation would have to gloss");
-	eprintln!("  locale [--model M] [--model-id ID] [--effort E] [--force] [--limit N]");
-	eprintln!("                              translate tag labels and image descriptions");
-	eprintln!("  summary [--model M] [--model-id ID] [--effort E] [--force] [--limit N]");
-	eprintln!("                              write a reader-facing summary for each article");
-	eprintln!("  tag [--model M] [--force] [--limit N]");
-	eprintln!("                              give each asset a category and tags");
-	eprintln!("  licenses                    record the licence of every dependency the apps ship");
-	eprintln!("  check                       list referenced assets that are not present");
-	eprintln!("  gc [--live]                 drop published assets no article asks for");
-	eprintln!("  x user <query> [--count N]  search X users");
-	eprintln!("  x keyword <query> [--limit N] [--mode Top|Latest]");
-	eprintln!("                             search X posts by keyword");
-	eprintln!("  x thread <post-id>          fetch an X post and its replies");
-	eprintln!(
-		"  x semantic <query> [--limit N] [--from DATE] [--to DATE] [--user NAME] [--exclude-user NAME] [--min-score N]"
-	);
-	eprintln!("                             search X posts by meaning");
 }

@@ -64,3 +64,11 @@ tzf-rs = "1.3.7"
 rstar = "0.13.0"
 semver = "1.0.28"
 rayon = "1.12.0"
+# Argument parsing. The hand-rolled version read `--limit` with `.parse().ok()`, so a typo in the
+# value -- or in the flag name -- left the limit unset, and unset means no limit on five commands
+# that spend money per item. Rejecting what it does not recognise is the property being bought,
+# and derive is what makes it free: the flag set is the type, so there is no second list to keep.
+clap = { version = "4.6.6", features = ["derive"] }
+# The palette clap paints its own help with. Cargo's colours rather than clap's defaults, because
+# this is a local Rust CLI and cargo is the one its user already has muscle memory for.
+anstyle = "1.0.14"

@@ -275,3 +275,23 @@ that, its comment says what was verified afterwards.
 
 These are defaults, not a whitelist. Reaching outside them is a structural decision and
 belongs to the user -- see [agent-protocol.md](agent-protocol.md).
+
+### A Rust CLI parses with clap, and wears cargo's colours
+
+Arguments are declared as types with clap's derive API rather than read out of `std::env::args`
+by hand. The property being bought is refusal: a hand-rolled loop matches the flags it knows and
+ignores the rest, so a typo is silence. `cms` had five commands where that silence spent money --
+`--limit` was read with `.parse().ok()`, and an unparsed limit is no limit, so `--limit 2x` and
+`--lmit 2` both bought the whole library. Derive fixes both at once because the flag set _is_ the
+type; there is no second list of known names to keep in step.
+
+This was argued against on dependency grounds and the argument was wrong: `cms` runs locally, and
+[code.md](code.md) already says dependency count is not a constraint there. A local binary's
+compile time is paid by the one machine that builds it and its size is paid by nobody, so
+refusing a parser to save megabytes trades a correctness property for a saving no one
+experiences. The rule was already written; it just was not read.
+
+Help is clap's own, styled with `anstyle` to cargo's palette -- green headings, cyan literals.
+Not clap's defaults: this stands next to `cargo` in the same terminal, and one constant saves its
+reader a second colour language. The hand-written usage text it replaced had drifted anyway, with
+one command's description printed under another's name.
