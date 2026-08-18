@@ -356,7 +356,19 @@ export type CompileContext = {
 	sourceFile?: string;
 };
 
-const TRANSLATABLE_FRONTMATTER = ['title', 'subtitle', 'description'] as const;
+/**
+ * The frontmatter keys `cms i18n` translates.
+ *
+ * A copy: the authority is `TRANSLATABLE_FRONTMATTER` in apps/cms/src/i18n/segment.rs, which is
+ * what actually decides which keys become segments. It is repeated here rather than derived
+ * because a site-only CI build has no Rust toolchain to ask -- see spec/architecture/data.md --
+ * and held to the original by a test rather than by anybody remembering.
+ *
+ * What drift would cost: this list is what rejects a translator's note in a key that has nowhere
+ * to render one. A key Rust translates and this list omits gets translated with the note left in
+ * it, and the marker reaches the page as text.
+ */
+export const TRANSLATABLE_FRONTMATTER = ['title', 'subtitle', 'description'] as const;
 
 function codeMeta(value: string | null | undefined): Record<string, string> {
 	const fields: Record<string, string> = {};
