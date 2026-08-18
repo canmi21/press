@@ -242,13 +242,13 @@ mod tests {
 			"old".to_owned(),
 			BTreeMap::from([("ja-JP".to_owned(), entry())]),
 		);
-		let live = segment::translatable("a new paragraph");
+		let live = segment::translatable("a new paragraph").expect("segments");
 		assert_eq!(orphans(&sidecar, &live), vec!["old"]);
 	}
 
 	#[test]
 	fn only_the_absent_locales_are_asked_for() {
-		let live = segment::translatable("hello world");
+		let live = segment::translatable("hello world").expect("segments");
 		let id = live.keys().next().expect("segment").clone();
 		let mut sidecar = Sidecar::default();
 		sidecar
@@ -267,7 +267,8 @@ mod tests {
 
 	#[test]
 	fn an_existing_source_view_that_was_rewritten_is_still_missing() {
-		let live = segment::translatable("作者原本的句子和语气应该完整保留。这里还有第二句话。");
+		let live = segment::translatable("作者原本的句子和语气应该完整保留。这里还有第二句话。")
+			.expect("segments");
 		let id = live.keys().next().expect("segment").clone();
 		let mut rewritten = entry();
 		rewritten.text = "这段文字主要说明翻译应当尊重作者。".to_owned();
@@ -292,7 +293,7 @@ mod tests {
 		// The closing link in the chain. Without it, agreeing that a phrase needs a note changes
 		// nothing until somebody reruns the whole article with --force, which costs every other
 		// segment as well and is the kind of thing nobody does for one paragraph.
-		let live = segment::translatable("古法 programming");
+		let live = segment::translatable("古法 programming").expect("segments");
 		let id = live.keys().next().expect("segment").clone();
 
 		// The shape a correct translation has: wholly in its own language, with the original
@@ -343,7 +344,7 @@ mod tests {
 
 	#[test]
 	fn a_note_does_not_outdate_same_language_views() {
-		let live = segment::translatable("古法 programming");
+		let live = segment::translatable("古法 programming").expect("segments");
 		let id = live.keys().next().expect("segment").clone();
 		let mut same_language = entry();
 		same_language.text = "古法 programming".to_owned();

@@ -100,7 +100,12 @@ pub fn listing_at(repository: &Path) -> std::io::Result<Listing> {
 		};
 		let source_locale = summary::source_locale(&lang);
 
-		let live = i18n::segment::translatable(&source);
+		let live = i18n::segment::translatable(&source).map_err(|error| {
+			std::io::Error::new(
+				std::io::ErrorKind::InvalidData,
+				format!("{}: {error}", path.display()),
+			)
+		})?;
 		let sidecar = i18n::store::load(&i18n::store::path_for(&path))?;
 		let missing = i18n::store::missing(&sidecar, &live, &locales, source_locale, &glosses);
 

@@ -378,7 +378,12 @@ pub async fn run(
 			continue;
 		};
 		let source_locale = crate::summary::source_locale(&lang).map(str::to_owned);
-		let live = segment::translatable(&article);
+		let live = segment::translatable(&article).map_err(|error| {
+			std::io::Error::new(
+				std::io::ErrorKind::InvalidData,
+				format!("{}: {error}", path.display()),
+			)
+		})?;
 		let sidecar_path = store::path_for(&path);
 		let mut sidecar = store::load(&sidecar_path)?;
 		outcome.segments += live
@@ -671,7 +676,8 @@ mod tests {
 	fn frontmatter_scope_never_selects_body_prose() {
 		let segments = segment::split(
 			"---\ntitle: Visible title\nlang: en-US\n---\n\nBody that must stay out of this run.",
-		);
+		)
+		.expect("frontmatter");
 		let selected = segments
 			.iter()
 			.filter(|segment| Scope::Frontmatter.includes(segment))

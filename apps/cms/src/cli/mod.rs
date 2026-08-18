@@ -1183,7 +1183,13 @@ fn scan_notes(model: &ModelArgs, force: bool, articles: &[std::path::PathBuf]) -
 		spent += tokens;
 		read += 1;
 
-		let segments = i18n::segment::split(&text);
+		let segments = match i18n::segment::split(&text) {
+			Ok(segments) => segments,
+			Err(error) => {
+				eprintln!("{}: {error}", path.display());
+				return ExitCode::FAILURE;
+			}
+		};
 		let attached = i18n::tn::attach(&segments, &found);
 		let mut entries = std::collections::BTreeMap::new();
 		progress.suspend(|| {

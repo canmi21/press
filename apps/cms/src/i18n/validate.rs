@@ -127,7 +127,8 @@ mod tests {
 
 	#[test]
 	fn stored_frontmatter_failure_names_the_sidecar_segment_and_locale() {
-		let live = super::super::segment::translatable("---\ntitle: Source\n---\n\nBody");
+		let live =
+			super::super::segment::translatable("---\ntitle: Source\n---\n\nBody").expect("segments");
 		let (id, segment) = live
 			.iter()
 			.find(|(_, segment)| segment.region == Region::Frontmatter)

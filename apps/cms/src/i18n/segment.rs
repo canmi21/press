@@ -9,6 +9,32 @@ use std::collections::BTreeMap;
 
 const TRANSLATABLE_FRONTMATTER: [&str; 3] = ["title", "subtitle", "description"];
 
+/// Frontmatter that cannot be read.
+///
+/// Returned rather than panicked on. A person writes this by hand, so a stray colon or a
+/// mis-indented line is an ordinary event and not a broken invariant -- and a panic here took
+/// down `cms i18n`, `cms segments` and `cms articles` with a message that named the fault and
+/// not the file, leaving a binary search through the corpus as the way to find out which one.
+///
+/// The article's path is not in here. This function is handed text, and a caller that reads a
+/// file already knows which one it read; adding the path as a parameter only for a message would
+/// make every caller pass something the work itself never uses.
+#[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
+pub enum Malformed {
+	#[error("frontmatter is not valid YAML: {0}")]
+	NotYaml(String),
+	#[error("frontmatter is not a mapping of keys to values")]
+	NotAMapping,
+	#[error("frontmatter `{0}` must be text")]
+	NotText(String),
+}
+
+impl From<Malformed> for std::io::Error {
+	fn from(error: Malformed) -> Self {
+		std::io::Error::new(std::io::ErrorKind::InvalidData, error.to_string())
+	}
+}
+
 /// Where a segment is spliced back into the article.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Region {
@@ -137,7 +163,7 @@ pub fn id_of(source: &str) -> String {
 
 /// Split allowlisted frontmatter values and body blocks; the frontmatter block itself is never
 /// a segment.
-pub fn split(article: &str) -> Vec<Segment> {
+pub fn split(article: &str) -> Result<Vec<Segment>, Malformed> {
 	let (body, body_start, frontmatter) = match article.strip_prefix("---\n") {
 		Some(rest) => rest.find("\n---").map_or((rest, 4, None), |end| {
 			(&rest[end + 4..], end + 8, Some((&rest[..end], 4)))
@@ -145,9 +171,10 @@ pub fn split(article: &str) -> Vec<Segment> {
 		None => (article, 0, None),
 	};
 
-	let mut segments = frontmatter.map_or_else(Vec::new, |(source, start)| {
-		frontmatter_segments(source, start)
-	});
+	let mut segments = match frontmatter {
+		Some((source, start)) => frontmatter_segments(source, start)?,
+		None => Vec::new(),
+	};
 	let mut block: Vec<&str> = Vec::new();
 	let mut fenced = false;
 	let mut start_line = 0;
@@ -225,14 +252,17 @@ pub fn split(article: &str) -> Vec<Segment> {
 		block_start,
 		block_end,
 	);
-	segments
+	Ok(segments)
 }
 
-fn frontmatter_segments(frontmatter: &str, absolute_start: usize) -> Vec<Segment> {
-	let values: serde_yaml_ng::Value = serde_yaml_ng::from_str(frontmatter)
-		.unwrap_or_else(|error| panic!("invalid article frontmatter: {error}"));
+fn frontmatter_segments(
+	frontmatter: &str,
+	absolute_start: usize,
+) -> Result<Vec<Segment>, Malformed> {
+	let values: serde_yaml_ng::Value =
+		serde_yaml_ng::from_str(frontmatter).map_err(|error| Malformed::NotYaml(error.to_string()))?;
 	let Some(values) = values.as_mapping() else {
-		panic!("article frontmatter must be a mapping");
+		return Err(Malformed::NotAMapping);
 	};
 
 	let mut lines = Vec::new();
@@ -243,7 +273,7 @@ fn frontmatter_segments(frontmatter: &str, absolute_start: usize) -> Vec<Segment
 		cursor += line.len();
 	}
 	if frontmatter.is_empty() {
-		return Vec::new();
+		return Ok(Vec::new());
 	}
 
 	let mut segments = Vec::new();
@@ -260,7 +290,9 @@ fn frontmatter_segments(frontmatter: &str, absolute_start: usize) -> Vec<Segment
 		}
 		let source = match values.get(serde_yaml_ng::Value::String(key.to_owned())) {
 			Some(serde_yaml_ng::Value::String(source)) => source,
-			Some(_) => panic!("frontmatter {key} must be a string"),
+			Some(_) => {
+				return Err(Malformed::NotText(key.to_owned()));
+			}
 			None => continue,
 		};
 		if source.is_empty() {
@@ -288,7 +320,7 @@ fn frontmatter_segments(frontmatter: &str, absolute_start: usize) -> Vec<Segment
 			line: index + 2,
 		});
 	}
-	segments
+	Ok(segments)
 }
 
 fn push(
@@ -332,24 +364,51 @@ fn push(
 }
 
 /// Every segment worth translating, keyed by id, deduplicated.
-pub fn translatable(article: &str) -> BTreeMap<String, Segment> {
-	split(article)
-		.into_iter()
-		.filter(|segment| segment.kind.translatable())
-		.map(|segment| (segment.id.clone(), segment))
-		.collect()
+pub fn translatable(article: &str) -> Result<BTreeMap<String, Segment>, Malformed> {
+	Ok(
+		split(article)?
+			.into_iter()
+			.filter(|segment| segment.kind.translatable())
+			.map(|segment| (segment.id.clone(), segment))
+			.collect(),
+	)
 }
 
 #[cfg(test)]
 mod tests {
 	use super::*;
 
+	/// Frontmatter a person mistyped is an ordinary event, not a broken invariant.
+	///
+	/// It used to abort the process with a message naming the fault and not the file, which left
+	/// a binary search through the corpus as the only way to find out which article it was. The
+	/// caller knows the path; this only has to hand back something it can attach one to.
+	#[test]
+	fn frontmatter_that_does_not_parse_is_an_error_rather_than_a_crash() {
+		let error = split("---\ntitle: [unclosed\n---\n\nBody.").expect_err("refused");
+		assert!(matches!(error, Malformed::NotYaml(_)));
+		assert!(error.to_string().contains("not valid YAML"));
+	}
+
+	#[test]
+	fn frontmatter_that_is_not_a_mapping_is_named_as_such() {
+		let error = split("---\n- just\n- a list\n---\n\nBody.").expect_err("refused");
+		assert_eq!(error, Malformed::NotAMapping);
+	}
+
+	#[test]
+	fn a_translatable_key_holding_something_other_than_text_names_the_key() {
+		let error = split("---\ntitle:\n  nested: value\n---\n\nBody.").expect_err("refused");
+		assert_eq!(error, Malformed::NotText("title".to_owned()));
+		assert!(error.to_string().contains("`title`"));
+	}
+
 	#[test]
 	fn an_edit_changes_only_its_own_segment() {
 		// The whole synchronisation design rests on this: a small change must not invalidate
 		// the translations of everything around it.
-		let before = split("first para\n\nsecond para\n\nthird para");
-		let after = split("first para\n\nsecond para edited\n\nthird para");
+		let before = split("first para\n\nsecond para\n\nthird para").expect("segments");
+		let after = split("first para\n\nsecond para edited\n\nthird para").expect("segments");
 		assert_eq!(before[0].id, after[0].id);
 		assert_ne!(before[1].id, after[1].id);
 		assert_eq!(before[2].id, after[2].id);
@@ -358,8 +417,8 @@ mod tests {
 	#[test]
 	fn moving_a_paragraph_changes_nothing() {
 		// Order lives in the article, so the sidecar has no opinion about it.
-		let a = split("alpha\n\nbeta");
-		let b = split("beta\n\nalpha");
+		let a = split("alpha\n\nbeta").expect("segments");
+		let b = split("beta\n\nalpha").expect("segments");
 		assert_eq!(a[0].id, b[1].id);
 		assert_eq!(a[1].id, b[0].id);
 	}
@@ -373,7 +432,8 @@ mod tests {
 
 	#[test]
 	fn a_fence_holds_its_blank_lines_together() {
-		let segments = split("intro\n\n```rust\nfn a() {}\n\nfn b() {}\n```\n\noutro");
+		let segments =
+			split("intro\n\n```rust\nfn a() {}\n\nfn b() {}\n```\n\noutro").expect("segments");
 		assert_eq!(segments.len(), 3);
 		assert_eq!(segments[1].kind, Kind::Code);
 		assert!(segments[1].source.contains("fn b()"));
@@ -382,14 +442,14 @@ mod tests {
 	#[test]
 	fn code_is_never_sent_anywhere() {
 		assert!(!Kind::Code.translatable());
-		let kept = translatable("prose\n\n```\nlet x = 1;\n```");
+		let kept = translatable("prose\n\n```\nlet x = 1;\n```").expect("segments");
 		assert_eq!(kept.len(), 1);
 	}
 
 	#[test]
 	fn directives_are_never_sent_anywhere() {
 		assert!(!Kind::Directive.translatable());
-		let kept = translatable("prose\n\n::image{src=\"asset.avif\"}");
+		let kept = translatable("prose\n\n::image{src=\"asset.avif\"}").expect("segments");
 		assert_eq!(kept.len(), 1);
 	}
 
@@ -429,7 +489,7 @@ mod tests {
 	#[test]
 	fn frontmatter_is_not_a_segment() {
 		let article = "---\ntitle: A\nlang: zh\n---\n\nbody text";
-		let segments = split(article);
+		let segments = split(article).expect("segments");
 		assert_eq!(segments.len(), 2);
 		assert_eq!(segments[0].source, "A");
 		assert_eq!(segments[0].region, Region::Frontmatter);
@@ -448,10 +508,10 @@ mod tests {
 	fn editing_a_title_invalidates_only_that_title() {
 		let before = split(
 			"---\ntitle: Before\nsubtitle: Same subtitle\ndescription: Same description\nlang: zh\n---\n\nSame body",
-		);
+		).expect("segments");
 		let after = split(
 			"---\ntitle: After\nsubtitle: Same subtitle\ndescription: Same description\nlang: zh\n---\n\nSame body",
-		);
+		).expect("segments");
 		assert_eq!(before.len(), 4);
 		assert_eq!(after.len(), 4);
 		assert_ne!(before[0].id, after[0].id);
@@ -464,7 +524,7 @@ mod tests {
 	fn a_non_allowlisted_frontmatter_key_is_never_translatable() {
 		let live = translatable(
 			"---\ntitle: Visible\nlang: zh\ncreated: 2026-08-02\nviews: 5\nfuture: Never send me\n---\n\nBody",
-		);
+		).expect("segments");
 		let sources = live
 			.values()
 			.map(|segment| segment.source.as_str())
@@ -479,7 +539,7 @@ mod tests {
 	#[test]
 	fn folded_frontmatter_is_one_semantic_segment_with_one_lexical_span() {
 		let article = "---\ndescription:\n  first line\n  second line\nlang: zh\n---\n\nBody";
-		let segments = split(article);
+		let segments = split(article).expect("segments");
 		assert_eq!(segments[0].source, "first line second line");
 		assert_eq!(
 			&article[segments[0].start..segments[0].end],

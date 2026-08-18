@@ -64,6 +64,44 @@ This licence is bounded by destination exactly as the table above is. Nothing he
 library into a Worker or a browser bundle to save writing twenty lines; there, the payload is the
 constraint and the trade runs the other way.
 
+## Errors are types on the way up and one message at the edge
+
+**A fallible operation names what can go wrong as its own type**, derived with `thiserror`. Not a
+`String`, and not a panic. A caller that receives a type can match on the case; a caller that
+receives a string can only print it, and a caller that receives a panic cannot do either.
+
+The distinction that decides between an error and a panic is **whose mistake it is**. A person
+hand-writing frontmatter will mistype it, so unreadable frontmatter is an ordinary event and
+returns [`Malformed`](../apps/cms/src/i18n/segment.rs). A panic is for the state that cannot
+arise unless this code is already wrong. `cms i18n` used to abort on a stray colon in an article,
+with a message naming the fault and not the file, which left a binary search through the corpus
+as the way to find out which article it was.
+
+**Context is added by whoever has it.** The parser is handed text and does not know the path;
+the caller read the file and does. So the type stays about the failure and the caller attaches
+the article to it, rather than every layer carrying a path it never uses.
+
+### At the boundary the chain becomes one message
+
+The two shells converge differently, and both flatten only at the very end.
+
+**The CLI** turns whatever reached it into a single message on stderr and a failing exit code.
+Nothing above that point needs the distinction, because there is nobody left to act on it --
+`anyhow` is the shape of that boundary, holding the chain until the moment it is printed.
+
+**The desktop shell** keeps the chain, because it has more than one thing to do with it: an
+Activity entry records what failed and where, while what a person is shown is the same flattened
+sentence the CLI would print. Discarding the cause at the adapter would leave the record as
+useless as the message.
+
+So the rule is directional. Types going up, one message coming out, and the flattening happens
+once, at the shell, never in the middle.
+
+**Adoption is partial and deliberate.** `Malformed` is the first type carrying this shape;
+`std::io::Error` with a formatted message is what most of the tree still returns, and the
+opengraph renderer still returns `String`. Converting them is worth doing as its own work rather
+than folded into unrelated changes, so they are named here rather than left to be rediscovered.
+
 ## Unused is not the same as dead
 
 A thing with no consumer today is not automatically waste. **The question is whether it completes

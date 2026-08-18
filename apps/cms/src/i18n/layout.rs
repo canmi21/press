@@ -35,7 +35,12 @@ pub fn build(root: &Path) -> std::io::Result<Layout> {
 	let mut articles = BTreeMap::new();
 	for path in crate::refs::markdown_under(&contents)? {
 		let article = std::fs::read_to_string(&path)?;
-		let live = super::segment::translatable(&article);
+		let live = super::segment::translatable(&article).map_err(|error| {
+			std::io::Error::new(
+				std::io::ErrorKind::InvalidData,
+				format!("{}: {error}", path.display()),
+			)
+		})?;
 		let sidecar_path = super::store::path_for(&path);
 		if let Some(sidecar) = super::store::load_checked(&sidecar_path)? {
 			super::validate::sidecar(&sidecar_path, &live, &sidecar)?;
@@ -48,6 +53,12 @@ pub fn build(root: &Path) -> std::io::Result<Layout> {
 			.trim_start_matches('/')
 			.to_owned();
 		let spans = super::segment::split(&article)
+			.map_err(|error| {
+				std::io::Error::new(
+					std::io::ErrorKind::InvalidData,
+					format!("{}: {error}", path.display()),
+				)
+			})?
 			.into_iter()
 			.filter(|segment| segment.kind.translatable())
 			.map(|segment| {

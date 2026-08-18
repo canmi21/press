@@ -311,7 +311,8 @@ mod tests {
 	#[test]
 	fn frontmatter_suggestions_are_never_attached() {
 		let segments =
-			crate::i18n::segment::split("---\ntitle: A local idiom\n---\n\nBody without that phrase.");
+			crate::i18n::segment::split("---\ntitle: A local idiom\n---\n\nBody without that phrase.")
+				.expect("segments");
 		let found = vec![Gloss {
 			phrase: "local idiom".to_owned(),
 			guidance: "context".to_owned(),
@@ -371,7 +372,7 @@ mod tests {
 		// there is no second approval to wait for -- an entry exists because somebody chose it.
 		let article = "---\nlang: zh\n---\n\n古法 programming";
 		let request = crate::i18n::prompt::build(
-			&crate::i18n::segment::split(article)[0],
+			&crate::i18n::segment::split(article).expect("segments")[0],
 			"古法 programming",
 			None,
 			None,
@@ -386,7 +387,8 @@ mod tests {
 		// The scanner reads the whole article and can paraphrase what it found. A phrase that
 		// cannot be located is one no translator could keep verbatim either, so recording it
 		// would produce an instruction impossible to follow.
-		let segments = crate::i18n::segment::split("---\nlang: zh\n---\n\n奇怪的是，古法编程");
+		let segments =
+			crate::i18n::segment::split("---\nlang: zh\n---\n\n奇怪的是，古法编程").expect("segments");
 		let found = vec![
 			Gloss {
 				phrase: "古法".to_owned(),
@@ -407,7 +409,8 @@ mod tests {
 	fn an_ambiguous_phrase_is_dropped_instead_of_attached_to_the_first_match() {
 		let segments = crate::i18n::segment::split(
 			"---\nlang: zh\n---\n\n第一段有一个清字。\n\n第二段也有一个清字。",
-		);
+		)
+		.expect("segments");
 		let found = vec![Gloss {
 			phrase: "清".to_owned(),
 			guidance: "a word whose effect depends on this occurrence".to_owned(),

@@ -72,3 +72,7 @@ clap = { version = "4.6.6", features = ["derive"] }
 # The palette clap paints its own help with. Cargo's colours rather than clap's defaults, because
 # this is a local Rust CLI and cargo is the one its user already has muscle memory for.
 anstyle = "1.0.14"
+# Error types. Every fallible operation here names what can go wrong as its own type, so a caller
+# can match on the case rather than read a string, and the derive is what keeps that cheap enough
+# to be worth doing every time. See spec/code.md.
+thiserror = "2.0.20"
