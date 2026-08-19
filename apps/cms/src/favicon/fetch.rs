@@ -131,22 +131,6 @@ pub fn infer_content_type(url: &str, header: Option<&str>) -> String {
 	.to_owned()
 }
 
-/// The file extension to store an icon under, or None for something we should not keep.
-pub fn extension_for(content_type: &str) -> Option<&'static str> {
-	let lower = content_type.to_lowercase();
-	if lower.contains("svg") {
-		Some("svg")
-	} else if lower.contains("png") {
-		Some("png")
-	} else if lower.contains("jpeg") || lower.contains("jpg") {
-		Some("jpg")
-	} else if lower.contains("icon") {
-		Some("ico")
-	} else {
-		None
-	}
-}
-
 #[cfg(test)]
 mod tests {
 	use super::*;
@@ -195,7 +179,7 @@ mod tests {
 			infer_content_type("https://a.example/i", None),
 			"application/octet-stream"
 		);
-		assert_eq!(extension_for("application/octet-stream"), None);
+		assert_eq!(crate::extension::for_icon("application/octet-stream"), None);
 	}
 
 	#[test]
@@ -219,13 +203,5 @@ mod tests {
 	#[test]
 	fn leaves_a_short_body_alone() {
 		assert_eq!(truncate_on_char_boundary("short".into(), 100), "short");
-	}
-
-	#[test]
-	fn maps_types_to_extensions() {
-		assert_eq!(extension_for("image/svg+xml"), Some("svg"));
-		assert_eq!(extension_for("image/png"), Some("png"));
-		assert_eq!(extension_for("image/jpeg"), Some("jpg"));
-		assert_eq!(extension_for("image/x-icon"), Some("ico"));
 	}
 }

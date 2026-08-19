@@ -74,9 +74,6 @@ impl std::error::Error for Error {
 	}
 }
 
-/// Every extension an icon can be stored under; see `extension_for`.
-const EXTENSIONS: [&str; 4] = ["svg", "png", "jpg", "ico"];
-
 /// The stored icon for a domain and tone, if one was collected.
 ///
 /// A named tone is answered exactly or not at all, matching how the worker resolves it: a
@@ -91,7 +88,7 @@ pub fn stored(root: &Path, domain: &str, tone: Option<&str>) -> Option<PathBuf> 
 		_ => &["light", "dark"],
 	};
 	tones.iter().find_map(|name| {
-		EXTENSIONS
+		crate::extension::ICON_EXTENSIONS
 			.iter()
 			.map(|extension| directory.join(format!("{name}.{extension}")))
 			.find(|path| path.is_file())
@@ -134,7 +131,7 @@ pub fn fetch_named(
 		return Ok(None);
 	}
 	let icon = fetch::bytes(source).ok_or(Error::NotResolved)?;
-	let extension = fetch::extension_for(&icon.content_type).ok_or(Error::NotResolved)?;
+	let extension = crate::extension::for_icon(&icon.content_type).ok_or(Error::NotResolved)?;
 	let tones: &[Tone] = match tone {
 		Some("dark") => &[Tone::Dark],
 		Some("light") => &[Tone::Light],
@@ -179,7 +176,7 @@ pub fn fetch_for(root: &Path, domain: &str, force: bool) -> Result<Option<Icons>
 
 	let mut files = Vec::new();
 	for (tone, icon) in variants {
-		let Some(extension) = fetch::extension_for(&icon.content_type) else {
+		let Some(extension) = crate::extension::for_icon(&icon.content_type) else {
 			continue;
 		};
 		let tones: &[Tone] = if single {

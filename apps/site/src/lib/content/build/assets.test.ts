@@ -11,17 +11,22 @@ import { EXTENSION } from './assets';
  * `.jpg` to `.jpeg` -- so agreeing was not enough, they had to agree on the spelling the CDN
  * serves directly. See spec/architecture/delivery.md.
  */
-const ARM = /"(image\/[a-z+]+)" => "([a-z0-9]+)"/g;
+const ARM = /"(image\/[a-z+]+)" => (?:"([a-z0-9]+)"|(JPEG))/g;
 
 it('names each format the way apps/cms names the file', () => {
 	const source = readFileSync(
-		fileURLToPath(new URL('../../../../../cms/src/image/run.rs', import.meta.url)),
+		fileURLToPath(new URL('../../../../../cms/src/extension.rs', import.meta.url)),
 		'utf8',
 	);
-	const body = /fn extension_of\(mime: &str\) -> &'static str \{([\s\S]*?)\n\}/.exec(source);
-	expect(body, 'extension_of moved or changed shape').not.toBeNull();
+	const body = /pub fn for_variant\(mime: &str\) -> &'static str \{([\s\S]*?)\n\}/.exec(source);
+	expect(body, 'for_variant moved or changed shape').not.toBeNull();
 
-	const authoritative = Object.fromEntries([...body![1]!.matchAll(ARM)].map((m) => [m[1], m[2]]));
+	// `JPEG` is a constant on the Rust side rather than a literal, so the spelling it holds is
+	// resolved too -- the point of the constant is that both naming paths share one spelling.
+	const jpeg = /const JPEG: &str = "([a-z]+)"/.exec(source)?.[1];
+	const authoritative = Object.fromEntries(
+		[...body![1]!.matchAll(ARM)].map((m) => [m[1], m[3] ? jpeg : m[2]]),
+	);
 	expect(Object.keys(authoritative).length).toBeGreaterThan(0);
 
 	for (const [mime, extension] of Object.entries(authoritative)) {

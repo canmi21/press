@@ -1,4 +1,7 @@
 import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+
 import {
 	type Bindings,
 	contentTypeFor,
@@ -7,6 +10,7 @@ import {
 	licenseKey,
 	metaKey,
 	read,
+	STORED_FORMATS,
 } from './index';
 
 /** Enough of an R2 bucket to answer one key. */
@@ -100,4 +104,31 @@ describe('where an object lives', () => {
 		expect(isContentId(`${CID}00`)).toBe(false);
 		expect(isContentId('../../etc/passwd')).toBe(false);
 	});
+});
+
+/**
+ * The formats this probes for in development have to be the ones apps/cms actually wrote.
+ *
+ * Only reachable under `wrangler dev`, where the asset fetcher cannot list a prefix and the
+ * lookup guesses instead. A format missing here is a favicon that resolves in production and
+ * silently does not locally -- and one spelled differently is the same thing. They were: apps/cms
+ * wrote `jpeg` while this asked for `jpg`.
+ */
+it('probes for the extensions apps/cms writes an icon under', () => {
+	const source = readFileSync(
+		fileURLToPath(new URL('../../../apps/cms/src/extension.rs', import.meta.url).href),
+		'utf8',
+	);
+	const declaration = /const ICON_EXTENSIONS: \[&str; \d+\] = \[([^\]]*)\]/.exec(source);
+	expect(declaration, 'ICON_EXTENSIONS moved or changed shape').not.toBeNull();
+
+	// `JPEG` is a constant there rather than a literal, so the spelling it holds is resolved too.
+	const jpeg = /const JPEG: &str = "([a-z]+)"/.exec(source)?.[1];
+	const authoritative = declaration![1]!
+		.split(',')
+		.map((entry) => entry.trim())
+		.filter(Boolean)
+		.map((entry) => (entry === 'JPEG' ? jpeg : entry.replace(/"/g, '')));
+
+	expect([...STORED_FORMATS]).toEqual(authoritative);
 });

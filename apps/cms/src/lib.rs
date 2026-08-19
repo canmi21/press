@@ -5,6 +5,7 @@ mod alt;
 mod check;
 mod classify;
 mod embed;
+mod extension;
 pub mod favicon;
 mod gc;
 mod i18n;

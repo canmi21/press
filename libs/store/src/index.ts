@@ -133,8 +133,14 @@ function fanned(prefix: string, cid: string, extension: string): string {
 	return `${prefix}/${cid.slice(0, 2)}/${cid.slice(2, 4)}/${cid}.${extension}`;
 }
 
-/** Every extension apps/cms will write an icon under. */
-const STORED_FORMATS = ['svg', 'png', 'jpg', 'ico'] as const;
+/**
+ * Every extension apps/cms will write an icon under, in the order a lookup should try them.
+ *
+ * Mirrors `ICON_EXTENSIONS` in apps/cms. `jpeg`, not `jpg`: the two name one format, and this
+ * repository writes the long spelling everywhere so its own links never take the redirect the CDN
+ * keeps for a hand-typed short one. A test holds the two lists together.
+ */
+export const STORED_FORMATS = ['svg', 'png', 'jpeg', 'ico'] as const;
 
 /** A stored object as an HTTP response, with ETag only when the store supplied one. */
 export function toResponse(found: Found): Response {
