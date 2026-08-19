@@ -11,6 +11,7 @@ import {
 } from './derived';
 import { renderOverview, renderOverviewError, type OverviewSnapshot } from './overview';
 import './style.css';
+import { requiredElement } from './dom';
 
 followSystemTheme();
 
@@ -37,12 +38,6 @@ const pages = {
 
 type Page = keyof typeof pages;
 
-function requiredElement<T extends Element>(selector: string): T {
-	const element = document.querySelector<T>(selector);
-	if (element === null) throw new Error(`required element is missing: ${selector}`);
-	return element;
-}
-
 function pageOf(link: HTMLButtonElement): Page {
 	const page = link.dataset.page;
 	if (page === undefined || !(page in pages)) throw new Error('a page link is missing its page');
@@ -50,10 +45,10 @@ function pageOf(link: HTMLButtonElement): Page {
 }
 
 const pageLinks = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-page]'));
-const pageLabel = requiredElement<HTMLElement>('[data-page-label]');
-const overview = requiredElement<HTMLElement>('[data-overview]');
-const articles = requiredElement<HTMLElement>('[data-articles]');
-const derived = requiredElement<HTMLElement>('[data-derived]');
+const pageLabel = requiredElement<HTMLElement>(document, '[data-page-label]');
+const overview = requiredElement<HTMLElement>(document, '[data-overview]');
+const articles = requiredElement<HTMLElement>(document, '[data-articles]');
+const derived = requiredElement<HTMLElement>(document, '[data-derived]');
 let liveTaskRuns: TaskRun[] = [];
 let taskPoll: number | undefined;
 

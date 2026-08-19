@@ -1,4 +1,5 @@
 import { articleThumbnail, formatArticleDate } from './article-preview';
+import { requiredElement } from './dom';
 
 export type ArticleListing = {
 	locales: string[];
@@ -20,12 +21,6 @@ export type ArticleListing = {
 };
 
 type Article = ArticleListing['articles'][number];
-
-function requiredElement<T extends Element>(root: Element, selector: string): T {
-	const element = root.querySelector<T>(selector);
-	if (element === null) throw new Error(`required element is missing: ${selector}`);
-	return element;
-}
 
 function sectionLabel(name: string): string {
 	return name

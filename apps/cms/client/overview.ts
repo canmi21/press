@@ -1,4 +1,5 @@
 import { articleThumbnail, formatArticleDate } from './article-preview';
+import { requiredElement } from './dom';
 
 export type OverviewSnapshot = {
 	articles: {
@@ -29,12 +30,6 @@ export type OverviewSnapshot = {
 		}>;
 	};
 };
-
-function requiredElement<T extends Element>(root: Element, selector: string): T {
-	const element = root.querySelector<T>(selector);
-	if (element === null) throw new Error(`required element is missing: ${selector}`);
-	return element;
-}
 
 function countLabel(count: number, singular: string, plural = `${singular}s`): string {
 	return `${count} ${count === 1 ? singular : plural}`;

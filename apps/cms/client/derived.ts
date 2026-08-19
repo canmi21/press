@@ -1,3 +1,5 @@
+import { requiredElement } from './dom';
+
 export type DerivedReport = {
 	classes: Array<{
 		id: string;
@@ -22,12 +24,6 @@ export type TaskRun = {
 
 type Class = DerivedReport['classes'][number];
 type StartTask = (task: 'favicon') => void;
-
-function requiredElement<T extends Element>(root: Element, selector: string): T {
-	const element = root.querySelector<T>(selector);
-	if (element === null) throw new Error(`required element is missing: ${selector}`);
-	return element;
-}
 
 function toneOf(entry: Class): 'complete' | 'short' | 'empty' {
 	if (entry.want === 0 || entry.have >= entry.want) return 'complete';
