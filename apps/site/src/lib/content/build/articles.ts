@@ -94,6 +94,8 @@ export function summaryFor(
 
 type BuildPaths = {
 	contents: string;
+	/** Which CDN the built markup names; see createAssetResolver. */
+	cdnUrl: string;
 	/** Where the Paraglide message catalogues live, read directly; see newTabNotes. */
 	messages: string;
 	assets: string;
@@ -229,7 +231,7 @@ export async function buildArticles(
 			// article's own language, and a description generated in English and translated into
 			// eight is available in that one too. Reading the original meant hearing the pictures
 			// described in a language the article never used.
-			resolveAsset: createAssetResolver(assets, media, previews, originLocale),
+			resolveAsset: createAssetResolver(assets, media, previews, paths.cdnUrl, originLocale),
 			highlight,
 			sourceFile: file,
 			embeds,
@@ -250,7 +252,13 @@ export async function buildArticles(
 						translationAvailable[code]
 							? await compile(raws[code], url, {
 									newTabNote: notes[code],
-									resolveAsset: createAssetResolver(assets, media, previews, PUBLIC_LANGUAGE[code]),
+									resolveAsset: createAssetResolver(
+										assets,
+										media,
+										previews,
+										paths.cdnUrl,
+										PUBLIC_LANGUAGE[code],
+									),
 									highlight,
 									sourceFile: file,
 									embeds,

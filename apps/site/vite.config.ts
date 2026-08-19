@@ -104,6 +104,7 @@ export default defineConfig(({ mode }) => {
 					const [articleBuild, pageBuild] = await Promise.all([
 						buildArticles({
 							contents: CONTENTS,
+							cdnUrl: urls.cdn,
 							messages: MESSAGES,
 							assets: ASSETS,
 							media: MEDIA,

@@ -1,5 +1,3 @@
-import { URLS } from '@canmi/urls';
-
 /**
  * Resolving an image reference into everything the markup needs, at build time.
  *
@@ -61,8 +59,8 @@ function idOf(reference: string): string {
 	);
 }
 
-function url(cid: string, mime: string): string {
-	return `${URLS.apps.production.cdn}/image/${cid}.${EXTENSION[mime] ?? 'avif'}`;
+function url(cdnUrl: string, cid: string, mime: string): string {
+	return `${cdnUrl}/image/${cid}.${EXTENSION[mime] ?? 'avif'}`;
 }
 
 /**
@@ -76,6 +74,15 @@ export function createAssetResolver(
 	assets: AssetManifest,
 	media: MediaManifest,
 	previews: ReadonlyMap<string, string>,
+	/**
+	 * Which CDN the markup should name.
+	 *
+	 * Passed rather than picked. This runs at build time, and which CDN answers depends on the
+	 * mode -- a development build that named production would send a reader to bytes the local
+	 * tree has not published, and hide the ones it has. The same reason the font stylesheets
+	 * carry `__CDN_URL__` instead of a host. See spec/architecture/workspace.md.
+	 */
+	cdnUrl: string,
 	descriptionLocale = 'en-US',
 ): (reference: string) => Resolved | null {
 	return (reference) => {
@@ -88,8 +95,8 @@ export function createAssetResolver(
 		if (!largest) return null;
 
 		return {
-			src: url(largest[0], largest[1].mime),
-			srcset: variants.map(([cid, v]) => `${url(cid, v.mime)} ${v.width}w`).join(', '),
+			src: url(cdnUrl, largest[0], largest[1].mime),
+			srcset: variants.map(([cid, v]) => `${url(cdnUrl, cid, v.mime)} ${v.width}w`).join(', '),
 			// The original's dimensions, not the largest variant's: they share a ratio, and this is
 			// what the browser needs to reserve the right box before anything loads.
 			width: asset.source.width,
