@@ -14,6 +14,7 @@
 	import MenuContent from '$lib/components/menu-content.svelte';
 	import { languageChoices, selectContentLanguage, type LanguageChoice } from './switcher';
 	import { acceptedLocale, contentLanguageCookie, type LocaleCode } from './index';
+	import { m } from '$lib/paraglide/messages';
 
 	// `sourceLanguage` is an article's own language, and names the qualifier on the original row.
 	// A page has none, and passes nothing; see languageChoices.
@@ -96,7 +97,10 @@
 </script>
 
 <DropdownMenu.Root {open} onOpenChange={(next) => (open = next)}>
-	<DropdownMenu.Trigger aria-label="Content language: {current?.name}" class="quiet-control">
+	<DropdownMenu.Trigger
+		aria-label={m['language.switcher']({ name: current?.name ?? '' }, { locale: code })}
+		class="quiet-control"
+	>
 		<span class="focus-link-inner inline-flex items-center gap-1">
 			<CurrentMark class={markSize} aria-hidden="true" />
 			<span>{current?.name}</span>

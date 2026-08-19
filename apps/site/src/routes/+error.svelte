@@ -1,6 +1,15 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { m } from '$lib/paraglide/messages';
+	import type { LocaleCode } from '$lib/locale';
 
+	// The view being rendered, read off what the server stamped. An error page still answers in
+	// the language the reader asked for. See spec/locale.md.
+	const locale = $derived((page.data.locale?.code ?? 'mw') as LocaleCode);
+
+	// Left in English on purpose. These are the protocol's own names for its statuses, printed
+	// beside the number they belong to, and a reader who meets `404` meets `Not Found` with it
+	// everywhere else on the web. The sentence below is the part written for a person.
 	const STATUS_TEXT: Record<number, string> = {
 		400: 'Bad Request',
 		401: 'Unauthorized',
@@ -17,8 +26,8 @@
 
 	const message = $derived(
 		page.status === 404
-			? 'This page could not be found.'
-			: (page.error?.message ?? 'Something went wrong.'),
+			? m['error.not-found']({}, { locale })
+			: (page.error?.message ?? m['error.unexpected']({}, { locale })),
 	);
 	const titleText = $derived(STATUS_TEXT[page.status] ?? 'Error');
 </script>

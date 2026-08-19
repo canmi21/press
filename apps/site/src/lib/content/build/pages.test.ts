@@ -9,6 +9,7 @@ describe('standalone page locale views', () => {
 	it('keeps the bio in English while localising the writing heading', async () => {
 		const { pages } = await buildPages({
 			contents: fileURLToPath(new URL('contents', ROOT)),
+			messages: fileURLToPath(new URL('apps/site/messages', ROOT)),
 			segments: fileURLToPath(new URL('data/build/segments.json', ROOT)),
 		});
 		const homepage = pages.find((page) => page.path === 'homepage');

@@ -6,6 +6,27 @@ import { createAssetResolver, type AssetManifest, type MediaManifest } from './a
 import { assemble, type SegmentLayout, type TranslationSidecar } from './assemble.ts';
 import { compile, compilePage } from './compile.ts';
 import { indexingMetadata } from './indexing.ts';
+
+/**
+ * One interface string the compiler emits into markup rather than a component rendering it.
+ *
+ * Read out of the message files directly. Paraglide compiles its messages through a Vite plugin,
+ * and this module is imported by vite.config.ts before that plugin has run -- so a build-time
+ * caller reads the same JSON the plugin does rather than the code it will generate. A key that
+ * disappears fails loudly here rather than emitting an empty parenthesis into every article.
+ */
+async function newTabNotes(messages: string): Promise<Record<LocaleCode, string>> {
+	const notes = {} as Record<LocaleCode, string>;
+	for (const code of LOCALE_CODES) {
+		const catalog = JSON.parse(await readFile(join(messages, `${code}.json`), 'utf8'));
+		const note = catalog['support.new-tab'];
+		if (typeof note !== 'string') {
+			throw new Error(`${code}.json: support.new-tab is missing`);
+		}
+		notes[code] = note;
+	}
+	return notes;
+}
 import type {
 	Article,
 	ArticleSummary,
@@ -73,6 +94,8 @@ export function summaryFor(
 
 type BuildPaths = {
 	contents: string;
+	/** Where the Paraglide message catalogues live, read directly; see newTabNotes. */
+	messages: string;
 	assets: string;
 	media: string;
 	segments: string;
@@ -156,6 +179,7 @@ export async function buildArticles(
 	paths: BuildPaths,
 ): Promise<{ articles: Article[]; files: string[] }> {
 	const files = await articleFiles(paths.contents);
+	const notes = await newTabNotes(paths.messages);
 	const assets = JSON.parse(await readFile(paths.assets, 'utf8')) as AssetManifest;
 	const media = (parseYaml(await readFile(paths.media, 'utf8')) ?? { media: {} }) as MediaManifest;
 	const layout = JSON.parse(await readFile(paths.segments, 'utf8')) as SegmentLayout;
@@ -200,6 +224,7 @@ export async function buildArticles(
 		// `compile` reports it, but the resolver below needs it to run at all.
 		const originLocale = sourceLocale(/^lang:\s*(\S+)/m.exec(raw)?.[1] ?? 'en-US');
 		const source = await compile(raw, url, {
+			newTabNote: notes.mw,
 			// Not `en-US`. On the original view an image's alt is read beside prose in the
 			// article's own language, and a description generated in English and translated into
 			// eight is available in that one too. Reading the original meant hearing the pictures
@@ -224,6 +249,7 @@ export async function buildArticles(
 						code,
 						translationAvailable[code]
 							? await compile(raws[code], url, {
+									newTabNote: notes[code],
 									resolveAsset: createAssetResolver(assets, media, previews, PUBLIC_LANGUAGE[code]),
 									highlight,
 									sourceFile: file,
@@ -280,7 +306,7 @@ export async function buildArticles(
 }
 
 export async function buildPages(
-	paths: Pick<BuildPaths, 'contents' | 'segments'>,
+	paths: Pick<BuildPaths, 'contents' | 'messages' | 'segments'>,
 ): Promise<{ pages: Page[]; files: string[] }> {
 	const files = await pageFiles(paths.contents);
 	const layout = JSON.parse(await readFile(paths.segments, 'utf8')) as SegmentLayout;

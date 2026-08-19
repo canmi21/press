@@ -1,8 +1,11 @@
 <script lang="ts">
 	import Icon from './icons.svelte';
+	import { m } from '$lib/paraglide/messages';
 	import type { PageBlock } from '$lib/content/types';
+	import type { LocaleCode } from '$lib/locale';
 
-	let { blocks }: { blocks: PageBlock[] } = $props();
+	/** `locale` is the view being rendered. Passed rather than read: see spec/locale.md. */
+	let { blocks, locale }: { blocks: PageBlock[]; locale: LocaleCode } = $props();
 </script>
 
 {#each blocks as block, i (i)}
@@ -21,7 +24,9 @@
 					>
 						{#if seg.icon}<Icon name={seg.icon} />{/if}
 						<span class="underline decoration-border underline-offset-4">{seg.label}</span>
-						{#if seg.newTab}<span class="sr-only"> (opens in new tab)</span>{/if}
+						{#if seg.newTab}<span class="sr-only">
+								({m['support.new-tab']({}, { locale })})</span
+							>{/if}
 					</a>
 				{/if}
 			{/each}

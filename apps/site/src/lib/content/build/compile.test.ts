@@ -5,6 +5,7 @@ it('rejects malformed source lang metadata with the article file named', async (
 	const raw = '---\ntitle: Test\nlang: zh_CN\n---\n\nBody.\n';
 	await expect(
 		compile(raw, '/article', {
+			newTabNote: 'opens in new tab',
 			resolveAsset: () => null,
 			highlight: async () => '',
 			sourceFile: 'contents/bad-language.md',
@@ -13,7 +14,10 @@ it('rejects malformed source lang metadata with the article file named', async (
 });
 
 it('keeps an email link working when its visible label is translated', () => {
-	const page = compilePage('---\ntitle: Test\n---\n\n:link[メール]{to=t@ffoni.com}\n');
+	const page = compilePage(
+		'---\ntitle: Test\n---\n\n:link[メール]{to=t@ffoni.com}\n',
+		'opens in new tab',
+	);
 	const paragraph = page.blocks[0];
 	if (paragraph?.type !== 'p') throw new Error('expected a paragraph');
 
@@ -31,6 +35,7 @@ it('renders a translator note as an explicit control instead of a native tooltip
 		'---\ntitle: Test\nlang: en-US\n---\n\nA :tn[local phrase]{is="Its meaning needs context."}.\n',
 		'/article',
 		{
+			newTabNote: 'opens in new tab',
 			resolveAsset: () => null,
 			highlight: async () => '',
 			sourceFile: 'contents/example.md',
@@ -55,6 +60,7 @@ it('marks prose links with the shared keyboard focus treatment', async () => {
 		'---\ntitle: Test\nlang: en-US\n---\n\nRead [the notes](https://example.com).\n',
 		'/article',
 		{
+			newTabNote: 'opens in new tab',
 			resolveAsset: () => null,
 			highlight: async () => '',
 			sourceFile: 'contents/example.md',
@@ -72,6 +78,7 @@ it('rejects translator notes in translated frontmatter with the article named', 
 	const raw = '---\ntitle: ":tn[Translated title]{is=\\"a gloss\\"}"\nlang: en-US\n---\n\nBody.\n';
 	await expect(
 		compile(raw, '/article', {
+			newTabNote: 'opens in new tab',
 			resolveAsset: () => null,
 			highlight: async () => '',
 			sourceFile: 'contents/bad-title.md',
@@ -97,6 +104,7 @@ lang: en-US
 ::cargo{crate="seam-cli" view="table"}
 `;
 	const compiled = await compile(raw, '/article', {
+		newTabNote: 'opens in new tab',
 		resolveAsset: () => null,
 		highlight: async () => '',
 		sourceFile: 'contents/widgets.md',

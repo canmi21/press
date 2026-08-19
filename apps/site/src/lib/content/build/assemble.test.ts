@@ -86,6 +86,7 @@ it('compiles a view with the source title when that locale has no title translat
 	expect(result.missing).toEqual([]);
 	expect(parseYaml(yaml)).toMatchObject({ title: 'Source title', lang: 'en' });
 	const view = await compile(result.raw, '/fallback', {
+		newTabNote: 'opens in new tab',
 		resolveAsset: () => null,
 		highlight: async () => '',
 	});

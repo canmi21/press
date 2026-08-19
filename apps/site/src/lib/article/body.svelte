@@ -105,6 +105,7 @@
 			/>
 		{:else if block.type === 'linkcard'}
 			<LinkCard
+				{locale}
 				src={block.src}
 				url={block.url}
 				title={block.title}

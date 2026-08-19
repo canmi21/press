@@ -112,7 +112,7 @@
 		with /llms.txt. PageBody keeps styled text as dead HTML and renders each social
 		link live so its icon reuses the shared <Icon> component. -->
 		<div class="mt-8 space-y-4 leading-relaxed text-pretty">
-			<PageBody blocks={data.bio} />
+			<PageBody blocks={data.bio} locale={data.locale.code} />
 		</div>
 
 		<ArticleList articles={data.articles} heading={data.writing} />
@@ -133,7 +133,9 @@
 				{#each links as link (link.label)}
 					<a
 						href={link.href}
-						aria-label={link.href.startsWith('/') ? link.label : `${link.label} (opens in new tab)`}
+						aria-label={link.href.startsWith('/')
+							? link.label
+							: `${link.label} (${m['support.new-tab']({}, { locale: data.locale.code })})`}
 						title={link.label}
 						data-sveltekit-reload={'document' in link ? true : undefined}
 						class="focus-ring inline-flex size-5 items-center justify-center rounded-[0.3125rem] text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
@@ -152,7 +154,7 @@
 			>
 				<Lollipop class="h-4 w-4" aria-hidden="true" />
 				<span>ICP 20260000</span>
-				<span class="sr-only">(opens in new tab)</span>
+				<span class="sr-only">({m['support.new-tab']({}, { locale: data.locale.code })})</span>
 			</a>
 		</div>
 	</article>

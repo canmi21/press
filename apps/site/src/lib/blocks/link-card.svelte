@@ -3,8 +3,12 @@
 	import { pickUrls } from '@canmi/urls';
 	import Image from './image.svelte';
 	import ArrowUpRight from '@lucide/svelte/icons/arrow-up-right';
+	import { m } from '$lib/paraglide/messages';
+	import type { LocaleCode } from '$lib/locale';
 
 	type Props = {
+		/** The view being rendered. Passed rather than read: see spec/locale.md. */
+		locale: LocaleCode;
 		src: string;
 		url: string;
 		title: string;
@@ -25,7 +29,8 @@
 		/** What the cover shows, from the manifest. See the markup for where it goes. */
 		description?: string;
 	};
-	let { src, url, title, tone, width, height, preview, srcset, description }: Props = $props();
+	let { locale, src, url, title, tone, width, height, preview, srcset, description }: Props =
+		$props();
 
 	const describedBy = $props.id();
 
@@ -132,7 +137,7 @@
 		<span class="truncate text-sm font-medium {tone === 'dark' ? 'text-black' : 'text-white'}">
 			{title}
 		</span>
-		<span class="sr-only">, {domain}, opens in new tab</span>
+		<span class="sr-only">, {domain}, {m['support.new-tab']({}, { locale })}</span>
 	</div>
 	<ArrowUpRight
 		aria-hidden="true"

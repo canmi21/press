@@ -11,6 +11,7 @@ describe('article widget build inputs', () => {
 		const repos = fileURLToPath(new URL('data/build/repos.json', ROOT));
 		const { articles, files } = await buildArticles({
 			contents: fileURLToPath(new URL('contents', ROOT)),
+			messages: fileURLToPath(new URL('apps/site/messages', ROOT)),
 			assets: fileURLToPath(new URL('data/metadata.json', ROOT)),
 			media: fileURLToPath(new URL('data/media.yaml', ROOT)),
 			segments: fileURLToPath(new URL('data/build/segments.json', ROOT)),

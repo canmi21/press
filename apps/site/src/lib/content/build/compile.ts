@@ -128,7 +128,7 @@ function markProseLinks(node: Nodes): void {
 // Render a top-level prose node to HTML. `delete` (gfm strikethrough) maps to
 // <s> so the existing .article-body :global(s) styling keeps working; the DLC
 // `:t` / `:link` text directives expand to spans / anchors.
-function proseHtml(node: RootContent): string {
+function proseHtml(node: RootContent, newTabNote: string): string {
 	markProseLinks(node);
 	const hast = toHast(node, {
 		handlers: {
@@ -149,7 +149,7 @@ function proseHtml(node: RootContent): string {
 							type: 'element',
 							tagName: 'span',
 							properties: { className: ['sr-only'] },
-							children: [{ type: 'text', value: ' (opens in new tab)' }],
+							children: [{ type: 'text', value: ` (${newTabNote})` }],
 						});
 					}
 					return {
@@ -345,6 +345,14 @@ function cropAlign(value: string | null | undefined, url: string): string | unde
 }
 
 export type CompileContext = {
+	/**
+	 * What a screen reader is told about a link that opens elsewhere, in this view's language.
+	 *
+	 * Handed in rather than looked up. This module is imported by vite.config.ts, which runs
+	 * before the Paraglide plugin has generated any messages, so a build-time importer cannot
+	 * call one. The caller compiles once per view and has both the locale and the message.
+	 */
+	newTabNote: string;
 	resolveAsset: (reference: string) => Resolved | null;
 	/** Crate trees and repository facts, fetched at build time by `cms embed`. */
 	embeds?: {
@@ -405,7 +413,7 @@ function assertFrontmatterHasNoTranslatorNotes(
 export async function compile(
 	raw: string,
 	url: string,
-	{ resolveAsset, highlight, sourceFile, embeds }: CompileContext,
+	{ newTabNote, resolveAsset, highlight, sourceFile, embeds }: CompileContext,
 ): Promise<Compiled> {
 	const tree = parser.parse(raw) as Root;
 	let meta: ArticleMeta | undefined;
@@ -573,8 +581,8 @@ export async function compile(
 			continue;
 		}
 
-		blocks.push({ type: 'prose', html: proseHtml(node) });
-		feed.push(proseHtml(node));
+		blocks.push({ type: 'prose', html: proseHtml(node, newTabNote) });
+		feed.push(proseHtml(node, newTabNote));
 		md.push(proseMarkdown(node));
 		const plain = mdastToString(node).trim();
 		if (plain) text.push(plain);
@@ -605,7 +613,7 @@ export async function compile(
 // Split a paragraph into inline segments at `:link` boundaries: text runs (incl.
 // `:t` styling) become dead HTML, each `:link` a live segment the route renders
 // with its icon. Keeps the {@html} surface minimal, mirroring article blocks.
-function inlineSegments(node: Paragraph): InlineSegment[] {
+function inlineSegments(node: Paragraph, newTabNote: string): InlineSegment[] {
 	const segments: InlineSegment[] = [];
 	let run: string[] = [];
 	const flush = () => {
@@ -628,7 +636,7 @@ function inlineSegments(node: Paragraph): InlineSegment[] {
 				newTab,
 			});
 		} else {
-			run.push(proseHtml(child as RootContent));
+			run.push(proseHtml(child as RootContent, newTabNote));
 		}
 	}
 	flush();
@@ -638,7 +646,11 @@ function inlineSegments(node: Paragraph): InlineSegment[] {
 // A standalone page (e.g. the homepage at contents/homepage.md). Unlike an article
 // it carries free-form frontmatter and produces blocks for the route to render
 // plus the DLC-lowered prose body (getPage wraps it into the served document).
-export function compilePage(raw: string, sourceFile = 'page frontmatter'): CompiledPage {
+export function compilePage(
+	raw: string,
+	newTabNote: string,
+	sourceFile = 'page frontmatter',
+): CompiledPage {
 	const tree = parser.parse(raw) as Root;
 	let meta: Record<string, string> = {};
 	const blocks: PageBlock[] = [];
@@ -653,8 +665,8 @@ export function compilePage(raw: string, sourceFile = 'page frontmatter'): Compi
 		bodyNodes.push(node);
 		blocks.push(
 			node.type === 'paragraph'
-				? { type: 'p', segments: inlineSegments(node) }
-				: { type: 'html', html: proseHtml(node) },
+				? { type: 'p', segments: inlineSegments(node, newTabNote) }
+				: { type: 'html', html: proseHtml(node, newTabNote) },
 		);
 	}
 
