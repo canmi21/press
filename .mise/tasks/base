@@ -1,0 +1,119 @@
+#!/usr/bin/env python3
+#MISE description="Keep the base workspace's dev servers up in tmux: `base up [cms]`, `base status`, `base down`"
+"""The base workspace's dev servers, as one tmux session. See spec/toolchain.md, "The base session".
+
+  up [cms]  ensure session `<basename>-dev` exists with a window per server, each running its
+            mise dev task; windows already running are left alone, windows whose server has
+            exited are restarted. `cms` adds the desktop CMS, which is not part of the always-on
+            set because it is a window somebody uses rather than a server somebody calls.
+  status    one line per window: what is running in it
+  down      kill the session, and with it every server
+
+Runs from the base only: the base is the one workspace that runs everything, on the pinned
+ports, and an overlay starting this would collide with it. tmux itself is a machine tool
+(Homebrew), not a mise tool -- see the spec for why.
+"""
+
+import os
+import pathlib
+import subprocess
+import sys
+
+sys.dont_write_bytecode = True
+
+BASE = pathlib.Path(__file__).resolve().parents[2]
+SESSION = f"{BASE.name}-dev"
+SERVERS = ["site", "api", "cdn"]
+OPTIONAL = {"cms"}
+# A window whose foreground command is a shell has no server in it any more.
+SHELLS = {"fish", "zsh", "bash", "sh", "-fish", "-zsh", "-bash"}
+
+
+def tmux(*args: str, check: bool = True) -> str:
+	result = subprocess.run(["tmux", *args], capture_output=True, text=True)
+	if check and result.returncode != 0:
+		sys.stderr.write(result.stderr)
+		raise SystemExit(f"tmux {' '.join(args)} failed")
+	return result.stdout
+
+
+def in_base() -> None:
+	if os.environ.get("WORKSPACE_SLOT", "0") != "0":
+		raise SystemExit("error: the base's servers are started from the base workspace, not an overlay")
+
+
+def session_exists() -> bool:
+	return subprocess.run(["tmux", "has-session", "-t", SESSION], capture_output=True).returncode == 0
+
+
+def windows() -> dict[str, str]:
+	"""Window name -> foreground command, for the session."""
+	if not session_exists():
+		return {}
+	out = tmux("list-windows", "-t", SESSION, "-F", "#{window_name}\t#{pane_current_command}")
+	return dict(line.split("\t", 1) for line in out.splitlines() if "\t" in line)
+
+
+def start(app: str, existing: dict[str, str]) -> str:
+	command = f"mise run dev-{app}"
+	if app not in existing:
+		if not session_exists():
+			tmux("new-session", "-d", "-s", SESSION, "-c", str(BASE), "-n", app)
+		else:
+			tmux("new-window", "-d", "-t", SESSION, "-n", app, "-c", str(BASE))
+		tmux("send-keys", "-t", f"{SESSION}:{app}", command, "Enter")
+		return f"{app}: started"
+	if existing[app] in SHELLS:
+		tmux("send-keys", "-t", f"{SESSION}:{app}", command, "Enter")
+		return f"{app}: restarted (window was idle)"
+	return f"{app}: already running ({existing[app]})"
+
+
+def up(extra: list[str]) -> int:
+	in_base()
+	unknown = [app for app in extra if app not in OPTIONAL]
+	if unknown:
+		raise SystemExit(f"error: unknown server(s) {', '.join(unknown)}; optional: {', '.join(sorted(OPTIONAL))}")
+	existing = windows()
+	for app in [*SERVERS, *extra]:
+		print(start(app, existing))
+		existing = windows()
+	print(f"attach with `tmux attach -t {SESSION}`")
+	return 0
+
+
+def status() -> int:
+	existing = windows()
+	if not existing:
+		print(f"no session {SESSION}")
+		return 1
+	for name, command in existing.items():
+		state = "idle" if command in SHELLS else command
+		print(f"  {name:6} {state}")
+	return 0
+
+
+def down() -> int:
+	in_base()
+	if not session_exists():
+		print(f"no session {SESSION}")
+		return 0
+	tmux("kill-session", "-t", SESSION)
+	print(f"killed {SESSION}")
+	return 0
+
+
+def main(argv: list[str]) -> int:
+	verb = argv[0] if argv else None
+	if verb == "up":
+		return up(argv[1:])
+	if verb == "status":
+		return status()
+	if verb == "down":
+		return down()
+	print(__doc__.strip(), file=sys.stderr)
+	return 2
+
+
+if __name__ == "__main__":
+	sys.exit(main(sys.argv[1:]))

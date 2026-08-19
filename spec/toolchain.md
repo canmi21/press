@@ -255,7 +255,28 @@ run workspace refresh` after a push so the base's working copy follows `main` an
 servers reload against it, `mise run verify` on the merged result, the periodic selfcheck of
 `spec/`, `mise run gc`. It does not commit for others and it does not rebase their work --
 [commits.md](commits.md) says why -- so it is optional, and the user's own terminal is a fine
-substitute.
+substitute. It also owns the servers below, and it is the one place a task that writes
+`data/` or reaches R2 is run from.
+
+**The base's dev servers live in one tmux session, `workspace-dev`, one window per server,
+named for it: `site`, `api`, `cdn`, plus `cms` when the desktop CMS is wanted.** `mise run
+base up` makes that true idempotently -- it creates what is missing, restarts a window whose
+server has exited, and leaves a running one alone; `base status` says what each window is
+doing and `base down` kills the lot. "Start the base's servers" means `mise run base up`,
+whoever is asked. The window is a shell with the mise task typed into it rather than the task
+as the window's command, so a server that dies leaves its last output on screen instead of
+closing the window that would have shown it.
+
+tmux is a Homebrew install, not a mise tool, and this is the exception to "mise owns every
+tool" that [the hook scripts](#the-other-exception-hook-scripts) already are: a tmux server
+outlives any directory and is shared with sessions started elsewhere, and a client whose
+version is pinned per directory would meet a server started under another and refuse it. The
+tool that has to agree with itself across the whole machine is installed once for the whole
+machine.
+
+The always-on set is the three servers, not the CMS. Those are called by something -- a
+browser, an overlay's site -- and are useful without anyone looking at them; the CMS is a
+window a person uses, so it comes up when asked (`mise run base up cms`) and not before.
 
 ## Tool versions
 
