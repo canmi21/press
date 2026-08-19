@@ -49,7 +49,9 @@
 		},
 	],
 	// The port also appears in libs/urls as the development API URL. wrangler cannot read a
-	// TypeScript library, so the number is written twice on purpose.
+	// TypeScript library, so the number is written twice on purpose. This is the base
+	// workspace's pair; `mise run dev-api` passes an overlay's shifted pair as flags,
+	// computed by libs/urls from the same number. See spec/toolchain.md.
 	"dev": {
 		"port": 26512,
 		"inspector_port": 26513,

@@ -358,6 +358,33 @@ A package resolved for another platform is not in the record at all. A dependenc
 an optional binary for every operating system and only one is ever installed; reporting the
 rest as declaring nothing would be false, and would bury the handful that genuinely do.
 
+## The bytes belong to the machine, and one checkout holds them
+
+`data/` is machine-level, not checkout-level. It is the local truth R2 mirrors and the thing a
+backup is taken of, and a machine has one of it: the base workspace's -- see
+[toolchain.md](../toolchain.md), "Parallel workspaces". An overlay workspace holds no bytes
+of its own. `mise run workspace add` links every path under `data/` that git does not carry
+back into the base, entry by entry where a directory mixes tracked records with untracked
+bytes, so a checkout of records plus links reads exactly like the base. Deleting an overlay
+loses nothing, and the backup story does not change because a second directory appeared.
+
+**An overlay reads `data/`; it never writes it.** Writing is the CMS's and the sync task's,
+and both run from the base -- the CMS because it is a machine-wide singleton on its pinned
+port, the sync because a mirror with two sources is not a mirror. An overlay that changes CDN
+or CMS code still sees the real bytes through the links, which is what makes the change
+testable there; producing new bytes is a base job.
+
+Records are the one place the two workspaces can disagree, and it is safe in the direction it
+happens: an overlay that adds an image writes its record and, through the link, its bytes into
+the shared tree, so another workspace briefly holds bytes it has no record for -- unused, and
+harmless. The reverse, a record without bytes, is what a per-checkout copy would produce and
+the links prevent.
+
+Pointing every reader at a `DATA_ROOT` environment variable instead of linking was
+considered and left. It would move every `data/` path in two languages for a benefit that only
+appears with a second workspace, and the links deliver the same sharing with no code touched.
+It stays the option to take if the link step ever proves brittle.
+
 ## What happens to an asset after it is stored
 
 Deriving a picture, describing it, drawing its card, slicing a face and serving any of it are

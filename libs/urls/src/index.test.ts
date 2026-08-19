@@ -1,5 +1,16 @@
 import { describe, expect, it } from 'vitest';
-import { isDevHost, loopbackUrl, pickUrls, URLS } from './index';
+import {
+	DEVELOPMENT_PORTS,
+	SLOT_STRIDE,
+	developmentUrl,
+	developmentUrls,
+	isDevHost,
+	isDevOrigin,
+	loopbackUrl,
+	pickUrls,
+	slotPort,
+	URLS,
+} from './index';
 
 describe('pickUrls', () => {
 	it('returns development app URLs when isDev=true', () => {
@@ -62,6 +73,66 @@ describe('isDevHost', () => {
 	it('rejects empty and arbitrary strings', () => {
 		expect(isDevHost('')).toBe(false);
 		expect(isDevHost('localhost.evil.com')).toBe(false);
+	});
+});
+
+const bound = (slot: number) =>
+	Object.values(DEVELOPMENT_PORTS).map((port) => port + slot * SLOT_STRIDE);
+const inspectors = (slot: number) => [slotPort('api', slot) + 1, slotPort('cdn', slot) + 1];
+
+describe('workspace slots', () => {
+	it('binds the base workspace to the base ports', () => {
+		expect(slotPort('site', 0)).toBe(DEVELOPMENT_PORTS.site);
+		expect(developmentUrls(0)).toEqual({
+			site: 'http://localhost:26511',
+			api: 'http://localhost:26512',
+			cdn: 'http://localhost:26516',
+		});
+	});
+
+	it('shifts an overlay by a whole stride per slot, so every address follows from the number', () => {
+		expect(slotPort('api', 1)).toBe(DEVELOPMENT_PORTS.api + SLOT_STRIDE);
+		expect(developmentUrl('cdn', 2)).toBe(
+			`http://localhost:${DEVELOPMENT_PORTS.cdn + 2 * SLOT_STRIDE}`,
+		);
+	});
+
+	// wrangler takes port + 1 for its inspector, so the two workers' inspectors must land on
+	// nothing else in the same slot, one slot must end before the next begins, and the CMS port
+	// must fall in no slot at all: it is a singleton and never shifts.
+	it('keeps every slot clear of the inspector ports and of the CMS port', () => {
+		const cms = Number(process.env.CMS_PORT ?? 26521);
+		for (let slot = 0; slot < 10; slot++) {
+			const taken = [...bound(slot), ...inspectors(slot)];
+			expect(new Set(taken).size).toBe(taken.length);
+			expect(taken).not.toContain(cms);
+			expect(Math.max(...taken)).toBeLessThan(Math.min(...bound(slot + 1)));
+		}
+	});
+
+	it('refuses a slot that is not a whole number of workspaces', () => {
+		expect(() => slotPort('site', -1)).toThrow();
+		expect(() => slotPort('site', 1.5)).toThrow();
+	});
+
+	// Nothing defines the override in a test, so the map is the base map -- and the Rust
+	// mirror, which walks this same object under bare node, renders the same.
+	it('serves the base addresses where no dev server injected an override', () => {
+		expect(URLS.apps.development).toEqual(developmentUrls(0));
+	});
+});
+
+describe('isDevOrigin', () => {
+	it('accepts a loopback origin on any port', () => {
+		expect(isDevOrigin('http://localhost:26511')).toBe(true);
+		expect(isDevOrigin('http://localhost:26611')).toBe(true);
+		expect(isDevOrigin('http://127.0.0.1:1')).toBe(true);
+	});
+
+	it('rejects production origins and non-URLs', () => {
+		expect(isDevOrigin(URLS.apps.production.site)).toBe(false);
+		expect(isDevOrigin('null')).toBe(false);
+		expect(isDevOrigin('')).toBe(false);
 	});
 });
 

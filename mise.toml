@@ -10,6 +10,13 @@ JJ_CONFIG = "{{env.HOME}}/.config/jj/config.toml:{{config_root}}/jj.toml"
 # Pinned, never auto-incremented; see spec/toolchain.md.
 CMS_PORT = "26521"
 
+# Which workspace this checkout is. 0 is the base: this directory, on main, running the full
+# set of dev servers. An overlay checkout overrides it in its own gitignored mise.local.toml
+# (written by `mise run workspace add`), and the number shifts every dev port it binds so it
+# never collides with the base. Read by libs/urls' consumers, not by libs/urls itself.
+# See spec/toolchain.md.
+WORKSPACE_SLOT = "0"
+
 # Credentials, decrypted by mise on entering the directory. The file is committed encrypted;
 # only the age private key opens it. See spec/toolchain.md for the key setup and for why this
 # is JSON rather than a dotenv.
@@ -93,10 +100,13 @@ dir = "apps/cdn"
 # it alongside the worker.
 run = 'pnpm exec wrangler deploy --env=""'
 
+# The two workers take their port from the workspace slot as flags, so an overlay binds its own
+# range; the numbers pinned in each wrangler.jsonc are what slot 0 resolves to. libs/urls owns
+# the arithmetic and prints the flags. The site needs no flag: its Vite config reads the slot.
 [tasks.dev-api]
 description = "Run the API worker"
 dir = "apps/api"
-run = "pnpm run dev"
+run = "pnpm run dev $(node {{config_root}}/libs/urls/scripts/wrangler-ports.ts api)"
 
 [tasks.dev-site]
 description = "Run the site worker"
@@ -106,7 +116,7 @@ run = "pnpm run dev"
 [tasks.dev-cdn]
 description = "Run the CDN worker against data/public"
 dir = "apps/cdn"
-run = "pnpm run dev"
+run = "pnpm run dev $(node {{config_root}}/libs/urls/scripts/wrangler-ports.ts cdn)"
 
 [tasks.dev-cms]
 description = "Run the CMS desktop client"

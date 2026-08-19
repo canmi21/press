@@ -17,7 +17,9 @@
 	],
 
 	// The port also appears in libs/urls as the development CDN URL. wrangler cannot read a
-	// TypeScript library, so the number is written twice on purpose.
+	// TypeScript library, so the number is written twice on purpose. This is the base
+	// workspace's pair; `mise run dev-cdn` passes an overlay's shifted pair as flags,
+	// computed by libs/urls from the same number. See spec/toolchain.md.
 	"dev": {
 		"port": 26516,
 		"inspector_port": 26517,

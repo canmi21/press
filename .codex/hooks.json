@@ -23,6 +23,12 @@
 						"command": "/usr/bin/python3 \"$(jj workspace root)/hooks/spec_check.py\"",
 						"timeout": 30,
 						"statusMessage": "Checking whether the commit settled a decision"
+					},
+					{
+						"type": "command",
+						"command": "/usr/bin/python3 \"$(jj workspace root)/hooks/spec_diff.py\"",
+						"timeout": 30,
+						"statusMessage": "Showing rule changes a rebase brought in"
 					}
 				]
 			}

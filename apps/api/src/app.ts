@@ -1,5 +1,5 @@
 import { robotsTxt } from '@canmi/robots';
-import { URLS, isDevHost, pickUrls } from '@canmi/urls';
+import { URLS, isDevHost, isDevOrigin, pickUrls } from '@canmi/urls';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import type { Bindings } from './bindings';
@@ -17,16 +17,27 @@ import image from './image';
  */
 const app = new Hono<{ Bindings: Bindings }>();
 
+const ORIGINS = new Set([
+	URLS.apps.production.site,
+	URLS.apps.development.site,
+	URLS.internal.app,
+	URLS.internal.infra,
+	URLS.internal.link,
+]);
+
 app.use(
 	'*',
 	cors({
-		origin: [
-			URLS.apps.production.site,
-			URLS.apps.development.site,
-			URLS.internal.app,
-			URLS.internal.infra,
-			URLS.internal.link,
-		],
+		// The list, plus any loopback origin while the API itself is answering on a loopback
+		// host: an overlay workspace's site runs on its own slot port and still calls the base
+		// API, and the base cannot know how many slots exist. The clause is dead in production,
+		// where the API is never a dev host. Anything else gets no header, as before.
+		// See spec/toolchain.md.
+		origin: (origin, c) => {
+			if (ORIGINS.has(origin)) return origin;
+			if (isDevOrigin(origin) && isDevHost(new URL(c.req.url).hostname)) return origin;
+			return null;
+		},
 		allowMethods: ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 		allowHeaders: ['Content-Type'],
 		maxAge: 86_400,

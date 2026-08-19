@@ -67,6 +67,11 @@ version, linters and formatters included; see `mise.toml`. Default stacks are Ru
 binaries and applications, TypeScript + pnpm + Svelte for web.
 See [spec/toolchain.md](spec/toolchain.md).
 
+Several agents may work at once, each in its own jj workspace, all committing onto one `main`:
+`~/workspace` is the base, `~/workspace-{n}` are overlays. Agents coordinate through the change
+graph only, never by messaging each other. Know which workspace you are in before acting.
+See [spec/toolchain.md](spec/toolchain.md) and [spec/agent-protocol.md](spec/agent-protocol.md).
+
 Indentation is tabs at width 2 in every language, YAML excepted. `.editorconfig` is the source
 of truth.
 

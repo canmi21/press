@@ -1,0 +1,204 @@
+#!/usr/bin/env python3
+#MISE description="Add, forget, or refresh a jj workspace: `workspace add 1`, `workspace forget 1`, `workspace refresh`"
+"""Manage the workspaces parallel work runs in. See spec/toolchain.md, "Parallel workspaces".
+
+The base is this checkout, jj's `default` workspace, sitting on `main`. An overlay is a
+sibling directory `<base>-<n>` holding jj workspace `<basename>-<n>` and slot n, where n is
+the number that decides its dev ports. Everything an overlay needs that git does not carry --
+the bytes under data/ -- is a symlink back into the base, so there is one copy of every asset on
+the machine and an overlay can be deleted without losing any.
+
+  add <n>     create `<base>-<n>` on main, write its slot, link data/, install dependencies
+  forget <n>  drop the workspace and its directory, refusing while it holds unfinished work
+  refresh     move the base's empty working copy onto main after main moved under it
+
+Runs from the base only. An overlay creating overlays would put a second base on the machine,
+and the base is where the bytes live.
+"""
+
+import json
+import os
+import pathlib
+import shutil
+import subprocess
+import sys
+
+sys.dont_write_bytecode = True
+
+BASE = pathlib.Path(__file__).resolve().parents[2]
+DATA = "data"
+
+
+def jj(*args: str, cwd: pathlib.Path = BASE, check: bool = True) -> str:
+	result = subprocess.run(["jj", *args], cwd=cwd, capture_output=True, text=True)
+	if check and result.returncode != 0:
+		sys.stderr.write(result.stderr)
+		raise SystemExit(f"jj {' '.join(args)} failed")
+	return result.stdout
+
+
+def fail(message: str) -> "SystemExit":
+	return SystemExit(f"error: {message}")
+
+
+def slot_of(argument: str | None) -> int:
+	if argument is None or not argument.isdigit() or int(argument) < 1:
+		raise fail("give the overlay's number, a positive integer: `mise run workspace add 1`")
+	return int(argument)
+
+
+def overlay(slot: int) -> tuple[str, pathlib.Path]:
+	"""The jj workspace name and directory that slot n means, derived rather than chosen."""
+	name = f"{BASE.name}-{slot}"
+	return name, BASE.parent / name
+
+
+def in_base() -> None:
+	if os.environ.get("WORKSPACE_SLOT", "0") != "0":
+		raise fail("run this from the base workspace, not an overlay")
+	if jj("workspace", "root").strip() != str(BASE):
+		raise fail(f"run this from the base workspace at {BASE}")
+
+
+def workspace_names() -> set[str]:
+	return {line.split(":", 1)[0] for line in jj("workspace", "list").splitlines() if ":" in line}
+
+
+def tracked_under(relative: str) -> list[str]:
+	"""Paths git carries under one directory, so the link step can leave them to the checkout."""
+	return jj("file", "list", relative).split()
+
+
+def link_untracked(relative: str, tracked: list[str], target: pathlib.Path) -> list[str]:
+	"""Symlink every entry under `relative` that git does not carry, recursing only where it does.
+
+	Tracked files are already in the overlay from the checkout. Anything else -- photographs,
+	fonts, the gazetteer, generated build records -- exists once, in the base, and the overlay
+	only ever reads it. Whole untracked directories become one link; a directory that mixes both
+	(data/public holds a tracked .gitkeep beside every published byte) is entered and linked
+	entry by entry. Dotfiles are skipped: .gitkeep is tracked and .DS_Store is nobody's.
+	"""
+	linked = []
+	source_dir = BASE / relative
+	for entry in sorted(source_dir.iterdir()):
+		if entry.name.startswith("."):
+			continue
+		child = f"{relative}/{entry.name}"
+		if child in tracked:
+			continue
+		if entry.is_dir() and any(path.startswith(child + "/") for path in tracked):
+			linked.extend(link_untracked(child, tracked, target))
+			continue
+		destination = target / child
+		destination.parent.mkdir(parents=True, exist_ok=True)
+		if destination.is_symlink() or destination.exists():
+			continue
+		destination.symlink_to(entry)
+		linked.append(child)
+	return linked
+
+
+def add(slot: int) -> int:
+	in_base()
+	name, target = overlay(slot)
+	if target.exists():
+		raise fail(f"{target} already exists")
+	if name in workspace_names():
+		raise fail(f"jj already has a workspace named {name}; `mise run workspace forget {slot}` first")
+
+	print(f"adding jj workspace {name} at {target}, on main")
+	jj("workspace", "add", "--name", name, "--revision", "main", str(target))
+
+	# The one file that makes this directory an overlay rather than a second base. Local and
+	# gitignored: it describes this directory, not the project.
+	(target / "mise.local.toml").write_text(
+		"# Written by `mise run workspace add`. This checkout is an overlay; the number decides its\n"
+		"# dev ports and keeps it out of the base's. See spec/toolchain.md.\n"
+		"[env]\n"
+		f'WORKSPACE_SLOT = "{slot}"\n'
+	)
+	# The overlay's mise.toml is a copy of the base's at a new path, and mise trusts paths.
+	for config in ("mise.toml", "mise.local.toml"):
+		subprocess.run(["mise", "trust", "--quiet", str(target / config)], check=False)
+
+	# Harness permissions are per-checkout and untracked, and an agent that has to ask for every
+	# command is not the point of a second workspace.
+	local_settings = BASE / ".claude" / "settings.local.json"
+	if local_settings.is_file():
+		(target / ".claude").mkdir(exist_ok=True)
+		shutil.copy2(local_settings, target / ".claude" / "settings.local.json")
+
+	linked = link_untracked(DATA, tracked_under(DATA), target)
+	print(f"linked {len(linked)} data path(s) into the base:")
+	for path in linked:
+		print(f"  {path}")
+
+	print("installing dependencies")
+	subprocess.run(["pnpm", "install", "--frozen-lockfile", "--prefer-offline"], cwd=target, check=True)
+
+	print(
+		json.dumps(
+			{
+				"workspace": name,
+				"directory": str(target),
+				"slot": slot,
+				"next": f"cd {target} and start an agent there; run only the apps you change",
+			},
+			indent=2,
+		)
+	)
+	return 0
+
+
+def forget(slot: int) -> int:
+	in_base()
+	name, target = overlay(slot)
+	if name not in workspace_names():
+		raise fail(f"no jj workspace named {name}")
+
+	# Anything with content on the way to the overlay's working copy that main does not cover,
+	# the working copy itself included: that is work, and forgetting is how it would get lost.
+	unfinished = jj(
+		"log", "--no-graph", "--ignore-working-copy",
+		"-r", f"::{name}@ ~ ::main ~ empty()",
+		"-T", 'change_id.short() ++ " " ++ description.first_line() ++ "\\n"',
+	).strip()
+	if unfinished:
+		raise fail(
+			f"{name} still holds work main does not cover:\n{unfinished}\n"
+			"Finish it (rebase onto main and move the bookmark) or abandon it, then forget."
+		)
+
+	jj("workspace", "forget", name)
+	if target.is_dir() and target.parent == BASE.parent and target.name == name:
+		shutil.rmtree(target)
+	print(f"forgot {name}; removed {target}")
+	return 0
+
+
+def refresh() -> int:
+	in_base()
+	# `jj new main` on a working copy that holds something leaves it stranded on the old parent.
+	held = jj("log", "--no-graph", "-r", "@ ~ empty()", "-T", "change_id").strip()
+	described = jj("log", "--no-graph", "-r", "@", "-T", "description").strip()
+	if held or described:
+		raise fail("the base working copy holds changes; commit or abandon them before refreshing")
+	jj("new", "main")
+	print("base working copy is now an empty change on main")
+	return 0
+
+
+def main(argv: list[str]) -> int:
+	verb = argv[0] if argv else None
+	if verb == "add":
+		return add(slot_of(argv[1] if len(argv) > 1 else None))
+	if verb == "forget":
+		return forget(slot_of(argv[1] if len(argv) > 1 else None))
+	if verb == "refresh":
+		return refresh()
+	print(__doc__.strip(), file=sys.stderr)
+	return 2
+
+
+if __name__ == "__main__":
+	sys.exit(main(sys.argv[1:]))

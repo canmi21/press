@@ -1,4 +1,4 @@
-import { URLS } from '@canmi/urls';
+import { developmentUrl, URLS } from '@canmi/urls';
 import { describe, expect, it } from 'vitest';
 import app from './app';
 
@@ -43,6 +43,20 @@ describe('CORS', () => {
 			new Request(prod, { headers: { Origin: URLS.apps.production.site } }),
 		);
 		expect(res.headers.get('Access-Control-Allow-Origin')).toBe(URLS.apps.production.site);
+	});
+
+	// An overlay workspace's site answers on a slot port the list cannot name; see
+	// spec/toolchain.md. The base API lets it in only while it is itself a development host.
+	it('allows an overlay site while answering on a development host', async () => {
+		const overlay = developmentUrl('site', 2);
+		const res = await app.fetch(new Request(dev, { headers: { Origin: overlay } }));
+		expect(res.headers.get('Access-Control-Allow-Origin')).toBe(overlay);
+	});
+
+	it('does not extend that to production', async () => {
+		const overlay = developmentUrl('site', 2);
+		const res = await app.fetch(new Request(prod, { headers: { Origin: overlay } }));
+		expect(res.headers.get('Access-Control-Allow-Origin')).toBeNull();
 	});
 
 	it('does not allow an unknown origin', async () => {

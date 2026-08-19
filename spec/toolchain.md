@@ -120,6 +120,12 @@ fetching and overwriting in the same directory. The port collision is the cheape
 available -- the operating system provides it for free, and it fails loudly at the only moment
 anyone can act on it.
 
+The pinned numbers are the **base** workspace's. An overlay workspace binds each of them
+shifted by its slot -- see [Parallel workspaces](#parallel-workspaces) -- so the pin still
+holds per directory, and what it protects still holds per machine: the CMS, the one process
+that writes `data/`, keeps `CMS_PORT` in every workspace and does not shift. Two overlays
+that both try to run it collide, which is the mutex doing its job.
+
 A port both a TypeScript tool and a Rust binary need is declared in `mise.toml` under `[env]`,
 not in `libs/urls`. The single-source rule asks for one place to edit, not one particular
 file, and a TypeScript library cannot be read by a Rust process -- putting a cross-language
@@ -164,6 +170,92 @@ moves when told to is a bookmark whose position means something.
 
 Pushing is the user's to run. Do not offer it at the end of a task and do not ask whether to
 push. Commit and move the bookmark; stop there.
+
+How `main` advances when more than one workspace is committing is [commits.md](commits.md)'s;
+what the workspaces are is the next section's.
+
+## Parallel workspaces
+
+More than one agent works on this repository at once, each in its own jj workspace. There are
+no feature bookmarks and no branches: every workspace commits onto the one linear `main`,
+and the history git sees is the same as it would be with one author. What jj adds is that
+each workspace has its own working copy and its own `@`, all visible in one `jj log`, on one
+change graph, in one operation log. Coordination happens through that graph and nowhere else
+-- see [agent-protocol.md](agent-protocol.md).
+
+### One base, any number of overlays
+
+The **base** is this checkout: jj's `default` workspace, `~/workspace`, sitting on `main`
+with an empty working copy. It is the user's, and it is where the machine-level things live
+-- the bytes under `data/`, the CMS, the full set of dev servers, the tmux session that keeps
+them up. Nothing about the base is special to jj; what makes it the base is that everything
+else points at it.
+
+An **overlay** is a sibling directory `~/workspace-{n}` holding jj workspace `workspace-{n}`,
+where `n` is its **slot** -- a positive integer that decides its dev ports and nothing else.
+`mise run workspace add {n}` creates one on `main`, writes the slot into a gitignored
+`mise.local.toml` (the only file that makes a checkout an overlay), links the bytes under
+`data/` back into the base, and installs dependencies. `mise run workspace forget {n}` removes
+it, refusing while it holds work `main` does not cover. One agent works in one overlay.
+
+The names are derived, not chosen: directory, jj workspace, and slot are one number, so
+`workspace-2@` in a log, `~/workspace-2` on disk, and ports two strides above the base's are
+visibly the same thing. They are named by seat rather than by feature because a workspace outlives the
+feature it was opened for and gets the next one. None of it reaches git: a jj commit carries
+no workspace, and the workspace name survives only in the local operation log, which no clone
+receives.
+
+An overlay has no `.git` directory -- jj keeps one repository under the base's `.jj` and the
+overlay holds a pointer to it -- so `git` commands do not work there. Everything jj-shaped
+does, including the hooks, and `mise run gc` runs from the base.
+
+### An overlay runs what it changes; the rest is the base's
+
+The base runs every dev server, on the pinned ports. An overlay starts only the app it is
+actually changing, on its slot's ports, and reaches everything it did not start on the base.
+Two agents both changing the site cost two site servers and one API; two agents changing
+different apps cost one server each. The cost tracks the number of things being changed, not
+the number of people changing them, which is what keeps this from becoming a full stack per
+seat.
+
+Which is which is decided by looking, not by declaring: the site's Vite config probes its
+slot's API and CDN ports once at startup and takes whichever answers, base otherwise. So the
+rule for an agent is one line -- **start the app you are changing before the site**, or
+restart the site after -- and there is no state to keep in step. The answer is baked into the
+client bundle, which is why it is taken at startup and not per request. In the base, slot 0,
+nothing is probed: the base ports are the base by definition.
+
+`libs/urls` owns the arithmetic (`slotPort`, `developmentUrls`) and the injected override the
+site's dev server defines; the wrangler workers take their slot ports as flags from the mise
+tasks, computed from the same table. Bare `node`, vitest, and the workers themselves see no
+override and get the base addresses, so the Rust mirror of the URL map renders the same in
+every workspace and `mise run verify` is stable across them.
+
+The base API accepts any loopback origin while it is itself answering on a loopback host,
+because an overlay's site calls the base API from a port the allowlist cannot name and the
+base cannot know how many slots exist. Production never answers on a loopback host, so the
+clause is dead there.
+
+### What is not shared
+
+`node_modules`, `target/`, `.wrangler/` and `.svelte-kit/` are per checkout, and so is
+`.cms/` -- which an overlay never has, because it never runs the tasks that write it. Rust
+compiles once per overlay; the dev profile keeps that to the crates here, with dependencies
+cached at `opt-level = 3`. Sharing `target/` across workspaces was considered and left: cargo
+locks it, but two agents building different revisions would thrash one cache, and the cost it
+saves is paid once per overlay rather than per edit.
+
+`data/` is the exception in the other direction -- shared by construction, read-only from an
+overlay. [data.md](architecture/data.md) has that rule.
+
+### The base session
+
+The base needs nobody in it. When there is an agent there, its work is housekeeping: `mise
+run workspace refresh` after a push so the base's working copy follows `main` and the dev
+servers reload against it, `mise run verify` on the merged result, the periodic selfcheck of
+`spec/`, `mise run gc`. It does not commit for others and it does not rebase their work --
+[commits.md](commits.md) says why -- so it is optional, and the user's own terminal is a fine
+substitute.
 
 ## Tool versions
 

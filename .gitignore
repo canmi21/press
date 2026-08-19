@@ -74,6 +74,9 @@ coverage/
 .env
 .env.*
 !.env.example
+# What makes a checkout an overlay workspace: its slot number, and nothing else. Describes the
+# directory it sits in, not the project, so it never travels. See spec/toolchain.md.
+mise.local.toml
 
 # age private keys. The real one lives in ~/.config/sops/age and never belongs here, but a
 # stray copy would otherwise be committed in the clear. secrets.json is deliberately NOT

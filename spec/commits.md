@@ -101,6 +101,30 @@ and moves the `main` bookmark before handing the result back. A separate request
 not required. Partial or blocked work stays uncommitted, and unrelated changes already in the
 working copy are never swept into the task's commit merely to make the tree clean.
 
+### When `main` moved meanwhile
+
+Other workspaces commit onto the same `main` -- see [toolchain.md](toolchain.md), "Parallel
+workspaces". If it advanced while the task was underway, `jj bookmark move` refuses to move it
+sideways, and that refusal is the synchronisation point: `jj rebase -d main`, run `mise run
+verify` again on the rebased result, then move. The order matters. Each workspace verified
+its own change in isolation; the rebased commit is the first place the two changes meet, and
+it is what `main` is about to claim.
+
+A conflict does not stop the rebase -- jj records it in the commit -- and it is resolved by
+the agent whose change it is, in that workspace, because that is where the reasoning behind
+the change still lives. Nobody resolves it on somebody else's behalf.
+
+**Only rewrite commits that belong to your own workspace.** Rebasing, squashing or describing
+another workspace's commits rewrites the parents its working copy sits on and leaves it stale
+until that agent runs `jj workspace update-stale`, in the middle of whatever it was doing.
+The one bookmark everyone moves is `main`; the commits under it are each written by exactly
+one workspace, and stay that way until they are on `main`. A base session in particular does
+not land other workspaces' commits for them: the trailer below records who shaped a change,
+and a change landed by a hand that did not write it makes that record wrong.
+
+The rebase is also where rule changes arrive: `spec/` moves with `main` like everything else,
+and [agent-protocol.md](agent-protocol.md) says what to do with the delta.
+
 ## Enforcement
 
 `hooks/commit.py` runs before any jj subcommand that can write a description and does two
@@ -158,6 +182,14 @@ It counts only commits that are described and non-empty. Undescribed working-cop
 the shape partial work is supposed to have -- the rule above says it stays uncommitted -- so
 firing on those would turn a rule that protects unfinished work into one that demands it be
 published.
+
+`hooks/spec_diff.py` runs after a `jj rebase` and hands back the diff of `spec/` and
+`CLAUDE.md` between the working copy before the rebase and after it. It reads the previous
+state out of jj's operation log rather than remembering anything, and prints nothing when no
+rule moved. It exists because a rule written in one workspace reaches another only through
+`main`, and the moment it does is otherwise invisible: the files change under an agent whose
+context still holds the old text. It does not block; whether a changed rule touches the task
+is the agent's call, and it is asked at the one moment the answer is cheap.
 
 What all of this does not cover, and why the rules above still have to be read rather than
 merely enforced:

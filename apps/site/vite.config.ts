@@ -1,13 +1,21 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { URLS } from '@canmi/urls';
+import {
+	developmentUrl,
+	developmentUrls,
+	parseSlot,
+	slotPort,
+	URLS,
+	type DevelopmentUrls,
+} from '@canmi/urls';
+import { connect } from 'node:net';
 import { sentrySvelteKit } from '@sentry/sveltekit';
 import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { paraglideVitePlugin } from '@inlang/paraglide-js';
 import Icons from 'unplugin-icons/vite';
 import { execFileSync } from 'node:child_process';
-import { defineConfig } from 'vite';
+import { defineConfig, type UserConfig } from 'vite';
 import { parse as parseYaml } from 'yaml';
 import { buildArticles, buildPages } from './src/lib/content/build/articles.ts';
 
@@ -50,6 +58,47 @@ const commitHash = (() => {
 // Sitemap <lastmod> for routes like "/" that have no article of their own to date from.
 const buildTime = new Date().toISOString();
 
+/** Whether something already answers on a loopback port. */
+function listening(port: number): Promise<boolean> {
+	return new Promise((resolve) => {
+		const socket = connect({ host: '127.0.0.1', port });
+		socket.once('connect', () => {
+			socket.destroy();
+			resolve(true);
+		});
+		socket.once('error', () => resolve(false));
+		socket.setTimeout(300, () => {
+			socket.destroy();
+			resolve(false);
+		});
+	});
+}
+
+/**
+ * Where this workspace's site reaches the API and the CDN.
+ *
+ * An overlay runs only the apps it is changing; whatever it did not start comes from the base
+ * workspace's servers on the base ports. Which is which is decided here by looking, once, at
+ * whether the slot port answers -- so an agent that started its own API before the site gets
+ * it, and one that did not gets the base, with nothing to declare either way. Start the app
+ * you are changing first, or restart the site after: the answer is taken at startup, not per
+ * request, because it is baked into the client bundle. The base itself never probes; slot 0
+ * is the base ports by definition. See spec/toolchain.md.
+ */
+async function resolveDevelopmentUrls(slot: number): Promise<DevelopmentUrls> {
+	if (slot === 0) return developmentUrls(0);
+	const base = developmentUrls(0);
+	const [api, cdn] = await Promise.all([
+		listening(slotPort('api', slot)),
+		listening(slotPort('cdn', slot)),
+	]);
+	return {
+		site: developmentUrl('site', slot),
+		api: api ? developmentUrl('api', slot) : base.api,
+		cdn: cdn ? developmentUrl('cdn', slot) : base.cdn,
+	};
+}
+
 /**
  * The Sentry upload credential, if this build is allowed to proceed without one.
  *
@@ -73,8 +122,10 @@ function sentryToken(): string | undefined {
 	return token;
 }
 
-export default defineConfig(({ mode }) => {
-	const urls = mode === 'production' ? URLS.apps.production : URLS.apps.development;
+export default defineConfig(async ({ mode }) => {
+	const slot = parseSlot(process.env.WORKSPACE_SLOT);
+	const development = await resolveDevelopmentUrls(slot);
+	const urls = mode === 'production' ? URLS.apps.production : development;
 	return {
 		plugins: [
 			tailwindcss(),
@@ -199,7 +250,7 @@ export default defineConfig(({ mode }) => {
 		server: {
 			// Pinned, never auto-incremented; see spec/toolchain.md. The number itself lives in
 			// the URL map, so moving the dev server stays a one-file edit.
-			port: Number(new URL(URLS.apps.development.site).port),
+			port: slotPort('site', slot),
 			strictPort: true,
 		},
 		ssr: {
@@ -223,6 +274,13 @@ export default defineConfig(({ mode }) => {
 		define: {
 			'import.meta.env.VITE_COMMIT_HASH': JSON.stringify(commitHash),
 			'import.meta.env.VITE_BUILD_TIME': JSON.stringify(buildTime),
+			// The one exception to "URLs are not injected": in an overlay workspace the development
+			// addresses depend on which apps this workspace runs, which only this process can know.
+			// libs/urls declares the identifier and falls back to the base ports where nothing
+			// defines it.
+			__DEV_URLS__: JSON.stringify(development),
 		},
-	};
+		// The function is async for the probe above, and a promise loses the contextual typing
+		// that kept 'hidden' and 'hex' literal; this puts it back.
+	} satisfies UserConfig;
 });

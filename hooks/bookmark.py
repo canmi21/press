@@ -94,8 +94,10 @@ def main() -> int:
 		f"result is handed back. Committed work is finished work -- partial work is meant to "
 		f"stay uncommitted -- so anything listed above belongs under the bookmark.\n\n"
 		f"Run `jj bookmark move {BOOKMARK} --to @-` (or `--to @` when the working copy is itself "
-		f"the described commit), then finish the turn. Do not push: that is the user's to run, "
-		f"per spec/toolchain.md."
+		f"the described commit), then finish the turn. If the move is refused as sideways, another "
+		f"workspace advanced `{BOOKMARK}` meanwhile: `jj rebase -d {BOOKMARK}`, re-run `mise run "
+		f"verify`, then move -- see spec/commits.md. Do not push: that is the user's to run, per "
+		f"spec/toolchain.md."
 	)
 
 	print(json.dumps({"decision": "block", "reason": reason}))

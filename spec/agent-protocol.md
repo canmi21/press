@@ -55,10 +55,49 @@ Starting a conversation with no context about this project:
 
 1. Read `CLAUDE.md` in the repo root.
 2. Read the `spec/` files that cover the task at hand.
-3. Only then act.
+3. Know which workspace you are in and start from the current `main`.
+4. Only then act.
 
 Never act first and consult the rules afterwards. If a rule would have changed what you did,
 reading it late is worth nothing.
+
+Step 3 exists because more than one agent may be working at once, each in its own jj
+workspace ([toolchain.md](toolchain.md), "Parallel workspaces"). `jj workspace root` says
+which directory this is; `WORKSPACE_SLOT` in the environment says whether it is the base (0)
+or an overlay. A new task begins with `jj new main`, so the rules read in step 2 are the ones
+`main` currently holds and not the ones a previous task left the working copy on. `jj log`
+shows every other workspace's `@` and `jj diff -r workspace-2@ --stat` shows what one of them
+is touching -- as of its last jj command, which is precise enough to notice an overlap before
+starting into it.
+
+## Working beside other agents
+
+**Agents do not talk to each other.** No harness messaging between sessions -- Claude Code's
+cross-session messaging, or any equivalent -- and no side channel invented for the purpose.
+The change graph is the only coordination medium: what another workspace is doing is read from
+`jj log`, and what it decided is read from `spec/` after a rebase.
+
+Three reasons, each sufficient on its own. A session list on this machine has shown sessions
+that were on other machines, so a message has no reliable boundary and can land in a place
+that has nothing to do with this repository. A channel one vendor's harness provides is a
+channel the other harness cannot read, and this ruleset is written to hold for both. And a
+decision made in a conversation between two agents is recorded nowhere: not in `spec/`, not in
+a commit, not where the user can see it -- which is the failure this whole file exists to
+prevent.
+
+**Rule changes travel with `main`.** A decision the user gives one agent is written into
+`spec/` by that agent and lands like any other commit. Every other workspace receives it at its
+next `jj rebase -d main`, where `hooks/spec_diff.py` hands back exactly the lines that changed
+-- a delta, not a re-read, so keeping current costs nothing in context. Read that delta before
+the next commit; if it changes what the current task should do, adjust. There is no push
+notification, on purpose: a rule that reaches an agent mid-task through a channel interrupts
+work it may not affect, and the diff at rebase arrives at the one moment it matters, just
+before the agent's own commit lands beside it.
+
+If a change _does_ affect a task already underway in another workspace, telling that agent is
+the user's, since the user is where the decision came from and the only one who knows what
+each workspace is doing. That is not a gap in the mechanism; it is decision authority applied
+to the one case a pull cannot cover.
 
 ## Decision authority
 
