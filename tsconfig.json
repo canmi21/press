@@ -1,28 +1,34 @@
 {
-	// Type checking only. Libraries export .ts straight from src and consumers bundle it,
-	// so nothing here ever emits JavaScript. See spec/architecture/workspace.md.
+	// Everything that runs in a browser, or in neither runtime in particular.
+	//
+	// The workers are checked separately by tsconfig.workers.json, and the split is not tidiness:
+	// `@cloudflare/workers-types` declares its own `ReadableStream`, `Response` and `Cache`, and
+	// TypeScript has no way to know those are the same things the DOM lib declares. With both in
+	// one program every worker value crossing a shared boundary needed an `as unknown as` or a
+	// hand-written structural type to get past the checker -- two different workarounds for one
+	// cause, each looking like a local quirk. Two programs, one definition of each name.
+	//
+	// Type checking only. Libraries export .ts straight from src and consumers bundle it, so
+	// nothing here ever emits JavaScript. See spec/architecture/workspace.md.
+	"extends": "./tsconfig.base.json",
 	"compilerOptions": {
-		"target": "es2023",
-		"lib": ["es2023", "dom"],
-		"module": "preserve",
-		"moduleResolution": "bundler",
-		"resolveJsonModule": true,
-		"moduleDetection": "force",
-		"strict": true,
-		// Scripts run by bare node (libs/urls/scripts) need explicit .ts specifiers, which node's
-		// type stripping requires and this flag permits; safe because noEmit holds above.
-		"allowImportingTsExtensions": true,
-		"noUncheckedIndexedAccess": true,
-		"noImplicitOverride": true,
-		"noFallthroughCasesInSwitch": true,
-		"verbatimModuleSyntax": true,
-		"isolatedModules": true,
-		"skipLibCheck": true,
-		"noEmit": true
+		"lib": ["es2023", "dom"]
 	},
 	"include": ["libs/**/*.ts", "apps/**/*.ts", "*.ts"],
-	// apps/site checks itself with svelte-check instead. SvelteKit generates the `$lib`
-	// aliases and the `*.svelte` module types into .svelte-kit/tsconfig.json, so anything
-	// reading only this file sees a project missing half its declarations.
-	"exclude": ["**/node_modules", "**/dist", "**/build", "data", "apps/site"]
+	// apps/site checks itself with svelte-check instead. SvelteKit generates the `$lib` aliases
+	// and the `*.svelte` module types into .svelte-kit/tsconfig.json, so anything reading only
+	// this file sees a project missing half its declarations.
+	"exclude": [
+		"**/node_modules",
+		"**/dist",
+		"**/build",
+		"data",
+		"apps/site",
+		// Checked by tsconfig.workers.json against workerd's globals rather than the browser's.
+		// Whole directories, not just `src`: a script or a declaration file in there imports the
+		// worker, and importing it is enough to pull it into this program with the DOM in scope.
+		"libs/store",
+		"apps/api",
+		"apps/cdn"
+	]
 }

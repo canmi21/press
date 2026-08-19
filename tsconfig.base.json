@@ -1,0 +1,23 @@
+{
+	// Options every context shares. What differs between them is the *environment* -- which
+	// global types are in scope -- and that lives in the two configs that extend this.
+	// See spec/architecture/workspace.md.
+	"compilerOptions": {
+		"target": "es2023",
+		"module": "preserve",
+		"moduleResolution": "bundler",
+		"resolveJsonModule": true,
+		"moduleDetection": "force",
+		"strict": true,
+		// Scripts run by bare node (libs/urls/scripts) need explicit .ts specifiers, which node's
+		// type stripping requires and this flag permits; safe because noEmit holds below.
+		"allowImportingTsExtensions": true,
+		"noUncheckedIndexedAccess": true,
+		"noImplicitOverride": true,
+		"noFallthroughCasesInSwitch": true,
+		"verbatimModuleSyntax": true,
+		"isolatedModules": true,
+		"skipLibCheck": true,
+		"noEmit": true
+	}
+}

@@ -27,9 +27,14 @@ import WEBP_ENC_WASM from '@jsquash/webp/codec/enc/webp_enc.wasm';
  * the decoder, and apps/cms already produces AVIF locally where the time is free.
  */
 
-/** workerd has no DOM, and the codecs exchange pixels as `ImageData`. */
+/**
+ * workerd has no DOM, and the codecs exchange pixels as `ImageData`.
+ *
+ * Its shape is declared in worker-runtime.d.ts, so this assignment type-checks against what it
+ * actually installs. It used to need a `@ts-expect-error`: the DOM library was in scope and the
+ * class below is not a browser `ImageData`, which the checker was right about.
+ */
 if (typeof globalThis.ImageData === 'undefined') {
-	// @ts-expect-error -- supplying the shape the codecs construct and read.
 	globalThis.ImageData = class {
 		data: Uint8ClampedArray;
 		width: number;

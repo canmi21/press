@@ -13,8 +13,8 @@ import { readdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const CONTENTS = fileURLToPath(new URL('../../../contents', import.meta.url));
-const OUTPUT = fileURLToPath(new URL('../src/slugs.ts', import.meta.url));
+const CONTENTS = fileURLToPath(new URL('../../../contents', import.meta.url).href);
+const OUTPUT = fileURLToPath(new URL('../src/slugs.ts', import.meta.url).href);
 
 /**
  * Every article slug, as the site addresses them.

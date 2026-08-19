@@ -1,0 +1,39 @@
+{
+	// The two Workers and the library only they use.
+	//
+	// No `dom`. workerd is not a browser, and pulling the DOM lib in beside
+	// `@cloudflare/workers-types` gives every shared runtime name two unrelated declarations --
+	// which is what forced `as unknown as ReadableStream` across libs/store's public surface and
+	// a structural redeclaration of `caches` in apps/cdn. Neither was a fact about the code.
+	//
+	// libs/store belongs here rather than beside the other libraries because it is the one that
+	// speaks R2 and the asset fetcher, and apps/api and apps/cdn are its only consumers.
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"lib": ["es2023"],
+		// workerd's own globals arrive through each worker's worker-runtime.d.ts rather than
+		// through `types`: that field resolves from this file's directory, and the package is
+		// installed per workspace member, so the root cannot see it and the worker can.
+		//
+		// `node` is here for the tests only, which import `node:fs` and `miniflare` explicitly.
+		// It adds no globals workerd lacks -- node's own types are namespaced behind `node:`.
+		// `typeRoots` names where to find it, because pnpm installs it under the member that
+		// asked for it rather than at the root this config sits in.
+		"types": ["node"],
+		"typeRoots": ["apps/api/node_modules/@types", "node_modules/@types"]
+	},
+	// A worker's tests belong here with it. They import `node:fs` and `miniflare` to stand a
+	// runtime up, which is why `@types/node` is in scope -- but they exercise worker code and
+	// mock worker bindings, so checking them anywhere else would drag the whole worker into a
+	// program that has the browser's globals. Tried, and that is exactly what happened.
+	//
+	// `scripts/` is the genuine node program in here and stays out.
+	"include": [
+		"apps/api/src/**/*.ts",
+		"apps/api/*.d.ts",
+		"apps/cdn/src/**/*.ts",
+		"apps/cdn/*.d.ts",
+		"libs/store/src/**/*.ts"
+	],
+	"exclude": ["**/node_modules", "**/dist", "**/build"]
+}

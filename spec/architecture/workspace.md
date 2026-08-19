@@ -83,6 +83,33 @@ a quiet one-pixel border, compact type and a small shadow only on floating surfa
 reserved for focus, state and data. A categorical chart may be colourful, but its controls,
 tooltips and surrounding statistics use the same surfaces as the rest of the site.
 
+## A runtime's globals decide which program checks a file
+
+Type checking runs twice, over two programs: [tsconfig.json](../../tsconfig.json) for the browser
+and anything indifferent to a runtime, [tsconfig.workers.json](../../tsconfig.workers.json) for
+the two Workers and `libs/store`.
+
+The split is forced rather than chosen. `@cloudflare/workers-types` declares its own
+`ReadableStream`, `Response` and `Cache`, and the DOM library declares those names too. Nothing
+tells TypeScript they describe the same things, so with both in scope every worker value crossing
+a shared boundary is a type error. Two workarounds had grown from that one cause and neither
+looked related to the other: `as unknown as ReadableStream` across `libs/store`'s public surface,
+and a hand-written structural declaration of `caches.default` in `apps/cdn` because importing the
+real one would have made every Hono handler disagree about `Response`. Both are gone; nothing
+casts across that boundary now.
+
+**A file belongs to the program whose globals it actually runs against**, which is not always the
+directory it sits in. `apps/api/scripts/` is a node script and is checked as one. A worker's
+tests are checked _with the worker_, because they exercise worker code and mock worker bindings
+-- putting them elsewhere pulls the whole worker into a program that has the browser's globals,
+which is the thing being avoided.
+
+What the separation exposed is the argument for it. `apps/cdn` polyfills `ImageData` because
+workerd has none, and the polyfill needed a `@ts-expect-error` to install itself -- it was being
+checked against a browser's `ImageData`, which it is not. The type now lives in
+`apps/cdn/worker-runtime.d.ts` and describes what the polyfill supplies, so the declaration and
+the implementation are one claim instead of two that happened to agree.
+
 ## Grouping threshold
 
 `apps/` is flat. Introduce a grouping directory only once one category exceeds four members,

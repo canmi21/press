@@ -66,11 +66,7 @@ image.get('/:name', async (c) => {
 		return c.json({ error: 'not found' }, 404);
 	}
 
-	// `caches.default` is a Workers addition the DOM CacheStorage has no member for. Named
-	// structurally rather than imported from @cloudflare/workers-types, because that module
-	// declares its own Response, and pulling it in makes every handler here disagree with the
-	// DOM Response Hono is typed against.
-	const cache = (caches as unknown as { default: Cache }).default;
+	const cache = caches.default;
 	const cached = await cache.match(c.req.raw);
 	if (cached) {
 		return cached;

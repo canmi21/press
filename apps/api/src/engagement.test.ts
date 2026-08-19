@@ -7,7 +7,7 @@ import app from './app';
 import type { Bindings } from './bindings';
 import { ARTICLE_SLUGS } from './slugs';
 
-const MIGRATIONS = fileURLToPath(new URL('../drizzle', import.meta.url));
+const MIGRATIONS = fileURLToPath(new URL('../drizzle', import.meta.url).href);
 const IP_ONE = '203.0.113.10';
 const IP_TWO = '2001:db8::20';
 const allow: RateLimit = { limit: async () => ({ success: true }) };

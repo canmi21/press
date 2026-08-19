@@ -41,7 +41,7 @@ async function readFromBucket(bucket: R2Bucket, key: string): Promise<Found | nu
 	const object = await bucket.get(key);
 	if (!object?.body) return null;
 	return {
-		body: object.body as unknown as ReadableStream,
+		body: object.body,
 		contentType: object.httpMetadata?.contentType ?? contentTypeFor(key),
 		etag: object.httpEtag,
 	};
@@ -52,7 +52,7 @@ async function readFromAssets(assets: Fetcher, key: string): Promise<Found | nul
 	const response = await assets.fetch(`${ASSET_ORIGIN}/${key}`);
 	if (!response.ok || !response.body) return null;
 	return {
-		body: response.body as unknown as ReadableStream,
+		body: response.body,
 		contentType: response.headers.get('content-type') ?? contentTypeFor(key),
 		// No validator, deliberately. Measured: wrangler's asset fetcher sends no ETag of its
 		// own, and synthesising one here would let a browser hold a file that is being edited
