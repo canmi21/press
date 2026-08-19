@@ -1,5 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { type Bindings, contentTypeFor, read } from './index';
+import {
+	type Bindings,
+	contentTypeFor,
+	imageKey,
+	isContentId,
+	licenseKey,
+	metaKey,
+	read,
+} from './index';
 
 /** Enough of an R2 bucket to answer one key. */
 function bucket(keys: Record<string, string>) {
@@ -57,5 +65,39 @@ describe('contentTypeFor', () => {
 
 	it('falls back rather than guessing', () => {
 		expect(contentTypeFor('unknown')).toBe('application/octet-stream');
+	});
+});
+
+describe('where an object lives', () => {
+	const CID = '44b6081deaf0242ca3bf83d62a3b6c95';
+
+	/**
+	 * The split that exists for a filesystem mirror rather than for R2, which has no directories.
+	 * Two characters, then two more, then the whole id again -- matching what apps/cms writes.
+	 */
+	it('fans an image out over two levels', () => {
+		expect(imageKey(CID, 'avif')).toBe(`image/44/b6/${CID}.avif`);
+	});
+
+	it('fans a licence text the same way', () => {
+		expect(licenseKey(CID)).toBe(`license/44/b6/${CID}.txt`);
+	});
+
+	/**
+	 * The asymmetry this module exists to state. A record is written once per asset, so its
+	 * directory has a bound and the split buys nothing; reading it as though it were fanned is a
+	 * 404 that looks exactly like a missing asset. Three copies of the layout had to agree on
+	 * this and none of them said it.
+	 */
+	it('leaves a record flat, because there is one per asset', () => {
+		expect(metaKey(CID)).toBe(`meta/${CID}.json`);
+	});
+
+	it('accepts an id of the shape apps/cms writes, and nothing else', () => {
+		expect(isContentId(CID)).toBe(true);
+		expect(isContentId(CID.toUpperCase())).toBe(false);
+		expect(isContentId(CID.slice(0, 31))).toBe(false);
+		expect(isContentId(`${CID}00`)).toBe(false);
+		expect(isContentId('../../etc/passwd')).toBe(false);
 	});
 });

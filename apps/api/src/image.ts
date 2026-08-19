@@ -1,4 +1,4 @@
-import { read } from '@canmi/store';
+import { isContentId, metaKey, read } from '@canmi/store';
 import { Hono } from 'hono';
 import type { Bindings } from './bindings';
 
@@ -14,17 +14,15 @@ import type { Bindings } from './bindings';
  * Reading goes through the same store as the CDN, so `mise run dev-api` answers from
  * `data/public` instead of needing `--remote` to reach a bucket only production writes.
  */
-const CID = /^[0-9a-f]{32}$/;
-
 const image = new Hono<{ Bindings: Bindings }>();
 
 image.get('/:cid', async (c) => {
 	const cid = c.req.param('cid').toLowerCase();
-	if (!CID.test(cid)) {
+	if (!isContentId(cid)) {
 		return c.json({ error: 'not a content id' }, 400);
 	}
 
-	const found = await read(c.env, `meta/${cid}.json`);
+	const found = await read(c.env, metaKey(cid));
 	if (!found) {
 		return c.json({ error: 'not found' }, 404);
 	}

@@ -1,6 +1,6 @@
+import { imageKey } from '@canmi/store';
 import { describe, expect, it } from 'vitest';
 import image from './image';
-import { keyFor } from './key';
 
 const CID = '44b6081deaf0242ca3bf83d62a3b6c95';
 
@@ -23,7 +23,7 @@ function bucketWith(keys: string[]) {
 
 describe('a request spelling jpeg as jpg', () => {
 	it('is redirected permanently to the canonical spelling', async () => {
-		const response = await image.request(`/${CID}.jpg`, {}, bucketWith([keyFor(CID, 'avif')]));
+		const response = await image.request(`/${CID}.jpg`, {}, bucketWith([imageKey(CID, 'avif')]));
 
 		expect(response.status).toBe(301);
 		expect(response.headers.get('Location')).toBe(`/image/${CID}.jpeg`);
@@ -42,7 +42,7 @@ describe('a request spelling jpeg as jpg', () => {
 
 	/** A flat-colour asset is stored as PNG, so the lookup has to try every stored format. */
 	it('finds the id whichever format it was published as', async () => {
-		const response = await image.request(`/${CID}.jpg`, {}, bucketWith([keyFor(CID, 'png')]));
+		const response = await image.request(`/${CID}.jpg`, {}, bucketWith([imageKey(CID, 'png')]));
 
 		expect(response.status).toBe(301);
 	});

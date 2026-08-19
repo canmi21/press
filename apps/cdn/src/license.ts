@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
-import { type Bindings, read, toResponse } from '@canmi/store';
+import { licenseKey, read, toResponse, type Bindings } from '@canmi/store';
 import { FOREVER } from './cache';
-import { licenseKeyFor, parseName, validatorFor } from './key';
+import { parseName, validatorFor } from './key';
 
 /**
  * Serving the licence texts `cms licenses` publishes.
@@ -42,7 +42,7 @@ license.get('/:name', async (c) => {
 		return new Response(null, { status: 304, headers: { ETag: tag } });
 	}
 
-	const stored = await read(c.env, licenseKeyFor(cid));
+	const stored = await read(c.env, licenseKey(cid));
 	if (!stored) {
 		return c.json({ error: 'not found' }, 404);
 	}
