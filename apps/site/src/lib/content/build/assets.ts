@@ -7,11 +7,20 @@
  * discover their dimensions.
  */
 
-const EXTENSION: Record<string, string> = {
+/**
+ * What a published variant's file is called, keyed by what it holds.
+ *
+ * Exported so a test can hold it to the Rust side that names the files. The two are one fact in
+ * two languages: apps/cms writes the name, this rebuilds it, and a disagreement shows up only as
+ * a redirect nobody notices.
+ */
+export const EXTENSION: Record<string, string> = {
 	'image/avif': 'avif',
 	'image/webp': 'webp',
 	'image/png': 'png',
-	'image/jpeg': 'jpg',
+	// `jpeg`, matching what apps/cms names the file. The CDN redirects `.jpg` away, and a link
+	// built here should not be the thing taking that hop.
+	'image/jpeg': 'jpeg',
 };
 
 export type Resolved = {

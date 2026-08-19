@@ -40,11 +40,17 @@ bytes. A request for it is answered with a permanent redirect to `.jpeg`, so a r
 extra hop once and their browser never asks again.
 
 The id is checked before that redirect is issued, and a missing one is answered `404` directly.
-Redirecting first would make a client spend two round trips to learn that nothing is there. The
-lookup that buys the difference is only ever reached when somebody types the address by hand:
-every URL this repository generates already carries the resolved name. It also caps the exposure: only a size that
-was derived exists as an object, so nobody can burn the monthly transformation quota by
-asking for arbitrary dimensions.
+Redirecting first would make a client spend two round trips to learn that nothing is there.
+
+**Nothing here generates the short spelling**, which is what keeps that lookup off the ordinary
+path: `cms image` names a published file `.jpeg` and writes that name into the article, and the
+site's asset resolver builds the same one. Both spelled it `jpg` until the redirect existed to
+catch them, which would have made every JPEG this repository serves pay a hop meant for somebody
+else's typo -- invisible from either side alone, since the CDN and the article each looked right.
+A test on each side now holds the two spellings together.
+
+The extension also caps the exposure: only a size that was derived exists as an object, so nobody
+can burn the monthly transformation quota by asking for arbitrary dimensions.
 
 The failure mode to remember is that exceeding the quota does not degrade -- new conversions
 return an error while already-cached ones keep serving. That is why the request path a browser

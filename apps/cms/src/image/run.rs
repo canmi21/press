@@ -265,11 +265,17 @@ fn note(
 	}
 }
 
+/// The extension a published variant is named with.
+///
+/// `jpeg`, never `jpg`. The short spelling is a DOS filename limit that outlived the system that
+/// imposed it, and the CDN answers a request for it with a permanent redirect -- so emitting it
+/// here would make this repository's own links take a hop it added for somebody else's typo. See
+/// spec/architecture/delivery.md.
 fn extension_of(mime: &str) -> &'static str {
 	match mime {
 		"image/png" => "png",
 		"image/webp" => "webp",
-		"image/jpeg" => "jpg",
+		"image/jpeg" => "jpeg",
 		_ => "avif",
 	}
 }
@@ -371,6 +377,20 @@ pub fn rewrite_references(
 #[cfg(test)]
 mod tests {
 	use super::*;
+
+	/// The spelling this writes into an article has to be the one the CDN serves directly.
+	///
+	/// `.jpg` is answered with a permanent redirect, so naming a file that way would make every
+	/// link this repository generates pay a hop that exists for somebody else's typo. The failure
+	/// is invisible from either side alone: the CDN looks correct, the article looks correct, and
+	/// only a reader's network tab shows the extra round trip.
+	#[test]
+	fn a_published_file_is_named_with_the_spelling_the_cdn_serves() {
+		assert_eq!(extension_of("image/jpeg"), "jpeg");
+		assert_eq!(extension_of("image/png"), "png");
+		assert_eq!(extension_of("image/webp"), "webp");
+		assert_eq!(extension_of("image/avif"), "avif");
+	}
 
 	fn temp(name: &str) -> PathBuf {
 		let path = std::env::temp_dir().join(format!("cms-run-{name}-{}", std::process::id()));
