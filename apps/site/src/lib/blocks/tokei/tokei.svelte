@@ -5,6 +5,7 @@
 	import { URLS } from '@canmi/urls';
 	import { langColor, parseTokei, type LangStat } from './tokei';
 	import type { TokeiView } from '$lib/content/types';
+	import { compactCount } from '$lib/format';
 
 	let {
 		source,
@@ -68,13 +69,6 @@
 		maxLines === 0 ? barInnerHeight : barInnerHeight - (value / maxLines) * barInnerHeight;
 	const ticks = $derived(Array.from({ length: 6 }, (_, index) => (maxLines * index) / 5));
 
-	function compact(value: number): string {
-		if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1).replace(/\.0$/, '')}M`;
-		if (value >= 10_000) return `${Math.round(value / 1000)}K`;
-		if (value >= 1_000) return `${(value / 1_000).toFixed(1).replace(/\.0$/, '')}K`;
-		return value.toString();
-	}
-
 	function percent(part: number, total: number): number {
 		return total === 0 ? 0 : Math.round((part / total) * 100);
 	}
@@ -115,10 +109,12 @@
 										{stat.lang}
 									</td>
 									<td>{stat.files.toLocaleString('en-US')}</td>
-									<td title={stat.lines.toLocaleString('en-US')}>{compact(stat.lines)}</td>
-									<td title={stat.code.toLocaleString('en-US')}>{compact(stat.code)}</td>
-									<td title={stat.comments.toLocaleString('en-US')}>{compact(stat.comments)}</td>
-									<td title={stat.blanks.toLocaleString('en-US')}>{compact(stat.blanks)}</td>
+									<td title={stat.lines.toLocaleString('en-US')}>{compactCount(stat.lines)}</td>
+									<td title={stat.code.toLocaleString('en-US')}>{compactCount(stat.code)}</td>
+									<td title={stat.comments.toLocaleString('en-US')}
+										>{compactCount(stat.comments)}</td
+									>
+									<td title={stat.blanks.toLocaleString('en-US')}>{compactCount(stat.blanks)}</td>
 									<td>
 										<div
 											class="breakdown"
@@ -170,7 +166,7 @@
 									{@const tickY = y(tick)}
 									<line x1="0" x2={barInnerWidth} y1={tickY} y2={tickY} class="grid-line" />
 									<text x="-8" y={tickY + 4} text-anchor="end" class="axis-label"
-										>{compact(tick)}</text
+										>{compactCount(tick)}</text
 									>
 								{/each}
 								{#each sorted as stat, index (stat.lang)}
@@ -215,7 +211,7 @@
 												x={barX + barWidth / 2}
 												y={y(stat.lines) - 5}
 												text-anchor="middle"
-												class="axis-label">{compact(stat.lines)}</text
+												class="axis-label">{compactCount(stat.lines)}</text
 											>
 										{/if}
 									</g>
@@ -275,7 +271,7 @@
 												y={tile.y + 28}
 												class="tile-size"
 												clip-path="url(#{clipPrefix}-{index})"
-												>{compact(tile.stat.lines)} lines</text
+												>{compactCount(tile.stat.lines)} lines</text
 											>{/if}
 									{/if}
 									{#if tile.width > 8 && tile.height > 30}
@@ -345,7 +341,7 @@
 									{#each tip.stat.nested as nested (nested.lang)}
 										<span
 											><i style="background: {langColor(nested.lang)}"></i>{nested.lang}
-											{compact(nested.lines)}</span
+											{compactCount(nested.lines)}</span
 										>
 									{/each}
 								</div>
@@ -366,9 +362,9 @@
 				{/each}
 			</div>
 			<div class="summary">
-				<span><span class="muted">Total files</span> <b>{compact(totals.files)}</b></span>
-				<span><span class="muted">Total lines</span> <b>{compact(totals.lines)}</b></span>
-				<span><span class="muted">Code lines</span> <b>{compact(totals.code)}</b></span>
+				<span><span class="muted">Total files</span> <b>{compactCount(totals.files)}</b></span>
+				<span><span class="muted">Total lines</span> <b>{compactCount(totals.lines)}</b></span>
+				<span><span class="muted">Code lines</span> <b>{compactCount(totals.code)}</b></span>
 				<span
 					><span class="muted">Comment ratio</span>
 					<b>{percent(totals.comments, totals.lines)}%</b></span

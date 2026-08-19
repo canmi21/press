@@ -9,6 +9,7 @@
 	import { URLS } from '@canmi/urls';
 	import type { CardAlign, RepoRecord } from '$lib/content/types';
 	import { langColor } from './tokei/tokei';
+	import { compactCount, shortDate } from '$lib/format';
 
 	let {
 		repo,
@@ -28,22 +29,7 @@
 			: `${URLS.external.github.web}/${repo.full_name}`,
 	);
 	const displayName = $derived(title || repo.full_name.split('/').at(-1) || repo.full_name);
-	const pushed = $derived(
-		repo.pushed_at
-			? new Intl.DateTimeFormat('en-US', {
-					month: 'short',
-					day: 'numeric',
-					year: 'numeric',
-					timeZone: 'UTC',
-				}).format(new Date(repo.pushed_at))
-			: undefined,
-	);
-
-	function count(value: number): string {
-		if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1).replace(/\.0$/, '')}m`;
-		if (value >= 1_000) return `${(value / 1_000).toFixed(1).replace(/\.0$/, '')}k`;
-		return value.toString();
-	}
+	const pushed = $derived(repo.pushed_at ? shortDate(repo.pushed_at) : undefined);
 
 	function repositoryName(value: string): string {
 		const name = value.split('/').at(-1) ?? value;
@@ -91,12 +77,12 @@
 		{/if}
 		<span class="meta-item">
 			<Star class="size-3.5" strokeWidth={2} aria-hidden="true" />
-			<span class="tabular-nums">{count(repo.stars)}</span>
+			<span class="tabular-nums">{compactCount(repo.stars)}</span>
 			<span class="sr-only">stars</span>
 		</span>
 		<span class="meta-item">
 			<GitFork class="size-3.5" strokeWidth={2} aria-hidden="true" />
-			<span class="tabular-nums">{count(repo.forks)}</span>
+			<span class="tabular-nums">{compactCount(repo.forks)}</span>
 			<span class="sr-only">forks</span>
 		</span>
 		{#if repo.license && repo.license !== 'NOASSERTION'}
@@ -107,7 +93,7 @@
 		{/if}
 		<span class="meta-item">
 			<CircleDot class="size-3.5" strokeWidth={2} aria-hidden="true" />
-			<span class="tabular-nums">{count(repo.open_issues)}</span>
+			<span class="tabular-nums">{compactCount(repo.open_issues)}</span>
 			<span class="sr-only">open issues</span>
 		</span>
 		{#if pushed}

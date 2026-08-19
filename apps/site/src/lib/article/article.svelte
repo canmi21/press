@@ -23,6 +23,7 @@
 	import HomeLink from './home-link.svelte';
 	import Toc from './toc.svelte';
 	import TranslationNotice from './translation-notice.svelte';
+	import { shortDate } from '$lib/format';
 
 	type ArticleLocale = {
 		code: LocaleCode;
@@ -187,14 +188,7 @@
 
 	// Pin UTC so the shown day matches the authored frontmatter date everywhere it
 	// renders, mirroring the article list (see card.svelte).
-	const date = $derived(
-		new Intl.DateTimeFormat('en-US', {
-			month: 'short',
-			day: 'numeric',
-			year: 'numeric',
-			timeZone: 'UTC',
-		}).format(new Date(meta.created)),
-	);
+	const date = $derived(shortDate(meta.created));
 </script>
 
 <svelte:head>

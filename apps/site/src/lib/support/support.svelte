@@ -7,6 +7,7 @@
 	import { createEngagementQuery, createLikeMutation } from '$lib/engagement/engagement.svelte';
 	import { PUBLIC_LANGUAGE, type LocaleCode } from '$lib/locale';
 	import * as m from '$lib/paraglide/messages';
+	import { intlLocale } from '$lib/format';
 
 	const WIDTH_SPRING = { type: 'spring' as const, stiffness: 420, damping: 28, mass: 0.85 };
 	type AnimationControl = { stop: () => void };
@@ -35,7 +36,7 @@
 	const actionChromeWidths = new WeakMap<HTMLElement, number>();
 
 	const count = $derived(engagement.data?.like_count ?? 0);
-	const numberLocale = $derived(locale === 'mw' ? 'en-US' : PUBLIC_LANGUAGE[locale]);
+	const numberLocale = $derived(intlLocale(locale));
 	const numberFormat = $derived(new Intl.NumberFormat(numberLocale));
 	const formattedCount = $derived(numberFormat.format(count));
 

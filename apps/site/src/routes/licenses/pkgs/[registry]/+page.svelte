@@ -9,10 +9,11 @@
 	import { CARD_HEIGHT, CARD_WIDTH, cardUrl } from '$lib/opengraph';
 	import * as m from '$lib/paraglide/messages';
 	import type { PageData } from './$types';
+	import { intlLocale } from '$lib/format';
 
 	let { data }: { data: PageData } = $props();
 	const locale = $derived(data.locale.code);
-	const numberLocale = $derived(locale === 'mw' ? 'en' : locale === 'tw' ? 'zh-TW' : locale);
+	const numberLocale = $derived(intlLocale(locale));
 	const count = $derived(new Intl.NumberFormat(numberLocale).format(data.rows.length));
 	const title = $derived(data.registry.name);
 	const description = $derived(

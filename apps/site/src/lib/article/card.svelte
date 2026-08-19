@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { ARTICLE_THUMBNAIL_LINES } from '@canmi/primitives';
+	import { shortDate } from '$lib/format';
 
 	let {
 		title,
@@ -13,16 +14,7 @@
 		path: string;
 	} = $props();
 
-	// Pin UTC so the rendered day matches the authored frontmatter date regardless
-	// of where the page is prerendered.
-	const date = $derived(
-		new Intl.DateTimeFormat('en-US', {
-			month: 'short',
-			day: 'numeric',
-			year: 'numeric',
-			timeZone: 'UTC',
-		}).format(new Date(created)),
-	);
+	const date = $derived(shortDate(created));
 </script>
 
 <a href="/{path}" class="article-preview group hover:bg-paper-hover focus-visible:outline-none">
