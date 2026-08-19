@@ -22,6 +22,7 @@ declare global {
 		// URLs are imported from @canmi/urls rather than injected, so there is one place to
 		// read them from and no second spelling to keep in step. What remains here are values
 		// that only exist at build time and have no other source.
+		/** TODO: captured for a footer that is not built yet; see vite.config.ts. */
 		readonly VITE_COMMIT_HASH: string;
 		readonly VITE_BUILD_TIME: string;
 	}

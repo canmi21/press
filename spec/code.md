@@ -186,18 +186,35 @@ Write for someone scanning, not reading. Lead with the point; if the first line 
 it, cut down to the line that does. The full argument belongs in `spec/`, with the comment
 naming the file rather than repeating it.
 
-### `FIXME` marks a spec violation that is waiting on something
+### `FIXME` is a problem; `TODO` is a plan
 
-Code that knowingly departs from `spec/` carries a `FIXME` saying which rule it breaks, why it
-has not been fixed, and what has to happen first. Nothing else uses the word, and `TODO` is not
-used at all -- a wish about the future is not a defect, and mixing the two makes the marker
-worth ignoring.
+Two markers, and the line between them is whether anything is **wrong**.
 
-**The alternative is worse, which is why the marker exists.** A departure that stays unmarked
-gets rediscovered by every review as if it were new, and each rediscovery costs the same
-conversation about whether it was a decision or an oversight. The other way out -- writing an
-exemption into `spec/` -- is worse still: an exemption reads as settled, so the thing stops
-being a departure at all and the code silently becomes the rule.
+|         | Means                                                    | Deleted when                            |
+| ------- | -------------------------------------------------------- | --------------------------------------- |
+| `FIXME` | Something is wrong here and is waiting on something else | the code is fixed, or `spec/` adopts it |
+| `TODO`  | Nothing is wrong; something is planned and not built yet | it is built, or the plan is dropped     |
 
-So the debt is recorded where the code is, and it stays visible to a plain search. Deleting one
-means either fixing the code or moving the decision into `spec/` on purpose.
+**`FIXME` is a debt.** The code knowingly departs from a rule in `spec/`, or behaves in a way
+somebody would call a bug if they met it cold. It says which rule, why it stands, and what has to
+happen first. `cms tn` and `cms embed` carry one because their operations live inside the CLI
+adapter, which [architecture/cms.md](architecture/cms.md) does not allow.
+
+**`TODO` is not a debt**, which is why it needs its own word rather than a softer `FIXME`. It
+marks something deliberately unfinished with no bad consequence while it waits -- a value
+captured for a component nobody has written, a hook left where an extension will go. Nothing
+misbehaves; there is simply less than there will be. `VITE_COMMIT_HASH` is the standing example:
+the build captures it because only the build can, and the footer meant to show it is planned.
+
+Both say what they are waiting for. A marker that does not is indistinguishable from one nobody
+has revisited, which makes every marker in the tree worth a little less.
+
+**Why mark at all, rather than fix or forget.** An unmarked departure gets rediscovered by every
+review as though it were new, and each rediscovery costs the same conversation about whether it
+was a decision or an oversight. The other way out -- writing an exemption into `spec/` -- is
+worse for a `FIXME`: an exemption reads as settled, so the thing stops being a departure and the
+code quietly becomes the rule. The debt stays where the code is, visible to a plain search.
+
+Keeping them apart is what keeps either useful. A tree where both words mean "look at this
+sometime" has one marker wearing two spellings, and a search for real problems returns a list
+nobody finishes reading.

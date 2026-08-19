@@ -1,4 +1,3 @@
-import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { URLS } from '@canmi/urls';
@@ -7,6 +6,7 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { paraglideVitePlugin } from '@inlang/paraglide-js';
 import Icons from 'unplugin-icons/vite';
+import { execFileSync } from 'node:child_process';
 import { defineConfig } from 'vite';
 import { parse as parseYaml } from 'yaml';
 import { buildArticles, buildPages } from './src/lib/content/build/articles.ts';
@@ -32,8 +32,12 @@ function builtinRedirects(cdnUrl: string): Record<string, string> {
 	};
 }
 
-// Baked in so the footer can show the deployed commit. execFileSync takes no shell, so there
-// is no injection surface. jj is colocated with git, which is why this still works.
+// TODO: nothing reads this yet. It is kept, not deleted, because the footer that shows the
+// deployed commit is planned rather than abandoned -- and the value has to be captured at build
+// time, which is a thing this file can do and a component cannot.
+//
+// execFileSync takes no shell, so there is no injection surface. jj is colocated with git, which
+// is why asking git still works.
 const commitHash = (() => {
 	try {
 		return execFileSync('git', ['rev-parse', '--short', 'HEAD']).toString().trim();

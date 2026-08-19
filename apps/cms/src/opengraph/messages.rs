@@ -121,7 +121,6 @@ mod tests {
 				),
 				("card.languages", ["{count}"].as_slice()),
 				("card.packages", ["{count}"].as_slice()),
-				("card.registries", ["{count}"].as_slice()),
 				("card.more_licenses", ["{count}"].as_slice()),
 				("card.licenses", [].as_slice()),
 				("card.by_registry", [].as_slice()),

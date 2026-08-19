@@ -70,8 +70,6 @@ pub enum Section {
 pub enum Badge {
 	/// `card.packages`, filled with this count.
 	Packages(usize),
-	/// `card.registries`. How many registries there are, not how many are left.
-	Registries(usize),
 	/// `card.more_licenses`: the other licences, in the `+N` form the article cards use.
 	MoreLicenses(usize),
 	/// The same in every language: an SPDX expression.
@@ -303,7 +301,6 @@ pub fn worded(
 	};
 	let badge = match &route.badge {
 		Badge::Packages(count) => counted("card.packages", *count),
-		Badge::Registries(count) => counted("card.registries", *count),
 		Badge::MoreLicenses(count) => counted("card.more_licenses", *count),
 		Badge::Literal(text) => text.clone(),
 		Badge::None => String::new(),
