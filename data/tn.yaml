@@ -88,6 +88,17 @@ articles:
         spans:
         - phrase: 手搓
           guidance: 字面是“用手搓出来”，在技术语境中戏称不借现成方案而从零自制，普通翻译会削弱其粗糙而得意的手工感。
+  mirror/friends-come-in-phases.md:
+    provider: xai
+    model: grok-4-6
+    at: 2026-08-20T05:08:06.400321Z
+    tokens: 0
+    segments:
+      c5b62719f45f6e9ffa61b2fcd2a247e7:
+        source: 人也是一种情感动物，在把朋友占位己有这件事上，有这样的想法通常是再正常不过了；但是并不是说你真的要占有，真的要控制他人的行为或者思想，而是说明你在乎他，你和他是 `close friend`。但是正如我所说的一样，你的朋友也是人，他应该也有属于他自己的生活，属于他的 timeline，所以和别人变成 `mutual friend` 是再正常不过的事情。只是要怪就怪 Twitter 捅破了这层窗户纸，强迫你看见了这个过程而已。但这未免不是一件好事。让你看见这个过程，让你难过的同时，也给了你更多机会去认识人？抛弃传统的私聊为主，没有那种做长期 `close friend` 的压力，只有最简单的互相晚安，发电，那也是最纯粹的社交。看到 `mutual friend` 的时候到底会不会难过，其实取决于你个人。无论用什么途径，哪怕是线下，你也不能阻止这个过程发生。只要你自己能想开，那也许应该就不会难过了，也许会慢慢学会放下吧
+        spans:
+        - phrase: 发电
+          guidance: “发电”是“发癫”的谐音网络语，借“发电”指在社交平台上毫无负担地宣泄情绪、随手发帖，译成发电或发疯都无法同时保住双关和这种中文 Twitter 式的轻社交。
   mirror/less-than-an-hour.md:
     provider: openai
     model: gpt-5-6-sol-xhigh
