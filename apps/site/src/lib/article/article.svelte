@@ -23,6 +23,7 @@
 	import HomeLink from './home-link.svelte';
 	import Toc from './toc.svelte';
 	import TranslationNotice from './translation-notice.svelte';
+	import IconXai from './xai-icon.svelte';
 	import { shortDate } from '$lib/format';
 
 	type ArticleLocale = {
@@ -58,6 +59,7 @@
 		anthropic: { icon: IconClaude, name: 'Anthropic' },
 		google: { icon: IconGemini, name: 'Google Gemini' },
 		openai: { icon: IconOpenAi, name: 'OpenAI' },
+		xai: { icon: IconXai, name: 'xAI' },
 	} as const;
 
 	const reads = createReadsQuery(() => slug);
