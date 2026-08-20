@@ -9,63 +9,15 @@
 //! a person sets by hand after reading. See spec/architecture/data.md.
 
 use serde::{Deserialize, Serialize};
-use std::collections::{BTreeMap, HashMap};
+use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 
 pub const VERSION: u32 = 1;
-pub const SOURCE_SIMILARITY: f64 = 0.9;
-
-fn normalise_similarity(text: &str) -> Vec<char> {
-	let mut normalised = String::new();
-	let mut space = false;
-	for character in text.to_lowercase().chars() {
-		let character = match character {
-			'“' | '”' => '"',
-			'‘' | '’' => '\'',
-			other => other,
-		};
-		if character.is_whitespace() {
-			space = !normalised.is_empty();
-		} else {
-			if space {
-				normalised.push(' ');
-				space = false;
-			}
-			normalised.push(character);
-		}
-	}
-	normalised.chars().collect()
-}
-
-pub fn similarity(left: &str, right: &str) -> f64 {
-	let left = normalise_similarity(left);
-	let right = normalise_similarity(right);
-	if left == right {
-		return 1.0;
-	}
-	if left.len() < 2 || right.len() < 2 {
-		return 0.0;
-	}
-	let mut left_pairs: HashMap<(char, char), usize> = HashMap::new();
-	for pair in left.windows(2) {
-		*left_pairs.entry((pair[0], pair[1])).or_default() += 1;
-	}
-	let mut shared = 0usize;
-	for pair in right.windows(2) {
-		if let Some(count) = left_pairs.get_mut(&(pair[0], pair[1]))
-			&& *count > 0
-		{
-			*count -= 1;
-			shared += 1;
-		}
-	}
-	(2 * shared) as f64 / (left.len() + right.len() - 2) as f64
-}
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct Translation {
 	pub text: String,
-	/// Who made it. `anthropic`, `openai`, `alibaba`, `deepseek`, or local `source` copy.
+	/// Who made it. `anthropic`, `openai`, `alibaba`, `deepseek`, or retired local `source` copy.
 	pub provider: String,
 	/// Normalised model id; see `model::Id`.
 	pub model: String,
@@ -159,7 +111,7 @@ pub fn missing(
 	sidecar: &Sidecar,
 	live: &BTreeMap<String, super::segment::Segment>,
 	locales: &[&str],
-	source_locale: Option<&str>,
+	_source_locale: Option<&str>,
 	glosses: &super::tn::Table,
 ) -> BTreeMap<String, Vec<String>> {
 	let mut wanted = BTreeMap::new();
@@ -175,16 +127,7 @@ pub fn missing(
 		};
 		let absent: Vec<String> = locales
 			.iter()
-			.filter(|locale| match have.and_then(|map| map.get(**locale)) {
-				None => true,
-				Some(translation) => {
-					let exact_source = source_locale == Some(**locale);
-					let same_language = source_locale
-						.is_some_and(|source| source.split('-').next() == (**locale).split('-').next());
-					(exact_source && similarity(&segment.source, &translation.text) < SOURCE_SIMILARITY)
-						|| (!same_language && !required.is_empty() && !translation.text.contains(":tn["))
-				}
-			})
+			.filter(|locale| translation_missing(have.and_then(|map| map.get(**locale)), required))
 			.map(|locale| (*locale).to_owned())
 			.collect();
 		if !absent.is_empty() {
@@ -192,6 +135,23 @@ pub fn missing(
 		}
 	}
 	wanted
+}
+
+/// Whether one stored locale still needs model work.
+///
+/// The run's post-claim duplicate guard uses this too. A cheaper presence-only check would
+/// disagree with the completeness audit for retired source copies and newly recorded notes,
+/// skipping the exact work the audit selected.
+pub fn translation_missing(
+	translation: Option<&Translation>,
+	required: &[super::tn::Gloss],
+) -> bool {
+	match translation {
+		None => true,
+		Some(translation) => {
+			translation.provider == "source" || translation.text.matches(":tn[").count() < required.len()
+		}
+	}
 }
 
 #[cfg(test)]
@@ -266,17 +226,18 @@ mod tests {
 	}
 
 	#[test]
-	fn an_existing_source_view_that_was_rewritten_is_still_missing() {
+	fn a_locally_copied_source_view_is_still_missing() {
 		let live = segment::translatable("作者原本的句子和语气应该完整保留。这里还有第二句话。")
 			.expect("segments");
 		let id = live.keys().next().expect("segment").clone();
-		let mut rewritten = entry();
-		rewritten.text = "这段文字主要说明翻译应当尊重作者。".to_owned();
+		let mut copied = entry();
+		copied.text = "作者原本的句子和语气应该完整保留。这里还有第二句话。".to_owned();
+		copied.provider = "source".to_owned();
+		copied.model = "source".to_owned();
 		let mut sidecar = Sidecar::default();
-		sidecar.segments.insert(
-			id.clone(),
-			BTreeMap::from([("zh-CN".to_owned(), rewritten)]),
-		);
+		sidecar
+			.segments
+			.insert(id.clone(), BTreeMap::from([("zh-CN".to_owned(), copied)]));
 
 		let wanted = missing(
 			&sidecar,
@@ -343,7 +304,29 @@ mod tests {
 	}
 
 	#[test]
-	fn a_note_does_not_outdate_same_language_views() {
+	fn every_reviewed_note_must_reach_the_translation() {
+		let mut translation = entry();
+		translation.text = ":tn[first]{is=\"one note\"} and an unannotated second effect".into();
+		let required = vec![
+			crate::i18n::tn::Gloss {
+				phrase: "first".into(),
+				guidance: "first effect".into(),
+			},
+			crate::i18n::tn::Gloss {
+				phrase: "second".into(),
+				guidance: "second effect".into(),
+			},
+		];
+
+		assert!(translation_missing(Some(&translation), &required));
+		translation
+			.text
+			.push_str(" :tn[second]{is=\"second note\"}");
+		assert!(!translation_missing(Some(&translation), &required));
+	}
+
+	#[test]
+	fn a_note_outdates_same_language_views_too() {
 		let live = segment::translatable("古法 programming").expect("segments");
 		let id = live.keys().next().expect("segment").clone();
 		let mut same_language = entry();
@@ -365,7 +348,7 @@ mod tests {
 				at: "2026-08-02T00:00:00Z".to_owned(),
 				tokens: 0,
 				segments: BTreeMap::from([(
-					id,
+					id.clone(),
 					crate::i18n::tn::Entry {
 						source: "古法 programming".to_owned(),
 						spans: vec![crate::i18n::tn::Gloss {
@@ -377,15 +360,15 @@ mod tests {
 			},
 		);
 
-		assert!(
+		assert_eq!(
 			missing(
 				&sidecar,
 				&live,
 				&["zh-CN", "zh-TW"],
 				Some("zh-CN"),
 				&glosses,
-			)
-			.is_empty()
+			)[&id],
+			vec!["zh-CN", "zh-TW"]
 		);
 	}
 

@@ -45,6 +45,22 @@ pub fn boundary() -> String {
 		.collect()
 }
 
+/// Read the only text allowed between two copies of a request's output boundary.
+///
+/// Agent runners may still narrate before or after the requested answer. That text is not part
+/// of the transformation and is deliberately ignored; a missing, repeated or empty bounded
+/// answer is rejected so the caller can retry it.
+pub fn bounded_reply(reply: &str, boundary: &str) -> Option<String> {
+	let mut parts = reply.split(boundary);
+	let _before = parts.next()?;
+	let answer = parts.next()?.trim();
+	let _after = parts.next()?;
+	if answer.is_empty() || parts.next().is_some() {
+		return None;
+	}
+	Some(answer.to_owned())
+}
+
 /// The marker introducing one locale's answer.
 pub fn locale_marker(locale: &str) -> String {
 	format!("{OPEN}{locale}{CLOSE}")
@@ -88,13 +104,13 @@ pub fn build_for(
 		String::new()
 	} else {
 		format!(
-			"\n- {} use the same language as the source. For those targets, regularise script and \
-			 orthography rather than translating or rewriting. This rule overrides the translate-away \
-			 rule above. Preserve every claim, sentence boundary, word \
-			 choice, joke, emphasis, deliberate minority-language passage and the author's voice. \
-			 Change only what the target script or orthography requires, plus clear typographical \
-			 errors. If the source already conforms, reproduce it exactly. Translator's notes are \
-			 forbidden for those targets because their readers can already read the original wording.",
+			"\n- {} use the same language as the source, but they are still localised views rather \
+			 than copies of the original. Rewrite them into direct, idiomatic target-locale prose: \
+			 regularise grammar and orthography, resolve mixed-language phrasing where a natural \
+			 local expression exists, and make implied connections explicit enough to read plainly. \
+			 Preserve the facts, first-person perspective, emotional force, emphasis and uncertainty; \
+			 do not summarise, sanitise or invent. Apply translator's notes under the same rule as \
+			 every other locale. The unedited voice remains available in the Original view.",
 			same_language.join(", ")
 		)
 	};
@@ -131,6 +147,9 @@ pub fn build_for(
 	let note_policy = if segment.region == Region::Frontmatter {
 		"- Translator's notes are forbidden in display metadata. Translate idioms and local \
 		 references directly; never output `:tn` syntax here."
+	} else if gloss.is_some() {
+		"- Follow the reviewed translator-note findings below exactly. Do not add notes for \
+		 anything they do not list."
 	} else {
 		"- Where a passage keeps its original form and a reader of the target language would \
 		 then be unable to recover its meaning -- a quoted idiom, a pun, a local reference -- \
@@ -372,6 +391,29 @@ mod tests {
 	}
 
 	#[test]
+	fn a_bounded_reply_ignores_agent_narration_outside_the_answer() {
+		let boundary = "RANDOMBOUNDARY";
+		assert_eq!(
+			bounded_reply(
+				"First I will inspect the repository.\nRANDOMBOUNDARY\nThe answer.\nRANDOMBOUNDARY\nDone.",
+				boundary,
+			),
+			Some("The answer.".to_owned())
+		);
+		assert_eq!(
+			bounded_reply("RANDOMBOUNDARY\n\nRANDOMBOUNDARY", boundary),
+			None
+		);
+		assert_eq!(
+			bounded_reply(
+				"RANDOMBOUNDARY\none\nRANDOMBOUNDARY\ntwo\nRANDOMBOUNDARY",
+				boundary,
+			),
+			None
+		);
+	}
+
+	#[test]
 	#[should_panic(expected = "non-translatable segment reached the prompt")]
 	fn a_directive_cannot_reach_a_translation_prompt() {
 		let _ = build(
@@ -411,7 +453,7 @@ mod tests {
 	}
 
 	#[test]
-	fn same_language_targets_are_told_to_preserve_the_source() {
+	fn same_language_targets_are_told_to_localise_the_source() {
 		let request = build_for(
 			&segment(Kind::Prose),
 			"原文",
@@ -423,12 +465,8 @@ mod tests {
 		);
 
 		assert!(request.text.contains("zh-CN, zh-TW use the same language"));
-		assert!(
-			request
-				.text
-				.contains("rather than translating or rewriting")
-		);
-		assert!(request.text.contains("overrides the translate-away rule"));
-		assert!(request.text.contains("Translator's notes are forbidden"));
+		assert!(request.text.contains("localised views"));
+		assert!(request.text.contains("resolve mixed-language phrasing"));
+		assert!(request.text.contains("Apply translator's notes"));
 	}
 }

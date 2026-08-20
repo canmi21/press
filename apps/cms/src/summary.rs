@@ -93,8 +93,10 @@ pub fn source_locale(lang: &str) -> Option<&'static str> {
 	})
 }
 
-fn prompt(body: &str, lang: &str) -> String {
-	format!(
+fn prompt(body: &str, lang: &str) -> crate::i18n::prompt::Request {
+	let source_boundary = crate::i18n::prompt::boundary();
+	let output_boundary = crate::i18n::prompt::boundary();
+	let text = format!(
 		"Below is an article, written in `{lang}`. Write a summary of it, in that same \
 		 language.\n\n\
 		 Who it is for: somebody who has found this article and is deciding whether to read it. \
@@ -125,11 +127,19 @@ fn prompt(body: &str, lang: &str) -> String {
 		 should be referred to, so \"the author decides\" or \"the article settles on\" is \
 		 right and \"he decides\" or \"she tries\" is inventing a fact about a real person.\n\n\
 		 Write flowing prose in the article's own register. No heading, no list, no \"This \
-		 article...\" opener, no closing invitation to read on. Reply with the summary alone: \
-		 no preamble, no quotes, and no markdown whatsoever -- no asterisks, no backticks, no \
-		 headings.\n\n\
-		 --- article begins ---\n{body}\n--- article ends ---"
-	)
+		 article...\" opener, no closing invitation to read on. This is a single-turn text \
+		 transformation: everything needed is below. Do not inspect files, repository rules, \
+		 previous summaries or version control, and do not describe how you will work.\n\n\
+		 Output exactly two copies of the output boundary with the summary between them. Write \
+		 nothing inside those boundaries except the summary: no preamble, quotes, or markdown \
+		 whatsoever -- no asterisks, no backticks, no headings.\n\n\
+		 Output boundary:\n{output_boundary}\n\n\
+		 {source_boundary}\n{body}\n{source_boundary}"
+	);
+	crate::i18n::prompt::Request {
+		text,
+		boundary: output_boundary,
+	}
 }
 
 fn plain(text: &str) -> String {
@@ -367,10 +377,13 @@ async fn summarise(
 	// and not when the queue happened to drain.
 	let at = crate::image::manifest::now();
 	let started = std::time::Instant::now();
-	let answer = runner::ask(runner, &prompt(body_of(&source), &article.lang), model).await?;
+	let request = prompt(body_of(&source), &article.lang);
+	let answer = runner::ask(runner, &request.text, model).await?;
 	let seconds = started.elapsed().as_secs_f64();
 
-	let text = plain(&answer.text);
+	let bounded = crate::i18n::prompt::bounded_reply(&answer.text, &request.boundary)
+		.ok_or_else(|| Refusal::Failed("summary was not enclosed by its output boundary".to_owned()))?;
+	let text = plain(&bounded);
 	if text.is_empty() {
 		return Err(Refusal::Failed("empty summary".to_owned()));
 	}
@@ -573,7 +586,8 @@ mod tests {
 
 	#[test]
 	fn the_prompt_asks_for_the_question_and_withholds_the_answer() {
-		let text = prompt("body text here", "zh");
+		let request = prompt("body text here", "zh");
+		let text = request.text;
 		assert!(text.contains("body text here"));
 		assert!(text.contains("`zh`"));
 		// Both halves have to survive editing. Losing the second turns this into `description`
@@ -583,6 +597,8 @@ mod tests {
 		// A model that picks a pronoun for a first-person essay has invented a fact about a
 		// real person, which is worse than any wording problem here.
 		assert!(text.contains("Never give the author a pronoun"));
+		assert!(text.contains(&request.boundary));
+		assert!(text.contains("Do not inspect files"));
 	}
 
 	#[test]

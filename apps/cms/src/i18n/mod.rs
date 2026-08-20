@@ -114,18 +114,6 @@ pub fn selected_locales(values: &[String]) -> Result<Vec<&'static str>, String> 
 	)
 }
 
-fn source_translation(text: &str) -> Translation {
-	Translation {
-		text: text.to_owned(),
-		provider: "source".to_owned(),
-		model: "source".to_owned(),
-		at: crate::image::manifest::now(),
-		seconds: 0.0,
-		tokens: 0,
-		review: false,
-	}
-}
-
 /// Lines a block occupies, ignoring the blank ones a reply may pad with.
 fn body_lines(text: &str) -> usize {
 	text.lines().filter(|line| !line.trim().is_empty()).count()
@@ -152,7 +140,7 @@ fn validate_reply_for(
 	region: segment::Region,
 	masked: &segment::Masked,
 	locales: &[&str],
-	source_locale: Option<&str>,
+	_source_locale: Option<&str>,
 ) -> Result<Vec<(String, String)>, Refusal> {
 	let parsed = prompt::parse(reply, Some(boundary)).map_err(|prompt::BoundaryLeak| {
 		Refusal::Failed("the model echoed the prompt boundary".to_owned())
@@ -170,8 +158,6 @@ fn validate_reply_for(
 				&& masked.intact(text)
 				&& body_lines(text) <= allowed
 				&& validate::translation(region, text).is_ok()
-				&& (source_locale != Some(locale.as_str())
-					|| store::similarity(&masked.text, text) >= store::SOURCE_SIMILARITY)
 		})
 		.map(|(locale, text)| (locale, masked.restore(&text)))
 		.collect();
@@ -413,35 +399,6 @@ pub async fn run(
 			continue;
 		}
 
-		// The exact source locale is a view of the article, not a translation task. Copy it
-		// locally: a model can only spend tokens paraphrasing wording the author already supplied.
-		// A same-language sibling such as zh-TW still goes through the runner because its script
-		// genuinely differs. See spec/i18n.md.
-		if let Some(source_locale) = source_locale.as_deref() {
-			let mut materialised = 0usize;
-			for (id, missing) in &mut wanted {
-				let Some(at) = missing.iter().position(|locale| locale == source_locale) else {
-					continue;
-				};
-				let segment = &live[id];
-				sidecar.segments.entry(id.clone()).or_default().insert(
-					source_locale.to_owned(),
-					source_translation(&segment.source),
-				);
-				missing.remove(at);
-				materialised += 1;
-			}
-			if materialised > 0 {
-				outcome.translated += materialised;
-				sidecar.version = store::VERSION;
-				store::save(&sidecar_path, &sidecar)?;
-			}
-			wanted.retain(|_, missing| !missing.is_empty());
-		}
-		if wanted.is_empty() {
-			continue;
-		}
-
 		// Order for context comes from the article, which is the only place it lives.
 		let ordered: Vec<&Segment> = {
 			let mut all: Vec<&Segment> = live.values().collect();
@@ -525,12 +482,19 @@ pub async fn run(
 					sidecar = store::load(&sidecar_path)?;
 					sidecar_seen = latest;
 				}
+				let required = if item.region == segment::Region::Body {
+					glosses
+						.find(&item.id)
+						.map(|entry| entry.spans.as_slice())
+						.unwrap_or_default()
+				} else {
+					&[]
+				};
+				let have = sidecar.segments.get(&item.id);
 				if !force
-					&& sidecar
-						.segments
-						.get(&item.id)
-						.is_some_and(|have| locales.iter().all(|locale| have.contains_key(locale)))
-				{
+					&& locales.iter().all(|locale| {
+						!store::translation_missing(have.and_then(|map| map.get(locale)), required)
+					}) {
 					outcome.already_done += 1;
 					progress.inc(1);
 					drop(claimed);
@@ -541,14 +505,7 @@ pub async fn run(
 				progress.set_message(progress::preview(&item.source, 44));
 				let (before, after) = neighbours(&item.id);
 				let model_override = model_override.clone();
-				let only_same_language = source_locale.as_deref().is_some_and(|source| {
-					locales
-						.iter()
-						.all(|locale| source.split('-').next() == locale.split('-').next())
-				});
-				let gloss = (!only_same_language)
-					.then(|| glosses.find(&item.id).cloned())
-					.flatten();
+				let gloss = glosses.find(&item.id).cloned();
 				let source_locale = source_locale.clone();
 				let owned = item;
 				running.spawn(async move {
@@ -662,15 +619,6 @@ mod tests {
 			vec!["en-US", "zh-TW"]
 		);
 		assert!(selected_locales(&["mw".into()]).is_err());
-	}
-
-	#[test]
-	fn a_source_entry_is_local_and_exact() {
-		let entry = source_translation("Author's exact words.");
-		assert_eq!(entry.text, "Author's exact words.");
-		assert_eq!(entry.provider, "source");
-		assert_eq!(entry.model, "source");
-		assert_eq!(entry.tokens, 0);
 	}
 
 	#[test]
@@ -791,7 +739,7 @@ mod tests {
 	}
 
 	#[test]
-	fn an_exact_source_locale_may_be_polished_but_not_rewritten() {
+	fn an_exact_source_locale_may_be_rewritten_as_a_localised_view() {
 		let boundary = "JQ8WZ4MX2TN7VLKD9RYC5PBFA1GH30SE";
 		let source = "这是一段作者写下来的原文，它的措辞、节奏和判断都应该保持不变。";
 		let polished = format!(
@@ -824,7 +772,7 @@ mod tests {
 				&["zh-CN"],
 				Some("zh-CN"),
 			)
-			.is_err()
+			.is_ok()
 		);
 	}
 

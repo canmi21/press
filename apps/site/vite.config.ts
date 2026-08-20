@@ -127,6 +127,7 @@ export default defineConfig(async ({ mode }) => {
 	const slot = parseSlot(process.env.WORKSPACE_SLOT);
 	const development = await resolveDevelopmentUrls(slot);
 	const urls = mode === 'production' ? URLS.apps.production : development;
+	const articleInputs = new Set<string>();
 	return {
 		plugins: [
 			tailwindcss(),
@@ -148,6 +149,11 @@ export default defineConfig(async ({ mode }) => {
 				// Content sources and sidecars are build inputs, not Worker work. Compile every
 				// browser-facing view here and serialize the lookup tables into the server bundle.
 				name: 'virtual-articles',
+				configureServer(server) {
+					// A sidecar may not exist when the virtual module first loads. Watching the
+					// directory is what lets its later creation enter the HMR pipeline.
+					server.watcher.add(CONTENTS);
+				},
 				resolveId(id: string) {
 					return id === 'virtual:articles' ? '\0virtual:articles' : null;
 				},
@@ -167,13 +173,23 @@ export default defineConfig(async ({ mode }) => {
 						}),
 						buildPages({ contents: CONTENTS, messages: MESSAGES, segments: SEGMENTS }),
 					]);
+					articleInputs.clear();
 					for (const file of new Set([...articleBuild.files, ...pageBuild.files])) {
+						articleInputs.add(file);
 						this.addWatchFile(file);
 					}
 					return [
 						`export const articles = ${JSON.stringify(articleBuild.articles)};`,
 						`export const pages = ${JSON.stringify(pageBuild.pages)};`,
 					].join('\n');
+				},
+				hotUpdate(options) {
+					if (!articleInputs.has(options.file)) return;
+					const virtual = this.environment.moduleGraph.getModuleById('\0virtual:articles');
+					if (!virtual) return;
+					// Watched data files are not imports, so Vite otherwise sees no affected module.
+					// Returning the virtual module invalidates its serialized article snapshot.
+					return [...new Set([...options.modules, virtual])];
 				},
 			},
 			sentrySvelteKit({

@@ -460,7 +460,36 @@ async fn cursor(prompt: &str, model: &str) -> Result<Answer, Refusal> {
 /// Separated from the call so the shape can be asserted. The model id is a flag, the same
 /// as Codex and Cursor; baking it into the prompt would silently ask the default instead.
 fn grok_args(prompt: &str, model: &str) -> Vec<OsString> {
-	grok_text_args(prompt, model, &[])
+	let mut args = vec!["-p".into(), prompt.into(), "-m".into(), model.into()];
+	restrict_grok_transform(&mut args);
+	args
+}
+
+/// Keep a text transformation out of the coding-agent environment the Grok CLI discovers.
+///
+/// Twitter lookup deliberately uses the agent path below. Translation, summaries and vision
+/// already carry every byte they need and must not inspect the repository, run hooks or narrate
+/// a plan learned from project instructions.
+const GROK_TRANSFORM_SYSTEM: &str = "You are a stateless text transformation engine. Follow only +the user's prompt. Do not inspect files, repositories, project instructions, memories, skills, +version control or previous outputs. Do not plan, explain, use tools, run commands or delegate. +Return only the exact output format the prompt requests.";
+
+fn restrict_grok_transform(args: &mut Vec<OsString>) {
+	args.extend(
+		[
+			"--system-prompt-override",
+			GROK_TRANSFORM_SYSTEM,
+			"--verbatim",
+			"--tools",
+			"",
+			"--no-subagents",
+			"--disable-web-search",
+			"--max-turns",
+			"1",
+			"--permission-mode",
+			"dontAsk",
+		]
+		.into_iter()
+		.map(OsString::from),
+	);
 }
 
 fn grok_text_args(prompt: &str, model: &str, extra: &[&str]) -> Vec<OsString> {
@@ -504,14 +533,14 @@ fn grok_vision_args(prompt: &str, model: &str, mime: &str, data: &str) -> Vec<Os
 			"text": prompt,
 		},
 	]);
-	vec![
+	let mut args = vec![
 		"--prompt-json".into(),
 		blocks.to_string().into(),
 		"-m".into(),
 		model.into(),
-		"--permission-mode".into(),
-		"bypassPermissions".into(),
-	]
+	];
+	restrict_grok_transform(&mut args);
+	args
 }
 
 async fn grok(prompt: &str, model: &str, image: Option<&Path>) -> Result<Answer, Refusal> {
@@ -837,7 +866,10 @@ mod tests {
 		assert!(args.contains(&OsString::from("grok-4.5")));
 		assert!(args.contains(&OsString::from("-p")));
 		assert!(args.contains(&OsString::from("translate this")));
-		assert!(args.contains(&OsString::from("bypassPermissions")));
+		assert!(args.contains(&OsString::from(GROK_TRANSFORM_SYSTEM)));
+		assert!(args.contains(&OsString::from("--verbatim")));
+		assert!(args.contains(&OsString::from("--tools")));
+		assert!(args.contains(&OsString::from("dontAsk")));
 		assert!(!args.contains(&OsString::from("--prompt-json")));
 	}
 
@@ -853,7 +885,8 @@ mod tests {
 		assert!(args.contains(&OsString::from("--disable-web-search")));
 		assert!(args.contains(&OsString::from("--max-turns")));
 		assert!(args.contains(&OsString::from("8")));
-		assert_eq!(grok_args("find this", "grok-4.6").len() + 3, args.len());
+		assert!(args.contains(&OsString::from("bypassPermissions")));
+		assert!(!args.contains(&OsString::from(GROK_TRANSFORM_SYSTEM)));
 	}
 
 	#[test]
@@ -866,7 +899,8 @@ mod tests {
 		assert!(!args.contains(&OsString::from("-p")));
 		assert!(args.contains(&OsString::from("-m")));
 		assert!(args.contains(&OsString::from("grok-4.6")));
-		assert!(args.contains(&OsString::from("bypassPermissions")));
+		assert!(args.contains(&OsString::from(GROK_TRANSFORM_SYSTEM)));
+		assert!(args.contains(&OsString::from("--tools")));
 
 		let json = args
 			.iter()

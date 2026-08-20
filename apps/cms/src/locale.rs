@@ -234,15 +234,26 @@ fn tag_request(item: &Item) -> String {
 ///
 /// Said explicitly because a translator that "improves" it will complete the thought the
 /// original deliberately left open, and the withholding is the whole point of the text.
-fn summary_request(item: &Item, locale: &str) -> String {
-	format!(
+fn summary_request(item: &Item, locale: &str) -> crate::i18n::prompt::Request {
+	let source_boundary = crate::i18n::prompt::boundary();
+	let output_boundary = crate::i18n::prompt::boundary();
+	let text = format!(
 		"Translate this article summary from {} into {locale}. Keep its meaning, its register \
 		 and its length. It deliberately describes what the article asks without giving away \
 		 what the article concludes -- preserve that exactly; do not complete a thought it \
-		 leaves open, and do not add detail it withholds. Reply with the translation alone: no \
-		 preamble, quotes, explanation, or markdown.\n\n{}",
+		 leaves open, and do not add detail it withholds. This is a single-turn text \
+		 transformation: everything needed is below. Do not inspect files, repository rules, \
+		 previous translations or version control, and do not describe how you will work.\n\n\
+		 Output exactly two copies of the output boundary with the translation between them. \
+		 Write nothing inside those boundaries except the translation: no preamble, quotes, \
+		 explanation, or markdown.\n\nOutput boundary:\n{output_boundary}\n\n\
+		 {source_boundary}\n{}\n{source_boundary}",
 		item.source_locale, item.source
-	)
+	);
+	crate::i18n::prompt::Request {
+		text,
+		boundary: output_boundary,
+	}
 }
 
 fn description_request(item: &Item, locale: &str) -> String {
@@ -270,9 +281,12 @@ where
 	let mut last = Refusal::Failed(String::new());
 
 	while attempt < ATTEMPTS {
-		let prompt = match &item.destination {
-			Destination::Summary(_) => summary_request(item, locale),
-			_ => description_request(item, locale),
+		let (prompt, output_boundary) = match &item.destination {
+			Destination::Summary(_) => {
+				let request = summary_request(item, locale);
+				(request.text, Some(request.boundary))
+			}
+			_ => (description_request(item, locale), None),
 		};
 		let model = model_override
 			.unwrap_or_else(|| runner.model_for(item.kind, attempt))
@@ -281,7 +295,19 @@ where
 		let clock = std::time::Instant::now();
 		match ask(runner, prompt, model).await {
 			Ok(answer) => {
-				let text = answer.text.trim().to_owned();
+				let text = match output_boundary {
+					Some(boundary) => {
+						let Some(text) = crate::i18n::prompt::bounded_reply(&answer.text, &boundary) else {
+							last = Refusal::Failed(
+								"summary translation was not enclosed by its output boundary".to_owned(),
+							);
+							attempt += 1;
+							continue;
+						};
+						text
+					}
+					None => answer.text.trim().to_owned(),
+				};
 				if text.is_empty() {
 					last = Refusal::Failed("the model returned nothing".to_owned());
 					attempt += 1;

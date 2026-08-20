@@ -134,12 +134,14 @@ pub fn save(path: &Path, table: &Table) -> std::io::Result<()> {
 /// not seen -- reproducing it verbatim would put an internal memo on the page.
 pub fn rule(entry: &Entry) -> String {
 	let mut rule = String::from(
-		"- For targets whose language differs from the source only, some wording in this block \
-		 carries an effect that does not survive translation. Handle each item below like this; \
-		 same-language targets must not carry these notes:\n\
+		"- Some wording in this block carries an effect that does not survive localisation, \
+		 including a same-language rewrite into more direct prose. Handle each item below like this \
+		 for every requested locale:\n\
 		 \n\
-		 1. Translate the passage naturally, as you would without this rule. The result must read \
-		 as that language, with no source-language characters left in it.\n\
+		 1. Translate or localise the passage naturally, as you would without this rule. The result \
+		 must read as the target locale, with no source wording retained merely because its effect \
+		 is difficult to carry. A same-language target may of course use the same script, but it \
+		 still follows the direct-reading rewrite policy.\n\
 		 2. Wrap the translated words that stand where the original effect was in \
 		 `:tn[translated words]{is=\"...\"}`. Copy that shape exactly: a closing `]`, then \
 		 `{is=\"`, the note, then `\"}` with the closing quote present. Never use a straight \
@@ -200,7 +202,10 @@ fn scan_prompt(article: &str) -> String {
 		 WORD\\tone sentence on what it means and why a translation would lose it\n\
 		 \n\
 		 The word must appear in the article exactly as you write it. Nothing else: no \
-		 preamble, no numbering, no code fences.\n\
+		 preamble, no numbering, no code fences. Each explanation is one sentence and at most \
+		 180 characters. This is a single-turn text analysis: everything needed is below. Do \
+		 not inspect files, repository rules, previous notes or version control, and do not \
+		 describe how you will work.\n\
 		 \n\
 		 ---\n{article}\n---"
 	)
@@ -218,6 +223,7 @@ fn scan_prompt(article: &str) -> String {
 /// A limit rather than only an instruction, because the instruction is advice to a model and
 /// this is the property the output has to have.
 const LONGEST_SPAN: usize = 8;
+const LONGEST_GUIDANCE: usize = 180;
 
 /// Read the scanner's reply into phrases and their guidance.
 pub fn parse_scan(reply: &str) -> Vec<Gloss> {
@@ -228,7 +234,8 @@ pub fn parse_scan(reply: &str) -> Vec<Gloss> {
 			let phrase = phrase.trim();
 			let guidance = guidance.trim();
 			let short = phrase.chars().count() <= LONGEST_SPAN;
-			(!phrase.is_empty() && !guidance.is_empty() && short).then(|| Gloss {
+			let concise = guidance.chars().count() <= LONGEST_GUIDANCE;
+			(!phrase.is_empty() && !guidance.is_empty() && short && concise).then(|| Gloss {
 				phrase: phrase.to_owned(),
 				guidance: guidance.to_owned(),
 			})
@@ -300,8 +307,8 @@ mod tests {
 		// German paragraphs ending in Chinese sentences. A translation is wholly its own
 		// language; the original belongs inside the note.
 		let rule = rule(&entry());
-		assert!(rule.contains("Translate the passage naturally"));
-		assert!(rule.contains("no source-language characters left in it"));
+		assert!(rule.contains("Translate or localise the passage naturally"));
+		assert!(rule.contains("same-language target may of course use the same script"));
 		assert!(rule.contains(":tn[translated words]"));
 		// The finding still reaches the model, as a finding.
 		assert!(rule.contains("古法"));
@@ -378,7 +385,11 @@ mod tests {
 			None,
 			Some(&entry()),
 		);
-		assert!(request.text.contains("Translate the passage naturally"));
+		assert!(
+			request
+				.text
+				.contains("Translate or localise the passage naturally")
+		);
 		assert!(request.text.contains("古法"));
 	}
 
@@ -424,6 +435,12 @@ mod tests {
 		let found = parse_scan("古法\tthe old method\nnot a suggestion\n想开了\tcame to terms\n");
 		assert_eq!(found.len(), 2);
 		assert_eq!(found[1].phrase, "想开了");
+	}
+
+	#[test]
+	fn agent_chatter_cannot_hide_inside_a_translation_note() {
+		let chatter = "x".repeat(LONGEST_GUIDANCE + 1);
+		assert!(parse_scan(&format!("发电\t{chatter}")).is_empty());
 	}
 
 	#[test]
