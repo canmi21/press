@@ -1,0 +1,10 @@
+version: 1
+summary:
+  zh-CN:
+    text: 不愿完全承认「朋友都是阶段性的」，仍想抓住一两段跟一生的友谊。对照的是出国前 QQ 群聊里同事、同学、事件触发、加完就晾着的传统联系人，和 Twitter 上不必互关、靠互动回复就能面熟的推油。刷 Timeline 看见曾经的人早安晚安，自己却成了局外人；碍于情面不取关，却要面对单向 mute、block，以及公开推文把 close friend 变成别人的 mutual friend，私聊里看不见，线下也拦不住。
+    provider: xai
+    model: grok-4-6
+    at: 2026-08-20T05:09:55.889879Z
+    seconds: 145.375698625
+    tokens: 0
+    review: false
