@@ -1,0 +1,1627 @@
+version: 1
+segments:
+  254086f3ffc966ca596512f0c71e3745:
+    de-DE:
+      text: Freundschaften sind immer nur vorübergehend
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.88072Z
+      seconds: 8.177147875
+      tokens: 18922
+      review: false
+    en-US:
+      text: Friends Are Only There for a Season
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.88072Z
+      seconds: 8.177147875
+      tokens: 18922
+      review: false
+    es-ES:
+      text: Las amistades son pasajeras
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.88072Z
+      seconds: 8.177147875
+      tokens: 18922
+      review: false
+    fr-FR:
+      text: Les amitiés ne durent qu’un temps
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.88072Z
+      seconds: 8.177147875
+      tokens: 18922
+      review: false
+    ja-JP:
+      text: 友達は人生の一時期だけのもの
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.88072Z
+      seconds: 8.177147875
+      tokens: 18922
+      review: false
+    ko-KR:
+      text: 친구는 한때일 뿐이다
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.88072Z
+      seconds: 8.177147875
+      tokens: 18922
+      review: false
+    zh-CN:
+      text: 朋友只是人生各阶段的同行者
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:09.052888Z
+      seconds: 5.454701709
+      tokens: 18860
+      review: false
+    zh-TW:
+      text: 朋友都是階段性的
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.88072Z
+      seconds: 8.177147875
+      tokens: 18922
+      review: false
+  2f54811542df442ca2b6c09151b005a1:
+    de-DE:
+      text: Zyklische Freunde bedeuten nicht, dass in regelmäßigen Abständen immer wieder dieselbe Person gemeint ist. Es bedeutet, dass sich dein bester Freund und deine engste Beziehung mit der Zeit allmählich verändern können. Und normalerweise bemerkst du es nicht. Wenn du es bemerkst, hast du sie oft bereits verloren.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880739Z
+      seconds: 17.770811333
+      tokens: 19674
+      review: false
+    en-US:
+      text: Cyclical friends do not mean that the same person returns at regular intervals. It means that your best friend, your closest relationship, may slowly change over time. And usually, you do not notice. By the time you do, it is often because you have already lost them.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880739Z
+      seconds: 17.770811333
+      tokens: 19674
+      review: false
+    es-ES:
+      text: Los amigos cíclicos no implican que siga siendo la misma persona cada cierto tiempo. Significa que tu mejor amigo y tu mejor relación pueden cambiar poco a poco con el paso del tiempo. Y normalmente no te das cuenta. Cuando por fin lo haces, suele ser porque ya los has perdido.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880739Z
+      seconds: 17.770811333
+      tokens: 19674
+      review: false
+    fr-FR:
+      text: Les amis cycliques ne désignent pas une seule et même personne qui reviendrait à intervalles réguliers. Cela signifie que votre meilleur ami et votre relation la plus précieuse peuvent changer peu à peu avec le temps. Et généralement, vous ne vous en rendez pas compte. Lorsque vous le réalisez, c’est souvent que vous les avez déjà perdus.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880739Z
+      seconds: 17.770811333
+      tokens: 19674
+      review: false
+    ja-JP:
+      text: 周期的な友人とは、一定の期間ごとに同じ人が現れるという意味ではない。親友や最高の人間関係も、時とともにゆっくり変わっていくかもしれないということだ。そして普通、その変化には気づかない。気づいたときには、すでに失ってしまっていることが多い。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880739Z
+      seconds: 17.770811333
+      tokens: 19674
+      review: false
+    ko-KR:
+      text: 주기적인 친구란 일정한 시간이 지날 때마다 늘 같은 사람이 나타난다는 뜻이 아니다. 가장 친한 친구와 가장 좋은 관계도 시간에 따라 서서히 달라질 수 있다는 뜻이다. 그리고 보통은 그 변화를 알아차리지 못한다. 알아차렸을 때는 이미 잃어버린 뒤인 경우가 많다.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880739Z
+      seconds: 17.770811333
+      tokens: 19674
+      review: false
+    zh-CN:
+      text: 周期性的朋友，并不是说每隔一段时间出现的还是同一个人，而是说，你最好的朋友、最珍视的关系，都可能随着时间慢慢改变，而你往往察觉不到。等你终于意识到时，常常已经失去了。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:09.052888Z
+      seconds: 6.450631958
+      tokens: 19102
+      review: false
+    zh-TW:
+      text: 週期性的朋友不意味著每隔一段時間還是同一個人。它意味著你最好的朋友、最好的關係，可能因為時間而慢慢改變。而通常你察覺不到。等你有所察覺的時候，常常就是你已經失去的時候。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880739Z
+      seconds: 17.770811333
+      tokens: 19674
+      review: false
+  469342d221e449062b89b6f62469c4d6:
+    de-DE:
+      text: '## Entfremdung {#fading-away}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880811Z
+      seconds: 6.717795375
+      tokens: 19287
+      review: false
+    en-US:
+      text: '## Growing Apart {#fading-away}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880811Z
+      seconds: 6.717795375
+      tokens: 19287
+      review: false
+    es-ES:
+      text: '## Distanciamiento {#fading-away}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880811Z
+      seconds: 6.717795375
+      tokens: 19287
+      review: false
+    fr-FR:
+      text: '## Éloignement {#fading-away}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880811Z
+      seconds: 6.717795375
+      tokens: 19287
+      review: false
+    ja-JP:
+      text: '## 疎遠 {#fading-away}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880811Z
+      seconds: 6.717795375
+      tokens: 19287
+      review: false
+    ko-KR:
+      text: '## 멀어짐 {#fading-away}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880811Z
+      seconds: 6.717795375
+      tokens: 19287
+      review: false
+    zh-CN:
+      text: '## 渐行渐远 {#fading-away}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:09.052941Z
+      seconds: 5.881211584
+      tokens: 19212
+      review: false
+    zh-TW:
+      text: '## 冷漠 {#fading-away}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880811Z
+      seconds: 6.717795375
+      tokens: 19287
+      review: false
+  53cc09889924baef62b35049a8c533ed:
+    de-DE:
+      text: '## Zyklen {#cycles}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880914Z
+      seconds: 6.6120044159999996
+      tokens: 19326
+      review: false
+    en-US:
+      text: '## Cycles {#cycles}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880914Z
+      seconds: 6.6120044159999996
+      tokens: 19326
+      review: false
+    es-ES:
+      text: '## Ciclos {#cycles}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880914Z
+      seconds: 6.6120044159999996
+      tokens: 19326
+      review: false
+    fr-FR:
+      text: '## Cycles {#cycles}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880914Z
+      seconds: 6.6120044159999996
+      tokens: 19326
+      review: false
+    ja-JP:
+      text: '## 周期 {#cycles}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880914Z
+      seconds: 6.6120044159999996
+      tokens: 19326
+      review: false
+    ko-KR:
+      text: '## 주기 {#cycles}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880914Z
+      seconds: 6.6120044159999996
+      tokens: 19326
+      review: false
+    zh-CN:
+      text: '## 周期性 {#cycles}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:09.053002Z
+      seconds: 5.524536084
+      tokens: 19272
+      review: false
+    zh-TW:
+      text: '## 週期 {#cycles}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:39.880914Z
+      seconds: 6.6120044159999996
+      tokens: 19326
+      review: false
+  55413ad52508a06168efe661ccd4f7c1:
+    de-DE:
+      text: —An mein zukünftiges Ich
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:46.494258Z
+      seconds: 7.392608625
+      tokens: 19283
+      review: false
+    en-US:
+      text: —Written to My Future Self
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:46.494258Z
+      seconds: 7.392608625
+      tokens: 19283
+      review: false
+    es-ES:
+      text: —Para mi yo del futuro
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:46.494258Z
+      seconds: 7.392608625
+      tokens: 19283
+      review: false
+    fr-FR:
+      text: —À mon futur moi
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:46.494258Z
+      seconds: 7.392608625
+      tokens: 19283
+      review: false
+    ja-JP:
+      text: ——未来の自分へ
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:46.494258Z
+      seconds: 7.392608625
+      tokens: 19283
+      review: false
+    ko-KR:
+      text: ——미래의 나에게
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:46.494258Z
+      seconds: 7.392608625
+      tokens: 19283
+      review: false
+    zh-CN:
+      text: ——写给未来的我
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:14.511369Z
+      seconds: 7.506505667
+      tokens: 19148
+      review: false
+    zh-TW:
+      text: ——寫給未來的自己
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:46.494258Z
+      seconds: 7.392608625
+      tokens: 19283
+      review: false
+  764ab5e3a41884365925b92929d8c193:
+    de-DE:
+      text: 'Wie genau zeigt sich diese Kälte also? Eigentlich geschieht das nicht in einem einzigen Augenblick. Wahrscheinlicher ist, dass sich einer deiner Kontakte langsam von dir entfernt: Die Nachrichten werden immer seltener und haben keinen wirklichen Inhalt mehr, bis daraus bloß noch ein :tn[Aufrechterhalten der Serie]{is="Der ursprüngliche Ausdruck xù huǒhuā bedeutet wörtlich, einen Funken am Leben zu halten. Gemeint ist fortlaufendes Chatten, damit das Streak-Abzeichen einer Plattform bestehen bleibt."} wird? Schließlich verfällt das Ganze zu völliger Gleichgültigkeit. Wie ein Frosch, der langsam in warmem Wasser gekocht wird, werden sie nach und nach kälter und verschwinden dann aus deinem Leben. Vielleicht wirst du nicht aus den Kontakten gelöscht, doch eigentlich ist das kaum anders, als wären sie aus deiner Welt verschwunden. Falls sie sich danach noch wegen irgendetwas an dich wenden, werden sie auch :tn[völlig anders als früher `act`]{is="Im Original ist das englische Verb act als Code formatiert und unbeholfen mit der chinesischen Strukturpartikel de verbunden. Dieser absichtliche Sprachmix lässt den Haltungswechsel kalkuliert wirken."}; es ist dann keine Gefälligkeit mehr, wie sie früher unter Bekannten üblich war, sondern als läge eine unsichtbare Distanz zwischen euch...'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:46.599747Z
+      seconds: 140.533926709
+      tokens: 25406
+      review: false
+    en-US:
+      text: 'So how exactly does this coldness set in? It usually is not a single moment. More likely, one of your contacts slowly drifts away from you: the messages grow fewer and contain nothing substantial, dwindling into nothing more than :tn[keeping a streak alive]{is="The original phrase literally means keeping a spark going, a platform expression for chatting continuously to preserve a streak badge."}? Eventually, it deteriorates into being ignored altogether. Like a frog slowly boiled in warm water, they gradually turn cold and then disappear from your life. They may not delete you as a contact, but in truth, that is no different from disappearing from your world. If they come to you for something afterward, they will :tn[`act` completely differently from before]{is="The original code-formats the English verb act and bolts it onto the Chinese particle de. The deliberately clunky code-switching makes the change in attitude feel calculated."}; it will no longer be the kind of favor exchanged between people who know each other, but as though an invisible distance separates you...'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:46.599747Z
+      seconds: 140.533926709
+      tokens: 25406
+      review: false
+    es-ES:
+      text: 'Entonces, ¿cómo se instala exactamente esa frialdad? En realidad, no ocurre de golpe. Lo más probable es que uno de tus contactos se vaya distanciando poco a poco de ti: los mensajes son cada vez menos frecuentes, dejan de tener contenido sustancial y terminan reducidos a una conducta para :tn[mantener una racha]{is="La expresión original xù huǒhuā significa literalmente mantener viva una chispa. Se refiere a conversar de forma continuada para conservar el distintivo de racha de una plataforma."}, quizá. Al final, todo degenera hasta convertirse en indiferencia absoluta. Como una rana cocida lentamente en agua tibia, esa persona se va enfriando poco a poco y después desaparece de tu vida. Puede que no te elimine de sus contactos, pero en realidad no hay mucha diferencia entre eso y desaparecer de tu mundo. Si después vuelve a buscarte por algún motivo, también :tn[`act` de una manera completamente distinta]{is="En el original, el verbo inglés act aparece con formato de código y se acopla torpemente a la partícula china de. La mezcla deliberadamente rígida hace que el cambio de actitud parezca calculado."}; ya no será la clase de favor que antes se hacían dos conocidos, sino como si entre ambos hubiera una distancia invisible...'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:46.599747Z
+      seconds: 140.533926709
+      tokens: 25406
+      review: false
+    fr-FR:
+      text: 'Alors, comment cette froideur s’installe-t-elle exactement ? En réalité, cela ne se produit pas en un instant. Il est plus probable que l’un de tes contacts s’éloigne peu à peu de toi : les messages deviennent de plus en plus rares, ne contiennent plus rien de substantiel et finissent par n’être qu’une façon d’‌:tn[entretenir une série]{is="L’expression originale xù huǒhuā signifie littéralement maintenir une étincelle en vie. Elle désigne le fait d’échanger continuellement des messages pour conserver l’indicateur de série d’une plateforme."} ? À la fin, cela dégénère jusqu’à l’indifférence la plus totale. Comme une grenouille que l’on fait cuire lentement dans de l’eau tiède, la personne devient progressivement plus froide, puis disparaît de ta vie. Elle ne te supprimera peut-être pas de ses contacts, mais au fond, cela ne diffère guère d’une disparition de ton monde. Si elle revient ensuite te demander quelque chose, elle :tn[`act` d’une manière totalement différente]{is="Dans l’original, le verbe anglais act est mis en forme comme du code puis greffé maladroitement à la particule chinoise de. Ce mélange volontairement raide donne l’impression d’un changement d’attitude calculé."}; ce ne sera plus un service rendu comme autrefois entre connaissances, mais comme si une distance invisible vous séparait...'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:46.599747Z
+      seconds: 140.533926709
+      tokens: 25406
+      review: false
+    ja-JP:
+      text: では、いったいどのように冷えていくのか。実際、それは一瞬で起こるものではなく、たいていは連絡先の誰かが徐々にあなたから離れていく形で現れる。メッセージはどんどん減り、中身もなくなり、ただ :tn[連続記録を保つだけ]{is="原語は xù huǒhuā で、字面では火花を絶やさないという意味。連続してやり取りし、SNS上のストリーク表示を保つ行為を指す。"} のやり取りになるのだろうか？そして最後には、完全に無視されるところまで落ちていく。まるでぬるま湯でカエルを煮るように、少しずつ冷たくなり、やがてあなたの生活から消えていく。連絡先から削除されることはないかもしれないが、実際にはあなたの世界から消えたも同然だ。そのあと何か用があってあなたを訪ねてきても、以前とはまったく違うふうに :tn[`act` する]{is="原文では英語の動詞 act をコード書式にし、中国語で様態を導く de へそのままつないでいる。不自然な中英混用が、相手がわざと態度を変えた感じを強める。"}。かつてのような知り合い同士の助けではなく、まるで目に見えない距離が横たわっているかのように……
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:46.599747Z
+      seconds: 140.533926709
+      tokens: 25406
+      review: false
+    ko-KR:
+      text: 그렇다면 대체 어떻게 차가워지는 걸까? 사실 한순간에 일어나는 일은 아니다. 누군가가 서서히 당신에게서 멀어지는 모습으로 나타날 가능성이 더 크다. 메시지는 갈수록 줄고 내용도 실속이 없어지며, 그저 :tn[연속 기록만 이어 가기 위한 행동]{is="원문의 xù huǒhuā는 글자 그대로 불꽃을 계속 살린다는 뜻이다. 계속 대화해 플랫폼의 스트리크 표시를 유지하는 행위를 가리킨다."}으로 변하는 걸까? 마지막에는 완전히 무시하는 상태로까지 퇴보한다. 마치 미지근한 물에 개구리를 삶듯 서서히 냉담해지다가 당신의 삶에서 사라진다. 연락처에서 삭제하지는 않을 수도 있지만, 사실상 당신의 세계에서 사라진 것과 다를 바 없다. 그 뒤에 무슨 일로 당신을 찾아오더라도 예전과는 완전히 다르게 :tn[`act` 할 것이다]{is="원문은 영어 동사 act를 코드 서식으로 감싼 뒤 중국어 양태 표지 de에 어색하게 붙였다. 의도적인 중영 혼용이 상대가 일부러 태도를 바꿨다는 느낌을 강조한다."}. 예전처럼 아는 사람끼리 돕는 모습이 아니라, 마치 보이지 않는 거리를 사이에 둔 것 같을 것이다...
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:46.599747Z
+      seconds: 140.533926709
+      tokens: 25406
+      review: false
+    zh-CN:
+      text: 这种冷漠到底是什么样的？它通常不会在一瞬间发生，更可能是某个联系人一点点疏远你：消息越来越少，也不再有实质内容，逐渐变成单纯为了 :tn[维持连续聊天记录]{is="原文用“续火花”来指为了保住社交平台上的连续聊天标识而持续发消息，也暗示交流已经退化成维护产品机制。"} 而勉强互动？最后甚至彻底不再理你。就像温水煮青蛙一样，对方慢慢冷淡下来，最终从你的生活中消失。也许对方不会删除你的联系方式，但其实已经与从你的世界里消失没什么区别。此后即使还有事情来找你，也会 :tn[完全 `act` 得跟从前不一样]{is="原文把英语动词 act 嵌进中文的“得”字结构里，刻意生硬的中英混用突出了对方像换了一副态度。"}：不再是熟人之间那种自然的帮忙，而像是彼此隔着一道无形的距离……
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:14.580263Z
+      seconds: 31.307859584
+      tokens: 20765
+      review: false
+    zh-TW:
+      text: 至於這種冷淡究竟是怎麼發生的？其實它不會出現在某個瞬間，更常見的情況是，某位聯絡人逐漸疏遠你；訊息愈來愈少，也不再有實質內容，只剩下某種:tn[維持連續互動標記]{is="原文用「續火花」，指持續聊天以維持社群平台上的火花或連續互動標記。"}的行為？最後甚至徹底退化成不聞不問。就像溫水煮青蛙一樣，對方慢慢冷淡下來，然後從你的生活中消失。也許對方不會刪除聯絡方式，但其實這和從你的世界裡消失已經沒有什麼差別。此後即使有事來找你，也會完全:tn[`act` 得]{is="原文把英語動詞 act 套上程式碼格式，再接中文助詞「得」，以刻意生硬的中英混用凸顯對方像換了一副態度。"}和以前不同；那不再是熟人之間的相互幫忙，而像是彼此隔著一段無形的距離……
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:37:50.906046Z
+      seconds: 25.974075292
+      tokens: 20346
+      review: false
+  7c6bfa7f3e7b3213d350aafafa7aaa64:
+    de-DE:
+      text: '## Bei mir ist es genauso {#same-here}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:48.059144Z
+      seconds: 7.673354542
+      tokens: 19453
+      review: false
+    en-US:
+      text: '## Same here {#same-here}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:48.059144Z
+      seconds: 7.673354542
+      tokens: 19453
+      review: false
+    es-ES:
+      text: '## A mí también {#same-here}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:48.059144Z
+      seconds: 7.673354542
+      tokens: 19453
+      review: false
+    fr-FR:
+      text: '## Moi aussi {#same-here}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:48.059144Z
+      seconds: 7.673354542
+      tokens: 19453
+      review: false
+    ja-JP:
+      text: '## 私も同じ {#same-here}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:48.059144Z
+      seconds: 7.673354542
+      tokens: 19453
+      review: false
+    ko-KR:
+      text: '## 나도 마찬가지 {#same-here}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:48.059144Z
+      seconds: 7.673354542
+      tokens: 19453
+      review: false
+    zh-CN:
+      text: '## 我也如此 {#same-here}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:14.937145Z
+      seconds: 4.244944917
+      tokens: 19202
+      review: false
+    zh-TW:
+      text: '## 我也一樣 {#same-here}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:48.059144Z
+      seconds: 7.673354542
+      tokens: 19453
+      review: false
+  834c9e38aad83ded9c6245ca516987d2:
+    de-DE:
+      text: Eine Erkundung meiner fragilen Beziehungen?
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:53.88833Z
+      seconds: 7.2004705
+      tokens: 18980
+      review: false
+    en-US:
+      text: Exploring My Fragile Relationships?
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:53.88833Z
+      seconds: 7.2004705
+      tokens: 18980
+      review: false
+    es-ES:
+      text: ¿Una exploración de mis frágiles relaciones?
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:53.88833Z
+      seconds: 7.2004705
+      tokens: 18980
+      review: false
+    fr-FR:
+      text: À la découverte de mes relations fragiles ?
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:53.88833Z
+      seconds: 7.2004705
+      tokens: 18980
+      review: false
+    ja-JP:
+      text: 私の脆い人間関係を訪ねて？
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:53.88833Z
+      seconds: 7.2004705
+      tokens: 18980
+      review: false
+    ko-KR:
+      text: 나의 위태로운 인간관계를 찾아서?
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:53.88833Z
+      seconds: 7.2004705
+      tokens: 18980
+      review: false
+    zh-CN:
+      text: 审视我那脆弱的人际关系？
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:15.506252Z
+      seconds: 6.083024375
+      tokens: 18819
+      review: false
+    zh-TW:
+      text: 探訪我那脆弱的人際關係？
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:53.88833Z
+      seconds: 7.2004705
+      tokens: 18980
+      review: false
+  8e01bc84022d819699f363bd4473aebf:
+    de-DE:
+      text: '„Phasen“ lassen sich ungefähr mit einer Liebesbeziehung vergleichen: Es gibt eine Zeit, in der alles neu ist, und eine leidenschaftliche Phase. Auch der Austausch und die Gespräche unter Freunden verlaufen so. In den ersten Tagen nach dem Kennenlernen kommuniziert man sehr rege und gräbt mitunter sogar in der **:tn[peinlichen Vergangenheit]{is="Im chinesischen Original steht der Netzbegriff „黑历史“, der aus der japanischen Subkultur stammt. Er bezeichnet speziell beschämende Episoden, an die man selbst nicht erinnert werden und die man nicht von anderen ausgegraben sehen möchte."}** des anderen; danach beginnt eine stabile Phase des Austauschs innerhalb einer länger andauernden Verbindung. Vielleicht arbeitet man zusammen, ist an der Schule in derselben Klasse, teilt als Onlinebekanntschaft ein Interesse oder wendet sich wegen eines Problems an jemanden, das sich nicht kurzfristig lösen lässt. Es ist, als hätten sich zwei Linien, die einander ursprünglich nie kreuzten, plötzlich ineinander verwunden – und so tauchen diese Menschen unvermittelt im eigenen Leben auf.'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:55.733498Z
+      seconds: 57.514599334
+      tokens: 21882
+      review: false
+    en-US:
+      text: '“Phases” can roughly be compared to a romantic relationship: there is the novelty phase, and then the passionate phase. Interacting and chatting with friends works the same way. During the first few days after meeting, you communicate very actively and may even dig up their **:tn[cringeworthy past]{is="The original Chinese internet slang was “黑历史,” borrowed from Japanese subculture and referring specifically to embarrassing episodes someone would rather not revisit or have exposed."}**; after that, you enter a stable phase of ongoing communication within a long-term situation. You might be working together or attending the same class at school; it might be a shared interest between people who met online, or someone might have approached you about a problem that cannot be solved quickly. It is as if two lines that never intersected suddenly became entangled, and that is how these people abruptly appeared in your life.'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:55.733498Z
+      seconds: 57.514599334
+      tokens: 21882
+      review: false
+    es-ES:
+      text: 'Las «etapas» pueden compararse, más o menos, con una relación amorosa: hay una etapa de novedad y otra de pasión. Con la interacción y las conversaciones entre amigos ocurre lo mismo. Durante los primeros días tras conocerse, la comunicación es muy activa e incluso se desentierra el **:tn[pasado vergonzoso]{is="El original usa el término de internet chino «黑历史», procedente de la subcultura japonesa. Alude específicamente a episodios embarazosos que alguien no quiere recordar ni que otros saquen a la luz."}** de la otra persona; después se entra en una fase estable de comunicación dentro de una situación prolongada. Puede tratarse de trabajar juntos, de ser compañeros de la misma clase, de compartir un interés con alguien conocido por internet o de que una persona acuda a ti con un problema que no puede resolverse en poco tiempo. Es como si dos líneas que originalmente no se cruzaban se enredaran de repente: así es como esas personas aparecen súbitamente en tu vida.'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:55.733498Z
+      seconds: 57.514599334
+      tokens: 21882
+      review: false
+    fr-FR:
+      text: 'On peut plus ou moins comparer les « phases » à celles d’une relation amoureuse : il y a la période de la nouveauté, puis celle de la passion. Les échanges et les conversations entre amis suivent le même schéma. Durant les premiers jours après une rencontre, on communique très activement, au point d’aller parfois fouiller dans le **:tn[passé embarrassant]{is="L’original emploie le terme d’argot internet chinois « 黑历史 », issu de la sous-culture japonaise. Il désigne précisément les épisodes gênants que quelqu’un préférerait oublier ou ne pas voir déterrés par autrui."}** de l’autre ; vient ensuite une phase d’échanges stables au sein d’une situation appelée à durer. Il peut s’agir de travailler ensemble, d’être camarades dans la même classe, de partager un centre d’intérêt avec quelqu’un rencontré en ligne, ou encore d’être contacté à propos d’un problème impossible à résoudre rapidement. C’est comme si deux lignes qui ne se croisaient pas s’étaient soudain entortillées : ces personnes surgissent ainsi brusquement dans votre vie.'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:55.733498Z
+      seconds: 57.514599334
+      tokens: 21882
+      review: false
+    ja-JP:
+      text: 「段階」は、恋愛にたとえるとわかりやすいかもしれない。新鮮に感じる時期もあれば、熱が高まる時期もある。友達同士の交流や会話も同じだ。知り合って最初の数日間は積極的にやり取りし、相手の**:tn[黒歴史]{is="原文は中国語のネット用語「黑历史」。日本のサブカルチャーに由来し、本人が思い出したくない、あるいは他人に掘り返されたくない恥ずかしい過去を指すくだけた表現である。"}**まで掘り返すこともある。それから、長く続く関わりの中で安定して交流する段階に入る。一緒に仕事をしている場合もあれば、学校で同じクラスの同級生である場合、ネットで知り合った者同士に共通の趣味がある場合、あるいは短期間では解決できない問題を抱えた誰かが相談に来た場合もある。まるで、それまで交わることのなかった二本の線が突然絡み合うように、その人たちは不意にあなたの生活へ現れるのだ。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:55.733498Z
+      seconds: 57.514599334
+      tokens: 21882
+      review: false
+    ko-KR:
+      text: ‘단계’는 대략 연애에 빗댈 수 있다. 서로가 새롭게 느껴지는 시기가 있고, 뜨겁게 달아오르는 시기도 있다. 친구끼리 교류하고 대화하는 것도 마찬가지다. 처음 접촉한 며칠 동안은 아주 적극적으로 소통하며 심지어 상대의 **:tn[숨기고 싶은 부끄러운 과거]{is="중국어 원문은 일본 서브컬처에서 유래한 인터넷 용어 ‘黑历史’를 썼다. 단순히 어두운 역사가 아니라, 본인이 돌아보거나 남이 들춰내기를 원치 않는 민망한 과거를 가볍게 이르는 말이다."}**까지 파헤친다. 그러고 나면 오래 이어지는 관계 속에서 안정적으로 교류하는 단계에 들어선다. 함께 일하는 사이일 수도 있고, 학교에서 같은 반인 동급생일 수도 있으며, 온라인에서 알게 된 사람들이 어떤 관심사를 공유하는 경우일 수도 있다. 또는 누군가가 단기간에 해결할 수 없는 문제 때문에 당신을 찾아온 경우일 수도 있다. 마치 원래는 만나지 않던 두 선이 갑자기 한데 꼬인 것처럼, 그들은 그렇게 불쑥 당신의 삶에 나타난다.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:55.733498Z
+      seconds: 57.514599334
+      tokens: 21882
+      review: false
+    zh-CN:
+      text: 人与人关系的「阶段」大概可以比作谈恋爱：既有新鲜期，也有热烈期，朋友之间的互动和聊天也是如此。刚认识的几天里，彼此会非常积极地交流，甚至深挖你的**:tn[尴尬旧事]{is="原文用的是网络词“黑历史”，源自日本亚文化，特指本人不愿回顾或被人翻出的尴尬过往，并非一般意义上的黑暗历史。"}**；随后，关系便会进入长期而稳定的交流阶段。你们可能一起工作，可能是在学校同班，可能是网上认识后因共同兴趣而来往，也可能是对方因为某个短时间内无法解决的问题来找你。就像两条原本互不相交的线突然缠在了一起，他们也就这样猝不及防地出现在了你的生活里。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:19.186458Z
+      seconds: 17.564874708
+      tokens: 19873
+      review: false
+    zh-TW:
+      text: 「階段」大概可以比喻成談戀愛：先有新鮮期，再進入熱烈期。朋友之間的互動與聊天也是如此。剛認識的幾天，雙方會很積極地交流，甚至挖出你的**:tn[黑歷史]{is="原文「黑历史」是源自日本次文化的網路用語，帶著戲謔意味，特指本人不願回顧或被別人翻出的尷尬往事，而非一般所說的黑暗歷史。"}**；之後便會進入一段長期而穩定的交流關係。可能是一起工作，可能是在學校裡同班，也可能是網友之間有共同興趣，或是對方因某個短期內無法解決的問題而來找你。就像兩條原本互不相交的線突然纏在了一起，他們也就這樣猝不及防地出現在你的生活中。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:37:50.906273Z
+      seconds: 14.529520291
+      tokens: 19715
+      review: false
+  8ec4706fc8fd80f9b958520763568129:
+    de-DE:
+      text: '## Außenseiter? {#outsider}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:57.652681Z
+      seconds: 10.943237375
+      tokens: 19471
+      review: false
+    en-US:
+      text: '## Outsider? {#outsider}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:57.652681Z
+      seconds: 10.943237375
+      tokens: 19471
+      review: false
+    es-ES:
+      text: '## ¿Al margen? {#outsider}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:57.652681Z
+      seconds: 10.943237375
+      tokens: 19471
+      review: false
+    fr-FR:
+      text: '## À l’écart ? {#outsider}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:57.652681Z
+      seconds: 10.943237375
+      tokens: 19471
+      review: false
+    ja-JP:
+      text: '## 部外者？ {#outsider}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:57.652681Z
+      seconds: 10.943237375
+      tokens: 19471
+      review: false
+    ko-KR:
+      text: '## 외부인? {#outsider}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:57.652681Z
+      seconds: 10.943237375
+      tokens: 19471
+      review: false
+    zh-CN:
+      text: '## 局外人？ {#outsider}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:21.592043Z
+      seconds: 4.253115666
+      tokens: 19038
+      review: false
+    zh-TW:
+      text: '## 局外人？ {#outsider}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:22:57.652681Z
+      seconds: 10.943237375
+      tokens: 19471
+      review: false
+  90dcba21bf6c6ae0e6580e7b28e20544:
+    de-DE:
+      text: 'Bevor ich ins Ausland ging, lief mein Sozialleben eigentlich hauptsächlich über QQ: Gruppenchats in allen möglichen Kreisen und dazu ein paar Freunde, die ich dort kennengelernt hatte. Rückblickend begann dieses Leben in einzelnen Phasen schon damals. Nur sah ich es zu der Zeit nicht als eine Phase an, sondern hielt es einfach für das Leben selbst.'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:01.091422Z
+      seconds: 20.741002417
+      tokens: 19896
+      review: false
+    en-US:
+      text: Before going abroad, I socialized mainly through QQ—group chats for all kinds of communities, along with a few friends I knew. Looking back now, this pattern of life unfolding in stages had already begun back then. I just didn’t think of it as a stage at the time; I thought it was simply life itself.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:01.091422Z
+      seconds: 20.741002417
+      tokens: 19896
+      review: false
+    es-ES:
+      text: 'Antes de irme al extranjero, socializaba principalmente a través de QQ: participaba en chats grupales de todo tipo de círculos y tenía además algunos amigos que había conocido. Ahora que lo pienso, esa sucesión de etapas ya había comenzado entonces. Lo que pasa es que en aquel momento no lo veía como una etapa; creía que era la vida misma.'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:01.091422Z
+      seconds: 20.741002417
+      tokens: 19896
+      review: false
+    fr-FR:
+      text: 'Avant de partir à l’étranger, je socialisais essentiellement sur QQ, dans des groupes de discussion liés à toutes sortes de milieux, auxquels s’ajoutaient quelques amis que je connaissais. Avec le recul, cette succession de périodes avait déjà commencé à l’époque. Seulement, je ne voyais pas cela comme une période : pour moi, c’était simplement la vie elle-même.'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:01.091422Z
+      seconds: 20.741002417
+      tokens: 19896
+      review: false
+    ja-JP:
+      text: 海外に出る前、僕の主な交流手段は実のところ QQ で、さまざまな界隈のグループチャットに、知り合った友人が何人かいるくらいだった。今思えば、物事が段階ごとに移り変わっていく感じは、あの頃からすでに始まっていた。ただ当時はそれを一つの段階だとは思わず、それこそが生活そのものだと思っていた。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:01.091422Z
+      seconds: 20.741002417
+      tokens: 19896
+      review: false
+    ko-KR:
+      text: 해외로 나가기 전에는 주로 QQ로 사람들과 어울렸다. 여러 부류의 단체 채팅방에 참여하고, 거기에 아는 친구 몇 명이 더 있는 정도였다. 지금 생각해 보면 삶이 단계적으로 흘러가는 일은 그때부터 이미 시작되고 있었다. 다만 당시에는 그것을 하나의 단계라고 생각하지 않았고, 그저 삶 자체라고 여겼다.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:01.091422Z
+      seconds: 20.741002417
+      tokens: 19896
+      review: false
+    zh-CN:
+      text: 出国前，我主要通过 QQ 社交：加入各种圈子的群聊，再认识一些朋友。现在回想起来，那时我就已经开始经历这种阶段性了，只是当时不觉得那是某个阶段，而以为那就是生活本身。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:22.020597Z
+      seconds: 5.183508625
+      tokens: 19033
+      review: false
+    zh-TW:
+      text: 出國之前，我主要的社交方式其實就是 QQ，各種圈子裡面的群聊，再加上一些認識的好友。現在想想，階段性這件事從那時候就已經開始了，只是當時不覺得那叫階段，我覺得那就是生活本身。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:01.091422Z
+      seconds: 20.741002417
+      tokens: 19896
+      review: false
+  98552ce9b84dcac304c1cf91cbe2b8c6:
+    de-DE:
+      text: '## Intensive Phase {#honeymoon-phase}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:08.598435Z
+      seconds: 8.645509875
+      tokens: 19399
+      review: false
+    en-US:
+      text: '## Passionate Phase {#honeymoon-phase}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:08.598435Z
+      seconds: 8.645509875
+      tokens: 19399
+      review: false
+    es-ES:
+      text: '## Fase apasionada {#honeymoon-phase}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:08.598435Z
+      seconds: 8.645509875
+      tokens: 19399
+      review: false
+    fr-FR:
+      text: '## Phase passionnelle {#honeymoon-phase}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:08.598435Z
+      seconds: 8.645509875
+      tokens: 19399
+      review: false
+    ja-JP:
+      text: '## 熱烈期 {#honeymoon-phase}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:08.598435Z
+      seconds: 8.645509875
+      tokens: 19399
+      review: false
+    ko-KR:
+      text: '## 열정기 {#honeymoon-phase}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:08.598435Z
+      seconds: 8.645509875
+      tokens: 19399
+      review: false
+    zh-CN:
+      text: '## 热恋期 {#honeymoon-phase}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:25.847736Z
+      seconds: 5.092694416
+      tokens: 19104
+      review: false
+    zh-TW:
+      text: '## 熱烈期 {#honeymoon-phase}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:08.598435Z
+      seconds: 8.645509875
+      tokens: 19399
+      review: false
+  9dea58104d5acf9da110bc4ad2084f2b:
+    de-DE:
+      text: Von QQ-Gruppenchats bis zur Twitter Timeline blickt der Autor auf Freundschaften zurück, die durch bestimmte Ereignisse entstanden und mit den jeweiligen Lebensphasen verblassten, und versucht zwischen Verlust, Besitzansprüchen und Selbstreflexion, die Vergänglichkeit von Freundschaften anzunehmen und jede Kreuzung der Zeitlinien zu schätzen.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:17.246633Z
+      seconds: 21.452914125
+      tokens: 19786
+      review: false
+    en-US:
+      text: From QQ group chats to the Twitter Timeline, the author looks back on friendships sparked by shared events and faded with each passing phase, trying—amid loss, possessiveness, and introspection—to accept the cyclical nature of friendship while cherishing every crossing of timelines.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:17.246633Z
+      seconds: 21.452914125
+      tokens: 19786
+      review: false
+    es-ES:
+      text: Desde los chats grupales de QQ hasta la Twitter Timeline, el autor rememora amistades nacidas a raíz de distintos acontecimientos y desvanecidas con el paso de cada etapa, e intenta, entre la pérdida, el afán posesivo y la introspección, aceptar el carácter cíclico de la amistad y valorar cada cruce de líneas temporales.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:17.246633Z
+      seconds: 21.452914125
+      tokens: 19786
+      review: false
+    fr-FR:
+      text: Des discussions de groupe sur QQ à la Twitter Timeline, l’auteur revient sur ces amitiés nées au gré des événements puis estompées au fil des étapes de la vie et tente, entre perte, possessivité et introspection, d’accepter leur caractère cyclique tout en chérissant chaque croisement de trajectoires.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:17.246633Z
+      seconds: 21.452914125
+      tokens: 19786
+      review: false
+    ja-JP:
+      text: QQのグループチャットからTwitter Timelineまで、筆者は出来事をきっかけに出会い、時期の移り変わりとともに薄れていった友情の数々を振り返り、喪失感や独占欲、自省の間で、友人関係の周期性を受け入れながら、タイムラインが交わる一瞬一瞬を大切にしようとする。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:17.246633Z
+      seconds: 21.452914125
+      tokens: 19786
+      review: false
+    ko-KR:
+      text: QQ 단체 채팅에서 Twitter Timeline까지, 필자는 어떤 사건을 계기로 만나 삶의 단계가 바뀌며 희미해진 우정들을 돌아보면서 상실감과 소유욕, 자기 성찰 사이에서 친구 관계의 주기성을 받아들이고 타임라인이 교차하는 모든 순간을 소중히 여기려 한다.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:17.246633Z
+      seconds: 21.452914125
+      tokens: 19786
+      review: false
+    zh-CN:
+      text: 从 QQ 群聊到 Twitter 时间线，笔者回望那些因事件而相识、随人生阶段渐行渐远的友情，在失落、占有欲与自我反思之间，试着接受友情的阶段性，也珍惜每一次时间线上的交汇。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:27.206919Z
+      seconds: 7.342676667
+      tokens: 18965
+      review: false
+    zh-TW:
+      text: 從 QQ 群聊到 Twitter Timeline，筆者回望一段段因事件相遇、隨階段淡去的友情，在失落、佔有慾與自省之間，嘗試接受朋友的週期性，也珍惜每一次時間線的交匯。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:17.246633Z
+      seconds: 21.452914125
+      tokens: 19786
+      review: false
+  a7e3e8d229fddd4d11a25f96f7a1e5d9:
+    de-DE:
+      text: 'Doch in den letzten ein, zwei Jahren hatte ich eigentlich schon vage gespürt, dass es in diese Richtung ging, nur war ich dem Thema immer wieder ausgewichen. Bis ich eines Abends vor einiger Zeit beim Scrollen durch Twitter :tn[in ein Emo-Tief geriet]{is="Im Original wird das englische Wort emo unmittelbar wie ein chinesisches Prädikat verwendet; das verleiht der Niedergeschlagenheit einen netzsprachlichen, halb selbstironischen Ton."}. Als ich sah, wie früher miteinander bekannte :tn[Twitter-Freundchen]{is="Im Original steht tuiyou, ein liebevoller Internet-Spitzname für auf Twitter kennengelernte Freunde und zugleich ein lautgleiches Wortspiel."} miteinander :tn[kuschel-kuschel machten]{is="Im Original steht ein verniedlichendes, verdoppeltes Netzwort für Nähe, Anschmiegen oder offen gezeigte Zuneigung; der kindlich-schmollende Klang geht bei einem gewöhnlichen Wort für Umarmen verloren."}, sich umarmten, einander guten Morgen und gute Nacht wünschten und sich sogar gegenseitig antworteten, wurde mir klar: Vielleicht war ich ja die überflüssige Person ... Alle aus diesem Kreis waren noch da; nur mein Freundeskreis war längst nicht mehr derselbe wie damals. Vielleicht war ich ja der „Außenseiter“.'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:21.83485Z
+      seconds: 57.031080375
+      tokens: 21652
+      review: false
+    en-US:
+      text: But over the past year or two, I’d already begun to sense that things were heading this way; I just kept avoiding the subject. Then one night a while back, scrolling through Twitter left me :tn[feeling emo]{is="The original directly turns the English word emo into a Chinese predicate, giving the sadness an online, half-self-mocking tone."}. Seeing Twitter :tn[pals]{is="The original uses tuiyou, an affectionate internet nickname and playful homophone for friends made on Twitter."} who used to know one another :tn[snuggling up]{is="The original uses a cutesy reduplicated internet expression for cuddling close or openly showing affection, with a deliberately childlike tone."}, hugging, saying good morning and good night, and even replying to each other, I finally realized—maybe I was the one who didn’t belong... Everyone in that circle was still there; it was just that my circle of friends had long since ceased to be what it once was. Perhaps I was the “outsider” after all.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:21.83485Z
+      seconds: 57.031080375
+      tokens: 21652
+      review: false
+    es-ES:
+      text: 'Pero, en realidad, desde hacía uno o dos años ya intuía que las cosas iban por ese camino, aunque no había dejado de evitar el tema. Hasta que una noche, hace algún tiempo, me puse a recorrer Twitter y acabé :tn[en modo emo]{is="En el original, la palabra inglesa emo se usa directamente como predicado chino, lo que da al bajón un tono de Internet y medio burlón consigo mismo."}. Al ver a :tn[amiguis de Twitter]{is="En el original se usa tuiyou, un apodo cariñoso de Internet para las amistades hechas en Twitter y, a la vez, un juego homófono escrito de forma deliberadamente juguetona."} que antes se conocían entre sí :tn[haciendo mimitos]{is="En el original aparece una expresión de Internet reduplicada que imita un tono infantil y mimoso para expresar cercanía, arrumacos o afecto mostrado en público."}, abrazándose, dándose los buenos días y las buenas noches e incluso respondiéndose mutuamente, me di cuenta: quizá quien sobraba era yo... Toda aquella gente seguía allí; era solo que mi círculo de amistades hacía ya mucho que había dejado de ser el de entonces. Tal vez era yo la «forastera».'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:21.83485Z
+      seconds: 57.031080375
+      tokens: 21652
+      review: false
+    fr-FR:
+      text: 'Pourtant, depuis un an ou deux, je sentais déjà confusément que les choses prenaient cette direction, mais je n’avais cessé d’éviter le sujet. Jusqu’à ce soir, il y a quelque temps, où faire défiler Twitter m’a :tn[mis en mode emo]{is="Dans l’original, le mot anglais emo est directement employé comme prédicat chinois, donnant à cette baisse de moral un ton très Internet et à moitié autodérisoire."}. En voyant des :tn[potes de Twitter]{is="Dans l’original, tuiyou est un surnom Internet affectueux pour les amis rencontrés sur Twitter, écrit comme un jeu de mots homophone."} qui se connaissaient autrefois :tn[se faire des câlinous]{is="Dans l’original, un mot Internet redoublé imite une voix enfantine et câline pour évoquer le fait de se blottir ou d’afficher ouvertement son affection."}, s’embrasser, se souhaiter bonjour et bonne nuit, et même se répondre, j’ai enfin compris : c’était peut-être moi, la personne de trop... Tous les gens de ce cercle étaient encore là ; c’était seulement mon cercle d’amis qui, depuis longtemps déjà, n’était plus celui d’autrefois. Peut-être étais-je, moi, « l’étrangère ».'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:21.83485Z
+      seconds: 57.031080375
+      tokens: 21652
+      review: false
+    ja-JP:
+      text: でもここ1、2年、実はうっすらとそういう方向に向かっているのを感じていたのに、私はずっとこの話題を避けていた。少し前のある晩、Twitterを眺めていて :tn[エモくなった]{is="原文では英語の emo をそのまま中国語の述語として使い、ネット的で少し自嘲を帯びた落ち込みを表している。"}私は、かつて互いに知り合いだった :tn[ツイ友]{is="原文の語は Twitter で知り合った友人を指す語の親しみを込めた当て字で、同音の別語に置き換えたネット的な言葉遊びでもある。"}たちが :tn[いちゃいちゃ]{is="原文では幼い甘え声を思わせる反復語で、寄り添ったり人前で親愛を示したりする様子を表している。"}したり抱き合ったり、おはようやおやすみを言い合ったり、さらには互いに返信し合ったりするのを見て、ようやく気づいた――もしかしたら、余計なのは私のほうだったのかもしれない……。あの輪の人たちは今もみんないる。ただ、私の友人関係はとっくに当時のものではなくなっていた。もしかしたら、「よそ者」は私のほうなのかもしれない。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:21.83485Z
+      seconds: 57.031080375
+      tokens: 21652
+      review: false
+    ko-KR:
+      text: 하지만 사실 최근 1~2년 동안 이미 어렴풋이 이런 방향을 느끼고 있었으면서도, 나는 계속 이 이야기를 피하고 있었다. 그러다 얼마 전 어느 날 밤, 트위터를 훑어보다가 :tn[급 우울해졌다]{is="원문에서는 영어 emo를 중국어 서술어처럼 바로 활용해, 인터넷식이며 반쯤 자조적인 우울함을 드러낸다."}. 예전에 서로 알던 :tn[트위터 절친들]{is="원문의 표현은 트위터에서 알게 된 친구를 가리키는 다정한 인터넷 별칭이자, 같은 발음을 이용한 장난스러운 표기다."}이 :tn[꼬옥 붙어 있고]{is="원문에서는 어리광을 흉내 낸 첩어형 인터넷 표현으로, 가까이 붙거나 기대고 공개적으로 애정을 드러내는 모습을 유아적인 말투로 나타낸다."} 서로 안아 주고, 좋은 아침과 잘 자라는 인사를 나누고, 심지어 서로 답글까지 다는 모습을 보고서야 깨달았다. 어쩌면 쓸데없이 끼어 있던 사람은 나였는지도 모른다고... 그 무리의 사람들은 모두 여전히 그곳에 있었다. 다만 내 친구 관계는 이미 오래전에 예전의 그것이 아니게 되었고, 어쩌면 내가 바로 그 ‘아웃사이더’였던 것 같다.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:21.83485Z
+      seconds: 57.031080375
+      tokens: 21652
+      review: false
+    zh-CN:
+      text: 其实最近一两年，我已经隐约察觉到了这个趋势，却始终在回避这个话题。直到前些时候的一个晚上，我刷 Twitter 刷得有些:tn[心情低落]{is="原文直接把拉丁字母英语词 emo 当作中文谓语使用，带着网络化、半自嘲的消沉语气"}，看见曾经彼此认识的:tn[推友们]{is="原文写作推油，是推友的谐音趣写，指在 Twitter 上结识的朋友，语气亲昵而富有网络感"}互相:tn[亲昵地依偎]{is="原文使用叠词贴贴来模拟撒娇，表达亲近、依偎或公开示好，带有幼态的网络语感"}、拥抱，互道早安晚安，甚至彼此回复，我才意识到——也许我才是那个多余的人……那一圈人都还在，只是我的朋友圈早已不是当初的模样了。或许，我才是那个「局外人」。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:30.94537Z
+      seconds: 15.778708167
+      tokens: 19883
+      review: false
+    zh-TW:
+      text: 其實最近一兩年，我已隱約察覺事情正朝這個方向發展，卻始終逃避談論它。直到不久前的某個晚上，我滑 Twitter 滑到突然覺得很 :tn[低落]{is="原文將拉丁字母英語詞 emo 直接當作中文謂語使用，帶有網路化、半自嘲的消沉語氣。"}；看見以前彼此認識的 :tn[Twitter 朋友]{is="原文寫作「推油」，是「推友」的諧音趣寫，指在 Twitter 上結識的朋友，也帶有中文網路暱稱的親暱感。"}互相 :tn[黏著撒嬌]{is="原文使用疊詞網路用語「貼貼」，以幼態、撒嬌的口吻表達親近、依偎或公開示好。"}、擁抱、互道早安晚安，甚至彼此回覆，我才意識到——也許我才是那個多餘的人……那個圈子裡的人都還在，只是我的朋友圈早已不是當初的模樣。我想，也許我才是那個「局外人」。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:37:50.906458Z
+      seconds: 16.02646475
+      tokens: 20024
+      review: false
+  ae03a6d8d2a508dab1b990fd377f7b79:
+    de-DE:
+      text: '## Der Freund eines anderen {#someone-elses-friend}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:38.702326Z
+      seconds: 6.663168375
+      tokens: 19242
+      review: false
+    en-US:
+      text: '## Someone Else’s Friend {#someone-elses-friend}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:38.702326Z
+      seconds: 6.663168375
+      tokens: 19242
+      review: false
+    es-ES:
+      text: '## El amigo de otra persona {#someone-elses-friend}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:38.702326Z
+      seconds: 6.663168375
+      tokens: 19242
+      review: false
+    fr-FR:
+      text: '## L’ami de quelqu’un d’autre {#someone-elses-friend}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:38.702326Z
+      seconds: 6.663168375
+      tokens: 19242
+      review: false
+    ja-JP:
+      text: '## 誰かの友達 {#someone-elses-friend}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:38.702326Z
+      seconds: 6.663168375
+      tokens: 19242
+      review: false
+    ko-KR:
+      text: '## 다른 사람의 친구 {#someone-elses-friend}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:38.702326Z
+      seconds: 6.663168375
+      tokens: 19242
+      review: false
+    zh-CN:
+      text: '## 成为别人的朋友 {#someone-elses-friend}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:34.552118Z
+      seconds: 5.086176583
+      tokens: 19043
+      review: false
+    zh-TW:
+      text: '## 別人的朋友 {#someone-elses-friend}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:38.702326Z
+      seconds: 6.663168375
+      tokens: 19242
+      review: false
+  b34a6b1c2f0d0b56c028aa46eed14e9b:
+    de-DE:
+      text: (Ähnliches passiert auch auf Twitter.) Konkret zeigt es sich darin, dass die Interaktionen allmählich abnehmen und diese Menschen dann langsam aus deiner Timeline verschwinden. Gelegentlich gehst du deine Liste der abonnierten Konten durch, öffnest ihre Profile und stellst fest, dass sie noch immer ähnliche Dinge tun und dasselbe Leben teilen – doch es ist, als gäbe es zwischen euch keine Verbindung mehr. Manchmal folgt ihr euch sogar weiterhin gegenseitig, aber einer von euch schaltet den anderen stumm. Früher habt ihr euch bestens verstanden, heute tauchen sie nicht mehr in deinem Umfeld auf; doch weil es diese Beziehung einmal gab, wäre es aus Rücksicht auf die gemeinsame Vergangenheit zu unangenehm, ihnen nicht mehr zu folgen, und so schenken sie dir stattdessen das kälteste und zugleich unsichtbarste Schweigen...
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:45.367267Z
+      seconds: 36.48205125
+      tokens: 20680
+      review: false
+    en-US:
+      text: (Similar things happen on Twitter, too.) Specifically, interactions gradually dwindle, and then these people slowly disappear from your timeline. Occasionally, you scroll through your following list and click on their profiles, only to find that they are still doing the same kinds of things and sharing the same life, but it is as though they no longer have any connection with you. Sometimes, even though you still follow each other, one of you ends up muting the other. You used to be so close, yet now they no longer appear around you; but because you once shared that kind of relationship, unfollowing them would feel too awkward, so instead they give you the coldest yet most invisible kind of silence...
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:45.367267Z
+      seconds: 36.48205125
+      tokens: 20680
+      review: false
+    es-ES:
+      text: (Algo parecido también sucede en Twitter.) En concreto, las interacciones disminuyen gradualmente y, después, esas personas desaparecen poco a poco de tu cronología. De vez en cuando repasas la lista de cuentas que sigues, entras en sus perfiles y descubres que siguen haciendo el mismo tipo de cosas y compartiendo la misma vida, pero es como si ya no existiera ningún vínculo entre vosotros. A veces, aunque continuéis siguiéndoos mutuamente, uno acaba silenciando al otro. Antes os llevabais muy bien, pero ahora ya no aparecen a tu alrededor; sin embargo, como una vez tuvisteis esa clase de relación, dejar de seguirlos resultaría demasiado incómodo por consideración a lo vivido, así que, en su lugar, te ofrecen el silencio más frío y, a la vez, más invisible...
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:45.367267Z
+      seconds: 36.48205125
+      tokens: 20680
+      review: false
+    fr-FR:
+      text: (Des choses semblables se produisent aussi sur Twitter.) Concrètement, les interactions diminuent peu à peu, puis ces personnes disparaissent progressivement de votre fil d’actualité. Il vous arrive de parcourir votre liste d’abonnements et d’ouvrir leur profil pour découvrir qu’elles font toujours le même genre de choses et partagent la même vie, mais c’est comme si elles n’avaient plus aucun lien avec vous. Parfois, même si vous continuez à vous suivre mutuellement, l’un finit par masquer l’autre. Autrefois, vous vous entendiez très bien, mais aujourd’hui, elles n’apparaissent plus autour de vous ; pourtant, parce que vous avez jadis entretenu une telle relation, il serait trop gênant, par égard pour le passé, de vous désabonner, alors elles vous offrent à la place le silence le plus glacial et pourtant le plus invisible...
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:45.367267Z
+      seconds: 36.48205125
+      tokens: 20680
+      review: false
+    ja-JP:
+      text: （似たようなことはTwitterでも起こる。）具体的には、交流が徐々に減り、その後ゆっくりとあなたのタイムラインから姿を消していく。たまにフォロー一覧を眺め、彼らのプロフィールを開いてみると、相変わらず同じようなことをして、変わらぬ日常を共有しているのに、まるであなたとのつながりだけがなくなったかのように感じる。ときには相互フォローを保っていても、片方だけが相手をミュートする関係になってしまう。かつてはとても仲が良かったのに、今ではあなたの周りに現れない。それでも、かつてそういう関係だった手前、義理を欠くようでフォローは外せず、その代わりに、最も冷たく、それでいて目に見えない沈黙を向けてくる...
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:45.367267Z
+      seconds: 36.48205125
+      tokens: 20680
+      review: false
+    ko-KR:
+      text: (비슷한 일은 트위터에서도 일어난다.) 구체적으로는 교류가 점점 줄어들다가, 그 사람이 서서히 당신의 타임라인에서 사라진다. 가끔 팔로잉 목록을 훑어보다가 그들의 프로필에 들어가 보면, 여전히 비슷한 일을 하고 똑같은 일상을 공유하고 있지만 마치 당신과는 더 이상 아무런 연결도 없는 듯하다. 심지어 맞팔을 유지하면서도 한쪽만 상대를 뮤트하는 관계로 변할 때가 있다. 한때는 아주 친하게 지냈는데 이제는 당신 곁에 나타나지 않는다. 그렇다고 과거에 그런 관계였던 정 때문에 차마 언팔로우하지는 못하고, 대신 가장 차갑지만 눈에 보이지 않는 침묵을 당신에게 건넨다...
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:45.367267Z
+      seconds: 36.48205125
+      tokens: 20680
+      review: false
+    zh-CN:
+      text: 类似的事情也会发生在推特上，具体表现为互动越来越少，随后对方慢慢从你的时间线上消失。偶尔翻看关注列表，点进他们的主页，发现他们依然在做同一类事情，分享着相似的生活，却仿佛不再与你有任何联系。甚至有时即使双方仍然互相关注，这段关系也会变成单方面的静音。曾经明明玩得很好，如今对方却不再出现在你身边；但又因为彼此曾有过那样一段关系，碍于情面不便取消关注，于是只留给你最冰冷、却又无形的沉默……
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:36.75419Z
+      seconds: 8.16971375
+      tokens: 19272
+      review: false
+    zh-TW:
+      text: （相似的事情也在推上發生）具體會表現為互動逐漸減少，之後慢慢從你的 Timeline 上消失。偶爾翻翻關注列表，點進去發現他們還是在做一類事情，分享一樣的生活，但是彷彿和你之間不再有聯繫。甚至有時候即使保持著互關，也會變成單向 Mute。曾經玩得很好，現在卻不在你身邊出現；可又礙於曾經有過一段這樣的關係，情面上過不去，不會取關，但是卻給了你最冰冷卻又無形的沉默...
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:45.367267Z
+      seconds: 36.48205125
+      tokens: 20680
+      review: false
+  be16af9e9e4d1a5ea0489709e45ce468:
+    de-DE:
+      text: 'Eigentlich gab es 2024 und 2025 noch einen anderen Strang: Auf Twitter unterscheidet sich das Konzept von Kontakten von dem klassischen, wie man es von QQ kennt. Theoretisch kann man dort in gewissem Sinne befreundet sein, auch ohne einander zu folgen, **solange man miteinander interagiert und einander antwortet**. In diesen beiden Jahren wurden mir die Leute auf Twitter wohl einfach dadurch vertraut, dass ich ihnen beim endlosen Scrollen immer wieder begegnete. Für mich war das ungefähr die Phase, in der ich mehr Follower bekam – oder besser gesagt meinen Bekanntenkreis erweiterte? Allerdings ist auch der Twitter-Account, den ich heute benutze, bereits ein neu aufgesetzter Account. Meinen ersten Tweet habe ich wohl 2021 veröffentlicht, aber aus gewissen Gründen, über die ich nur schwer sprechen kann, war mein alter Account schließlich völlig unbrauchbar ...'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:53.249883Z
+      seconds: 31.458841042
+      tokens: 20640
+      review: false
+    en-US:
+      text: 'Actually, there was another thread running through 2024 and 2025: on Twitter, the idea of a “contact” is different from the traditional kind you have on QQ. In theory, even if you don’t follow each other, you can still be friends in some sense, **as long as you interact with and reply to each other**. Those two years, I mostly became familiar with people on Twitter simply by scrolling past them over and over. For me, that period was probably when I was gaining followers—or expanding my social circle, I guess? But the Twitter account I use now is already a reborn one. I must have first tweeted in 2021, but for certain reasons that are rather hard to say out loud, my old account is completely dead...'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:53.249883Z
+      seconds: 31.458841042
+      tokens: 20640
+      review: false
+    es-ES:
+      text: 'En realidad, durante 2024 y 2025 hubo también otra vertiente: en Twitter, el concepto de contacto es distinto del tradicional que existe en QQ. En teoría, aunque dos personas no se sigan mutuamente, pueden llegar a ser amigas en cierto sentido, **siempre que interactúen y se respondan**. Durante esos dos años, supongo que la gente de Twitter simplemente fue resultándome familiar de tanto verla mientras recorría el contenido. Para mí, aquella fue más o menos la etapa en la que gané seguidores, o mejor dicho, en la que amplié mi círculo social. Pero, en realidad, la cuenta de Twitter que uso ahora también es una cuenta renacida. Debí de publicar mi primer tuit en 2021, pero, por ciertos motivos que cuesta bastante expresar, mi antigua cuenta quedó completamente inutilizada...'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:53.249883Z
+      seconds: 31.458841042
+      tokens: 20640
+      review: false
+    fr-FR:
+      text: 'En réalité, une autre dynamique s’est dessinée en 2024 et 2025 : sur Twitter, la notion de contact n’est pas la même que sur QQ et ses contacts plus traditionnels. En théorie, même sans se suivre mutuellement, on peut devenir amis dans un certain sens, **du moment qu’on interagit et qu’on se répond**. Pendant ces deux années, j’ai sans doute fini par reconnaître les gens sur Twitter simplement à force de les voir défiler. Pour moi, cette période correspondait plus ou moins à une phase où je gagnais des abonnés — ou plutôt où j’élargissais mon cercle ? Mais en réalité, le compte Twitter que j’utilise aujourd’hui est déjà un compte ressuscité. J’ai dû publier mon premier tweet en 2021, mais, pour certaines raisons assez difficiles à avouer, mon ancien compte est devenu totalement inutilisable...'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:53.249883Z
+      seconds: 31.458841042
+      tokens: 20640
+      review: false
+    ja-JP:
+      text: 実は2024～25年にはもう一つの流れもあった。Twitterでは、QQのような従来型の連絡先という概念とは違って、理屈の上では相互フォローしていなくても、**お互いに交流したり返信したりしている限り**、ある意味では友達になれる。あの2年間、Twitterの人たちは、ただ眺め続けているうちになんとなく顔なじみになった人たちだった。この時期は私にとって、たぶんフォロワーが増えた、あるいは交友圏が広がった段階だったのかな？ でも実は、今使っているTwitterアカウントも転生アカウントだ。初めてツイートしたのは2021年だったはずだけれど、ちょっと口に出しにくい事情があって、古いアカウントは完全に使い物にならなくなった……
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:53.249883Z
+      seconds: 31.458841042
+      tokens: 20640
+      review: false
+    ko-KR:
+      text: 사실 2024～25년에는 또 다른 흐름도 있었다. Twitter에서의 연락처 개념은 QQ 같은 전통적인 연락처 개념과는 달라서, 이론적으로는 서로 팔로우하지 않더라도 **서로 교류하고 답글을 주고받기만 하면** 어떤 의미에서는 친구가 될 수 있다. 그 2년 동안 Twitter에서 본 사람들은 아마 그냥 계속 피드를 넘겨 보다 보니 낯이 익어진 경우였을 것이다. 내게 이 시기는 대략 팔로워가 늘어난, 혹은 인맥이 넓어진 단계였던 걸까? 하지만 사실 지금 쓰는 Twitter 계정도 새로 태어난 계정이다. 첫 트윗을 올린 건 아마 2021년이었을 텐데, 차마 입 밖에 내기 힘든 몇 가지 이유로 예전 계정은 완전히 못 쓰게 됐다...
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:53.249883Z
+      seconds: 31.458841042
+      tokens: 20640
+      review: false
+    zh-CN:
+      text: 其实 2024～2025 年还有另一条线：Twitter 和 QQ 对「联系人」的传统理解不太一样，理论上即使没有互相关注，只要彼此有互动、会回复，也可以算某种意义上的朋友。那两年，我和推上的人大概就是刷着刷着便混了个脸熟。对我来说，这段时间大概算是涨粉，或者说扩圈的阶段？不过，我现在使用的 Twitter 账号其实也是重开的；我第一次发推应该是在 2021 年，但因为一些不太能说出口的原因，老账号算是彻底废了……
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:39.641339Z
+      seconds: 9.793151916
+      tokens: 19275
+      review: false
+    zh-TW:
+      text: 其實 24～25 年還有另一條線；在 Twitter 上和 QQ 那種傳統聯絡人的概念是不一樣，理論上即使沒有互相關注，也可以成為某種意義上的朋友，**as long as 你在參與相互互動、回覆**。那兩年推上的人大概就是純刷著刷著就面熟了。這個時間段對我來說，大概就是漲粉，或者說擴圈的階段？但是實際上現在用的 Twitter 號也是重生號了，我第一次發推應該是在 21 年，但是出於某些不太能說出口的原因，老帳號算是徹底廢了……
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:23:53.249883Z
+      seconds: 31.458841042
+      tokens: 20640
+      review: false
+  bfdb1f082e84626925f63f4591055e80:
+    de-DE:
+      text: Diese Woche ging mir das Thema praktisch nicht mehr aus dem Kopf; nachdem ich lange darüber nachgedacht habe, muss ich sagen, dass ich mir inzwischen eingestehen muss, dass Freundschaften tatsächlich phasenweise, sogar zyklisch oder vielmehr „ereignisbedingt“ sind.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:18.869233Z
+      seconds: 18.456393333
+      tokens: 19519
+      review: false
+    en-US:
+      text: I haven’t been able to get this topic out of my mind all week; after thinking about it for a long time, I have to say that I must now admit friendships really are tied to phases—even cycles—or perhaps “events.”
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:18.869233Z
+      seconds: 18.456393333
+      tokens: 19519
+      review: false
+    es-ES:
+      text: Esta semana no he podido quitarme este tema de la cabeza; después de pensarlo durante mucho tiempo, tengo que decir que ahora no me queda más remedio que admitir que las amistades son realmente algo ligado a etapas, incluso a ciclos, o quizá a «acontecimientos».
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:18.869233Z
+      seconds: 18.456393333
+      tokens: 19519
+      review: false
+    fr-FR:
+      text: Cette semaine, ce sujet ne m’a pratiquement pas quitté l’esprit ; après y avoir longuement réfléchi, force m’est de dire qu’aujourd’hui, je dois bien admettre que les amitiés sont effectivement liées à des phases, voire à des cycles, ou plutôt à des « événements ».
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:18.869233Z
+      seconds: 18.456393333
+      tokens: 19519
+      review: false
+    ja-JP:
+      text: この一週間、この話題がほとんど頭から離れなかった。長いこと考えた末、認めざるを得ないのだが、今の私は、友人関係とは確かに段階的であり、さらには周期的、あるいは「出来事的」なものだと認めざるを得ない。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:18.869233Z
+      seconds: 18.456393333
+      tokens: 19519
+      review: false
+    ko-KR:
+      text: 이번 주 내내 이 이야기가 좀처럼 머릿속에서 떠나지 않았다. 오랫동안 생각한 끝에, 지금의 나는 우정이 분명 단계적이고, 심지어 주기적이거나 어쩌면 ‘사건 중심적’이라는 사실을 인정하지 않을 수 없다.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:18.869233Z
+      seconds: 18.456393333
+      tokens: 19519
+      review: false
+    zh-CN:
+      text: 这一周里，我几乎一直忘不了这个话题。思考了很久，我不得不承认：朋友确实是阶段性的，甚至是周期性的，抑或是「事件性的」。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:44.927823Z
+      seconds: 5.669195208
+      tokens: 19032
+      review: false
+    zh-TW:
+      text: 這一週基本上忘不掉這個話題；思考了很久，不得不說，現在的我不得不承認朋友確實是階段性的，甚至是週期性的，亦或者「事件性」的。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:18.869233Z
+      seconds: 18.456393333
+      tokens: 19519
+      review: false
+  c5b62719f45f6e9ffa61b2fcd2a247e7:
+    de-DE:
+      text: 'Menschen sind nun einmal emotionale Wesen, und der Wunsch, Freunde für sich allein zu haben, ist völlig normal. Das heißt jedoch nicht, dass du sie wirklich besitzen oder ihr Verhalten oder ihre Gedanken kontrollieren solltest, sondern nur, dass sie dir wichtig sind und ihr `close friend` seid. Doch wie gesagt: Auch deine Freunde sind Menschen. Sie sollten ihr eigenes Leben und ihre eigene Timeline haben, deshalb ist es völlig normal, wenn sie mit jemand anderem zu `mutual friend` werden. Wenn du jemandem die Schuld geben willst, dann Twitter, weil es :tn[den dünnen Schleier über dieser Wahrheit zerrissen]{is="Im Original steht chuanghuzhi, eine chinesische Redewendung vom Durchstoßen des Papiers vor einem Fenster: Etwas, das alle wissen, aber niemand ausspricht, wird offengelegt. Hier ist Twitter die Kraft, die die Wahrheit über Beziehungen enthüllt."} und dich gezwungen hat, diesen Vorgang mitanzusehen. Aber vielleicht ist das gar nichts Schlechtes. Während es dich traurig macht, diesen Vorgang zu sehen, eröffnet es dir womöglich auch mehr Gelegenheiten, Menschen kennenzulernen. Weg von der herkömmlichen, überwiegend privaten Kommunikation, ohne den Druck, langfristig eine `close friend` aufrechterhalten zu müssen – nur ein schlichtes gegenseitiges Gute Nacht und :tn[hemmungsloses Posten aus Begeisterung]{is="Im Original steht fadian, ein scherzhafter Ausdruck chinesischer Online-Communitys für das ungehemmte Produzieren von Inhalten aus Begeisterung, Verliebtheit oder Verlangen, nicht bloß für das Erzeugen von Strom."}: Vielleicht ist gerade das die reinste Form sozialer Begegnung. Ob es dich wirklich traurig macht, `mutual friend` zu sehen, hängt letztlich von dir selbst ab. Ganz gleich auf welchem Weg, selbst offline, kannst du nicht verhindern, dass dieser Vorgang stattfindet. Wenn du selbst deinen Frieden damit findest, wirst du vielleicht nicht mehr traurig sein und allmählich lernen, loszulassen.'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:21.852461Z
+      seconds: 70.972586375
+      tokens: 23417
+      review: false
+    en-US:
+      text: Humans are emotional animals, and it is perfectly normal to feel possessive of your friends; that does not mean you should actually possess them or control their behavior or thoughts, but rather that you care about them, and that you and they are `close friend`. But as I said, your friends are people too. They deserve lives and timelines of their own, so it is perfectly normal for them to become `mutual friend` with someone else. If anything is to blame, blame Twitter for :tn[tearing away the thin veil over this truth]{is="The original uses chuanghuzhi, a Chinese idiom about puncturing the paper over a window to expose what everyone already knows but leaves unsaid; here Twitter is what exposes the truth about relationships."}, forcing you to watch the process unfold. Yet that may well be a good thing. By showing you this process, it makes you sad, but also gives you more chances to meet people, perhaps? Leaving behind conventional socializing centered on private chats, with none of the pressure of maintaining a long-term `close friend`—just the simplest goodnights and :tn[posting in a burst of passion]{is="The original uses fadian, Chinese online-community slang for enthusiastically pouring out content under the force of passion, infatuation, or desire—not merely generating electricity."}—may be socializing in its purest form. Whether seeing `mutual friend` actually makes you sad depends on you. Whatever the setting, even offline, you cannot stop this process from happening. As long as you can come to terms with it, perhaps it will no longer hurt; perhaps you will slowly learn to let go.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:21.852461Z
+      seconds: 70.972586375
+      tokens: 23417
+      review: false
+    es-ES:
+      text: 'Las personas también somos animales emocionales, y es completamente normal sentir que queremos a nuestros amigos solo para nosotros. Eso no significa que debas poseerlos de verdad ni controlar la conducta o los pensamientos de los demás, sino que te importan y que tú y esa persona sois `close friend`. Pero, como ya he dicho, tus amigos también son personas. Deberían tener su propia vida y su propio timeline, así que es perfectamente normal que se conviertan en `mutual friend` con alguien más. Si hay que culpar a algo, que sea a Twitter por :tn[rasgar el fino velo que cubría esta verdad]{is="El original emplea chuanghuzhi, una metáfora idiomática china en la que se perfora el papel de una ventana para revelar algo que todos saben pero nadie dice. Aquí Twitter es la fuerza que deja al descubierto la verdad de las relaciones."} y obligarte a presenciar el proceso. Pero quizá eso no sea malo. Al mostrártelo te entristece, aunque también te da más oportunidades de conocer gente, ¿no? Dejar atrás el modelo tradicional centrado en las conversaciones privadas, sin la presión de mantener a largo plazo una `close friend`, y limitarse a darse las buenas noches y :tn[publicar sin freno por pura pasión]{is="El original usa fadian, una expresión humorística de las comunidades chinas de internet para publicar contenido a raudales movido por el entusiasmo, el enamoramiento o el deseo, mucho más que producir electricidad en sentido literal."}: eso también es socializar en su forma más pura. Que ver `mutual friend` te entristezca o no depende, en realidad, de ti. No importa qué medio utilices, ni siquiera fuera de internet puedes impedir que este proceso suceda. Si logras aceptarlo, quizá ya no te duela y poco a poco aprendas a dejar ir.'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:21.852461Z
+      seconds: 70.972586375
+      tokens: 23417
+      review: false
+    fr-FR:
+      text: 'L’être humain est aussi un animal affectif, et il est parfaitement normal d’éprouver le désir de garder ses amis pour soi. Cela ne signifie pas qu’il faille réellement les posséder ni contrôler leur comportement ou leurs pensées, mais simplement qu’ils comptent pour toi et que vous êtes `close friend`. Cependant, comme je l’ai dit, tes amis sont eux aussi des êtres humains. Ils ont droit à leur propre vie et à leur propre fil d’actualité ; il est donc tout à fait normal qu’ils deviennent `mutual friend` avec quelqu’un d’autre. S’il faut accuser quelque chose, accusons Twitter d’avoir :tn[déchiré le voile ténu qui recouvrait cette vérité]{is="L’original emploie chuanghuzhi, une métaphore idiomatique chinoise où l’on perce le papier d’une fenêtre pour révéler ce que tout le monde sait sans le dire. Ici, Twitter est la force qui dévoile la vérité des relations."} et de t’avoir forcé à assister à ce processus. Mais ce n’est peut-être pas une mauvaise chose. En te le montrant, Twitter te rend triste, mais te donne aussi davantage d’occasions de rencontrer des gens, non ? Abandonner le modèle traditionnel centré sur les conversations privées, ne pas subir la pression d’entretenir durablement une `close friend`, se contenter de se souhaiter bonne nuit et de :tn[publier à profusion sous le coup de la passion]{is="L’original emploie fadian, terme plaisant des communautés chinoises en ligne qui désigne le fait de produire abondamment du contenu sous l’effet de l’enthousiasme, de l’engouement ou du désir, bien au-delà du sens littéral de produire de l’électricité."} : c’est peut-être aussi la forme la plus pure de sociabilité. Être triste ou non en voyant `mutual friend` dépend en réalité de toi. Quels que soient les moyens employés, même hors ligne, tu ne peux pas empêcher ce processus de se produire. Si tu parviens toi-même à l’accepter, alors peut-être ne seras-tu plus triste et apprendras-tu peu à peu à lâcher prise.'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:21.852461Z
+      seconds: 70.972586375
+      tokens: 23417
+      review: false
+    ja-JP:
+      text: 人間も感情の生き物なのだから、友達を自分だけのものにしたいと思うのはごく自然なことだ。とはいえ、本当に相手を所有したり、その行動や考えを支配したりすべきだということではなく、ただその人を大切に思っていて、あなたとその人が `close friend` だということを示している。でも、前にも言ったように、あなたの友達も一人の人間だ。その人にも自分自身の生活、自分自身のタイムラインがあるべきなのだから、ほかの誰かと `mutual friend` になるのはごく自然なことだ。責めるなら、この事実を覆っていた :tn[薄い幕を突き破り]{is="原文の chuanghuzhi は、誰もが察していながら口にしない事実を、窓に張った紙を破るように明るみに出す中国語の慣用的な比喩で、ここでは Twitter が人間関係の真実を暴く力として描かれている。"}、その過程を無理やり見せてきた Twitter を責めるしかない。けれど、それも悪いこととは限らない。その過程を見せられて悲しくなる一方で、もっと多くの人と出会う機会も得られるのではないだろうか。個別のやり取りが中心だった従来の形を捨て、長期的な `close friend` を続けなければという重圧もなく、ただ互いにおやすみを言い、:tn[情熱のままに投稿する]{is="原文の fadian は中国語圏のネットコミュニティで、情熱や夢中な気持ち、欲望に駆られてコンテンツを存分に発信することを面白おかしく呼ぶ俗語で、文字どおりの発電ではない。"}だけ。それこそが最も純粋な交流なのかもしれない。`mutual friend` を目にして本当に悲しくなるかどうかは、結局あなた次第だ。どんな手段を使おうと、たとえオフラインでも、この過程が起きるのを止めることはできない。自分の中で折り合いさえつけられれば、たぶん悲しくならずに済むし、少しずつ手放すことも覚えていけるのだろう。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:21.852461Z
+      seconds: 70.972586375
+      tokens: 23417
+      review: false
+    ko-KR:
+      text: 사람도 감정의 동물이니 친구를 나만의 것으로 여기고 싶은 마음이 드는 것은 지극히 자연스럽다. 그렇다고 정말로 상대를 소유하거나 다른 사람의 행동이나 생각을 통제해야 한다는 뜻은 아니다. 그저 그 사람이 소중하고, 당신과 그 사람이 `close friend` 사이라는 뜻이다. 하지만 앞서 말했듯 당신의 친구 역시 사람이다. 그에게도 자기만의 삶과 자기만의 타임라인이 있어야 하므로 다른 사람과 `mutual friend` 사이가 되는 것은 너무나 자연스러운 일이다. 굳이 탓하자면 이 진실을 가리고 있던 :tn[얇은 막을 찢고]{is="원문의 chuanghuzhi는 모두가 알고 있지만 입 밖에 내지 않은 사실을 창문에 붙인 종이를 뚫듯 드러낸다는 중국어 관용적 비유다. 여기서는 Twitter가 관계의 진실을 폭로하는 힘으로 그려진다."} 그 과정을 억지로 보게 만든 Twitter를 탓할 수밖에 없다. 하지만 이것도 어쩌면 좋은 일인지 모른다. 그 과정을 보여 주어 당신을 슬프게 하는 동시에, 더 많은 사람을 만날 기회도 주는 것 아닐까? 기존의 비공개 대화 중심 방식을 버리고, 장기적인 `close friend` 을 이어 가야 한다는 부담도 없이, 그저 가장 단순하게 서로 잘 자라고 인사하고 :tn[열정에 취해 마음껏 글을 쏟아 내는 것]{is="원문의 fadian은 중국어권 온라인 커뮤니티에서 열정이나 빠져든 마음, 욕망에 이끌려 콘텐츠를 한껏 쏟아 내는 일을 익살스럽게 이르는 말로, 단순히 전기를 생산한다는 뜻이 아니다."}. 그것이야말로 가장 순수한 교류이기도 하다. `mutual friend` 을 보았을 때 정말 슬플지는 결국 당신 자신에게 달려 있다. 어떤 방식을 쓰든, 오프라인에서조차도 이 과정이 일어나는 것을 막을 수는 없다. 스스로 받아들일 수만 있다면 아마 더는 슬프지 않을 것이고, 어쩌면 서서히 놓아주는 법을 배우게 될 것이다.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:21.852461Z
+      seconds: 70.972586375
+      tokens: 23417
+      review: false
+    zh-CN:
+      text: 人是情感动物，想把朋友据为己有，再正常不过了。但这并不意味着你真的应该占有对方，或控制对方的行为和思想；它只是说明你在乎对方，你们是 `close friend`。可正如我说过的，你的朋友也是独立的人，也应该拥有自己的生活和时间线，因此与别人成为 `mutual friend` 再正常不过。真要怪的话，只能怪 Twitter :tn[揭开了这层心照不宣的真相]{is="原文用了“捅破窗户纸”这一惯用比喻，形容 Twitter 强行揭开众人心知肚明、却没有说破的关系真相。"}，逼你亲眼看见这一过程。不过，这也未尝不是一件好事：它让你看见这个过程、感到难过，却也给了你更多认识他人的机会，不是吗？摆脱传统社交以私聊为主的模式，不必承受长期维系 `close friend` 的压力，只有最简单的互道晚安和 :tn[尽情输出]{is="原文用了网络社群中的“发电”，戏称一个人因热情、迷恋或欲望而大量输出内容，也带有近似“发癫”的自嘲意味。"}，这或许才是最纯粹的社交。看到 `mutual friend` 时究竟会不会难过，其实取决于你自己。无论通过什么途径，哪怕在线下，你也无法阻止这个过程发生。只要自己能够想开，也许就不会那么难过了，也许还会慢慢学会放下吧。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:45.890752Z
+      seconds: 20.891089083
+      tokens: 20457
+      review: false
+    zh-TW:
+      text: 人畢竟是有感情的動物，想把朋友占為己有，再正常不過了；但這不代表你真的必須占有對方，或控制他的行為與思想，而是表示你在乎他，你和他是 `close friend`。但正如我所說，你的朋友也是一個獨立的人，他也該有自己的生活、自己的時間軸，因此和別人成為 `mutual friend` 再正常不過。真要怪，就怪 Twitter :tn[戳破了這層窗戶紙]{is="原文用「捅破窗戶紙」這個慣用比喻，指揭開眾人心知肚明卻未曾說破的事，並把 Twitter 寫成迫使關係真相顯露的力量。"}，逼你親眼看見整個過程罷了。但這未嘗不是件好事：它讓你看見這個過程、感到難過，同時或許也給了你更多認識別人的機會。拋開以私訊為主的傳統社交方式，不必承受長期當 `close friend` 的壓力，只有最簡單的互道晚安與:tn[發廚]{is="原文用「發電」，是中文網路社群將人因熱情、迷戀或欲望而盡情輸出內容戲稱為「發癲」的諧音說法。"}，那也是最純粹的社交。看到 `mutual friend` 時究竟會不會難過，其實取決於你自己。無論透過什麼方式，哪怕是在現實生活中，你都無法阻止這個過程發生。只要自己能想開，也許就不會那麼難過了，或許也會慢慢學會放下吧。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:37:50.906552Z
+      seconds: 24.963746583
+      tokens: 20593
+      review: false
+  c5d483d204e47292da34a5c939037ee9:
+    de-DE:
+      text: 'Aber eigentlich geht es mir genauso. Nachdem ich zum ersten Mal gemerkt hatte, dass jemand so mit mir umgegangen war, fragte ich mich, ob ich mich anderen gegenüber schon einmal ähnlich verhalten hatte; rückblickend lautet die Antwort ja. Darüber nachzudenken mag etwas grausam sein, aber wie es so schön heißt: „Mit der Zeit zeigt sich der wahre Charakter eines Menschen.“ Nicht jeder, dem ich zufällig begegne, liegt mit mir auf einer Wellenlänge, und nicht das Verhalten jedes Menschen ist für mich angenehm. Menschen, die ich zunächst falsch eingeschätzt habe, entfolge ich aus Höflichkeit zwar nicht sofort; wenn sie aber wirklich zu weit gehen, blockiere ich sie ohne zu zögern. Manchmal ist ein einseitiges `mute`, das keine sichtbare Benachrichtigung auslöst und `@mention` deine Nachrichten nicht herausfiltert, in diesem Moment vielleicht die beste Wahl. Oft merkst du selbst nicht, dass du anderen Unbehagen bereitest. Vielleicht ist das aber auch einfach dein wahres Ich: Du siehst in deinem Verhalten kein Problem, andere missbilligen es jedoch. Vielleicht ist der Moment, in dem sich jemand unwohl fühlt, genau der Moment, in dem ich stummgeschaltet werde? (Wenn die meisten Menschen dich allerdings nicht stummschalten würden, ist diese Person wahrscheinlich einfach :tn[überempfindlich]{is="Der chinesische Netzausdruck bōli xīn vergleicht einen empfindlichen, verletzlichen Menschen spöttisch mit einem leicht zerbrechenden Herzen aus Glas."} – oder vielleicht ist es genau umgekehrt.)'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:24.710603Z
+      seconds: 136.0567025
+      tokens: 26214
+      review: false
+    en-US:
+      text: 'But I’m actually the same way. After first realizing that someone had done this to me, I reflected on whether I had ever treated anyone similarly; looking back, I had. It may seem a little cruel to think about it this way, but as the saying goes, “time reveals a person’s true character.” Not everyone I happen to meet is someone I click with, and not everyone behaves in ways that make me comfortable. Out of politeness, I admittedly won’t immediately unfollow people I initially misjudged, but if they truly go too far, I’ll block them without hesitation. Sometimes a one-way `mute` that gives no visible notification and doesn’t filter `@mention` your messages may be the best choice at that point. Often, you may not realize that you’re making others uncomfortable—or perhaps this is simply the truest version of you: you see nothing wrong with your behavior, but others disapprove. Maybe the moment someone feels uncomfortable is the moment I get muted? (But if most people wouldn’t mute you, that person is probably just :tn[overly sensitive]{is="The source expression bōli xīn likens a sensitive, fragile person to a heart made of breakable glass and usually has a mocking edge."}; or perhaps it’s the other way around.)'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:24.710603Z
+      seconds: 136.0567025
+      tokens: 26214
+      review: false
+    es-ES:
+      text: 'Pero, en realidad, a mí me pasa lo mismo. Después de percatarme por primera vez de que alguien me había hecho esto, reflexioné sobre si yo había tratado alguna vez a otras personas de una manera parecida; ahora veo que sí. Pensarlo así quizá resulte un poco cruel, pero, como dice el refrán, «con el tiempo se conoce de verdad a la gente». No todas las personas con las que me encuentro por casualidad congenian conmigo, ni el comportamiento de todo el mundo me hace sentir a gusto. Por cortesía, reconozco que no dejo de seguir inmediatamente a quienes no supe juzgar bien al principio; pero, si de verdad se pasan de la raya, los bloqueo sin dudarlo. A veces, un `mute` unilateral, sin una notificación visible y que no filtre `@mention` tus mensajes, quizá sea la mejor opción en ese momento. Muchas veces no te das cuenta de que haces sentir incómodos a los demás. O quizá ese sea sencillamente tu yo más auténtico: tú no ves nada malo en tu comportamiento, pero los demás lo desaprueban. ¿Tal vez cuando alguien se siente incómodo es cuando me silencia? (Pero, si la mayoría de la gente no te silenciaría, probablemente esa persona sea simplemente :tn[demasiado sensible]{is="La expresión china bōli xīn compara con tono normalmente burlón a una persona sensible y vulnerable con un corazón de vidrio que se rompe con facilidad."}; aunque quizá sea al revés.)'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:24.710603Z
+      seconds: 136.0567025
+      tokens: 26214
+      review: false
+    fr-FR:
+      text: 'Mais en réalité, je suis pareil. Après m’être rendu compte pour la première fois que quelqu’un m’avait fait cela, je me suis demandé si je n’avais pas moi-même agi de façon similaire envers d’autres personnes ; avec le recul, c’est bien le cas. Cette réflexion est peut-être un peu cruelle, mais comme le dit le proverbe, « c’est avec le temps qu’on découvre le vrai visage des gens ». Toutes les personnes que je rencontre par hasard ne sont pas forcément sur la même longueur d’onde que moi, et le comportement de chacun ne me met pas forcément à l’aise. Par politesse, je reconnais ne pas cesser immédiatement de suivre les personnes que j’ai d’abord mal jugées ; mais si elles dépassent vraiment les bornes, je les bloque sans hésiter. Parfois, un `mute` unilatéral, sans notification visible et qui ne filtre pas `@mention` vos messages, est peut-être le meilleur choix à ce moment-là. Souvent, vous ne vous rendez pas compte que vous mettez les autres mal à l’aise. Ou peut-être est-ce simplement votre personnalité la plus authentique : votre comportement ne vous semble pas problématique, mais les autres le désapprouvent. Le moment où quelqu’un se sent mal à l’aise est peut-être celui où je me fais mettre en sourdine ? (Mais si la plupart des gens ne vous mettraient pas en sourdine, cette personne est probablement simplement :tn[trop susceptible]{is="L’expression chinoise bōli xīn compare avec une pointe de moquerie une personne sensible et vulnérable à un cœur de verre facile à briser."} — à moins que ce ne soit l’inverse.)'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:24.710603Z
+      seconds: 136.0567025
+      tokens: 26214
+      review: false
+    ja-JP:
+      text: でも、実は私も同じだ。初めて誰かに同じことをされたと気づいたあと、自分も誰かに似たことをしたことがないか振り返ってみた。今思えば、していた。こう考えるのは少し残酷かもしれないが、ことわざにもあるように、「長く付き合えば人柄が分かる」。偶然出会った人がみんな私と話の合う相手とは限らないし、誰の振る舞いも私を心地よくさせてくれるわけではない。最初は見抜けなかった人も、礼儀としてすぐにフォローを外すことは確かにしないが、本当に度を越したことをされたら、ためらわずブロックする。ときには、一方通行で、表立った通知もなく、`@mention`あなたへのメッセージを除外しない`mute`が、そんなときの最善の選択なのかもしれない。人を不快にさせても、多くの場合、自分では気づかないものだ。あるいは、それこそが最もありのままのあなたなのかもしれない。自分の行動に問題があるとは思っていなくても、他人はそうは思わない。誰かが不快に感じたときこそ、私がミュートされるときなのだろうか？（でも、大多数の人があなたをミュートしないのなら、たぶんその人が:tn[繊細すぎる]{is="原文の bōli xīn は、敏感で傷つきやすい人を壊れやすいガラスの心にたとえるネット表現で、たいてい揶揄を含む。"}だけだ。あるいは、その逆かもしれない。）
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:24.710603Z
+      seconds: 136.0567025
+      tokens: 26214
+      review: false
+    ko-KR:
+      text: 하지만 사실 나도 마찬가지다. 누군가가 나에게 이렇게 했다는 것을 처음 깨달은 뒤, 나 역시 다른 사람에게 비슷한 행동을 한 적이 있는지 돌아보았다. 지금 생각해 보면 그랬다. 이렇게 생각하는 것이 조금 잔인할지도 모르지만, 흔히 말하듯이 “사람은 오래 두고 봐야 안다.” 우연히 만난 모든 사람이 나와 말이 통하는 것은 아니고, 모든 사람의 행동이 나를 편안하게 해 주는 것도 아니다. 처음에는 제대로 파악하지 못한 사람이라도 예의상 곧바로 팔로우를 끊지는 않지만, 정말 선을 넘으면 주저 없이 차단한다. 때로는 일방적이고, 겉으로 드러나는 알림도 없으며, `@mention` 나에게 온 메시지를 걸러 내지 않는 `mute`가 바로 그런 순간에 가장 좋은 선택일지도 모른다. 다른 사람을 불편하게 만들고도 자신은 알아차리지 못할 때가 많다. 어쩌면 그것이 가장 솔직한 당신의 모습일 수도 있다. 당신은 자신의 행동에 문제가 없다고 여기지만 다른 사람은 못마땅해할 수 있다. 어쩌면 다른 사람이 불편함을 느끼는 순간이 바로 내가 뮤트되는 순간일까? (하지만 대부분의 사람이 당신을 뮤트하지 않을 것 같다면, 아마 그 사람이 지나치게 :tn[예민한 것]{is="원문의 bōli xīn은 민감하고 쉽게 상처받는 사람의 마음을 깨지기 쉬운 유리에 빗댄 인터넷 표현으로, 대개 조롱하는 뉘앙스가 있다."}일 가능성이 크다. 혹은 그 반대일 수도 있다.)
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:24.710603Z
+      seconds: 136.0567025
+      tokens: 26214
+      review: false
+    zh-CN:
+      text: 但其实我也一样。第一次意识到别人这样对待我后，我也反思过自己是否曾对别人做过类似的事。现在看来，答案是肯定的。这样想或许有些残忍，但俗话说得好：“日久见人心。”并不是每个偶然遇见的人都能和我聊得来，也不是每个人的行为都能让我感到舒服。对于那些一时没看清的人，出于礼貌，我确实不会直接取消关注；但如果对方做得实在过分，我会毫不犹豫地屏蔽。或许有些时候，单向、不显示通知，也不会过滤 `@mention` 你的消息的 `mute`，就是最好的选择。很多时候，你可能意识不到自己让别人感到不舒服；又或者，那就是最真实的你：你不觉得自己的行为有问题，别人却不以为然。也许别人感到不适时，就是我被静音的时候吧？（不过，如果大多数人都不会静音你，那很可能只是对方太:tn[敏感脆弱]{is="原文用网络比喻“玻璃心”，把人的敏感脆弱说成一颗容易破碎的玻璃心，通常带有嘲讽意味。"}；反过来也一样。）
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:46.726498Z
+      seconds: 38.331738583
+      tokens: 20469
+      review: false
+    zh-TW:
+      text: 但其實我也一樣。第一次察覺別人這樣對我之後，我也反思過自己是否曾對別人做出類似的行為；現在看來，答案是肯定的。這樣想或許有些殘忍，但俗話說得好：「日久見人心。」不是每個偶然遇見的人都能和我聊得來，也不是每個人的行為都能讓我感到自在。對於那些一時沒有看清的人，出於禮貌，我確實不會直接取消追蹤；但如果對方真的做得太過分，我會毫不猶豫地封鎖。或許有時候，單向、不會通知對方，也不會過濾提及 `@mention` 你的訊息的 `mute`，就是此刻最好的選擇。很多時候，你可能察覺不到自己讓別人感到不舒服；又或者，那就是最真實的你——你不覺得自己的行為有問題，別人卻不以為然。也許當別人感到不適時，就是我被靜音的時候吧？（不過，如果大多數人都不會把你靜音，那很可能只是對方太過:tn[玻璃心]{is="原文用「玻璃心」把敏感脆弱比作一顆易碎的玻璃心，帶有網路語境中常見的嘲諷意味。"}；也可能情況正好相反。）
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:38:05.440893Z
+      seconds: 19.574665208
+      tokens: 20221
+      review: false
+  c934b6cf281975a115e24addd282bdc8:
+    de-DE:
+      text: '## Ereignisgebundenheit {#event-driven}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:37.328153Z
+      seconds: 9.018830875
+      tokens: 19188
+      review: false
+    en-US:
+      text: '## Event-based {#event-driven}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:37.328153Z
+      seconds: 9.018830875
+      tokens: 19188
+      review: false
+    es-ES:
+      text: '## Carácter circunstancial {#event-driven}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:37.328153Z
+      seconds: 9.018830875
+      tokens: 19188
+      review: false
+    fr-FR:
+      text: '## Caractère événementiel {#event-driven}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:37.328153Z
+      seconds: 9.018830875
+      tokens: 19188
+      review: false
+    ja-JP:
+      text: '## 出来事性 {#event-driven}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:37.328153Z
+      seconds: 9.018830875
+      tokens: 19188
+      review: false
+    ko-KR:
+      text: '## 사건성 {#event-driven}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:37.328153Z
+      seconds: 9.018830875
+      tokens: 19188
+      review: false
+    zh-CN:
+      text: '## 由事件驱动 {#event-driven}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:49.439278Z
+      seconds: 6.022358042
+      tokens: 18931
+      review: false
+    zh-TW:
+      text: '## 事件性 {#event-driven}'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:37.328153Z
+      seconds: 9.018830875
+      tokens: 19188
+      review: false
+  cd1b291855a48cfe6edcd45efa710645:
+    de-DE:
+      text: 'Die Wege, über die ich Menschen kennenlerne, sind eigentlich ziemlich begrenzt. Im Grunde beginnt es immer mit irgendeiner Sache, die plötzlich in einem Gruppenchat aufkommt, oder mit irgendeiner Art von „Beziehung“. Beziehung klingt nach etwas, das lange Bestand hat, aber ganz ehrlich: Vieles davon wird durch Ereignisse ausgelöst, die sich meiner Kontrolle entziehen – Kollegen, Mitschüler oder Kommilitonen, sogar Menschen, die sich bloß für dieselbe Sache interessieren oder zufällig etwas Ähnliches machen. Anfangs wird man oft mehr oder weniger gezwungen, einander als Kontakt hinzuzufügen, und danach lässt man es einfach dabei bewenden. Wenn die andere Person nie von sich aus auf mich zukommt, werden wir uns höchstwahrscheinlich für den Rest unseres Lebens keine Nachricht mehr schreiben; meldet sie sich aber eines Tages wegen irgendeines Ereignisses plötzlich bei mir, dann beginnt mit großer Wahrscheinlichkeit diese Phase.'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:46.349212Z
+      seconds: 31.716081417
+      tokens: 20632
+      review: false
+    en-US:
+      text: 'The ways I meet people are actually pretty limited. Basically, it always starts with something that suddenly comes up in a group chat, or with some kind of “relationship.” A relationship sounds like something that will last a long time, but honestly, many of them are sparked by events beyond my control: coworkers, classmates, or even people who are simply interested in the same thing or just happen to be doing the same kind of work. At first, we’re often forced to add each other, and then we just leave it at that. If the other person never reaches out, chances are we’ll never message each other again for the rest of our lives; but if one day they suddenly contact me because of some event, then chances are we’ll enter this phase.'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:46.349212Z
+      seconds: 31.716081417
+      tokens: 20632
+      review: false
+    es-ES:
+      text: 'La verdad es que las vías por las que conozco gente son bastante limitadas. Casi siempre todo empieza por algún asunto que surge de repente en un chat grupal, o por algún tipo de «relación». La palabra relación suena a algo que va a durar mucho tiempo, pero, hablando claro, muchas nacen a raíz de acontecimientos que escapan a mi control: compañeros de trabajo, compañeros de clase o incluso personas que simplemente están interesadas en algo o que, por casualidad, hacen el mismo tipo de cosas. Al principio, a menudo nos vemos obligados a agregarnos y, una vez hecho, dejamos el contacto ahí abandonado. Si la otra persona nunca toma la iniciativa de hablarme, lo más probable es que no volvamos a enviarnos un mensaje en toda la vida; pero si un día me busca de repente a raíz de algún acontecimiento, lo más probable es que entremos en esta etapa.'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:46.349212Z
+      seconds: 31.716081417
+      tokens: 20632
+      review: false
+    fr-FR:
+      text: 'En réalité, les façons dont je rencontre des gens sont assez limitées. En général, tout part d’un événement qui surgit soudain dans une discussion de groupe, ou d’une certaine « relation ». Le mot relation donne l’impression de quelque chose qui va durer longtemps, mais pour parler franchement, beaucoup naissent d’événements que je ne contrôle pas : des collègues, des camarades de classe, voire simplement des gens qui s’intéressent à la même chose ou qui, par hasard, font le même genre d’activité. Au début, on est souvent contraints de s’ajouter, puis on en reste là. Si l’autre personne ne vient jamais me parler d’elle-même, il y a de fortes chances que nous ne nous envoyions plus jamais de message de toute notre vie ; mais si, un jour, elle me contacte soudain à cause d’un événement quelconque, alors il est fort probable que nous entrions dans cette phase.'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:46.349212Z
+      seconds: 31.716081417
+      tokens: 20632
+      review: false
+    ja-JP:
+      text: 私が人と知り合うきっかけは、実はかなり限られている。基本的には、グループチャットで突然持ち上がった何か、あるいは何らかの「関係」からだ。関係というと長く続きそうに聞こえるけれど、ぶっちゃけ、その多くは自分ではコントロールできない何らかの出来事をきっかけに生まれたものだ。同僚や同級生、さらには単にあることに興味を持っている人や、たまたま同じようなことをしている人だったりする。最初は半ば強制的に連絡先を追加させられることが多く、追加したあとはそのまま放置する。相手からずっと連絡してこなければ、たぶん一生こちらからメッセージを送ることもない。でも、ある日何かの出来事をきっかけに突然連絡してきたなら、おそらくこの段階に入る。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:46.349212Z
+      seconds: 31.716081417
+      tokens: 20632
+      review: false
+    ko-KR:
+      text: 내가 사람을 알게 되는 경로는 사실 굉장히 한정적이다. 기본적으로 단체 채팅방에서 갑자기 튀어나온 어떤 일이나, 어떤 종류의 ‘관계’가 계기가 된다. 관계라고 하면 오래 이어질 것처럼 들리지만, 솔직히 말해 그중 많은 것은 내가 통제할 수 없는 어떤 사건이 촉발한 것이다. 직장 동료나 동창, 심지어는 단지 어떤 일에 관심이 있거나 마침 같은 종류의 일을 하고 있는 사람들 말이다. 처음에는 어쩔 수 없이 서로를 추가하는 경우가 많고, 추가한 뒤에는 그대로 방치한다. 상대가 계속 먼저 연락하지 않는다면 아마 평생 다시 메시지를 보낼 일도 없을 것이다. 하지만 어느 날 갑자기 어떤 일을 계기로 나를 찾아온다면, 높은 확률로 이 단계에 들어가게 된다.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:46.349212Z
+      seconds: 31.716081417
+      tokens: 20632
+      review: false
+    zh-CN:
+      text: 我认识新人的渠道其实很单一，基本都是群聊里突然发生了某件事，或由某种「关系」牵起了联系。「关系」听起来像是能维持很久的东西，但说到底，很多联系都是由一些我无法控制的事件促成的：同事、同学，甚至只是对同一件事感兴趣，或恰好在做同一类事情的人。刚开始往往是不得不加上好友，加完后就彼此搁置着。只要对方一直不主动联系我，我们大概一辈子都不会再发消息；可要是某天对方突然因为某件事来找我，这段关系多半就会进入下一个阶段。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:50.599801Z
+      seconds: 10.341238375
+      tokens: 19326
+      review: false
+    zh-TW:
+      text: 我認識人的來源其實很單一。基本上就是群聊裡面突然冒出來的某一件事情，或者某一種「關係」。關係聽著像會維持很久的東西，但說白了，很多都是某些不受我控制的事件把它引發出來的：同事、同學，甚至只是對某件事感興趣，或者正好在做同一類事情的人。一開始往往是被迫添加，加完就晾著。對方一直不主動找我的話，大概率一輩子也不會再發消息了；可如果某一天突然因為某個事件來找我，那就大概率會進入這個階段。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:24:46.349212Z
+      seconds: 31.716081417
+      tokens: 20632
+      review: false
+  cde580ea6c7378a04f689e80cf7061a7:
+    de-DE:
+      text: 'Besonders auf Twitter denke ich manchmal wehmütig darüber nach, dass mein Freund zum Freund eines anderen geworden ist. Aber wenn man genauer darüber nachdenkt, ist das eigentlich völlig normal. Schließlich gibt es auf der Welt keine zwei identischen Timelines, und dass meine und deine Timeline einander glücklicherweise begegnet sind, ist schon ein Glücksfall. Es ist so, als würdest du in einen Kreis kommen und dort Menschen kennenlernen: Auch die Menschen in diesem Kreis können einander kennenlernen. In herkömmlichen Gruppenchats würdest du davon nichts erfahren, weil solche Gespräche privat stattfinden; Twitter hat diese Grenze leider durchbrochen. Da die Tweets aller öffentlich sind, kannst du dieses Verhalten normalerweise sehr leicht beobachten. Sobald die Beziehungen, die andere mit dir verbinden, sich in regelmäßigen Abständen zu verschieben beginnen, wird dieses Phänomen für dich ohne Weiteres sichtbar.'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:07.136084Z
+      seconds: 40.206163542
+      tokens: 21036
+      review: false
+    en-US:
+      text: Especially on Twitter, I sometimes find myself lamenting that my friend has become someone else’s. But when I think about it carefully, it’s actually perfectly normal. No two timelines in the world are ever the same, and the fact that yours and mine were fortunate enough to cross paths is already a stroke of luck. It’s like entering a social circle and getting to know people—the people in that circle can also get to know one another. In traditional group chats, you wouldn’t know about it because those interactions happen in private; unfortunately, Twitter has broken through that barrier. With everyone’s tweets being public, you can usually observe this behavior very easily. When the relationships connecting others to you begin to shift in recurring cycles, the phenomenon becomes readily visible to you.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:07.136084Z
+      seconds: 40.206163542
+      tokens: 21036
+      review: false
+    es-ES:
+      text: 'Sobre todo en Twitter, a veces me entra cierta melancolía al pensar que mi amigo se ha convertido en amigo de otra persona. Pero, si lo pienso detenidamente, en realidad es algo totalmente normal. Al fin y al cabo, no existen dos cronologías iguales en el mundo, y que la tuya y la mía hayan tenido la fortuna de encontrarse ya es de por sí una suerte. Es como cuando entras en un círculo y conoces gente: las personas de ese círculo también pueden conocerse entre sí. En los sistemas tradicionales de chat grupal no te enterarías, porque esas conversaciones son privadas; por desgracia, Twitter derribó esa barrera. Como los tuits de todo el mundo son públicos, normalmente puedes observar este comportamiento con mucha facilidad. Cuando las relaciones que vinculan a otras personas contigo empiezan a cambiar de forma periódica, este fenómeno se vuelve muy fácil de percibir.'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:07.136084Z
+      seconds: 40.206163542
+      tokens: 21036
+      review: false
+    fr-FR:
+      text: 'C’est particulièrement vrai sur Twitter : il m’arrive parfois de songer avec mélancolie que mon ami est devenu celui de quelqu’un d’autre. Mais à bien y réfléchir, c’est en réalité tout à fait normal. Après tout, il n’existe pas deux fils d’actualité identiques dans le monde, et le simple fait que le tien et le mien aient eu la chance de se croiser est déjà une chance en soi. C’est comme lorsque tu entres dans un cercle et y rencontres des gens : les membres de ce cercle peuvent eux aussi faire connaissance entre eux. Dans les systèmes traditionnels de discussion en groupe, tu ne le saurais pas, car ces échanges ont lieu en privé ; Twitter a malheureusement fait tomber cette barrière. Puisque les tweets de tout le monde sont publics, tu peux généralement observer ce comportement très facilement. Lorsque les relations qui lient les autres à toi commencent à évoluer de manière cyclique, ce phénomène devient très facile à remarquer.'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:07.136084Z
+      seconds: 40.206163542
+      tokens: 21036
+      review: false
+    ja-JP:
+      text: 特にTwitterでは、ときどき、自分の友達が誰か別の人の友達になったのだと感慨にふけることがある。でも、よく考えてみれば、これはごく当たり前のことだ。そもそもこの世界に同じタイムラインは存在せず、僕と君のタイムラインが幸運にも出会えたこと自体、すでに一つの幸運なのだ。あるコミュニティに入り、そこで人と知り合ったなら、そのコミュニティの人たちも互いに知り合えるようなものだ。従来のグループチャットという仕組みでは、それが個別のやり取りなので、君が知ることはない。ところがTwitterは、残念ながらこの制限を打ち破ってしまった。誰もが公開しているツイートの中では、たいていこの行動をいとも簡単に観察できる。他人と君を結びつける関係が周期的に動き始めると、この現象は君にも容易に見えるようになる。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:07.136084Z
+      seconds: 40.206163542
+      tokens: 21036
+      review: false
+    ko-KR:
+      text: 특히 Twitter에서는 가끔 내 친구가 다른 사람의 친구가 되었다는 생각에 감상에 잠기곤 한다. 하지만 곰곰이 생각해 보면 사실 아주 자연스러운 일이다. 애초에 세상에는 똑같은 타임라인이 존재하지 않으며, 나와 너의 타임라인이 운 좋게 마주친 것만으로도 이미 행운이다. 어떤 무리에 들어가 사람들을 알게 되면, 그 무리의 사람들끼리도 서로 알게 될 수 있는 것과 같다. 전통적인 단체 채팅 체계에서는 그런 일이 개인 대화로 이루어지므로 네가 알 수 없다. 하지만 Twitter는 안타깝게도 이 제약을 깨뜨렸다. 모두의 트윗이 공개되어 있어 보통은 이런 행동을 아주 쉽게 관찰할 수 있다. 다른 사람과 너를 묶어 주는 관계가 주기적으로 변하기 시작하면, 너는 이런 현상을 아주 쉽게 알아차리게 된다.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:07.136084Z
+      seconds: 40.206163542
+      tokens: 21036
+      review: false
+    zh-CN:
+      text: 尤其是在 Twitter 上，有时我确实会感慨：我的朋友成了别人的朋友。但仔细想想，这其实再正常不过。世上本就不存在完全相同的时间线，而你我的时间线有幸交汇，已经是一种幸运。就像你进入一个圈子认识了一些人，圈子里的人自然也会彼此相识。在传统的群聊体系中，你不会察觉这个过程，因为交流都发生在私聊里；偏偏 Twitter 打破了这层界限。在所有人公开发布的推文中，你通常很容易观察到这种变化。当别人与你之间的互动开始周期性地出现在时间线上时，你便会轻易察觉到这段关系。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:36:55.465381Z
+      seconds: 9.375467875
+      tokens: 19467
+      review: false
+    zh-TW:
+      text: 特別是在推上，有時候其實會感慨，我的朋友成為了別人的。但是仔細想想，這其實是很正常的事情。本來世界上就不存在相同的 Timeline，而我和你的 Timeline 有幸能遇見，已經是一種幸運了。就好比你進入了一個圈子認識了人，圈子裡的人也可以互相認識。在傳統的群聊體系裡面你不會知道，因為那是私聊；Twitter 很不幸地把這個限制打破了。在所有人 Public 的推文裡，你通常能夠很輕易地觀察到這個行為。當別人與你綁定的關係開始週期性滾動的時候，這種現象就會被你很輕易地觀察到。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:07.136084Z
+      seconds: 40.206163542
+      tokens: 21036
+      review: false
+  cf5fef52f8e0fd544458ae84e8a951a0:
+    de-DE:
+      text: Warum also spricht man davon, dass es zyklischer Natur ist? Wie bereits erwähnt, ist ein Freund eine Form des Verhaltens, die in einer bestimmten Phase mit dir verbunden ist. Eine Phase bezeichnet dabei gewöhnlich einen konkreten Zeitraum mit einem Anfang und einem Ende. Oft bemerkst du es nicht, doch sie ist eng mit einem bestimmten Ereignis in deinem Leben verknüpft. Vielleicht ist dieser Zyklus bereits ganz natürlich vorübergegangen, ohne dass du es bemerkt hast, und danach folgen neue Phasen, neue Ereignisse und neue Bekanntschaften. Wenn sich diese Zeitlinie deinetwegen zu verändern beginnt, treten auch zyklische Freundschaften ganz von selbst zutage.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:18.06962Z
+      seconds: 35.590646791
+      tokens: 20639
+      review: false
+    en-US:
+      text: So why do we call it cyclical? As mentioned earlier, a friend is a form of behavior connected to you during a particular phase. And a phase usually means a specific span of time, with a beginning and an end. Often, you do not realize it, but it is closely tied to a particular event in your life. Without you noticing, that cycle may have already run its natural course, after which you enter new phases, experience new events, and meet new people. When this timeline begins to change because of you, the cyclical nature of friendship naturally reveals itself.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:18.06962Z
+      seconds: 35.590646791
+      tokens: 20639
+      review: false
+    es-ES:
+      text: Entonces, ¿por qué se dice que tiene un carácter cíclico? Como ya se ha dicho, un amigo es una forma de conducta relacionada contigo durante una etapa determinada. Y una etapa suele ser un período concreto, con un principio y un final. Muchas veces no te das cuenta, pero está estrechamente ligada a algún acontecimiento de tu vida. Puede que, sin que lo hayas advertido, ese ciclo ya haya concluido de manera natural, tras lo cual llegarán nuevas etapas, nuevos acontecimientos y nuevas personas a las que conocer. Cuando esta línea temporal empieza a cambiar por ti, la naturaleza cíclica de las amistades también se manifiesta de forma natural.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:18.06962Z
+      seconds: 35.590646791
+      tokens: 20639
+      review: false
+    fr-FR:
+      text: Alors pourquoi dit-on que cela revêt un caractère cyclique ? Comme nous l’avons vu plus haut, un ami est une forme de comportement qui se rapporte à vous au cours d’une certaine étape. Or, une étape désigne généralement une période précise, avec un début et une fin. Souvent, vous ne vous en rendez pas compte, mais elle est étroitement liée à un événement particulier de votre vie. Sans même que vous l’ayez remarqué, ce cycle s’est peut-être déjà achevé naturellement ; viennent alors une nouvelle étape, de nouveaux événements et de nouvelles rencontres. Lorsque cette ligne temporelle commence à changer à cause de vous, le caractère cyclique des amitiés se manifeste lui aussi naturellement.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:18.06962Z
+      seconds: 35.590646791
+      tokens: 20639
+      review: false
+    ja-JP:
+      text: では、なぜそれを周期的なものと言うのでしょうか。前にも述べたように、友人とは、ある一つの段階においてあなたと関わる行為です。そして段階とは通常、始まりと終わりのある具体的な時間を意味します。多くの場合、あなたは気づきませんが、それは人生における何らかの出来事と強く結びついています。あなたが気づかないうちに、その周期はすでに自然と過ぎ去り、その後には新たな段階、新たな出来事が訪れ、新たな人々と出会うことになります。この時間軸があなたによって変わり始めるとき、周期的な友人というものも自然に姿を現すのです。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:18.06962Z
+      seconds: 35.590646791
+      tokens: 20639
+      review: false
+    ko-KR:
+      text: 그렇다면 왜 이를 주기적인 성질을 지닌다고 말하는 걸까. 앞서 말했듯 친구란 어떤 한 단계에서 당신과 관련을 맺는 행위다. 그리고 단계란 보통 시작과 끝이 있는 구체적인 시간대를 뜻한다. 많은 경우 당신은 알아차리지 못하지만, 그것은 삶의 어떤 사건과 단단히 묶여 있다. 미처 깨닫지 못하는 사이에 이 주기는 이미 자연스럽게 지나가 버리고, 그 뒤로 새로운 단계와 새로운 사건을 맞으며 새로운 사람들을 알게 될 수도 있다. 이 시간선이 당신으로 인해 달라지기 시작할 때, 주기적인 친구라는 존재도 자연스럽게 모습을 드러낸다.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:18.06962Z
+      seconds: 35.590646791
+      tokens: 20639
+      review: false
+    zh-CN:
+      text: 那么，为什么说这种友谊具有周期性呢？正如前面所说，朋友是在人生的某个阶段与你相伴、同你产生交集的人。而一个阶段通常对应一段具体的时间，有开始，也有结束。很多时候，你并未意识到这一点，但这段友谊往往与生活中的某个事件紧密相连。也许在你毫无察觉时，这个周期就已经自然结束；此后，你会进入新的阶段，经历新的事件，也会结识新的人。当你的人生轨迹开始随自身的变化而改变时，朋友关系的周期性也就自然显现出来了。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:37:00.945987Z
+      seconds: 7.055012667
+      tokens: 19092
+      review: false
+    zh-TW:
+      text: 那為什麼又說是週期性質的呢。正如前面說的，朋友是某一個階段裡和你有關的行為。而階段通常意味著它是一段具體的時間，有開始也有結尾。很多時候你意識不到，但它卻和你生活裡的某個事件緊緊綁著。可能在你沒有察覺到的時候，這個週期就已經自然地過去了，然後你會有新的階段、新的事件、認識新的人。當這條時間線開始因你而改變的時候，週期性的朋友也就自然體現出來了。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:18.06962Z
+      seconds: 35.590646791
+      tokens: 20639
+      review: false
+  eed224288e33c1447f7dbad8a87bd42e:
+    de-DE:
+      text: Na ja ... „**Freundschaften gehören immer nur zu bestimmten Lebensabschnitten.**“ Vielleicht war mir dieser Satz schon sehr viel früher begegnet, doch damals wollte ich ihn nicht wahrhaben. Wobei „nicht wahrhaben wollen“ es auch nicht ganz trifft; vielmehr wollte ich nicht vollständig anerkennen, dass er stimmt. Früher glaubte ich, dass es so etwas wie Freunde fürs Leben wirklich gibt – oder zumindest ein oder zwei Menschen, die einen das ganze Leben lang begleiten. Selbst wenn so etwas selten ist, müsste es das doch geben.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:32.829126Z
+      seconds: 23.278317625
+      tokens: 19963
+      review: false
+    en-US:
+      text: Well... “**Friends are only there for certain stages of our lives.**” Perhaps I had come across this saying long ago, but back then I was unwilling to accept it. Though “unwilling to accept” isn’t entirely accurate; it was more that I didn’t want to concede that it was completely true. I used to believe that permanent friends really did exist in this world—or that, at the very least, one or two would stay with you for life. Even if such a thing was rare, surely it had to exist.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:32.829126Z
+      seconds: 23.278317625
+      tokens: 19963
+      review: false
+    es-ES:
+      text: Bueno… «**Los amigos solo lo son durante determinadas etapas de la vida.**» Quizá ya había visto esta frase mucho tiempo atrás, pero por aquel entonces no quería aceptarla. Aunque decir que no la aceptaba tampoco es del todo exacto; más bien, no quería admitir que fuera completamente cierta. Antes creía que en el mundo existían los llamados amigos para siempre, o que al menos habría una o dos personas que te acompañarían toda la vida. Aunque algo así fuera poco común, tenía que existir, ¿no?
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:32.829126Z
+      seconds: 23.278317625
+      tokens: 19963
+      review: false
+    fr-FR:
+      text: 'Enfin… « **Les amis ne sont là que pour certaines étapes de notre vie.** » J’avais peut-être déjà lu cette phrase bien longtemps auparavant, mais à l’époque, je refusais de l’admettre. Dire que je ne l’admettais pas n’est d’ailleurs pas tout à fait exact : c’était plutôt que je ne voulais pas reconnaître qu’elle était entièrement vraie. Autrefois, je croyais qu’il existait en ce monde des amis pour toujours, ou qu’au moins une ou deux personnes resteraient à nos côtés toute notre vie. Même si une telle chose était rare, elle devait bien exister.'
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:32.829126Z
+      seconds: 23.278317625
+      tokens: 19963
+      review: false
+    ja-JP:
+      text: まあ……「**友達というものは人生の段階ごとに移り変わる**」。この言葉はずっと昔に目にしていたのかもしれないが、当時の私は認めたくなかった。認めなかったというのも少し違って、むしろそれが完全に正しいとは認めたくなかったのだ。かつての私は、この世には永遠の友達というものが存在すると信じていた。少なくとも、一生そばにいてくれる人が一人か二人はいるはずだ、と。たとえそんな存在が稀だとしても、どこかにはいるはずだろう。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:32.829126Z
+      seconds: 23.278317625
+      tokens: 19963
+      review: false
+    ko-KR:
+      text: 뭐랄까… “**친구는 모두 삶의 한 시기에만 머무는 존재다.**” 아마 이 말을 아주 오래전부터 봐 왔을 테지만, 당시의 나는 인정하고 싶지 않았다. 인정하지 않았다는 말도 완전히 맞지는 않고, 그 말이 전적으로 옳다는 사실을 인정하고 싶지 않았다는 편에 더 가깝다. 예전의 나는 세상에 이른바 영원한 친구가 존재한다고 믿었다. 아니면 적어도 한두 명쯤은 평생을 함께할 거라고 믿었다. 그런 존재가 드물다 해도, 그래도 있기는 해야 하지 않을까.
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:32.829126Z
+      seconds: 23.278317625
+      tokens: 19963
+      review: false
+    zh-CN:
+      text: 其实吧……“**朋友都是阶段性的**”这句话，或许我很早以前就见过，只是当时不愿承认。说不认同也不完全准确，我只是不愿彻底承认它是对的。曾经的我相信，世上存在所谓永远的朋友，或者至少会有那么一两个相伴一生。这样的情谊就算再稀少，也总该存在吧。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:37:04.844056Z
+      seconds: 5.70448275
+      tokens: 19022
+      review: false
+    zh-TW:
+      text: 其實嘛...「**朋友都是階段性的**」，或許這句話我很早以前就看見過，但是當時的我是不願意承認的。說不認其實也不完全對，更像是不願意完全承認它是對的。曾經的我相信世界上存在所謂永久的朋友，或者至少有那麼 1-2 個會跟著你一生，這種東西就算稀少，也總該有吧。
+      provider: openai
+      model: gpt-5-6-sol-high
+      at: 2026-08-20T05:25:32.829126Z
+      seconds: 23.278317625
+      tokens: 19963
+      review: false

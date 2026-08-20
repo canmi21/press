@@ -1,10 +1,66 @@
 version: 1
 summary:
+  de-DE:
+    text: Nicht vollständig anerkennen wollen, dass „Freunde alle phasenhaft sind“, trotzdem ein oder zwei Freundschaften fürs Leben festhalten wollen. Gegenübergestellt werden die traditionellen Kontakte aus QQ-Gruppenchats vor dem Auslandsaufenthalt — Kollegen, Mitschüler, ereignisausgelöst, hinzugefügt und dann hängen gelassen — und Twitter-Freunde, die kein gegenseitiges Folgen brauchen und schon durch Interaktion und Antworten bekannt vorkommen. Die Timeline durchscrollen und sehen, wie einstige Leute Guten Morgen und Gute Nacht sagen, während man selbst zum Außenstehenden geworden ist; um des Gesichts willen nicht entfolgen, und doch einseitigem Mute und Block gegenüberstehen müssen, und öffentlichen Tweets, die aus einem close friend den mutual friend eines anderen machen, im Privatchat unsichtbar, auch offline nicht aufzuhalten.
+    provider: xai
+    model: grok-4-6
+    at: 2026-08-20T05:17:42.974627Z
+    seconds: 192.544795208
+    tokens: 0
+    review: false
+  en-US:
+    text: Unwilling to fully admit that “friends all come in phases,” still wanting to hold onto one or two friendships that last a lifetime. The contrast is the traditional contacts from QQ group chats before going abroad — colleagues, classmates, event-triggered, added and then left hanging — and Twitter friends who need not follow each other, growing familiar through interaction and replies. Scrolling the Timeline, seeing people who once were say good morning and good night, while one has become an outsider; not unfollowing for the sake of face, yet having to confront one-way mute and block, and public tweets that turn a close friend into someone else’s mutual friend, invisible in private chat and unstoppable offline.
+    provider: xai
+    model: grok-4-6
+    at: 2026-08-20T05:12:58.65531Z
+    seconds: 112.247770834
+    tokens: 0
+    review: false
+  es-ES:
+    text: No querer admitir del todo que «los amigos son todos por etapas», y aun así querer aferrarse a una o dos amistades de por vida. Lo que se contrapone son los contactos tradicionales de los chats grupales de QQ de antes de irse al extranjero —compañeros de trabajo, compañeros de clase, desencadenados por un acontecimiento, agregados y luego abandonados— y los amiguis de Twitter que no necesitan seguirse mutuamente y se vuelven caras conocidas a fuerza de interacciones y respuestas. Recorrer el Timeline y ver a gente de antes dar los buenos días y las buenas noches, mientras uno mismo ha quedado al margen; no dejar de seguir por las formas, y sin embargo tener que afrontar el mute y el block unilaterales, y los tuits públicos que convierten a un close friend en el mutual friend de otra persona, invisibles en el chat privado, imposibles de detener fuera de línea.
+    provider: xai
+    model: grok-4-6
+    at: 2026-08-20T05:28:01.553239Z
+    seconds: 201.2669335
+    tokens: 0
+    review: false
+  fr-FR:
+    text: Ne pas vouloir admettre pleinement que « les amis sont tous liés à des phases », tout en voulant encore s’accrocher à une ou deux amitiés pour la vie. Le contraste oppose les contacts traditionnels des discussions de groupe QQ d’avant le départ à l’étranger — collègues, camarades de classe, déclenchés par un événement, ajoutés puis laissés en plan — et les potes de Twitter qui n’ont pas besoin de se suivre mutuellement, et deviennent familiers à force d’interactions et de réponses. Faire défiler la Timeline et voir les gens d’autrefois se souhaiter bonjour et bonne nuit, alors que l’on s’est soi-même retrouvé à l’écart ; ne pas se désabonner par égard aux convenances, et pourtant devoir affronter le mute et le block à sens unique, ainsi que les tweets publics qui transforment un close friend en mutual friend de quelqu’un d’autre, invisibles en conversation privée, impossibles à arrêter hors ligne.
+    provider: xai
+    model: grok-4-6
+    at: 2026-08-20T05:24:27.10868Z
+    seconds: 214.44334875
+    tokens: 0
+    review: false
+  ja-JP:
+    text: 「友達はみな段階的なものだ」と完全には認めたくないまま、それでも一生続く友情を一つ二つはつかんでおきたい。対照されるのは、出国前のQQグループチャットにおける同僚、クラスメート、出来事に触発され、追加したきり放置される従来の連絡先と、Twitter上で相互フォローせずともやり取りや返信だけで顔なじみになるツイ友だ。Timelineを流して、かつての人たちのおはよう、おやすみを目にしながら、自分は部外者になっている。面子を気にしてフォローは外さないのに、一方的なmuteやblock、公開ツイートがclose friendを他人のmutual friendに変えてしまうことに直面し、個人チャットでは見えず、オフラインでも止められない。
+    provider: xai
+    model: grok-4-6
+    at: 2026-08-20T05:14:50.903948Z
+    seconds: 172.069830709
+    tokens: 0
+    review: false
+  ko-KR:
+    text: ‘친구는 모두 단계적이다’라고 완전히 인정하고 싶지는 않으면서도, 평생 가는 우정을 하나둘은 붙잡고 싶다. 대조되는 것은 출국 전 QQ 그룹 채팅 속의 동료, 동창, 사건에 촉발되고, 추가한 뒤 방치되는 전통적인 연락처와, Twitter에서 맞팔하지 않아도 상호작용과 답장만으로 얼굴이 익는 트친이다. Timeline을 넘기다 예전의 사람들이 아침 인사와 밤 인사를 하는 것을 보면서, 정작 자신은 국외자가 되어 있다. 체면 때문에 언팔하지는 않으면서도, 일방적인 mute와 block, 그리고 공개 트윗이 close friend를 남의 mutual friend로 바꾸는 일을 마주해야 하고, 개인 채팅에서는 보이지 않으며 오프라인에서도 막을 수 없다.
+    provider: xai
+    model: grok-4-6
+    at: 2026-08-20T05:20:55.520986Z
+    seconds: 211.585945833
+    tokens: 0
+    review: false
   zh-CN:
     text: 不愿完全承认「朋友都是阶段性的」，仍想抓住一两段跟一生的友谊。对照的是出国前 QQ 群聊里同事、同学、事件触发、加完就晾着的传统联系人，和 Twitter 上不必互关、靠互动回复就能面熟的推油。刷 Timeline 看见曾经的人早安晚安，自己却成了局外人；碍于情面不取关，却要面对单向 mute、block，以及公开推文把 close friend 变成别人的 mutual friend，私聊里看不见，线下也拦不住。
     provider: xai
     model: grok-4-6
     at: 2026-08-20T05:09:55.889879Z
     seconds: 145.375698625
+    tokens: 0
+    review: false
+  zh-TW:
+    text: 不願完全承認「朋友都是階段性的」，仍想抓住一兩段跟一生的友誼。對照的是出國前 QQ 群聊裡同事、同學、事件觸發、加完就晾著的傳統聯繫人，和 Twitter 上不必互關、靠互動回覆就能面熟的推油。刷 Timeline 看見曾經的人早安晚安，自己卻成了局外人；礙於情面不取關，卻要面對單向 mute、block，以及公開推文把 close friend 變成別人的 mutual friend，私聊裡看不見，線下也攔不住。
+    provider: xai
+    model: grok-4-6
+    at: 2026-08-20T05:31:22.821329Z
+    seconds: 88.04475875
     tokens: 0
     review: false
