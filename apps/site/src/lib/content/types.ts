@@ -21,6 +21,7 @@ export type Block =
 	| { type: 'svgCanvas'; svg: string; title: string }
 	| { type: 'tokei'; source: string; title: string; view: TokeiView }
 	| { type: 'cargo'; crate: CrateRecord; view: CargoView }
+	| { type: 'twitter'; tweet: TweetRecord }
 	| {
 			type: 'github';
 			repo: RepoRecord;
@@ -127,6 +128,16 @@ export type RepoRecord = {
 	open_issues: number;
 	license: string | null;
 	pushed_at: string | null;
+};
+
+export type TweetRecord = {
+	id: string;
+	author: string;
+	text: string;
+	created: string;
+	likes: number;
+	reposts: number;
+	replies: number;
 };
 
 export type Alternate = {

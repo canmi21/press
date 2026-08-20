@@ -36,6 +36,7 @@ import type {
 	Page,
 	PageView,
 	RepoRecord,
+	TweetRecord,
 } from '../types.ts';
 import { languageTag, LOCALE_CODES, PUBLIC_LANGUAGE, type LocaleCode } from '../../locale/index.ts';
 import { highlight } from './highlight.ts';
@@ -103,6 +104,7 @@ type BuildPaths = {
 	segments: string;
 	crates: string;
 	repos: string;
+	tweets: string;
 };
 
 async function articleFiles(contents: string): Promise<string[]> {
@@ -185,9 +187,8 @@ export async function buildArticles(
 	const assets = JSON.parse(await readFile(paths.assets, 'utf8')) as AssetManifest;
 	const media = (parseYaml(await readFile(paths.media, 'utf8')) ?? { media: {} }) as MediaManifest;
 	const layout = JSON.parse(await readFile(paths.segments, 'utf8')) as SegmentLayout;
-	// Fetched by `cms embed`. Absent is a working state rather than an error: an article whose
-	// crate has not been read yet keeps the placeholder it had before, which is what the
-	// placeholder is for.
+	// Captured before the build. An absent record is a working state rather than an error: the
+	// article keeps the directive as a placeholder until its external facts have been fetched.
 	const embeds = {
 		crates:
 			(
@@ -201,6 +202,12 @@ export async function buildArticles(
 					repos?: Record<string, RepoRecord>;
 				}
 			).repos ?? {},
+		tweets:
+			(
+				JSON.parse(await readFile(paths.tweets, 'utf8').catch(() => '{}')) as {
+					tweets?: Record<string, TweetRecord>;
+				}
+			).tweets ?? {},
 	};
 	if (layout.version !== SEGMENT_LAYOUT_VERSION) {
 		throw new Error(
@@ -309,6 +316,7 @@ export async function buildArticles(
 			paths.segments,
 			paths.crates,
 			paths.repos,
+			paths.tweets,
 		],
 	};
 }

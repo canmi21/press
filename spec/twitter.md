@@ -55,16 +55,28 @@ tool's own default and produced results at `0.1`. The operation defaults to `0.1
 that reason: an empty answer more often means the threshold was too high than that nothing
 exists.
 
-## No store until something reads one
+## A card is the first reader, so fetched tweets have a store
 
-The operations return a value. They do not write a `data/build` record, do not join the
-task catalogue, and have no GUI adapter. Inventing a storage format before there is a
-consumer is how you get the wrong one.
+An article references a tweet as `::twitter{tweet="<id>"}`. The snowflake is globally unique;
+including the username in that reference would add a second identity that becomes stale when an
+account is renamed. The fetched author belongs to the record instead.
+
+The site resolves that id against `data/build/twitter.json`, a committed snapshot made from
+`cms twitter thread` output. It never asks Twitter during a build, in the Worker, or in the
+browser. That keeps CI self-contained, avoids one request per reader, and leaves an article
+readable if the live tweet later disappears. The snapshot keeps the root tweet only: replies are
+separate authored objects, not part of the card the directive requested. Engagement counts are
+facts at lookup time and stay that way until somebody deliberately refreshes the snapshot.
+
+A missing record renders the ordinary directive placeholder instead of failing the article.
+The article therefore remains the list of wanted tweets, with no second inventory to maintain,
+while an unfinished lookup is explicit rather than silently omitted.
 
 ## Reached as `cms twitter`
 
 The four operations sit behind one command named for the service, and they print JSON on stdout
-the way `cms overview` does. Nothing consumes that JSON yet.
+the way `cms overview` does. A thread lookup's root tweet may be copied into the card snapshot;
+the lookup itself remains a read and never changes the workspace as a side effect.
 
 ## It is Twitter here, and the addresses are `twitter.com`
 

@@ -27,6 +27,7 @@ const SEGMENTS = fileURLToPath(new URL('../../data/build/segments.json', import.
 const MESSAGES = fileURLToPath(new URL('./messages', import.meta.url));
 const CRATES = fileURLToPath(new URL('../../data/build/crates.json', import.meta.url));
 const REPOS = fileURLToPath(new URL('../../data/build/repos.json', import.meta.url));
+const TWEETS = fileURLToPath(new URL('../../data/build/twitter.json', import.meta.url));
 const LICENSES = fileURLToPath(new URL('../../data/build/licenses.json', import.meta.url));
 
 // Built-in 301s, kept out of site.config.yaml because they are product behaviour rather than
@@ -162,6 +163,7 @@ export default defineConfig(async ({ mode }) => {
 							segments: SEGMENTS,
 							crates: CRATES,
 							repos: REPOS,
+							tweets: TWEETS,
 						}),
 						buildPages({ contents: CONTENTS, messages: MESSAGES, segments: SEGMENTS }),
 					]);

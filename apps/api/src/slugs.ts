@@ -7,5 +7,6 @@ export const ARTICLE_SLUGS: ReadonlySet<string> = new Set([
 	'architecture/compile-time-rendering',
 	'development/rust-cargo-cranelift-tuning',
 	'milestone/less-is-more',
+	'mirror/friends-come-in-phases',
 	'mirror/less-than-an-hour',
 ]);

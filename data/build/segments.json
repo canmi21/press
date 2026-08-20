@@ -1101,6 +1101,183 @@
         "region": "body"
       }
     ],
+    "mirror/friends-come-in-phases.md": [
+      {
+        "id": "254086f3ffc966ca596512f0c71e3745",
+        "start": 10,
+        "end": 35,
+        "fingerprint": "9bf03c93",
+        "region": "frontmatter"
+      },
+      {
+        "id": "834c9e38aad83ded9c6245ca516987d2",
+        "start": 45,
+        "end": 82,
+        "fingerprint": "22fdfd7b",
+        "region": "frontmatter"
+      },
+      {
+        "id": "9dea58104d5acf9da110bc4ad2084f2b",
+        "start": 95,
+        "end": 309,
+        "fingerprint": "dd747024",
+        "region": "frontmatter"
+      },
+      {
+        "id": "eed224288e33c1447f7dbad8a87bd42e",
+        "start": 384,
+        "end": 750,
+        "fingerprint": "a2da1c2d",
+        "region": "body"
+      },
+      {
+        "id": "8ec4706fc8fd80f9b958520763568129",
+        "start": 752,
+        "end": 779,
+        "fingerprint": "133df892",
+        "region": "body"
+      },
+      {
+        "id": "a7e3e8d229fddd4d11a25f96f7a1e5d9",
+        "start": 781,
+        "end": 1212,
+        "fingerprint": "b592c495",
+        "region": "body"
+      },
+      {
+        "id": "bfdb1f082e84626925f63f4591055e80",
+        "start": 1214,
+        "end": 1400,
+        "fingerprint": "564c8fa1",
+        "region": "body"
+      },
+      {
+        "id": "c934b6cf281975a115e24addd282bdc8",
+        "start": 1442,
+        "end": 1470,
+        "fingerprint": "ab6f4536",
+        "region": "body"
+      },
+      {
+        "id": "90dcba21bf6c6ae0e6580e7b28e20544",
+        "start": 1472,
+        "end": 1727,
+        "fingerprint": "9791c28a",
+        "region": "body"
+      },
+      {
+        "id": "cd1b291855a48cfe6edcd45efa710645",
+        "start": 1729,
+        "end": 2305,
+        "fingerprint": "19179bdc",
+        "region": "body"
+      },
+      {
+        "id": "be16af9e9e4d1a5ea0489709e45ce468",
+        "start": 2307,
+        "end": 2860,
+        "fingerprint": "41a308db",
+        "region": "body"
+      },
+      {
+        "id": "98552ce9b84dcac304c1cf91cbe2b8c6",
+        "start": 2862,
+        "end": 2893,
+        "fingerprint": "70c565d0",
+        "region": "body"
+      },
+      {
+        "id": "8e01bc84022d819699f363bd4473aebf",
+        "start": 2895,
+        "end": 3466,
+        "fingerprint": "6020df57",
+        "region": "body"
+      },
+      {
+        "id": "469342d221e449062b89b6f62469c4d6",
+        "start": 3468,
+        "end": 3492,
+        "fingerprint": "45a6ac82",
+        "region": "body"
+      },
+      {
+        "id": "764ab5e3a41884365925b92929d8c193",
+        "start": 3494,
+        "end": 4104,
+        "fingerprint": "04aa33b4",
+        "region": "body"
+      },
+      {
+        "id": "b34a6b1c2f0d0b56c028aa46eed14e9b",
+        "start": 4106,
+        "end": 4618,
+        "fingerprint": "84a9176d",
+        "region": "body"
+      },
+      {
+        "id": "7c6bfa7f3e7b3213d350aafafa7aaa64",
+        "start": 4620,
+        "end": 4648,
+        "fingerprint": "dfdd9cf7",
+        "region": "body"
+      },
+      {
+        "id": "c5d483d204e47292da34a5c939037ee9",
+        "start": 4650,
+        "end": 5634,
+        "fingerprint": "6f02ec7f",
+        "region": "body"
+      },
+      {
+        "id": "53cc09889924baef62b35049a8c533ed",
+        "start": 5636,
+        "end": 5655,
+        "fingerprint": "7f69ef84",
+        "region": "body"
+      },
+      {
+        "id": "cf5fef52f8e0fd544458ae84e8a951a0",
+        "start": 5657,
+        "end": 6176,
+        "fingerprint": "8be28d42",
+        "region": "body"
+      },
+      {
+        "id": "2f54811542df442ca2b6c09151b005a1",
+        "start": 6178,
+        "end": 6430,
+        "fingerprint": "25c6c7fb",
+        "region": "body"
+      },
+      {
+        "id": "ae03a6d8d2a508dab1b990fd377f7b79",
+        "start": 6432,
+        "end": 6474,
+        "fingerprint": "653f0dc9",
+        "region": "body"
+      },
+      {
+        "id": "cde580ea6c7378a04f689e80cf7061a7",
+        "start": 6476,
+        "end": 7129,
+        "fingerprint": "f8701276",
+        "region": "body"
+      },
+      {
+        "id": "c5b62719f45f6e9ffa61b2fcd2a247e7",
+        "start": 7131,
+        "end": 8204,
+        "fingerprint": "6562876b",
+        "region": "body"
+      },
+      {
+        "id": "55413ad52508a06168efe661ccd4f7c1",
+        "start": 8206,
+        "end": 8233,
+        "fingerprint": "a066260d",
+        "region": "body"
+      }
+    ],
     "mirror/less-than-an-hour.md": [
       {
         "id": "7e3804851177f271b148ca13f4d0a1f6",

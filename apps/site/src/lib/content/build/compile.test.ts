@@ -102,6 +102,8 @@ lang: en-US
 ::github{repo="canmi21/seam" ref="abc123" title="Seam" align="right"}
 
 ::cargo{crate="seam-cli" view="table"}
+
+::twitter{tweet="2088060180290302397"}
 `;
 	const compiled = await compile(raw, '/article', {
 		newTabNote: 'opens in new tab',
@@ -131,6 +133,17 @@ lang: en-US
 					total_dep_size: 0,
 				},
 			},
+			tweets: {
+				'2088060180290302397': {
+					id: '2088060180290302397',
+					author: 'canmi21',
+					text: 'A tweet.',
+					created: '2026-08-14T00:28:35Z',
+					likes: 24,
+					reposts: 0,
+					replies: 4,
+				},
+			},
 		},
 	});
 
@@ -144,6 +157,29 @@ lang: en-US
 				align: 'right',
 			}),
 			expect.objectContaining({ type: 'cargo', view: 'table' }),
+			expect.objectContaining({
+				type: 'twitter',
+				tweet: expect.objectContaining({ id: '2088060180290302397' }),
+			}),
 		]),
 	);
+});
+
+it('leaves an unfetched tweet visible as a directive placeholder', async () => {
+	const compiled = await compile(
+		'---\ntitle: Test\nlang: en-US\n---\n\n::twitter{tweet="2088060180290302397"}\n',
+		'/article',
+		{
+			newTabNote: 'opens in new tab',
+			resolveAsset: () => null,
+			highlight: async () => '',
+			sourceFile: 'contents/widgets.md',
+		},
+	);
+
+	expect(compiled.blocks).toContainEqual({
+		type: 'placeholder',
+		kind: 'twitter',
+		meta: { tweet: '2088060180290302397' },
+	});
 });

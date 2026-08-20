@@ -7,6 +7,7 @@
 	import Placeholder from '$lib/blocks/placeholder.svelte';
 	import SvgCanvas from '$lib/blocks/svg-canvas.svelte';
 	import Tokei from '$lib/blocks/tokei/tokei.svelte';
+	import Twitter from '$lib/blocks/twitter.svelte';
 	import PopoverContent from '$lib/components/popover-content.svelte';
 	import * as m from '$lib/paraglide/messages';
 	import Info from '@lucide/svelte/icons/info';
@@ -124,6 +125,8 @@
 			<Tokei source={block.source} title={block.title} view={block.view} />
 		{:else if block.type === 'cargo'}
 			<Cargo crate={block.crate} view={block.view} />
+		{:else if block.type === 'twitter'}
+			<Twitter tweet={block.tweet} />
 		{:else if block.type === 'github'}
 			<GitHub repo={block.repo} gitRef={block.gitRef} title={block.title} align={block.align} />
 		{/if}

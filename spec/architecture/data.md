@@ -47,9 +47,9 @@ file whenever a consumer needs one without that growth being a question.
 
 **Which of them git keeps is decided by one question: does a CI build read it?** A site-only CI
 build must not need a Rust toolchain to produce its own inputs, so everything it reads is
-committed -- `segments.json`, `crates.json`, `repos.json` and `licenses.json`, each named by the
-site's Vite config or its content build. A file only the tool that wrote it ever reads is a
-cache, not a build input, and stays out: `opengraph.json` records which cards are current so
+committed -- `segments.json`, `crates.json`, `repos.json`, `twitter.json` and `licenses.json`,
+each named by the site's Vite config or its content build. A file only the tool that wrote it ever
+reads is a cache, not a build input, and stays out: `opengraph.json` records which cards are current so
 `cms og` can skip them, and losing it costs one slow rerun rather than a broken build.
 
 The question is deliberately about the consumer rather than about how the file was produced.
@@ -146,9 +146,10 @@ a fact about this repository rather than a property of the command, so it waits 
 The site builds from `data/metadata.json`, `data/media.yaml`, the records under `data/build/`,
 `contents/` and `site.config.yaml` -- all committed -- and never reads untracked asset bytes.
 The merged image manifest carries every dimension, srcset and placeholder, the article segment
-record carries the CMS-derived ids and byte ranges, and `cms embed` writes repository and crate
-facts for author-written `::github` and `::cargo` directives. The site watches those generated
-records as first-class build inputs. It never fetches widget data in the browser or Worker, so
+record carries the CMS-derived ids and byte ranges, `cms embed` writes repository and crate
+facts for author-written `::github` and `::cargo` directives, and `twitter.json` holds the tweet
+snapshots referenced by `::twitter`. The site watches those generated records as first-class
+build inputs. It never fetches widget data in the browser or Worker, so
 a checkout renders the complete article with neither asset bytes, network access nor a Rust
 toolchain present.
 

@@ -10,6 +10,7 @@ describe('article widget build inputs', () => {
 	it('watches embed records and compiles every widget in the real article', async () => {
 		const crates = fileURLToPath(new URL('data/build/crates.json', ROOT));
 		const repos = fileURLToPath(new URL('data/build/repos.json', ROOT));
+		const tweets = fileURLToPath(new URL('data/build/twitter.json', ROOT));
 		const { articles, files } = await buildArticles({
 			contents: fileURLToPath(new URL('contents', ROOT)),
 			messages: fileURLToPath(new URL('apps/site/messages', ROOT)),
@@ -19,9 +20,10 @@ describe('article widget build inputs', () => {
 			segments: fileURLToPath(new URL('data/build/segments.json', ROOT)),
 			crates,
 			repos,
+			tweets,
 		});
 
-		expect(files).toEqual(expect.arrayContaining([crates, repos]));
+		expect(files).toEqual(expect.arrayContaining([crates, repos, tweets]));
 		const article = articles.find(
 			(candidate) => candidate.path === 'development/rust-cargo-cranelift-tuning',
 		);
@@ -43,6 +45,16 @@ describe('article widget build inputs', () => {
 		}
 		expect(files).toContain(
 			fileURLToPath(new URL('contents/development/rust-cargo-cranelift-tuning.summary.yaml', ROOT)),
+		);
+
+		const friends = articles.find(
+			(candidate) => candidate.path === 'mirror/friends-come-in-phases',
+		);
+		expect(friends?.blocks).toContainEqual(
+			expect.objectContaining({
+				type: 'twitter',
+				tweet: expect.objectContaining({ id: '2088060180290302397' }),
+			}),
 		);
 	});
 });

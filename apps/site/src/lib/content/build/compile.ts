@@ -23,6 +23,7 @@ import type {
 	RepoRecord,
 	TokeiView,
 	TocEntry,
+	TweetRecord,
 	ArticleMeta,
 } from '../types.ts';
 import type { TextDirective } from 'mdast-util-directive';
@@ -354,10 +355,11 @@ export type CompileContext = {
 	 */
 	newTabNote: string;
 	resolveAsset: (reference: string) => Resolved | null;
-	/** Crate trees and repository facts, fetched at build time by `cms embed`. */
+	/** External facts captured before the site build, so rendering never fetches them. */
 	embeds?: {
 		crates: Record<string, CrateRecord>;
 		repos: Record<string, RepoRecord>;
+		tweets: Record<string, TweetRecord>;
 	};
 	highlight: (code: string, lang: string) => Promise<string>;
 	/** Present only while reading the source view; translations inherit validated frontmatter. */
@@ -544,6 +546,28 @@ export async function compile(
 			}
 			blocks.push({ type: 'placeholder', kind: 'github', meta: { repo: name } });
 			md.push(`> [repository: ${name}]`);
+			continue;
+		}
+
+		if (node.type === 'leafDirective' && node.name === 'twitter') {
+			const id = node.attributes?.tweet ?? '';
+			const tweet = embeds?.tweets[id];
+			if (tweet) {
+				const href = `${URLS.external.social.twitter}/${tweet.author}/status/${tweet.id}`;
+				blocks.push({ type: 'twitter', tweet });
+				feed.push(
+					`<blockquote><p>${escapeHtml(tweet.text).replaceAll('\n', '<br />')}</p>` +
+						`<footer><a href="${href}">@${escapeHtml(tweet.author)} on Twitter</a></footer>` +
+						'</blockquote>',
+				);
+				md.push(
+					`> ${tweet.text.replaceAll('\n', '\n> ')}\n>\n> — [@${tweet.author} on Twitter](${href})`,
+				);
+				text.push(tweet.text);
+				continue;
+			}
+			blocks.push({ type: 'placeholder', kind: 'twitter', meta: { tweet: id } });
+			md.push(`> [tweet: ${id}]`);
 			continue;
 		}
 
