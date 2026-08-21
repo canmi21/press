@@ -147,10 +147,11 @@ command 'commit'`). The moment a message is written is inside the agent's tool c
 is where the check has to sit.
 
 The behavior has one home under `hooks/`. `.claude/settings.json` and `.codex/hooks.json` are
-thin adapters that bind the same scripts to each harness's `PreToolUse` and `PostToolUse`
-events. Command selection lives inside the scripts rather than in either adapter because the
-two hook configs do not share a command-predicate field; putting it in one vendor's config
-would make the other runner enforce a wider rule.
+thin adapters with the same event table, each calling the one `hooks/run.py` entrypoint. That
+entrypoint owns routing, command selection, and combining output from policies that can both
+apply to one event. A vendor adapter never owns policy: if the harness payloads diverge later,
+the shared entrypoint normalises their common meaning rather than growing two implementations
+that only appear equivalent.
 
 `hooks/spec_check.py` runs _after_ the commit lands and asks the question the diff
 cannot: was a decision made here that nobody wrote down? It fires when a `feat`, `refactor`,

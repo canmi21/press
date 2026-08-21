@@ -2,26 +2,26 @@
 	"hooks": {
 		"PreToolUse": [
 			{
-				"matcher": "Bash",
+				"matcher": "^Bash$",
 				"hooks": [
 					{
 						"type": "command",
-						"command": "${CLAUDE_PROJECT_DIR}/hooks/commit.py"
+						"command": "/usr/bin/python3 \"$(jj workspace root)/hooks/run.py\"",
+						"timeout": 120,
+						"statusMessage": "Applying repository policy"
 					}
 				]
 			}
 		],
 		"PostToolUse": [
 			{
-				"matcher": "Bash",
+				"matcher": "^Bash$",
 				"hooks": [
 					{
 						"type": "command",
-						"command": "${CLAUDE_PROJECT_DIR}/hooks/spec_check.py"
-					},
-					{
-						"type": "command",
-						"command": "${CLAUDE_PROJECT_DIR}/hooks/spec_diff.py"
+						"command": "/usr/bin/python3 \"$(jj workspace root)/hooks/run.py\"",
+						"timeout": 30,
+						"statusMessage": "Applying repository policy"
 					}
 				]
 			}
@@ -31,7 +31,9 @@
 				"hooks": [
 					{
 						"type": "command",
-						"command": "${CLAUDE_PROJECT_DIR}/hooks/bookmark.py"
+						"command": "/usr/bin/python3 \"$(jj workspace root)/hooks/run.py\"",
+						"timeout": 30,
+						"statusMessage": "Applying repository policy"
 					}
 				]
 			}

@@ -20,6 +20,8 @@ carry the agent's own edits and the diff is purely what main brought in.
 Dependencies are limited to the standard library, for the reason given in spec/toolchain.md.
 """
 
+from __future__ import annotations
+
 import json
 import os
 import subprocess
@@ -68,15 +70,11 @@ def operation_before_rebase() -> str | None:
 	return ops[i][0] if i < len(ops) else None
 
 
-def main() -> int:
-	try:
-		payload = json.load(sys.stdin)
-	except (json.JSONDecodeError, ValueError):
-		return 0
-
+def context(payload: dict) -> str:
+	"""Return the model-visible rule delta for one lifecycle payload, if any."""
 	command = payload.get("tool_input", {}).get("command", "")
 	if not rebased(command):
-		return 0
+		return ""
 
 	cwd = payload.get("cwd")
 	if cwd and os.path.isdir(cwd):
@@ -84,18 +82,18 @@ def main() -> int:
 
 	before = operation_before_rebase()
 	if not before:
-		return 0
+		return ""
 	previous = run(
 		["jj", "log", "--at-op", before, "--ignore-working-copy", "--no-graph", "-r", "@", "-T", "commit_id"]
 	).strip()
 	if not previous:
-		return 0
+		return ""
 
 	diff = run(
 		["jj", "diff", "--ignore-working-copy", "--git", "--from", previous, "--to", "@", "--", *RULE_PATHS]
 	)
 	if not diff.strip():
-		return 0
+		return ""
 
 	lines = diff.splitlines()
 	shown = "\n".join(lines[:MAX_LINES])
@@ -111,16 +109,26 @@ def main() -> int:
 		"spec/agent-protocol.md says a rebase is where they are taken in. If one changes what "
 		"this task should do, adjust; if none does, carry on.\n\n" + shown
 	)
-	print(
-		json.dumps(
-			{
-				"hookSpecificOutput": {
-					"hookEventName": "PostToolUse",
-					"additionalContext": message,
+	return message
+
+
+def main() -> int:
+	try:
+		payload = json.load(sys.stdin)
+	except (json.JSONDecodeError, ValueError):
+		return 0
+	message = context(payload)
+	if message:
+		print(
+			json.dumps(
+				{
+					"hookSpecificOutput": {
+						"hookEventName": "PostToolUse",
+						"additionalContext": message,
+					}
 				}
-			}
+			)
 		)
-	)
 	return 0
 
 

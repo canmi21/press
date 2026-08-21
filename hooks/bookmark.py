@@ -26,6 +26,8 @@ start demanding it be published.
 Dependencies are limited to the standard library, for the reason given in spec/toolchain.md.
 """
 
+from __future__ import annotations
+
 import json
 import os
 import subprocess
@@ -66,17 +68,13 @@ def unmerged() -> list[tuple[str, str]]:
 	return found
 
 
-def main() -> int:
-	try:
-		payload = json.load(sys.stdin)
-	except (json.JSONDecodeError, ValueError):
-		return 0
-
+def response(payload: dict) -> dict:
+	"""Return the continuation decision for one lifecycle payload, if any."""
 	# Set when this hook already blocked once and the agent is being asked to continue. Blocking
 	# again on the next stop would be a loop with no exit, since the hook cannot tell a refusal
 	# to move the bookmark from an inability to.
 	if payload.get("stop_hook_active"):
-		return 0
+		return {}
 
 	cwd = payload.get("cwd")
 	if cwd and os.path.isdir(cwd):
@@ -84,7 +82,7 @@ def main() -> int:
 
 	ahead = unmerged()
 	if not ahead:
-		return 0
+		return {}
 
 	listed = "\n".join(f"  {change}  {subject}" for change, subject in ahead)
 	reason = (
@@ -100,7 +98,17 @@ def main() -> int:
 		f"spec/toolchain.md."
 	)
 
-	print(json.dumps({"decision": "block", "reason": reason}))
+	return {"decision": "block", "reason": reason}
+
+
+def main() -> int:
+	try:
+		payload = json.load(sys.stdin)
+	except (json.JSONDecodeError, ValueError):
+		return 0
+	result = response(payload)
+	if result:
+		print(json.dumps(result))
 	return 0
 
 

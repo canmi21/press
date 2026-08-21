@@ -1,5 +1,7 @@
 """Find jj invocations inside the shell command shape agent hooks receive."""
 
+from __future__ import annotations
+
 import os
 import shlex
 

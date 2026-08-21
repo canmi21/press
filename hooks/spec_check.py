@@ -21,6 +21,8 @@ a reference pointing at a file that does not exist is unambiguously broken.
 Dependencies are limited to the standard library, for the reason given in spec/toolchain.md.
 """
 
+from __future__ import annotations
+
 import json
 import os
 import subprocess
@@ -46,17 +48,13 @@ def writes_commit(command: str) -> bool:
 	return any(subcommand in ("commit", "ci") for subcommand, _ in invocations(command))
 
 
-def main() -> int:
-	try:
-		payload = json.load(sys.stdin)
-	except (json.JSONDecodeError, ValueError):
-		return 0
-
+def context(payload: dict) -> str:
+	"""Return the model-visible reminder for one lifecycle payload, if any."""
 	command = payload.get("tool_input", {}).get("command", "")
 	# Codex matches the tool name but has no handler-level command predicate, so the portable
 	# hook owns the narrower selection itself.
 	if not writes_commit(command):
-		return 0
+		return ""
 
 	cwd = payload.get("cwd")
 	if cwd and os.path.isdir(cwd):
@@ -65,15 +63,15 @@ def main() -> int:
 	subject = run(["jj", "log", "--no-graph", "-r", "@-", "-T", "description.first_line()"])
 	commit_type = subject.split(":", 1)[0].split("(", 1)[0].strip()
 	if commit_type not in DECISION_TYPES:
-		return 0
+		return ""
 
 	summary = run(["jj", "diff", "--summary", "-r", "@-"])
 	paths = [line.split(maxsplit=1)[1] for line in summary.splitlines() if " " in line]
 	if not paths:
-		return 0
+		return ""
 
 	if any(p.startswith(RULE_PATHS) for p in paths):
-		return 0
+		return ""
 
 	lines = [
 		f"Committed `{subject.strip()}` without touching spec/ or CLAUDE.md.",
@@ -85,16 +83,26 @@ def main() -> int:
 		"spec and what belongs in a code comment instead.",
 	]
 
-	print(
-		json.dumps(
-			{
-				"hookSpecificOutput": {
-					"hookEventName": "PostToolUse",
-					"additionalContext": "\n".join(lines),
+	return "\n".join(lines)
+
+
+def main() -> int:
+	try:
+		payload = json.load(sys.stdin)
+	except (json.JSONDecodeError, ValueError):
+		return 0
+	message = context(payload)
+	if message:
+		print(
+			json.dumps(
+				{
+					"hookSpecificOutput": {
+						"hookEventName": "PostToolUse",
+						"additionalContext": message,
+					}
 				}
-			}
+			)
 		)
-	)
 	return 0
 
 

@@ -7,9 +7,9 @@
 				"hooks": [
 					{
 						"type": "command",
-						"command": "/usr/bin/python3 \"$(jj workspace root)/hooks/commit.py\"",
+						"command": "/usr/bin/python3 \"$(jj workspace root)/hooks/run.py\"",
 						"timeout": 120,
-						"statusMessage": "Checking commit message"
+						"statusMessage": "Applying repository policy"
 					}
 				]
 			}
@@ -20,15 +20,9 @@
 				"hooks": [
 					{
 						"type": "command",
-						"command": "/usr/bin/python3 \"$(jj workspace root)/hooks/spec_check.py\"",
+						"command": "/usr/bin/python3 \"$(jj workspace root)/hooks/run.py\"",
 						"timeout": 30,
-						"statusMessage": "Checking whether the commit settled a decision"
-					},
-					{
-						"type": "command",
-						"command": "/usr/bin/python3 \"$(jj workspace root)/hooks/spec_diff.py\"",
-						"timeout": 30,
-						"statusMessage": "Showing rule changes a rebase brought in"
+						"statusMessage": "Applying repository policy"
 					}
 				]
 			}
@@ -38,9 +32,9 @@
 				"hooks": [
 					{
 						"type": "command",
-						"command": "/usr/bin/python3 \"$(jj workspace root)/hooks/bookmark.py\"",
+						"command": "/usr/bin/python3 \"$(jj workspace root)/hooks/run.py\"",
 						"timeout": 30,
-						"statusMessage": "Checking the main bookmark covers what was committed"
+						"statusMessage": "Applying repository policy"
 					}
 				]
 			}

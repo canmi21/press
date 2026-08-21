@@ -57,6 +57,10 @@ run = [
 description = "Check the font manifest, published chunks, stylesheets, and splitter runtime"
 run = ".mise/tasks/fonts --check"
 
+[tasks.check-hooks]
+description = "Exercise the shared agent-hook entrypoint with macOS system Python"
+run = "/usr/bin/python3 -m unittest discover -s hooks -p 'test_*.py'"
+
 [tasks.lint]
 description = "Lint the workspace"
 run = "oxlint ."
@@ -142,6 +146,7 @@ depends = [
 	"check",
 	"check-site",
 	"check-fonts",
+	"check-hooks",
 	"lint",
 	"test",
 	"refs",

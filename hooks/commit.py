@@ -18,6 +18,8 @@ hook, so it must not depend on the environment being set up correctly.
 See spec/commits.md and spec/lint-format.md.
 """
 
+from __future__ import annotations
+
 import json
 import os
 import re
@@ -100,12 +102,8 @@ def problems_with(message: str) -> list[str]:
 	return found
 
 
-def main() -> int:
-	try:
-		payload = json.load(sys.stdin)
-	except (json.JSONDecodeError, ValueError):
-		return 0
-
+def handle(payload: dict) -> int:
+	"""Apply the commit policy to one lifecycle payload."""
 	command = payload.get("tool_input", {}).get("command", "")
 	cwd = payload.get("cwd")
 	if cwd and os.path.isdir(cwd):
@@ -142,6 +140,14 @@ def main() -> int:
 		# A broken formatter is not a reason to refuse work, so failures here are ignored.
 		subprocess.run(["jj", "fix"], capture_output=True, env=env, timeout=120)
 	return 0
+
+
+def main() -> int:
+	try:
+		payload = json.load(sys.stdin)
+	except (json.JSONDecodeError, ValueError):
+		return 0
+	return handle(payload)
 
 
 if __name__ == "__main__":

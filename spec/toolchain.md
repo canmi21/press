@@ -346,10 +346,10 @@ where a task needs real logic, which goes in `.mise/tasks/` as an executable fil
 
 ### The other exception: hook scripts
 
-`hooks/` is deliberately outside mise's reach. The real scripts live there once and use
-`#!/usr/bin/env python3` with nothing beyond the standard library. Vendor directories contain
-only the glue that binds those scripts to each harness: `.claude/settings.json` and
-`.codex/hooks.json`.
+`hooks/` is deliberately outside mise's reach. The real policies live there once and use
+`#!/usr/bin/env python3` with nothing beyond the standard library. Both vendor directories
+bind the same `hooks/run.py` entrypoint; `.claude/settings.json` and `.codex/hooks.json` are
+only the glue that exposes it to each harness.
 
 The reason is the failure mode. mise activation is shell-scoped, and a hook is launched by
 the agent harness rather than by an interactive shell. If a hook's interpreter came from
@@ -357,10 +357,12 @@ mise and mise were not active, the hook would fail to start -- and a hook that f
 start enforces nothing while looking exactly like a hook that passed. Silent
 non-enforcement is worse than no enforcement, because it is believed.
 
-Verified: the commit hook runs unchanged on macOS's system Python 3.9.6 and on the current
-Homebrew and mise builds, because it touches only `json`, `re`, `shlex`, `subprocess`, and
-`os`. Version pinning would buy nothing here and would cost the guarantee that it always
-starts.
+Compatibility is a check, not a claim made once. `mise run verify` invokes the exact shared
+entrypoint with representative Claude Code and Codex payloads under `/usr/bin/python3`, the
+interpreter both adapters run. This catches syntax and annotation features newer than the
+macOS system Python before either harness has to discover them one failed hook at a time.
+Version pinning would buy nothing here and would cost the guarantee that the hook starts
+outside an activated shell.
 
 This exception covers hook scripts only. Everything a human or an agent invokes on purpose
 still belongs in `mise.toml`.
