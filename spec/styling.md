@@ -47,6 +47,22 @@ and would leave two lists on one page disagreeing about where their values begin
 Japanese. Intrinsic sizing answers the translation, subgrid answers the alignment, and neither
 answer is a measurement anybody has to maintain.
 
+## A summary provider mark follows the last letter, not the punctuation
+
+The provider mark at the end of an article summary is visually anchored to the text line above
+it rather than to the paragraph edge. When the summary's final line has room for the mark, the
+mark remains on that line and its right edge aligns with the final letter on the preceding line.
+When the final line has no room, the mark moves to the following line and aligns with the final
+letter on the summary's final text line instead.
+
+Punctuation does not supply that anchor. A line ending in `block，` aligns the mark with the right
+edge of `k`, and a Chinese sentence ending in `。` aligns it with the preceding Han character.
+This keeps the mark tied to the last piece of ink that carries the sentence rather than to the
+variable optical width of its closing punctuation. Because both the line break and the anchor
+depend on the rendered font and available width,
+[article.svelte](../apps/site/src/lib/article/article.svelte) measures them from the same browser
+font metrics and recalculates them when the paragraph resizes.
+
 ## An in-page jump scrolls without becoming an address
 
 Navigation within one page -- an article's table of contents, the licence page's list of

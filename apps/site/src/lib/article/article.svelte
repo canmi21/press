@@ -9,7 +9,7 @@
 	import IconClaude from '~icons/mingcute/claude-line';
 	import IconGemini from '~icons/mingcute/google-gemini-line';
 	import IconOpenAi from '~icons/mingcute/openai-line';
-	import { layoutWithLines, prepareWithSegments } from '@chenglou/pretext';
+	import { layoutWithLines, measureNaturalWidth, prepareWithSegments } from '@chenglou/pretext';
 	import { remFromMeasuredPixels } from '$lib/client/units';
 	import * as m from '$lib/paraglide/messages';
 	import type { Snippet } from 'svelte';
@@ -104,11 +104,12 @@
 	}
 
 	/**
-	 * Follow the rendered line above rather than the paragraph box's theoretical right edge.
+	 * Follow the last letter on the rendered reference line, not its trailing punctuation.
 	 *
 	 * A wrapped line can stop short by a word or several CJK glyphs, and CSS exposes no value for
 	 * that ink width. Pretext applies the browser's line-breaking rules to exact canvas metrics;
 	 * the mark stays in flow and measurement only supplies the inset wrapping cannot express.
+	 * See spec/styling.md.
 	 */
 	function alignSummaryProvider(node: HTMLParagraphElement) {
 		let frame = 0;
@@ -150,12 +151,21 @@
 
 				const markWidth = mark.getBoundingClientRect().width;
 				const startMargin = Number.parseFloat(getComputedStyle(mark).marginInlineStart) || 0;
-				const sharesLastLine = last.width + startMargin + markWidth <= width;
-				const preceding = sharesLastLine ? (lines.at(-2) ?? last) : last;
-				const room = sharesLastLine
-					? width - last.width - startMargin - markWidth
-					: width - markWidth;
-				const inset = Math.min(Math.max(0, width - preceding.width), Math.max(0, room));
+				const widthThroughLastLetter = (line: (typeof lines)[number]) => {
+					const throughLastLetter = line.text.match(/^.*\p{L}\p{M}*/u)?.[0];
+					return throughLastLetter
+						? measureNaturalWidth(
+								prepareWithSegments(throughLastLetter, style.font, { letterSpacing }),
+							)
+						: line.width;
+				};
+				const lastWidth = widthThroughLastLetter(last);
+				const preceding = lines.at(-2);
+				const precedingWidth = preceding ? widthThroughLastLetter(preceding) : undefined;
+				const sharesLastLine =
+					precedingWidth !== undefined && last.width + startMargin <= precedingWidth - markWidth;
+				const anchorWidth = sharesLastLine ? precedingWidth : lastWidth;
+				const inset = Math.min(Math.max(0, width - anchorWidth), Math.max(0, width - markWidth));
 				mark.style.marginInlineEnd = remFromMeasuredPixels(inset);
 			});
 		};
@@ -328,7 +338,7 @@
 	.summary-shell {
 		display: grid;
 		grid-template-rows: 0fr;
-		transition: grid-template-rows 260ms cubic-bezier(0.22, 1, 0.36, 1);
+		transition: grid-template-rows 320ms cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
 	.summary-shell[data-open='true'] {
