@@ -255,7 +255,7 @@
 											>{author.name} <span class="text-text-soft">@{author.github}</span></a
 										>
 									{:else}
-										<span class="min-w-0 truncate text-text-strong">{author.name}</span>
+										<span class="min-w-0 text-text-strong">{author.name}</span>
 									{/if}
 								</span>
 							{/each}

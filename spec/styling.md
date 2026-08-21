@@ -160,21 +160,26 @@ performs arithmetic and compositor writes, not fresh layout reads. A pre-hydrati
 the collapsed endpoints after browser scroll restoration, before the component observers take
 over, so reloading at the article end does not leave the rail centered until hydration.
 
-## Boxed digits mark a number that moved; a standing fact is plain
+## A number's treatment follows the role it plays
 
 The `value` cells in [app.css](../apps/site/src/styles/app.css) give a number its own boxes and
 a monospace face. They were built for the subscriber count, and what earns them is that the
 number is **live and answers to the reader**: it changed because somebody joined, and it may
 change again while the page is open.
 
-A number that is simply true of the site takes the surrounding text's own figures. The licence
-page counts the packages it lists, which is a fact about the dependency tree rather than an event, and
-setting it in cells claimed a significance it does not have -- the ink says "watch this", and
-there is nothing to watch. Reserving the cells for the first kind is what keeps them meaning
-anything.
+A number that is simply true of the site does not earn boxes merely by being numeric. In running
+prose it takes the surrounding text's own figures. A repeated trailing metric column has a
+different job: the licence directories end each row or section with a package count, and
+monospace tabular figures let those narrow values scan as one column. Soft ink and the absence of
+boxes keep them subordinate to the names they quantify; this is directory structure, not a live
+state.
 
-Both remain locale-formatted through `Intl.NumberFormat`. The cells draw their own grouping
-because no locale supplies a separator character to a box; a plain figure gets the reader's.
+Counts below one thousand stay as whole numbers. At one thousand and above, compact indicators
+use the shared `compactCount` notation: lowercase `k`, uppercase `M`, and a decimal only while it
+carries useful precision (`1k`, `1.5k`, `16k`, `2.3M`). This applies to the licence metric columns
+as well as stat rows and chart axes. A count written into prose remains complete and
+locale-formatted through `Intl.NumberFormat`; compact notation is for a bounded indicator, not a
+sentence.
 
 ## Latin inside CJK is spaced with a real space
 

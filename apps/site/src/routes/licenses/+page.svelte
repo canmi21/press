@@ -12,7 +12,7 @@
 	import { CARD_HEIGHT, CARD_WIDTH, cardUrl } from '$lib/opengraph';
 	import * as m from '$lib/paraglide/messages';
 	import type { PageData } from './$types';
-	import { intlLocale } from '$lib/format';
+	import { compactCount, intlLocale } from '$lib/format';
 
 	let { data }: { data: PageData } = $props();
 	const locale = $derived(data.locale.code);
@@ -149,7 +149,9 @@
 						<span class="focus-link-inner min-w-0 truncate">{entry.license}</span>
 						<span class="h-0 min-w-6 flex-1 border-t border-dashed border-border-strong"></span>
 					</span>
-					<span class="font-mono text-[0.9375rem] tabular-nums text-text-soft">{entry.count}</span>
+					<span class="font-mono text-[0.9375rem] tabular-nums text-text-soft"
+						>{compactCount(entry.count)}</span
+					>
 				</a>
 			{/each}
 			<p class="mt-3 text-[0.8125rem] text-pretty text-text-soft">

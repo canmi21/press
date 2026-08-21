@@ -9,7 +9,7 @@
 	import { CARD_HEIGHT, CARD_WIDTH, cardUrl } from '$lib/opengraph';
 	import * as m from '$lib/paraglide/messages';
 	import type { PageData } from './$types';
-	import { intlLocale } from '$lib/format';
+	import { compactCount, intlLocale } from '$lib/format';
 
 	let { data }: { data: PageData } = $props();
 	const locale = $derived(data.locale.code);
@@ -77,7 +77,7 @@
 				<div class="mb-3 flex items-baseline justify-between gap-4">
 					<h2 id="registry-{group.registry}" class="font-medium text-text-strong">{group.name}</h2>
 					<span class="font-mono text-[0.8125rem] tabular-nums text-text-soft"
-						>{group.rows.length}</span
+						>{compactCount(group.rows.length)}</span
 					>
 				</div>
 				<PackageList rows={group.rows} {locale} license={data.license.license} />
