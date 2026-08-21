@@ -64,6 +64,18 @@ This licence is bounded by destination exactly as the table above is. Nothing he
 library into a Worker or a browser bundle to save writing twenty lines; there, the payload is the
 constraint and the trade runs the other way.
 
+### Modern browser APIs get feature-gated fallbacks
+
+Application source keeps the standard API that expresses its intent. A browser missing a runtime
+built-in does not make every call site retreat to an older spelling: the client startup boundary
+detects the feature and dynamically loads the narrow `core-js` module before hydration. Browsers
+that already implement the feature do not request that fallback chunk.
+
+Feature detection decides, never the user agent. Vite's build target can lower syntax but does not
+provide runtime built-ins, while a hand-written approximation can quietly disagree with the
+standard on sparse arrays or generic receivers. The standards implementation belongs in one
+compatibility module; business code remains modern and unaware of it.
+
 ## Errors are types on the way up and one message at the edge
 
 **A fallible operation names what can go wrong as its own type**, derived with `thiserror`. Not a

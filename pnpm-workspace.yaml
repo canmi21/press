@@ -37,6 +37,8 @@ overrides:
 allowBuilds:
   '@sentry/cli': true
   cn-font-split: true
+  # Its postinstall only prints a funding message; the runtime modules need no build step.
+  core-js: false
   esbuild: true
   koffi: true
   protobufjs: true

@@ -1,7 +1,9 @@
 import { dev } from '$app/environment';
 import { URLS } from '@canmi/urls';
 import * as Sentry from '@sentry/sveltekit';
+import type { ClientInit } from '@sveltejs/kit';
 import { registerAnalytics } from '$lib/analytics';
+import { prepareBrowserRuntime } from '$lib/client/compatibility';
 import { withoutLanguageParameter } from '$lib/locale';
 import { registerClientStrategy } from '$lib/locale/paraglide';
 
@@ -14,6 +16,7 @@ Sentry.init({
 	environment: dev ? 'development' : 'production',
 });
 
+export const init: ClientInit = prepareBrowserRuntime;
 export const handleError = Sentry.handleErrorWithSentry();
 
 function cleanLanguageParameter(): void {
