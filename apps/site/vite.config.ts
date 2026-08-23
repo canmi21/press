@@ -18,11 +18,12 @@ import { paraglideVitePlugin } from '@inlang/paraglide-js';
 import Icons from 'unplugin-icons/vite';
 import { execFile, execFileSync } from 'node:child_process';
 import { promisify } from 'node:util';
-import { defineConfig, type UserConfig } from 'vite';
+import { defineConfig, type UserConfig, type ViteDevServer } from 'vite';
 import { parse as parseYaml } from 'yaml';
 import { buildArticles, buildPages } from './src/lib/content/build/articles.ts';
+import type { Article, Page } from './src/lib/content/types.ts';
 import { packArticles, packPages } from './src/lib/content/packed.ts';
-import { segmentSyncQueue } from './vite/segment-sync.ts';
+import { contentRefreshQueue } from './vite/content-refresh.ts';
 
 const ROOT = fileURLToPath(new URL('../../', import.meta.url));
 const SITE_CONFIG = fileURLToPath(new URL('./site.config.yaml', import.meta.url));
@@ -40,6 +41,11 @@ const execFileAsync = promisify(execFile);
 function articleMarkdown(path: string): boolean {
 	const fromContents = relative(CONTENTS, path);
 	return !fromContents.startsWith('..') && !isAbsolute(fromContents) && path.endsWith('.md');
+}
+
+function messageCatalog(path: string): boolean {
+	const fromMessages = relative(MESSAGES, path);
+	return !fromMessages.startsWith('..') && !isAbsolute(fromMessages) && path.endsWith('.json');
 }
 
 // Built-in 301s, kept out of site.config.yaml because they are product behaviour rather than
@@ -141,18 +147,60 @@ export default defineConfig(async ({ command, mode }) => {
 	const urls = mode === 'production' ? URLS.apps.production : development;
 	const articleInputs = new Set<string>();
 	let generatedSegmentsMtime: number | undefined;
-	const segmentSync = segmentSyncQueue(async () => {
+	let activeSegmentSync: Promise<void> | undefined;
+	let devServer: ViteDevServer | undefined;
+	const syncSegments = async (): Promise<void> => {
 		const before = await stat(SEGMENTS).then(
 			({ mtimeMs }) => mtimeMs,
 			() => undefined,
 		);
-		await execFileAsync('cargo', ['run', '-q', '-p', 'cms', '--', 'segments'], {
+		const running = execFileAsync('cargo', ['run', '-q', '-p', 'cms', '--', 'segments'], {
 			cwd: ROOT,
+		}).then(async () => {
+			const after = await stat(SEGMENTS).then(({ mtimeMs }) => mtimeMs);
+			if (after !== before) generatedSegmentsMtime = after;
 		});
-		const after = await stat(SEGMENTS).then(({ mtimeMs }) => mtimeMs);
-		if (after !== before) generatedSegmentsMtime = after;
+		activeSegmentSync = running;
+		try {
+			await running;
+		} finally {
+			if (activeSegmentSync === running) activeSegmentSync = undefined;
+		}
+	};
+	if (command === 'serve') await syncSegments();
+
+	const compileContent = async () => {
+		const [articleBuild, pageBuild] = await Promise.all([
+			buildArticles({
+				contents: CONTENTS,
+				cdnUrl: urls.cdn,
+				messages: MESSAGES,
+				assets: ASSETS,
+				media: MEDIA,
+				segments: SEGMENTS,
+				crates: CRATES,
+				repos: REPOS,
+				tweets: TWEETS,
+			}),
+			buildPages({ contents: CONTENTS, messages: MESSAGES, segments: SEGMENTS }),
+		]);
+		articleInputs.clear();
+		for (const file of new Set([...articleBuild.files, ...pageBuild.files])) {
+			articleInputs.add(file);
+		}
+		return { articleBuild, pageBuild };
+	};
+
+	type RuntimeArticles = {
+		replaceContent: (articles: Article[], pages: Page[]) => void;
+	};
+	const refreshContent = contentRefreshQueue(async (segments) => {
+		if (segments) await syncSegments();
+		const { articleBuild, pageBuild } = await compileContent();
+		if (!devServer) return;
+		const runtime = (await devServer.ssrLoadModule('virtual:articles')) as RuntimeArticles;
+		runtime.replaceContent(articleBuild.articles, pageBuild.pages);
 	});
-	if (command === 'serve') await segmentSync.request().settled;
 	return {
 		plugins: [
 			tailwindcss(),
@@ -173,63 +221,65 @@ export default defineConfig(async ({ command, mode }) => {
 			{
 				// Content sources and sidecars are build inputs, not Worker work. Compile every
 				// browser-facing view here and serialize the lookup tables into the server bundle.
+				// Development replaces one stable runtime snapshot instead. See spec/i18n.md.
 				name: 'virtual-articles',
 				configureServer(server) {
-					// A sidecar may not exist when the virtual module first loads. Watching the
-					// directory is what lets its later creation enter the HMR pipeline.
-					server.watcher.add(CONTENTS);
+					devServer = server;
+					// Watch inputs directly without registering them as dependencies of the virtual
+					// module. Vite invalidates dependencies before hotUpdate can replace the stable
+					// snapshot, which would retain another full SSR generation. See spec/i18n.md.
+					server.watcher.add([CONTENTS, MESSAGES, ASSETS, MEDIA, SEGMENTS, CRATES, REPOS, TWEETS]);
 				},
 				resolveId(id: string) {
 					return id === 'virtual:articles' ? '\0virtual:articles' : null;
 				},
 				async load(id: string) {
 					if (id !== '\0virtual:articles') return null;
-					const [articleBuild, pageBuild] = await Promise.all([
-						buildArticles({
-							contents: CONTENTS,
-							cdnUrl: urls.cdn,
-							messages: MESSAGES,
-							assets: ASSETS,
-							media: MEDIA,
-							segments: SEGMENTS,
-							crates: CRATES,
-							repos: REPOS,
-							tweets: TWEETS,
-						}),
-						buildPages({ contents: CONTENTS, messages: MESSAGES, segments: SEGMENTS }),
-					]);
-					articleInputs.clear();
-					for (const file of new Set([...articleBuild.files, ...pageBuild.files])) {
-						articleInputs.add(file);
-						this.addWatchFile(file);
+					if (activeSegmentSync) await activeSegmentSync;
+					const { articleBuild, pageBuild } = await compileContent();
+					if (command === 'build') {
+						for (const file of new Set([...articleBuild.files, ...pageBuild.files])) {
+							this.addWatchFile(file);
+						}
 					}
 					return [
 						`import { unpackArticles, unpackPages } from '$lib/content/packed.ts';`,
-						`export const articles = unpackArticles(${JSON.stringify(packArticles(articleBuild.articles))});`,
-						`export const pages = unpackPages(${JSON.stringify(packPages(pageBuild.pages))});`,
+						`import { contentSnapshot } from '$lib/content/snapshot.ts';`,
+						`const articles = unpackArticles(${JSON.stringify(packArticles(articleBuild.articles))});`,
+						`const pages = unpackPages(${JSON.stringify(packPages(pageBuild.pages))});`,
+						`export let content = contentSnapshot(articles, pages);`,
+						`export function replaceContent(articles, pages) { content = contentSnapshot(articles, pages); }`,
 					].join('\n');
 				},
 				async hotUpdate(options) {
-					if (articleMarkdown(options.file)) {
-						const request = segmentSync.request();
-						await request.settled;
-						// One leader invalidates the virtual module after the last event in the burst.
-						if (!request.leader) return [];
-					} else if (options.file === SEGMENTS) {
-						const pending = segmentSync.active();
+					const markdown = articleMarkdown(options.file);
+					if (options.file === SEGMENTS) {
+						const pending = refreshContent.active();
 						if (pending) await pending;
 						const mtime = await stat(SEGMENTS).then(({ mtimeMs }) => mtimeMs);
-						// The markdown event already owns this rebuild. Swallow the derived write so
-						// the same article snapshot is not compiled and retained a second time.
+						// The Markdown event already owns this refresh. Swallow its derived write.
 						if (mtime === generatedSegmentsMtime) return [];
-					} else if (!articleInputs.has(options.file)) {
+					} else if (
+						!markdown &&
+						!messageCatalog(options.file) &&
+						!articleInputs.has(options.file)
+					) {
 						return;
 					}
-					const virtual = this.environment.moduleGraph.getModuleById('\0virtual:articles');
-					if (!virtual) return;
-					// Watched data files are not imports, so Vite otherwise sees no affected module.
-					// Returning the virtual module invalidates its serialized article snapshot.
-					return [...new Set([...options.modules, virtual])];
+					// The browser has no content module to update. Its reload is sent only after the
+					// server has atomically replaced the current snapshot.
+					if (this.environment.name === 'client') return [];
+					if (this.environment.name !== 'ssr') return;
+					const request = refreshContent.request(markdown);
+					await request.settled;
+					if (request.leader) {
+						options.server.environments.client.hot.send({
+							type: 'full-reload',
+							path: '*',
+							triggeredBy: options.file,
+						});
+					}
+					return [];
 				},
 			},
 			sentrySvelteKit({
