@@ -486,6 +486,610 @@
         "region": "body"
       }
     ],
+    "architecture/observation-to-lowering.md": [
+      {
+        "id": "f7294aee60d51ba2aa4bdcaf7a548d75",
+        "start": 10,
+        "end": 27,
+        "fingerprint": "54a9c572",
+        "region": "frontmatter"
+      },
+      {
+        "id": "3b29a848f07331b00d4556c1d50251c5",
+        "start": 37,
+        "end": 84,
+        "fingerprint": "44f5a300",
+        "region": "frontmatter"
+      },
+      {
+        "id": "4231a504b932a858791b4e47a7379a8f",
+        "start": 97,
+        "end": 376,
+        "fingerprint": "485bee7b",
+        "region": "frontmatter"
+      },
+      {
+        "id": "a6fff05b8d3ecbc09055244bcf25944a",
+        "start": 451,
+        "end": 922,
+        "fingerprint": "5357a5bb",
+        "region": "body"
+      },
+      {
+        "id": "91697e50f41cb974542e9a07ee8344e7",
+        "start": 924,
+        "end": 1733,
+        "fingerprint": "bf52180a",
+        "region": "body"
+      },
+      {
+        "id": "7ec5bc3e95296f330e539075e7876ad6",
+        "start": 1735,
+        "end": 2671,
+        "fingerprint": "0d6c2cb3",
+        "region": "body"
+      },
+      {
+        "id": "e033279e3c60f2deb9f737136d8c69e7",
+        "start": 2673,
+        "end": 3188,
+        "fingerprint": "375e5f96",
+        "region": "body"
+      },
+      {
+        "id": "e505142bb581a89629a946bcef8dc15e",
+        "start": 3190,
+        "end": 3957,
+        "fingerprint": "fe380e84",
+        "region": "body"
+      },
+      {
+        "id": "5d612f80c12a431b1866d94018f2c797",
+        "start": 3959,
+        "end": 4481,
+        "fingerprint": "f072dfa8",
+        "region": "body"
+      },
+      {
+        "id": "046d0cd5c549a2d01b57817b028ba96a",
+        "start": 4483,
+        "end": 4895,
+        "fingerprint": "e0c98094",
+        "region": "body"
+      },
+      {
+        "id": "0ebc57cd6fe921733b1ddc4f53986e0c",
+        "start": 4897,
+        "end": 5680,
+        "fingerprint": "9bd9d143",
+        "region": "body"
+      },
+      {
+        "id": "39b891eef4e69a2eb0817ac22659c485",
+        "start": 5682,
+        "end": 5952,
+        "fingerprint": "55197d40",
+        "region": "body"
+      },
+      {
+        "id": "66ceade3857c18faab5eefb6411c6b4c",
+        "start": 5954,
+        "end": 6023,
+        "fingerprint": "56d8a539",
+        "region": "body"
+      },
+      {
+        "id": "16e653e32a4b49e34b8ad0a413593f83",
+        "start": 6025,
+        "end": 7442,
+        "fingerprint": "4792ed92",
+        "region": "body"
+      },
+      {
+        "id": "0fe53c893e0545b6792f44e10c0da0ab",
+        "start": 7444,
+        "end": 8917,
+        "fingerprint": "b8964fc8",
+        "region": "body"
+      },
+      {
+        "id": "adf911802d2879568b442025919176e3",
+        "start": 8919,
+        "end": 10170,
+        "fingerprint": "5552c936",
+        "region": "body"
+      },
+      {
+        "id": "209b06818eb9ba98f111af3db9bd40b8",
+        "start": 10172,
+        "end": 11054,
+        "fingerprint": "412f97ec",
+        "region": "body"
+      },
+      {
+        "id": "2fd20095ee8397e7e225013ce3832f2e",
+        "start": 11056,
+        "end": 11802,
+        "fingerprint": "3999fca6",
+        "region": "body"
+      },
+      {
+        "id": "40db79b130ba7d98cdf146470d686f9c",
+        "start": 11804,
+        "end": 12260,
+        "fingerprint": "251d2bf8",
+        "region": "body"
+      },
+      {
+        "id": "1cad44b223c3543b18179405d8306fa2",
+        "start": 12262,
+        "end": 12358,
+        "fingerprint": "b4aca31a",
+        "region": "body"
+      },
+      {
+        "id": "49311edec3abbc1611dd6a9893627d30",
+        "start": 12360,
+        "end": 12653,
+        "fingerprint": "28246477",
+        "region": "body"
+      },
+      {
+        "id": "232d82c147d75a5f68088a64ceb56272",
+        "start": 12655,
+        "end": 13963,
+        "fingerprint": "608ff692",
+        "region": "body"
+      },
+      {
+        "id": "7f717fc6c038eb13557ca1e9f6674a7d",
+        "start": 13965,
+        "end": 14373,
+        "fingerprint": "92fd839f",
+        "region": "body"
+      },
+      {
+        "id": "61409df9c113532585936184a01c8d1e",
+        "start": 14375,
+        "end": 14819,
+        "fingerprint": "50fc7e41",
+        "region": "body"
+      },
+      {
+        "id": "411346bc5dd519c85d7d4ea231c93782",
+        "start": 14821,
+        "end": 14851,
+        "fingerprint": "57fdaa2c",
+        "region": "body"
+      },
+      {
+        "id": "6bc17fcf866553c6a1fa8b8857dce5b9",
+        "start": 15031,
+        "end": 15263,
+        "fingerprint": "84fbe2f3",
+        "region": "body"
+      },
+      {
+        "id": "fdedce013cca0c5346d209739824388e",
+        "start": 15378,
+        "end": 15408,
+        "fingerprint": "7a205d22",
+        "region": "body"
+      },
+      {
+        "id": "5dda34265f947b980a80b5b4c22f7dca",
+        "start": 15594,
+        "end": 16176,
+        "fingerprint": "3573a0f8",
+        "region": "body"
+      },
+      {
+        "id": "f06bbb3e30b5705654c1d55f10fc686d",
+        "start": 16178,
+        "end": 17084,
+        "fingerprint": "e59bc05e",
+        "region": "body"
+      },
+      {
+        "id": "893376b114db378fa7345c9f5c11f112",
+        "start": 17086,
+        "end": 17488,
+        "fingerprint": "2ede79c6",
+        "region": "body"
+      },
+      {
+        "id": "059d8b0d35ca8bfc412f8febb60ad09b",
+        "start": 17565,
+        "end": 17730,
+        "fingerprint": "428afad5",
+        "region": "body"
+      },
+      {
+        "id": "ebf09b153e5ce49c55112ffa1b3a2166",
+        "start": 17804,
+        "end": 18433,
+        "fingerprint": "26082d10",
+        "region": "body"
+      },
+      {
+        "id": "d5daed08228d3cbe83bac2ba9d19c0e9",
+        "start": 18633,
+        "end": 19231,
+        "fingerprint": "6edf1ce8",
+        "region": "body"
+      },
+      {
+        "id": "a967b86bac1a624223358dc604852922",
+        "start": 19233,
+        "end": 19321,
+        "fingerprint": "4c2483a1",
+        "region": "body"
+      },
+      {
+        "id": "48fb1c1f4af25101e6060c302cef1c56",
+        "start": 19426,
+        "end": 19435,
+        "fingerprint": "64742950",
+        "region": "body"
+      },
+      {
+        "id": "95ed5fcd25a87e05d19df1aef4b0efca",
+        "start": 19513,
+        "end": 20139,
+        "fingerprint": "18fda39b",
+        "region": "body"
+      },
+      {
+        "id": "e4dc3b600caa368edeb4738a4615b213",
+        "start": 20141,
+        "end": 20562,
+        "fingerprint": "1a9bcf6b",
+        "region": "body"
+      },
+      {
+        "id": "e9e12d1927cfe7afc44dda34454777f0",
+        "start": 20564,
+        "end": 21378,
+        "fingerprint": "c084d246",
+        "region": "body"
+      },
+      {
+        "id": "1d85e4860097ce7de50d0e42a3177776",
+        "start": 21380,
+        "end": 21777,
+        "fingerprint": "e94fac49",
+        "region": "body"
+      },
+      {
+        "id": "e46c2bae405225bc132dfc9b6de5c703",
+        "start": 21974,
+        "end": 22027,
+        "fingerprint": "10746f14",
+        "region": "body"
+      },
+      {
+        "id": "9c49dd1e6e9bddf3085c2cfdde3e8554",
+        "start": 22173,
+        "end": 22343,
+        "fingerprint": "a3fc66e8",
+        "region": "body"
+      },
+      {
+        "id": "8b422ab4af7d8ff077972b0a3e0c3288",
+        "start": 22345,
+        "end": 22472,
+        "fingerprint": "01a127c0",
+        "region": "body"
+      },
+      {
+        "id": "74d8a58fe3645cce6645a78783e2a11b",
+        "start": 22925,
+        "end": 23107,
+        "fingerprint": "18a50408",
+        "region": "body"
+      },
+      {
+        "id": "3fd160e108485056b0fee3ef239bb90b",
+        "start": 23109,
+        "end": 23228,
+        "fingerprint": "512502d6",
+        "region": "body"
+      },
+      {
+        "id": "3205b54161c65833c3844f34f95ccd7d",
+        "start": 23408,
+        "end": 23997,
+        "fingerprint": "1e062a0e",
+        "region": "body"
+      },
+      {
+        "id": "03c7a4dd2ad640c3917ccccfd69c0fda",
+        "start": 24111,
+        "end": 24581,
+        "fingerprint": "7ee8243b",
+        "region": "body"
+      },
+      {
+        "id": "49986d03a91be1b338e274d9c263694c",
+        "start": 24583,
+        "end": 24835,
+        "fingerprint": "2e66c460",
+        "region": "body"
+      },
+      {
+        "id": "c0da703c3b77c2e512aa26c499cd9f89",
+        "start": 24837,
+        "end": 24946,
+        "fingerprint": "157b02a9",
+        "region": "body"
+      },
+      {
+        "id": "f19e2a188eb2c4563e70e1f6754509a5",
+        "start": 25747,
+        "end": 26183,
+        "fingerprint": "88367955",
+        "region": "body"
+      },
+      {
+        "id": "e75f2c659d91bdb036794c327d573ad1",
+        "start": 26185,
+        "end": 26255,
+        "fingerprint": "74ae0d4e",
+        "region": "body"
+      },
+      {
+        "id": "b580f18cae36b446df3f2d17f4b7c86b",
+        "start": 26347,
+        "end": 26514,
+        "fingerprint": "bd7df7ff",
+        "region": "body"
+      },
+      {
+        "id": "fdb185e1b68deb737ed0d4ab1aca0a1f",
+        "start": 26516,
+        "end": 26561,
+        "fingerprint": "2c99366e",
+        "region": "body"
+      },
+      {
+        "id": "b8c2afbdd24c1fa769e3a29ef8ccdbec",
+        "start": 26563,
+        "end": 26653,
+        "fingerprint": "42424313",
+        "region": "body"
+      },
+      {
+        "id": "fb0936f2ddc7cd22ac969983556657a2",
+        "start": 26655,
+        "end": 26704,
+        "fingerprint": "c825509c",
+        "region": "body"
+      },
+      {
+        "id": "5d8c8eda2dc1aca42898d6001f43ccaf",
+        "start": 26706,
+        "end": 26786,
+        "fingerprint": "b0fc6750",
+        "region": "body"
+      },
+      {
+        "id": "b70a688af5fbcaa6fbce39ff24a5301c",
+        "start": 26788,
+        "end": 26842,
+        "fingerprint": "5f71ecc1",
+        "region": "body"
+      },
+      {
+        "id": "22f73f9e537a73f7adb14d05561fb30e",
+        "start": 26844,
+        "end": 26910,
+        "fingerprint": "19baf6f1",
+        "region": "body"
+      },
+      {
+        "id": "a0ae79e0ac5c53076b7ca71f3388ff38",
+        "start": 27010,
+        "end": 27012,
+        "fingerprint": "7ce4aa04",
+        "region": "body"
+      },
+      {
+        "id": "3aa66be2c94f9a6d8e214a1c76c3f34a",
+        "start": 27090,
+        "end": 27592,
+        "fingerprint": "1602bb00",
+        "region": "body"
+      },
+      {
+        "id": "ee15a74ef9c0132c3b64a29bc9f068ff",
+        "start": 27594,
+        "end": 28698,
+        "fingerprint": "7fc127b7",
+        "region": "body"
+      },
+      {
+        "id": "474d5d79019674e15751a9e0b54bae70",
+        "start": 28700,
+        "end": 29023,
+        "fingerprint": "919d5b56",
+        "region": "body"
+      },
+      {
+        "id": "33d5b96305d85a799eb62603747def96",
+        "start": 29025,
+        "end": 29054,
+        "fingerprint": "04cedf8b",
+        "region": "body"
+      },
+      {
+        "id": "39329f65350944935f7870cac7c68ab4",
+        "start": 29172,
+        "end": 29373,
+        "fingerprint": "b233d195",
+        "region": "body"
+      },
+      {
+        "id": "3e7edd5ad26e9a79f8f3723cf431aced",
+        "start": 29375,
+        "end": 29412,
+        "fingerprint": "e6376d66",
+        "region": "body"
+      },
+      {
+        "id": "a356e78ecbac7f28f3d267620e364ae0",
+        "start": 29557,
+        "end": 29584,
+        "fingerprint": "caee0117",
+        "region": "body"
+      },
+      {
+        "id": "e44e4a158f19eeb83d52538d2b7a2a01",
+        "start": 29762,
+        "end": 30259,
+        "fingerprint": "44a8f5a4",
+        "region": "body"
+      },
+      {
+        "id": "962841252161e7beb8a2c6ce75ce5258",
+        "start": 30261,
+        "end": 30452,
+        "fingerprint": "d2a3e267",
+        "region": "body"
+      },
+      {
+        "id": "01cd91f1fe9ba6e4ab9b1c5b9df89fb9",
+        "start": 30706,
+        "end": 30982,
+        "fingerprint": "fcae1a83",
+        "region": "body"
+      },
+      {
+        "id": "e5cac3b947be6853f368953ec8179962",
+        "start": 31071,
+        "end": 31759,
+        "fingerprint": "db622ace",
+        "region": "body"
+      },
+      {
+        "id": "02e974be3cab46e6cdd9a16cf93e4897",
+        "start": 31761,
+        "end": 31827,
+        "fingerprint": "d9fc5ae2",
+        "region": "body"
+      },
+      {
+        "id": "4fb6956093df180b15228d6c9e02d0dd",
+        "start": 31922,
+        "end": 32045,
+        "fingerprint": "f43f7b91",
+        "region": "body"
+      },
+      {
+        "id": "e40e920f717585ca46982b2bd7b99d09",
+        "start": 32176,
+        "end": 32943,
+        "fingerprint": "463f010b",
+        "region": "body"
+      },
+      {
+        "id": "28801b86e0db2b1ffa37a6c102558a55",
+        "start": 32945,
+        "end": 33983,
+        "fingerprint": "d253593b",
+        "region": "body"
+      },
+      {
+        "id": "c6c210ca160cc8a7b16a6f6f8cd8177d",
+        "start": 33985,
+        "end": 34103,
+        "fingerprint": "3883ca24",
+        "region": "body"
+      },
+      {
+        "id": "b42bbf42ff5408a63d3c0785d2394689",
+        "start": 34182,
+        "end": 34499,
+        "fingerprint": "c5158755",
+        "region": "body"
+      },
+      {
+        "id": "4722b3574f78f3d058a699ac9de77448",
+        "start": 34501,
+        "end": 34710,
+        "fingerprint": "b82de59d",
+        "region": "body"
+      },
+      {
+        "id": "8095c268d73fae4ad9dad57fb92a3641",
+        "start": 34712,
+        "end": 34747,
+        "fingerprint": "000a3f91",
+        "region": "body"
+      },
+      {
+        "id": "8869b0884cacd132e00ff6107ea09373",
+        "start": 34846,
+        "end": 34954,
+        "fingerprint": "fa9cb6f1",
+        "region": "body"
+      },
+      {
+        "id": "ba1d13d27a1ba3aa3c2e220ab73c435f",
+        "start": 35248,
+        "end": 35433,
+        "fingerprint": "437e5c2a",
+        "region": "body"
+      },
+      {
+        "id": "9729c27494284557c768d10b7ea534ee",
+        "start": 39918,
+        "end": 40115,
+        "fingerprint": "a1984fbc",
+        "region": "body"
+      },
+      {
+        "id": "e47911727b82cfbadfb628562bbb3651",
+        "start": 40117,
+        "end": 40352,
+        "fingerprint": "568c96f4",
+        "region": "body"
+      },
+      {
+        "id": "d01e7b285418bcf49988684f501ea06b",
+        "start": 40354,
+        "end": 40379,
+        "fingerprint": "e7acfe19",
+        "region": "body"
+      },
+      {
+        "id": "916fde6bb6e6432eac73143d0fe11a05",
+        "start": 40381,
+        "end": 41288,
+        "fingerprint": "6272cbf3",
+        "region": "body"
+      },
+      {
+        "id": "5024a2d2736aa8fa15ee4627af6edb66",
+        "start": 41290,
+        "end": 41608,
+        "fingerprint": "0beeb376",
+        "region": "body"
+      },
+      {
+        "id": "d9fe757b1f2def0f2f7c6added448273",
+        "start": 41610,
+        "end": 41711,
+        "fingerprint": "903ee0f7",
+        "region": "body"
+      },
+      {
+        "id": "cece81ee605d4b48c65d14fb9d10f689",
+        "start": 41713,
+        "end": 41962,
+        "fingerprint": "ce403af3",
+        "region": "body"
+      }
+    ],
     "development/rust-cargo-cranelift-tuning.md": [
       {
         "id": "e4f45bb1cfbab66a39437d6e7026e471",
