@@ -1,4 +1,6 @@
 import { readFileSync } from 'node:fs';
+import { stat } from 'node:fs/promises';
+import { isAbsolute, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
 	developmentUrl,
@@ -14,11 +16,15 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { paraglideVitePlugin } from '@inlang/paraglide-js';
 import Icons from 'unplugin-icons/vite';
-import { execFileSync } from 'node:child_process';
+import { execFile, execFileSync } from 'node:child_process';
+import { promisify } from 'node:util';
 import { defineConfig, type UserConfig } from 'vite';
 import { parse as parseYaml } from 'yaml';
 import { buildArticles, buildPages } from './src/lib/content/build/articles.ts';
+import { packArticles, packPages } from './src/lib/content/packed.ts';
+import { segmentSyncQueue } from './vite/segment-sync.ts';
 
+const ROOT = fileURLToPath(new URL('../../', import.meta.url));
 const SITE_CONFIG = fileURLToPath(new URL('./site.config.yaml', import.meta.url));
 const CONTENTS = fileURLToPath(new URL('../../contents', import.meta.url));
 const ASSETS = fileURLToPath(new URL('../../data/metadata.json', import.meta.url));
@@ -29,6 +35,12 @@ const CRATES = fileURLToPath(new URL('../../data/build/crates.json', import.meta
 const REPOS = fileURLToPath(new URL('../../data/build/repos.json', import.meta.url));
 const TWEETS = fileURLToPath(new URL('../../data/build/twitter.json', import.meta.url));
 const LICENSES = fileURLToPath(new URL('../../data/build/licenses.json', import.meta.url));
+const execFileAsync = promisify(execFile);
+
+function articleMarkdown(path: string): boolean {
+	const fromContents = relative(CONTENTS, path);
+	return !fromContents.startsWith('..') && !isAbsolute(fromContents) && path.endsWith('.md');
+}
 
 // Built-in 301s, kept out of site.config.yaml because they are product behaviour rather than
 // configuration: feed aliases and the favicon redirect to the CDN.
@@ -123,11 +135,24 @@ function sentryToken(): string | undefined {
 	return token;
 }
 
-export default defineConfig(async ({ mode }) => {
+export default defineConfig(async ({ command, mode }) => {
 	const slot = parseSlot(process.env.WORKSPACE_SLOT);
 	const development = await resolveDevelopmentUrls(slot);
 	const urls = mode === 'production' ? URLS.apps.production : development;
 	const articleInputs = new Set<string>();
+	let generatedSegmentsMtime: number | undefined;
+	const segmentSync = segmentSyncQueue(async () => {
+		const before = await stat(SEGMENTS).then(
+			({ mtimeMs }) => mtimeMs,
+			() => undefined,
+		);
+		await execFileAsync('cargo', ['run', '-q', '-p', 'cms', '--', 'segments'], {
+			cwd: ROOT,
+		});
+		const after = await stat(SEGMENTS).then(({ mtimeMs }) => mtimeMs);
+		if (after !== before) generatedSegmentsMtime = after;
+	});
+	if (command === 'serve') await segmentSync.request().settled;
 	return {
 		plugins: [
 			tailwindcss(),
@@ -179,12 +204,27 @@ export default defineConfig(async ({ mode }) => {
 						this.addWatchFile(file);
 					}
 					return [
-						`export const articles = ${JSON.stringify(articleBuild.articles)};`,
-						`export const pages = ${JSON.stringify(pageBuild.pages)};`,
+						`import { unpackArticles, unpackPages } from '$lib/content/packed.ts';`,
+						`export const articles = unpackArticles(${JSON.stringify(packArticles(articleBuild.articles))});`,
+						`export const pages = unpackPages(${JSON.stringify(packPages(pageBuild.pages))});`,
 					].join('\n');
 				},
-				hotUpdate(options) {
-					if (!articleInputs.has(options.file)) return;
+				async hotUpdate(options) {
+					if (articleMarkdown(options.file)) {
+						const request = segmentSync.request();
+						await request.settled;
+						// One leader invalidates the virtual module after the last event in the burst.
+						if (!request.leader) return [];
+					} else if (options.file === SEGMENTS) {
+						const pending = segmentSync.active();
+						if (pending) await pending;
+						const mtime = await stat(SEGMENTS).then(({ mtimeMs }) => mtimeMs);
+						// The markdown event already owns this rebuild. Swallow the derived write so
+						// the same article snapshot is not compiled and retained a second time.
+						if (mtime === generatedSegmentsMtime) return [];
+					} else if (!articleInputs.has(options.file)) {
+						return;
+					}
 					const virtual = this.environment.moduleGraph.getModuleById('\0virtual:articles');
 					if (!virtual) return;
 					// Watched data files are not imports, so Vite otherwise sees no affected module.
