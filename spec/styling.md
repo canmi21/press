@@ -203,6 +203,17 @@ it applies across element boundaries -- but Chrome implements the property's eig
 which came out at 2px against the 4.4px of a real space, and no other engine ships it. A rule
 that lands on one browser and is invisible when it does is not worth the line it takes.
 
+## A code language keeps its own name
+
+The language label on a fenced article code block uses the canonical display name supplied by
+the syntax grammar catalog: `HTML` remains an initialism, while names such as `TypeScript`,
+`JavaScript`, `Objective-C`, and `C++` keep their established casing and punctuation. A fence
+alias resolves to the same display name as its language id, so `ts` and `typescript` do not create
+two visual names. Plain-text fences keep the label hidden. If a fence names a language outside the
+catalog, its authored spelling is preserved rather than uppercased or guessed. Resolution happens
+while content is compiled so the browser does not download the grammar catalog merely to print a
+short label.
+
 ### A name that is two words is held together
 
 A space inside a product name is a break opportunity, and in a line that is otherwise CJK the

@@ -1,4 +1,4 @@
-import { createHighlighter, type Highlighter } from 'shiki';
+import { bundledLanguagesInfo, createHighlighter, isPlainLang, type Highlighter } from 'shiki';
 import { createJavaScriptRegexEngine } from 'shiki/engine/javascript';
 
 export type CodeBlock = {
@@ -18,6 +18,19 @@ const LANGS = [
 	'html',
 	'css',
 ];
+
+const LANGUAGE_LABELS = new Map(
+	bundledLanguagesInfo.flatMap(({ id, name, aliases = [] }) =>
+		[id, ...aliases].map((language) => [language.toLowerCase(), name] as const),
+	),
+);
+
+/** Resolve a Markdown fence id or alias to the language's canonical display name. */
+export function languageLabel(lang: string): string | undefined {
+	const authored = lang.trim();
+	if (!authored || isPlainLang(authored.toLowerCase())) return undefined;
+	return LANGUAGE_LABELS.get(authored.toLowerCase()) ?? authored;
+}
 
 let highlighterPromise: Promise<Highlighter> | null = null;
 

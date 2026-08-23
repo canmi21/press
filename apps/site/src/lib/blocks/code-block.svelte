@@ -1,18 +1,18 @@
 <script lang="ts">
 	type Props = {
-		lang?: string;
+		label?: string;
 		code?: string;
 		html?: string;
 	};
-	let { lang, code, html }: Props = $props();
+	let { label, code, html }: Props = $props();
 </script>
 
 <div class="codeblock relative">
-	{#if lang && lang !== 'text' && lang !== 'plaintext'}
+	{#if label}
 		<span
-			class="pointer-events-none absolute top-3 right-3 z-10 text-xs tracking-wider text-text-soft uppercase select-none"
+			class="pointer-events-none absolute top-3 right-3 z-10 text-xs tracking-wider text-text-soft select-none"
 		>
-			{lang}
+			{label}
 		</span>
 	{/if}
 	<!-- Shiki tags its <pre> with tabindex=0 so keyboard users can focus and scroll the

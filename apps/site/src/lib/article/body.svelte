@@ -92,7 +92,7 @@
 		{:else if block.type === 'heading'}
 			<Section slug={block.slug}>{block.text}</Section>
 		{:else if block.type === 'code'}
-			<CodeBlock lang={block.lang} html={block.html} />
+			<CodeBlock label={block.label} html={block.html} />
 		{:else if block.type === 'image'}
 			<Image
 				src={block.src}

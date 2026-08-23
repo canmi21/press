@@ -26,6 +26,7 @@ import type {
 	TweetRecord,
 	ArticleMeta,
 } from '../types.ts';
+import { languageLabel } from './highlight.ts';
 import type { TextDirective } from 'mdast-util-directive';
 import type { Heading, Image as MdImage, Nodes, Paragraph, Root, RootContent } from 'mdast';
 
@@ -466,6 +467,7 @@ export async function compile(
 			blocks.push({
 				type: 'code',
 				lang,
+				label: languageLabel(lang),
 				html: await highlight(node.value, lang),
 				code: node.value,
 			});
