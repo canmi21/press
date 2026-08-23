@@ -364,6 +364,19 @@
 		color: var(--color-text-soft);
 	}
 
+	/* A quoted source is a prose inset, not an authored callout. See spec/styling.md. */
+	.article-body :global(blockquote) {
+		padding: 1rem 1.125rem 1rem 1.375rem;
+		border-left: 0.125rem solid var(--color-border-strong);
+		border-radius: 0 0.625rem 0.625rem 0;
+		background: var(--color-paper-hover);
+		color: var(--color-text-strong);
+	}
+
+	.article-body :global(blockquote > p + p) {
+		margin-top: 0.75rem;
+	}
+
 	.article-body :global(hr) {
 		width: 18.75%;
 		height: 0.125rem;

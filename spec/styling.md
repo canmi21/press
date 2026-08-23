@@ -304,6 +304,16 @@ the mark separates thoughts rather than dividing the page into structural region
 two pixels thick: enough to remain deliberate at that short length without becoming a structural
 rule. Generous vertical space supplies the pause the compact mark implies.
 
+## A quotation borrows a quiet surface
+
+A source quotation in article prose stays a native Markdown blockquote. It does not become a custom
+note directive: quotation is its meaning, while a note would describe an aside written by the
+article's author and would erase that distinction from feeds and plain-text consumers. The rendered
+quote uses the quiet hover paper as a slip behind the prose, with a two-pixel strong-border rail at
+the start edge and rounded corners only where the slip is free. This is enough separation to make a
+quoted instruction scannable without giving it the visual weight of an interactive card or a
+warning. Multiple paragraphs keep a small internal gap so the slip remains one quotation.
+
 ## The subscription surface closes both reading paths
 
 The same Newsletter component appears on the homepage and after the body of every article.
