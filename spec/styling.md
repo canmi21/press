@@ -296,6 +296,14 @@ Roving-focus menu items and SVG data marks keep their component-native highlight
 stroke. Those states already identify the current keyboard target and forcing a rectangular ring
 around them would describe the wrong shape.
 
+## An article rule is a pause, not a wall
+
+A Markdown thematic break inside article prose renders as five short strokes in the strong border
+colour. Together they occupy roughly three sixteenths of the text measure and stay centred, because
+the mark separates thoughts rather than dividing the page into structural regions. The strokes are
+two pixels thick: enough to remain deliberate at that short length without becoming a structural
+rule. Generous vertical space supplies the pause the compact mark implies.
+
 ## The subscription surface closes both reading paths
 
 The same Newsletter component appears on the homepage and after the body of every article.

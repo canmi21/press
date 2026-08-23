@@ -364,6 +364,25 @@
 		color: var(--color-text-soft);
 	}
 
+	.article-body :global(hr) {
+		width: 18.75%;
+		height: 0.125rem;
+		margin: 2.5rem auto;
+		border: 0;
+		background: linear-gradient(
+			to right,
+			var(--color-border-strong) 0 12%,
+			transparent 12% 22%,
+			var(--color-border-strong) 22% 34%,
+			transparent 34% 44%,
+			var(--color-border-strong) 44% 56%,
+			transparent 56% 66%,
+			var(--color-border-strong) 66% 78%,
+			transparent 78% 88%,
+			var(--color-border-strong) 88% 100%
+		);
+	}
+
 	.article-body :global(code:not(pre code)) {
 		box-shadow: inset 0 0 0 0.0625rem var(--color-border-strong);
 		border-radius: 0.375rem;
