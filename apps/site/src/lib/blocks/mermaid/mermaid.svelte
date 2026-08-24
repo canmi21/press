@@ -32,9 +32,12 @@
 	});
 </script>
 
-<div bind:this={root} class="mermaid-block rounded-xl border border-border bg-paper p-3">
+<div
+	bind:this={root}
+	class="mermaid-block overflow-hidden rounded-xl border border-border bg-paper-hover"
+>
 	<div
-		class="mermaid-stage focus-ring-within relative overflow-x-auto rounded-lg border border-border bg-paper-hover p-4"
+		class="mermaid-stage focus-ring-within relative overflow-x-auto rounded-xl p-5"
 		aria-busy={!svg && !failed}
 	>
 		{#if svg}

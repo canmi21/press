@@ -291,6 +291,18 @@ $state / $effect / event
   → raw HTML slot (v1 protocol)
 ```
 
+```mermaid
+flowchart LR
+	accTitle: CTR boundary
+	accDescr: Visible Svelte structure becomes a skeleton, protocol slot, or client runtime path
+	A["Svelte AST"] --> B{"Structure visible?"}
+	B -- "No" --> F["Escape"]
+	B -- "Yes" --> C{"Value origin?"}
+	C -- "Build" --> D["Skeleton"]
+	C -- "Request" --> E["Slot / protocol"]
+	C -- "Client" --> G["Client runtime"]
+```
+
 这样静态引用才 `compose`； 仍走下面的 `hatch`, 可以得出 CTR 的单位是静态组件图，而不是单个文件。大部分都是默认 `structure known` 少部分明确 `escape hatch` 平时几乎遇不到 `SSR fallback` 其他不在表上的，一律当 `opaque` 处理好了根本不要猜；`CTR` 只是这个子集上的 `execution model`，就算我切到 Svelte 也并不打算担保整个 Svelte 的范围呢(x)
 
 ## CSS {#static-css}
