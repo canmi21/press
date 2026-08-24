@@ -4,6 +4,7 @@
 	import GitHub from '$lib/blocks/github.svelte';
 	import Image from '$lib/blocks/image.svelte';
 	import LinkCard from '$lib/blocks/link-card.svelte';
+	import Mermaid from '$lib/blocks/mermaid/mermaid.svelte';
 	import Placeholder from '$lib/blocks/placeholder.svelte';
 	import SvgCanvas from '$lib/blocks/svg-canvas.svelte';
 	import Tokei from '$lib/blocks/tokei/tokei.svelte';
@@ -93,6 +94,8 @@
 			<Section slug={block.slug}>{block.text}</Section>
 		{:else if block.type === 'code'}
 			<CodeBlock label={block.label} html={block.html} />
+		{:else if block.type === 'mermaid'}
+			<Mermaid source={block.source} />
 		{:else if block.type === 'image'}
 			<Image
 				src={block.src}

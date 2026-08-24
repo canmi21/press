@@ -165,6 +165,29 @@ lang: en-US
 	);
 });
 
+it('routes a Mermaid fence to the client renderer without highlighting it', async () => {
+	const source = `quadrantChart
+  accTitle: Compiler trade-offs
+  accDescr: A conceptual comparison of compiler visibility and ecosystem maturity.
+  Svelte: [0.82, 0.84]`;
+	const compiled = await compile(
+		`---\ntitle: Test\nlang: en-US\n---\n\n\`\`\`Mermaid\n${source}\n\`\`\`\n`,
+		'/article',
+		{
+			newTabNote: 'opens in new tab',
+			resolveAsset: () => null,
+			highlight: async () => {
+				throw new Error('Mermaid source must not reach Shiki');
+			},
+			sourceFile: 'contents/diagram.md',
+		},
+	);
+
+	expect(compiled.blocks).toContainEqual({ type: 'mermaid', source });
+	expect(compiled.feed).toContain('<code class="language-mermaid">quadrantChart');
+	expect(compiled.markdown).toContain(`\`\`\`mermaid\n${source}\n\`\`\``);
+});
+
 it('leaves an unfetched tweet visible as a directive placeholder', async () => {
 	const compiled = await compile(
 		'---\ntitle: Test\nlang: en-US\n---\n\n::twitter{tweet="2088060180290302397"}\n',

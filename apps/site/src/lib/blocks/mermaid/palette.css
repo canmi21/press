@@ -1,0 +1,31 @@
+/*
+ * Mermaid's theme engine accepts hex colours only. These are the sRGB mirrors of the
+ * interface colours in @canmi/tokens; they stay together here because Mermaid is the sole
+ * consumer and must never make the ordinary site palette abandon OKLCH. See spec/styling.md.
+ */
+.mermaid-block {
+	--mermaid-page: #fbfbfb;
+	--mermaid-paper: #ffffff;
+	--mermaid-paper-hover: #f2f2f2;
+	--mermaid-border: #e3e3e3;
+	--mermaid-border-strong: #d3d3d3;
+	--mermaid-text: #161616;
+	--mermaid-text-soft: #696969;
+	--mermaid-text-strong: #0d0d0d;
+	--mermaid-ink: #1f1f1f;
+	--mermaid-accent: #2b7fff;
+}
+
+.dark .mermaid-block,
+[data-theme='dark'] .mermaid-block {
+	--mermaid-page: #111111;
+	--mermaid-paper: #0d0d0d;
+	--mermaid-paper-hover: #191919;
+	--mermaid-border: #1f1f1f;
+	--mermaid-border-strong: #2b2b2b;
+	--mermaid-text: #d7d7d7;
+	--mermaid-text-soft: #7c7c7c;
+	--mermaid-text-strong: #eaeaea;
+	--mermaid-ink: #dbdbdb;
+	--mermaid-accent: #2b7fff;
+}

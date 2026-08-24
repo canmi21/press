@@ -18,6 +18,7 @@ export type Block =
 	| { type: 'prose'; html: string }
 	| { type: 'heading'; depth: number; slug: string; text: string }
 	| { type: 'code'; lang: string; label?: string; html: string; code: string }
+	| { type: 'mermaid'; source: string }
 	| { type: 'svgCanvas'; svg: string; title: string }
 	| { type: 'tokei'; source: string; title: string; view: TokeiView }
 	| { type: 'cargo'; crate: CrateRecord; view: CargoView }

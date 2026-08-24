@@ -446,6 +446,14 @@ export async function compile(
 
 		if (node.type === 'code') {
 			const lang = node.lang ?? 'text';
+			// Mermaid is still authored as an ordinary fenced block, but its source becomes a
+			// client-rendered diagram rather than highlighted code. See spec/styling.md.
+			if (lang.toLowerCase() === 'mermaid') {
+				blocks.push({ type: 'mermaid', source: node.value });
+				feed.push(`<pre><code class="language-mermaid">${escapeHtml(node.value)}</code></pre>`);
+				md.push('```mermaid\n' + node.value + '\n```');
+				continue;
+			}
 			// Pasted straight from the tool, so the markdown keeps something a person can read
 			// and check against their terminal. Parsing it back costs less than keeping a second
 			// machine-readable copy in step with it.

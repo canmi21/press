@@ -214,6 +214,31 @@ catalog, its authored spelling is preserved rather than uppercased or guessed. R
 while content is compiled so the browser does not download the grammar catalog merely to print a
 short label.
 
+## A Mermaid fence becomes a diagram after hydration
+
+Mermaid keeps its standard fenced-code authoring form. The language label is the switch: the site
+compiles a `mermaid` fence as a diagram block instead of sending it to syntax highlighting, while
+feeds and Markdown targets retain readable source. Keeping the standard form means the CMS's code
+block schema preserves it without another custom Markdown node, and an editor can eventually put a
+preview beside the same source rather than migrating articles to a repository-only syntax.
+
+The public page renders the diagram in the browser. Only an article that contains one pays for the
+Mermaid runtime, and the bordered paper frame is server-rendered first so the late SVG replaces a
+deliberate loading surface rather than an empty hole. The frame follows the ordinary code-block
+language: an outer paper box and a bordered hover-paper inset. A failed render leaves the authored
+source readable inside that inset. Reduced-motion readers receive the final states without the
+loading pulse or reveal. The boundary is implemented in
+[mermaid.svelte](../apps/site/src/lib/blocks/mermaid/mermaid.svelte).
+
+Mermaid's theme engine accepts hex colours while the site palette is authored in OKLCH. It does not
+justify changing the shared palette or scattering overrides across generated SVG selectors. A
+component-only [palette](../apps/site/src/lib/blocks/mermaid/palette.css) therefore mirrors the
+interface colours in hex for this adapter alone, with every light and dark value kept together.
+Mermaid receives those values through its supported theme configuration; article-authored config
+cannot replace the site's security, type, or palette decisions. The duplication is accepted and
+local: changing a shared colour may require changing its Mermaid mirror, while every other consumer
+continues to have one OKLCH source.
+
 ### A name that is two words is held together
 
 A space inside a product name is a break opportunity, and in a line that is otherwise CJK the
