@@ -277,9 +277,12 @@ copying its nested surfaces: one thin outer border
 contains one uninterrupted paper background, matching the ordinary code surface. Diagram nodes use
 the adjacent hover-paper step so they lift out of that deeper field without another component
 frame. An inset border or contrasting padding band makes a diagram look heavier than the prose and
-is not used. A failed render leaves the authored source readable inside that surface. Reduced-motion
-readers receive the final states without the loading pulse or reveal. The boundary is implemented in
-[mermaid.svelte](../apps/site/src/lib/blocks/mermaid/mermaid.svelte).
+is not used. The stage centres every result vertically within its reserved height; Mermaid already
+centres the SVG horizontally. A short horizontal flow therefore does not cling to the top of the
+fallback-height frame, and the loading and final compositions share the same centre. Horizontal
+overflow remains scrollable. A failed render leaves the authored source readable inside that
+surface. Reduced-motion readers receive the final states without the loading pulse or reveal. The
+boundary is implemented in [mermaid.svelte](../apps/site/src/lib/blocks/mermaid/mermaid.svelte).
 
 Mermaid's theme engine accepts hex colours while the site palette is authored in OKLCH. It does not
 justify changing the shared palette or scattering overrides across generated SVG selectors. A

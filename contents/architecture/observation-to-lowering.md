@@ -318,13 +318,29 @@ flowchart LR
 
 这里 Seam 编译一个 component 的时候，同时已经拥有 `markup dependency` + `script dependency` + `style dependency`, 而且 style 是 **静态 artifact**. 那么就可以非常激进地判断出
 
-`route` → `reachable components` → `reachable CSS` → `bundle` / `inline` / `preload`
+```mermaid ratio="2.9233"
+flowchart LR
+	accTitle: Route CSS delivery
+	accDescr: A route discovers reachable components and CSS before choosing bundle, inline, or preload delivery
+	route["Route"] --> components["Reachable components"]
+	components --> css["Reachable CSS"]
+	css --> bundle["Bundle"]
+	css --> inline["Inline"]
+	css --> preload["Preload"]
+```
 
 ---
 
 甚至乎更近一步把流程做成这样子 ↓
 
-`above-fold components` → `critical CSS` → `lazy islands` → `deferred CSS`
+```mermaid ratio="12.9599"
+flowchart LR
+	accTitle: Critical CSS delivery
+	accDescr: Above-fold components produce critical CSS while lazy islands defer their CSS
+	above["Above-fold components"] --> critical["Critical CSS"]
+	critical --> islands["Lazy islands"]
+	islands --> deferred["Deferred CSS"]
+```
 
 以上流程是完全不需要 JS runtime 参与的
 

@@ -69,7 +69,9 @@
 
 <style>
 	.mermaid-stage {
+		display: grid;
 		min-block-size: 13rem;
+		align-items: center;
 	}
 
 	.mermaid-placeholder {
