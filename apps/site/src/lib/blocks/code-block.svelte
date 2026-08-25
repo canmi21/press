@@ -47,7 +47,6 @@
 		mass: 0.8,
 	};
 	const COPY_REVEAL_REM = 1.25;
-	const COPY_GLYPH_REM = 0.875;
 	const COPY_SLIDE_REM = 0.375;
 	const COPY_FEEDBACK_RESET_MS = 650;
 	const instanceId = $props.id();
@@ -59,10 +58,11 @@
 	let collapseEl = $state<HTMLElement>();
 	let collapseMotion: AnimationControl | undefined;
 	let copyState = $state<CopyState>('idle');
-	let copyMaskEl = $state<HTMLElement>();
+	let copyContentEl = $state<HTMLElement>();
 	let copyGlyphEl = $state<HTMLElement>();
 	let copyRevealMotion: AnimationControl | undefined;
 	let copyRevealProgress = 0;
+	let resetAfterReveal = false;
 	let copyPointerInside = false;
 	let copyKeyboardFocused = false;
 	let copyFeedbackTimer: ReturnType<typeof setTimeout> | undefined;
@@ -125,14 +125,31 @@
 
 	function renderCopyReveal(progress: number) {
 		copyRevealProgress = progress;
-		if (copyMaskEl) {
-			copyMaskEl.style.width = `${hasLanguageLabel ? COPY_REVEAL_REM * progress : COPY_GLYPH_REM}rem`;
+		if (copyContentEl) {
+			copyContentEl.style.transform = hasLanguageLabel
+				? `translateX(${COPY_REVEAL_REM * (1 - progress)}rem)`
+				: 'none';
 		}
 		if (copyGlyphEl) {
 			copyGlyphEl.style.opacity = String(progress);
 			copyGlyphEl.style.transform = hasLanguageLabel
 				? `translateX(${COPY_SLIDE_REM * (1 - progress)}rem)`
 				: `scale(${0.82 + 0.18 * progress})`;
+		}
+	}
+
+	function completeCopyReveal(target: number) {
+		renderCopyReveal(target);
+		copyRevealMotion = undefined;
+		if (
+			target === 0 &&
+			resetAfterReveal &&
+			!copyPointerInside &&
+			!copyKeyboardFocused &&
+			copyState !== 'copying'
+		) {
+			resetAfterReveal = false;
+			copyState = 'idle';
 		}
 	}
 
@@ -144,7 +161,7 @@
 			window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
 			Math.abs(copyRevealProgress - target) < 0.001
 		) {
-			renderCopyReveal(target);
+			completeCopyReveal(target);
 			return;
 		}
 
@@ -154,8 +171,7 @@
 			onUpdate: renderCopyReveal,
 			onComplete: () => {
 				if (copyRevealMotion !== control) return;
-				renderCopyReveal(target);
-				copyRevealMotion = undefined;
+				completeCopyReveal(target);
 			},
 		});
 		copyRevealMotion = control;
@@ -169,7 +185,7 @@
 
 	function resetCopyFeedback() {
 		if (copyPointerInside || copyKeyboardFocused || copyState === 'copying') return;
-		copyState = 'idle';
+		resetAfterReveal = copyState !== 'idle';
 		setCopyReveal(false);
 	}
 
@@ -189,6 +205,7 @@
 
 	function enterCopy() {
 		copyPointerInside = true;
+		resetAfterReveal = false;
 		clearCopyFeedbackTimer();
 		setCopyReveal(true);
 	}
@@ -201,12 +218,14 @@
 	function focusCopy(event: FocusEvent) {
 		copyKeyboardFocused = (event.currentTarget as HTMLElement).matches(':focus-visible');
 		if (!copyKeyboardFocused) return;
+		resetAfterReveal = false;
 		clearCopyFeedbackTimer();
 		setCopyReveal(true);
 	}
 
 	function keyCopy() {
 		copyKeyboardFocused = true;
+		resetAfterReveal = false;
 		clearCopyFeedbackTimer();
 		setCopyReveal(true);
 	}
@@ -219,6 +238,7 @@
 	async function copySource() {
 		if (code === undefined) return;
 		clearCopyFeedbackTimer();
+		resetAfterReveal = false;
 		copyState = 'copying';
 		setCopyReveal(true);
 		try {
@@ -255,17 +275,19 @@
 			onkeydown={keyCopy}
 			onclick={copySource}
 		>
-			{#if label}<span class="code-copy-label" aria-hidden="true">{label}</span>{/if}
-			<span bind:this={copyMaskEl} class="code-copy-mask" aria-hidden="true">
-				<span bind:this={copyGlyphEl} class="code-copy-glyph">
-					<span class="code-copy-icon code-copy-request">
-						<Copy class="size-3.5" />
-					</span>
-					<span class="code-copy-icon code-copy-success">
-						<Check class="size-3.5" />
-					</span>
-					<span class="code-copy-icon code-copy-failure">
-						<X class="size-3.5" />
+			<span bind:this={copyContentEl} class="code-copy-content">
+				{#if label}<span class="code-copy-label" aria-hidden="true">{label}</span>{/if}
+				<span class="code-copy-mask" aria-hidden="true">
+					<span bind:this={copyGlyphEl} class="code-copy-glyph">
+						<span class="code-copy-icon code-copy-request">
+							<Copy class="size-3.5" />
+						</span>
+						<span class="code-copy-icon code-copy-success">
+							<Check class="size-3.5" />
+						</span>
+						<span class="code-copy-icon code-copy-failure">
+							<X class="size-3.5" />
+						</span>
 					</span>
 				</span>
 			</span>
@@ -364,6 +386,7 @@
 		cursor: pointer;
 		align-items: center;
 		justify-content: flex-end;
+		overflow: hidden;
 		border-radius: 0.25rem;
 		padding-inline: 0.25rem;
 		font-size: 0.75rem;
@@ -382,9 +405,19 @@
 		justify-content: center;
 	}
 
+	.code-copy-content {
+		display: inline-flex;
+		align-items: center;
+		transform: translateX(1.25rem);
+	}
+
+	.code-copy-unlabelled .code-copy-content {
+		transform: none;
+	}
+
 	.code-copy-mask {
 		display: inline-flex;
-		width: 0;
+		width: 1.25rem;
 		flex-shrink: 0;
 		overflow: hidden;
 	}

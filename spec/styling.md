@@ -216,18 +216,22 @@ short label.
 
 That same top-right position is the code block's copy control. At rest it retains the language
 label, or an empty but focusable hit area for plain text. Pointer hover and keyboard focus keep that
-label in place while a copy icon enters on its right: `motion` springs open a clipping mask and
-slides the icon through it, so the right-anchored pair yields left without a sudden replacement.
-Reversing the interaction continues from the live mask position. Without a language label there is
-nothing to yield: the hit area keeps its resting geometry and `motion` reveals the icon in place
-through opacity and scale, without a lateral entrance or layout movement.
+label in place while a copy icon enters on its right: `motion` slides the right-anchored inner pair
+through a clipping boundary, so the label yields left without a sudden replacement. The transparent
+interaction area already has the final revealed width and never changes during the spring; an
+animated hit boundary would repeatedly enter and leave a slowly approaching pointer. Reversing the
+interaction continues from the live position. Without a language label there is nothing to yield:
+the hit area keeps the same geometry and `motion` reveals the icon in place through opacity and
+scale, without a lateral entrance or layout movement.
 
 Activation copies the original source rather than reading highlighted HTML, then changes the icon
 to a check or cross. Feedback remains for as long as pointer hover or keyboard focus remains. On
 leave it starts a short delay before returning to rest, regardless of how long the result was
 already visible. Returning before that delay finishes cancels the reset and preserves the result;
 the next leave starts a fresh full delay. Its accessible name and live feedback come from the UI
-message table, and reduced-motion readers receive each state without the mask or icon transition.
+message table. Closing hides the current check or cross before resetting to the copy state, so no
+resting icon flashes through the exit. Reduced-motion readers receive each state without the mask
+or icon transition.
 
 ### A titled code block is one framed disclosure
 
