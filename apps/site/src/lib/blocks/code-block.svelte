@@ -49,7 +49,7 @@
 	const COPY_REVEAL_REM = 1.25;
 	const COPY_GLYPH_REM = 0.875;
 	const COPY_SLIDE_REM = 0.375;
-	const COPY_FEEDBACK_MIN_MS = 650;
+	const COPY_FEEDBACK_RESET_MS = 650;
 	const instanceId = $props.id();
 	const panelId = `${instanceId}-panel`;
 	// This prop is an initial state, not a command that reopens a disclosure after interaction.
@@ -65,7 +65,6 @@
 	let copyRevealProgress = 0;
 	let copyPointerInside = false;
 	let copyKeyboardFocused = false;
-	let copyFeedbackStarted = 0;
 	let copyFeedbackTimer: ReturnType<typeof setTimeout> | undefined;
 	let destroyed = false;
 	const canCollapse = $derived(Boolean(title) && (collapsible ?? true));
@@ -182,14 +181,10 @@
 		}
 		if (copyState === 'copying') return;
 
-		const elapsed = performance.now() - copyFeedbackStarted;
-		copyFeedbackTimer = setTimeout(
-			() => {
-				copyFeedbackTimer = undefined;
-				resetCopyFeedback();
-			},
-			Math.max(0, COPY_FEEDBACK_MIN_MS - elapsed),
-		);
+		copyFeedbackTimer = setTimeout(() => {
+			copyFeedbackTimer = undefined;
+			resetCopyFeedback();
+		}, COPY_FEEDBACK_RESET_MS);
 	}
 
 	function enterCopy() {
@@ -234,7 +229,6 @@
 			if (destroyed) return;
 			copyState = 'failed';
 		}
-		copyFeedbackStarted = performance.now();
 		if (!copyPointerInside && !copyKeyboardFocused) scheduleCopyReset();
 	}
 

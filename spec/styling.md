@@ -224,8 +224,9 @@ through opacity and scale, without a lateral entrance or layout movement.
 
 Activation copies the original source rather than reading highlighted HTML, then changes the icon
 to a check or cross. Feedback remains for as long as pointer hover or keyboard focus remains. On
-leave it returns to rest, except that an immediate leave still grants the result a short minimum
-visible interval before closing the mask. Its accessible name and live feedback come from the UI
+leave it starts a short delay before returning to rest, regardless of how long the result was
+already visible. Returning before that delay finishes cancels the reset and preserves the result;
+the next leave starts a fresh full delay. Its accessible name and live feedback come from the UI
 message table, and reduced-motion readers receive each state without the mask or icon transition.
 
 ### A titled code block is one framed disclosure
