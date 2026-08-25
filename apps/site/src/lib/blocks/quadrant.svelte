@@ -14,6 +14,9 @@
 	} = $props();
 
 	const positions: QuadrantPosition[] = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+	const figureId = $props.id();
+	const titleId = `${figureId}-title`;
+	const descriptionId = `${figureId}-description`;
 
 	function sentence(value: string): string {
 		return /[.!?]$/u.test(value) ? value : `${value}.`;
@@ -21,7 +24,7 @@
 
 	function describeItem(item: QuadrantItem): string {
 		const [vertical, horizontal] = item.at.split('-') as ['top' | 'bottom', 'left' | 'right'];
-		return `${axes[vertical]} and ${axes[horizontal]}: ${item.title}${item.note ? `, ${item.note}` : ''}`;
+		return `${axes[vertical]} and ${axes[horizontal]} region: ${item.title}${item.note ? `, ${item.note}` : ''}`;
 	}
 
 	function visualAxis(value: string): string {
@@ -29,7 +32,11 @@
 	}
 
 	let accessibleDescription = $derived(
-		[title, description, ...items.map(describeItem)]
+		[
+			description,
+			`The horizontal axis runs from ${axes.left} to ${axes.right}; the vertical axis runs from ${axes.bottom} to ${axes.top}`,
+			...(items.length > 0 ? items.map(describeItem) : ['No items are plotted']),
+		]
 			.filter((part): part is string => Boolean(part))
 			.map((part) => sentence(part))
 			.join(' '),
@@ -39,8 +46,13 @@
 <figure
 	class="quadrant-block overflow-hidden rounded-xl border border-border bg-paper"
 	role="img"
-	aria-label={accessibleDescription}
+	aria-labelledby={titleId}
+	aria-describedby={descriptionId}
 >
+	<figcaption class="sr-only">
+		<span id={titleId}>{title}</span>
+		<span id={descriptionId}>{accessibleDescription}</span>
+	</figcaption>
 	<div class="quadrant-scroll overflow-x-auto">
 		<div class="quadrant-stage" aria-hidden="true">
 			<div class="quadrant-plot">

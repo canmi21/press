@@ -310,6 +310,14 @@ not a restatement of either axis. The longer explanation belongs in the figure d
 the readable non-visual fallbacks. This keeps nuance without making every visual reader parse the
 same relationship twice.
 
+The container's optional `description` attribute is the author's place to explain the comparison's
+context in Markdown. It is not required for accessibility: the component always generates an English
+structural description from the horizontal and vertical axis endpoints and every item-region pairing,
+with an explicit empty-state sentence when there are no items. When authored copy exists it precedes
+that structural fallback rather than replacing it. The template connective language is deliberately
+English-only; author-provided labels remain in their source language, matching the code-like directive
+translation boundary.
+
 The rendered figure uses a centred Cartesian cross. Its intersection stays at the exact centre of the
 outer frame. The four regions first take their intrinsic item sizes, then the largest region defines
 four equal-width and equal-height corner tracks. Content is not centred within those tracks. Every
@@ -332,10 +340,15 @@ of being concatenated into an invented combined object, and no axis line crosses
 is whitespace, not a dashed placeholder: absence already carries meaning here, while an outlined empty
 object would imply missing or loading data. Numeric ticks remain absent.
 
-The authored title is an accessible name and a non-visual fallback, not a visible title bar. The
-outer frame therefore contains only the comparison. It matches a code block or Mermaid diagram and
-uses only shared interface tokens; it has no data-visualisation palette of its own. The page
-receives static HTML and SVG; the figure adds no client-side renderer or component-local runtime.
+The authored title is an accessible name and a non-visual fallback, not a visible title bar. A hidden
+`figcaption` gives the title and generated description separate HTML nodes; the figure's image role
+references them with `aria-labelledby` and `aria-describedby` instead of flattening everything into
+one oversized accessible name. The visual stage remains `aria-hidden`, so a screen reader receives
+the semantic summary once rather than traversing decorative axis and card markup.
+
+The outer frame therefore contains only the visible comparison. It matches a code block or Mermaid
+diagram and uses only shared interface tokens; it has no data-visualisation palette of its own. The
+page receives static HTML and CSS; the figure adds no client-side renderer or component-local runtime.
 Feed, Markdown and plain-text targets lower the figure to a readable list of axis-region labels and
 items instead of dropping its meaning. Directive attributes remain structural and therefore follow
 the existing non-translatable directive rule in [i18n.md](i18n.md). The boundary is implemented in
