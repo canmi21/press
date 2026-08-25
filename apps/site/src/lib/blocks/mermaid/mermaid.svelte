@@ -2,7 +2,8 @@
 	import './palette.css';
 	import { renderMermaid } from './mermaid';
 
-	let { source, ratio }: { source: string; ratio?: number } = $props();
+	let { source, ratio, loadingLabel }: { source: string; ratio?: number; loadingLabel: string } =
+		$props();
 	let root = $state<HTMLElement>();
 	let svg = $state('');
 	let failed = $state(false);
@@ -60,7 +61,7 @@
 					<span class="mermaid-node mermaid-node-start"></span>
 					<span class="mermaid-node mermaid-node-end"></span>
 				</div>
-				<span class="mermaid-loading-label">Loading diagram…</span>
+				<span class="mermaid-loading-label">{loadingLabel}</span>
 			</div>
 		{/if}
 	</div>

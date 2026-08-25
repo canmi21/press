@@ -213,6 +213,11 @@ and screen-reader access are part of that same requirement.
 Interface strings compile through Paraglide JS. Article content does not -- that is a separate
 pipeline, see [i18n.md](i18n.md).
 
+Loading labels and transient action feedback are interface strings too. A Mermaid placeholder and
+a code-copy success state may live inside authored material, but they describe what the site UI is
+doing rather than what the author wrote; their visible copy, accessible names and failure messages
+therefore come from the same Paraglide message table in every locale.
+
 Paraglide is a consumer here, never a decider. Its strategy array holds one entry,
 `custom-negotiated`, with no built-in strategy behind it, and that strategy reads back the code
 the worker already resolved. The reason is the fourth input above: an article's own language is

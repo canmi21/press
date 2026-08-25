@@ -98,10 +98,18 @@
 				title={block.title}
 				collapsible={block.collapsible}
 				defaultExpanded={block.defaultExpanded}
+				copyLabel={m['code.copy']({}, { locale })}
+				copiedLabel={m['code.copied']({}, { locale })}
+				copyFailedLabel={m['code.copy-failed']({}, { locale })}
+				code={block.code}
 				html={block.html}
 			/>
 		{:else if block.type === 'mermaid'}
-			<Mermaid source={block.source} ratio={block.ratio} />
+			<Mermaid
+				source={block.source}
+				ratio={block.ratio}
+				loadingLabel={m['mermaid.loading']({}, { locale })}
+			/>
 		{:else if block.type === 'image'}
 			<Image
 				src={block.src}

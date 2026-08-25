@@ -214,6 +214,20 @@ catalog, its authored spelling is preserved rather than uppercased or guessed. R
 while content is compiled so the browser does not download the grammar catalog merely to print a
 short label.
 
+That same top-right position is the code block's copy control. At rest it retains the language
+label, or an empty but focusable hit area for plain text. Pointer hover and keyboard focus keep that
+label in place while a copy icon enters on its right: `motion` springs open a clipping mask and
+slides the icon through it, so the right-anchored pair yields left without a sudden replacement.
+Reversing the interaction continues from the live mask position. Without a language label there is
+nothing to yield: the hit area keeps its resting geometry and `motion` reveals the icon in place
+through opacity and scale, without a lateral entrance or layout movement.
+
+Activation copies the original source rather than reading highlighted HTML, then changes the icon
+to a check or cross. Feedback remains for as long as pointer hover or keyboard focus remains. On
+leave it returns to rest, except that an immediate leave still grants the result a short minimum
+visible interval before closing the mask. Its accessible name and live feedback come from the UI
+message table, and reduced-motion readers receive each state without the mask or icon transition.
+
 ### A titled code block is one framed disclosure
 
 A fenced code block may carry `title`, `collapsible`, and `default` presentation metadata. A title
