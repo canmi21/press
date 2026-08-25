@@ -49,10 +49,13 @@
 			     horizontally and therefore needs to be reachable by a keyboard) -->
 			<pre tabindex="0"><code>{source}</code></pre>
 		{:else}
-			<div class="mermaid-placeholder" aria-hidden="true">
-				<span class="mermaid-path"></span>
-				<span class="mermaid-node mermaid-node-start"></span>
-				<span class="mermaid-node mermaid-node-end"></span>
+			<div class="mermaid-loading" role="status">
+				<div class="mermaid-placeholder" aria-hidden="true">
+					<span class="mermaid-path"></span>
+					<span class="mermaid-node mermaid-node-start"></span>
+					<span class="mermaid-node mermaid-node-end"></span>
+				</div>
+				<span class="mermaid-loading-label">Loading diagram…</span>
 			</div>
 		{/if}
 	</div>
@@ -69,6 +72,18 @@
 		filter: blur(0.3rem);
 		opacity: 0.48;
 		animation: mermaid-breathe 1.6s ease-in-out infinite alternate;
+	}
+
+	.mermaid-loading-label {
+		position: absolute;
+		z-index: 1;
+		display: grid;
+		inset: 0;
+		place-items: center;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		line-height: 1;
+		color: var(--color-text-soft);
 	}
 
 	.mermaid-node {

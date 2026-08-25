@@ -246,13 +246,16 @@ preview beside the same source rather than migrating articles to a repository-on
 
 The public page renders the diagram in the browser. Only an article that contains one pays for the
 Mermaid runtime, and the bordered paper frame is server-rendered first so the late SVG replaces a
-deliberate loading surface rather than an empty hole. The frame follows the ordinary code-block
-language without copying its nested surfaces: one thin outer border contains one uninterrupted
-paper background, matching the ordinary code surface. Diagram nodes use the adjacent hover-paper
-step so they lift out of that deeper field without another component frame. An inset border or
-contrasting padding band makes a diagram look heavier than the prose and is not used. A failed
-render leaves the authored source readable inside that surface. Reduced-motion readers receive the
-final states without the loading pulse or reveal. The boundary is implemented in
+deliberate loading surface rather than an empty hole. That first server-rendered frame names its
+state with a quiet, centred `Loading diagram…` label as well as an abstract placeholder, so the
+reader does not have to infer whether an unfinished graphic is decorative or still working. The
+frame follows
+the ordinary code-block language without copying its nested surfaces: one thin outer border
+contains one uninterrupted paper background, matching the ordinary code surface. Diagram nodes use
+the adjacent hover-paper step so they lift out of that deeper field without another component
+frame. An inset border or contrasting padding band makes a diagram look heavier than the prose and
+is not used. A failed render leaves the authored source readable inside that surface. Reduced-motion
+readers receive the final states without the loading pulse or reveal. The boundary is implemented in
 [mermaid.svelte](../apps/site/src/lib/blocks/mermaid/mermaid.svelte).
 
 Mermaid's theme engine accepts hex colours while the site palette is authored in OKLCH. It does not
