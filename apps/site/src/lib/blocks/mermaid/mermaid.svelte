@@ -39,6 +39,7 @@
 >
 	<div
 		class="mermaid-stage focus-ring-within relative overflow-x-auto rounded-xl p-5"
+		class:mermaid-intrinsic-stage={ratio !== undefined}
 		aria-busy={!svg && !failed}
 	>
 		{#if svg}
@@ -72,6 +73,10 @@
 		display: grid;
 		min-block-size: 13rem;
 		align-items: center;
+	}
+
+	.mermaid-stage.mermaid-intrinsic-stage {
+		min-block-size: 8rem;
 	}
 
 	.mermaid-placeholder {
