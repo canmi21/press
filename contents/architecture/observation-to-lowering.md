@@ -260,7 +260,7 @@ return <Layout>{body}</Layout>;
 
 可以 Svelte 的不意味着一定可以 CTR，但是我这里有一个参考标准 ↓
 
-```text title="CTR classification"
+```text title="CTR classification" default="collapsed"
 literal markup / literal attr / <style>
   → skeleton
 

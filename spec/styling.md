@@ -228,8 +228,13 @@ surface below has square top corners, and one shared outer border encloses both;
 rounded frame would make the join look like two cards stacked together. The title is a native
 button only when the block can collapse, with `aria-expanded` and `aria-controls` naming the code
 panel. A collapsed panel is inert as well as visually clipped, so Shiki's focusable `pre` cannot
-receive keyboard focus while hidden. The panel opens by transitioning a grid row from zero to its
-content height, and reduced-motion readers receive the state change without animation.
+receive keyboard focus while hidden. The panel uses `motion` to spring between its measured current
+height and its content height, including when a reader reverses direction mid-animation. The title
+separator remains until a collapse settles, so the moving surfaces never expose a transient seam.
+Its border colour remains assigned while its zero-width collapsed edge is dormant; otherwise the
+header's colour transition reveals a frame of text-coloured border when that edge returns.
+Once expanded, the panel returns to natural height rather than retaining a stale measurement;
+reduced-motion readers receive the state change without animation.
 
 ## A Mermaid fence becomes a diagram after hydration
 
