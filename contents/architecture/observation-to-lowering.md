@@ -67,7 +67,21 @@ Vue 的话我个人从 Vue 2 迁到 Vue 3 的时候，对语法等机制就不�
 
 ## Black box {#react-black-box}
 
-就像上一篇写过的，`Seam` 首先是一套协议，不是又一个 **SSR runtime**. **Build-time** 产出带 `slot` 的 `HTML skeleton`，**request-time** 只做 `injection`；`if` / `each` / `match` 也是协议节点，只可惜之前我 UI 选了 React 开始动刀，不幸的是在 React 上面想实现捕捉页面结构并产生变体的话非常困难，改编译器的话工作量不亚于重写一个，不改的话还可以把 React 编译器当成一个黑盒，然后真的执行一堆 `render` + `diff` 猜结构出来用，`nullable` / `enum` 这种有限决策还能穷举，一旦碰到 `price > 10` 这种谓词，类型值空间根本乘不完。~~V1 里遇到这种情况只会让你手动给 mock~~，比如 `price < 10` / `= 10` / `> 10` 切三刀再跑，但是问题也就出在这里，要实现这一精确的切 3刀就会要求你知道切点在 10，但是很不幸 React 编译器对我来说是不透明的，我们并不知道条件是什么，于是 TypeSafe 的代价变成用户在做编译器的活 (~~注意这里这里的 TypeSafe 跟 TypeScript typecheck 没关系~~)。理论上这个不该丢给用户，不然结果就是 `escape` 满天飞，CTR 覆盖的还是那点 `nullable` / `enum`，结构发现等于没做，于是不知道还有多大的意义了。
+就像上一篇写过的，`Seam` 首先是一套协议，不是又一个 **SSR runtime**. **Build-time** 产出带 `slot` 的 `HTML skeleton`，**request-time** 只做 `injection`；`if` / `each` / `match` 也是协议节点，只可惜之前我 UI 选了 React 开始动刀，不幸的是在 React 上面想实现捕捉页面结构并产生变体的话非常困难，改编译器的话工作量不亚于重写一个...
+
+```mermaid ratio="3.25559"
+flowchart LR
+	accTitle: From black box to visible structure
+	accDescr: React requires render and diff guesses before producing protocol nodes, while Svelte exposes a markup AST for direct lowering
+	react["React black box"] --> guess["Render + diff"]
+	guess --> structure["Structure guess"]
+	guess -.-> escape["Mocks / escape"]
+	structure --> protocol["Protocol nodes"]
+	svelte["Visible Svelte AST"] --> lowering["Direct lowering"]
+	lowering --> protocol
+```
+
+不改的话还可以把 React 编译器当成一个黑盒，然后真的执行一堆 `render` + `diff` 猜结构出来用，`nullable` / `enum` 这种有限决策还能穷举，一旦碰到 `price > 10` 这种谓词，类型值空间根本乘不完。~~V1 里遇到这种情况只会让你手动给 mock~~，比如 `price < 10` / `= 10` / `> 10` 切三刀再跑，但是问题也就出在这里，要实现这一精确的切 3刀就会要求你知道切点在 10，但是很不幸 React 编译器对我来说是不透明的，我们并不知道条件是什么，于是 TypeSafe 的代价变成用户在做编译器的活 (~~注意这里这里的 TypeSafe 跟 TypeScript typecheck 没关系~~)。理论上这个不该丢给用户，不然结果就是 `escape` 满天飞，CTR 覆盖的还是那点 `nullable` / `enum`，结构发现等于没做，于是不知道还有多大的意义了。
 
 但是这次要改的不是协议本身，原来说的 `skeleton`、`slot`、`injection` 我觉得其实可以保留，后端也还是可以不跑 UI 代码，只是要改的是协议前面那一层：关于回答页面怎么被编成这些节点的问题。那么这里就不得不感谢来自 `Svelte` 给我最大的礼物了，那就是 `markup`, 因为 **markup** 的结构根本不用我来猜！！！
 
