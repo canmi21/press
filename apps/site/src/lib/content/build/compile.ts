@@ -417,6 +417,19 @@ function codePresentation(
 	return { title, collapsible, defaultExpanded };
 }
 
+function mermaidRatio(value: string | null | undefined, source: string): number | undefined {
+	const raw = codeMeta(value).ratio;
+	if (raw === undefined) return undefined;
+	if (!/^(?:\d+(?:\.\d+)?|\.\d+)$/.test(raw)) {
+		throw new Error(`${source}: Mermaid ratio must be a positive decimal`);
+	}
+	const ratio = Number(raw);
+	if (!Number.isFinite(ratio) || ratio <= 0) {
+		throw new Error(`${source}: Mermaid ratio must be a positive decimal`);
+	}
+	return ratio;
+}
+
 function cargoView(value: string | null | undefined): CargoView {
 	return value === 'table' ? 'table' : 'treemap';
 }
@@ -477,7 +490,12 @@ export async function compile(
 			// Mermaid is still authored as an ordinary fenced block, but its source becomes a
 			// client-rendered diagram rather than highlighted code. See spec/styling.md.
 			if (lang.toLowerCase() === 'mermaid') {
-				blocks.push({ type: 'mermaid', source: node.value });
+				const ratio = mermaidRatio(node.meta, sourceFile ?? url);
+				blocks.push({
+					type: 'mermaid',
+					source: node.value,
+					...(ratio === undefined ? {} : { ratio }),
+				});
 				feed.push(`<pre><code class="language-mermaid">${escapeHtml(node.value)}</code></pre>`);
 				md.push('```mermaid\n' + node.value + '\n```');
 				continue;

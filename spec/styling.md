@@ -249,8 +249,12 @@ Mermaid runtime, and the bordered paper frame is server-rendered first so the la
 deliberate loading surface rather than an empty hole. That first server-rendered frame names its
 state with a quiet, centred `Loading diagram…` label as well as an abstract placeholder, so the
 reader does not have to infer whether an unfinished graphic is decorative or still working. The
-frame follows
-the ordinary code-block language without copying its nested surfaces: one thin outer border
+optional fence metadata `ratio="2.77366"` records the rendered SVG's width-to-height ratio as a
+positive decimal. When present, the loading surface uses that ratio with the same `30rem` minimum
+content width as the eventual result, reserving its responsive height before Mermaid loads. It is
+authored geometry, not a heuristic; a missing ratio retains the `13rem` fallback, and malformed
+values fail content compilation. The frame follows the ordinary code-block language without
+copying its nested surfaces: one thin outer border
 contains one uninterrupted paper background, matching the ordinary code surface. Diagram nodes use
 the adjacent hover-paper step so they lift out of that deeper field without another component
 frame. An inset border or contrasting padding band makes a diagram look heavier than the prose and

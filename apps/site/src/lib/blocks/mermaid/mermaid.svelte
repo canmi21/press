@@ -2,7 +2,7 @@
 	import './palette.css';
 	import { renderMermaid } from './mermaid';
 
-	let { source }: { source: string } = $props();
+	let { source, ratio }: { source: string; ratio?: number } = $props();
 	let root = $state<HTMLElement>();
 	let svg = $state('');
 	let failed = $state(false);
@@ -49,7 +49,12 @@
 			     horizontally and therefore needs to be reachable by a keyboard) -->
 			<pre tabindex="0"><code>{source}</code></pre>
 		{:else}
-			<div class="mermaid-loading" role="status">
+			<div
+				class="mermaid-loading"
+				class:mermaid-intrinsic={ratio !== undefined}
+				style:aspect-ratio={ratio}
+				role="status"
+			>
 				<div class="mermaid-placeholder" aria-hidden="true">
 					<span class="mermaid-path"></span>
 					<span class="mermaid-node mermaid-node-start"></span>
@@ -72,6 +77,11 @@
 		filter: blur(0.3rem);
 		opacity: 0.48;
 		animation: mermaid-breathe 1.6s ease-in-out infinite alternate;
+	}
+
+	.mermaid-loading.mermaid-intrinsic {
+		position: relative;
+		min-inline-size: 30rem;
 	}
 
 	.mermaid-loading-label {

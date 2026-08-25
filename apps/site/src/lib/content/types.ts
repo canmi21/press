@@ -27,7 +27,7 @@ export type Block =
 			html: string;
 			code: string;
 	  }
-	| { type: 'mermaid'; source: string }
+	| { type: 'mermaid'; source: string; ratio?: number }
 	| { type: 'svgCanvas'; svg: string; title: string }
 	| { type: 'tokei'; source: string; title: string; view: TokeiView }
 	| { type: 'cargo'; crate: CrateRecord; view: CargoView }

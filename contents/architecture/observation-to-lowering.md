@@ -291,7 +291,7 @@ $state / $effect / event
   → raw HTML slot (v1 protocol)
 ```
 
-```mermaid
+```mermaid ratio="2.77366"
 flowchart LR
 	accTitle: CTR boundary
 	accDescr: Visible Svelte structure becomes a skeleton, protocol slot, or client runtime path

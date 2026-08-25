@@ -101,7 +101,7 @@
 				html={block.html}
 			/>
 		{:else if block.type === 'mermaid'}
-			<Mermaid source={block.source} />
+			<Mermaid source={block.source} ratio={block.ratio} />
 		{:else if block.type === 'image'}
 			<Image
 				src={block.src}

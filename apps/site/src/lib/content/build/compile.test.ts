@@ -171,7 +171,7 @@ it('routes a Mermaid fence to the client renderer without highlighting it', asyn
   accDescr: A conceptual comparison of compiler visibility and ecosystem maturity.
   Svelte: [0.82, 0.84]`;
 	const compiled = await compile(
-		`---\ntitle: Test\nlang: en-US\n---\n\n\`\`\`Mermaid\n${source}\n\`\`\`\n`,
+		`---\ntitle: Test\nlang: en-US\n---\n\n\`\`\`Mermaid ratio="2.77366"\n${source}\n\`\`\`\n`,
 		'/article',
 		{
 			newTabNote: 'opens in new tab',
@@ -183,9 +183,40 @@ it('routes a Mermaid fence to the client renderer without highlighting it', asyn
 		},
 	);
 
-	expect(compiled.blocks).toContainEqual({ type: 'mermaid', source });
+	expect(compiled.blocks).toContainEqual({ type: 'mermaid', source, ratio: 2.77366 });
 	expect(compiled.feed).toContain('<code class="language-mermaid">quadrantChart');
 	expect(compiled.markdown).toContain(`\`\`\`mermaid\n${source}\n\`\`\``);
+});
+
+it('rejects a Mermaid ratio that cannot become a safe aspect ratio', async () => {
+	await expect(
+		compile(
+			'---\ntitle: Test\nlang: en-US\n---\n\n```mermaid ratio="wide"\nA --> B\n```\n',
+			'/article',
+			{
+				newTabNote: 'opens in new tab',
+				resolveAsset: () => null,
+				highlight: async () => '',
+				sourceFile: 'contents/broken-diagram.md',
+			},
+		),
+	).rejects.toThrow('contents/broken-diagram.md: Mermaid ratio must be a positive decimal');
+});
+
+it('leaves Mermaid ratio optional', async () => {
+	const source = 'flowchart LR\nA --> B';
+	const compiled = await compile(
+		`---\ntitle: Test\nlang: en-US\n---\n\n\`\`\`mermaid\n${source}\n\`\`\`\n`,
+		'/article',
+		{
+			newTabNote: 'opens in new tab',
+			resolveAsset: () => null,
+			highlight: async () => '',
+			sourceFile: 'contents/diagram.md',
+		},
+	);
+
+	expect(compiled.blocks).toContainEqual({ type: 'mermaid', source });
 });
 
 it('compiles titled code fences into explicit disclosure states', async () => {
