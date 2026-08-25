@@ -59,6 +59,14 @@ Vue 的话我个人从 Vue 2 迁到 Vue 3 的时候，对语法等机制就不�
 
 另外就是 Dashboard 在这种会把页面点开的东西，这条统计帮不上忙，但是毕竟 Dashboard 的用户对比真的内容受众用户还是少的嘛不是。所以「浏览极多页面导致开销变大」我认为本质上是个**伪命题**；至少现在是，~~也许以后我会有不一样的看法~~，但是在现在这个快节奏的信息时代，我很难不承认这类用户极少；即便有人因为感兴趣而深度探索并转化为长期粉丝，这种探索大概率也只发生在第一次访问，后续他们也只是来看看新发的文章而已；可以说从统计学回报来看，这种极端情况并不成正比。因此我更愿意相信：**大部分场景下 Svelte 能带来更好的综合性能**。
 
+:::quadrant{title="UI stack fit" description="Frameworks are grouped by ecosystem reach and compile-time leverage without implying precise scores." left="Niche" right="Mainstream" top="Compiler" bottom="Runtime"}
+::quadrant-item{at="top-left" title="Solid"}
+::quadrant-item{at="top-left" title="Marko"}
+::quadrant-item{at="top-right" title="Svelte"}
+::quadrant-item{at="bottom-right" title="React"}
+::quadrant-item{at="bottom-right" title="Vue"}
+:::
+
 那么选 **Svelte** 真的只有这点原因嘛？当然不是，**Svelte** 对上述 3个框架除了处境和位置比较合适之外，还很贴近裸 `HTML` 的感觉？甚至早年 Svelte 3 刚普及、`.svelte` 扩展名刚定下来的时候；官方的 VSC 插件出来之前这么做甚至是推荐的，以至于现在你还能在 [Svelte 的插件页面](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode) 找到这句话:
 
 > If you added `"files.associations": {"*.svelte": "html" }` to your VSCode settings, ***remove it***.

@@ -6,6 +6,7 @@
 	import LinkCard from '$lib/blocks/link-card.svelte';
 	import Mermaid from '$lib/blocks/mermaid/mermaid.svelte';
 	import Placeholder from '$lib/blocks/placeholder.svelte';
+	import Quadrant from '$lib/blocks/quadrant.svelte';
 	import SvgCanvas from '$lib/blocks/svg-canvas.svelte';
 	import Tokei from '$lib/blocks/tokei/tokei.svelte';
 	import Twitter from '$lib/blocks/twitter.svelte';
@@ -109,6 +110,13 @@
 				source={block.source}
 				ratio={block.ratio}
 				loadingLabel={m['mermaid.loading']({}, { locale })}
+			/>
+		{:else if block.type === 'quadrant'}
+			<Quadrant
+				title={block.title}
+				description={block.description}
+				axes={block.axes}
+				items={block.items}
 			/>
 		{:else if block.type === 'image'}
 			<Image

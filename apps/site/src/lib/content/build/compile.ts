@@ -20,6 +20,9 @@ import type {
 	CrateRecord,
 	InlineSegment,
 	PageBlock,
+	QuadrantDirection,
+	QuadrantItem,
+	QuadrantPosition,
 	RepoRecord,
 	TokeiView,
 	TocEntry,
@@ -27,7 +30,7 @@ import type {
 	ArticleMeta,
 } from '../types.ts';
 import { languageLabel } from './highlight.ts';
-import type { TextDirective } from 'mdast-util-directive';
+import type { ContainerDirective, LeafDirective, TextDirective } from 'mdast-util-directive';
 import type { Heading, Image as MdImage, Nodes, Paragraph, Root, RootContent } from 'mdast';
 
 // Feed and markdown targets need absolute image URLs, and they must resolve the same way the
@@ -41,6 +44,9 @@ const parser = unified()
 	.use(remarkDirective);
 
 const stringifier = unified().use(remarkStringify, { bullet: '-', fences: true }).use(remarkGfm);
+
+const QUADRANT_DIRECTIONS = ['top', 'right', 'bottom', 'left'] as const;
+const QUADRANT_POSITIONS = ['top-left', 'top-right', 'bottom-left', 'bottom-right'] as const;
 
 /**
  * Escape a value for either HTML text or a double-quoted attribute.
@@ -430,6 +436,62 @@ function mermaidRatio(value: string | null | undefined, source: string): number 
 	return ratio;
 }
 
+function requiredDirectiveAttribute(
+	attrs: DirectiveAttrs,
+	name: string,
+	directive: string,
+	source: string,
+): string {
+	const value = attrs[name]?.trim();
+	if (!value) throw new Error(`${source}: ${directive} requires a non-empty ${name} attribute`);
+	return value;
+}
+
+function quadrantBlock(
+	node: ContainerDirective,
+	source: string,
+): Extract<Block, { type: 'quadrant' }> {
+	const attrs = (node.attributes ?? {}) as DirectiveAttrs;
+	const title = requiredDirectiveAttribute(attrs, 'title', 'quadrant', source);
+	const description = attrs.description?.trim() || undefined;
+	const axes = Object.fromEntries(
+		QUADRANT_DIRECTIONS.map((direction) => [
+			direction,
+			requiredDirectiveAttribute(attrs, direction, 'quadrant', source),
+		]),
+	) as Record<QuadrantDirection, string>;
+	const items: QuadrantItem[] = [];
+
+	for (const child of node.children) {
+		if (child.type !== 'leafDirective' || child.name !== 'quadrant-item') {
+			throw new Error(`${source}: quadrant may contain only quadrant-item directives`);
+		}
+		const item = child as LeafDirective;
+		const itemAttrs = (item.attributes ?? {}) as DirectiveAttrs;
+		const at = requiredDirectiveAttribute(itemAttrs, 'at', 'quadrant-item', source);
+		if (!QUADRANT_POSITIONS.includes(at as QuadrantPosition)) {
+			throw new Error(
+				`${source}: quadrant-item at must be one of ${QUADRANT_POSITIONS.join(', ')}`,
+			);
+		}
+		const itemTitle = requiredDirectiveAttribute(itemAttrs, 'title', 'quadrant-item', source);
+		const note = itemAttrs.note?.trim() || undefined;
+		items.push({ at: at as QuadrantPosition, title: itemTitle, ...(note ? { note } : {}) });
+	}
+	return {
+		type: 'quadrant',
+		title,
+		...(description ? { description } : {}),
+		axes,
+		items,
+	};
+}
+
+function quadrantRegion(item: QuadrantItem, axes: Record<QuadrantDirection, string>): string {
+	const [vertical, horizontal] = item.at.split('-') as ['top' | 'bottom', 'left' | 'right'];
+	return `${axes[vertical]} / ${axes[horizontal]}`;
+}
+
 function cargoView(value: string | null | undefined): CargoView {
 	return value === 'table' ? 'table' : 'treemap';
 }
@@ -529,6 +591,43 @@ export async function compile(
 			feed.push(`<pre><code>${escapeHtml(node.value)}</code></pre>`);
 			md.push(`\`\`\`${lang}\n${node.value}\n\`\`\``);
 			continue;
+		}
+
+		if (node.type === 'containerDirective' && node.name === 'quadrant') {
+			const quadrant = quadrantBlock(node, sourceFile ?? url);
+			blocks.push(quadrant);
+			const entries = quadrant.items.map((item) => {
+				const note = item.note ? ` — ${escapeHtml(item.note)}` : '';
+				return `<li><strong>${escapeHtml(item.title)}</strong>${note} <small>(${escapeHtml(quadrantRegion(item, quadrant.axes))})</small></li>`;
+			});
+			feed.push(
+				`<figure><figcaption><strong>${escapeHtml(quadrant.title)}</strong>${quadrant.description ? ` — ${escapeHtml(quadrant.description)}` : ''}</figcaption><ul>${entries.join('')}</ul></figure>`,
+			);
+			md.push(
+				[
+					`> [quadrant: ${quadrant.title}]`,
+					...(quadrant.description ? [`> ${quadrant.description}`] : []),
+					...quadrant.items.map(
+						(item) =>
+							`> - ${quadrantRegion(item, quadrant.axes)}: ${item.title}${item.note ? ` — ${item.note}` : ''}`,
+					),
+				].join('\n'),
+			);
+			text.push(
+				[
+					quadrant.title,
+					...(quadrant.description ? [quadrant.description] : []),
+					...quadrant.items.map(
+						(item) =>
+							`${quadrantRegion(item, quadrant.axes)}: ${item.title}${item.note ? ` — ${item.note}` : ''}`,
+					),
+				].join('\n'),
+			);
+			continue;
+		}
+
+		if (node.type === 'leafDirective' && node.name === 'quadrant-item') {
+			throw new Error(`${sourceFile ?? url}: quadrant-item must be inside a quadrant`);
 		}
 
 		if (node.type === 'leafDirective' && node.name === 'linkcard') {

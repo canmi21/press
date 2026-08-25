@@ -219,6 +219,119 @@ it('leaves Mermaid ratio optional', async () => {
 	expect(compiled.blocks).toContainEqual({ type: 'mermaid', source });
 });
 
+it('compiles a categorical quadrant without inventing numeric positions', async () => {
+	const compiled = await compile(
+		`---
+title: Test
+lang: en-US
+---
+
+:::quadrant{title="UI stack trade-offs" description="Relative regions only." left="Smaller ecosystem" right="Broader ecosystem" top="More compile-time leverage" bottom="More runtime dependence"}
+::quadrant-item{at="top-left" title="Solid" note="compiler-first"}
+::quadrant-item{at="top-left" title="Marko"}
+::quadrant-item{at="top-right" title="Svelte" note="visible structure + reach"}
+:::
+`,
+		'/article',
+		{
+			newTabNote: 'opens in new tab',
+			resolveAsset: () => null,
+			highlight: async () => '',
+			sourceFile: 'contents/quadrant.md',
+		},
+	);
+
+	expect(compiled.blocks).toContainEqual({
+		type: 'quadrant',
+		title: 'UI stack trade-offs',
+		description: 'Relative regions only.',
+		axes: {
+			top: 'More compile-time leverage',
+			right: 'Broader ecosystem',
+			bottom: 'More runtime dependence',
+			left: 'Smaller ecosystem',
+		},
+		items: [
+			{ at: 'top-left', title: 'Solid', note: 'compiler-first' },
+			{ at: 'top-left', title: 'Marko' },
+			{ at: 'top-right', title: 'Svelte', note: 'visible structure + reach' },
+		],
+	});
+	expect(compiled.feed).toContain('<strong>Solid</strong> — compiler-first');
+	expect(compiled.feed).toContain('<strong>Marko</strong>');
+	expect(compiled.markdown).toContain(
+		'> - More compile-time leverage / Smaller ecosystem: Solid — compiler-first',
+	);
+	expect(compiled.text).toContain('UI stack trade-offs\nRelative regions only.');
+});
+
+it('compiles a categorical quadrant without items', async () => {
+	const compiled = await compile(
+		`---
+title: Test
+lang: en-US
+---
+
+:::quadrant{title="Empty comparison" left="Left" right="Right" top="Top" bottom="Bottom"}
+:::
+`,
+		'/article',
+		{
+			newTabNote: 'opens in new tab',
+			resolveAsset: () => null,
+			highlight: async () => '',
+			sourceFile: 'contents/quadrant.md',
+		},
+	);
+
+	expect(compiled.blocks).toContainEqual({
+		type: 'quadrant',
+		title: 'Empty comparison',
+		axes: { top: 'Top', right: 'Right', bottom: 'Bottom', left: 'Left' },
+		items: [],
+	});
+});
+
+it('rejects a quadrant item outside the four categorical regions', async () => {
+	await expect(
+		compile(
+			`---
+title: Test
+lang: en-US
+---
+
+:::quadrant{title="Broken" left="Left" right="Right" top="Top" bottom="Bottom"}
+::quadrant-item{at="center" title="Nowhere"}
+:::
+`,
+			'/article',
+			{
+				newTabNote: 'opens in new tab',
+				resolveAsset: () => null,
+				highlight: async () => '',
+				sourceFile: 'contents/broken-quadrant.md',
+			},
+		),
+	).rejects.toThrow(
+		'contents/broken-quadrant.md: quadrant-item at must be one of top-left, top-right, bottom-left, bottom-right',
+	);
+});
+
+it('rejects a quadrant item without its container', async () => {
+	await expect(
+		compile(
+			'---\ntitle: Test\nlang: en-US\n---\n\n::quadrant-item{at="top-left" title="Loose"}\n',
+			'/article',
+			{
+				newTabNote: 'opens in new tab',
+				resolveAsset: () => null,
+				highlight: async () => '',
+				sourceFile: 'contents/loose-quadrant.md',
+			},
+		),
+	).rejects.toThrow('contents/loose-quadrant.md: quadrant-item must be inside a quadrant');
+});
+
 it('compiles titled code fences into explicit disclosure states', async () => {
 	const compiled = await compile(
 		`---

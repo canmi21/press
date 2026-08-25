@@ -28,6 +28,13 @@ export type Block =
 			code: string;
 	  }
 	| { type: 'mermaid'; source: string; ratio?: number }
+	| {
+			type: 'quadrant';
+			title: string;
+			description?: string;
+			axes: Record<QuadrantDirection, string>;
+			items: QuadrantItem[];
+	  }
 	| { type: 'svgCanvas'; svg: string; title: string }
 	| { type: 'tokei'; source: string; title: string; view: TokeiView }
 	| { type: 'cargo'; crate: CrateRecord; view: CargoView }
@@ -81,6 +88,9 @@ export type TocEntry = { slug: string; text: string; depth: number };
 export type CardAlign = 'left' | 'center' | 'right';
 export type CargoView = 'treemap' | 'table';
 export type TokeiView = 'treemap' | 'bar' | 'table';
+export type QuadrantDirection = 'top' | 'right' | 'bottom' | 'left';
+export type QuadrantPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+export type QuadrantItem = { at: QuadrantPosition; title: string; note?: string };
 
 export type Compiled = {
 	meta: ArticleMeta;

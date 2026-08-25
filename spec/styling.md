@@ -295,6 +295,52 @@ cannot replace the site's security, type, or palette decisions. The duplication 
 local: changing a shared colour may require changing its Mermaid mirror, while every other consumer
 continues to have one OKLCH source.
 
+## A quadrant groups claims without inventing scores
+
+A categorical comparison uses a `:::quadrant` container with `::quadrant-item` children. The
+container names all four axis directions and gives the figure an accessible title; each item names
+one of the four regions and may add one short note. A region may hold no items or several. This is
+separate from Mermaid's numeric `quadrantChart`: when an article can defend only relative direction,
+placing labels at exact coordinates would manufacture precision that the argument does not contain.
+
+Visible copy is deliberately compressed because position carries the comparison. A title names the
+decision in a few words, each axis end uses one short term, and a box normally contains only its
+subject. An item note remains available for a distinction that position cannot encode, but it is
+not a restatement of either axis. The longer explanation belongs in the figure description and in
+the readable non-visual fallbacks. This keeps nuance without making every visual reader parse the
+same relationship twice.
+
+The rendered figure uses a centred Cartesian cross. Its intersection stays at the exact centre of the
+outer frame. The four regions first take their intrinsic item sizes, then the largest region defines
+four equal-width and equal-height corner tracks. Content is not centred within those tracks. Every
+non-empty region anchors its first authored item by the card corner nearest the cross, using the same
+inline and block gap in all four directions; further items flow away from the cross. The nearest card
+in a sparse region therefore aligns with the nearest card in a denser region opposite it, while an
+empty region draws nothing and cannot pull another region towards the centre. The layout is tuned for
+the common case of one to three items in a region; further independent items wrap outward instead of
+being merged or stretching an axis indefinitely. A small minimum keeps sparse figures legible, while
+maximum inline and block sizes preserve breathing room around dense ones.
+
+Both lines span the full item area. Only after that boundary does the positive end add its arrow and
+then its axis label; negative labels sit beyond the opposite boundary without an arrow. The result is
+four content corners with a short axis extension at the centre of each outer edge, rather than labels
+stealing length from the cross. The vertical line carries an arrow only at its top end and the
+horizontal line only at its right end, so the positive directions remain explicit without decorating
+all four endpoints. A region accepts zero or more independent items. Each item becomes its own
+content-width bordered paper-hover label; siblings are centred together and wrap as a group instead
+of being concatenated into an invented combined object, and no axis line crosses one. An empty region
+is whitespace, not a dashed placeholder: absence already carries meaning here, while an outlined empty
+object would imply missing or loading data. Numeric ticks remain absent.
+
+The authored title is an accessible name and a non-visual fallback, not a visible title bar. The
+outer frame therefore contains only the comparison. It matches a code block or Mermaid diagram and
+uses only shared interface tokens; it has no data-visualisation palette of its own. The page
+receives static HTML and SVG; the figure adds no client-side renderer or component-local runtime.
+Feed, Markdown and plain-text targets lower the figure to a readable list of axis-region labels and
+items instead of dropping its meaning. Directive attributes remain structural and therefore follow
+the existing non-translatable directive rule in [i18n.md](i18n.md). The boundary is implemented in
+[quadrant.svelte](../apps/site/src/lib/blocks/quadrant.svelte).
+
 ### A name that is two words is held together
 
 A space inside a product name is a break opportunity, and in a line that is otherwise CJK the
