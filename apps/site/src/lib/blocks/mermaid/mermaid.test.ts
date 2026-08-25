@@ -44,8 +44,8 @@ it('initializes strict rendering from the colocated hex palette', async () => {
 			htmlLabels: false,
 			theme: 'base',
 			themeVariables: expect.objectContaining({
-				background: '#f2f2f2',
-				primaryColor: '#ffffff',
+				background: '#ffffff',
+				primaryColor: '#f2f2f2',
 				lineColor: '#d3d3d3',
 				textColor: '#161616',
 			}),

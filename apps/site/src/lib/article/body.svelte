@@ -93,7 +93,13 @@
 		{:else if block.type === 'heading'}
 			<Section slug={block.slug}>{block.text}</Section>
 		{:else if block.type === 'code'}
-			<CodeBlock label={block.label} html={block.html} />
+			<CodeBlock
+				label={block.label}
+				title={block.title}
+				collapsible={block.collapsible}
+				defaultExpanded={block.defaultExpanded}
+				html={block.html}
+			/>
 		{:else if block.type === 'mermaid'}
 			<Mermaid source={block.source} />
 		{:else if block.type === 'image'}

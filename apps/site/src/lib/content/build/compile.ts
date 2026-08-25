@@ -389,6 +389,34 @@ function codeMeta(value: string | null | undefined): Record<string, string> {
 	return fields;
 }
 
+function codePresentation(
+	value: string | null | undefined,
+	source: string,
+): { title?: string; collapsible?: boolean; defaultExpanded?: boolean } {
+	const props = codeMeta(value);
+	const title = props.title?.trim() || undefined;
+	const rawCollapsible = props.collapsible;
+	const rawDefault = props.default;
+
+	if (rawCollapsible !== undefined && rawCollapsible !== 'true' && rawCollapsible !== 'false') {
+		throw new Error(`${source}: code fence collapsible must be true or false`);
+	}
+	if (rawDefault !== undefined && rawDefault !== 'expanded' && rawDefault !== 'collapsed') {
+		throw new Error(`${source}: code fence default must be expanded or collapsed`);
+	}
+	if (!title && (rawCollapsible !== undefined || rawDefault !== undefined)) {
+		throw new Error(`${source}: a collapsible code fence needs a title`);
+	}
+
+	if (!title) return {};
+	const collapsible = rawCollapsible !== 'false';
+	const defaultExpanded = rawDefault !== 'collapsed';
+	if (!collapsible && !defaultExpanded) {
+		throw new Error(`${source}: a code fence cannot be fixed open and default collapsed`);
+	}
+	return { title, collapsible, defaultExpanded };
+}
+
 function cargoView(value: string | null | undefined): CargoView {
 	return value === 'table' ? 'table' : 'treemap';
 }
@@ -476,6 +504,7 @@ export async function compile(
 				type: 'code',
 				lang,
 				label: languageLabel(lang),
+				...codePresentation(node.meta, sourceFile ?? url),
 				html: await highlight(node.value, lang),
 				code: node.value,
 			});

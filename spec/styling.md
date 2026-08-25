@@ -214,6 +214,23 @@ catalog, its authored spelling is preserved rather than uppercased or guessed. R
 while content is compiled so the browser does not download the grammar catalog merely to print a
 short label.
 
+### A titled code block is one framed disclosure
+
+A fenced code block may carry `title`, `collapsible`, and `default` presentation metadata. A title
+creates a header that remains visible in both states. It is collapsible unless explicitly fixed
+open with `collapsible="false"`; its initial state is expanded unless `default="collapsed"` is
+written. `default` accepts only `expanded` and `collapsed`. Collapse metadata without a title, an
+unknown value, or a fixed-open block that asks to start collapsed is an authoring error rather than
+a state the component guesses how to repair.
+
+The titled form is one rounded rectangle. Its title surface owns the rounded top corners, the code
+surface below has square top corners, and one shared outer border encloses both; nesting a second
+rounded frame would make the join look like two cards stacked together. The title is a native
+button only when the block can collapse, with `aria-expanded` and `aria-controls` naming the code
+panel. A collapsed panel is inert as well as visually clipped, so Shiki's focusable `pre` cannot
+receive keyboard focus while hidden. The panel opens by transitioning a grid row from zero to its
+content height, and reduced-motion readers receive the state change without animation.
+
 ## A Mermaid fence becomes a diagram after hydration
 
 Mermaid keeps its standard fenced-code authoring form. The language label is the switch: the site
@@ -226,10 +243,11 @@ The public page renders the diagram in the browser. Only an article that contain
 Mermaid runtime, and the bordered paper frame is server-rendered first so the late SVG replaces a
 deliberate loading surface rather than an empty hole. The frame follows the ordinary code-block
 language without copying its nested surfaces: one thin outer border contains one uninterrupted
-hover-paper background. An inset border or contrasting padding band makes a diagram look heavier
-than the prose and is not used. A failed render leaves the authored source readable inside that
-surface. Reduced-motion readers receive the final states without the loading pulse or reveal. The
-boundary is implemented in
+paper background, matching the ordinary code surface. Diagram nodes use the adjacent hover-paper
+step so they lift out of that deeper field without another component frame. An inset border or
+contrasting padding band makes a diagram look heavier than the prose and is not used. A failed
+render leaves the authored source readable inside that surface. Reduced-motion readers receive the
+final states without the loading pulse or reveal. The boundary is implemented in
 [mermaid.svelte](../apps/site/src/lib/blocks/mermaid/mermaid.svelte).
 
 Mermaid's theme engine accepts hex colours while the site palette is authored in OKLCH. It does not

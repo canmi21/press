@@ -188,6 +188,75 @@ it('routes a Mermaid fence to the client renderer without highlighting it', asyn
 	expect(compiled.markdown).toContain(`\`\`\`mermaid\n${source}\n\`\`\``);
 });
 
+it('compiles titled code fences into explicit disclosure states', async () => {
+	const compiled = await compile(
+		`---
+title: Test
+lang: en-US
+---
+
+\`\`\`ts title="Reference"
+const open = true;
+\`\`\`
+
+\`\`\`ts title="Closed" default="collapsed"
+const open = false;
+\`\`\`
+
+\`\`\`ts title="Fixed" collapsible="false"
+const fixed = true;
+\`\`\`
+`,
+		'/article',
+		{
+			newTabNote: 'opens in new tab',
+			resolveAsset: () => null,
+			highlight: async (code) => `<pre>${code}</pre>`,
+			sourceFile: 'contents/code-disclosures.md',
+		},
+	);
+
+	expect(compiled.blocks).toEqual(
+		expect.arrayContaining([
+			expect.objectContaining({
+				type: 'code',
+				title: 'Reference',
+				collapsible: true,
+				defaultExpanded: true,
+			}),
+			expect.objectContaining({
+				type: 'code',
+				title: 'Closed',
+				collapsible: true,
+				defaultExpanded: false,
+			}),
+			expect.objectContaining({
+				type: 'code',
+				title: 'Fixed',
+				collapsible: false,
+				defaultExpanded: true,
+			}),
+		]),
+	);
+});
+
+it('rejects contradictory code disclosure metadata', async () => {
+	await expect(
+		compile(
+			'---\ntitle: Test\nlang: en-US\n---\n\n```ts title="Fixed" collapsible="false" default="collapsed"\ncode\n```\n',
+			'/article',
+			{
+				newTabNote: 'opens in new tab',
+				resolveAsset: () => null,
+				highlight: async () => '',
+				sourceFile: 'contents/broken-code-disclosure.md',
+			},
+		),
+	).rejects.toThrow(
+		'contents/broken-code-disclosure.md: a code fence cannot be fixed open and default collapsed',
+	);
+});
+
 it('leaves an unfetched tweet visible as a directive placeholder', async () => {
 	const compiled = await compile(
 		'---\ntitle: Test\nlang: en-US\n---\n\n::twitter{tweet="2088060180290302397"}\n',

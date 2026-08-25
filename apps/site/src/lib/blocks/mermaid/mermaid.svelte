@@ -34,7 +34,7 @@
 
 <div
 	bind:this={root}
-	class="mermaid-block overflow-hidden rounded-xl border border-border bg-paper-hover"
+	class="mermaid-block overflow-hidden rounded-xl border border-border bg-paper"
 >
 	<div
 		class="mermaid-stage focus-ring-within relative overflow-x-auto rounded-xl p-5"
