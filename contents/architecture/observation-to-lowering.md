@@ -126,6 +126,18 @@ Component
 
 这对普通 **Kit** 应用来说已经很好，但是 **Seam 这种想把 `server rendering` 拆解成 `compile-time skeleton` + `CTR` + `SSR fallback` 的东西**来说，意义就真的大了不止一点。因为这棵树同时给我了两层信息：首先就是 **值动态** → `slot` 但是这个 V1 里早就可以实现了，更重要的其实是后者给我了 **结构动态** → **协议控制流节点**，与其去猜 React 编译器的黑盒，Svelte 的编译器就是暴露出来了正规前端给我读呢，比如 `{user.name}` 是前者 `{#if user}` 才是后者。
 
+```mermaid ratio="6.04004"
+flowchart LR
+	accTitle: Two layers of dynamic structure
+	accDescr: A visible Svelte AST lowers value expressions into runtime slots and structural blocks into protocol control flow over branch space
+	ast["Visible Svelte AST"] -- "{user.name}" --> value["Value dynamic"]
+	value --> slot["Slot"]
+	slot --> injection["Runtime injection"]
+	ast -- "{#if user}" --> structure["Structure dynamic"]
+	structure --> control["Control-flow node"]
+	control --> branch["Branch space"]
+```
+
 另外就是旧协议里的 `if` / `each` / `match` 仍然有效，但是关于之前[旧文](https://canmi.net/architecture/compile-time-rendering#maybe-ctr)里那套笛卡尔积我觉得要限定一下，成立的条件其实是分支空间，而不是值空间；`nullable` / `enum` / `bool` 这种有限决策，组合是有限的，`compile-time` 付费穷举在数学上成立；但 `JTD` 的 `string` / `number` / `timestamp` 本身不可枚举，`price > 10`、`inventory < 5`、`items.length === 0` 这类谓词切出来的支，单靠类型值笛卡尔发现不了；`sentinel` 填一个数进去永远走同一侧。要把它们收成有限决策，本来就得先 `derive` 成 `bool` / `enum`，那步不是 JTD 白送的(x) 所以 V1 在 `nullable` / `enum` 上 `sound`，对任意字段值空间不是；真的工程问题更是那些个块是 `diff` 猜出来的，`IR` 解释不了自己。
 
 ## Lowering {#ast-lowering}
