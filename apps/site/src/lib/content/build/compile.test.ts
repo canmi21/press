@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { compile, compilePage } from './compile';
+import { articleFrontmatter, compile, compilePage } from './compile';
 
 it('rejects malformed source lang metadata with the article file named', async () => {
 	const raw = '---\ntitle: Test\nlang: zh_CN\n---\n\nBody.\n';
@@ -418,4 +418,63 @@ it('leaves an unfetched tweet visible as a directive placeholder', async () => {
 		kind: 'twitter',
 		meta: { tweet: '2088060180290302397' },
 	});
+});
+
+it('draws an ::article card from the target article rather than from the directive', async () => {
+	const compiled = await compile(
+		'---\ntitle: Test\nlang: en-US\n---\n\n::article{path=architecture/compile-time-rendering}\n',
+		'/article',
+		{
+			newTabNote: 'opens in new tab',
+			resolveAsset: () => null,
+			articles: {
+				'architecture/compile-time-rendering': {
+					title: 'Rendering as a Protocol',
+					subtitle: 'UI should be described, not executed.',
+					created: '2026-04-13T19:18:28.488Z',
+				},
+			},
+			highlight: async () => '',
+			sourceFile: 'contents/example.md',
+		},
+	);
+
+	expect(compiled.blocks[0]).toEqual({
+		type: 'article',
+		path: 'architecture/compile-time-rendering',
+		title: 'Rendering as a Protocol',
+		subtitle: 'UI should be described, not executed.',
+		created: '2026-04-13T19:18:28.488Z',
+	});
+	// The feed and /llms.txt targets name the article too; neither runs a layout, so a card
+	// there is a link that says what it points at.
+	expect(compiled.feed).toContain('>Rendering as a Protocol</a>');
+	expect(compiled.markdown).toContain('[Rendering as a Protocol](');
+});
+
+it('fails the build when an ::article path names no article', async () => {
+	await expect(
+		compile(
+			'---\ntitle: Test\nlang: en-US\n---\n\n::article{path=architecture/typo}\n',
+			'/article',
+			{
+				newTabNote: 'opens in new tab',
+				resolveAsset: () => null,
+				articles: {},
+				highlight: async () => '',
+				sourceFile: 'contents/example.md',
+			},
+		),
+	).rejects.toThrow(
+		'contents/example.md: ::article path "architecture/typo" does not name an article',
+	);
+});
+
+it('reads a folded frontmatter title whole, as the card that shows it needs', () => {
+	const meta = articleFrontmatter(
+		'---\ntitle: >-\n  A title that was\n  written across two lines\nlang: en-US\n---\n\nBody.\n',
+		'contents/example.md',
+	);
+
+	expect(meta.title).toBe('A title that was written across two lines');
 });

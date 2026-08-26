@@ -4,7 +4,7 @@ import { URLS } from '@canmi/urls';
 import { parse as parseYaml } from 'yaml';
 import { createAssetResolver, type AssetManifest, type MediaManifest } from './assets.ts';
 import { assemble, type SegmentLayout, type TranslationSidecar } from './assemble.ts';
-import { compile, compilePage } from './compile.ts';
+import { articleFrontmatter, compile, compilePage } from './compile.ts';
 import { indexingMetadata } from './indexing.ts';
 
 /**
@@ -29,6 +29,7 @@ async function newTabNotes(messages: string): Promise<Record<LocaleCode, string>
 }
 import type {
 	Article,
+	ArticleReference,
 	ArticleSummary,
 	ArticleView,
 	CompiledPage,
@@ -179,6 +180,18 @@ export function translatedRaws(
 	return { raws, translatable, translationAvailable };
 }
 
+/** One article's assembled views, carried from the frontmatter pass into the compile pass. */
+type Prepared = {
+	file: string;
+	path: string;
+	url: string;
+	originLocale: string;
+	summaries: Record<string, ArticleSummary>;
+	raws: Record<LocaleCode, string>;
+	translatable: Record<LocaleCode, string>;
+	translationAvailable: Record<LocaleCode, boolean>;
+};
+
 export async function buildArticles(
 	paths: BuildPaths,
 ): Promise<{ articles: Article[]; files: string[] }> {
@@ -217,6 +230,14 @@ export async function buildArticles(
 	const previews = await buildPreviews(assets);
 	const articles: Article[] = [];
 
+	// Two passes over the corpus, because an `::article` card names an article that nothing has
+	// compiled yet. The first assembles every view and reads its frontmatter; the second
+	// compiles, by which point every article is nameable in every locale.
+	const prepared: Prepared[] = [];
+	const references = Object.fromEntries(
+		LOCALE_CODES.map((code) => [code, {} as Record<string, ArticleReference>]),
+	) as Record<LocaleCode, Record<string, ArticleReference>>;
+
 	for (const file of files) {
 		const sidecarFile = file.replace(/\.md$/, '.i18n.yaml');
 		const [raw, sidecarText] = await Promise.all([
@@ -232,17 +253,6 @@ export async function buildArticles(
 		// The original's own locale, read off the frontmatter before anything is compiled --
 		// `compile` reports it, but the resolver below needs it to run at all.
 		const originLocale = sourceLocale(/^lang:\s*(\S+)/m.exec(raw)?.[1] ?? 'en-US');
-		const source = await compile(raw, url, {
-			newTabNote: notes.mw,
-			// Not `en-US`. On the original view an image's alt is read beside prose in the
-			// article's own language, and a description generated in English and translated into
-			// eight is available in that one too. Reading the original meant hearing the pictures
-			// described in a language the article never used.
-			resolveAsset: createAssetResolver(assets, media, previews, paths.cdnUrl, originLocale),
-			highlight,
-			sourceFile: file,
-			embeds,
-		});
 		const { raws, translatable, translationAvailable } = translatedRaws(
 			file,
 			`${path}.md`,
@@ -250,6 +260,44 @@ export async function buildArticles(
 			sidecar,
 			layout,
 		);
+		for (const code of LOCALE_CODES) {
+			const { title, subtitle, created } = articleFrontmatter(raws[code], file);
+			references[code][path] = { title, subtitle, created };
+		}
+		prepared.push({
+			file,
+			path,
+			url,
+			originLocale,
+			summaries,
+			raws,
+			translatable,
+			translationAvailable,
+		});
+	}
+
+	for (const {
+		file,
+		path,
+		url,
+		originLocale,
+		summaries,
+		raws,
+		translatable,
+		translationAvailable,
+	} of prepared) {
+		const source = await compile(raws.mw, url, {
+			newTabNote: notes.mw,
+			// Not `en-US`. On the original view an image's alt is read beside prose in the
+			// article's own language, and a description generated in English and translated into
+			// eight is available in that one too. Reading the original meant hearing the pictures
+			// described in a language the article never used.
+			resolveAsset: createAssetResolver(assets, media, previews, paths.cdnUrl, originLocale),
+			articles: references.mw,
+			highlight,
+			sourceFile: file,
+			embeds,
+		});
 		const compiled = {
 			mw: source,
 			...Object.fromEntries(
@@ -266,6 +314,7 @@ export async function buildArticles(
 										paths.cdnUrl,
 										PUBLIC_LANGUAGE[code],
 									),
+									articles: references[code],
 									highlight,
 									sourceFile: file,
 									embeds,

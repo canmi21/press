@@ -59,6 +59,7 @@ export type Block =
 			/** What the cover shows. Offered as the link's description, never as its name. */
 			description?: string;
 	  }
+	| ({ type: 'article'; path: string } & ArticleReference)
 	| { type: 'placeholder'; kind: string; meta: Record<string, string> }
 	| {
 			type: 'image';
@@ -82,6 +83,14 @@ export type Block =
 			preview?: string;
 			srcset?: string;
 	  };
+
+/**
+ * What an `::article` card shows of the article it points at, in the view's own locale.
+ *
+ * The card reads these off the target rather than off the directive, so retitling an article
+ * retitles every card naming it and each translated view names it in its own language.
+ */
+export type ArticleReference = { title: string; subtitle: string; created: string };
 
 export type TocEntry = { slug: string; text: string; depth: number };
 

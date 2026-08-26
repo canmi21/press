@@ -28,6 +28,7 @@ import type {
 	TocEntry,
 	TweetRecord,
 	ArticleMeta,
+	ArticleReference,
 } from '../types.ts';
 import { languageLabel } from './highlight.ts';
 import type { ContainerDirective, LeafDirective, TextDirective } from 'mdast-util-directive';
@@ -352,6 +353,19 @@ function cropAlign(value: string | null | undefined, url: string): string | unde
 	return wanted === 'center' ? undefined : wanted;
 }
 
+/**
+ * An article's frontmatter, read with the compiler's own parser.
+ *
+ * `::article` needs the title of an article nothing has compiled yet, and a second reader of
+ * the same format is how the two come to disagree: a folded title would reach the card as
+ * `>-`. See spec/code.md.
+ */
+export function articleFrontmatter(raw: string, file: string): ArticleMeta {
+	const front = (parser.parse(raw) as Root).children.find((node) => node.type === 'yaml');
+	if (!front) throw new Error(`missing frontmatter: ${file}`);
+	return parseYaml(front.value) as ArticleMeta;
+}
+
 export type CompileContext = {
 	/**
 	 * What a screen reader is told about a link that opens elsewhere, in this view's language.
@@ -362,6 +376,14 @@ export type CompileContext = {
 	 */
 	newTabNote: string;
 	resolveAsset: (reference: string) => Resolved | null;
+	/**
+	 * What every article in the corpus is called, in the view being compiled, keyed by path.
+	 *
+	 * Handed in because the compiler sees one article at a time while an `::article` card names
+	 * another. A path this map does not hold is a typo rather than a working state, so the
+	 * directive throws instead of degrading -- unlike an embed, nothing has to be fetched first.
+	 */
+	articles?: Record<string, ArticleReference>;
 	/** External facts captured before the site build, so rendering never fetches them. */
 	embeds?: {
 		crates: Record<string, CrateRecord>;
@@ -519,7 +541,7 @@ function assertFrontmatterHasNoTranslatorNotes(
 export async function compile(
 	raw: string,
 	url: string,
-	{ newTabNote, resolveAsset, highlight, sourceFile, embeds }: CompileContext,
+	{ newTabNote, resolveAsset, articles, highlight, sourceFile, embeds }: CompileContext,
 ): Promise<Compiled> {
 	const tree = parser.parse(raw) as Root;
 	let meta: ArticleMeta | undefined;
@@ -641,6 +663,29 @@ export async function compile(
 			blocks.push({ type: 'linkcard', ...card, ...resolveAsset(card.src) });
 			feed.push(`<p><a href="${card.url}">${escapeHtml(card.title)}</a></p>`);
 			md.push(`[${card.title}](${card.url})`);
+			continue;
+		}
+
+		// `::article` is a link to another article in this repo, drawn as the card the homepage
+		// lists. It carries no copy of its own: name, subtitle and date are the target's, so a
+		// retitled article retitles every card pointing at it and each view names it in its own
+		// language. Compare `::linkcard`, which describes something outside the corpus and
+		// therefore has to be told what to say.
+		if (node.type === 'leafDirective' && node.name === 'article') {
+			const source = sourceFile ?? url;
+			const attrs = (node.attributes ?? {}) as DirectiveAttrs;
+			const target = requiredDirectiveAttribute(attrs, 'path', 'article', source);
+			const reference = articles?.[target];
+			if (!reference) {
+				throw new Error(`${source}: ::article path "${target}" does not name an article`);
+			}
+			const href = `${URLS.apps.production.site}/${target}`;
+			blocks.push({ type: 'article', path: target, ...reference });
+			feed.push(
+				`<p><a href="${href}">${escapeHtml(reference.title)}</a> — ${escapeHtml(reference.subtitle)}</p>`,
+			);
+			md.push(`[${reference.title}](${href}) — ${reference.subtitle}`);
+			text.push(`${reference.title}\n${reference.subtitle}`);
 			continue;
 		}
 

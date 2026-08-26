@@ -223,6 +223,30 @@ promise about lightness that the dark block then breaks, since a page that inver
 marks to move the other way; `ink` stays true in both because a mark is a mark under either
 light.
 
+### A card pointing inside the corpus carries no copy of its own
+
+`::article{path=...}` draws the card the homepage lists, for an article in this repository. It
+takes only the path: title, subtitle and date are read off the article it names, never written
+into the directive. `::linkcard` is the opposite and stays that way, because what it points at
+is outside the corpus and there is nothing to read.
+
+The rule is the URL rule one level up. A title is a volatile fact with one home, and a card that
+repeated it would be a second copy that only disagrees -- silently, since a stale title still
+renders and still links to the right page. It also gets each locale its own translated title for
+free, which a written-in one could never have: the directive is one line and a view is one of
+nine.
+
+The cost is that the site's content build runs
+[two passes](../../apps/site/src/lib/content/build/articles.ts): every view's frontmatter is
+read before anything compiles, because the compiler sees one article at a time while a card
+names another. A path no article answers to fails the build rather than degrading to a
+placeholder -- unlike an embed, nothing has to be fetched first, so an unresolved path is a typo
+and there is no working state it could be mistaken for.
+
+Resolving instead at request time, out of the article index, was the cheaper change and is
+rejected on what it cannot reach: the feed and `/llms.txt` are strings baked at compile time, so
+a card there would have been a bare path where every other link is a name.
+
 `robots.txt` follows the same shared-base shape, and lives in `libs/robots` rather than in
 `libs/urls`. It exports the minimal common definition plus a helper that appends site-specific
 rules -- disallowed paths, sitemap entries -- so each site owns its additions while a change to
