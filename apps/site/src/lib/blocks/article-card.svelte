@@ -1,5 +1,7 @@
 <script lang="ts">
 	import ArrowRight from '@lucide/svelte/icons/arrow-right';
+	import Type from '@lucide/svelte/icons/type';
+	import { formatCompact } from '$lib/article/format';
 	import Thumbnail from '$lib/article/thumbnail.svelte';
 	import { shortDate } from '$lib/format';
 
@@ -7,28 +9,45 @@
 		path,
 		title,
 		subtitle,
+		description,
 		created,
+		chars,
 	}: {
 		path: string;
 		title: string;
 		subtitle: string;
+		description: string;
 		created: string;
+		/** Absent when the route could not measure the target. See its comment in types.ts. */
+		chars?: number;
 	} = $props();
 
 	const date = $derived(shortDate(created));
 </script>
 
-<!-- The same box the other block cards use, with the homepage's article thumbnail as its icon.
-     The arrow points along rather than out of the page: this link stays on the site, and the
-     corner arrow `::github` and `::linkcard` wear is what says a destination is elsewhere. -->
+<!-- Built on the tweet card's shell -- same width, same three bands, same corner reveal -- because
+     both are one linked thing quoted into prose and a second box shape would say they differ.
+     What changes is the arrow: this link stays on the site, so it points along rather than out. -->
 <a href="/{path}" class="article-card focus-ring">
-	<Thumbnail />
+	<header class="header">
+		<Thumbnail scale={1.5} />
+		<span class="heading">
+			<span class="name">{title}</span>
+			<span class="subtitle">{subtitle}</span>
+		</span>
+	</header>
 
-	<div class="copy">
-		<span class="name">{title}</span>
-		<p class="subtitle">{subtitle}</p>
-		<time datetime={created} class="date">{date}</time>
-	</div>
+	<p class="description">{description}</p>
+
+	<footer class="stats">
+		<time datetime={created}>{date}</time>
+		{#if chars !== undefined}
+			<span class="stat" aria-label="{chars.toLocaleString('en-US')} characters">
+				<Type class="size-3.5" aria-hidden="true" />
+				<span class="tabular-nums">{formatCompact(chars)}</span>
+			</span>
+		{/if}
+	</footer>
 
 	<span class="corner" aria-hidden="true">
 		<ArrowRight class="size-4" strokeWidth={2} />
@@ -41,15 +60,13 @@
 		display: flex;
 		width: 100%;
 		max-width: 28rem;
-		align-items: center;
-		gap: 0.75rem;
 		margin-block: 1.8em;
-		margin-inline: auto;
+		flex-direction: column;
+		gap: 0.7rem;
 		border: 0.0625rem solid var(--color-border);
 		border-radius: 0.75rem;
 		background: var(--color-paper);
-		/* Room on the right for the corner arrow, so a long title never runs under it. */
-		padding: 0.6rem 2rem 0.6rem 0.75rem;
+		padding: 0.75rem;
 		color: inherit;
 		text-decoration: none;
 		transition:
@@ -63,10 +80,16 @@
 		background: var(--color-paper-hover);
 	}
 
-	.copy {
+	.header {
 		display: flex;
 		min-width: 0;
-		flex: 1;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.heading {
+		display: flex;
+		min-width: 0;
 		flex-direction: column;
 		gap: 0.15rem;
 	}
@@ -74,8 +97,9 @@
 	.name {
 		overflow: hidden;
 		color: var(--color-text-strong);
-		font-size: 0.875rem;
+		font-size: 0.9375rem;
 		font-weight: 560;
+		line-height: 1.35;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
@@ -86,23 +110,43 @@
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 2;
 		line-clamp: 2;
-		margin: 0;
 		color: var(--color-text-soft);
 		font-size: 0.78125rem;
 		line-height: 1.45;
 	}
 
-	.date {
+	.description {
+		display: -webkit-box;
+		overflow: hidden;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 3;
+		line-clamp: 3;
+		margin: 0;
+		color: var(--color-text);
+		font-size: 0.875rem;
+		line-height: 1.55;
+	}
+
+	.stats,
+	.stat {
+		display: flex;
+		align-items: center;
+	}
+
+	.stats {
+		gap: 0.9rem;
 		color: var(--color-text-soft);
 		font-size: 0.71875rem;
-		font-variant-numeric: tabular-nums;
+	}
+
+	.stat {
+		gap: 0.25rem;
 	}
 
 	.corner {
 		position: absolute;
-		top: 50%;
 		right: 0.75rem;
-		translate: 0 -50%;
+		bottom: 0.75rem;
 		color: var(--color-text-soft);
 		opacity: 0;
 		transition: opacity 200ms ease-out;

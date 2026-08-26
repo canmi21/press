@@ -148,7 +148,9 @@
 				path={block.path}
 				title={block.title}
 				subtitle={block.subtitle}
+				description={block.description}
 				created={block.created}
+				chars={block.chars}
 			/>
 		{:else if block.type === 'placeholder'}
 			<Placeholder kind={block.kind} meta={block.meta} />

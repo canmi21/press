@@ -59,7 +59,18 @@ export type Block =
 			/** What the cover shows. Offered as the link's description, never as its name. */
 			description?: string;
 	  }
-	| ({ type: 'article'; path: string } & ArticleReference)
+	| ({
+			type: 'article';
+			path: string;
+			/**
+			 * Characters in the article this points at, counted the way its own header counts them.
+			 *
+			 * Filled by the route rather than the compiler: the target is a sibling article and the
+			 * compiler sees one at a time, so its compiled text does not exist yet. Absent in the
+			 * feed and markdown targets, which carry a link rather than a card.
+			 */
+			chars?: number;
+	  } & ArticleReference)
 	| { type: 'placeholder'; kind: string; meta: Record<string, string> }
 	| {
 			type: 'image';
@@ -90,7 +101,12 @@ export type Block =
  * The card reads these off the target rather than off the directive, so retitling an article
  * retitles every card naming it and each translated view names it in its own language.
  */
-export type ArticleReference = { title: string; subtitle: string; created: string };
+export type ArticleReference = {
+	title: string;
+	subtitle: string;
+	description: string;
+	created: string;
+};
 
 export type TocEntry = { slug: string; text: string; depth: number };
 

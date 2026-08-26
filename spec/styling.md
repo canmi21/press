@@ -564,6 +564,11 @@ appears on hover. That shell is what separates a card from the prose around it, 
 without one reads as whatever it happens to sit next to. `::article` first shipped as the
 homepage's row lifted whole and read as a stray list item, which is what the rule came out of.
 
+**A card sits on the column's left edge.** Prose is left-aligned, so a centred card is the one
+element in the reading column that does not start where every line above it starts, and a lone
+one reads as a divider rather than as something quoted. `::github` still centres by default,
+which is its `align` attribute's to change; a card with no such attribute is left and stays left.
+
 **The arrow's direction is not decoration.** `↗` says the link leaves the site and pairs with
 the `target="_blank"` those cards carry; `→` says it stays. Getting this backwards is the easy
 mistake, because a new card is written by copying the nearest existing one and both of the
