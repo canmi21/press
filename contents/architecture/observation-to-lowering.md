@@ -9,15 +9,21 @@ lastmod: 2026-08-23T05:27:18Z
 
 今天已经是我 move 到 US 来的整整一个月了；落地 NC 日常安顿好后，周围的地区和比较近的景点也基本上逛完了，那么人就闲下来了。但是恰恰好我就不是什么闲人，人一旦闲下来就会给自己找点事情干 ~~捡起博客不就算一件嘛~~，但是不巧 US 这边物流不是很方便，所以板子暂时画不了，那就只能回来写点软件水水了，顺便把几个月前丢掉的坑捡起来填上?
 
+不过在开始吐槽别人之前，可能还是得先补一点 **seam & SeamJS** 相关的知识(x 这到底是个什么东西 ~~毕竟上一篇隔了好几个月，大概率你们已经忘干净了，`gh` 上的 README.md 窝又暂时懒得改~~
+
 ::article{path=architecture/compile-time-rendering}
 
-## Model {#request-time-model}
+那么简单说 Seam 首先是一套协议，而不是又一个 SSR runtime，意味着 build-time 编出一份带 `slot` 的 **HTML skeleton**，runtime-time / request-time 只往这些 `slot` 里塞值，`if` / `each` / `match` 这些也一样是写死在 skeleton 里的协议节点。所以请求进来的时候没有任何一个 UI 组件被执行过，服务端要做的只有"看图填空"这一件事，那么它自然也就不必是 Node 或者 Bun 了，**Rust** / **Go** 之类的后端填一份 HTML 不是也可以嘛，能有什么难的呢?! ~~但是其实后面也没有完全干掉 JS Runtime, 我的意思是可以不要但是前提是你能接受部分限制~~ 但是无论如何，总体性能提升绝对是指数级别的，因为达到大多数 **SSR** 效果不再要求 **runtime-time / request-time** 跑 **UI render** 了...
 
-大概从今年下半年开始，我把本站完全从 `TanStack Start` **React** 完全 `port` 为了 `SvelteKit` **Svelte** 全部迁移完之后，我发现它确实很好：`ssr` 的性能开销差不多降了一个数量级别，水合开销非常小，跑起来很舒服，框架编译的哲学也非常棒、非常轻量。但是 `Kit` 的部分总有一些让我觉得很不尽人意的地方。但是这其中大部分可以通过插件解决~~毕竟是 Vite 拼的~~ ，但是总是又一些部分是不能动的；但是这大概率也是我的问题，因为我想要改的地方可能和任何一个存在的 `meta` 框架都有本质上冲突，~~本质上是我在挑战他们的 执行模型(每请求跑 render 函数)、数据边界(load 和 UI 糊在一起)、后端能力(绑死 JS runtime)~~.
+## 请求时模型? {#request-time-model}
 
-## 不只是 SSR {#beyond-ssr}
+大概从今年下半年开始，我把本站完全从 `TanStack Start` **React** 完全 `port` 为了 `SvelteKit` **Svelte** 全部迁移完之后，我发现它确实很好：`ssr` 的性能开销差不多降了一个数量级别，水合开销非常小，跑起来很舒服，框架编译的哲学也非常棒、非常轻量。但是 `Kit` 的部分总有一些让我觉得很不尽人意的地方。但是这其中大部分可以通过插件解决~~毕竟是 Vite 拼的~~ ，但是总是又一些部分是不能动的；但是这大概率也是我的问题，因为 seam 想要改的地方可能和任何一个存在的 `meta` 框架都有本质上冲突，~~本质上是我在挑战他们的 执行模型(每请求跑 render 函数)、数据边界(load 和 UI 糊在一起)、后端能力(绑死 JS runtime)~~.
 
-这里不用想肯定有人问：这不就是 `Astro` / `Qwik` / `Marko` 嘛，语言形状上 `Marko` 最近，默认少 JS 上 `Astro` 最近，不 `replay hydrate` 上 `Qwik` 最近；但我想说的是他们的 `request-time` 仍是在跑 UI 程序：`island` 各自 `render`、`Qwik` 那次 `SSR`、`Marko` 编译出来的 JS 模板函数，都还是每请求执行一块 `renderer`; 那 `{#each}` 一千条本质上我也还是在拼 `HTML`，所以我不是不生成文档，而是区别在于我拼的是已经封闭的协议，而不是重新生成组件树，`Seam` 要的是 `AST` → `IR` → 带 `slot` 的 `HTML`，请求时只解释协议、做 `injection`，那份 **UI render** 函数早已经不跑了，所以任意后端都能填已经 `residual` 化的那最后一层。所以结论不是「`HTML` 优先我没看过」，而是没有现成的把编译期骨架和协议填槽接成同一条主路径。
+## 更精简的伪 SSR {#beyond-ssr}
+
+这里不用想肯定有人问：这不就是 `Astro` / `Qwik` / `Marko` 嘛，雀食 seam 在语言形状上 `Marko` 最近，默认少 JS 上 `Astro` 最近，不 `replay hydrate` 上 `Qwik` 最接近；但是呢 他们的 `request-time` 仍是在跑 UI 程序 `island` 各自 `render`、`Qwik` 那次 `SSR`、`Marko` 编译出来的 JS 模板函数，都还是每请求执行一块 `renderer`.
+
+那 `{#each}` 一千条本质上我也还是在拼 `HTML`，所以我不是不生成文档 ~~(PS: 此处「文档」为 html doc 术语)~~，而是区别在于我拼的是已经自包含的协议，而不是重新生成 组件 `Tree`，`Seam` 要的是 `AST` → `IR` → 带 `slot` 的 `HTML`，请求时只做协议解释、加上动态数据区域的 `injection`，故不必再跑 **UI render** 的那部分函数了，所以任意后端都能填已经 `residual` 化那最后一层 也就解决了 ***vender lock in JS runtime*** 的问题。所以其实我和上述已有内容的大方向并不在一个线上(x)
 
 ## Adopt {#adopt-without-replay}
 
