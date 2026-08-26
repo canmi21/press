@@ -556,24 +556,33 @@ shows: an overshoot has to have somewhere to go. A spring driving `background-si
 is clipped at its limit, so the overshoot is spent on nothing and the curve should simply be
 damped out. A transform or an unconstrained layout dimension such as width has room to show it.
 
-## A block card is a box, and its arrow says whether the destination leaves the site
+## An article is offered in one shape, wherever it is offered
 
-Everything a directive drops into an article body -- `::github`, `::linkcard`, `::article` --
-wears the same box: a one-pixel border on paper, a 0.75rem radius, and a corner arrow that
-appears on hover. That shell is what separates a card from the prose around it, so a card
-without one reads as whatever it happens to sit next to. `::article` first shipped as the
-homepage's row lifted whole and read as a stray list item, which is what the rule came out of.
+`::article` renders the row the homepage lists, unchanged -- the same sheet-of-bars thumbnail,
+title, dotted leader and date, from the same component. It does not get the bordered box
+`::github` and `::linkcard` wear.
 
-**A card sits on the column's left edge.** Prose is left-aligned, so a centred card is the one
-element in the reading column that does not start where every line above it starts, and a lone
-one reads as a divider rather than as something quoted. `::github` still centres by default,
-which is its `align` attribute's to change; a card with no such attribute is left and stays left.
+The box is not a house style every card owes; it is what those two need. A repository and an
+external page are foreign objects quoted into the page, and the border is what says so. An
+article of this site's own is not foreign, and the site already has a way of putting one in
+front of a reader. A second one would be a second answer to a question that has an answer, and
+the two would drift -- the homepage's row and the in-body card would agree on the day they were
+written and not after.
 
-**The arrow's direction is not decoration.** `↗` says the link leaves the site and pairs with
-the `target="_blank"` those cards carry; `→` says it stays. Getting this backwards is the easy
-mistake, because a new card is written by copying the nearest existing one and both of the
-first two point outward. A reader who has learned the pair reads the arrow before the URL.
+Both alternatives were built before this was settled. A box in `::github`'s shape read as a card
+about something external; a box in the tweet card's shape, carrying description and a character
+count, read well on its own and still said "this is a different kind of thing than the six rows
+on the homepage", which is exactly what it is not.
 
-What a card holds is the subject's, not the box's: [media.md](architecture/media.md) for a
-cover, [workspace.md](architecture/workspace.md) for why a card pointing inside the corpus
-carries no copy of its own.
+**The same shape, opened differently.** In an article body the card opens in a new tab; on the
+homepage the identical row navigates in place. What differs is not the link, it is where the
+reader is standing. Somebody halfway down an article who follows a reference and comes back to
+find their position gone has been charged for a detour they did not ask for; somebody on the
+homepage picking an article is doing the one thing that page is for, and a new tab there is
+clutter. The announcement rides along -- a link that opens elsewhere says so to a screen reader,
+which is why the note and the new tab are one prop on the component rather than two that have to
+agree.
+
+What a card holds is the subject's, not the shape's:
+[workspace.md](architecture/workspace.md) has why a card pointing inside the corpus carries no
+copy of its own.

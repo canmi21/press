@@ -685,7 +685,7 @@ export async function compile(
 				`<p><a href="${href}">${escapeHtml(reference.title)}</a> — ${escapeHtml(reference.subtitle)}</p>`,
 			);
 			md.push(`[${reference.title}](${href}) — ${reference.subtitle}`);
-			text.push(`${reference.title}\n${reference.subtitle}\n${reference.description}`);
+			text.push(`${reference.title}\n${reference.subtitle}`);
 			continue;
 		}
 

@@ -431,7 +431,6 @@ it('draws an ::article card from the target article rather than from the directi
 				'architecture/compile-time-rendering': {
 					title: 'Rendering as a Protocol',
 					subtitle: 'UI should be described, not executed.',
-					description: 'Two publishables, joined at request time.',
 					created: '2026-04-13T19:18:28.488Z',
 				},
 			},
@@ -445,7 +444,6 @@ it('draws an ::article card from the target article rather than from the directi
 		path: 'architecture/compile-time-rendering',
 		title: 'Rendering as a Protocol',
 		subtitle: 'UI should be described, not executed.',
-		description: 'Two publishables, joined at request time.',
 		created: '2026-04-13T19:18:28.488Z',
 	});
 	// The feed and /llms.txt targets name the article too; neither runs a layout, so a card

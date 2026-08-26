@@ -261,8 +261,8 @@ export async function buildArticles(
 			layout,
 		);
 		for (const code of LOCALE_CODES) {
-			const { title, subtitle, description, created } = articleFrontmatter(raws[code], file);
-			references[code][path] = { title, subtitle, description, created };
+			const { title, subtitle, created } = articleFrontmatter(raws[code], file);
+			references[code][path] = { title, subtitle, created };
 		}
 		prepared.push({
 			file,
