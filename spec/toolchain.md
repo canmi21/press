@@ -278,6 +278,28 @@ The always-on set is the three servers, not the CMS. Those are called by somethi
 browser, an overlay's site -- and are useful without anyone looking at them; the CMS is a
 window a person uses, so it comes up when asked (`mise run base up cms`) and not before.
 
+### A dev server stays up until the user says otherwise
+
+**An agent never stops a dev server on its own.** Not the base's, and not the one its own
+overlay started for the change it is working on. It comes down when the user says to bring it
+down, and at no other point -- including at the end of a task, which is the moment it is most
+wanted. And the obligation runs the other way too: **an agent that finds the server it needs
+missing starts it** rather than reporting it absent.
+
+The reason is whose it is. A server is running so that somebody can look at the page, and the
+looking happens after the agent has handed the work back. Tidying it away at the end of a turn
+takes the result away at the moment it becomes useful, and the agent is the one party in the
+room who cannot tell whether anybody is watching.
+
+**Stop what you started, by the handle you started it with -- never by process name.** `pkill -f
+'vite dev'` matches every workspace on the machine, so an overlay cleaning up after itself takes
+the base's site server down with it, and nothing about the command says so. This has happened:
+the base's `site` window exited 143 in the middle of a session while `api` and `cdn` survived,
+purely because they are wrangler processes and did not match the pattern. A slot shifts every
+port so two workspaces can run side by side; a name-matched kill reaches straight across that
+boundary and undoes it. The addresses are already unambiguous -- kill by pid, or bring the base's
+set down with `mise run base down`, which is the base's to run.
+
 ## Tool versions
 
 mise owns every tool, not just language runtimes. Linters, formatters, and CLIs belong in
