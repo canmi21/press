@@ -8,14 +8,19 @@ import { LOCALE_CODES, PUBLIC_LANGUAGE, type LocaleCode } from '../../locale/ind
 // Real articles, measured rather than invented: the threshold is a claim about actual
 // translations and a fixture written to sit on one side of it would prove nothing.
 //
-// `homepage` was here as the one English source until pages stopped being translated. Nothing
-// in `contents/` is authored in English now, so the English-source side of this is unmeasured
-// until an article is.
+// Nothing in the corpus sits above the threshold any more. Same-language views used to be
+// verbatim copies of the source and scored 0.947 to 1.000; since they became genuine
+// localisations (spec/i18n.md, "Same-language views localise the article too") the zh views
+// of these mixed-language articles measure 0.570 to 0.682, so the fold rule stops applying --
+// the outcome spec/locale.md anticipates for mixed originals. The above-threshold side is
+// unmeasured until some view lands there again, the same way the English-source side went
+// unmeasured when `homepage` stopped being translated.
 const ARTICLES: { path: string; source: Exclude<LocaleCode, 'mw'> }[] = [
 	{ path: 'architecture/compile-time-rendering', source: 'zh' },
 	{ path: 'development/rust-cargo-cranelift-tuning', source: 'zh' },
 	{ path: 'milestone/less-is-more', source: 'zh' },
 	{ path: 'mirror/less-than-an-hour', source: 'zh' },
+	{ path: 'mirror/friends-come-in-phases', source: 'zh' },
 ];
 const layout = JSON.parse(
 	readFileSync(new URL('../../../../../../data/build/segments.json', import.meta.url), 'utf8'),
@@ -45,16 +50,20 @@ describe('indexing metadata', () => {
 		for (const { path, source } of ARTICLES) {
 			const content = articleContent(path);
 			const indexing = indexingMetadata('/article', content);
-			expect(similarity(content.mw, content[source]), path).toBeGreaterThanOrEqual(
-				CANONICAL_SIMILARITY_THRESHOLD,
-			);
-			expect(indexing.canonical[source], path).toBe('/article');
+			// The source-language view still scores far above every real translation -- the gap
+			// between a localisation and a translation is what the metric measures -- just no
+			// longer high enough to fold into the Original.
 			for (const code of Object.keys(PUBLIC_LANGUAGE) as Exclude<LocaleCode, 'mw'>[]) {
-				if (code === source) continue;
 				expect(similarity(content.mw, content[code]), `${path}:${code}`).toBeLessThan(
 					CANONICAL_SIMILARITY_THRESHOLD,
 				);
 				expect(indexing.canonical[code], `${path}:${code}`).toBe(`/article?lang=${code}`);
+				if (code !== source) {
+					expect(
+						similarity(content.mw, content[source]),
+						`${path}: ${source} should outscore ${code}`,
+					).toBeGreaterThan(similarity(content.mw, content[code]));
+				}
 			}
 		}
 	});
@@ -66,7 +75,7 @@ describe('indexing metadata', () => {
 		const indexing = indexingMetadata('/article', content);
 
 		expect(indexing.canonical.mw).toBe('/article');
-		expect(indexing.canonical.zh).toBe('/article');
+		expect(indexing.canonical.zh).toBe('/article?lang=zh');
 		expect(indexing.canonical.en).toBe('/article?lang=en');
 		expect(indexing.canonicalUrls).toEqual([
 			...new Set(LOCALE_CODES.map((code) => indexing.canonical[code])),

@@ -413,18 +413,26 @@ contains. Every score rises, and they rise by different amounts per article. Mea
 is harder to diagnose than behaving wrongly everywhere. Japanese sat at 0.850, one code-heavy
 article from the same fate.
 
-Comparing translatable spans separates the cases cleanly. Across the five articles that exist,
-the locale sharing an article's language scores 0.947 to 1.000, every other locale scores 0.719
-or below, and nothing lands between. The homepage is the useful check: it is written in English,
-so `en` scores 1.000 and defers while `zh` scores 0.495 — the rule follows the article rather
-than assuming Chinese.
+Comparing translatable spans separates the cases cleanly. When this rule was measured, the
+locale sharing an article's language scored 0.947 to 1.000 -- same-language views were then
+verbatim copies -- while every other locale scored 0.719 or below, and nothing landed between.
+The homepage is the useful check: it is written in English, so `en` scored 1.000 and deferred
+while `zh` scored 0.495 — the rule follows the article rather than assuming Chinese.
+
+Since [i18n.md](i18n.md) made same-language views genuine localisations, the corpus's zh views
+measure 0.570 to 0.682: still far above every real translation, no longer above the threshold.
+So today nothing folds, every locale carries `?lang=`, and the bare URL is the Original alone --
+the anticipated outcome below, arrived at. The rule stays, measured by the test named above,
+for the view that scores high again: a single-language article whose localisation has little
+to regularise.
 
 Exact equality was tried before either of these and rejected: only 40 of 52 segments in one
 article matched byte for byte, so the rule would never have fired in the case it exists for.
 
 ### The threshold is not centred, on purpose
 
-0.90 sits nearer the top of a gap running from 0.719 to 0.947. That is the safer end.
+0.90 sits nearer the top of the gap the original measurement found, 0.719 to 0.947. That is
+the safer end.
 
 Folding wrongly sends a reader to a language they did not ask for and drops a translation
 somebody paid for out of the index. Failing to fold leaves a near-duplicate, which a crawler
