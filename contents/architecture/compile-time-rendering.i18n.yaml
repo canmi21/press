@@ -50,12 +50,12 @@ segments:
       tokens: 16657
       review: false
     zh-CN:
-      text: 那正好这些可能性可以用一个很好的办法来描述，那就是 **JTD**！
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997666Z
-      seconds: 0.0
-      tokens: 0
+      text: 恰好，我们可以用一种很好的方式来描述这些可能性，那就是 **JTD**！
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:42:19.38557Z
+      seconds: 6.122180833
+      tokens: 19153
       review: false
     zh-TW:
       text: 那正好這些可能性可以用一個很好的辦法來描述，那就是 **JTD**！
@@ -115,12 +115,12 @@ segments:
       tokens: 20322
       review: false
     zh-CN:
-      text: 这样理解下来，**CTR** 本质上就是 **PPR(Partial Prerendering)** 最理想的情况，所有能缓存的东西全部在编译期渲染完了，零运行时开销，只有真正变化的那一点数据才有成本。那和 `React 19.2` 的 PPR 不同的是什么呢？答案是我更彻底，更激进 `PPR` 就算在最理想的情况下，所有静态部分都缓存好了，只有一小段动态内容需要更新，但哪怕这个动态内容只是一个简单的字符串变了，React 还是得重新跑一遍 `renderToReadableStream()`，这个代价是不小的。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.9977Z
-      seconds: 0.0
-      tokens: 0
+      text: 由此看来，**CTR** 本质上就是 **PPR（部分预渲染）**最理想的形态：所有可缓存的内容都在编译期完成渲染，实现零运行时开销，只有真正发生变化的那一点数据会产生成本。那么，它与 `React 19.2` 的 PPR 有什么不同呢？答案是，我做得更彻底，也更激进。`PPR` 即使在最理想的情况下，所有静态部分都已缓存，只有一小段动态内容需要更新，但哪怕变化的只是一条简单的字符串，React 仍然必须重新执行一遍 `renderToReadableStream()`，而这个成本并不低。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:42:19.385592Z
+      seconds: 13.561853625
+      tokens: 19540
       review: false
     zh-TW:
       text: 這樣理解下來，**CTR** 本質上就是 **PPR(Partial Prerendering)** 最理想的情況，所有能緩存的東西全部在編譯期渲染完了，零運行時開銷，只有真正變化的那一點數據才有成本。那和 `React 19.2` 的 PPR 不同的是什麼呢？答案是我更徹底，更激進 `PPR` 就算在最理想的情況下，所有靜態部分都緩存好了，只有一小段動態內容需要更新，但哪怕這個動態內容只是一個簡單的字符串變了，React 還是得重新跑一遍 `renderToReadableStream()`，這個代價是不小的。
@@ -180,12 +180,12 @@ segments:
       tokens: 16997
       review: false
     zh-CN:
-      text: '## 被滥用的 SSR {#abused-ssr}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997701Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 被滥用的服务端渲染 {#abused-ssr}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:42:19.385658Z
+      seconds: 12.297882042
+      tokens: 19461
       review: false
     zh-TW:
       text: '## 被濫用的 SSR {#abused-ssr}'
@@ -245,12 +245,12 @@ segments:
       tokens: 18475
       review: false
     zh-CN:
-      text: 到这一步你可能已经看出来了这些 `slot` 就是 **"有类型标记的插槽"**。这个时候服务端运行时要做的事情变得极其简单，那就拿到真实数据，往这些孔里填值，纯粹的字符串替换。完全不需要 `renderToString()`，不需要 JavaScript 运行时，不需要 `vDOM`。任何能解析 **HTML** 注释、能做**字符串替换**的语言都能当后端，Rust、Go、TypeScript 都行，这就是为什么它是一个协议而不是一个框架。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997702Z
-      seconds: 0.0
-      tokens: 0
+      text: 到这里，你可能已经看出来了：这些 `slot` 就是**“带类型标记的插槽”**。此时，服务端运行时要做的事情变得极其简单：拿到真实数据，把值填进这些插槽即可，本质上就是纯粹的字符串替换。完全不需要 `renderToString()`，不需要 JavaScript 运行时，也不需要 `vDOM`。任何能够解析 **HTML** 注释并执行**字符串替换**的语言都可以用作后端，Rust、Go、TypeScript 都可以。这正是它是一套协议而非框架的原因。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:42:19.385739Z
+      seconds: 15.553022833
+      tokens: 19388
       review: false
     zh-TW:
       text: 到這一步你可能已經看出來了這些 `slot` 就是 **"有類型標記的插槽"**。這個時候服務端運行時要做的事情變得極其簡單，那就是拿到真實數據，往這些孔裡填值，純粹的字符串替換。完全不需要 `renderToString()`，不需要 JavaScript 運行時，不需要 `vDOM`。任何能解析 **HTML** 註釋、能做**字符串替換**的語言都能當後端，Rust、Go、TypeScript 都行，這就是為什麼它是一個協議而不是一個框架。
@@ -310,12 +310,12 @@ segments:
       tokens: 18155
       review: false
     zh-CN:
-      text: 这里也要感谢 **TypeScript** 的给我的灵感，其实所谓的 "值" 本身在编译期是什么并不重要，重要的是它的类型；一个 `slot` 里要填什么内容，只要它不是那种 `Open String` (有无限种可能的字符串)，它就可以被包裹为有限可能性的类型。比如你在写一个 dashboard，需要条件渲染某块内容，无非就是 User 或 Admin 等等但是总归是可以定义完的类型；真实世界中几乎所有需要条件渲染、需要做逻辑判断的地方，都可以被归纳为几种确定的可能性。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997703Z
-      seconds: 0.0
-      tokens: 0
+      text: 这里也要感谢 **TypeScript** 给我的灵感。其实，所谓的“值”在编译期具体是什么并不重要，重要的是它的类型；一个 `slot` 里该填什么内容，只要它不是 `Open String`（即拥有无限种可能的字符串），就可以被包裹成只有有限种可能的类型。比如，你在编写一个仪表盘，需要根据条件渲染某块内容，无非就是用户、管理员等几种情况，总归都能定义成完整的类型；现实世界中，几乎所有需要条件渲染或进行逻辑判断的地方，都可以归纳为几种确定的可能性。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:42:25.517422Z
+      seconds: 20.603648083
+      tokens: 19586
       review: false
     zh-TW:
       text: 這裡也要感謝 **TypeScript** 給我的靈感，其實所謂的 "值" 本身在編譯期是什麼並不重要，重要的是它的類型；一個 `slot` 裡要填什麼內容，只要它不是那種 `Open String` (有無限種可能的字符串)，它就可以被包裹為有限可能性的類型。比如你在寫一個 dashboard，需要條件渲染某塊內容，無非就是 User 或 Admin 等等但是總歸是可以定義完的類型；真實世界中幾乎所有需要條件渲染、需要做邏輯判斷的地方，都可以被歸納為幾種確定的可能性。
@@ -375,12 +375,12 @@ segments:
       tokens: 19160
       review: false
     zh-CN:
-      text: 这样就可以在组件里还是写一些计算逻辑，这部分逻辑会在后端拿到数据之后跑一段小 JS，把它推导为 `ready-to-display` 的状态，然后再发回给前端做首屏的水合。这样 CTR 满意了，拿到了严格结构的派生数据，用户 DX 开行了，组件只写一遍。当然如果你愿意严格遵守纯类型约束的话，后端确实可以做到 **No JS Runtime**，~~这个承诺其实还是成立的~~。但无论怎么说，新增的这个很小的 JavaScript Runtime，它的性能开销、内存占用和体积都远远比 Node 之类的东西小得多，基本上就是 200-300KB 的事情，却带来了非常大的灵活性。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997705Z
-      seconds: 0.0
-      tokens: 0
+      text: 这样一来，组件里仍然可以编写一些计算逻辑。后端拿到数据后，会运行一小段 JavaScript，将数据推导成 `ready-to-display` 状态，再发回前端完成首屏水合。于是 CTR 得到了结构严格的派生数据，开发者也获得了良好的开发体验，而且组件只需编写一次。当然，如果愿意严格遵守纯类型约束，后端确实可以做到 **无需 JavaScript 运行时**，~~所以这个承诺其实依然成立~~。不过无论如何，新增的 JavaScript 运行时非常轻量，其性能开销、内存占用和体积都远小于 Node 等运行时，基本只有 200–300 KB，却能带来极大的灵活性。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:42:31.692044Z
+      seconds: 16.787677084
+      tokens: 19621
       review: false
     zh-TW:
       text: 這樣就可以在組件裡還是寫一些計算邏輯，這部分邏輯會在後端拿到數據之後跑一段小 JS，把它推導為 `ready-to-display` 的狀態，然後再發回給前端做首屏的水合。這樣 CTR 滿意了，拿到了嚴格結構的派生數據，用戶 DX 開心了，組件只寫一遍。當然如果你願意嚴格遵守純類型約束的話，後端確實可以做到 **No JS Runtime**，~~這個承諾其實還是成立的~~。但無論怎麼說，新增的這個很小的 JavaScript Runtime，它的性能開銷、內存佔用和體積都遠遠比 Node 之類的東西小得多，基本上就是 200-300KB 的事情，卻帶來了非常大的靈活性。
@@ -441,11 +441,11 @@ segments:
       review: false
     zh-CN:
       text: '## 未来展望 {#outlook}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997705Z
-      seconds: 0.0
-      tokens: 0
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:42:32.956232Z
+      seconds: 4.60229525
+      tokens: 19180
       review: false
     zh-TW:
       text: '## 未來展望 {#outlook}'
@@ -505,12 +505,12 @@ segments:
       tokens: 19166
       review: false
     zh-CN:
-      text: 这些 `%%SEAM:...%%` 就是 **Sentinel**，它们占住了每一个动态值的位置。React 拿着这些 **Sentinel** 数据跑完 `renderToString()` 之后，输出的 **HTML** 里这些位置就被标记出来了。接下来构建管线会把这些哨兵转换成 HTML 注释形式的 slot 标记
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997707Z
-      seconds: 0.0
-      tokens: 0
+      text: 这些 `%%SEAM:...%%` 就是**哨兵值**，分别占据每个动态值的位置。React 使用这些**哨兵值**完成 `renderToString()` 后，输出的 **HTML** 中相应位置便有了标记。随后，构建管线会将这些哨兵值转换为以 HTML 注释表示的插槽标记。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:42:34.943976Z
+      seconds: 12.281279583
+      tokens: 19219
       review: false
     zh-TW:
       text: 這些 `%%SEAM:...%%` 就是 **Sentinel**，它們占住了每一個動態值的位置。React 拿著這些 **Sentinel** 資料跑完 `renderToString()` 之後，輸出的 **HTML** 裡這些位置就被標記出來了。接下來構建管線會把這些哨兵轉換成 HTML 註釋形式的 slot 標記
@@ -570,12 +570,12 @@ segments:
       tokens: 18475
       review: false
     zh-CN:
-      text: 在我看来，`RSC` 和一众 `SSR` 框架其实都在滥用 `render` 这件事。`SSG` 倒是做到了我想要的风格——页面在构建时就生成好了，请求时不需要重新渲染——但它没有真正的动态能力(x)。而 ISR 呢，看起来是在 SSG 和 SSR 之间找了个平衡，做到了一定的灵活性，但它本质上并没有达到我的期望；我觉得 ISR 的出现其实就是为了弥补 SSR 性能差的问题，包括后续的各种 CDN 缓存策略之类的操作，它们其实都算是一种 **workaround**，而不是真正优雅的解决方案。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997708Z
-      seconds: 0.0
-      tokens: 0
+      text: 在我看来，`RSC` 和一众 `SSR` 框架其实都在滥用 `render`。`SSG` 倒是实现了我想要的模式——页面在构建阶段就已生成，请求到来时无需重新渲染——但它不具备真正的动态能力（x）。至于 ISR，它看似在 SSG 和 SSR 之间取得了平衡，也提供了一定的灵活性，却仍未从根本上达到我的期望。在我看来，ISR 的出现其实就是为了弥补 SSR 性能不佳的问题，后续出现的各种 CDN 缓存策略等做法也都只是 **权宜之计**，而不是真正优雅的解决方案。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:42:37.56841Z
+      seconds: 16.893004917
+      tokens: 19502
       review: false
     zh-TW:
       text: 在我看來，`RSC` 和一眾 `SSR` 框架其實都在濫用 `render` 這件事。`SSG` 倒是做到了我想要的風格——頁面在構建時就生成好了，請求時不需要重新渲染——但它沒有真正的動態能力(x)。而 ISR 呢，看起來是在 SSG 和 SSR 之間找了個平衡，做到了一定的靈活性，但它本質上並沒有達到我的期望；我覺得 ISR 的出現其實就是為了彌補 SSR 性能差的問題，包括後續的各種 CDN 緩存策略之類的操作，它們其實都算是一種 **workaround**，而不是真正優雅的解決方案。
@@ -635,12 +635,12 @@ segments:
       tokens: 20705
       review: false
     zh-CN:
-      text: 那肯定又有人要担心了：条件渲染的组合不会指数爆炸吗？比如 3~5 个变量控制条件渲染，每个变量有 10 种可能，乘起来确实是一个看起来很大的数字。但实际上这个数字只是看起来大唬人而已嘛。首先，很多字符串类型的值我们并不需要真的穷举内容，我们只关心它有值还是没值 `nullable` 这里实际上就是 2 种；其次，真正需要做条件判断的字段，它的类型一定是可穷举的，就比如（你不会拿一个 `open string` 来做 `if` 判断吧？）；再说了，就算真的要穷举所有组合，在现代 **CPU** 上跑完可能也就几 `ms`，而且这完全是编译期的重，就像 **Rust** 编译一样，编译期付出比较重的代价，但运行时就变成了纯粹的字符串替换，这笔生意怎么算都是划算的吧，更何况这里没有任何特别的魔法。但是这里也可以埋一个小点：后面我其实引入了一个很小的嵌入式 **JavaScript** 执行环境来做一些复杂的推导，但这算是一种妥协，后面会解释原因，以及理论上是可以不要的。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997709Z
-      seconds: 0.0
-      tokens: 0
+      text: 那肯定又有人要担心了：条件渲染的组合数量不会指数级爆炸吗？比如有 3～5 个变量控制条件渲染，每个变量都有 10 种可能，组合起来确实是个看起来很大的数字。但实际上，这个数字只是看着吓人而已。首先，许多字符串类型的值根本不需要穷举具体内容，我们只关心它有值还是没值 `nullable`，实际上只有两种情况；其次，真正需要参与条件判断的字段，其类型一定是可穷举的，比如说，你总不会拿一个 `open string` 来做 `if` 判断吧？再说了，即使真的要穷举所有组合，在现代 **CPU** 上可能也只需要几 `ms` 就能跑完，而且这部分成本完全发生在编译期。就像编译 **Rust** 一样，编译时付出较高的代价，运行时却只剩下纯粹的字符串替换，这笔买卖怎么算都划算，更何况这里没有任何特别的魔法。不过，这里也可以先埋个伏笔：后来我确实引入了一个很小的嵌入式 **JavaScript** 执行环境来完成一些复杂的推导，但这算是一种妥协。后面我会解释原因，以及为什么从理论上说它并不是必需的。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:42:46.129739Z
+      seconds: 13.520784625
+      tokens: 19879
       review: false
     zh-TW:
       text: 那肯定又有人要擔心了：條件渲染的組合不會指數爆炸嗎？比如 3~5 個變數控制條件渲染，每個變數有 10 種可能，乘起來確實是一個看起來很大的數字。但實際上這個數字只是看起來大唬人而已嘛。首先，很多字串型別的值我們並不需要真的窮舉內容，我們只關心它有值還是沒值 `nullable` 這裡實際上就是 2 種；其次，真正需要做條件判斷的欄位，它的型別一定是可窮舉的，就比如（你不會拿一個 `open string` 來做 `if` 判斷吧？）；再說了，就算真的要窮舉所有組合，在現代 **CPU** 上跑完可能也就幾 `ms`，而且這完全是編譯期的重活，就像 **Rust** 編譯一樣，編譯期付出比較重的代價，但執行期就變成了純粹的字串替換，這筆生意怎麼算都是划算的吧，更何況這裡沒有任何特別的魔法。但是這裡也可以埋一個小點：後面我其實引入了一個很小的嵌入式 **JavaScript** 執行環境來做一些複雜的推導，但這算是一種妥協，後面會解釋原因，以及理論上是可以不要的。
@@ -700,12 +700,12 @@ segments:
       tokens: 20285
       review: false
     zh-CN:
-      text: 最后就是我很讨厌的 **hydration mismatch**，我相信你也不喜欢；但是归根结底这其实就是 `DOM` 状态不一致，而传统框架比如 **Next.js** 的 **App Router** 试图把整个应用都用 React 包裹起来，一旦用户侧有浏览器注入什么标记，就有概率出现水合错误。我们和传统 SSR 的限制其实是一样的，但是我在你用 TS 的时候也包裹了一个 叫做 `__root` 的水合 `div` 这样让水合区域不再覆盖 **metadata** 区域，换来了更加耐用的水合，另外 React 19 内置了对 `<title>`、`<meta>`、`<link>` 等文档元数据标签的支持。即使你水合的只是页面中的某个 `<div>`（而不是整个 `<html>`），在组件里直接渲染 `<title>My Page</title>`，React 也会自动把它提升 **hoist** 到 `<head>` 中去。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.99771Z
-      seconds: 0.0
-      tokens: 0
+      text: 最后要说的是我很讨厌的 **水合不匹配**，相信你也不喜欢。归根结底，它其实就是 `DOM` 状态不一致。传统框架（如 **Next.js** 的 **App Router**）试图用 React 包裹整个应用，一旦用户的浏览器注入了某些标记，就可能发生水合错误。我们面临的限制其实与传统服务端渲染相同，不过当你使用 TypeScript 时，我还会加上一层名为 `__root` 的水合 `div`，避免水合区域覆盖 **元数据** 区域，从而让水合更加稳健。此外，React 19 已内置对 `<title>`、`<meta>`、`<link>` 等文档元数据标签的支持。即使你只水合页面中的某个 `<div>`，而不是整个 `<html>`，只要在组件中直接渲染 `<title>My Page</title>`，React 也会自动将其**提升**到 `<head>` 中。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:42:47.232948Z
+      seconds: 23.420299416
+      tokens: 19890
       review: false
     zh-TW:
       text: 最後就是我很討厭的 **hydration mismatch**，我相信你也不喜歡；但是歸根結底這其實就是 `DOM` 狀態不一致，而傳統框架比如 **Next.js** 的 **App Router** 試圖把整個應用都用 React 包裹起來，一旦使用者端有瀏覽器注入什麼標記，就有機率出現水合錯誤。我們和傳統 SSR 的限制其實是一樣的，但是我在你用 TS 的時候也包裹了一個叫做 `__root` 的水合 `div`，這樣讓水合區域不再覆蓋 **metadata** 區域，換來了更加耐用的水合，另外 React 19 內建了對 `<title>`、`<meta>`、`<link>` 等文件中繼資料標籤的支援。即使你水合的只是頁面中的某個 `<div>`（而不是整個 `<html>`），在元件裡直接渲染 `<title>My Page</title>`，React 也會自動把它提升 **hoist** 到 `<head>` 中去。
@@ -765,12 +765,12 @@ segments:
       tokens: 19420
       review: false
     zh-CN:
-      text: 那这个东西做出来有什么用呢？实际上它不只局限于 Web。比如说我把 `Transport` 通道也给抽象掉之后，是可以后续移植到类似于 **Electron** 或者 **Tauri** 之类的 Desktop 环境的只要把 `HTTP` 传输管线换成 `IPC` 通信，跑的还是一样的 Seam 协议，取而代之的就是那些 Electron 应用开屏的时候再也不用放 loading 了，很多东西能够直接像 SSR 一样本地渲染出来，这就是 CTR 的魔法！
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997711Z
-      seconds: 0.0
-      tokens: 0
+      text: 那么，做出这个东西有什么用呢？其实它并不局限于网页端。例如，把 `Transport` 通道也抽象出来后，后续就可以移植到 **Electron**、**Tauri** 等桌面环境中：只要将 `HTTP` 传输管线替换为 `IPC` 通信，运行的依然是同一套 Seam 协议。这样一来，那些 Electron 应用启动时就再也不必显示加载画面了，许多内容都能像服务端渲染一样直接在本地渲染出来——这就是 CTR 的魔法！
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:42:48.487869Z
+      seconds: 19.598449042
+      tokens: 19349
       review: false
     zh-TW:
       text: 那這個東西做出來有什麼用呢？實際上它不只侷限於 Web。比如說我把 `Transport` 通道也給抽象掉之後，是可以後續移植到類似於 **Electron** 或者 **Tauri** 之類的 Desktop 環境的，只要把 `HTTP` 傳輸管線換成 `IPC` 通訊，跑的還是一樣的 Seam 協議，取而代之的就是那些 Electron 應用開屏的時候再也不用放 loading 了，很多東西能夠直接像 SSR 一樣本地渲染出來，這就是 CTR 的魔法！
@@ -830,12 +830,12 @@ segments:
       tokens: 17082
       review: false
     zh-CN:
-      text: 这个时候你可能会想到条件渲染怎么办？比如某个字段为 null 的时候一整块内容都不应该出现，但是其实这个也不需要运行时的 JavaScript 来判断，反知是协议可以定义这个情况
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997712Z
-      seconds: 0.0
-      tokens: 0
+      text: 这时你可能会想到：条件渲染怎么办？比如，当某个字段为 null 时，整块内容都不应该出现。但其实这也不需要由运行时的 JavaScript 来判断，反而可以直接在协议中定义这种情况。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:42:54.471618Z
+      seconds: 20.849921125
+      tokens: 19021
       review: false
     zh-TW:
       text: 這個時候你可能會想到條件渲染怎麼辦？比如某個欄位為 null 的時候一整塊內容都不應該出現，但是其實這個也不需要執行期的 JavaScript 來判斷，反之是協定可以定義這個情況
@@ -895,12 +895,12 @@ segments:
       tokens: 25542
       review: false
     zh-CN:
-      text: 说了那么多，什么时候能吃上呢：大概吧，还要很久很久，真的不是我想鸽子，而是其实我觉得现阶段这个玩意绑架我太多太多了。我只能拿来开发的话，基本上应用写不了，写什么都被框架先绊脚，更何况我最近主要其实都在写这个网站什么的了。所以我想通了，不如网站先写上一个规模，这样就知道我的需求到底是什么；后面也许再来写 SeamJS 就有一个 TODO List 了，一个一个实现好这个功能就能用了，~~后续还能再水一个 迁移 和 Benchmark~~ ？好了，大饼画完了，理念就在这，先别管今天能不能用，至少思路上原型已经跑通了，晚安 💤
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997713Z
-      seconds: 0.0
-      tokens: 0
+      text: 说了这么多，到底什么时候才能:tn[用上]{is="原文用“吃上”，把期待用上新品戏称为等着吃到它，带有网络口吻的幽默。"}呢？大概还要很久很久吧。我真的不是想:tn[拖延]{is="原文用网络语“鸽子”，源自“放鸽子”，指拖延或不兑现承诺，是作者对项目延期的自嘲。"}，而是现阶段这个东西对我的束缚实在太多了。如果只能拿它来做开发，我基本写不了应用；无论写什么，都会先被框架绊住。更何况我最近主要都在做这个网站之类的东西。所以我想明白了：不如先把网站做到一定规模，这样才能弄清楚自己究竟有什么需求；以后也许再来写 SeamJS 时，就会有一份待办清单，逐项实现好这些功能，它也就能用了，~~后面还可以再凑一篇迁移和性能基准测试~~？好了，这番:tn[宏伟规划]{is="原文称其为“大饼”，来自“画大饼”，指许下宏大却未必兑现的承诺；作者借此自嘲整篇未来规划。"}讲完了。理念就是这样，先别管今天能不能用，至少原型在思路上已经跑通了。晚安 💤
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:42:59.661517Z
+      seconds: 24.693971625
+      tokens: 20156
       review: false
     zh-TW:
       text: 說了那麼多，什麼時候能:tn[吃上]{is="這裡故意說「吃上」而不是通常的「用上」，像在等一道菜一樣期待新品，帶著網路玩笑的口吻。"}呢：大概吧，還要很久很久，真的不是我想:tn[放鴿子]{is="「鴿子」在這裡借自「放鴿子」，把拖延專案說成失約；作者用它自嘲進度一再延後。"}，而是其實我覺得現階段這玩意綁架我太多太多了。我只能拿來開發的話，基本上應用程式寫不了，寫什麼都被框架先絆腳，更何況我最近主要其實都在寫這個網站什麼的了。所以我想通了，不如網站先寫到一個規模，這樣就知道我的需求到底是什麼；後面也許再來寫 SeamJS 就有一份待辦清單了，一個一個實作，功能做好就能用了，~~後續還能再水一篇遷移和效能評測~~？好了，:tn[大餅畫完了]{is="這裡的「大餅」把這份宏偉規劃說成未必能兌現的空頭承諾，是作者對整段未來展望的自嘲。"}，理念就在這，先別管今天能不能用，至少思路上原型已經跑通了，晚安 💤
@@ -960,12 +960,12 @@ segments:
       tokens: 17904
       review: false
     zh-CN:
-      text: 最后就是很诱人的协议无关性，我们本质上只需要抓住 `renderToString` 这一个关键点，前面用什么 UI 框架其实和协议没有关系。那这样的话，和 **Astro** 有什么区别呢？不过放心，我肯定造的不是另外一个 **Astro** 表面上看我和 **Astro** 的岛屿概念有一点像，但实际上区别很大。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997714Z
-      seconds: 0.0
-      tokens: 0
+      text: 最后是颇具吸引力的协议无关性。本质上，我们只需要抓住 `renderToString` 这一个关键点，前端采用什么用户界面框架其实与协议无关。那么，这和 **Astro** 有什么区别呢？不过请放心，我肯定不会再造一个 **Astro**。表面上看，我的设计和 **Astro** 的岛屿概念有些相似，但实际上二者区别很大。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:43:08.097443Z
+      seconds: 10.458280292
+      tokens: 19264
       review: false
     zh-TW:
       text: 最後，還有相當誘人的協定無關性。本質上，我們只需要抓住 `renderToString` 這一個關鍵點，前面使用什麼 UI 框架其實與協定無關。那麼，這和 **Astro** 有什麼區別呢？不過請放心，我打造的肯定不是另一個 **Astro**。表面上看，我的概念與 **Astro** 的島嶼有些相似，但實際上兩者差異很大。
@@ -1025,12 +1025,12 @@ segments:
       tokens: 18518
       review: false
     zh-CN:
-      text: 那为什么最后 SeamJS 还是加入了 JS Runtime 呢？因为在落实这套方案的时候我遇到了一个问题，那就是 CTR 的理想对首屏数据的约束是非常严格的，数据必须是一个可以完全推导出来的确定结构体，甚至不能有任何计算逻辑，只能是条件。这就变得非常苛刻了，可想而知的就是作为框架的开发体验来说，传统写 React 的人肯定是指望在组件里做一些计算、拿到几个值就能用，如果要严格按照 CTR 的约束来达到一个 `ready-to-display` 的状态，过程会非常繁琐，甚至出现一个组件写 2次。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997715Z
-      seconds: 0.0
-      tokens: 0
+      text: 那么，SeamJS 最后为什么还是加入了 JS 运行时呢？因为在落实这套方案时，我遇到了一个问题：CTR 对首屏数据的理想约束非常严格，数据必须是一个能够完全推导出来的确定结构体，甚至不能包含任何计算逻辑，只能包含条件判断。这样的要求就过于苛刻了。可以想见，从框架的开发体验来看，习惯使用 React 的人肯定希望能在组件里做一些计算，拿到几个值后直接使用；如果要严格遵守 CTR 的约束，达到 `ready-to-display` 的状态，过程就会非常繁琐，甚至可能需要把同一个组件写两次。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:43:10.663762Z
+      seconds: 12.99641825
+      tokens: 19323
       review: false
     zh-TW:
       text: 那為什麼 SeamJS 最後還是加入了 JS 執行環境呢？因為在落實這套方案時，我遇到了一個問題：CTR 的理想設計對首屏資料有著極其嚴格的約束。資料必須是一個能夠完全推導出的確定結構體，甚至不能包含任何計算邏輯，只能包含條件。這就非常嚴苛了。可以想見，從框架的開發體驗來說，習慣傳統 React 寫法的人肯定希望能在元件裡做一些計算，取得幾個值後直接使用。如果要嚴格遵循 CTR 的約束來達到 `ready-to-display` 狀態，整個過程會非常繁瑣，甚至可能需要把同一個元件寫兩遍。
@@ -1090,12 +1090,12 @@ segments:
       tokens: 18127
       review: false
     zh-CN:
-      text: 但说实话，**SeamJS** 现在还是一个非常基础的样子。跑起来是没什么问题的，但真的拿它去写项目的话还需要打磨很久，我也在更多的思考一些架构上的改革，比如数据传输通道的抽象，但我并不确定在后续版本中还会不会坚持这个方向？框架层面上，我肯定会做出一个 TypeScript 的全栈框架，以及一个 Rust 作为后端的旗舰框架；至于 Go 相关的实习后续版本中移除掉，我觉得自己的精力维护不过来了。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997716Z
-      seconds: 0.0
-      tokens: 0
+      text: 但说实话，**SeamJS** 目前还很基础。运行起来没什么问题，但真要用它开发项目，还需要很长时间打磨。我也在进一步思考架构层面的调整，比如抽象数据传输通道，不过我还不确定后续版本是否会继续坚持这个方向。框架方面，我肯定会做一个 TypeScript 全栈框架，以及一个以 Rust 为后端的旗舰框架；至于 Go 相关的实现，我打算在后续版本中移除，因为实在没有足够的精力维护。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:43:15.331279Z
+      seconds: 17.602122291
+      tokens: 19325
       review: false
     zh-TW:
       text: 但說實話，**SeamJS** 現在還是一個非常基礎的樣子。跑起來是沒什麼問題的，但真的拿它去寫專案的話還需要打磨很久，我也在更多地思考一些架構上的改革，比如資料傳輸通道的抽象，但我並不確定在後續版本中還會不會堅持這個方向？框架層面上，我肯定會做出一個 TypeScript 的全端框架，以及一個 Rust 作為後端的旗艦框架；至於 Go 相關的實作，會在後續版本中移除掉，我覺得自己的精力維護不過來了。
@@ -1155,12 +1155,12 @@ segments:
       tokens: 16901
       review: false
     zh-CN:
-      text: '## PPR 的理想和现实 {#ppr-ideal-vs-reality}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997717Z
-      seconds: 0.0
-      tokens: 0
+      text: '## PPR 的理想与现实 {#ppr-ideal-vs-reality}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:43:18.566486Z
+      seconds: 14.341693416
+      tokens: 19161
       review: false
     zh-TW:
       text: '## PPR 的理想和現實 {#ppr-ideal-vs-reality}'
@@ -1220,12 +1220,12 @@ segments:
       tokens: 20795
       review: false
     zh-CN:
-      text: 再说回 `raw HTML slot` 这个解决主要还是 `Markdown`、`Rich Text` 这类场景，渲染出来的 **HTML** 通过 `dangerouslySetInnerHTML` 注入，水合后这块区域不参与交互，是 **"死的"**；这部分内容应该被最小化，你想给文章加边框、加样式，那些应该用 React 组件来写，而不是混在这段 HTML 里。这种做法的缺点是它不能在水合之后发生改变，但它确实把这种前提下的 "SSR" 成本压到了非常低，接近于 Zero Cost 了。在真正需要 SSR 的场景里，大概 60% 都是这种静态 HTML 注入的情况；剩下 40% 才需要 RSC 那种服务端执行任意组件的能力。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997718Z
-      seconds: 0.0
-      tokens: 0
+      text: 回到 `raw HTML slot`，它主要解决的仍是 `Markdown`、`Rich Text` 这类场景：渲染得到的 **HTML** 通过 `dangerouslySetInnerHTML` 注入；完成:tn[水合]{is="原文中的“水”也是网络俚语，指用低投入的内容凑篇幅；这里顺带开玩笑说，迁移过程和性能基准测试还能再凑成一篇文章。"}后，这块区域不再参与交互，是 **“死的”**。这部分内容应尽量精简；如果想给文章添加边框或其他样式，就应该用 React 组件实现，而不是把它们混进这段 HTML。这种做法的缺点是相关内容无法在水合后变化，但它确实能把这一前提下的“服务器端渲染”成本降得极低，接近零成本。在真正需要服务器端渲染的场景中，大约 60% 都属于这种静态 HTML 注入；只有剩下的 40% 才需要 RSC 那种在服务器端执行任意组件的能力。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:43:23.668103Z
+      seconds: 48.073625458
+      tokens: 20766
       review: false
     zh-TW:
       text: 再說回 `raw HTML slot`，這個方案主要還是用來處理 `Markdown`、`Rich Text` 這類情境：渲染出的 **HTML** 透過 `dangerouslySetInnerHTML` 注入，:tn[水合]{is="原文中的「水」也可作網路俚語，指用低投入的內容湊篇幅；這裡戲稱還能拿遷移和效能評測再湊出一篇文章。"}後這塊區域不參與互動，是 **「死的」**。這部分內容應該盡量精簡；如果想替文章加上邊框或樣式，應該用 React 元件來寫，而不是混進這段 HTML。這麼做的缺點是它無法在水合後改變，但在這個前提下，它確實把「伺服器端渲染」的成本壓得非常低，接近零成本。真正需要伺服器端渲染的情境中，大約 60% 都屬於這種靜態 HTML 注入；只有剩下的 40% 才需要 RSC 在伺服器端執行任意元件的能力。
@@ -1285,12 +1285,12 @@ segments:
       tokens: 19810
       review: false
     zh-CN:
-      text: 以至于后面，它已经成为了我心里的坎，变成了我不得不思考的问题，但是讽刺的是当我看完前端这近 10 年的发展，**Vue**、**Svelte**、**Solid** 和他们的框架 **Next.js**, **TanStack** **Start**, **Remix**, **Nuxt**, **Sveltekit** 和 **Soild** **Start** 后我觉得似乎大家都跑偏了，尤其是 **React** 的 **RSC** 这是一个错误，但是它的存在其实也是有理由的，这点后面有机会也许再拿出来详细说说...
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997719Z
-      seconds: 0.0
-      tokens: 0
+      text: 后来，这甚至成了我心里的一道坎，变成了一个不得不认真思考的问题。讽刺的是，当我回顾前端近十年的发展，审视 **Vue**、**Svelte**、**Solid**，以及 **Next.js**、**TanStack Start**、**Remix**、**Nuxt**、**SvelteKit** 和 **SolidStart** 等框架后，却觉得大家似乎都走偏了。尤其是 **React** 的 **RSC**，在我看来就是一个错误；不过，它的出现其实也有其缘由，之后有机会的话，也许可以再拿出来详细谈谈……
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:43:24.361253Z
+      seconds: 16.097909875
+      tokens: 19726
       review: false
     zh-TW:
       text: 以至於後來，它已經成為了我心裡的一道坎，變成了我不得不思考的問題。但諷刺的是，當我看完前端這近 10 年的發展，以及 **Vue**、**Svelte**、**Solid** 和它們的框架 **Next.js**、**TanStack** **Start**、**Remix**、**Nuxt**、**Sveltekit** 和 **Soild** **Start** 後，我覺得似乎大家都走偏了。尤其是 **React** 的 **RSC**，這是一個錯誤，但它的存在其實也是有理由的；這一點以後有機會也許再拿出來詳細談談...
@@ -1350,12 +1350,12 @@ segments:
       tokens: 18190
       review: false
     zh-CN:
-      text: 但其实我想到了一个算得上精巧的 `Pipeline` 来实现这件事，这也是为什么我需要把它叫做一种 `Protocol` 另外就是我一直觉得全栈框架混淆前后端边界是一件很蠢的事情（虽然不得不承认近几年 Next.js 在这方面 DX 做的很好，这让很多初学者觉得写一个全栈的应用是一个很简单的事情，但是实际上很多安全隐患也是由此而来的，扯远了）
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.99772Z
-      seconds: 0.0
-      tokens: 0
+      text: 但我其实想到了一个颇为精巧的 `Pipeline` 来做到这一点，这也正是我需要称它为一种 `Protocol` 的原因。另外，我一直觉得全栈框架混淆前后端边界是件很蠢的事（虽然不得不承认，近几年 Next.js 在这方面的开发体验确实做得很好，让许多初学者觉得写一个全栈应用很简单，但实际上，很多安全隐患也正是由此而来——扯远了）。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:43:32.91937Z
+      seconds: 16.659609417
+      tokens: 19411
       review: false
     zh-TW:
       text: 但其實我想到了一個稱得上精巧的 `Pipeline` 來實現這件事，這也是為什麼我需要把它稱為一種 `Protocol`。另外，我一直覺得全端框架混淆前後端邊界是一件很蠢的事（雖然不得不承認，近幾年 Next.js 在這方面的開發者體驗做得很好，讓很多初學者覺得寫一個全端應用程式是件很簡單的事，但實際上很多安全隱患也由此而來——扯遠了）。
@@ -1415,12 +1415,12 @@ segments:
       tokens: 17319
       review: false
     zh-CN:
-      text: 所以在组件里写数据获取也是一样，我更倾向于一种明确界限的方式——组件就是纯组件，数据获取应该被彻底抽出来。而一旦你接受了这个前提，纯组件和数据分离之后，事情就变得有意思了：你会发现数据本身其实是可以被归类的。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997721Z
-      seconds: 0.0
-      tokens: 0
+      text: 因此，在组件中获取数据也是同理。我更偏好一种边界清晰的做法：组件只负责成为纯组件，数据获取则应彻底抽离。接受这一前提、将纯组件与数据分离之后，事情就有意思了：你会发现，数据本身其实也可以分类。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:43:32.940632Z
+      seconds: 7.785806375
+      tokens: 19158
       review: false
     zh-TW:
       text: 所以，在元件裡取得資料也是一樣。我更傾向於一種界線明確的方式——元件就是純元件，資料取得應該被徹底抽離。而一旦你接受了這個前提，將純元件和資料分離，事情就變得有意思了：你會發現資料本身其實是可以分類的。
@@ -1480,12 +1480,12 @@ segments:
       tokens: 18507
       review: false
     zh-CN:
-      text: 这就是注释的艺术，这里选择了注释是因为它正好是合法的 HTML 字符，仅此而已。那这些条件块和循环块是怎么在 **build-time** 确定并生成的呢？其实也是一个算得上很巧的办法，我们虽然没有 vDOM 但是可以两次渲染 HTML做 Diff；拿条件渲染来说，第一次用完整的数据 Sentinel 渲染，第二次把某个 `nullable` 字段设为 `null` 再渲染一遍，两次输出一比对，消失的那块 HTML 就是这个字段控制的条件块，直接用 `<!--seam:if:...-->` 包起来就好了。数组也是同理。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997722Z
-      seconds: 0.0
-      tokens: 0
+      text: 这就是注释的艺术。之所以选择注释，只是因为它恰好是合法的 HTML 内容，仅此而已。那么，这些条件块和循环块是如何在**构建时**确定并生成的呢？其实用的也是一个颇为巧妙的办法：虽然没有虚拟 DOM，但我们可以渲染两次 HTML 并比较差异。以条件渲染为例，第一次使用完整的数据哨兵渲染，第二次将某个 `nullable` 字段设为 `null` 后再次渲染；比较两次输出，消失的那段 HTML 就是由该字段控制的条件块，直接用 `<!--seam:if:...-->` 包起来即可。数组也是同理。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:43:40.469867Z
+      seconds: 15.339739166
+      tokens: 19308
       review: false
     zh-TW:
       text: 這就是註解的藝術：這裡選擇註解，只是因為它恰好是合法的 HTML，僅此而已。那麼，這些條件區塊和迴圈區塊是如何在**建置時**確定並產生的呢？其實方法也相當巧妙：雖然沒有虛擬 DOM，但我們可以彩現兩次 HTML 並比較差異。以條件式彩現為例，第一次使用完整的哨兵資料彩現，第二次將某個 `nullable` 欄位設為 `null` 後再彩現一次；比較兩次輸出，消失的那段 HTML 就是由該欄位控制的條件區塊，直接用 `<!--seam:if:...-->` 包起來即可。陣列也是同理。
@@ -1545,12 +1545,12 @@ segments:
       tokens: 17060
       review: false
     zh-CN:
-      text: '## 不只是 Web 框架 {#beyond-web}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997723Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 不止是 Web 框架 {#beyond-web}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:43:40.731932Z
+      seconds: 6.79485025
+      tokens: 19099
       review: false
     zh-TW:
       text: '## 不只是網頁框架 {#beyond-web}'
@@ -1610,12 +1610,12 @@ segments:
       tokens: 18061
       review: false
     zh-CN:
-      text: 我并没有在单个页面里水合多个运行时，Humm，其实我觉得你真正需要这个的场景非常有限，不同技术栈之间的组件状态通信会变得非常昂贵，它更像是一种过渡方案，从一个技术栈迁移到另一个，一次性换不完所以先过渡。其次，**Astro** 本质上是 **MPA**，而我们可以做到水合前是 **MPA**、水合后变成 **SPA**，就像 **Next.js** 一样有客户端路由，可以做跨页面动画，这是 **Astro** 求之不得的。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997725Z
-      seconds: 0.0
-      tokens: 0
+      text: 我并没有在同一个页面中水合多个运行时。嗯，其实我觉得真正需要这么做的场景非常有限：不同技术栈的组件之间进行状态通信，成本会非常高。它更像是一种过渡方案——从一个技术栈迁移到另一个技术栈时，无法一次性完成替换，所以先用它来过渡。其次，**Astro** 本质上是 **MPA**，而我们可以让应用在水合前是 **MPA**，水合后则变成 **SPA**；它可以像 **Next.js** 一样使用客户端路由，实现跨页面动画，而这正是 **Astro** 求之不得的。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:43:47.537034Z
+      seconds: 11.901641542
+      tokens: 19299
       review: false
     zh-TW:
       text: 我並沒有在單一頁面中水合多個執行環境。嗯，其實我覺得真正需要這樣做的情境非常有限，不同技術堆疊之間的元件狀態通訊會變得非常昂貴。它更像是一種過渡方案：從一個技術堆疊遷移到另一個技術堆疊時，無法一次完成替換，所以先用它來過渡。其次，**Astro** 本質上是 **MPA**，而我們可以在水合前維持 **MPA**，水合後再變成 **SPA**，像 **Next.js** 一樣提供用戶端路由並實現跨頁面動畫——這是 **Astro** 夢寐以求的能力。
@@ -1675,12 +1675,12 @@ segments:
       tokens: 17687
       review: false
     zh-CN:
-      text: 先说好办的，既然我们已经知道了每一个动态值都有类型，那我们就可以在编译期做一件事把 **React** 组件用 `renderToString()` 跑一遍，但不是用真实数据，而 Mock 出来用 `Sentinel` 那么什么意思呢？
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997726Z
-      seconds: 0.0
-      tokens: 0
+      text: 先说容易的。既然我们已经知道每个动态值都有类型，就可以在编译期用 `renderToString()` 运行一遍 **React** 组件，不过传入的不是真实数据，而是用 `Sentinel` 模拟出来的数据。这是什么意思呢？
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:43:49.586323Z
+      seconds: 7.9699219580000005
+      tokens: 18961
       review: false
     zh-TW:
       text: 先說簡單的：既然我們已經知道每個動態值的型別，就可以在編譯期用 `renderToString()` 執行一遍 **React** 元件，不過不用真實資料，而是用 `Sentinel` 模擬出來的資料。這究竟是什麼意思呢？
@@ -1740,12 +1740,12 @@ segments:
       tokens: 18543
       review: false
     zh-CN:
-      text: 不过你都要执行任意代码了，想用类型把它穷举出来基本不可能，就算可能那工作量也不见得比写一个 React 编译器小。所以 RSC 这种能力是有它存在的理由的。**CTR** 和 **RSC** 能不能共存？答案是可以的，并且完全不冲突，但这属于框架层面要解决的事情，不是协议本身的范围，但是我暂时还没实现，不过这个似乎可以去抄 **TanStack Start**，只要多发一个 `html` 一个 `js` 包，理论实现还是很容易的，至少都是清晰可见的工作量。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997727Z
-      seconds: 0.0
-      tokens: 0
+      text: 不过，既然都要执行任意代码了，基本不可能靠类型把所有情况穷举出来；即使能做到，工作量恐怕也不比编写一个 React 编译器小。因此，RSC 的这种能力确实有其存在的理由。**CTR** 和 **RSC** 能否共存？答案是可以，而且两者完全不冲突。不过，这是框架层面需要解决的问题，不属于协议本身的范围。我暂时还没有实现，但似乎可以抄一下 **TanStack Start**：只要多发送一个 `html` 包和一个 `js` 包，理论上实现起来还是很容易的，至少所需的工作量清晰可见。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:43:55.820392Z
+      seconds: 15.965882625
+      tokens: 19659
       review: false
     zh-TW:
       text: 不過，既然都要執行任意程式碼了，想用型別把它窮舉出來基本上不可能；就算可能，工作量也未必比寫一個 React 編譯器小。所以，RSC 的這種能力確實有其存在的理由。**CTR** 和 **RSC** 能不能共存？答案是可以，而且完全不衝突。但這是框架層面需要解決的問題，不屬於協定本身的範圍。我暫時還沒有實作，不過看起來可以借鑑 **TanStack Start**：只要多傳送一個 `html` 和一個 `js` 套件，理論上實作起來還是很容易的，至少工作量清晰可見。
@@ -1805,12 +1805,12 @@ segments:
       tokens: 16638
       review: false
     zh-CN:
-      text: 条件渲染如此，列表渲染也一样
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997728Z
-      seconds: 0.0
-      tokens: 0
+      text: 条件渲染是这样，列表渲染也是如此。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:43:57.565329Z
+      seconds: 5.249214958
+      tokens: 18843
       review: false
     zh-TW:
       text: 條件渲染如此，列表渲染也一樣。
@@ -1870,12 +1870,12 @@ segments:
       tokens: 21799
       review: false
     zh-CN:
-      text: 另外就是 Astro 的设计本来就是在跨多个技术栈的场景才真正有用，如果你用它是为了速度快的话，只用它的一个框架，比如只引入 `React` 不要 `Vue`，那它所说的 **~~"速度快"~~** 我觉得是一个伪命题，首屏加载出来都是 HTML 没错，但你想要任何交互它就要水合，水合的成本就是下载整个 **React Runtime**，这和我们的水合没有任何本质区别。当然，后续我们也可以走通 **Island** 的概念，添加一个 **shell router** 来实现**跨 UI 框架的 SPA 导航**，但这是后面的 Roadmap，至少我现在不急。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997729Z
-      seconds: 0.0
-      tokens: 0
+      text: 此外，Astro 的设计只有在跨多个技术栈的场景中才能真正发挥作用。如果你只是为了追求速度而使用它，却只采用其中一种框架，比如只引入 `React` 而不用 `Vue`，那么它宣称的 **~~“速度快”~~** 在我看来就是一个伪命题。首屏加载出来的确实都是 HTML，但只要需要任何交互，就必须进行水合，而水合的代价就是下载完整的 **React 运行时**，这与我们的水合并没有任何本质区别。当然，后续我们也可以采用**岛屿架构**，加入一个**外壳路由器**来实现**跨 UI 框架的 SPA 导航**，但那属于之后的路线图，至少我目前并不着急。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:43:59.444374Z
+      seconds: 21.2671705
+      tokens: 19641
       review: false
     zh-TW:
       text: 另外，Astro 的設計本來就只有在橫跨多個技術堆疊的情境中才真正有用。如果你只是為了速度而使用它，卻只用其中一個框架，例如只引入 `React` 而不引入 `Vue`，那我認為它所謂的 **~~「速度快」~~** 是個偽命題。首屏載入的確全是 HTML，但只要你需要任何互動，它就必須進行水合，而水合的代價就是下載整個 **React 執行階段**，這與我們的水合沒有任何本質差異。當然，之後我們也可以採用**島嶼架構**的概念，加入一個**外殼路由器**來實現**跨使用者介面框架的單頁應用程式導覽**，但那是後續路線圖上的事，至少我現在不急。
@@ -1935,12 +1935,12 @@ segments:
       tokens: 17567
       review: false
     zh-CN:
-      text: 而 **CTR** 把这个界限划的很清楚：如果是简单类型比如 字符串、数字 和 布尔值，那都是直接做字符串替换；只有 Markdown 这种穷举代价极大的复杂类型，才会走真正的 **render** 流程。而且这里的 **render** 已经不是传统意义上 **SSR** 的概念了，它可以是**任何编程语言的渲染方式**。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.99773Z
-      seconds: 0.0
-      tokens: 0
+      text: 而 **CTR** 把这条界限划分得很清楚：字符串、数字和布尔值等简单类型会直接通过字符串替换处理；只有 Markdown 这类枚举成本极高的复杂类型，才会进入真正的**渲染**流程。而且这里的**渲染**已不再是传统意义上的 **SSR**，它可以采用**任何编程语言的渲染方式**。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:02.825091Z
+      seconds: 9.983457292
+      tokens: 19240
       review: false
     zh-TW:
       text: 而 **CTR** 把這條界線劃得很清楚：字串、數字和布林值等簡單型別都直接進行字串替換；只有 Markdown 這種窮舉成本極高的複雜型別，才會進入真正的**渲染**流程。而且這裡的**渲染**已經不是傳統意義上的 **SSR**，它可以採用**任何程式語言實作的渲染方式**。
@@ -2000,12 +2000,12 @@ segments:
       tokens: 16578
       review: false
     zh-CN:
-      text: 甚至模式匹配
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997731Z
-      seconds: 0.0
-      tokens: 0
+      text: 甚至连模式匹配也不例外。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:11.752196Z
+      seconds: 6.344235541
+      tokens: 18948
       review: false
     zh-TW:
       text: 甚至模式匹配
@@ -2065,12 +2065,12 @@ segments:
       tokens: 25110
       review: false
     zh-CN:
-      text: 但我比其他框架多了一个挑战，既然后端解放了 **JavaScript** 运行时，它就不必和前端是一体的了，你完全可以用 **Rust** 或者 **Go** 来写后端。那在 **TypeScript** 的全栈框架里，前后端一致性可以直接靠类型来保证；其他语言呢？实际上这里我用了 **codegen** 无论后端用什么语言写，都以后端作为基准，把前端可以用到的变量和类型直接 **codegen** 成 **TypeScript** 给前端导入。这样虽然前后端的界线被划清楚了，但它们实际上可以像 **TypeScript** 全栈框架一样活在一个文件夹里，符合 **Monorepo** 习惯，可以直接互相调用，不用手写 API 或者 `gen` **OpenAPI** 之类的东西，实际上这里我用了一个私有路径 `/_seam/` 作为框架默认端点（和 Nuxt 一样可以配置的），这样跑了 `JTD Typed-RPC` 就解决了数据传输和 CORS 的问题。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997732Z
-      seconds: 0.0
-      tokens: 0
+      text: 但与其他框架相比，我还面临一个额外的挑战：既然后端摆脱了 **JavaScript** 运行时的限制，它就不必再与前端捆绑在一起，完全可以用 **Rust** 或 **Go** 编写。在 **TypeScript** 全栈框架中，前后端的一致性可以直接由类型系统保证；换成其他语言又该怎么办呢？我的做法其实是使用 **代码生成**：无论后端采用什么语言，都以后端为基准，将前端可用的变量和类型直接生成为 **TypeScript** 代码，供前端导入。这样一来，前后端虽然边界分明，实际上却仍能像 **TypeScript** 全栈框架那样共存在同一个文件夹中，符合 **单体仓库** 的使用习惯；两端可以直接相互调用，无须手写 API，也不需要 `gen` **OpenAPI** 之类的工具。具体来说，我为框架设置了一条私有路径 `/_seam/` 作为默认端点（和 Nuxt 一样可以配置），这样运行 `JTD Typed-RPC` 后，数据传输和跨源资源共享的问题就都解决了。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:11.792593Z
+      seconds: 16.113252875
+      tokens: 19656
       review: false
     zh-TW:
       text: 但和其他框架相比，我還多了一項挑戰：既然後端已擺脫 **JavaScript** 執行環境的限制，就不必再與前端綁成一體；你完全可以用 **Rust** 或 **Go** 撰寫後端。在 **TypeScript** 全端框架中，前後端的一致性可以直接透過型別來保證；換成其他語言呢？其實我在這裡採用了**程式碼生成**：無論後端使用哪種語言撰寫，都以後端為準，將前端可用的變數和型別直接**產生為** **TypeScript**，供前端匯入。這樣一來，雖然前後端的界線劃清了，但實際上仍可像 **TypeScript** 全端框架一樣放在同一個資料夾中，符合**單一儲存庫**的慣例，彼此可以直接呼叫，不必手寫應用程式介面或 `gen` **OpenAPI** 之類的東西。實際上，我使用私有路徑 `/_seam/` 作為框架的預設端點（和 Nuxt 一樣可以設定），執行 `JTD Typed-RPC` 後便能解決資料傳輸與跨來源資源共用的問題。
@@ -2130,12 +2130,12 @@ segments:
       tokens: 19758
       review: false
     zh-CN:
-      text: 最后就是传统 SSG 的对比，我做到了和 SSG 一样的事情，本质上就是把编译期能确定的全部渲染好；但我们更加**动态**，因为那些简单类型的 `slot` 值是完全可以在运行时替换的。**你可以理解为，我们把 SSG 渲染成了一种 MPA 的入口，水合前是 MPA，水合后变成 SPA，同时保留了 "动态" 能力。**
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997733Z
-      seconds: 0.0
-      tokens: 0
+      text: 最后再和传统的 SSG 对比一下：我实现了与 SSG 相同的效果，本质上都是把编译时能够确定的内容全部预先渲染出来；但我们的方案更加**动态**，因为那些简单类型的 `slot` 值完全可以在运行时替换。**你可以把它理解为：我们将 SSG 渲染结果作为 MPA 的入口；水合前它是 MPA，水合后则变成 SPA，同时仍然具备“动态”能力。**
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:12.813993Z
+      seconds: 11.582003667
+      tokens: 19263
       review: false
     zh-TW:
       text: 最後是與傳統 SSG 的比較，我做到了和 SSG 一樣的事，本質上就是把編譯期能確定的內容全部渲染好；但我們更加**動態**，因為那些簡單型別的 `slot` 值完全可以在執行期替換。**你可以理解成，我們把 SSG 渲染成一種 MPA 的入口，水合前是 MPA，水合後變成 SPA，同時保留了「動態」能力。**
@@ -2195,12 +2195,12 @@ segments:
       tokens: 16775
       review: false
     zh-CN:
-      text: UI should be described, not executed.
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997735Z
-      seconds: 0.0
-      tokens: 0
+      text: 用户界面应通过描述来定义，而非通过执行来实现。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:18.10711Z
+      seconds: 6.5690475
+      tokens: 18838
       review: false
     zh-TW:
       text: 使用者介面應被描述，而不是執行。
@@ -2260,12 +2260,12 @@ segments:
       tokens: 16950
       review: false
     zh-CN:
-      text: '## CTR x SSR {#ctr-x-ssr}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997736Z
-      seconds: 0.0
-      tokens: 0
+      text: '## CTR 与 SSR {#ctr-x-ssr}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:20.722206Z
+      seconds: 4.723000167
+      tokens: 19245
       review: false
     zh-TW:
       text: '## CTR × SSR {#ctr-x-ssr}'
@@ -2325,12 +2325,12 @@ segments:
       tokens: 16944
       review: false
     zh-CN:
-      text: '## 前端 UI 无关性 {#ui-framework-agnostic}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997737Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 与前端 UI 框架无关 {#ui-framework-agnostic}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:24.40689Z
+      seconds: 17.16778175
+      tokens: 19119
       review: false
     zh-TW:
       text: '## 前端 UI 無關性 {#ui-framework-agnostic}'
@@ -2390,12 +2390,12 @@ segments:
       tokens: 17359
       review: false
     zh-CN:
-      text: 把渲染放到编译期听起来是一件很荒谬的事情，因为 SSR 存在的核心理由就是有些值、有些条件，不到运行时那个点上你根本解不出来，你不知道它是什么，做不了判断。所以我想大多数人第一时间否决我的想法也不是没有道理，可以理解。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997738Z
-      seconds: 0.0
-      tokens: 0
+      text: 把渲染放到编译期，听起来确实很荒谬，因为 SSR 存在的核心理由，就是有些值和条件只有到了运行时才能确定；在那之前，你根本不知道它们是什么，自然也无法作出判断。所以，我想大多数人第一时间否定我的想法也并非毫无道理，完全可以理解。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:24.68193Z
+      seconds: 7.153210667
+      tokens: 19044
       review: false
     zh-TW:
       text: 把渲染放到編譯期聽起來是一件很荒謬的事，因為伺服器端渲染存在的核心理由就是，有些值和條件只有到了執行時的那個節點才能解析出來；你不知道它們是什麼，也就無法作出判斷。所以我想，大多數人第一時間否決我的想法也並非沒有道理，完全可以理解。
@@ -2455,12 +2455,12 @@ segments:
       tokens: 17125
       review: false
     zh-CN:
-      text: '## 探索 Serverless {#serverless}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997739Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 探索无服务器架构 {#serverless}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:25.450827Z
+      seconds: 5.664285292
+      tokens: 19273
       review: false
     zh-TW:
       text: '## 探索 Serverless {#serverless}'
@@ -2520,12 +2520,12 @@ segments:
       tokens: 16821
       review: false
     zh-CN:
-      text: '## Astro 与 SSG {#astro-vs-ssg}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.99774Z
-      seconds: 0.0
-      tokens: 0
+      text: '## Astro 与静态站点生成 {#astro-vs-ssg}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:27.916783Z
+      seconds: 4.980035833
+      tokens: 19141
       review: false
     zh-TW:
       text: '## Astro 與 SSG {#astro-vs-ssg}'
@@ -2585,12 +2585,12 @@ segments:
       tokens: 18306
       review: false
     zh-CN:
-      text: 那再说说 **RSC(React Server Component)** 之前说过 **RSC** 可能是一个错误，~~那是因为它模糊了太多前后端的边界~~，~~带来了**不少安全隐患**~~ ~~和 众多 CVE~~ 但其实这更多的错事因为 **Next.js** 和其他的 SSR 流，**用户根本没有机会不用**，变成了你要动态就要 **SSR**，但是实际上我们这样子的字符串替换也是完全走得通的。另外不得不承认的就是 **RSC** 赋予了服务端一个很重要的能力，那就是渲染任意 React 组件，也就是执行任意代码。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997741Z
-      seconds: 0.0
-      tokens: 0
+      text: 再来说说 **RSC（React 服务端组件）**。之前提到过，**RSC** 可能是一个错误，~~因为它模糊了太多前后端边界~~，~~带来了**不少安全隐患**~~，~~还引发了众多 CVE~~。但这些问题其实更多要归咎于 **Next.js** 和其他服务端渲染流程：**用户根本没有不用它的余地**，仿佛只要需要动态内容，就必须采用 **SSR**。但实际上，像我们这样替换字符串也完全行得通。另外不得不承认，**RSC** 赋予了服务端一项非常重要的能力：渲染任意 React 组件，也就是执行任意代码。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:31.122049Z
+      seconds: 14.608306917
+      tokens: 19392
       review: false
     zh-TW:
       text: 那再來談談 **RSC（React 伺服器元件）**。之前說過 **RSC** 可能是一個錯誤，~~那是因為它模糊了太多前後端的界線~~，~~帶來了**不少安全隱患**~~，~~以及眾多 CVE~~。但其實這更多是 **Next.js** 和其他 SSR 方案的錯，**使用者根本沒有機會不用**，變成了想要動態內容就必須用 **SSR**，可實際上像我們這樣做字串替換也完全行得通。另外不得不承認，**RSC** 賦予了伺服器端一項很重要的能力，那就是算繪任意 React 元件，也就是執行任意程式碼。
@@ -2650,12 +2650,12 @@ segments:
       tokens: 17645
       review: false
     zh-CN:
-      text: 当然 SSR 本身不是一个错误，它是一个很好的东西，解决了很多真实的场景。但问题在于，这些框架把 SSR 推到了一个极度默认选项的位置上，导致开发者真正用到 SSR 的时候，可能 95% 的场景其实根本不需要它。页面上大部分内容都是固定的，真正动态的部分少之又少，但每次请求还是要把整棵组件树跑一遍。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997742Z
-      seconds: 0.0
-      tokens: 0
+      text: 当然，SSR 本身并没有错；它是一项很好的技术，解决了许多实际问题。真正的问题在于，这些框架将 SSR 置于近乎绝对默认的位置，结果是开发者真正使用 SSR 时，可能有 95% 的场景根本不需要它。页面上的绝大多数内容都是静态的，真正需要动态生成的部分少之又少，但每次收到请求时，整棵组件树仍然要重新运行一遍。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:31.844346Z
+      seconds: 7.790043333
+      tokens: 19248
       review: false
     zh-TW:
       text: 當然，SSR 本身並不是一個錯誤；它是很好的技術，解決了許多真實情境中的問題。但問題在於，這些框架將 SSR 推到了幾乎絕對預設的位置，導致開發者實際使用 SSR 時，可能有 95% 的情境根本不需要它。頁面上的大部分內容都是固定的，真正動態的部分少之又少，但每次請求仍然要把整棵元件樹執行一遍。
@@ -2715,12 +2715,12 @@ segments:
       tokens: 18718
       review: false
     zh-CN:
-      text: 然后就是 `raw HTML slot` ，这个其实就是回到了那 **5%** 的 **Edge Case**，比方说 `Markdown`、`Rich Text` 这类东西，编译期根本不可能知道它的值，而且**要用类型去约束它的代价非常大**。当然你可以说，把协议拓展一下，把 Markdown 的所有语法都列举出来，运行时再做解析，但那个工作量基本等于你重写了一个 Markdown 渲染器？而我们只约束最小的那几种类型，和重写整个渲染引擎的工作量完全不是一回事，这也回到了我最开始说的哲学，**用更小的代价、更优雅的方式来解决问题**。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997743Z
-      seconds: 0.0
-      tokens: 0
+      text: 接下来是 `raw HTML slot`。这其实又回到了那 **5%** 的**边缘情况**：比如 `Markdown`、`Rich Text` 之类的内容，编译期根本不可能知道它们的值，而且**用类型约束它们的代价非常高**。当然，你可以扩展协议，枚举 Markdown 的全部语法，再在运行时解析，但这份工作差不多就等于重写一个 Markdown 渲染器了。相比之下，我们只约束最少的几种类型，工作量与重写整个渲染引擎不可同日而语。这也回到了我一开始所说的理念：**以更低的成本、更优雅的方式解决问题**。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:32.903069Z
+      seconds: 14.4555115
+      tokens: 19457
       review: false
     zh-TW:
       text: 接著是 `raw HTML slot`，這其實又回到了那 **5%** 的**邊緣情況**，例如 `Markdown`、`Rich Text` 之類的東西，編譯時根本不可能知道它們的值，而且**用型別約束它們的成本非常高**。當然，你也可以擴充協定，列出 Markdown 的所有語法，再於執行時進行解析，但那樣的工作量基本上就等於重寫一個 Markdown 轉譯器了，不是嗎？而我們只約束最少的幾種型別，這和重寫整個轉譯引擎的工作量完全不可同日而語。這也回到了我一開始提到的理念：**以更低的成本、更優雅地解決問題**。
@@ -2780,12 +2780,12 @@ segments:
       tokens: 16828
       review: false
     zh-CN:
-      text: '## RSC 也不能少 {#rsc-still-needed}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997744Z
-      seconds: 0.0
-      tokens: 0
+      text: '## RSC 也不可或缺 {#rsc-still-needed}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:39.646242Z
+      seconds: 5.949087166
+      tokens: 19092
       review: false
     zh-TW:
       text: '## RSC 也不能少 {#rsc-still-needed}'
@@ -2845,12 +2845,12 @@ segments:
       tokens: 21289
       review: false
     zh-CN:
-      text: 当然还有 **Serverless** 的可能性也不能少，最近几年 **Serverless** 的体验可以说是非常好了，我评价为"除了费钱没啥缺点了"，然而 CTR 天然非常适合这个场景，我们运行时做的事情很轻很小，Serverless 跑起来会非常快，响应时间和开销都会得到明显提升。剩下提升不了也就是渲染 Markdown 那种场景，但那完全应该在业务逻辑上做优化比方说把 Markdown 预渲染好存起来，每次请求不用重新渲染，就像我现在这个网站做的一样。这是业务层面的问题，不是框架能解决的，但框架能帮你把除此之外的那些简单逻辑的开销压到几乎为零。和传统 SSR 对比，它不再是一个量级的开销，有多小呢，大概就是 几百 us ~ 1ms 之间的事情了，这是传统 SSR 想都不敢想的。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997746Z
-      seconds: 0.0
-      tokens: 0
+      text: 当然也不能忽略无服务器架构的可能性。近几年，无服务器架构的使用体验已经非常好了，我的评价是“除了费钱，没什么缺点”。而 CTR 天生就很适合这个场景：运行时执行的任务很轻量，无服务器服务启动得非常快，响应时间和资源开销都会显著降低。剩下难以优化的，也就是渲染 Markdown 之类的场景，但这完全应该从业务逻辑层面着手，例如预先渲染 Markdown 并保存结果，避免每次请求都重新渲染，就像我现在这个网站所做的一样。这是业务层面的问题，不是框架能够解决的；不过，框架可以帮助你把除此之外的简单逻辑开销降到几乎为零。与传统的服务端渲染相比，两者的开销已经不在同一个数量级了。究竟能小到什么程度？大约只需几百微秒到 1 毫秒，这是传统服务端渲染想都不敢想的。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:41.587076Z
+      seconds: 12.703870542
+      tokens: 19496
       review: false
     zh-TW:
       text: 當然，**無伺服器**這種可能性也不能少。近幾年，**無伺服器**的體驗可以說已經非常好了，我的評價是「除了花錢，沒什麼缺點」。而 CTR 天生就很適合這個場景：我們在執行階段做的事情既輕量又少，放在無伺服器環境中會執行得非常快，回應時間與額外負擔都會顯著改善。剩下無法改善的，也就是渲染 Markdown 這類場景，但那完全應該從業務邏輯上最佳化，例如預先渲染並儲存 Markdown，這樣每次請求時就不必重新渲染，正如我現在這個網站所做的一樣。這是業務層面的問題，不是框架能解決的；但除此之外，那些簡單邏輯的額外負擔，框架可以幫你壓到幾乎為零。與傳統 SSR 相比，它們的額外負擔已經不在同一個數量級。到底有多小？大約就是數百微秒到 1 毫秒，這是傳統 SSR 想都不敢想的。
@@ -2910,12 +2910,12 @@ segments:
       tokens: 19034
       review: false
     zh-CN:
-      text: 所以好消息就是 `raw HTML slot` 其实可以让 `CTR` 和 `SSR` 可以共存，它意味着你一个页面大部分 UI 都用 `CTR` 来做，几乎没有运行时成本；然后最核心的那一篇 **Markdown** 文章，你用 `SSR` 来渲染。由于后端已经解放了，你可以选择用 TypeScript 导入你原来那套 `SSR` 的渲染方法，也可以思路打开！后端用 Rust 那当然是用 Rust 的 Markdown 编译器来渲染，反正最后只要给出一个 HTML 字符串，插入这个 `raw slot`，它就能显示。用了 `CTR` 不意味着不能用 `SSR`，两者完全可以共存。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997747Z
-      seconds: 0.0
-      tokens: 0
+      text: 所以好消息是，`raw HTML slot` 其实能让 `CTR` 与 `SSR` 共存。这意味着，一个页面的大部分用户界面都可以用 `CTR` 实现，几乎没有运行时成本；最核心的那篇 **Markdown** 文章则用 `SSR` 渲染。后端不再受限之后，你既可以用 TypeScript 导入原来那套 `SSR` 渲染方法，也可以换个思路：既然后端用 Rust，当然也能直接用 Rust 的 Markdown 编译器渲染。反正最后只要生成一个 HTML 字符串，插入 `raw slot` 就能显示。使用 `CTR` 并不意味着不能使用 `SSR`，两者完全可以共存。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:45.607704Z
+      seconds: 20.265390707999998
+      tokens: 19607
       review: false
     zh-TW:
       text: 所以好消息是，`raw HTML slot` 其實可以讓 `CTR` 和 `SSR` 共存。這意味著一個頁面的大部分使用者介面都可以用 `CTR` 來實作，幾乎沒有執行階段成本；然後最核心的那篇 **Markdown** 文章則用 `SSR` 來算繪。由於後端已經不受限制，你既可以用 TypeScript 匯入原本那套 `SSR` 算繪方法，也可以打開思路！既然後端用的是 Rust，當然也可以用 Rust 的 Markdown 編譯器來算繪。反正最後只要產生一個 HTML 字串，插入 `raw slot` 後就能顯示。使用 `CTR` 並不意味著不能使用 `SSR`，兩者完全可以共存。
@@ -2975,12 +2975,12 @@ segments:
       tokens: 16994
       review: false
     zh-CN:
-      text: '## 也许 CTR? {#maybe-ctr}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997748Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 也许是 CTR？ {#maybe-ctr}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:45.736455Z
+      seconds: 20.193825209
+      tokens: 19289
       review: false
     zh-TW:
       text: '## 也許是 CTR？ {#maybe-ctr}'
@@ -3040,12 +3040,12 @@ segments:
       tokens: 21718
       review: false
     zh-CN:
-      text: 回到 **hydration mismatch**，已知我们在编译期已经预知了每个 `slot` 的类型，所以可以多加一道 CTR 等价性检查，那就是用基于类型定义推导出来的 mock 数据填入完全展开的 HTML，再调用传统的 `renderToReadableStream()` 跑一遍，然后比对两者的 DOM-Tree 语意是否等价，不关心格式 fmt 差异，它们可能有格式上的细微差距，但只要 DOM 结构上严格完全等价~~其实是可以做到告别~~ **~~hydration mismatch~~** ~~的~~；为什么传统 SSR 做不到？因为它们是在运行时才做这件事，而 CTR 结构决定了你在编译期就要把这些约束全部落实到位。我们当然也有 `any` 的逃生入口，但是至少和 TypeScript 一样，你用了 `any` 就要主动承担后果，CLI 编译的时候会 warn 你，`any` 逃生 open string 可能会导致 mismatch 的。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997749Z
-      seconds: 0.0
-      tokens: 0
+      text: 回到**水合不匹配**这个问题：既然我们在编译期已经知道每个 `slot` 的类型，就可以再加一道 CTR 等价性检查——根据类型定义推导出模拟数据，将其填入完全展开的 HTML，再调用传统的 `renderToReadableStream()` 运行一遍，随后比较两者的 DOM 树在语义上是否等价，而不计较格式化差异。它们的格式可能略有不同，但只要 DOM 结构严格且完全等价，~~其实就可以告别~~**~~水合不匹配~~**~~了~~。为什么传统 SSR 做不到？因为它们只能在运行时执行这一步，而 CTR 的结构决定了这些约束必须在编译期全部落实。当然，我们也提供了 `any` 这个逃生入口；但就像 TypeScript 一样，一旦使用 `any`，你就必须自行承担后果：CLI 编译时会警告你，`any` 这种开放字符串逃生机制可能导致不匹配。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:47.369347Z
+      seconds: 16.098388125
+      tokens: 19754
       review: false
     zh-TW:
       text: 回到 **水合不一致**：既然我們在編譯期就已經知道每個 `slot` 的型別，便可以再加一道 CTR 等價性檢查，也就是用根據型別定義推導出的模擬資料填入完全展開的 HTML，再呼叫傳統的 `renderToReadableStream()` 執行一次，然後比較兩棵 DOM 樹在語意上是否等價，而不考慮格式化差異。兩者的格式可能略有不同，但只要 DOM 結構嚴格且完全等價，~~其實就可以徹底告別~~ **~~水合不一致~~** ~~了~~。為什麼傳統 SSR 做不到？因為它們直到執行期才進行這項工作，而 CTR 的結構決定了你必須在編譯期落實所有這些約束。當然，我們也提供了 `any` 這個逃生口，但和 TypeScript 一樣，一旦使用 `any`，你就必須主動承擔後果：CLI 會在編譯時警告你，作為開放字串逃生口的 `any` 可能導致不一致。
@@ -3105,12 +3105,12 @@ segments:
       tokens: 17808
       review: false
     zh-CN:
-      text: 那如果后端是其他语言怎么办，就拿 Cloudflare Workers 举例，其实很多 Serverless 都支持 WASM，其他语言编译成 WASM BIN 之后一样可以作为后端。本质上我就是把前端编译成纯静态资源，类似 CSR 一样，但这堆纯静态资源配合一个私有桥 `/_seam/`，就能实现和那些真正的全栈框架一样的动态能力，自然也完全兼容 Serverless 了。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.99775Z
-      seconds: 0.0
-      tokens: 0
+      text: 那后端使用其他语言时怎么办呢？以 Cloudflare Workers 为例，其实很多无服务器平台都支持 WASM；把其他语言编译成 WASM 二进制文件后，同样可以用作后端。本质上，我只是把前端编译成纯静态资源，类似于客户端渲染（CSR）；但这批纯静态资源只要配合一个私有桥接层 `/_seam/`，就能获得与真正的全栈框架相同的动态能力，自然也能完全兼容无服务器平台。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:54.303809Z
+      seconds: 17.967350541
+      tokens: 19586
       review: false
     zh-TW:
       text: 那如果後端使用其他語言呢？以 Cloudflare Workers 為例，其實許多無伺服器平台都支援 WASM，因此其他語言編譯成 WASM 二進位檔後，同樣可以用於後端。本質上，我只是把前端編譯成純靜態資源，類似用戶端算繪；但這批純靜態資源搭配一個私有橋接器 `/_seam/`，就能實現與真正的全端框架相同的動態能力，自然也完全相容於無伺服器平台。
@@ -3170,12 +3170,12 @@ segments:
       tokens: 17215
       review: false
     zh-CN:
-      text: 这篇文章可能不适合所有人阅读，要理解它在说什么你至少得是一个准前端开发者或全栈开发者，对 `SSR`、`SSG`、`ISR` 这些概念有基本的认知且至少用过 **Next.js**
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997751Z
-      seconds: 0.0
-      tokens: 0
+      text: 这篇文章可能并不适合所有读者。要理解文中内容，你至少需要具备准前端开发者或全栈开发者的水平，对 `SSR`、`SSG`、`ISR` 等概念有基本认识，并且至少使用过 **Next.js**。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:03.478708Z
+      seconds: 5.935283458
+      tokens: 19001
       review: false
     zh-TW:
       text: 這篇文章可能不適合所有人閱讀。要理解它的內容，你至少得是一名準前端開發者或全端開發者，對 `SSR`、`SSG`、`ISR` 等概念有基本認識，並且至少使用過 **Next.js**。
@@ -3235,12 +3235,12 @@ segments:
       tokens: 18281
       review: false
     zh-CN:
-      text: 可能是我的天生就对底层原理有很强的好奇心，再加上有时候一直执着于问清楚为什么不能这么做；我猜可能是这样子的，所以有时候我才能想出一些独特的想法：这个就是其中之一，早在 25 年 11 月的时候它就冒出来了，当时跟身边很多朋友聊了聊，但因为手头项目的时间冲突，一直拖到了 **2026** 年新年前后才真正动手做了一版出来。之后又搁置了——因为我跑去建站了。博客虽然也没完全搭好，但总算有了一个还算能记录东西的地方，所以我想把这件事拎出来重新说一说。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997753Z
-      seconds: 0.0
-      tokens: 0
+      text: 可能是我天生就对底层原理有着强烈的好奇心，有时还会执着地追问为什么不能这么做。我猜正因如此，自己偶尔才能冒出一些独特的想法——这就是其中之一。它早在 2025 年 11 月就已经出现了，当时我也和身边不少朋友聊过，但由于手头项目在时间上发生冲突，直到 **2026** 年新年前后，我才真正动手做出第一版。之后它又被搁置了——因为我跑去建网站了。虽然博客还没有完全搭好，但总算有了一个勉强能记录东西的地方，所以我想把这件事重新拿出来讲一讲。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:05.879816Z
+      seconds: 17.960678792
+      tokens: 19306
       review: false
     zh-TW:
       text: 可能是我天生就對底層原理有著強烈的好奇心，再加上有時總執著於追問為什麼不能這樣做；我猜大概正因如此，我偶爾才能想出一些獨特的點子，而這就是其中之一。它早在 2025 年 11 月就冒了出來，當時我和身邊許多朋友聊過，但由於手頭專案的時間衝突，一直拖到 **2026** 年新年前後才真正動手做出一個版本。之後它又被擱置了——因為我跑去架站了。部落格雖然還沒有完全架好，但總算有了一個還算能記錄東西的地方，所以我想把這件事重新拿出來談一談。
@@ -3300,12 +3300,12 @@ segments:
       tokens: 17762
       review: false
     zh-CN:
-      text: 不过呢近些年 React 倒是有所改观，**React 19.2** 有一个 [PPR](https://react.dev/blog/2025/10/01/react-19-2#partial-pre-rendering) 但是这个东西其实运行时还有昂贵的 `renderToString()` 也算是一个 workaround 不是真正的解。所以我就想，既然大部分东西在构建时就已经确定了，那为什么不把渲染这件事直接放到编译期去做呢？
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997754Z
-      seconds: 0.0
-      tokens: 0
+      text: 不过，React 近几年倒有所改进：**React 19.2** 引入了 [PPR](https://react.dev/blog/2025/10/01/react-19-2#partial-pre-rendering)，但它在运行时仍需付出高昂的 `renderToString()` 成本，只能算一种权宜之计，并非真正的解决方案。所以我在想，既然大部分内容在构建时就已经确定，为什么不直接在编译期完成渲染呢？
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:05.935717Z
+      seconds: 11.459460625
+      tokens: 19209
       review: false
     zh-TW:
       text: 不過近幾年 React 倒是有所改進，**React 19.2** 提供了 [PPR](https://react.dev/blog/2025/10/01/react-19-2#partial-pre-rendering)，但它在執行階段仍有昂貴的 `renderToString()`，只能算是一種權宜之計，並非真正的解決方案。所以我就在想，既然大部分內容在建置時就已經確定了，為什麼不直接在編譯期完成渲染呢？
@@ -3365,12 +3365,12 @@ segments:
       tokens: 18117
       review: false
     zh-CN:
-      text: 从 SSR、SSG、ISR、RSC 的渲染谱系出发，提出 CTR (Compile-Time Rendering) 与 Seam 协议——把组件结构和数据视为两个独立发布物、运行时拼接。围绕 JTD、Sentinel、SeamJS 讨论把 UI 当协议而非可执行代码的可能。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997756Z
-      seconds: 0.0
-      tokens: 0
+      text: 从 SSR、SSG、ISR、RSC 的渲染谱系出发，提出 CTR（编译时渲染）与 Seam 协议：将组件结构和数据作为两个独立的发布物，在运行时完成拼接；并围绕 JTD、Sentinel、SeamJS，探讨将用户界面视为协议而非可执行代码的可能性。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:09.420024Z
+      seconds: 10.41776225
+      tokens: 19128
       review: false
     zh-TW:
       text: 從 SSR、SSG、ISR、RSC 的渲染譜系出發，提出 CTR（編譯時渲染）與 Seam 協定——將元件結構和資料視為兩個獨立發布物，於執行階段拼接。圍繞 JTD、Sentinel、SeamJS 探討將使用者介面視為協定而非可執行程式碼的可能性。
@@ -3430,12 +3430,12 @@ segments:
       tokens: 16678
       review: false
     zh-CN:
-      text: 假设你的数据长这样，那么我们可以把它替换成
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997757Z
-      seconds: 0.0
-      tokens: 0
+      text: 假设你的数据是这样的，那么我们可以将它替换为
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:12.28229Z
+      seconds: 4.696480666
+      tokens: 18941
       review: false
     zh-TW:
       text: 假設你的資料長這樣，那麼我們可以把它替換成
@@ -3495,12 +3495,12 @@ segments:
       tokens: 16875
       review: false
     zh-CN:
-      text: '## 一致性? {#consistency}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997758Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 如何保证一致性？ {#consistency}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:16.991655Z
+      seconds: 6.5741791670000005
+      tokens: 19216
       review: false
     zh-TW:
       text: '## 一致性？ {#consistency}'
@@ -3560,12 +3560,12 @@ segments:
       tokens: 17252
       review: false
     zh-CN:
-      text: 那一致性该如何保证呢，其实答案就是 **JTD** 这个 **Contract，** 前后端虽然分离了但只要都遵守同一份 **JTD schema**，数据的类型就是对齐的，不存在不一致的问题。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997759Z
-      seconds: 0.0
-      tokens: 0
+      text: 那么，如何保证一致性呢？答案其实就是以 **JTD** 作为**契约**：前后端虽然彼此分离，但只要双方都遵循同一份 **JTD 模式**，数据类型就能保持一致，不会出现不匹配的问题。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:17.400774Z
+      seconds: 7.170509709
+      tokens: 19141
       review: false
     zh-TW:
       text: 那麼該如何確保一致性呢？答案就是 **JTD** 這份**契約**：前後端雖然彼此分離，但只要都遵循同一份 **JTD 綱要**，資料型別就能保持一致，不會出現不相符的問題。
@@ -3625,12 +3625,12 @@ segments:
       tokens: 16800
       review: false
     zh-CN:
-      text: '## 编译期渲染? {#compile-time-rendering}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997761Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 编译时渲染？ {#compile-time-rendering}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:19.849742Z
+      seconds: 5.655596542
+      tokens: 19023
       review: false
     zh-TW:
       text: '## 編譯期渲染？ {#compile-time-rendering}'
@@ -3690,12 +3690,12 @@ segments:
       tokens: 18256
       review: false
     zh-CN:
-      text: 首先先声明一点：我不是在说 `SSR` 不好。我只是觉得，从我看到的趋势来说，太多人在滥用它，大方向在随波逐流的逃避一个问题。而我也跟不少人讨论过这个，得到的回应大多不太确定；我也说过我的构想，但对方总是担心这里面会存在各种问题、各种边界，而且说实话我也不太想每次都把整套思路从头到尾完整讲一遍。所以今天索性把它详细写下来，试着把一些疑问和技术原理讲清楚吧。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997762Z
-      seconds: 0.0
-      tokens: 0
+      text: 首先声明一点：我并不是说 `SSR` 不好。我只是觉得，就我观察到的趋势而言，太多人正在滥用它，整个行业都在随波逐流地回避一个问题。我也和不少人讨论过这件事，但得到的回应大多含糊不定；我曾讲过自己的构想，对方却总担心其中会遇到各种问题和边界情况。说实话，我也不太想每次都从头到尾把整套思路完整讲一遍。所以今天干脆把它详细写下来，试着把其中的一些疑问和技术原理解释清楚。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:23.578168Z
+      seconds: 12.1654875
+      tokens: 19349
       review: false
     zh-TW:
       text: 首先聲明一點：我不是在說 `SSR` 不好。我只是覺得，從我看到的趨勢來說，太多人在濫用它，整個大方向都在隨波逐流地逃避一個問題。我也跟不少人討論過這件事，得到的回應大多不太確定；我也講過自己的構想，但對方總是擔心其中會存在各種問題和邊界情況，而且說實話，我也不太想每次都把整套思路從頭到尾完整地講一遍。所以今天索性把它詳細寫下來，試著把其中的一些疑問和技術原理講清楚。
@@ -3755,12 +3755,12 @@ segments:
       tokens: 19307
       review: false
     zh-CN:
-      text: '**JTD (JSON Type Definition)** [RFC 8927](https://www.rfc-editor.org/rfc/rfc8927.html) 定义的中它有八种 **Schema Form**: Empty、Ref、Type（ boolean、string、timestamp 以及各种精度的数字类型）、Enum、Elements、Properties、Values、Discriminator，再加上任意 schema 都可以标记为 `nullable`。JTD 的好处在于它是跨语言的，**JavaScript**、**Rust**、**Go** 几乎所有语言都能找到对应的类型映射，这就让它天然地成为了前后端之间的桥梁，并且载体是 **JSON**，本来就是**前后端最小公约**。真实世界中那些网站 **95%** 的应用，无非就是显示字符串、数字字段、或者用布尔值做判断，它们全都落在这个范围内。明确了这一点后，实际上我们可以操作的空间就很大了，当然 JTD 也不是完美的，其实也有意外，比如 **Markdown** 这类东西，但这个我们后面再详细说，这里其实才是我真正认可 `SSR` 有意义的地方。'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997763Z
-      seconds: 0.0
-      tokens: 0
+      text: '[RFC 8927](https://www.rfc-editor.org/rfc/rfc8927.html) 定义的 **JTD（JSON 类型定义）**包含八种**模式形式**：空、引用、类型（布尔值、字符串、时间戳及各种精度的数值类型）、枚举、元素、属性、值和判别器；此外，任何模式都可以标记为 `nullable`。JTD 的优势在于它可以跨语言使用：几乎在所有语言中，包括 **JavaScript**、**Rust** 和 **Go**，都能找到对应的类型映射。这使它天然成为连接前后端的桥梁，而其载体 **JSON** 本就是**前后端之间的最小公约**。现实世界中，网站里 **95%** 的应用无非是在显示字符串或数字字段，或根据布尔值作出判断，而这些需求全都涵盖在 JTD 的能力范围内。明确这一点后，我们实际上就有了很大的操作空间。当然，JTD 并不完美，也会遇到意料之外的情况，例如 **Markdown** 这类内容；不过我们稍后会详细讨论。事实上，正是在这里，我才真正认可 `SSR` 的意义。'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:23.846357Z
+      seconds: 21.659864667
+      tokens: 19638
       review: false
     zh-TW:
       text: '**JTD（JSON 型別定義）**由 [RFC 8927](https://www.rfc-editor.org/rfc/rfc8927.html) 定義，共有八種**綱要形式**：空、參照、型別（布林值、字串、時間戳記及各種精度的數值型別）、列舉、元素、屬性、值和判別器；此外，任何綱要都可以標記為 `nullable`。JTD 的優點在於它能跨語言使用，**JavaScript**、**Rust**、**Go** 以及幾乎所有其他語言都能找到對應的型別映射。這讓它自然成為前端與後端之間的橋梁，而它採用的載體 **JSON** 原本就是**前端與後端的最小公約數**。現實世界中，**95%** 的網站應用程式無非就是顯示字串、數值欄位，或用布林值進行判斷，而這些全都涵蓋在這個範圍內。釐清這一點後，我們實際上就有了很大的操作空間。當然，JTD 並不完美，也存在 **Markdown** 這類例外，不過我們稍後會詳細討論；而這其實才是我真正認可 `SSR` 價值的地方。'
@@ -3820,12 +3820,12 @@ segments:
       tokens: 16893
       review: false
     zh-CN:
-      text: '## Sentinel {#sentinel}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997764Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 哨兵值 {#sentinel}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:24.576939Z
+      seconds: 4.874594
+      tokens: 19152
       review: false
     zh-TW:
       text: '## 哨兵值 {#sentinel}'
@@ -3886,11 +3886,11 @@ segments:
       review: false
     zh-CN:
       text: '## SeamJS {#seamjs}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997765Z
-      seconds: 0.0
-      tokens: 0
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:25.511876Z
+      seconds: 6.03342925
+      tokens: 19125
       review: false
     zh-TW:
       text: '## SeamJS {#seamjs}'
@@ -3950,12 +3950,12 @@ segments:
       tokens: 18331
       review: false
     zh-CN:
-      text: 但是其实有解，因为 Web 原因，前端只能跑在 JavaScript 上，所以理所当然组件只能跑 JS，所以后端就必须要有 JS 执行能力才能解决这个问题，TypeScript 全栈项目本身的运行时就能用来解决；而 Rust 里面只需要嵌入一个 QuickJS 这样非常微小的 JS Runtime 就好了，注意这里的 JavaScript Runtime 是标准的 JS 子集，完全不是 Bun 或 Node 那种带完整操作系统 API 的运行时，真的就只是用来做推导、做 derive。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997766Z
-      seconds: 0.0
-      tokens: 0
+      text: 但其实有办法解决：受 Web 平台限制，前端只能运行 JavaScript，因此组件自然也只能以 JavaScript 运行；要解决这个问题，后端就必须具备执行 JavaScript 的能力。TypeScript 全栈项目可以直接利用自身的运行时；Rust 项目则只需嵌入 QuickJS 这样极其轻量的 JavaScript 运行时。需要注意的是，这里的 JavaScript 运行时只支持标准 JavaScript 的一个子集，完全不同于 Bun 或 Node 那种提供完整操作系统 API 的运行时，确实只用于执行推导逻辑、生成派生数据。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:29.464252Z
+      seconds: 15.459592834
+      tokens: 19564
       review: false
     zh-TW:
       text: 但其實有解：由於 Web 本身的限制，前端只能執行 JavaScript，元件自然也只能執行 JS。因此，要解決這個問題，後端就必須具備執行 JS 的能力；TypeScript 全端專案可以直接利用自身的執行環境，而 Rust 只需嵌入 QuickJS 這樣極其輕量的 JS 執行環境即可。需要注意的是，這裡的 JavaScript 執行環境只實作了標準 JS 的一個子集，完全不同於 Bun 或 Node 那種帶有完整作業系統 API 的執行環境；它確實只用於推導資料。
@@ -4015,12 +4015,12 @@ segments:
       tokens: 22779
       review: false
     zh-CN:
-      text: 早在我刚入门 **Web** 前端开发的时候，第一个接触到的全栈框架应该就是 **Next.js。** 我承认这是一个非常优秀的框架，尽管它有一些性能问题，但这些性能问题是实打实的 **DX** 体验换来的，这一点无可厚非。但随着我慢慢深入理解前端的一些概念和知识，我发现它可能越来越不适合我了——因为我很喜欢写 Rust，也很喜欢研究底层，玩过嵌入式，所以对性能有一种很特别的执着；执着也不是什么都要极限，而是，这里本来就有性能明显更好，但是努力也许很小的办法可以实现，为什么大家都不这样做？所以每当用起 Next 的时候我就会想：为什么哪怕一个很简单的页面，大多数东西都是固定的，只有一个地方需要变，这整个页面就要重新渲染一遍？为什么？在我的理解中，哪怕后端不是用 Rust 写的，哪怕不追求极限，就算跑在 JavaScript 解释器上，真正改变的那一点数据也应该是一个相对来说很小的开销，用一种很低成本的方式实现"渲染"，而不是重新渲染整个页面。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997768Z
-      seconds: 0.0
-      tokens: 0
+      text: 早在刚入门 **Web** 前端开发时，我接触的第一个全栈框架应该就是 **Next.js**。我承认它是一个非常优秀的框架；尽管存在一些性能问题，但这些性能代价换来了实实在在的 **开发者体验（DX）**，这一点无可厚非。然而，随着我逐渐深入理解前端的概念和知识，我发现它可能越来越不适合我了——我很喜欢写 Rust，也喜欢研究底层，还玩过嵌入式，因此对性能有一种格外强烈的执着。这并不是说凡事都要追求极致，而是：明明有性能显著更好、实现起来或许只需付出很少努力的方案，为什么大家不这么做？所以每当使用 Next 时，我都会想：为什么一个哪怕非常简单、绝大部分内容都固定不变、只有一处需要更新的页面，也要从头到尾重新渲染一遍？为什么？在我看来，哪怕后端不是用 Rust 编写，哪怕不追求极致性能，甚至只是运行在 JavaScript 解释器上，只更新真正发生变化的那一点数据，开销也理应相对很小；所谓“渲染”应该以一种成本很低的方式完成，而不是把整个页面重新渲染一遍。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:31.557073Z
+      seconds: 26.710250375
+      tokens: 19967
       review: false
     zh-TW:
       text: 早在我剛入門**網頁**前端開發的時候，第一個接觸到的全端框架應該就是 **Next.js**。我承認這是一個非常優秀的框架，儘管它有一些效能問題，但這些問題換來了實實在在的**開發者體驗**，這一點無可厚非。不過，隨著我逐漸深入理解前端的一些概念和知識，我發現它可能愈來愈不適合我了——因為我很喜歡寫 Rust，也很喜歡研究底層，還玩過嵌入式系統，所以對效能有一種很特別的執著。這份執著並不是要把什麼都推到極限，而是：明明已經有效能顯著更好、或許只需付出很少努力就能實現的方法，為什麼大家都不這樣做？所以每當用起 Next 時，我就會想：即使只是一個很簡單的頁面，大多數內容都是固定的，只有一個地方需要改變，為什麼整個頁面都必須重新渲染一次？為什麼？在我的理解中，即使後端不是用 Rust 寫的，即使不追求極致效能，就算程式跑在 JavaScript 直譯器上，真正改變的那一點資料也應該只產生相對較小的開銷；「渲染」應該能以很低的成本實現，而不是重新渲染整個頁面。
@@ -4080,12 +4080,12 @@ segments:
       tokens: 16497
       review: false
     zh-CN:
-      text: Rendering as a Protocol
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997769Z
-      seconds: 0.0
-      tokens: 0
+      text: 将渲染视为一种协议
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:35.749047Z
+      seconds: 4.414681
+      tokens: 18764
       review: false
     zh-TW:
       text: 將算繪視為一種協定
@@ -4146,11 +4146,11 @@ segments:
       review: false
     zh-CN:
       text: '## JTD 规范 {#jtd-spec}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.99777Z
-      seconds: 0.0
-      tokens: 0
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:40.176404Z
+      seconds: 6.629373917
+      tokens: 19113
       review: false
     zh-TW:
       text: '## JTD 規範 {#jtd-spec}'
@@ -4210,12 +4210,12 @@ segments:
       tokens: 16963
       review: false
     zh-CN:
-      text: '## No JS Runtime 的代价 {#no-js-runtime-cost}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997771Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 不使用 JS 运行时的代价 {#no-js-runtime-cost}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:44.929172Z
+      seconds: 5.68919175
+      tokens: 19117
       review: false
     zh-TW:
       text: '## 沒有 JS 執行環境的代價 {#no-js-runtime-cost}'
@@ -4275,12 +4275,12 @@ segments:
       tokens: 21969
       review: false
     zh-CN:
-      text: 这就是我说的 **CTR (Compile-Time Rendering)** 至于限制，其实和 SSR 的限制是一模一样的，比如 `<!--seam:path-->` 做文本插入时会自动做 HTML 转义（`&`、`<`、`>` 等），如果你需要插入原始 HTML 就得显式用 `<!--seam:path:html-->`；缺失的数据路径在文本 `slot` 中会变成空字符串，在属性 `slot` 中会跳过注入；`each` 块如果拿到的不是数组就直接跳过。这些行为和你在 SSR 框架中遇到的边界情况本质上没有区别，我只是把 SSR 中的渲染这一步拎到了编译期去执行，仅此而已。而 **CTR** 在 **build-time** 对所有条件变量的类型值做笛卡尔积遍历，使用 Mock 出来的任意符合类型的值一种 or 用户 Override 特殊 Mock 值（一般是不需要手动写生成 HTML 遍体所需要的 Mock 值的，但是可以手动给，不如就是自动给一个符合你这个类型的值进来），这样每种组合渲染一次，diff 出所有条件块和循环块的边界，最终得到一个完整展开的 HTML 骨架。从数学上说，只要 runtime 传入的数据符合这些类型定义，它就一定能被正确注入到这个骨架里，所有可能的分支路径在编译期已经被穷举过了。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997772Z
-      seconds: 0.0
-      tokens: 0
+      text: 这就是我所说的 **CTR（编译时渲染）**。它的限制其实与 SSR 完全相同：例如，`<!--seam:path-->` 插入文本时会自动进行 HTML 转义（包括 `&`、`<`、`>` 等字符）；如果需要插入原始 HTML，就必须显式使用 `<!--seam:path:html-->`。数据路径缺失时，文本 `slot` 会被替换为空字符串，属性 `slot` 则不会注入；如果 `each` 块收到的不是数组，也会直接跳过。这些行为与 SSR 框架中的边界情况本质上没有区别，我只是把 SSR 的渲染步骤提前到编译期执行，仅此而已。**CTR** 会在**构建期**对所有条件变量的类型取值进行笛卡尔积遍历，既可以自动生成任意符合类型的模拟值，也允许用户提供特殊的模拟值来覆盖默认值。一般无须手动编写生成各种 HTML 变体所需的模拟值，系统会自动传入符合相应类型的值，但你也可以自行指定。随后，每一种组合都会渲染一次，系统通过比较差异确定所有条件块与循环块的边界，最终得到一个完全展开的 HTML 骨架。从数学上讲，只要运行时传入的数据符合这些类型定义，就一定能够正确注入这个骨架，因为所有可能的分支路径都已经在编译期穷举完毕。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:45.51199Z
+      seconds: 24.80153925
+      tokens: 20085
       review: false
     zh-TW:
       text: 這就是我所說的 **CTR（編譯時彩現）**。至於限制，它其實和 SSR 的限制完全一樣：例如，`<!--seam:path-->` 插入文字時會自動進行 HTML 跳脫（`&`、`<`、`>` 等），如果需要插入原始 HTML，就必須明確使用 `<!--seam:path:html-->`；缺少的資料路徑在文字 `slot` 中會變成空字串，在屬性 `slot` 中則會略過注入；`each` 區塊拿到的如果不是陣列，也會直接略過。這些行為與 SSR 框架中的邊界情況並沒有本質區別，我只是把 SSR 的彩現步驟移到編譯期執行，僅此而已。**CTR** 會在**建置時**遍歷所有條件變數型別取值的笛卡兒積，使用任意自動產生且符合型別的模擬值，或由使用者指定的特殊模擬值（一般不需要手動提供產生所有 HTML 變體所需的模擬值，不過也可以提供；否則系統會自動選取符合相應型別的值）。每種組合都會彩現一次，再透過比較結果找出所有條件區塊和迴圈區塊的邊界，最終得到一個完整展開的 HTML 骨架。從數學上說，只要執行時傳入的資料符合這些型別定義，就一定能被正確注入這個骨架，因為所有可能的分支路徑都已經在編譯期被窮舉過了。
@@ -4340,12 +4340,12 @@ segments:
       tokens: 22705
       review: false
     zh-CN:
-      text: 所以你是不是已经被 **Seam** 和 **SeamJS** 的关系绕晕了，其实这两很简单，Seam 是协议，它定义的是怎么用 `Sentinel` 标记动态位置、怎么转换成 `slot` 标记、怎么做条件块和循环块的 `diff` 检测、以及运行时怎么基于 **AST** 做数据注入。协议本身是语言无关的，任何能解析 **HTML** 注释、能做字符串替换的后端都能实现它。**SeamJS** 是框架，是基于这套协议做的一个具体实现 它把 **Vite**、**TanStack Router**、**TanStack Query** 这些轮子缝在一起，然后补它们覆盖不到的地方，比如我这套 **skeleton** 提取、注入引擎、**CLI** 之类的。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997773Z
-      seconds: 0.0
-      tokens: 0
+      text: 所以，你是不是已经被 **Seam** 和 **SeamJS** 之间的关系绕晕了？其实两者的区别很简单：Seam 是一套协议，定义了如何用 `Sentinel` 标记动态位置、如何将其转换为 `slot` 标记、如何对条件块和循环块进行 `diff` 检测，以及如何在运行时基于**抽象语法树**注入数据。协议本身与语言无关，任何能够解析 **HTML** 注释并替换字符串的后端都可以实现它。**SeamJS** 则是基于这套协议构建的具体框架：它把 **Vite**、**TanStack Router**、**TanStack Query** 这些现成工具:tn[拼接]{is="原文用“缝”，既表示把现成工具组合起来，也呼应框架名 Seam 所含的“接缝”之意。"}在一起，再补上它们未能覆盖的部分，比如我的**骨架**提取方案、注入引擎和**命令行界面**等。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:46.817071Z
+      seconds: 19.846268583
+      tokens: 20006
       review: false
     zh-TW:
       text: 所以，你是不是已經被 **Seam** 和 **SeamJS** 的關係繞暈了？其實兩者的關係很簡單：Seam 是一套協定，定義了如何用 `Sentinel` 標記動態位置、如何將其轉換成 `slot` 標記、如何用 `diff` 偵測條件區塊與迴圈區塊，以及執行期間如何根據**抽象語法樹**注入資料。協定本身與語言無關，任何能夠解析 **HTML** 註解並取代字串的後端都能實作它。**SeamJS** 則是以這套協定為基礎打造的具體框架；它把 **Vite**、**TanStack Router**、**TanStack Query** 等現成元件:tn[縫在一起]{is="原文動詞「縫」既形容把現成工具拼接起來，也呼應了 Seam 一詞本身所指的接縫。"}，再補足它們無法涵蓋的部分，例如我的**骨架**擷取系統、注入引擎、**命令列介面**等。
@@ -4405,12 +4405,12 @@ segments:
       tokens: 17268
       review: false
     zh-CN:
-      text: '## 也许告别水合错误? {#farewell-hydration-mismatch}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997775Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 也许能告别水合错误？ {#farewell-hydration-mismatch}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:50.630905Z
+      seconds: 6.9914193749999995
+      tokens: 19182
       review: false
     zh-TW:
       text: '## 也許告別水合錯誤？ {#farewell-hydration-mismatch}'
@@ -4471,11 +4471,11 @@ segments:
       review: false
     zh-CN:
       text: '## 前言 {#preface}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:43.997776Z
-      seconds: 0.0
-      tokens: 0
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:57.629463Z
+      seconds: 5.034422375
+      tokens: 19049
       review: false
     zh-TW:
       text: '## 前言 {#preface}'

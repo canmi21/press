@@ -51,11 +51,11 @@ segments:
       review: false
     zh-CN:
       text: '## MUSL {#musl}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009798Z
-      seconds: 0.0
-      tokens: 0
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:46:10.331292Z
+      seconds: 9.160806084
+      tokens: 19045
       review: false
     zh-TW:
       text: '## MUSL {#musl}'
@@ -115,12 +115,12 @@ segments:
       tokens: 19580
       review: false
     zh-CN:
-      text: 我本人是一个 MUSL 厨，非常讨厌 GNU glibc，但是开发我还是推荐你使用 `x86_64-unknown-linux-gnu` 为什么呢，因为快，MUSL 最大的卖点是能生成完全静态链接的二进制——不依赖系统上的任何动态库，编译出来的东西拷到任何 Linux 机器上就能跑，特别适合容器和嵌入式，但是慢也慢在静态链接，因为链接器需要把所有东西都打包进去，链接阶段的工作量比动态链接大不少。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009799Z
-      seconds: 0.0
-      tokens: 0
+      text: 我本人算是个 :tn[MUSL 狂热爱好者]{is="原文用“厨”自称；这是源自日本网络文化、在中文网络圈表示狂热爱好者的后缀，语气带有自嘲意味。"}，非常讨厌 GNU glibc；但在开发阶段，我还是推荐你使用 `x86_64-unknown-linux-gnu`。为什么？因为快。MUSL 最大的卖点是能够生成完全静态链接的二进制文件，也就是不依赖系统上的任何动态库；编译产物复制到任何 Linux 机器上都能运行，尤其适合容器和嵌入式系统。不过，它慢也恰恰慢在静态链接上：链接器需要把所有内容都打包进去，因此链接阶段的工作量比动态链接大得多。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:46:10.331407Z
+      seconds: 18.211828042
+      tokens: 19536
       review: false
     zh-TW:
       text: 我本人是個 MUSL :tn[狂熱愛好者]{is="原文使用源自日本網路文化的中文圈後綴「廚」來表示狂熱愛好者，在這裡是略帶自嘲的自稱。"}，非常討厭 GNU glibc，但開發時我還是建議你使用 `x86_64-unknown-linux-gnu`。為什麼呢？因為快。MUSL 最大的賣點是能產生完全靜態連結的二進位檔——不依賴系統上的任何動態函式庫，編譯好的程式複製到任何 Linux 機器上都能執行，特別適合容器和嵌入式系統。不過，它慢也恰恰慢在靜態連結，因為連結器必須把所有東西都打包進去，連結階段的工作量比動態連結大上不少。
@@ -180,12 +180,12 @@ segments:
       tokens: 17592
       review: false
     zh-CN:
-      text: 在 Linux 上，Rust 默认用的是 GNU ld（bfd），对，就是那个最老最慢的那个。单线程并且处理符号解析和重定位都是串行扫描，项目一大就明显拖后腿了，Linux 上可以试试 [@Rui Ueyama](https://github.com/rui314) 写的 [mold](https://github.com/rui314/mold) 配置起来很简单`.cargo/config.toml` 里面加一行的事情。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.0098Z
-      seconds: 0.0
-      tokens: 0
+      text: 在 Linux 上，Rust 默认使用 GNU ld（bfd），没错，就是那个最老、最慢的链接器。它采用单线程，符号解析和重定位也都是串行扫描；项目一大，链接速度就会明显拖后腿。可以在 Linux 上试试 [@Rui Ueyama](https://github.com/rui314) 编写的 [mold](https://github.com/rui314/mold)，配置起来很简单，只需在`.cargo/config.toml`中加一行即可。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:46:10.331497Z
+      seconds: 8.289111625
+      tokens: 19096
       review: false
     zh-TW:
       text: 在 Linux 上，Rust 預設使用 GNU ld（bfd）——對，就是那個最老、最慢的連結器。它採用單執行緒，符號解析和重定位也都透過循序掃描完成，專案一大就會明顯拖慢速度。在 Linux 上可以試試 [@Rui Ueyama](https://github.com/rui314) 編寫的 [mold](https://github.com/rui314/mold)，設定很簡單，只要在 `.cargo/config.toml` 中加入一行即可。
@@ -245,12 +245,12 @@ segments:
       tokens: 18703
       review: false
     zh-CN:
-      text: 那么到底问题出在哪呢，答案其实已经很简单了，LLVM 是一个很重的基础设施，重在生产环境下是对的，编译时间换执行时间是很好的哲学，它桥接了上层 Rust，还有 C、C++、Swift 等一大堆语言。这意味着它的优化管线是为"生成最优机器码"设计的，而不是为"快速完成编译"设计的。那几十个优化 pass 在 release 模式下跑一遍是非常很耗时的，即便是 debug 模式下的 O0，LLVM 依然要走完 IR 生成和机器码生成的全流程，而这个流程本身就不轻量。再加上 Rust 的泛型单态化会在编译期展开大量代码，交给 LLVM 的 IR 体量远比你源码看起来的要大得多，LLVM 要处理的工作量自然也随之膨胀。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009801Z
-      seconds: 0.0
-      tokens: 0
+      text: 那么，问题到底出在哪里？答案其实很简单：LLVM 是一套非常庞大的基础设施，这种重量级设计在生产环境中是合理的——用编译时间换取运行效率，是一种很好的理念。它承接着 Rust、C、C++、Swift 等众多上层语言，这意味着它的优化管线是以“生成最优机器码”为目标设计的，而不是为了“快速完成编译”。在发布模式下，依次运行几十个优化阶段非常耗时；即便在调试模式的 O0 优化级别下，LLVM 仍然要走完生成中间表示和机器码的完整流程，而这套流程本身就不轻量。再加上 Rust 会在编译期间对泛型进行单态化，展开出大量代码，最终交给 LLVM 的中间表示规模远比源码看起来大得多，因此 LLVM 的工作量自然也会随之膨胀。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:46:10.331634Z
+      seconds: 18.088374833
+      tokens: 19555
       review: false
     zh-TW:
       text: 那麼問題究竟出在哪裡呢？答案其實很簡單：LLVM 是一套非常重型的基礎設施，而這種重量級設計在生產環境中是合理的；以編譯時間換取執行時間是一種很好的理念。它銜接著上層的 Rust、C、C++、Swift 等眾多語言。這意味著它的最佳化管線是為「產生最佳機器碼」而設計的，而不是為「快速完成編譯」而設計的。在 release 模式下跑完那幾十個最佳化階段非常耗時；即使是 debug 模式下的 O0，LLVM 仍然必須走完整個中間表示產生與機器碼產生流程，而這個流程本身就不輕量。再加上 Rust 的泛型單態化會在編譯期間展開大量程式碼，交給 LLVM 的中間表示規模遠比原始碼看起來大得多，因此 LLVM 必須處理的工作量自然也會隨之膨脹。
@@ -310,12 +310,12 @@ segments:
       tokens: 20759
       review: false
     zh-CN:
-      text: 那所以 Cranelift 到底应该快在哪呢，最好的阶段就是开发时期，这个时候也许你根本不需要接近完美的、极限优化执行效率的机器码，也许我们只需要一个快速的反馈而已，只要这个不是那么好的机器码和 LLVM 正经算出来的机器码语意等价就行了，早期的 Cranelift 其实做不到，因为有很多 Edge Case，虽然现在还是有，但是已经改善了很多了，现在出现 Cranelift 可以跑但是 LLVM 坏掉的概率差不多和你写 rust 触发 rustc ICE 差不多了。LLVM 为了生成极致优化的机器码，会跑几十个优化 pass，比如循环展开、向量化、常量传播、消除死代码之类的…… 很多很多，一层一层磨，而 Cranelift 的设计哲学完全不同，它大幅削减了这些优化步骤，只做最基本的寄存器分配和指令选择，用一趟线性扫描就完成代码生成，不反复迭代。同时它的 IR 设计也更轻量，是专门为快速从上层 IR 翻译到机器码设计的，不像 LLVM IR 那样承载着几十年的通用化包袱。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009802Z
-      seconds: 0.0
-      tokens: 0
+      text: 那么，Cranelift 究竟快在哪里呢？它最适合用在开发阶段：这时你也许根本不需要近乎完美、将执行效率优化到极致的机器码，只需要快速获得反馈；只要质量稍逊的机器码与 LLVM 正式生成的机器码在语义上等价就够了。早期的 Cranelift 因为存在许多边缘情况，其实还做不到这一点；如今虽然仍有问题，但已经改善了许多。现在，代码能在 Cranelift 下运行、却在 LLVM 下出错的概率，已经和你用 Rust 写代码时触发 rustc 内部编译器错误差不多了。为了生成优化到极致的机器码，LLVM 会执行几十轮优化，例如循环展开、向量化、常量传播、死代码消除等……数量繁多，一层层反复打磨。Cranelift 的设计理念则截然不同：它大幅精简优化步骤，只进行最基本的寄存器分配和指令选择，通过一次线性扫描完成代码生成，不再反复迭代。同时，它的中间表示设计也更加轻量，专门用于将上层中间表示快速转换为机器码，不像 LLVM 的中间表示那样背负着几十年积累下来的通用化包袱。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:46:18.627151Z
+      seconds: 22.634384334
+      tokens: 19794
       review: false
     zh-TW:
       text: 所以 Cranelift 到底應該快在哪裡呢？最適合它發揮優勢的階段就是開發期。此時你也許根本不需要接近完美、將執行效率最佳化到極限的機器碼，也許我們需要的只是快速回饋；只要這份不那麼出色的機器碼與 LLVM 正式產生的機器碼在語意上等價就夠了。早期的 Cranelift 其實做不到這一點，因為存在許多邊界情況；雖然現在依然有，但已經改善許多，如今遇到 Cranelift 可以執行而 LLVM 出錯的機率，已經和你寫 Rust 時觸發 rustc 內部編譯器錯誤的機率差不多了。為了產生極致最佳化的機器碼，LLVM 會執行幾十輪最佳化，例如迴圈展開、向量化、常數傳播、移除無用程式碼等……還有許許多多，一層一層地打磨；而 Cranelift 的設計哲學完全不同，它大幅刪減了這些最佳化步驟，只進行最基本的暫存器配置與指令選擇，透過一次線性掃描便完成程式碼產生，不再反覆迭代。同時，它的中介表示設計也更加輕量，專門用於將上層中介表示快速轉譯為機器碼，不像 LLVM IR 那樣背負著數十年通用化設計留下的包袱。
@@ -375,12 +375,12 @@ segments:
       tokens: 18492
       review: false
     zh-CN:
-      text: 不过好消息是如果你用 macOS 的话，那就完全不用担心了，`aarch64-apple-darwin` 就是目前唯一的选择了，macOS 从设计上就不支持完全静态链接从编译速度的角度来说，这反而是好事。所以 dev profile 在 linux 上 gnulibc，macOS 上 libSystem，release profile 在 macOS 和 linux 上都可以 musl，因为 macOS 默认选择 linker 和 ar 的问题，唯一值得注意的就是可能需要配置一下 `.cargo/config.toml`
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009803Z
-      seconds: 0.0
-      tokens: 0
+      text: 不过好消息是，如果你使用 macOS，就完全不用担心这个问题：目前只有 `aarch64-apple-darwin` 这一个选择。macOS 在设计上就不支持完全静态链接，从编译速度来看反而是件好事。因此，dev profile 在 Linux 上使用 glibc，在 macOS 上使用 libSystem；release profile 在 macOS 和 Linux 上都可以使用 musl。唯一需要注意的是，由于 macOS 默认选择链接器和 ar 的方式存在问题，你可能需要配置一下 `.cargo/config.toml`。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:46:19.496007Z
+      seconds: 13.667456834
+      tokens: 19440
       review: false
     zh-TW:
       text: 不過好消息是，如果你使用 macOS，就完全不用擔心這些了：`aarch64-apple-darwin` 是目前唯一的選擇。macOS 在設計上就不支援完全靜態連結，從編譯速度的角度來看，這反而是件好事。因此，開發設定檔在 Linux 上使用 GNU libc，在 macOS 上使用 libSystem；發布設定檔在 macOS 和 Linux 上都可以使用 musl。由於 macOS 預設選擇的連結器和封存工具有所不同，唯一需要注意的是可能得設定一下 `.cargo/config.toml`。
@@ -440,12 +440,12 @@ segments:
       tokens: 17152
       review: false
     zh-CN:
-      text: 还有一个值得讨论的点就是关于 [UPX](https://github.com/upx/upx) 的使用；我知道我说我喜欢 musl，但是又追求小体积实际上很冲突，听起来没道理...
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009804Z
-      seconds: 0.0
-      tokens: 0
+      text: 还有一点值得讨论，那就是是否使用 [UPX](https://github.com/upx/upx)。我知道，一边说自己喜欢 musl，一边又追求更小的体积，其实很矛盾，听起来也不太合理……
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:46:28.427529Z
+      seconds: 7.011446125
+      tokens: 19085
       review: false
     zh-TW:
       text: 還有一點值得討論，那就是 [UPX](https://github.com/upx/upx) 的使用；我知道我說過自己喜歡 musl，但同時又追求小體積其實很矛盾，聽起來也不太合理……
@@ -505,12 +505,12 @@ segments:
       tokens: 20696
       review: false
     zh-CN:
-      text: 在正常的业务中，`panic` 应该是不能存在的，正常业务代码 runtime 遇到错误的时候，但凡是设计了容错的 Err 都应该被安全的返回，而不是暴力 panic 掉，就和 React ErrorBoundary 一样，应该被正常当作错误处理，panic 只有在代码坚信进入了不可能的状态，且无法挽回的时候才应该触发。我个人的哲学是放弃 panic，为什么呢？因为实际上业务代码可以作为 3层测试，第一层 happy path，第二层错误路径（无限种可能中的某一种），第三层才是 fuzz or 碰撞测试穷举出来的 Edge Case。工程学上来说，正确路径可以做到 100% 测试，错误路径可以一类 n 种变体中取 1种；碰撞测试纯粹是时间问题，大部分时候不值得，等你用户体量真的上来了，要做的时候你自己就会知道，通常我一律不做。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009805Z
-      seconds: 0.0
-      tokens: 0
+      text: 在正常业务中，`panic` 本就不该存在。业务代码在运行时遇到错误时，凡是已经设计了容错机制的 Err，都应该安全返回，而不是粗暴地触发 panic。就像 React ErrorBoundary 一样，它们应当作为普通错误得到处理；只有当代码确信自己进入了理论上不可能出现且无法挽回的状态时，才应该触发 panic。我个人的理念是放弃 panic。为什么？因为业务代码实际上可以分三层测试：第一层是正常路径，第二层是错误路径（无限种可能中的某一种），第三层才是通过模糊测试或碰撞测试穷举出的边界情况。从工程角度看，正常路径可以做到 100% 覆盖；对于一类错误路径的 n 种变体，只需选取一种测试；碰撞测试则纯粹是时间问题，大多数时候并不值得做。等用户规模真正上来、确实需要做时，你自然会知道；通常我一概不做。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:46:28.547666Z
+      seconds: 24.601746792
+      tokens: 19884
       review: false
     zh-TW:
       text: 在正常的業務中，`panic` 不應該存在。正常業務程式碼在執行階段遇到錯誤時，只要是設計了容錯機制的 Err，都應該被安全傳回，而不是粗暴地觸發恐慌；就像 React ErrorBoundary 一樣，它應該被正常地當作錯誤處理。只有當程式碼確信自己進入了不可能且無法挽回的狀態時，才應該觸發恐慌。我的個人哲學是放棄恐慌。為什麼？因為實際上可以把業務程式碼測試分成三層：第一層是正確路徑，第二層是錯誤路徑（無限種可能中的一種），第三層才是透過模糊測試或碰撞測試窮舉出來的邊界情況。從工程角度來說，正確路徑可以做到 100% 覆蓋；錯誤路徑可以從一類的 n 種變體中選取一種；碰撞測試則純粹是時間問題，大多數時候並不值得。等你的使用者規模真的上來了，需要做的時候你自然會知道；通常我一律不做。
@@ -570,12 +570,12 @@ segments:
       tokens: 17029
       review: false
     zh-CN:
-      text: '## 放弃 panic! {#abort-on-panic}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009806Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 告别 panic！ {#abort-on-panic}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:46:33.171304Z
+      seconds: 5.9137334169999995
+      tokens: 19158
       review: false
     zh-TW:
       text: '## 放棄 panic！ {#abort-on-panic}'
@@ -635,12 +635,12 @@ segments:
       tokens: 22770
       review: false
     zh-CN:
-      text: 那么好处说完了，代价呢？首先显而易见的是 Cranelift 生成的代码运行时性能比 LLVM 差，根据场景不同大概会慢 10%~30%。但想开了其实就会发现，这在开发阶段根本不重要，我要那么快干嘛，你是跑分还是 CI release 啊，我就 tm 要跑 cargo build 快点，看看逻辑出没出来，而且我打赌，你写的大部分程序不可能 80% 以上的时间占满计算资源，肯定是要有业务来的，你开发的时候业务能有多大？cpu 怕不是全程都在摸鱼呢，反倒是我要看效果、验证逻辑。那编译时间换运行时效率，这笔账在开发循环里是不是应该倒过来算嘛。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009807Z
-      seconds: 0.0
-      tokens: 0
+      text: 好处说完了，代价呢？最明显的一点是，Cranelift 生成的代码在运行时性能上不如 LLVM，视具体场景而定，大约会慢 10%～30%。但换个角度想想就会发现，这在开发阶段根本不重要：我要运行得那么快干什么，是跑基准测试还是做 CI 发布构建啊？我 :tn[他妈的]{is="原文写作 tm，是脏话“他妈”的拼音首字母缩写，既保留了爆粗的力度，又用字母稍作遮掩。"} 就想让 `cargo build` 快一点，好看看逻辑有没有按预期跑起来。而且我敢打赌，你写的大多数程序都不可能在超过 80% 的时间里占满计算资源，总得有实际业务请求进来吧？开发时能有多少业务负载？CPU 恐怕全程都在 :tn[摸鱼]{is="原文用了网络俚语“摸鱼”，字面上是摸鱼，实际指偷懒混时间；把它用在 CPU 身上，还带有把软件拟人化的调侃意味。"}，真正着急的是我要看到效果、验证逻辑。所以，用编译时间换取运行时效率，这笔账放在开发循环里，是不是应该反过来算？
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:46:35.445036Z
+      seconds: 32.9139805
+      tokens: 20417
       review: false
     zh-TW:
       text: 那麼好處說完了，代價呢？首先顯而易見的是，Cranelift 產生的程式碼在執行時效能上比 LLVM 差，依情境不同大約會慢 10%～30%。但想開了其實就會發現，這在開發階段根本不重要。我要那麼快做什麼，你是在跑基準測試，還是在做 CI 發布建置？我就 :tn[他媽的]{is="原文用拼音首字母縮寫 tm 指代髒話「他媽」，既保留了爆粗口的力道，又用字母作了半遮掩。"} 想讓 cargo build 跑快一點，看看邏輯有沒有生效。而且我敢打賭，你寫的大部分程式都不可能在 80% 以上的時間裡占滿運算資源，肯定得有實際業務流量才行，而開發時又能有多少業務量？CPU 怕不是全程都在 :tn[摸魚]{is="原文的「摸魚」是網路俚語，字面指抓魚，實際指偷懶混時間；把它用在 CPU 身上又帶有擬人化的調侃意味。"} 呢。反倒是我需要看到效果、驗證邏輯。那麼，用編譯時間換執行時效率這筆帳，在開發循環裡是不是應該反過來算？
@@ -700,12 +700,12 @@ segments:
       tokens: 17758
       review: false
     zh-CN:
-      text: 和其他东西一样 Rust 的 debuginfo 和 symbols 就是存在于这里的，release 模式开启 `strip` 可减少非常可观的体积（~~通常是50MB vs 5MB~~）这样的逆天区别，除掉 symbols 也更加安全，毕竟大部分时候前端 source code 都是从 map 里面不小心 push 上 npm 泄漏的 :(
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009808Z
-      seconds: 0.0
-      tokens: 0
+      text: 和其他内容一样，Rust 的调试信息和符号也存放在这里；在 release 模式下启用 `strip` 可以显著减小体积（~~通常能从 50 MB 降到 5 MB~~），差距大得离谱。移除符号也更加安全，毕竟前端源代码大多都是因为有人不小心把 source map 推送到 npm 上而泄露的 :(
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:46:39.092971Z
+      seconds: 9.232801291
+      tokens: 19176
       review: false
     zh-TW:
       text: 和其他東西一樣，Rust 的偵錯資訊和符號就存放在這裡。在發布模式下啟用 `strip` 可以大幅縮減體積（~~通常是 50 MB 對 5 MB~~），差距大得離譜。移除符號也更加安全，畢竟大多數時候，前端原始碼外洩都是因為不小心把原始碼對應表發布到了 npm 上 :(
@@ -765,12 +765,12 @@ segments:
       tokens: 17633
       review: false
     zh-CN:
-      text: 提升还是很明显的，但是很遗憾 macOS 上只有 sold 这个商业项目，但是好消息是 macOS 上的 lld or Apple 自带的 ld64 本身已经不慢了，尤其是 Xcode 15 之后那个新链接器，速度提升超级明显，不过这个玩意唯一的不好就是 macOS 无人值守 CI 和更新后每次都要 sudo Accept 一个条款，导致我好几次 CI 定时任务挂掉。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009809Z
-      seconds: 0.0
-      tokens: 0
+      text: 速度提升还是很明显的。遗憾的是，macOS 上只有 sold 这个商业项目；好在 lld 和 Apple 自带的 ld64 本身已经不慢，尤其是 Xcode 15 之后的新链接器，速度提升非常明显。不过它有个缺点：macOS 无人值守 CI 每次更新后都必须用 sudo 接受一遍条款，害得我的 CI 定时任务挂掉了好几次。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:46:41.268477Z
+      seconds: 8.520169667
+      tokens: 19157
       review: false
     zh-TW:
       text: 提升還是很明顯的，但遺憾的是，macOS 上只有 sold 這個商業專案。好消息是，macOS 上的 lld 和 Apple 內建的 ld64 本來就不慢，尤其是 Xcode 15 之後推出的新連結器，速度提升極其明顯。不過它唯一的缺點是，macOS 無人值守 CI 在每次更新後都必須用 sudo 接受一份協議，導致我的 CI 排程工作好幾次都掛掉了。
@@ -830,12 +830,12 @@ segments:
       tokens: 16867
       review: false
     zh-CN:
-      text: '## 实际测试 {#benchmark}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.00981Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 实测 {#benchmark}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:46:48.333448Z
+      seconds: 5.987361042
+      tokens: 19170
       review: false
     zh-TW:
       text: '## 實際測試 {#benchmark}'
@@ -895,12 +895,12 @@ segments:
       tokens: 17904
       review: false
     zh-CN:
-      text: 这样就可以给第三方依赖用 O3 编译，这样只会增加第一次冷编译的时间，后续就是增量编译的。外部依赖一般不会频繁更新，这里用 O3 自己业务代码用 O0 可以获得一般情况下权衡速度和体积的良好 dev 模式体验，但是 Release 模式下我还是建议 O3 或者 Z 拉满没啥好说的。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.00981Z
-      seconds: 0.0
-      tokens: 0
+      text: 这样就可以用 O3 编译第三方依赖。虽然这会延长首次冷编译的时间，但后续采用增量编译，而外部依赖通常也不会频繁更新。第三方依赖用 O3、业务代码用 O0，一般能在编译速度和产物体积之间取得良好平衡，带来不错的开发模式体验；不过在发布模式下，我仍然建议直接拉满到 O3 或 Z，没什么好说的。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:46:49.796021Z
+      seconds: 11.067424708
+      tokens: 19086
       review: false
     zh-TW:
       text: 這樣就可以使用 O3 編譯第三方相依套件，只會增加首次全新編譯所需的時間，後續都是增量編譯。外部相依套件通常不會頻繁更新，因此對它們使用 O3、對自己的應用程式碼使用 O0，一般可以在速度與體積之間取得良好平衡，帶來不錯的開發模式體驗。不過在發布模式下，我仍然建議直接將最佳化拉滿到 O3 或 Z，沒什麼好說的。
@@ -961,11 +961,11 @@ segments:
       review: false
     zh-CN:
       text: '## Cranelift {#cranelift}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009811Z
-      seconds: 0.0
-      tokens: 0
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:46:53.157516Z
+      seconds: 5.244508792
+      tokens: 19181
       review: false
     zh-TW:
       text: '## Cranelift {#cranelift}'
@@ -1025,12 +1025,12 @@ segments:
       tokens: 17443
       review: false
     zh-CN:
-      text: 还有一个进程被忽略但是可以调的配置就是 `opt-level`，默认情况下应该是 "3"，而作为 Release，更常见的做法是开到 "z", 这就是在不修改代码的前提下，可以获得的免费产物体积优化，为什么不开呢；但是呢，开发模式下这里应该配置为 "0"，完全不优化才能获得最快的速度。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009812Z
-      seconds: 0.0
-      tokens: 0
+      text: 另一个常被忽略但可以调整的配置是 `opt-level`，其默认值应该是“3”；在发布模式下，更常见的做法是设为“z”，这样无需修改代码就能白白获得产物体积优化，何乐而不为呢？不过在开发模式下，这里应该设为“0”，完全禁用优化才能获得最快的编译速度。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:46:54.32795Z
+      seconds: 10.037292542
+      tokens: 19078
       review: false
     zh-TW:
       text: 另一個經常被忽略但可以調整的設定是 `opt-level`，預設值應該是 "3"，但發行版本更常見的做法是設為 "z"；這不必修改程式碼就能免費縮小產出物的體積，何樂而不為呢？不過在開發模式下，這裡應該設定為 "0"，完全不最佳化才能獲得最快的建置速度。
@@ -1090,12 +1090,12 @@ segments:
       tokens: 18861
       review: false
     zh-CN:
-      text: 但是实际上 upx 的存在让这个问题得到了解决，UPX 的原理实际上是把你的 BIN 压缩后包上一个解压 stub，运行时先在内存里解压再执行，这样就可以把二进制体积压缩到原来的 30%~50% 左右这样体积优势就会非常明显，但也正是因为这样，UPX + GNU glibc 动态链接就会有大问题，因为 glibc 动态链接的二进制里有一些特殊的 section 和动态加载机制，UPX 压缩之后可能会破坏这些结构，导致运行时找不到动态库 `segment fault`；但是反观 musl，这个就非常适合 UPX，本来就是全静态，内部稳定，UPX 后解压和压缩都很干净。所以 musl 的 release CI 其实可以多加一步 UPX 是非常加分的。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009813Z
-      seconds: 0.0
-      tokens: 0
+      text: 但实际上，UPX 的存在解决了这个问题。它的原理是先压缩二进制文件，再套上一层解压存根；运行时先在内存中解压，然后执行。这样通常可以把二进制文件压缩到原体积的 30%～50%，体积优势会非常明显。但也正因如此，UPX 与采用 GNU glibc 动态链接的程序结合时会产生严重问题：这类二进制文件包含一些特殊的节和动态加载机制，经过 UPX 压缩后，这些结构可能遭到破坏，导致程序运行时找不到动态库 `segment fault`。相比之下，musl 就非常适合 UPX：它本来就是完全静态链接，内部结构稳定，UPX 的压缩和运行时解压都很干净。因此，在 musl 的发布 CI 中额外加入 UPX 这一步，其实会非常加分。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:46:58.409891Z
+      seconds: 13.550616625
+      tokens: 19586
       review: false
     zh-TW:
       text: 但實際上，UPX 的存在解決了這個問題。UPX 的原理是壓縮二進位檔，再為其包上一個解壓縮存根；執行時先在記憶體中解壓縮，然後再執行。這樣可以將二進位檔壓縮至原始大小的 30%～50% 左右，體積上的優勢會非常明顯。但也正因如此，UPX 與 GNU glibc 動態連結搭配時會出現嚴重問題：使用 glibc 動態連結的二進位檔包含一些特殊的區段和動態載入機制，UPX 壓縮後可能會破壞這些結構，導致執行時找不到動態函式庫 `segment fault`。反觀 musl，它就非常適合 UPX：原本就是完全靜態連結，內部結構穩定，經 UPX 壓縮後，解壓縮和執行都很乾淨。因此，在 musl 的發佈 CI 中增加一道 UPX 步驟，其實是非常加分的。
@@ -1155,12 +1155,12 @@ segments:
       tokens: 17669
       review: false
     zh-CN:
-      text: 这一起难道就没有办法嘛？其实是有的，在大约一个月前，我尝试了一些办法让我的 Rust 开发流程更快，包括工作流优化之类的但是其实每次等的时间都卡在 Cargo 上，如果不能解决这个就不治本，那正好借这个机会来稍微说一下关于 Rust 开发中 Cargo.toml 配置调优相关的内容和配套外围配置吧。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009814Z
-      seconds: 0.0
-      tokens: 0
+      text: 这一切难道就没有解决办法吗？其实是有的。大约一个月前，我尝试了包括优化工作流在内的一些办法，希望加快 Rust 开发流程，但等待时间其实总是卡在 Cargo 上；不解决这个问题，就只是治标不治本。正好借此机会，简单聊聊 Rust 开发中 Cargo.toml 的配置调优及其配套的外围配置。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:00.870065Z
+      seconds: 7.436624042
+      tokens: 19098
       review: false
     zh-TW:
       text: 這一切難道就沒有辦法解決嗎？其實是有的。大約一個月前，我嘗試了一些方法來加快 Rust 開發流程，包括最佳化工作流程等，但實際上等待時間幾乎都卡在 Cargo 上。如果不能解決這個問題，其他方法都只是治標不治本。因此，我正好藉這個機會簡單談談 Rust 開發中的 Cargo.toml 設定調校，以及相關的周邊設定。
@@ -1221,11 +1221,11 @@ segments:
       review: false
     zh-CN:
       text: '## 代码生成单元 {#codegen-units}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009816Z
-      seconds: 0.0
-      tokens: 0
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:04.3735Z
+      seconds: 5.350731708
+      tokens: 19138
       review: false
     zh-TW:
       text: '## 程式碼生成單元 {#codegen-units}'
@@ -1285,12 +1285,12 @@ segments:
       tokens: 16767
       review: false
     zh-CN:
-      text: '## 老旧的链接器 {#legacy-linker}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009817Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 老旧链接器 {#legacy-linker}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:08.314697Z
+      seconds: 4.489868625
+      tokens: 19035
       review: false
     zh-TW:
       text: '## 老舊的連結器 {#legacy-linker}'
@@ -1350,12 +1350,12 @@ segments:
       tokens: 19386
       review: false
     zh-CN:
-      text: 另外就是 UPX 也不能滥用，UPX 只适合长任务 or 低频任务，长任务是因为 UPX 启动的时候需要内存解压一次，这个过程虽然是全自动的但是需要一点冷启动时间，这个影响很少，但是在高频路径上还是很致命。所以长任务启动一次后台挂就很适合这个，但是我并不推荐无脑给 docker 镜像这种长服务的包塞 UPX，因为实际上这是内存换磁盘空间的行为，属于血亏，而且容器 Layer 的压缩实际和 UPX 是一样的，减少了分发的时候下载体积。反而推荐的环境是某些 CLI 的用途；节省超多磁盘空间并且启动解压时间几乎无感，而且 musl 天然也适合做 CLI，不然我就要点名批评 AUR 助手了，go 写的那个玩意但是没有静态链，导致我曾经遇到过 ArchLinux 上 yay 坏掉了，找不到动态库，本身又是系统管理器，无解只能另外 LiveISO 启动最后 chroot 救砖。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009818Z
-      seconds: 0.0
-      tokens: 0
+      text: 另外，UPX 也不能滥用。它只适合长时间运行或低频执行的任务：UPX 启动时需要先在内存中解压，这个过程虽然全自动，但会略微增加冷启动时间。影响通常很小，在高频调用路径上却可能十分致命。因此，只启动一次便长期在后台运行的任务很适合使用 UPX；但我并不建议不加辨别地给 Docker 镜像中的常驻服务程序套上 UPX，因为这本质上是在用内存换磁盘空间，实在血亏，而且容器层本身也会压缩，同样能够减少分发时的下载体积。相比之下，我更推荐在某些 CLI 场景中使用 UPX：它能节省大量磁盘空间，启动时的解压延迟也几乎无感，而 musl 天然就很适合构建 CLI。说到这里，我不得不点名批评一下 AUR 助手：那个用 Go 写的家伙竟然没有静态链接，害我曾经遇到 Arch Linux 上的 yay 因找不到动态库而彻底罢工；偏偏它本身又是系统管理工具，根本无从修复，只能另行启动 Live ISO，最后通过 chroot 把系统救回来。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:08.363334Z
+      seconds: 17.878804917
+      tokens: 19656
       review: false
     zh-TW:
       text: 另外，UPX 也不能濫用，它只適合長時間或低頻率的工作。之所以適合長時間工作，是因為 UPX 啟動時需要在記憶體中解壓縮一次；這個過程雖然完全自動化，也只會增加一點冷啟動時間，但放在高頻路徑上仍然可能造成致命影響。因此，那些只啟動一次、之後長期在背景執行的工作很適合使用 UPX。不過，我並不建議不加思索地替 docker 映像中這類長時間執行的服務套件加上 UPX，因為這實際上是在用記憶體換取磁碟空間，完全得不償失；而容器 Layer 的壓縮其實已經能發揮與 UPX 相同的作用，減少散布時的下載大小。相比之下，我更推薦將它用於某些 CLI：不僅能節省大量磁碟空間，啟動時的解壓縮時間也幾乎無感，而且 musl 天生就很適合建構 CLI。不然我就要點名批評 AUR 助手了：那個用 go 寫的東西居然沒有靜態連結，導致我曾經遇過 ArchLinux 上的 yay 因找不到動態函式庫而故障；偏偏它本身又是系統管理工具，根本無從修復，只能另外啟動 LiveISO，最後透過 chroot 把系統救回來。
@@ -1415,12 +1415,12 @@ segments:
       tokens: 18475
       review: false
     zh-CN:
-      text: 反观下面这个 CLI 包就不怎么合适，依赖多倒不是什么问题，理论上这样更能体现效率，但是这里有一个经典的二选一，可以在左上角看到 `ring` 这个依赖标记为可选了；那是因为项目本来用的是 `aws-lc-rs`，这两玩意都是 Rust 中的加密算法 Backend；但是为什么要可选呢，那是因为 `ring` 是纯 Rust 写的，而另外一个是 Asm 汇编 FFI 进来的，专为 x86 arm64 等主流 cpu 架构汇编加速，但是败也在这里，因为 Cranelift 的魔法只局限于纯 Rust，一旦你引入 Unsafe Code，or FFI C、ASM 之类的，此时实际上 Cranelift 兼容性极差。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009819Z
-      seconds: 0.0
-      tokens: 0
+      text: 反观下面这个 CLI 包就不太适合。依赖多本身倒不是问题，理论上反而更能体现编译效率；但这里存在一个典型的二选一：从左上角可以看到，`ring` 这个依赖被标记为可选，因为项目原本使用的是 `aws-lc-rs`。两者都是 Rust 中的加密算法后端，之所以需要设为可选，是因为 `ring` 由纯 Rust 编写，而另一个则通过外部函数接口引入汇编代码，专门针对 x86、ARM64 等主流 CPU 架构进行汇编优化。可问题也恰恰出在这里：Cranelift 的优势仅限于纯 Rust；一旦引入不安全代码，或者通过外部函数接口调用 C、汇编代码等，Cranelift 的兼容性就会变得很差。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:09.730999Z
+      seconds: 9.375395417
+      tokens: 19425
       review: false
     zh-TW:
       text: 反觀下面這個命令列介面套件就不太合適了。相依套件多倒不是什麼問題，理論上反而更能體現效率，但這裡有一個經典的二選一：左上角可以看到 `ring` 這個相依套件被標記為選用。這是因為專案原本使用的是 `aws-lc-rs`，兩者都是 Rust 中的加密演算法後端。可為什麼要設為選用呢？因為 `ring` 完全以 Rust 撰寫，另一個則是透過外部函式介面引入的組合語言實作，專門針對 x86、arm64 等主流中央處理器架構進行組合語言層級的加速。然而問題也恰恰出在這裡：Cranelift 的魔法只適用於純 Rust；一旦引入不安全程式碼、透過外部函式介面呼叫的 C 或組合語言等內容，Cranelift 的相容性實際上就會變得極差。
@@ -1480,12 +1480,12 @@ segments:
       tokens: 38299
       review: false
     zh-CN:
-      text: 综合结果看下来这两玩意其实差不不大，谈不上质变但是绝对能明显感知，主要原因是 Apple Silicon 太猛了，M 系列芯片的单核性能、内存带宽都强的离谱，编译这种重计算+重 I/O 的任务刚好吃到这些优势。如果用 Linux 跑跑通常来说差距会更大，但是如果一台 macbook 刷 Asahi Linux 之类的肯定是 Linux 赢。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.00982Z
-      seconds: 0.0
-      tokens: 0
+      text: 综合来看，这两者其实相差不大，谈不上质变，但差异绝对能被明显感知。主要原因是 Apple Silicon 的性能实在太强：M 系列芯片的单核性能和内存带宽都高得惊人，而编译这种既依赖大量计算、又依赖大量 I/O 的任务，恰好能充分利用这些优势。通常在 Linux 上运行时，差距会更大；但如果是在同一台 MacBook 上安装 Asahi Linux 之类的系统来比较，那肯定是 Linux 胜出。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:11.968602Z
+      seconds: 6.895052625
+      tokens: 19159
       review: false
     zh-TW:
       text: 綜合結果來看，這兩者其實差不多，稱不上質變，但差異絕對能明顯感受到。主要原因是 Apple Silicon 太強了：M 系列晶片的單核心效能和記憶體頻寬都高得離譜，而編譯這種既重運算又重 I/O 的工作正好能吃到這些優勢。通常換成 Linux 跑，差距會更大；但如果是在 MacBook 上安裝 Asahi Linux 之類的系統，那肯定是 Linux 勝出。
@@ -1545,12 +1545,12 @@ segments:
       tokens: 16573
       review: false
     zh-CN:
-      text: 来看看实践中的 Rust 开发配置调优吧
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009821Z
-      seconds: 0.0
-      tokens: 0
+      text: 来看看如何在实际 Rust 开发中优化配置吧
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:12.80883Z
+      seconds: 5.530859917
+      tokens: 18836
       review: false
     zh-TW:
       text: 來看看實務中的 Rust 開發設定調校吧
@@ -1610,12 +1610,12 @@ segments:
       tokens: 18198
       review: false
     zh-CN:
-      text: 最后这些好用的配置虽然可以帮助你快速区分 dev 和 release profile，在项目代码上来后只会越来越明显，但是我还是建议你多写一个 CI 来跑 Rust Stable LLVM Build，最好再加上你的各种测试一起跑，这样本地 nightly 的 rust 也不用切换了，Edge Case 也坑不到你，push 上去有问题就被 CI 拦了，这样就是目前最舒服的 DX 模式了；那这次就说到这里了，下次有空再摸吧
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009823Z
-      seconds: 0.0
-      tokens: 0
+      text: 最后，这些实用配置虽能帮你快速区分开发配置和发布配置，而且随着项目代码增多，两者的差异只会越来越明显，但我还是建议你另写一套持续集成流程，用 Rust 稳定版和 LLVM 后端构建，最好把各种测试也一并跑起来。这样，本地就不用再切换 Rust 夜间版了，边界情况也坑不到你；推送后若有问题，会直接被持续集成拦住。这就是目前最舒服的开发者体验模式。那这次就说到这里，下次有空再折腾吧。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:18.34598Z
+      seconds: 26.771472708
+      tokens: 19352
       review: false
     zh-TW:
       text: 最後，這些好用的設定雖然可以幫助你快速區分開發與發佈設定檔，而且隨著專案程式碼增加，效果只會愈來愈明顯，但我還是建議你再寫一個持續整合工作來執行 Rust 穩定版 LLVM 建置，最好連同各種測試一起執行。這樣本機也不用切換 Rust 每夜版，邊界情況也坑不到你，推送上去的問題會被持續整合攔下，這就是目前最舒服的開發者體驗模式；這次就說到這裡，下次有空再折騰吧。
@@ -1675,12 +1675,12 @@ segments:
       tokens: 16704
       review: false
     zh-CN:
-      text: '## 后端理论 {#backend-theory}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009824Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 后端原理 {#backend-theory}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:18.867601Z
+      seconds: 7.034911583
+      tokens: 19089
       review: false
     zh-TW:
       text: '## 後端理論 {#backend-theory}'
@@ -1740,12 +1740,12 @@ segments:
       tokens: 18126
       review: false
     zh-CN:
-      text: 我喜欢 Rust 已经很久了，它的优点很明显，同时缺点也很明显。内存 Safe 无需 GC、零成本抽象、并发安全、几乎现阶段最好的工具链和配套外围建设、超强的覆盖面(上到 Web 云服务器，下到单片机)，还有错误处理设计非常好。缺点嘛，学习陡峭？难以理解 Ownship，Borrow 之类的模型约束；写起来很慢？
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009824Z
-      seconds: 0.0
-      tokens: 0
+      text: 我喜欢 Rust 已经很久了。它的优点很突出，缺点也同样明显：无需垃圾回收即可保证内存安全、零成本抽象、并发安全、几乎是现阶段最好的工具链及周边生态、覆盖面极广（上至 Web 云服务器，下至单片机），而且错误处理机制设计得非常出色。至于缺点，是学习曲线陡峭？所有权、借用之类的模型约束难以理解？还是写代码太慢？
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:19.110764Z
+      seconds: 11.161112042
+      tokens: 19294
       review: false
     zh-TW:
       text: 我喜歡 Rust 已經很久了。它的優點很明顯，缺點也同樣明顯：無須垃圾回收即可確保記憶體安全、零成本抽象、並行安全、幾乎是現階段最好的工具鏈及周邊生態、涵蓋範圍極廣（上至雲端網路伺服器，下至微控制器），而且錯誤處理設計得非常好。至於缺點，學習曲線陡峭？所有權、借用之類的模型約束難以理解？寫起來很慢？
@@ -1805,12 +1805,12 @@ segments:
       tokens: 18842
       review: false
     zh-CN:
-      text: LTO（Link-Time Optimization）是另外一个很吃内存和编译性能的东西，而且这是大部分项目 Release 时候都推荐开的，正常编译时，每个 crate 是独立优化的，编译后端看不到 crate 之间的调用关系，某些跨 crate 的内联和死代码消除做不到，而这种情况的占比非常多；LTO 就是把这个边界打破，让优化器在链接时拿到所有 crate 的 IR，做一次全局优化。但是千万不要无脑 profile 上直接挂 `lto = true` 这样会让你的 Rust 编译慢到怀疑人生，好好检查一下使用 release profile 的时候挂上就行了。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009825Z
-      seconds: 0.0
-      tokens: 0
+      text: LTO（链接时优化）也是非常消耗内存和拖慢编译速度的功能，但大多数项目都建议在发布构建时启用。常规编译会分别优化每个 crate，编译后端无法看到 crate 之间的调用关系，因此无法完成一些跨 crate 的内联和死代码消除，而这类情况又非常常见。LTO 会打破这一边界，让优化器在链接阶段获取所有 crate 的中间表示并进行一次全局优化。不过，千万不要不加考虑地直接给所有构建配置启用 `lto = true`，否则 Rust 的编译速度会慢到让你怀疑人生；仔细检查一下，确保只在使用发布配置时启用它即可。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:25.909957Z
+      seconds: 14.808380917000001
+      tokens: 19244
       review: false
     zh-TW:
       text: LTO（連結時最佳化）是另一項非常消耗記憶體和編譯時間的功能，但大多數專案都建議在發行建置中啟用它。正常編譯時，每個軟體套件都會獨立最佳化，編譯器後端無法看到軟體套件之間的呼叫關係，因此無法執行某些跨軟體套件內嵌和無用程式碼消除，而這種情況非常常見。LTO 會打破這個邊界，讓最佳化器在連結時取得所有軟體套件的中間表示，並進行一次全域最佳化。不過，千萬不要不加考慮地直接在設定檔中加入 `lto = true`，否則 Rust 編譯會慢得讓你懷疑人生；請仔細檢查，只在使用發行設定檔時啟用它。
@@ -1870,12 +1870,12 @@ segments:
       tokens: 17739
       review: false
     zh-CN:
-      text: 所以 dev profile 下没什么好说的，你总不能 strip 掉 debuginfo 吧，那样你就没法用 `gdb` / `lldb` 正常调试了，backtrace 里也看不到有意义的函数名。但是注意，ArchLinux 打包的时候会默认帮助你 strip，但是这里就会和我们有一点小摩擦，那就是我们已经 strip 掉了，后面可能会报错。这个如果写 AUR 的时候可以注意一下显式跳过这一步。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009826Z
-      seconds: 0.0
-      tokens: 0
+      text: 所以，开发配置下没什么可说的：你总不能把调试信息剥离掉，否则就无法使用 `gdb` / `lldb` 正常调试，调用栈回溯中也看不到有意义的函数名。不过要注意，Arch Linux 打包时默认会帮你执行剥离，这就会和我们的做法产生一点冲突：我们已经剥离过了，后续操作可能会报错。因此，编写 AUR 包时可以显式跳过这一步。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:26.246253Z
+      seconds: 12.207051333
+      tokens: 19254
       review: false
     zh-TW:
       text: 所以開發設定檔下沒什麼好說的，你總不能剝除偵錯資訊吧，否則就無法用 `gdb` / `lldb` 正常偵錯，堆疊回溯裡也看不到有意義的函式名稱。不過要注意，Arch Linux 打包時預設會幫你剝除，但這和我們有一點小衝突：我們已經剝除過了，後面可能會報錯。撰寫 AUR 軟體包時可以留意一下，明確略過這一步。
@@ -1935,12 +1935,12 @@ segments:
       tokens: 24170
       review: false
     zh-CN:
-      text: 那么对于好的代码来说，就应该覆盖 1类正确路径的测试 和 至少一种错误路径的测试，而这一类的错误路径只要覆盖一个就可以测试被 Err 返回的情况，就可以写 fallback 逻辑，就自然的可以 `thiserror` 枚举 or `anyhow` 拦截拍平打印记录。总之就是你的代码会迫使你写出处理这些情况的机制，如果做到了这一层的话，`panic` 对你来说就没用了，可以理解为"理论上不可能"，但是仅仅也是理论上，实际世界里面还有 OS 错误，内存错误，宇宙射线单电子 bit 反转，奇奇怪怪的溢出... 你永远不可能覆盖满这种情况，那为什么不要 panic 呢，那是因为这些情况其实都大概率，90% 的概率不是你的代码问题，`panic` 的本质就是发生时，Rust 会沿着调用栈一层层往回走，逐个调用每一帧里的析构函数（drop），清理资源。这个过程需要编译器生成额外的 `unwind` 表，就是给你找出你业务逻辑错误的地方，如果错误本身都大概率不是你的，这个信息有什么价值，存在还会增加编译产物的体积，也会给链接器增加工作量，关掉才是正解；你的代码测试到位了，足够自信建议配置 `panic = abort`。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009827Z
-      seconds: 0.0
-      tokens: 0
+      text: 因此，好的代码应该覆盖一类正确路径测试和至少一种错误路径测试。对于同一类错误路径，只需覆盖一个变体，就能验证错误能否正常返回，并据此编写兜底逻辑，自然也就可以用 `thiserror` 逐项处理，或用 `anyhow` 统一拦截、拍平、打印和记录。总之，代码会迫使你建立处理这些情况的机制。做到这一层后，`panic` 对你就没有用了：它可以被理解为“理论上不可能发生”，但也仅仅是理论上如此。现实世界中仍然存在操作系统错误、内存错误、宇宙射线导致的单比特翻转，以及各种稀奇古怪的溢出……你永远不可能覆盖所有这类情况。那么，为什么不使用恐慌机制呢？因为这些情况很可能——有 90% 的概率——并不是你的代码导致的。`panic` 的本质是：发生恐慌时，Rust 会沿调用栈逐层回退，依次调用每个栈帧中的析构函数，清理资源。为此，编译器需要生成额外的 `unwind` 表，以便定位业务逻辑中的错误。但如果错误本身很可能不在你的代码里，这些信息又有什么价值？保留它们不仅会增大编译产物，还会增加链接器的工作量，因此关闭才是正确选择。如果你的代码已经经过充分测试，也有足够的信心，我建议配置 `panic = abort`。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:30.279864Z
+      seconds: 21.334066833
+      tokens: 20180
       review: false
     zh-TW:
       text: 那麼，好的程式碼就應該用測試涵蓋一類成功路徑和至少一種錯誤路徑。這一類錯誤路徑只要涵蓋一個案例，就足以測試錯誤是否會以 Err 回傳，進而編寫備援邏輯，並自然地透過 `thiserror` 列舉，或用 `anyhow` 攔截、扁平化、列印和記錄。總之，你的程式碼會迫使你建立處理這些情況的機制。做到這一層後，`panic` 對你就沒有用了，可以將其理解為「理論上不可能」，但也僅僅是理論上。現實世界中還有作業系統錯誤、記憶體錯誤、宇宙射線單電子造成的位元翻轉、各種奇怪的溢位……你永遠不可能涵蓋所有這類情況。那麼，為什麼不要觸發恐慌呢？因為這些情況很可能——有 90% 的機率——並不是你的程式碼造成的。`panic` 的本質在於，發生時 Rust 會沿著呼叫堆疊逐層返回，依次呼叫每個堆疊框架中的解構函式（drop）來清理資源。這個過程需要編譯器產生額外的 `unwind` 表格，用來找出商業邏輯中的錯誤。如果錯誤本身很可能並非源自你的程式碼，這些資訊又有什麼價值？保留它還會增加編譯產物的大小，並加重連結器的工作量，因此關掉才是正確選擇。如果程式碼測試充分，而且你有足夠的信心，建議設定 `panic = abort`。
@@ -2000,12 +2000,12 @@ segments:
       tokens: 22313
       review: false
     zh-CN:
-      text: 所以本质上，编译慢的很大一部分时间不是花在 Rust 自己的前端而是花在了 LLVM 这个"重型后端"上。那么问题来了，有没有可能丢掉它嘛，~~答案是有的喵~~，有一个叫做 Cranelift 的后端就是一个为了这个需求做的。它最早是 Cretonne，2016 年启动，由 [Bytecode Alliance](https://bytecodealliance.org) 开发，最初是为 [Wasmtime](https://github.com/bytecodealliance/wasmtime) 包的饺子，才设计的代码生成后端；后被 Rust 官方收编作为可选的 codegen 后端。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009828Z
-      seconds: 0.0
-      tokens: 0
+      text: 所以从根本上说，编译之所以缓慢，很大一部分时间并不是耗在 Rust 自身的前端，而是耗在 LLVM 这个“重量级后端”上。那么问题来了：有没有可能抛开 LLVM？~~:tn[答案当然是可以啦]{is="原文以猫叫声‘喵’作撒娇式句末语气词，带有中文网络语境中刻意卖萌的感觉。"}~~ 有一个名为 Cranelift 的后端正是为满足这一需求而开发的。它最初名为 Cretonne，于 2016 年启动，由 [Bytecode Alliance](https://bytecodealliance.org) 开发；起初，它是一个:tn[专门为 Wasmtime 量身打造]{is="原文把 Cranelift 戏称为专为 Wasmtime 包的‘饺子’，借用为特定目的专门包饺子的本土说法，语气诙谐。"}的代码生成后端，后来被 Rust 官方纳入并作为可选的代码生成后端。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:38.462123Z
+      seconds: 27.373877375
+      tokens: 20320
       review: false
     zh-TW:
       text: 所以說穿了，編譯緩慢有很大一部分時間並不是耗在 Rust 自己的前端，而是耗在 LLVM 這個「重型後端」上。那麼問題來了：有沒有可能把它丟掉呢？~~答案是可以的:tn[喵]{is="原文的「喵」本是貓叫聲，在這裡被當成撒嬌式的句末語氣詞，帶有中文網路文化中刻意賣萌的語感。"}~~。有一個叫 Cranelift 的後端正是為了這項需求而做。它最早叫 Cretonne，於 2016 年啟動，由 [Bytecode Alliance](https://bytecodealliance.org) 開發，起初是專為 [Wasmtime](https://github.com/bytecodealliance/wasmtime) :tn[包的餃子]{is="原文把 Cranelift 戲稱為特地替 Wasmtime「包的餃子」，借用了為某個目的專門包餃子的在地說法。"}，也就是為它設計的程式碼生成後端；後來被 Rust 官方納入，成為可選的程式碼生成後端。
@@ -2065,12 +2065,12 @@ segments:
       tokens: 17715
       review: false
     zh-CN:
-      text: 这个仓库实际上是一个有很多子项目的 monorepo，但是其中可以找出2个典型的例子，首先看看 Skeleton 这个包特点就很明显，代码量大，依赖极少，这个包会是整个项目里面 codegen 占比最高的，这个就会很适合 Cranelift 发挥，另外就是这个包也很干净，干净指的是纯 Safe Rust。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.00983Z
-      seconds: 0.0
-      tokens: 0
+      text: 这个仓库其实是一个包含许多子项目的单体仓库，其中有两个典型例子。先看 Skeleton 包，它的特点很鲜明：代码量大、依赖极少，而且代码生成部分在整个项目中占比最高，非常适合 Cranelift 发挥作用。此外，这个包也很干净，也就是说，它完全使用安全 Rust 编写。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:40.726739Z
+      seconds: 10.282372542
+      tokens: 19263
       review: false
     zh-TW:
       text: 這個儲存庫其實是一個包含許多子專案的單一儲存庫，但其中可以找出兩個典型的例子。先看看 Skeleton 這個套件，它的特點非常明顯：程式碼量大，依賴極少。這個套件的程式碼生成占比將是整個專案中最高的，因此特別適合 Cranelift 發揮。此外，這個套件也很乾淨——這裡的「乾淨」是指完全以安全 Rust 編寫。
@@ -2130,12 +2130,12 @@ segments:
       tokens: 16684
       review: false
     zh-CN:
-      text: '## 优化等级 {#opt-level}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009831Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 优化级别 {#opt-level}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:45.125936Z
+      seconds: 4.891047875
+      tokens: 18978
       review: false
     zh-TW:
       text: '## 最佳化等級 {#opt-level}'
@@ -2195,12 +2195,12 @@ segments:
       tokens: 18374
       review: false
     zh-CN:
-      text: 长久以来，我们都认为这是 Rust 的缺点，但是实际上前两者都是可以通过锻炼思维和认知来解决的，而编译速度慢却一直拖慢着我的工作流，这一切在早几年似乎很好，AI 席卷而来之前我可有的就是耐心，常常一个算法一个功能写到凌晨，可，现在呢？我很难说我没有变，我开始变得一点都没有耐心了，一点都不想思考 Rust 代码怎么写，一点都等不了 Cargo 那个漫长的进度条，尤其是 ld 部分还没有进度，每次就干卡着，这真的很难受。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009832Z
-      seconds: 0.0
-      tokens: 0
+      text: 长期以来，我们一直认为这些是 Rust 的缺点。但实际上，前两点都可以通过训练思维、提升认知来克服，唯独缓慢的编译速度始终拖累着我的工作流。放在几年前，这一切似乎还好；在 AI 浪潮席卷而来之前，我有的是耐心，常常为了一个算法、一个功能写到凌晨。可现在呢？我很难说自己没有变：我开始变得一点耐心都没有，既不想思考 Rust 代码该怎么写，也完全等不了 Cargo 那条漫长的进度条。尤其到了 ld 链接阶段，连进度都看不到，每次只能眼睁睁看着它卡在那里，实在太难受了。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:50.025468Z
+      seconds: 22.202728833
+      tokens: 19381
       review: false
     zh-TW:
       text: 長久以來，我們都認為這些是 Rust 的缺點，但實際上，前兩者都可以透過訓練思維與認知來解決，唯獨緩慢的編譯速度一直拖累著我的工作流程。早幾年，這一切似乎還好；在 AI 席捲而來之前，我最不缺的就是耐心，常常為了一個演算法或一項功能寫到凌晨。可現在呢？我很難說自己沒有改變：我開始變得毫無耐心，一點也不想思考 Rust 程式碼該怎麼寫，一刻也等不了 Cargo 那漫長的進度列，尤其到了 ld 階段，連進度都沒有，每次就那樣乾卡著，實在令人難受。
@@ -2260,12 +2260,12 @@ segments:
       tokens: 16786
       review: false
     zh-CN:
-      text: '## 干掉调试符号 {#strip-debug-symbols}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009833Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 移除调试符号 {#strip-debug-symbols}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:51.013536Z
+      seconds: 4.892306792
+      tokens: 19069
       review: false
     zh-TW:
       text: '## 移除偵錯符號 {#strip-debug-symbols}'
@@ -2325,12 +2325,12 @@ segments:
       tokens: 17066
       review: false
     zh-CN:
-      text: 这个项目里面 Rust 的部分差不多有 32K SCoL Rust，不包含依赖体积。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009834Z
-      seconds: 0.0
-      tokens: 0
+      text: 这个项目的 Rust 部分约有 3.2 万行源代码，不包括依赖项。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:51.618683Z
+      seconds: 7.911403583
+      tokens: 19017
       review: false
     zh-TW:
       text: 這個專案的 Rust 部分大約有 3.2 萬行原始碼，不含相依套件。
@@ -2390,12 +2390,12 @@ segments:
       tokens: 19062
       review: false
     zh-CN:
-      text: 顺便就是 zig 千万不要用，nightly rust 上的 zbuild 目前问题很大，需要交叉编译的时候，host 是 linux x86 推荐 [cross](https://github.com/cross-rs/cross) 那个配 docker 来编译的就很好，环境全齐，如果你喜欢 glibc 这个也很好用，因为 glibc 只能向后兼容一般的参考都是 debian 发行大版本 -2 的 debian 上 glibc 的版本来编译，否则太新的 glibc 会让一大堆机器跑不动，这里并不是因为用了新 feature，而就是单纯判断一个字符串的版本就来气你。host 是 mac 请使用 rustup 原生 `target + cargo build --release `
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009836Z
-      seconds: 0.0
-      tokens: 0
+      text: 另外，千万不要使用 Zig。nightly Rust 上的 zbuild 目前问题很多；需要交叉编译时，如果主机是 x86 Linux，推荐使用 [cross](https://github.com/cross-rs/cross)，配合 Docker 编译非常方便，所需环境也一应俱全。如果你偏爱 glibc，这套方案同样很好用。由于 glibc 只保证向后兼容，通常应以 Debian 当前大版本往前推两个大版本，并使用该版本 Debian 所带的 glibc 进行编译；否则，过新的 glibc 会导致大量机器无法运行。这里并不是因为使用了什么新特性，纯粹只是检查了一下版本字符串就故意给你添堵。如果主机是 Mac，请使用 rustup 原生支持的 `target + cargo build --release `。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:55.913723Z
+      seconds: 14.648141417
+      tokens: 19356
       review: false
     zh-TW:
       text: 順帶提醒一下，千萬不要用 Zig：zbuild 目前在 Rust Nightly 上問題很大。需要交叉編譯時，如果主機是 Linux x86，推薦使用搭配 Docker 編譯的 [cross](https://github.com/cross-rs/cross)，效果很好，環境也一應俱全。如果你偏好 glibc，這也是個很好用的選擇。由於 glibc 只保證向後相容，通常的經驗做法是使用比目前版本早兩個主要版本的 Debian 所附帶的 glibc 版本來編譯；否則，過新的 glibc 會讓程式無法在大量機器上執行。這並不是因為用了什麼新功能，它就只是檢查字串裡的版本號來氣你。如果主機是 Mac，請使用 rustup 原生的 `target + cargo build --release `
@@ -2455,12 +2455,12 @@ segments:
       tokens: 20345
       review: false
     zh-CN:
-      text: Rust 设计中，LLVM 其实有点偷懒，但也选的很好，不像 Go 一样自己维护 To 机器码的过程让 LLVM 大生态来做成熟的优化其实很好。整个 Rust 的编译流程大致可以说是源码跑一边词法分析、语法分析生成 AST，再经过宏展开、HIR 降级拍平！然后进入常规类型检查、亿点点借用检查，最终生成 MIR 了到这里为止，都是 Rust 编译器自己的前端在干活。而 MIR 之后的事情，就交给了 LLVM，比如把 MIR 翻译成 LLVM IR，然后 LLVM 跑一遍它那套优化 pass（从 O0 ～ O3 不等），最后生成目标平台的机器码，再交给链接器拼成 BIN 可执行文件。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009837Z
-      seconds: 0.0
-      tokens: 0
+      text: Rust 的设计其实有点“偷懒”，但这个选择很明智：它没有像 Go 那样自行维护机器码生成流程，而是借助 LLVM 的庞大生态完成成熟的优化。整个 Rust 编译流程大致是：源码先经过一轮词法分析和语法分析，生成 AST（抽象语法树）；再经过宏展开，降级并拍平成 HIR（高级中间表示）；随后进行常规的类型检查和 :tn[海量]{is="原文是“亿点点”，把“一点点”中的“一”戏谑地换成表示一亿的“亿”，以夸张和反讽强调借用检查远不止一点。"}借用检查，最终生成 MIR（中级中间表示）。到这里为止，工作都由 Rust 编译器自己的前端完成。MIR 之后的流程则交给 LLVM：先把 MIR 转换为 LLVM IR，再执行一整套从 O0 到 O3 不等的优化流程，最后生成目标平台的机器码，并交由链接器拼装成二进制可执行文件。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:47:59.536188Z
+      seconds: 21.544977457999998
+      tokens: 20244
       review: false
     zh-TW:
       text: 從設計上來說，Rust 使用 LLVM 其實有點偷懶，但這也是非常明智的選擇：它不像 Go 那樣自行維護產生機器碼的整套流程，而是讓 LLVM 的龐大生態負責成熟的最佳化。整個 Rust 編譯流程大致可以概括為：先對原始碼進行一遍詞法分析和語法分析，產生 AST，再經過巨集展開以及 HIR 的降級與攤平；接著進行一般的型別檢查和:tn[億點點借用檢查]{is="原文用“億點點”戲仿“一點點”，把“一”換成表示一億的“億”，以荒誕的輕描淡寫調侃借用檢查的工作量極其龐大。"}，最終產生 MIR。到這裡為止，所有工作都由 Rust 編譯器自己的前端完成。MIR 之後的工作則交給 LLVM，例如將 MIR 翻譯成 LLVM IR，再由 LLVM 執行一遍從 O0 到 O3 不等的最佳化流程，最後產生目標平台的機器碼，並交給連結器組合成可執行二進位檔案。
@@ -2520,12 +2520,12 @@ segments:
       tokens: 17537
       review: false
     zh-CN:
-      text: 从 Rust 编译流程谈起，逐项介绍 Cargo.toml 与链接器层面的编译速度与产物体积调优手段——Cranelift 后端、codegen-units、opt-level、LTO、strip、panic=abort、lld 与 MUSL，附实测对比。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.00984Z
-      seconds: 0.0
-      tokens: 0
+      text: 从 Rust 的编译流程讲起，逐一介绍在 Cargo.toml 和链接器层面优化编译速度与产物体积的方法，包括 Cranelift 后端、代码生成单元、优化级别、链接时优化、符号剥离、panic 时中止、lld 和 MUSL，并附上实测对比。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:48:05.844162Z
+      seconds: 8.518532417
+      tokens: 18996
       review: false
     zh-TW:
       text: 從 Rust 編譯流程談起，逐項介紹 Cargo.toml 與連結器層面的編譯速度及產物大小調校手段——Cranelift 後端、codegen-units、opt-level、LTO、strip、panic=abort、lld 與 MUSL，並附實測比較。
@@ -2585,12 +2585,12 @@ segments:
       tokens: 16830
       review: false
     zh-CN:
-      text: 另外还有一个小技巧就是 `Cargo.toml` 其实可以给依赖和自己的代码设置不同的优化等级：
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009841Z
-      seconds: 0.0
-      tokens: 0
+      text: 另外还有一个小技巧：`Cargo.toml` 实际上可以为依赖项和自己的代码分别设置不同的优化级别。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:48:10.566494Z
+      seconds: 6.658845083
+      tokens: 19008
       review: false
     zh-TW:
       text: 另外還有一個小技巧：`Cargo.toml` 其實可以為相依套件和自己的程式碼設定不同的最佳化等級：
@@ -2650,12 +2650,12 @@ segments:
       tokens: 16731
       review: false
     zh-CN:
-      text: 那么多说无益，实际来看看这一些组合下来的提升吧，这里拿一个我前几个月做的小玩具项目做为参考
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009842Z
-      seconds: 0.0
-      tokens: 0
+      text: 多说无益，还是来看看这些优化组合起来后的实际提升吧。这里以我几个月前做的一个小玩具项目为例。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:48:12.235723Z
+      seconds: 5.976116208
+      tokens: 18862
       review: false
     zh-TW:
       text: 多說無益，實際看看這些組合帶來的提升吧。這裡以我幾個月前做的一個小玩具專案為參考。
@@ -2715,12 +2715,12 @@ segments:
       tokens: 16440
       review: false
     zh-CN:
-      text: 不许 Cargo 再摸鱼了
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009843Z
-      seconds: 0.0
-      tokens: 0
+      text: 别再让 Cargo 摸鱼了
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:48:14.368758Z
+      seconds: 12.478622375
+      tokens: 18768
       review: false
     zh-TW:
       text: 不許 Cargo 再摸魚了
@@ -2780,12 +2780,12 @@ segments:
       tokens: 16789
       review: false
     zh-CN:
-      text: '## 链接段优化 {#link-time-optimization}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009844Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 链接时优化 {#link-time-optimization}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:48:17.233654Z
+      seconds: 5.604078167
+      tokens: 19078
       review: false
     zh-TW:
       text: '## 連結時最佳化 {#link-time-optimization}'
@@ -2845,12 +2845,12 @@ segments:
       tokens: 17382
       review: false
     zh-CN:
-      text: 但是在真实的 Release 下，一般来说都应该使用 `codegen-units = 1` 这样另一个极端的参数，只有这样才能让产物得到最大化的优化，毕竟你都用 Rust 了，编译时间换运行时性能难道不是理所当然的嘛。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009847Z
-      seconds: 0.0
-      tokens: 0
+      text: 但在真正的 Release 构建中，通常应该使用另一个极端的参数 `codegen-units = 1`。只有这样才能最大限度地优化产物；毕竟都用 Rust 了，牺牲编译时间来换取运行时性能，不是理所当然的吗？
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:48:18.216133Z
+      seconds: 7.7396083749999995
+      tokens: 19043
       review: false
     zh-TW:
       text: 但在真正的發行建置中，通常應該使用另一個極端的參數 `codegen-units = 1`，只有這樣才能讓產出得到最大程度的最佳化。畢竟都用 Rust 了，用編譯時間換取執行時效能難道不是理所當然的嗎？
@@ -2910,12 +2910,12 @@ segments:
       tokens: 18305
       review: false
     zh-CN:
-      text: 另外说说 `codegen-units`，这其实这就是一个控制编译器把 crate 拆成多少个最小单元给后端并行处理的参数，默认情况下，debug 模式是 256 个，release 模式是 16 个。数字越大，并行度越高，编译越快——因为可以同时利用多个 CPU 核心来跑后端代码生成。但代价是优化效果变差，因为每个单元是独立优化的，LLVM（or Cranelift）看到的上下文变小了，跨单元的内联和优化机会就少了。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009848Z
-      seconds: 0.0
-      tokens: 0
+      text: 另外说说 `codegen-units`：它控制编译器将 crate 拆分成多少个最小单元，交给后端并行处理；默认情况下，调试模式为 256 个，发布模式为 16 个。数字越大，并行度越高，编译也越快，因为后端代码生成可以同时利用多个处理器核心。代价则是优化效果变差：每个单元都独立优化，LLVM（或 Cranelift）能看到的上下文更少，跨单元内联和优化的机会也随之减少。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:48:21.089793Z
+      seconds: 18.316644625
+      tokens: 19626
       review: false
     zh-TW:
       text: 再來談談 `codegen-units`。這個參數控制編譯器將 crate 拆分成多少個最小單元，交由後端平行處理。預設情況下，偵錯模式為 256 個，釋出模式為 16 個。數字越大，平行程度越高，編譯也越快，因為後端程式碼產生可以同時運用多個 CPU 核心。但代價是最佳化效果會變差：每個單元都是獨立最佳化的，LLVM（或 Cranelift）能看到的上下文更少，跨單元內嵌和最佳化的機會也隨之減少。
@@ -2975,12 +2975,12 @@ segments:
       tokens: 16813
       review: false
     zh-CN:
-      text: '## 总结 {#summary}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009849Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 小结 {#summary}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:48:22.845153Z
+      seconds: 5.647003541
+      tokens: 19181
       review: false
     zh-TW:
       text: '## 總結 {#summary}'
@@ -3040,12 +3040,12 @@ segments:
       tokens: 16890
       review: false
     zh-CN:
-      text: '## UPX 是个坏东西 {#upx-considered-harmful}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.00985Z
-      seconds: 0.0
-      tokens: 0
+      text: '## UPX 有害 {#upx-considered-harmful}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:48:25.963895Z
+      seconds: 4.5021344580000004
+      tokens: 19051
       review: false
     zh-TW:
       text: '## UPX 是個壞東西 {#upx-considered-harmful}'
@@ -3105,12 +3105,12 @@ segments:
       tokens: 18985
       review: false
     zh-CN:
-      text: 但是这个也不是无解，其实可以用 cfg 选后端，Cranelift 模式下给 `ring` 来编译就好了。在按照上述描述配置好 dev 和 release profile 后，就可以简单跑一下 CLI 的编译对比，在这个情况下，开发至少比发布快 3倍，这还都是冷编译，没有增量的情况下；并且使用 O0 和关闭 LTO，dev profile 在后续的增量更新中都应该比 release 快几十倍不止。因为 LTO 之类的魔法实际上是通过拍平各个 crate 的边界得来的，那么都变成一个整体后，修改一处代码，当前一起都要重新编译不能被正确增量更新。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.009851Z
-      seconds: 0.0
-      tokens: 0
+      text: 不过这个问题也不是无解：可以通过 `cfg` 选择后端，在 Cranelift 模式下使用 `ring` 编译即可。按照上面的说明配置好开发和发布配置后，就可以简单对比一下 CLI 的编译速度。在这种情况下，即使都是没有增量缓存的冷编译，开发版也至少是发布版的 3 倍快；再加上使用 O0 并关闭 LTO，后续增量编译时，开发配置的速度应该能达到发布配置的几十倍以上。因为 LTO 之类的优化实际上依赖于打破各个 crate 之间的边界，将它们拍平成一个整体；这样一来，只要修改一处代码，整个程序就都得重新编译，无法正确进行增量更新。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:48:26.85193Z
+      seconds: 13.281590167
+      tokens: 19631
       review: false
     zh-TW:
       text: 不過這個問題並非無解：可以使用 `cfg` 選擇後端，並在 Cranelift 模式下使用 `ring` 編譯。按照上述說明設定好開發與發行設定檔後，只要簡單比較一下命令列工具的編譯速度，就會發現開發建置至少比發行建置快三倍，而且這還是在沒有增量編譯的冷編譯情況下。使用 O0 並關閉連結時最佳化後，開發設定檔在後續增量更新中的速度應該能比發行設定檔快數十倍。連結時最佳化之類的技術實際上仰賴消除各個軟體套件之間的邊界來實現最佳化；當它們合併成一個整體後，只要修改一處程式碼，整個整體都必須重新編譯，因此無法正確進行增量更新。

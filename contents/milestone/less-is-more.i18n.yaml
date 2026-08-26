@@ -50,12 +50,12 @@ segments:
       tokens: 18758
       review: false
     zh-CN:
-      text: 回头看之前走的弯路，后悔吗？不后悔。有些事你不自己试试，也许永远想不明白。更何况在 AI 时代，想走我当年的老路已经基本没有机会了，太多工作流已经被改变。另外这个项目是 [Taki](https://github.com/canmi21/taki)，100% AI Coding，但这不意味着不能长期维护，不意味着没有人味。其实有没有 AI 不重要，再说了，我喜欢的也不是写代码本身，而是 Building 一个东西...
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017449Z
-      seconds: 0.0
-      tokens: 0
+      text: 回头看之前走过的弯路，我后悔吗？不后悔。有些事如果不亲自试一试，也许永远都想不明白。更何况在人工智能时代，想再走我当年的老路，基本已经没有机会了，太多工作流程都已被改变。另外，这个项目是 [Taki](https://github.com/canmi21/taki)，完全由人工智能编程完成，但这并不意味着它无法长期维护，也不意味着它没有人情味。其实是否使用人工智能并不重要。再说了，我喜欢的本来就不是写代码本身，而是把一样东西构建出来……
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:48:40.144729Z
+      seconds: 9.760686459
+      tokens: 19282
       review: false
     zh-TW:
       text: 回頭看以前走過的彎路，後悔嗎？不後悔。有些事若不親自試試，也許永遠都想不明白。更何況在人工智慧時代，想重走我當年的老路已經幾乎不可能了，太多工作流程都已改變。另外，這個專案是 [Taki](https://github.com/canmi21/taki)，完全由人工智慧編寫程式碼，但這並不代表它無法長期維護，也不代表它沒有人情味。其實是否使用人工智慧並不重要。再說了，我喜歡的也不是寫程式碼本身，而是創造一個東西……
@@ -115,12 +115,12 @@ segments:
       tokens: 17257
       review: false
     zh-CN:
-      text: 笔者用两年把博客拖成反向代理、自研框架与 vfs 的副产物，在 AI 焦虑里学会放手、All in Cloudflare 上线了第一篇。一段从 Next.js 13 鸽到 16 的过度工程自白。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.01745Z
-      seconds: 0.0
-      tokens: 0
+      text: 我花了两年，把博客做成了反向代理、自研框架和 vfs 的副产物；又在 AI 焦虑中学会放手，All in Cloudflare，终于上线了第一篇文章。这是一段从 Next.js 13 一路拖到 16 的过度工程自白。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:48:40.144811Z
+      seconds: 10.497546167
+      tokens: 19005
       review: false
     zh-TW:
       text: 筆者花了兩年把部落格拖成反向代理、自研框架與虛擬檔案系統的副產品，在人工智慧焦慮中學會放手，全力投入 Cloudflare，終於上線了第一篇文章。一段從 Next.js 13 鴿到 16 的過度工程自白。
@@ -180,12 +180,12 @@ segments:
       tokens: 16821
       review: false
     zh-CN:
-      text: 然后 AI 时代来了，焦虑又翻了一倍
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017451Z
-      seconds: 0.0
-      tokens: 0
+      text: 接着，AI 时代到来，焦虑更是成倍增长。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:48:40.144935Z
+      seconds: 5.186272042
+      tokens: 18934
       review: false
     zh-TW:
       text: 然後人工智慧時代來了，焦慮又翻了一倍。
@@ -245,12 +245,12 @@ segments:
       tokens: 22435
       review: false
     zh-CN:
-      text: 奇怪的是，放手之后质量并没有变差。我想这大概是因为之前那些"古法"编程的日子没有白费；早在 GPT-2 时代我就开始用 AI 了，但那时候我还在老老实实地写每一行代码、理解每一个概念。那段经历给了我底子，与其说后来 Vibe Coding 不如说是 Context Coding，该有的判断力还在，并没有因为放手就出什么低级错误或者说是事故。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017452Z
-      seconds: 0.0
-      tokens: 0
+      text: 奇怪的是，放手之后，质量并没有下降。我想，大概是因为之前那些 :tn[“古法”编程]{is="原文用“古法”戏称亲手逐行编程，套用“古法制作”的商业话术，以时代错位制造自嘲式反讽。"} 的日子没有白费。早在 GPT-2 时代，我就开始使用人工智能，但那时仍会老老实实地写好每一行代码、弄懂每一个概念。那段经历为我打下了基础，所以后来与其说是在做氛围编程，不如说是在做上下文编程：该有的判断力仍然在，并没有因为放手就犯下什么低级错误，甚至酿成事故。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:48:40.145084Z
+      seconds: 12.608637792
+      tokens: 19659
       review: false
     zh-TW:
       text: 奇怪的是，放手之後，品質並沒有變差。我想，這大概是因為之前那些「:tn[古法]{is="原文以「古法」形容逐行手寫程式碼，套用商品宣傳中「古法製作」的說法，把程式設計戲稱為傳統工藝，形成時代錯置的幽默。"}」程式設計的日子沒有白費；早在 GPT-2 時代我就開始使用人工智慧了，但那時我仍老老實實地寫每一行程式碼、理解每一個概念。那段經歷替我打下了基礎。與其說後來是氛圍程式設計，不如說是脈絡程式設計：該有的判斷力還在，並沒有因為放手就犯什麼低級錯誤，或是釀成事故。
@@ -310,12 +310,12 @@ segments:
       tokens: 19729
       review: false
     zh-CN:
-      text: 说"想"其实不太准确，更像是一个执念。在早期我还不会写前后端，不会写嵌入式代码的时候就有了，当时还在玩电子，偶然间看到了 [@ushio](https://github.com/sakura-ushio) 的 B站视频 和 网站，窝觉得很好玩我也要。后来花了小半年时间，从零学会了写 C 和一点点 JS CSS 用 Hexo 搭了一个静态博客部署在 Github Pages，也算是有了自己的小天地。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017453Z
-      seconds: 0.0
-      tokens: 0
+      text: 其实用“想”来形容并不太准确，那更像是一种执念。早在我还不会做前后端开发、也不会写嵌入式代码时，这个念头就已经出现了。那时我还在折腾电子，偶然看到了 [@ushio](https://github.com/sakura-ushio) 在 :tn[B 站]{is="原文写作 B站，是哔哩哔哩在中国网络社群中的亲昵称呼，带着熟悉而亲切的社群语感。"} 发布的视频和他的网站，:tn[我]{is="原文把我故意谐写成窝，营造出稚拙可爱的网络口吻；这里改为自然中文的人称。"}觉得特别有意思，心想自己也要做一个。后来我花了将近半年，从零学会了 C，也学了一点 JavaScript 和 CSS，再用 Hexo 搭建了一个静态博客，并将它部署到 GitHub Pages 上，总算有了属于自己的一方小天地。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:48:45.337108Z
+      seconds: 16.195822375
+      tokens: 19941
       review: false
     zh-TW:
       text: 說只是「想過」其實不太準確，更像是一種執念。早在我還不會寫前端、後端，也不會寫嵌入式程式碼時，這個念頭就已經有了。當時我還在玩電子，偶然看見 [@ushio](https://github.com/sakura-ushio) 的 :tn[B站]{is="原文用的是「B站」，這是中國網友對 Bilibili 的親暱稱呼，帶有圈內社群的熟稔語氣。"}影片和網站，:tn[我]{is="原文用的是「窝」，刻意把表示第一人稱的「我」寫成同音錯字，營造稚拙可愛的網路口吻。"}覺得很好玩，也想要一個。後來花了將近半年，從零學會 C 和一點點 JS、CSS，用 Hexo 架了一個靜態部落格並部署到 GitHub Pages，也算有了自己的一方小天地。
@@ -375,12 +375,12 @@ segments:
       tokens: 16500
       review: false
     zh-CN:
-      text: 从那之后就停不下来了
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017455Z
-      seconds: 0.0
-      tokens: 0
+      text: 从那以后，一切便再也停不下来了。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:48:49.910226Z
+      seconds: 4.978359958
+      tokens: 18821
       review: false
     zh-TW:
       text: 從那之後就停不下來了
@@ -440,12 +440,12 @@ segments:
       tokens: 16655
       review: false
     zh-CN:
-      text: '## 失控 {#out-of-control}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017455Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 一发不可收拾 {#out-of-control}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:48:50.645191Z
+      seconds: 4.962408125
+      tokens: 18959
       review: false
     zh-TW:
       text: '## 失控 {#out-of-control}'
@@ -505,12 +505,12 @@ segments:
       tokens: 18435
       review: false
     zh-CN:
-      text: 我当时其实并不不觉得自己在跑偏。Vane？反正博客以后也要部署，总得有个反向代理吧。Seam？反正迟早要写全栈，不如先把我理想中的框架搞好。每一步都有理由，每一步都是"以后用得上"。但问题是，"以后"永远不会来，因为我从未开始...
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017456Z
-      seconds: 0.0
-      tokens: 0
+      text: 我当时其实并不觉得自己跑偏了。Vane？反正博客以后也要部署，总得有个反向代理。Seam？反正迟早要写全栈，不如先把理想中的框架搭好。每一步都有理由，每一步都想着“以后用得上”。可问题是，“以后”永远不会到来，因为我从未真正开始……
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:48:52.758411Z
+      seconds: 8.359073958
+      tokens: 19123
       review: false
     zh-TW:
       text: 我當時其實並不不覺得自己在跑偏。Vane？反正部落格以後也要部署，總得有個反向代理吧。Seam？反正遲早要寫全端，不如先把我理想中的框架搞好。每一步都有理由，每一步都是「以後用得上」。但問題是，「以後」永遠不會來，因為我從未開始……
@@ -570,12 +570,12 @@ segments:
       tokens: 220974
       review: false
     zh-CN:
-      text: 回归工程的本质：「Make it function, make it correct, then make it exceptional.」我终于走上了正轨，让它 functional 了。现在的博客简陋吗？简陋。不完整吗？确实不完整。但总比没有好。如果你连上线都没有，一直在做那个"也许需要"的东西，一直在追求看不见的完美，那最后什么都拿不出来。这不是妥协，这是一种工程上的取舍，反正我是想开了。所以我想开了。不再为一个细节执着，反而走出了门。手机相册里已经很久没有户外的照片了，随手拍了一下路边的——已经很久没出门了嘛 (
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017457Z
-      seconds: 0.0
-      tokens: 0
+      text: 回归工程的本质：「Make it function, make it correct, then make it exceptional.」我终于走上了正轨，先让它能用了。现在的博客简陋吗？简陋。不完整吗？确实不完整。但总比没有好。如果你连上线都做不到，一直在做那些“也许需要”的东西，一直追求看不见的完美，那最后只会什么都拿不出来。这不是妥协，而是工程上的取舍，反正我是想开了。所以，我真的想开了。不再执着于一个细节，反而走出了家门。手机相册里已经很久没有户外的照片了，便随手拍了一张路边的景色——毕竟已经很久没出门了嘛（
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T07:06:00.659411Z
+      seconds: 10.644927916
+      tokens: 19504
       review: false
     zh-TW:
       text: 回歸工程的本質：「Make it function, make it correct, then make it exceptional.」我終於走上了正軌，讓它能運作了。現在的部落格簡陋嗎？簡陋。不完整嗎？確實不完整。但總比沒有好。如果你連上線的東西都沒有，一直在做那個「也許需要」的東西，一直追求看不見的完美，那最後什麼都拿不出來。這不是妥協，而是一種工程上的取捨，反正我是想開了。所以我想開了。不再為一個細節執著，反而走出了門。手機相簿裡已經很久沒有戶外的照片了，隨手拍了一張路邊的風景——已經很久沒出門了嘛（
@@ -636,11 +636,11 @@ segments:
       review: false
     zh-CN:
       text: '## 失败 {#failure}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017459Z
-      seconds: 0.0
-      tokens: 0
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:48:55.611699Z
+      seconds: 4.329770208
+      tokens: 18975
       review: false
     zh-TW:
       text: '## 失敗 {#failure}'
@@ -700,12 +700,12 @@ segments:
       tokens: 16830
       review: false
     zh-CN:
-      text: '## 过度工程 {#over-engineering}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.01746Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 过度工程化 {#over-engineering}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:48:59.946985Z
+      seconds: 11.228132416
+      tokens: 19044
       review: false
     zh-TW:
       text: '## 過度工程 {#over-engineering}'
@@ -765,12 +765,12 @@ segments:
       tokens: 16592
       review: false
     zh-CN:
-      text: '## 原点 {#back-to-origin}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017461Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 回到原点 {#back-to-origin}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:49:01.12175Z
+      seconds: 6.654426834
+      tokens: 18878
       review: false
     zh-TW:
       text: '## 原點 {#back-to-origin}'
@@ -830,12 +830,12 @@ segments:
       tokens: 20027
       review: false
     zh-CN:
-      text: 最讽刺的是，这些东西本来都应该是有了博客之后，边记录边做的。结果博客鸽了又鸽，想法越来越多，却没有一个地方能记录它们。一边是内心在谴责；说好了 Vane 要做完，就不能，停另一边是越做越远的无力感。我一直都记得我要做什么，但就是做不出来。仔细想想我其实已经很久都没有坐下来写过什么东西了，现在回头看，这一切都指向同一个东西——过度工程。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017462Z
-      seconds: 0.0
-      tokens: 0
+      text: 最讽刺的是，这些事本来都应该等博客上线后，一边记录一边做。可博客却被我:tn[一拖再拖]{is="原文用了网络动词“鸽”，源自“放鸽子”，以戏谑的鸽子意象形容一再搁置承诺。"}，想法越来越多，却连一个记录它们的地方都没有。一边是内心的谴责：既然说好要把 Vane 做完，就不能停；另一边则是越做越偏、无力挽回的感觉。我一直记得自己要做什么，却怎么也做不出来。仔细想想，我其实已经很久没有坐下来写过东西了。现在回头看，这一切都指向同一个问题——过度工程。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:49:01.535876Z
+      seconds: 17.468520292
+      tokens: 19728
       review: false
     zh-TW:
       text: 最諷刺的是，這些東西原本都應該等有了部落格之後，邊記錄邊做。結果部落格還是:tn[鴿了又鴿]{is="原文把「鴿」當作網路動詞，以戲謔的語氣表示一再拖延答應要做的事。"}，想法愈來愈多，卻沒有一個地方能記錄它們。一邊是內心的譴責：說好了要把 Vane 做完，就不能停；另一邊則是愈做愈遠的無力感。我一直記得自己要做什麼，卻怎麼也做不出來。仔細想想，我其實已經很久沒有坐下來寫過東西了。現在回頭看，這一切都指向同一個問題——過度工程。
@@ -895,12 +895,12 @@ segments:
       tokens: 18470
       review: false
     zh-CN:
-      text: 这个答案讽刺吗？太讽刺了。因为在到达这个"简单"的终点之前，我走了一整圈弯路。曾经计划自建，所以要管服务器、折腾 Docker、管容器，于是写了 Canopy 做管理面板，写了 Lazycert 管证书，写了 Vane 做反向代理，写了 Twig 做资源监控埋点。一堆项目，就为了伺候一台垃圾服务器。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017462Z
-      seconds: 0.0
-      tokens: 0
+      text: 这个答案讽刺吗？太讽刺了。因为在抵达这个“简单”的终点之前，我绕了整整一大圈弯路。我曾计划自建服务，因此既要管理服务器，又要折腾 Docker 和容器。为此，我写了 Canopy 作为管理面板，写了 Lazycert 管理证书，写了 Vane 充当反向代理，还写了 Twig 监控资源并采集埋点数据。一大堆项目，全是为了伺候一台垃圾服务器。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:49:07.782265Z
+      seconds: 7.375136667
+      tokens: 19125
       review: false
     zh-TW:
       text: 這個答案諷刺嗎？太諷刺了。因為在抵達這個「簡單」的終點之前，我繞了一大圈遠路。曾經計畫自行架設，所以得管理伺服器、折騰 Docker、管理容器，於是寫了 Canopy 當管理面板，寫了 Lazycert 管理憑證，寫了 Vane 當反向代理，寫了 Twig 為資源監控埋點。一堆專案，就只為了伺候一台垃圾伺服器。
@@ -960,12 +960,12 @@ segments:
       tokens: 46493
       review: false
     zh-CN:
-      text: AI 时代的节奏太快了。模型一个接一个迭代，新技术一轮接一轮冒出来，我越来越焦虑，好像停下来就要被超越。最疯的时候一天写 16个 小时代码，Token 一天就能烧 $1.9k USD ~~(大概2月的时候吧)~~，人快废了。但让这一切停下来的不是什么顿悟，就是单纯的累了。在越来越紧的节奏下，最后一根稻草压下来，我反而释然了，想开了，摆烂了；这样，也挺好的。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017463Z
-      seconds: 0.0
-      tokens: 0
+      text: AI 时代变化太快了。模型不断迭代，新技术一波接一波地涌现，我也越来越焦虑，仿佛一停下来就会被人超越。最疯狂的时候，我每天写 16 个小时的代码，光词元一天就能烧掉 1900 美元 ~~（大概是二月吧）~~，整个人都快垮了。但让我停下来的并不是什么顿悟，只是单纯累了。在节奏越来越紧绷的时候，最后一根稻草落下，我反而释然了：想通了，也决定:tn[彻底躺平]{is="原文用的是网络流行语“摆烂”，指索性不再维持体面或继续努力，带着自嘲和如释重负的意味。"}；这样其实也挺好。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:49:11.181039Z
+      seconds: 22.539183625
+      tokens: 19991
       review: false
     zh-TW:
       text: AI 時代的步調太快了。模型一個接一個迭代，新技術一波接一波冒出來，我越來越焦慮，彷彿一停下來就會被超越。最瘋狂的時候，我一天寫 16 個小時的程式，一天就能燒掉價值 1,900 美元的詞元 ~~（大概是 2 月吧）~~，人都快廢了。但讓這一切停下來的不是什麼頓悟，只是單純累了。在越來越緊迫的步調下，最後一根稻草壓下來，我反而釋然了，也想開了，:tn[乾脆擺爛了]{is="原文的擺爛是帶著自嘲的中國網路用語，指主動放棄繼續維持或努力，任由情況變糟，也帶有終於鬆手的解脫感。"}；這樣也挺好的。
@@ -1025,12 +1025,12 @@ segments:
       tokens: 16786
       review: false
     zh-CN:
-      text: 那是 2024 年，~~然后 24, 25, 26年 到了现在~~
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017464Z
-      seconds: 0.0
-      tokens: 0
+      text: 那是 2024 年，~~后来又过了 2024、2025、2026 年，一直到现在~~
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:49:15.163076Z
+      seconds: 5.490357292
+      tokens: 18921
       review: false
     zh-TW:
       text: 那是 2024 年，~~然後 24、25、26 年，一直到現在~~
@@ -1090,12 +1090,12 @@ segments:
       tokens: 19264
       review: false
     zh-CN:
-      text: 但这只是冰山一角。看到 React 之后，我从石器时代的 Hexo 和 Vanilla JS 一路走到了 Next.js 13 Page Router，又拐去看 Vue、研究 SPA 路由、理解 index.html fallback，项目新建了无数次。买了服务器，折腾 Docker、Nginx、NAS，嫌 1Panel 丑手写了 Canopy 面板 研究 NAS 存储阵列写了 RFS，搞 SSL 被国内环境折磨的 acme.sh 抽风逼到用 Rust 写了个反向代理：Vane & Lazyacme，本来只是一个晚上三小时写出来的八百行垃圾，结果群友一怂恿，写了四个月，HTTP/3、Zero-Copy、Layer 模型、Flow 引擎全往里塞。后面还有 Seam，一个全栈框架，也是天坑，以后再说吧。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017465Z
-      seconds: 0.0
-      tokens: 0
+      text: 但这还只是冰山一角。接触 React 后，我从石器时代的 Hexo 和原生 JavaScript 一路折腾到 Next.js 13 的 Pages Router，又转头去看 Vue、研究单页应用路由、弄懂 index.html 的回退机制，项目更是重建了无数次。我买了服务器，折腾 Docker、Nginx 和 NAS；嫌 1Panel 太丑，就手写了 Canopy 面板；为了研究 NAS 存储阵列，又写了 RFS；配置 SSL 时被国内环境下频频抽风的 acme.sh 折磨得受不了，索性用 Rust 写了反向代理 Vane 和 Lazyacme。本来只是某天晚上花三小时写出的八百行垃圾代码，结果被群友一怂恿，硬是写了四个月，把 HTTP/3、零拷贝、分层模型和流引擎全塞了进去。后来还有 Seam，一个同样是天坑的全栈框架，以后再说吧。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:49:19.010205Z
+      seconds: 17.311035125
+      tokens: 19590
       review: false
     zh-TW:
       text: 但這只是冰山一角。接觸 React 後，我從石器時代的 Hexo 和原生 JavaScript 一路走到 Next.js 13 頁面路由器，又轉去看 Vue、研究單頁應用程式路由、理解 index.html 後備機制，專案也重建了無數次。我買了伺服器，折騰 Docker、Nginx 和網路附加儲存，又嫌 1Panel 太醜，便手寫了 Canopy 面板；研究儲存陣列時寫了 RFS；設定安全通訊端層憑證時，又被中國國內環境下頻頻出狀況的 acme.sh 逼得用 Rust 寫了反向代理 Vane 和 Lazyacme。它原本只是某天晚上花三小時寫出的八百行垃圾，結果被群友一慫恿，硬是寫了四個月，把 HTTP/3、零複製、分層模型和流程引擎全塞了進去。後來還有 Seam，一個全端框架，也是個無底洞，以後再說吧。
@@ -1155,12 +1155,12 @@ segments:
       tokens: 16719
       review: false
     zh-CN:
-      text: '## Less is more {#less-is-more}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017466Z
-      seconds: 0.0
-      tokens: 0
+      text: '## 少即是多 {#less-is-more}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:49:20.659184Z
+      seconds: 4.521708584
+      tokens: 18990
       review: false
     zh-TW:
       text: '## 少即是多 {#less-is-more}'
@@ -1220,12 +1220,12 @@ segments:
       tokens: 19665
       review: false
     zh-CN:
-      text: 一开始只是想给 [@colmugx](https://x.com/colmugx) Hexo 主题 [Nlvi](https://github.com/colmugx/hexo-theme-nlvi) 加个深浅色切换，用 Dark Reader 的 JS 糊了一个，丑，不满意。然后学 CSS @media，再到 JS SPA 切换，TailwindCSS .dark class, 再到 SSR next-theme，最后手搓 Cookie + Head Sync Inline 脚本解决 FOUC 闪烁，我折腾了四五种方案。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017467Z
-      seconds: 0.0
-      tokens: 0
+      text: 一开始，我只是想给 [@colmugx](https://x.com/colmugx) 的 Hexo 主题 [Nlvi](https://github.com/colmugx/hexo-theme-nlvi) 加上深浅色模式切换。我先用 Dark Reader 的 JavaScript 勉强拼了一个，但太丑，不满意；接着学了 CSS 的 @media 查询，又尝试用 JavaScript 在单页应用中切换主题、使用 TailwindCSS 的 .dark 类，再改用服务端渲染和 next-theme，最后:tn[从零手写了一套 Cookie 加头部同步内联脚本的方案]{is="原文用“手搓”，字面意思是用手揉搓出来，在技术语境中戏称不借助现成方案、亲手从零实现，带着粗糙却颇为得意的口吻。"}来解决无样式内容闪烁（FOUC）；前前后后，我折腾了四五种方案。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:49:25.184032Z
+      seconds: 18.205527667
+      tokens: 19914
       review: false
     zh-TW:
       text: 一開始只是想替 [@colmugx](https://x.com/colmugx) 的 Hexo 主題 [Nlvi](https://github.com/colmugx/hexo-theme-nlvi) 加上深淺色切換。我先用 Dark Reader 的 JavaScript 拼了一個，但很醜，並不滿意。接著又學習 CSS @media 查詢，嘗試用 JavaScript 在單頁應用程式中切換、使用 Tailwind CSS 的 .dark 類別，再到透過 next-theme 實作伺服器端算繪，最後才:tn[徒手做出]{is="原文是「手搓」，字面像用雙手搓出成品，戲謔地帶出不用現成方案、從零自製的粗糙與得意。"}一套 Cookie 搭配 head 同步行內指令碼的方案，解決了無樣式內容閃爍問題；前前後後折騰了四五種方案。
@@ -1285,12 +1285,12 @@ segments:
       tokens: 38398
       review: false
     zh-CN:
-      text: 存储也是一样。我嫌对象存储贵，想用自己服务器的硬盘，于是写了 RFS 一种 vfs 为了原子去重合并单文件，甚至复活了 80-90年代 的注册表理念，最后还通过 FUSE 挂载起来了。结果呢，花了更多时间造了一个不那么好的轮子，服务器还空跑了一年，完全就是彻底的亏本生意。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.01747Z
-      seconds: 0.0
-      tokens: 0
+      text: 存储也一样。我嫌对象存储太贵，想直接用自家服务器的硬盘，于是写了 RFS——一种为了实现原子级去重并合并为单文件而设计的虚拟文件系统，甚至复活了二十世纪八九十年代的注册表理念，最后还通过 FUSE 把它挂载了起来。结果呢？我花了更多时间重复造了个没那么好用的轮子，服务器还白白空转了一年，彻头彻尾是一桩亏本生意。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:49:33.726758Z
+      seconds: 13.200552833
+      tokens: 19414
       review: false
     zh-TW:
       text: 儲存也是一樣。我嫌物件儲存太貴，想用自己伺服器的硬碟，於是寫了 RFS——一種能以原子方式去除重複資料並將其合併成單一檔案的 VFS，甚至復活了 20 世紀八九十年代的登錄檔概念，最後還透過 FUSE 掛載了起來。結果呢？花了更多時間重造了一個不太好用的輪子，伺服器還空轉了一年，徹頭徹尾是一筆賠本生意。
@@ -1350,12 +1350,12 @@ segments:
       tokens: 16424
       review: false
     zh-CN:
-      text: Less is more
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017471Z
-      seconds: 0.0
-      tokens: 0
+      text: 少即是多
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:49:36.326544Z
+      seconds: 5.990262042
+      tokens: 18758
       review: false
     zh-TW:
       text: 少即是多
@@ -1415,12 +1415,12 @@ segments:
       tokens: 16807
       review: false
     zh-CN:
-      text: 说"想开了"其实不准确，是我累了。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017472Z
-      seconds: 0.0
-      tokens: 0
+      text: 说“想开了”其实并不准确，我只是累了。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:49:42.322257Z
+      seconds: 5.374929417
+      tokens: 18936
       review: false
     zh-TW:
       text: 說「想開了」其實不準確，是我累了。
@@ -1480,12 +1480,12 @@ segments:
       tokens: 17520
       review: false
     zh-CN:
-      text: 后来又学了 React(~~Remix~~) Router Loader、Next.js 15 App Router、RSC，但这时候日常已经很忙了，没什么时间写代码，倒也没机会第四次失败。现在想起来，我的网站从 Next.js 13 写到了 Next.js 15 ，前脚刚迁移完成，还没上线，Next.js 16 beta-1 就出了。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017472Z
-      seconds: 0.0
-      tokens: 0
+      text: 后来我又学了 React（~~Remix~~）Router 的 loader、Next.js 15 的 App Router 和 RSC，但那时日常生活已经很忙，没多少时间写代码，倒也没机会迎来第四次失败。现在想想，我的网站从 Next.js 13 一路写到 Next.js 15，前脚刚迁移完，还没上线，Next.js 16 beta 1 后脚就发布了。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:49:43.394336Z
+      seconds: 13.104729334
+      tokens: 19433
       review: false
     zh-TW:
       text: 後來又學了 React（~~Remix~~）Router Loader、Next.js 15 App Router、RSC，但這時候日常生活已經很忙了，沒什麼時間寫程式，倒也沒機會第四次失敗。現在想起來，我的網站從 Next.js 13 寫到了 Next.js 15，前腳才剛遷移完成，還沒上線，Next.js 16 beta 1 就出了。
@@ -1545,12 +1545,12 @@ segments:
       tokens: 16669
       review: false
     zh-CN:
-      text: 从 Next.js 13 鸽到 Next.js 16
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017473Z
-      seconds: 0.0
-      tokens: 0
+      text: 从 Next.js 13 一直拖到 Next.js 16
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:49:46.932292Z
+      seconds: 6.250043958
+      tokens: 18835
       review: false
     zh-TW:
       text: 從 Next.js 13 鴿到 Next.js 16
@@ -1610,12 +1610,12 @@ segments:
       tokens: 17602
       review: false
     zh-CN:
-      text: 我开始放手。放弃曾经执着的东西，学会点到为止，明天的事明天再说。Vane 没做完？先放着。Seam 还差很远？以后再来。博客不完美？先上线。开始完全 Vibe Coding，没问题就不管，有问题再说。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017474Z
-      seconds: 0.0
-      tokens: 0
+      text: 我开始学着放手，放下曾经执着的东西，学会适可而止，明天的事留到明天再说。Vane 没做完？先搁着。Seam 还差得远？以后再继续。博客不够完美？先上线。开始彻底采用氛围编程：没问题就不管，出了问题再说。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:49:47.700278Z
+      seconds: 9.392008875
+      tokens: 19287
       review: false
     zh-TW:
       text: 我開始放手。放棄曾經執著的東西，學會點到為止，明天的事明天再說。Vane 沒做完？先放著。Seam 還差很遠？以後再來。部落格不完美？先上線。開始完全 Vibe Coding，沒問題就不管，有問題再說。
@@ -1675,12 +1675,12 @@ segments:
       tokens: 17677
       review: false
     zh-CN:
-      text: 再后来，看到了 [@Innei](https://twitter.com/__oQuery) 的小站，设计很精致、功能也很全，当时的我看了一眼我就想要，甚至还赞助支持了，虽然后面没用上但是这钱也花的不怨 因为我摸到了 React 源码，就和我最初看到 C 一样，不过就是代码嘛，有什么大不了的，总有一天我要自己写一个。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017475Z
-      seconds: 0.0
-      tokens: 0
+      text: 后来，我又看到了 [@Innei](https://twitter.com/__oQuery) 的小站：设计精致，功能也很齐全。当时我只看了一眼就想要一个，甚至还赞助支持了。虽然后来没用上，但这钱花得也不冤，因为我借此摸到了 React 的源代码。那感觉就像最初接触 C 时一样——不就是代码嘛，有什么大不了的？总有一天，我要亲手写一个。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:49:50.619664Z
+      seconds: 12.22610175
+      tokens: 19263
       review: false
     zh-TW:
       text: 再後來，我看到了 [@Innei](https://twitter.com/__oQuery) 的個人網站，設計很精緻，功能也很齊全。當時我只看了一眼就想要，甚至還贊助支持了。雖然後來沒能用上，但這筆錢花得也不冤，因為我藉此摸到了 React 的原始碼。就像最初看到 C 時一樣：不就是程式碼嘛，有什麼大不了的？總有一天，我要自己寫一個。
@@ -1740,12 +1740,12 @@ segments:
       tokens: 18444
       review: false
     zh-CN:
-      text: 最终的方案反而很简单：All in Cloudflare。R2 对象存储、D1 Edge 数据库、KV 做缓存、Worker 跑 SSR，全部 Serverless，没有服务器。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017476Z
-      seconds: 0.0
-      tokens: 0
+      text: 最终方案反而很简单：全部放在 Cloudflare 上。R2 用作对象存储，D1 用作边缘数据库，KV 负责缓存，Worker 负责服务端渲染；全都采用无服务器架构，一台服务器也没有。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:49:53.188253Z
+      seconds: 15.117415458
+      tokens: 19173
       review: false
     zh-TW:
       text: 最後的方案反而很簡單：全部放在 Cloudflare 上。R2 用作物件儲存空間，D1 用作邊緣資料庫，KV 用作快取，Worker 執行伺服器端算繪；全部採用無伺服器架構，不需要伺服器。
@@ -1805,12 +1805,12 @@ segments:
       tokens: 17369
       review: false
     zh-CN:
-      text: 做博客实际上不需要一个反向代理，不需要一个自研框架。而当时的我把它们当成了前置条件，作为了那个永远 Blocking 但是却合理的理由，但它们从来都不是。真正的前置条件只有一个：坐下来，把第一篇文章写出来。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017477Z
-      seconds: 0.0
-      tokens: 0
+      text: 其实，做博客不需要反向代理，也不需要自研框架。当时的我却把它们当作前置条件，拿来充当那个看似合理、实则永远阻碍我动笔的借口，但它们从来都不是。真正的前置条件只有一个：坐下来，写出第一篇文章。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:49:56.505153Z
+      seconds: 8.295982333
+      tokens: 18968
       review: false
     zh-TW:
       text: 做部落格其實不需要反向代理，也不需要自行研發的框架。但當時的我把它們當成了先決條件，把它們當作那個看似合理、卻永遠阻礙我動筆的理由。可它們從來都不是。真正的先決條件只有一個：坐下來，寫出第一篇文章。
@@ -1870,12 +1870,12 @@ segments:
       tokens: 16627
       review: false
     zh-CN:
-      text: 这个博客，我想了两年
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017478Z
-      seconds: 0.0
-      tokens: 0
+      text: 这个博客，我想了整整两年。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:49:57.095301Z
+      seconds: 8.280340083
+      tokens: 19093
       review: false
     zh-TW:
       text: 這個部落格，我想了兩年
@@ -1936,11 +1936,11 @@ segments:
       review: false
     zh-CN:
       text: '## 放手吧 {#letting-go}'
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.01748Z
-      seconds: 0.0
-      tokens: 0
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:50:02.852061Z
+      seconds: 8.163757334
+      tokens: 18917
       review: false
     zh-TW:
       text: '## 放手吧 {#letting-go}'
@@ -2000,12 +2000,12 @@ segments:
       tokens: 19757
       review: false
     zh-CN:
-      text: 第一次还是 Next.js 13 Page Router 那会。那时候我蒙懂 SPA 是什么，SSR、SSG、ISR 这些概念一个都不清楚，但看别人说 SSR 好，那我也要用。结果写着写着发现自己根本不理解这些架构在解决什么问题，做不下去了。后来呢，转 Vue 2 纯 SPA，为什么选 Vue？说来惭愧，觉得名字好听，反正也新，试试呗。也没撑多久。第三次回到 React，从单 JSX 开始，学了 TypeScript，会了 TSX，理解了 CJS 和 ESM 的区别，爱上了 Reactive，用上了 Lucide、Framer Motion、Radix UI 这些日后离不开的库——这次终于像点样子了。但我还是失败了，因为本质上我只是在模仿，别人用什么我就拿来用，看起来像那么回事，实际上根本不理解为什么要这样做。再加上 AI 的幻觉加持，很多东西都能跑起来一个 MVP，但 Scale Up 的时候全是坑。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017481Z
-      seconds: 0.0
-      tokens: 0
+      text: 第一次还是用 Next.js 13 Pages Router 的时候。那时我对单页应用（SPA）只有一知半解，服务端渲染（SSR）、静态站点生成（SSG）、增量静态再生成（ISR）这些概念更是一个都没弄明白，只因听别人说服务端渲染好，就也想用。结果写着写着，我发现自己根本不知道这些架构究竟要解决什么问题，只好半途而废。后来我转用 Vue 2，做纯粹的单页应用。为什么选 Vue？说来惭愧，只是觉得名字好听，反正也是新东西，就试试呗，结果同样没坚持多久。第三次我又回到 React，从一个 JSX 文件起步，学会了 TypeScript 和 TSX，弄懂了 CommonJS（CJS）与 ECMAScript 模块（ESM）的区别，也爱上了响应式编程，用起了 Lucide、Framer Motion、Radix UI 这些后来再也离不开的库——这次终于有点样子了。但我还是失败了，因为说到底，我只是在照猫画虎：别人用什么，我就跟着用什么；表面看着像那么回事，实际上完全不明白为什么要这么做。再加上 AI 幻觉推波助澜，许多东西确实能拼出一个跑得起来的最小可行产品（MVP），可一旦扩大规模，到处都是坑。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:50:04.804197Z
+      seconds: 19.823638958
+      tokens: 19687
       review: false
     zh-TW:
       text: 第一次還是 Next.js 13 Page Router 那會兒。那時候我只懵懵懂懂地知道單頁應用程式是什麼，對 SSR、SSG、ISR 這些概念一竅不通，但看別人說 SSR 好，我也就想用。結果寫著寫著，發現自己根本不理解這些架構究竟在解決什麼問題，於是做不下去了。後來，我轉向了 Vue 2 的純單頁應用程式。為什麼選 Vue？說來慚愧，只是覺得名字好聽，反正對我來說也是新東西，就試試吧。結果也沒撐多久。第三次，我回到 React，從單純的 JSX 開始，學會了 TypeScript 和 TSX，理解了 CJS 與 ESM 的差異，愛上了響應式程式設計，也用上了 Lucide、Framer Motion、Radix UI 這些日後再也離不開的函式庫——這一次終於像點樣子了。但我還是失敗了，因為本質上我只是在模仿：別人用什麼，我就拿來用。看起來有模有樣，實際上我根本不明白為什麼要這麼做。再加上 AI 幻覺的助力，很多東西都能先跑出一個最小可行產品，可一到擴大規模的時候，處處都是坑。
@@ -2065,12 +2065,12 @@ segments:
       tokens: 16643
       review: false
     zh-CN:
-      text: 是之前所有的折腾，给了我现在放手的资本
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017484Z
-      seconds: 0.0
-      tokens: 0
+      text: 正是之前所有的折腾，给了我如今放手的底气。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:50:05.378758Z
+      seconds: 5.320959416
+      tokens: 18926
       review: false
     zh-TW:
       text: 是之前所有的折騰，給了我現在放手的本錢
@@ -2130,12 +2130,12 @@ segments:
       tokens: 16904
       review: false
     zh-CN:
-      text: 其实博客不是没动过，恰恰相反，我做了三次
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017485Z
-      seconds: 0.0
-      tokens: 0
+      text: 其实，我并非没有动手做过博客。恰恰相反，我前前后后做了三次。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:50:08.310648Z
+      seconds: 6.278039042
+      tokens: 19118
       review: false
     zh-TW:
       text: 其實部落格不是沒動過，恰恰相反，我做了三次。
@@ -2195,12 +2195,12 @@ segments:
       tokens: 16759
       review: false
     zh-CN:
-      text: 这句话我听过无数遍，但花了两年才真正理解它的含义。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017486Z
-      seconds: 0.0
-      tokens: 0
+      text: 这句话我听过无数遍，却花了两年时间才真正领会其中的含义。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:50:10.705701Z
+      seconds: 5.904002208
+      tokens: 18983
       review: false
     zh-TW:
       text: 這句話我聽過無數遍，但花了兩年才真正理解它的含義。
@@ -2260,12 +2260,12 @@ segments:
       tokens: 19149
       review: false
     zh-CN:
-      text: 最后绕了一大圈，还是回到了 Serverless，Vercel 的概念好，但我不喜欢 Next.js；而且 Vercel 的魔法太多了，还有就是那个中间件设计的提前编译跑 Edge 上，最后还是割裂，甚至出了几个 CVE，还不如要么全部源站一起。而 Cloudflare Worker 就很好，达到了另外一种极端，小于 10MB 的产物编译成 WASM，Edge 上能跑真正的业务逻辑，这才是我想要的。除了费钱以外没什么缺点——但说起来也不算缺点，毕竟省下的时间就是钱。
-      provider: source
-      model: source
-      at: 2026-08-10T13:23:44.017489Z
-      seconds: 0.0
-      tokens: 0
+      text: 最后绕了一大圈，我还是回到了无服务器架构。Vercel 的理念很好，但我不喜欢 Next.js；而且 Vercel 的黑魔法太多，中间件还要提前编译后放到边缘节点运行，最终依然是割裂的，甚至闹出了几个公共漏洞披露（CVE），还不如干脆把所有东西都放在源站一起跑。Cloudflare Workers 就很好，走到了另一个极端：把不到 10 MB 的构建产物编译成 WebAssembly，让真正的业务逻辑也能在边缘节点运行，这才是我想要的。除了贵，几乎没什么缺点——不过话说回来，这也算不上缺点，毕竟省下的时间就是钱。
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:50:11.018813Z
+      seconds: 17.837051958
+      tokens: 19444
       review: false
     zh-TW:
       text: 最後繞了一大圈，還是回到了無伺服器架構。Vercel 的理念很好，但我不喜歡 Next.js；而且 Vercel 的魔法太多了，中介軟體先編譯再放到邊緣執行的設計最終仍然造成了割裂，甚至還引發了幾個 CVE，還不如乾脆全部放在來源伺服器一起執行。Cloudflare Workers 就很好，走向了另一種極端：把小於 10 MB 的產物編譯成 WASM，讓真正的商業邏輯也能在邊緣執行，這才是我想要的。除了花錢以外沒什麼缺點——不過嚴格來說，這也不算缺點，畢竟省下的時間就是錢。
