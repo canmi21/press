@@ -160,6 +160,40 @@ performs arithmetic and compositor writes, not fresh layout reads. A pre-hydrati
 the collapsed endpoints after browser scroll restoration, before the component observers take
 over, so reloading at the article end does not leave the rail centered until hydration.
 
+## Back is one step up the reading trail {#back-is-one-step-up-the-reading-trail}
+
+The return control at the top left of an article does not mean "the homepage". It means one step
+back the way the reader came, which is the homepage only when that is where they came from. A
+reader who followed a card from one article into another and is then sent home has lost the
+thread they were reading, and the control that did it looked like the way back.
+
+The trail is a list of paths in `sessionStorage["trail"]`, named the way the `localStorage` keys
+in [engagement.md](engagement.md) are -- one lowercase noun, no prefix. The storage was chosen
+for its lifetime rather than its convenience: one tab, surviving reloads, gone when the tab
+closes. Two tabs on one site are two readers here, and they get two trails.
+
+**The browser's own history is not this.** Its previous entry may be an anchor jump inside the
+same article, a locale switch, or a page on somebody else's site -- none of them a step in a
+reading trail, all of them indistinguishable from one at the moment Back is pressed. Nothing but
+the trail records the sequence, which is why it is recorded rather than inferred.
+
+Two consequences worth knowing before changing it. **The record carries the page it belongs to**,
+because a reload arrives looking exactly like a fresh visit, and a trail that could not say which
+page it was for would offer a way back to somewhere the reader never was. And **arriving at a
+page already on the trail cuts back to it** rather than appending, whichever way the reader got
+there -- this control, the browser's button, a link that happens to point back. Stated once, it
+saves special-casing each of them, and it is what stops two articles that link to each other from
+growing a trail between them without end.
+
+Every page records, not only articles, even though only an article shows the control. The step it
+has to remember is usually taken somewhere else, and a page that declined to record itself would
+be a hole the next article's Back link falls into.
+
+The server cannot see any of this, so the markup ships the homepage -- right for a reader
+arriving directly, which is everyone the server can see -- and the destination is corrected after
+hydration. Nothing moves when it changes: the label is the same word either way, which is what
+makes the correction invisible rather than a flicker.
+
 ## A number's treatment follows the role it plays
 
 The `value` cells in [app.css](../apps/site/src/styles/app.css) give a number its own boxes and
@@ -574,14 +608,10 @@ about something external; a box in the tweet card's shape, carrying description 
 count, read well on its own and still said "this is a different kind of thing than the six rows
 on the homepage", which is exactly what it is not.
 
-**The same shape, opened differently.** In an article body the card opens in a new tab; on the
-homepage the identical row navigates in place. What differs is not the link, it is where the
-reader is standing. Somebody halfway down an article who follows a reference and comes back to
-find their position gone has been charged for a detour they did not ask for; somebody on the
-homepage picking an article is doing the one thing that page is for, and a new tab there is
-clutter. The announcement rides along -- a link that opens elsewhere says so to a screen reader,
-which is why the note and the new tab are one prop on the component rather than two that have to
-agree.
+It opens in place, like every other link here. Opening the in-body one in a new tab was tried
+first and is what [the reading trail](#back-is-one-step-up-the-reading-trail) replaced: a new tab
+buys the reader their position back by handing them a window to close, and it answers only for
+the one link that was built to open it.
 
 What a card holds is the subject's, not the shape's:
 [workspace.md](architecture/workspace.md) has why a card pointing inside the corpus carries no

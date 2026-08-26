@@ -144,17 +144,16 @@
 				description={block.description}
 			/>
 		{:else if block.type === 'article'}
-			<!-- The homepage's row, unchanged, and opened in a new tab -- see spec/styling.md for
-			     both halves. Its thumbnail keeps the baked first frame rather than the
-			     content-derived shape the homepage animates to: that shape is normalised across a
-			     whole list, and one card in a body has no list to be measured against. See
-			     $lib/article/list.svelte. -->
+			<!-- The homepage's row, unchanged, and navigating in place like every other link
+			     here -- the reader's way back is the trail, see spec/styling.md. Its thumbnail
+			     keeps the baked first frame rather than the content-derived shape the homepage
+			     animates to: that shape is normalised across a whole list, and one card in a body
+			     has no list to be measured against. See $lib/article/list.svelte. -->
 			<ArticleCard
 				title={block.title}
 				subtitle={block.subtitle}
 				created={block.created}
 				path={block.path}
-				newTabNote={m['support.new-tab']({}, { locale })}
 			/>
 		{:else if block.type === 'placeholder'}
 			<Placeholder kind={block.kind} meta={block.meta} />

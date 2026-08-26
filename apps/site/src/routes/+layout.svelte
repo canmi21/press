@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { browser, dev } from '$app/environment';
+	import { afterNavigate } from '$app/navigation';
 	import { page } from '$app/state';
 	import { URLS, pickUrls } from '@canmi/urls';
 	import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
 	import { QueryClient } from '@tanstack/svelte-query';
 	import { PersistQueryClientProvider } from '@tanstack/svelte-query-persist-client';
+	import { advance, readTrail, writeTrail } from '$lib/article/trail';
 	import { installFocusSourceTracker } from '$lib/client/focus-source';
 	import { localeUrl } from '$lib/locale';
 	import { QUERY_CACHE_MAX_AGE, QUERY_STALE_TIME } from '$lib/query';
@@ -59,6 +61,26 @@
 	let { children } = $props();
 
 	$effect(() => installFocusSourceTracker());
+
+	/**
+	 * Record the reading trail, for every page rather than only articles.
+	 *
+	 * The Back control lives on an article, but the step it has to remember is often taken
+	 * somewhere else -- the homepage, a licence page -- and a page that declined to record
+	 * itself would be a hole the next article's Back link falls into. Recording is one write of
+	 * a short array, so there is nothing to save by being selective about it.
+	 *
+	 * `afterNavigate` covers the client navigations and the first load alike; on the first load
+	 * `from` is null, which is exactly the case `advance` reads as "trust the record only if it
+	 * claims this page". See $lib/article/trail.ts.
+	 */
+	afterNavigate(({ from, to }) => {
+		if (!to) return;
+		writeTrail(
+			sessionStorage,
+			advance(readTrail(sessionStorage), to.url.pathname, from?.url.pathname),
+		);
+	});
 
 	/**
 	 * A JSON-LD block, safe to drop into markup.

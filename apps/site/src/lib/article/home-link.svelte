@@ -1,10 +1,12 @@
 <script lang="ts">
+	import { afterNavigate } from '$app/navigation';
 	import Undo2 from '@lucide/svelte/icons/undo-2';
 	import { animate } from 'motion';
 	import { DEFAULT_PIXELS_PER_REM, remFromMeasuredPixels } from '$lib/client/units';
 	import type { LocaleCode } from '$lib/locale';
 	import * as m from '$lib/paraglide/messages';
 	import { homeRestingCenter, railEndOffset } from './rail';
+	import { backTarget, readTrail } from './trail';
 
 	const DEFAULT_TOP_REM = 6.75;
 	const COLLAPSED_BAR_REM = 0.25;
@@ -14,6 +16,23 @@
 	type TocState = 'collapsed' | 'expanded';
 
 	let { locale }: { locale: LocaleCode } = $props();
+
+	/**
+	 * Where this control goes, which the server cannot know.
+	 *
+	 * The trail lives in the reader's tab, so the markup ships the homepage -- correct for a
+	 * reader who arrived here directly, which is everyone the server can see -- and the answer is
+	 * corrected after hydration for the reader who walked in from somewhere. The label does not
+	 * move either way, so nothing about the page reflows when it changes.
+	 *
+	 * Read after each navigation rather than once: this component survives client navigation
+	 * between articles, and the trail it read on mount belongs to the article it was mounted on.
+	 */
+	let href = $state('/');
+
+	afterNavigate(() => {
+		href = backTarget(readTrail(sessionStorage));
+	});
 
 	function titleCenter() {
 		const title = document.querySelector<HTMLElement>('article h1');
@@ -236,7 +255,7 @@
 
 <div use:followToc={locale} class="home-slot pointer-events-none fixed hidden items-center lg:flex">
 	<a
-		href="/"
+		{href}
 		class="home-link focus-link pointer-events-auto inline-flex -translate-x-5 items-center gap-1.5 whitespace-nowrap text-sm text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
 	>
 		<Undo2 class="size-3.5 shrink-0 -translate-y-[0.03125rem]" aria-hidden="true" />
