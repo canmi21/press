@@ -555,3 +555,20 @@ One trap worth stating, because it is invisible until someone wonders why the bo
 shows: an overshoot has to have somewhere to go. A spring driving `background-size` or a colour
 is clipped at its limit, so the overshoot is spent on nothing and the curve should simply be
 damped out. A transform or an unconstrained layout dimension such as width has room to show it.
+
+## A block card is a box, and its arrow says whether the destination leaves the site
+
+Everything a directive drops into an article body -- `::github`, `::linkcard`, `::article` --
+wears the same box: a one-pixel border on paper, a 0.75rem radius, and a corner arrow that
+appears on hover. That shell is what separates a card from the prose around it, so a card
+without one reads as whatever it happens to sit next to. `::article` first shipped as the
+homepage's row lifted whole and read as a stray list item, which is what the rule came out of.
+
+**The arrow's direction is not decoration.** `↗` says the link leaves the site and pairs with
+the `target="_blank"` those cards carry; `→` says it stays. Getting this backwards is the easy
+mistake, because a new card is written by copying the nearest existing one and both of the
+first two point outward. A reader who has learned the pair reads the arrow before the URL.
+
+What a card holds is the subject's, not the box's: [media.md](architecture/media.md) for a
+cover, [workspace.md](architecture/workspace.md) for why a card pointing inside the corpus
+carries no copy of its own.

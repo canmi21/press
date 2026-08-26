@@ -3,6 +3,7 @@
 	import CodeBlock from '$lib/blocks/code-block.svelte';
 	import GitHub from '$lib/blocks/github.svelte';
 	import Image from '$lib/blocks/image.svelte';
+	import ArticleCard from '$lib/blocks/article-card.svelte';
 	import LinkCard from '$lib/blocks/link-card.svelte';
 	import Mermaid from '$lib/blocks/mermaid/mermaid.svelte';
 	import Placeholder from '$lib/blocks/placeholder.svelte';
@@ -17,7 +18,6 @@
 	import { Popover } from 'bits-ui';
 	import type { Block } from '$lib/content/types';
 	import type { LocaleCode } from '$lib/locale';
-	import ArticleCard from './card.svelte';
 	import Section from './section.svelte';
 
 	let { blocks, locale }: { blocks: Block[]; locale: LocaleCode } = $props();
@@ -144,15 +144,11 @@
 				description={block.description}
 			/>
 		{:else if block.type === 'article'}
-			<!-- The homepage's card, unchanged. Its thumbnail keeps the baked first frame rather
-			     than the content-derived shape the homepage animates to: that shape is normalised
-			     across a whole list, and one card in a body has no list to be measured against.
-			     See $lib/article/list.svelte. -->
 			<ArticleCard
+				path={block.path}
 				title={block.title}
 				subtitle={block.subtitle}
 				created={block.created}
-				path={block.path}
 			/>
 		{:else if block.type === 'placeholder'}
 			<Placeholder kind={block.kind} meta={block.meta} />
