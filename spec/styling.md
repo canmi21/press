@@ -319,14 +319,21 @@ past and come back to deliberately, not something competing with the article for
 attention. Set at the article's own size and colour it did compete, which is how the ratio was
 arrived at rather than guessed.
 
-**The phrase is what makes quiet work.** An earlier attempt at quiet was uniformly grey and small
-with nothing to catch on, and read as somebody else's apparatus rather than the writer speaking
-under their breath. The quoted words keep the article's colour, so every note has one strong point
-to be found by and can be soft everywhere else. Grey was not the mistake; grey with nothing in it
-was.
+**One bright thing per note, and it is the number.** The whole line is soft, the quoted phrase
+included -- weight alone marks the phrase, which is enough to find it by without spending colour
+on it. The colour goes to the superscript, because that is the part a reader is actually looking
+for: it says which of the markers above this note answers.
+
+An earlier attempt at quiet was uniformly grey and small with nothing to catch on at all, and read
+as somebody else's apparatus rather than the writer speaking under their breath. Grey was not the
+mistake; grey with nothing in it was.
 
 Only the heading above the section is quiet for a different reason -- a heading there is chrome
 rather than content.
+
+The notes are spaced tightly, closer than the paragraphs above them. At this size they are a
+block to be scanned rather than paragraphs to be read apart, and spacing carried over from larger
+text made two notes read as two unrelated things.
 
 The marker's size is a ratio rather than a length, so one rule serves both places it appears:
 beside prose it lands where a fixed size used to, and among the smaller notes it shrinks with

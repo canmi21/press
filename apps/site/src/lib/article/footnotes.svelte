@@ -55,7 +55,10 @@
 		display: flex;
 		margin: 0;
 		flex-direction: column;
-		gap: 0.5rem;
+		/* Tight, because at this size the notes are a block to be scanned rather than paragraphs
+		   to be read apart. Spaced as they were for the larger text, two notes read as two
+		   unrelated things. */
+		gap: 0.25rem;
 		padding: 0;
 		list-style: none;
 	}
@@ -70,16 +73,19 @@
 	.fn-note {
 		margin: 0;
 		font-size: 0.6875rem;
-		line-height: 1.8;
+		line-height: 1.6;
 		color: var(--color-text-soft);
 	}
 
-	/* The quoted words are the article's, said again. The one strong thing in a soft paragraph:
-	   what a reader scans the list for, and what keeps the rest from reading as undifferentiated
-	   grey. */
+	/* The quoted words are the article's, said again -- weight alone marks them. Colour is spent
+	   on the number instead: one bright thing per note, and it is the one that says which note
+	   this is. */
 	.fn-note-phrase {
-		color: var(--color-text-strong);
 		font-weight: 500;
+	}
+
+	.fn-note > :global(.fn-ref) {
+		color: var(--color-text-strong);
 	}
 
 	/* Here the marker sits between the phrase and the note, so it needs air on the side facing
