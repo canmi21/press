@@ -60,17 +60,23 @@
 		list-style: none;
 	}
 
-	/* The writer's own voice at the foot of the page: the same colour as the prose, because these
-	   are still their words, set smaller, because a note is meant to be stepped over and returned
-	   to. Roughly the ratio a printed page uses. */
+	/* Small and quiet, the way a note at the foot of a page is: it is there to be stepped over and
+	   come back to, not read on the way past. Both were tried the other way -- set at the article's
+	   size and colour, the section competed with the prose above it for the same attention.
+
+	   The first attempt at quiet was grey and small with nothing to catch on, which read as
+	   somebody else's apparatus. What makes it work now is the phrase: it holds the article's own
+	   colour, so each note has one strong point to find it by and can be soft everywhere else. */
 	.fn-note {
 		margin: 0;
-		font-size: 0.8125rem;
-		line-height: 1.7;
+		font-size: 0.6875rem;
+		line-height: 1.8;
+		color: var(--color-text-soft);
 	}
 
-	/* The quoted words are the article's, said again -- strong enough to find while scanning the
-	   list, not so strong that the note reads as being about the word rather than by the writer. */
+	/* The quoted words are the article's, said again. The one strong thing in a soft paragraph:
+	   what a reader scans the list for, and what keeps the rest from reading as undifferentiated
+	   grey. */
 	.fn-note-phrase {
 		color: var(--color-text-strong);
 		font-weight: 500;

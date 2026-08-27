@@ -313,15 +313,24 @@ it is not worth reaching for until a note actually needs it.
 
 ### The collected notes are set like the article
 
-The section at the end is the writer's own words, so it keeps the colour of the prose -- it was
-grey and small at first, and grey said the wrong thing: not the writer speaking quietly but
-somebody else's apparatus. It is set smaller, at roughly the ratio a printed page uses, because
-that is what a note is: something to step over and come back to. Only the heading above it is
-quiet, a heading there being chrome rather than content.
+The section at the end is small and quiet, at roughly three quarters the prose's size and the
+soft text colour. That is what a note at the foot of a page is: something to step over on the way
+past and come back to deliberately, not something competing with the article for the same
+attention. Set at the article's own size and colour it did compete, which is how the ratio was
+arrived at rather than guessed.
 
-The marker's size is a ratio rather than a length, so one rule serves both places it appears --
-beside prose it lands where the fixed size used to, and among the smaller notes it shrinks with
-them. The same for the arrow at the end of a note.
+**The phrase is what makes quiet work.** An earlier attempt at quiet was uniformly grey and small
+with nothing to catch on, and read as somebody else's apparatus rather than the writer speaking
+under their breath. The quoted words keep the article's colour, so every note has one strong point
+to be found by and can be soft everywhere else. Grey was not the mistake; grey with nothing in it
+was.
+
+Only the heading above the section is quiet for a different reason -- a heading there is chrome
+rather than content.
+
+The marker's size is a ratio rather than a length, so one rule serves both places it appears:
+beside prose it lands where a fixed size used to, and among the smaller notes it shrinks with
+them. The same for the arrow that ends a note.
 
 **A note names its words first, then its number, then what it says.** The quoted phrase is what
 lets the section be read on its own, in the order a reader needs it: what this is about, which
