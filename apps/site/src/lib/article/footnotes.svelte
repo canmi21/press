@@ -12,19 +12,21 @@
      a rule above it, the heading at the size of the metadata row, and the notes smaller than the
      prose they came from. -->
 <section aria-label={m['article.notes']({}, { locale })} class="fn-notes">
+	<!-- The heading is chrome and stays quiet; the notes under it are not. -->
 	<h2 class="fn-notes-heading">{m['article.notes']({}, { locale })}</h2>
 	<ol class="fn-notes-list">
 		{#each notes as note (note.number)}
 			<li id="fn-{note.number}" class="jump-target fn-note">
-				<span class="fn-note-text"
-					>{note.text}<a
-						href="#fnref-{note.number}"
-						class="fn-note-back focus-link"
-						aria-label={m['article.notes.back']({ number: note.number }, { locale })}
-					>
-						<CornerDownLeft class="size-3.5" aria-hidden="true" />
-					</a></span
+				<!-- The same superscript the marker in the prose is, so the two read as one thing
+				     seen twice. Hidden from a screen reader, which is already being told the
+				     ordinal by the list. -->
+				<sup class="fn-ref" aria-hidden="true">{note.number}</sup>{note.text}<a
+					href="#fnref-{note.number}"
+					class="fn-note-back focus-link"
+					aria-label={m['article.notes.back']({ number: note.number }, { locale })}
 				>
+					<CornerDownLeft class="size-3.5" aria-hidden="true" />
+				</a>
 			</li>
 		{/each}
 	</ol>
@@ -44,40 +46,28 @@
 		font-weight: 500;
 	}
 
+	/* An ordered list still, for what a screen reader is told, with nothing of a list drawn: the
+	   numbers a reader sees are the superscripts, which is how they were met in the prose. */
 	.fn-notes-list {
 		display: flex;
 		margin: 0;
 		flex-direction: column;
-		gap: 0.6rem;
-		padding: 0;
-		/* The number is the reader's way back to the marker, so it is the list's own counter
-		   rather than a bullet: `1.` beside a marker that read `1` is the same label twice. */
-		list-style: none;
-		counter-reset: fn-note;
-	}
-
-	.fn-note {
-		display: flex;
-		align-items: baseline;
 		gap: 0.5rem;
-		counter-increment: fn-note;
-		color: var(--color-text-soft);
-		font-size: 0.8125rem;
-		line-height: 1.6;
+		padding: 0;
+		list-style: none;
 	}
 
-	.fn-note::before {
-		content: counter(fn-note);
-		flex: none;
-		min-width: 1rem;
-		color: var(--color-text-soft);
-		font-size: 0.6875rem;
-		font-variant-numeric: tabular-nums;
-		text-align: right;
+	/* Set like the article rather than like an apparatus below it. These are the writer's own
+	   words, deferred rather than demoted, so they are read at the size the rest was read at. */
+	.fn-note {
+		margin: 0;
 	}
 
-	.fn-note-text {
-		flex: 1;
+	/* Only the one that leads a note. In the prose a marker follows the word it belongs to and
+	   must not be spaced off it; here it precedes the sentence and would otherwise sit flush
+	   against its first character. */
+	.fn-note > :global(.fn-ref) {
+		margin-inline-end: 0.3rem;
 	}
 
 	/* Trailing the last word, not parked at the right edge. The way back belongs to the sentence

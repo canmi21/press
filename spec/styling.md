@@ -305,6 +305,23 @@ literal text.
 the escape hatch is a container directive -- and that brings the pairing problem back with it, so
 it is not worth reaching for until a note actually needs it.
 
+### The collected notes are set like the article
+
+The section at the end is the writer's own words, deferred rather than demoted, so it is read at
+the size and colour the rest was read at. Only its heading is quiet, because a heading there is
+chrome rather than content.
+
+**A note is led by the same superscript that marked it.** It was a right-aligned counter column
+first, which drew a table: a list of arrows down one edge and a rail of digits down the other,
+neither of which the reader had met before. Reusing the marker means the number in the note and
+the number in the prose are one thing seen twice, and the section stops looking like an apparatus
+bolted underneath.
+
+The list stays an ordered list for what a screen reader is told, with nothing of a list drawn --
+so the visible superscript is hidden from it, or the ordinal would be announced twice. The way
+back trails the note's last word rather than sitting at the right edge: it belongs to the sentence
+just read, and a column of arrows is more furniture.
+
 ### The marker carries no words
 
 `:fn` wraps nothing. The marker attaches after what it explains rather than around it, which is
