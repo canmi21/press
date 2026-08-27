@@ -232,8 +232,12 @@
 </svelte:head>
 
 <main class="min-h-screen bg-page text-text">
-	<Toc {toc} />
-	<HomeLink locale={locale.code} />
+	<!-- One rail, one box. It is fit-content, so the browser sizes it to the entries without
+	     anything having to measure them -- see spec/styling.md. -->
+	<div class="article-rail">
+		<Toc {toc} />
+		<HomeLink locale={locale.code} />
+	</div>
 	<div class="article-column px-6 py-24">
 		<article>
 			<header>

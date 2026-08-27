@@ -93,34 +93,45 @@
    The article's width is what everything else yields to: it is centred and fixed, the rail lives
    in what is left, and nothing here can push it. */
 :root {
-	/* The two boxes this rule places: the table of contents and the article. The rail's box is
-	   what its entries occupy at full expansion -- `--rail-ink`, measured in the browser and
-	   published by toc.svelte, because no stylesheet can know how wide a heading renders. Until
-	   that arrives, and for headings long enough to wrap, the box is the cap. */
+	/* The widest the rail's entries may render before they wrap. The box itself is narrower than
+	   this whenever the headings are shorter, which is most articles. */
 	--rail-width-max: 12rem;
-	--rail-width: min(var(--rail-ink, var(--rail-width-max)), var(--rail-width-max));
 	--rail-column: 45rem;
-	/* The blank region the rail lives in: window edge to the article's left frame. The article
-	   is centred on the window, so the region on the other side of it is the same width and is
-	   left empty. */
+	/* The blank region the rail lives in: window edge to the article's left frame. The article is
+	   centred on the window, so the region on the other side of it is the same width and is left
+	   empty. */
 	--rail-region: calc((100% - var(--rail-column)) / 2);
 	/* Clearance the rail needs on each side of itself before it is shown at all. */
 	--rail-edge: 1.5rem;
-	/* Past this the rail stops following the centre and holds its distance from the window edge;
-	   the space on its right takes every further pixel. */
-	--rail-edge-max: 8rem;
-	/* The rail's centre line on the region's centre line. Written once because the table of
-	   contents and the return control have to agree exactly. */
-	--rail-left: min(calc((var(--rail-region) - var(--rail-width)) / 2), var(--rail-edge-max));
+	/* Where the rail's centre line stops following the region's. Past this the rail holds still
+	   and the space on its right takes every further pixel. */
+	--rail-centre-max: 14rem;
 }
 
 /* The column running down the left of an article -- the table of contents and the return control
-   -- is one rail, so its horizontal geometry is written above once and both consume it. Each keeps
-   its own vertical placement, which is the part that actually differs. See spec/styling.md. */
+   -- is one rail, and it is one box, so they cannot disagree about where its left edge is.
+
+   The box is `fit-content`: the browser sizes it to the entries at full expansion, which is the
+   only thing a reader sees and therefore the only thing worth centring. Nothing measures anything
+   to make that true, so it is already true in the first frame the server sends and stays true when
+   a web font swaps in and the entries change width. An earlier version published a measured width
+   as a custom property and paid for it with a jump at hydration.
+
+   Only the entries size it. The return control is taken out of flow and the active indicator is
+   absolute, so neither can widen the box -- which is what lets the indicator and the return icon
+   sit outside its left edge as ornaments rather than as content. See spec/styling.md. */
 .article-rail {
 	display: none;
-	width: var(--rail-width);
-	left: var(--rail-left);
+	position: fixed;
+	inset-block: 0;
+	width: fit-content;
+	max-width: var(--rail-width-max);
+	/* Its centre line on the region's centre line, until the cap. `translate` rather than a
+	   computed `left`, because only the browser knows how wide `fit-content` made it. */
+	left: min(calc(var(--rail-region) / 2), var(--rail-centre-max));
+	translate: -50% 0;
+	/* A full-height strip down the page. Its children take their own events back. */
+	pointer-events: none;
 }
 
 /* The article is centred on the window and nothing moves it -- not the rail, not the width of the
@@ -131,16 +142,17 @@
 }
 
 /* Shown only where the region holds the rail at its cap with its clearance on both sides:
-   12rem + 2 * 1.5rem beside each side of a 45rem article. The cap rather than the measured width,
-   because a media query can read neither -- so the test is whether the widest rail this site can
-   draw would fit, and an article with short headings is shown no earlier than one without. Below that the rail is absent rather than squeezed -- a
-   table of contents narrowed until its entries wrap to three lines is not a smaller version of
-   itself, and pressed against the window edge it reads as something that fell off the page. A
-   media query cannot ask a custom property, so this number agrees with the ones above by hand;
-   change one and check this. */
+   12rem + 2 * 1.5rem beside each side of a 45rem article. The cap rather than the box's real
+   width, because a media query can read neither -- so the test is whether the widest rail this
+   site can draw would fit, and an article with short headings is shown no earlier than one
+   without. Below it the rail is absent rather than squeezed: a table of contents narrowed until
+   its entries wrap to three lines is not a smaller version of itself, and pressed against the
+   window edge it reads as something that fell off the page. A media query cannot ask a custom
+   property, so this number agrees with the ones above by hand; change one and check this. */
 @media (min-width: 75rem) {
 	.article-rail {
 		display: flex;
+		align-items: center;
 	}
 }
 

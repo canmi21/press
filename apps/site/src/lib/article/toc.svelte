@@ -329,32 +329,6 @@
 		};
 	});
 
-	/**
-	 * Publish how wide the rail's text really is, so it can be centred on what a reader sees.
-	 *
-	 * The box may grow to `--rail-width-max` and with short headings it never does, leaving dead
-	 * space on its right that a centring rule counts as part of the rail -- the entries then sit
-	 * visibly left of the middle of a space they are supposedly centred in. Only the browser knows
-	 * the real width, and the return control needs the same answer because it shares one left edge
-	 * with these entries, so it is measured once here and read back from the root.
-	 *
-	 * Measured from the strings rather than from the laid-out elements. An element measures
-	 * whatever width the last answer gave it, so reading one back would ratchet the rail narrower
-	 * on every article that follows a narrower one. See spec/styling.md.
-	 */
-	$effect(() => {
-		const sample = asideEl?.querySelector<HTMLElement>('[data-toc-text]');
-		if (!sample || entries.length === 0) return;
-		const font = fontOf(sample);
-		let widest = 0;
-		for (const entry of entries) {
-			widest = Math.max(widest, measureNaturalWidth(prepareWithSegments(entry.text, font)));
-		}
-		const root = document.documentElement;
-		root.style.setProperty('--rail-ink', `${Math.ceil(widest)}px`);
-		return () => root.style.removeProperty('--rail-ink');
-	});
-
 	$effect(() => {
 		if (!asideEl) return;
 		const widths = barWidths;
@@ -545,7 +519,7 @@
 		onmouseenter={handleEnter}
 		onmouseleave={handleLeave}
 		class:revealed={showText}
-		class="article-rail toc-nav fixed top-1/2 -translate-y-1/2 flex-col items-start overflow-visible"
+		class="toc-nav pointer-events-auto relative w-full flex-col items-start overflow-visible"
 	>
 		<span
 			bind:this={indicatorEl}
@@ -590,7 +564,8 @@
 {/if}
 
 <style>
-	/* Horizontal placement is the rail's, in utilities.css; this is the vertical half. */
+	/* Horizontal placement belongs to the rail box in utilities.css. Vertical centring is the
+	   box's `align-items`; this offset rides on top of it near the end of an article. */
 	.toc-nav {
 		transform: translateY(var(--toc-end-offset, 0rem));
 	}

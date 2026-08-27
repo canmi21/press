@@ -253,7 +253,7 @@
 	}
 </script>
 
-<div use:followToc={locale} class="article-rail home-slot pointer-events-none fixed items-center">
+<div use:followToc={locale} class="home-slot pointer-events-none absolute flex w-full items-center">
 	<a
 		{href}
 		class="home-link focus-link pointer-events-auto inline-flex -translate-x-5 items-center gap-1.5 whitespace-nowrap text-sm text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
@@ -264,9 +264,11 @@
 </div>
 
 <style>
-	/* Horizontal placement is the rail's, in utilities.css; this is the vertical half. */
+	/* Left edge and width are the rail box's -- sharing them is the point of the box. Out of its
+	   flow, so the box is sized by the entries alone and this control cannot widen it. */
 	.home-slot {
 		top: 6.75rem;
+		left: 0;
 		transform: translateY(calc(-50% + var(--home-offset, 0rem)));
 	}
 </style>

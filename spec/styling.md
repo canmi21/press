@@ -133,14 +133,16 @@ in it. Three stages follow:
 1. Too narrow: no rail. The article alone, centred, as on any other page.
 2. Wide enough: the rail appears, its centre line on the region's centre line, so its margin from
    the window edge and its gap to the article are equal.
-3. Past `--rail-edge-max`: the rail's left margin holds still, and every further pixel goes into
-   the gap between rail and article.
+3. Past `--rail-centre-max`: the rail's centre line holds still, and every further pixel goes
+   into the gap between rail and article. The cap is on the centre rather than on the left margin
+   because the box's width is the browser's answer, not a number this file holds -- and with that
+   width fixed for a given article the two say the same thing.
 
 Stage 3 exists because a rail is read from the corner of the eye. Left centred forever it drifts
 inward as the window grows, and on a wide monitor a rail halfway to the text is neither beside the
 article nor at the edge of anything.
 
-### The rail's box is what its entries occupy, not what they may grow to
+### The rail's box is what its entries occupy, and nothing measures it
 
 Centring is only as honest as the box being centred, and this is where it first went wrong. The
 box was `--rail-width-max`, the widest the entries are _allowed_ to be. Articles with short
@@ -148,21 +150,26 @@ headings never reach it, so the box carried dead space on its right that the cen
 as rail: at a 1241px window the box sat exactly centred at 130 while everything a reader could see
 ended at 135, its own centre at 85. Centred by the numbers, plainly left of centre to the eye.
 
-So the box is the entries at full expansion. `--rail-ink` carries that width, measured in the
-browser by [toc.svelte](../apps/site/src/lib/article/toc.svelte) and read back from the root,
-because no stylesheet can know how wide a heading renders and the return control needs the same
-answer to keep the one left edge it shares with the entries. Collapsing does not change it -- the
-bars occupy less of the box, and the box, the centring and the hit area stay where they were.
+So the box is the entries at full expansion -- and it is one box in the DOM, holding both the
+table of contents and the return control, rather than two elements agreeing on a number.
+`width: fit-content` then makes the browser size it to the entries, and `translate: -50%` centres
+whatever that came to. Nothing measures anything, which is the whole point:
 
-**It is measured from the strings, not from the laid-out elements.** An element is as wide as the
-last answer made it, so reading one back would ratchet the rail narrower with every article that
-followed a narrower one. The natural width of the text under the article's own font is a fact
-about the headings alone. `@chenglou/pretext` does the measuring here as it does for the homepage
-thumbnails.
+- **The first frame is already right.** The version before this published a measured width as a
+  custom property, which no server can know, so the page painted at one position and jumped to
+  another the moment it hydrated.
+- **A web font swapping in re-sizes the box** and re-centres it, with no listener to forget.
+- **There is no ratchet.** An element measured through script is as wide as the last answer made
+  it, so a second pass on a narrower article would shrink the rail and never let it back.
 
-The icon on the return control is outside the box by design: it is translated left of the shared
-edge so the words line up with the entries and the arrow sits beyond them. A box drawn around it
-would push every entry right by the width of an ornament.
+Collapsing changes nothing: the bars occupy less of the box, and the box, the centring and the hit
+area stay where they were.
+
+**Only the entries size the box.** The return control is taken out of its flow and the active
+indicator is absolutely positioned, so neither can widen it -- which is what lets the indicator and
+the return icon hang outside its left edge as ornaments. Both are tuned to that edge: the icon is
+translated left of it so the word the control carries lines up with the entries, and a box drawn
+around either would push every entry right by the width of a decoration.
 
 ### Absent rather than squeezed
 
