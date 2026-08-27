@@ -384,6 +384,25 @@ That holds for the compiled entry. The rendered heading also carries a real supe
 table of contents strips `.fn-ref` before reading a heading back out of the DOM -- without it an
 entry gained a stray digit at hydration, which is how the rule was found.
 
+## A spoiler is fog, not redaction
+
+`:spoiler[the words]` keeps its words in the sentence but out of view: fogged by a blur, lifted
+while the pointer hovers or the element holds focus, restored the moment the reader moves away.
+Telegram's spoiler is the model. No markdown dialect standardises one -- `||text||` is a
+convention three platforms happen to share and CommonMark never adopted -- so this is a DLC
+directive like `:t` and `:fn`, not a syntax borrowed from anywhere.
+
+The hiding is a display choice and stays in CSS. The words remain real in the compiled HTML --
+selectable, translated segment text, read by assistive technology -- because a reader who cannot
+hover is owed the content, not the ceremony. For the same reason the reveal listens to `:focus`
+rather than `:focus-visible`: a tap's focus is the only ask a touch screen has, and revealing is
+this element's whole job, while the focus ring it wears through `.focus-link` stays
+keyboard-only. There is no JavaScript to toggle it, so nothing has to hydrate before the fog
+lifts.
+
+The markdown target unwraps the directive to its words. That target's readers are models, and
+the words are worth more to them than the fact that a page would have hidden them.
+
 ## Back is one step up the reading trail {#back-is-one-step-up-the-reading-trail}
 
 The return control at the top left of an article does not mean "the homepage". It means one step

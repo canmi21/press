@@ -401,6 +401,29 @@
 		}
 	}
 
+	/* A spoiler keeps its words in the line but out of view until asked: fogged by blur, lifted
+	   while hovered or focused, restored when the reader moves away. `:focus`, not
+	   `:focus-visible` -- a tap's focus is the only reveal a touch screen has, and revealing is
+	   the element's whole job, unlike the ring, which stays keyboard-only via .focus-link.
+	   See spec/styling.md. */
+	.article-body :global(.spoiler) {
+		border-radius: 0.25rem;
+		cursor: pointer;
+		filter: blur(0.28em);
+		transition: filter 200ms ease-out;
+	}
+
+	.article-body :global(.spoiler:hover),
+	.article-body :global(.spoiler:focus) {
+		filter: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.article-body :global(.spoiler) {
+			transition: none;
+		}
+	}
+
 	/* A quoted source is a prose inset, not an authored callout. See spec/styling.md. */
 	.article-body :global(blockquote) {
 		padding: 1rem 1.125rem 1rem 1.375rem;

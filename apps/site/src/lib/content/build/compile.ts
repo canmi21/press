@@ -313,6 +313,19 @@ function proseHtml(node: RootContent, newTabNote: string): string {
 						],
 					};
 				}
+				// A spoiler fogs its words until the reader asks for them; the asking is CSS
+				// (hover or focus lifts the blur) so nothing here is live. The text stays real
+				// underneath -- selectable, translated, read by assistive technology -- because
+				// the fog is a display choice, not redaction. tabindex gives keyboards and taps
+				// a way to ask on screens that never hover. See spec/styling.md.
+				if (directive.name === 'spoiler') {
+					return {
+						type: 'element',
+						tagName: 'span',
+						properties: { className: ['spoiler', 'focus-link'], tabIndex: 0 },
+						children,
+					};
+				}
 				return {
 					type: 'element',
 					tagName: 'span',
@@ -366,6 +379,8 @@ function lowerDirectives(nodes: RootContent[]): RootContent[] {
 			}
 			if ('bold' in attrs) return [{ type: 'strong', children } as unknown as RootContent];
 			if ('italic' in attrs) return [{ type: 'emphasis', children } as unknown as RootContent];
+			// `:spoiler` also lands here on purpose: plain text has no fog to lift, and this
+			// target's readers are models, so the words are worth more than the hiding.
 			return children;
 		}
 		return [node];

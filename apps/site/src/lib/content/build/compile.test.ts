@@ -55,6 +55,28 @@ it('renders a translator note as an explicit control instead of a native tooltip
 	expect(prose.html).not.toContain('title=');
 });
 
+it('fogs a spoiler visually while leaving its words real in both targets', async () => {
+	const compiled = await compile(
+		'---\ntitle: Test\nlang: en-US\n---\n\nThe ending is :spoiler[nobody wins] after all.\n',
+		'/article',
+		{
+			newTabNote: 'opens in new tab',
+			resolveAsset: () => null,
+			highlight: async () => '',
+			sourceFile: 'contents/example.md',
+		},
+	);
+	const prose = compiled.blocks[0];
+	if (prose?.type !== 'prose') throw new Error('expected prose');
+
+	// The fog is CSS; the compiled output only names the class and makes the span reachable
+	// without a pointer. The words stay ordinary text inside it.
+	expect(prose.html).toContain('<span class="spoiler focus-link" tabindex="0">nobody wins</span>');
+	// The markdown target lifts the fog rather than spelling it: its readers are models.
+	expect(compiled.markdown).toContain('The ending is nobody wins after all.');
+	expect(compiled.markdown).not.toContain('spoiler');
+});
+
 it('marks prose links with the shared keyboard focus treatment', async () => {
 	const compiled = await compile(
 		'---\ntitle: Test\nlang: en-US\n---\n\nRead [the notes](https://example.com).\n',
