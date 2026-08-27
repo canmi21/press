@@ -32,6 +32,8 @@
 	<!-- After the words rather than above them: a heading's note belongs to the heading, and a
 	     marker floating off the cap line reads as belonging to the page. See spec/styling.md. -->
 	{#each notes as number (number)}<sup class="fn-ref"
-			><a id="fnref-{number}" href="#fn-{number}" class="fn-ref-link focus-link">{number}</a></sup
+			><a id="fnref-{number}" href="#fn-{number}" class="fn-ref-link focus-link jump-target"
+				>{number}</a
+			></sup
 		>{/each}
 </h2>

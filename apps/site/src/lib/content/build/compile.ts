@@ -249,7 +249,9 @@ function proseHtml(node: RootContent, newTabNote: string): string {
 									properties: {
 										href: `#fn-${number}`,
 										id: `fnref-${number}`,
-										className: ['fn-ref-link', 'focus-link'],
+										// The id sits here, so the scroll margin has to as well: returning to a
+										// marker lands it in the same band arriving at a section does.
+										className: ['fn-ref-link', 'focus-link', 'jump-target'],
 									},
 									children: [{ type: 'text', value: String(number) }],
 								},

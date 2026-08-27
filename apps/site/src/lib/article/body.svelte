@@ -10,6 +10,7 @@
 	import SvgCanvas from '$lib/blocks/svg-canvas.svelte';
 	import Tokei from '$lib/blocks/tokei/tokei.svelte';
 	import Twitter from '$lib/blocks/twitter.svelte';
+	import { jumpTo, movesThisPage, targetOf } from '$lib/client/jump';
 	import PopoverContent from '$lib/components/popover-content.svelte';
 	import * as m from '$lib/paraglide/messages';
 	import Info from '@lucide/svelte/icons/info';
@@ -55,9 +56,32 @@
 		open = true;
 	}
 
+	/**
+	 * A note's marker and its way back, both of them scrolled rather than jumped.
+	 *
+	 * Delegated from the article root because a marker in prose arrives as compiled HTML and has
+	 * no component to hang a handler on -- the same reason the translator's note above is handled
+	 * here. One listener covers markers in prose, markers in headings and the links at the end.
+	 */
+	function noteJump(target: EventTarget | null): HTMLAnchorElement | undefined {
+		if (!(target instanceof Element)) return undefined;
+		const found = target.closest<HTMLAnchorElement>('a.fn-ref-link, a.fn-note-back');
+		return found && root?.contains(found) ? found : undefined;
+	}
+
 	function handleClick(event: MouseEvent) {
 		const next = noteTrigger(event.target);
-		if (next) openNote(next);
+		if (next) {
+			openNote(next);
+			return;
+		}
+		const link = noteJump(event.target);
+		if (!link || !movesThisPage(event)) return;
+		const destination = targetOf(link);
+		if (!destination) return;
+		// The move is not an address: see spec/styling.md.
+		event.preventDefault();
+		jumpTo(destination);
 	}
 
 	function noteEvents(node: HTMLElement) {
