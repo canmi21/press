@@ -200,6 +200,25 @@ The lengths this is computed from sit together on `:root` in
 is repeated by hand: the width at which the rail appears is written as a number in the media query
 and has to be kept in step with the ones it is derived from.
 
+## The return control rests level with the title
+
+The control at the top left of an article sits on the same line as the article's heading. The two
+are the first things on the page, and one floating above the other reads as attached to nothing.
+
+It leaves that line only when something is in its way, which is the table of contents: opened
+under the cursor, or simply tall with entries in a short window. What counts as "in its way" is
+half the control plus the gap it keeps from the first entry, measured rather than assumed so a
+larger root size or a second line of text moves the threshold with it. Nothing here knows whether
+the entries are open or merely numerous -- both are a taller rail, and the same rule answers both.
+
+Below twice that clearance there is no room left to keep, and the control takes the middle of the
+band that remains rather than being pushed off the top edge. The two expressions are equal exactly
+where they meet, so the control slides between them as a window is resized instead of jumping.
+
+The rule before this one put the control in the middle of the band above the entries whether or
+not the band had room to spare. On an ordinary article that sat it 12px above the title -- close
+enough to look like a mistake rather than a decision, which is what it was.
+
 ## Article home navigation yields to the table of contents
 
 On a wide article viewport, the return control occupies the empty interval between the top of

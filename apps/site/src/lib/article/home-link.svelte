@@ -9,6 +9,8 @@
 	import { backTarget, readTrail } from './trail';
 
 	const DEFAULT_TOP_REM = 6.75;
+	/** The gap this control keeps above the first entry when it is sitting level with the title. */
+	const CLEARANCE_REM = 1;
 	const COLLAPSED_BAR_REM = 0.25;
 	const HOME_SPRING = { type: 'spring' as const, stiffness: 600, damping: 32, mass: 0.85 };
 
@@ -143,12 +145,16 @@
 					collapsed: tocHeight(toc, 'collapsed', rootPixels),
 					expanded: tocHeight(toc, 'expanded', rootPixels),
 				};
+				// Half the control plus its gap: what has to stay clear below it for the title
+				// alignment to hold. Measured rather than assumed, so a second line of text or a
+				// larger root size moves the threshold with it.
+				const clearance = node.getBoundingClientRect().height / 2 + CLEARANCE_REM * rootPixels;
 				restingEndpoints = {
 					collapsed:
-						homeRestingCenter(restingCenter, window.innerHeight, heights.collapsed) -
+						homeRestingCenter(restingCenter, window.innerHeight, heights.collapsed, clearance) -
 						DEFAULT_TOP_REM * rootPixels,
 					expanded:
-						homeRestingCenter(restingCenter, window.innerHeight, heights.expanded) -
+						homeRestingCenter(restingCenter, window.innerHeight, heights.expanded, clearance) -
 						DEFAULT_TOP_REM * rootPixels,
 				};
 			}
