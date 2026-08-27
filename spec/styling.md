@@ -127,6 +127,14 @@ sideways as a window is dragged is a worse fault than any arrangement of the fur
 Below the width where the article can hold its own size, the article is what gives, which is a
 matter this rule stays out of.
 
+**The rail is placed against the text, not against the article's box.** The box carries 1.5rem of
+padding and has no border and no background, so that strip is empty and a rail centred on the box
+edge sits 1.5rem nearer the window than it is to the first column of type -- centred by the
+numbers and visibly left of centre, which is exactly how the fault was reported. What the rail is
+centred within therefore runs from the window edge to the text. It also buys the width back: the
+rail appears 1.5rem sooner than it otherwise would, because the space it needs is measured where
+the reader measures it.
+
 Inside that space the rail passes through three stages:
 
 1. Too narrow for the rail: no rail. The article alone, centred, as on any other page.

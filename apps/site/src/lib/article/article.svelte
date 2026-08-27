@@ -234,7 +234,7 @@
 <main class="min-h-screen bg-page text-text">
 	<Toc {toc} />
 	<HomeLink locale={locale.code} />
-	<div class="article-column px-6 py-24">
+	<div class="article-column py-24">
 		<article>
 			<header>
 				<h1 class="text-text-strong">{meta.title}</h1>

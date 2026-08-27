@@ -99,16 +99,24 @@
 	   work with. Below this width the window is too narrow for the article itself and the
 	   article is the thing that gives, which is a matter this rule stays out of. */
 	--rail-column: 45rem;
+	/* The article box's own padding. The box has no border and no background, so this much of it
+	   is empty: what a reader sees the rail sitting beside is the text, not the box. */
+	--rail-pad: 1.5rem;
 	--rail-gutter: calc((100% - var(--rail-column)) / 2);
-	/* The least the rail keeps on either side of itself -- window edge on one, article on the
-	   other. Centred in the gutter the two are equal, so this is what decides both the width the
-	   rail first appears at and how much air it has when it does. */
-	--rail-edge: 3rem;
+	/* What the rail is placed within: window edge to the first column of text, which is the gutter
+	   plus the padding nobody can see. Measuring to the box edge instead sat the rail 1.5rem
+	   nearer the window than the text at every width -- centred by the numbers and visibly left of
+	   centre, which is how it was noticed. */
+	--rail-field: calc(var(--rail-gutter) + var(--rail-pad));
+	/* The least the rail keeps on either side of itself -- window edge on one, text on the other.
+	   Centred in the field the two are equal, so this decides both the width the rail first
+	   appears at and how much air it has when it does. */
+	--rail-edge: 2rem;
 	/* How far the rail may travel from the window edge before it stops following the centre. */
 	--rail-edge-max: 8rem;
-	/* Centred in the gutter, capped on the left. Written once because the table of contents and
-	   the return control have to agree exactly. */
-	--rail-left: min(calc((var(--rail-gutter) - var(--rail-width)) / 2), var(--rail-edge-max));
+	/* Centred in the field, capped on the left. Written once because the table of contents and the
+	   return control have to agree exactly. */
+	--rail-left: min(calc((var(--rail-field) - var(--rail-width)) / 2), var(--rail-edge-max));
 }
 
 /* The column running down the left of an article -- the table of contents and the return control
@@ -127,15 +135,17 @@
 .article-column {
 	margin-inline: auto;
 	max-width: var(--rail-column);
+	/* Here rather than as a utility in the markup, because the rail measures against it. */
+	padding-inline: var(--rail-pad);
 }
 
-/* Shown only where the gutter holds the rail at its expanded width with its margin on both sides:
-   45rem of article, plus 12rem + 2 * 3rem in each gutter. Below that the rail is absent rather
-   than squeezed -- a table of contents narrowed until its entries wrap to three lines is not a
+/* Shown only where the field holds the rail at its expanded width with its margin on both sides:
+   12rem + 2 * 2rem of rail, less the 1.5rem of article padding the field borrows, is 14.5rem
+   beside each side of a 45rem article. Below that the rail is absent rather than squeezed -- a table of contents narrowed until its entries wrap to three lines is not a
    smaller version of itself, and pressed against the window edge it reads as something that fell
    off the page. A media query cannot ask a custom property, so this number agrees with the ones
    above by hand; change one and check this. */
-@media (min-width: 81rem) {
+@media (min-width: 74rem) {
 	.article-rail {
 		display: flex;
 	}
