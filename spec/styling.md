@@ -114,35 +114,52 @@ The article ToC keeps its own offset rather than this one. It was measured again
 indicator, which tracks the heading it points at, and a share of the viewport is not the
 geometry that was tuned. An exception with a reason is not a second rule.
 
-## The rail is centred in the gutter, and absent when it does not fit
+## The article is centred; the rail adapts to the space beside it
 
 The table of contents and the return control are one rail down the left of an article, and they
-move as one: the same width, the same left edge, written once in `.article-rail` and consumed by
-both. They differ vertically and nowhere else.
+move as one: the same width, the same left edge, written once and consumed by both. They differ
+vertically and nowhere else.
 
-**The article's width is not negotiable.** It is centred and fixed, the rail lives in the gutter
-that leaves, and nothing about the rail may push it. A viewport too narrow for the article shrinks
-the article, which is a separate matter and happens well below anything discussed here.
+**The article never moves.** It is centred in the window at every width, so the space to its right
+is empty and exactly as wide as the space on its left. That left space is all the rail has, and
+the rail adapting to it is never allowed to shift the article -- a column of text that slides
+sideways as a window is dragged is a worse fault than any arrangement of the furniture beside it.
+Below the width where the article can hold its own size, the article is what gives, which is a
+matter this rule stays out of.
 
-Within that gutter the rail is centred, until centring would carry it more than `--rail-edge-max`
-from the viewport edge. From there it holds still and a growing window opens the gap between rail
-and article instead. The limit exists because a rail is read from the corner of the eye: one that
-keeps wandering inward on a wide monitor stops being peripheral without ever becoming part of the
-text. The default puts the limit exactly where it first binds, so the rail's margin and its gap to
-the article are equal at that moment and only the gap grows after.
+Inside that space the rail passes through three stages:
+
+1. Too narrow for the rail: no rail. The article alone, centred, as on any other page.
+2. Wide enough: the rail appears at its full expanded width, centred in the space, so its margin
+   from the window edge and its gap to the article are equal.
+3. Past `--rail-edge-max`: the rail's left margin holds still, and every further pixel goes into
+   the gap between rail and article.
+
+Stage 3 exists because a rail is read from the corner of the eye. Left centred forever it drifts
+inward as the window grows, and on a wide monitor a rail halfway to the text is neither beside the
+article nor at the edge of anything.
 
 **Below the width where it fits, the rail is absent rather than squeezed.** It appears only when
-the gutter holds the rail at its expanded width with its margin on both sides. The previous rule
-gave it whatever the gutter had, so between the old breakpoint and the width it actually needed it
-was drawn narrow and pressed against the window edge, where entries wrap to three lines and the
-whole column reads as something that fell off the page. A control that cannot be shown properly is
-better not shown: the headings are still in the document, and the article is what the reader came
-for.
+the space holds it at its expanded width with `--rail-edge` on both sides. An earlier rule gave it
+whatever the space had, so between the old breakpoint and the width it actually needed it was
+drawn narrow and pressed against the window edge, where entries wrap to three lines and the column
+reads as something that fell off the page. A control that cannot be shown properly is better not
+shown: the headings are still in the document, and the article is what the reader came for.
 
-One cost, stated because it will surprise somebody: the appearing and disappearing happens at a
-window width people actually use, so a laptop a little under it gets no table of contents at all.
-That is the rule doing what it says rather than a threshold set too high, and the four lengths it
-is computed from are together in one place to be argued with.
+`--rail-edge` is the number that decides both when the rail appears and how much air it has when
+it does, and the two cannot be separated: centred in the space, its margin and its gap are the
+same length. Raising it buys a rail that never looks cramped at the cost of a band of window
+widths that show none, and that trade is the whole of the setting.
+
+Centring the rail and the article together as one block, so the pair sits in the middle of the
+window, was built and rejected. It balances the page at every width and it moves the article --
+right by half the rail as the rail appears, and off the window's centre from then on. The article
+holding still is worth more.
+
+The lengths this is computed from sit together on `:root` in
+[utilities.css](../apps/site/src/styles/utilities.css) so they can be argued with in one place. One
+of them is repeated by hand: a media query cannot read a custom property, so the width at which the
+rail appears is written as a number and has to be kept in step with the three it is derived from.
 
 ## Article home navigation yields to the table of contents
 

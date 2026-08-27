@@ -92,33 +92,50 @@
 
    The article's width is what everything else yields to: it is centred and fixed, the rail lives
    in what is left, and nothing here can push it. */
-.article-rail {
+:root {
 	--rail-width: 12rem;
-	/* Half the article box, which is 45rem wide. The gutter is measured from this. */
-	--rail-column: 22.5rem;
-	/* The gap the rail keeps from the viewport edge and from the article -- the same 1.5rem the
-	   article already holds around its own text. */
-	--rail-edge: 1.5rem;
-	/* How far the rail may drift from the viewport edge before it stops following the centre. */
-	--rail-edge-max: 6rem;
-	--rail-gutter: calc(50% - var(--rail-column));
-
-	display: none;
-	width: var(--rail-width);
-	/* Centred in the gutter, until centring would carry it past the limit above. From there it
-	   holds still and the growing window opens the gap between rail and article instead -- a rail
-	   is read from the corner of the eye, and one that keeps wandering inward on a wide monitor
-	   stops being peripheral without ever becoming part of the text. */
-	left: min(calc((var(--rail-gutter) - var(--rail-width)) / 2), var(--rail-edge-max));
+	/* The article box at its widest, and it is centred in the window and stays centred. The
+	   space to its right is left empty; the matching space on its left is all the rail gets to
+	   work with. Below this width the window is too narrow for the article itself and the
+	   article is the thing that gives, which is a matter this rule stays out of. */
+	--rail-column: 45rem;
+	--rail-gutter: calc((100% - var(--rail-column)) / 2);
+	/* The least the rail keeps on either side of itself -- window edge on one, article on the
+	   other. Centred in the gutter the two are equal, so this is what decides both the width the
+	   rail first appears at and how much air it has when it does. */
+	--rail-edge: 3rem;
+	/* How far the rail may travel from the window edge before it stops following the centre. */
+	--rail-edge-max: 8rem;
+	/* Centred in the gutter, capped on the left. Written once because the table of contents and
+	   the return control have to agree exactly. */
+	--rail-left: min(calc((var(--rail-gutter) - var(--rail-width)) / 2), var(--rail-edge-max));
 }
 
-/* Shown only where the gutter fits the rail at its expanded width with its margin on both sides:
-   2 * 22.5rem of article, plus 12rem + 2 * 1.5rem of rail on either side. Below that the rail is
-   absent rather than squeezed -- a table of contents narrowed until its entries wrap to three
-   lines is not a smaller version of itself, and pressed against the window edge it reads as
-   something that fell off the page. A media query cannot ask a custom property, so this number
-   agrees with the four above by hand; change one and check this. */
-@media (min-width: 75rem) {
+/* The column running down the left of an article -- the table of contents and the return control
+   -- is one rail, so its horizontal geometry is written above once and both consume it. Each keeps
+   its own vertical placement, which is the part that actually differs. The two used to carry
+   identical copies of this arithmetic, which is the shape a pair of numbers takes just before they
+   stop agreeing. See spec/styling.md. */
+.article-rail {
+	display: none;
+	width: var(--rail-width);
+	left: var(--rail-left);
+}
+
+/* The article is centred in the window and nothing moves it -- not the rail, not the width of the
+   window. Whatever the rail does, it does inside the space beside it. */
+.article-column {
+	margin-inline: auto;
+	max-width: var(--rail-column);
+}
+
+/* Shown only where the gutter holds the rail at its expanded width with its margin on both sides:
+   45rem of article, plus 12rem + 2 * 3rem in each gutter. Below that the rail is absent rather
+   than squeezed -- a table of contents narrowed until its entries wrap to three lines is not a
+   smaller version of itself, and pressed against the window edge it reads as something that fell
+   off the page. A media query cannot ask a custom property, so this number agrees with the ones
+   above by hand; change one and check this. */
+@media (min-width: 81rem) {
 	.article-rail {
 		display: flex;
 	}
