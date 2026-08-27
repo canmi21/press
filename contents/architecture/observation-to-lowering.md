@@ -15,11 +15,11 @@ lastmod: 2026-08-23T05:27:18Z
 
 那么简单说 Seam 首先是一套协议，而不是又一个 SSR runtime，意味着 build-time 编出一份带 `slot` 的 **HTML skeleton**，runtime-time / request-time 只往这些 `slot` 里塞值，`if` / `each` / `match` 这些也一样是写死在 skeleton 里的协议节点。所以请求进来的时候没有任何一个 UI 组件被执行过，服务端要做的只有"看图填空"这一件事，那么它自然也就不必是 Node 或者 Bun 了，**Rust** / **Go** 之类的后端填一份 HTML 不是也可以嘛，能有什么难的呢?! ~~但是其实后面也没有完全干掉 JS Runtime, 我的意思是可以不要但是前提是你能接受部分限制~~ 但是无论如何，总体性能提升绝对是指数级别的，因为达到大多数 **SSR** 效果不再要求 **runtime-time / request-time** 跑 **UI render** 了...
 
-## 请求时模型?:fn{is="这里的模型指的是执行模型，不是数据模型。"} {#request-time-model}
+## 请求时:fn[模型]{is="指的是执行模型，不是数据模型。"}? {#request-time-model}
 
 大概从今年下半年开始，我把本站完全从 `TanStack Start` **React** 完全 `port` 为了 `SvelteKit` **Svelte** 全部迁移完之后，我发现它确实很好：`ssr` 的性能开销差不多降了一个数量级别，水合开销非常小，跑起来很舒服，框架编译的哲学也非常棒、非常轻量。但是 `Kit` 的部分总有一些让我觉得很不尽人意的地方。但是这其中大部分可以通过插件解决~~毕竟是 Vite 拼的~~ ，但是总是又一些部分是不能动的；但是这大概率也是我的问题，因为 seam 想要改的地方可能和任何一个存在的 `meta` 框架都有本质上冲突，~~本质上是我在挑战他们的 执行模型(每请求跑 render 函数)、数据边界(load 和 UI 糊在一起)、后端能力(绑死 JS runtime)~~.
 
-## 更精简的伪 SSR:fn{is="伪 SSR 在这里特指每请求仍要执行一次 UI render 函数的那类方案。"} {#beyond-ssr}
+## 更精简的伪 :fn[SSR]{is="这里特指每请求仍要执行一次 UI render 函数的那类方案。"} {#beyond-ssr}
 
 这里不用想肯定有人问：这不就是 `Astro` / `Qwik` / `Marko` 嘛，雀食 seam 在语言形状上 `Marko` 最近，默认少 JS 上 `Astro` 最近，不 `replay hydrate` 上 `Qwik` 最接近；但是呢 他们的 `request-time` 仍是在跑 UI 程序 `island` 各自 `render`、`Qwik` 那次 `SSR`、`Marko` 编译出来的 JS 模板函数，都还是每请求执行一块 `renderer`.
 

@@ -489,9 +489,9 @@ const noteContext = {
 it('numbers notes across the whole article, not within each block', async () => {
 	const compiled = await compile(
 		'---\ntitle: Test\nlang: en-US\n---\n\n' +
-			'First:fn{is="One."} para.\n\n' +
-			'Second:fn{is="Two."} para.\n\n' +
-			'Third:fn{is="Three."} para.\n',
+			'The :fn[first]{is="One."} para.\n\n' +
+			'The :fn[second]{is="Two."} para.\n\n' +
+			'The :fn[third]{is="Three."} para.\n',
 		'/article',
 		noteContext,
 	);
@@ -505,9 +505,9 @@ it('numbers notes across the whole article, not within each block', async () => 
 	expect(compiled.blocks.at(-1)).toEqual({
 		type: 'footnotes',
 		notes: [
-			{ number: 1, text: 'One.' },
-			{ number: 2, text: 'Two.' },
-			{ number: 3, text: 'Three.' },
+			{ number: 1, phrase: 'first', text: 'One.' },
+			{ number: 2, phrase: 'second', text: 'Two.' },
+			{ number: 3, phrase: 'third', text: 'Three.' },
 		],
 	});
 });
@@ -516,7 +516,7 @@ it('numbers notes across the whole article, not within each block', async () => 
 // reader who met the explanation twice was given it twice deliberately.
 it('keeps notes with identical text apart', async () => {
 	const compiled = await compile(
-		'---\ntitle: Test\nlang: en-US\n---\n\nA:fn{is="Same."} and B:fn{is="Same."}.\n',
+		'---\ntitle: Test\nlang: en-US\n---\n\n:fn[A]{is="Same."} and :fn[B]{is="Same."}.\n',
 		'/article',
 		noteContext,
 	);
@@ -524,28 +524,35 @@ it('keeps notes with identical text apart', async () => {
 	expect(compiled.blocks.at(-1)).toEqual({
 		type: 'footnotes',
 		notes: [
-			{ number: 1, text: 'Same.' },
-			{ number: 2, text: 'Same.' },
+			{ number: 1, phrase: 'A', text: 'Same.' },
+			{ number: 2, phrase: 'B', text: 'Same.' },
 		],
 	});
 });
 
 // The reason the marker carries no children: a heading is flattened to a string for the ToC and
 // the slug, and a childless directive leaves nothing behind when it is.
-it('marks a heading without letting the note reach the table of contents', async () => {
+// The marked words are the heading's own, so they belong in its entry; what must not arrive there
+// is the note. Flattening a heading to a string keeps the children and drops the attribute, which
+// is the whole reason the note lives in one.
+it('keeps a marked headings words in the table of contents and its note out', async () => {
 	const compiled = await compile(
-		'---\ntitle: Test\nlang: en-US\n---\n\n## Model:fn{is="Execution, not data."} {#model}\n',
+		'---\ntitle: Test\nlang: en-US\n---\n\n## The :fn[model]{is="Execution, not data."} matters {#model}\n',
 		'/article',
 		noteContext,
 	);
 
-	expect(compiled.toc).toEqual([{ slug: 'model', text: 'Model', depth: 2 }]);
+	expect(compiled.toc).toEqual([{ slug: 'model', text: 'The model matters', depth: 2 }]);
 	expect(compiled.blocks[0]).toEqual({
 		type: 'heading',
 		depth: 2,
 		slug: 'model',
-		text: 'Model',
+		text: 'The model matters',
 		notes: [1],
+	});
+	expect(compiled.blocks.at(-1)).toEqual({
+		type: 'footnotes',
+		notes: [{ number: 1, phrase: 'model', text: 'Execution, not data.' }],
 	});
 });
 
@@ -554,16 +561,16 @@ it('marks a heading without letting the note reach the table of contents', async
 it('refuses a note whose text was lost to a straight quote', async () => {
 	await expect(
 		compile(
-			'---\ntitle: Test\nlang: en-US\n---\n\nHe:fn{is="said "hi" then"} spoke.\n',
+			'---\ntitle: Test\nlang: en-US\n---\n\nHe :fn[said]{is="quote "hi" here"} it.\n',
 			'/article',
 			noteContext,
 		),
-	).rejects.toThrow('contents/example.md: :fn needs an is="..." note');
+	).rejects.toThrow('contents/example.md: :fn is :fn[the words]{is="what they mean"}');
 });
 
 it('gives the markdown target real footnotes', async () => {
 	const compiled = await compile(
-		'---\ntitle: Test\nlang: en-US\n---\n\n## Model:fn{is="One."} {#model}\n\nBody:fn{is="Two."} here.\n',
+		'---\ntitle: Test\nlang: en-US\n---\n\n## :fn[Model]{is="One."} {#model}\n\n:fn[Body]{is="Two."} here.\n',
 		'/article',
 		noteContext,
 	);

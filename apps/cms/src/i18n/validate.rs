@@ -31,9 +31,14 @@ impl fmt::Display for Error {
 /// escape for it. Empty words and explanations are rejected because neither can communicate a
 /// note even though a markdown parser can represent them.
 pub fn notes_well_formed(text: &str) -> bool {
+	well_formed(text, ":tn")
+}
+
+/// The shape both notes share: `:name[words]{is="explanation"}`, neither half empty.
+fn well_formed(text: &str, name: &str) -> bool {
 	let mut rest = text;
-	while let Some(at) = rest.find(":tn") {
-		rest = &rest[at + 3..];
+	while let Some(at) = rest.find(name) {
+		rest = &rest[at + name.len()..];
 		let Some(after_open) = rest.strip_prefix('[') else {
 			return false;
 		};
@@ -58,33 +63,17 @@ pub fn notes_well_formed(text: &str) -> bool {
 	true
 }
 
-/// Whether every `:fn` is one complete `:fn{is="explanation"}` directive.
+/// Whether every `:fn` is one complete `:fn[words]{is="explanation"}` directive.
 ///
-/// The author's note carries no words of its own -- the marker attaches after what it explains
-/// rather than wrapping it -- so its shape is shorter than a translator's note and shares only the
-/// quoting rule. An ASCII quote cannot appear inside the explanation because the directive syntax
-/// has no escape for one; a note whose text was eaten by one still parses, as a marker that says
-/// nothing, which is why this is checked rather than left to render.
+/// The same shape as a translator's note, and checked for the same reason: an ASCII quote cannot
+/// appear inside the explanation because the directive syntax has no escape for one, and a note
+/// whose text was eaten by one still parses -- as words with a marker that says nothing.
 ///
-/// The site refuses the same shape when it compiles the source. This is the other end of that:
-/// the note travels inside its paragraph to be translated, so a model can hand back a directive
-/// the author never wrote.
+/// The site refuses it when it compiles the source. This is the other end: an author's note
+/// travels inside its paragraph to be translated, so a model can hand back a directive the author
+/// never wrote.
 pub fn author_notes_well_formed(text: &str) -> bool {
-	let mut rest = text;
-	while let Some(at) = rest.find(":fn") {
-		rest = &rest[at + 3..];
-		let Some(after) = rest.strip_prefix("{is=\"") else {
-			return false;
-		};
-		let Some(end) = after.find('"') else {
-			return false;
-		};
-		if after[..end].trim().is_empty() || !after[end + 1..].starts_with('}') {
-			return false;
-		}
-		rest = &after[end + 2..];
-	}
-	true
+	well_formed(text, ":fn")
 }
 
 pub fn translation(region: Region, text: &str) -> Result<(), Error> {
@@ -162,24 +151,27 @@ mod tests {
 	#[test]
 	fn malformed_author_note_shapes_are_rejected() {
 		assert!(author_notes_well_formed(
-			"Model:fn{is=\"execution, not data\"} here"
+			"The :fn[model]{is=\"execution, not data\"} here"
 		));
 		assert!(author_notes_well_formed("no notes at all"));
-		// The shape a straight quote leaves behind: the attribute ends early and the rest is loose.
-		assert!(!author_notes_well_formed(":fn{is=\"said \"hi\" then\"}"));
-		assert!(!author_notes_well_formed(":fn{is=\"\"}"));
-		assert!(!author_notes_well_formed(":fn{is=\"unclosed brace\""));
-		// A translator's note is not an author's note, and neither shape accepts the other.
-		assert!(!author_notes_well_formed(":fn[words]{is=\"a gloss\"}"));
+		// The shape a straight quote leaves behind: the attribute ends early, the rest is loose.
+		assert!(!author_notes_well_formed(
+			":fn[said]{is=\"quote \"hi\" here\"}"
+		));
+		assert!(!author_notes_well_formed(":fn[]{is=\"a note\"}"));
+		assert!(!author_notes_well_formed(":fn[word]{is=\"\"}"));
+		assert!(!author_notes_well_formed(":fn[word]{is=\"unclosed brace\""));
+		// A marker with no words is the shape this replaced, and is refused as incomplete.
+		assert!(!author_notes_well_formed(":fn{is=\"a note\"}"));
 	}
 
 	#[test]
 	fn a_translation_carrying_a_broken_author_note_is_refused() {
 		assert_eq!(
-			translation(Region::Body, "Model:fn{is=\"broken}"),
+			translation(Region::Body, ":fn[model]{is=\"broken}"),
 			Err(Error::MalformedAuthorNote)
 		);
-		assert!(translation(Region::Body, "Model:fn{is=\"fine\"}").is_ok());
+		assert!(translation(Region::Body, ":fn[model]{is=\"fine\"}").is_ok());
 	}
 
 	#[test]

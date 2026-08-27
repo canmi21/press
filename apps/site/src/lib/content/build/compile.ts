@@ -146,18 +146,19 @@ function styleClasses(attrs: DirectiveAttrs): string[] {
  * here rather than rendering an empty marker. `validate.rs` refuses the same shape coming back
  * from a translation.
  */
-function numberNotes(node: Nodes, notes: string[], source: string): number[] {
+function numberNotes(node: Nodes, notes: ArticleNote[], source: string): number[] {
 	const numbers: number[] = [];
 	const visit = (current: Nodes): void => {
 		if (current.type === 'textDirective' && (current as TextDirective).name === 'fn') {
 			const directive = current as TextDirective;
 			const said = ((directive.attributes ?? {}) as DirectiveAttrs).is?.trim();
-			if (!said) {
+			const phrase = mdastToString(directive).trim();
+			if (!said || !phrase) {
 				throw new Error(
-					`${source}: :fn needs an is="..." note, and that note cannot contain a straight quote`,
+					`${source}: :fn is :fn[the words]{is="what they mean"}, and that note cannot contain a straight quote`,
 				);
 			}
-			notes.push(said);
+			notes.push({ number: notes.length + 1, phrase, text: said });
 			directive.data = { ...directive.data, footnoteNumber: notes.length };
 			numbers.push(notes.length);
 			return;
@@ -230,28 +231,31 @@ function proseHtml(node: RootContent, newTabNote: string): string {
 						children,
 					};
 				}
-				// An author's note is a marker, not a span: it attaches after the word it belongs to
-				// and carries its text to the end of the article. The number is the whole of what
-				// is drawn, so the marker stays out of the way of the sentence it sits in.
+				// An author's note wraps the words it explains and puts its marker after them, so
+				// the sentence reads exactly as it would without the note and the collected note
+				// at the end can name what it is about.
 				if (directive.name === 'fn') {
 					const number = noteNumber(directive);
-					return {
-						type: 'element',
-						tagName: 'sup',
-						properties: { className: ['fn-ref'] },
-						children: [
-							{
-								type: 'element',
-								tagName: 'a',
-								properties: {
-									href: `#fn-${number}`,
-									id: `fnref-${number}`,
-									className: ['fn-ref-link', 'focus-link'],
+					return [
+						...children,
+						{
+							type: 'element',
+							tagName: 'sup',
+							properties: { className: ['fn-ref'] },
+							children: [
+								{
+									type: 'element',
+									tagName: 'a',
+									properties: {
+										href: `#fn-${number}`,
+										id: `fnref-${number}`,
+										className: ['fn-ref-link', 'focus-link'],
+									},
+									children: [{ type: 'text', value: String(number) }],
 								},
-								children: [{ type: 'text', value: String(number) }],
-							},
-						],
-					};
+							],
+						},
+					];
 				}
 				// A translator's note explains the marked words in place. It becomes a real button
 				// because a native title tooltip cannot carry these paragraph-length notes on touch
@@ -341,6 +345,7 @@ function lowerDirectives(nodes: RootContent[]): RootContent[] {
 			if (directive.name === 'fn') {
 				const number = String(noteNumber(directive));
 				return [
+					...children,
 					{
 						type: 'footnoteReference',
 						identifier: number,
@@ -642,7 +647,7 @@ export async function compile(
 	const md: string[] = [];
 	const text: string[] = [];
 	// Numbered by where they are written, across the whole article rather than per block.
-	const notes: string[] = [];
+	const notes: ArticleNote[] = [];
 
 	for (const node of tree.children) {
 		if (node.type === 'yaml') {
@@ -923,18 +928,19 @@ export async function compile(
 	}
 
 	if (notes.length > 0) {
-		const collected: ArticleNote[] = notes.map((said, index) => ({
-			number: index + 1,
-			text: said,
-		}));
-		blocks.push({ type: 'footnotes', notes: collected });
+		blocks.push({ type: 'footnotes', notes });
 		feed.push(
-			`<ol>${collected
-				.map(({ number, text: said }) => `<li id="fn-${number}">${escapeHtml(said)}</li>`)
+			`<ol>${notes
+				.map(
+					({ number, phrase, text: said }) =>
+						`<li id="fn-${number}"><strong>${escapeHtml(phrase)}</strong> ${escapeHtml(said)}</li>`,
+				)
 				.join('')}</ol>`,
 		);
-		md.push(collected.map(({ number, text: said }) => `[^${number}]: ${said}`).join('\n'));
-		text.push(collected.map(({ text: said }) => said).join('\n'));
+		// The definition carries only what the note says. The phrase is already beside the marker
+		// in the body, and a footnote that repeated the word it hangs off would read it twice.
+		md.push(notes.map(({ number, text: said }) => `[^${number}]: ${said}`).join('\n'));
+		text.push(notes.map(({ phrase, text: said }) => `${phrase} ${said}`).join('\n'));
 	}
 
 	if (!meta) throw new Error(`missing frontmatter: ${url}`);

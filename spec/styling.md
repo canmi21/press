@@ -311,25 +311,38 @@ The section at the end is the writer's own words, deferred rather than demoted, 
 the size and colour the rest was read at. Only its heading is quiet, because a heading there is
 chrome rather than content.
 
-**A note is led by the same superscript that marked it.** It was a right-aligned counter column
-first, which drew a table: a list of arrows down one edge and a rail of digits down the other,
+**A note names its words first, then its number, then what it says.** The quoted phrase is what
+lets the section be read on its own, in the order a reader needs it: what this is about, which
+mark it was, what it means.
+
+**The number is the same superscript that marked it in the prose.** It was a right-aligned counter
+column first, which drew a table: a list of arrows down one edge and a rail of digits down the other,
 neither of which the reader had met before. Reusing the marker means the number in the note and
 the number in the prose are one thing seen twice, and the section stops looking like an apparatus
-bolted underneath.
+bolted underneath. It sits between the phrase and the note, the one place it needs air on the side
+facing the note -- in the prose it follows the word it belongs to and must not be spaced off it.
 
 The list stays an ordered list for what a screen reader is told, with nothing of a list drawn --
 so the visible superscript is hidden from it, or the ordinal would be announced twice. The way
 back trails the note's last word rather than sitting at the right edge: it belongs to the sentence
 just read, and a column of arrows is more furniture.
 
-### The marker carries no words
+### The marker wraps the words it explains
 
-`:fn` wraps nothing. The marker attaches after what it explains rather than around it, which is
-what separates it from `:tn`, and it is also what keeps a note out of the table of contents: a
-heading is flattened to a string for its entry and its slug, and a directive with no children
-leaves nothing behind when it is. The rail therefore needs no rule about notes at all.
+`:fn[the words]{is="what they mean"}` -- the same shape as a translator's note, and for the same
+reason: something has to say which words are being explained. Without them a collected note is a
+sentence in mid-air, and a reader who scrolled down to it has to hold the one they left in their
+head to make sense of it.
 
-That holds for the compiled entry. The rendered heading does carry a real superscript, so the
+The words render exactly as written and the marker follows them, so the sentence reads as it
+would without the note at all.
+
+**A heading is safe because the wrapped words are its own.** A heading is flattened to a string
+for its entry and its slug, and flattening keeps a directive's children while dropping its
+attributes -- so the words arrive in the table of contents, where they belong, and the note does
+not. That is the whole reason the note lives in an attribute rather than beside the words.
+
+That holds for the compiled entry. The rendered heading also carries a real superscript, so the
 table of contents strips `.fn-ref` before reading a heading back out of the DOM -- without it an
 entry gained a stray digit at hydration, which is how the rule was found.
 

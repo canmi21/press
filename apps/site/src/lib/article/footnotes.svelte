@@ -17,10 +17,13 @@
 	<ol class="fn-notes-list">
 		{#each notes as note (note.number)}
 			<li id="fn-{note.number}" class="jump-target fn-note">
-				<!-- The same superscript the marker in the prose is, so the two read as one thing
-				     seen twice. Hidden from a screen reader, which is already being told the
-				     ordinal by the list. -->
-				<sup class="fn-ref" aria-hidden="true">{note.number}</sup>{note.text}<a
+				<!-- The words first, so a note names what it is about instead of asking the reader
+				     to hold the sentence they left in their head. Then the same superscript the
+				     marker in the prose is, which makes the two one thing seen twice -- hidden
+				     from a screen reader, which is already being told the ordinal by the list. -->
+				<span class="fn-note-phrase">{note.phrase}</span><sup class="fn-ref" aria-hidden="true"
+					>{note.number}</sup
+				>{note.text}<a
 					href="#fnref-{note.number}"
 					class="fn-note-back focus-link"
 					aria-label={m['article.notes.back']({ number: note.number }, { locale })}
@@ -63,9 +66,15 @@
 		margin: 0;
 	}
 
-	/* Only the one that leads a note. In the prose a marker follows the word it belongs to and
-	   must not be spaced off it; here it precedes the sentence and would otherwise sit flush
-	   against its first character. */
+	/* The quoted words are the article's, said again -- strong enough to find while scanning the
+	   list, not so strong that the note reads as being about the word rather than by the writer. */
+	.fn-note-phrase {
+		color: var(--color-text-strong);
+		font-weight: 500;
+	}
+
+	/* Here the marker sits between the phrase and the note, so it needs air on the side facing
+	   the note. In the prose it follows the word it belongs to and must not be spaced off it. */
 	.fn-note > :global(.fn-ref) {
 		margin-inline-end: 0.3rem;
 	}

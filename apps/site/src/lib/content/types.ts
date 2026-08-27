@@ -101,12 +101,15 @@ export type Block =
 export type ArticleReference = { title: string; subtitle: string; created: string };
 
 /**
- * One `:fn` note, numbered by where it was written.
+ * One `:fn` note: the words it explains, the number it was given, and what it says.
+ *
+ * The phrase is carried so the collected note can name what it is about instead of asking a
+ * reader to hold the sentence they left in their head while they read it.
  *
  * Two notes with the same words are two notes. There is no label to say otherwise, and a reader
  * who meets the same explanation twice was told it twice on purpose.
  */
-export type ArticleNote = { number: number; text: string };
+export type ArticleNote = { number: number; phrase: string; text: string };
 
 export type TocEntry = { slug: string; text: string; depth: number };
 
