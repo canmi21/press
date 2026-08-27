@@ -331,7 +331,9 @@
 			</div>
 		</article>
 
-		<Newsletter locale={locale.code} class="border-t border-border pt-12" />
+		<!-- Dashed, like the rule above the notes. What follows an article is offered rather than
+		     fenced off, and a hairline that closes is the wrong gesture for both. -->
+		<Newsletter locale={locale.code} class="border-t border-dashed border-border pt-12" />
 	</div>
 </main>
 

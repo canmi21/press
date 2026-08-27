@@ -331,11 +331,15 @@ mistake; grey with nothing in it was.
 Only the heading above the section is quiet for a different reason -- a heading there is chrome
 rather than content.
 
-**The rule above the section is dashed, where the one under the article is solid.** A solid rule
-closes a document; this one only steps down into what the document has already said, and the
-dashes say so before a word of the notes is read. The site draws a dashed rule elsewhere on the
-same reasoning: the leader on an article card, which joins a title to its date rather than
-dividing them.
+**Every hairline that follows an article is dashed** -- above the notes, and above the newsletter
+below them. What comes after the last paragraph is offered rather than fenced off: the notes are
+the article's own words stepped down into, and the newsletter is an invitation. A solid rule reads
+as closing the document, which is the wrong gesture for both.
+
+Solid is left to panel chrome, where a rule really is a boundary between two parts of one control
+-- the divider inside a translator's note popover is the case. The site draws dashed elsewhere on
+the same reasoning as here: the leader on an article card, joining a title to its date rather than
+dividing them, and the leaders on the licence pages.
 
 The notes are spaced tightly, closer than the paragraphs above them. At this size they are a
 block to be scanned rather than paragraphs to be read apart, and spacing carried over from larger
