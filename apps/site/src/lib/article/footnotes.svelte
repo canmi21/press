@@ -28,7 +28,7 @@
 					class="fn-note-back focus-link"
 					aria-label={m['article.notes.back']({ number: note.number }, { locale })}
 				>
-					<CornerDownLeft class="size-3.5" aria-hidden="true" />
+					<CornerDownLeft class="size-[1.1em]" aria-hidden="true" />
 				</a>
 			</li>
 		{/each}
@@ -60,10 +60,13 @@
 		list-style: none;
 	}
 
-	/* Set like the article rather than like an apparatus below it. These are the writer's own
-	   words, deferred rather than demoted, so they are read at the size the rest was read at. */
+	/* The writer's own voice at the foot of the page: the same colour as the prose, because these
+	   are still their words, set smaller, because a note is meant to be stepped over and returned
+	   to. Roughly the ratio a printed page uses. */
 	.fn-note {
 		margin: 0;
+		font-size: 0.8125rem;
+		line-height: 1.7;
 	}
 
 	/* The quoted words are the article's, said again -- strong enough to find while scanning the
@@ -84,6 +87,8 @@
 	.fn-note-back {
 		display: inline-flex;
 		margin-inline-start: 0.35rem;
+		/* Sized against the note, not against the page, for the same reason the marker is. */
+		font-size: 0.9em;
 		color: var(--color-text-soft);
 		/* Zero, so an arrow at the end of a wrapped note cannot open up the line it lands on. */
 		line-height: 0;

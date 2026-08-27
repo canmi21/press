@@ -374,7 +374,9 @@
 	   compiled HTML while a heading's are written by section.svelte -- one appearance, two
 	   origins. See spec/styling.md. */
 	.article-body :global(.fn-ref) {
-		font-size: 0.6875rem;
+		/* Relative, so one ratio serves both places a marker appears: beside prose it lands where
+		   the absolute 0.6875rem used to, and in the smaller notes below it shrinks with them. */
+		font-size: 0.73em;
 		font-variant-numeric: tabular-nums;
 		line-height: 0;
 	}

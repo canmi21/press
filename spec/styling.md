@@ -307,9 +307,15 @@ it is not worth reaching for until a note actually needs it.
 
 ### The collected notes are set like the article
 
-The section at the end is the writer's own words, deferred rather than demoted, so it is read at
-the size and colour the rest was read at. Only its heading is quiet, because a heading there is
-chrome rather than content.
+The section at the end is the writer's own words, so it keeps the colour of the prose -- it was
+grey and small at first, and grey said the wrong thing: not the writer speaking quietly but
+somebody else's apparatus. It is set smaller, at roughly the ratio a printed page uses, because
+that is what a note is: something to step over and come back to. Only the heading above it is
+quiet, a heading there being chrome rather than content.
+
+The marker's size is a ratio rather than a length, so one rule serves both places it appears --
+beside prose it lands where the fixed size used to, and among the smaller notes it shrinks with
+them. The same for the arrow at the end of a note.
 
 **A note names its words first, then its number, then what it says.** The quoted phrase is what
 lets the section be read on its own, in the order a reader needs it: what this is about, which
