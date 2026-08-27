@@ -114,32 +114,25 @@ The article ToC keeps its own offset rather than this one. It was measured again
 indicator, which tracks the heading it points at, and a share of the viewport is not the
 geometry that was tuned. An exception with a reason is not a second rule.
 
-## The article is centred; the rail adapts to the space beside it
+## The article is centred; the rail adapts to the region beside it
 
 The table of contents and the return control are one rail down the left of an article, and they
-move as one: the same width, the same left edge, written once and consumed by both. They differ
+move as one: the same box, the same left edge, written once and consumed by both. They differ
 vertically and nowhere else.
 
-**The article never moves.** It is centred in the window at every width, so the space to its right
-is empty and exactly as wide as the space on its left. That left space is all the rail has, and
-the rail adapting to it is never allowed to shift the article -- a column of text that slides
-sideways as a window is dragged is a worse fault than any arrangement of the furniture beside it.
-Below the width where the article can hold its own size, the article is what gives, which is a
-matter this rule stays out of.
+**The article never moves.** It is centred in the window at every width, so the region to its
+right is empty and exactly as wide as the region on its left. That left region is all the rail
+has, and the rail adapting to it is never allowed to shift the article -- a column of text that
+slides sideways as a window is dragged is a worse fault than any arrangement of the furniture
+beside it. Below the width where the article can hold its own size, the article is what gives,
+which is a matter this rule stays out of.
 
-**The rail is placed against the text, not against the article's box.** The box carries 1.5rem of
-padding and has no border and no background, so that strip is empty and a rail centred on the box
-edge sits 1.5rem nearer the window than it is to the first column of type -- centred by the
-numbers and visibly left of centre, which is exactly how the fault was reported. What the rail is
-centred within therefore runs from the window edge to the text. It also buys the width back: the
-rail appears 1.5rem sooner than it otherwise would, because the space it needs is measured where
-the reader measures it.
+The region runs from the window edge to the article's left frame, and the rail's box is centred
+in it. Three stages follow:
 
-Inside that space the rail passes through three stages:
-
-1. Too narrow for the rail: no rail. The article alone, centred, as on any other page.
-2. Wide enough: the rail appears at its full expanded width, centred in the space, so its margin
-   from the window edge and its gap to the article are equal.
+1. Too narrow: no rail. The article alone, centred, as on any other page.
+2. Wide enough: the rail appears, its centre line on the region's centre line, so its margin from
+   the window edge and its gap to the article are equal.
 3. Past `--rail-edge-max`: the rail's left margin holds still, and every further pixel goes into
    the gap between rail and article.
 
@@ -147,27 +140,58 @@ Stage 3 exists because a rail is read from the corner of the eye. Left centred f
 inward as the window grows, and on a wide monitor a rail halfway to the text is neither beside the
 article nor at the edge of anything.
 
-**Below the width where it fits, the rail is absent rather than squeezed.** It appears only when
-the space holds it at its expanded width with `--rail-edge` on both sides. An earlier rule gave it
-whatever the space had, so between the old breakpoint and the width it actually needed it was
-drawn narrow and pressed against the window edge, where entries wrap to three lines and the column
-reads as something that fell off the page. A control that cannot be shown properly is better not
-shown: the headings are still in the document, and the article is what the reader came for.
+### The rail's box is what its entries occupy, not what they may grow to
 
-`--rail-edge` is the number that decides both when the rail appears and how much air it has when
-it does, and the two cannot be separated: centred in the space, its margin and its gap are the
-same length. Raising it buys a rail that never looks cramped at the cost of a band of window
-widths that show none, and that trade is the whole of the setting.
+Centring is only as honest as the box being centred, and this is where it first went wrong. The
+box was `--rail-width-max`, the widest the entries are _allowed_ to be. Articles with short
+headings never reach it, so the box carried dead space on its right that the centring rule counted
+as rail: at a 1241px window the box sat exactly centred at 130 while everything a reader could see
+ended at 135, its own centre at 85. Centred by the numbers, plainly left of centre to the eye.
 
-Centring the rail and the article together as one block, so the pair sits in the middle of the
-window, was built and rejected. It balances the page at every width and it moves the article --
-right by half the rail as the rail appears, and off the window's centre from then on. The article
-holding still is worth more.
+So the box is the entries at full expansion. `--rail-ink` carries that width, measured in the
+browser by [toc.svelte](../apps/site/src/lib/article/toc.svelte) and read back from the root,
+because no stylesheet can know how wide a heading renders and the return control needs the same
+answer to keep the one left edge it shares with the entries. Collapsing does not change it -- the
+bars occupy less of the box, and the box, the centring and the hit area stay where they were.
+
+**It is measured from the strings, not from the laid-out elements.** An element is as wide as the
+last answer made it, so reading one back would ratchet the rail narrower with every article that
+followed a narrower one. The natural width of the text under the article's own font is a fact
+about the headings alone. `@chenglou/pretext` does the measuring here as it does for the homepage
+thumbnails.
+
+The icon on the return control is outside the box by design: it is translated left of the shared
+edge so the words line up with the entries and the arrow sits beyond them. A box drawn around it
+would push every entry right by the width of an ornament.
+
+### Absent rather than squeezed
+
+The rail appears only where the region holds it with `--rail-edge` clear on both sides. An earlier
+rule gave it whatever the region had, so between the old breakpoint and the width it actually
+needed it was drawn narrow and pressed against the window edge, where entries wrap to three lines
+and the column reads as something that fell off the page. A control that cannot be shown properly
+is better not shown: the headings are still in the document, and the article is what the reader
+came for.
+
+The test is made against `--rail-width-max` rather than the measured box, because a media query
+can read neither. So it asks whether the widest rail this site can draw would fit, and an article
+with short headings is shown no earlier than one without -- the alternative is a breakpoint that
+moves per article, which is a worse thing to explain than a conservative one.
+
+`--rail-edge` decides both when the rail appears and how much air it has when it does, and the two
+cannot be separated: centred in the region, its margin and its gap are the same length. Raising it
+buys a rail that never looks cramped at the cost of a band of window widths that show none.
+
+### Rejected: centring the rail and the article together
+
+Treating rail, gap and article as one block centred in the window balances the page at every width
+and was built to see. It moves the article -- right by half the rail as the rail appears, and off
+the window's centre from then on. The article holding still is worth more than the balance.
 
 The lengths this is computed from sit together on `:root` in
 [utilities.css](../apps/site/src/styles/utilities.css) so they can be argued with in one place. One
-of them is repeated by hand: a media query cannot read a custom property, so the width at which the
-rail appears is written as a number and has to be kept in step with the three it is derived from.
+is repeated by hand: the width at which the rail appears is written as a number in the media query
+and has to be kept in step with the ones it is derived from.
 
 ## Article home navigation yields to the table of contents
 
