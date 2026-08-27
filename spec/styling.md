@@ -265,6 +265,57 @@ performs arithmetic and compositor writes, not fresh layout reads. A pre-hydrati
 the collapsed endpoints after browser scroll restoration, before the component observers take
 over, so reloading at the article end does not leave the rail centered until hydration.
 
+## An author's note is written where it is meant, and numbered where it lands
+
+`:fn{is="..."}` marks the word it follows and sends what it says to the end of the article, where
+the notes are collected in order with a way back to each marker. It is the numbered note of a
+book, not the popover a translator leaves -- that is [`:tn`](i18n.md), which explains a phrase in
+place and is written by a machine rather than by hand.
+
+**The note travels with the text it explains, not with a label.** GFM's footnote is the other
+shape -- `[^seam]` in the prose, `[^seam]: ...` at the bottom -- and it was rejected for two
+reasons, in this order:
+
+- **The editor cannot keep it.** The CMS is where articles are written, and its markdown is
+  CommonMark with hand-written node schemas for the constructs this repository added. Round-tripped
+  through it, `[^seam]` comes back `\[^seam]` -- escaped, silently, in both the marker and the
+  definition. Teaching it otherwise means two more ProseMirror schemas, one of them a block
+  container, and an answer for what a definition looks like while it is being edited.
+- **A label is a second thing to keep true.** Writing the note where the marker is removes the
+  pairing entirely: nothing to match, nothing to renumber, nothing that can be deleted at one end
+  and left dangling at the other.
+
+Numbers are the machine's. They run across the whole article in the order the notes are written,
+so inserting one renumbers the rest without anybody touching them. **Two notes that say the same
+thing are two notes** -- there is no label to merge them by, and a reader who met the explanation
+twice was given it twice on purpose.
+
+### What the shape costs
+
+The note lives in a directive attribute, and that has two consequences worth knowing before
+writing one.
+
+**It cannot contain a straight quote.** The syntax has no escape for one, so the parser drops the
+whole attribute and leaves a marker that says nothing -- silent, and indistinguishable from a typo.
+The build refuses it, naming the article, and `validate.rs` refuses the same shape coming back from
+a translation. Curly quotes are fine, as are braces, backticks and asterisks; all arrive as
+literal text.
+
+**It is flat text.** No links, no code spans, no emphasis inside a note. If one ever needs them,
+the escape hatch is a container directive -- and that brings the pairing problem back with it, so
+it is not worth reaching for until a note actually needs it.
+
+### The marker carries no words
+
+`:fn` wraps nothing. The marker attaches after what it explains rather than around it, which is
+what separates it from `:tn`, and it is also what keeps a note out of the table of contents: a
+heading is flattened to a string for its entry and its slug, and a directive with no children
+leaves nothing behind when it is. The rail therefore needs no rule about notes at all.
+
+That holds for the compiled entry. The rendered heading does carry a real superscript, so the
+table of contents strips `.fn-ref` before reading a heading back out of the DOM -- without it an
+entry gained a stray digit at hydration, which is how the rule was found.
+
 ## Back is one step up the reading trail {#back-is-one-step-up-the-reading-trail}
 
 The return control at the top left of an article does not mean "the homepage". It means one step

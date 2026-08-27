@@ -18,6 +18,7 @@
 	import type { Block } from '$lib/content/types';
 	import type { LocaleCode } from '$lib/locale';
 	import ArticleCard from './card.svelte';
+	import Footnotes from './footnotes.svelte';
 	import Section from './section.svelte';
 
 	let { blocks, locale }: { blocks: Block[]; locale: LocaleCode } = $props();
@@ -93,7 +94,7 @@
 			     than suppressed; see spec/lint-format.md. -->
 			{@html block.html}
 		{:else if block.type === 'heading'}
-			<Section slug={block.slug}>{block.text}</Section>
+			<Section slug={block.slug} notes={block.notes}>{block.text}</Section>
 		{:else if block.type === 'code'}
 			<CodeBlock
 				label={block.label}
@@ -155,6 +156,8 @@
 				created={block.created}
 				path={block.path}
 			/>
+		{:else if block.type === 'footnotes'}
+			<Footnotes notes={block.notes} {locale} />
 		{:else if block.type === 'placeholder'}
 			<Placeholder kind={block.kind} meta={block.meta} />
 		{:else if block.type === 'svgCanvas'}

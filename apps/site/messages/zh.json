@@ -1,6 +1,8 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"article.back": "返回",
+	"article.notes": "注释",
+	"article.notes.back": "返回注释 {number}",
 	"article.summary": "总结",
 	"article.translator-note": "来自译者",
 	"article.translator-note.close": "关闭译者注",
@@ -12,8 +14,8 @@
 	"card.packages": "{count} 个软件包",
 	"card.stats": "{articles} 篇文章 · {characters} 字 · 提供 {languages} 种语言",
 	"card.under_license": "{count} 个软件包采用这些条款",
-	"code.copy": "复制代码",
 	"code.copied": "代码已复制",
+	"code.copy": "复制代码",
 	"code.copy-failed": "无法复制代码",
 	"error.not-found": "找不到这个页面。",
 	"error.unexpected": "出了点问题。",

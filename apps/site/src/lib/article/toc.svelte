@@ -75,6 +75,20 @@
 		}
 	}
 
+	/**
+	 * A heading as the table of contents should read it: the words, without a note's marker.
+	 *
+	 * The compiled entries never carry the marker -- flattening a heading to a string drops a
+	 * childless directive -- but this measures the rendered headings instead, and there the
+	 * marker is a real superscript with a real number in it. Read raw, an entry gained a stray
+	 * digit at hydration and the whole rail said something the article did not.
+	 */
+	function headingText(el: HTMLElement): string {
+		const clone = el.cloneNode(true) as HTMLElement;
+		for (const marker of clone.querySelectorAll('.fn-ref')) marker.remove();
+		return clone.textContent?.trim() ?? '';
+	}
+
 	function fontOf(el: HTMLElement): string {
 		const cs = getComputedStyle(el);
 		return `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
@@ -196,7 +210,7 @@
 			.map(({ slug }) => document.getElementById(slug))
 			.filter(
 				(el): el is HTMLHeadingElement =>
-					el instanceof HTMLHeadingElement && (el.textContent?.trim() ?? '') !== '',
+					el instanceof HTMLHeadingElement && headingText(el) !== '',
 			);
 
 		hydratedEntries = {
@@ -205,7 +219,7 @@
 				el,
 				slug: el.id,
 				width: 0,
-				text: el.textContent?.trim() ?? '',
+				text: headingText(el),
 			})),
 		};
 
@@ -247,7 +261,7 @@
 		const raf = requestAnimationFrame(() => {
 			const measured: Entry[] = [];
 			for (const el of headings) {
-				const text = el.textContent?.trim() ?? '';
+				const text = headingText(el);
 				const prepared = prepareWithSegments(text, fontOf(el));
 				const w = measureNaturalWidth(prepared);
 				measured.push({ el, slug: el.id, width: w, text });

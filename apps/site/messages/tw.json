@@ -1,6 +1,8 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"article.back": "返回",
+	"article.notes": "註釋",
+	"article.notes.back": "返回註釋 {number}",
 	"article.summary": "總結",
 	"article.translator-note": "來自譯者",
 	"article.translator-note.close": "關閉譯者註",
@@ -12,8 +14,8 @@
 	"card.packages": "{count} 個套件",
 	"card.stats": "{articles} 篇文章 · {characters} 字 · 提供 {languages} 種語言",
 	"card.under_license": "{count} 個套件採用這些條款",
-	"code.copy": "複製程式碼",
 	"code.copied": "已複製程式碼",
+	"code.copy": "複製程式碼",
 	"code.copy-failed": "無法複製程式碼",
 	"error.not-found": "找不到這個頁面。",
 	"error.unexpected": "出了點問題。",

@@ -16,7 +16,14 @@ export type ArticleMeta = {
 // plain text where advanced expressions collapse to empty.
 export type Block =
 	| { type: 'prose'; html: string }
-	| { type: 'heading'; depth: number; slug: string; text: string }
+	| {
+			type: 'heading';
+			depth: number;
+			slug: string;
+			text: string;
+			/** Note numbers written into this heading. Absent from `text`, and so from the ToC. */
+			notes?: number[];
+	  }
 	| {
 			type: 'code';
 			lang: string;
@@ -60,6 +67,7 @@ export type Block =
 			description?: string;
 	  }
 	| ({ type: 'article'; path: string } & ArticleReference)
+	| { type: 'footnotes'; notes: ArticleNote[] }
 	| { type: 'placeholder'; kind: string; meta: Record<string, string> }
 	| {
 			type: 'image';
@@ -91,6 +99,14 @@ export type Block =
  * retitles every card naming it and each translated view names it in its own language.
  */
 export type ArticleReference = { title: string; subtitle: string; created: string };
+
+/**
+ * One `:fn` note, numbered by where it was written.
+ *
+ * Two notes with the same words are two notes. There is no label to say otherwise, and a reader
+ * who meets the same explanation twice was told it twice on purpose.
+ */
+export type ArticleNote = { number: number; text: string };
 
 export type TocEntry = { slug: string; text: string; depth: number };
 

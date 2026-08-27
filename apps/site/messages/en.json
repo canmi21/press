@@ -1,6 +1,8 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"article.back": "Back",
+	"article.notes": "Notes",
+	"article.notes.back": "Back to note {number}",
 	"article.summary": "Summary",
 	"article.translator-note": "From the translator",
 	"article.translator-note.close": "Close translator's note",
@@ -12,8 +14,8 @@
 	"card.packages": "{count} packages",
 	"card.stats": "{articles} articles · {characters} characters · available in {languages} languages",
 	"card.under_license": "{count} packages carry these terms",
-	"code.copy": "Copy code",
 	"code.copied": "Code copied",
+	"code.copy": "Copy code",
 	"code.copy-failed": "Could not copy code",
 	"error.not-found": "This page could not be found.",
 	"error.unexpected": "Something went wrong.",

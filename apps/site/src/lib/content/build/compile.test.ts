@@ -478,3 +478,98 @@ it('reads a folded frontmatter title whole, as the card that shows it needs', ()
 
 	expect(meta.title).toBe('A title that was written across two lines');
 });
+
+const noteContext = {
+	newTabNote: 'opens in new tab',
+	resolveAsset: () => null,
+	highlight: async () => '',
+	sourceFile: 'contents/example.md',
+};
+
+it('numbers notes across the whole article, not within each block', async () => {
+	const compiled = await compile(
+		'---\ntitle: Test\nlang: en-US\n---\n\n' +
+			'First:fn{is="One."} para.\n\n' +
+			'Second:fn{is="Two."} para.\n\n' +
+			'Third:fn{is="Three."} para.\n',
+		'/article',
+		noteContext,
+	);
+
+	const markers = compiled.blocks
+		.filter((block) => block.type === 'prose')
+		.map((block) => (block.type === 'prose' ? block.html : ''))
+		.map((html) => html.match(/>(\d+)<\/a>/)?.[1]);
+
+	expect(markers).toEqual(['1', '2', '3']);
+	expect(compiled.blocks.at(-1)).toEqual({
+		type: 'footnotes',
+		notes: [
+			{ number: 1, text: 'One.' },
+			{ number: 2, text: 'Two.' },
+			{ number: 3, text: 'Three.' },
+		],
+	});
+});
+
+// Two notes saying the same thing are two notes: there is no label to merge them by, and a
+// reader who met the explanation twice was given it twice deliberately.
+it('keeps notes with identical text apart', async () => {
+	const compiled = await compile(
+		'---\ntitle: Test\nlang: en-US\n---\n\nA:fn{is="Same."} and B:fn{is="Same."}.\n',
+		'/article',
+		noteContext,
+	);
+
+	expect(compiled.blocks.at(-1)).toEqual({
+		type: 'footnotes',
+		notes: [
+			{ number: 1, text: 'Same.' },
+			{ number: 2, text: 'Same.' },
+		],
+	});
+});
+
+// The reason the marker carries no children: a heading is flattened to a string for the ToC and
+// the slug, and a childless directive leaves nothing behind when it is.
+it('marks a heading without letting the note reach the table of contents', async () => {
+	const compiled = await compile(
+		'---\ntitle: Test\nlang: en-US\n---\n\n## Model:fn{is="Execution, not data."} {#model}\n',
+		'/article',
+		noteContext,
+	);
+
+	expect(compiled.toc).toEqual([{ slug: 'model', text: 'Model', depth: 2 }]);
+	expect(compiled.blocks[0]).toEqual({
+		type: 'heading',
+		depth: 2,
+		slug: 'model',
+		text: 'Model',
+		notes: [1],
+	});
+});
+
+// A straight quote ends the attribute early, so the parser drops it and leaves a directive that
+// says nothing. Silent, and indistinguishable from a typo, so it stops the build instead.
+it('refuses a note whose text was lost to a straight quote', async () => {
+	await expect(
+		compile(
+			'---\ntitle: Test\nlang: en-US\n---\n\nHe:fn{is="said "hi" then"} spoke.\n',
+			'/article',
+			noteContext,
+		),
+	).rejects.toThrow('contents/example.md: :fn needs an is="..." note');
+});
+
+it('gives the markdown target real footnotes', async () => {
+	const compiled = await compile(
+		'---\ntitle: Test\nlang: en-US\n---\n\n## Model:fn{is="One."} {#model}\n\nBody:fn{is="Two."} here.\n',
+		'/article',
+		noteContext,
+	);
+
+	expect(compiled.markdown).toContain('## Model[^1]');
+	expect(compiled.markdown).toContain('Body[^2] here.');
+	expect(compiled.markdown).toContain('[^1]: One.');
+	expect(compiled.markdown).toContain('[^2]: Two.');
+});

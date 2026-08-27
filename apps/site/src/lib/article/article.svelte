@@ -368,6 +368,35 @@
 		color: var(--color-text-soft);
 	}
 
+	/* A note's marker. It rides above the line it interrupts and stays smaller than the words
+	   around it: a reader following the sentence should be able to pass over it, and a reader
+	   looking for it should find it without hunting. Global because prose markers arrive as
+	   compiled HTML while a heading's are written by section.svelte -- one appearance, two
+	   origins. See spec/styling.md. */
+	.article-body :global(.fn-ref) {
+		font-size: 0.6875rem;
+		font-variant-numeric: tabular-nums;
+		line-height: 0;
+	}
+
+	.article-body :global(.fn-ref-link) {
+		padding-inline: 0.0625rem;
+		color: var(--color-text-soft);
+		text-decoration: none;
+		transition: color 200ms ease-out;
+	}
+
+	.article-body :global(.fn-ref-link:hover),
+	.article-body :global(.fn-ref-link:focus-visible) {
+		color: var(--color-text-strong);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.article-body :global(.fn-ref-link) {
+			transition: none;
+		}
+	}
+
 	/* A quoted source is a prose inset, not an authored callout. See spec/styling.md. */
 	.article-body :global(blockquote) {
 		padding: 1rem 1.125rem 1rem 1.375rem;

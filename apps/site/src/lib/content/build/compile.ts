@@ -28,10 +28,23 @@ import type {
 	TocEntry,
 	TweetRecord,
 	ArticleMeta,
+	ArticleNote,
 	ArticleReference,
 } from '../types.ts';
 import { languageLabel } from './highlight.ts';
 import type { ContainerDirective, LeafDirective, TextDirective } from 'mdast-util-directive';
+
+declare module 'mdast-util-directive' {
+	interface TextDirectiveData {
+		/**
+		 * The number a `:fn` was given, written on the node by `numberNotes`.
+		 *
+		 * On the node rather than in a map beside it, so every target -- page, feed, markdown --
+		 * reads the number the counter actually assigned instead of deriving its own.
+		 */
+		footnoteNumber?: number;
+	}
+}
 import type { Heading, Image as MdImage, Nodes, Paragraph, Root, RootContent } from 'mdast';
 
 // Feed and markdown targets need absolute image URLs, and they must resolve the same way the
@@ -119,6 +132,48 @@ function styleClasses(attrs: DirectiveAttrs): string[] {
 	return classes;
 }
 
+/**
+ * Number every `:fn` in one top-level node and collect what it says.
+ *
+ * A separate pass rather than work done while rendering, because a node is rendered more than
+ * once -- the page and the feed each ask for it -- and a counter advanced inside the renderer
+ * would count the same note twice. The number is written onto the directive so every target
+ * afterwards reads the same one instead of deriving it again.
+ *
+ * The note's text lives in an attribute, which cannot hold a straight quote: the directive
+ * syntax has no escape for one, so the parser drops the whole attribute and leaves a directive
+ * that says nothing. That is indistinguishable from a typo at a glance, so it fails the build
+ * here rather than rendering an empty marker. `validate.rs` refuses the same shape coming back
+ * from a translation.
+ */
+function numberNotes(node: Nodes, notes: string[], source: string): number[] {
+	const numbers: number[] = [];
+	const visit = (current: Nodes): void => {
+		if (current.type === 'textDirective' && (current as TextDirective).name === 'fn') {
+			const directive = current as TextDirective;
+			const said = ((directive.attributes ?? {}) as DirectiveAttrs).is?.trim();
+			if (!said) {
+				throw new Error(
+					`${source}: :fn needs an is="..." note, and that note cannot contain a straight quote`,
+				);
+			}
+			notes.push(said);
+			directive.data = { ...directive.data, footnoteNumber: notes.length };
+			numbers.push(notes.length);
+			return;
+		}
+		if ('children' in current) {
+			for (const child of current.children) visit(child as Nodes);
+		}
+	};
+	visit(node);
+	return numbers;
+}
+
+function noteNumber(directive: TextDirective): number | undefined {
+	return directive.data?.footnoteNumber;
+}
+
 function markProseLinks(node: Nodes): void {
 	if (node.type === 'link') {
 		node.data = {
@@ -173,6 +228,29 @@ function proseHtml(node: RootContent, newTabNote: string): string {
 							...(newTab ? { target: '_blank', rel: ['noopener', 'noreferrer'] } : {}),
 						},
 						children,
+					};
+				}
+				// An author's note is a marker, not a span: it attaches after the word it belongs to
+				// and carries its text to the end of the article. The number is the whole of what
+				// is drawn, so the marker stays out of the way of the sentence it sits in.
+				if (directive.name === 'fn') {
+					const number = noteNumber(directive);
+					return {
+						type: 'element',
+						tagName: 'sup',
+						properties: { className: ['fn-ref'] },
+						children: [
+							{
+								type: 'element',
+								tagName: 'a',
+								properties: {
+									href: `#fn-${number}`,
+									id: `fnref-${number}`,
+									className: ['fn-ref-link', 'focus-link'],
+								},
+								children: [{ type: 'text', value: String(number) }],
+							},
+						],
 					};
 				}
 				// A translator's note explains the marked words in place. It becomes a real button
@@ -256,6 +334,19 @@ function lowerDirectives(nodes: RootContent[]): RootContent[] {
 			if (directive.name === 'link') {
 				const { href } = resolveLink(mdastToString(directive), attrs);
 				return [{ type: 'link', url: href, children } as unknown as RootContent];
+			}
+			// The markdown target has a footnote of its own, and remark writes it. A real
+			// `footnoteReference` rather than the text `[^1]`, which the serialiser would escape
+			// into a literal bracket -- the reference is the node it already knows how to spell.
+			if (directive.name === 'fn') {
+				const number = String(noteNumber(directive));
+				return [
+					{
+						type: 'footnoteReference',
+						identifier: number,
+						label: number,
+					} as unknown as RootContent,
+				];
 			}
 			// Plain text has no way to hide a note behind a word, so it is spelled out in
 			// brackets. Dropping it would lose the one thing the note exists to say, and the
@@ -550,6 +641,8 @@ export async function compile(
 	const feed: string[] = [];
 	const md: string[] = [];
 	const text: string[] = [];
+	// Numbered by where they are written, across the whole article rather than per block.
+	const notes: string[] = [];
 
 	for (const node of tree.children) {
 		if (node.type === 'yaml') {
@@ -560,11 +653,26 @@ export async function compile(
 		}
 
 		if (node.type === 'heading') {
+			// Collected before the text is read off the node. `headingParts` flattens the heading
+			// to a string, and a directive with no children leaves nothing behind when it does --
+			// which is why a note in a heading never reaches the ToC or the slug.
+			const marks = numberNotes(node, notes, sourceFile ?? url);
 			const { slug, text: heading } = headingParts(node);
-			blocks.push({ type: 'heading', depth: node.depth, slug, text: heading });
+			const superscripts = marks.map((number) => `[^${number}]`).join('');
+			blocks.push({
+				type: 'heading',
+				depth: node.depth,
+				slug,
+				text: heading,
+				...(marks.length > 0 ? { notes: marks } : {}),
+			});
 			toc.push({ slug, text: heading, depth: node.depth });
-			feed.push(`<h${node.depth} id="${slug}">${escapeHtml(heading)}</h${node.depth}>`);
-			md.push(`${'#'.repeat(node.depth)} ${heading}`);
+			feed.push(
+				`<h${node.depth} id="${slug}">${escapeHtml(heading)}${marks
+					.map((number) => `<sup>${number}</sup>`)
+					.join('')}</h${node.depth}>`,
+			);
+			md.push(`${'#'.repeat(node.depth)} ${heading}${superscripts}`);
 			text.push(heading);
 			continue;
 		}
@@ -806,11 +914,27 @@ export async function compile(
 			continue;
 		}
 
+		numberNotes(node, notes, sourceFile ?? url);
 		blocks.push({ type: 'prose', html: proseHtml(node, newTabNote) });
 		feed.push(proseHtml(node, newTabNote));
 		md.push(proseMarkdown(node));
 		const plain = mdastToString(node).trim();
 		if (plain) text.push(plain);
+	}
+
+	if (notes.length > 0) {
+		const collected: ArticleNote[] = notes.map((said, index) => ({
+			number: index + 1,
+			text: said,
+		}));
+		blocks.push({ type: 'footnotes', notes: collected });
+		feed.push(
+			`<ol>${collected
+				.map(({ number, text: said }) => `<li id="fn-${number}">${escapeHtml(said)}</li>`)
+				.join('')}</ol>`,
+		);
+		md.push(collected.map(({ number, text: said }) => `[^${number}]: ${said}`).join('\n'));
+		text.push(collected.map(({ text: said }) => said).join('\n'));
 	}
 
 	if (!meta) throw new Error(`missing frontmatter: ${url}`);

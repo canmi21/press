@@ -1,6 +1,8 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"article.back": "뒤로",
+	"article.notes": "주석",
+	"article.notes.back": "주석 {number}(으)로 돌아가기",
 	"article.summary": "요약",
 	"article.translator-note": "번역자 주",
 	"article.translator-note.close": "번역자 주 닫기",
@@ -12,8 +14,8 @@
 	"card.packages": "패키지 {count}개",
 	"card.stats": "글 {articles}편 · {characters}자 · {languages}개 언어 제공",
 	"card.under_license": "{count}개 패키지가 이 조항을 따릅니다",
-	"code.copy": "코드 복사",
 	"code.copied": "코드가 복사되었습니다",
+	"code.copy": "코드 복사",
 	"code.copy-failed": "코드를 복사하지 못했습니다",
 	"error.not-found": "이 페이지를 찾을 수 없습니다.",
 	"error.unexpected": "문제가 발생했습니다.",
