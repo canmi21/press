@@ -36,9 +36,13 @@
 </section>
 
 <style>
+	/* Dashed, where the rule under the article is solid. A solid rule closes a document; this one
+	   only steps down into what the document already said, and the dashes say so before a word of
+	   it is read. The site draws one elsewhere for the same reason -- the leader on an article
+	   card, which joins a title to its date rather than dividing them. */
 	.fn-notes {
 		margin-top: 4rem;
-		border-top: 0.0625rem solid var(--color-border);
+		border-top: 0.0625rem dashed var(--color-border);
 		padding-top: 1.5rem;
 	}
 

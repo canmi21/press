@@ -331,6 +331,12 @@ mistake; grey with nothing in it was.
 Only the heading above the section is quiet for a different reason -- a heading there is chrome
 rather than content.
 
+**The rule above the section is dashed, where the one under the article is solid.** A solid rule
+closes a document; this one only steps down into what the document has already said, and the
+dashes say so before a word of the notes is read. The site draws a dashed rule elsewhere on the
+same reasoning: the leader on an article card, which joins a title to its date rather than
+dividing them.
+
 The notes are spaced tightly, closer than the paragraphs above them. At this size they are a
 block to be scanned rather than paragraphs to be read apart, and spacing carried over from larger
 text made two notes read as two unrelated things.
