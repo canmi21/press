@@ -519,7 +519,7 @@
 		onmouseenter={handleEnter}
 		onmouseleave={handleLeave}
 		class:revealed={showText}
-		class="toc-nav fixed top-1/2 hidden -translate-y-1/2 flex-col items-start overflow-visible lg:flex"
+		class="article-rail toc-nav fixed top-1/2 -translate-y-1/2 flex-col items-start overflow-visible"
 	>
 		<span
 			bind:this={indicatorEl}
@@ -564,12 +564,9 @@
 {/if}
 
 <style>
-	/* The article is at most 45rem wide. Keep the ToC 1.5rem outside that box,
-	and preserve the same viewport gutter at the lg breakpoint. */
+	/* Horizontal placement is the rail's, in utilities.css; this is the vertical half. */
 	.toc-nav {
-		right: calc(50% + 24rem);
 		transform: translateY(var(--toc-end-offset, 0rem));
-		width: min(12rem, calc(50vw - 25.5rem));
 	}
 
 	[data-toc-text] {

@@ -253,7 +253,7 @@
 	}
 </script>
 
-<div use:followToc={locale} class="home-slot pointer-events-none fixed hidden items-center lg:flex">
+<div use:followToc={locale} class="article-rail home-slot pointer-events-none fixed items-center">
 	<a
 		{href}
 		class="home-link focus-link pointer-events-auto inline-flex -translate-x-5 items-center gap-1.5 whitespace-nowrap text-sm text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
@@ -264,10 +264,9 @@
 </div>
 
 <style>
+	/* Horizontal placement is the rail's, in utilities.css; this is the vertical half. */
 	.home-slot {
 		top: 6.75rem;
-		right: calc(50% + 24rem);
 		transform: translateY(calc(-50% + var(--home-offset, 0rem)));
-		width: min(12rem, calc(50vw - 25.5rem));
 	}
 </style>

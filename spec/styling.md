@@ -114,6 +114,36 @@ The article ToC keeps its own offset rather than this one. It was measured again
 indicator, which tracks the heading it points at, and a share of the viewport is not the
 geometry that was tuned. An exception with a reason is not a second rule.
 
+## The rail is centred in the gutter, and absent when it does not fit
+
+The table of contents and the return control are one rail down the left of an article, and they
+move as one: the same width, the same left edge, written once in `.article-rail` and consumed by
+both. They differ vertically and nowhere else.
+
+**The article's width is not negotiable.** It is centred and fixed, the rail lives in the gutter
+that leaves, and nothing about the rail may push it. A viewport too narrow for the article shrinks
+the article, which is a separate matter and happens well below anything discussed here.
+
+Within that gutter the rail is centred, until centring would carry it more than `--rail-edge-max`
+from the viewport edge. From there it holds still and a growing window opens the gap between rail
+and article instead. The limit exists because a rail is read from the corner of the eye: one that
+keeps wandering inward on a wide monitor stops being peripheral without ever becoming part of the
+text. The default puts the limit exactly where it first binds, so the rail's margin and its gap to
+the article are equal at that moment and only the gap grows after.
+
+**Below the width where it fits, the rail is absent rather than squeezed.** It appears only when
+the gutter holds the rail at its expanded width with its margin on both sides. The previous rule
+gave it whatever the gutter had, so between the old breakpoint and the width it actually needed it
+was drawn narrow and pressed against the window edge, where entries wrap to three lines and the
+whole column reads as something that fell off the page. A control that cannot be shown properly is
+better not shown: the headings are still in the document, and the article is what the reader came
+for.
+
+One cost, stated because it will surprise somebody: the appearing and disappearing happens at a
+window width people actually use, so a laptop a little under it gets no table of contents at all.
+That is the rule doing what it says rather than a threshold set too high, and the four lengths it
+is computed from are together in one place to be argued with.
+
 ## Article home navigation yields to the table of contents
 
 On a wide article viewport, the return control occupies the empty interval between the top of
