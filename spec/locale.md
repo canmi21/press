@@ -140,17 +140,21 @@ That frontmatter value is validated as a BCP-47-shaped language tag when the sou
 read. A malformed value fails the build once, with the source file named; it must never travel
 unvalidated into every original-view public attribute.
 
-### Interface copy for `mw` is written in English
+### New interface copy for `mw` is written in English
 
 An article's original view is whatever language the article was written in. The interface around
-it is a separate question, and the answer is **English by default**: a new UI message gets the
-English wording under `mw`, the same as under `en`.
+it is a separate question, and it is **mostly English**: English carries it, with some Chinese and
+some Japanese mixed in where the owner preferred it that way.
 
-That is a default and not a rule about what `mw` is. The owner writes in a mix and changes
-individual strings to Chinese by hand when a particular one reads better that way -- several
-already are, and they stay. What the default settles is the one case that keeps coming up: who
-decides the wording of a message nobody has an opinion about yet. English, so a message added
-today is legible rather than a guess about the mood the original was in.
+The mix is the owner's and is made string by string, which is why the rule here is only about new
+ones: **a message added to `mw` takes the English wording**, the same as under `en`. Whoever wants
+one of them in another language changes that one. So a handful of Chinese entries in `mw.json` is
+the file working as intended and not a gap to fill in -- somebody chose each of them -- while a
+`mw` catalogue that had drifted mostly into Chinese would be the mistake.
+
+The default settles the case that keeps coming up: who decides the wording of a message nobody has
+an opinion about yet. English, so a message added today is legible rather than a guess at the mood
+the original was in.
 
 ## Canonical points at the version being read
 

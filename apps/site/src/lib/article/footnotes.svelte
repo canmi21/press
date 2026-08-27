@@ -16,14 +16,15 @@
 	<ol class="fn-notes-list">
 		{#each notes as note (note.number)}
 			<li id="fn-{note.number}" class="jump-target fn-note">
-				<span class="fn-note-text">{note.text}</span>
-				<a
-					href="#fnref-{note.number}"
-					class="fn-note-back focus-link"
-					aria-label={m['article.notes.back']({ number: note.number }, { locale })}
+				<span class="fn-note-text"
+					>{note.text}<a
+						href="#fnref-{note.number}"
+						class="fn-note-back focus-link"
+						aria-label={m['article.notes.back']({ number: note.number }, { locale })}
+					>
+						<CornerDownLeft class="size-3.5" aria-hidden="true" />
+					</a></span
 				>
-					<CornerDownLeft class="size-3.5" aria-hidden="true" />
-				</a>
 			</li>
 		{/each}
 	</ol>
@@ -79,13 +80,15 @@
 		flex: 1;
 	}
 
-	/* Beside the note rather than after its last word: a note that wraps would otherwise put the
-	   way back at whatever ragged point the text happened to end on. */
+	/* Trailing the last word, not parked at the right edge. The way back belongs to the sentence
+	   that was just read, and a column of arrows down the right reads as a table's furniture. */
 	.fn-note-back {
-		flex: none;
-		align-self: center;
+		display: inline-flex;
+		margin-inline-start: 0.35rem;
 		color: var(--color-text-soft);
-		line-height: 1;
+		/* Zero, so an arrow at the end of a wrapped note cannot open up the line it lands on. */
+		line-height: 0;
+		vertical-align: -0.1em;
 		transition: color 200ms ease-out;
 	}
 
