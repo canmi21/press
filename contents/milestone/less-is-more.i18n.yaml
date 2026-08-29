@@ -197,133 +197,133 @@ segments:
       review: false
   03a7b723b0bf91095124a7d8c7cf04c7:
     de-DE:
-      text: 'Seltsamerweise wurde die Qualität nicht schlechter, nachdem ich losgelassen hatte. Ich vermute, das liegt daran, dass die früheren Tage des Programmierens nach :tn[„traditioneller Rezeptur“]{is="Im Original steht das chinesische gǔfǎ, eine Werbeformel für nach althergebrachten Verfahren hergestellte Produkte. Auf das eigenhändige Schreiben jeder Codezeile angewandt, macht sie daraus scherzhaft ein traditionelles Handwerk."} nicht umsonst waren; schon zu Zeiten von GPT-2 begann ich, KI zu nutzen, doch damals schrieb ich noch gewissenhaft jede einzelne Codezeile und verstand jedes Konzept. Diese Erfahrung gab mir ein solides Fundament. Was später kam, war weniger Programmieren nach Gefühl als kontextgeleitetes Programmieren: Mein Urteilsvermögen war weiterhin da, und das Loslassen führte weder zu Anfängerfehlern noch, wenn man so will, zu Zwischenfällen.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:39:59.028057Z
-      seconds: 147.20532775
-      tokens: 22435
+      text: 'Das Seltsame ist: Nachdem ich losgelassen hatte, wurde die Qualität nicht schlechter. Ich glaube, das liegt daran, dass die Zeit des :tn[Programmierens „nach alter Väter Sitte“]{is="Im Original steht 古法, ‚die alte Methode‘ — die Formel, mit der chinesische Lebensmittel- und Handwerksmarken traditionelle Herstellung bewerben. Auf das zeilenweise Schreiben von Code angewandt, ist das ein Witz über den Kunsthandwerker im Maschinenzeitalter."} nicht umsonst war. Schon zu GPT-2-Zeiten habe ich KI benutzt, aber damals schrieb ich noch brav jede einzelne Zeile Code und verstand jedes einzelne Konzept. Diese Zeit hat mir das Fundament gegeben. Was danach kam, war weniger Vibe Coding als Context Coding — das nötige Urteilsvermögen war noch da, und das Loslassen hat weder zu dummen Fehlern noch zu Unfällen geführt.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805001Z
+      seconds: 44.320156084
+      tokens: 31253
       review: false
     en-US:
-      text: 'Oddly enough, quality did not decline after I let go. I suspect that is because all those days of :tn[“traditionally crafted”]{is="The original uses gǔfǎ, a marketing term for goods made by traditional methods. Calling line-by-line manual programming this jokingly turns it into an ancestral craft."} programming were not wasted; I had already started using AI back in the GPT-2 era, but at the time I was still diligently writing every line of code and understanding every concept. That experience gave me a solid foundation. What came later was less vibe coding than context coding: I still had the judgment I needed, and letting go did not cause any rookie mistakes—or outright incidents.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:39:59.028057Z
-      seconds: 147.20532775
-      tokens: 22435
+      text: The strange thing is that quality didn't get worse after I let go. I think it's probably because those days of :tn[hand-forged, artisanal]{is="The original says 古法 — ‘the ancient method,’ the phrase Chinese food and craft brands stamp on products to promise they were made the old way. Applying it to writing code by hand is a joke about being a heritage craftsman in an age of machines."} coding weren't wasted. I started using AI back in the GPT-2 days, but at that time I was still dutifully writing every line of code and understanding every concept. That period gave me my foundation. What came later was less Vibe Coding than Context Coding — the judgment I needed was still there, and letting go didn't lead to any stupid mistakes, or accidents for that matter.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805001Z
+      seconds: 44.320156084
+      tokens: 31253
       review: false
     es-ES:
-      text: 'Lo curioso es que, después de dejar de aferrarme, la calidad no empeoró. Supongo que se debe a que aquellos días de programar :tn[«con métodos ancestrales»]{is="El original usa el chino gǔfǎ, una fórmula publicitaria para productos elaborados con métodos tradicionales. Aplicada a escribir a mano cada línea de código, convierte en broma la programación en un oficio ancestral."} no fueron en vano; ya había empezado a usar inteligencia artificial en tiempos de GPT-2, pero entonces todavía escribía concienzudamente cada línea de código y entendía cada concepto. Aquella experiencia me dio una base sólida. Lo que vino después fue menos programación por intuición que programación contextual: conservaba el criterio necesario, y soltar no hizo que cometiera errores de principiante ni, por así decirlo, que provocara incidentes.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:39:59.028057Z
-      seconds: 147.20532775
-      tokens: 22435
+      text: 'Lo extraño es que, después de soltar, la calidad no empeoró. Creo que se debe a que aquellos días de programación :tn[«artesanal, como se hacía antes»]{is="El original dice 古法, «el método antiguo», la fórmula con que las marcas chinas de alimentación y artesanía prometen una elaboración tradicional. Aplicada a escribir código línea a línea, convierte al autor en un artesano de oficio en plena era de las máquinas."} no fueron en vano. Ya usaba IA en la época de GPT-2, pero entonces seguía escribiendo con honradez cada línea de código y entendiendo cada concepto. Aquella etapa me dio la base. Lo que vino después fue menos Vibe Coding que Context Coding: el criterio necesario seguía ahí, y soltar no me llevó a ningún error de principiante ni a ningún accidente.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805001Z
+      seconds: 44.320156084
+      tokens: 31253
       review: false
     fr-FR:
-      text: 'Curieusement, la qualité ne s’est pas dégradée une fois que j’ai lâché prise. Je suppose que c’est parce que toutes ces journées passées auparavant à programmer :tn[« selon les méthodes ancestrales »]{is="L’original emploie le chinois gǔfǎ, une formule publicitaire vantant une fabrication selon des méthodes traditionnelles. L’appliquer à l’écriture manuelle de chaque ligne de code transforme avec humour la programmation en savoir-faire d’antan."} n’ont pas été vaines ; j’utilisais déjà l’intelligence artificielle à l’époque de GPT-2, mais je continuais alors à écrire consciencieusement chaque ligne de code et à comprendre chaque notion. Cette expérience m’a donné de solides bases. Ce qui a suivi relevait moins de la programmation à l’instinct que de la programmation contextuelle : je n’avais rien perdu de mon discernement, et lâcher prise ne m’a conduit ni à commettre des erreurs de débutant ni, à proprement parler, à provoquer des incidents.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:39:59.028057Z
-      seconds: 147.20532775
-      tokens: 22435
+      text: 'Le plus étrange, c''est que la qualité n''a pas baissé une fois que j''ai lâché prise. Je crois que c''est parce que ces journées de programmation :tn[« à l''ancienne, comme autrefois »]{is="L''original dit 古法, « la méthode ancienne », la formule que les marques chinoises d''alimentation et d''artisanat impriment sur leurs produits pour promettre une fabrication traditionnelle. Appliquée au fait d''écrire son code ligne à ligne, elle fait de l''auteur un artisan d''art à l''ère des machines."} n''ont pas été perdues. J''utilisais déjà l''IA à l''époque de GPT-2, mais j''écrivais encore consciencieusement chaque ligne de code et je comprenais chaque concept. Cette période m''a donné mes bases. Ce qui a suivi tenait moins du Vibe Coding que du Context Coding : le discernement nécessaire était toujours là, et lâcher prise ne m''a valu ni erreur grossière ni accident.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805001Z
+      seconds: 44.320156084
+      tokens: 31253
       review: false
     ja-JP:
-      text: 不思議なことに、手放しても品質は落ちなかった。おそらく、それ以前の「:tn[昔ながらの製法]{is="原文の gǔfǎ は、商品広告で伝統製法をうたう言葉だ。コードを一行ずつ手で書くことに使い、プログラミングを伝統工芸のように見立てる時代錯誤のおかしさを出している。"}」によるプログラミングの日々が無駄ではなかったからだと思う。GPT-2 の時代にはすでに人工知能を使い始めていたが、当時はまだ一行一行のコードを地道に書き、概念を一つずつ理解していた。その経験が私の基礎になった。後にやっていたのは、感覚任せのコーディングというより文脈を踏まえたコーディングだったのだろう。必要な判断力は残っていて、手放したからといって初歩的なミスや、いわば事故を起こすことはなかった。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:39:59.028057Z
-      seconds: 147.20532775
-      tokens: 22435
+      text: 不思議なことに、手を離しても品質は落ちなかった。おそらく、あの:tn[「古式製法」]{is="原文は「古法」。食品や工芸品の広告で「昔ながらの製法」を謳うときの決まり文句で、それを一行ずつ手で書くコーディングに当てはめている。機械の時代に伝統工芸を守る職人を気取る、時代錯誤の自嘲が込められている。"}のプログラミングの日々が無駄ではなかったからだと思う。GPT-2 の時代からすでに AI は使っていたが、当時の自分はまだ一行ずつ真面目にコードを書き、一つひとつの概念を理解していた。あの経験が土台になっている。後の日々は Vibe Coding というより Context Coding で、必要な判断力は残ったままだった。手を離したせいで初歩的なミスをすることも、事故を起こすこともなかった。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805001Z
+      seconds: 44.320156084
+      tokens: 31253
       review: false
     ko-KR:
-      text: 이상하게도 내려놓고 나니 품질은 나빠지지 않았다. 아마 예전에 :tn[‘전통 방식’]{is="원문의 gǔfǎ는 전통 제조법을 내세우는 상품 광고 표현이다. 코드를 한 줄씩 직접 쓰는 데 이 말을 붙여, 프로그래밍을 옛 수공예처럼 부르는 시대착오적 유머를 만든다."}으로 프로그래밍하던 날들이 헛되지 않았기 때문일 것이다. GPT-2 시절부터 이미 인공지능을 쓰기 시작했지만, 그때도 나는 한 줄 한 줄 성실하게 코드를 작성하고 모든 개념을 이해했다. 그 경험이 내 밑바탕이 되었다. 이후에 한 것은 감으로 하는 코딩이라기보다 맥락을 바탕으로 한 코딩에 가까웠다. 필요한 판단력은 여전히 있었고, 내려놓았다고 해서 초보적인 실수를 하거나 이른바 사고를 일으키지는 않았다.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:39:59.028057Z
-      seconds: 147.20532775
-      tokens: 22435
+      text: 이상한 건, 손을 놓은 뒤에도 품질이 나빠지지 않았다는 것이다. 아마 예전의 그 :tn[「전통 방식」]{is="원문은 古法, 즉 ‘옛 방식’이다. 중국의 식품이나 수공예 브랜드가 ‘옛날 방식으로 만들었다’고 광고할 때 쓰는 상투어인데, 한 줄씩 손으로 코드를 쓰는 일에 갖다 붙여 기계의 시대에 옛 기술을 지키는 장인인 척하는 시대착오적 농담을 만든다."} 프로그래밍의 나날이 헛되지 않아서일 것이다. GPT-2 시절부터 이미 AI를 쓰고 있었지만, 그때의 나는 여전히 한 줄 한 줄 성실하게 코드를 쓰고 개념 하나하나를 이해하고 있었다. 그 경험이 밑바탕이 되었다. 그 뒤의 것은 Vibe Coding이라기보다 Context Coding이었고, 있어야 할 판단력은 그대로 남아 있었다. 손을 놓았다고 해서 저급한 실수를 하거나 사고를 낸 적은 없었다.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805001Z
+      seconds: 44.320156084
+      tokens: 31253
       review: false
     zh-CN:
-      text: 奇怪的是，放手之后，质量并没有下降。我想，大概是因为之前那些 :tn[“古法”编程]{is="原文用“古法”戏称亲手逐行编程，套用“古法制作”的商业话术，以时代错位制造自嘲式反讽。"} 的日子没有白费。早在 GPT-2 时代，我就开始使用人工智能，但那时仍会老老实实地写好每一行代码、弄懂每一个概念。那段经历为我打下了基础，所以后来与其说是在做氛围编程，不如说是在做上下文编程：该有的判断力仍然在，并没有因为放手就犯下什么低级错误，甚至酿成事故。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:48:40.145084Z
-      seconds: 12.608637792
-      tokens: 19659
+      text: 奇怪的是，放手之后质量并没有变差。我想大概是因为之前那些:tn[「古法」]{is="原文用的就是「古法」，本是食品和手工艺品牌上「古法制作」的宣传话术。把它按在逐行手写代码上，是在自嘲自己像个守着老手艺的匠人，这层时代错位的反讽换成直白说法就没了。"}编程的日子没有白费。早在 GPT-2 的年代我就开始用 AI 了，但那时候我还老老实实地写每一行代码、弄懂每一个概念。那段经历给了我底子。后来与其说是 Vibe Coding，不如说是 Context Coding——该有的判断力还在，并没有因为放手就犯什么低级错误，更没出什么事故。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805001Z
+      seconds: 44.320156084
+      tokens: 31253
       review: false
     zh-TW:
-      text: 奇怪的是，放手之後，品質並沒有變差。我想，這大概是因為之前那些「:tn[古法]{is="原文以「古法」形容逐行手寫程式碼，套用商品宣傳中「古法製作」的說法，把程式設計戲稱為傳統工藝，形成時代錯置的幽默。"}」程式設計的日子沒有白費；早在 GPT-2 時代我就開始使用人工智慧了，但那時我仍老老實實地寫每一行程式碼、理解每一個概念。那段經歷替我打下了基礎。與其說後來是氛圍程式設計，不如說是脈絡程式設計：該有的判斷力還在，並沒有因為放手就犯什麼低級錯誤，或是釀成事故。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:39:59.028057Z
-      seconds: 147.20532775
-      tokens: 22435
+      text: 奇怪的是，放手之後品質並沒有變差。我想大概是因為之前那些:tn[「古法」]{is="原文用的就是「古法」，本是食品和手工藝品牌上「古法製作」的行銷話術。把它按在逐行手寫程式碼上，是在自嘲自己像個守著老手藝的匠人，這層時代錯位的反諷換成直白的說法就沒了。"}寫程式的日子沒有白費。早在 GPT-2 的年代我就開始用 AI 了，但那時候我還老老實實地寫每一行程式碼、弄懂每一個概念。那段經歷給了我底子。後來與其說是 Vibe Coding，不如說是 Context Coding——該有的判斷力還在，並沒有因為放手就犯什麼低級錯誤，更沒出什麼事故。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805001Z
+      seconds: 44.320156084
+      tokens: 31253
       review: false
   0718215ea97d512da49fb3554686b339:
     de-DE:
-      text: Zu sagen, ich hätte nur „darüber nachgedacht“, trifft es nicht ganz; es war eher eine fixe Idee. Sie entstand schon damals, als ich weder Frontend- noch Backend- oder Embedded-Code schreiben konnte. Zu der Zeit bastelte ich noch an Elektronik und stieß zufällig auf die :tn[Bilibili]{is="Im Original steht B站, ein liebevoller chinesischer Netzspitzname für Bilibili, der vertraute Insider- und Community-Nähe vermittelt."}-Videos und die Website von [@ushio](https://github.com/sakura-ushio). :tn[Ich]{is="Im Original steht 窝, eine absichtlich niedlich-kindliche, gleich klingende Falschschreibung von 我 für ich."} fand das großartig und wollte so etwas auch. Danach brachte ich mir in knapp einem halben Jahr von Grund auf C sowie ein wenig JS und CSS bei, baute mit Hexo einen statischen Blog und stellte ihn auf GitHub Pages bereit. Damit hatte ich endlich mein eigenes kleines Reich.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:39:59.02808Z
-      seconds: 105.442693916
-      tokens: 19729
+      text: '"Gewollt" trifft es nicht ganz, es war eher eine fixe Idee. Sie war schon da, als ich weder Frontend noch Backend schreiben konnte und auch keinen Embedded-Code. Damals bastelte ich noch an Elektronik herum, und zufällig stieß ich auf die Videos von [@ushio](https://github.com/sakura-ushio) auf :tn[B站]{is="Im Original steht „B站“, der vertrauliche chinesische Kosename für die Videoplattform Bilibili — das Kürzel der Eingeweihten, das der volle Markenname nüchtern und offiziell klingen ließe."} und auf ihre Website, und :tn[窝]{is="Das Original schreibt das Personalpronomen „我“ (ich) als gleichlautendes „窝“ (wörtlich „Nest“) — ein absichtlicher Verschreiber aus dem chinesischen Netzjargon, der dem Satz einen kindlich-niedlichen Ton gibt, den ein normales Pronomen nicht trägt."} fand das so toll, dass ich das auch haben wollte. Danach brauchte ich ein knappes halbes Jahr, lernte C von Grund auf, dazu ein bisschen JS und CSS, baute mit Hexo einen statischen Blog und stellte ihn auf Github Pages — damit hatte ich endlich mein eigenes kleines Fleckchen.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.80515Z
+      seconds: 53.625921665999996
+      tokens: 32042
       review: false
     en-US:
-      text: Saying I had merely “thought about it” isn’t quite accurate; it was more like an obsession. It began back when I still couldn’t write frontend or backend code, let alone embedded code. I was tinkering with electronics at the time when I happened across [@ushio](https://github.com/sakura-ushio)’s :tn[Bilibili]{is="The original word was B站, an affectionate Chinese internet nickname for Bilibili that evokes an insider community tone."} videos and website. :tn[I]{is="The original word was 窝, a deliberately cute, childlike homophonic misspelling of 我, meaning I."} thought they were great fun and wanted one too. I then spent nearly half a year learning C and a little JS and CSS from scratch, and used Hexo to build a static blog deployed on GitHub Pages. At last, I had a little corner of my own.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:39:59.02808Z
-      seconds: 105.442693916
-      tokens: 19729
+      text: Saying I "thought about it" isn't quite right; it was closer to an obsession. It started back when I couldn't write frontend or backend code, couldn't write embedded code either. I was messing around with electronics then, and I stumbled onto [@ushio](https://github.com/sakura-ushio)'s videos on :tn[B站]{is="The original writes “B站”, the affectionate Chinese nickname for the video platform Bilibili — the shorthand insiders use, which a plain rendering as the full brand name flattens into something official."} and their website, and :tn[窝]{is="Here the original writes the pronoun “我” (I) as “窝”, a deliberate homophone misspelling — literally “nest” — that gives the sentence a small, cutesy, internet-childish lilt no ordinary pronoun can carry."} thought it was so much fun that I wanted one too. Over the next six months or so I learned C from scratch, plus a little JS and CSS, and put up a static blog with Hexo deployed on Github Pages — my own little corner of the world, at last.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.80515Z
+      seconds: 53.625921665999996
+      tokens: 32042
       review: false
     es-ES:
-      text: Decir que simplemente llevaba tiempo “pensándolo” no es del todo exacto; era más bien una obsesión. La tenía desde cuando aún no sabía escribir código frontend, backend ni embebido. Por aquel entonces trasteaba con electrónica y me encontré por casualidad con los vídeos de :tn[Bilibili]{is="La palabra original era B站, un apodo cariñoso usado en el internet chino para Bilibili que transmite cercanía y complicidad entre miembros de la comunidad."} y el sitio web de [@ushio](https://github.com/sakura-ushio). :tn[Yo]{is="La palabra original era 窝, una escritura homófona deliberadamente incorrecta de 我, que significa yo, usada para sonar infantil y adorable en internet."} pensé que era muy divertido y quise tener uno también. Después dediqué casi medio año a aprender desde cero C y un poco de JS y CSS, y monté con Hexo un blog estático que desplegué en GitHub Pages. Así conseguí tener mi propio rinconcito.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:39:59.02808Z
-      seconds: 105.442693916
-      tokens: 19729
+      text: Decir que lo "pensaba" no es del todo exacto; era más bien una obsesión. Ya estaba ahí cuando aún no sabía escribir ni frontend ni backend, ni tampoco código embebido. Por entonces todavía andaba trasteando con electrónica y, de casualidad, di con los vídeos de [@ushio](https://github.com/sakura-ushio) en :tn[B站]{is="El original escribe «B站», el apodo cariñoso que los internautas chinos usan para la plataforma de vídeo Bilibili. Es la abreviatura de los de dentro, y el nombre completo de la marca la deja sonando oficial."} y con su web, y :tn[窝]{is="El original escribe el pronombre «我» (yo) como el homófono «窝» (literalmente «nido»), una falta deliberada del argot de internet chino que da a la frase un tono infantil y entrañable que un pronombre normal no conserva."} pensé que aquello era genial y que yo también quería uno. Después pasé casi medio año aprendiendo C desde cero, y algo de JS y CSS, y monté un blog estático con Hexo desplegado en Github Pages. Por fin tenía mi propio rinconcito.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.80515Z
+      seconds: 53.625921665999996
+      tokens: 32042
       review: false
     fr-FR:
-      text: Dire que j’y avais simplement « réfléchi » n’est pas tout à fait exact ; c’était plutôt une idée fixe. Elle m’habitait déjà à l’époque où je ne savais encore écrire ni du code frontend ou backend, ni du code embarqué. Je bricolais alors de l’électronique et je suis tombé par hasard sur les vidéos :tn[Bilibili]{is="Le mot original était B站, un surnom affectueux donné à Bilibili sur l’internet chinois, avec une tonalité familière propre à sa communauté."} et le site de [@ushio](https://github.com/sakura-ushio). :tn[Je]{is="Le mot original était 窝, une graphie volontairement fautive et homophone de 我, qui signifie je, employée pour donner un ton enfantin et mignon typique d’internet."} trouvais ça très amusant et j’en voulais un moi aussi. J’ai ensuite passé près de six mois à apprendre de zéro le C ainsi qu’un peu de JS et de CSS, puis j’ai créé avec Hexo un blog statique déployé sur GitHub Pages. J’avais enfin mon petit coin à moi.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:39:59.02808Z
-      seconds: 105.442693916
-      tokens: 19729
+      text: 'Dire que j''y « pensais » n''est pas tout à fait exact, c''était plutôt une obsession. Elle était déjà là à l''époque où je ne savais écrire ni frontend ni backend, ni le moindre code embarqué. Je bricolais encore de l''électronique quand je suis tombé par hasard sur les vidéos de [@ushio](https://github.com/sakura-ushio) sur :tn[B站]{is="L''original écrit « B站 », le surnom affectueux que les internautes chinois donnent à la plateforme vidéo Bilibili. C''est le diminutif des initiés, que le nom officiel de la marque aplatirait."} et sur son site, et :tn[窝]{is="L''original écrit le pronom « 我 » (je) sous la forme homophone « 窝 » (littéralement « nid »), une faute volontaire du jargon d''internet chinois qui donne à la phrase un ton enfantin et attendrissant qu''un pronom normal ne porte pas."} me suis dit que c''était génial et que j''en voulais un aussi. J''y ai passé ensuite près de six mois : j''ai appris le C en partant de zéro, un peu de JS et de CSS, et j''ai monté un blog statique avec Hexo déployé sur Github Pages. J''avais enfin mon petit coin à moi.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.80515Z
+      seconds: 53.625921665999996
+      tokens: 32042
       review: false
     ja-JP:
-      text: 「考えていた」と言うのは、実はあまり正確ではない。むしろ執念に近かった。まだフロントエンドもバックエンドも、組み込みコードも書けなかったころから、その思いはあった。当時は電子工作をしていて、偶然 [@ushio](https://github.com/sakura-ushio) の :tn[Bilibili]{is="原文は B站。中国のネット利用者が Bilibili を親しみを込めて呼ぶ愛称で、コミュニティ内部のくだけた空気を帯びている。"} の動画とウェブサイトを見つけた。:tn[私]{is="原文は 窝。「私」を意味する 我 と同音の字をわざと使った幼くかわいらしいネット風の誤記である。"}も面白そうだと思い、自分も欲しくなった。それから半年近くかけて、ゼロから C と少しの JS、CSS を学び、Hexo で静的ブログを作って GitHub Pages にデプロイした。こうして、自分だけの小さな居場所ができた。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:39:59.02808Z
-      seconds: 105.442693916
-      tokens: 19729
+      text: 「思っていた」というのは正確ではなく、むしろ執念に近い。フロントエンドもバックエンドも書けず、組み込みのコードも書けなかった頃から、それはもうあった。当時はまだ電子工作をいじっていて、たまたま [@ushio](https://github.com/sakura-ushio) の :tn[B站]{is="原文の「B站」は、動画プラットフォーム Bilibili を指す中国語圏の親しみを込めた愛称。正式名称に置き換えると、その内輪めいた響きが消えてしまう。"}の動画とサイトを見つけた。:tn[窝]{is="原文は一人称の「我」（わたし）を、同じ音の「窝」（＝巣）とわざと書き崩している。ネット上の幼く可愛らしい口調で、普通の一人称ではその書き方の効果が残らない。"}はすごく面白いと思って、自分も欲しくなった。それから半年近くかけて、ゼロから C を覚え、JS と CSS も少しかじって、Hexo で静的ブログを作り Github Pages に置いた。これでようやく自分の小さな居場所ができたわけだ。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.80515Z
+      seconds: 53.625921665999996
+      tokens: 32042
       review: false
     ko-KR:
-      text: 그저 “생각해 왔다”고 하기에는 사실 정확하지 않다. 집념에 더 가까웠다. 프런트엔드와 백엔드는 물론 임베디드 코드도 쓸 줄 모르던 시절부터 품고 있던 생각이다. 당시에는 전자 공작을 하고 있었는데, 우연히 [@ushio](https://github.com/sakura-ushio)의 :tn[Bilibili]{is="원문은 B站이다. 중국 인터넷 이용자들이 Bilibili를 친근하게 부르는 별칭으로, 같은 커뮤니티 구성원끼리 쓰는 듯한 정서를 담는다."} 영상과 웹사이트를 보게 됐다. :tn[나]{is="원문은 窝이다. 나를 뜻하는 我와 발음이 같은 글자를 일부러 잘못 쓴 표현으로, 어리고 귀여운 인터넷 말투를 만든다."}도 재미있어 보여서 하나 갖고 싶었다. 이후 거의 반년 동안 밑바닥부터 C와 약간의 JS, CSS를 배워 Hexo로 정적 블로그를 만들고 GitHub Pages에 배포했다. 그렇게 나만의 작은 공간이 생겼다.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:39:59.02808Z
-      seconds: 105.442693916
-      tokens: 19729
+      text: '"생각했다"는 말은 사실 정확하지 않고, 오히려 집념에 가깝다. 프런트엔드도 백엔드도 못 쓰고 임베디드 코드도 못 쓰던 시절부터 이미 있었다. 그때는 아직 전자공작을 만지작거리고 있었는데, 우연히 [@ushio](https://github.com/sakura-ushio) 의 :tn[B站]{is="원문은 동영상 플랫폼 Bilibili를 가리키는 중국 네티즌들의 친근한 애칭 “B站”을 썼다. 정식 명칭으로 옮기면 그 내부자 같은 말맛이 사라진다."} 영상과 사이트를 보게 됐고, :tn[窝]{is="원문은 일인칭 “我”(나)를 같은 소리가 나는 “窝”(둥지)로 일부러 틀리게 적었다. 중국 인터넷 특유의 어리고 귀여운 말투인데, 평범한 인칭대명사로는 그 표기의 효과가 남지 않는다."}는 너무 재밌어 보여서 나도 갖고 싶어졌다. 그 뒤로 반년 가까이 걸려 C를 맨바닥부터 배우고 JS와 CSS도 조금 익혀서, Hexo로 정적 블로그를 만들어 Github Pages에 올렸다. 그렇게 나만의 작은 공간이 생긴 셈이다.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.80515Z
+      seconds: 53.625921665999996
+      tokens: 32042
       review: false
     zh-CN:
-      text: 其实用“想”来形容并不太准确，那更像是一种执念。早在我还不会做前后端开发、也不会写嵌入式代码时，这个念头就已经出现了。那时我还在折腾电子，偶然看到了 [@ushio](https://github.com/sakura-ushio) 在 :tn[B 站]{is="原文写作 B站，是哔哩哔哩在中国网络社群中的亲昵称呼，带着熟悉而亲切的社群语感。"} 发布的视频和他的网站，:tn[我]{is="原文把我故意谐写成窝，营造出稚拙可爱的网络口吻；这里改为自然中文的人称。"}觉得特别有意思，心想自己也要做一个。后来我花了将近半年，从零学会了 C，也学了一点 JavaScript 和 CSS，再用 Hexo 搭建了一个静态博客，并将它部署到 GitHub Pages 上，总算有了属于自己的一方小天地。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:48:45.337108Z
-      seconds: 16.195822375
-      tokens: 19941
+      text: 说"想"其实不太准确，更像是一种执念。它在我还不会写前端后端、也不会写嵌入式代码的时候就已经有了。那时候我还在玩电子，偶然刷到了 [@ushio](https://github.com/sakura-ushio) 的 :tn[B站]{is="原文用的是“B站”，中文网友对 Bilibili 这个平台的亲昵简称，写全名会丢掉那种圈内人的口气。"}视频和网站，:tn[窝]{is="原文把第一人称“我”写成同音的“窝”，是网络上常见的故意错写，带着一点稚气可爱的语气，规范的写法留不住这个效果。"}觉得很好玩，我也想要一个。后来我花了小半年，从零学会了 C，还学了一点 JS 和 CSS，用 Hexo 搭了一个静态博客，部署在 Github Pages 上，总算也有了自己的一片小天地。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.80515Z
+      seconds: 53.625921665999996
+      tokens: 32042
       review: false
     zh-TW:
-      text: 說只是「想過」其實不太準確，更像是一種執念。早在我還不會寫前端、後端，也不會寫嵌入式程式碼時，這個念頭就已經有了。當時我還在玩電子，偶然看見 [@ushio](https://github.com/sakura-ushio) 的 :tn[B站]{is="原文用的是「B站」，這是中國網友對 Bilibili 的親暱稱呼，帶有圈內社群的熟稔語氣。"}影片和網站，:tn[我]{is="原文用的是「窝」，刻意把表示第一人稱的「我」寫成同音錯字，營造稚拙可愛的網路口吻。"}覺得很好玩，也想要一個。後來花了將近半年，從零學會 C 和一點點 JS、CSS，用 Hexo 架了一個靜態部落格並部署到 GitHub Pages，也算有了自己的一方小天地。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:39:59.02808Z
-      seconds: 105.442693916
-      tokens: 19729
+      text: 說「想」其實不太準確，更像是一種執念。它在我還不會寫前端後端、也不會寫嵌入式程式碼的時候就已經有了。那時候我還在玩電子，偶然滑到了 [@ushio](https://github.com/sakura-ushio) 的 :tn[B站]{is="原文用的是「B站」，中文網友對 Bilibili 這個平台的親暱簡稱，寫全名會失去那種圈內人的語氣。"}影片和網站，:tn[窝]{is="原文把第一人稱「我」寫成同音的「窝」，是網路上常見的故意錯字，帶著一點稚氣可愛的語氣，規範寫法留不住這個效果。"}覺得很好玩，我也想要一個。後來我花了小半年，從零學會了 C，還學了一點 JS 和 CSS，用 Hexo 搭了一個靜態部落格，部署在 Github Pages 上，總算也有了自己的一片小天地。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.80515Z
+      seconds: 53.625921665999996
+      tokens: 32042
       review: false
   1436607ae993428b426301492efa5785:
     de-DE:
@@ -782,68 +782,68 @@ segments:
       review: false
   7ee9767101581747f4ff96ad967dabb1:
     de-DE:
-      text: 'Das Ironischste daran ist, dass all diese Dinge eigentlich erst entstehen sollten, nachdem ich einen Blog hatte, sodass ich ihre Umsetzung nebenbei dokumentieren konnte. Stattdessen wurde der Blog :tn[immer wieder aufgeschoben]{is="Im Original steht gē, wörtlich Taube, als scherzhaftes Internetverb für das wiederholte Aufschieben einer versprochenen Sache."}, die Ideen wurden immer zahlreicher, doch es gab keinen Ort, an dem ich sie festhalten konnte. Einerseits machte ich mir innerlich Vorwürfe: Ich hatte mir vorgenommen, Vane fertigzustellen, also durfte ich nicht aufhören; andererseits fühlte ich mich machtlos, weil ich mich mit jedem weiteren Schritt nur noch weiter vom Ziel entfernte. Ich wusste die ganze Zeit, was ich tun wollte, konnte es aber einfach nicht umsetzen. Wenn ich genau darüber nachdenke, hatte ich mich schon lange nicht mehr hingesetzt, um etwas zu schreiben. Rückblickend weist all das auf dasselbe hin: Überentwicklung.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T12:44:49.131529Z
-      seconds: 99.844297667
-      tokens: 20027
+      text: 'Das Ironischste daran ist, dass all diese Dinge eigentlich erst nach dem Blog entstehen sollten, dokumentiert, während ich sie baue. Stattdessen wurde der Blog :tn[immer wieder sitzengelassen]{is="Im Original steht 鸽了又鸽, vom chinesischen Slangausdruck 放鸽子 — wörtlich ‚eine Taube fliegen lassen‘, also jemanden versetzen. Ein leichtes, selbstironisches Wort, kein neutrales ‚verschoben‘."}, die Ideen wurden immer mehr, und es gab keinen einzigen Ort, an dem ich sie hätte festhalten können. Auf der einen Seite klagte mich mein Inneres an: Du hast gesagt, Vane wird fertig, also darfst du jetzt nicht aufhören. Auf der anderen Seite eine Ohnmacht, die mit jedem Schritt größer wurde, weil ich mich immer weiter entfernte. Ich wusste die ganze Zeit, was ich tun wollte, ich brachte es nur nicht zustande. Wenn ich genauer darüber nachdenke, habe ich schon sehr lange nicht mehr dagesessen und irgendetwas geschrieben. Im Rückblick zeigt das alles auf dasselbe -- auf Overengineering.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805372Z
+      seconds: 50.936352458
+      tokens: 31664
       review: false
     en-US:
-      text: 'The greatest irony is that all these things were originally supposed to be done after I had a blog, documenting them as I went. Instead, the blog :tn[kept getting postponed]{is="The original uses gē, literally pigeon, as a playful internet verb for repeatedly putting off something promised."}, ideas kept multiplying, and there was nowhere to record them. On one side, a voice inside berated me: I had said I would finish Vane, so I could not stop; on the other was the helpless feeling that the more I worked, the farther I strayed. I always remembered what I was supposed to do, but I simply could not do it. Come to think of it, I had not sat down to write anything in a very long time. Looking back now, it all points to the same thing—overengineering.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T12:44:49.131529Z
-      seconds: 99.844297667
-      tokens: 20027
+      text: 'The most ironic part is that all of this was supposed to be built alongside the blog, documented as it happened. Instead the blog got :tn[ghosted, and ghosted again]{is="The original says 鸽了又鸽, from the Chinese slang 放鸽子 — literally to release a pigeon on someone, meaning to blow off a promise. It is a light, self-mocking word, not a neutral ‘postponed’."}, the ideas kept piling up, and there was nowhere to record any of them. On one side my conscience kept accusing me: you said you would finish Vane, so you can''t stop now. On the other side, a growing sense of helplessness as I drifted further and further away. I always remembered what I was supposed to be doing; I just couldn''t get it done. Thinking about it carefully, it has been a very long time since I sat down and wrote anything at all. Looking back now, all of it points to the same thing -- over-engineering.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805372Z
+      seconds: 50.936352458
+      tokens: 31664
       review: false
     es-ES:
-      text: 'Lo más irónico es que, en principio, todo esto debía hacerse después de tener el blog, documentándolo sobre la marcha. Pero el blog se fue :tn[posponiendo una y otra vez]{is="El original usa gē, literalmente paloma, como un verbo de la jerga de Internet que alude con humor a aplazar repetidamente algo prometido."}, las ideas no dejaban de acumularse y no había ningún lugar donde registrarlas. Por un lado, una voz interior me recriminaba que, si había prometido terminar Vane, no podía detenerme; por otro, sentía la impotencia de alejarme cada vez más cuanto más avanzaba. Nunca olvidé lo que tenía que hacer, pero sencillamente era incapaz de hacerlo. Pensándolo bien, hacía ya mucho tiempo que no me sentaba a escribir nada. Ahora, al mirar atrás, todo apunta a lo mismo: sobreingeniería.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T12:44:49.131529Z
-      seconds: 99.844297667
-      tokens: 20027
+      text: 'Lo más irónico es que todo esto tendría que haberse hecho después del blog, documentándolo sobre la marcha. En cambio, al blog :tn[le di plantón una y otra vez]{is="El original dice 鸽了又鸽, del término coloquial chino 放鸽子, literalmente « soltar una paloma », es decir, dejar a alguien plantado. Es una palabra ligera y autoirónica, no un neutro « aplazado »."}, las ideas se fueron acumulando y no había ni un solo sitio donde anotarlas. Por un lado, mi conciencia no dejaba de acusarme: dijiste que ibas a terminar Vane, así que no puedes parar. Por otro, una impotencia que crecía cuanto más me alejaba. Siempre he recordado lo que tenía que hacer; simplemente no era capaz de hacerlo. Pensándolo bien, hace muchísimo que no me siento a escribir nada. Ahora, mirando atrás, todo apunta a lo mismo: sobreingeniería.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805372Z
+      seconds: 50.936352458
+      tokens: 31664
       review: false
     fr-FR:
-      text: 'Le plus ironique, c’est que tout cela aurait dû être réalisé une fois le blog créé, en documentant chaque étape au fur et à mesure. Mais le blog a été :tn[reporté encore et encore]{is="L’original emploie gē, littéralement pigeon, comme un verbe d’argot Internet désignant avec humour le fait de repousser sans cesse une chose promise."}, les idées se sont multipliées et il n’y avait pourtant aucun endroit où les consigner. D’un côté, une voix intérieure me reprochait de ne pas tenir parole : puisque j’avais promis de terminer Vane, je ne pouvais pas m’arrêter ; de l’autre, je ressentais l’impuissance de m’éloigner toujours davantage à mesure que j’avançais. Je n’ai jamais oublié ce que je devais faire, mais j’étais tout simplement incapable de le faire. À bien y réfléchir, cela faisait déjà très longtemps que je ne m’étais pas assis pour écrire quoi que ce soit. Avec le recul, tout converge vers la même chose : la suringénierie.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T12:44:49.131529Z
-      seconds: 99.844297667
-      tokens: 20027
+      text: 'Le plus ironique, c''est que tout cela aurait dû se faire après le blog, en le documentant au fur et à mesure. Au lieu de quoi le blog a été :tn[posé, puis reposé]{is="L''original écrit 鸽了又鸽, du mot d''argot chinois 放鸽子, littéralement « lâcher un pigeon », c''est-à-dire poser un lapin à quelqu''un. C''est un terme léger et autodérisoire, pas un simple « reporté »."}, les idées se sont accumulées, et il n''existait aucun endroit où les consigner. D''un côté, ma conscience m''accusait sans relâche : tu as dit que Vane serait fini, donc tu ne peux pas t''arrêter. De l''autre, un sentiment d''impuissance qui grandissait à mesure que je m''éloignais. J''ai toujours su ce que je devais faire, je n''arrivais simplement pas à le faire. À bien y réfléchir, cela fait très longtemps que je ne me suis pas assis pour écrire quoi que ce soit. Avec le recul, tout cela pointe vers la même chose -- la suringénierie.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805372Z
+      seconds: 50.936352458
+      tokens: 31664
       review: false
     ja-JP:
-      text: 皮肉なことに、これらは本来、ブログを作ってから、記録しながら進めるはずのものだった。ところがブログは:tn[何度も先延ばしになり]{is="原文の gē は文字どおりには鳩を意味し、約束したことを何度も先延ばしにするというネット上の動詞として、ふざけた調子で使われている。"}、アイデアばかりが増えていくのに、それを記録する場所はどこにもなかった。一方では、Vane を完成させると決めたのだから止まるわけにはいかない、と心の中で自分を責め、もう一方では、やればやるほど遠ざかっていくような無力感を覚えていた。何をすべきかはずっと覚えていたのに、どうしても形にできなかった。よく考えてみれば、腰を据えて何かを書くこともしばらくしていなかった。今振り返ると、すべては同じものを指している——過剰設計だ。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T12:44:49.131529Z
-      seconds: 99.844297667
-      tokens: 20027
+      text: いちばん皮肉なのは、これらは本来ブログを持ってから、記録しながら作るはずのものだったということだ。ところがブログのほうは:tn[何度もすっぽかされ]{is="原文は「鸽了又鸽」。中国語のネットスラング「放鸽子」（直訳は「鳩を放つ」＝約束をすっぽかす）から来た動詞で、約束したことを何度も先延ばしにする自嘲的で軽い言い回し。単なる「延期」ではないニュアンスがある。"}、アイデアばかりが増えていくのに、それを書き留める場所がひとつもなかった。一方では内心がずっと自分を責めていた。Vane は完成させると決めたのだから、止めるわけにはいかない、と。もう一方では、進めば進むほど遠ざかっていく無力感があった。自分が何をすべきかはずっと覚えている。ただ、作り上げることができない。よく考えてみると、腰を据えて何かを書くということを、もう随分と長いあいだしていなかった。いま振り返ると、すべては同じひとつのものを指している——過剰設計だ。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805372Z
+      seconds: 50.936352458
+      tokens: 31664
       review: false
     ko-KR:
-      text: 가장 아이러니한 점은 이 모든 일이 원래 블로그를 만든 뒤에, 기록하면서 하나씩 해 나갔어야 할 것들이라는 사실이다. 하지만 블로그는 :tn[계속 미뤄졌고]{is="원문은 문자 그대로 비둘기라는 뜻의 gē를 약속한 일을 거듭 미룬다는 인터넷 동사로 써서 장난스러운 이미지를 더한다."}, 아이디어만 점점 늘어났을 뿐 그것들을 기록할 곳은 하나도 없었다. 한편으로는 Vane을 완성하겠다고 했으니 멈출 수 없다는 내면의 질책이 있었고, 다른 한편으로는 할수록 목표에서 더 멀어지는 듯한 무력감이 있었다. 무엇을 해야 하는지는 줄곧 기억하고 있었지만, 도무지 해낼 수가 없었다. 곰곰이 생각해 보니 무언가를 쓰려고 자리에 앉아 본 지도 이미 오래였다. 이제 와 돌아보면 이 모든 것은 하나를 가리키고 있다. 바로 과도한 엔지니어링이다.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T12:44:49.131529Z
-      seconds: 99.844297667
-      tokens: 20027
+      text: 가장 아이러니한 건, 이 모든 게 원래는 블로그가 생긴 뒤에 기록하면서 만들어야 할 것들이었다는 점이다. 그런데 블로그는 :tn[미루고 또 미뤄졌고]{is="원문은 ‘鸽了又鸽’로, 중국어 인터넷 속어 ‘放鸽子’(직역하면 비둘기를 날려 보내다, 곧 약속을 바람맞히다)에서 온 말이다. 약속한 일을 계속 내팽개친다는 뜻의 가볍고 자조적인 표현이며, 중립적인 ‘연기’와는 결이 다르다."}, 아이디어는 점점 늘어나는데 그것들을 적어 둘 곳은 한 군데도 없었다. 한쪽에서는 마음속에서 계속 나를 몰아세웠다. Vane을 끝내겠다고 했으니 여기서 멈출 수는 없다고. 다른 한쪽에는 갈수록 멀어져만 가는 무력감이 있었다. 내가 무엇을 해야 하는지는 늘 기억하고 있었다. 다만 만들어 내지를 못했다. 곰곰이 생각해 보니, 앉아서 무언가를 써 본 지가 정말 오래되었다. 지금 돌아보면 이 모든 것이 같은 하나를 가리키고 있다 — 과잉 설계.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805372Z
+      seconds: 50.936352458
+      tokens: 31664
       review: false
     zh-CN:
-      text: 最讽刺的是，这些事本来都应该等博客上线后，一边记录一边做。可博客却被我:tn[一拖再拖]{is="原文用了网络动词“鸽”，源自“放鸽子”，以戏谑的鸽子意象形容一再搁置承诺。"}，想法越来越多，却连一个记录它们的地方都没有。一边是内心的谴责：既然说好要把 Vane 做完，就不能停；另一边则是越做越偏、无力挽回的感觉。我一直记得自己要做什么，却怎么也做不出来。仔细想想，我其实已经很久没有坐下来写过东西了。现在回头看，这一切都指向同一个问题——过度工程。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:49:01.535876Z
-      seconds: 17.468520292
-      tokens: 19728
+      text: 最讽刺的是，这些东西本来都应该是在有了博客之后，一边记录一边做的。结果博客:tn[鸽了又鸽]{is="原文用的是“鸽了又鸽”，来自网络用语“放鸽子”，指一再拖延、把答应好的事一次次搁下，带着自嘲的轻松语气，不是中性的“推迟”。"}，想法越来越多，却没有一个地方能把它们记下来。一边是内心不停地谴责自己：说好了 Vane 要做完，就不能停；另一边是越做越远、越做越无力。我一直都记得自己要做什么，就是做不出来。仔细想想，我其实已经很久没有坐下来写过任何东西了。现在回头看，这一切都指向同一件事——过度工程。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805372Z
+      seconds: 50.936352458
+      tokens: 31664
       review: false
     zh-TW:
-      text: 最諷刺的是，這些東西原本都應該等有了部落格之後，邊記錄邊做。結果部落格還是:tn[鴿了又鴿]{is="原文把「鴿」當作網路動詞，以戲謔的語氣表示一再拖延答應要做的事。"}，想法愈來愈多，卻沒有一個地方能記錄它們。一邊是內心的譴責：說好了要把 Vane 做完，就不能停；另一邊則是愈做愈遠的無力感。我一直記得自己要做什麼，卻怎麼也做不出來。仔細想想，我其實已經很久沒有坐下來寫過東西了。現在回頭看，這一切都指向同一個問題——過度工程。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T12:44:49.131529Z
-      seconds: 99.844297667
-      tokens: 20027
+      text: 最諷刺的是，這些東西本來都應該是在有了部落格之後，一邊記錄一邊做的。結果部落格:tn[鴿了又鴿]{is="原文用的是「鴿了又鴿」，來自網路用語「放鴿子」，指一再拖延、把答應好的事一次次擱下，帶著自嘲的輕鬆語氣，不是中性的「延後」。"}，想法越來越多，卻沒有一個地方能把它們記下來。一邊是內心不停地譴責自己：說好了 Vane 要做完，就不能停；另一邊是越做越遠、越做越無力。我一直都記得自己要做什麼，就是做不出來。仔細想想，我其實已經很久沒有坐下來寫過任何東西了。現在回頭看，這一切都指向同一件事——過度工程。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805372Z
+      seconds: 50.936352458
+      tokens: 31664
       review: false
   90837a7b3a5f5bfd3df633d264d75a1a:
     de-DE:
@@ -912,68 +912,68 @@ segments:
       review: false
   943bc9082d74c7867db730a57a3c5d75:
     de-DE:
-      text: 'Das Tempo im KI-Zeitalter ist einfach zu hoch. Ein Modell folgt auf das nächste, eine Welle neuer Technologien auf die andere, und ich werde immer nervöser, als würde ich sofort überholt, sobald ich stehen bleibe. In meiner verrücktesten Phase programmierte ich 16 Stunden am Tag und verbrannte an einem einzigen Tag Tokens im Wert von 1.900 US-Dollar ~~(das muss ungefähr im Februar gewesen sein)~~; ich war kurz davor, völlig kaputtzugehen. Doch was all das zum Stillstand brachte, war keine Erleuchtung, sondern schlicht Erschöpfung. Als der Takt immer unerbittlicher wurde und schließlich der letzte Tropfen das Fass zum Überlaufen brachte, war ich auf einmal erleichtert, konnte loslassen und :tn[ließ einfach alles schleifen]{is="Im Original steht das chinesische Internet-Schlagwort bailan: bewusst nicht mehr den Schein wahren oder sich weiter anstrengen, sondern alles schlechter werden lassen – mit selbstironischer Erleichterung."}; und so ist es eigentlich auch ganz gut.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:40:47.807813Z
-      seconds: 169.161939041
-      tokens: 46493
+      text: Das Tempo der KI-Ära ist zu hoch. Modelle folgen einander in immer neuen Iterationen, neue Techniken tauchen Welle um Welle auf, und ich wurde immer nervöser, als würde ich überholt, sobald ich stehen bleibe. In der wildesten Zeit habe ich sechzehn Stunden am Tag Code geschrieben und konnte an einem Tag $1.9k USD an Token verfeuern ~~(ungefähr im Februar, glaube ich)~~; ich war fast am Ende. Aber was das alles gestoppt hat, war keine Erleuchtung, sondern schlicht Erschöpfung. Unter einem Takt, der immer enger wurde, fiel der letzte Tropfen, und gerade da wurde ich ruhig, ließ ich los, :tn[ließ ich alles verrotten]{is="Im Original steht 摆烂, ein chinesisches Netzwort dafür, dass man aufhört, den Schein zu wahren oder sich weiter anzustrengen, und die Lage bewusst verfallen lässt. Es klingt selbstironisch und zugleich erleichtert – ein bloßes ‚aufgeben‘ trifft das nicht."}; und so ist es auch ganz gut.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805305Z
+      seconds: 49.951920792
+      tokens: 31562
       review: false
     en-US:
-      text: The pace of the AI era is just too fast. Models keep iterating one after another, and wave after wave of new technologies keeps emerging. I’m getting more and more anxious, as if the moment I stop, I’ll be left behind. At my most unhinged, I coded 16 hours a day and could burn through $1.9K USD in tokens in a single day ~~(probably sometime around February)~~; I was nearly wrecked. But what brought it all to a halt wasn’t some epiphany—I was simply exhausted. As the pace grew ever more relentless and the final straw came down, I felt relieved instead. I let go, made peace with it, and :tn[stopped trying and let it all slide]{is="The original uses the Chinese internet slang bailan for deliberately giving up on keeping things together and letting them deteriorate, with a self-mocking sense of release."}; and honestly, that’s not so bad.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:40:47.807813Z
-      seconds: 169.161939041
-      tokens: 46493
+      text: The pace of the AI era is too fast. Models iterate one after another, new techniques surface wave after wave, and I grew more and more anxious, as if stopping meant being overtaken. At the wildest point I wrote code sixteen hours a day and could burn $1.9k USD of tokens in a single day ~~(around February, I think)~~; I was nearly wrecked. But what stopped all of it wasn't some epiphany, just plain exhaustion. Under a rhythm that kept tightening, the last straw came down and instead I felt relief, I let it go, I :tn[stopped trying to hold it together]{is="The original says 摆烂, a Chinese internet term for deliberately giving up on keeping up appearances or making any further effort and letting things rot. It carries a self-mocking lightness and a sense of release that a plain ‘give up' misses."}; and this way is pretty good too.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805305Z
+      seconds: 49.951920792
+      tokens: 31562
       review: false
     es-ES:
-      text: 'El ritmo de la era de la IA es demasiado rápido. Los modelos se actualizan uno tras otro y las nuevas tecnologías aparecen en oleadas; cada vez me angustio más, como si detenerme significara quedarme atrás. En mi época más desquiciada, programaba 16 horas al día y podía quemar 1.900 USD en tókenes en una sola jornada ~~(creo que fue por febrero)~~; estaba a punto de quedar destrozado. Pero lo que hizo que todo se detuviera no fue ninguna revelación: sencillamente estaba agotado. Con un ritmo cada vez más asfixiante, cuando llegó la gota que colmó el vaso, sentí alivio, cambié de perspectiva y :tn[dejé que todo se fuera al garete]{is="El original usa la jerga china de internet bailan: renunciar deliberadamente a guardar las apariencias o seguir esforzándose y dejar que la situación empeore, con una mezcla de autoparodia y liberación."}; y, la verdad, así tampoco se está mal.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:40:47.807813Z
-      seconds: 169.161939041
-      tokens: 46493
+      text: El ritmo de la era de la IA es demasiado rápido. Los modelos se iteran uno tras otro, las técnicas nuevas brotan oleada tras oleada, y yo estaba cada vez más ansioso, como si detenerme bastara para que me adelantaran. En lo más loco escribía código dieciséis horas al día y podía quemar $1.9k USD de Token en un solo día ~~(por febrero, creo)~~; estaba casi destrozado. Pero lo que detuvo todo esto no fue ninguna revelación, sino simple cansancio. Bajo un ritmo cada vez más apretado, cayó la última gota y, al contrario, me sentí en paz, solté, :tn[dejé que todo se pudriera]{is="El original usa 摆烂, un término de internet chino para renunciar a propósito a guardar las apariencias o a seguir esforzándose, y dejar que la cosa se estropee. Lleva una autoironía ligera y una sensación de alivio que un simple «rendirse» no conserva."}; y así, también está bastante bien.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805305Z
+      seconds: 49.951920792
+      tokens: 31562
       review: false
     fr-FR:
-      text: 'Le rythme de l’ère de l’IA est bien trop rapide. Les modèles se succèdent à toute vitesse, les nouvelles technologies déferlent vague après vague, et je suis de plus en plus anxieux, comme si le simple fait de m’arrêter allait me faire distancer. Dans ma période la plus folle, je codais 16 heures par jour et pouvais brûler 1 900 USD de jetons en une seule journée ~~(vers février, je crois)~~ ; j’étais presque à bout. Mais ce qui a tout arrêté n’a rien été d’une révélation : j’étais tout simplement épuisé. Sous un rythme toujours plus oppressant, quand la goutte d’eau a fini par faire déborder le vase, je me suis au contraire senti soulagé, j’ai lâché prise et :tn[j’ai laissé tout partir à vau-l’eau]{is="L’original emploie l’argot internet chinois bailan, qui consiste à renoncer délibérément à sauver les apparences ou à faire des efforts et à laisser la situation se dégrader, avec une autodérision libératrice."} ; au fond, ce n’est pas plus mal.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:40:47.807813Z
-      seconds: 169.161939041
-      tokens: 46493
+      text: Le rythme de l'ère de l'IA est trop rapide. Les modèles s'enchaînent, itération après itération, les nouvelles techniques surgissent vague après vague, et je devenais de plus en plus anxieux, comme si m'arrêter suffisait à me faire dépasser. Au plus fou, j'écrivais du code seize heures par jour et je pouvais brûler $1.9k USD de Token en une journée ~~(vers février, je crois)~~ ; j'étais presque foutu. Mais ce qui a tout arrêté n'était pas une illumination, seulement de la fatigue. Sous un rythme qui se resserrait toujours, la dernière goutte est tombée, et au contraire je me suis apaisé, j'ai lâché prise, j'ai :tn[laissé tout partir en vrille]{is="L'original emploie 摆烂, une expression d'internet chinoise qui désigne le fait de renoncer volontairement à sauver les apparences ou à faire encore un effort, et de laisser la situation se dégrader. Elle porte une autodérision légère et un vrai soulagement, que le simple mot « abandonner » ne rend pas."} ; et comme ça, c'est très bien aussi.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805305Z
+      seconds: 49.951920792
+      tokens: 31562
       review: false
     ja-JP:
-      text: AI時代のスピードはあまりにも速い。モデルは次々に更新され、新しい技術も波のように次々と現れる。立ち止まったら追い越されてしまう気がして、焦りは募る一方だった。いちばん無茶をしていた頃は1日16時間コードを書き、たった1日で1,900米ドル分のトークンを使い切ることもあった ~~（たぶん2月ごろ）~~。もう心身ともに壊れかけていた。でも、すべてを止めたのは何かを悟ったからではなく、ただ疲れ切ったからだ。ますますせわしなくなる日々の中でとどめの一撃が加わったとき、かえって気が楽になり、吹っ切れて、:tn[もうどうにでもなれと投げ出した]{is="原文は中国語のネットスラング、バイラン。体裁を保つ努力を自分からやめて悪化するに任せることを、自嘲と解放感を込めて表す。"}。それも悪くない。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:40:47.807813Z
-      seconds: 169.161939041
-      tokens: 46493
+      text: AI 時代のテンポは速すぎる。モデルは次から次へと更新され、新しい技術は波のように湧いてくる。僕はどんどん焦っていった。立ち止まったら追い抜かれる気がして。いちばん狂っていた頃は一日 16 時間コードを書き、Token だけで一日 $1.9k USD 燃やせた ~~(たしか 2 月ごろ)~~。体はもうぼろぼろだった。でもそれを全部止めたのは悟りなんかじゃなく、ただ単に疲れただけだ。どんどんきつくなるテンポの中で、最後の一本の藁が乗ったとき、僕はかえって吹っ切れた、割り切った、:tn[何もかも投げ出した]{is="原文は中国語ネットスラングの「摆烂」。体面を保つことも努力を続けることもやめ、事態が悪くなるに任せるという意味で、自嘲まじりの軽さと、肩の荷が下りたような解放感がある。ただの「あきらめる」では出ない語感。"}。それでも、これはこれで悪くない。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805305Z
+      seconds: 49.951920792
+      tokens: 31562
       review: false
     ko-KR:
-      text: AI 시대의 속도는 너무 빠르다. 모델은 쉴 새 없이 새 버전으로 바뀌고 신기술은 물결치듯 잇달아 등장한다. 잠깐이라도 멈추면 뒤처질 것 같아 갈수록 불안해졌다. 가장 미쳐 있던 때에는 하루 16시간씩 코딩했고, 하루 만에 1,900달러어치 토큰을 태우기도 했다 ~~(아마 2월쯤이었던 것 같다)~~. 사람이 거의 망가질 지경이었다. 하지만 이 모든 것을 멈춘 건 어떤 깨달음이 아니라 그저 지쳤기 때문이다. 점점 더 숨 가빠지는 속도 속에서 마지막 지푸라기까지 얹히자 오히려 마음이 놓였고, 생각을 내려놓고 :tn[에라 모르겠다며 다 놔 버렸다]{is="원문은 중국 인터넷 속어 바이란을 썼다. 체면이나 노력을 스스로 포기하고 상황이 나빠지도록 내버려 두는 태도를 자조와 해방감이 섞인 말로 표현한다."}. 이렇게 사는 것도 꽤 괜찮다.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:40:47.807813Z
-      seconds: 169.161939041
-      tokens: 46493
+      text: AI 시대의 속도는 너무 빠르다. 모델은 한 번씩 계속 갈아엎히고, 새로운 기술은 파도처럼 밀려온다. 나는 점점 더 불안해졌다, 멈추면 곧바로 추월당할 것 같아서. 가장 미쳐 있을 때는 하루에 열여섯 시간씩 코드를 썼고, Token 값만 하루 $1.9k USD를 태울 수 있었다 ~~(대충 2월쯤이었던 것 같다)~~. 몸이 거의 망가졌다. 하지만 이 모든 걸 멈추게 한 건 무슨 깨달음이 아니라 그냥 지쳤기 때문이다. 점점 조여드는 속도 속에서 마지막 지푸라기가 얹혔을 때, 나는 오히려 후련해졌고, 마음을 놓았고, :tn[될 대로 되라며 손을 놓았다]{is="원문의 단어는 중국 인터넷 유행어 摆烂로, 체면을 지키거나 더 노력하기를 스스로 그만두고 상황이 망가지도록 내버려 둔다는 뜻이다. 자조 섞인 가벼움과 홀가분함이 함께 담겨 있어, 단순한 ‘포기'로는 잘 살지 않는다."}; 이래도, 꽤 괜찮다.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805305Z
+      seconds: 49.951920792
+      tokens: 31562
       review: false
     zh-CN:
-      text: AI 时代变化太快了。模型不断迭代，新技术一波接一波地涌现，我也越来越焦虑，仿佛一停下来就会被人超越。最疯狂的时候，我每天写 16 个小时的代码，光词元一天就能烧掉 1900 美元 ~~（大概是二月吧）~~，整个人都快垮了。但让我停下来的并不是什么顿悟，只是单纯累了。在节奏越来越紧绷的时候，最后一根稻草落下，我反而释然了：想通了，也决定:tn[彻底躺平]{is="原文用的是网络流行语“摆烂”，指索性不再维持体面或继续努力，带着自嘲和如释重负的意味。"}；这样其实也挺好。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:49:11.181039Z
-      seconds: 22.539183625
-      tokens: 19991
+      text: AI 时代的节奏太快了。模型一轮接一轮地迭代，新技术一茬接一茬地冒出来，我越来越焦虑，好像一停下来就会被人甩在后面。最疯的时候，我一天写 16 个小时代码，Token 一天就能烧掉 1.9k 美元 ~~(大概是二月份的事吧)~~，整个人几乎废掉。但让这一切停下来的，不是什么顿悟，就是单纯的累了。在越绷越紧的节奏里，最后一根稻草压下来，我反而释然了，想开了，:tn[开始摆烂了]{is="原文用的是网络流行语「摆烂」——主动放弃维持体面、不再撑着，任由局面烂下去。它比单纯的「放弃」多一层自嘲，也多一层松口气的解脱感。"}；这样，也挺好的。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:24:26.990823Z
+      seconds: 8.991079375
+      tokens: 28813
       review: false
     zh-TW:
-      text: AI 時代的步調太快了。模型一個接一個迭代，新技術一波接一波冒出來，我越來越焦慮，彷彿一停下來就會被超越。最瘋狂的時候，我一天寫 16 個小時的程式，一天就能燒掉價值 1,900 美元的詞元 ~~（大概是 2 月吧）~~，人都快廢了。但讓這一切停下來的不是什麼頓悟，只是單純累了。在越來越緊迫的步調下，最後一根稻草壓下來，我反而釋然了，也想開了，:tn[乾脆擺爛了]{is="原文的擺爛是帶著自嘲的中國網路用語，指主動放棄繼續維持或努力，任由情況變糟，也帶有終於鬆手的解脫感。"}；這樣也挺好的。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:40:47.807813Z
-      seconds: 169.161939041
-      tokens: 46493
+      text: AI 時代的節奏太快了。模型一輪接一輪迭代，新技術一波接一波冒出來，我越來越焦慮，好像一停下來就會被人超過。最瘋的時候我一天寫 16 個小時程式，光 Token 一天就能燒掉 $1.9k USD ~~(大概是 2 月的時候吧)~~，人快廢了。但讓這一切停下來的不是什麼頓悟，就是單純地累了。在越來越緊的節奏裡，最後一根稻草壓下來，我反而釋然了，想開了，:tn[擺爛了]{is="原文用的是中國網路流行語「摆烂」，指主動放棄維持體面或繼續努力，任由局面爛下去。它帶著自嘲的輕鬆和一股放下的解脫感，單說「放棄」留不住這個味道。"}；這樣，也挺好的。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:07.805305Z
+      seconds: 49.951920792
+      tokens: 31562
       review: false
   9566ed40af060ec2841b1342a8b37c7a:
     de-DE:
@@ -1172,68 +1172,68 @@ segments:
       review: false
   9b3c3ea302ecdb63c26e09738b202a95:
     de-DE:
-      text: Anfangs wollte ich lediglich einen Hell-Dunkel-Umschalter zum Hexo-Theme [Nlvi](https://github.com/colmugx/hexo-theme-nlvi) von [@colmugx](https://x.com/colmugx) hinzufügen. Mit dem JavaScript von Dark Reader bastelte ich etwas zusammen, doch es war hässlich und stellte mich nicht zufrieden. Danach lernte ich CSS-@media-Abfragen, wechselte zum Umschalten in einer JavaScript-SPA, zur .dark-Klasse von Tailwind CSS und anschließend zum serverseitigen Rendern mit next-theme. Schließlich :tn[zimmerte ich von Hand und von Grund auf]{is="Im Original steht 手搓, wörtlich etwa mit den Händen zusammenreiben. Im technischen Jargon bezeichnet es scherzhaft und mit etwas Stolz eine ohne fertige Lösung selbst gebaute, bewusst handwerklich-raue Umsetzung."} eine Lösung aus Cookie und einem mit dem head synchronisierten Inline-Skript, die das FOUC-Flackern beseitigte. Insgesamt schlug ich mich mit vier oder fünf Ansätzen herum.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:41:11.944427Z
-      seconds: 62.304274917
-      tokens: 19665
+      text: Angefangen hat es damit, dass ich dem Hexo-Theme [Nlvi](https://github.com/colmugx/hexo-theme-nlvi) von [@colmugx](https://x.com/colmugx) bloß eine Hell-Dunkel-Umschaltung verpassen wollte. Ich habe mir eine aus dem JS von Dark Reader zusammengeschustert -- hässlich, damit war ich nicht zufrieden. Dann lernte ich CSS @media, danach das Umschalten per JS im SPA, dann die .dark class von TailwindCSS, dann next-theme im SSR, und am Ende habe ich ein Cookie samt Head-Sync-Inline-Skript :tn[eigenhändig zusammengebaut]{is="Im Original steht 手搓, wörtlich ‚mit den Händen gerieben‘ -- salopp dafür, etwas von Grund auf selbst zu bauen, statt eine fertige Lösung zu nehmen. Klingt grob, handgemacht und ein bisschen stolz."}, um das FOUC-Flackern loszuwerden. Vier oder fünf Ansätze waren es am Ende.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:52.12823Z
+      seconds: 39.41177275
+      tokens: 31469
       review: false
     en-US:
-      text: At first, I only wanted to add light/dark mode switching to [@colmugx](https://x.com/colmugx)’s Hexo theme [Nlvi](https://github.com/colmugx/hexo-theme-nlvi). I hacked something together with Dark Reader’s JavaScript, but it was ugly, and I wasn’t satisfied. Then I learned CSS @media queries, moved on to JavaScript SPA switching, Tailwind CSS’s .dark class, and SSR with next-theme, before finally :tn[hand-rolling]{is="The original word was 手搓, literally making something by rubbing it out with one’s hands; in tech slang it jokingly conveys the rough pride of building from scratch without a ready-made solution."} a Cookie plus head-synchronized inline script to eliminate FOUC flashes. I ended up wrestling with four or five different approaches.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:41:11.944427Z
-      seconds: 62.304274917
-      tokens: 19665
+      text: It started as nothing more than wanting to add a light/dark toggle to [@colmugx](https://x.com/colmugx)'s Hexo theme [Nlvi](https://github.com/colmugx/hexo-theme-nlvi). I slapped one together out of Dark Reader's JS -- ugly, and I wasn't happy with it. Then I learned CSS @media, then JS SPA switching, then TailwindCSS's .dark class, then SSR next-theme, and finally :tn[hand-rolled]{is="The original says 手搓, literally ‘rubbed together by hand’ -- a joking way of saying you built it from scratch instead of pulling in something ready-made, with a rough, slightly proud, homemade feel."} a Cookie plus a Head Sync inline script to kill the FOUC flicker. Four or five approaches, all told.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:52.12823Z
+      seconds: 39.41177275
+      tokens: 31469
       review: false
     es-ES:
-      text: Al principio solo quería añadir un selector de modo claro y oscuro a [Nlvi](https://github.com/colmugx/hexo-theme-nlvi), el tema de Hexo de [@colmugx](https://x.com/colmugx). Improvisé uno con el JavaScript de Dark Reader, pero quedó feo y no me convenció. Después aprendí las consultas CSS @media, pasé a alternar el modo en una aplicación de página única con JavaScript, probé la clase .dark de Tailwind CSS y luego el renderizado del lado del servidor con next-theme. Finalmente :tn[construí a mano desde cero]{is="La expresión original era 手搓, literalmente crear algo frotándolo con las manos. En jerga técnica alude con humor al orgullo algo rudimentario de fabricarlo todo sin recurrir a una solución ya hecha."} una solución con una Cookie y un script en línea sincronizado con el head para eliminar los destellos de contenido sin estilo. En total estuve peleándome con cuatro o cinco métodos.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:41:11.944427Z
-      seconds: 62.304274917
-      tokens: 19665
+      text: 'Al principio solo quería añadir un conmutador de claro/oscuro al tema de Hexo [Nlvi](https://github.com/colmugx/hexo-theme-nlvi) de [@colmugx](https://x.com/colmugx). Apañé uno con el JS de Dark Reader: feo, no me convencía. Después aprendí @media en CSS, luego el cambio por JS en la SPA, luego la .dark class de TailwindCSS, luego next-theme en SSR, y al final me :tn[monté a mano]{is="El original dice 手搓, literalmente «amasado con las manos»: una forma jocosa de decir que uno lo hace todo desde cero en vez de tirar de una solución ya hecha, con ese aire artesanal, tosco y algo orgulloso."} una Cookie más un script inline de Head Sync para acabar con el parpadeo del FOUC. Cuatro o cinco enfoques en total.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:52.12823Z
+      seconds: 39.41177275
+      tokens: 31469
       review: false
     fr-FR:
-      text: Au départ, je voulais simplement ajouter un sélecteur de thème clair ou sombre à [Nlvi](https://github.com/colmugx/hexo-theme-nlvi), le thème Hexo de [@colmugx](https://x.com/colmugx). J’ai bricolé quelque chose avec le JavaScript de Dark Reader, mais c’était laid et je n’en étais pas satisfait. J’ai ensuite appris les requêtes CSS @media, puis essayé le basculement dans une application monopage en JavaScript, la classe .dark de Tailwind CSS et le rendu côté serveur avec next-theme. J’ai fini par :tn[façonner moi-même de toutes pièces]{is="Le mot original était 手搓, littéralement fabriquer en frottant avec les mains. Dans le jargon technique, il évoque avec humour la fierté un peu rustique de tout construire soi-même sans solution prête à l’emploi."} une solution associant un Cookie à un script intégré synchronisé avec le head pour supprimer les flashs de contenu sans style. En tout, je me suis débattu avec quatre ou cinq approches.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:41:11.944427Z
-      seconds: 62.304274917
-      tokens: 19665
+      text: 'Au départ, je voulais seulement ajouter une bascule clair/sombre au thème Hexo [Nlvi](https://github.com/colmugx/hexo-theme-nlvi) de [@colmugx](https://x.com/colmugx). J''en ai bricolé une avec le JS de Dark Reader : moche, ça ne me convenait pas. Ensuite j''ai appris @media en CSS, puis la bascule en JS côté SPA, puis la .dark class de TailwindCSS, puis next-theme en SSR, et pour finir j''ai :tn[fabriqué à la main]{is="L''original dit 手搓, littéralement « pétri à la main » : une façon plaisante de dire qu''on a tout fait soi-même depuis zéro plutôt que de reprendre une solution toute prête, avec ce côté artisanal, un peu brut et un peu fier."} un Cookie plus un script inline de Head Sync pour supprimer le scintillement du FOUC. Quatre ou cinq approches en tout.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:52.12823Z
+      seconds: 39.41177275
+      tokens: 31469
       review: false
     ja-JP:
-      text: 最初は [@colmugx](https://x.com/colmugx) の Hexo テーマ [Nlvi](https://github.com/colmugx/hexo-theme-nlvi) にライト／ダークモードの切り替えを付けたかっただけだった。Dark Reader の JavaScript でひとまずでっち上げたものの、見た目が悪くて納得できなかった。それから CSS の @media クエリを学び、JavaScript による SPA での切り替え、Tailwind CSS の .dark クラス、next-theme を使ったサーバーサイドレンダリングへと進み、最後は Cookie と head 同期インラインスクリプトを:tn[手作業で一から組み上げて]{is="原文は「手搓」で、文字どおりには手でこすって作るという意味。既製の仕組みに頼らず自作する荒削りさと得意げな響きを、技術者らしく冗談めかして表している。"}、FOUC のちらつきを解消した。結局、四つか五つの方法を試す羽目になった。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:41:11.944427Z
-      seconds: 62.304274917
-      tokens: 19665
+      text: きっかけは、[@colmugx](https://x.com/colmugx) の Hexo テーマ [Nlvi](https://github.com/colmugx/hexo-theme-nlvi) にライト／ダークの切り替えを付けたい、ただそれだけだった。Dark Reader の JS を使って適当にでっち上げてはみたが、見た目が汚くて納得できなかった。それから CSS の @media を学び、JS による SPA 切り替えへ、TailwindCSS の .dark class へ、SSR の next-theme へと進み、最後は Cookie と Head Sync のインラインスクリプトを:tn[自力でこしらえて]{is="原文は「手搓」。文字どおり「手でこねる」で、出来合いのものに頼らずゼロから自作することを指す俗な言い方。粗削りだが少し得意げな手作り感がある。"}、FOUC のちらつきを潰した。四つか五つのやり方を試したことになる。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:52.12823Z
+      seconds: 39.41177275
+      tokens: 31469
       review: false
     ko-KR:
-      text: 처음에는 [@colmugx](https://x.com/colmugx)의 Hexo 테마 [Nlvi](https://github.com/colmugx/hexo-theme-nlvi)에 밝은색·어두운색 전환 기능만 추가하려 했다. Dark Reader의 JavaScript로 하나 대충 붙여 봤지만 못생겨서 마음에 들지 않았다. 그 뒤 CSS @media 쿼리를 배우고, JavaScript SPA 전환과 Tailwind CSS의 .dark 클래스, next-theme를 이용한 서버 측 렌더링까지 거친 끝에 Cookie와 head 동기화 인라인 스크립트를 :tn[맨손으로 밑바닥부터 만들어]{is="원문은 手搓로, 글자 그대로는 손으로 비벼 만든다는 뜻이다. 기술 문맥에서는 기성 해법 없이 처음부터 직접 만드는 투박함과 은근한 자부심을 익살스럽게 드러낸다."} FOUC 깜빡임을 해결했다. 결국 네다섯 가지 방식을 붙들고 씨름한 셈이다.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:41:11.944427Z
-      seconds: 62.304274917
-      tokens: 19665
+      text: 처음엔 그저 [@colmugx](https://x.com/colmugx) 의 Hexo 테마 [Nlvi](https://github.com/colmugx/hexo-theme-nlvi) 에 라이트/다크 전환을 붙이고 싶었을 뿐이다. Dark Reader 의 JS 로 대충 하나 붙여 봤지만 보기 흉했고 마음에 들지 않았다. 그다음 CSS @media 를 배우고, JS 의 SPA 전환으로, TailwindCSS 의 .dark class 로, SSR 의 next-theme 로 옮겨 갔고, 마지막엔 Cookie 와 Head Sync 인라인 스크립트를 :tn[손수 만들어]{is="원문은 手搓, 글자 그대로는 ‘손으로 비벼 만들다’라는 뜻이다. 기성 해결책을 쓰지 않고 맨손으로 직접 만들었다는 농담 섞인 표현으로, 투박하면서도 은근히 뿌듯한 손맛이 담겨 있다."} FOUC 깜빡임을 해결했다. 그렇게 네다섯 가지 방법을 거쳤다.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:17:52.12823Z
+      seconds: 39.41177275
+      tokens: 31469
       review: false
     zh-CN:
-      text: 一开始，我只是想给 [@colmugx](https://x.com/colmugx) 的 Hexo 主题 [Nlvi](https://github.com/colmugx/hexo-theme-nlvi) 加上深浅色模式切换。我先用 Dark Reader 的 JavaScript 勉强拼了一个，但太丑，不满意；接着学了 CSS 的 @media 查询，又尝试用 JavaScript 在单页应用中切换主题、使用 TailwindCSS 的 .dark 类，再改用服务端渲染和 next-theme，最后:tn[从零手写了一套 Cookie 加头部同步内联脚本的方案]{is="原文用“手搓”，字面意思是用手揉搓出来，在技术语境中戏称不借助现成方案、亲手从零实现，带着粗糙却颇为得意的口吻。"}来解决无样式内容闪烁（FOUC）；前前后后，我折腾了四五种方案。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:49:25.184032Z
-      seconds: 18.205527667
-      tokens: 19914
+      text: 最初只是想给 [@colmugx](https://x.com/colmugx) 的 Hexo 主题 [Nlvi](https://github.com/colmugx/hexo-theme-nlvi) 加一个深浅色切换。我先用 Dark Reader 的 JS 胡乱拼了一个，很丑，不满意。接着去学 CSS 的 @media，然后做 JS 的 SPA 切换，再用 TailwindCSS 的 .dark class，再上 SSR 的 next-theme，最后是:tn[徒手搓]{is="原文用的是“手搓”，字面意思是用手搓出来，在技术圈里指不用现成方案、从零一点点自己做，带着粗糙又自得的手工味。"}了一套 Cookie 加 Head Sync 内联脚本，才解决 FOUC 闪烁。前后折腾了四五种方案。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:24:26.990887Z
+      seconds: 10.634985792
+      tokens: 29381
       review: false
     zh-TW:
-      text: 一開始只是想替 [@colmugx](https://x.com/colmugx) 的 Hexo 主題 [Nlvi](https://github.com/colmugx/hexo-theme-nlvi) 加上深淺色切換。我先用 Dark Reader 的 JavaScript 拼了一個，但很醜，並不滿意。接著又學習 CSS @media 查詢，嘗試用 JavaScript 在單頁應用程式中切換、使用 Tailwind CSS 的 .dark 類別，再到透過 next-theme 實作伺服器端算繪，最後才:tn[徒手做出]{is="原文是「手搓」，字面像用雙手搓出成品，戲謔地帶出不用現成方案、從零自製的粗糙與得意。"}一套 Cookie 搭配 head 同步行內指令碼的方案，解決了無樣式內容閃爍問題；前前後後折騰了四五種方案。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:41:11.944427Z
-      seconds: 62.304274917
-      tokens: 19665
+      text: 最初只是想給 [@colmugx](https://x.com/colmugx) 的 Hexo 佈景主題 [Nlvi](https://github.com/colmugx/hexo-theme-nlvi) 加一個深淺色切換。我先用 Dark Reader 的 JS 胡亂拼了一個，很醜，不滿意。接著去學 CSS 的 @media，然後做 JS 的 SPA 切換，再用 TailwindCSS 的 .dark class，再上 SSR 的 next-theme，最後是:tn[徒手搓]{is="原文用的是「手搓」，字面意思是用手搓出來，在技術圈裡指不用現成方案、從零一點一點自己做，帶著粗糙又自得的手工味。"}了一套 Cookie 加 Head Sync 內聯腳本，才解決 FOUC 閃爍。前後折騰了四五種方案。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:24:26.990887Z
+      seconds: 10.634985792
+      tokens: 29381
       review: false
   a7d26083a0ab33e3fbeef827290eedc1:
     de-DE:

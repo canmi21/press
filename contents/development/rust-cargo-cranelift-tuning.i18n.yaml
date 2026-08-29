@@ -67,68 +67,68 @@ segments:
       review: false
   0ab50562ac7ea4bf26e4e95e0cb715c1:
     de-DE:
-      text: 'Ich selbst bin ein :tn[glühender MUSL-Fan]{is="Im Original steht das chinesische Suffix chú, das aus der japanischen Netzkultur stammt und einen geradezu besessenen Fan bezeichnet; hier dient es als augenzwinkernd selbstironische Bezeichnung."} und kann GNU glibc überhaupt nicht ausstehen, für die Entwicklung empfehle ich aber trotzdem `x86_64-unknown-linux-gnu`. Warum? Weil es schnell ist. Das größte Verkaufsargument von MUSL ist, dass es vollständig statisch gelinkte Binärdateien erzeugen kann: Sie hängen von keiner dynamischen Bibliothek des Systems ab, sodass sich das kompilierte Programm auf jeden beliebigen Linux-Rechner kopieren und dort ausführen lässt. Das eignet sich besonders gut für Container und eingebettete Systeme. Langsam ist MUSL allerdings ebenfalls gerade wegen des statischen Linkens, denn der Linker muss alles mit einpacken, wodurch die Linkphase deutlich aufwendiger als beim dynamischen Linken ist.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:34:48.780992Z
-      seconds: 82.537793292
-      tokens: 19580
+      text: 'Ich selbst bin ein :tn[bekennender MUSL-Jünger]{is="Im Original steht „MUSL 厨“. Das Suffix 厨 stammt aus der japanischen Internetkultur und wurde ins Chinesische übernommen; es bezeichnet einen fanatischen Anhänger einer Sache. Der Autor verwendet es hier selbstironisch über sich selbst."} und kann GNU glibc überhaupt nicht ausstehen, für die Entwicklung empfehle ich dir trotzdem `x86_64-unknown-linux-gnu`. Warum? Weil es schnell ist. Das größte Verkaufsargument von MUSL ist, dass es vollständig statisch gelinkte Binaries erzeugen kann – ohne Abhängigkeit von irgendeiner dynamischen Bibliothek des Systems. Das Kompilat läuft auf jeder beliebigen Linux-Maschine, sobald man es dorthin kopiert, was sich besonders für Container und Embedded eignet. Langsam ist es aber genau wegen dieses statischen Linkens: Der Linker muss alles mit einpacken, und damit fällt in der Link-Phase deutlich mehr Arbeit an als beim dynamischen Linken.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.60439Z
+      seconds: 43.1544195
+      tokens: 31571
       review: false
     en-US:
-      text: 'I’m a self-confessed MUSL :tn[fanatic]{is="The original uses the Chinese suffix chú, borrowed from Japanese internet culture, for an obsessive fan; here it is a playfully self-deprecating label."}, and I absolutely loathe GNU glibc, but for development I still recommend using `x86_64-unknown-linux-gnu`. Why? Because it’s fast. MUSL’s biggest selling point is its ability to produce fully statically linked binaries—they do not depend on any dynamic libraries installed on the system, so once compiled, they can be copied to and run on any Linux machine, making them particularly suitable for containers and embedded systems. But static linking is also precisely why it is slow: the linker has to bundle everything into the binary, making the linking stage considerably more laborious than dynamic linking.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:34:48.780992Z
-      seconds: 82.537793292
-      tokens: 19580
+      text: 'I''m a :tn[card-carrying MUSL fanboy]{is="The original says “MUSL 厨”. The suffix 厨, borrowed from Japanese internet slang into Chinese, marks someone as an obsessive fan of a thing, and the author is using it on themselves with a wry, self-mocking edge."} who can''t stand GNU glibc, but for development I''d still recommend `x86_64-unknown-linux-gnu`. Why? Because it''s fast. MUSL''s biggest selling point is that it can produce fully statically linked binaries — nothing on the system''s dynamic libraries, so you copy the built artifact to any Linux machine and it just runs, which is perfect for containers and embedded work. But the slowness comes from that same static linking: the linker has to pack everything in, so the link stage is a lot more work than dynamic linking.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.60439Z
+      seconds: 43.1544195
+      tokens: 31571
       review: false
     es-ES:
-      text: 'Yo mismo soy un :tn[fanático acérrimo]{is="El original usa el sufijo chino chú, procedente de la cultura japonesa de Internet, para designar a un aficionado obsesivo; aquí funciona como una etiqueta juguetona y autocrítica."} de MUSL y detesto profundamente GNU glibc, pero para el desarrollo sigo recomendando que uses `x86_64-unknown-linux-gnu`. ¿Por qué? Porque es rápido. El mayor atractivo de MUSL es que puede generar binarios enlazados de forma completamente estática: no dependen de ninguna biblioteca dinámica del sistema, por lo que el programa compilado puede copiarse y ejecutarse en cualquier máquina Linux. Esto resulta especialmente útil para contenedores y sistemas embebidos. Sin embargo, su lentitud también se debe precisamente al enlazado estático, ya que el enlazador tiene que incluirlo todo y la fase de enlazado requiere bastante más trabajo que con el enlazado dinámico.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:34:48.780992Z
-      seconds: 82.537793292
-      tokens: 19580
+      text: 'Yo mismo soy un :tn[fanático de MUSL]{is="El original dice «MUSL 厨». El sufijo 厨, llegado de la cultura de internet japonesa al chino, señala a alguien como admirador fanático de algo; aquí el autor se lo aplica a sí mismo con un tono de autoburla."} y odio profundamente GNU glibc, pero para desarrollar te sigo recomendando `x86_64-unknown-linux-gnu`. ¿Por qué? Porque es rápido. El mayor punto fuerte de MUSL es que puede generar binarios enlazados de forma completamente estática: no dependen de ninguna biblioteca dinámica del sistema, así que copias lo compilado a cualquier máquina Linux y funciona, algo especialmente adecuado para contenedores y sistemas embebidos. Pero la lentitud también viene de ese enlazado estático: el enlazador tiene que empaquetarlo todo, y la fase de enlazado supone bastante más trabajo que el enlazado dinámico.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.60439Z
+      seconds: 43.1544195
+      tokens: 31571
       review: false
     fr-FR:
-      text: 'Je suis moi-même un :tn[fan inconditionnel]{is="L’original emploie le suffixe chinois chú, issu de la culture Internet japonaise, pour désigner un admirateur obsessionnel ; il s’agit ici d’une autodésignation gentiment moqueuse."} de MUSL et je déteste profondément GNU glibc, mais pour le développement, je recommande tout de même d’utiliser `x86_64-unknown-linux-gnu`. Pourquoi ? Parce que c’est rapide. Le principal atout de MUSL est de pouvoir produire des binaires entièrement liés statiquement : ils ne dépendent d’aucune bibliothèque dynamique du système, si bien qu’un programme compilé peut être copié et exécuté sur n’importe quelle machine Linux. C’est particulièrement adapté aux conteneurs et aux systèmes embarqués. Mais sa lenteur vient précisément de la liaison statique, car l’éditeur de liens doit tout intégrer au binaire, ce qui rend cette étape nettement plus lourde qu’avec une liaison dynamique.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:34:48.780992Z
-      seconds: 82.537793292
-      tokens: 19580
+      text: 'Je suis moi-même un :tn[fanatique de MUSL]{is="L''original écrit « MUSL 厨 ». Le suffixe 厨, venu de la culture internet japonaise et passé dans le chinois en ligne, désigne l''amateur fanatique d''une chose ; l''auteur se l''applique ici à lui-même sur un ton d''autodérision."} et je déteste GNU glibc, mais pour le développement je te recommande quand même `x86_64-unknown-linux-gnu`. Pourquoi ? Parce que c''est rapide. Le grand argument de vente de MUSL, c''est de pouvoir produire des binaires entièrement liés en statique — sans dépendre d''aucune bibliothèque dynamique du système : tu copies le binaire compilé sur n''importe quelle machine Linux et il tourne, ce qui convient particulièrement aux conteneurs et à l''embarqué. Mais la lenteur vient elle aussi de cette liaison statique : l''éditeur de liens doit tout empaqueter, et la phase de liaison représente donc bien plus de travail qu''en liaison dynamique.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.60439Z
+      seconds: 43.1544195
+      tokens: 31571
       review: false
     ja-JP:
-      text: 私自身、MUSL の :tn[熱狂的な愛好家]{is="原文では、中国語圏で日本のネット文化から取り入れられた接尾辞 chú を使い、熱狂的なファンであることを少し自嘲気味に表している。"}で、GNU glibc が大嫌いなのですが、開発時にはそれでも `x86_64-unknown-linux-gnu` の使用を勧めます。なぜかというと、速いからです。MUSL 最大の売りは、完全に静的リンクされたバイナリを生成できることです。システム上の動的ライブラリに一切依存しないため、コンパイルしたものをどの Linux マシンにコピーしてもそのまま実行でき、特にコンテナや組み込みシステムに向いています。しかし、遅さの原因も静的リンクにあります。リンカーがあらゆるものをまとめて組み込む必要があるため、リンク工程の作業量は動的リンクよりかなり多くなります。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:34:48.780992Z
-      seconds: 82.537793292
-      tokens: 19580
+      text: 私自身は :tn[MUSL 厨]{is="原文の中国語は「MUSL 厨」。この「厨」は日本のネットスラングが中国語圏に取り込まれたもので、あるものの熱狂的な愛好者を指す。ここでは筆者が自嘲を込めて自称している。"} で、GNU glibc は大嫌いなのですが、開発中はやはり `x86_64-unknown-linux-gnu` をおすすめします。なぜかというと、速いからです。MUSL 最大の売りは完全に静的リンクされたバイナリを生成できること——システム上のどの動的ライブラリにも依存せず、ビルドしたものをどの Linux マシンにコピーしてもそのまま動くので、コンテナや組み込みには特に向いています。ただし遅さの原因もその静的リンクにあります。リンカがすべてを一つに詰め込む必要があるため、リンク段階の作業量が動的リンクよりかなり大きくなるのです。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.60439Z
+      seconds: 43.1544195
+      tokens: 31571
       review: false
     ko-KR:
-      text: 저 자신은 MUSL :tn[광팬]{is="원문은 일본 인터넷 문화에서 유래해 중국어권에서 열성 팬을 뜻하게 된 접미사 chú를 썼으며, 여기서는 장난스럽고 자조적인 자칭으로 사용됐다."}이고 GNU glibc를 몹시 싫어하지만, 개발할 때는 그래도 `x86_64-unknown-linux-gnu` 사용을 권합니다. 왜냐고요? 빠르기 때문입니다. MUSL의 가장 큰 장점은 완전 정적 링크 바이너리를 만들 수 있다는 것입니다. 시스템의 어떤 동적 라이브러리에도 의존하지 않으므로 컴파일한 결과물을 어느 Linux 시스템에든 복사해 바로 실행할 수 있어 컨테이너와 임베디드 시스템에 특히 적합합니다. 하지만 느린 이유 또한 정적 링크에 있습니다. 링커가 모든 것을 한데 묶어 넣어야 하므로 링크 단계의 작업량이 동적 링크보다 훨씬 많기 때문입니다.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:34:48.780992Z
-      seconds: 82.537793292
-      tokens: 19580
+      text: 저는 GNU glibc를 몹시 싫어하는 :tn[MUSL 광신도]{is="원문은 “MUSL 厨”라고 썼다. 접미사 厨는 일본 인터넷 문화에서 중화권으로 건너온 표현으로 어떤 대상의 열광적인 애호가를 뜻하며, 여기서는 글쓴이가 자조 섞인 어조로 자신을 가리키는 데 쓰였다."}지만, 개발할 때는 그래도 `x86_64-unknown-linux-gnu`을 권합니다. 왜냐고요? 빠르니까요. MUSL의 가장 큰 장점은 완전히 정적 링크된 바이너리를 만들 수 있다는 점입니다. 시스템의 어떤 동적 라이브러리에도 의존하지 않으니, 빌드한 결과물을 아무 리눅스 머신에나 복사해도 그대로 실행되고, 컨테이너나 임베디드에 특히 잘 맞습니다. 하지만 느린 이유도 바로 그 정적 링크에 있습니다. 링커가 모든 것을 하나로 밀어 넣어야 하기 때문에 링크 단계의 작업량이 동적 링크보다 훨씬 큽니다.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.60439Z
+      seconds: 43.1544195
+      tokens: 31571
       review: false
     zh-CN:
-      text: 我本人算是个 :tn[MUSL 狂热爱好者]{is="原文用“厨”自称；这是源自日本网络文化、在中文网络圈表示狂热爱好者的后缀，语气带有自嘲意味。"}，非常讨厌 GNU glibc；但在开发阶段，我还是推荐你使用 `x86_64-unknown-linux-gnu`。为什么？因为快。MUSL 最大的卖点是能够生成完全静态链接的二进制文件，也就是不依赖系统上的任何动态库；编译产物复制到任何 Linux 机器上都能运行，尤其适合容器和嵌入式系统。不过，它慢也恰恰慢在静态链接上：链接器需要把所有内容都打包进去，因此链接阶段的工作量比动态链接大得多。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:46:10.331407Z
-      seconds: 18.211828042
-      tokens: 19536
+      text: 我本人是个 :tn[MUSL 狂热信徒]{is="原文写的是“MUSL 厨”。“厨”这个后缀从日本网络文化传入中文圈，指某样东西的狂热爱好者，作者在这里是带着自嘲的口气自称。"}，非常讨厌 GNU glibc，但开发阶段我还是推荐你用 `x86_64-unknown-linux-gnu`。为什么呢？因为快。MUSL 最大的卖点是能生成完全静态链接的二进制——不依赖系统上的任何动态库，编译出来的东西拷到任何一台 Linux 机器上都能直接跑，特别适合容器和嵌入式场景。但慢也慢在静态链接上：链接器需要把所有东西都打包进去，链接阶段的工作量比动态链接大得多。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.60439Z
+      seconds: 43.1544195
+      tokens: 31571
       review: false
     zh-TW:
-      text: 我本人是個 MUSL :tn[狂熱愛好者]{is="原文使用源自日本網路文化的中文圈後綴「廚」來表示狂熱愛好者，在這裡是略帶自嘲的自稱。"}，非常討厭 GNU glibc，但開發時我還是建議你使用 `x86_64-unknown-linux-gnu`。為什麼呢？因為快。MUSL 最大的賣點是能產生完全靜態連結的二進位檔——不依賴系統上的任何動態函式庫，編譯好的程式複製到任何 Linux 機器上都能執行，特別適合容器和嵌入式系統。不過，它慢也恰恰慢在靜態連結，因為連結器必須把所有東西都打包進去，連結階段的工作量比動態連結大上不少。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:34:48.780992Z
-      seconds: 82.537793292
-      tokens: 19580
+      text: 我本人是個 :tn[MUSL 狂熱信徒]{is="原文寫的是「MUSL 厨」。「厨」這個後綴從日本網路文化傳入中文圈，指某樣東西的狂熱愛好者，作者在這裡是帶著自嘲的口氣自稱。"}，非常討厭 GNU glibc，但開發階段我還是推薦你用 `x86_64-unknown-linux-gnu`。為什麼呢？因為快。MUSL 最大的賣點是能產生完全靜態連結的二進位檔——不依賴系統上的任何動態函式庫，編譯出來的東西拷到任何一台 Linux 機器上都能直接跑，特別適合容器與嵌入式場景。但慢也慢在靜態連結上：連結器需要把所有東西都打包進去，連結階段的工作量比動態連結大得多。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.60439Z
+      seconds: 43.1544195
+      tokens: 31571
       review: false
   0f01aca1b9a9cb57f08a05c7403d77bd:
     de-DE:
@@ -587,68 +587,68 @@ segments:
       review: false
   3ecfd63d0174b61813402b5872679438:
     de-DE:
-      text: Damit wären die Vorteile geklärt – doch welchen Preis zahlen wir dafür? Der erste offensichtliche Nachteil ist, dass von Cranelift erzeugter Code zur Laufzeit je nach Anwendungsfall ungefähr 10–30 % langsamer ist als von LLVM erzeugter Code. Wenn man es sich aber klarmacht, merkt man, dass das während der Entwicklung überhaupt keine Rolle spielt. Wozu brauche ich diese Geschwindigkeit – lasse ich Benchmarks laufen oder erstelle ich einen CI-Release-Build? Ich will doch :tn[verdammt noch mal]{is="Im Original steht tm, das Kürzel für den mandarinchinesischen Fluch tā mā; die lateinischen Anfangsbuchstaben verschleiern den Kraftausdruck halb, ohne ihm seine Wucht zu nehmen."} nur, dass cargo build schneller fertig wird, damit ich sehen kann, ob die Logik funktioniert. Und ich wette, dass die meisten Programme, die du schreibst, die Rechenressourcen unmöglich mehr als 80 % der Zeit auslasten; dafür braucht es schließlich echte Geschäftslast, und wie viel davon gibt es schon während der Entwicklung? Die CPU :tn[dreht wahrscheinlich die ganze Zeit Däumchen]{is="Im Original steht mō yú, wörtlich Fische fangen, ein chinesischer Internetausdruck für das Faulenzen bei der Arbeit. Auf die CPU angewandt vermenschlicht er die Maschine auf scherzhafte Weise."}. Mir geht es vielmehr darum, das Ergebnis zu sehen und die Logik zu überprüfen. Wenn wir also Kompilierzeit gegen Laufzeiteffizienz tauschen, müssten wir diese Rechnung in der Entwicklungsschleife nicht genau andersherum aufmachen?
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:34:48.781441Z
-      seconds: 133.680112375
-      tokens: 22770
+      text: 'So viel zu den Vorteilen -- und der Preis? Offensichtlich zuerst: Der Code, den Cranelift erzeugt, läuft langsamer als der von LLVM, je nach Szenario etwa 10%~30% langsamer. Aber wenn man loslässt, merkt man, dass das in der Entwicklungsphase überhaupt keine Rolle spielt. Wozu brauche ich diese Geschwindigkeit? Fahre ich einen Benchmark, oder einen Release-Build in der CI? Ich will :tn[verdammt nochmal]{is="Im Original steht 他妈, ein chinesisches Schimpfwort, geschrieben als Anfangsbuchstaben seiner Pinyin-Umschrift: tm. Die Wucht des Fluchs bleibt, die Buchstaben legen zugleich einen dünnen Schleier darüber."} nur, dass `cargo build` schneller fertig wird, damit ich sehe, ob die Logik aufgeht. Und ich wette, die meisten Programme, die du schreibst, können die Rechenressourcen unmöglich über 80% der Zeit auslasten -- dafür müsste erst einmal echte Last hereinkommen, und wie viel davon gibt es beim Entwickeln? Die CPU :tn[drückt sich]{is="Das Original sagt 摸鱼, wörtlich ‚nach Fischen greifen‘, chinesischer Netzjargon fürs Blaumachen während der Arbeitszeit. Auf eine CPU gemünzt, wird die Hardware zum Angestellten, der am Schreibtisch die Zeit totschlägt."} vermutlich die ganze Zeit, während ich derjenige bin, der das Ergebnis sehen und die Logik prüfen muss. Diese Rechnung also, Kompilierzeit gegen Laufzeiteffizienz -- sollte sie in der Entwicklungsschleife nicht andersherum aufgemacht werden?'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.604509Z
+      seconds: 71.529933333
+      tokens: 33509
       review: false
     en-US:
-      text: So much for the benefits—what about the cost? The first obvious drawback is that code generated by Cranelift runs roughly 10–30% slower than LLVM-generated code, depending on the workload. But think about it and you’ll realize that this simply doesn’t matter during development. Why do I need that much speed—am I benchmarking or making a CI release build? I just :tn[fucking]{is="The original used tm, an initialism for the Mandarin profanity tā mā, preserving the force of the swear while half-concealing it behind Latin letters."} want cargo build to finish faster so I can see whether the logic works. And I bet most programs you write cannot keep the compute resources busy more than 80% of the time; they must have some actual business traffic, and how much of that can there be while you’re developing? The CPU is probably :tn[slacking off the whole time]{is="The original used mō yú, literally catching fish, internet slang for loafing around; applying it to the CPU also playfully personifies the machine."}. What I need instead is to see the result and validate the logic. So if we are trading compilation time for runtime efficiency, shouldn’t we reverse that calculation inside the development loop?
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:34:48.781441Z
-      seconds: 133.680112375
-      tokens: 22770
+      text: So much for the upsides -- what about the price? The obvious one is that code from Cranelift runs slower than code from LLVM, roughly 10%~30% slower depending on the workload. But once you let go of it, you realise this hardly matters during development. What do I need that speed for? Am I running a benchmark, or a CI release build? I :tn[bloody well]{is="The original writes 他妈 as the initials of its pinyin, ‘tm’ -- a common Chinese swear word, dropped in mid-sentence with the letters acting as a thin veil over it, so it swears and half-hides the swearing at once."} just want `cargo build` to finish faster so I can see whether the logic came out right. And I'll bet most of the programs you write can't possibly saturate the machine more than 80% of the time -- there has to be actual work coming in, and how much of that is there while you're developing? Your CPU is probably :tn[goofing off]{is="The original says 摸鱼, literally ‘groping for fish’, Chinese internet slang for slacking off on the clock. Applied to a CPU it treats the hardware like an employee skiving at their desk."} the entire time, while I'm the one who needs to see the result and check the logic. So compile time traded for runtime speed -- shouldn't that sum be worked out the other way round inside the development loop?
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.604509Z
+      seconds: 71.529933333
+      tokens: 33509
       review: false
     es-ES:
-      text: 'Ya hemos hablado de las ventajas; ¿y el coste? Para empezar, salta a la vista que el código generado por Cranelift rinde peor en ejecución que el de LLVM: según el caso, puede ser entre un 10 % y un 30 % más lento. Pero, si lo piensas bien, te das cuenta de que eso no importa en absoluto durante el desarrollo. ¿Para qué quiero que vaya tan rápido? ¿Estoy haciendo benchmarks o una compilación de lanzamiento en CI? Yo solo :tn[coño]{is="En el original aparece tm, sigla en pinyin del insulto mandarín tā mā; mantiene la fuerza del taco, pero lo oculta a medias tras unas letras latinas."}, quiero que cargo build termine antes para ver si la lógica funciona. Y apuesto a que la mayoría de los programas que escribes no mantienen ocupados los recursos de cómputo más del 80 % del tiempo; seguro que necesitan tráfico real del negocio, y ¿cuánto puedes tener mientras desarrollas? La CPU probablemente se pasa todo el tiempo :tn[rascándose la barriga]{is="El original emplea mō yú, literalmente pescar, jerga de Internet china que significa holgazanear durante el trabajo. Aplicarla a la CPU también personifica la máquina con intención humorística."}. Lo que yo quiero, en cambio, es ver el resultado y comprobar la lógica. Así que, si cambiamos tiempo de compilación por eficiencia en ejecución, ¿no deberíamos hacer las cuentas al revés dentro del ciclo de desarrollo?'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:34:48.781441Z
-      seconds: 133.680112375
-      tokens: 22770
+      text: 'Hasta aquí las ventajas -- ¿y el precio? Lo evidente primero: el código que genera Cranelift se ejecuta más lento que el de LLVM, entre un 10%~30% más lento según el caso. Pero en cuanto uno se relaja, descubre que esto no importa nada en la fase de desarrollo. ¿Para qué quiero yo esa velocidad? ¿Estoy haciendo un benchmark, o una build release en CI? Yo lo que quiero, :tn[joder]{is="El original escribe 他妈, una palabrota china, con las iniciales de su transcripción pinyin: tm. Conserva toda la fuerza del taco y a la vez le pone un velo fino con las letras."}, es que `cargo build` termine antes, para ver si la lógica sale. Y te apuesto lo que quieras a que la mayoría de los programas que escribes no pueden saturar los recursos de cómputo más del 80% del tiempo -- tendría que entrar trabajo de verdad, ¿y cuánto trabajo hay mientras desarrollas? Tu CPU seguramente está :tn[tocándose la barriga]{is="El original dice 摸鱼, literalmente «palpar peces», jerga de internet china para escaquearse en horario laboral. Aplicado a una CPU, trata al hardware como a un empleado que mata el tiempo en su mesa."} todo el rato, mientras que soy yo quien necesita ver el resultado y verificar la lógica. Entonces ese cambio de tiempo de compilación por eficiencia en ejecución, ¿no habría que echar la cuenta al revés dentro del bucle de desarrollo?'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.604509Z
+      seconds: 71.529933333
+      tokens: 33509
       review: false
     fr-FR:
-      text: 'Voilà pour les avantages ; mais quel est le prix à payer ? Le premier inconvénient, évident, est que le code généré par Cranelift s’exécute moins vite que celui de LLVM : selon le cas, il est environ 10 à 30 % plus lent. Mais avec un peu de recul, on comprend que cela n’a aucune importance pendant le développement. Pourquoi aurais-je besoin que ce soit aussi rapide ? Je fais un benchmark ou un build de publication en CI ? Moi, je veux juste que cargo build aille :tn[putain de vite]{is="Dans l’original, tm abrège le juron mandarin tā mā à partir de ses initiales en pinyin, ce qui conserve la violence du gros mot tout en le masquant à moitié derrière des lettres latines."}, histoire de voir si la logique fonctionne. Et je parie que la plupart des programmes que tu écris ne saturent jamais les ressources de calcul plus de 80 % du temps : il leur faut forcément une véritable charge métier, et quelle charge peux-tu bien avoir pendant le développement ? Le processeur doit plutôt :tn[se tourner les pouces du début à la fin]{is="L’original emploie mō yú, littéralement pêcher, une expression d’argot Internet chinois qui signifie paresser au travail. L’appliquer au processeur personnifie plaisamment la machine."}. Moi, ce qui m’importe, c’est de voir le résultat et de valider la logique. Alors, si l’on échange du temps de compilation contre de l’efficacité à l’exécution, ne faudrait-il pas faire le calcul dans l’autre sens au sein de la boucle de développement ?'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:34:48.781441Z
-      seconds: 133.680112375
-      tokens: 22770
+      text: 'Voilà pour les avantages -- et le prix ? L''évidence d''abord : le code produit par Cranelift s''exécute plus lentement que celui de LLVM, environ 10%~30% plus lentement selon les cas. Mais dès qu''on lâche prise, on s''aperçoit que cela n''a aucune importance en phase de développement. À quoi me servirait cette vitesse ? Je fais un benchmark, ou une build release en CI ? Je veux :tn[putain]{is="L''original écrit 他妈, un juron chinois, sous la forme des initiales de sa transcription pinyin : tm. La force du gros mot reste entière, et les lettres lui posent en même temps un voile mince."} juste que `cargo build` finisse plus vite, pour voir si la logique tient. Et je parie que la plupart des programmes que tu écris ne peuvent pas saturer les ressources de calcul plus de 80% du temps -- il faudrait qu''il y ait de la vraie charge, et quelle charge y a-t-il pendant que tu développes ? Ton CPU doit :tn[tirer au flanc]{is="L''original dit 摸鱼, littéralement « tâter les poissons », argot d''internet chinois pour glander pendant les heures de travail. Appliqué à un CPU, cela traite le matériel comme un employé qui traîne à son bureau."} du début à la fin, alors que c''est moi qui ai besoin de voir le résultat et de vérifier la logique. Ce troc du temps de compilation contre l''efficacité à l''exécution, ne faudrait-il donc pas faire le compte à l''envers à l''intérieur de la boucle de développement ?'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.604509Z
+      seconds: 71.529933333
+      tokens: 33509
       review: false
     ja-JP:
-      text: では、利点は語り終えたとして、代償は何だろうか。まず明らかなのは、Cranelift が生成するコードの実行時性能は LLVM より劣り、状況によっておよそ 10～30% 遅くなることだ。しかし、考え方を切り替えれば、開発段階ではそんなことはまったく重要でないと気づく。そこまで速くして何になる？ ベンチマークでも取っているのか、それとも CI でリリースビルドでもしているのか？ 俺はただ、cargo build を :tn[クソ速く]{is="原文の tm は中国語の罵り言葉 tā mā のピンイン頭文字で、悪態の強さを残しながらラテン文字で半ば伏せた表現である。"} 終わらせて、ロジックが動いたか確かめたいだけだ。それに、君が書くプログラムの大半は、計算資源を 80% を超える時間ずっと使い切るなんてあり得ない。実際の業務負荷があってこそだし、開発中にそんな負荷がどれほどあるというのか。CPU はおそらく最初から最後まで :tn[サボりっぱなし]{is="原文の mō yú は、字面では魚を捕ることを表す中国のネット俗語で、実際には仕事を怠けて時間をつぶすという意味である。CPU に使うことで機械を人間扱いする冗談にもなっている。"} だろう。それより俺が必要なのは、結果を見てロジックを検証することだ。ならば、コンパイル時間と実行時効率を交換するこの勘定は、開発ループでは逆向きに考えるべきではないだろうか。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:34:48.781441Z
-      seconds: 133.680112375
-      tokens: 22770
+      text: 利点は話し終えた、では代償は？まず明らかなのは、Cranelift が吐くコードは LLVM のものより実行が遅いということだ。場面によるが、だいたい 10%~30% ほど遅い。だが割り切ってしまえば、これは開発段階ではまるで重要でないと分かる。そんな速さが何の役に立つ？ベンチマークでも回すのか、CI の release ビルドでもするのか。俺は :tn[クソ]{is="原文は中国語の罵り言葉「他妈」を、その拼音の頭文字だけ取って tm と書いている。罵倒の勢いはそのままに、アルファベットで半分だけ覆い隠すという書き方になっている。"}、`cargo build` が速く終わってほしいだけだ、ロジックが出ているかどうか見たいだけだ。しかも賭けてもいい、君の書くプログラムの大半が計算資源を 8 割以上の時間埋め尽くすなんてことはあり得ない。実際の処理が流れ込んでこそだが、開発中にその処理がどれほどある？CPU はおそらく終始 :tn[サボっている]{is="原文の「摸鱼」は字義どおりには「魚をつかむ」、中国語のネットスラングで勤務中に手を抜いて時間をつぶすことを指す。CPU に使うことで、ハードウェアを机で油を売る社員のように扱う冗談になっている。"}、むしろ結果を見てロジックを確かめたいのはこっちの方だ。ならばコンパイル時間を実行効率と引き換えにするその計算、開発ループの中では逆向きに勘定すべきではないのか。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.604509Z
+      seconds: 71.529933333
+      tokens: 33509
       review: false
     ko-KR:
-      text: 장점 이야기는 다 했으니, 대가는 무엇일까? 우선 명백한 단점은 Cranelift가 생성한 코드의 실행 성능이 LLVM보다 떨어지며, 상황에 따라 대략 10~30% 느리다는 것이다. 하지만 생각을 달리해 보면 개발 단계에서는 이게 전혀 중요하지 않다는 사실을 알 수 있다. 그렇게 빨라서 어디에 쓰려고? 벤치마크를 돌리는 것도, CI 릴리스 빌드를 하는 것도 아닌데 말이다. 나는 그냥 cargo build가 :tn[존나 빨리]{is="원문의 tm은 중국어 욕설 tā mā의 병음 첫 글자를 딴 약어로, 욕의 강도는 살리면서도 라틴 문자로 살짝 가린 표현이다."} 끝나서 로직이 제대로 나오는지만 보고 싶다. 그리고 장담하건대, 네가 작성하는 프로그램 대부분은 전체 시간의 80% 넘게 연산 자원을 꽉 채워 쓸 리가 없다. 실제 업무 트래픽이 있어야 할 텐데, 개발 중에 그런 트래픽이 얼마나 있겠는가? CPU는 아마 내내 :tn[농땡이를 피우고 있을]{is="원문의 mō yú는 글자 그대로는 물고기를 잡는다는 뜻이지만, 실제로는 일하지 않고 시간을 때운다는 중국 인터넷 은어다. CPU에 사용해 기계를 사람처럼 익살스럽게 표현했다."} 것이다. 오히려 내가 필요한 것은 결과를 보고 로직을 검증하는 일이다. 그렇다면 컴파일 시간과 실행 효율을 맞바꾸는 이 계산은 개발 주기에서는 거꾸로 해야 하지 않을까?
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:34:48.781441Z
-      seconds: 133.680112375
-      tokens: 22770
+      text: 장점은 다 말했으니, 대가는? 우선 뻔한 것부터. Cranelift가 만들어낸 코드는 LLVM의 것보다 실행이 느리다, 상황에 따라 대략 10%~30% 정도. 하지만 마음을 놓고 보면 알게 된다, 개발 단계에서 이건 전혀 중요하지 않다는 걸. 그 속도가 나한테 왜 필요한가? 벤치마크를 돌리나, CI의 release 빌드를 하나? 나는 :tn[씨발]{is="원문은 중국어 욕설 他妈를 병음 첫 글자만 따서 tm이라고 적었다. 욕의 힘은 그대로 두면서, 알파벳으로 얼굴 절반만 가린 표기다."} `cargo build`가 좀 빨리 끝나서 로직이 나왔는지 보고 싶을 뿐이다. 게다가 장담하는데, 네가 쓰는 프로그램 대부분은 계산 자원을 80% 넘는 시간 동안 꽉 채울 리가 없다. 실제 작업이 들어와야 하는데, 개발할 때 그 작업이 얼마나 되겠나? CPU는 아마 처음부터 끝까지 :tn[농땡이를 부리고]{is="원문의 摸鱼는 글자 그대로는 ‘물고기를 더듬는다’, 근무 시간에 요령껏 노는 걸 뜻하는 중국어 인터넷 은어다. CPU에 쓰면 하드웨어를 자리에서 시간이나 때우는 직원으로 취급하는 농담이 된다."} 있을 거고, 정작 결과를 보고 로직을 확인해야 하는 건 나다. 그렇다면 컴파일 시간을 실행 효율과 맞바꾸는 이 계산, 개발 루프 안에서는 거꾸로 따져야 하는 것 아닌가?
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.604509Z
+      seconds: 71.529933333
+      tokens: 33509
       review: false
     zh-CN:
-      text: 好处说完了，代价呢？最明显的一点是，Cranelift 生成的代码在运行时性能上不如 LLVM，视具体场景而定，大约会慢 10%～30%。但换个角度想想就会发现，这在开发阶段根本不重要：我要运行得那么快干什么，是跑基准测试还是做 CI 发布构建啊？我 :tn[他妈的]{is="原文写作 tm，是脏话“他妈”的拼音首字母缩写，既保留了爆粗的力度，又用字母稍作遮掩。"} 就想让 `cargo build` 快一点，好看看逻辑有没有按预期跑起来。而且我敢打赌，你写的大多数程序都不可能在超过 80% 的时间里占满计算资源，总得有实际业务请求进来吧？开发时能有多少业务负载？CPU 恐怕全程都在 :tn[摸鱼]{is="原文用了网络俚语“摸鱼”，字面上是摸鱼，实际指偷懒混时间；把它用在 CPU 身上，还带有把软件拟人化的调侃意味。"}，真正着急的是我要看到效果、验证逻辑。所以，用编译时间换取运行时效率，这笔账放在开发循环里，是不是应该反过来算？
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:46:35.445036Z
-      seconds: 32.9139805
-      tokens: 20417
+      text: 好处说完了，代价呢？最明显的一条是 Cranelift 生成的代码运行起来比 LLVM 慢，视场景不同大约慢 10%~30%。但想开了就会发现，这在开发阶段根本不重要。我要那么快干嘛？我是在跑分，还是在做 CI 的 release 构建？我 :tn[他妈]{is="原文把这两个字写成拼音首字母 tm，脏话照骂，字母又替它遮了半张脸。"} 就是要 `cargo build` 快一点，好看看逻辑对不对。而且我敢打赌，你写的大部分程序不可能有 80% 以上的时间把计算资源占满，总得有业务进来才行，而开发的时候能有多少业务？CPU 怕是全程都在 :tn[摸鱼]{is="原文用的就是“摸鱼”，中文网络俚语，指上班时间偷懒混日子。用在 CPU 身上，等于把硬件说成一个在工位上磨洋工的员工。"}，反倒是我这边要看效果、要验证逻辑。那么拿编译时间换运行效率，这笔账放进开发循环里，是不是应该反过来算？
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.604509Z
+      seconds: 71.529933333
+      tokens: 33509
       review: false
     zh-TW:
-      text: 那麼好處說完了，代價呢？首先顯而易見的是，Cranelift 產生的程式碼在執行時效能上比 LLVM 差，依情境不同大約會慢 10%～30%。但想開了其實就會發現，這在開發階段根本不重要。我要那麼快做什麼，你是在跑基準測試，還是在做 CI 發布建置？我就 :tn[他媽的]{is="原文用拼音首字母縮寫 tm 指代髒話「他媽」，既保留了爆粗口的力道，又用字母作了半遮掩。"} 想讓 cargo build 跑快一點，看看邏輯有沒有生效。而且我敢打賭，你寫的大部分程式都不可能在 80% 以上的時間裡占滿運算資源，肯定得有實際業務流量才行，而開發時又能有多少業務量？CPU 怕不是全程都在 :tn[摸魚]{is="原文的「摸魚」是網路俚語，字面指抓魚，實際指偷懶混時間；把它用在 CPU 身上又帶有擬人化的調侃意味。"} 呢。反倒是我需要看到效果、驗證邏輯。那麼，用編譯時間換執行時效率這筆帳，在開發循環裡是不是應該反過來算？
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:34:48.781441Z
-      seconds: 133.680112375
-      tokens: 22770
+      text: 好處說完了，代價呢？最明顯的一條是 Cranelift 產生的程式碼跑起來比 LLVM 慢，依場景不同大約慢 10%~30%。但想開了就會發現，這在開發階段根本不重要。我要那麼快做什麼？我是在跑分，還是在做 CI 的 release 建置？我 :tn[他媽]{is="原文把這兩個字寫成拼音首字母 tm，髒話照罵，字母又替它遮了半張臉。"} 就是要 `cargo build` 快一點，好看看邏輯有沒有跑出來。而且我敢打賭，你寫的大部分程式不可能有 80% 以上的時間把運算資源佔滿，總得有實際的工作進來才行，而開發的時候能有多少工作？CPU 怕是全程都在 :tn[摸魚]{is="原文用的就是「摸魚」，中文網路俚語，指上班時間偷懶混日子。用在 CPU 身上，等於把硬體說成一個在工位上磨洋工的員工。"}，反倒是我這邊要看效果、要驗證邏輯。那麼拿編譯時間換執行效率，這筆帳放進開發循環裡，是不是應該倒過來算？
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.604509Z
+      seconds: 71.529933333
+      tokens: 33509
       review: false
   54e05f42d060fa75becb4273b614c77f:
     de-DE:
@@ -1952,68 +1952,68 @@ segments:
       review: false
   97df4075d878ac7b8a6b12e70ee5b037:
     de-DE:
-      text: 'Im Kern wird also ein großer Teil der Zeit, die das Kompilieren langsam macht, nicht im Rust-eigenen Frontend verbracht, sondern in LLVM, diesem „schwergewichtigen Backend“. Damit stellt sich die Frage: Könnte man LLVM nicht einfach weglassen? ~~Die Antwort lautet ja, :tn[miau]{is="Im Original steht miāo, der Laut einer Katze, als verniedlichende Satzpartikel; in der chinesischen Netzkultur klingt das absichtlich niedlich und verspielt."}~~. Tatsächlich gibt es mit Cranelift ein Backend, das genau für diesen Bedarf entwickelt wurde. Es hieß zunächst Cretonne, wurde 2016 ins Leben gerufen und von der [Bytecode Alliance](https://bytecodealliance.org) entwickelt. Ursprünglich war es als Codegenerierungs-Backend für [Wasmtime](https://github.com/bytecodealliance/wasmtime) gedacht, gewissermaßen als eigens dafür :tn[gewickelte Teigtasche]{is="Das Original nennt es jiǎozi, wörtlich eine gefüllte Teigtasche, und spielt damit auf eine bodenständige chinesische Wendung über eigens für einen bestimmten Zweck gemachte Teigtaschen an."}; später übernahm das offizielle Rust-Projekt es als optionales Codegenerierungs-Backend.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:37:02.464918Z
-      seconds: 120.237527708
-      tokens: 22313
+      text: 'Im Kern steckt die lange Kompilierzeit also größtenteils nicht im Rust-Frontend selbst, sondern in LLVM, diesem "schweren Backend". Damit stellt sich die Frage: Kann man es nicht einfach weglassen? ~~:tn[Doch, man kann, miau]{is="Im Original endet der Satz auf ein angehängtes ‚喵'', ein Katzenmiauen, das im chinesischen Netzjargon als betont niedliche, schmeichelnde Schlusspartikel dient und den Satz bewusst albern klingen lässt."}~~ — es gibt ein Backend namens Cranelift, das genau für diesen Bedarf gebaut wurde. Ursprünglich hieß es Cretonne, gestartet 2016, entwickelt von der [Bytecode Alliance](https://bytecodealliance.org), und war anfangs :tn[eine Portion Teigtaschen, eigens für Wasmtime gefaltet]{is="Das Original nennt Cranelift die für Wasmtime ‚gefalteten Jiaozi'' und spielt damit auf die chinesische Wendung an, für jemanden eigens Teigtaschen zu machen — also etwas ganz Persönliches, nur für diesen einen Zweck Gekochtes."} — als Codegen-Backend genau dafür entworfen; später nahm Rust es offiziell auf und machte es zum optionalen Codegen-Backend.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:16:50.373673Z
+      seconds: 17.424328833
+      tokens: 29820
       review: false
     en-US:
-      text: 'So, essentially, much of the time behind slow compilation is spent not in Rust’s own frontend but in LLVM, its “heavyweight backend.” This raises the question: could LLVM be discarded? ~~The answer is yes, :tn[meow]{is="The original miāo is a cat’s meow used as a cutesy sentence-final particle, giving the line the deliberately adorable tone of Chinese internet slang."}~~. A backend called Cranelift was made for exactly this need. Originally named Cretonne, it was launched in 2016 and developed by the [Bytecode Alliance](https://bytecodealliance.org). It was initially designed as a code-generation backend for [Wasmtime](https://github.com/bytecodealliance/wasmtime), like a :tn[custom-made dumpling]{is="The original calls it a jiǎozi, literally a dumpling, jokingly borrowing a homespun expression about making dumplings especially for a particular purpose."}; it was later adopted by the official Rust project as an optional code-generation backend.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:37:02.464918Z
-      seconds: 120.237527708
-      tokens: 22313
+      text: 'So essentially, a large part of the slow compile time isn''t spent in Rust''s own frontend but in LLVM, that "heavyweight backend". Which raises the question: could we just drop it? ~~:tn[The answer is yes, nya]{is="The original ends with 喵, a cat''s meow used as a cutesy sentence-final particle -- a deliberate bit of Chinese-internet kitten-voice affectation."}~~ There is a backend called Cranelift built for exactly this need. It started life as Cretonne in 2016, developed by the [Bytecode Alliance](https://bytecodealliance.org), a code generation backend designed in the first place :tn[as a dish cooked specially for]{is="The original says Cranelift was the 饺子 (dumplings) 包的 -- wrapped -- for Wasmtime, borrowing the homely Chinese image of making dumplings specially for one particular occasion or one particular guest."} [Wasmtime](https://github.com/bytecodealliance/wasmtime); it was later adopted by the Rust project as an optional codegen backend.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.60464Z
+      seconds: 51.877146625
+      tokens: 32462
       review: false
     es-ES:
-      text: 'Así pues, en esencia, gran parte del tiempo que hace lenta la compilación no se consume en la fase frontal del propio Rust, sino en LLVM, ese «pesado motor final». Esto plantea una pregunta: ¿sería posible prescindir de LLVM? ~~La respuesta es sí, :tn[miau]{is="En el original, miāo es el maullido de un gato usado como partícula al final de la frase; en la cultura china de Internet aporta un tono deliberadamente coqueto y adorable."}~~. Existe un motor llamado Cranelift creado precisamente para satisfacer esta necesidad. Al principio se llamaba Cretonne; se inició en 2016 y fue desarrollado por la [Bytecode Alliance](https://bytecodealliance.org). En un principio se diseñó como motor de generación de código para [Wasmtime](https://github.com/bytecodealliance/wasmtime), algo así como una :tn[empanadilla hecha a medida]{is="El original la llama jiǎozi, literalmente una empanadilla china, y bromea con una expresión local sobre preparar empanadillas expresamente para un propósito concreto."}; más tarde, el proyecto oficial de Rust lo incorporó como motor opcional de generación de código.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:37:02.464918Z
-      seconds: 120.237527708
-      tokens: 22313
+      text: 'Así que, en el fondo, buena parte del tiempo de compilación lento no se va en el frontend de Rust, sino en LLVM, ese «backend pesado». Y ahí surge la pregunta: ¿se podría prescindir de él? ~~:tn[La respuesta es que sí, miau]{is="El original termina con 喵, el maullido del gato, usado como partícula final mimosa: en la jerga de internet china es un tono deliberadamente cuqui."}~~ Existe un backend llamado Cranelift hecho justo para esa necesidad. Empezó como Cretonne, lanzado en 2016 y desarrollado por la [Bytecode Alliance](https://bytecodealliance.org), como un backend de generación de código pensado en origen :tn[como un guiso preparado a propósito para]{is="El original dice que Cranelift son las empanadillas (饺子) «envueltas» para Wasmtime: una imagen casera china, la de preparar empanadillas expresamente para alguien o para una ocasión."} [Wasmtime](https://github.com/bytecodealliance/wasmtime); más tarde el proyecto Rust lo adoptó como backend de codegen opcional.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.60464Z
+      seconds: 51.877146625
+      tokens: 32462
       review: false
     fr-FR:
-      text: 'Ainsi, pour l’essentiel, une grande partie du temps responsable de la lenteur de la compilation n’est pas passée dans le frontal de Rust lui-même, mais dans LLVM, ce « lourd back-end ». D’où la question : pourrait-on se débarrasser de LLVM ? ~~La réponse est oui, :tn[miaou]{is="Dans l’original, miāo est le miaulement du chat employé comme particule finale affectée ; dans la culture Internet chinoise, il donne à la phrase un ton volontairement mignon et câlin."}~~. Il existe justement un back-end appelé Cranelift qui a été conçu pour répondre à ce besoin. D’abord nommé Cretonne, il a été lancé en 2016 et développé par la [Bytecode Alliance](https://bytecodealliance.org). À l’origine, c’était un back-end de génération de code conçu spécialement pour [Wasmtime](https://github.com/bytecodealliance/wasmtime), tel un :tn[ravioli chinois fait sur mesure]{is="Le mot original, jiǎozi, signifie ravioli chinois et détourne avec humour une expression familière évoquant des raviolis préparés exprès dans un but précis."} ; il a ensuite été intégré au projet Rust officiel comme back-end facultatif de génération de code.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:37:02.464918Z
-      seconds: 120.237527708
-      tokens: 22313
+      text: 'Au fond, une bonne partie de la lenteur de compilation ne se joue donc pas dans le frontend de Rust lui-même, mais dans LLVM, ce « backend lourd ». D''où la question : serait-il possible de s''en débarrasser ? ~~:tn[La réponse est oui, miaou]{is="L''original se termine par 喵, le miaulement du chat, employé comme particule finale câline : dans le parler internet chinois, une mignardise volontairement enfantine."}~~ Il existe justement un backend nommé Cranelift, conçu pour ce besoin précis. Il s''appelait d''abord Cretonne, lancé en 2016, développé par la [Bytecode Alliance](https://bytecodealliance.org), un backend de génération de code pensé au départ :tn[comme un plat mijoté tout exprès pour]{is="L''original dit que Cranelift, ce sont les raviolis (饺子) « pliés » pour Wasmtime : une image domestique chinoise, celle des raviolis que l''on prépare spécialement pour une occasion ou pour quelqu''un."} [Wasmtime](https://github.com/bytecodealliance/wasmtime) ; il a ensuite été repris par le projet Rust comme backend codegen optionnel.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.60464Z
+      seconds: 51.877146625
+      tokens: 32462
       review: false
     ja-JP:
-      text: つまり本質的には、コンパイルが遅い原因となる時間のかなりの部分は Rust 自身のフロントエンドではなく、LLVM という「重量級バックエンド」に費やされている。そこで疑問になるのは、LLVM を捨てられないのかということだ。~~答えはイエスだ:tn[ニャ]{is="原文の miāo は猫の鳴き声を文末助詞のように使ったもので、中国語圏のネット文化に見られる、わざと甘えてかわいらしく振る舞う調子を添えている。"}~~。まさにそのために作られた Cranelift というバックエンドがある。もともとは Cretonne という名で、2016 年に始動し、[Bytecode Alliance](https://bytecodealliance.org) によって開発された。当初は [Wasmtime](https://github.com/bytecodealliance/wasmtime) のために特製された:tn[餃子]{is="原文では jiǎozi、つまり餃子と呼び、特定の目的のためにわざわざ餃子を包むという中国語圏らしい言い回しを借りて、Wasmtime 専用品だったことを冗談めかしている。"}のようなコード生成バックエンドとして設計され、のちに Rust 公式の任意で選べるコード生成バックエンドとして取り込まれた。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:37:02.464918Z
-      seconds: 120.237527708
-      tokens: 22313
+      text: つまり本質的に、コンパイルが遅い時間の大部分は Rust 自身のフロントエンドではなく、LLVM という「重量級バックエンド」に費やされている。ではここで問題だ、これを捨てることはできないのか。~~:tn[答えはあるのですにゃ]{is="原文は文末に猫の鳴き声「喵」を甘えた終助詞として付けている。中国語ネットでわざと可愛こぶるときの語感。"}~~ Cranelift というバックエンドが、まさにこの需要のために作られている。もとは Cretonne という名で 2016 年に始まり、[Bytecode Alliance](https://bytecodealliance.org) が開発した。最初は [Wasmtime](https://github.com/bytecodealliance/wasmtime) のために:tn[わざわざ手料理をこしらえるように用意された]{is="原文では Cranelift を Wasmtime のために「包的饺子」（包んだ餃子）と呼ぶ。誰かのためにわざわざ餃子を包む、という中国の家庭的な言い回しを借りた冗談。"}コード生成バックエンドで、その後 Rust 公式に取り込まれ、オプションの codegen バックエンドになった。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.60464Z
+      seconds: 51.877146625
+      tokens: 32462
       review: false
     ko-KR:
-      text: 그러므로 본질적으로 컴파일이 느려지는 시간의 상당 부분은 Rust 자체 프런트엔드가 아니라 LLVM이라는 “무거운 백엔드”에 쓰인다. 그렇다면 LLVM을 버릴 수는 없을까? ~~답은 가능하다:tn[야옹]{is="원문의 miāo는 고양이 울음소리를 문장 끝 조사처럼 쓴 표현으로, 중국 인터넷 문화 특유의 일부러 애교 부리는 귀여운 말투를 만든다."}~~. 바로 이 요구를 위해 만들어진 Cranelift라는 백엔드가 있다. 처음에는 Cretonne이라는 이름으로 2016년에 시작되었고 [Bytecode Alliance](https://bytecodealliance.org)가 개발했다. 애초에는 [Wasmtime](https://github.com/bytecodealliance/wasmtime)를 위해 특별히 :tn[빚은 만두]{is="원문은 jiǎozi, 곧 만두라고 부르며, 특정 목적을 위해 일부러 만두를 빚는다는 중국식 표현을 빌려 Wasmtime 전용으로 만들었다는 점을 익살스럽게 드러낸다."} 같은 코드 생성 백엔드로 설계되었으나, 나중에는 Rust 공식 프로젝트에 선택 가능한 코드 생성 백엔드로 편입되었다.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:37:02.464918Z
-      seconds: 120.237527708
-      tokens: 22313
+      text: 그러니까 본질적으로, 컴파일이 느린 시간의 상당 부분은 Rust 자체의 프런트엔드가 아니라 LLVM이라는 "중량급 백엔드"에서 소모된다. 그럼 여기서 문제, 이걸 버릴 수는 없을까? ~~:tn[답은 있다냥]{is="원문은 문장 끝에 고양이 울음소리 喵를 애교 섞인 종결 어미처럼 붙였다. 중국어 인터넷에서 일부러 귀여운 척할 때 쓰는 말투다."}~~ Cranelift라는 백엔드가 바로 이 요구를 위해 만들어졌다. 처음 이름은 Cretonne였고 2016년에 시작되어 [Bytecode Alliance](https://bytecodealliance.org)가 개발했으며, 애초에 [Wasmtime](https://github.com/bytecodealliance/wasmtime)을 위해 :tn[따로 상을 차려주듯 준비한]{is="원문은 Cranelift가 Wasmtime을 위해 \u0022빚은 만두(饺子)\u0022라고 표현한다. 특정한 사람이나 일을 위해 일부러 만두를 빚는다는 중국의 정겨운 관용적 비유다."} 코드 생성 백엔드였다. 이후 Rust 공식 프로젝트에 편입되어 선택 가능한 codegen 백엔드가 되었다.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.60464Z
+      seconds: 51.877146625
+      tokens: 32462
       review: false
     zh-CN:
-      text: 所以从根本上说，编译之所以缓慢，很大一部分时间并不是耗在 Rust 自身的前端，而是耗在 LLVM 这个“重量级后端”上。那么问题来了：有没有可能抛开 LLVM？~~:tn[答案当然是可以啦]{is="原文以猫叫声‘喵’作撒娇式句末语气词，带有中文网络语境中刻意卖萌的感觉。"}~~ 有一个名为 Cranelift 的后端正是为满足这一需求而开发的。它最初名为 Cretonne，于 2016 年启动，由 [Bytecode Alliance](https://bytecodealliance.org) 开发；起初，它是一个:tn[专门为 Wasmtime 量身打造]{is="原文把 Cranelift 戏称为专为 Wasmtime 包的‘饺子’，借用为特定目的专门包饺子的本土说法，语气诙谐。"}的代码生成后端，后来被 Rust 官方纳入并作为可选的代码生成后端。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:47:38.462123Z
-      seconds: 27.373877375
-      tokens: 20320
+      text: 所以本质上，编译慢的绝大部分时间并不花在 Rust 自己的前端，而是花在 LLVM 这个"重型后端"上。那么问题来了：有没有可能干脆把它丢掉呢？~~答案是有的:tn[喵]{is="原文在句末用了猫叫声「喵」当语气词，是中文网络里刻意卖萌、把一句技术断言说得软下来的用法。"}~~，有一个叫做 Cranelift 的后端就是为这个需求做的。它最早叫 Cretonne，2016 年启动，由 [Bytecode Alliance](https://bytecodealliance.org) 开发，最初是:tn[专门为 Wasmtime 包的饺子]{is="原文用「为 Wasmtime 包的饺子」来形容 Cranelift，借的是中文里「专门为某人包一顿饺子」这种为特定对象量身操办的说法，语气亲昵而带调侃。"}，[Wasmtime](https://github.com/bytecodealliance/wasmtime) 的专用代码生成后端；后来才被 Rust 官方收编，成为可选的 codegen 后端。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:24:17.565981Z
+      seconds: 9.4176445
+      tokens: 29337
       review: false
     zh-TW:
-      text: 所以說穿了，編譯緩慢有很大一部分時間並不是耗在 Rust 自己的前端，而是耗在 LLVM 這個「重型後端」上。那麼問題來了：有沒有可能把它丟掉呢？~~答案是可以的:tn[喵]{is="原文的「喵」本是貓叫聲，在這裡被當成撒嬌式的句末語氣詞，帶有中文網路文化中刻意賣萌的語感。"}~~。有一個叫 Cranelift 的後端正是為了這項需求而做。它最早叫 Cretonne，於 2016 年啟動，由 [Bytecode Alliance](https://bytecodealliance.org) 開發，起初是專為 [Wasmtime](https://github.com/bytecodealliance/wasmtime) :tn[包的餃子]{is="原文把 Cranelift 戲稱為特地替 Wasmtime「包的餃子」，借用了為某個目的專門包餃子的在地說法。"}，也就是為它設計的程式碼生成後端；後來被 Rust 官方納入，成為可選的程式碼生成後端。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:37:02.464918Z
-      seconds: 120.237527708
-      tokens: 22313
+      text: 所以本質上，編譯慢的時間有很大一部分並不花在 Rust 自己的前端，而是花在 LLVM 這個「重型後端」上。那麼問題來了：有沒有可能把它丟掉？~~:tn[答案是有的喵]{is="原文句尾用貓叫聲「喵」當成撒嬌式的語氣詞，是中文網路上刻意賣萌的語感。"}~~ 確實有——有一個叫 Cranelift 的後端，就是為了這個需求做的。它最早叫 Cretonne，2016 年啟動，由 [Bytecode Alliance](https://bytecodealliance.org) 開發，一開始就是:tn[專門為]{is="原文說 Cranelift 是替 Wasmtime「包的餃子」，借用了為某人某事特地包一頓餃子的在地說法，帶著家常的親暱味。"} [Wasmtime](https://github.com/bytecodealliance/wasmtime) 量身備好的程式碼生成後端；後來被 Rust 官方收編，成為可選的 codegen 後端。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.60464Z
+      seconds: 51.877146625
+      tokens: 32462
       review: false
   9ac95fea36915a75d53d391209946f4e:
     de-DE:
@@ -2407,68 +2407,68 @@ segments:
       review: false
   c26cd7334110d7d7418db67f768ed852:
     de-DE:
-      text: 'Aus Sicht des Designs ist Rusts Einsatz von LLVM zwar ein wenig bequem, zugleich aber auch eine ausgezeichnete Entscheidung: Anders als Go muss Rust den gesamten Weg bis zur Erzeugung des Maschinencodes nicht selbst pflegen, sondern kann die ausgereiften Optimierungen des großen LLVM-Ökosystems nutzen. Der Kompilierungsablauf von Rust lässt sich grob so beschreiben: Zunächst durchläuft der Quellcode die lexikalische und syntaktische Analyse, aus der ein AST entsteht; anschließend werden Makros expandiert und das Ergebnis zu HIR abgesenkt und abgeflacht. Darauf folgen die gewöhnliche Typprüfung und eine :tn[winzige hundertmillionenfache Portion Ausleihprüfungen]{is="Der chinesische Originalausdruck yì diǎndiǎn ersetzt in der Wendung für ein kleines bisschen die Eins scherzhaft durch hundert Millionen und verspottet so mit absurder Untertreibung den enormen Umfang der Ausleihprüfung."}, bevor schließlich MIR erzeugt wird. Bis zu diesem Punkt erledigt alles das eigene Frontend des Rust-Compilers. Die Verarbeitung nach MIR wird LLVM überlassen: MIR wird etwa in LLVM IR übersetzt, LLVM führt seine Optimierungsdurchläufe auf einer Stufe zwischen O0 und O3 aus und erzeugt schließlich Maschinencode für die Zielplattform, den der Linker zu einer ausführbaren Binärdatei zusammensetzt.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:37:52.600293Z
-      seconds: 78.505460375
-      tokens: 20345
+      text: 'Dass Rusts Design auf LLVM setzt, ist ein wenig bequem, aber auch sehr gut gewählt. Statt wie Go den Weg bis zum Maschinencode selbst zu pflegen, überlässt Rust die ausgereifte Optimierung dem großen Ökosystem von LLVM, und das ist wirklich eine gute Entscheidung. Der gesamte Übersetzungsablauf von Rust sieht ungefähr so aus: Der Quelltext durchläuft erst lexikalische und syntaktische Analyse zu einem AST, dann folgen Makroexpansion und die Absenkung auf HIR, die alles flach klopft! Danach kommen die üblichen Typprüfungen und :tn[ein Hundertmillionchen]{is="Im Original steht 亿点点: das 一 (eins) in 一点点, „ein kleines bisschen“, ist durch 亿, „hundert Millionen“, ersetzt. Das absurd große Zahlwort ist Spott – die Borrow-Prüfung ist alles andere als ein kleines bisschen Arbeit."} Borrow-Prüfung, und am Ende entsteht MIR. Bis hierher arbeitet ausschließlich das eigene Frontend des Rust-Compilers. Alles nach MIR übernimmt LLVM: MIR wird in LLVM IR übersetzt, LLVM lässt seine ganzen Optimierungs-Passes durchlaufen (von O0 bis O3), erzeugt schließlich Maschinencode für die Zielplattform, und der Linker fügt daraus die ausführbare BIN-Datei zusammen.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.604637Z
+      seconds: 58.715140125
+      tokens: 32888
       review: false
     en-US:
-      text: 'Rust’s use of LLVM may be a little lazy in design terms, but it was also an excellent choice: unlike Go, Rust does not maintain the entire machine-code generation process itself, instead letting LLVM’s vast ecosystem handle mature optimizations. Broadly speaking, Rust compilation starts by running lexical and syntactic analysis over the source code to produce an AST, then expands macros and lowers and flattens the result into HIR. Next come ordinary type checking and a :tn[tiny hundred-million-sized helping of borrow checking]{is="The original Chinese expression yì diǎndiǎn replaces the one in a little bit with one hundred million, using absurd understatement to joke that borrow checking is anything but small."}, ultimately producing MIR; everything up to this point is handled by the Rust compiler’s own front end. Everything after MIR is handed over to LLVM: the MIR is translated into LLVM IR, LLVM runs its optimization passes at levels ranging from O0 to O3, and it finally generates machine code for the target platform, which the linker then assembles into an executable binary.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:37:52.600293Z
-      seconds: 78.505460375
-      tokens: 20345
+      text: 'Choosing LLVM in Rust''s design was a bit of a shortcut, but it was also a very good choice. Rather than maintaining its own path down to machine code the way Go does, Rust hands the mature optimization work to LLVM''s huge ecosystem, and that really is a good arrangement. Rust''s whole compilation flow goes roughly like this: the source runs through lexing and parsing to produce an AST, then macro expansion and lowering to HIR flattens it out! After that come the ordinary type checks, followed by :tn[a teeny hundred million bits of]{is="The original says 亿点点, which swaps the 一 (one) of 一点点, ‘a tiny bit,’ for 亿, ‘a hundred million.’ The absurdly huge measure word is sarcasm: borrow checking is nowhere near a tiny bit of work."} borrow checking, and finally MIR is generated. Up to this point, it is all Rust''s own compiler front end doing the work. Everything after MIR is handed to LLVM: MIR is translated into LLVM IR, LLVM runs its whole set of optimization passes (anywhere from O0 to O3), and at last it emits machine code for the target platform, which the linker stitches into a BIN executable.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.604637Z
+      seconds: 58.715140125
+      tokens: 32888
       review: false
     es-ES:
-      text: 'Desde el punto de vista del diseño, el uso de LLVM por parte de Rust puede parecer un poco cómodo, pero también fue una elección excelente: a diferencia de Go, Rust no tiene que mantener por sí mismo todo el proceso de generación de código máquina, sino que deja las optimizaciones maduras en manos del enorme ecosistema de LLVM. A grandes rasgos, la compilación de Rust comienza con una pasada de análisis léxico y sintáctico sobre el código fuente para generar un AST; después se expanden las macros y el resultado se rebaja y aplana en forma de HIR. A continuación vienen la comprobación de tipos habitual y :tn[una pequeñísima ración de cien millones de comprobaciones de préstamos]{is="La expresión china original yì diǎndiǎn sustituye en tono de broma el uno de un poquito por cien millones, una minimización absurda que recalca la enorme carga de la comprobación de préstamos."}, hasta producir finalmente el MIR. Todo lo anterior corre a cargo del propio frontal del compilador de Rust. El trabajo posterior al MIR se entrega a LLVM: por ejemplo, se traduce el MIR a LLVM IR, LLVM ejecuta sus pasadas de optimización en un nivel entre O0 y O3 y finalmente genera el código máquina de la plataforma de destino, que el enlazador ensambla en un binario ejecutable.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:37:52.600293Z
-      seconds: 78.505460375
-      tokens: 20345
+      text: 'Que Rust se apoyara en LLVM tiene algo de atajo, pero fue también una elección muy acertada. En lugar de mantener por su cuenta todo el camino hasta el código máquina, como hace Go, Rust deja la optimización madura en manos del enorme ecosistema de LLVM, y eso está francamente bien. El flujo de compilación de Rust es más o menos así: el código fuente pasa primero por el análisis léxico y sintáctico para generar un AST, luego por la expansión de macros y el descenso a HIR, que lo aplana todo. Después vienen las comprobaciones de tipos habituales y :tn[un cienmillonésimo poquito de]{is="El original dice 亿点点: sustituye el 一 (uno) de 一点点, «un poquito», por 亿, «cien millones». El cuantificador desmesurado es sarcasmo: la comprobación de préstamos no es en absoluto un poquito de trabajo."} comprobación de préstamos, y al final se genera el MIR. Hasta aquí todo lo hace el propio frontend del compilador de Rust. Lo que viene después del MIR queda para LLVM: el MIR se traduce a LLVM IR, LLVM recorre toda su tanda de pases de optimización (de O0 a O3, según el caso) y al final genera el código máquina de la plataforma de destino, que el enlazador une en un ejecutable BIN.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.604637Z
+      seconds: 58.715140125
+      tokens: 32888
       review: false
     fr-FR:
-      text: 'Du point de vue de la conception, le recours de Rust à LLVM relève certes d’une certaine facilité, mais constitue aussi un excellent choix : contrairement à Go, Rust n’a pas à entretenir lui-même tout le processus de production du code machine et peut confier les optimisations éprouvées au vaste écosystème de LLVM. Dans les grandes lignes, la compilation de Rust commence par une analyse lexicale et syntaxique du code source afin de produire un AST, suivie du développement des macros, puis de l’abaissement et de l’aplatissement en HIR. Viennent ensuite la vérification habituelle des types et :tn[un tout petit cent millions de vérifications des emprunts]{is="L’expression chinoise originale yì diǎndiǎn remplace plaisamment le un de un tout petit peu par cent millions, créant une litote absurde pour souligner l’ampleur considérable de la vérification des emprunts."}, avant la production finale du MIR. Jusqu’à ce stade, tout est pris en charge par le propre frontal du compilateur Rust. Après le MIR, le travail est confié à LLVM : le MIR est notamment traduit en LLVM IR, LLVM exécute ses passes d’optimisation selon un niveau allant de O0 à O3, puis produit le code machine de la plateforme cible, que l’éditeur de liens assemble enfin en un binaire exécutable.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:37:52.600293Z
-      seconds: 78.505460375
-      tokens: 20345
+      text: 'Avoir choisi LLVM dans la conception de Rust tient un peu de la facilité, mais c''est aussi un excellent choix. Plutôt que d''entretenir lui-même tout le chemin jusqu''au code machine comme le fait Go, Rust confie l''optimisation mature au vaste écosystème de LLVM, et c''est vraiment une bonne chose. Le flux de compilation de Rust ressemble à peu près à ceci : le code source passe d''abord par l''analyse lexicale et syntaxique pour produire un AST, puis par l''expansion des macros et l''abaissement vers le HIR, qui aplatit tout ! Viennent ensuite les vérifications de types habituelles et :tn[un cent millionième petit peu de]{is="L''original écrit 亿点点 : le 一 (« un ») de 一点点, « un tout petit peu », est remplacé par 亿, « cent millions ». Ce quantificateur démesuré est ironique : la vérification d''emprunt n''a rien d''un tout petit peu de travail."} vérification d''emprunt, et enfin le MIR est produit. Jusqu''ici, c''est le frontend du compilateur Rust lui-même qui travaille. Tout ce qui suit le MIR revient à LLVM : le MIR est traduit en LLVM IR, LLVM déroule toute sa série de passes d''optimisation (de O0 à O3 selon les cas), et produit enfin le code machine de la plateforme cible, que l''éditeur de liens assemble en un exécutable BIN.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.604637Z
+      seconds: 58.715140125
+      tokens: 32888
       review: false
     ja-JP:
-      text: 設計上、Rust が LLVM を使うのは少し手抜きともいえますが、同時に非常に優れた選択でもあります。Go のように機械語生成までの工程を自前で保守するのではなく、LLVM の巨大なエコシステムに成熟した最適化を任せられるからです。Rust のコンパイル工程を大まかにいえば、まずソースコードに字句解析と構文解析を一通り施して AST を生成し、マクロ展開を経て HIR へ降下し、平坦化します。その後、通常の型検査と:tn[ほんの一億回ほどの借用検査]{is="原文の中国語 yì diǎndiǎn は、少しを表す yì diǎndiǎn の一を一億の億に置き換えた言葉遊びで、借用検査が決して少量ではないことを大げさな控えめ表現で笑いにしています。"}を行い、最終的に MIR を生成します。ここまではすべて Rust コンパイラ自身のフロントエンドが担当します。MIR より後の処理は LLVM に引き渡され、たとえば MIR を LLVM IR に変換し、LLVM が O0 から O3 までの各段階に応じた最適化処理を実行して、最後に対象プラットフォーム用の機械語を生成し、それをリンカがまとめて実行可能バイナリにします。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:37:52.600293Z
-      seconds: 78.505460375
-      tokens: 20345
+      text: Rust の設計で LLVM を選んだのは少し手抜きとも言えますが、選択としては非常に良いものでした。Go のように機械語までの過程を自前で抱え込むのではなく、成熟した最適化を LLVM という巨大なエコシステムに任せる、これは実に良いやり方です。Rust のコンパイルの流れはおおよそこうです。ソースコードにまず字句解析と構文解析をかけて AST を作り、次にマクロ展開と HIR への降格で平坦化する！　それから通常の型検査、そして:tn[一億点ばかりの]{is="原文は「亿点点」。「ちょっとだけ」を意味する「一点点」の「一」を、一億を表す「亿」に入れ替えた言葉遊びです。とんでもなく大きな単位を持ち出す皮肉で、借用検査は「ちょっとだけ」の作業などでは到底ないと言っています。"}借用検査を経て、最終的に MIR が生成されます。ここまでは、すべて Rust コンパイラ自身のフロントエンドの仕事です。MIR より後は LLVM に引き渡され、MIR は LLVM IR に翻訳され、LLVM が例の最適化パス群を一通り走らせ（O0 から O3 までさまざま）、最後にターゲットプラットフォームの機械語を生成し、それをリンカが BIN 実行ファイルへとつなぎ合わせます。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.604637Z
+      seconds: 58.715140125
+      tokens: 32888
       review: false
     ko-KR:
-      text: 설계 측면에서 Rust가 LLVM을 사용하는 것은 사실 조금 편한 길을 택한 셈이지만, 동시에 아주 훌륭한 선택이기도 합니다. Go처럼 기계어를 생성하는 전 과정을 직접 유지하는 대신, LLVM의 방대한 생태계에 성숙한 최적화를 맡길 수 있기 때문입니다. Rust의 전체 컴파일 과정은 대략 다음과 같습니다. 먼저 소스 코드를 한 차례 어휘 분석하고 구문 분석하여 AST를 생성한 뒤, 매크로를 전개하고 HIR로 낮춰 평탄화합니다. 이어서 일반적인 타입 검사와 :tn[아주 조금인 척하는 일억 번쯤의 빌림 검사]{is="중국어 원문의 yì diǎndiǎn은 조금을 뜻하는 표현에서 일을 일억의 억으로 바꾼 말장난으로, 빌림 검사의 엄청난 작업량을 터무니없는 축소 표현으로 비꼽니다."}를 거쳐 최종적으로 MIR를 생성합니다. 여기까지는 모두 Rust 컴파일러 자체의 프런트엔드가 처리합니다. MIR 이후의 작업은 LLVM에 넘깁니다. 예를 들어 MIR를 LLVM IR로 번역하고, LLVM이 O0부터 O3까지의 수준에 맞춰 최적화 단계를 실행한 다음 대상 플랫폼의 기계어를 생성하며, 마지막으로 링커가 이를 실행 가능한 바이너리로 조립합니다.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:37:52.600293Z
-      seconds: 78.505460375
-      tokens: 20345
+      text: Rust 설계에서 LLVM을 고른 건 사실 좀 게으른 선택이지만, 동시에 아주 잘한 선택이기도 합니다. Go처럼 기계어까지 가는 과정을 직접 떠안지 않고, 성숙한 최적화를 LLVM이라는 거대한 생태계에 맡긴다는 건 정말 좋은 방식이죠. Rust의 전체 컴파일 흐름은 대략 이렇습니다. 소스 코드가 먼저 어휘 분석과 구문 분석을 거쳐 AST가 되고, 이어서 매크로 확장과 HIR로의 하향 변환을 거치며 평탄해집니다! 그다음 일반적인 타입 검사와 :tn[억 점만큼의]{is="원문은 “亿点点”으로, ‘아주 조금’을 뜻하는 “一点点”의 “一”(하나)을 “亿”(억)으로 바꿔 쓴 말장난입니다. 터무니없이 큰 단위를 붙여 빌림 검사가 결코 ‘조금’이 아니라는 걸 비꼽니다."} 빌림 검사를 지나 최종적으로 MIR이 만들어집니다. 여기까지는 전부 Rust 컴파일러 자신의 프런트엔드가 하는 일입니다. MIR 이후는 LLVM에게 넘어갑니다. MIR을 LLVM IR로 번역하고, LLVM이 그 최적화 pass들을 한 바퀴 돌린 다음(O0에서 O3까지 다양합니다), 마지막으로 대상 플랫폼의 기계어를 만들어 링커에게 넘겨 BIN 실행 파일로 이어 붙이는 거죠.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.604637Z
+      seconds: 58.715140125
+      tokens: 32888
       review: false
     zh-CN:
-      text: Rust 的设计其实有点“偷懒”，但这个选择很明智：它没有像 Go 那样自行维护机器码生成流程，而是借助 LLVM 的庞大生态完成成熟的优化。整个 Rust 编译流程大致是：源码先经过一轮词法分析和语法分析，生成 AST（抽象语法树）；再经过宏展开，降级并拍平成 HIR（高级中间表示）；随后进行常规的类型检查和 :tn[海量]{is="原文是“亿点点”，把“一点点”中的“一”戏谑地换成表示一亿的“亿”，以夸张和反讽强调借用检查远不止一点。"}借用检查，最终生成 MIR（中级中间表示）。到这里为止，工作都由 Rust 编译器自己的前端完成。MIR 之后的流程则交给 LLVM：先把 MIR 转换为 LLVM IR，再执行一整套从 O0 到 O3 不等的优化流程，最后生成目标平台的机器码，并交由链接器拼装成二进制可执行文件。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:47:59.536188Z
-      seconds: 21.544977457999998
-      tokens: 20244
+      text: Rust 的设计里选用 LLVM 其实有点偷懒，但也选得很好。它不像 Go 那样自己维护一整套到机器码的流程，而是把成熟的优化交给 LLVM 这个大生态来做，这其实很好。整个 Rust 的编译流程大致是这样：源码先跑一遍词法分析和语法分析生成 AST，再经过宏展开、降级到 HIR 拍平！然后进入常规的类型检查、:tn[亿点点]{is="原文写作“亿点点”，把“一点点”里的“一”换成了表示一亿的“亿”。用夸张的量词反讽：借用检查根本不是一点点的活儿。"}借用检查，最终生成 MIR。到这里为止，都是 Rust 编译器自己的前端在干活。而 MIR 之后的事情就交给了 LLVM：把 MIR 翻译成 LLVM IR，然后 LLVM 跑一遍它那套优化 pass（从 O0 到 O3 不等），最后生成目标平台的机器码，再交给链接器拼成 BIN 可执行文件。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.604637Z
+      seconds: 58.715140125
+      tokens: 32888
       review: false
     zh-TW:
-      text: 從設計上來說，Rust 使用 LLVM 其實有點偷懶，但這也是非常明智的選擇：它不像 Go 那樣自行維護產生機器碼的整套流程，而是讓 LLVM 的龐大生態負責成熟的最佳化。整個 Rust 編譯流程大致可以概括為：先對原始碼進行一遍詞法分析和語法分析，產生 AST，再經過巨集展開以及 HIR 的降級與攤平；接著進行一般的型別檢查和:tn[億點點借用檢查]{is="原文用“億點點”戲仿“一點點”，把“一”換成表示一億的“億”，以荒誕的輕描淡寫調侃借用檢查的工作量極其龐大。"}，最終產生 MIR。到這裡為止，所有工作都由 Rust 編譯器自己的前端完成。MIR 之後的工作則交給 LLVM，例如將 MIR 翻譯成 LLVM IR，再由 LLVM 執行一遍從 O0 到 O3 不等的最佳化流程，最後產生目標平台的機器碼，並交給連結器組合成可執行二進位檔案。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:37:52.600293Z
-      seconds: 78.505460375
-      tokens: 20345
+      text: Rust 的設計裡選用 LLVM 其實有點偷懶，但也選得很好。它不像 Go 那樣自己維護一整套通往機器碼的流程，而是把成熟的最佳化交給 LLVM 這個龐大生態來做，這其實很好。整個 Rust 的編譯流程大致是這樣：原始碼先跑一遍詞法分析和語法分析生成 AST，再經過巨集展開、降級到 HIR 攤平！接著進入常規的型別檢查、:tn[億點點]{is="原文寫作「亿点点」，把「一点点」裡表示「一」的字換成了表示一億的「亿」。用誇張的量詞來反諷：借用檢查根本不是一點點的活兒。"}借用檢查，最終生成 MIR。到這裡為止，都是 Rust 編譯器自己的前端在幹活。而 MIR 之後的事情就交給了 LLVM：把 MIR 翻譯成 LLVM IR，然後 LLVM 跑一遍它那套最佳化 pass（從 O0 到 O3 不等），最後生成目標平台的機器碼，再交給連結器拼成 BIN 可執行檔。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:15:41.604637Z
+      seconds: 58.715140125
+      tokens: 32888
       review: false
   daf36a3490b545034e4de52103d4b575:
     de-DE:

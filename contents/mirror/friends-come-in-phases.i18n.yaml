@@ -327,68 +327,68 @@ segments:
       review: false
   764ab5e3a41884365925b92929d8c193:
     de-DE:
-      text: 'Wie sieht diese Kälte also konkret aus? Sie entsteht nicht in einem einzigen Augenblick. Wahrscheinlicher ist, dass sich jemand aus deinen Kontakten allmählich von dir entfernt: Die Nachrichten werden seltener und inhaltsloser, bis sie vielleicht nur noch dazu dienen, :tn[einen Streak am Leben zu halten]{is="Im Original steht 续火花. Gemeint ist, auf einer sozialen Plattform weiter Nachrichten auszutauschen, nur damit das Streak- oder Flammensymbol bestehen bleibt."}? Am Ende geht das in völliges Ignorieren über. Wie beim Frosch im langsam erwärmten Wasser wird die Person nach und nach kälter und verschwindet schließlich aus deinem Leben. Vielleicht löscht sie dich nicht aus ihren Kontakten, doch praktisch ist das nicht anders, als wäre sie aus deiner Welt verschwunden. Wenn sie sich danach noch wegen irgendetwas bei dir meldet, wird sie sich :tn[völlig anders verhalten als früher]{is="Im Original wird das englische Verb `act` als Code formatiert und unmittelbar mit der chinesischen Ergänzungspartikel 得 verbunden. Diese bewusst holprige Sprachmischung lässt das veränderte Verhalten wie eine aufgesetzte Rolle wirken."}. Es ist dann keine Hilfe unter alten Bekannten mehr, sondern als läge eine unsichtbare Distanz zwischen euch …'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:50:41.299424Z
-      seconds: 210.115590208
-      tokens: 27646
+      text: 'Und wie genau wird es kalt? Es ist nie ein einzelner Moment. Viel wahrscheinlicher ist, dass ein Kontakt sich Stück für Stück von dir entfernt: Die Nachrichten werden weniger und weniger, es bleibt nichts Substanzielles darin, bis alles zu einer Art :tn[Strähne-am-Leben-Halten]{is="Im Original stand 续火花, der chinesische Ausdruck dafür, jemandem nur deshalb täglich zu schreiben, um das Flammen- oder Serien-Abzeichen einer Chat-App zu erhalten — eine Produktmechanik, die Freundschaft in einen Zähler verwandelt, der nicht zurückspringen darf."} wird? Und am Ende verkommt es zu vollständigem Ignorieren. Wie ein Frosch im langsam erwärmten Wasser: Die Wärme versickert, und sie verschwinden aus deinem Leben. Der Kontakt wird vielleicht nie gelöscht, aber das macht keinen wirklichen Unterschied dazu, dass sie aus deiner Welt verschwunden sind. Und wenn danach doch etwas sie zu dir zurückführt, werden sie sich völlig anders als früher :tn[in Pose werfen]{is="Das Original setzte das englische Verb `act` in Code-Formatierung und hängte eine chinesische Grammatikpartikel daran; der absichtlich holprige Sprachwechsel lässt die veränderte Haltung des anderen gestellt und künstlich wirken."} — kein selbstverständlicher Gefallen mehr unter Vertrauten, sondern etwas über eine unsichtbare Distanz hinweg …'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:28:31.870873Z
+      seconds: 65.594309625
+      tokens: 32837
       review: false
     en-US:
-      text: 'So what does this coldness actually look like? It rarely happens all at once. More likely, a contact gradually pulls away from you: messages become fewer and increasingly devoid of substance, perhaps dwindling into nothing more than :tn[keeping a streak alive]{is="The original says 续火花, a social-media expression for exchanging messages solely to preserve a platform’s streak or flame badge."}? Eventually, it deteriorates into them ignoring you completely. Like a frog in slowly heated water, they grow colder little by little and then disappear from your life. They may never delete you from their contacts, but in practice that is no different from vanishing from your world. If they later come to you because they need something, they will :tn[`act` completely unlike they did before]{is="The original word is the English verb act, formatted as code and attached to the Chinese complement marker 得. This deliberately awkward code-switching makes their changed attitude feel consciously performed."}. It will no longer be the kind of favor exchanged between people who know each other, but will feel as though an invisible distance lies between you…'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:50:41.299424Z
-      seconds: 210.115590208
-      tokens: 27646
+      text: 'As for how exactly it goes cold? It is never a single moment. What is far more likely is that one contact drifts away from you bit by bit: messages get fewer and fewer, with no real substance left in them, until they turn into something like :tn[keeping the streak alive]{is="The original said 续火花, the Chinese term for messaging someone daily only to preserve a chat app''s flame or streak badge — a product mechanic that turns friendship into a counter you must not let reset."}? And in the end it degrades into being ignored entirely. Like a frog in slowly heating water, the warmth drains away, and they vanish from your life. The contact may never be deleted, but that makes no real difference from their having vanished from your world. And if something does bring them back to you afterwards, they will :tn[put on an act]{is="The original wrote the English verb `act` inside code formatting and bolted a Chinese grammatical particle onto it; the deliberately clumsy code-switch makes the other person''s change of manner look staged and artificial."} completely unlike before — no longer the easy favour between people who know each other, but something across an invisible distance...'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:28:31.870873Z
+      seconds: 65.594309625
+      tokens: 32837
       review: false
     es-ES:
-      text: 'Entonces, ¿cómo se manifiesta exactamente esa frialdad? En realidad, no ocurre de golpe. Lo más probable es que uno de tus contactos se vaya alejando poco a poco: los mensajes son cada vez menos frecuentes y pierden todo contenido sustancial, ¿hasta convertirse quizá en una simple forma de :tn[mantener viva la racha]{is="La expresión original 续火花 se refiere a seguir intercambiando mensajes en una plataforma social únicamente para conservar una racha o el icono de una llama."}? Al final, la situación degenera hasta que esa persona pasa a ignorarte por completo. Como la rana en agua que se calienta lentamente, se muestra cada vez más fría y termina desapareciendo de tu vida. Puede que no te elimine de sus contactos, pero, en la práctica, es como si ya hubiera desaparecido de tu mundo. Si después vuelve a buscarte porque necesita algo, :tn[se comportará de una manera totalmente distinta a la de antes]{is="En el original, el verbo inglés `act` aparece con formato de código y unido directamente a la partícula complementaria china 得. Esta mezcla deliberadamente forzada hace que el cambio de actitud parezca una actuación consciente."}. Ya no será la ayuda que se prestan dos conocidos, como antes, sino que parecerá haber una distancia invisible entre ambos…'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:50:41.299424Z
-      seconds: 210.115590208
-      tokens: 27646
+      text: '¿Y cómo se enfría exactamente? Nunca es un instante concreto. Lo mucho más probable es que un contacto se vaya alejando de ti poco a poco: los mensajes se hacen cada vez más escasos, ya no queda nada sustancial en ellos, hasta convertirse en una especie de :tn[mantener viva la racha]{is="El original decía 续火花, la expresión china para escribirle a alguien a diario solo para conservar la llama o la insignia de racha de una aplicación de mensajería: un mecanismo del producto que convierte la amistad en un contador que no se puede dejar caer."} ? Y al final degenera en ignorarte por completo. Como la rana en agua que se calienta despacio: el calor se escapa, y desaparecen de tu vida. Puede que nunca borren el contacto, pero eso no supone ninguna diferencia real frente a haber desaparecido de tu mundo. Y si después algo los trae de vuelta a ti, van a :tn[adoptar una pose]{is="El original encerró el verbo inglés `act` en formato de código y le pegó una partícula gramatical china; esa mezcla de idiomas deliberadamente torpe hace que el cambio de actitud del otro parezca actuado."} completamente distinta de antes: ya no es el favor fácil entre conocidos, sino algo al otro lado de una distancia invisible…'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:28:31.870873Z
+      seconds: 65.594309625
+      tokens: 32837
       review: false
     fr-FR:
-      text: 'Mais à quoi ressemble exactement cette froideur ? Elle ne s’installe pas en un instant. Le plus souvent, l’un de tes contacts s’éloigne peu à peu de toi : les messages se raréfient et se vident de toute substance, jusqu’à n’être peut-être plus qu’une façon de :tn[maintenir la série en vie]{is="L’expression originale 续火花 désigne le fait de continuer à échanger des messages sur un réseau social uniquement pour conserver une série ou une icône en forme de flamme."} ? À la fin, cela dégénère jusqu’à ce que cette personne t’ignore complètement. Comme la grenouille plongée dans une eau que l’on chauffe lentement, elle devient peu à peu distante, puis disparaît de ta vie. Elle ne te supprimera peut-être pas de ses contacts, mais, en réalité, cela ne diffère guère d’une disparition de ton monde. Si elle revient ensuite te demander quelque chose, elle :tn[se comportera d’une manière totalement différente d’avant]{is="Dans l’original, le verbe anglais `act` est mis en forme comme du code puis directement rattaché à la particule chinoise 得. Ce mélange volontairement raide donne l’impression que la personne joue délibérément un autre rôle."}. Ce ne sera plus un service rendu entre connaissances comme autrefois, mais comme si une distance invisible vous séparait…'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:50:41.299424Z
-      seconds: 210.115590208
-      tokens: 27646
+      text: 'Et comment cela refroidit-il, au juste ? Ce n''est jamais un instant précis. Ce qui arrive bien plus souvent, c''est qu''un contact s''éloigne de toi petit à petit : les messages se raréfient, plus rien de substantiel n''y subsiste, jusqu''à devenir une sorte de :tn[maintien de la série en vie]{is="L''original disait 续火花, l''expression chinoise pour écrire à quelqu''un chaque jour dans le seul but de conserver la flamme ou le badge de série d''une messagerie — un mécanisme de produit qui transforme l''amitié en un compteur qu''il ne faut surtout pas laisser retomber."} ? Et à la fin, cela dégénère en indifférence totale. Comme la grenouille dans l''eau qui chauffe lentement : la chaleur s''en va, et ils disparaissent de ta vie. Le contact ne sera peut-être jamais supprimé, mais cela ne change rien au fait qu''ils ont disparu de ton monde. Et si quelque chose les ramène ensuite vers toi, ils vont :tn[se composer une attitude]{is="L''original enfermait le verbe anglais `act` dans un formatage de code et y accolait une particule grammaticale chinoise ; ce mélange de langues volontairement bancal fait paraître le changement d''attitude de l''autre comme une pose jouée."} tout autre qu''avant — plus ce service qu''on se rend entre proches, mais quelque chose par-dessus une distance invisible…'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:28:31.870873Z
+      seconds: 65.594309625
+      tokens: 32837
       review: false
     ja-JP:
-      text: では、その冷たさは実際どのように表れるのだろう。ある瞬間に突然そうなるのではなく、たいていは、連絡先にいる誰かが少しずつあなたから離れていく。メッセージは減り、中身もなくなり、やがては:tn[ストリークを途切れさせないためだけのやり取り]{is="原文の「续火花」は、SNSでメッセージの往復を続け、ストリークや炎の印を維持する行為を指す。単に関係をつなぎ止めるという意味ではない。"}になってしまうのだろうか。そして最後には、完全に無視されるところまで行き着く。まるでぬるま湯からゆっくり煮られるカエルのように、相手はじわじわと冷たくなり、やがてあなたの生活から消えていく。連絡先から削除されることはないかもしれないが、実際にはあなたの世界から消えたのと変わらない。その後、何か用があって連絡してきても、:tn[振る舞いは以前とはまるで違う]{is="原文では、英語の動詞 `act` をコード書式のまま中国語の補語表現「得」につないでいる。わざとぎこちなく言語を混ぜることで、相手が意識的に別の態度を演じている感じを出している。"}。もはや昔のような知り合い同士の助け合いではなく、間に見えない距離があるかのようだ……
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:50:41.299424Z
-      seconds: 210.115590208
-      tokens: 27646
+      text: では、どうやって冷めていくのか。それは決して一瞬の出来事ではない。もっとありそうなのは、ある連絡先が少しずつあなたから離れていくことだ。メッセージは減っていき、中身のある内容もなくなり、やがて :tn[連続記録をつなぐためだけのやりとり]{is="原文は中国語の「続火花」。チャットアプリで毎日やりとりを続けないと消えてしまう「炎」や連続記録のバッジを維持するためだけに送り合う行為を指す言い方で、友情がカウンターの維持作業に変わってしまうことを表す。"} のようなものになる。そして最後には完全に無視されるところまで退化する。ぬるま湯で茹でられる蛙のように、温度がゆっくり抜けていき、あなたの生活から消えていく。連絡先は消されないかもしれないが、あなたの世界から消えたのと実際には変わらない。そのあとで何か用があって連絡してきたとしても、その態度は以前とはまったく違う :tn[芝居がかったもの]{is="原文は英語の動詞 `act` をコード書式で囲み、そこに中国語の助詞をつなげている。わざとぎこちなくした言語の混ぜ方が、相手の変わった態度をわざとらしい演技のように見せている。"} になる。かつてのような、気心の知れた者どうしの頼みごとではなく、見えない距離を挟んだ何かになるのだ……
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:28:31.870873Z
+      seconds: 65.594309625
+      tokens: 32837
       review: false
     ko-KR:
-      text: 그렇다면 그 차가움은 구체적으로 어떤 모습일까? 어느 한순간 갑자기 벌어지는 일은 아니다. 대개는 연락처에 있는 누군가가 서서히 당신에게서 멀어지는 식으로 나타난다. 메시지는 갈수록 뜸해지고 내용도 없어지다가, 어쩌면 그저 :tn[스트릭 불씨를 이어 가기 위한 연락]{is="원문의 ‘续火花’는 소셜 플랫폼에서 메시지를 계속 주고받아 스트릭이나 불꽃 표시가 사라지지 않게 하는 행동을 뜻한다."}으로 변하는 걸까? 그러다 끝내는 아예 무시하는 상태로 퇴보한다. 미지근한 물 속의 개구리를 서서히 삶듯, 상대는 조금씩 차가워지다가 당신의 삶에서 사라진다. 연락처에서는 지우지 않을지도 모르지만, 실은 당신의 세계에서 사라진 것이나 다름없다. 그 뒤 무슨 일이 있어 다시 찾아오더라도 :tn[태도는 예전과 완전히 달라질 것이다]{is="원문은 영어 동사 `act`를 코드 서식으로 감싼 뒤 중국어 보어 표지 ‘得’에 바로 붙였다. 의도적으로 어색한 언어 혼용이 상대가 일부러 다른 태도를 연기하는 느낌을 준다."}. 더는 예전처럼 아는 사람끼리 돕는 것이 아니라, 둘 사이에 보이지 않는 거리가 놓인 듯할 것이다……
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:50:41.299424Z
-      seconds: 210.115590208
-      tokens: 27646
+      text: 그렇다면 대체 어떻게 식어가는 걸까? 그것은 결코 한순간의 일이 아니다. 훨씬 흔한 건 어떤 사람이 조금씩 당신에게서 멀어지는 쪽이다. 메시지는 점점 줄어들고, 알맹이 있는 내용도 사라지고, 결국 :tn[연속 기록을 이어가기 위한 대화]{is="원문은 중국어 「续火花」로, 채팅 앱의 불꽃이나 연속 대화 배지를 유지하려고 매일 메시지를 주고받는 행위를 가리킨다. 우정이 끊기면 안 되는 숫자로 바뀌어 버린다는 뜻이 담겨 있다."} 같은 것이 되어버린다. 그리고 마지막에는 완전히 무시하는 데까지 퇴화한다. 미지근한 물에서 삶기는 개구리처럼 온기가 천천히 빠져나가고, 그렇게 당신의 삶에서 사라진다. 연락처는 지워지지 않을지도 모르지만, 그것은 당신의 세계에서 사라진 것과 사실상 아무 차이가 없다. 그 뒤에 무슨 일이 있어 다시 찾아온다 해도, 그 태도는 예전과는 전혀 다르게 :tn[한 겹 꾸며낸 모습]{is="원문은 영어 동사 `act`를 코드 서식으로 감싸고 거기에 중국어 문법 조사를 붙였다. 일부러 어색하게 만든 언어 뒤섞기가 상대가 바꿔 쓴 태도를 연기처럼 보이게 한다."}이 된다. 예전처럼 아는 사이끼리 편하게 부탁하던 것이 아니라, 보이지 않는 거리를 사이에 둔 무언가가 되는 것이다…
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:28:31.870873Z
+      seconds: 65.594309625
+      tokens: 32837
       review: false
     zh-CN:
-      text: 至于这种冷漠究竟是什么样子？其实，它并不会在某个瞬间突然发生；更可能是某个联系人慢慢疏远你。消息越来越少，也越来越没有实质内容，到后来或许只剩下为了:tn[维持“火花”连续记录]{is="原文的“续火花”是指在社交平台上持续互发消息，只为保住 streak 或火花标识。"}而联系？最后则彻底退化成对你不闻不问。就像温水煮青蛙一样，对方一点点冷淡下来，最终从你的生活中消失。他们也许不会删除联系人，但实际上，这与从你的世界里消失已经没有区别。之后如果还有事来找你，:tn[言行举止也会与从前截然不同]{is="原文把英文动词 `act` 用代码格式嵌进中文的“得”字结构；刻意生硬的中英混用，让对方判若两人的态度显得像是在表演。"}；那不再是从前那种熟人之间的帮忙，而像是彼此隔着一段无形的距离……
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:50:41.299424Z
-      seconds: 210.115590208
-      tokens: 27646
+      text: 那到底是怎么冷下来的呢？其实从来不是某一个瞬间。更常见的是某个联系人一点一点地疏远你：消息越来越少，也越来越没有实质内容，最后变成一种 :tn[为了续火花而聊天]{is="原文用的是「续火花」，指为了保住聊天软件上的火花或连续互动标识而每天发消息，字面看不出这是被产品机制推着走的行为。"} 的行为？再往后就彻底退化成完全不理你。就像温水煮青蛙，热度慢慢散掉，然后他们从你的生活里消失。联系人可能一直没删，但这和从你的世界里消失其实没有什么区别。而之后如果真有什么事来找你，他们的姿态也会 :tn[完全换成另一副样子]{is="原文把英语动词 `act` 用代码格式括起来，再接上中文的「得」，这种刻意生硬的中英混用让对方换的那副态度显得像在演戏。"}，不再是从前熟人之间顺手的帮忙，而像是隔着一层看不见的距离……
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:28:31.870873Z
+      seconds: 65.594309625
+      tokens: 32837
       review: false
     zh-TW:
-      text: 至於這種冷漠究竟是什麼樣子？其實，它並不會在某個瞬間突然發生；更可能是某個聯絡人慢慢疏遠你。訊息愈來愈少，也愈來愈沒有實質內容，到後來或許只剩下為了:tn[維持「火花」連續紀錄]{is="原文的「續火花」是指在社群平台上持續互傳訊息，只為保住 streak 或火花標記。"}而聯絡？最後則徹底退化成對你不聞不問。就像溫水煮青蛙一樣，對方一點一點冷淡下來，最終從你的生活中消失。他們也許不會把你從聯絡人中刪除，但實際上，這與從你的世界裡消失已沒有任何差別。之後如果還有事來找你，:tn[言行舉止也會與從前截然不同]{is="原文把英文動詞 `act` 以程式碼格式嵌入中文的「得」字結構；刻意生硬的中英混用，讓對方判若兩人的態度顯得像是在表演。"}；那不再是從前那種熟人之間的幫忙，而像是彼此隔著一段無形的距離……
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:50:41.299424Z
-      seconds: 210.115590208
-      tokens: 27646
+      text: 那到底是怎麼冷下來的呢？其實從來不是某一個瞬間。更常見的是某個聯絡人一點一點地疏遠你：訊息越來越少，也越來越沒有實質內容，最後變成一種 :tn[為了保住連續互動而聊天]{is="原文用的是「續火花」，指為了維持聊天軟體上的火花或連續互動標記而每天傳訊息，字面看不出這是被產品機制推著走的行為。"} 的行為？再往後就徹底退化成完全不理你。就像溫水煮青蛙，熱度慢慢散掉，然後他們從你的生活裡消失。聯絡人可能一直沒刪，但這和從你的世界裡消失其實沒有什麼區別。而之後如果真有什麼事來找你，他們的姿態也會 :tn[完全換成另一副樣子]{is="原文把英語動詞 `act` 用程式碼格式括起來，再接上中文的「得」，這種刻意生硬的中英混用讓對方換的那副態度顯得像在演戲。"}，不再是從前熟人之間順手的幫忙，而像是隔著一層看不見的距離……
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:28:31.870873Z
+      seconds: 65.594309625
+      tokens: 32837
       review: false
   7c6bfa7f3e7b3213d350aafafa7aaa64:
     de-DE:
@@ -522,68 +522,68 @@ segments:
       review: false
   8e01bc84022d819699f363bd4473aebf:
     de-DE:
-      text: 'Diese „Phasen“ lassen sich vielleicht mit einer Liebesbeziehung vergleichen: Es gibt eine Phase des Neuen und eine leidenschaftliche Phase. Bei Gesprächen und Kontakten unter Freunden ist es ähnlich. In den ersten Tagen nach dem Kennenlernen tauscht man sich meist sehr rege aus und gräbt womöglich sogar deine **:tn[peinliche Vergangenheit]{is="Im Original steht 黑历史, ein aus der japanischen Subkultur hervorgegangener chinesischer Internetausdruck für eine beschämende Vergangenheit, an die man selbst nicht erinnert oder von anderen nicht erinnert werden möchte. Gemeint ist keine gewöhnliche dunkle Geschichte; der Ausdruck klingt spöttisch und spielerisch."}** aus; danach geht die Beziehung in eine Phase beständigen Austauschs über, die von etwas Langfristigem getragen wird. Vielleicht arbeitet man zusammen, besucht dieselbe Schulklasse, teilt als Onlinebekanntschaft ein Interesse oder jemand wendet sich wegen eines Problems an dich, das sich nicht kurzfristig lösen lässt. Es ist, als hätten sich zwei Linien, die einander ursprünglich nie kreuzten, plötzlich umeinandergewunden – und genauso tauchen diese Menschen unvermittelt in deinem Leben auf.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:50:51.421148Z
-      seconds: 67.40813625
-      tokens: 22257
+      text: '„Phasen" lassen sich wohl am ehesten mit einer Liebesbeziehung vergleichen: Es gibt die Zeit des Neuen und es gibt die Zeit der Leidenschaft. Zwischen Freunden läuft es genauso. In den ersten Tagen nach dem Kennenlernen schreibt man sich eifrig, gräbt sogar deine :tn[peinliche Vergangenheit]{is="Im Original steht 黑历史, ein aus der japanischen Subkultur ins chinesische Netz übernommener Ausdruck. Gemeint ist ausdrücklich das eigene Fremdschäm-Kapitel, das niemand hervorholen soll, nicht eine dunkle Vergangenheit im schweren Sinn."} aus; dann geht es über in eine stabile Phase des Austauschs rund um eine langfristige Sache. Das kann gemeinsame Arbeit sein, Mitschüler in derselben Klasse, ein geteiltes Interesse zwischen Leuten, die sich online kennengelernt haben, oder jemand, der wegen eines bestimmten Problems zu dir kommt, das sich so schnell nicht lösen lässt. Als hätten sich zwei Linien, die einander nie geschnitten hätten, plötzlich ineinander verdreht -- und so tauchen diese Menschen eben plötzlich in deinem Leben auf.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544784Z
+      seconds: 49.972728209
+      tokens: 31581
       review: false
     en-US:
-      text: 'The “phases” can probably be compared to dating: there is a novelty phase and a passionate phase. Friendships and conversations work the same way. During the first few days after meeting, people communicate enthusiastically and may even dig up your **:tn[embarrassing past]{is="The original uses 黑历史, Chinese internet slang derived from Japanese subculture for an embarrassing past someone would rather not revisit or have others uncover—not an ordinary dark history."}**; afterward, the relationship settles into a phase of steady interaction sustained by something long-running. It might be working together, being classmates in the same class, sharing an interest with someone you met online, or someone approaching you with a problem that cannot be solved quickly. It is as though two lines that never intersected suddenly became entwined; that is how these people abruptly appeared in your life.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:50:51.421148Z
-      seconds: 67.40813625
-      tokens: 22257
+      text: '"Phases" are probably best compared to a romance: there is a novelty period, and there is a passionate period. It works the same way between friends. In the first few days after meeting, you talk eagerly, even digging up your :tn[embarrassing past]{is="The original says 黑历史, an internet term borrowed from Japanese fan culture. It means specifically the cringeworthy past you would rather nobody unearthed, not a dark history in the grave sense."}; then it settles into a stable phase of exchange around some long-running thing. It could be working together, being classmates in the same class at school, a shared interest between people who met online, or someone coming to you about a particular problem that cannot be solved quickly. It is as if two lines that were never going to meet suddenly twisted together, and just like that, those people appeared in your life.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544784Z
+      seconds: 49.972728209
+      tokens: 31581
       review: false
     es-ES:
-      text: 'Estas «etapas» quizá puedan compararse con una relación amorosa: hay una etapa de novedad y otra de pasión. Las conversaciones y la interacción entre amigos funcionan igual. Durante los primeros días después de conocerse, las personas suelen comunicarse con mucho entusiasmo e incluso desenterrar tu **:tn[pasado vergonzoso]{is="El original emplea 黑历史, jerga china de internet procedente de la subcultura japonesa. Con un tono burlón, alude a un pasado embarazoso que uno preferiría no recordar ni ver expuesto por otros, no simplemente a una historia oscura."}**; después, la relación entra en una etapa de comunicación estable sostenida por algo duradero. Puede ser que trabajéis juntos, que seáis compañeros de la misma clase, que compartáis un interés tras haberos conocido por internet o que alguien acuda a ti con un problema que no puede resolverse en poco tiempo. Es como si dos líneas que nunca se cruzaban se enredaran de repente: así es como esas personas aparecen inesperadamente en tu vida.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:50:51.421148Z
-      seconds: 67.40813625
-      tokens: 22257
+      text: 'Las «fases» se pueden comparar, más o menos, con una relación amorosa: hay un periodo de novedad y hay un periodo de ardor. Entre amigos pasa lo mismo. Los primeros días después de conocerse se habla con mucho entusiasmo, incluso se desentierra tu :tn[pasado vergonzoso]{is="El original usa 黑历史, una expresión de internet llegada al chino desde la subcultura japonesa. Designa en concreto los episodios bochornosos del propio pasado que uno preferiría que nadie sacara a la luz, no una historia oscura en sentido grave."}; después se entra en una fase estable de trato en torno a algo de largo recorrido. Puede ser un trabajo compartido, ser compañeros de la misma clase en la escuela, un interés común entre personas que se conocieron en internet, o alguien que acude a ti por un problema concreto que no se resuelve en poco tiempo. Como si dos líneas que nunca iban a cruzarse se hubieran enredado de repente, esa gente aparece así, de golpe, en tu vida.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544784Z
+      seconds: 49.972728209
+      tokens: 31581
       review: false
     fr-FR:
-      text: 'On pourrait sans doute comparer ces « phases » à une relation amoureuse : il y a celle de la nouveauté, puis celle de la passion. Les échanges et les conversations entre amis suivent le même schéma. Durant les premiers jours après une rencontre, on communique avec beaucoup d’enthousiasme, au point d’aller parfois déterrer ton **:tn[passé embarrassant]{is="L’original emploie 黑历史, un terme d’argot d’Internet chinois issu de la sous-culture japonaise. Sur un ton moqueur, il désigne un passé gênant que l’on préférerait oublier ou ne pas voir exhumé par les autres, et non une simple histoire sombre."}** ; puis la relation entre dans une phase d’échanges réguliers, entretenue par quelque chose qui s’inscrit dans la durée. Il peut s’agir de travailler ensemble, d’être dans la même classe, de partager un centre d’intérêt avec une personne rencontrée en ligne, ou encore de quelqu’un qui vient te voir pour un problème impossible à résoudre rapidement. C’est comme si deux lignes qui ne devaient jamais se croiser s’étaient soudain entortillées l’une autour de l’autre : c’est ainsi que ces personnes surgissent brusquement dans ta vie.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:50:51.421148Z
-      seconds: 67.40813625
-      tokens: 22257
+      text: 'Les « phases », on peut sans doute les comparer à une histoire d''amour : il y a la période de nouveauté, et il y a la période de ferveur. Entre amis, c''est pareil. Les premiers jours après la rencontre, on échange avec beaucoup d''entrain, on va même déterrer ton :tn[passé embarrassant]{is="L''original emploie 黑历史, un terme d''internet passé de la sous-culture japonaise au chinois. Il désigne précisément les épisodes gênants de son propre passé qu''on préférerait voir rester enfouis, et non une histoire sombre au sens grave."} ; puis vient une phase stable d''échanges autour de quelque chose qui dure. Ce peut être un travail commun, des camarades dans la même classe à l''école, un intérêt partagé entre gens rencontrés en ligne, ou encore quelqu''un qui vient te voir pour un problème précis, un problème qui ne se règle pas en peu de temps. Comme si deux lignes qui n''auraient jamais dû se croiser s''étaient soudain enroulées l''une autour de l''autre, ces gens-là apparaissent ainsi d''un coup dans ta vie.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544784Z
+      seconds: 49.972728209
+      tokens: 31581
       review: false
     ja-JP:
-      text: この「段階」は、恋愛にたとえられるのかもしれない。新鮮に感じる時期があり、熱が高まる時期もある。友人同士のやり取りや会話も同じだ。知り合って最初の数日間はとても積極的に話し、あなたの**:tn[封印したい恥ずかしい過去]{is="原文の「黑历史」は日本のサブカルチャーに由来する中国語のネットスラングで、本人が振り返りたくない、あるいは他人に掘り返されたくない気まずい過去を、からかいを込めて指す。単なる暗い歴史という意味ではない。"}**まで掘り返すこともある。その後は、長く続く何かに支えられた、安定した交流の段階に入る。それは一緒に働くことかもしれないし、学校で同じクラスにいることかもしれない。ネットで知り合った者同士の共通の趣味かもしれないし、短期間では解決できない問題を抱えた誰かが、あなたを頼ってきたことがきっかけかもしれない。まるで本来交わることのなかった二本の線が突然ねじれ合うように、彼らは不意にあなたの人生へ現れる。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:50:51.421148Z
-      seconds: 67.40813625
-      tokens: 22257
+      text: 「段階」はおそらく恋愛にたとえられる。新鮮な時期があり、熱を帯びた時期がある。友人どうしのやりとりも同じだ。知り合って最初の数日はやたら熱心に話し、こちらの:tn[黒歴史]{is="原文の中国語も「黑历史」で、日本のサブカル用語が中国のネットに輸入されたもの。掘り返されたくない気まずい過去を指す語で、字義どおりの暗い歴史ではない。"}まで掘り返してくる。それからは、何か長く続く事柄をめぐる安定した交流の段階に入る。一緒に仕事をしているのかもしれないし、学校で同じクラスの同級生なのかもしれないし、ネットで知り合った者どうしの共通の趣味かもしれないし、ある問題を抱えて相談に来て、その問題が短期間では解決しないというだけかもしれない。もともと交わるはずのなかった二本の線が突然もつれ合ったように、その人たちもそうやって突然こちらの生活に現れる。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544784Z
+      seconds: 49.972728209
+      tokens: 31581
       review: false
     ko-KR:
-      text: 이러한 ‘단계’는 아마 연애에 빗댈 수 있을 것이다. 새로움이 느껴지는 시기가 있고, 열정이 뜨거운 시기도 있다. 친구끼리 교류하고 대화하는 과정도 마찬가지다. 처음 알게 된 며칠 동안은 아주 적극적으로 이야기를 나누며, 심지어 당신의 **:tn[들키고 싶지 않은 민망한 과거]{is="원문은 일본 서브컬처에서 유래한 중국 인터넷 은어 ‘黑历史’를 썼다. 단순히 어두운 역사가 아니라, 본인이 떠올리기 싫거나 남이 들춰내지 않기를 바라는 창피한 과거를 장난스럽게 가리키는 말이다."}**까지 파헤치기도 한다. 그러고 나면 오랫동안 이어지는 어떤 일을 바탕으로 안정적으로 교류하는 단계에 들어간다. 함께 일하는 사이일 수도 있고, 학교에서 같은 반인 친구일 수도 있으며, 인터넷에서 알게 된 사람과 공유하는 관심사 때문일 수도 있다. 또는 단기간에 해결할 수 없는 문제 때문에 누군가 당신을 찾아왔을 수도 있다. 원래라면 서로 만나지 않았을 두 선이 갑자기 뒤엉킨 것처럼, 그들은 그렇게 불현듯 당신의 삶에 나타난다.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:50:51.421148Z
-      seconds: 67.40813625
-      tokens: 22257
+      text: 「단계」는 아마 연애에 빗댈 수 있을 것이다. 새로움의 시기가 있고, 뜨거운 시기가 있다. 친구 사이의 교류도 마찬가지다. 알게 된 며칠 동안은 아주 적극적으로 이야기를 나누고, 심지어 너의 :tn[흑역사]{is="원문의 중국어도 黑历史이며, 일본 서브컬처 용어가 중국 인터넷으로 넘어간 말이다. 남이 들추지 않았으면 하는 낯 뜨거운 과거를 가리키는 말이지 문자 그대로의 어두운 역사가 아니다."}까지 파헤친다. 그다음에는 어떤 장기적인 일을 중심으로 한 안정된 교류의 단계로 들어선다. 함께 일하는 사이일 수도 있고, 학교에서 같은 반 친구일 수도 있고, 온라인에서 알게 된 사람들 사이의 공통된 관심사일 수도 있고, 어떤 문제 때문에 너를 찾아왔는데 그 문제가 단기간에 해결되지 않는 경우일 수도 있다. 원래 만날 일이 없던 두 선이 갑자기 뒤엉킨 것처럼, 그 사람들도 그렇게 갑자기 네 삶에 나타난 것이다.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544784Z
+      seconds: 49.972728209
+      tokens: 31581
       review: false
     zh-CN:
-      text: 所谓“阶段”，大概可以用谈恋爱来比喻：先有新鲜期，再有热烈期。朋友之间的互动和聊天也是如此。刚认识的那几天，双方往往会非常积极地交流，甚至翻出你的**:tn[尴尬往事]{is="原文使用网络词“黑历史”，这个词源自日语亚文化，带着调侃意味，特指本人不愿回顾或被别人翻出的难堪过去，并非普通意义上的黑暗历史。"}**；之后，彼此便会进入由某件长期事情维系的稳定交流阶段。这件事可能是一起工作，可能是在学校里同班，也可能是网友之间拥有共同兴趣，或者有人因为某个短时间内无法解决的问题来找你。就像两条原本毫不相交的线突然缠在了一起，他们也就这样猝不及防地出现在你的生活中。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:50:51.421148Z
-      seconds: 67.40813625
-      tokens: 22257
+      text: 「阶段」大概可以拿谈恋爱来比喻：有新鲜期，也有热烈期。朋友之间的相处也是这样。刚认识的那几天会聊得特别起劲，甚至去考古你的**:tn[黑历史]{is="原文用的就是「黑历史」，这个词从日本亚文化传入中文网络，特指自己不愿被人翻出来的尴尬往事，而不是字面意义上阴暗的历史。"}**；接着就会进入一个围绕某件长期事情的稳定交流阶段。可能是共事，可能是学校里同班的同学，可能是网上认识的人之间共同的兴趣，也可能是因为某个问题来找你，而这个问题短时间内解决不了。就好像两条本来不会相交的线突然缠在了一起，那些人也就这样突然出现在了你的生活里。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544784Z
+      seconds: 49.972728209
+      tokens: 31581
       review: false
     zh-TW:
-      text: 所謂的「階段」，或許可以拿談戀愛來比喻：先有新鮮期，再有熱烈期。朋友之間的互動與聊天也是如此。剛認識的那幾天，彼此通常會非常積極地交流，甚至挖出你的**:tn[難堪往事]{is="原文使用網路用語「黑歷史」，這個詞源自日語次文化，帶有調侃語氣，專指本人不願回顧或被別人翻出的尷尬過去，並非一般所說的黑暗歷史。"}**；之後，雙方就會進入由某件長期事情維繫的穩定交流階段。這件事可能是一起工作，可能是在學校裡同班，也可能是網路上認識的人擁有共同興趣，或者有人因為某個短時間內無法解決的問題來找你。就像兩條原本不會相交的線突然纏繞在一起，他們也就這樣猝不及防地出現在你的生活中。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:50:51.421148Z
-      seconds: 67.40813625
-      tokens: 22257
+      text: 「階段」大概可以拿談戀愛來比喻：有新鮮期，也有熱烈期。朋友之間的相處也是這樣。剛認識的那幾天會聊得特別起勁，甚至去考古你的**:tn[黑歷史]{is="原文用的就是「黑历史」，這個詞從日本次文化傳入中文網路，專指自己不願被人翻出來的尷尬往事，而不是字面意義上陰暗的歷史。"}**；接著就會進入一個圍繞某件長期事情的穩定交流階段。可能是共事，可能是學校裡同班的同學，可能是網路上認識的人之間共同的興趣，也可能是因為某個問題來找你，而這個問題短時間內解決不了。就好像兩條本來不會相交的線突然纏在了一起，那些人也就這樣突然出現在了你的生活裡。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544784Z
+      seconds: 49.972728209
+      tokens: 31581
       review: false
   8ec4706fc8fd80f9b958520763568129:
     de-DE:
@@ -847,68 +847,68 @@ segments:
       review: false
   a7e3e8d229fddd4d11a25f96f7a1e5d9:
     de-DE:
-      text: 'Eigentlich hatte ich schon seit ein oder zwei Jahren vage gespürt, dass es in diese Richtung ging, doch ich wich dem Thema immer wieder aus. Bis ich vor einiger Zeit eines Abends beim Scrollen durch Twitter :tn[in ein Tief geriet]{is="Im Original wird das englische Wort emo in lateinischen Buchstaben direkt als chinesisches Prädikat verwendet; dadurch wirkt die Niedergeschlagenheit internettypisch und halb selbstironisch."}. Als ich sah, wie einst miteinander bekannte :tn[Twitter-Freunde]{is="Im Original steht 推油, eine scherzhafte lautgleiche Schreibweise von 推友 für auf Twitter kennengelernte Freunde, die wie ein liebevoller chinesischer Internetspitzname klingt."} :tn[sich ganz innig aneinanderkuschelten]{is="Das Original verwendet den verdoppelnden Internetausdruck 贴贴, der Nähe, Anschmiegen oder öffentlich gezeigte Zuneigung in einem niedlich-kindlichen Ton ausdrückt."}, sich umarmten, einander guten Morgen und gute Nacht wünschten und sich sogar gegenseitig antworteten, wurde mir klar: Vielleicht war ich derjenige, der überflüssig war ... Alle aus diesem Kreis waren noch da; nur mein Freundeskreis war längst nicht mehr derselbe wie damals. Vielleicht war ja ich der „Außenseiter“.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:51:42.909215Z
-      seconds: 109.277662041
-      tokens: 23173
+      text: 'Dabei hatte ich diese Richtung in den letzten ein, zwei Jahren längst geahnt, nur bin ich dem Thema immer ausgewichen. Bis ich vor einiger Zeit eines Abends so lange durch Twitter scrollte, bis ich :tn[trübsinnig]{is="Im Original steht das lateinisch geschriebene englische Wort „emo“ direkt als chinesisches Prädikat – „我 emo 了“ –, ein Netzausdruck für gedrückte Stimmung mit halb selbstironischem Ton."} wurde: Da sah ich Leute, die einander früher kannten, :tn[Twitter-Kumpels]{is="Das Original schreibt 推油, eine gleichlautende Spielform von 推友 („Twitter-Freund“); sie trägt die Zärtlichkeit eines chinesischen Netz-Kosenamens."}, die sich :tn[aneinanderschmiegten]{is="Das Original schreibt 贴贴, ein verdoppeltes Netzwort, das einen schmusigen, kindlichen Tonfall nachahmt; ein schlichtes „Umarmen“ verliert dieses Kleinkindhafte."} und umarmten, sich guten Morgen und gute Nacht wünschten, einander sogar antworteten – und erst da wurde mir klar: Vielleicht bin ich der Überflüssige … Dieser ganze Kreis besteht noch. Nur mein eigener Freundeskreis ist längst nicht mehr der von damals, und ich glaube, vielleicht bin ich der „Außenstehende“.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544913Z
+      seconds: 65.944164916
+      tokens: 32442
       review: false
     en-US:
-      text: But over the past year or two, I’d already begun to sense things heading this way, though I kept avoiding the subject. Then, one night not long ago, I :tn[sank into a funk]{is="The original uses the English word emo directly as a Chinese predicate, giving the low mood an online, half-self-mocking tone."} while scrolling Twitter. Seeing :tn[Twitter friends]{is="The original says 推油, a playful sound-alike of 推友 for friends met on Twitter, with the affectionate feel of a Chinese internet nickname."} who knew one another :tn[cuddling up]{is="The original uses the reduplicated internet expression 贴贴, a cutesy, childlike way to signal closeness, snuggling, or public affection."} and hugging, exchanging good mornings and good nights, and even replying to each other, I finally realized—maybe I was the one who was superfluous... Everyone in that circle was still there; it was just that my circle of friends had long since stopped being what it once was. Maybe I was the “outsider.”
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:51:42.909215Z
-      seconds: 109.277662041
-      tokens: 23173
+      text: 'But over the past year or two I''d already half-sensed this drift, and I kept dodging the subject. Then one night a while back, scrolling through Twitter until I was :tn[down in the dumps]{is="The original used the Latin-script English word “emo” directly as a Chinese verb — “我 emo 了” — a piece of internet slang that names a low, deflated mood with a half-self-mocking lightness."}, I saw people I once knew, :tn[Twitter buddies]{is="The original wrote 推油, a pun on 推友 (“Twitter friend”) that swaps in a homophone; it carries the warmth of a Chinese internet nickname for people met on the platform."} :tn[snuggling up]{is="The original wrote 贴贴, a reduplicated internet word that mimics a coy, babyish voice for pressing close to someone; a plain “hug” loses that childlike softness."} and hugging, saying good morning and good night, even replying to each other — and only then did I realise: maybe I''m the one who''s surplus... That whole circle is still there. It''s only my own circle of friends that stopped being the one it used to be, and I think maybe I''m the「outsider」.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544913Z
+      seconds: 65.944164916
+      tokens: 32442
       review: false
     es-ES:
-      text: En realidad, desde hacía uno o dos años ya intuía que las cosas iban en esa dirección, pero seguía evitando el tema. Hasta que, una noche no hace mucho, mientras recorría Twitter, :tn[me dio un bajón]{is="En el original, la palabra inglesa emo, escrita en alfabeto latino, se usa directamente como predicado chino, lo que da al desánimo un tono propio de internet y medio burlón consigo mismo."}. Al ver a :tn[amigos de Twitter]{is="El original dice 推油, una escritura juguetona que suena igual que 推友 y designa a amigos conocidos en Twitter con el cariño de un apodo chino de internet."} que se conocían :tn[acurrucarse juntitos]{is="El original usa la expresión reduplicada de internet 贴贴, que expresa cercanía, arrumacos o afecto público con un tono mimoso e infantil."}, abrazarse, darse los buenos días y las buenas noches, e incluso responderse mutuamente, por fin comprendí que quizá quien sobraba era yo... Todos los de aquel círculo seguían allí; era mi círculo de amigos el que hacía mucho había dejado de ser como antes. Quizá el «forastero» era yo.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:51:42.909215Z
-      seconds: 109.277662041
-      tokens: 23173
+      text: 'En realidad, durante el último año o dos ya intuía vagamente esta deriva, pero seguía esquivando el tema. Hasta que una noche, hace algún tiempo, estuve pasando Twitter hasta quedarme :tn[con el ánimo por los suelos]{is="El original usa tal cual la palabra inglesa «emo», en alfabeto latino, como predicado chino — «我 emo 了» —, una muletilla de internet que nombra el bajón con un tono medio autoirónico."}: vi a gente que antes se conocía entre sí, :tn[colegas de Twitter]{is="El original escribe 推油, un juego homófono sobre 推友 («amigo de Twitter»); lleva el cariño de un apodo del internet chino."}, :tn[apretujándose]{is="El original escribe 贴贴, una palabra reduplicada de internet que imita un tono mimoso y aniñado; un simple «abrazo» pierde esa suavidad infantil."} y abrazándose, dándose los buenos días y las buenas noches, respondiéndose incluso — y solo entonces me di cuenta: quizá el que sobra soy yo… Ese círculo sigue ahí. Es mi propio círculo de amigos el que hace mucho dejó de ser el de antes, y creo que tal vez el «forastero» soy yo.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544913Z
+      seconds: 65.944164916
+      tokens: 32442
       review: false
     fr-FR:
-      text: En réalité, depuis un an ou deux, je sentais déjà confusément que les choses prenaient cette direction, mais je n’avais cessé d’éviter le sujet. Puis, un soir il y a quelque temps, en faisant défiler Twitter, :tn[j’ai eu un coup de blues]{is="Dans l’original, le mot anglais emo, écrit en lettres latines, est directement employé comme prédicat chinois, donnant à la baisse de moral un ton très internet et à moitié autodérisoire."}. En voyant des :tn[amis de Twitter]{is="L’original emploie 推油, graphie humoristique homophone de 推友, qui désigne des amis rencontrés sur Twitter avec la tendresse d’un surnom d’internet chinois."} qui se connaissaient :tn[se blottir tendrement les uns contre les autres]{is="L’original utilise l’expression internet redoublée 贴贴, qui évoque la proximité, le fait de se pelotonner ensemble ou d’afficher son affection sur un ton mignon et enfantin."}, s’embrasser, se souhaiter bonjour et bonne nuit, et même se répondre, j’ai enfin compris——c’était peut-être moi qui étais de trop... Tous les membres de ce cercle étaient encore là ; c’était simplement mon cercle d’amis qui, depuis longtemps déjà, n’était plus celui d’autrefois. Peut-être étais-je, moi, « l’étranger ».
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:51:42.909215Z
-      seconds: 109.277662041
-      tokens: 23173
+      text: 'Depuis un an ou deux, je pressentais vaguement cette évolution, mais j''évitais le sujet. Jusqu''à ce soir-là, il y a quelque temps, où j''ai fait défiler Twitter jusqu''à en :tn[avoir le cafard]{is="L''original emploie tel quel le mot anglais « emo », en alphabet latin, comme prédicat chinois — « 我 emo 了 » —, un tic d''internet qui dit l''abattement sur un ton à demi auto-ironique."} : j''y ai vu des gens qui se connaissaient autrefois, des :tn[potes de Twitter]{is="L''original écrit 推油, jeu homophone sur 推友 (« ami de Twitter ») ; le mot a la tendresse d''un petit surnom d''internet chinois."}, se :tn[coller l''un à l''autre]{is="L''original écrit 贴贴, un mot d''internet redoublé qui imite une voix câline, presque enfantine ; un simple « câlin » en perdrait la douceur puérile."} et s''embrasser, se souhaiter bonjour et bonne nuit, se répondre même — et c''est seulement là que j''ai compris : celui qui est de trop, c''est peut-être moi… Ce cercle-là tient toujours. C''est mon cercle d''amis à moi qui, depuis longtemps, n''est plus celui d''avant, et je me dis que c''est peut-être moi, « l''étranger ».'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544913Z
+      seconds: 65.944164916
+      tokens: 32442
       review: false
     ja-JP:
-      text: 実のところ、ここ一、二年で薄々そうなっているとは感じていた。それでも、私はずっとこの話題を避けていた。少し前のある晩、Twitterを眺めているうちに :tn[気分が沈んでしまった]{is="原文では英語の emo が中国語の述語としてそのまま使われ、ネット的で少し自嘲を帯びた落ち込みを表している。"}。かつて互いに知り合いだった :tn[Twitterでできた友人たち]{is="原文の推油は推友と同音になるよう面白く書き換えた語で、Twitterで知り合った友人を指し、中国語圏のネット愛称らしい親しみがある。"}が、互いに :tn[甘えるように寄り添ったり]{is="原文の贴贴は幼い甘え声を思わせる畳語のネット表現で、親しく寄り添ったり人前で好意を示したりすることを表す。普通の抱擁より幼く甘えた響きが強い。"}抱き合ったり、朝晩の挨拶を交わしたり、さらには互いの投稿に返信したりしているのを見て、ようやく気づいた——余計なのは、もしかすると私のほうなのだと……あの人たちは今も皆そこにいる。ただ、私の交友関係はとうの昔にかつてのものではなくなっていた。もしかすると、私こそが「部外者」なのだと思う。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T07:07:22.17575Z
-      seconds: 48.734847042
-      tokens: 21282
+      text: ただ、この一、二年ですでにその方向をうっすら感じてはいたのに、私はこの話題をずっと避けてきた。少し前のある晩、Twitter を眺めているうちに:tn[気分が沈んで]{is="原文はラテン文字の英単語「emo」をそのまま中国語の述語として使い（「我 emo 了」）、ネットスラング特有の、半ば自嘲を含んだ落ち込みの調子を出している。"}しまい、かつて知り合いだった:tn[ツイ友]{is="原文は「推油」と書く。「推友」（Twitter で知り合った友人）の同音の遊び書きで、中国語ネット特有の愛称めいた親しみがある。"}同士が:tn[くっつき合って]{is="原文の「贴贴」は畳語で甘えた口調を模したネット語。寄り添う、公然と仲の良さを示すという意味で、ふつうの「ハグ」ではその幼い語感が失われる。"}抱き合い、おはようおやすみを言い交わし、返信までし合っているのを見て、ようやく気づいた——余計なのは私のほうかもしれない、と。あの輪はそのまま残っている。ただ私の交友関係のほうがとうに昔のそれではなくなっていて、たぶん私こそが「部外者」なのだと思う。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544913Z
+      seconds: 65.944164916
+      tokens: 32442
       review: false
     ko-KR:
-      text: 사실 최근 1, 2년 동안 이미 상황이 이런 방향으로 흘러가고 있음을 어렴풋이 느꼈지만, 나는 계속 이 이야기를 피하고 있었다. 그러다 얼마 전 어느 날 밤, 트위터를 훑어보다가 :tn[기분이 푹 가라앉았다]{is="원문은 라틴 문자로 쓴 영어 단어 emo를 중국어 서술어로 바로 활용해, 우울한 기분에 인터넷식이고 반쯤 자조적인 어조를 더한다."}. 서로 알고 지내던 :tn[트위터 친구들]{is="원문의 推油는 트위터에서 사귄 친구를 뜻하는 推友와 발음이 같은 장난스러운 표기로, 중국어 인터넷 애칭 특유의 친근함이 담겨 있다."}이 :tn[애교스럽게 꼭 붙어]{is="원문의 贴贴는 같은 글자를 반복해 응석부리는 느낌을 내는 인터넷 표현으로, 가까이 붙거나 기대는 모습과 공개적인 애정 표현을 어린아이 같은 말투로 나타낸다."} 서로 안아 주고, 아침저녁 인사를 나누고, 심지어 서로 답글까지 다는 모습을 보고서야 깨달았다——어쩌면 쓸모없이 끼어 있던 사람은 나였을지도 모른다고... 그 무리의 사람들은 여전히 모두 그곳에 있었다. 다만 내 인간관계는 진작부터 예전과 달라져 있었다. 어쩌면 내가 바로 그 「이방인」인지도 모르겠다.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:51:42.909215Z
-      seconds: 109.277662041
-      tokens: 23173
+      text: 사실 최근 1~2년 사이에 이미 그런 방향을 어렴풋이 느끼고 있었지만, 나는 이 이야기를 계속 피해 왔다. 얼마 전 어느 날 밤, 트위터를 넘겨보다가 :tn[기분이 가라앉아]{is="원문은 라틴 문자로 쓴 영어 단어 emo를 그대로 중국어 서술어로 썼다（「我 emo 了」）. 반쯤 자조 섞인, 인터넷 특유의 가라앉은 어조를 낸다."} 버렸을 때, 예전에 서로 알고 지내던 :tn[트친]{is="원문은 推油라고 썼다. 「트위터 친구」를 뜻하는 推友의 동음 말장난으로, 중국 인터넷 애칭 특유의 살가움이 담겨 있다."}들이 서로 :tn[꼭 붙어]{is="원문의 贴贴는 애교 섞인 말투를 흉내 낸 첩어 인터넷 용어다. 바짝 붙어 있거나 대놓고 친밀함을 드러내는 것을 뜻하며, 평범한 「포옹」으로는 그 어린애 같은 어감이 사라진다."} 안고, 아침 인사 밤 인사를 나누고, 심지어 서로 답글까지 다는 걸 보고서야 깨달았다——어쩌면 남아도는 쪽은 나일지도 모른다고…… 그 무리는 그대로 있다. 다만 내 친구 관계 쪽이 이미 예전의 그것이 아니게 됐을 뿐이고, 어쩌면 내가 바로 그 「국외자」인 것 같다.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544913Z
+      seconds: 65.944164916
+      tokens: 32442
       review: false
     zh-CN:
-      text: 其实，最近一两年里，我已经隐约察觉到了这种变化，却始终在回避这个话题。直到前些时候的一个晚上，我刷着 Twitter，忽然 :tn[情绪低落起来]{is="原文把英语 emo 直接用作中文谓语，带有网络化、半自嘲的低落语气。"}；看到那些曾经彼此认识的 :tn[Twitter 朋友]{is="原文写作推油，是推友的谐音趣写，指在 Twitter 上结识的朋友，带着中文网络昵称的亲昵感。"}相互 :tn[亲昵地依偎]{is="原文用网络词贴贴，以叠词模仿撒娇的口吻，表达亲近、依偎或公开示好，语气比普通的拥抱更幼态。"}、拥抱，互道早安晚安，甚至彼此回复，我才意识到——也许我才是那个多余的人……那一圈人都还在，只是我的朋友圈早已不是当初的模样。我想，也许我才是那个“局外人”。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T07:07:22.17575Z
-      seconds: 48.734847042
-      tokens: 21282
+      text: 但最近一两年，我其实已经隐约感觉到事情在往这个方向走，只是一直回避这个话题。直到早些时候的某个晚上，我刷推刷到:tn[心里发闷]{is="原文直接把拉丁字母的英语词 emo 当中文谓语用——「我 emo 了」——是一种网络化、半自嘲的低落语气。"}，看见曾经彼此认识的:tn[推友]{is="原文写作「推油」，是「推友」的谐音趣写，指在 Twitter 上结识的朋友，带着中文网络昵称的亲昵感。"}互相:tn[贴贴]{is="这是用叠词模拟撒娇语气的网络用语，表示亲近、依偎或公开示好，换成普通的「拥抱」就会丢掉那股幼态的语感。"}抱抱、道早安晚安，甚至彼此回复，我才意识到——也许多余的那个人是我……那一圈人都还在，只是我的朋友圈早就不是当初那个了，我想，也许我才是那个「局外人」。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544913Z
+      seconds: 65.944164916
+      tokens: 32442
       review: false
     zh-TW:
-      text: 其實，最近一兩年來，我已經隱約察覺到這種變化，卻一直在逃避這個話題。直到前些時候的某個晚上，我滑著 Twitter，忽然 :tn[情緒低落起來]{is="原文把英文 emo 直接當作中文述語使用，帶著網路化、半自嘲的低落語氣。"}；看見那些曾經彼此認識的 :tn[Twitter 朋友]{is="原文寫作推油，是推友的諧音趣寫，指在 Twitter 上結識的朋友，帶有中文網路暱稱的親暱感。"}互相 :tn[撒嬌似地依偎]{is="原文使用網路詞貼貼，以疊字模仿撒嬌語氣，表示親近、依偎或公開示好，比普通的擁抱更顯幼態。"}、擁抱，互道早安晚安，甚至彼此回覆，我才意識到——也許我才是那個多餘的人……那群人都還在，只是我的交友圈早已不是當初的模樣。我想，也許我才是那個「局外人」。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T07:07:22.17575Z
-      seconds: 48.734847042
-      tokens: 21282
+      text: 但最近一兩年，我其實已經隱約感覺到事情在往這個方向走，只是一直迴避這個話題。直到早些時候的某個晚上，我刷推刷到:tn[心裡發悶]{is="原文直接把拉丁字母的英語詞 emo 當中文謂語用——「我 emo 了」——是一種網路化、半自嘲的低落語氣。"}，看見曾經彼此認識的:tn[推友]{is="原文寫作「推油」，是「推友」的諧音趣寫，指在 Twitter 上結識的朋友，帶著中文網路暱稱的親暱感。"}互相:tn[貼貼]{is="這是用疊詞模擬撒嬌語氣的網路用語，表示親近、依偎或公開示好，換成普通的「擁抱」就會丟掉那股幼態的語感。"}抱抱、道早安晚安，甚至彼此回覆，我才意識到——也許多餘的那個人是我……那一圈人都還在，只是我的交友圈早就不是當初那個了，我想，也許我才是那個「局外人」。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544913Z
+      seconds: 65.944164916
+      tokens: 32442
       review: false
   ae03a6d8d2a508dab1b990fd377f7b79:
     de-DE:
@@ -1172,133 +1172,133 @@ segments:
       review: false
   c5b62719f45f6e9ffa61b2fcd2a247e7:
     de-DE:
-      text: 'Menschen sind nun einmal Gefühlswesen, und der Gedanke, Freunde für sich allein haben zu wollen, ist völlig normal. Das heißt aber nicht, dass du sie wirklich besitzen oder ihr Verhalten oder Denken kontrollieren willst, sondern nur, dass sie dir wichtig sind und ihr beide `close friend` seid. Doch wie gesagt: Dein Freund ist ebenfalls ein Mensch. Er sollte sein eigenes Leben und seine eigene Zeitleiste haben; dass er mit anderen zu `mutual friend` wird, ist daher ganz natürlich. Wenn überhaupt jemand schuld ist, dann Twitter, weil es :tn[diesen dünnen Schleier zerriss]{is="Im Original steht die chinesische Redewendung 捅破窗户纸: das Papier eines Fensters durchstoßen und damit etwas offenlegen, das alle wissen, aber niemand ausspricht. Twitter erscheint hier als die Kraft, die die Wahrheit über Beziehungen enthüllt."} und dich zwang, diesen Vorgang mitanzusehen. Vielleicht ist das aber gar nichts Schlechtes. Es tut weh, ihn zu sehen, doch eröffnet es dir nicht zugleich mehr Möglichkeiten, andere Menschen kennenzulernen? Wenn man das herkömmliche, von privaten Chats geprägte Modell hinter sich lässt, entfällt der Druck, langfristig `close friend` zu sein. Es bleiben nur ein schlichtes gegenseitiges Gute Nacht und das :tn[ungehemmte Hinausschleudern von Inhalten]{is="Im Original steht 发电, wörtlich Strom erzeugen. In chinesischen Online-Communitys ist das eine scherzhafte, an 发癫, wild werden, angelehnte Bezeichnung dafür, aus Begeisterung, Verliebtheit oder Verlangen hemmungslos Inhalte zu produzieren."}; auch das ist soziale Nähe in ihrer reinsten Form. Ob dich der Anblick von `mutual friend` tatsächlich traurig macht, hängt letztlich von dir ab. Ganz gleich, auf welchem Weg, selbst im persönlichen Umgang, kannst du diesen Vorgang nicht verhindern. Wenn du deinen Frieden damit findest, wird es vielleicht nicht mehr wehtun, und vielleicht lernst du allmählich loszulassen.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:52:56.70281Z
-      seconds: 234.255876875
-      tokens: 28256
+      text: 'Menschen sind Gefühlswesen, und einen Freund für sich beanspruchen zu wollen, ist meistens das Normalste der Welt; das heißt nicht, dass du ihn wirklich besitzen, sein Handeln oder Denken wirklich kontrollieren willst, sondern nur, dass er dir wichtig ist, dass ihr beide `close friend` seid. Aber wie gesagt: Dein Freund ist auch ein Mensch, er hat sein eigenes Leben, seine eigene timeline, also ist es völlig normal, dass er mit jemand anderem zu `mutual friend` wird. Wenn überhaupt, dann ist Twitter schuld, weil es :tn[das Papier vor dem Fenster durchstoßen hat]{is="Im Original steht 捅破窗户纸, eine chinesische Redewendung: das Papier durchstoßen, das vor dem Fenster klebt – also offen aussprechen, was alle längst wussten, aber niemand benannte."} und dich zwingt, den Vorgang mitanzusehen. Und vielleicht ist das gar nicht schlecht. Dass du es siehst, tut weh, gibt dir aber doch auch mehr Gelegenheiten, Menschen kennenzulernen? Lass die alte Ordnung aus lauter Privatnachrichten hinter dir, lass den Druck weg, eine lange `close friend` zu pflegen, und übrig bleibt nur das Einfachste: sich gegenseitig gute Nacht sagen und :tn[hemmungsloses Schwärmen]{is="Das Original schreibt 发电, ein chinesischer Netzslang-Gleichklang zu 发癫 („durchdrehen“): aus lauter Begeisterung, Verliebtheit oder Begehren maßlos Inhalte hinausposaunen."} – und genau das ist das reinste Miteinander. Ob dich der Anblick von `mutual friend` tatsächlich traurig macht, liegt an dir. Auf welchem Weg auch immer, selbst offline, aufhalten kannst du diesen Vorgang nicht. Solange du es für dich klärst, tut es vielleicht nicht mehr weh, und vielleicht lernst du langsam loszulassen.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544958Z
+      seconds: 85.570282875
+      tokens: 34375
       review: false
     en-US:
-      text: 'People are emotional creatures, and it is perfectly normal to feel possessive of your friends. That does not mean you truly want to own them or control their behavior or thoughts; it simply means you care about them and that the two of you are `close friend`. But as I said, your friend is a person too. He should have his own life and his own timeline, so it is entirely natural for him to become `mutual friend` with other people. If anyone is to blame, blame Twitter for :tn[tearing through that thin veil]{is="The original uses 捅破窗户纸, a Chinese idiom about exposing something everyone tacitly knows but leaves unsaid; it casts Twitter as the force revealing the truth of relationships."} and forcing you to watch it happen. Yet perhaps that is a good thing. Seeing it may hurt, but does it not also give you more chances to meet people? Leave behind the traditional model centered on private chats: there is no pressure to maintain a long-term `close friend`, only the simplest exchanges of goodnights and :tn[posting to your heart’s content]{is="The original says 发电, literally generating electricity. In Chinese online communities, it is a playful expression associated with 发癫, going wild, for pouring out content driven by passion, infatuation, or desire."}; that too is social connection in its purest form. Whether seeing `mutual friend` actually makes you sad ultimately depends on you. Whatever the medium—even offline—you cannot stop this process from happening. If you can make peace with it, perhaps it will no longer hurt; perhaps you will slowly learn to let go.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:52:56.70281Z
-      seconds: 234.255876875
-      tokens: 28256
+      text: 'People are emotional creatures, and wanting to claim a friend as your own is usually the most normal thing in the world; it doesn''t mean you actually want to own them, to control what they do or think, only that you care about them, that the two of you are `close friend`. But as I said, your friend is a person too, with a life of their own, a timeline of their own, so becoming `mutual friend` with someone else is entirely normal. If anything is to blame, blame Twitter for :tn[tearing through the paper over the window]{is="The original says 捅破窗户纸, a Chinese idiom for puncturing the paper screen over a window: naming out loud the thing everyone already quietly knew."}, for forcing you to watch it happen. And maybe that isn''t a bad thing. Letting you see the process hurts, but doesn''t it also give you more chances to meet people? Drop the old private-message-first world, drop the pressure of maintaining a long `close friend`, and what''s left is the simplest exchange of goodnights and :tn[unhinged gushing]{is="The original writes 发电, an internet-slang pun on 发癫 (going mad): pouring out content out of sheer enthusiasm, infatuation or desire."}, and that is the purest form of socializing. Whether seeing `mutual friend` actually makes you sad comes down to you. By whatever channel, even offline, you cannot stop this from happening. As long as you can make peace with it, maybe it won''t hurt, and maybe you will slowly learn to let go.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544958Z
+      seconds: 85.570282875
+      tokens: 34375
       review: false
     es-ES:
-      text: 'Las personas somos seres emocionales, y es perfectamente normal sentir el deseo de tener a nuestros amigos solo para nosotros. Eso no significa que de verdad quieras poseerlos ni controlar su conducta o sus pensamientos, sino únicamente que esa persona te importa y que ambos sois `close friend`. Pero, como ya he dicho, tu amigo también es una persona. Debería tener su propia vida y su propia cronología, por lo que es completamente normal que se convierta en `mutual friend` con otras personas. Si hay que culpar a alguien, que sea a Twitter, porque :tn[rasgó ese fino velo]{is="El original usa 捅破窗户纸, una metáfora idiomática china: perforar el papel de una ventana equivale a revelar algo que todos saben pero nadie dice. Aquí convierte a Twitter en la fuerza que destapa la verdad de las relaciones."} y te obligó a contemplar el proceso. Pero quizá eso también sea algo bueno. Verlo te entristece, aunque al mismo tiempo te ofrece más oportunidades de conocer gente, ¿no? Al abandonar el modelo tradicional centrado en los mensajes privados, desaparece la presión de ser `close friend` a largo plazo. Solo queda lo más sencillo: desearse buenas noches y :tn[publicar a rienda suelta]{is="El original dice 发电, literalmente generar electricidad. En las comunidades chinas de internet es una forma jocosa, ligada a 发癫, desvariar, de referirse a producir contenido sin freno por entusiasmo, fascinación o deseo."}; eso también es la forma más pura de relacionarse. Que ver `mutual friend` te entristezca o no depende, en realidad, de ti. Sea cual sea el medio, incluso en persona, no puedes impedir que este proceso ocurra. Si consigues aceptarlo, quizá deje de dolerte y tal vez aprendas poco a poco a dejarlo ir.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:52:56.70281Z
-      seconds: 234.255876875
-      tokens: 28256
+      text: 'El ser humano es un animal emocional, y querer quedarse con un amigo para uno mismo suele ser lo más normal del mundo; no significa que de verdad quieras poseerlo, ni controlar lo que hace o piensa, sino que te importa, que tú y él sois `close friend`. Pero, como ya dije, tu amigo también es una persona: tiene su propia vida, su propia timeline, así que volverse `mutual friend` de otro es de lo más normal. Si hay que culpar a algo, culpa a Twitter por :tn[haber roto el papel de la ventana]{is="El original usa 捅破窗户纸, expresión china: perforar el papel que cubre la ventana, es decir, decir en voz alta lo que todos ya sabían y nadie nombraba."} y obligarte a ver el proceso. Y quizá no sea algo malo. Que lo veas te duele, pero ¿no te da también más ocasiones de conocer gente? Deja atrás el viejo mundo de los mensajes privados, deja atrás la presión de sostener una `close friend` larga, y solo queda lo más sencillo: daros las buenas noches y :tn[desbordarse de entusiasmo]{is="El original escribe 发电, un juego de palabras del argot de internet chino con 发癫 («volverse loco»): soltar contenido sin freno por pura pasión, obsesión o deseo."}, y eso es la forma más pura de socializar. Si ver `mutual friend` te entristece o no, depende de ti. Por la vía que sea, incluso fuera de línea, no puedes impedir que este proceso ocurra. Mientras logres asumirlo, quizá deje de doler, y quizá aprendas poco a poco a soltar.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544958Z
+      seconds: 85.570282875
+      tokens: 34375
       review: false
     fr-FR:
-      text: L’être humain est un être affectif, et il est parfaitement normal d’avoir envie de garder ses amis pour soi. Cela ne signifie pas que tu veuilles réellement les posséder ou contrôler leurs actes et leurs pensées, mais simplement que cette personne compte pour toi et que vous êtes `close friend`. Pourtant, comme je l’ai dit, ton ami est lui aussi une personne. Il devrait avoir sa propre vie et son propre fil d’actualité, si bien qu’il est tout à fait naturel qu’il devienne `mutual friend` avec d’autres. S’il faut chercher un coupable, ce serait Twitter, qui a :tn[déchiré ce mince voile]{is="L’original emploie 捅破窗户纸, une image idiomatique chinoise qui consiste à percer le papier d’une fenêtre pour révéler ce que tout le monde sait sans le dire. Twitter y devient la force qui met à nu la vérité des relations."} et t’a forcé à assister à ce processus. Mais ce n’est peut-être pas une mauvaise chose. Le voir te fait souffrir, tout en te donnant davantage d’occasions de rencontrer des gens, non ? En abandonnant le modèle traditionnel centré sur les conversations privées, tu n’as plus à subir la pression d’être durablement `close friend`. Il ne reste que le simple fait de se souhaiter bonne nuit et de :tn[se déchaîner en publications]{is="L’original dit 发电, littéralement produire de l’électricité. Dans les communautés chinoises en ligne, c’est une formule plaisante, liée à 发癫, se déchaîner, pour parler d’un flot de contenu nourri par l’enthousiasme, l’engouement ou le désir."}; c’est aussi la forme la plus pure de lien social. Être triste ou non en voyant `mutual friend` dépend en réalité de toi. Quels que soient les moyens employés, même hors ligne, tu ne peux pas empêcher ce processus de se produire. Si tu parviens à l’accepter, peut-être ne seras-tu plus triste ; peut-être apprendras-tu peu à peu à lâcher prise.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:52:56.70281Z
-      seconds: 234.255876875
-      tokens: 28256
+      text: 'L''humain est un animal affectif, et vouloir garder un ami pour soi est d''ordinaire la chose la plus normale du monde ; cela ne veut pas dire que tu veuilles vraiment le posséder, contrôler ses actes ou ses pensées, seulement que tu tiens à lui, que vous êtes `close friend`. Mais, comme je l''ai dit, ton ami est un être humain lui aussi : il a sa propre vie, sa propre timeline, alors devenir `mutual friend` avec quelqu''un d''autre est tout ce qu''il y a de plus normal. S''il faut en vouloir à quelqu''un, c''est à Twitter, qui a :tn[crevé le papier de la fenêtre]{is="L''original emploie 捅破窗户纸, expression chinoise : percer le papier tendu sur la fenêtre, c''est-à-dire dire tout haut ce que tout le monde savait déjà sans le nommer."} et t''a forcé à voir le processus. Et ce n''est peut-être pas un mal. Te le faire voir te fait souffrir, mais ne te donne-t-il pas aussi plus d''occasions de rencontrer des gens ? Abandonne l''ancien monde des messages privés, abandonne la pression d''entretenir une longue `close friend`, et il ne reste que le plus simple : se souhaiter bonne nuit et :tn[s''enflammer sans retenue]{is="L''original écrit 发电, un jeu de mots de l''argot internet chinois sur 发癫 (« péter les plombs ») : déverser du contenu sans frein, par enthousiasme, engouement ou désir."}, et c''est là la forme la plus pure de sociabilité. Que voir `mutual friend` te rende triste ou non, cela ne dépend que de toi. Par quelque voie que ce soit, même hors ligne, tu ne peux pas empêcher ce processus d''avoir lieu. Tant que tu arrives à en prendre ton parti, peut-être que cela ne fera plus mal, et peut-être apprendras-tu peu à peu à lâcher prise.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544958Z
+      seconds: 85.570282875
+      tokens: 34375
       review: false
     ja-JP:
-      text: 人間は感情に動かされる生き物だから、友達を自分だけのものにしたいと思うのはごく自然なことだ。ただし、本当に相手を所有したいとか、行動や考えを支配したいという意味ではない。相手を大切に思い、あなたとその人が `close friend` だということにすぎない。けれど、先ほども言ったように、友達も一人の人間だ。その人にも自分の暮らしと自分のタイムラインがあるべきなのだから、ほかの人と `mutual friend` になるのはごく当然のことだ。責めるなら、Twitter が :tn[その薄い隔たりを破り]{is="原文の「捅破窗户纸」は、皆が察しながら口にしないことを暴くという中国語の慣用的な比喩。ここでは Twitter が人間関係の真実を露わにする力として描かれている。"}、その過程を無理やり見せてきたことを責めればいい。でも、それは悪いことばかりではないのかもしれない。その過程を見て悲しくなる一方で、もっと多くの人と知り合う機会も得られるのではないだろうか。個別チャット中心の従来の交流を手放せば、長く `close friend` を続けなければならないという重圧もない。ただ互いにおやすみと言い、:tn[熱に浮かされるまま投稿する]{is="原文は「発電」の意の「发电」。中国語圏のネット・コミュニティーで、情熱や夢中、欲望に駆られて思い切りコンテンツを発信することを「発狂する」の意の「发癫」に重ねて茶化す言い方である。"}。それもまた、最も純粋な交流だ。`mutual friend` を目にして本当に悲しくなるかどうかは、結局あなた次第だ。どんな手段を使っても、たとえ現実での付き合いであっても、この過程が起こるのを止めることはできない。自分の中で折り合いをつけられれば、たぶん悲しくはならないし、少しずつ手放すことを覚えられるのかもしれない。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:52:56.70281Z
-      seconds: 234.255876875
-      tokens: 28256
+      text: 人は感情の生き物で、友達を自分のものにしておきたいと思うのは、たいていごく当たり前のことだ。だがそれは本当に独占したいとか、相手の行動や考えを支配したいということではなく、あなたがその人を大切に思っている、あなたとその人が `close friend` だという証にすぎない。ただ前にも言ったとおり、あなたの友達も一人の人間で、その人自身の生活があり、その人自身の timeline がある。だから別の誰かと `mutual friend` になるのも、まったく当たり前のことだ。恨むとすれば、Twitter が :tn[障子紙を破ってしまった]{is="原文は「捅破窗户纸」。窓に張った紙を突き破る、という中国語の慣用句で、皆が薄々わかっていて口にしなかったことを表沙汰にする、という意味。"}こと、その過程を否応なく見せつけてきたことを恨めばいい。でもそれは悪いことばかりでもない。その過程が見えることは、あなたを悲しませると同時に、人と知り合う機会をもっと与えてくれてもいるのでは？　DM 中心の古いやり方を捨て、長く `close friend` を保ち続ける重圧もなく、残るのはいちばん単純なおやすみのやり取りと :tn[限界オタクの叫び]{is="原文の「发电」は中国語ネットスラングで、「发癫（気が触れる）」をもじった言い方。好きすぎて、あるいは欲望のままに、際限なく発信することを指す。"}だけ。それこそがいちばん純粋な社交だ。`mutual friend` を見て本当に悲しくなるかどうかは、結局あなた次第。どんな手段でも、たとえオフラインでも、この過程が起きるのを止めることはできない。あなた自身が割り切れさえすれば、たぶん悲しくならないし、少しずつ手放すことを覚えていくのだろう。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544958Z
+      seconds: 85.570282875
+      tokens: 34375
       review: false
     ko-KR:
-      text: 사람은 감정적인 동물이기에 친구를 나만의 사람으로 두고 싶다는 생각이 드는 것은 지극히 자연스럽다. 그렇다고 실제로 상대를 소유하거나 그 사람의 행동과 생각을 통제하고 싶다는 뜻은 아니다. 그저 그 사람을 아끼고, 당신과 그 사람이 `close friend` 관계에 있다는 뜻이다. 하지만 앞서 말했듯 당신의 친구도 한 사람의 인간이다. 그에게도 자기만의 삶과 타임라인이 있어야 하므로 다른 사람과 `mutual friend` 관계가 되는 것은 너무나 자연스럽다. 굳이 탓하자면 Twitter가 :tn[그 얇은 장막을 찢어]{is="원문의 ‘捅破窗户纸’는 모두가 알고 있지만 입 밖에 내지 않은 일을 드러낸다는 중국어 관용적 비유다. 여기서는 Twitter를 관계의 진실을 폭로하는 힘으로 그린다."} 그 과정을 억지로 보게 만든 탓이다. 하지만 이것도 어쩌면 좋은 일일 수 있다. 그 과정을 보며 슬퍼지는 동시에 더 많은 사람을 만날 기회도 얻는 것이 아닐까? 개인 대화가 중심이던 전통적인 방식을 벗어나면 오랫동안 `close friend` 노릇을 해야 한다는 부담도 없다. 그저 서로 잘 자라고 인사하고 :tn[열정에 취해 마음껏 콘텐츠를 쏟아내는 것]{is="원문은 글자 그대로 전기를 만든다는 ‘发电’이다. 중국어권 온라인 커뮤니티에서 열정, 매혹이나 욕망에 겨워 콘텐츠를 마음껏 쏟아내는 모습을 ‘미쳐 날뛴다’는 ‘发癫’의 어감과 겹쳐 익살스럽게 부르는 말이다."}뿐이며, 그것이야말로 가장 순수한 교류이기도 하다. `mutual friend`, 그것을 보았을 때 정말 슬플지는 결국 당신에게 달렸다. 어떤 방식을 쓰더라도, 심지어 오프라인에서도 이 과정이 일어나는 것을 막을 수는 없다. 스스로 받아들일 수만 있다면 어쩌면 더는 슬프지 않을 것이고, 아마 조금씩 놓아주는 법을 배우게 될 것이다.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:52:56.70281Z
-      seconds: 234.255876875
-      tokens: 28256
+      text: 사람은 감정의 동물이라, 친구를 내 것으로 붙잡아 두고 싶은 마음은 보통 지극히 당연하다. 그렇다고 정말로 그를 소유하겠다거나, 그의 행동이나 생각을 통제하겠다는 뜻은 아니다. 그저 당신이 그를 아낀다는 것, 당신과 그가 `close friend`라는 것을 말해줄 뿐이다. 하지만 말했듯이 당신의 친구도 사람이고, 그에게도 그만의 삶이, 그만의 timeline이 있다. 그러니 다른 사람과 `mutual friend`가 되는 것도 지극히 당연한 일이다. 굳이 탓하자면, Twitter가 :tn[창호지를 뚫어버린]{is="원문은 중국어 관용구 捅破窗户纸, 창에 바른 종이를 찔러 뚫는다는 말이다. 모두가 알면서도 입 밖에 내지 않던 일을 드러내 놓는다는 뜻."} 것을, 그 과정을 기어이 보게 만든 것을 탓하면 된다. 그런데 그게 꼭 나쁜 일만은 아니다. 그 과정을 보게 하는 건 당신을 아프게 하는 동시에, 사람을 알게 될 기회를 더 주는 것 아닐까? 개인 메시지 위주의 옛 방식을 버리고, 긴 `close friend`를 유지해야 한다는 압박도 없이, 남는 건 서로 잘 자라고 인사하는 일과 :tn[미쳐 날뛰는 애정 표현]{is="원문의 发电은 중국 인터넷 은어로 发癫(미치다)를 비튼 말장난이다. 좋아서, 홀려서, 혹은 욕망에 못 이겨 끝없이 쏟아내는 것을 가리킨다."}뿐이다. 그것이야말로 가장 순수한 사교다. `mutual friend`를 봤을 때 정말 슬플지 아닐지는 결국 당신에게 달렸다. 어떤 경로를 쓰든, 설령 오프라인이라도, 이 과정이 일어나는 걸 막을 수는 없다. 스스로 마음을 열어 놓을 수만 있다면 아마 슬프지 않을 것이고, 아마 천천히 내려놓는 법을 배우게 될 것이다.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544958Z
+      seconds: 85.570282875
+      tokens: 34375
       review: false
     zh-CN:
-      text: 人本来就是感情动物，想把朋友据为己有是再正常不过的念头；但这并不意味着你真的想占有对方，或控制他的行为和思想，只说明你在乎他，你们是 `close friend`。不过，正如我所说，你的朋友也是人，他也应该拥有自己的生活和自己的时间线，所以他和别人成为 `mutual friend` 再正常不过。真要怪，就怪 Twitter :tn[揭开了这层薄纱]{is="原文用“捅破窗户纸”这个汉语惯用比喻，指揭开彼此心知肚明却未曾说破的事；在这里，Twitter 被写成揭露关系真相的力量。"}，迫使你亲眼看见这个过程。但这未尝不是一件好事。它让你看见这个过程，让你难过，却也给了你更多认识别人的机会，不是吗？抛开以私聊为主的传统社交方式，不必承受长期做 `close friend` 的压力，只有最简单的互道晚安和 :tn[尽情输出内容]{is="原文写“发电”，是中文网络社群的戏称，借“发癫”的语感，指因热情、迷恋或欲望而尽情产出内容。"}，这也是最纯粹的社交。看到 `mutual friend` 时究竟会不会难过，其实取决于你自己。无论通过什么途径，哪怕在线下，你也无法阻止这个过程发生。只要自己能够想开，也许就不会再难过了，也许会慢慢学会放下吧。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:52:56.70281Z
-      seconds: 234.255876875
-      tokens: 28256
+      text: 人是情感动物，想把朋友据为己有，这种念头通常再正常不过；但这并不是说你真的要占有他，真的要控制他的行为或思想，而是说明你在乎他，你和他是 `close friend`。可正如我说过的，你的朋友也是人，他也该有自己的生活、自己的 timeline，所以他和别人变成 `mutual friend`，也是再正常不过的事。真要怪，就怪 Twitter :tn[捅破了这层窗户纸]{is="原文用的就是「捅破窗户纸」，指把大家心里都清楚、却没人说破的事摆到明面上来。"}，硬是逼你看见了这个过程。但这未必是坏事。让你看见这个过程，在让你难过的同时，不也给了你更多认识人的机会？抛开以私聊为主的旧秩序，没有长期维系一段 `close friend` 的压力，剩下的只有最简单的互道晚安和 :tn[发电]{is="「发电」是中文网络社群的谐音玩法，取自「发癫」，指因喜欢、迷恋或欲望而毫无节制地输出内容。"}，那也是最纯粹的社交。看到 `mutual friend` 时到底会不会难过，其实取决于你自己。无论走哪条路，哪怕是线下，你也拦不住这个过程发生。只要你自己想得开，也许就不会难过了，也许会慢慢学会放下吧。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544958Z
+      seconds: 85.570282875
+      tokens: 34375
       review: false
     zh-TW:
-      text: 人本來就是情感動物，想把朋友據為己有是再正常不過的念頭；但這並不表示你真的想占有對方，或控制他的行為和思想，只表示你在乎他，你們是 `close friend`。不過，正如我所說，你的朋友也是人，他也應該擁有自己的生活和自己的時間軸，所以他和別人成為 `mutual friend` 再正常不過。真要怪，就怪 Twitter :tn[揭開了這層薄紗]{is="原文用「捅破窗戶紙」這個漢語慣用比喻，指揭開彼此心知肚明卻沒有明說的事；在這裡，Twitter 被寫成揭露關係真相的力量。"}，迫使你親眼看見這個過程。但這未嘗不是一件好事。它讓你看見這個過程，讓你難過，卻也給了你更多認識別人的機會，不是嗎？拋開以私訊為主的傳統社交方式，不必承受長期做 `close friend` 的壓力，只有最簡單的互道晚安和 :tn[盡情輸出內容]{is="原文寫作「发电」，是中文網路社群的戲稱，借「發癲」的語感，指因熱情、迷戀或欲望而盡情產出內容。"}，這也是最純粹的社交。看到 `mutual friend` 時究竟會不會難過，其實取決於你自己。無論透過什麼途徑，哪怕在線下，你也無法阻止這個過程發生。只要自己能夠想開，也許就不會再難過了，也許會慢慢學會放下吧。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:52:56.70281Z
-      seconds: 234.255876875
-      tokens: 28256
+      text: 人是情感動物，想把朋友據為己有，這種念頭通常再正常不過；但這並不是說你真的要占有他，真的要控制他的行為或想法，而是說明你在乎他，你和他是 `close friend`。可正如我說過的，你的朋友也是人，他也該有自己的生活、自己的 timeline，所以他和別人變成 `mutual friend`，也是再正常不過的事。真要怪，就怪 Twitter :tn[捅破了這層窗戶紙]{is="原文用的就是「捅破窗戶紙」，指把大家心裡都明白、卻沒人說破的事攤到檯面上來。"}，硬是逼你看見了這個過程。但這未必是壞事。讓你看見這個過程，在讓你難過的同時，不也給了你更多認識人的機會？拋開以私訊為主的舊秩序，沒有長期維繫一段 `close friend` 的壓力，剩下的只有最單純的互道晚安和 :tn[發電]{is="「發電」是中文網路社群的諧音玩法，取自「發癲」，指因喜歡、迷戀或慾望而毫無節制地輸出內容。"}，那也是最純粹的社交。看到 `mutual friend` 時到底會不會難過，其實取決於你自己。無論走哪條路，哪怕是線下，你也擋不住這個過程發生。只要你自己想得開，也許就不會難過了，也許會慢慢學會放下吧。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:18:31.544958Z
+      seconds: 85.570282875
+      tokens: 34375
       review: false
   c5d483d204e47292da34a5c939037ee9:
     de-DE:
-      text: 'Aber eigentlich bin ich genauso. Als ich zum ersten Mal merkte, dass jemand so mit mir umging, fragte ich mich auch, ob ich andere schon einmal ähnlich behandelt hatte. Im Rückblick lautet die Antwort: ja. Vielleicht ist es ein wenig grausam, so darüber zu denken, aber wie es so schön heißt: „Mit der Zeit zeigt sich der wahre Charakter.“ Nicht mit jedem Menschen, dem ich zufällig begegne, liege ich auf einer Wellenlänge, und nicht bei jedem Verhalten fühle ich mich wohl. Wenn ich jemanden anfangs falsch einschätze, entfolge ich der Person aus Höflichkeit zwar nicht sofort; geht sie aber wirklich zu weit, blockiere ich sie ohne zu zögern. Manchmal ist die Funktion `mute` vielleicht die beste Wahl: Sie wirkt nur in eine Richtung, löst keine sichtbare Benachrichtigung aus und filtert keine Nachrichten heraus, die über `@mention` an dich gerichtet sind. Oft merkst du selbst gar nicht, dass du anderen Unbehagen bereitest; vielleicht ist das aber auch einfach dein wahres Ich: Du siehst kein Problem in deinem Verhalten, andere schon. Vielleicht ist der Moment, in dem sich jemand unwohl fühlt, der Moment, in dem ich stummgeschaltet werde? (Wenn die meisten Leute dich allerdings nicht stummschalten würden, ist die andere Person wahrscheinlich einfach zu :tn[dünnhäutig]{is="Im Original steht 玻璃心, wörtlich ein Herz aus Glas. Diese chinesische Netzmetapher verspottet oft jemanden als überempfindlich und leicht verletzlich."} – oder vielleicht ist es genau umgekehrt.)'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:53:16.701448Z
-      seconds: 177.144934916
-      tokens: 27878
+      text: 'Aber mir geht es eigentlich genauso; als ich zum ersten Mal gemerkt habe, dass jemand das mit mir macht, habe ich mich gefragt, ob ich mich anderen gegenüber nicht schon ähnlich verhalten habe, und im Rückblick: ja. Wenn ich darüber nachdenke, ist das vielleicht etwas grausam, aber wie das Sprichwort sagt: Erst mit der Zeit zeigt sich, wie ein Mensch wirklich ist. Nicht mit jedem, dem ich zufällig begegne, komme ich ins Gespräch, und nicht jedes Verhalten lässt mich unbeschwert. Bei Leuten, die ich noch nicht durchschaut habe, entfolge ich aus Höflichkeit tatsächlich nicht sofort, aber wenn es wirklich zu weit geht, blockiere ich ohne zu zögern. Vielleicht ist manchmal ein `mute` die beste Wahl: einseitig, ohne sichtbare Benachrichtigung, und ohne dass es `@mention` deine Nachrichten herausfiltert. Vielleicht merkst du oft gar nicht, dass du andere störst, oder das ist einfach der ehrlichste Ausdruck von dir, du siehst nichts Falsches an deinem Verhalten, aber andere sehen das anders; vielleicht ist genau der Moment, in dem es jemandem zu viel wird, der Moment, in dem ich stummgeschaltet werde? (Wenn dich allerdings die meisten Leute nicht stummschalten, hat der eine wahrscheinlich einfach :tn[ein Herz aus Glas]{is="Das Original sagt 玻璃心, wörtlich ‚Glasherz‘ – ein Internetausdruck für jemanden, der so leicht zerbricht, dass jede Kleinigkeit ihn verletzt. Der Ton ist spöttisch, nicht mitfühlend."}, oder eben umgekehrt.)'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:31.766678Z
+      seconds: 13.632149834
+      tokens: 29137
       review: false
     en-US:
-      text: 'But I’m actually the same. When I first realized that someone had treated me this way, I also reflected on whether I had ever done something similar to anyone else. Looking back now, I had. It may be a little cruel to think of it this way, but as the saying goes, “time reveals a person’s true character.” I won’t click with everyone I happen to meet, and not everyone’s behavior will make me comfortable. If I don’t see someone clearly at first, courtesy does keep me from unfollowing them right away; but if they really go too far, I’ll block them without hesitation. Sometimes a one-way `mute`—with no visible notification and no filtering of messages sent to you via `@mention`—may be the best choice. Often you can’t tell that you’re making someone uncomfortable; or perhaps that’s simply the real you: you see nothing wrong with your behavior, but someone else disapproves. Maybe the moment they feel uncomfortable is the moment they mute me? (But if most people wouldn’t mute you, chances are that person is just too :tn[thin-skinned]{is="The original says 玻璃心, literally ‘glass-hearted,’ an online metaphor for being fragile and overly sensitive that often carries a mocking edge."}—or perhaps it’s the other way around.)'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:53:16.701448Z
-      seconds: 177.144934916
-      tokens: 27878
+      text: 'But honestly, I''m no different. The first time I noticed someone doing this to me, I did stop and ask myself whether I had ever behaved the same way toward others, and looking back now, I have. Thinking about it feels a little cruel, but as the saying goes, "time reveals a person''s heart." Not everyone I happen to meet is someone I click with, and not everyone''s behaviour leaves me comfortable. For the people I haven''t quite figured out yet, politeness does keep me from unfollowing them outright, but if someone really crosses the line, I Block without hesitating. Maybe sometimes a `mute` — one-directional, silent, and still letting `@mention` messages through — is the best option available. Maybe you often can''t feel it when you make someone uncomfortable, or maybe that just is the truest version of you: you see nothing wrong with what you do, while other people are unimpressed. Maybe the moment someone feels uncomfortable is the moment I get Muted? (Though if most people don''t Mute you, chances are they''re just :tn[太过玻璃心]{is="原文用的是「玻璃心」，一个中文网络说法，把敏感脆弱的人形容成一颗一碰就碎的玻璃做的心，通常带着嘲讽。"} — or maybe it''s the other way round.)'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:19:21.519715Z
+      seconds: 70.246647666
+      tokens: 33152
       review: false
     es-ES:
-      text: 'Pero, en realidad, yo también soy igual. La primera vez que me di cuenta de que alguien me había tratado así, también reflexioné sobre si yo había hecho algo parecido a otras personas. Visto ahora, sí. Quizá sea un poco cruel pensarlo de este modo, pero, como dice el refrán, «con el tiempo se conoce de verdad a las personas». No voy a congeniar con todas las personas con las que me cruce por casualidad, ni todo el mundo va a comportarse de una manera que me haga sentir a gusto. Cuando al principio no he sabido ver cómo era alguien, por cortesía no dejo de seguirlo de inmediato; pero, si de verdad se pasa de la raya, lo bloqueo sin dudarlo. Tal vez a veces la función `mute` sea la mejor opción: es unilateral, no muestra ninguna notificación y no filtra los mensajes que te envían mediante `@mention`. Muchas veces no notas que estás incomodando a los demás; o quizá ese sea simplemente tu verdadero yo: tú no ves nada malo en tu conducta, pero a otros no les parece bien. ¿Quizá el momento en que alguien se siente incómodo sea justo cuando me silencia? (Pero, si la mayoría de la gente no te silenciaría, lo más probable es que esa persona sea demasiado :tn[susceptible]{is="El original dice 玻璃心, literalmente corazón de cristal. Es una metáfora de Internet que presenta la sensibilidad y la fragilidad como algo quebradizo, a menudo con tono burlón."}; aunque también podría ser al revés.)'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:53:16.701448Z
-      seconds: 177.144934916
-      tokens: 27878
+      text: 'Pero, en realidad, yo soy igual. La primera vez que noté que alguien me hacía eso, sí me pregunté si yo había actuado alguna vez de forma parecida con otros, y visto ahora, sí lo hice. Pensarlo resulta un poco cruel, pero como dice el refrán, «el tiempo revela el corazón de las personas». No todas las personas que me encuentro por casualidad conectan conmigo, ni el comportamiento de todas me deja cómodo. Con los que aún no tengo calados, por educación no dejo de seguirlos de golpe, pero si alguien se pasa de verdad, hago Block sin dudarlo. Quizá en ciertos momentos un `mute` —unidireccional, sin notificación y que ni siquiera filtra `@mention` tus mensajes— sea la mejor opción posible. Quizá muchas veces no te das cuenta de que incomodas a los demás, o quizá ese eres tú en tu versión más auténtica: no ves nada malo en lo que haces, mientras los otros no lo comparten. Quizá el momento en que alguien se siente incómodo es justo el momento en que a mí me hacen Mute. (Aunque si la mayoría no te hace Mute, lo más probable es que el otro tenga :tn[el corazón demasiado de cristal]{is="El original usa «玻璃心», una expresión china de internet que describe a la persona susceptible como un corazón de cristal que se rompe al menor roce; suele decirse con burla."} —o al revés.)'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:19:21.519715Z
+      seconds: 70.246647666
+      tokens: 33152
       review: false
     fr-FR:
-      text: 'Mais, en réalité, je fais pareil. La première fois que j’ai compris que quelqu’un me traitait ainsi, je me suis demandé si je n’avais pas moi-même agi de la sorte avec d’autres personnes. Avec le recul, la réponse est oui. C’est peut-être un peu cruel de raisonner ainsi, mais comme le dit le proverbe, « c’est avec le temps qu’on découvre la vraie nature des gens ». Je ne peux pas m’entendre avec toutes les personnes que je rencontre par hasard, et le comportement de tout le monde ne peut pas me mettre à l’aise. Quand je me suis d’abord trompé sur quelqu’un, la politesse m’empêche certes de cesser immédiatement de le suivre ; mais si cette personne dépasse vraiment les bornes, je la bloque sans hésiter. Dans certains cas, `mute` est peut-être la meilleure solution : l’action est unilatérale, ne produit aucune notification visible et ne filtre pas les messages qui vous sont adressés au moyen de `@mention`. Souvent, vous ne vous rendez même pas compte que vous mettez les autres mal à l’aise ; ou bien c’est simplement votre vrai visage : votre comportement ne vous paraît pas problématique, mais d’autres le désapprouvent. Le moment où quelqu’un se sent mal à l’aise est peut-être celui où cette personne me met en sourdine ? (Mais si la plupart des gens ne vous mettent pas en sourdine, il est fort probable que cette personne soit simplement trop :tn[susceptible]{is="L’original emploie 玻璃心, littéralement un cœur de verre. Cette métaphore courante sur Internet raille souvent une personne jugée trop sensible et fragile."} — à moins que ce ne soit l’inverse.)'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:53:16.701448Z
-      seconds: 177.144934916
-      tokens: 27878
+      text: 'Mais en vérité, je suis pareil. La première fois que j''ai senti quelqu''un me faire ça, je me suis vraiment demandé si j''avais déjà agi ainsi envers d''autres, et avec le recul, oui. Y penser me paraît un peu cruel, mais comme le dit le proverbe, « c''est le temps qui révèle le cœur des gens ». Je n''accroche pas avec tous ceux que je croise par hasard, et le comportement de chacun ne me met pas forcément à l''aise. Pour ceux que je n''ai pas encore cernés, la politesse m''empêche de me désabonner sur-le-champ ; mais si quelqu''un dépasse vraiment les bornes, je le Block sans hésiter. Peut-être qu''à certains moments, un `mute` – unilatéral, sans notification, et qui ne filtre pas `@mention` vos messages – est le meilleur choix possible. Peut-être que la plupart du temps tu ne sens pas que tu mets les autres mal à l''aise, ou peut-être que c''est simplement toi, au plus vrai : tu ne vois aucun problème à ce que tu fais, alors que les autres n''en pensent pas moins de bien. Peut-être que l''instant où quelqu''un se sent mal à l''aise est justement l''instant où l''on me Mute ? (Mais si la plupart des gens ne te Mutent pas, c''est sans doute qu''ils ont simplement :tn[le cœur en verre]{is="L''original emploie « 玻璃心 », une expression chinoise d''internet qui compare une personne hypersensible à un cœur de verre qui se brise au moindre contact ; le ton est généralement moqueur."} – ou alors c''est l''inverse.)'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:19:21.519715Z
+      seconds: 70.246647666
+      tokens: 33152
       review: false
     ja-JP:
-      text: でも、実は私も同じだ。誰かに同じことをされていると初めて気づいたあと、自分も他人に似たようなことをしたことがないか振り返った。今にして思えば、答えはイエスだ。こう考えるのは少し残酷かもしれないが、「長く付き合えば人となりがわかる」とよく言う。たまたま出会った人すべてと話が合うわけではないし、誰の振る舞いでも心地よく感じられるわけでもない。最初は見抜けなかった相手も、礼儀としてすぐにフォローを外すことは確かにしないが、本当に度を越したことをされたら、ためらわずブロックする。ときには、一方的で、相手には通知が表示されず、`@mention` であなた宛てに送られたメッセージも除外しない `mute` が、いちばんよい選択なのかもしれない。人を不快にさせていても、自分では気づかないことが多い。あるいは、それこそがありのままのあなたなのかもしれない。自分の振る舞いに問題があるとは思わなくても、他人はそう思わないことがある。その人が不快になったときこそ、私がミュートされるときなのかもしれない。（ただ、大半の人があなたをミュートしないのなら、おそらくその人が:tn[傷つきやすすぎる]{is="原文の「玻璃心」は、心を壊れやすいガラスにたとえた中国語のネット表現で、過敏さをからかう響きがある。"}だけだろう。あるいは、その逆かもしれない。）
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:53:16.701448Z
-      seconds: 177.144934916
-      tokens: 27878
+      text: でも実のところ、僕も同じだ。誰かが自分にそうしていると初めて気づいたあと、自分も他人に似たことをしていなかったか振り返ってみた。今にして思えば、していた。そう考えると少し残酷かもしれないが、よく言うように「人の心は時間が経ってこそ見える」。たまたま出会った人全員と話が合うわけではないし、全員のふるまいが心地よいわけでもない。すぐには見極められない相手を、礼儀としてすぐフォロー解除することはしない。ただ、あまりに度が過ぎるなら迷わず Block する。ときには、一方通行で、通知も出ず、`@mention` あなたのメッセージを弾くこともない `mute` こそが、その場面での最善の選択なのかもしれない。他人を不快にさせていても、自分では気づけないことは多い。あるいは、それこそが最も素のあなたで、自分の行動に問題を感じていないのに、周りは納得していない。誰かが不快さを覚えたその瞬間が、僕が Mute される瞬間なのだろうか？（ただし、大半の人があなたを Mute しないなら、たぶん相手が:tn[ガラスのハートすぎる]{is="原文の中国語は「玻璃心」。傷つきやすい人を、触れただけで割れるガラスの心にたとえるネットスラングで、たいてい皮肉が込められている。"}だけだろうし、逆もまた然りだ。）
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:19:21.519715Z
+      seconds: 70.246647666
+      tokens: 33152
       review: false
     ko-KR:
-      text: 하지만 사실 나도 마찬가지다. 누군가가 나에게 이렇게 했다는 걸 처음 알아차린 뒤, 나 역시 다른 사람에게 비슷하게 행동한 적이 없는지 돌아봤다. 지금 생각해 보면 그런 적이 있었다. 이렇게 생각하는 게 조금 잔인할지도 모르지만, 흔히 “시간이 지나야 사람의 진심을 안다”고 하지 않는가. 우연히 만난 모든 사람과 말이 통하는 것은 아니고, 모든 사람의 행동이 나를 편안하게 하는 것도 아니다. 처음에는 제대로 알아보지 못한 사람이라도 예의상 곧바로 팔로우를 끊지는 않지만, 정말 선을 넘는다면 망설이지 않고 차단한다. 어쩌면 어떤 때는 단방향이고, 표시되는 알림도 없으며, `@mention`을 통해 당신에게 온 메시지를 걸러 내지도 않는 `mute`이 최선의 선택일 수 있다. 내가 다른 사람을 불편하게 해도 정작 스스로는 모를 때가 많다. 혹은 그게 가장 솔직한 당신의 모습일 수도 있다. 당신은 자신의 행동에 문제가 없다고 생각하지만, 다른 사람은 못마땅하게 여길 수 있다. 어쩌면 다른 사람이 불편함을 느끼는 순간이 바로 내가 음소거되는 순간일까? (하지만 대부분의 사람이 당신을 음소거하지 않는다면, 아마 그 사람이 지나치게 :tn[예민하고 상처받기 쉬운]{is="원문의 玻璃心은 마음을 깨지기 쉬운 유리에 빗댄 중국 인터넷 표현으로, 예민하고 나약하다고 비웃는 뉘앙스를 흔히 담는다."} 것일 테고, 아니면 그 반대일 수도 있다.)
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:53:16.701448Z
-      seconds: 177.144934916
-      tokens: 27878
+      text: 그런데 사실 나도 똑같다. 누군가 나에게 그렇게 하고 있다는 걸 처음 느낀 뒤, 나도 남에게 비슷한 행동을 한 적이 없는지 돌아봤고, 지금 보니 있었다. 이렇게 생각하면 조금 잔인할지도 모르지만, 흔히 말하듯 「사람 마음은 오래 겪어봐야 안다」. 우연히 만난 사람이 모두 나와 말이 통하는 것도 아니고, 모두의 행동이 나를 편하게 해주는 것도 아니다. 아직 파악이 안 된 사람은 예의상 곧바로 언팔하지는 않지만, 정말 도가 지나치면 나는 망설임 없이 Block 한다. 어쩌면 어떤 때에는 일방적이고, 알림도 뜨지 않고, `@mention` 당신의 메시지를 걸러내지도 않는 `mute` 이야말로 그 순간의 최선일지 모른다. 남을 불편하게 만들면서도 정작 자신은 못 느끼는 경우가 많고, 아니면 그게 가장 진짜 당신일 수도 있다. 자기 행동에 문제가 없다고 여기는데, 남들은 그렇게 보지 않는 것이다. 누군가 불편함을 느끼는 그 순간이, 내가 Mute 당하는 순간일까? (다만 대부분이 당신을 Mute 하지 않는다면 상대가 :tn[유리 심장이 너무 얇은]{is="원문은 중국어 인터넷 표현 「玻璃心」으로, 예민하고 상처받기 쉬운 사람을 살짝만 건드려도 깨지는 유리로 만든 심장에 빗댄 말이며 대개 비꼬는 뉘앙스를 담고 있다."} 것일 테고, 반대의 경우도 마찬가지다.)
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:19:21.519715Z
+      seconds: 70.246647666
+      tokens: 33152
       review: false
     zh-CN:
-      text: 但其实我也一样。第一次意识到别人这样对我以后，我也反思过自己是否曾对别人做过类似的事。现在看来，答案是肯定的。这样想也许有些残忍，但俗话说得好：“日久见人心。”不是每个偶然遇到的人都能和我聊得来，也不是每个人的行为都能让我感到舒服。对于一开始没看清的人，出于礼貌，我确实不会马上取消关注；但如果对方真的做得太过分，我会毫不犹豫地拉黑。也许有些时候，单向、不会显示通知、也不会过滤通过 `@mention` 发给你的消息的 `mute`，才是最好的选择。很多时候，你让别人感到不舒服，自己却未必察觉；或者说，那就是最真实的你：你不觉得自己的行为有什么问题，别人却不以为然。也许别人感到不适的时候，就是我被静音的时候吧？（但如果大多数人都不会静音你，那多半只是对方太:tn[玻璃心]{is="原文用网络说法“玻璃心”，把人的敏感脆弱比作一颗易碎的玻璃心，通常还带有嘲讽意味。"}；也可能反过来。）
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:53:16.701448Z
-      seconds: 177.144934916
-      tokens: 27878
+      text: 但其实我也一样。第一次察觉到别人对我这么做之后，我确实反思过自己有没有对别人做过类似的事，现在看来是有的。这样想或许有些残忍，但俗话说得好，「日久见人心」。不是所有偶然遇到的人都能和我聊得来，也不是所有人的行为都能让我感到舒服。对于那些一时没看清的人，出于礼貌我确实不会直接取关，但如果对方做得实在过分，我会毫不犹豫地 Block。也许某些时候，单向的、不会发出通知的、也不会过滤 `@mention` 你的消息的 `mute`，就是当下最好的选择。也许你让别人不舒服的时候，自己往往察觉不到，又或者说那就是最真实的你——你不觉得自己的行为有什么问题，别人却不以为然。也许别人感到不适的那一刻，就是我被 Mute 的时候吧？（但如果大部分人都不会 Mute 你，那大概率是对方:tn[太玻璃心]{is="原文写作「玻璃心」，一个中文网络说法，把敏感易碎的人比作一颗一碰就碎的玻璃心，通常带着嘲讽。"}了，反过来也一样。）
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:19:21.519715Z
+      seconds: 70.246647666
+      tokens: 33152
       review: false
     zh-TW:
-      text: 但其實我也一樣。第一次意識到別人這樣對我之後，我也反省過，自己是否曾對別人做過類似的事。現在看來，答案是肯定的。這樣想也許有些殘忍，但俗話說得好：「日久見人心。」不是每個偶然遇見的人都能和我聊得來，也不是每個人的行為都能讓我感到自在。對於一開始沒看清的人，出於禮貌，我確實不會立刻取消追蹤；但如果對方真的做得太過分，我會毫不猶豫地封鎖。也許有些時候，單向、不會顯示通知，也不會過濾透過 `@mention` 傳給你的訊息的 `mute`，才是最好的選擇。很多時候，你讓別人感到不舒服，自己卻未必察覺；或者說，那就是最真實的你：你不覺得自己的行為有問題，別人卻不以為然。也許別人感到不適的時候，就是我被靜音的時候吧？（但如果大多數人都不會將你靜音，那多半只是對方太:tn[玻璃心]{is="原文使用網路說法「玻璃心」，把人的敏感脆弱比作一顆容易破碎的玻璃心，通常還帶有嘲諷意味。"}；也可能剛好相反。）
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:53:16.701448Z
-      seconds: 177.144934916
-      tokens: 27878
+      text: 但其實我也一樣。第一次察覺到別人對我這麼做之後，我確實反省過自己有沒有對別人做過類似的事，現在看來是有的。這樣想或許有點殘忍，但俗話說得好，「日久見人心」。不是每個偶然遇見的人都能和我聊得來，也不是每個人的行為都能讓我感到自在。對於那些一時還沒看清的人，出於禮貌我確實不會直接退追蹤，但如果對方真的做得太過分，我會毫不猶豫地 Block。也許在某些時候，單向的、不會發出通知的、也不會過濾 `@mention` 你的訊息的 `mute`，就是當下最好的選擇。也許你讓別人不舒服的時候，自己往往察覺不到，又或者說那就是最真實的你——你不覺得自己的行為有什麼問題，別人卻不以為然。也許別人感到不適的那一刻，就是我被 Mute 的時候吧？（但如果大多數人都不會 Mute 你，那大概是對方:tn[太玻璃心]{is="原文寫作「玻璃心」，是中文網路上的說法，把敏感易碎的人比喻成一顆一碰就破的玻璃心，通常帶著嘲諷意味。"}了，反過來也是一樣。）
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:19:21.519715Z
+      seconds: 70.246647666
+      tokens: 33152
       review: false
   c934b6cf281975a115e24addd282bdc8:
     de-DE:

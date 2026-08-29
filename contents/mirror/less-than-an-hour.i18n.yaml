@@ -197,68 +197,68 @@ segments:
       review: false
   32c72537542b299f6e68c64f0ac0f610:
     de-DE:
-      text: 'Auf dem Rückweg nahm ich einen völlig anderen Weg, ging durch den Hintereingang der Wohnanlage hinein und durch die Tiefgarage. Als Kind spielte ich oft dort. Später zogen wir einmal um, doch irgendwie kamen wir wieder hierher zurück. Die Garage ist der einzige Ort aus meinen Kindheitserinnerungen, den ich heute nur selten aufsuche. Ob sie anders aussieht als früher, kann ich nicht sagen, aber an ihren Geruch erinnere ich mich. Damals lag in der Garage etwas sehr Frisches, ein wenig wie Minze: intensiv, aber ohne Duft, sodass es sich nur mit einem einzigen Wort beschreiben ließ, :tn[klar]{is="Im Original steht das einzelne chinesische Schriftzeichen qing, das zugleich Frische, Kühle und kristalline Klarheit anklingen lässt. Kein einzelnes deutsches Wort trägt all diese Bedeutungen."}, vermischt mit der eigentümlichen Kühle eines Kellers. Eigentlich mochte ich diesen Geruch ziemlich gern. Doch als ich jetzt hineinging, war diese klare Frische verschwunden. Übrig war nur kalte Feuchtigkeit, die schwer und stickig in der Luft hing. Als ein Auto vorbeifuhr, wirbelte es einen kleinen Luftzug auf, der wohl vom Eingang hereinkam. Aber auch dieser Luftzug stimmte nicht. Nichts stimmte, alles fühlte sich überall falsch an. Ich kann mir inzwischen nicht einmal mehr vorstellen, wie es früher gewesen war, doch es war ganz eindeutig ein Unterschied, den man spürte, sobald man dort stand.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T13:23:54.43779Z
-      seconds: 91.721949417
-      tokens: 20091
+      text: Auf dem Rückweg nahm ich einen völlig anderen Weg, bog durch das Hintertor der Wohnanlage ein und ging an der Tiefgarage vorbei. Als Kind habe ich oft in der Garage gespielt; später sind wir einmal umgezogen und dann, wer weiß warum, wieder zurück. Die Garage ist der einzige Ort in meinen Kindheitserinnerungen, an dem ich selten war, deshalb kann ich nicht sagen, ob sie sich verändert hat, aber an ihren Geruch erinnere ich mich. Damals lag in der Garage eine sehr frische Luft, ein bisschen wie Minze, dicht und doch ohne jedes Parfüm, für die mir nur das eine Wort :tn[klar]{is="Im Original steht dafür das einzelne chinesische Schriftzeichen 清, das zugleich frisch, kühl und durchsichtig-rein bedeutet; kein deutsches Einzelwort trägt diese drei Bedeutungen zusammen."} blieb, und dazu ein Hauch von der kühlen Feuchte, die nur Keller haben. Ich mochte diesen Geruch eigentlich sehr. Aber wenn ich jetzt hineingehe, ist diese klare Luft weg. Geblieben ist nur eine kalte Nässe, die dumpf in der Luft klebt. Als ein Auto vorbeifuhr, kam ein bisschen Wind auf, wahrscheinlich vom Eingang hereingeweht, aber auch dieser Wind war falsch, alles war falsch, überall war es falsch, und ich bekomme das frühere Bild nicht mehr zusammen, aber es ist ganz sicher ein Unterschied, den man spürt, sobald man dort steht.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403306Z
+      seconds: 67.387676125
+      tokens: 32910
       review: false
     en-US:
-      text: On the way back, I took a completely different route, circling in through the residential complex’s rear gate and passing through the underground garage. I often played in the garage as a child. We moved away once later, but somehow ended up moving back. The garage is the only place from my memories of growing up that I rarely revisit. I can’t tell whether its appearance has changed, but I remember its smell. Back then, the garage had a very fresh quality, a little like mint—strong, yet without any fragrance, leaving only the word :tn[clear]{is="The original uses the single Chinese character qing, compressing associations of freshness, coolness, and crystalline clarity that no single English word can fully convey."} to describe it—mingled with the peculiar coolness of a basement. I actually rather liked that smell. But when I walked in now, that clear freshness was gone. All that remained was cold dampness, hanging heavily in the air. A passing car stirred up a little breeze, probably blowing in through the entrance, but even that breeze felt wrong. Everything was wrong; nothing felt right anymore. I can no longer picture how it used to be, but it was unmistakably the sort of difference you could feel simply by being there.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T13:23:54.43779Z
-      seconds: 91.721949417
-      tokens: 20091
+      text: On the way back I took a completely different route, cutting in through the back gate of the complex and past the underground garage. I used to play in that garage all the time as a kid; we moved away once, and then somehow moved back. The garage is the one place in my growing-up memories I didn't visit often, so I can't tell whether it looks any different, but I remember its smell. Back then the garage held a kind of fresh air, a little like mint, thick but with no perfume to it, nothing left to describe it but the single word :tn[clear]{is="The original uses one Chinese character, 清, which at once means fresh, cool and limpid; no single English word carries all three senses the writer is reaching for."}, with a trace of that cool basement damp mixed in. I actually liked that smell quite a lot. But walking in now, that clear air is gone. All that's left is a chilly moisture, sitting stuffy in the air. A car drove past and stirred up a little wind, probably blowing in from the entrance, but even that wind was wrong, everything was wrong, wrong in every direction, and I can no longer picture how it used to be, though it is absolutely the kind of difference you can feel the moment you stand there.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403306Z
+      seconds: 67.387676125
+      tokens: 32910
       review: false
     es-ES:
-      text: 'A la vuelta tomé un camino completamente distinto: entré dando un rodeo por la puerta trasera del conjunto residencial y atravesé el aparcamiento subterráneo. De pequeño solía jugar mucho allí. Más adelante nos mudamos una vez, pero, no sé cómo, acabamos regresando. El aparcamiento es el único lugar de mis recuerdos de infancia al que ahora voy poco. No sabría decir si su aspecto ha cambiado, pero recuerdo su olor. Cuando era pequeño había allí una sensación muy fresca, un poco parecida a la menta, intensa pero sin aroma, de modo que solo quedaba una palabra para describirla: :tn[limpio]{is="El original usa el único carácter chino qing para concentrar a la vez frescura, una ligera frialdad y una claridad cristalina. Ninguna palabra española reúne por sí sola todos esos matices."}. Se mezclaba además con el frescor umbrío propio de los sótanos. La verdad es que aquel olor me gustaba bastante. Pero ahora, al entrar, esa frescura limpia había desaparecido. Solo quedaba una humedad fría y sombría, pegada al aire con una pesadez sofocante. Cuando se acercó un coche, levantó un poco de viento, quizá venido de la entrada, pero tampoco aquel viento era el mismo. Nada estaba bien, todo se sentía distinto por todas partes. Ya ni siquiera consigo imaginar cómo era antes, pero sin duda era una diferencia que se percibía con solo estar allí.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T13:23:54.43779Z
-      seconds: 91.721949417
-      tokens: 20091
+      text: 'Para volver tomé un camino completamente distinto: entré rodeando por la puerta trasera del complejo y pasé por el garaje subterráneo. De pequeño jugaba a menudo en ese garaje; luego nos mudamos una vez y, no sé cómo, acabamos volviendo. El garaje es el único lugar de mis recuerdos de infancia al que no iba a menudo, así que no sabría decir si ha cambiado, pero recuerdo su olor. Entonces en el garaje había un aire muy fresco, un poco a menta, denso y sin perfume alguno, y no me quedaba más que una sola palabra para describirlo, :tn[límpido]{is="El original lo resuelve con un único carácter chino, 清, que significa a la vez fresco, frío y transparente; ninguna palabra española sola reúne los tres sentidos."}, con algo de esa frescura húmeda propia de los sótanos. La verdad es que ese olor me gustaba bastante. Pero ahora, al entrar, ese aire límpido ya no está. Solo queda una humedad fría, pegada al aire, sofocante. Pasó un coche y levantó algo de viento, seguramente colado desde la entrada, pero ese viento también estaba mal, todo estaba mal, todo estaba mal por todas partes, y ya ni siquiera consigo imaginarme cómo era antes, pero desde luego es la clase de diferencia que se siente en cuanto estás allí.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403306Z
+      seconds: 67.387676125
+      tokens: 32910
       review: false
     fr-FR:
-      text: 'Pour rentrer, j’ai pris un chemin complètement différent, faisant le tour pour entrer par l’arrière de la résidence avant de traverser le parking souterrain. Enfant, j’y jouais souvent. Plus tard, nous avons déménagé une fois, puis, sans trop savoir comment, nous sommes revenus ici. Le parking est le seul lieu de mes souvenirs d’enfance où je retourne rarement aujourd’hui. Je serais incapable de dire si son apparence a changé, mais je me souviens de son odeur. Quand j’étais petit, il y régnait une sensation très fraîche, un peu semblable à la menthe, intense mais dépourvue de parfum, si bien qu’un seul mot pouvait encore la décrire : :tn[limpide]{is="L’original emploie le caractère chinois unique qing, qui superpose des idées de fraîcheur, de froid léger et de limpidité. Aucun mot français ne rassemble tout à fait ces nuances."}. À cela se mêlait un peu de cette fraîcheur humide propre aux sous-sols. En réalité, j’aimais plutôt cette odeur. Mais aujourd’hui, en y entrant, cette fraîche limpidité avait disparu. Il ne restait qu’une humidité froide, étouffante, collée à l’air. Une voiture qui approchait a soulevé un peu de vent, sans doute venu de l’entrée, mais même ce vent n’était pas comme il fallait. Rien n’allait, plus rien n’était à sa place. Je ne parviens même plus à imaginer comment c’était autrefois, mais la différence était indéniablement de celles que l’on ressent rien qu’en se tenant là.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T13:23:54.43779Z
-      seconds: 91.721949417
-      tokens: 20091
+      text: Pour rentrer, j'ai pris un chemin complètement différent, en contournant par la porte arrière de la résidence et en passant par le parking souterrain. Enfant, je jouais souvent dans ce parking ; on a déménagé une fois, puis, sans que je sache pourquoi, on est revenus. Le parking est le seul endroit de mes souvenirs d'enfance où je n'allais pas souvent, alors je ne saurais dire s'il a changé, mais je me rappelle son odeur. À l'époque, il y régnait un air très frais, un peu comme de la menthe, dense et pourtant sans parfum, et il ne me restait que ce seul mot pour le décrire, :tn[limpide]{is="L'original tient en un seul caractère chinois, 清, qui signifie à la fois frais, frais au sens de froid et transparent ; aucun mot français ne porte seul ces trois sens en même temps."}, avec un peu de cette fraîcheur humide propre aux sous-sols. En vérité, j'aimais beaucoup cette odeur. Mais aujourd'hui, en y entrant, cet air limpide a disparu. Il ne reste qu'une humidité glaciale, collée à l'air, étouffante. Une voiture est passée et a soulevé un peu de vent, sans doute venu de l'entrée, mais ce vent aussi sonnait faux, tout sonnait faux, plus rien n'allait nulle part, et je n'arrive même plus à me représenter ce que c'était avant, mais c'est à coup sûr le genre de différence qu'on sent dès qu'on se tient là.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403306Z
+      seconds: 67.387676125
+      tokens: 32910
       review: false
     ja-JP:
-      text: 帰りはまったく別の道を通り、団地の裏門から回り込んで地下駐車場を抜けた。子どものころはよく駐車場で遊んだ。その後いちど引っ越したのに、どういうわけかまたここへ戻ってきた。駐車場は、成長の記憶にある場所のうち、今では唯一あまり足を運ばない場所だ。見た目が変わったかどうかはわからないが、匂いは覚えている。子どものころの駐車場には、ミントに少し似た、とてもすがすがしい気配があった。濃く感じられるのに香りはなく、ただ一語、:tn[澄明]{is="原文では中国語の一字 qīng に、さわやかさ、涼しさ、澄みきった感じを重ねている。日本語の一語では、その響きをすべて受け止めきれない。"}としか形容できないものに、地下室特有のひんやりした空気が少し交じっていた。私はあの匂いがけっこう好きだった。だが今、足を踏み入れてみると、あの澄んだ気配は消えていた。残っているのは陰気で冷たい湿気だけで、それが重苦しく空気にまとわりついていた。車が通ると少し風が起きた。たぶん入口から吹き込んできたのだろう。けれど、その風も違った。何もかも違う。どこもかしこも、もう以前とは違っていた。かつての様子を思い描くことさえできないが、そこにいれば必ず感じ取れる、そんな違いだった。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T13:23:54.43779Z
-      seconds: 91.721949417
-      tokens: 20091
+      text: 帰り道はまったく違う道を通った。団地の裏門から回り込んで、地下駐車場を抜けた。子どものころはよく駐車場で遊んでいた。あとで一度引っ越したのに、どういうわけかまた戻ってきた。駐車場は、育った記憶のなかで唯一あまり足を運ばなかった場所で、姿が変わったかどうかは分からないけれど、においだけは覚えている。子どものころ、駐車場にはとても清らかな空気があった。少しミントに似ていて、濃いのに香りはなく、ただ:tn[「清」という一字]{is="原文は中国語の漢字一文字「清」でその空気を言い切っている。この一字はすがすがしさ、ひんやりした涼しさ、澄んだ透明さを同時に含み、他のどんな語に置き換えても重なり合った意味が落ちてしまう。"}でしか言い表せなかった。そこに地下室特有のひんやりした感じが少し混じる。じつはあのにおいがけっこう好きだった。でも今そこに入ると、あの清らかさは消えていた。残っているのは冷たい湿気だけで、空気にべったり張りついて息苦しい。車が入ってきて少し風が起きた。たぶん入口から流れ込んだのだろう。でもその風も違う。何もかも違う。どこもかしこも違ってしまった。もとの姿はもう思い出せないけれど、そこに立てば必ず感じ取れる種類の違いだ。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403306Z
+      seconds: 67.387676125
+      tokens: 32910
       review: false
     ko-KR:
-      text: 돌아갈 때는 전혀 다른 길을 택해 단지 뒷문으로 돌아 들어가 지하 주차장을 지나갔다. 어릴 적에는 주차장에서 자주 놀았다. 나중에 한 번 이사를 갔는데, 어쩌다 보니 다시 이곳으로 돌아오게 되었다. 주차장은 성장기의 기억 속 장소들 가운데 지금은 유일하게 자주 찾지 않는 곳이다. 모습이 달라졌는지는 알 수 없지만, 그 냄새는 기억한다. 어린 시절의 주차장에는 박하와 조금 비슷한 무척 산뜻한 기운이 있었다. 짙게 느껴지지만 향기는 없어서 오직 :tn[맑음]{is="원문은 중국어 한 글자 qīng에 산뜻함과 서늘함, 투명하게 갠 느낌을 한꺼번에 담았다. 한국어의 한 단어로는 이 겹친 뉘앙스를 모두 옮기기 어렵다."}이라는 한마디로밖에는 표현할 수 없었고, 거기에 지하실 특유의 서늘한 냉기가 살짝 섞여 있었다. 사실 나는 그 냄새를 꽤 좋아했다. 하지만 이제 들어가 보니 그 맑은 기운은 사라지고 없었다. 차갑고 축축한 습기만 남아 답답하게 공기에 들러붙어 있었다. 차가 지나올 때 바람이 조금 일었다. 아마 입구에서 밀려 들어온 바람이었을 것이다. 그런데 그 바람조차 달랐다. 무엇 하나 맞지 않았고, 어디를 보아도 전부 달라져 있었다. 이제는 예전 모습이 어땠는지 떠올릴 수도 없지만, 그곳에 있으면 분명히 느낄 수 있는 차이였다.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T13:23:54.43779Z
-      seconds: 91.721949417
-      tokens: 20091
+      text: 돌아가는 길에는 완전히 다른 길로 갔다. 단지 뒷문으로 돌아 들어가 지하 주차장을 지났다. 어릴 때 주차장에서 자주 놀았다. 나중에 한 번 이사를 갔는데, 어쩌다 보니 다시 돌아왔다. 주차장은 자라면서의 기억 가운데 유일하게 자주 가지 않던 곳이라 모습이 변했는지 어떤지는 알아볼 수 없지만, 냄새만은 기억한다. 어릴 적 주차장에는 아주 상쾌한 공기가 있었다. 민트와 조금 비슷하고, 짙은데도 향이라고 할 것은 없어서 :tn[「맑다」는 한 글자]{is="원문은 중국어 한자 한 글자 清으로 그 공기를 표현한다. 이 한 글자에 상쾌함, 서늘함, 투명함이 한꺼번에 담겨 있어 다른 어떤 낱말로 옮겨도 겹쳐진 의미가 흩어진다."}밖에는 달리 표현할 말이 없었다. 거기에 지하실 특유의 서늘함이 조금 섞였다. 사실 나는 그 냄새를 꽤 좋아했다. 그런데 지금 들어가 보니 그 맑은 기운은 사라지고 없다. 남은 것은 차가운 습기뿐이고, 답답하게 공기에 들러붙어 있다. 차가 들어오면서 바람이 조금 일었다. 아마 입구에서 밀려 들어온 바람일 것이다. 그런데 그 바람도 아니다. 무엇도 아니다. 어디도 다 아니게 되어 버렸다. 예전 모습은 이제 떠올릴 수도 없지만, 그건 분명 그 자리에 서면 바로 느껴지는 종류의 차이다.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403306Z
+      seconds: 67.387676125
+      tokens: 32910
       review: false
     zh-CN:
-      text: 回去时我走了完全不同的路，绕到小区后门进去，穿过地下车库。小时候我常在车库里玩。后来虽然搬过一次家，不知怎么又搬回了这里。在承载我成长记忆的地方中，车库是唯一一处我不常去的。我看不出它的样子有没有变，却一直记得那里的气味。小时候，车库里有一种很清新的气息，有点像薄荷，浓烈却没有香味，只能用:tn[清爽]{is="原文将这种气味凝缩为单字“清”，同时唤起清新、清凉和澄澈的感觉；这里的自然表述无法兼顾这些重叠意味。"}来形容，其中还夹着地下室特有的几分阴凉。其实我还挺喜欢那种气味。可现在再走进去，那股清冽的气息已经没了，只剩阴冷的湿气，沉闷地贴在空气里。车开过来时带起一阵风，大概是从入口灌进来的，可那阵风也不对。什么都不对，到处都不对了。我已经想象不出从前究竟是什么样子，但只要身在其中，你绝对能感受到那种不同。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:56:50.968616Z
-      seconds: 48.209035708
-      tokens: 21264
+      text: 回去的时候我走了一条完全不同的路，从小区后门绕进去，经过地下车库。小时候我经常在车库里玩，后来搬过一次家，不知怎么又搬了回来。车库是我成长记忆里唯一不常去的地方，它的样子有没有变我看不出来，但我记得它的味道。小时候车库里有一种很清新的气息，有点像薄荷，很浓，却没有香味，只剩下一个:tn[「清」字]{is="原文用单个汉字「清」来概括那股气味，同时牵动清新、清凉、澄澈几层联想，任何一个替换词都装不下这些叠在一起的意味。"}可以形容，再夹着一点地下室特有的阴凉。我其实还挺喜欢那个味道的。但现在走进去，那股清气没有了，只剩下阴冷的湿气，闷闷地贴在空气里。有车开过来，带起一点风，大概是从入口灌进来的，但那阵风也不对，什么都不对，哪儿都不对了。我已经想不起来它原来的样子了，但那绝对是你站在那里就能感受到的不同。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403306Z
+      seconds: 67.387676125
+      tokens: 32910
       review: false
     zh-TW:
-      text: 回去時我走了完全不同的路，繞到社區後門進去，穿過地下停車場。小時候我常在停車場裡玩。後來雖然搬過一次家，不知怎麼又搬回了這裡。在承載我成長記憶的地方中，停車場是唯一一處我不常去的。我看不出它的模樣有沒有變，卻一直記得那裡的氣味。小時候，停車場裡有一股很清新的氣息，有點像薄荷，濃烈卻沒有香味，只能用:tn[清爽]{is="原文將這種氣味濃縮成單字“清”，同時喚起清新、清涼與澄澈的感覺；這裡的自然說法無法兼顧這些重疊意味。"}來形容，其中還夾著地下室特有的幾分陰涼。其實我還滿喜歡那種氣味的。可是現在再走進去，那股清冽的氣息已經不見了，只剩陰冷的溼氣，沉悶地貼在空氣裡。車子開過來時帶起一陣風，大概是從入口灌進來的，可那陣風也不對。什麼都不對，到處都不對了。我已經想像不出從前究竟是什麼模樣，但只要身在其中，你絕對能感受到那種不同。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:56:50.968616Z
-      seconds: 48.209035708
-      tokens: 21264
+      text: 回去的時候我走了一條完全不同的路，從社區後門繞進去，經過地下停車場。小時候我常在停車場裡玩，後來搬過一次家，不知怎麼又搬了回來。停車場是我成長記憶裡唯一不常去的地方，它的樣子有沒有變我看不出來，但我記得它的味道。小時候停車場裡有一種很清新的氣息，有點像薄荷，很濃，卻沒有香味，只剩下一個:tn[「清」字]{is="原文用單一個漢字「清」來概括那股氣味，同時牽動清新、清涼、澄澈幾層聯想，換成任何一個詞都裝不下這些疊在一起的意味。"}可以形容，再夾著一點地下室特有的陰涼。我其實還滿喜歡那個味道的。但現在走進去，那股清氣沒有了，只剩下陰冷的濕氣，悶悶地貼在空氣裡。有車開過來，帶起一點風，大概是從入口灌進來的，但那陣風也不對，什麼都不對，哪裡都不對了。我已經想不起來它原來的樣子了，但那絕對是你站在那裡就能感受到的不同。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403306Z
+      seconds: 67.387676125
+      tokens: 32910
       review: false
   361602b8c96e2ad6455e7b210cc53c99:
     de-DE:
@@ -847,133 +847,133 @@ segments:
       review: false
   86c5fbdb33d50086883e7552c0b7c428:
     de-DE:
-      text: 'Ich bin ein ziemlicher Stubenhocker, und ich weiß nicht, wann mir das „Rausgehen“ so fremd geworden ist. Oft verlasse ich einen ganzen Monat lang nur dann das Haus, wenn es unbedingt sein muss; und selbst dann ist mein Leben :tn[auf zwei Punkte und eine Linie zusammengeschrumpft]{is="Die chinesische Wendung liǎng diǎn yí xiàn bedeutet wörtlich zwei Punkte, eine Linie und presst ein Leben zwischen nur zwei Orten in ein geometrisches Bild."}, wobei ich meist auch noch fahre, statt zu Fuß zu gehen. Wenn ich genauer darüber nachdenke, war ich schon sehr lange nicht mehr wirklich draußen. Nach dem Hype und den Ängsten des AI-Zeitalters habe ich mir eine schlechte Angewohnheit zugelegt: Ich programmiere oft mitten in der Nacht, als lebte ich nicht mehr in derselben „Zeitzone“ wie die wirkliche Welt. Auch heute Morgen stand ich erst nach zwölf auf. Ich esse nur zwei Mahlzeiten am Tag, setze mich gleich nach dem Aufwachen ins Arbeitszimmer, öffne den Computer und fange an zu schreiben. Programmieren an sich macht großen Spaß, doch Programmieren im AI-Zeitalter tut es nicht mehr. Bis zum Nachmittag starrte ich auf den Bildschirm, brachte nichts zustande, hatte keine Gestaltungsideen und fand alles unvollkommen.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:44:57.203396Z
-      seconds: 109.550044125
-      tokens: 20772
+      text: 'Ich bin ein ausgesprochener Stubenhocker, und irgendwann – wann genau, weiß ich nicht – ist "Ausgehen" zu einem Wort geworden, das mir fremd vorkommt. Oft verlasse ich einen ganzen Monat lang das Haus nur, wenn es sein muss, und selbst dann ist mein Leben :tn[eine Linie, die zwei Punkte verbindet]{is="Im Original steht die chinesische Redewendung 两决一线, wörtlich ‚zwei Punkte, eine Linie‘: ein Leben, das nur zwischen der Wohnung und einem einzigen weiteren Ort hin- und herpendelt. Der Witz liegt in der Geometrie – der ganze Tag schrumpft auf eine einzige Strecke zusammen."}, meist noch mit dem Auto. Wenn ich genauer darüber nachdenke: Es ist sehr lange her, dass ich wirklich einmal draußen war. Nachdem ich die Blase und die Angst des KI-Zeitalters durchlebt habe, habe ich mir eine schlechte Angewohnheit zugelegt – ich schreibe oft mitten in der Nacht Code und scheine mit der Welt, in der ich lebe, nicht mehr in derselben "Zeitzone" zu leben. Auch heute Morgen habe ich mich bis nach zwölf hinausgezögert, esse nur zwei Mahlzeiten am Tag, setzte mich gleich nach dem Aufwachen ins Arbeitszimmer, klappte den Rechner auf und fing an zu schreiben. Code zu schreiben ist an sich eine sehr vergnügliche Sache, aber Code schreiben im KI-Zeitalter ist es nicht mehr. Ich starrte bis in den Nachmittag auf den Bildschirm und brachte nichts zustande, keine Idee für ein Design, alles kam mir unvollkommen vor.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.40337Z
+      seconds: 64.246074291
+      tokens: 32766
       review: false
     en-US:
-      text: I’m a real homebody, and I don’t know when “going out” became such an unfamiliar notion to me. I often go an entire month without leaving home unless I have to; even when I do, my life is :tn[just two points joined by a line]{is="The original Chinese expression liǎng diǎn yí xiàn literally means two points, one line, reducing a life spent shuttling between only two places to a stark geometric image."}, and I usually travel by car. Come to think of it, I haven’t truly spent time outdoors in a very long while. After living through the hype and anxiety of the AI era, I picked up a bad habit—I often write code in the middle of the night, as though I no longer share a “time zone” with the world where life happens. This morning, once again, I didn’t get up until after noon. I eat only two meals a day, and as soon as I wake up, I sit down in the study, open my computer, and start writing. Coding itself is great fun, but coding in the AI era no longer is. I stared at the screen until the afternoon, unable to write a thing, devoid of design inspiration, feeling that nothing was perfect.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:44:57.203396Z
-      seconds: 109.550044125
-      tokens: 20772
+      text: 'I''m a real homebody, and at some point — I can''t say when — "going out" turned into a word I barely recognize. Whole months go by where I only leave the house when I have to, and even then my life is :tn[a line drawn between two points]{is="The original says 两点一线, literally ‘two points, one line’ — a set phrase for a life that shuttles only between home and one other place. The geometry is the joke: the whole day collapses into a single segment."}, usually with a ride in between. When I really think about it, it''s been a very long time since I last genuinely left the indoors. After living through the bubble and the anxiety of the AI era, I picked up a bad habit — writing code in the small hours, until I seem to be in a different "time zone" from the world I live in. This morning was no different: I dragged myself out of bed past noon, ate only twice all day, and went straight from waking to sitting down in the study, opening the laptop, and starting to write. Writing code is a genuinely fun thing to do, but writing code in the AI era isn''t. I stared at the screen into the afternoon and produced nothing. No design ideas. Everything felt imperfect.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.40337Z
+      seconds: 64.246074291
+      tokens: 32766
       review: false
     es-ES:
-      text: 'Soy muy casero, y ni siquiera sé cuándo «salir» se convirtió para mí en algo tan ajeno. A menudo paso todo un mes sin salir salvo cuando es imprescindible; incluso entonces, mi vida queda :tn[reducida a dos puntos unidos por una línea]{is="La expresión china original liǎng diǎn yí xiàn significa literalmente dos puntos, una línea y comprime los trayectos entre solo dos lugares en una imagen geométrica."}, y casi siempre me desplazo en coche. Ahora que lo pienso, hace muchísimo que no estoy realmente al aire libre. Después de vivir la burbuja y la ansiedad de la era de la AI, adquirí un mal hábito: suelo programar de madrugada, como si ya no compartiera «zona horaria» con el mundo en el que transcurre la vida. Esta mañana tampoco me levanté hasta pasadas las doce. Solo hago dos comidas al día y, en cuanto despierto, me siento en el estudio, abro el ordenador y empiezo a escribir. Programar en sí es muy divertido, pero programar en la era de la AI ya no lo es. Me quedé mirando la pantalla hasta la tarde sin conseguir escribir nada, sin inspiración para diseñar y con la sensación de que todo era imperfecto.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:44:57.203396Z
-      seconds: 109.550044125
-      tokens: 20772
+      text: 'Soy una persona muy casera y, sin saber desde cuándo, «salir» se ha convertido para mí en una palabra completamente ajena. A menudo paso un mes entero saliendo solo cuando es imprescindible, y aun así mi vida es :tn[una línea trazada entre dos puntos]{is="El original usa la expresión china 两点一线, literalmente «dos puntos, una línea»: una vida que solo va y viene entre casa y un único lugar más. La gracia está en la imagen geométrica — el día entero se reduce a un simple segmento."}, casi siempre en coche. Si lo pienso bien, hace muchísimo que no salgo de verdad del interior. Tras atravesar la burbuja y la ansiedad de la era de la IA, se me ha pegado una mala costumbre: programar de madrugada, hasta el punto de que ya no parezco estar en la misma «zona horaria» que el mundo en el que vivo. Esta mañana tampoco fue distinta: me quedé en la cama hasta pasadas las doce, como solo dos veces al día y, nada más despertar, me senté en el estudio, abrí el ordenador y empecé a escribir. Escribir código es de por sí algo muy divertido, pero escribir código en la era de la IA ya no lo es. Me quedé mirando la pantalla hasta la tarde sin lograr escribir nada, sin ninguna idea de diseño, sintiendo que nada estaba a la altura.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.40337Z
+      seconds: 64.246074291
+      tokens: 32766
       review: false
     fr-FR:
-      text: 'Je suis très casanier, et je ne sais même pas depuis quand « sortir » est devenu pour moi une notion si étrangère. Il m’arrive souvent de ne mettre le nez dehors, pendant tout un mois, que lorsque c’est indispensable ; même alors, ma vie se trouve :tn[réduite à deux points reliés par une ligne]{is="L’expression chinoise originale liǎng diǎn yí xiàn signifie littéralement deux points, une ligne et enferme les allers-retours entre seulement deux lieux dans une image géométrique."}, et je me déplace généralement en voiture. À bien y réfléchir, cela fait très longtemps que je n’ai pas véritablement quitté les espaces clos. Après avoir traversé l’effervescence et l’anxiété de l’ère de l’AI, j’ai pris une mauvaise habitude : je code souvent au beau milieu de la nuit, comme si je ne vivais plus dans le même « fuseau horaire » que le monde réel. Ce matin encore, j’ai traîné au lit jusqu’après midi. Je ne prends que deux repas par jour et, dès mon réveil, je m’installe dans mon bureau, ouvre mon ordinateur et commence à écrire. Programmer est en soi très amusant, mais programmer à l’ère de l’AI ne l’est plus. J’ai fixé l’écran jusqu’à l’après-midi sans parvenir à écrire quoi que ce soit, sans inspiration pour concevoir, avec le sentiment que rien n’était parfait.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:44:57.203396Z
-      seconds: 109.550044125
-      tokens: 20772
+      text: 'Je suis quelqu''un de très casanier et, depuis je ne sais quand, « sortir » est devenu pour moi un mot tout à fait étranger. Il m''arrive souvent de ne quitter mon logement, un mois durant, que lorsque c''est indispensable, et même alors ma vie tient à :tn[une ligne tracée entre deux points]{is="L''original emploie l''expression chinoise 两点一线, littéralement « deux points, une ligne » : une existence qui ne fait que la navette entre chez soi et un seul autre endroit. Tout le sel tient à l''image géométrique — la journée entière se réduit à un simple segment."}, le plus souvent en voiture. À bien y réfléchir, cela fait très longtemps que je n''ai pas vraiment quitté l''intérieur. Après avoir traversé la bulle et l''angoisse de l''ère de l''IA, j''ai contracté une mauvaise habitude : coder au milieu de la nuit, au point de ne plus sembler vivre dans le même « fuseau horaire » que le monde autour de moi. Ce matin encore, j''ai traîné jusqu''à midi passé avant de me lever ; je ne fais que deux repas par jour ; à peine réveillé, je me suis installé dans le bureau, j''ai ouvert l''ordinateur et j''ai commencé à écrire. Écrire du code est en soi une chose très amusante, mais écrire du code à l''ère de l''IA ne l''est plus. J''ai fixé l''écran jusqu''à l''après-midi sans rien produire, sans la moindre idée de conception, avec le sentiment que rien n''était parfait.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.40337Z
+      seconds: 64.246074291
+      tokens: 32766
       review: false
     ja-JP:
-      text: 私はかなりの出不精で、いつからか「外出する」という言葉が自分にはすっかり縁遠いものになっていた。ひと月のうち、必要なときにしか外へ出ないことも多く、出かけたとしても生活は:tn[二つの点を一本の線で結ぶだけ]{is="原文の中国語 liǎng diǎn yí xiàn は文字どおり二点と一本の線を表し、二か所を往復するだけの暮らしを幾何学的な像へと圧縮している。"}で、しかも移動にはたいてい乗り物を使う。よく考えてみれば、私はもう長いこと、本当の意味で屋内から出ていない。AI 時代の熱狂と不安をくぐり抜けるうちに、悪い癖がついた——深夜にコードを書くことが多くなり、暮らしの世界とは別の「時間帯」にいるかのようになってしまった。今朝も十二時を過ぎてようやく起き、一日二食で、目が覚めると書斎に座り、コンピューターを開いて書き始めた。コードを書くこと自体はとても楽しいが、AI 時代のコーディングはもうそうではない。午後まで画面を見つめ続けても何も書けず、デザインのひらめきもなく、何もかも不完全に思えた。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:44:57.203396Z
-      seconds: 109.550044125
-      tokens: 20772
+      text: 私はかなりのインドア派で、いつからかは分からないが、「外出」という言葉はもう自分にとってひどく縁遠いものになっていた。ひと月のあいだ、必要なときにしか外に出ないことも珍しくないし、出たところで生活は:tn[二つの点を結んだ一本の線]{is="原文は中国語の成語「两点一线」。字面どおりには「二つの点、一本の線」で、家ともう一箇所のあいだを往復するだけの暮らしを指す。一日がまるごと一本の線分に潰れてしまう幾何学的な可笑しみがある。"}のようなもので、しかもたいてい車移動だ。よく考えてみれば、本当の意味で屋内を離れてから、ずいぶん長い時間が経っている。AI 時代のバブルと不安を通り抜けたあと、私は悪い癖をひとつ身につけた——深夜にコードを書くのだ。もう自分が生きている世界とは別の「タイムゾーン」にいるらしい。今朝もやはり十二時過ぎまで粘ってようやく起き、一日に二食だけ食べ、目覚めるとそのまま書斎に座り、パソコンを開いて書きはじめた。コードを書くこと自体はとても楽しいことだが、AI 時代のコードを書くことはもうそうではない。午後まで画面を睨みつづけても、何ひとつ書けない。デザインの発想も湧かず、何もかもが不完全に思える。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.40337Z
+      seconds: 64.246074291
+      tokens: 32766
       review: false
     ko-KR:
-      text: 나는 집에 틀어박혀 지내기를 무척 좋아하는 사람이라, 언제부터인지 ‘외출’이라는 말조차 내게 아주 낯설어졌다. 한 달 내내 꼭 필요한 때에만 밖에 나가는 경우가 많고, 나간다 해도 생활 동선은 :tn[두 점을 잇는 한 줄뿐]{is="중국어 원문의 liǎng diǎn yí xiàn은 글자 그대로 두 점과 한 선을 뜻하며, 두 곳만 오가는 삶을 기하학적인 이미지로 압축한다."}이며, 그마저도 대개 차를 탄다. 곰곰이 생각해 보니 나는 정말로 실내를 벗어난 지가 무척 오래되었다. AI 시대의 거품과 불안을 겪은 뒤로는 나쁜 습관까지 생겼다. 한밤중에 코드를 쓰는 일이 잦아지면서, 마치 삶이 이어지는 세상과 다른 ‘시간대’에 사는 듯해졌다. 오늘 아침에도 열두 시가 넘어서야 겨우 일어났다. 하루에 두 끼만 먹고, 눈을 뜨면 곧장 서재에 앉아 컴퓨터를 켜고 쓰기 시작한다. 코드를 쓰는 일 자체는 아주 재미있지만, AI 시대의 코딩은 더 이상 그렇지 않다. 오후까지 화면만 바라봤지만 아무것도 쓰지 못했고, 디자인에 대한 영감도 없었으며, 모든 것이 불완전하게 느껴졌다.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:44:57.203396Z
-      seconds: 109.550044125
-      tokens: 20772
+      text: 나는 상당한 집돌이다. 언제부터인지도 모르게 "외출"이라는 말은 나에게 아주 낯선 단어가 되어 있었다. 한 달 내내 꼭 필요할 때만 밖에 나가는 일이 흔하고, 나간다 해도 생활은 :tn[두 점을 이은 하나의 선]{is="원문은 중국어 성어 「两点一线」으로, 글자 그대로는 ‘두 점, 한 선’이며 집과 다른 한 곳 사이만 오가는 생활을 뜻한다. 하루 전체가 선분 하나로 눌려버린다는 기하학적 그림이 이 표현의 묘미다."}에 가깝고, 게다가 대개는 차를 탄다. 곰곰이 생각해 보면 내가 진짜로 실내를 벗어난 지는 정말 오래되었다. AI 시대의 거품과 불안을 겪고 난 뒤 나는 나쁜 습관 하나를 얻었다. 새벽에 코드를 쓰는 것이다. 이제는 내가 살아가는 세계와 다른 "시간대"에 있는 것 같다. 오늘 아침도 열두 시가 넘어서야 겨우 일어났고, 하루에 두 끼만 먹으며, 깨자마자 서재에 앉아 컴퓨터를 열고 쓰기 시작했다. 코드를 쓰는 일 자체는 아주 재미있는 일이지만, AI 시대의 코드 쓰기는 더 이상 그렇지 않다. 오후까지 화면만 노려보았지만 아무것도 쓰지 못했고, 디자인에 대한 영감도 없었으며, 모든 것이 완벽하지 않게 느껴졌다.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.40337Z
+      seconds: 64.246074291
+      tokens: 32766
       review: false
     zh-CN:
-      text: 我很宅，也不知道从什么时候开始，“出门”对我而言已经成了一个陌生的词。我往往一整个月都只在必要时出门；即使出门，生活也只是:tn[在两个固定地点之间往返]{is="原文用“两点一线”，把生活压缩成连接两个地点的一条直线，形象地写出活动范围狭窄而单调。"}，而且经常以车代步。仔细想来，我已经很久没有真正走出室内了。经历了人工智能时代的泡沫与焦虑后，我养成了一个坏习惯——经常写代码写到凌晨，仿佛与现实生活处在不同的“时区”。今天早上也是一直拖到十二点多才起床，一天只吃两顿饭；醒来后便坐进书房，打开电脑开始写代码。写代码本来是一件很有趣的事，但在人工智能时代，它已经不再有趣了。我盯着屏幕一直盯到下午，却什么也写不出来，既没有设计灵感，又觉得一切都不够完美。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:57:12.033897Z
-      seconds: 20.43170525
-      tokens: 19893
+      text: 我是个很宅的人。不知从什么时候起，"出门"对我来说已经变成一个陌生的词。我常常整整一个月只在必要时出门，就算出门也是:tn[两点之间连成的一条线]{is="原文用的是成语「两点一线」，字面是两个点连成一条线，指生活只在家和另一个地方之间往返。妙处在这层几何感：一整天被压缩成一条线段。"}那样的生活，而且多半还是坐车。仔细想想，我已经很久没有真正离开过室内了。在经历过 AI 时代的泡沫与焦虑之后，我染上了一个坏习惯——常常在凌晨写代码，好像已经和自己生活的这个世界不在同一个"时区"。今天早上也一样，一直拖到十二点多才起床，一天只吃两顿，醒来就坐进书房，打开电脑开始写。写代码本来是件很好玩的事，但 AI 时代的写代码已经不是了。盯着屏幕一直盯到下午，什么也写不出来，没有任何设计灵感，觉得一切都不完美。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.40337Z
+      seconds: 64.246074291
+      tokens: 32766
       review: false
     zh-TW:
-      text: 我是個很宅的人，也不知道從什麼時候開始，「出門」對我來說已經成了一個很陌生的詞。我常常整個月只有必要時才出門，即使出門，生活也只是:tn[兩點一線]{is="原文用「兩點一線」把只在兩個地點之間往返的生活壓縮成一幅幾何圖景。"}，而且還經常搭車。仔細想想，我已經很久沒有真正離開過室內了。經歷了 AI 時代的泡沫與焦慮後，我染上了一個壞習慣——常常在凌晨寫程式，彷彿已經和生活的世界不在同一個「時區」裡了。今天早上也是一直拖到十二點多才起床，一天只吃兩餐，醒來便坐進書房，打開電腦開始寫。寫程式本身是件很好玩的事，但 AI 時代的寫程式已經不是了。我盯著螢幕一直盯到下午，卻什麼也寫不出來，沒有設計靈感，覺得一切都不完美。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:44:57.203396Z
-      seconds: 109.550044125
-      tokens: 20772
+      text: 我是個很宅的人。不知從什麼時候開始，「出門」對我來說已經變成一個陌生的詞。我常常整整一個月只在必要時出門，就算出門，過的也是:tn[兩點之間連成的一條線]{is="原文用的是成語「兩點一線」，字面上是兩個點連成一條線，指生活只在家和另一個地方之間往返。妙處就在這層幾何感：一整天被壓縮成一條線段。"}那樣的生活，而且多半還是坐車。仔細想想，我已經很久沒有真正離開過室內了。在經歷過 AI 時代的泡沫與焦慮之後，我染上了一個壞習慣——常常在凌晨寫程式，好像已經和自己生活的這個世界不在同一個「時區」了。今天早上也一樣，一直拖到十二點多才起床，一天只吃兩餐，醒來就坐進書房，打開電腦開始寫。寫程式本來是件很好玩的事，但 AI 時代的寫程式已經不是了。盯著螢幕一直盯到下午，什麼都寫不出來，沒有任何設計靈感，覺得一切都不完美。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.40337Z
+      seconds: 64.246074291
+      tokens: 32766
       review: false
   8dba1a489980be0aaaa3aa12aa8f1872:
     de-DE:
-      text: 'Ich wechselte auf die andere Seite der Straße am Fluss und ging zurück, dann bog ich auf einen kleinen Weg nahe den Wohnhäusern ein. Ein Waldweg war das eigentlich nicht: Die Bäume standen nur vereinzelt, und direkt hinter der Mauer daneben begannen schon die Häuser. Der Weg war asphaltiert; an einer Abzweigung war ein kurzes Stück Holzsteg mit einem Pavillon eingefügt. Der Asphalt war bereits aufgerissen, aus den Rissen wuchs Gras, und kleine Zweige und Laub lagen auf dem Weg. Auf demselben Abschnitt waren zwei Farben zu erkennen: Eine Hälfte war offensichtlich erneuert worden, doch selbst dieses „Neue“ schien mindestens drei bis fünf Jahre zurückzuliegen. An der Naht hatten sich trotzdem hartnäckig :tn[ein paar kleine Graspflanzen hervorgezwängt? Nein, einzelne Pflanzen waren es wohl nicht, sondern mehrere Reihen Unkraut.]{is="Im Original steht kē, ein Zählwort für einzelne Pflanzen. Der Erzähler nimmt es sofort zurück, als er die Unkrautreihen bemerkt; dieser beiläufige Selbstkorrektur-Effekt lässt sich im Deutschen nicht direkt erhalten."}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:44:57.595168Z
-      seconds: 183.125128917
-      tokens: 23856
+      text: 'Ich wechselte auf die andere Seite der Uferstraße und ging zurück, bog in einen schmalen Weg ein, der dicht an den Wohnblocks entlangführt. Waldweg ist zu viel gesagt: Die Bäume stehen spärlich, und gleich hinter der Mauer daneben sind die Häuser. Der Weg ist asphaltiert, an der Gabelung ist ein kurzes Stück Holzsteg mit einem Pavillon angesetzt. Der asphaltierte Teil ist längst aufgerissen, aus den Rissen wächst Gras, kleine Zweige und Laub liegen verstreut auf der Fahrbahn. Auf demselben Stück Weg sind zwei Farben zu erkennen, die eine Hälfte wurde offensichtlich erneuert, aber auch dieses "Neu" liegt mindestens drei bis fünf Jahre zurück, und aus den Fugen drängen sich trotzdem ein paar :tn[Halme]{is="Im Original steht 棵, das chinesische Zählwort für eine einzelne stehende Pflanze. Der Autor nimmt es sofort zurück, denn da wächst nicht Pflanze für Pflanze, sondern ganze Reihen Unkraut. Die Korrektur ist ein kleiner Scherz über ein zu genau gewähltes Wort."} Gras hervor? Wohl eher keine :tn[Halme]{is="Hier wird dasselbe Zählwort 棵 aus dem vorigen Satz wiederholt und dann verworfen. Die Selbstkorrektur lebt von der Präzision chinesischer Zählwörter; in einer Sprache ohne sie bleibt nur ein gewöhnliches Sichverbessern."} mehr, sondern ein paar Reihen Unkraut.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403532Z
+      seconds: 73.206654708
+      tokens: 32957
       review: false
     en-US:
-      text: 'I crossed to the other side of the road along the river and headed back, then turned onto a path near some apartment buildings. Calling it a woodland path was a stretch: the trees were sparse, and the buildings stood just beyond the wall beside it. The path was paved with asphalt, with a short wooden boardwalk and a pavilion fitted in at a fork. The asphalt section had already cracked, grass was growing through the fissures, and small branches and fallen leaves lay scattered across the surface. You could see two colors along the same stretch: one half had clearly been resurfaced, but even that “new” surface looked at least three to five years old. At the seam, :tn[a few little grass plants had still stubbornly pushed through? No, “individual plants” wasn’t right—it was several rows of weeds.]{is="The original word was kē, a classifier for individual plants; the narrator immediately retracts it after noticing rows of weeds, creating a self-correcting aside that English cannot reproduce directly."}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:44:57.595168Z
-      seconds: 183.125128917
-      tokens: 23856
+      text: 'I crossed to the other side of the riverside road and walked back, turning into a small path that ran close to the residential blocks. Calling it a woodland path is a stretch: the trees are planted thin and sparse, and just past the wall beside it are the buildings. The path is asphalt, with a short stretch of wooden boardwalk and a pavilion pieced together at the fork. The asphalt part has already cracked, grass growing out of the seams, small twigs and fallen leaves scattered over the surface. You can see two different colors on the same stretch of road — half of it was clearly resurfaced, though even that "new" looks at least three or five years old, and a few :tn[blades]{is="The original counts the grass with 棵, the measure word Chinese uses for a single standing plant, then immediately takes it back: what is really there is rows of weeds, not individual plants. The correction is a small joke about being too generous with the word."} of grass have stubbornly pushed up through the joint anyway? Not really :tn[blades]{is="This repeats the same measure word 棵 the writer just used, now rejected outright. English has no single word doing that work, so the retraction reads as a plain second thought instead of a grammatical self-correction."}, though — more like a few rows of weeds.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403532Z
+      seconds: 73.206654708
+      tokens: 32957
       review: false
     es-ES:
-      text: 'Crucé al otro lado de la carretera que bordeaba el río y emprendí el regreso; luego me desvié por un sendero cercano a unos edificios residenciales. Llamarlo sendero forestal era exagerar: los árboles estaban plantados de forma muy dispersa y, al otro lado del muro contiguo, ya se alzaban los edificios. El sendero estaba asfaltado y, en una bifurcación, tenía adosado un corto tramo de pasarela de madera con un pabellón. La parte de asfalto ya se había agrietado; por las grietas crecía hierba, y sobre el firme había ramitas y hojas caídas esparcidas. En ese mismo tramo se distinguían dos colores: una mitad se había renovado claramente, pero incluso esa parte «nueva» parecía tener ya entre tres y cinco años. Por la junta también habían logrado abrirse paso, obstinadamente, :tn[¿unas cuantas plantitas? No, no eran plantas sueltas, sino varias hileras de maleza.]{is="La palabra original era kē, un clasificador para contar plantas individuales. La voz narrativa se corrige de inmediato al advertir que la maleza crece en hileras, un efecto espontáneo que el español no puede reproducir directamente."}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:44:57.595168Z
-      seconds: 183.125128917
-      tokens: 23856
+      text: 'Crucé a la otra acera de la carretera junto al río y volví sobre mis pasos, hasta meterme por un caminito que pasa pegado a los bloques de viviendas. Llamarlo sendero de bosque es mucho decir: los árboles están plantados muy ralos y, al otro lado del muro, están los edificios. El camino es de asfalto, y en la bifurcación hay empalmado un tramo corto de pasarela de madera con un pabellón. La parte de asfalto ya está agrietada, de las grietas sale hierba, y por el suelo hay ramitas y hojas caídas. En el mismo tramo se distinguen dos colores: una mitad está claramente reasfaltada, aunque ese "nuevo" también parece de hace tres o cinco años como poco, y por las juntas asoman igualmente, tercas, unas cuantas :tn[matas]{is="El original usa 棵, el clasificador chino con que se cuenta una planta individual, y lo retira acto seguido: lo que hay ahí no son plantas de una en una, sino hileras de malas hierbas. La corrección es una pequeña broma sobre haber elegido la palabra con demasiado esmero."} de hierba. Bueno, tampoco son ya :tn[matas]{is="Repite el mismo clasificador 棵 de la frase anterior, ahora para rechazarlo. La enmienda se apoya en la precisión de los clasificadores chinos; en una lengua que cuenta de otro modo solo queda una rectificación corriente."}, sino unas cuantas hileras de malas hierbas.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403532Z
+      seconds: 73.206654708
+      tokens: 32957
       review: false
     fr-FR:
-      text: 'J’ai traversé la route qui longeait le fleuve pour revenir sur mes pas, puis j’ai pris un sentier près des immeubles d’habitation. L’appeler sentier forestier était exagéré : les arbres étaient plantés çà et là et, juste derrière le mur qui le bordait, se dressaient les immeubles. Le sentier était asphalté ; à une bifurcation, on y avait raccordé un court passage en bois avec un pavillon. La partie asphaltée était déjà fissurée, de l’herbe poussait dans les fentes, et de petites branches et des feuilles mortes jonchaient le sol. Sur un même tronçon, on distinguait deux couleurs : une moitié avait manifestement été refaite, mais ce « neuf » semblait déjà dater d’au moins trois à cinq ans. À la jointure, :tn[quelques petites plantes s’étaient tout de même frayé un chemin avec obstination ? Non, pas des plantes isolées : c’étaient plusieurs rangées de mauvaises herbes.]{is="Le mot d’origine était kē, un classificateur réservé aux plantes prises individuellement. La voix narrative le retire aussitôt en voyant des rangées de mauvaises herbes, dans une autocorrection spontanée que le français ne peut pas reproduire directement."}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:44:57.595168Z
-      seconds: 183.125128917
-      tokens: 23856
+      text: 'J''ai traversé pour reprendre la route du bord de l''eau de l''autre côté, puis je me suis engagé dans un petit chemin qui longe les immeubles d''habitation. Parler d''un sentier en forêt est exagéré : les arbres sont plantés de façon clairsemée, et juste derrière le mur, ce sont les bâtiments. Le chemin est en bitume, avec un court tronçon de platelage en bois et un pavillon assemblés à l''embranchement. La partie bitumée s''est déjà fissurée, de l''herbe pousse dans les fentes, des brindilles et des feuilles mortes traînent sur la chaussée. On distingue deux couleurs sur la même portion de route : une moitié a manifestement été refaite, mais ce "neuf" remonte lui aussi à au moins trois ou cinq ans, et quelques :tn[pieds]{is="L''original emploie 棵, le spécificatif chinois qui compte une plante isolée, puis le retire aussitôt : ce qui pousse là n''est pas une plante après l''autre, mais des rangées de mauvaises herbes. La correction est une petite plaisanterie sur un mot choisi trop soigneusement."} d''herbe percent quand même obstinément dans les joints ? Ce ne sont sans doute plus des :tn[pieds]{is="Reprise du même spécificatif 棵 employé juste avant, cette fois rejeté. La correction repose sur la précision des spécificatifs chinois ; dans une langue qui compte autrement, il ne reste qu''un simple repentir de formulation."}, plutôt quelques rangées de mauvaises herbes.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403532Z
+      seconds: 73.206654708
+      tokens: 32957
       review: false
     ja-JP:
-      text: 川沿いの道を反対側に渡って引き返し、集合住宅の近くにある小道へ曲がった。林の小道といっても、実際にはそう呼べるほどではない。木はまばらに植えられ、脇の塀の向こうはすぐ建物だった。小道はアスファルト舗装で、分かれ道にはあずまや付きの短い木道が継ぎ足されていた。アスファルト部分はもうひび割れ、隙間から草が生え、路面には小枝や落ち葉が散らばっていた。同じ区間に二つの色が見え、半分は明らかに舗装し直されていたが、その「新しさ」も少なくとも三～五年前のものに見えた。継ぎ目からは相変わらずしぶとく、:tn[草が数本？　いや、「本」で数えるようなものではなく、雑草が何列か生えていた。]{is="原文の語は、中国語で植物一株を数える助数詞 kē。目の前の草が列をなしていると気づいてすぐ言い直す、独り言めいた調子がある。"}
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:44:57.595168Z
-      seconds: 183.125128917
-      tokens: 23856
+      text: 川沿いの道の反対側に渡って引き返し、住宅棟のすぐ脇を通る小道に入った。林の中の小道と言っても実際はそうでもなく、木はまばらにしか植わっていないし、隣は壁一枚隔てて建物だ。小道はアスファルトで、分岐点のところに東屋のついた木道が少しだけ継ぎ足してある。アスファルトの部分はもうひび割れていて、割れ目から草が生え、路面には小枝と落ち葉が散らばっている。同じ一続きの道に二つの色が見て取れる。半分は明らかに舗装し直されているが、その「新しさ」も少なくとも三年か五年は前のことに見えるし、継ぎ目からはやはりしぶとく草が何:tn[本]{is="原文では単独の植物を数える中国語の助数詞「棵」が使われ、その直後に取り消される。目の前にあるのは一株ずつの草ではなく、列をなした雑草だからだ。言葉を選びすぎたことへの小さな自己訂正の冗談になっている。"}か顔を出している。いや「:tn[本]{is="直前に使った助数詞「棵」をそのまま繰り返して否定する箇所。中国語の助数詞の細かさに寄りかかった訂正で、数え方の異なる言語ではただの言い直しにしか見えなくなる。"}」ではないだろう、何列かの雑草だ。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403532Z
+      seconds: 73.206654708
+      tokens: 32957
       review: false
     ko-KR:
-      text: 강변 도로의 반대편으로 건너가 되돌아 걷다가 주거 건물 가까이에 난 오솔길로 접어들었다. 숲길이라고 하기에는 사실 무리가 있었다. 나무는 듬성듬성 심겨 있었고, 옆 담장 너머로 바로 건물이 보였다. 길은 아스팔트로 포장되어 있었으며, 갈림길에는 정자가 딸린 짧은 나무 데크 구간이 이어져 있었다. 아스팔트 구간은 이미 갈라져 틈 사이로 풀이 자랐고, 노면에는 잔가지와 낙엽이 흩어져 있었다. 같은 구간에서 두 가지 색이 보였는데, 절반은 분명 새로 포장한 흔적이 있었지만 그 ‘새것’조차 적어도 3~5년은 되어 보였다. 이음새에서도 어김없이 :tn[풀 몇 포기가 끈질기게 비집고 나왔나? 아니, ‘포기’로 셀 만한 게 아니라 잡초가 몇 줄이었다.]{is="원문은 식물 한 개체를 세는 중국어 양사 kē를 썼다가, 눈앞의 잡초가 줄지어 난 것을 보고 곧바로 말을 거둔다. 혼잣말처럼 스스로 고쳐 말하는 느낌이 난다."}
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:44:57.595168Z
-      seconds: 183.125128917
-      tokens: 23856
+      text: 강변 도로의 반대편으로 건너가 되돌아 걷다가, 주택 건물 바로 옆으로 난 작은 길로 접어들었다. 숲속 오솔길이라고 하기에는 사실 무리다. 나무는 듬성듬성 심겨 있고, 옆으로는 담 하나 너머가 바로 건물이다. 길은 아스팔트이고, 갈림길에 정자가 딸린 나무 데크가 짧게 이어 붙어 있다. 아스팔트 구간은 이미 갈라져서 틈새로 풀이 자라 있고, 노면에는 잔가지와 낙엽이 흩어져 있다. 같은 구간의 길에서 두 가지 색이 보인다. 절반은 분명 새로 포장한 티가 나지만, 그 "새것"도 적어도 삼사 년, 오 년은 지난 것처럼 보이고, 이음매에서는 그래도 끈질기게 풀이 몇 :tn[포기]{is="원문에는 낱낱의 식물을 세는 중국어 수량사 棵가 쓰였다가 곧바로 철회된다. 눈앞에 있는 것은 한 포기씩이 아니라 줄줄이 늘어선 잡초이기 때문이다. 단어를 지나치게 고른 데 대한 작은 자기 정정의 농담이다."} 올라와 있다. 아니, 「:tn[포기]{is="바로 앞 문장에서 쓴 수량사 棵를 그대로 되풀이한 뒤 부정하는 대목이다. 중국어 수량사의 정밀함에 기댄 정정이라, 세는 방식이 다른 언어에서는 평범한 말 바꾸기로만 남는다."}」라고 할 것도 못 되고, 잡초 몇 줄이다.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403532Z
+      seconds: 73.206654708
+      tokens: 32957
       review: false
     zh-CN:
-      text: 沿着江边的马路换到另一侧往回走，又拐进一条紧挨居民楼的小道。说是林间小道，其实并不算：树木稀稀落落，隔墙就是住宅楼。小道铺着柏油，岔路口接有一小段带亭子的木栈道。柏油路面已经开裂，缝里长出了草，路上散落着细树枝和落叶。同一段路能看出两种颜色，其中一半显然翻修过，但所谓的“新”看起来也至少是三五年前的了；接缝里照样顽强地钻出了:tn[几株小草？不，已经不能按「棵」来数了，分明是几排杂草]{is="原文先用单株植物的量词“棵”来数草，随即因为眼前的草已经成排生长而改口，撤回了这个说法。"}。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:57:16.075886Z
-      seconds: 22.691464666
-      tokens: 20241
+      text: 我换到江边马路的另一侧往回走，拐进了一条紧挨着居民楼的小道。说是林间小道，其实算不上：树种得稀稀拉拉，旁边一墙之隔就是楼房。小道是柏油铺的，岔路口拼了一小段带亭子的木栈道。柏油那一段已经开裂了，裂缝里长出了草，路面上散着小树枝和落叶。同一段路上能看出两种颜色，有一半明显翻新过，但那个"新"看上去也至少是三五年前的事了，接缝处照样顽强地钻出了几:tn[棵]{is="「棵」是汉语中用于单株植物的量词。作者先用了它，随即又否定，因为眼前根本不是一株一株的草，而是成排的杂草。这处自我更正是一个关于用词过于讲究的小玩笑。"}小草？应该也算不上「:tn[棵]{is="重复上一句刚用过的量词「棵」，这次被直接推翻。这个自我更正依赖汉语量词的精确性，换成不用量词的语言就只剩下一次普通的改口。"}」了，是几排杂草。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403532Z
+      seconds: 73.206654708
+      tokens: 32957
       review: false
     zh-TW:
-      text: 沿著江邊的馬路換了一邊往回走，拐進了一條靠近居民樓的小道。說是林間小道，其實算不上，樹種得稀稀拉拉的，旁邊隔牆就是樓。小道是柏油路，岔路口有一小段帶亭子的木棧道拼起來的，柏油的那段已經開裂了，裂縫裡長出了草，路面上散著小樹枝和落葉。同一段路上能看出兩種顏色，一半明顯翻新過，但那個「新」看起來也至少是三五年前的事了，接縫處照樣頑強地鑽出了:tn[幾棵小草？應該不算「棵」了，是幾排雜草。]{is="原文先用量詞「棵」把草當作一株株來數，隨即發現它們其實成排生長，於是當場改口，帶出了自言自語般的語氣。"}
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:44:57.595168Z
-      seconds: 183.125128917
-      tokens: 23856
+      text: 我換到江邊馬路的另一側往回走，拐進了一條緊挨著住宅樓的小路。說是林間小徑，其實談不上：樹種得稀稀落落，旁邊一牆之隔就是樓房。小路是柏油鋪的，岔路口接了一小段帶涼亭的木棧道。柏油那一段已經龜裂了，裂縫裡長出了草，路面上散著小樹枝和落葉。同一段路上看得出兩種顏色，有一半明顯翻修過，但那個「新」看起來也至少是三五年前的事了，接縫處照樣頑強地鑽出了幾:tn[棵]{is="「棵」是中文裡用來數單株植物的量詞。作者先用了它，隨即又推翻，因為眼前根本不是一株一株的草，而是成排的雜草。這處自我更正是一個關於用字太過講究的小玩笑。"}小草？應該也算不上「:tn[棵]{is="重複上一句剛用過的量詞「棵」，這次直接被否定。這個更正倚賴中文量詞的精確，換成不使用量詞的語言就只剩下一次尋常的改口。"}」了，是幾排雜草。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403532Z
+      seconds: 73.206654708
+      tokens: 32957
       review: false
   92a8081dc9e7181860a418067fa8d1bf:
     de-DE:
@@ -1237,68 +1237,68 @@ segments:
       review: false
   b5b4c92dd5874dc2b7cc34cc65ebfca3:
     de-DE:
-      text: 'Nachdem ich die Straße überquert hatte, sah ich im Grünstreifen gegenüber eine kleine, mit Steinplatten gepflasterte Fläche, genau an der Ecke zwischen Straße und Platz. Von Weitem wirkte sie wie ein ganz passabler Rastplatz, doch schon aus der Entfernung war zu erkennen, dass das Dach irgendwann vollständig abgebaut worden war. Aus der Nähe stimmte noch mehr nicht; der Ort war längst nicht mehr das, was er einmal gewesen war. Als Kind war ich schon hier gewesen, aber inzwischen fehlte das Dach des Unterstands, und nur ein paar Betonpfeiler standen noch da. Die Wände waren rissig. Neben den Steinplatten gab es zwar einige Bäume, doch um ihre Stämme lagen längst Ringe aus Herbstlaub, das niemand wegfegte; überhaupt kam niemand mehr hierher. Sitzplätze waren noch vorhanden, aber die Steinflächen waren von einer Staubschicht bedeckt und sahen nicht gerade einladend aus. Trotzdem suchte ich mir irgendetwas als Unterlage, setzte mich auf die sauberste Stelle, die ich finden konnte, und klappte meinen Laptop auf, weil ich immer noch schreiben wollte. Vielleicht ist auch das ein Vorteil des Zeitalters der künstlichen Intelligenz: Beim Vibe-Coding muss man sich nicht mehr wirklich hinsetzen und ordentlich schreiben. Spracheingabe mit Typeless oder Wispr Flow genügt, und ein Agent in einer Kommandozeilenoberfläche schreibt den Rest. Mittlerweile bin ich zu faul, auch nur ein einziges Zeichen zu tippen, und meine konservativen Hemmungen habe ich längst abgelegt—mit „bypass permissions“ umgeht man einfach die Berechtigungsprüfung. Selbst beim Programmieren bin ich inzwischen :tn[halb zerstreut und halb im Multitasking]{is="Im Original steht die scherzhafte Wortmischung 三心二用, gebildet aus zwei chinesischen Redewendungen für Unentschlossenheit und dafür, zwei Dinge gleichzeitig zu tun."}.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:45:42.186912Z
-      seconds: 204.935958208
-      tokens: 24504
+      text: 'Ich ging über die Straße. Im Grünstreifen gegenüber lag eine kleine, mit Steinplatten belegte Fläche, genau an der Ecke zwischen Straße und Platz. Von weitem sah sie nach einem ganz brauchbaren Rastplatz aus, nur war schon von weitem zu sehen, dass das Dach irgendwann abgerissen worden war, und aus der Nähe stimmte noch weniger: Das hier war längst nicht mehr das, was es einmal gewesen war. Ich war als Kind hier gewesen, aber jetzt ist das Dach des Unterstands verschwunden, nur ein paar Betonstützen stehen noch, die Wände sind aufgerissen. Neben den Platten stehen tatsächlich ein paar Bäume, doch darunter hat sich längst ein Ring aus Laub gesammelt, niemand kehrt, niemand kommt. Sitzen könnte man schon noch, nur liegt auf dem Stein eine Staubschicht, die man nicht anfassen mag. Ich habe trotzdem irgendetwas zum Unterlegen gesucht, mir die sauberste Platte ausgesucht, mich hingesetzt und den Rechner wieder aufgeklappt -- schreiben wollte ich immer noch. Vielleicht ist auch das ein Vorteil des KI-Zeitalters: Beim Vibe Coding muss man sich gar nicht mehr richtig hinsetzen und schreiben, eine Spracheingabe wie Typeless oder Wispr Flow reicht, ein Agent in der CLI schreibt es für dich, fertig. Ich bin so faul geworden, dass ich kein einziges Zeichen mehr tippen will, und die Grenze des Konservativen habe ich längst aufgegeben -- «bypass permissions», und gut ist. Selbst beim Programmieren bin ich inzwischen :tn[mit drei Herzen bei zwei Dingen]{is="Im Original steht 三心二用, eine Wortschöpfung aus den Redewendungen 三心二意 (unentschlossen, nicht bei der Sache) und 一心二用 (zwei Dinge gleichzeitig tun). Der Reiz liegt im Verschmelzen der beiden Wendungen, den keine geläufige Formulierung wiedergibt."}.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403533Z
+      seconds: 87.555575833
+      tokens: 34379
       review: false
     en-US:
-      text: 'After crossing the road, I found a small patch paved with stone pavers in the green strip opposite, right at the corner where the street met the square. From a distance it looked like a decent little rest area, except that even from far away I could see its roof had been removed at some point. Up close, it felt even more wrong; it had long since ceased to be anything of the sort. I had been here as a child, but now the shelter’s roof was gone, leaving only a few concrete columns standing there. The walls were cracked; there were actually a few trees beside the paving stones, but fallen leaves had long since formed rings around their bases, with no one to sweep them up and no one coming by. There were still places to sit, though the stone slabs were filmed with dust and did not look especially inviting to touch. I found something to use as a makeshift seat cover anyway, picked the cleanest-looking spot and sat down, then opened my laptop, still wanting to write. Maybe that is another advantage of the AI age: when vibe coding, you do not really need to sit down and write properly anymore. Voice-input tools like Typeless and Wispr Flow are enough; just have an agent in a command-line interface write it for you. I have become too lazy to type even a single word, and I gave up my conservative limits long ago—just use “bypass permissions.” Even when coding, I have started :tn[half paying attention and half multitasking]{is="The original coined 三心二用 by blending two Chinese idioms about indecision and doing two things at once, giving the line a playful, self-mocking twist."}.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:45:42.186912Z
-      seconds: 204.935958208
-      tokens: 24504
+      text: 'I crossed the road. In the greenery on the other side there was a small patch paved with stone bricks, right at the corner where the street meets the square. From a distance it looked like a decent place to rest, except that even from far off I could see the roof was gone, taken down at some point, and up close it was worse -- it had stopped being that place a long time ago. I came here as a kid, but now the shelter''s roof has been torn off, only a few concrete pillars still standing, the walls cracked open. There are a few trees beside the flagstones on the ground, but a ring of fallen leaves had long since gathered underneath, nobody sweeping, nobody coming. There were still places to sit, just with a film of dust over the stone that made you not want to touch it. I found something to put down anyway, picked the cleanest-looking slab, sat down, and opened the laptop again -- I still wanted to write. Maybe that is one of the good things about the AI era: when you are vibe coding you do not really need to sit down properly and write any more, a voice input method like Typeless or Wispr Flow will do, with an Agent in a CLI writing it for you and that is that. I have got lazy enough that I do not want to type a single character, and I lost the conservative''s bottom line a long time ago -- «bypass permissions» and be done with it. Even writing code has turned into :tn[two minds and a half]{is="The original says 三心二用, a coinage that splices together the idiom 三心二意 (half-hearted, unable to commit) with 一心二用 (doing two things at once). Plain wording can carry the distraction, not the collision of two set phrases."}.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403533Z
+      seconds: 87.555575833
+      tokens: 34379
       review: false
     es-ES:
-      text: 'Tras cruzar la calle, vi en la zona verde de enfrente un pequeño espacio pavimentado con losas de piedra, justo en la esquina donde se encontraban la calle y la plaza. Desde lejos parecía un lugar de descanso bastante agradable, salvo porque ya a esa distancia se veía que en algún momento le habían desmontado por completo el techo. Al acercarme, resultó aún más extraño: hacía mucho que aquello había dejado de ser lo que era. Había estado allí de niño, pero ahora el techo del cobertizo había desaparecido y solo quedaban en pie unas cuantas columnas de hormigón. Las paredes estaban agrietadas. Junto a las losas había algunos árboles, pero a sus pies se había formado hacía tiempo un círculo de hojas caídas que nadie barría; tampoco venía nadie. Aún quedaban sitios donde sentarse, aunque las losas estaban cubiertas por una capa de polvo y no daban muchas ganas de tocarlas. Aun así, encontré cualquier cosa que pudiera usar como base, elegí el lugar que parecía más limpio y me senté. Luego volví a abrir el portátil porque todavía quería escribir. Quizá esta sea otra ventaja de la era de la inteligencia artificial: cuando programas por intuición, en realidad ya no necesitas sentarte a escribir como es debido. Basta con dictar mediante Typeless o Wispr Flow y dejar que un agente dentro de una interfaz de línea de comandos escriba por ti. Ya me da demasiada pereza teclear una sola letra, y hace tiempo que abandoné mis límites conservadores: basta con saltarse las comprobaciones de permisos mediante «bypass permissions». Incluso al programar he empezado a :tn[estar distraído mientras hago varias cosas a la vez]{is="El original acuñaba 三心二用 al mezclar dos modismos chinos sobre la indecisión y la capacidad de hacer dos cosas simultáneamente, creando un juego de palabras juguetón y autocrítico."}.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:45:42.186912Z
-      seconds: 204.935958208
-      tokens: 24504
+      text: 'Crucé la calle. En la zona verde de enfrente había un pequeño trozo enlosado, justo en la esquina entre la calle y la plaza. De lejos parecía un sitio de descanso bastante decente, salvo que ya desde lejos se veía que el techo había desaparecido, lo habían desmontado en algún momento, y de cerca todavía era peor: hacía mucho que este sitio había dejado de ser aquello. Estuve aquí de niño, pero ahora el techo del cobertizo ya no está, solo quedan unas cuantas columnas de hormigón en pie y las paredes agrietadas. Junto a las losas del suelo sí que hay algún árbol, pero debajo se ha acumulado desde hace tiempo un cerco de hojas caídas, nadie barre y nadie viene. Sitio para sentarse todavía queda, solo que la piedra está cubierta por una capa de polvo que quita las ganas de tocarla. Aun así busqué algo para poner debajo, elegí la losa que parecía más limpia, me senté y volví a abrir el ordenador: seguía queriendo escribir. Puede que esta también sea una de las ventajas de la era de la IA: cuando haces vibe coding en realidad ya no hace falta sentarse a escribir de verdad, basta con un dictado por voz como Typeless o Wispr Flow, con un Agent dentro del CLI que lo escribe por ti y listo. Me he vuelto tan vago que no quiero teclear ni un carácter, y hace tiempo que perdí la línea roja del conservador: «bypass permissions» y ya está. Hasta escribiendo código ando ya :tn[con tres corazones en dos cosas]{is="El original dice 三心二用, un invento que funde dos locuciones fijas chinas: 三心二意 (estar disperso, no acabar de comprometerse) y 一心二用 (hacer dos cosas a la vez). La gracia está en el choque entre ambas, y ninguna expresión corriente la conserva."}.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403533Z
+      seconds: 87.555575833
+      tokens: 34379
       review: false
     fr-FR:
-      text: 'Après avoir traversé la rue, j’ai aperçu dans l’espace vert d’en face une petite zone pavée de dalles de pierre, juste à l’angle de la rue et de la place. De loin, elle ressemblait à une aire de repos plutôt agréable, sauf qu’on distinguait déjà que son toit avait été entièrement démonté on ne sait quand. De près, quelque chose clochait encore davantage : depuis longtemps, l’endroit n’avait plus rien à voir avec ce qu’il avait été. J’y étais venu enfant, mais le toit de l’abri avait maintenant disparu et seuls quelques piliers de béton restaient debout. Les murs étaient fissurés. Il y avait bien quelques arbres à côté des dalles, mais leurs pieds étaient depuis longtemps encerclés de feuilles mortes que personne ne balayait, et plus personne ne venait. On pouvait encore s’asseoir, certes, mais une couche de poussière recouvrait les dalles et ne donnait guère envie de les toucher. J’ai quand même trouvé quelque chose à mettre dessous, choisi l’endroit qui semblait le plus propre et me suis assis, puis j’ai rouvert mon ordinateur, toujours avec l’envie d’écrire. C’est peut-être aussi l’un des avantages de l’ère de l’intelligence artificielle : quand on programme au feeling, il n’est plus vraiment nécessaire de s’installer pour écrire soigneusement. Il suffit de dicter avec Typeless ou Wispr Flow et de laisser un agent dans une interface en ligne de commande écrire à votre place. Je suis devenu trop paresseux pour taper ne serait-ce qu’un caractère, et j’ai depuis longtemps renoncé à mes derniers scrupules de conservateur : autant contourner les contrôles d’autorisation avec « bypass permissions ». Même en programmant, je me suis mis à :tn[avoir l’esprit ailleurs tout en faisant plusieurs choses à la fois]{is="L’original inventait 三心二用 en fusionnant deux expressions chinoises évoquant l’indécision et le fait de mener deux tâches de front, sur un ton ludique et autodérisoire."}.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:45:42.186912Z
-      seconds: 204.935958208
-      tokens: 24504
+      text: 'J''ai traversé la rue. Dans les espaces verts d''en face il y avait un petit carré pavé de dalles, juste à l''angle entre la rue et la place. De loin ça ressemblait à un coin de repos plutôt correct, sauf que de loin déjà on voyait que le toit avait disparu, démonté je ne sais quand, et de près c''était pire encore : cet endroit avait cessé d''être celui-là depuis longtemps. J''étais venu ici enfant, mais le toit de l''abri est parti, il ne reste que quelques piliers de béton dressés, et les murs sont fendus. À côté des dalles il y a bien quelques arbres, seulement un anneau de feuilles mortes s''est accumulé dessous depuis longtemps, personne ne balaie, personne ne vient. Il reste de quoi s''asseoir, sauf qu''une couche de poussière recouvre la pierre et donne envie de ne rien toucher. J''ai quand même trouvé de quoi mettre dessous, choisi la dalle qui paraissait la plus propre, je me suis assis et j''ai rouvert l''ordinateur : j''avais toujours envie d''écrire. C''est peut-être ça aussi, l''avantage de l''ère de l''IA : quand on fait du vibe coding, on n''a plus vraiment besoin de s''asseoir pour écrire pour de bon, une dictée vocale comme Typeless ou Wispr Flow suffit, un Agent dans le CLI écrit à ta place et voilà. Je suis devenu paresseux au point de ne plus vouloir taper un seul caractère, et j''ai perdu depuis longtemps la ligne rouge du conservateur : «bypass permissions» et c''est réglé. Même pour coder, me voilà :tn[à trois cœurs pour deux choses]{is="L''original dit 三心二用, un mot forgé en soudant deux locutions figées : 三心二意 (avoir l''esprit ailleurs, ne pas s''engager) et 一心二用 (faire deux choses à la fois). C''est la collision des deux formules qui amuse, et aucune tournure courante ne la restitue."}.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403533Z
+      seconds: 87.555575833
+      tokens: 34379
       review: false
     ja-JP:
-      text: 道を渡ると、向かいの緑地帯に石畳を敷いた小さな一画があった。ちょうど通りと広場が交わる角だ。遠目にはなかなかよさそうな休憩所に見えたが、かなり離れたところからでも、いつの間にか屋根がすっかり撤去されているのが分かった。近づくとますます様子がおかしく、とうの昔にそういう場所ではなくなっていた。子供の頃に来たことがある場所だが、今では東屋の屋根はなく、数本のコンクリート柱だけが立っている。壁にはひびが入り、敷石の脇には木も何本かあるものの、その根元には落ち葉がとっくに輪を作っていて、掃く人も訪れる人もいない。座れる場所はまだあったが、石板には埃が積もり、あまり触りたいとは思えなかった。それでも適当なものを敷き、いちばんきれいに見える場所を選んで腰を下ろすと、またノートパソコンを開いて、やはり書こうとした。これも人工知能時代の利点なのかもしれない。バイブコーディングなら、もう本当に腰を据えてきちんと書く必要はなく、Typeless や Wispr Flow で音声入力し、コマンドラインインターフェース内のエージェントに書かせれば済む。私は一文字すら打ちたくないほど怠け者になり、保守派としての一線もとうに捨てた。「bypass permissions」で権限確認を迂回すればいい。コーディングまで:tn[気もそぞろなままマルチタスクする]{is="原文の「三心二用」は、優柔不断を表す「三心二意」と二つのことを同時にこなす「一心二用」を混ぜた、茶目っ気のある自嘲的な造語だった。"}ようになった。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:45:42.186912Z
-      seconds: 204.935958208
-      tokens: 24504
+      text: 道を渡ると、向かいの植え込みの中に石畳を敷いた小さな一角があった。通りと広場の角のところだ。遠目には悪くない休憩所に見えたが、遠くからでも屋根がいつの間にか取り払われているのが分かった。近づくとさらにおかしい。とっくにそういう場所ではなくなっていた。ここは子どもの頃に来たことがある。けれど今は東屋の屋根は跡形もなく、コンクリートの柱が数本立っているだけで、壁にはひびが入っている。石畳のそばには木が何本かあるのだが、その下にはとうに落ち葉が輪になって溜まっていて、掃く人もいなければ来る人もいない。座れる場所は一応あるものの、石の上には埃が一枚かぶっていて、触る気にはなれない。それでも適当に何か敷くものを見つけ、いちばん綺麗そうな一枚を選んで腰を下ろし、またパソコンを開いた。やはり書きたかったのだ。これも AI 時代の恩恵かもしれない。vibe coding のときは、本当に腰を据えて書く必要などもうない。Typeless や Wispr Flow のような音声入力があれば十分で、CLI の中の Agent が書いてくれればそれで終わりだ。もう一文字も打ちたくないほど怠けているし、保守派としての一線もとうに手放した。「bypass permissions」で済ませればいい。コードを書くのまで:tn[三つの心で二つを兼ねる]{is="原文は「三心二用」。中国語の成語「三心二意」（気が散って腰が据わらない）と「一心二用」（同時に二つのことをする）を混ぜて作った造語で、そのねじれた語呂の面白さは普通の訳語では消えてしまう。"}ようになってきた。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403533Z
+      seconds: 87.555575833
+      tokens: 34379
       review: false
     ko-KR:
-      text: 길을 건너니 맞은편 녹지대에 돌을 깐 작은 공간이 하나 있었다. 거리와 광장이 만나는 모퉁이였다. 멀리서 보면 제법 괜찮은 쉼터 같았지만, 한참 떨어진 곳에서도 지붕이 언제인지 모르게 완전히 철거된 게 보였다. 가까이 가 보니 더욱 이상했고, 이미 오래전에 본래 모습과는 전혀 다른 곳이 되어 있었다. 어릴 때 와 본 곳인데, 이제 쉼터의 지붕은 사라지고 콘크리트 기둥 몇 개만 덩그러니 서 있었다. 벽에는 금이 가 있었고 바닥의 석판 옆에는 나무도 몇 그루 있었지만, 나무 밑에는 진작부터 낙엽이 둥글게 쌓여 있었다. 쓸어 내는 사람도, 찾아오는 사람도 없었다. 앉을 곳은 아직 남아 있었지만 석판 위에 먼지가 한 겹 내려앉아 있어 별로 손대고 싶지 않았다. 그래도 대충 깔 만한 것을 찾아 가장 깨끗해 보이는 자리에 놓고 앉은 뒤, 여전히 뭔가 쓰고 싶어서 노트북을 다시 열었다. 어쩌면 이것도 인공지능 시대의 장점인지 모른다. 바이브 코딩을 할 때는 사실 더 이상 자리를 잡고 제대로 쓸 필요가 없다. Typeless나 Wispr Flow 같은 음성 입력 도구를 쓰고 명령줄 인터페이스 안의 에이전트에게 작성을 맡기면 그만이다. 이제는 글자 하나조차 치기 싫을 만큼 게을러졌고, 보수파로서 지키던 선도 진작 버렸다. ‘bypass permissions’로 권한 확인을 우회하면 된다. 코딩을 할 때조차 :tn[딴생각을 하며 멀티태스킹하는]{is="원문의 三心二用은 우유부단함을 뜻하는 三心二意와 두 가지 일을 동시에 한다는 一心二用을 섞은 익살스럽고 자조적인 말장난이다."} 지경이 됐다.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:45:42.186912Z
-      seconds: 204.935958208
-      tokens: 24504
+      text: 길을 건너니 맞은편 녹지 안에 돌벽돌을 깐 작은 자리가 있었다. 거리와 광장이 만나는 모퉁이였다. 멀리서는 꽤 괜찮은 쉼터처럼 보였는데, 멀리서도 지붕이 언제부턴가 뜯겨 없어진 게 보였고, 가까이 가 보니 더 이상했다. 진작에 그런 곳이 아니게 되어 있었다. 어릴 때 여기 와 본 적이 있다. 그런데 지금은 정자의 지붕이 흔적도 없이 사라지고 콘크리트 기둥 몇 개만 서 있고, 벽은 갈라져 있다. 바닥 돌판 옆에 나무가 몇 그루 있기는 한데, 그 아래엔 이미 낙엽이 빙 둘러 쌓여 있다. 쓰는 사람도 없고 오는 사람도 없다. 앉을 자리는 그래도 남아 있지만, 돌판 위에 먼지가 한 겹 덮여 있어 손대고 싶지가 않았다. 그래도 아무거나 깔 것을 찾아, 제일 깨끗해 보이는 판을 골라 앉고 다시 노트북을 열었다. 그래도 쓰고 싶었으니까. 어쩌면 이것도 AI 시대의 좋은 점일 것이다. 바이브 코딩을 할 때는 사실 제대로 앉아서 쓸 필요가 없다. Typeless나 Wispr Flow 같은 음성 입력이면 충분하고, CLI 안의 Agent가 대신 써 주면 그만이다. 나는 한 글자도 치기 싫을 만큼 게을러졌고, 보수파로서의 마지노선도 진작에 버렸다. 「bypass permissions」면 끝이다. 코드 쓰는 것마저 :tn[세 마음으로 두 가지를]{is="원문은 三心二用. 중국어 성어 三心二意(마음이 갈려 한곳에 붙어 있지 못함)와 一心二用(한 사람이 두 가지를 동시에 함)을 섞어 만든 말장난으로, 두 성어가 겹쳐지는 재미는 평범한 표현으로는 살릴 수 없다."} 하게 되었다.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403533Z
+      seconds: 87.555575833
+      tokens: 34379
       review: false
     zh-CN:
-      text: 穿过马路，对面绿化带里有一小块铺着石砖的空地，正好位于街道和广场的交界处。远远看去，那里似乎是个还不错的休息区，只是还没走近就能看见，棚顶不知何时已经被拆掉了；走近一看，更觉得完全不是记忆中的样子。我小时候来过这里，如今棚子只剩几根混凝土柱子孤零零地立着，墙壁也已开裂。石板地旁还长着几棵树，但树下早已积了一圈无人清扫的落叶，也没有人再来。能坐的地方倒还在，只是石板上蒙着一层灰，让人看着就不想碰。我还是随便找了些东西垫着，挑了块看起来最干净的地方坐下，再次打开电脑，仍然想写点代码。也许这就是人工智能时代的好处吧：进行“氛围编程”时，其实不必再端端正正地坐下来亲手敲代码，用 Typeless、Wispr Flow 之类的语音输入法就行，再让命令行里的智能体替你写完。我已经懒得连一个字都不想敲，也早就丢掉了保守派的底线，直接「bypass permissions」就好，写代码时也开始:tn[一边分心，一边多任务处理]{is="原文说三心二用，把三心二意和一心二用揉成一个戏仿成语，调侃写代码时既分心又同时处理多件事。"}了。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:57:39.18047Z
-      seconds: 26.82847575
-      tokens: 20371
+      text: 走过马路，对面的绿化带里有一小片铺着石砖的地方，就在街道和广场的拐角上。远看像个还不错的休息区，只是远远地就能看见，顶不知什么时候已经被拆没了；走近才发现更不对劲，这地方早就不是那么回事了。我小时候来过这里，可现在棚子的顶已经拆干净，只剩几根混凝土柱子立着，墙也裂开了。地上的石板旁其实是有几棵树的，但树下早就围了一圈落叶，没人扫，也没人来。能坐的地方倒还有，只是石板上蒙了一层灰，看着就不太想碰。我还是随手找了点东西垫上，挑了块看起来最干净的坐下，又打开电脑，还是想写点什么。也许这也算 AI 时代的好处吧：vibe coding 的时候，其实并不需要真的坐下来好好写了，用 Typeless、Wispr Flow 这类语音输入法就行，CLI 里有个 Agent 帮你写完就是了。我已经懒到一个字都不想打，保守派的底线也早丢了，「bypass permissions」一按就完事。连写代码都开始:tn[三心二用]{is="原文写的就是「三心二用」，把成语「三心二意」和「一心二用」捏在一起自造出来的说法。它同时含着心思不定和一人分饰两职两层意思，改成任何一个规规矩矩的词，都会丢掉这层错位的谐趣。"}了。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403533Z
+      seconds: 87.555575833
+      tokens: 34379
       review: false
     zh-TW:
-      text: 過了馬路，對面的綠帶裡有一小塊鋪著石磚的地方，就在街道與廣場的轉角。遠看像是個還不錯的休憩區，只是隔著老遠就能看出頂棚不知何時已經被拆掉了；走近後更覺得不對，這裡早就不是原來的樣子了。我小時候來過這裡，如今棚頂已經消失，只剩幾根混凝土柱子立在那裡。牆壁開裂，地上的石板旁其實還有幾棵樹，但樹下早已圍了一圈落葉，沒人清掃，也沒人過來。能坐的地方倒是還有，只是石板上蒙著一層灰，讓人不太想碰。我還是隨便找了點東西墊著，挑了塊看起來最乾淨的地方坐下，又打開電腦，依然想寫點東西。也許這也是人工智慧時代的好處吧：做氛圍程式設計時，其實已經不必真的坐下來認真寫了，用 Typeless、Wispr Flow 之類的語音輸入工具就行，再讓命令列介面裡的代理程式替你寫完。我已經懶得敲哪怕一個字，也早就丟掉了保守派的底線，用「bypass permissions」繞過權限檢查就好了；現在連寫程式都開始:tn[心不在焉地同時處理多項工作]{is="原文是「三心二用」，把「三心二意」和「一心二用」揉成戲仿式說法，帶著自嘲的文字遊戲意味。"}了。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:45:42.186912Z
-      seconds: 204.935958208
-      tokens: 24504
+      text: 走過馬路，對面的綠化帶裡有一小片鋪著石磚的地方，就在街道和廣場的轉角上。遠看像個還不錯的休息區，只是遠遠就能看見，頂不知什麼時候已經被拆掉了；走近才發現更不對勁，這地方早就不是那麼回事了。我小時候來過這裡，可現在棚子的頂已經拆得乾乾淨淨，只剩幾根混凝土柱子立著，牆也裂開了。地上的石板旁其實是有幾棵樹的，但樹下早就圍了一圈落葉，沒人掃，也沒人來。能坐的地方倒還有，只是石板上蒙了一層灰，看著就不太想碰。我還是隨手找了點東西墊上，挑了塊看起來最乾淨的坐下，又打開電腦，還是想寫點什麼。也許這也算 AI 時代的好處吧：vibe coding 的時候，其實並不需要真的坐下來好好寫了，用 Typeless、Wispr Flow 這類語音輸入法就行，CLI 裡有個 Agent 幫你寫完就是了。我已經懶到一個字都不想打，保守派的底線也早丟了，「bypass permissions」一按就了事。連寫程式都開始:tn[三心二用]{is="原文寫的就是「三心二用」，把成語「三心二意」和「一心二用」揉在一起自造出來的說法。它同時帶著心思不定和一人分飾兩職兩層意思，換成任何一個規規矩矩的詞，都會失掉這層錯位的趣味。"}了。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:20:45.403533Z
+      seconds: 87.555575833
+      tokens: 34379
       review: false
   be2f806b83808fc5d4bcf0257c42584b:
     de-DE:
@@ -1562,68 +1562,68 @@ segments:
       review: false
   ece3bf55829edba4e5b445a3313f4642:
     de-DE:
-      text: 'In dem Moment, als ich den Bildschirm aufklappte, wusste ich, dass es vorbei war. Der Bildschirm meines :tn[kleinen Äpfelchens]{is="Der ursprüngliche Kosename lautete Guoguo und entstand durch die spielerische Wiederholung des letzten Teils des chinesischen Wortes für Apple. Damit klingt zugleich die MacBook-Marke an und liebevolle Vertrautheit mit."} war draußen schlicht nicht hell genug. Ich probierte ein wenig mit allen möglichen Winkeln herum, mit dem Licht von hinten und von vorn, und brachte mich sogar mit der Sonne auf eine Linie – doch egal, was ich einstellte, ich konnte nichts erkennen. Ziemlich erbärmlich, ehrlich gesagt. Drinnen hielt ich mich noch für einen Programmierer, und draußen stellte sich heraus, dass ich nicht einmal meinen Bildschirm zum Leuchten bringen konnte. Na gut, dann schreibe ich eben keinen Code. Ganz aufgeben wollte ich trotzdem nicht: Ich klappte den Laptop zu und beschloss, mein Glück im Schatten der Bäume auf der anderen Straßenseite zu versuchen. Bevor ich das Geländer verließ, warf ich noch einen Blick auf den Fluss. Aus der Ferne sah er eigentlich ganz in Ordnung aus; bei Wolken und gelegentlichem Sonnenschein wirkte das Wasser noch so, wie ich es in Erinnerung hatte. Senkte man den Blick jedoch ein wenig zum Ufer, erkannte man eine Schicht von Dingen auf der Oberfläche – Algen, Blätter und vereinzelten Treibabfall. Es war nicht viel, aber das Flusswasser war nicht mehr klar. Die Oberfläche war ruhiger als in meiner Erinnerung, und um das Ufer kümmerte sich offensichtlich längst niemand mehr. „Vor ein paar Jahren, während der Pandemie, war ich tatsächlich schon einmal hier, und eigentlich sieht es seitdem so aus.“ ~~Trotzdem werde ich jedes Mal ein wenig wehmütig, wenn ich hier vorbeikomme~~.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:46:34.512427Z
-      seconds: 137.015563167
-      tokens: 21935
+      text: 'In dem Moment, in dem ich den Bildschirm aufklappte, wusste ich, dass es vorbei war. Die Helligkeit von :tn[Äpfelchen]{is="Im Original heißt das MacBook 果果, eine verniedlichende Verdopplung von 苹果 (Apfel) — ein zärtlicher Kosename für den eigenen Rechner. Der bloße Markenname würde diese Wärme verlieren."} reicht draußen einfach nicht. Ich probierte verschiedene Winkel aus, Gegenlicht, Sonne im Rücken, stellte mich am Ende sogar in eine Linie mit der Sonne — egal wie, ich konnte nichts erkennen. Ziemlich erbärmlich, ehrlich gesagt. Drinnen halte ich mich für einen Programmierer, draußen merke ich, dass ich nicht mal den Bildschirm zum Leuchten bringe. Egal, dann wird dieser Code eben nicht geschrieben. Aber ganz aufgeben wollte ich doch nicht: Ich klappte das Notebook zu und beschloss, es im Schatten der Bäume auf der anderen Straßenseite zu versuchen. Bevor ich das Geländer verließ, sah ich noch einmal auf den Fluss. Von Weitem war es eigentlich in Ordnung, bei diesem Wetter aus Wolken und Sonne sah die Wasserfläche noch so aus wie in meiner Erinnerung. Doch sobald man den Kopf ein wenig senkt und den Blick zum Ufer hinunterzieht, sieht man eine Schicht auf dem Wasser treiben — Algen, Blätter, verstreute Kleinteile. Nicht viel, aber klar ist der Fluss nicht mehr. Die Oberfläche liegt stiller da als in meiner Erinnerung, doch um das Ufer kümmert sich offensichtlich schon lange niemand mehr. „Vor ein paar Jahren, während der Pandemie, war ich eigentlich schon mal hier und habe es mir angesehen — seitdem ist es schon so." ~~Trotzdem berührt es mich jedes Mal ein wenig, wenn ich vorbeigehe.~~'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:21:49.651961Z
+      seconds: 77.052975333
+      tokens: 33751
       review: false
     en-US:
-      text: The moment I opened the screen, I knew I was done for. The screen on :tn[my little Apple]{is="The original nickname was Guoguo, formed by playfully repeating the final part of the Chinese word for Apple; it affectionately hints at the MacBook brand."} was nowhere near bright enough to see outdoors. I tried a few different angles, with the light behind me and in front of me, and even lined myself up with the sun—but no adjustment made the screen readable. Pretty pathetic, honestly. Indoors, I still felt like a programmer; outdoors, it turned out I couldn’t even get my screen to light up. Fine, forget writing code. Still unwilling to give up, though, I closed the laptop and decided to try my luck in the shade across the road. Before leaving the railing, I glanced at the river again. From a distance, it actually looked all right; beneath clouds broken by sunlight, the water still looked the way I remembered it. But lower your gaze slightly toward the bank and you could see a layer of things floating on the surface—algae, leaves, scattered bits of debris. There wasn’t much, but the river was no longer clear. The surface was calmer than I remembered, and the bank had obviously been left unattended. “I actually came out to look a few years ago during the pandemic, and it’s really been like this ever since.” ~~Still, every time I pass by, I feel a little wistful.~~
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:46:34.512427Z
-      seconds: 137.015563167
-      tokens: 21935
+      text: 'The moment I opened the screen I knew it was over. :tn[Appley]{is="The original calls the MacBook 果果, a cutesy reduplication of 苹果 (Apple). It''s an affectionate pet name for the laptop — using the brand name outright loses the tenderness."}''s brightness is simply not enough outdoors. I tried a few angles — backlit, front-lit, even lining myself up with the sun — and no matter what I did I couldn''t read a thing. Pretty pathetic, honestly. Indoors I feel like a programmer; outdoors I discover I can''t even get my screen to light up. Fine, the code can go unwritten. But I still wasn''t ready to give up, so I closed the laptop and decided to try my luck in the shade of the trees across the road. Before leaving the railing, I looked out at the river one more time. From a distance it was fine, really — under that cloudy-with-sun light the water still looked the way it does in my memory. But tilt your head down a little, drop your gaze toward the bank, and you find a layer of stuff floating on the surface: algae, leaves, scattered bits of debris. Not much, but the river is no longer clear. The water is stiller than I remember, yet clearly nobody has tended the bank in a long time. "Back during the pandemic years I actually came out to look, and it had already been like this since then." ~~Still, walking past it always stirs something in me.~~'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:21:49.651961Z
+      seconds: 77.052975333
+      tokens: 33751
       review: false
     es-ES:
-      text: 'En cuanto abrí la pantalla, supe que estaba perdido. El brillo de la pantalla de :tn[mi Manzanita]{is="El apodo original era Guoguo, creado al repetir juguetonamente la parte final de la palabra china para Apple. Así alude a la marca del MacBook y a la vez transmite un cariño íntimo."} no bastaba ni de lejos para verla al aire libre. Probé un poco con toda clase de ángulos, con la luz por detrás y de frente, e incluso me coloqué en línea recta con el sol, pero hiciera lo que hiciera no conseguía ver nada. Bastante lamentable, la verdad. Dentro aún me sentía programador; al salir descubrí que ni siquiera podía hacer que se viera la pantalla. En fin, que le den al código. Aun así, no quería rendirme: cerré el portátil y decidí probar suerte bajo la sombra de los árboles al otro lado de la calle. Antes de alejarme de la barandilla, volví a mirar el río. Desde lejos no se veía mal; bajo las nubes entreveradas de sol, el agua aún parecía la de mis recuerdos. Pero bastaba con agachar un poco la cabeza y bajar la mirada hacia la orilla para descubrir una capa de cosas flotando sobre la superficie: algas, hojas y pequeños residuos dispersos. No eran muchos, pero el agua ya no estaba limpia. La superficie estaba más quieta de lo que recordaba, y era evidente que nadie se ocupaba ya de la orilla. «La verdad es que ya vine a verlo hace unos años, durante la pandemia, y en realidad lleva así desde entonces». ~~Pero cada vez que paso por aquí sigo sintiendo cierta melancolía~~.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:46:34.512427Z
-      seconds: 137.015563167
-      tokens: 21935
+      text: 'En el instante en que abrí la pantalla supe que estaba perdido. El brillo de :tn[Manzanita]{is="En el original el MacBook se llama 果果, una reduplicación cariñosa de 苹果 (manzana), un apodo tierno para el propio ordenador. El nombre de la marca tal cual perdería esa ternura."} sencillamente no da para el exterior. Probé varios ángulos, a contraluz, con la luz de frente, incluso me coloqué en línea con el sol: no había manera de ver nada. Bastante lamentable, la verdad. Dentro de casa me creo programador, y al salir descubro que ni siquiera consigo encender la pantalla. Da igual, este código bien puede quedarse sin escribir. Pero aun así no me resigné: cerré el portátil y decidí probar suerte a la sombra de los árboles, al otro lado de la carretera. Antes de dejar la barandilla, miré una vez más el río. De lejos no estaba mal: con ese cielo entre nubes y sol, el agua seguía teniendo el aspecto de mis recuerdos. Pero basta con bajar un poco la cabeza y llevar la mirada hacia la orilla para ver una capa de cosas flotando en la superficie: algas, hojas, restos sueltos. No mucho, pero el agua ya no está limpia. La superficie está más quieta que en mi recuerdo, y sin embargo la orilla lleva claramente mucho tiempo sin que nadie la atienda. «Hace unos años, durante la pandemia, ya había salido a verlo, y desde entonces ya estaba así». ~~Aun así, cada vez que paso por aquí algo se me remueve.~~'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:21:49.651961Z
+      seconds: 77.052975333
+      tokens: 33751
       review: false
     fr-FR:
-      text: 'Dès que j’ai ouvert l’écran, j’ai su que c’était fichu. La luminosité de l’écran de :tn[ma petite Pomme]{is="Le surnom d’origine était Guoguo, formé en répétant de façon enfantine la fin du mot chinois désignant Apple. Il évoque ainsi la marque du MacBook tout en lui donnant un ton tendre et familier."} était largement insuffisante en extérieur. J’ai essayé plusieurs angles, avec la lumière dans le dos puis de face, allant même jusqu’à m’aligner avec le soleil, mais aucun réglage ne rendait l’écran lisible. C’était assez pitoyable, franchement. À l’intérieur, je me croyais encore programmeur ; dehors, je découvrais que je n’étais même pas capable d’allumer correctement mon écran. Tant pis, je me passerais bien d’écrire ce code. Pourtant, je ne voulais toujours pas abandonner : j’ai refermé l’ordinateur et décidé de tenter ma chance à l’ombre des arbres, de l’autre côté de la route. Avant de quitter la rambarde, j’ai de nouveau regardé le fleuve. De loin, ce n’était en réalité pas si mal ; sous les nuages traversés d’éclaircies, l’eau ressemblait encore à celle de mes souvenirs. Mais il suffisait de baisser légèrement la tête et de porter le regard vers la rive pour distinguer une couche de choses flottant à la surface : des algues, des feuilles et toutes sortes de petits débris. Il n’y en avait pas beaucoup, mais l’eau n’était déjà plus claire. La surface était plus calme que dans mon souvenir, et il était évident que plus personne ne s’occupait de la rive. « Je suis déjà venu voir il y a quelques années, pendant la pandémie, et en fait, c’est comme ça depuis cette époque. » ~~Pourtant, chaque fois que je passe par ici, je ressens encore un léger pincement~~.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:46:34.512427Z
-      seconds: 137.015563167
-      tokens: 21935
+      text: 'À l''instant où j''ai ouvert l''écran, j''ai su que c''était fichu. La luminosité de :tn[Pomme-Pomme]{is="Dans l''original, le MacBook est appelé 果果, un redoublement affectueux de 苹果 (pomme) — un petit nom tendre pour son propre ordinateur. Le nom de la marque tel quel perdrait cette tendresse."} ne suffit tout simplement pas dehors. J''ai essayé plusieurs angles, à contre-jour, dans le sens de la lumière, jusqu''à m''aligner avec le soleil — rien à faire, impossible de lire quoi que ce soit. Assez pitoyable, honnêtement. À l''intérieur je me prends pour un programmeur, dehors je découvre que je n''arrive même pas à allumer mon écran. Tant pis, ce code, je peux très bien ne pas l''écrire. Mais je n''ai quand même pas voulu abandonner : j''ai refermé le portable et décidé de tenter ma chance à l''ombre des arbres de l''autre côté de la route. Avant de quitter la balustrade, j''ai regardé le fleuve encore une fois. De loin, ça allait, en fait : sous ce ciel mêlé de nuages et de soleil, la surface avait encore l''air de celle de mes souvenirs. Mais qu''on baisse un peu la tête, qu''on laisse glisser le regard vers la berge, et on aperçoit une couche de choses qui flottent — des algues, des feuilles, des débris épars. Pas beaucoup, mais l''eau n''est plus claire. La surface est plus immobile que dans mon souvenir, alors que la berge, à l''évidence, n''est plus entretenue depuis longtemps. « Il y a quelques années, pendant la pandémie, j''étais déjà venu voir, et c''était déjà comme ça depuis ce moment-là. » ~~Malgré tout, chaque fois que je passe, quelque chose me serre un peu.~~'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:21:49.651961Z
+      seconds: 77.052975333
+      tokens: 33751
       review: false
     ja-JP:
-      text: ディスプレイを開いた瞬間、もうだめだと悟った。:tn[りんごちゃん]{is="原文の愛称はグオグオで、中国語で Apple を表す語の末尾を重ねたもの。MacBook をほのめかしながら、かわいがるような親しみを添えている。"}の画面は、屋外ではまるで明るさが足りない。少しだけ角度をあれこれ試し、光を背にしたり正面から受けたり、しまいには自分と太陽が一直線になるようにしてみたが、どう調整しても見えなかった。正直、なかなか哀れだ。屋内ではまだ自分をプログラマーだと思えていたのに、外へ出たら画面すらまともに明るくできない。もういい、コードなんて書かなくていい。それでも諦めきれず、ノートパソコンを閉じて、道路の向こうの木陰で運を試すことにした。手すりを離れる前に、もう一度川面へ目をやった。遠目には、実のところ悪くない。雲の間から日が差す空の下、水面はまだ記憶の中と同じように見えた。だが少しうつむき、視線を下げて岸辺を見ると、水面に何かが一層浮かんでいるのが分かる——藻、木の葉、細々とした漂流物。量は多くないが、川の水はもう澄んでいなかった。水面は記憶より静かで、岸辺は明らかに誰にも手入れされていない。「何年か前、コロナ禍のころにも見に来たことがあるけれど、実はそのころからずっとこんな感じだ。」~~それでも、ここを通るたびに少し感慨を覚える~~。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:46:34.512427Z
-      seconds: 137.015563167
-      tokens: 21935
+      text: 画面を開いた瞬間、もうダメだと分かった。:tn[りんごちゃん]{is="原文は MacBook を「果果」と呼んでいる。「苹果（アップル）」を畳語にした愛称で、自分のパソコンへの親しみがこもっている。ブランド名をそのまま書くと、その甘さが消えてしまう。"}の画面の明るさは屋外ではまるで足りない。角度をいろいろ試して、逆光、順光、しまいには自分と太陽が一直線になる位置まで動いてみたが、どう調整しても見えない。正直、なかなか惨めだった。室内では自分もプログラマーのつもりでいたのに、屋外に出たら画面すら点けられないと気づく。もういい、このコードは書かなくていい。それでも諦めきれず、ノートを閉じて、道の向かい側の木陰で運試しをすることにした。手すりを離れる前に、もう一度川面を見た。遠目にはまだ悪くない。曇りと日差しが混ざった天気の下で、水面は記憶の中のあの姿のままだった。けれど少し顔を下げて、視線を岸辺へ落とすと、水面に何かが層になって浮かんでいるのが見える——藻、落ち葉、細々とした漂流物。多くはないが、川の水はもう澄んでいない。水面は記憶より静かなのに、岸辺は明らかにとっくに誰も手入れしていない。「何年か前、コロナのころにも実は見に来ていて、そのときからもうこうだった」~~それでも通りかかるたびに、少し感じ入るものがある。~~
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:21:49.651961Z
+      seconds: 77.052975333
+      tokens: 33751
       review: false
     ko-KR:
-      text: 화면을 여는 순간 망했다는 걸 알았다. :tn[꼬마 사과]{is="원문의 애칭은 궈궈로, 중국어로 Apple을 뜻하는 말의 뒷부분을 장난스럽게 반복해 만든 표현이다. MacBook 브랜드를 넌지시 가리키면서도 귀여워하는 친근한 어감을 낸다."}의 화면 밝기는 야외에서 보기엔 턱없이 부족했다. 각도를 이리저리 조금 바꿔 보고, 빛을 등져도 보고 정면으로 받아도 보고, 심지어 나와 태양이 일직선에 놓이도록 맞춰 봤지만 어떻게 해도 화면이 보이지 않았다. 솔직히 꽤 처량했다. 실내에서는 그래도 내가 프로그래머라고 생각했는데, 막상 밖에 나오니 화면 하나 제대로 밝히지 못했다. 됐다, 코드는 안 쓰고 말지. 그래도 포기가 안 돼서 노트북을 덮고 길 건너편 나무 그늘에서 운을 시험해 보기로 했다. 난간을 떠나기 전에 강물을 한 번 더 바라봤다. 멀리서 보면 사실 괜찮았다. 구름 사이로 햇빛이 비치는 날씨 속에서 수면은 여전히 기억 속 모습처럼 보였다. 하지만 고개를 조금 숙여 시선을 강가 쪽으로 내리면 수면 위에 무언가 한 겹 떠 있는 게 보였다. 물때와 나뭇잎, 자잘한 부유물들이었다. 많지는 않았지만 강물은 이미 맑지 않았다. 수면은 기억보다 고요했고, 강가는 누가 봐도 더 이상 아무도 돌보지 않는 상태였다. “몇 년 전 팬데믹 때도 사실 나와서 본 적이 있는데, 그때부터 줄곧 이런 모습이었다.” ~~그래도 이곳을 지날 때마다 조금은 감상에 젖는다~~.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:46:34.512427Z
-      seconds: 137.015563167
-      tokens: 21935
+      text: 화면을 여는 순간 끝났다는 걸 알았다. :tn[사과사과]{is="원문에서는 MacBook을 果果라고 부른다. 苹果(사과)를 겹쳐 만든 애칭으로, 자기 컴퓨터를 향한 다정한 말투가 담겨 있다. 브랜드 이름을 그대로 쓰면 그 다정함이 사라진다."}의 화면 밝기는 야외에서는 도무지 부족하다. 각도를 이리저리 바꿔 보고, 역광으로도, 순광으로도, 나중에는 나 자신을 태양과 일직선에 놓아 보기까지 했지만 어떻게 해도 보이지 않았다. 솔직히 꽤 처량했다. 실내에서는 스스로를 프로그래머라고 여기다가, 밖에 나오니 화면조차 켜지 못한다는 걸 알게 된다. 됐다, 이 코드는 안 써도 그만이다. 그래도 미련이 남아 노트북을 덮고, 길 건너 나무 그늘에서 운을 시험해 보기로 했다. 난간을 떠나기 전에 강을 한 번 더 바라봤다. 멀리서 보면 사실 괜찮았다. 구름과 햇빛이 섞인 날씨 아래 수면은 여전히 기억 속 그 모습이었다. 그런데 고개를 조금만 숙여 시선을 물가 쪽으로 내리면, 수면 위에 한 겹 떠 있는 것들이 보인다 — 물이끼, 나뭇잎, 자잘한 부유물. 많지는 않지만 강물은 이미 맑지 않다. 수면은 기억보다 더 고요한데, 물가는 누가 봐도 이미 오래전부터 아무도 돌보지 않았다. 「몇 년 전 팬데믹 때도 사실 나와서 봤는데, 그때부터 이미 이랬다」 ~~그래도 지나갈 때마다 조금은 마음이 움직인다.~~
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:21:49.651961Z
+      seconds: 77.052975333
+      tokens: 33751
       review: false
     zh-CN:
-      text: 屏幕打开的那一刻，我就知道完了。:tn[小苹果]{is="原文把“苹果”叠成昵称“果果”，既暗指 MacBook 的品牌，也带着亲昵口吻。"}的屏幕亮度在户外根本不够用。我稍微试了试各种角度：背光、顺光，甚至让自己和太阳处在同一条线上——怎么调都看不清。说实话，挺可怜的。在室内还觉得自己是个程序员，到了户外才发现连屏幕都点不亮。算了，这代码不写也罢。可我还是不死心，于是合上笔记本，决定去马路对面的树荫下碰碰运气。离开栏杆前，我又看了一眼江面。远远望去其实还好，多云间晴的天气里，水面看上去依然是记忆中的模样。可只要稍稍低头，把视线移向岸边，就能发现水面漂着一层东西——水藻、树叶，还有零零碎碎的漂浮物。虽然不多，但江水已经不再清澈；水面比记忆中更平静，岸边显然也早已无人打理。「其实早几年疫情期间我就出来看过，从那时起这里就已经是这样了。」~~但每次经过，我还是会有些感慨~~。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:57:55.094643Z
-      seconds: 26.101855875
-      tokens: 20292
+      text: 打开屏幕的那一刻我就知道完了。:tn[果果]{is="原文用「果果」称呼 MacBook，是把「苹果」叠成的昵称，带着对自己电脑的亲昵语气；直接写品牌名就没了这份亲切。"}的屏幕亮度在户外根本不够看。我试了各种角度，背光、顺光，甚至把自己挪到和太阳同一条线上，怎么调都看不清。说实话，挺可怜的。在室内还觉得自己是个程序员，到了户外才发现连屏幕都点不亮。算了，这代码不写也罢。但我还是不死心，合上笔记本，决定去马路对面的树荫里碰碰运气。离开栏杆之前，我又往江面看了一眼。远看其实还行，多云带阳光的天气下，水面看起来还是记忆里的那个样子。可只要稍微低头，把视线压向岸边，就能看见水面上浮着一层东西——水藻、树叶、零零碎碎的漂浮物。不多，但江水已经不清了。水面比记忆中更静，岸边却明显早就没人打理了。「早几年疫情的时候我其实就出来看过，从那时候起就已经是这样了。」~~但每次走过还是有些感慨。~~
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:21:49.651961Z
+      seconds: 77.052975333
+      tokens: 33751
       review: false
     zh-TW:
-      text: 打開螢幕的那一刻我就知道完了。:tn[小蘋果]{is="原文暱稱是「果果」，由「蘋果」的後半部分疊詞化而來，既暗指 MacBook 的品牌，又帶著親暱可愛的語氣。"}的螢幕亮度在戶外根本不夠看。稍微嘗試了一下各種角度，背光、順光，甚至把自己調整到和太陽在同一條線上——怎麼調都看不清。挺可憐的，說實話。在室內覺得自己還是個程式設計師，結果到了戶外發現連螢幕都點不亮。算了，這程式碼不寫也罷，但是我還是不死心，闔上筆電，決定去馬路對面的樹蔭裡碰碰運氣。離開欄杆之前，我又往江面看了一眼。遠看其實還行，水面在多雲伴隨陽光的天氣下看起來還是記憶裡的那個樣子。但稍稍低頭把視線往下壓一點看向岸邊，就能發現水面上浮著一層東西——水藻、樹葉、零零碎碎的漂浮物。不多，但江水已經不清了，水面比記憶中安靜，但岸邊很顯然已經沒人搭理了，「前幾年疫情的時候我其實就出來看過，從那時候起其實就一直這樣了。」~~但是每次走過還是有些許感慨~~。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:46:34.512427Z
-      seconds: 137.015563167
-      tokens: 21935
+      text: 打開螢幕的那一刻我就知道完了。:tn[果果]{is="原文用「果果」稱呼 MacBook，是把「蘋果」疊成的暱稱，帶著對自己電腦的親暱語氣；直接寫品牌名就沒了這份親切。"}的螢幕亮度在戶外根本不夠看。我試了各種角度，背光、順光，甚至把自己挪到和太陽同一條線上，怎麼調都看不清楚。老實說，挺可憐的。在室內還覺得自己是個程式設計師，到了戶外才發現連螢幕都點不亮。算了，這程式碼不寫也罷。但我還是不死心，闔上筆電，決定去馬路對面的樹蔭裡碰碰運氣。離開欄杆之前，我又往江面看了一眼。遠看其實還行，多雲帶陽光的天氣下，水面看起來還是記憶裡的那個樣子。可只要稍微低頭，把視線壓向岸邊，就能看見水面上浮著一層東西——水藻、樹葉、零零碎碎的漂浮物。不多，但江水已經不清了。水面比記憶中更靜，岸邊卻明顯早就沒人打理了。「早幾年疫情的時候我其實就出來看過，從那時候起就已經是這樣了。」~~但每次走過還是有些感慨。~~
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:21:49.651961Z
+      seconds: 77.052975333
+      tokens: 33751
       review: false
   f487f10aaf6d6c652d00601e193dcaed:
     de-DE:

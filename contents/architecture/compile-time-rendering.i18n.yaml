@@ -847,68 +847,68 @@ segments:
       review: false
   2572d33c59b0de355b8679aea55f1811:
     de-DE:
-      text: 'Nach all den Worten: Wann können wir es endlich :tn[benutzen]{is="Im chinesischen Original steht chī shàng, wörtlich etwas zu essen bekommen. Diese scherzhafte Netzformulierung macht aus der Vorfreude auf ein neues Produkt die Erwartung auf eine Mahlzeit."}? Wahrscheinlich dauert es noch sehr, sehr lange. Ich will es wirklich nicht :tn[immer weiter verschieben]{is="Das Original verwendet gēzi, Taube, einen Netzslangausdruck aus der Wendung jemanden sitzen lassen; der Autor macht sich damit selbstironisch über die Projektverzögerung lustig."}; vielmehr habe ich das Gefühl, dass dieses Ding mich in dieser Phase viel zu sehr in Beschlag nimmt. Wenn ich es nur zu seiner eigenen Entwicklung verwenden kann, kann ich praktisch keine Anwendungen schreiben; egal, was ich schreibe, zuerst stellt mir das Softwaregerüst ein Bein. Zumal ich mich in letzter Zeit ohnehin hauptsächlich mit dieser Website und Ähnlichem beschäftige. Also dachte ich mir: Ich baue die Website erst einmal bis zu einer gewissen Größe aus, dann weiß ich, was ich tatsächlich brauche. Wenn ich später vielleicht wieder an SeamJS arbeite, habe ich eine Aufgabenliste und kann Punkt für Punkt die nötigen Funktionen umsetzen, bis es benutzbar ist, ~~und danach kann ich noch einen Beitrag über Migration und Leistungsvergleiche zusammenschustern~~? Gut, :tn[damit ist das große Versprechen ausgemalt]{is="Im Original heißt der Zukunftsplan dàbǐng, großer Fladen, nach einer Redewendung für prachtvolle Versprechen, die womöglich nie eingelöst werden; so erklärt der Autor die ganze Planung selbstironisch zur Schaumschlägerei."}. Die Idee steht jedenfalls; ob es heute schon benutzbar ist, lassen wir erst einmal beiseite. Gedanklich funktioniert der Prototyp zumindest bereits. Gute Nacht 💤'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:19:50.81785Z
-      seconds: 204.918354875
-      tokens: 25542
+      text: 'Nach all dem Gerede: Wann kann man das Ding endlich :tn[auf den Teller kriegen]{is="Im Original steht 吃上, wörtlich ‚zu essen bekommen‘ – Netzjargon für ‚wann kann man es endlich benutzen‘, mit der Vorfreude auf ein Gericht, das gleich serviert wird."}? Wohl erst in sehr, sehr langer Zeit. Es ist wirklich nicht so, dass ich :tn[jemanden versetzen]{is="Im Original steht 鸽子, ‚Taube‘, von 放鸽子, ‚eine Taube fliegen lassen‘ – jemanden versetzen oder ein Versprechen brechen. Hier spottet der Autor über die eigenen Verzögerungen."} will; es ist eher so, dass mich dieses Ding im Moment viel, viel zu sehr in Geiselhaft nimmt. Wenn ich es nur zum Entwickeln benutzen kann, dann kriege ich im Grunde keine Anwendung mehr geschrieben – bei allem, was ich schreibe, stellt mir zuerst das Framework ein Bein. Und zuletzt habe ich ohnehin vor allem an dieser Website und Ähnlichem gearbeitet. Deshalb ist mir klar geworden: Besser, ich bringe die Website erst auf eine gewisse Größe, dann weiß ich, was meine Anforderungen wirklich sind. Wenn ich später wieder an SeamJS gehe, habe ich eine TODO-Liste; Funktion für Funktion umgesetzt, und es ist benutzbar. ~~Danach kann ich noch eine Migration und ein Benchmark hinterherschieben~~? Gut, :tn[der große Kuchen ist fertig gemalt]{is="Im Original steht 大饼, ‚großer Fladen‘, von 画大饼, ‚einen Kuchen malen‘ – große Versprechen machen, die vielleicht nie eingelöst werden. Der Autor nennt den ganzen Ausblick oben einen fertig gemalten Kuchen."}. Die Idee steht hier. Egal, ob es heute schon nutzbar ist – gedanklich läuft der Prototyp zumindest. Gute Nacht 💤'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:14:17.120719Z
+      seconds: 84.4741715
+      tokens: 33867
       review: false
     en-US:
-      text: 'After all that, when will we finally get to :tn[use it]{is="The original uses chi shang, literally to get to eat it, playfully framing the anticipation of a new product as waiting for food."}? Probably not for a very, very long time. It honestly isn’t that I want to :tn[keep putting it off]{is="The original uses gezi, pigeon, internet slang derived from standing someone up; the author self-deprecatingly jokes about delaying the project."}; it’s just that, at this stage, I feel this thing has taken me hostage far too much. If all I can do with it is develop it, I basically can’t build applications: whatever I write, the framework trips me up first. Besides, lately I’ve mostly been working on this website and the like. So I realized I might as well build the website out to a decent scale first; that way I’ll know what I actually need. Maybe when I return to SeamJS later, I’ll have a to-do list and can implement it item by item until the necessary functionality is there and it becomes usable, ~~and then I can pad things out with another piece on migration and performance comparisons~~? All right, :tn[that’s the grand promise made]{is="The original calls the plan da bing, a big pancake, from an idiom about drawing one to make sweeping promises that may never be fulfilled; it self-mockingly casts the entire roadmap as hype."}. The idea is here. Never mind whether it can be used today; at least the conceptual prototype already works. Good night 💤'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:19:50.81785Z
-      seconds: 204.918354875
-      tokens: 25542
+      text: 'After all that talk, when do we actually :tn[get to eat it]{is="The original says 吃上, literally ‘get to eat’, an internet-speak way of asking ‘when can we finally use it?’ — the eager tone of waiting for a dish to arrive."}? Probably a long, long while yet. It really isn''t that I want to :tn[flake]{is="The original says 鸽子, ‘pigeon’, from the slang 放鸽子, ‘to release a pigeon’ — to stand someone up or break a promise. Here the author is mocking their own delays."}; it''s that at this stage the thing has taken far too much of me hostage. If all I can do is develop it, then I basically can''t write applications — whatever I try, the framework trips me up first — and lately I''ve mostly been writing this website and things like it anyway. So I''ve come around: better to build the site out to some real scale first, and then I''ll know what my needs actually are. Later, when I come back to SeamJS, I''ll have a TODO list; implement the items one by one and it becomes usable. ~~And after that I can pad things out with a migration piece and a benchmark~~? Right, the :tn[big pie is fully drawn]{is="The original says 大饼, ‘big flatbread’, from 画大饼, ‘to paint a pie’ — to make grand promises that may never be kept. The author is calling the whole roadmap above one finished pie."}. The idea is here. Never mind whether it''s usable today; at least the prototype runs in principle. Good night 💤'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:14:17.120719Z
+      seconds: 84.4741715
+      tokens: 33867
       review: false
     es-ES:
-      text: 'Después de tanto hablar, ¿cuándo podremos por fin :tn[usarlo]{is="El original chino emplea chī shàng, literalmente llegar a comérselo, un giro humorístico de internet que convierte la espera de un producto nuevo en la espera de un plato."}? Probablemente falte muchísimo tiempo. De verdad que no quiero :tn[seguir aplazándolo]{is="El original usa gēzi, paloma, un término de la jerga china de internet derivado de dejar plantado a alguien; el autor bromea a costa propia sobre el retraso del proyecto."}; lo que pasa es que, en esta etapa, siento que esta cosa me tiene demasiado secuestrado. Si solo puedo usarla para desarrollarla, en la práctica no puedo escribir aplicaciones: haga lo que haga, el armazón de software me pone la zancadilla primero. Y más aún teniendo en cuenta que últimamente me dedico sobre todo a este sitio web y cosas así. Así que llegué a la conclusión de que es mejor desarrollar primero el sitio hasta cierta escala; de ese modo sabré cuáles son realmente mis necesidades. Quizá cuando vuelva a trabajar en SeamJS ya tenga una lista de tareas y pueda implementar cada punto hasta que estén listas las funciones necesarias y sea utilizable, ~~y luego todavía podré sacar de relleno otro artículo sobre migración y pruebas de rendimiento~~. Bien, :tn[ya está hecha la gran promesa]{is="El original llama a este plan dàbǐng, un gran pan plano, a partir de una expresión sobre dibujarlo para prometer maravillas que quizá nunca se cumplan; así se burla de toda su propia planificación futura."}. La idea está ahí; dejemos de lado si se puede usar hoy o no: al menos el prototipo conceptual ya funciona. Buenas noches 💤'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:19:50.81785Z
-      seconds: 204.918354875
-      tokens: 25542
+      text: 'Después de tanto hablar, ¿cuándo se podrá :tn[hincar el diente]{is="El original dice 吃上, literalmente «llegar a comer»: una forma coloquial de internet de preguntar «¿cuándo se podrá usar por fin?», con la ilusión de quien espera un plato."}? Seguramente falte mucho, muchísimo. De verdad que no es que quiera :tn[dar plantón]{is="El original dice 鸽子, «paloma», de 放鸽子, «soltar una paloma»: dar plantón o no cumplir lo prometido. Aquí el autor se burla de sus propios retrasos."}; es que, a estas alturas, este trasto me tiene secuestrado demasiado, muchísimo. Si solo puedo usarlo para desarrollarlo, entonces básicamente no escribo aplicaciones: escriba lo que escriba, el framework me pone la zancadilla primero. Y menos aún cuando últimamente he estado sobre todo con esta web y cosas por el estilo. Así que lo he visto claro: mejor darle antes cierta envergadura a la web, y así sabré cuáles son de verdad mis necesidades. Más adelante, cuando vuelva a SeamJS, tendré una TODO List; implemento las funciones una a una y ya se puede usar. ~~Y después todavía puedo rellenar con una migración y un Benchmark~~? Listo, :tn[la torta grande ya está pintada]{is="El original dice 大饼, «torta grande», de 画大饼, «pintar una torta»: hacer promesas grandiosas que quizá nunca se cumplan. El autor llama así a todo el plan de futuro que acaba de exponer."}. La idea está aquí. Da igual si hoy se puede usar o no; al menos sobre el papel el prototipo ya funciona. Buenas noches 💤'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:14:17.120719Z
+      seconds: 84.4741715
+      tokens: 33867
       review: false
     fr-FR:
-      text: 'Après tout ça, quand pourra-t-on enfin :tn[l’utiliser]{is="L’original chinois emploie chī shàng, littéralement arriver à en manger, une tournure humoristique du langage internet qui transforme l’attente d’un nouveau produit en attente d’un plat."} ? Sans doute pas avant très, très longtemps. Ce n’est vraiment pas que je veuille :tn[le repousser encore]{is="L’original emploie gēzi, pigeon, un terme d’argot internet issu de l’idée de poser un lapin et signifiant remettre à plus tard ou renoncer à une promesse ; l’auteur plaisante à ses propres dépens sur le retard du projet."}; c’est plutôt qu’à ce stade, j’ai l’impression que ce truc me tient beaucoup trop en otage. Si je ne peux m’en servir que pour le développer lui-même, il m’est pratiquement impossible d’écrire des applications : quoi que j’écrive, la structure logicielle me met d’abord des bâtons dans les roues. Sans compter que, ces derniers temps, je travaille surtout sur ce site et ce genre de choses. Je me suis donc dit qu’il valait mieux commencer par donner une certaine ampleur au site ; je saurai ainsi quels sont réellement mes besoins. Quand je reviendrai peut-être à SeamJS, j’aurai alors une liste de tâches et je pourrai les réaliser une à une jusqu’à ce que les fonctions nécessaires soient prêtes et que l’outil devienne utilisable, ~~puis je pourrai encore bricoler un article sur la migration et les tests de performance~~ ? Voilà, :tn[la grande promesse est faite]{is="L’original appelle ce projet dàbǐng, une grande galette, d’après une expression qui consiste à en dessiner une pour faire miroiter des promesses grandioses mais incertaines ; l’auteur tourne ainsi toute sa feuille de route en autodérision."}. L’idée est là ; peu importe pour l’instant qu’on puisse ou non l’utiliser aujourd’hui, au moins le prototype fonctionne déjà sur le plan conceptuel. Bonne nuit 💤'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:19:50.81785Z
-      seconds: 204.918354875
-      tokens: 25542
+      text: 'Après tout ce discours, quand est-ce qu''on pourra enfin :tn[y goûter]{is="L''original dit 吃上, littéralement « arriver à manger » : une façon familière, propre au langage d''internet, de demander « quand pourra-t-on enfin s''en servir », avec l''impatience de celui qui attend un plat."} ? Sans doute pas avant très, très longtemps. Ce n''est vraiment pas que je veuille :tn[poser un lapin]{is="L''original dit 鸽子, « pigeon », tiré de 放鸽子, « lâcher un pigeon » : faire faux bond, ne pas tenir une promesse. L''auteur se moque ici de ses propres retards."} ; c''est que, à ce stade, ce truc me prend beaucoup, beaucoup trop en otage. Si je ne peux m''en servir que pour le développer, alors je n''écris pratiquement plus d''applications : quoi que j''écrive, le framework me fait d''abord un croche-pied. D''autant que ces derniers temps je travaillais surtout sur ce site et ce genre de choses. Alors j''ai fini par comprendre : autant donner d''abord une certaine ampleur au site, comme ça je saurai quels sont vraiment mes besoins. Ensuite, quand je reviendrai à SeamJS, j''aurai une TODO List ; il suffira d''implémenter les fonctions une à une pour que ce soit utilisable. ~~Après quoi je pourrai encore meubler avec une migration et un Benchmark~~ ? Voilà, :tn[la grande galette est dessinée]{is="L''original dit 大饼, « grande galette », tiré de 画大饼, « dessiner une galette » : faire des promesses grandioses qui ne seront peut-être jamais tenues. L''auteur qualifie ainsi toute la feuille de route ci-dessus."}. L''idée est là. Peu importe si c''est utilisable aujourd''hui ; sur le plan des principes, au moins, le prototype tourne. Bonne nuit 💤'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:14:17.120719Z
+      seconds: 84.4741715
+      tokens: 33867
       review: false
     ja-JP:
-      text: あれこれ言ったけど、いつになったら:tn[使えるようになる]{is="中国語の原文は chī shàng で、直訳すると食べられるようになるという意味。新製品をいつ使えるのかという期待を、料理を待つように語るネット的な冗談にしている。"}のか。たぶん、まだまだずっと先だ。本当に:tn[先延ばしにしたい]{is="原文は鳩を意味する中国語の gēzi を使っている。約束をすっぽかすことから転じて計画の延期を表すネット用語で、作者はプロジェクトの遅れを自嘲している。"}わけではなく、現段階ではこれにあまりにも縛られすぎていると感じているからだ。これ自体の開発にしか使えないなら、アプリケーションはほとんど作れない。何を作っても、まずフレームワークに足を取られる。それに最近は、実際のところ主にこのウェブサイトなどを作っている。だから、まずはウェブサイトをある程度の規模まで作ったほうがいいと悟った。そうすれば、自分が本当に必要としているものが分かる。あとでまた SeamJS を開発するときには作業一覧ができていて、それを一つずつ実装し、必要な機能がそろえば使えるようになるかもしれない。~~その後は移行と性能比較の記事でもう一本お茶を濁せる~~？ よし、:tn[壮大な約束はこれで描き終えた]{is="原文はこの計画を大きな平焼きパンという意味の dàbǐng と呼ぶ。実現するか分からない壮大な約束を描くという慣用表現を借り、展望全体を自虐的に誇大宣伝扱いしている。"}。理念はここにある。今日使えるかどうかはひとまず置いても、少なくとも発想上のプロトタイプはすでに動いている。おやすみ 💤
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:19:50.81785Z
-      seconds: 204.918354875
-      tokens: 25542
+      text: ここまで散々語ってきたけれど、実際いつ :tn[食べられる]{is="原文は「吃上」（食べられる）。「いつ使えるようになるのか」を「いつ食べられるのか」と言い換えるネット口調で、新作を待ちわびる軽さがある。"}のか。たぶん、まだまだ先です。本当に :tn[すっぽかしたい]{is="原文は「鸽子」（鳩）。「放鸽子」（鳩を放つ）＝約束を破る・すっぽかす、という俗語から来ていて、ここでは遅延している自分への自嘲。"}わけじゃなくて、今の段階ではこいつに人質に取られている部分があまりに多すぎるんです。開発にしか使えないとなると、実質アプリが書けない。何を書いてもまずフレームワークに足を引っかけられる。ましてや最近はこのサイトまわりばかり書いていたわけで。だから吹っ切れました。まずサイトをある程度の規模まで作ってしまえばいい。そうすれば自分の要求が何なのかが分かる。その後あらためて SeamJS を書くときには TODO List が手元にある。一つずつ機能を実装していけば使えるようになる。~~ついでに移行の話と Benchmark でもう一本水増しできる~~？よし、:tn[絵に描いた餅は描き終わり]{is="原文は「大饼」（大きな餅）。「画大饼」＝壮大だが実現するとは限らない約束をする、という言い回しで、上の展望全体を「一枚描き上げた餅」と自嘲している。"}。理念はここにある。今日使えるかどうかはひとまず措いて、少なくとも考え方の上ではプロトタイプは動いた。おやすみ 💤
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:14:17.120719Z
+      seconds: 84.4741715
+      tokens: 33867
       review: false
     ko-KR:
-      text: '이렇게까지 말했는데, 대체 언제 :tn[쓸 수 있을까]{is="중국어 원문은 chī shàng, 곧 먹게 된다는 표현을 썼다. 신제품을 언제 써 보느냐는 기대를 마치 음식을 기다리듯 말하는 인터넷식 농담이다."}: 아마도 아직 아주아주 오래 걸릴 것이다. 정말 내가 :tn[계속 미루고 싶은]{is="원문은 비둘기라는 뜻의 gēzi를 썼는데, 약속을 어기거나 일을 미루는 중국 인터넷 은어다. 저자는 프로젝트 지연을 두고 스스로를 놀린다."} 건 아니다. 사실 지금 단계에서는 이 물건에 너무 심하게 붙들려 있다는 생각이 든다. 이것 자체를 개발하는 데만 쓸 수 있다면 애플리케이션은 사실상 만들 수 없고, 뭘 만들든 소프트웨어 틀이 먼저 발목을 잡는다. 게다가 요즘은 사실 이 웹사이트 같은 걸 주로 만들고 있다. 그래서 차라리 웹사이트를 먼저 어느 정도 규모로 키워 놓자는 결론을 내렸다. 그러면 내 요구 사항이 정확히 무엇인지 알 수 있을 테니까. 나중에 SeamJS를 다시 만들게 되면 할 일 목록이 생길 수도 있고, 하나씩 구현해서 필요한 기능을 갖추면 쓸 수 있을 것이다. ~~그 뒤에는 마이그레이션과 성능 비교 글도 하나 날로 채울 수 있고~~? 좋다, :tn[거창한 약속은 다 늘어놓았다]{is="원문은 이 계획을 큰 전병이라는 뜻의 dàbǐng이라 부른다. 실현 여부가 불확실한 거창한 약속을 내놓는다는 관용구를 빌려 전체 전망을 자조한 것이다."}. 구상은 이렇다. 오늘 당장 쓸 수 있는지는 일단 제쳐 두더라도, 적어도 발상 차원에서는 프로토타입이 이미 돌아간다. 잘 자요 💤'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:19:50.81785Z
-      seconds: 204.918354875
-      tokens: 25542
+      text: 이렇게나 떠들었는데, 대체 언제쯤 :tn[먹어볼]{is="원문은 吃上, 곧 ‘먹게 되다’로, ‘언제쯤 써볼 수 있나’를 ‘언제쯤 먹어보나’로 바꿔 말하는 인터넷 말투다. 신메뉴를 기다리는 듯한 기대감이 담겨 있다."} 수 있을까? 아마 아주 오래 걸릴 것이다. 정말 내가 :tn[바람맞히고]{is="원문은 鸽子, 곧 ‘비둘기’로, ‘비둘기를 날리다’라는 뜻의 속어 放鸽子에서 왔다. 약속을 미루거나 어긴다는 말이며, 여기서는 프로젝트를 미룬 자신을 향한 자조다."} 싶어서가 아니라, 현 단계에서 이 물건이 나를 너무너무 많이 인질로 붙잡고 있어서다. 이걸 개발하는 데만 쓸 수 있다면 사실상 애플리케이션은 못 쓴다. 뭘 쓰든 프레임워크가 먼저 발을 건다. 게다가 요즘 나는 주로 이 웹사이트 같은 것만 만들고 있었다. 그래서 마음을 정했다. 차라리 웹사이트를 어느 정도 규모까지 먼저 만들자. 그러면 내 요구사항이 정확히 뭔지 알게 된다. 나중에 다시 SeamJS를 쓸 때는 TODO List가 손에 있을 것이고, 기능을 하나씩 제대로 구현하면 쓸 수 있게 된다. ~~그다음엔 마이그레이션이랑 Benchmark로 한 편 더 때울 수도 있고~~? 자, :tn[큰 떡은 다 그렸다]{is="원문은 大饼, 곧 ‘큰 전병’으로, ‘떡을 그리다’라는 뜻의 画大饼에서 왔다. 거창하지만 지켜질지 모르는 약속을 뜻하며, 위의 전망 전체를 다 그려낸 떡 한 장이라 자조한 것이다."}. 이념은 여기 있다. 오늘 당장 쓸 수 있는지는 일단 접어두자. 적어도 생각 위에서는 프로토타입이 돌아갔다. 잘 자요 💤
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:14:17.120719Z
+      seconds: 84.4741715
+      tokens: 33867
       review: false
     zh-CN:
-      text: 说了这么多，到底什么时候才能:tn[用上]{is="原文用“吃上”，把期待用上新品戏称为等着吃到它，带有网络口吻的幽默。"}呢？大概还要很久很久吧。我真的不是想:tn[拖延]{is="原文用网络语“鸽子”，源自“放鸽子”，指拖延或不兑现承诺，是作者对项目延期的自嘲。"}，而是现阶段这个东西对我的束缚实在太多了。如果只能拿它来做开发，我基本写不了应用；无论写什么，都会先被框架绊住。更何况我最近主要都在做这个网站之类的东西。所以我想明白了：不如先把网站做到一定规模，这样才能弄清楚自己究竟有什么需求；以后也许再来写 SeamJS 时，就会有一份待办清单，逐项实现好这些功能，它也就能用了，~~后面还可以再凑一篇迁移和性能基准测试~~？好了，这番:tn[宏伟规划]{is="原文称其为“大饼”，来自“画大饼”，指许下宏大却未必兑现的承诺；作者借此自嘲整篇未来规划。"}讲完了。理念就是这样，先别管今天能不能用，至少原型在思路上已经跑通了。晚安 💤
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:42:59.661517Z
-      seconds: 24.693971625
-      tokens: 20156
+      text: 说了这么多，到底什么时候能 :tn[吃上]{is="原文用“吃上”，是把“什么时候能用上”说成“什么时候能吃到”的网络口吻，带着等新品端上桌的期待感。"}呢？大概还要很久很久。真不是我想 :tn[鸽]{is="原文用“鸽子”，出自“放鸽子”，网络语里指拖延或不兑现承诺，这里是作者对项目延期的自嘲。"}，而是这东西在现阶段绑架了我太多太多。如果我只能拿它来做开发，那基本上就写不了应用了，写什么都先被框架绊一脚，更何况我最近主要都在写这个网站之类的东西。所以我想通了：不如先把网站做出一定规模，这样才知道我的需求到底是什么；等以后再回来写 SeamJS，手里就有一份 TODO List 了，一个一个把功能实现好，它就能用了。~~后续还能再水一篇迁移和 Benchmark~~？好了，:tn[这张大饼算是画完了]{is="原文用“大饼”，出自“画大饼”，指许下宏大却未必兑现的承诺，这里把上面整段未来规划自嘲为画完了一张饼。"}，理念就摆在这儿。先别管今天能不能用，至少思路上原型已经跑通了。晚安 💤
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:14:17.120719Z
+      seconds: 84.4741715
+      tokens: 33867
       review: false
     zh-TW:
-      text: 說了那麼多，什麼時候能:tn[吃上]{is="這裡故意說「吃上」而不是通常的「用上」，像在等一道菜一樣期待新品，帶著網路玩笑的口吻。"}呢：大概吧，還要很久很久，真的不是我想:tn[放鴿子]{is="「鴿子」在這裡借自「放鴿子」，把拖延專案說成失約；作者用它自嘲進度一再延後。"}，而是其實我覺得現階段這玩意綁架我太多太多了。我只能拿來開發的話，基本上應用程式寫不了，寫什麼都被框架先絆腳，更何況我最近主要其實都在寫這個網站什麼的了。所以我想通了，不如網站先寫到一個規模，這樣就知道我的需求到底是什麼；後面也許再來寫 SeamJS 就有一份待辦清單了，一個一個實作，功能做好就能用了，~~後續還能再水一篇遷移和效能評測~~？好了，:tn[大餅畫完了]{is="這裡的「大餅」把這份宏偉規劃說成未必能兌現的空頭承諾，是作者對整段未來展望的自嘲。"}，理念就在這，先別管今天能不能用，至少思路上原型已經跑通了，晚安 💤
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:19:50.81785Z
-      seconds: 204.918354875
-      tokens: 25542
+      text: 講了這麼多，到底什麼時候才能 :tn[吃上]{is="原文用「吃上」，是把「什麼時候能用上」講成「什麼時候能吃到」的網路口吻，帶著等新品端上桌的期待。"}呢？大概還要很久很久。真的不是我想 :tn[放鴿子]{is="原文用「鴿子」，出自「放鴿子」，網路用語裡指拖延或不兌現承諾，這裡是作者對專案延期的自嘲。"}，而是這東西在現階段綁架了我太多太多。如果我只能拿它來做開發，那基本上就寫不了應用了，寫什麼都先被框架絆一腳，更何況我最近主要都在寫這個網站之類的東西。所以我想通了：不如先把網站做到一定規模，這樣才知道我的需求到底是什麼；以後再回頭寫 SeamJS，手上就有一份 TODO List 了，一個一個把功能實作好，它就能用了。~~後續還能再水一篇遷移和 Benchmark~~？好了，:tn[這張大餅算是畫完了]{is="原文用「大餅」，出自「畫大餅」，指許下宏大卻未必兌現的承諾，這裡把上面整段未來規劃自嘲為畫完了一張餅。"}，理念就擺在這裡。先別管今天能不能用，至少思路上原型已經跑通了。晚安 💤
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:14:17.120719Z
+      seconds: 84.4741715
+      tokens: 33867
       review: false
   2c3b4fa344cd8b6b29ae3cc7dc457d52:
     de-DE:
@@ -1172,68 +1172,68 @@ segments:
       review: false
   3b94504af8ec2a3de06ab1561f14f389:
     de-DE:
-      text: 'Zurück zu `raw HTML slot`: Diese Lösung ist vor allem für Szenarien wie `Markdown` und `Rich Text` gedacht. Das gerenderte **HTML** wird über `dangerouslySetInnerHTML` eingefügt; nach der :tn[Hydratisierung]{is="Im Original bedeutet 水 wörtlich Wasser, ist im Netzjargon aber auch eine Bezeichnung für anspruchsloses Füllmaterial; damit wird gescherzt, aus Migration und Leistungsvergleichen ließe sich noch ein weiterer Artikel strecken."} nimmt dieser Bereich nicht an Interaktionen teil und ist **„tot“**. Dieser Inhalt sollte auf ein Minimum beschränkt werden: Rahmen und Stile für einen Artikel sollten als React-Komponenten umgesetzt und nicht in dieses HTML gemischt werden. Der Nachteil ist, dass sich der Bereich nach der Hydratisierung nicht mehr ändern kann; unter dieser Voraussetzung sinken die Kosten des „serverseitigen Renderns“ jedoch tatsächlich auf ein extrem niedriges, nahezu kostenfreies Niveau. In Fällen, die wirklich serverseitiges Rendern erfordern, entfallen etwa 60 % auf solche statischen HTML-Einfügungen; nur die übrigen 40 % benötigen die Fähigkeit von RSC, beliebige Komponenten auf dem Server auszuführen.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:23:15.742665Z
-      seconds: 105.432709084
-      tokens: 20795
+      text: 'Zurück zu `raw HTML slot`: Gelöst werden damit vor allem Fälle wie `Markdown` und `Rich Text` — das gerenderte **HTML** wird über `dangerouslySetInnerHTML` eingefügt, und nach der Hydration nimmt dieser Bereich an keiner Interaktion mehr teil, er ist **"tot"**. Dieser Anteil sollte so klein wie möglich bleiben: Wenn du dem Artikel Rahmen oder Styling geben willst, gehört das in React-Komponenten und nicht in dieses Stück HTML hinein. Der Nachteil ist, dass sich daran nach der Hydration nichts mehr ändern lässt, aber es drückt die Kosten für "SSR" unter diesen Voraussetzungen tatsächlich auf ein sehr niedriges Niveau, nahe an Zero Cost. Von den Fällen, die wirklich SSR brauchen, sind etwa 60% genau dieses Einfügen von statischem HTML; erst die restlichen 40% brauchen das, was RSC bietet: das Ausführen beliebiger Komponenten auf dem Server.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:30:55.208746Z
+      seconds: 35.653578459
+      tokens: 31665
       review: false
     en-US:
-      text: 'Returning to `raw HTML slot`, this solution is mainly intended for scenarios such as `Markdown` and `Rich Text`. The rendered **HTML** is injected through `dangerouslySetInnerHTML`; after :tn[hydration]{is="The original used 水, literally water and also internet slang for low-effort filler, joking that migration and benchmarking could pad out another article."}, this region does not participate in interactions and is **“dead”**. This content should be minimized: if you want to add borders or styling to an article, those should be written as React components rather than mixed into this HTML. The drawback is that it cannot change after hydration, but under this assumption it does reduce the cost of “SSR” to an extremely low level, approaching zero cost. In scenarios that genuinely require SSR, roughly 60% involve this kind of static HTML injection; only the remaining 40% need RSC’s ability to execute arbitrary components on the server.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:23:15.742665Z
-      seconds: 105.432709084
-      tokens: 20795
+      text: 'Coming back to `raw HTML slot`: what it really solves are scenarios like `Markdown` and `Rich Text` — the rendered **HTML** is injected through `dangerouslySetInnerHTML`, and after hydration that region takes no part in interaction; it is **"dead"**. This part should be kept to a minimum: if you want to give an article borders or styling, that belongs in React components, not mixed into this stretch of HTML. The drawback is that it cannot change after hydration, but it does push the cost of "SSR" under these conditions down to almost nothing, close to zero cost. Of the cases that genuinely need SSR, roughly 60% are this kind of static HTML injection; only the remaining 40% need what RSC offers — executing arbitrary components on the server.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:30:55.208746Z
+      seconds: 35.653578459
+      tokens: 31665
       review: false
     es-ES:
-      text: 'Volviendo a `raw HTML slot`, esta solución está pensada principalmente para situaciones como `Markdown` y `Rich Text`. El **HTML** generado se inyecta mediante `dangerouslySetInnerHTML`; después de la :tn[hidratación]{is="En el original, 水 significa literalmente agua, pero en la jerga de Internet también alude a contenido de relleno hecho con poco esfuerzo; aquí se bromea con que la migración y las pruebas de rendimiento darían para rellenar otro artículo."}, esta zona no participa en las interacciones y queda **«muerta»**. Este contenido debería reducirse al mínimo: si quieres añadir bordes o estilos al artículo, deberías hacerlo con componentes React en vez de mezclarlo con este HTML. El inconveniente es que no puede cambiar después de la hidratación, pero, bajo esta premisa, sí reduce el coste del «renderizado del lado del servidor» a un nivel extremadamente bajo, casi nulo. En los casos que realmente requieren renderizado del lado del servidor, alrededor del 60 % consiste en esta clase de inyección de HTML estático; solo el 40 % restante necesita la capacidad de RSC para ejecutar componentes arbitrarios en el servidor.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:23:15.742665Z
-      seconds: 105.432709084
-      tokens: 20795
+      text: 'Volviendo a `raw HTML slot`: lo que resuelve son sobre todo casos como `Markdown` o `Rich Text` — el **HTML** renderizado se inyecta mediante `dangerouslySetInnerHTML` y, tras la hidratación, esa zona no participa en ninguna interacción, está **"muerta"**. Esta parte debería reducirse al mínimo: si quieres darle bordes o estilos al artículo, eso se escribe con componentes de React, no mezclado dentro de ese HTML. El inconveniente es que ya no puede cambiar después de la hidratación, pero sí baja el coste del "SSR" bajo esas premisas hasta un nivel bajísimo, cercano al Zero Cost. De los casos que de verdad necesitan SSR, alrededor del 60% son esta inyección de HTML estático; solo el 40% restante necesita lo que ofrece RSC: ejecutar componentes arbitrarios en el servidor.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:30:55.208746Z
+      seconds: 35.653578459
+      tokens: 31665
       review: false
     fr-FR:
-      text: 'Pour revenir à `raw HTML slot`, cette solution vise surtout des cas comme `Markdown` et `Rich Text`. Le **HTML** produit est injecté au moyen de `dangerouslySetInnerHTML` ; après l’:tn[hydratation]{is="Dans l’original, 水 signifie littéralement eau, mais désigne aussi sur Internet du remplissage produit sans grand effort ; l’auteur plaisante ainsi sur la possibilité de rallonger un autre article avec la migration et les tests de performance."}, cette zone ne participe pas aux interactions et reste **« morte »**. Son contenu doit être réduit au minimum : pour ajouter des bordures ou des styles à un article, il faut employer des composants React plutôt que de les mêler à ce HTML. Cette méthode a pour inconvénient de ne permettre aucun changement après l’hydratation, mais, avec cette contrainte, elle ramène effectivement le coût du « rendu côté serveur » à un niveau extrêmement faible, presque nul. Parmi les situations nécessitant réellement un rendu côté serveur, environ 60 % correspondent à ce type d’injection de HTML statique ; seules les 40 % restantes exigent la capacité de RSC à exécuter n’importe quel composant sur le serveur.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:23:15.742665Z
-      seconds: 105.432709084
-      tokens: 20795
+      text: 'Pour revenir à `raw HTML slot` : ce qu''il résout, ce sont surtout des cas comme `Markdown` ou `Rich Text` — le **HTML** rendu est injecté via `dangerouslySetInnerHTML`, et après l''hydratation cette zone ne participe plus à aucune interaction, elle est **"morte"**. Cette partie doit rester la plus réduite possible : si tu veux ajouter des bordures ou du style à l''article, cela s''écrit en composants React, et non mêlé à ce bloc de HTML. L''inconvénient, c''est qu''elle ne peut plus changer une fois l''hydratation faite, mais elle ramène vraiment le coût du "SSR" dans ces conditions à un niveau très bas, proche du Zero Cost. Parmi les cas qui réclament réellement du SSR, environ 60% relèvent de cette injection de HTML statique ; seuls les 40% restants ont besoin de ce que propose RSC : exécuter des composants arbitraires côté serveur.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:30:55.208746Z
+      seconds: 35.653578459
+      tokens: 31665
       review: false
     ja-JP:
-      text: '`raw HTML slot` の話に戻ると、この方法が主に対象とするのは `Markdown` や `Rich Text` のようなケースです。レンダリングされた **HTML** は `dangerouslySetInnerHTML` で注入され、:tn[ハイドレーション]{is="原文の“水”は文字どおりには水を表す一方、ネット俗語では手間のかからない内容で水増しすることも指し、移行とベンチマークでもう一本記事を作れるという冗談になっています。"}後、この領域は操作に関与せず、**「死んだ」**状態になります。この部分の内容は最小限にすべきです。記事に枠線やスタイルを加えたいなら、この HTML に混ぜるのではなく React コンポーネントで記述するべきです。この方法にはハイドレーション後に変更できないという欠点がありますが、この前提では「サーバーサイドレンダリング」のコストを極めて低く、ほぼゼロコストにまで抑えられます。本当にサーバーサイドレンダリングが必要な場面の約 60% は、このような静的 HTML の注入です。残りの 40% で初めて、任意のコンポーネントをサーバー側で実行する RSC の能力が必要になります。'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:23:15.742665Z
-      seconds: 105.432709084
-      tokens: 20795
+      text: '`raw HTML slot` の話に戻ると、これが主に解決するのは `Markdown` や `Rich Text` といった場面です。レンダリングされた **HTML** を `dangerouslySetInnerHTML` 経由で注入し、ハイドレーション後はその領域はインタラクションに一切関与しない、つまり **"死んでいる"** わけです。この部分はできるだけ最小限にすべきで、記事に枠線やスタイルを付けたいなら、それは React コンポーネントとして書くべきで、この HTML の中に混ぜ込むものではありません。この方式の欠点はハイドレーション後に変更できないことですが、その前提のもとでの "SSR" のコストを極めて低く、ほぼゼロコストにまで抑えられるのも事実です。本当に SSR が必要な場面のうち、およそ 60% はこの種の静的 HTML 注入で、残りの 40% になって初めて、RSC のようにサーバー側で任意のコンポーネントを実行する能力が必要になります。'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:30:55.208746Z
+      seconds: 35.653578459
+      tokens: 31665
       review: false
     ko-KR:
-      text: 다시 `raw HTML slot` 이야기로 돌아가면, 이 해결책은 주로 `Markdown`, `Rich Text` 같은 상황을 위한 것입니다. 렌더링된 **HTML**은 `dangerouslySetInnerHTML`을 통해 삽입되며, :tn[하이드레이션]{is="원문의 水는 본래 물이라는 뜻이지만 인터넷 은어로는 적은 노력으로 분량을 채우는 내용도 뜻합니다. 마이그레이션과 벤치마크로 글 한 편을 더 때울 수 있다는 농담입니다."} 후에는 이 영역이 상호작용에 관여하지 않는 **“죽은”** 상태가 됩니다. 이 부분의 콘텐츠는 최소화해야 합니다. 글에 테두리나 스타일을 추가하려면 이 HTML에 섞지 말고 React 컴포넌트로 작성해야 합니다. 하이드레이션 후에는 바꿀 수 없다는 단점이 있지만, 이러한 전제에서는 “서버 측 렌더링” 비용을 실제로 극도로 낮춰 거의 무비용에 가깝게 만듭니다. 서버 측 렌더링이 정말 필요한 상황의 약 60%는 이런 정적 HTML 삽입이며, 나머지 40%에서만 임의의 컴포넌트를 서버에서 실행하는 RSC의 기능이 필요합니다.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:23:15.742665Z
-      seconds: 105.432709084
-      tokens: 20795
+      text: 다시 `raw HTML slot` 이야기로 돌아가면, 이것이 주로 해결하는 것은 `Markdown`, `Rich Text` 같은 상황입니다. 렌더링된 **HTML** 을 `dangerouslySetInnerHTML` 로 주입하고, 하이드레이션 이후 이 영역은 상호작용에 전혀 참여하지 않는 **"죽은"** 부분이 됩니다. 이 부분은 최소한으로 줄여야 하며, 글에 테두리나 스타일을 넣고 싶다면 그건 React 컴포넌트로 작성해야지 이 HTML 안에 섞을 일이 아닙니다. 이 방식의 단점은 하이드레이션 이후에는 바뀔 수 없다는 점이지만, 그 전제 아래에서 "SSR" 비용을 아주 낮게, 거의 제로 코스트에 가깝게 눌러 준다는 것도 사실입니다. 정말로 SSR 이 필요한 경우 중 약 60% 는 이런 정적 HTML 주입이고, 나머지 40% 에 가서야 RSC 처럼 서버에서 임의의 컴포넌트를 실행하는 능력이 필요합니다.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:30:55.208746Z
+      seconds: 35.653578459
+      tokens: 31665
       review: false
     zh-CN:
-      text: 回到 `raw HTML slot`，它主要解决的仍是 `Markdown`、`Rich Text` 这类场景：渲染得到的 **HTML** 通过 `dangerouslySetInnerHTML` 注入；完成:tn[水合]{is="原文中的“水”也是网络俚语，指用低投入的内容凑篇幅；这里顺带开玩笑说，迁移过程和性能基准测试还能再凑成一篇文章。"}后，这块区域不再参与交互，是 **“死的”**。这部分内容应尽量精简；如果想给文章添加边框或其他样式，就应该用 React 组件实现，而不是把它们混进这段 HTML。这种做法的缺点是相关内容无法在水合后变化，但它确实能把这一前提下的“服务器端渲染”成本降得极低，接近零成本。在真正需要服务器端渲染的场景中，大约 60% 都属于这种静态 HTML 注入；只有剩下的 40% 才需要 RSC 那种在服务器端执行任意组件的能力。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:43:23.668103Z
-      seconds: 48.073625458
-      tokens: 20766
+      text: 再说回 `raw HTML slot`，它主要解决的是 `Markdown`、`Rich Text` 这类场景：渲染出来的 **HTML** 通过 `dangerouslySetInnerHTML` 注入，水合之后这块区域不参与交互，是 **"死的"**。这部分内容应该尽量少，你想给文章加边框、加样式，那些应该写成 React 组件，而不是混在这段 HTML 里。这种做法的缺点是水合之后它不能再改变，但它确实把这个前提下的 "SSR" 成本压到了非常低，接近于零成本。在真正需要 SSR 的场景里，大概 60% 都属于这种静态 HTML 注入；剩下 40% 才需要 RSC 那种在服务端执行任意组件的能力。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:30:55.208746Z
+      seconds: 35.653578459
+      tokens: 31665
       review: false
     zh-TW:
-      text: 再說回 `raw HTML slot`，這個方案主要還是用來處理 `Markdown`、`Rich Text` 這類情境：渲染出的 **HTML** 透過 `dangerouslySetInnerHTML` 注入，:tn[水合]{is="原文中的「水」也可作網路俚語，指用低投入的內容湊篇幅；這裡戲稱還能拿遷移和效能評測再湊出一篇文章。"}後這塊區域不參與互動，是 **「死的」**。這部分內容應該盡量精簡；如果想替文章加上邊框或樣式，應該用 React 元件來寫，而不是混進這段 HTML。這麼做的缺點是它無法在水合後改變，但在這個前提下，它確實把「伺服器端渲染」的成本壓得非常低，接近零成本。真正需要伺服器端渲染的情境中，大約 60% 都屬於這種靜態 HTML 注入；只有剩下的 40% 才需要 RSC 在伺服器端執行任意元件的能力。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:23:15.742665Z
-      seconds: 105.432709084
-      tokens: 20795
+      text: 再說回 `raw HTML slot`，它主要解決的是 `Markdown`、`Rich Text` 這類場景：算繪出來的 **HTML** 透過 `dangerouslySetInnerHTML` 注入，水合之後這塊區域不參與互動，是 **"死的"**。這部分內容應該盡量少，你想幫文章加邊框、加樣式，那些應該寫成 React 元件，而不是混在這段 HTML 裡。這種做法的缺點是水合之後它不能再改變，但它確實把這個前提下的 "SSR" 成本壓到非常低，接近於零成本。在真正需要 SSR 的場景裡，大概 60% 都屬於這種靜態 HTML 注入；剩下 40% 才需要 RSC 那種在伺服器端執行任意元件的能力。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:30:55.208746Z
+      seconds: 35.653578459
+      tokens: 31665
       review: false
   3c3a82fc5efa357a56c52b4baef3eb55:
     de-DE:
@@ -4292,68 +4292,68 @@ segments:
       review: false
   e607f79910ca2344315b82a7fe7f1e29:
     de-DE:
-      text: 'Bist du bei der Beziehung zwischen **Seam** und **SeamJS** inzwischen völlig durcheinandergekommen? Eigentlich ist sie ganz einfach: Seam ist ein Protokoll. Es legt fest, wie dynamische Stellen mit `Sentinel` gekennzeichnet, in `slot`-Markierungen umgewandelt und Bedingungs- sowie Schleifenblöcke mit `diff` erkannt werden und wie zur Laufzeit anhand des **abstrakten Syntaxbaums** Daten eingespeist werden. Das Protokoll selbst ist sprachunabhängig; jedes Backend, das **HTML**-Kommentare auswerten und Zeichenketten ersetzen kann, kann es implementieren. **SeamJS** ist ein Framework, also eine konkrete Umsetzung dieses Protokolls. Es :tn[vernäht]{is="Im chinesischen Original steht das Verb féng, wörtlich nähen. Es beschreibt das Zusammenfügen vorhandener Werkzeuge und spielt zugleich auf Seam in der Bedeutung Naht an."} Bausteine wie **Vite**, **TanStack Router** und **TanStack Query** miteinander und ergänzt, was sie nicht abdecken, etwa meine **Skelett**-Extraktion, die Einspeisungs-Engine und die **Befehlszeilenschnittstelle**.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:56.059253Z
-      seconds: 172.702737875
-      tokens: 22705
+      text: 'Vielleicht bist du inzwischen also verwirrt, wie **Seam** und **SeamJS** zusammenhängen. Eigentlich ist es ganz einfach: Seam ist das Protokoll. Es legt fest, wie man dynamische Stellen mit `Sentinel` markiert, wie daraus `slot`-Marker werden, wie die `diff`-Erkennung für Bedingungs- und Schleifenblöcke funktioniert und wie die Laufzeit auf Basis des **AST** Daten einspeist. Das Protokoll selbst ist sprachunabhängig; jedes Backend, das **HTML**-Kommentare parsen und Zeichenketten ersetzen kann, kann es umsetzen. **SeamJS** ist das Framework, eine konkrete Umsetzung dieses Protokolls. Es :tn[näht]{is="Im Original steht 缝 ‚nähen‘ – genau das Wort, das dem Framework auf Chinesisch seinen Namen gibt (Seam = Naht). Der Satz beschreibt also nebenbei, woher der Name kommt."} fertige Räder wie **Vite**, **TanStack Router** und **TanStack Query** zusammen und ergänzt dann das, was diese nicht abdecken: meine **skeleton**-Extraktion, die Injection-Engine, das **CLI** und so weiter.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:14:17.120902Z
+      seconds: 47.489193917
+      tokens: 32429
       review: false
     en-US:
-      text: 'So, has the relationship between **Seam** and **SeamJS** already left you confused? It is actually quite simple: Seam is a protocol. It defines how to mark dynamic positions with `Sentinel`, convert them into `slot` markers, detect conditional and loop blocks using `diff`, and inject data through the **abstract syntax tree** at runtime. The protocol itself is language-agnostic, and any backend capable of parsing **HTML** comments and replacing strings can implement it. **SeamJS** is a framework—a concrete implementation of this protocol. It :tn[stitches together]{is="The original Chinese verb féng literally means to sew or stitch, describing the assembly of existing tools while also echoing the literal meaning of the name Seam."} building blocks such as **Vite**, **TanStack Router**, and **TanStack Query**, then fills the gaps they do not cover, including my **skeleton** extraction system, injection engine, **command-line interface**, and so on.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:56.059253Z
-      seconds: 172.702737875
-      tokens: 22705
+      text: 'So maybe you''re already tangled up in how **Seam** and **SeamJS** relate to each other. It''s actually simple: Seam is the protocol. It defines how you mark dynamic positions with `Sentinel`, how those turn into `slot` markers, how `diff` detection works for conditional and loop blocks, and how the runtime injects data based on the **AST**. The protocol itself is language-agnostic; any backend that can parse **HTML** comments and do string replacement can implement it. **SeamJS** is the framework, one concrete implementation built on that protocol. It :tn[stitches together]{is="The original says 缝, ‘to sew/stitch’ — the same character that gives Seam its name in Chinese, so the sentence quietly explains the framework''s name while describing what it does."} existing wheels like **Vite**, **TanStack Router** and **TanStack Query**, then fills in what they don''t cover: my **skeleton** extraction, the injection engine, the **CLI**, and so on.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:14:17.120902Z
+      seconds: 47.489193917
+      tokens: 32429
       review: false
     es-ES:
-      text: 'Así que, ¿la relación entre **Seam** y **SeamJS** ya te ha hecho un lío? En realidad, es muy sencilla: Seam es un protocolo. Define cómo marcar posiciones dinámicas con `Sentinel`, convertirlas en marcadores `slot`, detectar bloques condicionales y repetitivos mediante `diff` e inyectar datos durante la ejecución a partir del **árbol de sintaxis abstracta**. El protocolo es independiente del lenguaje, por lo que cualquier servidor capaz de analizar comentarios **HTML** y sustituir cadenas de texto puede implementarlo. **SeamJS** es un marco de trabajo, es decir, una implementación concreta de este protocolo. :tn[Cose entre sí]{is="El verbo chino original, féng, significa literalmente coser. Describe la unión de herramientas existentes y alude también al significado literal del nombre Seam, costura o unión."} componentes como **Vite**, **TanStack Router** y **TanStack Query**, y después completa lo que estos no cubren con mi sistema de extracción del **esqueleto**, el motor de inyección, la **interfaz de línea de comandos**, etcétera.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:56.059253Z
-      seconds: 172.702737875
-      tokens: 22705
+      text: 'Puede que a estas alturas te hayas hecho un lío con la relación entre **Seam** y **SeamJS**. En realidad es muy sencillo: Seam es el protocolo. Define cómo marcar las posiciones dinámicas con `Sentinel`, cómo eso se convierte en marcadores `slot`, cómo se hace la detección `diff` de los bloques condicionales y de bucle, y cómo el runtime inyecta los datos a partir del **AST**. El protocolo en sí es independiente del lenguaje: cualquier backend capaz de analizar comentarios **HTML** y hacer sustitución de cadenas puede implementarlo. **SeamJS** es el framework, una implementación concreta construida sobre ese protocolo. :tn[Cose]{is="El original usa 缝, «coser», que es justamente el significado chino del nombre del framework, Seam («costura»). Así la frase explica de pasada de dónde viene el nombre."} entre sí ruedas ya existentes como **Vite**, **TanStack Router** y **TanStack Query**, y luego cubre lo que ellas no alcanzan: mi extracción de **skeleton**, el motor de inyección, la **CLI** y demás.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:14:17.120902Z
+      seconds: 47.489193917
+      tokens: 32429
       review: false
     fr-FR:
-      text: 'Alors, la relation entre **Seam** et **SeamJS** vous a-t-elle déjà embrouillé ? Elle est en réalité très simple : Seam est un protocole. Il définit comment signaler les emplacements dynamiques avec `Sentinel`, les convertir en marqueurs `slot`, détecter les blocs conditionnels et les boucles avec `diff`, puis injecter les données à l’exécution à partir de l’**arbre syntaxique abstrait**. Le protocole lui-même est indépendant du langage, et toute partie serveur capable d’analyser des commentaires **HTML** et de remplacer des chaînes de caractères peut l’implémenter. **SeamJS** est un cadre logiciel, c’est-à-dire une mise en œuvre concrète de ce protocole. Il :tn[coud ensemble]{is="Dans le texte chinois, le verbe féng signifie littéralement coudre. Il évoque l’assemblage d’outils existants tout en faisant écho au sens littéral du nom Seam, une couture."} des briques comme **Vite**, **TanStack Router** et **TanStack Query**, puis comble ce qu’elles ne couvrent pas, notamment mon système d’extraction de l’**ossature**, le moteur d’injection et l’**interface en ligne de commande**.'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:56.059253Z
-      seconds: 172.702737875
-      tokens: 22705
+      text: 'Tu es peut-être déjà perdu dans la relation entre **Seam** et **SeamJS**. C''est en fait très simple : Seam est le protocole. Il définit comment marquer les positions dynamiques avec `Sentinel`, comment cela se transforme en marqueurs `slot`, comment se fait la détection `diff` pour les blocs conditionnels et les boucles, et comment le runtime injecte les données à partir de l''**AST**. Le protocole lui-même est indépendant du langage : n''importe quel backend capable d''analyser des commentaires **HTML** et de faire du remplacement de chaînes peut l''implémenter. **SeamJS** est le framework, une implémentation concrète bâtie sur ce protocole. Il :tn[coud]{is="L''original emploie 缝, « coudre » — le mot même qui donne son nom au framework en chinois (Seam, la couture). La phrase explique donc au passage d''où vient le nom."} ensemble des roues déjà existantes comme **Vite**, **TanStack Router** et **TanStack Query**, puis comble ce qu''elles ne couvrent pas : mon extraction de **skeleton**, le moteur d''injection, le **CLI**, et ainsi de suite.'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:14:17.120902Z
+      seconds: 47.489193917
+      tokens: 32429
       review: false
     ja-JP:
-      text: では、**Seam** と **SeamJS** の関係がもう分からなくなっていないでしょうか。実のところ、この二つの関係はとても単純です。Seam はプロトコルであり、`Sentinel` を使って動的な位置を示す方法、それを `slot` マーカーへ変換する方法、`diff` で条件ブロックやループブロックを検出する方法、そして実行時に**抽象構文木**を基にデータを注入する方法を定めています。プロトコル自体は言語に依存せず、**HTML** コメントを解析して文字列を置換できるバックエンドなら、どれでも実装できます。**SeamJS** はこのプロトコルを具体的に実装したフレームワークです。**Vite**、**TanStack Router**、**TanStack Query** などの既存部品を:tn[縫い合わせて]{is="原文の中国語動詞 féng は既存の道具を縫い合わせる比喩であり、Seam の本来の意味である継ぎ目にも呼応している。"}、それらで賄えない部分を、私の**骨格**抽出機構や注入エンジン、**コマンドラインインターフェース**などで補っています。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:56.059253Z
-      seconds: 172.702737875
-      tokens: 22705
+      text: というわけで、**Seam** と **SeamJS** の関係がこんがらがっている人もいるかもしれません。でも実はとても単純です。Seam はプロトコルで、`Sentinel` で動的な位置をどう印付けるか、それをどう `slot` のマーカーに変換するか、条件ブロックとループブロックの `diff` 検出をどう行うか、そしてランタイムが **AST** をもとにどうデータを注入するかを定めています。プロトコル自体は言語に依存せず、**HTML** コメントを解析でき、文字列置換ができるバックエンドなら何でも実装できます。**SeamJS** はフレームワークで、このプロトコルに基づいた具体的な実装のひとつです。**Vite**、**TanStack Router**、**TanStack Query** といった既存の車輪を:tn[縫い合わせ]{is="原文は「缝」（縫う）という一文字で、これはフレームワーク名 Seam（＝縫い目）の中国語での意味そのもの。何をするものかを説明しながら、さりげなく名前の由来も語る掛け言葉になっている。"}、その上で手の届かない部分、たとえば私の作った **skeleton** の抽出や注入エンジン、**CLI** などを補っています。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:14:17.120902Z
+      seconds: 47.489193917
+      tokens: 32429
       review: false
     ko-KR:
-      text: 그렇다면 **Seam**과 **SeamJS**의 관계 때문에 벌써 머리가 복잡해졌을지도 모르겠다. 사실 둘의 관계는 아주 간단하다. Seam은 프로토콜로, `Sentinel`을 사용해 동적 위치를 표시하는 방법, 이를 `slot` 표식으로 변환하는 방법, `diff`으로 조건 블록과 반복 블록을 감지하는 방법, 그리고 실행 중 **추상 구문 트리**를 바탕으로 데이터를 주입하는 방법을 정의한다. 프로토콜 자체는 언어에 독립적이므로 **HTML** 주석을 분석하고 문자열을 치환할 수 있는 백엔드라면 어디서든 구현할 수 있다. **SeamJS**는 이 프로토콜을 구체적으로 구현한 프레임워크다. **Vite**, **TanStack Router**, **TanStack Query** 같은 기존 도구를 :tn[한데 꿰매고]{is="중국어 원문의 동사 féng은 기존 도구를 바느질하듯 이어 붙인다는 뜻으로, Seam이라는 이름의 본래 의미인 이음새와도 맞닿아 있다."}, 이들이 다루지 못하는 부분을 내 **골격** 추출 기능과 주입 엔진, **명령줄 인터페이스** 등으로 보완한다.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:56.059253Z
-      seconds: 172.702737875
-      tokens: 22705
+      text: 그래서 **Seam** 과 **SeamJS** 의 관계가 헷갈리기 시작했을지도 모르겠습니다. 사실 아주 간단합니다. Seam 은 프로토콜입니다. `Sentinel` 으로 동적 위치를 어떻게 표시할지, 그것이 어떻게 `slot` 마커로 변환될지, 조건 블록과 반복 블록의 `diff` 검출을 어떻게 할지, 그리고 런타임이 **AST** 를 기반으로 어떻게 데이터를 주입할지를 정의합니다. 프로토콜 자체는 언어에 종속되지 않아서, **HTML** 주석을 파싱하고 문자열을 치환할 수 있는 백엔드라면 무엇이든 구현할 수 있습니다. **SeamJS** 는 프레임워크이고, 이 프로토콜을 바탕으로 만든 구체적인 구현체입니다. **Vite**, **TanStack Router**, **TanStack Query** 같은 이미 있는 바퀴들을 :tn[꿰매]{is="원문은 ‘꿰매다’를 뜻하는 한 글자 缝 인데, 이는 프레임워크 이름 Seam(솔기)의 중국어 뜻 그대로다. 무엇을 하는지 설명하면서 이름의 유래까지 슬쩍 겹쳐 놓은 말장난이다."} 붙이고, 그것들이 다루지 못하는 부분, 이를테면 제가 만든 **skeleton** 추출이나 주입 엔진, **CLI** 같은 것들을 채워 넣습니다.
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:14:17.120902Z
+      seconds: 47.489193917
+      tokens: 32429
       review: false
     zh-CN:
-      text: 所以，你是不是已经被 **Seam** 和 **SeamJS** 之间的关系绕晕了？其实两者的区别很简单：Seam 是一套协议，定义了如何用 `Sentinel` 标记动态位置、如何将其转换为 `slot` 标记、如何对条件块和循环块进行 `diff` 检测，以及如何在运行时基于**抽象语法树**注入数据。协议本身与语言无关，任何能够解析 **HTML** 注释并替换字符串的后端都可以实现它。**SeamJS** 则是基于这套协议构建的具体框架：它把 **Vite**、**TanStack Router**、**TanStack Query** 这些现成工具:tn[拼接]{is="原文用“缝”，既表示把现成工具组合起来，也呼应框架名 Seam 所含的“接缝”之意。"}在一起，再补上它们未能覆盖的部分，比如我的**骨架**提取方案、注入引擎和**命令行界面**等。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:45:46.817071Z
-      seconds: 19.846268583
-      tokens: 20006
+      text: 所以你是不是已经被 **Seam** 和 **SeamJS** 的关系绕晕了？其实这两者很简单。Seam 是协议，它定义的是：怎么用 `Sentinel` 标记动态位置、怎么转换成 `slot` 标记、条件块和循环块怎么做 `diff` 检测，以及运行时怎么基于 **AST** 做数据注入。协议本身与语言无关，任何能解析 **HTML** 注释、能做字符串替换的后端都能实现它。**SeamJS** 是框架，是基于这套协议做出来的一个具体实现：它把 **Vite**、**TanStack Router**、**TanStack Query** 这些现成的轮子:tn[缝]{is="这里的“缝”既是把现成工具拼接到一起，也正好是框架名 Seam（接缝）的本义，一语双关。"}在一起，再补上它们覆盖不到的地方，比如我这套 **skeleton** 提取、注入引擎、**CLI** 之类的东西。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:14:17.120902Z
+      seconds: 47.489193917
+      tokens: 32429
       review: false
     zh-TW:
-      text: 所以，你是不是已經被 **Seam** 和 **SeamJS** 的關係繞暈了？其實兩者的關係很簡單：Seam 是一套協定，定義了如何用 `Sentinel` 標記動態位置、如何將其轉換成 `slot` 標記、如何用 `diff` 偵測條件區塊與迴圈區塊，以及執行期間如何根據**抽象語法樹**注入資料。協定本身與語言無關，任何能夠解析 **HTML** 註解並取代字串的後端都能實作它。**SeamJS** 則是以這套協定為基礎打造的具體框架；它把 **Vite**、**TanStack Router**、**TanStack Query** 等現成元件:tn[縫在一起]{is="原文動詞「縫」既形容把現成工具拼接起來，也呼應了 Seam 一詞本身所指的接縫。"}，再補足它們無法涵蓋的部分，例如我的**骨架**擷取系統、注入引擎、**命令列介面**等。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:56.059253Z
-      seconds: 172.702737875
-      tokens: 22705
+      text: 所以你是不是已經被 **Seam** 和 **SeamJS** 的關係搞糊塗了？其實這兩者很簡單。Seam 是協定，它定義的是：怎麼用 `Sentinel` 標記動態位置、怎麼轉換成 `slot` 標記、條件區塊和迴圈區塊怎麼做 `diff` 偵測，以及執行期怎麼基於 **AST** 做資料注入。協定本身與語言無關，任何能解析 **HTML** 註解、能做字串取代的後端都能實作它。**SeamJS** 是框架，是基於這套協定做出來的一個具體實作：它把 **Vite**、**TanStack Router**、**TanStack Query** 這些現成的輪子:tn[縫]{is="這裡的「縫」既指把現成工具拼接在一起，也正好是框架名 Seam（接縫）的本義，一語雙關。"}在一起，再補上它們涵蓋不到的地方，例如我這套 **skeleton** 擷取、注入引擎、**CLI** 之類的東西。
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:14:17.120902Z
+      seconds: 47.489193917
+      tokens: 32429
       review: false
   f8549fd13877656daca0cfd15179969a:
     de-DE:
