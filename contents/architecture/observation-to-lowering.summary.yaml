@@ -1,0 +1,66 @@
+version: 1
+summary:
+  de-DE:
+    text: 'SeamJS'' V1 behandelte den React-Compiler als Blackbox und erriet die Seitenstruktur über wiederholtes render + diff; bei Prädikaten wie price > 10 blieb nur, den Nutzer den Mock von Hand schreiben zu lassen, womit auch die Enumeration über das kartesische Produkt hinfällig wurde. Diese Aufzeichnung hält den Entscheidungsweg fest, den UI stack auf Svelte umzustellen: Sie wägt die ökosystembedingten Sackgassen von React mit TanStack Start, Vue 3 mit Nuxt und SolidJS einzeln ab, zieht außerdem die Trennlinie zu Astro islands, Qwik resume und Marko 6 in der Frage, ob zur request-time noch ein renderer läuft, erklärt die Abwägungen zwischen markup AST, runes, <style> und CSS-in-JS und nennt zum Schluss die Kriterien für die CTR-Grenze sowie die roadmap.'
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:09:20.553793Z
+    seconds: 16.765102084
+    tokens: 28310
+    review: false
+  en-US:
+    text: 'SeamJS''s V1 treated the React compiler as a black box, guessing page structure through repeated render + diff, and once it hit a predicate like price > 10 there was nothing left to do but have the user hand-write a mock, which also broke the Cartesian-product enumeration. This note records the decision process behind switching the UI stack to Svelte: weighing, one by one, the ecosystem predicaments of React with TanStack Start, Vue 3 with Nuxt, and SolidJS; drawing the line separating it from Astro islands, Qwik resume, and Marko 6 on whether a renderer still runs at request time; explaining the trade-offs among markup AST, runes, `<style>`, and CSS-in-JS; and finally giving the criteria for deciding the CTR boundary, plus a roadmap.'
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:09:03.77568Z
+    seconds: 8.471531958
+    tokens: 27556
+    review: false
+  es-ES:
+    text: 'La V1 de SeamJS trataba el compilador de React como una caja negra y adivinaba la estructura de la página a base de render + diff repetidos; ante predicados como price > 10 no quedaba más remedio que hacer que el usuario escribiera mocks a mano, y la enumeración por producto cartesiano dejaba de funcionar. Este registro recoge el proceso de decisión que llevó a cambiar el UI stack a Svelte: sopesa uno a uno los atolladeros de ecosistema de React con TanStack Start, de Vue 3 con Nuxt y de SolidJS, delimita también las discrepancias con Astro islands, Qwik resume y Marko 6 en cuanto a si en request-time se sigue ejecutando el renderer, y explica las disyuntivas entre markup AST, runes, <style> y CSS-in-JS, para terminar dando el criterio de decisión de la frontera CTR y el roadmap.'
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:09:55.237437Z
+    seconds: 8.420970417
+    tokens: 27614
+    review: false
+  fr-FR:
+    text: 'La V1 de SeamJS traitait le compilateur React comme une boîte noire : elle enchaînait render + diff pour deviner la structure de la page, et dès qu''un prédicat du type price > 10 apparaissait, il ne restait qu''à faire écrire des mocks à la main par l''utilisateur, ce qui invalidait du même coup l''énumération par produit cartésien. Ce compte rendu retrace le cheminement de la décision de passer l''UI stack à Svelte : il soupèse une à une les impasses d''écosystème de React avec TanStack Start, de Vue 3 avec Nuxt et de SolidJS, délimite aussi le désaccord avec les islands d''Astro, la resume de Qwik et Marko 6 sur la question de savoir si un renderer tourne encore au request-time, puis explique les arbitrages entre AST du markup, runes, <style> et CSS-in-JS, et donne enfin les critères de décision de la frontière CTR ainsi que la roadmap.'
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:09:46.55349Z
+    seconds: 8.683014667
+    tokens: 27630
+    review: false
+  ja-JP:
+    text: SeamJS の V1 は React コンパイラをブラックボックスとして扱い、render と diff を繰り返してページ構造を推測していたため、price > 10 のような述語に出くわすとユーザーに mock を手書きさせるしかなく、直積による網羅も同時に成り立たなくなる。この記録は UI stack を Svelte に切り替えるまでの決定過程を追う。React と TanStack Start、Vue 3 と Nuxt、SolidJS のエコシステム上の困難を一つずつ量り、Astro islands、Qwik resume、Marko 6 とは request-time に renderer をなお走らせるかどうかで線を引き、markup AST、runes、<style> と CSS-in-JS の取捨を説明し、最後に CTR 境界の判定基準と roadmap を示す。
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:09:12.247906Z
+    seconds: 8.30523375
+    tokens: 27561
+    review: false
+  ko-KR:
+    text: SeamJS의 V1은 React 컴파일러를 블랙박스로 취급해, 반복적인 render + diff로 페이지 구조를 추측했고, price > 10 같은 술어를 만나면 사용자가 mock을 직접 작성하는 수밖에 없었으며 곱집합 완전 열거도 그와 함께 무너졌다. 이 기록은 UI stack을 Svelte로 바꾸기까지의 결정 과정을 담는다. React와 TanStack Start, Vue 3와 Nuxt, SolidJS의 생태계적 난점을 하나씩 저울질하고, Astro islands, Qwik resume, Marko 6와는 request-time에 여전히 renderer를 돌리는가라는 지점에서 선을 긋는다. 또한 markup AST, runes, <style>과 CSS-in-JS 사이의 취사선택을 설명하고, 마지막으로 CTR 경계의 판정 기준과 roadmap을 제시한다.
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:09:37.319651Z
+    seconds: 9.233114416
+    tokens: 27629
+    review: false
+  zh-CN:
+    text: SeamJS 的 V1 把 React 编译器当黑盒，靠反复 render + diff 去猜页面结构，遇到 price > 10 这类谓词就只能让用户手写 mock，笛卡尔积穷举也随之失效。这篇记录把 UI stack 换成 Svelte 的决定过程：逐一衡量 React 与 TanStack Start、Vue 3 与 Nuxt、SolidJS 的生态困境，也划清与 Astro islands、Qwik resume、Marko 6 在 request-time 是否仍跑 renderer 上的分歧，并解释 markup AST、runes、<style> 与 CSS-in-JS 的取舍，最后给出 CTR 边界的判定标准与 roadmap。
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:08:50.013047Z
+    seconds: 9.354551375
+    tokens: 50829
+    review: false
+  zh-TW:
+    text: SeamJS 的 V1 把 React 編譯器當黑盒，靠反覆 render + diff 去猜頁面結構，遇到 price > 10 這類謂詞就只能讓使用者手寫 mock，笛卡兒積窮舉也隨之失效。這篇記錄把 UI stack 換成 Svelte 的決定過程：逐一衡量 React 與 TanStack Start、Vue 3 與 Nuxt、SolidJS 的生態困境，也劃清與 Astro islands、Qwik resume、Marko 6 在 request-time 是否仍跑 renderer 上的分歧，並解釋 markup AST、runes、<style> 與 CSS-in-JS 的取捨，最後給出 CTR 邊界的判定標準與 roadmap。
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:10:03.659262Z
+    seconds: 7.832838167
+    tokens: 27550
+    review: false
