@@ -37,17 +37,24 @@
 				<!-- The words first, so a note names what it is about instead of asking the reader
 				     to hold the sentence they left in their head. Then the same superscript the
 				     marker in the prose is, which makes the two one thing seen twice -- hidden
-				     from a screen reader, which is already being told the ordinal by the list. -->
+				     from a screen reader, which is already being told the ordinal by the list.
+
+				     The explanation is the way back, not just the arrow at its end: an icon-sized
+				     target at the end of a wrapped line asks for aim this size of text does not
+				     deserve. The phrase and its number stay outside the link -- they are the
+				     note's address, not its content, and the address is what the walk returns to.
+				     The link's accessible name stays the explanation itself -- an aria-label would
+				     replace it -- and the purpose rides after it as words only a screen reader
+				     gets. -->
 				<span class="note-phrase">{note.phrase}</span><sup class="note-marker" aria-hidden="true"
 					>{note.number}</sup
-				>{note.text}<a
-					href="#marker-{note.number}"
-					class="note-back focus-link"
-					aria-label={m['article.notes.back']({ number: note.number }, { locale })}
-					onclick={jumpBack}
+				><a href="#marker-{note.number}" class="note-link focus-link" onclick={jumpBack}
+					>{note.text}<span class="note-back" aria-hidden="true">
+						<CornerDownLeft class="size-[1.1em]" />
+					</span><span class="sr-only">
+						({m['article.notes.back']({ number: note.number }, { locale })})</span
+					></a
 				>
-					<CornerDownLeft class="size-[1.1em]" aria-hidden="true" />
-				</a>
 			</li>
 		{/each}
 	</ol>
@@ -101,8 +108,8 @@
 	}
 
 	/* The quoted words are the article's, said again -- weight alone marks them. Colour is spent
-	   on the number instead: one bright thing per note, and it is the one that says which note
-	   this is. */
+	   on the number and the arrow instead: the two ends of the walk, which note this is and the
+	   way back from it. */
 	.note-phrase {
 		font-weight: 500;
 	}
@@ -117,27 +124,38 @@
 		margin-inline-end: 0.3rem;
 	}
 
+	/* The link is the explanation: it inherits the note's quiet colour and brightens whole
+	   under the pointer, so hovering anywhere on those words says they are the control. The
+	   phrase and number ahead of it sit outside and keep their resting look. The underline
+	   stays off -- eight dotted lines of apparatus would out-shout the article above them. */
+	.note-link {
+		color: inherit;
+		text-decoration: none;
+		transition: color 200ms ease-out;
+	}
+
+	.note-link:hover,
+	.note-link:focus-visible {
+		color: var(--color-text-strong);
+	}
+
 	/* Trailing the last word, not parked at the right edge. The way back belongs to the sentence
-	   that was just read, and a column of arrows down the right reads as a table's furniture. */
+	   that was just read, and a column of arrows down the right reads as a table's furniture.
+	   Bright at rest, like the number at the note's head: the two ends of the walk are the two
+	   points of colour, and everything between them is the reading. */
 	.note-back {
 		display: inline-flex;
 		margin-inline-start: 0.35rem;
 		/* Sized against the note, not against the page, for the same reason the marker is. */
 		font-size: 0.9em;
-		color: var(--color-text-soft);
+		color: var(--color-text-strong);
 		/* Zero, so an arrow at the end of a wrapped note cannot open up the line it lands on. */
 		line-height: 0;
 		vertical-align: -0.1em;
-		transition: color 200ms ease-out;
-	}
-
-	.note-back:hover,
-	.note-back:focus-visible {
-		color: var(--color-text-strong);
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.note-back {
+		.note-link {
 			transition: none;
 		}
 	}
