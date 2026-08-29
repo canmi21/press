@@ -335,9 +335,13 @@ than by copying a number. Only the notes under it stay small.
 
 **The walk back from a note lights the words it lands on.** Arriving in the right scroll band
 is not the same as knowing which words were left: the noted words may sit anywhere in their
-line and appear more than once in the paragraph. So the return briefly draws the dotted
-underline under them -- the ink a translator's note wears at rest, which already means "this
-word carries a note" here -- and lights the marker's number beside them, then takes both away.
+line and appear more than once in the paragraph. So the return fills the words with the
+selection colour the instant the scroll settles -- the reader's own "I marked this" ink,
+themed for both modes, worn tailored where a drag is raw: rounded, hugging the glyphs, whole
+on its first frame because the instant of arrival is the message -- and fades it slowly, the
+marker's number lit beside it and letting go on the same clock. A dotted underline was tried
+under the fill and cut: two inks were saying one thing, and the fill already says it in the
+reader's own colour.
 Only this direction gets it: walking down to a note is guided by the number being followed,
 and the note's phrase opens it in the article's own colour.
 
