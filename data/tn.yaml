@@ -15,16 +15,47 @@ articles:
           guidance: “鸽子”源自“放鸽子”，网络语中指拖延或放弃承诺事项，这里是作者对项目延期的自嘲。
         - phrase: 大饼
           guidance: “大饼”来自“画大饼”，指许下宏大但未必兑现的承诺，这里把整篇未来规划自嘲为画完了一张饼。
-      3b94504af8ec2a3de06ab1561f14f389:
-        source: 再说回 `raw HTML slot` 这个解决主要还是 `Markdown`、`Rich Text` 这类场景，渲染出来的 **HTML** 通过 `dangerouslySetInnerHTML` 注入，水合后这块区域不参与交互，是 **"死的"**；这部分内容应该被最小化，你想给文章加边框、加样式，那些应该用 React 组件来写，而不是混在这段 HTML 里。这种做法的缺点是它不能在水合之后发生改变，但它确实把这种前提下的 "SSR" 成本压到了非常低，接近于 Zero Cost 了。在真正需要 SSR 的场景里，大概 60% 都是这种静态 HTML 注入的情况；剩下 40% 才需要 RSC 那种服务端执行任意组件的能力。
-        spans:
-        - phrase: 水
-          guidance: “水”在网络语中指用低投入、凑数的内容填充篇幅，这里戏称还能拿迁移和 Benchmark 再凑一篇文章。
       e607f79910ca2344315b82a7fe7f1e29:
         source: 所以你是不是已经被 **Seam** 和 **SeamJS** 的关系绕晕了，其实这两很简单，Seam 是协议，它定义的是怎么用 `Sentinel` 标记动态位置、怎么转换成 `slot` 标记、怎么做条件块和循环块的 `diff` 检测、以及运行时怎么基于 **AST** 做数据注入。协议本身是语言无关的，任何能解析 **HTML** 注释、能做字符串替换的后端都能实现它。**SeamJS** 是框架，是基于这套协议做的一个具体实现 它把 **Vite**、**TanStack Router**、**TanStack Query** 这些轮子缝在一起，然后补它们覆盖不到的地方，比如我这套 **skeleton** 提取、注入引擎、**CLI** 之类的。
         spans:
         - phrase: 缝
           guidance: “缝”既指把现成工具拼接起来，也呼应框架名 Seam 的“接缝”本义，翻译后这层双关可能消失。
+  architecture/observation-to-lowering.md:
+    provider: anthropic
+    model: claude-fable-5
+    at: 2026-08-29T22:32:56.901919Z
+    tokens: 51324
+    segments:
+      18cb4935d7725cd3e6b94b5bde19dab2:
+        source: 所以 [Evan You](https://github.com/yyx990803) 其实并没有做错什么，甚至乎可以说有人必须站出来当这个 ~~大坏人~~ 而他恰好就是最合适的人选，只是做了最合适的事而已...
+        spans:
+        - phrase: 大坏人
+          guidance: '"The big bad guy", a childlike phrase used ironically about Evan You taking on breaking decisions; the playful register fades in translation.'
+      3287947f6cfdca7e990d8767d7ec168d:
+        source: 但是这里用 "激进" 我不知道对不对，可能对的一方面是对于传统框架来说，我干丢掉 Server Side 那种重 JS Runtime (Node OR Bun), 不对也可能是比方说 CSS-in-JS 如果彻底丢掉的话，其实也没啥问题，~~我更愿意考虑它为时代的眼泪了~~。曾经最知名的 CSS-in-JS 的 lib 们 [Stitches](https://github.com/stitchesjs/stitches/discussions/1149) 2023 年 6 月官方宣布 no longer actively maintained, [styled-components](https://styled-components.com/blog/celebrating-a-decade-of-styled-components) 2025 年 3 月也进入了休眠状态，[Emotion](https://github.com/emotion-js/emotion/discussions/2827) 基本上也是这样子的。
+        spans:
+        - phrase: 时代的眼泪
+          guidance: Meme phrase "tears of an era" for something once beloved now obsolete; the nostalgic tone is lost in a plain translation.
+      5fd71f590dec253b8a21d95a2316e507:
+        source: 这里不用想肯定有人问：这不就是 `Astro` / `Qwik` / `Marko` 嘛，雀食 seam 在语言形状上 `Marko` 最近，默认少 JS 上 `Astro` 最近，不 `replay hydrate` 上 `Qwik` 最接近；但是呢 他们的 `request-time` 仍是在跑 UI 程序 `island` 各自 `render`、`Qwik` 那次 `SSR`、`Marko` 编译出来的 JS 模板函数，都还是每请求执行一块 `renderer`.
+        spans:
+        - phrase: 雀食
+          guidance: Deliberate homophone misspelling of 确实 ("indeed") used as playful slang; a translation renders only "indeed" and loses the joke.
+      974b152ac5390e180a495287ac94e51f:
+        source: 那么简单说 :fn[Seam]{is="是一种渲染协议，SeamJS 是使用该协议的 meta 框架"} 首先是一套协议，而不是又一个 SSR runtime，意味着 build-time 编出一份带 `slot` 的 **HTML skeleton**，runtime-time / request-time 只往这些 `slot` 里塞值，`if` / `each` / `match` 这些也一样是写死在 skeleton 里的协议节点。所以请求进来的时候没有任何一个 UI 组件被执行过，服务端要做的只有"看图填空"这一件事，那么它自然也就不必是 Node 或者 Bun 了，**Rust** / **Go** 之类的后端填一份 HTML 不是也可以嘛，能有什么难的呢?! ~~但是其实后面也没有完全干掉 JS Runtime, 我的意思是可以不要但是前提是你能接受部分限制~~ 但是无论如何，总体性能提升绝对是指数级别的，因为达到大多数 **SSR** 效果不再要求 **runtime-time / request-time** 跑 **UI render** 了...
+        spans:
+        - phrase: 看图填空
+          guidance: '"Fill in the blanks by looking at the picture", a Chinese schoolroom exercise idiom used to describe slot injection; the image is culturally local.'
+      adf911802d2879568b442025919176e3:
+        source: '**SolidJS** 框架很好、核心也足够稳定，~~但没人愿意给它写生态~~。`Solid` 其实就是早年的 `Rust`，但是 `Rust` 已经挺过来了，`Rust` 在编程领域确实也有类似生态少什么都要自己造轮子的处境，但 `Rust` 工具链能顺滑的让你把轮子造出来、让最小可用单元跑起来，造轮子的难度其实并不是很大？但是很不幸 **SolidJS** 暂时还没有挺过这个阶段，但是就遇到了 **AI 寒冬**；尤其是会在 26年后变得非常困难，Solid 2.0 核心已经很好了也很稳定，但是外围没滚起来，想法非常对，只是可惜生不逢时；就算有少数几个外围，那也只存在于某一两个零散的方面 ~~(比如 TanStack 就有 Solid 实验 Router)~~ 拼不起完整生态。这让它在当前以及未来都处于一个尴尬的位置：没有完整生态，在如今 Agent 爆炸的时代；雪球还没滚起来那么 Agent 就不会优先选择它，如果 AI 都不会优先偏好他意味着更少的机会得到贡献，尤其是当 [Linus Torvalds](https://github.com/torvalds) 都开始 Vibe 的年代，感觉 Solid 很遗憾，想法很好、技术很正确、实现很优雅，但是真的是很可惜它生不逢时...'
+        spans:
+        - phrase: Vibe
+          guidance: Refers to "vibe coding", letting AI write code; a translator may not recognize the slang in the Linus Torvalds joke.
+      d10e1b71540c8ee2f46e20f5b5992557:
+        source: 具体就是把原来一堆嵌套的 Provider 丢数组，然后定义一个组合函数，最后再吃这一层即可。~~但是这个对我来说其实就是一种自欺欺人的行为~~，本质上只是"藏起来"了, 又不是真的消除了。也就是从视觉上的嵌套变成了逻辑上的嵌套而已，某种意义上的 "眼不见为净" 纯纯的自我安慰
+        spans:
+        - phrase: 眼不见为净
+          guidance: Idiom "out of sight, out of mind (clean)" mocking Compose Providers as merely hiding nesting; the mocking flavour depends on the set phrase.
   development/rust-cargo-cranelift-tuning.md:
     provider: openai
     model: gpt-5-6-sol-xhigh

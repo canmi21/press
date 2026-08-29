@@ -247,12 +247,46 @@ pub fn parse_scan(reply: &str) -> Vec<Gloss> {
 		.collect()
 }
 
+/// Whether every occurrence of `phrase` in `source` sits inside an `:fn` note's `is` attribute.
+///
+/// A phrase there needs no translator's note: the author's note is already an explanation
+/// channel, and its translation simply renders an equivalent expression. Worse than needless, a
+/// note there is impossible -- `:tn` cannot nest inside the attribute, since the straight quote
+/// that would open it ends the attribute instead -- so recording one wedges the segment: every
+/// answer either omits the demanded note or breaks the directive's shape, and the run buys the
+/// same refusal forever. Found that way: `脱裤子放屁` lived inside an `:fn` explanation, and
+/// three model attempts correctly declined to do the impossible.
+fn only_inside_note_attributes(source: &str, phrase: &str) -> bool {
+	let mut inside: Vec<(usize, usize)> = Vec::new();
+	let mut rest = 0;
+	while let Some(at) = source[rest..].find("{is=\"") {
+		let open = rest + at + 5;
+		let Some(len) = source[open..].find("\"}") else {
+			break;
+		};
+		inside.push((open, open + len));
+		rest = open + len + 2;
+	}
+	let mut found_any = false;
+	let mut from = 0;
+	while let Some(at) = source[from..].find(phrase) {
+		let here = from + at;
+		found_any = true;
+		if !inside.iter().any(|(a, b)| here >= *a && here < *b) {
+			return false;
+		}
+		from = here + phrase.len();
+	}
+	found_any
+}
+
 /// Attach each suggested phrase to the segment whose source contains it.
 ///
 /// A suggestion the article does not contain is dropped rather than recorded. The scanner reads
 /// the whole article and can paraphrase what it found; a phrase that cannot be located is one
 /// no translator could keep verbatim either, so recording it would produce an instruction that
-/// is impossible to follow.
+/// is impossible to follow. A phrase living only inside `:fn` note attributes is dropped for
+/// the same shape of reason -- see `only_inside_note_attributes`.
 pub fn attach(
 	segments: &[super::segment::Segment],
 	found: &[Gloss],
@@ -266,6 +300,9 @@ pub fn attach(
 			continue;
 		};
 		if matches.next().is_some() {
+			continue;
+		}
+		if only_inside_note_attributes(&segment.source, &gloss.phrase) {
 			continue;
 		}
 		by_segment
@@ -418,6 +455,34 @@ mod tests {
 		assert_eq!(attached.len(), 1);
 		assert_eq!(attached[0].2.len(), 1);
 		assert_eq!(attached[0].2[0].phrase, "古法");
+	}
+
+	#[test]
+	fn a_phrase_living_only_inside_a_note_attribute_is_dropped() {
+		let segment = super::super::segment::Segment {
+			id: "s1".into(),
+			kind: super::super::segment::Kind::Prose,
+			source: "结果就是 :fn[乱]{is=\"基本上就是脱裤子放屁\"} 而已".into(),
+			region: super::super::segment::Region::Body,
+			start: 0,
+			end: 0,
+			line: 1,
+		};
+		let inside = Gloss {
+			phrase: "脱裤子放屁".into(),
+			guidance: "a crude idiom".into(),
+		};
+		assert!(attach(&[segment.clone()], &[inside]).is_empty());
+		// The same phrase in open prose still attaches.
+		let open = super::super::segment::Segment {
+			source: "这就是脱裤子放屁而已".into(),
+			..segment
+		};
+		let gloss = Gloss {
+			phrase: "脱裤子放屁".into(),
+			guidance: "a crude idiom".into(),
+		};
+		assert_eq!(attach(&[open], &[gloss]).len(), 1);
 	}
 
 	#[test]

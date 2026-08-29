@@ -160,7 +160,16 @@ pub fn build_for(
 	// Only for blocks that carry one: every rule a prompt states is one the model weighs
 	// against all the others, and most blocks have no author's note to spend that weight on.
 	let author_notes = if segment.region == Region::Body && segment.source.contains(":fn[") {
-		"\n- `:fn[words]{is=\"explanation\"}` is the author's own note. Translate the words as 		 part of their sentence and keep the directive shape exactly. At the end of the article 		 the translated words are shown once more with the translated explanation directly after 		 them, read together as one continuous statement -- so write the explanation to continue 		 from the words rather than restate them. Do not repeat the words inside the explanation 		 unless the target grammar leaves no natural alternative."
+		"\n- `:fn[words]{is=\"explanation\"}` is the author's own note. Translate the words as \
+		 part of their sentence and keep the directive shape exactly. At the end of the article \
+		 the translated words are shown once more with the translated explanation directly after \
+		 them, read together as one continuous statement -- so write the explanation to continue \
+		 from the words rather than restate them. Do not repeat the words inside the explanation \
+		 unless the target grammar leaves no natural alternative. An idiom or a joke inside the \
+		 explanation is translated into an equivalent target-language expression in place -- \
+		 never kept in the source language, never given a note of its own. Never use a straight \
+		 double quote inside the explanation -- there is no way to escape one there and it ends \
+		 the note early. Use curly quotes or none."
 	} else {
 		""
 	};
