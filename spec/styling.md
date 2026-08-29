@@ -342,9 +342,13 @@ on its first frame because the instant of arrival is the message -- and fades it
 marker's number lit beside it and letting go on the same clock. A dotted underline was tried
 under the fill and cut: two inks were saying one thing, and the fill already says it in the
 reader's own colour.
-Only this direction gets it: walking down to a note is guided by the number being followed,
-and the note's phrase opens it in the article's own colour.
 
+The walk down gets the same light, on the note's whole line: the phrase and the explanation
+compose one sentence, so the fill covers both rather than picking a half. Across a wrap the
+line's box is sliced where the prose words' is cloned, and the asymmetry is the meaning: the
+square edges at a break say the sentence continues, where two finished pills would say two
+things -- a real drag-selection breaks the same way, and this is its ink. The marked words in
+prose are short and each fragment is wholly "the words", so their boxes close.
 `:target` cannot carry this, deliberately: the move never touches the URL (see above), so a
 class set by the jump does, and the compiled prose wraps the noted words in a span that exists
 only to receive it. Accent is not spent here -- appearing and disappearing is what catches the

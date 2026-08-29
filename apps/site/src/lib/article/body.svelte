@@ -11,6 +11,7 @@
 	import Tokei from '$lib/blocks/tokei/tokei.svelte';
 	import Twitter from '$lib/blocks/twitter.svelte';
 	import { jumpTo, movesThisPage, targetOf } from '$lib/client/jump';
+	import { flashOnArrival } from './note-flash';
 	import PopoverContent from '$lib/components/popover-content.svelte';
 	import * as m from '$lib/paraglide/messages';
 	import Info from '@lucide/svelte/icons/info';
@@ -83,6 +84,10 @@
 		// The move is not an address: see spec/styling.md.
 		event.preventDefault();
 		jumpTo(destination);
+		// Landing light for the walk down: the note's whole line, phrase and explanation
+		// together, because they compose one sentence. See footnotes.svelte for its shape.
+		const line = destination.querySelector('.note-line');
+		if (line instanceof HTMLElement) flashOnArrival(line);
 	}
 
 	function noteEvents(node: HTMLElement) {

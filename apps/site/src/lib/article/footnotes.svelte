@@ -2,16 +2,12 @@
 	import CornerDownLeft from '@lucide/svelte/icons/corner-down-left';
 	import * as m from '$lib/paraglide/messages';
 	import { jumpTo, movesThisPage, targetOf } from '$lib/client/jump';
+	import { flashOnArrival } from './note-flash';
 	import type { ArticleNote } from '$lib/content/types';
 	import type { LocaleCode } from '$lib/locale';
 
 	/** `locale` is the view being rendered. Passed rather than read: see spec/locale.md. */
 	let { notes, locale }: { notes: ArticleNote[]; locale: LocaleCode } = $props();
-
-	/** As long as the CSS animation, plus a beat: the class must outlive what it plays. */
-	const RETURN_FLASH_MS = 1900;
-	/** Give up waiting for the scroll and light up anyway: arrival detection is best effort. */
-	const RETURN_ARRIVAL_MS = 3000;
 
 	/**
 	 * The way back, scrolled rather than jumped -- the same move the markers make, owned here
@@ -26,61 +22,12 @@
 		// The move is not an address: see spec/styling.md.
 		event.preventDefault();
 		jumpTo(destination);
-		flashReturn(destination);
-	}
-
-	let flashed: HTMLElement | undefined;
-	let flashTimer: ReturnType<typeof setTimeout> | undefined;
-
-	/**
-	 * Light the words the reader just returned to, briefly.
-	 *
-	 * The noted words may sit anywhere in their line and appear more than once in the
-	 * paragraph, so arriving in the right scroll band is not the same as knowing which words
-	 * were left. The URL never carries the move (spec/styling.md), so `:target` cannot say --
-	 * a class on the wrapped words does, and CSS decides what it looks like and for how long.
-	 * The timer owns removal because reduced motion runs no animation and fires no
-	 * `animationend`; one mechanism for both. A marker in a heading has no wrapped words --
-	 * the heading names itself -- so the marker alone takes the class there.
-	 */
-	function flashReturn(destination: Element) {
+		// Light the words the reader is returning to. A marker in a heading has no wrapped
+		// words -- the heading names itself -- so the marker alone takes the light there.
 		const sup = destination.closest('sup.note-marker');
 		const words = sup?.previousElementSibling;
 		const target = words?.classList.contains('note-words') ? words : sup;
-		if (!(target instanceof HTMLElement)) return;
-		if (flashTimer !== undefined) clearTimeout(flashTimer);
-		flashed?.classList.remove('note-return');
-		flashed = target;
-		// Light up on arrival, not on departure: a long article's smooth scroll outlasts the
-		// animation, which would play to an empty viewport. The browser's smooth-scroll
-		// duration is internal and per-engine, so it cannot be computed up front, and Safari
-		// has no `scrollend` -- arrival is read off the geometry instead: the target in the
-		// viewport and its position unchanged for a frame, which is the scroll settling on it.
-		// Per-frame, so the light starts the frame the move ends, with a cap so a scroll
-		// interrupted mid-flight still ends the wait.
-		const started = performance.now();
-		let restingTop: number | undefined;
-		const settled = () => {
-			const { top, bottom } = target.getBoundingClientRect();
-			const inView = top >= 0 && bottom <= window.innerHeight;
-			const still = restingTop !== undefined && Math.abs(top - restingTop) < 1;
-			restingTop = top;
-			return inView && still;
-		};
-		const waitThenFlash = () => {
-			if (flashed !== target) return;
-			if (!settled() && performance.now() - started < RETURN_ARRIVAL_MS) {
-				requestAnimationFrame(waitThenFlash);
-				return;
-			}
-			target.classList.add('note-return');
-			flashTimer = setTimeout(() => {
-				target.classList.remove('note-return');
-				if (flashed === target) flashed = undefined;
-				flashTimer = undefined;
-			}, RETURN_FLASH_MS);
-		};
-		requestAnimationFrame(waitThenFlash);
+		if (target instanceof HTMLElement) flashOnArrival(target);
 	}
 </script>
 
@@ -108,14 +55,16 @@
 				     The link's accessible name stays the explanation itself -- an aria-label would
 				     replace it -- and the purpose rides after it as words only a screen reader
 				     gets. -->
-				<span class="note-phrase">{note.phrase}</span><sup class="note-marker" aria-hidden="true"
-					>{note.number}</sup
-				><a href="#marker-{note.number}" class="note-link focus-link" onclick={jumpBack}
-					>{note.text}<span class="note-back" aria-hidden="true">
-						<CornerDownLeft class="size-[1.1em]" />
-					</span><span class="sr-only">
-						({m['article.notes.back']({ number: note.number }, { locale })})</span
-					></a
+				<span class="note-line"
+					><span class="note-phrase">{note.phrase}</span><sup class="note-marker" aria-hidden="true"
+						>{note.number}</sup
+					><a href="#marker-{note.number}" class="note-link focus-link" onclick={jumpBack}
+						>{note.text}<span class="note-back" aria-hidden="true">
+							<CornerDownLeft class="size-[1.1em]" />
+						</span><span class="sr-only">
+							({m['article.notes.back']({ number: note.number }, { locale })})</span
+						></a
+					></span
 				>
 			</li>
 		{/each}
@@ -186,6 +135,26 @@
 	   the note. In the prose it follows the word it belongs to and must not be spaced off it. */
 	.note > :global(.note-marker) {
 		margin-inline-end: 0.3rem;
+	}
+
+	/* The landing light for the walk down: the whole line -- phrase, number, explanation --
+	   fills with the selection colour and fades, because the phrase and the explanation
+	   compose one sentence and the light must say one thing. Sliced rather than cloned across
+	   a wrap on the same reasoning: square edges at the break say the sentence continues,
+	   where two finished pills would say two things; a real drag-selection breaks the same
+	   way, and this is its ink. Rounded only where the sentence actually ends. */
+	.note-line:global(.note-return) {
+		animation: note-return-words 1.8s ease-out both;
+		border-radius: 0.25rem;
+		padding: 0.08em 0.2em;
+		margin: -0.08em -0.2em;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.note-line:global(.note-return) {
+			animation: none;
+			background-color: var(--color-selection);
+		}
 	}
 
 	/* The link is the explanation: it inherits the note's quiet colour and brightens whole
