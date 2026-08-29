@@ -27,7 +27,7 @@
 		const sup = destination.closest('sup.note-marker');
 		const words = sup?.previousElementSibling;
 		const target = words?.classList.contains('note-words') ? words : sup;
-		if (target instanceof HTMLElement) flashOnArrival(target);
+		if (target instanceof HTMLElement) flashOnArrival(target, 'each');
 	}
 </script>
 
@@ -135,26 +135,6 @@
 	   the note. In the prose it follows the word it belongs to and must not be spaced off it. */
 	.note > :global(.note-marker) {
 		margin-inline-end: 0.3rem;
-	}
-
-	/* The landing light for the walk down: the whole line -- phrase, number, explanation --
-	   fills with the selection colour and fades, because the phrase and the explanation
-	   compose one sentence and the light must say one thing. Sliced rather than cloned across
-	   a wrap on the same reasoning: square edges at the break say the sentence continues,
-	   where two finished pills would say two things; a real drag-selection breaks the same
-	   way, and this is its ink. Rounded only where the sentence actually ends. */
-	.note-line:global(.note-return) {
-		animation: note-return-words 1.8s ease-out both;
-		border-radius: 0.25rem;
-		padding: 0.08em 0.2em;
-		margin: -0.08em -0.2em;
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.note-line:global(.note-return) {
-			animation: none;
-			background-color: var(--color-selection);
-		}
 	}
 
 	/* The link is the explanation: it inherits the note's quiet colour and brightens whole

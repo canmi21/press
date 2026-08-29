@@ -87,7 +87,7 @@
 		// Landing light for the walk down: the note's whole line, phrase and explanation
 		// together, because they compose one sentence. See footnotes.svelte for its shape.
 		const line = destination.querySelector('.note-line');
-		if (line instanceof HTMLElement) flashOnArrival(line);
+		if (line instanceof HTMLElement) flashOnArrival(line, 'ends');
 	}
 
 	function noteEvents(node: HTMLElement) {

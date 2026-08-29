@@ -339,7 +339,15 @@ line and appear more than once in the paragraph. So the return fills the words w
 selection colour the instant the scroll settles -- the reader's own "I marked this" ink,
 themed for both modes, worn tailored where a drag is raw: rounded, hugging the glyphs, whole
 on its first frame because the instant of arrival is the message -- and fades it slowly, the
-marker's number lit beside it and letting go on the same clock. A dotted underline was tried
+marker's number lit beside it and letting go on the same clock.
+
+The light is painted above the text as its own translucent layer, never as a background on
+it. A background sits under the element's children, and any child that brings its own -- an
+inline code span is the ordinary case -- swallows the light exactly where it lands; a layer
+on top cannot be covered by anything the content grows later, and the selection colour's own
+alpha keeps the words readable through it. The layer's boxes are read off the text's rendered
+line fragments at the moment of arrival, one per fragment, so the wrap semantics below are
+geometry the layer copies rather than CSS it relies on. A dotted underline was tried
 under the fill and cut: two inks were saying one thing, and the fill already says it in the
 reader's own colour.
 
