@@ -1,0 +1,2407 @@
+version: 1
+segments:
+  013e560f9aa0d9604f7d56ad33404dde:
+    en-US:
+      text: 'So in theory `slot0` = `product.name` and `slot1` = `product.price`. This is the residualization I was already doing: the core idea is that the whole page never has to go through SSR, and only the truly dynamic residue gets computed.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:12.628659Z
+      seconds: 6.524598541
+      tokens: 28181
+      review: false
+    ja-JP:
+      text: つまり理論上は `slot0` = `product.name`, `slot1` = `product.price` となる。これが以前から私がやっていた residualization で、核心となる考え方はページ全体を SSR に通す必要はなく、本当に dynamic な residue だけを計算するというものだ。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:12.628659Z
+      seconds: 6.524598541
+      tokens: 28181
+      review: false
+  02838a6b1d344559afe6c736b44cbfc5:
+    en-US:
+      text: The pity is that I had already picked React for the UI and started cutting; unfortunately, capturing page structure and generating variants on top of React is extremely hard, and modifying the compiler would be no less work than rewriting one...
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:12.628672Z
+      seconds: 6.186136083
+      tokens: 28382
+      review: false
+    ja-JP:
+      text: 惜しいことに、私は先に UI に React を選んで手を付け始めていた。不幸にも React の上でページ構造を捕捉して変体を生成するのは非常に難しく、コンパイラを改造するとなれば、その作業量はひとつ書き直すのと変わらない...
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:12.628672Z
+      seconds: 6.186136083
+      tokens: 28382
+      review: false
+  02e974be3cab46e6cdd9a16cf93e4897:
+    en-US:
+      text: Svelte, by contrast, lends itself very easily to forming local ownership;
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:12.628741Z
+      seconds: 4.054148625
+      tokens: 27935
+      review: false
+    ja-JP:
+      text: 一方 Svelte は、局所的な ownership を非常に形成しやすい。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:12.628741Z
+      seconds: 4.054148625
+      tokens: 27935
+      review: false
+  03ce682fb563e51bec90f519984a914e:
+    en-US:
+      text: 'Structural branches fare even worse: even "is this piece of DOM here or not" has to be answered by rendering twice and then `diff`, whereas `Svelte`''s `IfBlock` turns that latter question from **observable** into **generatable**, and that is the real qualitative leap.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:12.628815Z
+      seconds: 7.122888625
+      tokens: 28347
+      review: false
+    ja-JP:
+      text: 構造分岐はさらに悲惨で、「ここにこの DOM があるかどうか」ですら二回レンダリングしてから `diff` に頼るしかない。一方 `Svelte` の `IfBlock` は後者を**観測できる**ものから**生成できる**ものへと変えた。これこそが質的な飛躍だ。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:12.628815Z
+      seconds: 7.122888625
+      tokens: 28347
+      review: false
+  051c340b0b5cc1dafad7a3179e3e224a:
+    en-US:
+      text: 'Beyond that, **Svelte** also offers me plenty of benefits. First, it doesn''t push the UI toward `JSX` plus a pile of :fn[`JS function`]{is="refers to the way React renders the component tree no matter what business logic is running, the typical mindset being: ''the business data fetching and the components are all JS artifacts anyway, so why not just run them on every request''. React 19 has PPR, but at its core it is still this line of thinking"}; and `<style>` is a compile-time artifact rather than `runtime`. The former keeps the structure inside `markup AST`; the latter lets CSS go straight into the IR, and Tailwind happens to fit both sides ('
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:16.683746Z
+      seconds: 11.148618708
+      tokens: 28902
+      review: false
+    ja-JP:
+      text: それに加えて、**Svelte** は私に多くの恩恵を与えてくれる。まず、UI を `JSX` と大量の :fn[`JS function`]{is="とは、どんなビジネスロジックを走らせるにしてもコンポーネントツリーをレンダリングする React 流の振る舞いを指す。典型的な考え方は「どうせビジネスデータの取得もコンポーネントも JS の産物なんだから、リクエストごとに一回走らせればいいじゃないか」というもの。React 19 には PPR があるが、本質的にはやはりこの発想のままだ"} へ押しやらないこと。そして `<style>` が `runtime` ではなくコンパイル時の産物であること。前者は構造を `markup AST` の中に留め、後者は CSS を直接 IR に入れられるようにし、Tailwind はちょうどその両側に貼り付けられる（
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:16.683746Z
+      seconds: 11.148618708
+      tokens: 28902
+      review: false
+  0549e3662ba2bed687839a080a224c13:
+    en-US:
+      text: In other words, I only cut out the UI, the part where I'd be taking on thankless, effortful work for anyone and everyone (?). The part that stays unchanged can still serve as a "Rendering Protocol", with the backend not limited to JS/TS.
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:18.815792Z
+      seconds: 6.759989208
+      tokens: 28258
+      review: false
+    ja-JP:
+      text: 言い換えれば、私が切り落としたのは UI だけ、つまり誰の要望でも引き受けるような骨の折れてあまり報われない部分だ (?)。変わらない部分は引き続き「Rendering Protocol」として機能し、バックエンドは JS/TS に限定されない。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:18.815792Z
+      seconds: 6.759989208
+      tokens: 28258
+      review: false
+  066cb1c55b0e906252d09a249f2c3405:
+    en-US:
+      text: 'Anyway, Runes-friendliness shows up as ownership being marked in the syntax; it is not that `$derived` comes with **CTR** eligibility built in. The only real criterion is still what the path below shows: where the data comes from, whether it is pure, and whether it is visible :tn[(x)]{is="a playful marker at the end of a sentence in Chinese internet writing, meant as a wink rather than a variable"}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:19.155705Z
+      seconds: 8.747651167
+      tokens: 28345
+      review: false
+    ja-JP:
+      text: とにかく Runes フレンドリーというのは、所有権が構文上に示されているということであって、`$derived` が **CTR** の資格を最初から持っているからではない。判断基準はやはり唯一、下のパスが示すように、データがどこから来るか、純粋かどうか、見えるかどうか、というだけ :tn[(x)]{is="中国語ネット文体で文末に添える遊び心のある記号で、変数ではなくウィンクのようなもの"}
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:19.155705Z
+      seconds: 8.747651167
+      tokens: 28345
+      review: false
+  090d668ffe73c3e2f350781f1ad21ef0:
+    en-US:
+      text: 'There is also Marko 6, which is already quite close to what I have in mind (template **AST**, compile-time fine-grained updates, **resume** rather than **replay**); but compared with `Marko`, the technical lines that can still be drawn between them come down to two: one is that `request-time` still runs JS compiler output, with the whole chain tied to the JS runtime; ~~the other is that the author''s language is Marko, not Svelte~~. I believe that when most people talk about the frontend in 2026, they will only count `React`, `Vue`, `Svelte` and `Solid` as the mainstream **UI Stack**; if I did not bring it up, many people might not even know what `Marko` is. So building on `Svelte`, I am not really "*copying the principles and bolting on a backend*"; I prefer to describe it as borrowing a UI that someone writes, someone uses, and someone keeps fixing bugs in and polishing, all of it material everyone already knows.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:19.75261Z
+      seconds: 15.001302625
+      tokens: 29460
+      review: false
+    ja-JP:
+      text: 実はここには Marko 6 もあって、すでに私の考えにかなり近い (テンプレート **AST**、コンパイル時の細粒度更新、**replay** ではなく **resume**)。しかし `Marko` と比べて技術的にまだ線を引ける点は主に二つで、一つは `request-time` がまだ JS のコンパイル成果物を動かしていて、チェーン全体が JS runtime に縛られていること。~~もう一つは作者の使う言語が Svelte ではなく Marko であること~~。26年にフロントエンドを語るとき、ほとんどの人が主流の **UI Stack** として考えるのはきっと `React`, `Vue`, `Svelte`, `Solid` だけだろうし、私が言わなければ `Marko` が何かすら知らない人も多いかもしれない。だから `Svelte` の上に築くというのは、「*原理を一式コピーして backend を足す*」というより、誰かが書き、誰かが使い、誰かが絶えず bug を直し磨き続けている UI を借りて使う、と私は説明したい。どれも皆がよく知っている内容だ。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:19.75261Z
+      seconds: 15.001302625
+      tokens: 29460
+      review: false
+  0a89df25a16270f7c20cb1e639d0b337:
+    en-US:
+      text: '## CTR {#ctr-boundary}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:25.576586Z
+      seconds: 3.2623465
+      tokens: 28066
+      review: false
+    ja-JP:
+      text: '## CTR {#ctr-boundary}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:25.576586Z
+      seconds: 3.2623465
+      tokens: 28066
+      review: false
+  0ce8c72ed341d47de2e72223966e14ea:
+    en-US:
+      text: '## Local ownership {#local-ownership}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:27.833298Z
+      seconds: 3.696531458
+      tokens: 28137
+      review: false
+    ja-JP:
+      text: '## 局所的なオーナーシップ {#local-ownership}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:27.833298Z
+      seconds: 3.696531458
+      tokens: 28137
+      review: false
+  10053b2847765f024701d88e98676163:
+    en-US:
+      text: :spoiler[`UI structure` ≈ `template AST`, and `JavaScript` ≈ `values` + `behavior` is already everyday practice here]
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:27.904325Z
+      seconds: 4.985994875
+      tokens: 28217
+      review: false
+    ja-JP:
+      text: :spoiler[`UI structure` ≈ `template AST`、`JavaScript` ≈ `values` + `behavior` は、ここではもう日常です]
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:27.904325Z
+      seconds: 4.985994875
+      tokens: 28217
+      review: false
+  100c69a8537539160b56389a8f90e608:
+    en-US:
+      text: '`Wrapper = cond ? A : B` does not vanish into thin air here; rather, it is narrowed from "any JS expression" down to these few nodes, which makes things very simple for Seam: just follow the default of going through **AST lowering**; a hole that is statically visible belongs to whoever is inside it; the most common case is `{@render}` as `compose` (`layout`, and `Card` wrapping `children`, are all of this type), while `<svelte:component>` / `<svelte:element>` / dynamic `{@render}` are the explicit `hatch` and go into `runtime` or `SSR fallback`; and for `{@html}`, the `raw HTML slot` I designed directly can simply be reused.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:28.839905Z
+      seconds: 10.316934833
+      tokens: 28933
+      review: false
+    ja-JP:
+      text: '`Wrapper = cond ? A : B` はここで何もなく消えたわけではなく、「任意の JS 式」からこれら数個のノードに絞り込まれたのであり、Seam にとっては非常に単純になる。デフォルトで **AST lowering** を通すという原則に従えばよく、静的に見える hole は、その中にあるものの所有となる。最もよくあるのは `{@render}` を `compose` として扱うケースで（`layout`、`Card` が `children` を包むものはすべてこの型）、`<svelte:component>` / `<svelte:element>` / 動的な `{@render}` こそが明確な `hatch` であり、`runtime` か `SSR fallback` に入る。また `{@html}` については、私が直接設計した `raw HTML slot` をそのまま流用できる。'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:28.839905Z
+      seconds: 10.316934833
+      tokens: 28933
+      review: false
+  1072d854177db484397055fca143602f:
+    en-US:
+      text: So the real advantage isn't "**the structure is always known**" -- it's "**unknown structure comes with a reference list**" (x
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:31.530918Z
+      seconds: 4.377525375
+      tokens: 28285
+      review: false
+    ja-JP:
+      text: つまり実際の強みは「**構造が常に既知である**」ことではなく、「**未知の構造には参照リストがある**」ことなんですよね (x
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:31.530918Z
+      seconds: 4.377525375
+      tokens: 28285
+      review: false
+  1098bd2291ca906aaa78f72587a9e05a:
+    en-US:
+      text: 'But in the Svelte era these nodes can be generated straight from the AST, and the reason for doing so is not to shave off those few ms by switching stacks; it is far more about turning the control flow from :fn[observation]{is="a black-box problem that exists only in the React version: there is no way to truly cut into a particular step of the compiler, so the only option is to observe it as a black box"} into `lowering` -- structure discovery is handed to the **AST**, finite decisions use protocol nodes, and there is no longer any need to multiply out `N` copies of `HTML`; types constrain `payload` rather than discovering the tree. So in the end, in **Svelte**, values **on this** **Layer** look like the following ↓'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:32.891319Z
+      seconds: 10.939169459
+      tokens: 28935
+      review: false
+    ja-JP:
+      text: しかし Svelte の時代にはこれらのノードは AST から直接生成できる。そうする理由はスタックを乗り換えて数 ms を節約するためではなく、むしろ制御フローを:fn[観測]{is="React 版にだけ存在するブラックボックスの問題で、コンパイラの特定のステップに本当に切り込むことができず、「ブラックボックス」として観測するしかない"}から `lowering` へ変えるためだ――構造の発見は **AST** に任せ、有限の決定はプロトコルノードで行い、`N` 個の `HTML` を掛け合わせて生み出す必要はもうない。型は `payload` を制約するのであって、木を発見するのではない。そうして最終的に **Svelte** では、values は**この** **Layer** 上で以下のように見える ↓
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:32.891319Z
+      seconds: 10.939169459
+      tokens: 28935
+      review: false
+  15b89b0fd7c4c83a4b1c2b985b764ee9:
+    en-US:
+      text: '## Ownership {#component-ownership}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:34.754726Z
+      seconds: 3.787252125
+      tokens: 28155
+      review: false
+    ja-JP:
+      text: '## 所有権 {#component-ownership}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:34.754726Z
+      seconds: 3.787252125
+      tokens: 28155
+      review: false
+  16937c67b7b9a49acc97169898701f9a:
+    en-US:
+      text: '## CSS {#static-css}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:35.909551Z
+      seconds: 3.907606334
+      tokens: 28224
+      review: false
+    ja-JP:
+      text: '## CSS {#static-css}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:35.909551Z
+      seconds: 3.907606334
+      tokens: 28224
+      review: false
+  18cb4935d7725cd3e6b94b5bde19dab2:
+    en-US:
+      text: So [Evan You](https://github.com/yyx990803) did not really do anything wrong; you could even say someone had to step up and play the ~~:tn[big bad guy]{is="The original says 大坏人, a childlike, storybook phrase for a villain, used tongue-in-cheek about Evan You owning the breaking changes. The playful register is softer in English."}~~, and he just happened to be the best fit for it, doing nothing more than the most fitting thing...
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:38.54309Z
+      seconds: 10.666656375
+      tokens: 29467
+      review: false
+    ja-JP:
+      text: だから [Evan You](https://github.com/yyx990803) は別に何も間違ったことはしていない。むしろ誰かがこの ~~:tn[悪者]{is="原文の「大坏人」は子どもが使うような絵本的な言い回しで、破壊的変更を引き受けた Evan You を冗談めかして指している。その無邪気でおどけた語感は訳では弱まっている。"}~~ を引き受けなければならなかったと言ってもよく、彼はたまたま最適な人選で、最適なことをしただけなのだ……
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:38.54309Z
+      seconds: 10.666656375
+      tokens: 29467
+      review: false
+  19a9ed32e724e931295aac69101af38b:
+    en-US:
+      text: Of course `skeleton` itself has to be :fn[`parse-stable`]{is="meaning parse-stable, or reproducibly parseable"}; stuffing `comment` into `table` at random counts as an implementation that did not handle things properly, and should not be pinned on my model. **Build-time** computes the hydration mapping (what is static, what is a `slot`, what gets bound), not a premature freezing of the data, yet it does fix the data type of this `slot` for good. The data values themselves can still be swapped freely at **request-time**; it is just that `HTML` and `payload` must be the same copy.
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:39.157829Z
+      seconds: 11.781876667
+      tokens: 29068
+      review: false
+    ja-JP:
+      text: もちろん `skeleton` 自身は :fn[`parse-stable`]{is="つまり「パースが安定している」あるいは「再現可能にパースできる」ということ"} でなければならない。`table` に `comment` を無秩序に詰め込むようなものは実装の処理不足であって、僕のモデルのせいにしないでほしい。**Build-time** が計算するのはハイドレーションの対応関係（どれが静的で、どれが `slot` で、何を束縛するか）であり、データを前もって固めてしまうことではない。ただし、この `slot` のデータ型は固定してしまう。データの値そのものは **request-time** に自由に差し替えられる。ただ `HTML` と `payload` が同一のものでなければならない、というだけだ。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:39.157829Z
+      seconds: 11.781876667
+      tokens: 29068
+      review: false
+  1b77db42b920b28a354519f32e6c84b8:
+    en-US:
+      text: '## Same graph? {#living-component-graph}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:39.818372Z
+      seconds: 5.335575542
+      tokens: 28503
+      review: false
+    ja-JP:
+      text: '## 同じグラフ? {#living-component-graph}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:39.818372Z
+      seconds: 5.335575542
+      tokens: 28503
+      review: false
+  1bb9e63b140a6926852fa9e8d4342ae1:
+    en-US:
+      text: From the perspective of Svelte / the Seam Compiler, this is very comfortable
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:43.831435Z
+      seconds: 4.787225083
+      tokens: 28014
+      review: false
+    ja-JP:
+      text: Svelte / Seam Compiler の視点から見ると、これはとても快適です
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:43.831435Z
+      seconds: 4.787225083
+      tokens: 28014
+      review: false
+  200d4eb5c3353380bae9124b1ada0c0a:
+    en-US:
+      text: People using Next.js have basically stopped :fn[caring about performance]{is="there are Next.js users who do care about performance, but what they care about is business-logic performance, not framework-level performance"}, and I can say that with full responsibility; what they are really paying for is the Vercel supporting infrastructure, and if you use Next.js without hosting on Vercel you get none of the benefits at all 😡
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:45.154934Z
+      seconds: 7.584692792
+      tokens: 28661
+      review: false
+    ja-JP:
+      text: Next.js を使っている人は基本的にもう:fn[性能を気にしていない]{is="Next.js ユーザーにも性能を気にする人はいるが、彼らが気にしているのはビジネスロジックの性能であって、framework レベルの性能ではない"}と、私は責任を持って言える。彼らが払っているのはむしろ Vercel の周辺インフラへの対価であり、Next.js を Vercel に hosted せずに使うなら、本当に何の恩恵も受けられない 😡
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:45.154934Z
+      seconds: 7.584692792
+      tokens: 28661
+      review: false
+  22c47375258ad8200e37f6775c1683b2:
+    en-US:
+      text: '## Slots and Branches {#slots-and-branches}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:49.210868Z
+      seconds: 4.563469584
+      tokens: 28151
+      review: false
+    ja-JP:
+      text: '## スロットとブランチ {#slots-and-branches}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:49.210868Z
+      seconds: 4.563469584
+      tokens: 28151
+      review: false
+  252a18b7f411a4365ac3e52c07a2b5b2:
+    en-US:
+      text: '## What will :fn[Ship]{is="a word borrowed from Vercel; here it only means what will actually land"}? {#what-seamjs-ships}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:50.94076Z
+      seconds: 4.496308625
+      tokens: 28632
+      review: false
+    ja-JP:
+      text: '## 何が :fn[Ship]{is="Vercel 由来の言葉で、ここでは実際に実現するものだけを指す"} されるのか? {#what-seamjs-ships}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:50.94076Z
+      seconds: 4.496308625
+      tokens: 28632
+      review: false
+  2897c28269d028348c4e1d96b792cbba:
+    en-US:
+      text: 'And then there is the Dashboard, the kind of thing where pages do get clicked open one after another; this statistic does not help there, but the Dashboard''s users are, after all, far fewer than the real content audience, are they not. So I think "browsing a huge number of pages makes the overhead grow" is essentially a **false premise**; at least for now, ~~maybe I will see it differently later~~, but in today''s fast-paced information age I find it hard not to admit that such users are extremely rare; even if someone explores deeply out of interest and converts into a long-term follower, that exploration most likely happens only on the first visit, and afterwards they just drop by to read the newly published articles. Statistically speaking, the return on this extreme case is simply not proportional. So I am more inclined to believe: **in most scenarios Svelte delivers better overall performance**.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:52.740612Z
+      seconds: 12.06305475
+      tokens: 29369
+      review: false
+    ja-JP:
+      text: それから Dashboard のような、ページを次々に開いていくものについては、この統計は役に立たないが、Dashboard のユーザーは本当のコンテンツ読者に比べればずっと少ないではないか。だから「大量のページを閲覧するとオーバーヘッドが大きくなる」というのは、本質的には**偽の命題**だと私は考えている。少なくとも今のところは。~~将来は違う見方をするかもしれないが~~、この速いテンポの情報時代において、そうしたユーザーが極めて少ないことは認めざるを得ない。仮に誰かが興味から深く探索し、長期的なファンになったとしても、その探索はおそらく初回訪問でしか起きず、その後は新しく公開された記事を見に来るだけだろう。統計的なリターンで見れば、この極端なケースは割に合わないと言える。したがって私はこう信じたい。**ほとんどの場面で Svelte のほうが総合的な性能に優れる**。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:52.740612Z
+      seconds: 12.06305475
+      tokens: 29369
+      review: false
+  2b98037ac9eed2127df04b0f7584bb11:
+    en-US:
+      text: But before I start ranting about other people, I probably ought to fill in a bit of background on **seam & SeamJS** first (x — what on earth is this thing ~~after all, the last post was months ago, so odds are you've forgotten it all, and I can't be bothered to update the README.md on Github yet~~
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:53.775472Z
+      seconds: 7.353458292
+      tokens: 28777
+      review: false
+    ja-JP:
+      text: ただ、他人にツッコミを入れ始める前に、まず **seam & SeamJS** まわりの知識を少し補っておいたほうがいいかもしれない(x これって一体何なの ~~なにしろ前回の記事から数ヶ月空いているので、たぶん皆さんきれいさっぱり忘れているだろうし、Github の README.md を直すのも今のところ面倒くさい~~
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:53.775472Z
+      seconds: 7.353458292
+      tokens: 28777
+      review: false
+  2ba0907a6e0aa6c929e9a32949a430a0:
+    en-US:
+      text: 'As for Vue, when I personally migrated from Vue 2 to Vue 3 I could no longer get behind its syntax and mechanisms; the Vue in my heart will always be Vue 2. There is no denying that Vue 3 has many excellent `feature`, but compared with Vue 2 its core feels different to me, and very different at that. Then, looking at it from a commercial angle, is `Vue` being tied ever more tightly to the meta layer and controlled by its ecosystem? Its situation feels very much like `Svelte`: both are open source, but it is genuinely almost impossible for a third party to step up and build a second implementation for you, which is exactly why the shake-up brought by **TanStack Start** hit **Next.js** so hard; [Tanner Linsley](https://x.com/tannerlinsley) deserves real credit. There is one more thing, a problem of `Vue` that cannot be ignored: the early `Vue` really was a revolution, but every **UI Stack** runs into ecosystem problems once its ecosystem takes off, ~~that is, certain compromises made for compatibility?~~ and this problem is especially glaring in `React`; today''s `Vue` is no exception. When this kind of :fn[content]{is="can be exemplified here by the Options API + Component Instance Proxy compatibility layer, which I consider one of the most beautiful designs of early Vue; at least in 2016 it made the framework not look like a framework. But in the TS + Composition API era its cost is obvious: new projects will not use it anymore, yet because it was an early successful design it cannot really be thrown away entirely"} starts appearing, I usually consider it **Slop**, ~~though you cannot say it is bad either~~, because once Nuxt becomes the next "enterprise-grade" framework, the primary consideration is no longer whether the technology is correct or elegant, but a certain backward compatibility + stability (x'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:55.438247Z
+      seconds: 24.517258541
+      tokens: 30318
+      review: false
+    ja-JP:
+      text: Vue については、個人的に Vue 2 から Vue 3 へ移行した際に、構文などの仕組みにあまり賛同できなくなった。私の心の中の Vue は永遠に Vue 2 だ。Vue 3 に素晴らしい `feature` が数多くあることは否定できないが、Vue 2 と比べると、そのコアは私にとって変わってしまったように感じる。しかも大きく変わった。また商業的な観点から考えると、`Vue` はますます meta 層に完全に縛り付けられ、エコシステムに支配されているのではないか?その状況は `Svelte` と非常によく似ていて、どちらもオープンソースではあるが、第三者が立ち上がって第二の実装を作ってくれることは本当にほぼありえない。これこそ **TanStack Start** の参入による再編が **Next.js** に与えた打撃が本当に大きかった理由であり、[Tanner Linsley](https://x.com/tannerlinsley) は称賛されるべきだ。もう一つ、`Vue` の無視できない問題がある。初期の `Vue` は確かに革新だったが、どんな **UI Stack** もエコシステムが育った後にはエコシステムの問題にぶつかる。~~つまり互換性のために一定の妥協が生まれるということ?~~ 特にこの問題は `React` で本当に顕著で、今の `Vue` も例外ではない。こうした:fn[内容]{is="の例としては Options API + Component Instance Proxy 互換層が挙げられる。私はこれを初期 Vue の最も美しい設計の一つだと考えており、少なくとも 2016 年にはフレームワークをフレームワークらしく見せない効果があった。しかし TS + Composition API の時代になるとコストが明らかで、新しいプロジェクトではもう使われないのに、初期の成功した設計であるがゆえに本当に完全には捨てられない"}が現れ始めたとき、私は大抵それを **Slop** と見なす。~~とはいえ悪いとも言えない~~。Nuxt が次の「エンタープライズ級」フレームワークになった後は、第一の考慮事項はもはや技術が正しいか、エレガントかではなく、ある種の後方互換性 + 安定性になるからだ(x
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:55.438247Z
+      seconds: 24.517258541
+      tokens: 30318
+      review: false
+  2bc7e0b1c9913da22e8c32ff7f67da9c:
+    en-US:
+      text: React projects really do end up like this very easily, or rather 100% of the time, and that produces a problem Seam finds deeply annoying, namely "what exactly is a component's input?" On the surface you could say `<ProductCard product={product}/>` seems to depend only on `product` itself? But what about in reality
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:01.130023Z
+      seconds: 7.294639416
+      tokens: 28541
+      review: false
+    ja-JP:
+      text: React プロジェクトは最終的に本当に簡単に、というより 100% こうなってしまう。そうなると Seam がとても嫌がる問題、つまり「component の入力とは一体何なのか?」が生じる。表面上は `<ProductCard product={product}/>` が `product` 自体にしか依存していないように見える? けれど実際はどうだろう
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:01.130023Z
+      seconds: 7.294639416
+      tokens: 28541
+      review: false
+  2eb31bb1908c707a1bb705059373b4fd:
+    en-US:
+      text: '## The Balance Point {#svelte-balance}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:04.804647Z
+      seconds: 3.234355833
+      tokens: 28503
+      review: false
+    ja-JP:
+      text: '## バランスポイント {#svelte-balance}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:04.804647Z
+      seconds: 3.234355833
+      tokens: 28503
+      review: false
+  302c70226f84115378341ae910954ca3:
+    en-US:
+      text: It is even the practice `Svelte` officially encourages most. This distinction is structural for how **Seam** extracts its **IR**. But please do not take this to mean **Svelte** has no dynamic structure; in fact it has its own escape hatch for that, and it is one of the main pieces of syntax
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:08.040167Z
+      seconds: 6.833415416
+      tokens: 28504
+      review: false
+    ja-JP:
+      text: それどころか、`Svelte` が公式に最も推奨しているやり方でもある。この違いは **Seam** が **IR** を抽出するうえで構造的なものだ。ただし、**Svelte** に動的な構造がないと理解しないでほしい。実際には対応する逃げ口があり、しかも主要な構文のひとつだ
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:08.040167Z
+      seconds: 6.833415416
+      tokens: 28504
+      review: false
+  30600380e1850196e2f95859dccd8a14:
+    en-US:
+      text: '## Same protocol {#same-protocol}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:08.425917Z
+      seconds: 4.474374959
+      tokens: 28244
+      review: false
+    ja-JP:
+      text: '## 同じプロトコル {#same-protocol}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:08.425917Z
+      seconds: 4.474374959
+      tokens: 28244
+      review: false
+  3287947f6cfdca7e990d8767d7ec168d:
+    en-US:
+      text: 'But I am not sure whether "radical" is the right word here. Where it might fit is that, compared with traditional frameworks, I am willing to throw away that heavy server-side JS runtime (Node or Bun); where it might not is that, say, dropping CSS-in-JS entirely would actually cause no real problem, ~~I would rather think of it as :tn[a relic of a bygone era]{is="The original uses the Chinese meme phrase 时代的眼泪 (tears of an era), a wistful label for something once beloved and now obsolete; the nostalgic, slightly mournful tone is softened here."}~~. The once best-known CSS-in-JS libraries: [Stitches](https://github.com/stitchesjs/stitches/discussions/1149) was officially declared no longer actively maintained in June 2023, [styled-components](https://styled-components.com/blog/celebrating-a-decade-of-styled-components) went into dormancy in March 2025, and [Emotion](https://github.com/emotion-js/emotion/discussions/2827) is more or less in the same state.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:12.901772Z
+      seconds: 14.822178584
+      tokens: 29807
+      review: false
+    ja-JP:
+      text: ただ、ここで「過激」という言葉が正しいのかは分からない。正しいと言える面は、従来のフレームワークと比べて、サーバーサイドの重い JS ランタイム (Node か Bun) を思い切って捨てているところだろう。正しくないかもしれない面は、たとえば CSS-in-JS を完全に捨てたとしても、実のところ何の問題もないという点だ。~~むしろそれを :tn[時代に置き去りにされたもの]{is="原文は中国語のミーム表現「时代的眼泪」(時代の涙) で、かつて愛されたが今は廃れたものを指す。懐かしさと哀愁を含んだ言い回しで、その語感は訳文では薄れている。"}と考えたい~~。かつて最も有名だった CSS-in-JS ライブラリたち、[Stitches](https://github.com/stitchesjs/stitches/discussions/1149) は 2023 年 6 月に公式に no longer actively maintained と宣言し、[styled-components](https://styled-components.com/blog/celebrating-a-decade-of-styled-components) も 2025 年 3 月に休眠状態に入り、[Emotion](https://github.com/emotion-js/emotion/discussions/2827) もほぼ同じような状況だ。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:12.901772Z
+      seconds: 14.822178584
+      tokens: 29807
+      review: false
+  33256211577b29b46a87c7b2fe45ecc1:
+    en-US:
+      text: 'And another thing: what `Qwik`''s "no hydration" saves is the client-side replay, but it does not save :fn[the server-side SSR pass]{is="referring to Qwik''s server producing fully interactive HTML with serialised state and event references, which yields ‘resumability’ without running hydration"}(?) So, regrettably, no framework today satisfies me, or gives me enough API to have any chance of adding on top of it, and that is why a few months ago I went and built this SeamJS thing; so what today is really about is re-planning its `roadmap`.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:41:01.778335Z
+      seconds: 6.052300834
+      tokens: 28835
+      review: false
+    ja-JP:
+      text: それから、`Qwik` の「ハイドレーションしない」が省いているのはクライアント側の replay であって、:fn[サーバー側のあの一回の SSR]{is="Qwik のサーバーがシリアライズされた状態とイベント参照を含む完全にインタラクティブな HTML を生成し、ハイドレーションを実行せずに「レジューマビリティ」を実現していることを指す"}(?) は省けていない。だから残念ながら、今のところ私を満足させてくれるフレームワークも、私が足し算をする余地を持てるだけの API を与えてくれるフレームワークもひとつもなく、それが数か月前に私が SeamJS というものを作りに行った理由でもある。というわけで今日は、あらためてその `roadmap` を練り直しに来た、という話だ。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:14.874768Z
+      seconds: 11.041843958
+      tokens: 29135
+      review: false
+  33d5b96305d85a799eb62603747def96:
+    en-US:
+      text: 'For example, component compilation:'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:19.956702Z
+      seconds: 6.190072667
+      tokens: 28084
+      review: false
+    ja-JP:
+      text: '例えば component compilation の場合:'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:19.956702Z
+      seconds: 6.190072667
+      tokens: 28084
+      review: false
+  366b28434dd6cf40fe7e6eb7ce08f149:
+    en-US:
+      text: The value is still `slot`, and the branch is the `if` block from the old protocol. But in the **React** version it takes several rounds of `diff` before you can get hold of this block; in **Svelte**, by contrast, it can be derived and generated directly from `IfBlock`.
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:23.484892Z
+      seconds: 5.50538275
+      tokens: 28350
+      review: false
+    ja-JP:
+      text: 値は相変わらず `slot` で、分岐は旧プロトコルの `if` ブロックである。しかし **React** 版ではこのブロックを手に入れるまでに何度も `diff` が必要になるのに対し、**Svelte** ではここは `IfBlock` から直接導出して生成できる。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:23.484892Z
+      seconds: 5.50538275
+      tokens: 28350
+      review: false
+  36ce7ee7a628c6c6ad039254cd9a097c:
+    en-US:
+      text: |-
+        But this time I am not saying the protocol itself has to change either. The `skeleton`, `slot` and `injection` I described before can, I think, actually stay, and the backend still does not have to run UI code; what has to change is the layer in front of the protocol, the question of how the answer page gets compiled into those nodes.
+        And here I cannot help but thank `Svelte` for the greatest gift it gave me -- `markup`
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:26.147975Z
+      seconds: 8.318636583
+      tokens: 28624
+      review: false
+    ja-JP:
+      text: |-
+        ただ今回もプロトコルそのものを変えるという話ではない。前に書いた `skeleton`、`slot`、`injection` は実はそのまま残せると思うし、バックエンドが UI コードを走らせなくてよいのも変わらない。変えるべきなのはプロトコルの手前の層、つまり回答ページがどうやってこれらのノードへとコンパイルされるのかという問題だ。
+        そしてここでどうしても感謝しなければならないのが、`Svelte` がくれた最大の贈り物―― `markup`
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:26.147975Z
+      seconds: 8.318636583
+      tokens: 28624
+      review: false
+  36e16dc4480c900ce363572874e38549:
+    en-US:
+      text: In React the unknown is the whole of JS; in Svelte the unknown is just the openings of those few Escapes above, nothing more. Once that is applied, the range of content CTR has to analyse will shrink markedly
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:27.725271Z
+      seconds: 5.077551208
+      tokens: 28146
+      review: false
+    ja-JP:
+      text: React では未知なのは JS 全体だが、Svelte では未知なのは上に挙げたいくつかの Escape の開口部だけで、それ以上ではない。これを使えば、CTR が解析しなければならない内容の範囲は確実に大きく減る
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:27.725271Z
+      seconds: 5.077551208
+      tokens: 28146
+      review: false
+  39329f65350944935f7870cac7c68ab4:
+    en-US:
+      text: 'Note that this is not a separate rendering model: in V1, `skeleton` + `dynamic_slots`, once compiled, is exactly that `HTML` from the old protocol, only now how `skeleton` + `dynamic_slots` come to be is more transparent to me.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:28.99173Z
+      seconds: 6.587039166
+      tokens: 28287
+      review: false
+    ja-JP:
+      text: これは別のレンダリングモデルを新たに立てたわけではない点に注意してほしい。V1 では `skeleton` + `dynamic_slots` をコンパイルし終えたものが、そのまま旧プロトコルのあの `HTML` であり、ただ `skeleton` + `dynamic_slots` がどう生まれるのかが私にとってより透明になっただけだ。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:28.99173Z
+      seconds: 6.587039166
+      tokens: 28287
+      review: false
+  3b29a848f07331b00d4556c1d50251c5:
+    en-US:
+      text: From React's black box to Svelte's visible AST
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:32.804208Z
+      seconds: 3.2709185
+      tokens: 28016
+      review: false
+    ja-JP:
+      text: React のブラックボックスから Svelte の見える AST へ
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:32.804208Z
+      seconds: 3.2709185
+      tokens: 28016
+      review: false
+  3b2e6480c2fbf41749f6165ecfa2b086:
+    en-US:
+      text: The whole flow above needs no JS runtime at all
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:34.468064Z
+      seconds: 4.251260875
+      tokens: 27987
+      review: false
+    ja-JP:
+      text: 上記の流れは JS runtime の関与をまったく必要としない
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:34.468064Z
+      seconds: 4.251260875
+      tokens: 27987
+      review: false
+  3b9842eb38f488f745693395b52d75cc:
+    en-US:
+      text: In theory this should not be dumped on the user; otherwise the outcome is :fn[`escape` everywhere]{is="because users are lazy, and if the compiler cannot guarantee it mechanically, the whole thing is basically pointless busywork"}, :fn[CTR]{is="(Compile-Time Rendering) is a fully independent rendering approach that early seam invented for the first time"} still only covers that same bit of `nullable` / `enum`, structure discovery amounts to not having been done at all, and then it is unclear how much meaning is left in it.
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:40:07.810611Z
+      seconds: 9.914879209
+      tokens: 28914
+      review: false
+    ja-JP:
+      text: 理論上これはユーザーに丸投げすべきではなく、さもなければ結果は :fn[`escape` だらけ]{is="ユーザーは怠惰なので、コンパイラが機械的に保証できなければ、基本的にはまったく無意味な手間になるから"}になり、:fn[CTR]{is="(Compile-Time Rendering) は初期の seam が初めて発明した、完全に独立したレンダリング方式である"} がカバーするのは相変わらずあの程度の `nullable` / `enum` だけで、構造の発見はやっていないのと同じになり、どれほどの意味が残るのか分からなくなる。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:40:07.810611Z
+      seconds: 9.914879209
+      tokens: 28914
+      review: false
+  3cf702a03bc1d3723e62d6b780d2bcf8:
+    en-US:
+      text: 'Either way, nobody can move before hydration; having no animation before :fn[first frame]{is="the first usable frame the browser paints on screen after the user opens the page"} JS comes up was never anyone''s fault to begin with. `Seam` only guarantees that `injection` is right, `document` is right, and the `client` entry point is right; the real constraint here comes after hydration: `client` navigation is done by pushing data into that still-living graph ~~(layout persists)~~, rather than going through `injection` once more to swap `document`. In short, **what Seam takes over after hydration is the same static component graph**.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:36.080057Z
+      seconds: 10.264861
+      tokens: 29556
+      review: false
+    ja-JP:
+      text: 'どのみち水和前には誰も動けないのだから、:fn[初回フレーム]{is="ユーザーがページを開いた後にブラウザが画面に描画する最初の使えるフレームのこと"} の JS が立ち上がる前にアニメーションがないのは、もともと誰のせいでもない。`Seam` が保証するのは `injection` が正しいこと、`document` が正しいこと、`client` のエントリが正しいことだけで、ここで本当の制約になるのは水和後だ: `client` ナビゲーションは、まだ生きているそのグラフにデータを流し込んで行う ~~(layout は持続する)~~ のであって、もう一度 `injection` を通して `document` を差し替えるのではない。要するに **Seam が水和後に引き継ぐのは同じ一枚の静的コンポーネントグラフだ**。'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:36.080057Z
+      seconds: 10.264861
+      tokens: 29556
+      review: false
+  3e7edd5ad26e9a79f8f3723cf431aced:
+    en-US:
+      text: Suppose we handle it like this ↓
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:36.817339Z
+      seconds: 3.297716333
+      tokens: 28030
+      review: false
+    ja-JP:
+      text: 次のように処理すると仮定してみよう ↓
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:36.817339Z
+      seconds: 3.297716333
+      tokens: 28030
+      review: false
+  411346bc5dd519c85d7d4ea231c93782:
+    en-US:
+      text: 'Take a counterexample: in React,'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:38.72223Z
+      seconds: 3.729809291
+      tokens: 28207
+      review: false
+    ja-JP:
+      text: 反例を挙げると、React では
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:38.72223Z
+      seconds: 3.729809291
+      tokens: 28207
+      review: false
+  413a7011651a0eb2a4938501d6b80c5c:
+    en-US:
+      text: Only `hatch` ones `SSR fallback`, so the backend can skip running UI code whenever real SSR is not needed, and naturally there is no lock-in to `Node` OR `Bun` -- but then again (the Go Server is slated to stop being maintained, ~~because I personally cannot keep up; if some kind soul has the time, feel free to pick it up and maintain it long-term -- it is not that the architecture stopped supporting backend independence~~)
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:40.116418Z
+      seconds: 8.422639042
+      tokens: 28721
+      review: false
+    ja-JP:
+      text: '`hatch` のものだけが `SSR fallback` するので、本物の SSR が不要な場合、バックエンドは UI コードを走らせなくてよく、当然 `Node` OR `Bun` に縛られることもない。ただし (Go Server はメンテナンス停止の予定、~~個人の力が足りないからで、時間のある親切な方がいれば拾って長期メンテしてくれて構わない。アーキテクチャがバックエンド非依存をやめたわけではない~~)'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:40.116418Z
+      seconds: 8.422639042
+      tokens: 28721
+      review: false
+  4154098f36c5c6f7210a975220b7dcae:
+    en-US:
+      text: '## Escape {#explicit-escapes}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:42.453675Z
+      seconds: 3.938226959
+      tokens: 28156
+      review: false
+    ja-JP:
+      text: '## エスケープ {#explicit-escapes}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:42.453675Z
+      seconds: 3.938226959
+      tokens: 28156
+      review: false
+  4231a504b932a858791b4e47a7379a8f:
+    en-US:
+      text: 'SeamJS moves its component language from React to Svelte: instead of guessing at page structure through execution and diffing, it reads the public template AST directly, lowering static markup, dynamic values and control flow into skeletons, slots and protocol nodes, while keeping an SSR fallback for explicit escape hatches.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:46.346564Z
+      seconds: 9.102879458
+      tokens: 28388
+      review: false
+    ja-JP:
+      text: SeamJS はコンポーネント言語を React から Svelte へ移し、実行と diff でページ構造を推測するのをやめ、公開された template AST を直接読み取って、静的な markup、動的な値、制御フローを skeleton、slot、プロトコルノードへ lowering する。同時に、明示的な escape hatch のために SSR fallback を残している。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:46.346564Z
+      seconds: 9.102879458
+      tokens: 28388
+      review: false
+  4672e630bb74287051692436b50d3e5e:
+    en-US:
+      text: 'After all, with:spoiler[ "**input**: `product` + **local client state**: `quantity`"] the ownership really is perfectly clear'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:46.393294Z
+      seconds: 7.6181225
+      tokens: 28311
+      review: false
+    ja-JP:
+      text: 'なにしろ:spoiler[ 「**input**: `product` + **local client state**: `quantity`」]で Ownership が本当にはっきりしているのだから'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:46.393294Z
+      seconds: 7.6181225
+      tokens: 28311
+      review: false
+  48fb1c1f4af25101e6060c302cef1c56:
+    en-US:
+      text: Or alternatively
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:48.540577Z
+      seconds: 4.569655459
+      tokens: 28063
+      review: false
+    ja-JP:
+      text: あるいは
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:48.540577Z
+      seconds: 4.569655459
+      tokens: 28063
+      review: false
+  4942f3c88f58c1690d055b619de4a9a0:
+    en-US:
+      text: '> Anything, once its ecosystem takes off, will start making compromises; ~~breaking refactors that truly reinvent things become rare~~'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:53.113279Z
+      seconds: 5.289237916
+      tokens: 28288
+      review: false
+    ja-JP:
+      text: '> どんなものでも、エコシステムが立ち上がったあとは妥協が生まれる。~~破壊的なリファクタリングで刷新することはめったになくなる~~'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:53.113279Z
+      seconds: 5.289237916
+      tokens: 28288
+      review: false
+  4edc626d80604f0f2f8fe841edd3a028:
+    en-US:
+      text: '## Leaner :fn[pseudo-SSR]{is="here meaning specifically that no traditional UI render runs at request time, yet the effect of SSR is achieved by other means"} {#beyond-ssr}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:54.013015Z
+      seconds: 7.073140458
+      tokens: 28859
+      review: false
+    ja-JP:
+      text: '## より軽量な:fn[疑似 SSR]{is="ここでは特に、リクエスト時に従来の UI render を実行せず、別の手段で SSR と同じ効果を得ることを指す"} {#beyond-ssr}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:54.013015Z
+      seconds: 7.073140458
+      tokens: 28859
+      review: false
+  53a659643a4d971d8216f8aee8c14b25:
+    en-US:
+      text: 'But this is already very close to the ideal state I want Seam to reach: a Svelte component no longer corresponds to "a renderer that has to be executed", but becomes a resource the Svelte 5 Compiler can take apart; getting that far is already a very large conceptual improvement for me.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:55.451082Z
+      seconds: 6.500729708
+      tokens: 28294
+      review: false
+    ja-JP:
+      text: しかしこれはすでに、私が Seam に到達してほしい理想の状態にかなり近い。つまり Svelte component が「実行しなければならない renderer」に対応するのではなく、Svelte 5 Compiler が分解できるリソースになるということだ。これを実現できれば、私にとってはすでに非常に大きな conceptual improvement である。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:55.451082Z
+      seconds: 6.500729708
+      tokens: 28294
+      review: false
+  55a8d0ad3a82ebff690c79845c2e5d18:
+    en-US:
+      text: '## Data origin {#data-origin-and-purity}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:58.404091Z
+      seconds: 4.070255333
+      tokens: 28299
+      review: false
+    ja-JP:
+      text: '## データの出所 {#data-origin-and-purity}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:34:58.404091Z
+      seconds: 4.070255333
+      tokens: 28299
+      review: false
+  55ef862d599e6ac9077b1fc3a74bcfe7:
+    en-US:
+      text: This is not to say JSX can't do it, of course. It's just that when you actually write it, hardly anyone leaves the structure somewhere easy to see on the branch tree; almost everyone ends up writing it like this(x)
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:01.087991Z
+      seconds: 7.968777416
+      tokens: 28160
+      review: false
+    ja-JP:
+      text: もちろん JSX にはできないと言っているわけではない。ただ実際に書くとなると、分岐ツリーの見やすい場所に構造を残す人はほとんどおらず、大体はこの下のように書いてしまう(x)
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:01.087991Z
+      seconds: 7.968777416
+      tokens: 28160
+      review: false
+  5720841b2738415b49f41038ae99d774:
+    en-US:
+      text: But :fn[this JS is not that JS]{is="here 'more JS' only means the syntax looks closer to JavaScript; it does not mean it has degraded into plain function calls the compiler cannot understand"}, and the difference from `useState` / `useMemo` / `useContext` / `useEffect` is that **runes** are still `compiler-recognized semantics`, so Seam can know that `$state` is owned by the **client**, `$derived` is derived, and `$effect` is **client runtime**; this is not in the same league as `const foo = someLibraryHook()`.
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:01.953597Z
+      seconds: 11.104380167
+      tokens: 28815
+      review: false
+    ja-JP:
+      text: ただし:fn[この JS はあの JS ではない]{is="ここでいう「より JS らしい」とは構文の形が JavaScript に近づいたというだけで、コンパイラが理解できない普通の関数呼び出しに退化したという意味ではない"}。`useState` / `useMemo` / `useContext` / `useEffect` との違いは、**runes** が依然として `compiler-recognized semantics` であることだ。だから Seam は `$state` が **client** の所有物であり、`$derived` が派生であり、`$effect` が **client runtime** であると知ることができる。これは `const foo = someLibraryHook()` とは次元が違う。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:01.953597Z
+      seconds: 11.104380167
+      tokens: 28815
+      review: false
+  5d969045dea22ce11885453befbb2cd7:
+    en-US:
+      text: Beyond that, "not pushing global state" matters more to Seam than DX alone. I am sure you have already seen the following pile of stuff in a Next.js project, or in any React full-stack framework ↓
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:02.476173Z
+      seconds: 7.551888791
+      tokens: 28164
+      review: false
+    ja-JP:
+      text: それから、「global state を推さない」ことが Seam にとって持つ意味は DX よりも深いものです。Next.js のプロジェクトでも、あるいは他のどんな React フルスタックフレームワークでも、きっと下のような塊を見たことがあるはずです ↓
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:02.476173Z
+      seconds: 7.551888791
+      tokens: 28164
+      review: false
+  5fd71f590dec253b8a21d95a2316e507:
+    en-US:
+      text: 'No doubt someone is going to ask here: isn''t this just `Astro` / `Qwik` / `Marko`? :tn[Yes, it is]{is="The original writes 雀食, a deliberate homophone misspelling of 确实 (‘indeed’) used as playful internet slang. English only gets the plain concession; the wink is lost."}: in language shape Seam is closest to `Marko`, in shipping little JS by default it is closest to `Astro`, and in not doing `replay hydrate` it is closest to `Qwik`; but their `request-time` is still running a UI program `island`, each with its own `render`, that `Qwik` pass in `SSR`, the JS template functions compiled out by `Marko`, all still executing a chunk of `renderer` per request.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:09.058445Z
+      seconds: 12.210102042
+      tokens: 29750
+      review: false
+    ja-JP:
+      text: ここで必ず誰かが聞くだろう。それは `Astro` / `Qwik` / `Marko` と同じじゃないのか、と。:tn[たしかに]{is="原文は 雀食 で、确实（たしかに）をわざと同音の別字で書いたネットスラング的な言葉遊び。日本語では普通の「たしかに」になり、そのおどけた調子は伝わらない。"}、言語の形では Seam は `Marko` に最も近く、デフォルトで JS が少ない点では `Astro` に、`replay hydrate` をしない点では `Qwik` に最も近い。だが、彼らの `request-time` は依然として UI プログラム `island` を走らせている。各自の `render`、`Qwik` のあの `SSR`、`Marko` がコンパイルした JS テンプレート関数、どれもリクエストごとに `renderer` の塊を実行しているのだ。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:09.058445Z
+      seconds: 12.210102042
+      tokens: 29750
+      review: false
+  63e99a85af1b6fc388ae662f7dfe89c8:
+    en-US:
+      text: 'For instance, there is no dispute that the first line here goes into the skeleton, but the second line is where Svelte really shines: `class:` / `style:` keep the `attr` name in the **AST** while only the value becomes `slot`, so the whole `element` need not be marked dynamic. The third line is not fundamentally different from **React**''s `{...props}`; Seam just treats it as an explicit `hatch` and stops pretending to analyse it. In **React**, a literal `className="card"` does not really need enumerating either; what has to be enumerated is "will this attr change after a different set of props". :spoiler[That last kind of guesswork is exactly what Svelte does away with -- as long as the name is still on the tree, you don''t have to render twice to find out 🫠]'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:10.030367Z
+      seconds: 11.210121625
+      tokens: 28932
+      review: false
+    ja-JP:
+      text: たとえばここで一行目が skeleton に入ることに異論はないが、二行目こそが Svelte の本当に便利なところだ。`class:` / `style:` は `attr` の名前を **AST** に残し、値だけが `slot` になるので、`element` 全体を動的扱いにしなくて済む。三行目は **React** の `{...props}` と本質的な違いはなく、Seam は明示的な `hatch` として扱い、もう解析しているふりをしなくていい。**React** でもリテラルの `className="card"` は実際には列挙しなくてよく、列挙すべきなのは「別の props に差し替えたあとこの attr は変わるか」だ。:spoiler[Svelte がちょうど省けるのはこの最後の推測で、名前が木に残っている限り、二回レンダリングして確かめる必要はない 🫠]
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:10.030367Z
+      seconds: 11.210121625
+      tokens: 28932
+      review: false
+  64f5012b02a9b6688dffd5e7f6771bcf:
+    en-US:
+      text: Of course, the modern React Compiler can analyse a good deal of this, but hacking on it means maintaining it forever, and that cost is enormous, in effort and in time alike... If I go with Svelte instead, :spoiler[I don't plan to fork the compiler here,]since in theory `svelte/compiler` already exposes the **AST**.
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:13.059622Z
+      seconds: 6.873008125
+      tokens: 28467
+      review: false
+    ja-JP:
+      text: もちろん現代の React Compiler はその多くを解析できるが、それに手を入れるということは、最後まで自分で保守し続けることを意味し、そのコストは労力でも時間でも桁外れに大きい... Svelte を改造するなら、:spoiler[ここでは compiler を fork するつもりはなく、]理論上は `svelte/compiler` がすでに **AST** を露出している。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:13.059622Z
+      seconds: 6.873008125
+      tokens: 28467
+      review: false
+  675f4743c7c61f86a88a0143b33aa844:
+    en-US:
+      text: 'Starting around the second half of this year, I moved this site entirely off `TanStack Start` **React** and fully `port` over to `SvelteKit` **Svelte**. Once the migration was done, I found it genuinely good: the performance overhead of `ssr` dropped by roughly an order of magnitude, hydration cost is tiny, it runs comfortably, and the framework''s compile-first philosophy is excellent and very lightweight. But the `Kit` side always had a few things that left me unsatisfied. Most of them can be solved with plugins ~~it is glued together out of Vite, after all~~, yet there are always some parts that cannot be touched; that is most likely my own problem, though, because the places seam wants to change probably conflict fundamentally with every existing `meta` framework, ~~in essence I am challenging their execution model (running the render function on every request), their data boundary (load and UI mashed together), and their backend capability (welded to a JS runtime)~~.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:15.949667Z
+      seconds: 13.160590416
+      tokens: 29124
+      review: false
+    ja-JP:
+      text: 今年の後半あたりから、このサイトを `TanStack Start` **React** から完全に `port` して `SvelteKit` **Svelte** へ全面移行しました。移行を終えてみると、確かに良いものでした。`ssr` のパフォーマンスオーバーヘッドはほぼ一桁下がり、ハイドレーションのコストは非常に小さく、動作は快適で、フレームワークのコンパイル志向の哲学も素晴らしく、とても軽量です。ただ `Kit` の部分には、どうしても物足りなさを感じるところがありました。その大半はプラグインで解決できるのですが ~~なにしろ Vite を組み合わせたものなので~~、それでもどうしても手を出せない部分が残ります。とはいえ、これはおそらく私自身の問題で、seam が変えたい箇所は既存のどの `meta` フレームワークとも本質的に衝突するからでしょう。~~要するに私は、彼らの実行モデル（リクエストごとに render 関数を走らせる）、データ境界（load と UI が混ざっている）、バックエンド能力（JS ランタイムに縛られている）に挑んでいるのです~~。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:15.949667Z
+      seconds: 13.160590416
+      tokens: 29124
+      review: false
+  67a3ae10494c9620269537caad57fbac:
+    en-US:
+      text: 'Seam does hydrate, but not the traditional way, and not the Qwik way either. Traditional hydration has the client `render` once more and diff against `DOM`; Qwik `SSR`s out `HTML` + component state, and the client `resume`s without `replay`ing; but Seam''s **request-time** does not even need to run the **UI renderer**: the hydration skeleton, the first screen, and the `hydrate` data all come from the same `injection`. What the client receives is an already-correct `DOM` + the same data, and it attaches events and **client state** according to the compile-time `IR` `adopt`, which is neither `replay` nor, naturally, `resume`ing a component tree.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:19.934339Z
+      seconds: 10.633953209
+      tokens: 29136
+      review: false
+    ja-JP:
+      text: Seam はハイドレーションを行うが、従来のやり方でも Qwik のやり方でもない。従来のハイドレーションはクライアントがもう一度 `render` して `DOM` と突き合わせる。Qwik は `HTML` + コンポーネント状態を `SSR` し、クライアントは `resume` するだけで `replay` しない。しかし Seam の **request-time** では **UI renderer** すら実際には走らせる必要がない。ハイドレーション用の骨格、ファーストビュー、`hydrate` のデータはすべて同じ一回の `injection` から来る。クライアントが受け取るのはすでに正しい `DOM` + 同じデータであり、コンパイル時の `IR` に従ってイベントと **client state** を取り付ける `adopt`。これは `replay` ではなく、当然ながらコンポーネントツリーを `resume` することでもない。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:19.934339Z
+      seconds: 10.633953209
+      tokens: 29136
+      review: false
+  6818d80999ac813f713985e6dc4e6300:
+    en-US:
+      text: Drawing it out like this might make it easier to understand(?)
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:21.242421Z
+      seconds: 3.6778382499999998
+      tokens: 28038
+      review: false
+    ja-JP:
+      text: こうやって図に描いてみたほうが分かりやすいかもしれない(?)
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:21.242421Z
+      seconds: 3.6778382499999998
+      tokens: 28038
+      review: false
+  6b3ba63b75ec447d9bd03d284c3627ff:
+    en-US:
+      text: '## Black box {#react-black-box}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:21.270662Z
+      seconds: 3.398052875
+      tokens: 28376
+      review: false
+    ja-JP:
+      text: '## ブラックボックス {#react-black-box}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:21.270662Z
+      seconds: 3.398052875
+      tokens: 28376
+      review: false
+  6bc17fcf866553c6a1fa8b8857dce5b9:
+    en-US:
+      text: '**at its core is still executing a JavaScript function** and seeing what it returns; however clever the compiler is, the basic model it faces remains: `JS execution` → `JSX expression` → `element tree`  Svelte, on the other hand, is quite different'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:24.671052Z
+      seconds: 6.172667125
+      tokens: 28192
+      review: false
+    ja-JP:
+      text: '**本質的にはやはり JavaScript function を実行して**、何を返すかを見ているに過ぎません。コンパイラがどれほど賢くても、向き合う基本モデルは依然として `JS execution` → `JSX expression` → `element tree` です。一方 Svelte ではまったく事情が異なります'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:24.671052Z
+      seconds: 6.172667125
+      tokens: 28192
+      review: false
+  6bc7bbc2257b8b049b689b3df96677cf:
+    en-US:
+      text: '## Vue {#why-not-vue}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:24.922193Z
+      seconds: 3.458257083
+      tokens: 29375
+      review: false
+    ja-JP:
+      text: '## Vue {#why-not-vue}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:24.922193Z
+      seconds: 3.458257083
+      tokens: 29375
+      review: false
+  6c0f0b8b06684280f348bb507b06dc73:
+    en-US:
+      text: The biggest problem Seam had in the React era was that the IR went `Component` → `execute renderer` → `get output`, so what I ended up calling `seam compiler` actually became, in a certain sense, an early `SSR`, or could just as well be described as
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:28.38248Z
+      seconds: 6.541108834
+      tokens: 28454
+      review: false
+    ja-JP:
+      text: React 時代の Seam の最大の問題は、IR が `Component` → `execute renderer` → `get output` と進んでいたことで、結局私が `seam compiler` と呼んでいたものは、ある意味で早めの `SSR` になっていた、あるいは端的にこう言い切ってもよいものになっていた
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:28.38248Z
+      seconds: 6.541108834
+      tokens: 28454
+      review: false
+  6dd15a29a3d236f1c96ae7c99a00037c:
+    en-US:
+      text: '***Even if in the end I am its only user, this is still my own* "Experiment 🧪"**'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:29.1122Z
+      seconds: 5.162010125
+      tokens: 28034
+      review: false
+    ja-JP:
+      text: '***たとえ最後まで使うのが私一人だけだとしても、これは私自身の* 「Experiment 🧪」**'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:29.1122Z
+      seconds: 5.162010125
+      tokens: 28034
+      review: false
+  6e7bba90a47cb574b380cbb9ccf98b12:
+    en-US:
+      text: :spoiler[Because I don't have to guess the structure of **markup** at all!!!]
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:30.570254Z
+      seconds: 6.004513042
+      tokens: 28096
+      review: false
+    ja-JP:
+      text: :spoiler[だって **markup** の構造は、私が推測する必要がまったくないのだから！！！]
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:30.570254Z
+      seconds: 6.004513042
+      tokens: 28096
+      review: false
+  71dcc04d2acea4e8fdd9a1b1f822a9a7:
+    en-US:
+      text: 'Also, the `if` / `each` / `match` from the old protocol are still valid, but the Cartesian product from the earlier [older post](https://canmi.net/architecture/compile-time-rendering#maybe-ctr) needs a qualification, I think: the condition under which it holds is actually the branch space, not the value space. For finite decisions like `nullable` / `enum` / `bool` the combinations are finite, and paying `compile-time` to exhaust them is mathematically sound; but `JTD`''s `string` / `number` / `timestamp` are inherently non-enumerable, and the branches carved out by predicates like `price > 10`, `inventory < 5`, `items.length === 0` cannot be discovered by a Cartesian product over typed values alone; `sentinel` with any one number filled in will always go down the same side.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:59.586224Z
+      seconds: 10.296913542
+      tokens: 29260
+      review: false
+    ja-JP:
+      text: それから、旧プロトコルの `if` / `each` / `match` は今も有効だが、以前の[旧記事](https://canmi.net/architecture/compile-time-rendering#maybe-ctr)にあったデカルト積の話は限定しておくべきだと思う。成り立つ条件は実は分岐空間であって、値空間ではない。`nullable` / `enum` / `bool` のような有限の決定なら組み合わせは有限で、`compile-time` を払って全列挙するのは数学的に成立する。しかし `JTD` の `string` / `number` / `timestamp` はそもそも列挙不可能で、`price > 10`、`inventory < 5`、`items.length === 0` のような述語が切り出す分岐は、型の値のデカルト積だけでは発見できない。`sentinel` にどんな数を入れても、永遠に同じ側を通る。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:59.586224Z
+      seconds: 10.296913542
+      tokens: 29260
+      review: false
+  71fde0e48b20946aa5df05af7e382068:
+    en-US:
+      text: The thing is, the structure above could already be worked around with Tailwind back in V1. The real reason CSS-in-JS is not wired in is that the moment it is, CSS turns back into a JS execution result, and then the style runtime, registry, SSR collection, hashing, hydration consistency, theme context, insertion, ordering and dedup all have to be invited back in. An ordinary framework can swallow that; :spoiler[but Seam is different!] This kind of server / runtime work is exactly what I set out to eliminate, and there is surely no need to invite back, out of ecosystem politeness, the very thing I just chased out (~~it makes no sense at all~~
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:34.276125Z
+      seconds: 10.387880167
+      tokens: 28749
+      review: false
+    ja-JP:
+      text: ただ、上記の構造は実は V1 の時点で Tailwind で回避できていた。CSS-in-JS を繋がない主な理由は、一度繋いでしまうと CSS が JS execution result に戻ってしまい、style runtime、registry、SSR collection、hashing、hydration consistency、theme context、insertion、ordering、dedup を全部呼び戻さなければならなくなることだ。普通のフレームワークなら飲み込める。:spoiler[でも Seam は違うんだ！]私が消し去りたいのはまさにこの種の server / runtime work であり、エコシステムへの礼儀のために追い出したばかりのものを呼び戻す必要は全くないはずだ（~~何の道理もない~~
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:34.276125Z
+      seconds: 10.387880167
+      tokens: 28749
+      review: false
+  7255b59cedd4beba649d4120562a4573:
+    en-US:
+      text: Without modifying it, you could still treat the React compiler as a black box and actually run a pile of `render` + `diff` to guess the structure and use that; finite decisions like `nullable` / `enum` can still be enumerated, but the moment you hit a predicate like `price > 10`, the type's value space simply cannot be multiplied out. ~~In V1 this situation just made you supply mocks by hand~~, for instance cutting three times at `price < 10` / `= 10` / `> 10`;
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:34.925443Z
+      seconds: 10.162213875
+      tokens: 28753
+      review: false
+    ja-JP:
+      text: 改造しないなら、React コンパイラをブラックボックスとして扱い、実際に大量の `render` + `diff` を実行して構造を推測して使うこともできる。`nullable` / `enum` のような有限の分岐ならまだ全列挙できるが、`price > 10` のような述語に出くわした途端、型の値空間はとても掛け合わせきれない。~~V1 ではこういう場合、手動で mock を渡してもらうしかなかった~~。たとえば `price < 10` / `= 10` / `> 10` で三回切る、といった具合に;
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:34.925443Z
+      seconds: 10.162213875
+      tokens: 28753
+      review: false
+  79d9c4b8bcefd175428f8681d933ebf5:
+    en-US:
+      text: Much of this kind of DYNAMIC does not even need React's level of ":fn[true rendering]{is="meaning specifically an operation that runs a complete UI render, rendering in full even when the only state that changed is data rather than a UI component"}"; keeping the slot is enough.
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:36.576842Z
+      seconds: 6.289385
+      tokens: 28550
+      review: false
+    ja-JP:
+      text: この種の DYNAMIC の多くは、React ほどのレベルの「:fn[真・rendering]{is="完全な UI render を実行する操作を特に指し、変更された状態が UI コンポーネントではなく data だけであっても全体を描画してしまう"}」を必要とせず、slot を保持するだけで十分である。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:36.576842Z
+      seconds: 6.289385
+      tokens: 28550
+      review: false
+  7e0886f6e9bf7582b65543981cb2c87c:
+    en-US:
+      text: 'Let''s start with `React`. Setting aside its commercial tie to **Vercel** `Next.js` and the fact that it has its own `roadmap`, the first problem is that **CVEs** rain down on it, ~~which alone means you are doomed to watch **Social Media** around the clock for whatever new vulnerability gets **reported & released**~~. The other **Routers** are basically :fn[unusable, **Remix** especially]{is="a purely personal opinion that will vary from person to person; officially and in the community they are considered usable, but I disagree"}, yet in 2026 there is one very special option: **TanStack** **Start**. I have used **TanStack Router** for a long time, and ~~apart from the :fn[naming style and data structures not being very pretty]{is="purely my own taste, not a design flaw of the framework"}~~, it is the only option I endorse on functionality. It is on the new side, but it solves the cold-start first-visit speed problem that the `next-server` process in **Next.js 16** still has not solved to this day. **Next.js** has always had this inexplicable stutter, and it is not that the server lacks power; I would attribute it to either the startup **Load** not having finished, or `runtime` still compiling something. ~~And that structure is inherently a poor fit for the **Cloudflare Worker** principle of many instances in many regions, each started recently~~; only :fn[a traditional **long-lived Node process** like **Vercel**''s]{is="Vercel is not a traditional process, it sleeps and is woken when actually run, but the long-lived process idea still holds"} avoids this problem (?) ~~That is drifting a bit; **Next.js** deserves a whole separate rant later~~, but :fn[**TanStack**]{is="here specifically the current TanStack Start, not the other libraries still in RC or Beta; the early Router, for instance, could not even be called stable, let alone production ready"} really is, in my view, mature enough for commercial use; at the very least I have put it on the sales site of a certain project. But it is only the second of two options (x)'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:42.868098Z
+      seconds: 25.913976916
+      tokens: 30413
+      review: false
+    ja-JP:
+      text: まず `React` から。**Vercel** `Next.js` との商業的な結びつきや、独自の `roadmap` を持っていることはさておき、何よりまず **CVE** が飛び交いすぎる。~~それだけで、新しい脆弱性が **report & release** されていないか、四六時中 **Social Media** を見張る羽目になる~~。他の **Router** は基本的に:fn[使えない状態、特に **Remix** は]{is="あくまで個人の主観であり人によって違う。公式やコミュニティでは使えるものと見なされているが、私は同意しない"}。ただ 2026年 には非常に特別な選択肢がある。**TanStack** **Start** だ。私はかなり早くから **TanStack Router** を使っていて、~~:fn[命名スタイルとデータ構造があまり美しくない]{is="純粋に個人の好みであり、フレームワークの設計上の欠陥ではない"}点を除けば~~、機能性の面では唯一認められる選択肢だと言える。新しいといえば新しいが、**Next.js 16** の `next-server` プロセスが今もって解決できていない、コールドスタート時の初回アクセス速度の問題を解決している。**Next.js** は実際、昔からわけもなくこの引っかかりがあり、サーバー性能が足りないのではなく、起動時の **Load** が完了していないか、`runtime` がまだ何かをコンパイルしているかのどちらかだと私は見ている。~~しかもこの構造は、**Cloudflare Worker** のような多地域インスタンスが直近に起動されるという原則とは相性が悪い~~。:fn[**Vercel** のような従来型の **Node 長時間プロセス**]{is="Vercel は従来型のプロセスではなく、休眠して実際に実行されるときに起こされるが、長時間プロセスという考え方は成り立つ"}だけがこの問題を食らわない(?) ~~少し話が逸れた。**Next.js** についてはいずれ丸ごと一本、愚痴を書ける~~。それでも :fn[**TanStack**]{is="ここでは現在の TanStack Start に限定し、まだ RC や Beta にある他のライブラリは含まない。たとえば初期の Router は安定とすら言えず、本番など論外だった"} は、商用利用に十分耐える成熟度に達していると本当に思う。少なくとも私はあるプロジェクトの販売サイトで使った。とはいえ、これは二つしかない選択肢の一つにすぎない(x)
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:42.868098Z
+      seconds: 25.913976916
+      tokens: 30413
+      review: false
+  817a1eeaf640bf23ff765b0b9cdf382a:
+    en-US:
+      text: Of the three, the first two directly decide whether CTR is merely an optimization or can truly become SeamJS's main :fn[**execution model**]{is="meaning the basic way Seam organises and carries out page generation, data injection and interaction takeover at runtime"}, which is also why, for me, dropping React is not necessarily a technical compromise; conversely, it can be a structural breaking change.   In short, I still hold to what I said
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:44.665982Z
+      seconds: 9.784779208
+      tokens: 28538
+      review: false
+    ja-JP:
+      text: この三つのうち前の二つが、CTR が単なる optimization にとどまるのか、それとも本当に SeamJS の主要な :fn[**execution model**]{is="とは、Seam がランタイムでページ生成、データ注入、インタラクションの引き継ぎを組織し完遂する基本的な実行方式を指す"} になれるのかを直接決める。だからこそ私にとって React を捨てることは必ずしも技術的な妥協ではなく、逆に構造上の breaking にもなりうる。   ともかく、私の言いたいことは変わらない
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:44.665982Z
+      seconds: 9.784779208
+      tokens: 28538
+      review: false
+  8641894f8e0e22046124223077f7bd93:
+    en-US:
+      text: This means Seam gets the chance to do **component-level CSS dependency**, **critical CSS**, **tree shaking** and **lazy CSS**, without having to maintain an extra `style runtime` for `server` / `client`.
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:45.089829Z
+      seconds: 6.65492425
+      tokens: 28494
+      review: false
+    ja-JP:
+      text: つまり Seam は **component-level CSS dependency**、**critical CSS**、**tree shaking**、**lazy CSS** に取り組む余地を得られ、`server` / `client` の `style runtime` を別途維持する必要もなくなる。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:45.089829Z
+      seconds: 6.65492425
+      tokens: 28494
+      review: false
+  8869b0884cacd132e00ff6107ea09373:
+    en-US:
+      text: '`product` comes from `$props`, and `formatPrice` still has to be pure and visible; plugged into the table above, that is what it looks like'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:51.746729Z
+      seconds: 4.266997292
+      tokens: 28184
+      review: false
+    ja-JP:
+      text: '`product` は `$props` に由来し、`formatPrice` は純粋かつ可視である必要があり、前の表に当てはめるとこうなる'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:51.746729Z
+      seconds: 4.266997292
+      tokens: 28184
+      review: false
+  8b7de850a8ba60cd62d3842d29299da4:
+    en-US:
+      text: As I wrote in the previous post, `Seam` is first and foremost a protocol, not yet another **SSR runtime**. **Build-time** produces `HTML skeleton` carrying `slot`, and **request-time** only does `injection`; `if` / `each` / `match` are likewise :fn[protocol nodes]{is="where a “node” means a structural unit in the protocol that describes page structure and control relationships, and has nothing whatsoever to do with network nodes, VPNs, or anything of that sort"}
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:54.452929Z
+      seconds: 8.35097525
+      tokens: 28754
+      review: false
+    ja-JP:
+      text: 前回の記事に書いたとおり、`Seam` はまず一つのプロトコルであって、また一つの **SSR runtime** ではない。**Build-time** が `slot` を持つ `HTML skeleton` を生成し、**request-time** は `injection` だけを行う。`if` / `each` / `match` も同じく:fn[プロトコルノード]{is="ここでの「ノード」はプロトコル内でページ構造と制御関係を記述する構造単位を指し、ネットワークノードや VPN の類とは何の関係もない"}
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:54.452929Z
+      seconds: 8.35097525
+      tokens: 28754
+      review: false
+  8b9ad3905e119db77fdcd99b2474e831:
+    en-US:
+      text: 'There was actually one more consideration behind choosing Svelte: :spoiler[given that Next.js and React are already :fn[completely]{is="this is not truly absolute, but the outcome amounts to much the same"} controlled by Vercel as market frameworks,]if Seam **promised compatibility with React semantics**, then my architecture would ultimately have to allow `arbitrary JavaScript` → `determine tree structure`.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:56.01558Z
+      seconds: 9.214958292
+      tokens: 28850
+      review: false
+    ja-JP:
+      text: Svelte を選んだ理由には実はもう一つの考慮があって、:spoiler[Next.js と React がすでに Vercel によって:fn[完全に]{is="ここでの「完全」は本当に絶対的な意味ではないが、結果から見ればほぼ同じことだ"}マーケット向けフレームワークとして掌握されている前提では、]もし Seam が **React semantics との互換を約束する**なら、私の architecture は最終的に `arbitrary JavaScript` → `determine tree structure` を許容せざるを得なくなる。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:56.01558Z
+      seconds: 9.214958292
+      tokens: 28850
+      review: false
+  8ca5f1091bd7f7d98ad1bc04bb21374c:
+    en-US:
+      text: '## Runes {#runes-semantics}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:02.805909Z
+      seconds: 3.147383958
+      tokens: 28079
+      review: false
+    ja-JP:
+      text: '## Runes {#runes-semantics}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:02.805909Z
+      seconds: 3.147383958
+      tokens: 28079
+      review: false
+  9425cf6c2b30edd8d91ba47e5a533419:
+    en-US:
+      text: 'And there is one more thing that really matters: even if you can write it this way, as long as the **main body** of `React` code is not written this way, and the **LLM**s being trained are not written this way, **then the migration cost and the later development cost will absolutely grow exponentially**.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:05.232391Z
+      seconds: 5.900940666
+      tokens: 28216
+      review: false
+    ja-JP:
+      text: さらにもう一つ重要な点がある。たとえ自分がこう書けたとしても、`React` の**大多数**がこう書かず、学習される **LLM** もこう書かないなら、**移行コストも後々の開発コストも間違いなく指数関数的に膨らんでいく**。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:05.232391Z
+      seconds: 5.900940666
+      tokens: 28216
+      review: false
+  9729c27494284557c768d10b7ea534ee:
+    en-US:
+      text: 'Then put a `<style>` → `static CSS dependency graph` right beside it, and the whole worldview becomes remarkably consistent: HTML is structure, CSS is a style artifact, and JS is always computation / behavior.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:05.955398Z
+      seconds: 5.7859015
+      tokens: 28363
+      review: false
+    ja-JP:
+      text: そしてその隣に `<style>` → `static CSS dependency graph` を一つ添えれば、世界観全体が非常に一貫したものになる。HTML は structure、CSS は style artifact、JS は必ず computation / behavior だ。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:05.955398Z
+      seconds: 5.7859015
+      tokens: 28363
+      review: false
+  9734e67585d2fd4c61497c2f0a767923:
+    en-US:
+      text: '## Visible AST {#visible-template-ast}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:08.784258Z
+      seconds: 3.4319701670000002
+      tokens: 28200
+      review: false
+    ja-JP:
+      text: '## 見える AST {#visible-template-ast}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:08.784258Z
+      seconds: 3.4319701670000002
+      tokens: 28200
+      review: false
+  974b152ac5390e180a495287ac94e51f:
+    en-US:
+      text: 'So, put simply, :fn[Seam]{is="is a rendering protocol, and SeamJS is the meta-framework built on it"} is first and foremost a protocol, not yet another SSR runtime. That means build time emits an **HTML skeleton** carrying `slot`, and runtime / request time only stuffs values into those `slot`; `if` / `each` / `match` are likewise protocol nodes baked into the skeleton. So by the time a request arrives, not a single UI component has been executed, and the only thing the server has to do is :tn[fill in the blanks]{is="The original says 看图填空, ‘look at the picture and fill in the blanks’, a Chinese primary-school exercise. It casts the server’s job as trivial homework: the picture (the skeleton) is already drawn, it just writes in the missing words."} -- which means it naturally does not have to be Node or Bun anymore. A **Rust** / **Go** backend can fill in a page of HTML just as well, how hard could that possibly be?! ~~Though honestly the JS runtime was never completely killed off later either; what I mean is you can drop it, provided you accept some limitations~~ Either way, the overall performance gain is absolutely exponential, because achieving most **SSR** effects no longer requires running the **UI render** at **runtime / request time**...'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:09.885518Z
+      seconds: 18.714335
+      tokens: 30197
+      review: false
+    ja-JP:
+      text: では簡単に言うと、:fn[Seam]{is="はレンダリングプロトコルであり、SeamJS はそのプロトコルを使う meta フレームワークである"} はまず何よりプロトコルであって、また新しい SSR runtime ではない。つまり build-time に `slot` 付きの **HTML skeleton** を一枚吐き出し、runtime-time / request-time はその `slot` に値を詰めるだけで、`if` / `each` / `match` も同じく skeleton に固定で書き込まれたプロトコルノードだ。だからリクエストが来た時点で UI コンポーネントは一つも実行されておらず、サーバーがやるのは:tn[穴埋め問題を解く]{is="原文は「看图填空」、中国の小学校の定番ドリル「絵を見て空欄を埋めなさい」を指す。サーバーの仕事を子どもの宿題並みに簡単なものとして言い切る言い回しで、絵(skeleton)はもう描いてあり、抜けた語を書き込むだけだという含み。"}という一つのことだけ。なら当然 Node や Bun である必要もなく、**Rust** / **Go** みたいなバックエンドが HTML を一枚埋めたっていいじゃないか、何が難しいって言うんだ?! ~~まあ実はその後も JS Runtime を完全には消しきれてなくて、要るのをやめられるけど一部の制限を受け入れられるならという前提付きだ~~ とはいえどのみち、全体のパフォーマンス向上は間違いなく指数関数的で、大半の **SSR** 効果を得るのに **runtime-time / request-time** で **UI render** を走らせる必要がもうないのだから...
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:09.885518Z
+      seconds: 18.714335
+      tokens: 30197
+      review: false
+  9a2de89206c5ddc87eac0422b74cf9ca:
+    en-US:
+      text: After all that, what will actually land? (x) First, without question, the UI stack moves to Svelte, and once that is done you can expect **compiler** observability to improve noticeably. The main reason is that Svelte **forces** and encourages `structure` to stay inside `markup AST` rather than being buried in **arbitrary JS control flow**, which directly widens the analysable space for `skeleton` / `CTR` and turns `CSS` from `runtime concern` back into `build artifact`.
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:11.13578Z
+      seconds: 8.565100541
+      tokens: 28687
+      review: false
+    ja-JP:
+      text: ここまで長々と述べてきたが、最終的に本当に実現されるものは何か(x) まず疑いなく UI スタックを Svelte に置き換えることであり、それが済めば **Compiler** の可観測性が明らかに高まることが期待できる。主な理由は、Svelte が `structure` を `markup AST` の中に留めることを**強制**し、かつ奨励していて、**arbitrary JS control flow** の中に埋め込ませないからだ。これにより `skeleton` / `CTR` の解析可能な範囲が直接広がり、`CSS` が `runtime concern` から再び `build artifact` へと戻る。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:11.13578Z
+      seconds: 8.565100541
+      tokens: 28687
+      review: false
+  9a722bdb3365b5aa6ca280925ef71258:
+    en-US:
+      text: '> If you added `"files.associations": {"*.svelte": "html" }` to your VSCode settings, ***remove it***.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:11.743527Z
+      seconds: 4.277371208
+      tokens: 28368
+      review: false
+    ja-JP:
+      text: '> VSCode の設定に `"files.associations": {"*.svelte": "html" }` を追加していたなら、***削除してください***。'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:11.743527Z
+      seconds: 4.277371208
+      tokens: 28368
+      review: false
+  9bcc71fc1069a83f22e1388e1c439503:
+    en-US:
+      text: '"***universal SSR orchestration layer***"'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:12.219114Z
+      seconds: 4.194373667
+      tokens: 27997
+      review: false
+    ja-JP:
+      text: 「***universal SSR orchestration layer***」
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:12.219114Z
+      seconds: 4.194373667
+      tokens: 27997
+      review: false
+  9e0ca2dd516a17f1fbc2fa75e95a28e9:
+    en-US:
+      text: 'If we don''t modify the React compiler, we''re stuck in the same position as V1: treating the Compiler as a black box and guessing at its output, which is extremely fragile, inelegant, and prone to edge cases popping up everywhere.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:16.02316Z
+      seconds: 5.904360208
+      tokens: 28258
+      review: false
+    ja-JP:
+      text: React のコンパイラに手を加えないなら、V1 と同じ状況に留まるしかない。Compiler をブラックボックスとして扱い、その生成物を当てずっぽうで推測するというやり方だが、それは非常に脆く、エレガントでもなく、エッジケースが至るところで噴出しやすい。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:16.02316Z
+      seconds: 5.904360208
+      tokens: 28258
+      review: false
+  9f6d50227672321a1c87ca91794cc162:
+    en-US:
+      text: '## Adopt {#adopt-without-replay}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:16.416194Z
+      seconds: 3.284659584
+      tokens: 28512
+      review: false
+    ja-JP:
+      text: '## Adopt {#adopt-without-replay}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:16.416194Z
+      seconds: 3.284659584
+      tokens: 28512
+      review: false
+  9fdb682e42934ff8c8757637e27407e3:
+    en-US:
+      text: 'The me of today wholeheartedly agrees with ":fn[***Svelte: for building, not frameworking.***]{is="a principle from Rich Harris''s 2016 talk Framework without the frameworking"}"'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:19.703237Z
+      seconds: 5.80282025
+      tokens: 28427
+      review: false
+    ja-JP:
+      text: '今の私は「:fn[***Svelte: for building, not frameworking.***]{is="という理念は Rich Harris の2016年の講演『Framework without the frameworking』に由来する"}」に深く共感している'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:19.703237Z
+      seconds: 5.80282025
+      tokens: 28427
+      review: false
+  a0ae79e0ac5c53076b7ca71f3388ff38:
+    en-US:
+      text: OR
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:26.082874Z
+      seconds: 6.751789083
+      tokens: 28316
+      review: false
+    ja-JP:
+      text: OR
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:26.082874Z
+      seconds: 6.751789083
+      tokens: 28316
+      review: false
+  a356e78ecbac7f28f3d267620e364ae0:
+    en-US:
+      text: So in the end it is bound to reach
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:21.929712Z
+      seconds: 5.000589
+      tokens: 28012
+      review: false
+    ja-JP:
+      text: すると最終的には必ずこうなる
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:21.929712Z
+      seconds: 5.000589
+      tokens: 28012
+      review: false
+  a6fff05b8d3ecbc09055244bcf25944a:
+    en-US:
+      text: Today marks exactly one month since I moved to the US; after landing in NC and getting settled into daily life, I have pretty much finished exploring the surrounding area and the nearby sights, so now I have time on my hands. But I am not exactly the idle type, and the moment I have nothing to do I go looking for something to do ~~picking the blog back up counts as one, right~~. Unfortunately shipping over here in the US is not very convenient, so I cannot draw boards for now, which leaves me with coming back to write some software to pass the time, and while I am at it, maybe pick up the project I dropped a few months ago and finish it?
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:25.508757Z
+      seconds: 10.334717875
+      tokens: 28675
+      review: false
+    ja-JP:
+      text: 今日で US に move してきてちょうど一か月になる。NC に着いて日常が落ち着いた後、周辺の地域と近場の観光地もほぼ回り終えて、人は暇になった。ただ、あいにく私は暇でいられる人間ではなく、暇になるとすぐ自分で何かやることを探し始める ~~ブログを拾い直すのも一つに数えていいよね~~。でも運悪く US ではこちらの物流があまり便利ではないので、基板は当面描けない。となると戻ってきて軽くソフトウェアでも書くしかないし、ついでに数か月前に投げ出した穴を拾って埋めようかな?
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:25.508757Z
+      seconds: 10.334717875
+      tokens: 28675
+      review: false
+  a967b86bac1a624223358dc604852922:
+    en-US:
+      text: Either way, React forces Seam to treat a lot of things as a *runtime problem* all over again, for example ↓
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:26.932976Z
+      seconds: 4.3423458329999995
+      tokens: 28220
+      review: false
+    ja-JP:
+      text: いずれにせよ、React は Seam に多くのものを改めて *runtime problem* として扱わせることになる。たとえば ↓
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:26.932976Z
+      seconds: 4.3423458329999995
+      tokens: 28220
+      review: false
+  a9945031512f9391bf0a82211abc28ab:
+    en-US:
+      text: 'Beyond sitting in a more suitable position relative to the three frameworks above, **Svelte** actually feels very close to writing bare `HTML`; in fact, in the early days when Svelte 3 had just caught on and the `.svelte` extension had only just been settled, this was the officially recommended approach before the official VSC extension came out, so much so that you can still find this line on the [Svelte extension page](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode) today:'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:28.602475Z
+      seconds: 7.949387084
+      tokens: 28743
+      review: false
+    ja-JP:
+      text: '**Svelte** は上記 3 つのフレームワークに対して立ち位置がちょうどよいだけでなく、実は素の `HTML` を書く感覚にかなり近い。それどころか、Svelte 3 が普及し始めて `.svelte` という拡張子が決まったばかりの初期には、公式の VSC 拡張が出るまでこれが推奨されるやり方だったほどで、今でも [Svelte の拡張機能ページ](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode) にこの一文が残っている:'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:28.602475Z
+      seconds: 7.949387084
+      tokens: 28743
+      review: false
+  adf911802d2879568b442025919176e3:
+    en-US:
+      text: '**SolidJS** is a fine framework, and its core is stable enough, ~~but nobody wants to build an ecosystem for it~~. `Solid` is really just the early-days `Rust`, except `Rust` has already made it through; `Rust` in the programming world is likewise in a spot where the ecosystem is thin and you have to build every wheel yourself, but the `Rust` toolchain lets you build that wheel smoothly and get a minimal working unit running, so building wheels is not actually all that hard, is it? Unfortunately, **SolidJS** has not made it through that stage yet, and then it ran straight into the **AI winter**; it will get especially hard after 2026. The Solid 2.0 core is already very good and very stable, but the periphery never snowballed. The idea is exactly right, it just arrived at the wrong time; and the few peripheral pieces that do exist live in one or two scattered corners ~~(TanStack, for instance, has an experimental Router for Solid)~~ and cannot be assembled into a complete ecosystem. That leaves it in an awkward position now and in the future: no complete ecosystem, in an era where Agents are exploding; if the snowball has not started rolling, Agents will not pick it first, and if AI does not prefer it, that means fewer chances of getting contributions, especially in an age when even [Linus Torvalds](https://github.com/torvalds) has started :tn[vibe coding]{is="The original just says ‘Vibe’, shorthand for ‘vibe coding’: handing the actual writing of code over to an AI and going by feel. The joke is that even Linus Torvalds, famous for his hands-on, exacting standards, has given in to it."}. Solid feels like a real shame: the idea is good, the technology is correct, the implementation is elegant, but it truly is a pity that it was born at the wrong time...'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:31.277884Z
+      seconds: 22.932200084
+      tokens: 30399
+      review: false
+    ja-JP:
+      text: '**SolidJS** はフレームワークとして優れており、コアも十分に安定している。~~ただ、誰もそのエコシステムを作りたがらない~~。`Solid` は実のところ初期の `Rust` そのものだが、`Rust` はすでにその時期を乗り越えた。`Rust` もプログラミングの領域ではエコシステムが乏しく何でも自分で車輪を作らなければならない状況に確かにあるが、`Rust` のツールチェーンは車輪を滑らかに作らせてくれ、最小限の動く単位を走らせてくれるので、車輪の再発明はそれほど難しくないのではないか。しかし不幸なことに **SolidJS** はまだこの段階を乗り越えておらず、そこに **AI の冬** が来てしまった。特に 2026 年以降は非常に厳しくなる。Solid 2.0 のコアはすでにとても良く、安定もしているが、周辺が転がり出していない。発想は完全に正しく、ただ生まれた時期が悪かった。わずかに存在する周辺ライブラリも、一つ二つの散発的な領域にしかなく ~~(たとえば TanStack には Solid 向けの実験的 Router がある)~~ 、完全なエコシステムを組み上げられない。そのため現在も将来も気まずい立場に置かれている。完全なエコシステムがないまま、Agent が爆発的に広がる時代を迎え、雪玉が転がり出していなければ Agent は優先して選ばず、AI が優先しないなら貢献を得る機会も減る。特に [Linus Torvalds](https://github.com/torvalds) までもが :tn[バイブコーディング]{is="原文は ‘Vibe’ の一語で、‘vibe coding’ の略。コードを書く作業を AI に任せ、ノリで進めるやり方を指すスラング。厳格で自分の手で書くことで知られる Linus Torvalds までがそれに手を出した、という皮肉が込められている。"}を始めた時代にあっては。Solid は本当に惜しい。発想は良く、技術は正しく、実装は優雅なのに、生まれた時期が悪かったことが心から残念だ...'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:31.277884Z
+      seconds: 22.932200084
+      tokens: 30399
+      review: false
+  af010a7f47612c885b0c5d2371a2c17c:
+    en-US:
+      text: 'So from now on it can be said that **the UI is Svelte**, but the `seam` protocol is still just a protocol, still centred on `slot` and `injection`, ~~*whether JTD is really the right fit is something I still need to think through further*~~; in terms of execution decisions, it is already fully layered: the slots are already `residual`-ified, and a `Rust` / `Go` / `TS` server only needs to fill them in blindly with no need to understand the component code at all -- truly zero JS; at the same time, if a component still contains pure derivations, then adding a `generated JS` / `QuickJS runtime` can be considered, *(note that what runs here is data, not UI)*'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:32.837044Z
+      seconds: 10.196588167
+      tokens: 28927
+      review: false
+    ja-JP:
+      text: つまり今後は **UI は Svelte である** と言えるが、`seam` プロトコル自体はあくまでプロトコルのままで、依然として `slot` と `injection` が中心であり、~~*JTD が本当に適切かどうかはさらに検討の余地がある*~~。実行判断の面では、すでに完全にレイヤー分離されており、スロットはすでに `residual` 化されているので、`Rust` / `Go` / `TS` サーバーはコンポーネントのコードをまったく理解せずに、ただ埋めるだけでよい。本当の意味でのゼロ JS である。同時に、コンポーネント内にまだ純粋な派生処理が残っているなら、`generated JS` / `QuickJS runtime` を加えることを検討してもよい。*(ここで動いているのはデータであって UI ではないことに注意)*
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:32.837044Z
+      seconds: 10.196588167
+      tokens: 28927
+      review: false
+  b22ce3bd01f54f786960c6461355751a:
+    en-US:
+      text: Besides, the problems CSS-in-JS was born to solve in its day were the very things Tailwind CSS & Motion now do; if Tailwind CSS & Motion already solve them well enough, or even better and more elegantly, why turn the clock back? As I said earlier, "once anything's ecosystem takes off, :fn[compromises]{is="are not necessarily all bad, or at least not in every respect. Perhaps what looks like a compromise in design can be a win in engineering?"} appear, ~~and breaking refactors that truly renew it become rare~~." So since Seam has no ecosystem yet, why not **go radical all the way**?
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:35.845717Z
+      seconds: 11.127177167
+      tokens: 29247
+      review: false
+    ja-JP:
+      text: それに、CSS-in-JS が登場した時代に解決していた問題は、今なら Tailwind CSS & Motion がやっていることそのものだ。Tailwind CSS & Motion がすでに十分に、むしろもっと上手くエレガントに解決しているのなら、なぜわざわざ後戻りする必要があるのか。前に書いたとおり「どんなものもエコシステムが育つと:fn[妥協]{is="が必ずしもすべて悪いわけではない、少なくともあらゆる面でそうとは限らない。設計上は妥協に見えるものが、エンジニアリング上は利点になることもあるのでは?"}が現れ、~~breaking な刷新のためのリファクタはめったに起きなくなる~~」のだから、Seam にまだエコシステムがないのなら、**徹底的にラディカル**にいかない手はないだろう?
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:35.845717Z
+      seconds: 11.127177167
+      tokens: 29247
+      review: false
+  b237ce53d8b6c3f54bd96185d7be7b92:
+    en-US:
+      text: 'On the strength of "markup is real markup" alone, the page structure absolutely has a chance to become something a compiler can read, rather than a component tree produced by a pile of JS executing at runtime. :spoiler[Let''s just say it: why must a perfectly good UI be able to draw itself through arbitrary execution?]:spoiler[I''m not denying that view,] :spoiler[but what I want to say is that at least 97%+ of the time, arbitrary execution for drawing is never needed,]:spoiler[for the details, [**see here**](https://canmi.net/architecture/compile-time-rendering#ctr-x-ssr)]'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:36.554251Z
+      seconds: 9.561597625
+      tokens: 28521
+      review: false
+    ja-JP:
+      text: 「markup が本物の markup である」という一点だけでも、ページ構造は runtime で JS を実行して生成されるコンポーネントツリーではなく、コンパイラが読めるものになれる可能性が絶対にある。:spoiler[正直に言えば、まともな UI がなぜ必ず任意実行で描画できなければならないのか?]:spoiler[この考え方を否定しているわけではない、] :spoiler[ただ言いたいのは、少なくとも 97% 以上の時間、任意実行による描画は使われないということだ、]:spoiler[詳しくは[**こちらを参照**](https://canmi.net/architecture/compile-time-rendering#ctr-x-ssr)]
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:36.554251Z
+      seconds: 9.561597625
+      tokens: 28521
+      review: false
+  b3b5e0c2001935dd0d2852cabaa17e53:
+    en-US:
+      text: 'This is exactly why the :fn[`mismatch`]{is="is the error caused when, in an SSR app, the vDOM or structure generated on the browser''s first load does not match the static HTML sent from the server"} class of "render on both sides, then compare" has gone from being the default to being an illegal state. I am not claiming the implementation is 100% there; it is that this kind of divergence is invalid in the model: if it shows up, it is a `bug` in my `compiler` / `injector` implementation that can be `fix`, the typical examples being (~~the skeleton did not survive the HTML parser, escaping does not match, IR and skeleton out of sync~~).'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:43.035878Z
+      seconds: 10.015204084
+      tokens: 29236
+      review: false
+    ja-JP:
+      text: だからこそ「両側でそれぞれ render してから突き合わせる」類の :fn[`mismatch`]{is="とは、SSR アプリでブラウザ側の初回ロード時に生成される vDOM や構造が、サーバーから送られてきた静的 HTML の内容と一致しないことで起きるエラーを指す"} は、デフォルトから不正な状態へと変わった。実装が 100% だと主張しているわけではなく、この種のずれはモデルの中で不正だということだ。出てきたなら、それは私の `compiler` / `injector` 実装にある `bug` であり、`fix` できる。典型的な例は (~~骨格が HTML parser を通っていない、エスケープが合っていない、IR と骨格が同期していない~~) だ。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:43.035878Z
+      seconds: 10.015204084
+      tokens: 29236
+      review: false
+  b4c34890f9416b412a7ff8ecd4d524c9:
+    en-US:
+      text: 'But note that what you have seen above is only leaves, and fairly ideal slices at that: no child components, no structural branches, no client. The page-level `skeleton` is composed from a static component graph; once a subtree has `$state` or `hatch`, the Client / SSR in the IR will no longer be `none`.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:46.118171Z
+      seconds: 7.033493459
+      tokens: 28414
+      review: false
+    ja-JP:
+      text: ただし、ここまで見てきたのはあくまで葉であり、しかもかなり理想的なスライスだという点に注意してほしい。子コンポーネントも、構造上の分岐も、client もない。ページレベルの `skeleton` は静的なコンポーネントグラフから compose されたものであり、サブツリーに `$state` や `hatch` が現れた途端、IR 内の Client / SSR は `none` ではなくなる。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:46.118171Z
+      seconds: 7.033493459
+      tokens: 28414
+      review: false
+  b60ae110bf5aba37d51f84bd75579b39:
+    en-US:
+      text: 'So if I now say that Seam''s component language is simply Svelte, then the compiler can even work in reverse: start from `structure known` by default, add local `expression dynamic` and explicit `escape hatch`, then move into `runtime`, and only when nothing else can handle it fall back to SSR at the very end.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:46.975163Z
+      seconds: 6.195793459
+      tokens: 28275
+      review: false
+    ja-JP:
+      text: だから、もし今ここで Seam の component language は Svelte そのものだと言うなら、compiler は逆向きに動くことすらできる。まず `structure known` をデフォルトにし、局所的な `expression dynamic` と明示的な `escape hatch` を加え、それから `runtime` に進み、どうしても処理できない場合にだけ最後に SSR へ fallback する。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:46.975163Z
+      seconds: 6.195793459
+      tokens: 28275
+      review: false
+  b910dc98cf860742320fda180524206a:
+    en-US:
+      text: But this is exactly where the problem lies(?) Making those three precise cuts requires you to know the cut point is at 10, yet the React compiler is opaque to me; we have no idea what the condition is, so the price of being :fn[TypeSafe]{is="here meaning structural type safety, unrelated to the function-code TypeSafe that TypeScript's typecheck guarantees"} becomes the user doing the compiler's job.
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:53.053388Z
+      seconds: 8.181467875
+      tokens: 28786
+      review: false
+    ja-JP:
+      text: しかし問題はまさにここにある(?) この正確な 3 つの切り分けを実現するには、切れ目が 10 にあることを知っていなければならないが、React コンパイラは私にとって不透明で、条件が何なのか分からない。そのため :fn[TypeSafe]{is="ここでは構造上の型安全を指し、TypeScript の typecheck が保証する関数コードの TypeSafe とは関係ない"} の代償は、ユーザーがコンパイラの仕事をすることになってしまう。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:53.053388Z
+      seconds: 8.181467875
+      tokens: 28786
+      review: false
+  bc850569390ef6727cb7ddbfc34b64b2:
+    en-US:
+      text: What Seam does is read that tree and then generate its own IR; the official DOM / SSR codegen can all stay as a fallback, and in theory the only thing that needs maintaining is the IR lowering, not all of Svelte, so the overall direction is aligned and conflicts will be few -- but what is aligned is "*structure is visible at compile time*", not the **execution** model; precisely because of this, **Svelte** / **Kit**'s **SSR** still runs the generated `render` function once per request; what I would rather have in my **Seam**, though, is that `request-time` does not run this function at all and only interprets the protocol (`slot` + `if` / `each` / `match`)
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:53.154436Z
+      seconds: 10.623882417
+      tokens: 28988
+      review: false
+    ja-JP:
+      text: Seam がやるのはこの木を読んで、自前の IR を生成すること。公式の DOM / SSR codegen はそのまま fallback として残せるし、理論上は Svelte 全体ではなく IR lowering だけを保守すればいいので、大きな方向性は一致していて衝突は少ないはず――ただし一致しているのは「*構造がコンパイル時に見える*」という点であって、**実行**モデルではない。だからこそ **Svelte** / **Kit** の **SSR** は依然としてリクエストごとに生成された `render` 関数を一度走らせる。でも私の **Seam** では、`request-time` はこの関数を走らせず、プロトコル（`slot` + `if` / `each` / `match`）だけを解釈するようにしたい
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:53.154436Z
+      seconds: 10.623882417
+      tokens: 28988
+      review: false
+  be210f6a15ae5cf2f5f8457f68fda209:
+    en-US:
+      text: 'An important point here is that "recognisable" is not the same as "CTR-able", and in particular you should not assume that anything you see as `$derived` goes into `skeleton`; the `count * 2` above is one counterexample, because its dependency is `$state`, which makes it a client-derived product. A `$derived` that can be CTR''d actually looks like this:'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:53.173953Z
+      seconds: 7.938997709
+      tokens: 28381
+      review: false
+    ja-JP:
+      text: 'ここで重要なのは、「認識できる」ことと「CTR できる」ことは同じではないという点で、特に `$derived` を見ただけでそれが `skeleton` に入ると決めつけてはいけません。実際、上の `count * 2` はその反例のひとつで、依存先が `$state` である以上、これは client 側の派生物です。CTR できる `$derived` は実際にはこういう形をしています:'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:53.173953Z
+      seconds: 7.938997709
+      tokens: 28381
+      review: false
+  be32559d3d4de41a74aa57f8b7abe9ce:
+    en-US:
+      text: '## Invert {#known-by-default}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:54.212894Z
+      seconds: 4.022736833
+      tokens: 28162
+      review: false
+    ja-JP:
+      text: '## 反転 {#known-by-default}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:54.212894Z
+      seconds: 4.022736833
+      tokens: 28162
+      review: false
+  c25985d8432bb6a5c5067ec83cd0aff3:
+    en-US:
+      text: So since I haven't really taken off yet, I naturally have plenty of chances to make breaking changes without worrying about migration costs for now, and I truly hope that one day, after countless breaking changes, I will find the place that is truly mine.
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:58.238307Z
+      seconds: 5.6738455
+      tokens: 28173
+      review: false
+    ja-JP:
+      text: だからまだ本当に軌道に乗っていない以上、当然 breaking な変更をする機会はいくらでもあり、当面は移行コストを考えなくていい。そして数え切れない breaking の果てに、本当に自分の居場所を見つけられる日が来ることを心から願っている。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:36:58.238307Z
+      seconds: 5.6738455
+      tokens: 28173
+      review: false
+  c577d7c4f2d9b6ac8ecdac862aa14eaa:
+    en-US:
+      text: 'This is exactly what `Seam` needs most and likes most. In `React`, to find out whether `attributes` is `static`, you basically have no choice but brute-force enumeration: run every possible input, and if `attribute` stays unchanged it is `static`; if it changes, give it a `slot`.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:11.285126Z
+      seconds: 8.402505875
+      tokens: 28400
+      review: false
+    ja-JP:
+      text: これこそ `Seam` が最も必要とし、最も好むものです。`React` の中で `attributes` が `static` かどうかを知りたければ、基本的には総当たりしかありません。考えられる入力をすべて走らせ、`attribute` が変わらなければ `static`、変われば `slot` を与えます。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:11.285126Z
+      seconds: 8.402505875
+      tokens: 28400
+      review: false
+  c66e9705e64ed4aadfc67cbe44207f4b:
+    en-US:
+      text: |-
+        rather than the :fn[**All in JS**]{is="does not mean “everything is written in JS files”, but that more and more things degrade into arbitrary JavaScript computation, and the once-clear structural boundaries vanish along with it"} that modern React so easily drifts into.  Perhaps for React itself that is not necessarily a bad thing, but unfortunately
+        ***Everything is JavaScript** happens to be the worst possible world for the **aggressive** compile-time decomposition I want to do*
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:01.237264Z
+      seconds: 8.0514155
+      tokens: 28663
+      review: false
+    ja-JP:
+      text: |-
+        現代の React が陥りやすい :fn[**All in JS**]{is="とは「すべてを JS ファイルに書く」という意味ではなく、ますます多くのものが arbitrary JavaScript computation へと退化し、かつて明確だった構造の境界もそれに伴って消えていくことを指す"} ではなく。  React 自身にとってそれは必ずしも悪いことではないのかもしれないが、残念ながら
+        ***Everything is JavaScript** は、私が **aggressive** な compile-time decomposition を行うにあたって、まさに最も不利な世界なのだ*
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:01.237264Z
+      seconds: 8.0514155
+      tokens: 28663
+      review: false
+  c6c210ca160cc8a7b16a6f6f8cd8177d:
+    en-US:
+      text: Another point that matters a great deal is that Svelte 5's runes are very friendly to Seam, even though Svelte 5 has started to look a little more like plain JS
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:03.780959Z
+      seconds: 4.6072912089999996
+      tokens: 28244
+      review: false
+    ja-JP:
+      text: もうひとつ非常に重要な点は、Svelte 5 の runes が Seam にとてもなじみやすいことです。Svelte 5 は少し JS 寄りになり始めたとはいえ
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:03.780959Z
+      seconds: 4.6072912089999996
+      tokens: 28244
+      review: false
+  caf4917dd1fc608b9668a3a28b73b645:
+    en-US:
+      text: But `Svelte` is different here again
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:03.914632Z
+      seconds: 3.649846833
+      tokens: 28048
+      review: false
+    ja-JP:
+      text: しかし `Svelte` はここでもまた違ってくる
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:03.914632Z
+      seconds: 3.649846833
+      tokens: 28048
+      review: false
+  cbc5ec388780263a032a1f70fbcfe447:
+    en-US:
+      text: Working in Svelte does not mean it can necessarily go through CTR, but I do have a reference standard here ↓
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:07.567098Z
+      seconds: 4.4462615
+      tokens: 28226
+      review: false
+    ja-JP:
+      text: Svelte で書けるからといって必ず CTR に乗るとは限らないが、ここに参考になる基準がひとつある ↓
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:07.567098Z
+      seconds: 4.4462615
+      tokens: 28226
+      review: false
+  cef4295eacf507baa96ad8ed297755ef:
+    en-US:
+      text: And I turn down CSS-in-JS too, though not because React forced me to accommodate an expression like the one below
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:08.391115Z
+      seconds: 4.6403120829999995
+      tokens: 27987
+      review: false
+    ja-JP:
+      text: そして CSS-in-JS も受け入れない。とはいえ、React に下のような書き方への対応を強いられたからではない
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:08.391115Z
+      seconds: 4.6403120829999995
+      tokens: 27987
+      review: false
+  d000e7e5883e253642ddf3ed1276cf9e:
+    en-US:
+      text: 'So Seam''s IR would have to be extremely conservative(x)   In the end it would most likely come down to: optimise whatever can be statically analysed, and fall back to SSR for whatever cannot. That still yields a page mixing CTR + SSR, but the trouble sits precisely in that "cannot analyse" part, and the problem is that the React world has far too many places that are "not determinable"...'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:09.291659Z
+      seconds: 7.230299375
+      tokens: 28494
+      review: false
+    ja-JP:
+      text: そのため Seam の IR は極めて保守的にならざるを得ない(x)   最終的には、静的解析できるものは最適化し、解析できないものは SSR に回す、という形に落ち着く可能性が高い。それでも CTR + SSR を混在させたページにはなるが、問題はまさにその「解析できない」という部分にあり、React の世界には「確定できない」箇所があまりにも多すぎるのだ...
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:09.291659Z
+      seconds: 7.230299375
+      tokens: 28494
+      review: false
+  d10e1b71540c8ee2f46e20f5b5992557:
+    en-US:
+      text: 'Concretely, you dump the pile of nested Providers into an array, define a composing function, and then consume that single layer. ~~But to me this is really just a way of fooling yourself~~: in essence it only "hides" the nesting, it does not actually eliminate it. Visual nesting simply becomes logical nesting, a kind of :tn[out of sight, out of mind]{is="The original uses the Chinese idiom ‘眼不见为净’, literally ‘what the eye does not see counts as clean’. Applied to Compose Providers it sneers that the mess is still there, you have merely stopped looking at it."}, pure self-consolation.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:12.016028Z
+      seconds: 10.942598583
+      tokens: 29148
+      review: false
+    ja-JP:
+      text: 具体的には、もともと積み重なっていた Provider を配列に放り込み、合成する関数を一つ定義して、最後にその一層だけを使えばいい。~~ただ、私にとってこれは一種の自己欺瞞でしかない~~。本質的には「隠した」だけで、本当に消えたわけではない。見た目のネストが論理上のネストに変わっただけで、ある意味では :tn[見なければ片付いたも同然]{is="原文は中国語の慣用句「眼不见为净」で、直訳すると「目に見えなければ清潔とみなす」。Compose Providers は散らかりを片付けたのではなく、見ないようにしただけだと皮肉っている。"}、純粋な自己満足にすぎない。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:12.016028Z
+      seconds: 10.942598583
+      tokens: 29148
+      review: false
+  d3fb4cf158ccfef7fa076127326eaaf3:
+    en-US:
+      text: That way the static references `compose`, while `hatch` still goes down the path below, which tells you the unit of CTR is the static component graph, not a single file. Most are `structure known` by default, a few are explicitly `escape hatch`, and you almost never run into `SSR fallback`; anything else not on the list is simply treated as `opaque`, no guessing needed at all. `CTR` is just the `execution model` over that subset, and even if I switch to Svelte I have no intention of guaranteeing:fn[the whole of Svelte]{is="which nobody can guarantee; every language has bizarre yet legitimate ways of writing things, and all I can offer is a good solution for reasonable business code"} (x)
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:13.034373Z
+      seconds: 11.534712375
+      tokens: 28944
+      review: false
+    ja-JP:
+      text: こうして静的参照は `compose` となり、`hatch` は引き続き下のパスを通る。ここから、CTR の単位は静的コンポーネントグラフであって単一ファイルではないと分かる。大半はデフォルトで `structure known`、一部は明示的に `escape hatch`、`SSR fallback` には普段ほとんど出くわさない。表にない残りはすべて `opaque` として扱えばよく、推測する必要などまったくない。`CTR` はこの部分集合上の `execution model` にすぎず、たとえ Svelte に切り替えたとしても:fn[Svelte 全体の範囲]{is="を保証できる人などいない。どの言語にも奇妙だが妥当な書き方があり、私に提供できるのは合理的な業務コードにおける最適解だけだ"}を担保するつもりはないのだ(x)
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:13.034373Z
+      seconds: 11.534712375
+      tokens: 28944
+      review: false
+  d40741662718e357f57f2260fe2ea9ae:
+    en-US:
+      text: So with those thousand `{#each}` entries, I'm still fundamentally assembling `HTML`. It's not that I don't generate a :fn[document]{is="meaning the HTML document, in the technical sense"}; the difference is that what I assemble is an already self-contained protocol, rather than regenerating the component `Tree`. `Seam` wants `AST` → `IR` → `HTML` with `slot`; at request time it only interprets the protocol and adds the `injection` for the dynamic-data regions, so there's no need to run the **UI render** part of the functions anymore. That means any backend can fill in that last layer, which is already `residual`-ified, and that also solves the :fn[***vendor lock-in to JS***]{is="meaning there's no hard dependency on a JS runtime logically, but no implementation exists in any other language"} problem. So really, my overall direction isn't on the same line as the existing work above (x)
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:16.524543Z
+      seconds: 12.939966
+      tokens: 29373
+      review: false
+    ja-JP:
+      text: だから `{#each}` の千行分も、本質的には私はまだ `HTML` を組み立てているわけで、:fn[ドキュメント]{is="ここでは HTML document という用語を指す"}を生成しないのではなく、違いは私が組み立てるのはすでに自己完結したプロトコルであって、コンポーネント `Tree` を再生成するのではないという点にある。`Seam` が求めるのは `AST` → `IR` → `slot` 付きの `HTML` で、リクエスト時にはプロトコルの解釈と、動的データ領域の `injection` を足すだけなので、**UI render** の部分の関数をもう走らせる必要がない。だから任意のバックエンドがすでに `residual` 化されたその最後の一層を埋められるし、:fn[***vendor lock in JS***]{is="論理的には JS runtime に強く依存していないが、他言語の実装が存在しないという問題を指す"}の問題も解決する。つまり実は私と上記の既存のものは、大きな方向性が同じ線上にはない(x)
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:16.524543Z
+      seconds: 12.939966
+      tokens: 29373
+      review: false
+  d5721d27ea6f75f13fc60e0c61c7cf02:
+    en-US:
+      text: '`Astro` The first screen is still a document, and you can still `ClientRouter` afterwards, but the difference is that its dynamic parts remain `islands` that each `render` on their own; **ClientRouter** is at heart closer to `document morph` than to one component graph that is still alive after hydration. So Astro''s stack just is not suited to this. Nothing wrong with Astro itself, it simply was not designed to be used this way. You could of course say there is the :fn[**View Transitions API**]{is="an API provided by modern browsers that replaces fully customisable JS animation with the browser''s built-in presets"} to use, ~~then I would have to ask you whether the View Transitions API can put food on the table, and whether it lets you wrap :fn[Motion animations]{is="the JavaScript animation library from Framer Motion, mostly used with React but also offered for vanilla JS"} across pages~~... I have wandered a bit off topic;'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:19.690339Z
+      seconds: 16.2678435
+      tokens: 29349
+      review: false
+    ja-JP:
+      text: '`Astro` ファーストビューもドキュメントであり、その後も `ClientRouter` できるが、違いはその動的部分が依然として `islands` であり、それぞれが `render` する点だ。**ClientRouter** は本質的に `document morph` に近く、ハイドレーション後もまだ生きている同じ一枚のコンポーネントグラフではない。だから Astro の技術スタックはそもそもこれに向いていない。Astro 自体が悪いわけではなく、ただそういう使い方を想定して設計されていないだけだ。もちろん :fn[**View Transitions API**]{is="はモダンブラウザが提供する API で、完全にカスタマイズ可能な JS アニメーションの代わりにブラウザ組み込みのプリセットで実現するものだ"} が使えると言うこともできるが、~~それなら聞きたい、View Transitions API は飯の種になるのか、ページをまたいで :fn[Motion アニメーション]{is="は Framer Motion が提供する JavaScript アニメーションライブラリで、主に React で使われるが Vanilla JS 向けも提供されている"}を重ねられるのか~~... 少し脱線した。'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:19.690339Z
+      seconds: 16.2678435
+      tokens: 29349
+      review: false
+  d6225c8d5b299d92075209cac3b8725b:
+    en-US:
+      text: 'But the real payoff of switching from React to Svelte is actually one layer down: ~~no more rendering twice to guess when the structure changes~~, because the structure is already settled at compile time, so the matching IR can be emitted directly.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:22.964583Z
+      seconds: 6.5264495
+      tokens: 28216
+      review: false
+    ja-JP:
+      text: しかし React から Svelte に switch して本当に得をするのは、実はその一つ下の層だ。~~構造が変わるときにもう二回レンダリングして推測する必要はない~~、構造はコンパイル時にすでに確定しているので、対応する IR をそのまま生成すればいい。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:22.964583Z
+      seconds: 6.5264495
+      tokens: 28216
+      review: false
+  d8d9f2b34df3997e8f5ea5c19e9f7e78:
+    en-US:
+      text: So I have to praise Svelte's `<style>` once again here; `CSS` → `compile-time artifact` is already beyond dispute in Svelte ~~(at least that is how I see it, and if you disagree then you are right)~~
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:24.571735Z
+      seconds: 5.825903292
+      tokens: 28552
+      review: false
+    ja-JP:
+      text: そうなるとここでもまた Svelte の `<style>` を褒めざるを得ない。Svelte の中では `CSS` → `compile-time artifact` はもはや議論の余地のないものになっている ~~(少なくとも私はそう思っている、もし同意できないならあなたが正しい)~~
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:24.571735Z
+      seconds: 5.825903292
+      tokens: 28552
+      review: false
+  dad09f592ca79b767b6c48089f11f3da:
+    en-US:
+      text: Going a step finer, Svelte can also break a single element down like this
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:29.467368Z
+      seconds: 3.772029458
+      tokens: 28118
+      review: false
+    ja-JP:
+      text: さらに細かく見ると、Svelte は単一の element をこんなふうに分解することもできる
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:29.467368Z
+      seconds: 3.772029458
+      tokens: 28118
+      review: false
+  dcd8b39663ff4b1f7cd1501bd16d777c:
+    en-US:
+      text: '"***Perhaps the me of the past would not have seen this as a problem -- writing everything myself would have been fine -- but sadly, the me of today no longer thinks so***"'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:29.494046Z
+      seconds: 5.713442041
+      tokens: 28566
+      review: false
+    ja-JP:
+      text: 「***かつての私ならこれを問題だとは思わなかったかもしれない、何もかも自分で書けばいいと。しかし残念ながら、今の私はもうそうは思わない***」
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:29.494046Z
+      seconds: 5.713442041
+      tokens: 28566
+      review: false
+  dd578702bb519ac402fa6b8a4849e978:
+    en-US:
+      text: '## React {#leaving-react}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:30.400697Z
+      seconds: 3.188288292
+      tokens: 28770
+      review: false
+    ja-JP:
+      text: '## React {#leaving-react}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:30.400697Z
+      seconds: 3.188288292
+      tokens: 28770
+      review: false
+  de962da0b682180e0b0f42daede59835:
+    en-US:
+      text: Of course, this is not without a solution. This "pyramid" of nested Providers can actually be written as Compose Providers, which ends up looking roughly like the following.
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:33.242133Z
+      seconds: 4.444115084
+      tokens: 28259
+      review: false
+    ja-JP:
+      text: もちろん、これに解決策がないわけではない。この「ピラミッド」状の Provider のネストは、実は Compose Providers として書くこともできる。だいたい下のような形になる。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:33.242133Z
+      seconds: 4.444115084
+      tokens: 28259
+      review: false
+  e142859ec59cacc4246bb7f5e903ba2d:
+    en-US:
+      text: That is already very good for an ordinary **Kit** app, but for **something like Seam, which wants to break `server rendering` down into `compile-time skeleton` + `CTR` + `SSR fallback`**, the significance is far more than a little.
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:33.592446Z
+      seconds: 5.5874865830000005
+      tokens: 28337
+      review: false
+    ja-JP:
+      text: 普通の **Kit** アプリにとってはこれだけでも十分に良いのですが、**Seam のように `server rendering` を `compile-time skeleton` + `CTR` + `SSR fallback` に分解したいもの**にとっては、その意味は少しどころではなく、本当に大きいのです。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:33.592446Z
+      seconds: 5.5874865830000005
+      tokens: 28337
+      review: false
+  e34ec238dcd1699674f7fd460a5fc138:
+    en-US:
+      text: Here, when Seam compiles a component, it already holds `markup dependency` + `script dependency` + `style dependency` at the same time, and the style is a **static artifact**. So it can very aggressively determine
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:35.21037Z
+      seconds: 5.4880696669999995
+      tokens: 28176
+      review: false
+    ja-JP:
+      text: ここで Seam が component をコンパイルするとき、すでに `markup dependency` + `script dependency` + `style dependency` を同時に手にしており、しかも style は**静的な artifact**です。そのため、非常にアグレッシブに判断できるのです
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:35.21037Z
+      seconds: 5.4880696669999995
+      tokens: 28176
+      review: false
+  e35c84b47e793b6eb749df78f27e762c:
+    en-US:
+      text: 'So along that road, the one that lands right on the perfect balance point is really only **Svelte**. It has a better ecosystem than **SolidJS** ~~(a better birth year)~~, its performance is not far behind, and sometimes, thanks to its **Compiler**, it is often even faster and leaner than **SolidJS**?!   Of course someone here will surely say that once the number of pages climbs to a certain scale, or the more a user browses, Svelte''s :fn[resource overhead]{is="means the comparison between the Svelte philosophy, which scatters the framework into components so framework resources cannot be reused across them, and the framework runtime under the philosophy of Solid and others, where once the runtime is loaded each component costs only a little"} compared with SolidJS will keep growing? Network requests will keep multiplying? Well, in theory that is true, ~~but I think it has to be looked at against real websites: on 99.9% of personal or content sites, visitors basically do not stay long, and lingering a long time can even be considered a very **rare** case~~. At least on my site, deep click-throughs are currently very few, so "flipping through many pages = Svelte loses more" is not a problem for me. But that is not the reason for choosing Svelte; the real core is still the **markup AST**.'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:35.961113Z
+      seconds: 17.46224325
+      tokens: 29733
+      review: false
+    ja-JP:
+      text: そしてこの道の上で、まさに完璧なバランス点を踏んでいるのは実は **Svelte** だけです。**SolidJS** よりも良いエコシステムを持ち ~~(生まれた年代が良かった)~~、性能もさほど劣らず、時には **Compiler** の恩恵で、むしろ **SolidJS** より速くて優れていることさえ多い?!   もちろんここで、ページ数が一定の規模まで増えたり、ユーザーが閲覧すればするほど、Svelte の:fn[リソースオーバーヘッド]{is="とは、フレームワークをコンポーネントに分散させるためコンポーネント間でフレームワークのリソースを再利用できない Svelte の思想と、ランタイムを一度読み込めば各コンポーネントは小さなコストで済む Solid などの思想におけるフレームワーク runtime との比較を指す"}が SolidJS と比べてどんどん大きくなるのでは？ネットワークリクエストがどんどん増えるのでは？と言う人が必ずいるでしょう。Well、理論上それは事実ですが、~~実際のウェブページに照らして見るべきだと思います。個人サイトやコンテンツサイトの 99.9% では、訪問者は基本的に長く留まらず、長時間の滞在はむしろ非常に**稀**なケースとみなしてもいいくらいです~~。少なくとも私のこのサイトでは、今のところ深い連続クリックは極めて少ないので、「たくさんページをめくる = Svelte のほうが損」は私にとって問題になりません。しかしそれが Svelte を選んだ理由ではなく、核心はあくまで **markup AST** です。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:35.961113Z
+      seconds: 17.46224325
+      tokens: 29733
+      review: false
+  e37dfe9b1623c3d1366b245ed4745c54:
+    en-US:
+      text: Because this tree gives me two layers of information at once. The first is **value dynamics** → `slot`, but that was already achievable back in V1; what matters more is that the latter gives me **structural dynamics** → **protocol control-flow nodes**. Rather than guessing at the black box of React's compiler, :spoiler[Svelte's compiler just lays a proper front end out for me to read;] for example, `{user.name}` is the former and `{#if user}` is the latter.
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:37.689432Z
+      seconds: 8.0611435
+      tokens: 28750
+      review: false
+    ja-JP:
+      text: この木が同時に二層の情報をくれるからだ。まず **値の動的性** → `slot` だが、これは V1 の時点でとっくに実現できていた。より重要なのは後者が **構造の動的性** → **プロトコル制御フローノード**をくれることで、React のコンパイラというブラックボックスを推測するより、:spoiler[Svelte のコンパイラはまともなフロントエンドをそのまま読めるように晒してくれている。]たとえば `{user.name}` が前者で、`{#if user}` こそが後者だ。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:37.689432Z
+      seconds: 8.0611435
+      tokens: 28750
+      review: false
+  e3bedf3cc71c26761a48a4bbd2904552:
+    en-US:
+      text: 'But that is only the default, not really a guarantee; because the `rune module` inside `getContext(''theme'')` and `.svelte.ts` is still an implicit input, and `QueryClient` will not simply vanish either. I think Seam''s attitude will be the same as with the hatch list earlier: whatever it sees gets marked into the IR (a `server` dependency or `client` ownership), whatever it cannot analyse is treated as `opaque`, and it is better not to pretend that "Svelte has no such thing as a Provider". ~~Though not necessarily; maybe with a bit more research I could find a way to handle Providers~~'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:39.182973Z
+      seconds: 8.89647375
+      tokens: 28755
+      review: false
+    ja-JP:
+      text: しかしこれはあくまでデフォルトであって、保証ではない。`getContext('theme')` と `.svelte.ts` の中の `rune module` は依然として暗黙の入力だし、`QueryClient` も勝手に消えてくれるわけではない。Seam の姿勢は前述の hatch リストと同じになると思う。見えたものは IR に記録し（`server` 依存または `client` の所有権）、解析できないものは `opaque` として扱う。「Svelte に Provider なんてものはない」というふりをしないほうがいいだろう。~~とはいえ断言はできない。もう少し調べれば Provider の扱い方は見つかるかもしれない~~
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:39.182973Z
+      seconds: 8.89647375
+      tokens: 28755
+      review: false
+  e46c2bae405225bc132dfc9b6de5c703:
+    en-US:
+      text: Seam could perfectly well understand it as something like the following
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:40.701563Z
+      seconds: 3.9778277920000003
+      tokens: 28086
+      review: false
+    ja-JP:
+      text: Seam はそれを以下のような形として理解して構わない
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:40.701563Z
+      seconds: 3.9778277920000003
+      tokens: 28086
+      review: false
+  e4b68ffb053ab72af435d1df0de23b61:
+    en-US:
+      text: '## Request-time :fn[model]{is="meaning the execution model here, not the data model"}? {#request-time-model}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:44.682347Z
+      seconds: 4.013530542
+      tokens: 28930
+      review: false
+    ja-JP:
+      text: '## リクエスト時:fn[モデル]{is="ここでは実行モデルのことで、データモデルではない"}? {#request-time-model}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:44.682347Z
+      seconds: 4.013530542
+      tokens: 28930
+      review: false
+  e6d7148d4de87df9ccd1ce1765c240e6:
+    en-US:
+      text: '## Lowering {#ast-lowering}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:45.753967Z
+      seconds: 3.422432917
+      tokens: 28319
+      review: false
+    ja-JP:
+      text: '## Lowering {#ast-lowering}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:45.753967Z
+      seconds: 3.422432917
+      tokens: 28319
+      review: false
+  e752b785b80b2b87badb4606948ec605:
+    en-US:
+      text: '## Solid {#solid-ecosystem}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:48.082559Z
+      seconds: 3.471991125
+      tokens: 28575
+      review: false
+    ja-JP:
+      text: '## Solid {#solid-ecosystem}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:48.082559Z
+      seconds: 3.471991125
+      tokens: 28575
+      review: false
+  e75f2c659d91bdb036794c327d573ad1:
+    en-US:
+      text: Another huge win is actually CSS, which in Svelte can be written as
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:48.699202Z
+      seconds: 3.940963125
+      tokens: 28016
+      review: false
+    ja-JP:
+      text: もう一つの大きな収穫は実は CSS で、Svelte では次のように書ける
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:48.699202Z
+      seconds: 3.940963125
+      tokens: 28016
+      review: false
+  e923b2bb5831f4668d0796634d5b683b:
+    en-US:
+      text: ~~*But actually, putting it that way isn't entirely right either, or is too simplistic*~~; to be a little more precise, a single `element` can still be split further, but `attributes` is not necessarily `static` from the start -- it really depends on how you write it
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:49.179623Z
+      seconds: 6.2211289579999995
+      tokens: 28528
+      review: false
+    ja-JP:
+      text: ~~*ただ、実はこう言い切るのも完全に正しいわけではなく、あるいは単純化しすぎで*~~、もう少し詳しく言えば、単一の `element` はさらに分割できる。しかし `attributes` が最初から `static` になるとは限らず、具体的にはどう書いたか次第だ
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:49.179623Z
+      seconds: 6.2211289579999995
+      tokens: 28528
+      review: false
+  e94a4c55d57ad7a61ef820bbbd019ab0:
+    en-US:
+      text: Unless it is `JS` → `execute` → `generate CSS` → `collect` → `serialize` → `hydrate`, the gap will be huge, and more importantly, perhaps the CSS dependency can go straight into the Seam IR 🤔
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:51.557515Z
+      seconds: 5.222765792
+      tokens: 28321
+      review: false
+    ja-JP:
+      text: '`JS` → `execute` → `generate CSS` → `collect` → `serialize` → `hydrate` でない限り、差はかなり大きくなる。さらに重要なのは、CSS dependency をそのまま Seam IR に入れられるかもしれないということだ 🤔'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:51.557515Z
+      seconds: 5.222765792
+      tokens: 28321
+      review: false
+  ebb02f3f8ed7d9f0b4f11d2108cbe47d:
+    en-US:
+      text: '---'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:52.6434Z
+      seconds: 3.058864458
+      tokens: 28153
+      review: false
+    ja-JP:
+      text: '---'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:52.6434Z
+      seconds: 3.058864458
+      tokens: 28153
+      review: false
+  f06673d218b40b2095ed66d5395976a9:
+    en-US:
+      text: '## No CSS-in-JS {#no-css-in-js}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:53.427068Z
+      seconds: 3.472226583
+      tokens: 28039
+      review: false
+    ja-JP:
+      text: '## CSS-in-JS は使わない {#no-css-in-js}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:53.427068Z
+      seconds: 3.472226583
+      tokens: 28039
+      review: false
+  f7294aee60d51ba2aa4bdcaf7a548d75:
+    en-US:
+      text: Future of SeamJS
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:55.403849Z
+      seconds: 3.285202625
+      tokens: 27854
+      review: false
+    ja-JP:
+      text: SeamJS の今後
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:55.403849Z
+      seconds: 3.285202625
+      tokens: 27854
+      review: false
+  f830c06bd6c458f9810369724a65f70b:
+    en-US:
+      text: Also, **Component ownership** becomes thoroughly clean; having less `Provider` / `Context` / `global runtime dependency` means I finally get the chance to answer, once and for all, which value comes from the **Server**, where **CTR** can pass things through, who needs `client boundary` (~~which state belongs to the client~~), and whether this `component` really needs `hydrate`...
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:55.705393Z
+      seconds: 6.793541083
+      tokens: 28447
+      review: false
+    ja-JP:
+      text: それから、**Component ownership** が徹底的にクリーンになる。`Provider` / `Context` / `global runtime dependency` が減れば、どの値が **Server** 由来で、どこで **CTR** として渡せて、誰に `client boundary` が必要で（~~どの state が client のものか~~）、この `component` に本当に `hydrate` が要るのか……を、ようやく徹底的に答えられる機会が持てるということだ。
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:55.705393Z
+      seconds: 6.793541083
+      tokens: 28447
+      review: false
+  f839eb4997c6a62a7b36adf432f746a8:
+    en-US:
+      text: So the component dependency graph becomes implicit once again. For traditional SSR that is not a big deal; worst case you just "run the entire React tree once more". But what Seam ultimately wants to ask is whether ProductCard can be [CTR](https://canmi.net/architecture/compile-time-rendering#maybe-ctr)'d on its own, and at that point things get genuinely painful. You could even say it would mean changing the behaviour of the whole React compiler along with users' DX and habits, so why bother...
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:56.783577Z
+      seconds: 8.375113209
+      tokens: 28663
+      review: false
+    ja-JP:
+      text: そうして component dependency graph はまた暗黙的なものに戻ってしまう。traditional SSR ならさほど問題にはならず、最悪でも「React tree 全体をもう一度走らせる」だけで済む。しかし Seam が最終的に問いたいのは ProductCard を単独で [CTR](https://canmi.net/architecture/compile-time-rendering#maybe-ctr) できるかどうかであり、そうなると本当に厄介になる。React コンパイラ全体の挙動と、ユーザーの DX や習慣まで変えなければならないとさえ言えるわけで、そこまでする必要があるのだろうか...
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:56.783577Z
+      seconds: 8.375113209
+      tokens: 28663
+      review: false
+  fb0936f2ddc7cd22ac969983556657a2:
+    en-US:
+      text: Or even go one step further and shape the flow like this ↓
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:56.902583Z
+      seconds: 3.83896225
+      tokens: 28008
+      review: false
+    ja-JP:
+      text: さらに一歩進めて、フローをこのような形にすることもできる ↓
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:56.902583Z
+      seconds: 3.83896225
+      tokens: 28008
+      review: false
+  fdedce013cca0c5346d209739824388e:
+    en-US:
+      text: What it hands the compiler is directly
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:58.692045Z
+      seconds: 3.398870959
+      tokens: 28063
+      review: false
+    ja-JP:
+      text: それがコンパイラに渡すのは、そのまま
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:58.692045Z
+      seconds: 3.398870959
+      tokens: 28063
+      review: false
