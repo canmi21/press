@@ -55,6 +55,22 @@ it('renders a translator note as an explicit control instead of a native tooltip
 	expect(prose.html).not.toContain('title=');
 });
 
+it('wraps the noted words so the walk back has something to light', async () => {
+	const compiled = await compile(
+		'---\ntitle: Test\nlang: en-US\n---\n\nThe :fn[model]{is="Execution, not data."} matters.\n',
+		'/article',
+		{
+			newTabNote: 'opens in new tab',
+			resolveAsset: () => null,
+			highlight: async () => '',
+			sourceFile: 'contents/example.md',
+		},
+	);
+	const prose = compiled.blocks[0];
+	if (prose?.type !== 'prose') throw new Error('expected prose');
+	expect(prose.html).toContain('<span class="note-words">model</span><sup class="note-marker">');
+});
+
 it('fogs a spoiler visually while leaving its words real in both targets', async () => {
 	const compiled = await compile(
 		'---\ntitle: Test\nlang: en-US\n---\n\nThe ending is :spoiler[nobody wins] after all.\n',

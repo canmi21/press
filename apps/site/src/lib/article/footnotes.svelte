@@ -8,6 +8,11 @@
 	/** `locale` is the view being rendered. Passed rather than read: see spec/locale.md. */
 	let { notes, locale }: { notes: ArticleNote[]; locale: LocaleCode } = $props();
 
+	/** As long as the CSS animation, plus a beat: the class must outlive what it plays. */
+	const RETURN_FLASH_MS = 1900;
+	/** Give up waiting for the scroll and light up anyway: arrival detection is best effort. */
+	const RETURN_ARRIVAL_MS = 3000;
+
 	/**
 	 * The way back, scrolled rather than jumped -- the same move the markers make, owned here
 	 * because this section renders outside the article body whose delegation covers them. A
@@ -21,6 +26,61 @@
 		// The move is not an address: see spec/styling.md.
 		event.preventDefault();
 		jumpTo(destination);
+		flashReturn(destination);
+	}
+
+	let flashed: HTMLElement | undefined;
+	let flashTimer: ReturnType<typeof setTimeout> | undefined;
+
+	/**
+	 * Light the words the reader just returned to, briefly.
+	 *
+	 * The noted words may sit anywhere in their line and appear more than once in the
+	 * paragraph, so arriving in the right scroll band is not the same as knowing which words
+	 * were left. The URL never carries the move (spec/styling.md), so `:target` cannot say --
+	 * a class on the wrapped words does, and CSS decides what it looks like and for how long.
+	 * The timer owns removal because reduced motion runs no animation and fires no
+	 * `animationend`; one mechanism for both. A marker in a heading has no wrapped words --
+	 * the heading names itself -- so the marker alone takes the class there.
+	 */
+	function flashReturn(destination: Element) {
+		const sup = destination.closest('sup.note-marker');
+		const words = sup?.previousElementSibling;
+		const target = words?.classList.contains('note-words') ? words : sup;
+		if (!(target instanceof HTMLElement)) return;
+		if (flashTimer !== undefined) clearTimeout(flashTimer);
+		flashed?.classList.remove('note-return');
+		flashed = target;
+		// Light up on arrival, not on departure: a long article's smooth scroll outlasts the
+		// animation, which would play to an empty viewport. The browser's smooth-scroll
+		// duration is internal and per-engine, so it cannot be computed up front, and Safari
+		// has no `scrollend` -- arrival is read off the geometry instead: the target in the
+		// viewport and its position unchanged for a frame, which is the scroll settling on it.
+		// Per-frame, so the light starts the frame the move ends, with a cap so a scroll
+		// interrupted mid-flight still ends the wait.
+		const started = performance.now();
+		let restingTop: number | undefined;
+		const settled = () => {
+			const { top, bottom } = target.getBoundingClientRect();
+			const inView = top >= 0 && bottom <= window.innerHeight;
+			const still = restingTop !== undefined && Math.abs(top - restingTop) < 1;
+			restingTop = top;
+			return inView && still;
+		};
+		const waitThenFlash = () => {
+			if (flashed !== target) return;
+			if (!settled() && performance.now() - started < RETURN_ARRIVAL_MS) {
+				requestAnimationFrame(waitThenFlash);
+				return;
+			}
+			target.classList.add('note-return');
+			flashTimer = setTimeout(() => {
+				target.classList.remove('note-return');
+				if (flashed === target) flashed = undefined;
+				flashTimer = undefined;
+			}, RETURN_FLASH_MS);
+		};
+		requestAnimationFrame(waitThenFlash);
 	}
 </script>
 

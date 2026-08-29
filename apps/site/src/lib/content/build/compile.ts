@@ -233,11 +233,19 @@ function proseHtml(node: RootContent, newTabNote: string): string {
 				}
 				// An author's note wraps the words it explains and puts its marker after them, so
 				// the sentence reads exactly as it would without the note and the collected note
-				// at the end can name what it is about.
+				// at the end can name what it is about. The words get a span of their own -- no
+				// resting style, purely so the walk back from a note has something to light up:
+				// the marker's number is too small to catch an eye landing mid-page.
+				// See spec/styling.md.
 				if (directive.name === 'fn') {
 					const number = noteNumber(directive);
 					return [
-						...children,
+						{
+							type: 'element',
+							tagName: 'span',
+							properties: { className: ['note-words'] },
+							children,
+						},
 						{
 							type: 'element',
 							tagName: 'sup',

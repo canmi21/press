@@ -420,6 +420,65 @@
 		}
 	}
 
+	/* The walk back from a note lands mid-page, where the noted words may sit anywhere in
+	   their line; this is the moment's answer to "returned to where?". The ink is the note
+	   dialect the site already speaks -- the dotted underline a translator's note wears at
+	   rest -- shown in and taken away again, with the marker's number lit alongside. Timing:
+	   in fast, held while the scroll arrives (Safari has no scrollend to wait on), out slow.
+	   Under reduced motion the highlight simply is, and the class's removal ends it: the
+	   information is kept, the animation is not. See spec/styling.md. */
+	.article-body :global(.note-return) {
+		animation: note-return-words 1.8s ease-out both;
+		text-decoration-line: underline;
+		text-decoration-style: dotted;
+		text-decoration-color: transparent;
+		text-underline-offset: 0.25rem;
+	}
+
+	.article-body :global(.note-return + .note-marker .note-marker-link),
+	.article-body :global(.note-marker.note-return .note-marker-link) {
+		animation: note-return-marker 1.8s ease-out both;
+	}
+
+	@keyframes -global-note-return-words {
+		0% {
+			text-decoration-color: transparent;
+		}
+		7%,
+		67% {
+			text-decoration-color: var(--color-border-strong);
+		}
+		100% {
+			text-decoration-color: transparent;
+		}
+	}
+
+	@keyframes -global-note-return-marker {
+		0% {
+			color: var(--color-text-soft);
+		}
+		7%,
+		67% {
+			color: var(--color-text-strong);
+		}
+		100% {
+			color: var(--color-text-soft);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.article-body :global(.note-return) {
+			animation: none;
+			text-decoration-color: var(--color-border-strong);
+		}
+
+		.article-body :global(.note-return + .note-marker .note-marker-link),
+		.article-body :global(.note-marker.note-return .note-marker-link) {
+			animation: none;
+			color: var(--color-text-strong);
+		}
+	}
+
 	/* A spoiler keeps its words in the line but out of view until asked: fogged by blur, lifted
 	   while hovered or focused, restored when the reader moves away. `:focus`, not
 	   `:focus-visible` -- a tap's focus is the only reveal a touch screen has, and revealing is

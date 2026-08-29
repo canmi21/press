@@ -333,6 +333,20 @@ size and colour as the article title and the newsletter heading, none of which s
 its own -- three section names on one page, matched by sharing the inheritance chain rather
 than by copying a number. Only the notes under it stay small.
 
+**The walk back from a note lights the words it lands on.** Arriving in the right scroll band
+is not the same as knowing which words were left: the noted words may sit anywhere in their
+line and appear more than once in the paragraph. So the return briefly draws the dotted
+underline under them -- the ink a translator's note wears at rest, which already means "this
+word carries a note" here -- and lights the marker's number beside them, then takes both away.
+Only this direction gets it: walking down to a note is guided by the number being followed,
+and the note's phrase opens it in the article's own colour.
+
+`:target` cannot carry this, deliberately: the move never touches the URL (see above), so a
+class set by the jump does, and the compiled prose wraps the noted words in a span that exists
+only to receive it. Accent is not spent here -- appearing and disappearing is what catches the
+eye, and the colour that means focus should not also mean "you came from over there". Under
+reduced motion the highlight appears and leaves without animating; the information is kept.
+
 **The notes render after the article, not at the end of it.** The rule above the newsletter had
 always been the article's ending boundary, and the notes are apparatus about the article rather
 than part of it -- so they belong below that boundary, not above it inside the body. Moving them
