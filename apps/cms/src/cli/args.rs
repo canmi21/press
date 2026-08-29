@@ -234,6 +234,28 @@ pub enum Command {
 		limit: Option<usize>,
 	},
 
+	/// Drop recorded translations precisely, so the next i18n run redoes them
+	Invalidate {
+		/// Actually delete. Without it the selection is printed and nothing is touched.
+		#[arg(long)]
+		live: bool,
+		/// Drop this segment id; repeatable
+		#[arg(long, value_name = "ID")]
+		segment: Vec<String>,
+		/// Drop segments whose source contains this text; repeatable
+		#[arg(long, value_name = "TEXT")]
+		containing: Vec<String>,
+		/// Drop entries whose stored translation contains this text; repeatable
+		#[arg(long, value_name = "TEXT")]
+		translation_containing: Vec<String>,
+		/// Restrict to these locales; repeatable
+		#[arg(long, value_name = "LOCALE")]
+		locale: Vec<String>,
+		/// Articles to touch; defaults to all of them
+		#[arg(value_name = "ARTICLE")]
+		articles: Vec<PathBuf>,
+	},
+
 	/// Drop published assets no article asks for
 	Gc {
 		/// Actually delete. Without it the sweep is printed and nothing is touched.

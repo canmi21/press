@@ -148,9 +148,13 @@ pub fn rule(entry: &Entry) -> String {
 		 double quote inside the note -- there is no way to escape one there and it ends the \
 		 note early. Use curly quotes or none. A marker missing any of this is discarded whole \
 		 and the block is asked for again.\n\
-		 3. Write `is` for someone who reads only the target language and has not seen the \
-		 original. Say what the original word was, and what it did -- the joke, the tone, the \
-		 register, whatever is actually lost. One or two sentences.\n\
+		 3. The wrapped words are the translation, in the target language and its own script. \
+		 Never a romanisation -- pinyin is neither the original nor a translation -- and never \
+		 the source script carried into the sentence.\n\
+		 4. Write `is` for someone who reads only the target language and has not seen the \
+		 original. Quote the original word exactly as the source wrote it, in its original \
+		 script, then say what it did -- the joke, the tone, the register, whatever is actually \
+		 lost. One or two sentences.\n\
 		 \n\
 		 The findings below are notes to you, not text to reproduce. Do not translate them and do \
 		 not paste them: they were written about a source your reader has never read. Work out \

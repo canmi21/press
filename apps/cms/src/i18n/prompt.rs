@@ -157,6 +157,13 @@ pub fn build_for(
 		 with characters they cannot read and no gloss is worse than a brief note. At most one \
 		 per block, and none where the surrounding sentence already makes the meaning plain."
 	};
+	// Only for blocks that carry one: every rule a prompt states is one the model weighs
+	// against all the others, and most blocks have no author's note to spend that weight on.
+	let author_notes = if segment.region == Region::Body && segment.source.contains(":fn[") {
+		"\n- `:fn[words]{is=\"explanation\"}` is the author's own note. Translate the words as 		 part of their sentence and keep the directive shape exactly. At the end of the article 		 the translated words are shown once more with the translated explanation directly after 		 them, read together as one continuous statement -- so write the explanation to continue 		 from the words rather than restate them. Do not repeat the words inside the explanation 		 unless the target grammar leaves no natural alternative."
+	} else {
+		""
+	};
 	let navigation = if segment.kind == Kind::Heading && segment.region == Region::Body {
 		"\n- This heading also appears in a narrow table of contents. Translate it as a concise \
 		 navigation label. Preserve its meaning, tone, and necessary technical terms, but avoid \
@@ -191,6 +198,7 @@ pub fn build_for(
 		 - Nothing may survive untranslated merely because it is a term of art. If a phrase has \
 		 an established equivalent in the target language, use it.\n\
 		 {note_policy}\n\
+		 {author_notes}\n\
 		 {same_language_policy}\n\
 		 - Keep markdown structure: emphasis, links and list markers stay as they are.\n\
 		 {notes}\

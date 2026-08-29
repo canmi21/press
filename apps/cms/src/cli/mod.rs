@@ -111,9 +111,71 @@ fn dispatch(command: Command) -> anyhow::Result<ExitCode> {
 			force,
 			limit,
 		} => translate_locales(&model, force, limit),
+		Command::Invalidate {
+			live,
+			segment,
+			containing,
+			translation_containing,
+			locale,
+			articles,
+		} => invalidate_translations(
+			live,
+			&i18n::invalidate::Selection {
+				segments: &segment,
+				containing: &containing,
+				translation_containing: &translation_containing,
+				locales: &locale,
+			},
+			&articles,
+		),
 		Command::Gc { live } => collect_garbage(live),
 		Command::Twitter { command } => twitter_command(command),
 	}
+}
+
+/// Drop the translations a selector names, so the next `cms i18n` buys exactly those back.
+fn invalidate_translations(
+	live: bool,
+	selection: &i18n::invalidate::Selection<'_>,
+	articles: &[std::path::PathBuf],
+) -> anyhow::Result<ExitCode> {
+	if selection.names_nothing() {
+		eprintln!(
+			"nothing selected: give --segment, --containing, or --translation-containing. An \
+			 empty selection deleting everything is what --force on a translation run is for."
+		);
+		return Ok(ExitCode::FAILURE);
+	}
+	let root = paths::repo_root()?;
+	let report = i18n::invalidate::run(&root.join("contents"), articles, selection, live)?;
+	for (article, id, locales) in &report.dropped {
+		println!(
+			"{} {article}#{} {}",
+			if live { "drop" } else { "would drop" },
+			&id[..id.len().min(12)],
+			locales.join(", ")
+		);
+	}
+	if report.kept_reviewed > 0 {
+		println!(
+			"kept {} reviewed entr{} a person vouched for; unset review to include them",
+			report.kept_reviewed,
+			if report.kept_reviewed == 1 {
+				"y"
+			} else {
+				"ies"
+			}
+		);
+	}
+	let entries: usize = report.dropped.iter().map(|(_, _, l)| l.len()).sum();
+	println!(
+		"{} {entries} locale entr{} across {} segment(s){}",
+		if live { "dropped" } else { "would drop" },
+		if entries == 1 { "y" } else { "ies" },
+		report.dropped.len(),
+		if live { "" } else { "; run again with --live" },
+	);
+	Ok(ExitCode::SUCCESS)
 }
 
 /// `cms i18n` takes eight of them, which is past the point where positional parameters read.
@@ -514,6 +576,16 @@ fn translate_articles(args: I18nArgs<'_>) -> anyhow::Result<ExitCode> {
 	// where this stopped, because only missing segments are ever requested.
 	if let Some(reason) = &outcome.exhausted {
 		println!("stopped: {reason}");
+	}
+	// Policy findings, not failures: spec/i18n.md's note policies are soft, so these are for a
+	// person to judge, and the exit code ignores them.
+	for (article, finding) in &outcome.audit {
+		println!(
+			"audit {article}#{} {}: {}",
+			&finding.segment[..finding.segment.len().min(12)],
+			finding.locale,
+			finding.reason
+		);
 	}
 	println!(
 		"{} translations across {} segments, {} failed; {} incomplete segments ({} missing locale entries)",

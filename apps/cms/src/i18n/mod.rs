@@ -4,6 +4,8 @@
 //! its own should cost one call while a partial repair should never repay for finished work. See
 //! spec/i18n.md.
 
+pub mod audit;
+pub mod invalidate;
 pub mod layout;
 pub mod model;
 pub mod prompt;
@@ -83,6 +85,8 @@ pub struct Outcome {
 	pub already_done: usize,
 	/// Set when the allowance ran out, carrying what the runner said about the reset.
 	pub exhausted: Option<String>,
+	/// Report-only policy findings from `--check`: article, then what audit::of saw.
+	pub audit: Vec<(String, audit::Finding)>,
 }
 
 /// When a file was last written, or `None` if it does not exist yet.
@@ -396,6 +400,22 @@ pub async fn run(
 		if check {
 			outcome.incomplete_segments += wanted.len();
 			outcome.missing_locales += wanted.values().map(Vec::len).sum::<usize>();
+			// The policies shape cannot enforce, reported over what is already stored. Only
+			// live body segments: an orphaned entry is leaving anyway, and frontmatter carries
+			// no notes.
+			for (id, locales) in &sidecar.segments {
+				let Some(segment) = live.get(id) else {
+					continue;
+				};
+				if segment.region != segment::Region::Body {
+					continue;
+				}
+				for (locale, translation) in locales {
+					for found in audit::of(id, locale, &translation.text, glosses.find(id)) {
+						outcome.audit.push((path.display().to_string(), found));
+					}
+				}
+			}
 			continue;
 		}
 
