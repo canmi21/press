@@ -328,8 +328,10 @@ An earlier attempt at quiet was uniformly grey and small with nothing to catch o
 as somebody else's apparatus rather than the writer speaking under their breath. Grey was not the
 mistake; grey with nothing in it was.
 
-Only the heading above the section is quiet for a different reason -- a heading there is chrome
-rather than content.
+The heading above the section is the exception in the other direction: it renders at the same
+size and colour as the article title and the newsletter heading, none of which sets a size of
+its own -- three section names on one page, matched by sharing the inheritance chain rather
+than by copying a number. Only the notes under it stay small.
 
 **The notes render after the article, not at the end of it.** The rule above the newsletter had
 always been the article's ending boundary, and the notes are apparatus about the article rather

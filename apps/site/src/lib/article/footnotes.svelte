@@ -26,10 +26,12 @@
 
 <!-- Apparatus about the article, not part of it: this renders after the article closes, under
      the dashed rule that is the article's ending boundary, so the rail and the table of contents
-     never measure it. Quiet for the same reason -- the heading at the size of the metadata row,
-     and the notes smaller than the prose they came from. See spec/styling.md. -->
+     never measure it. The notes stay smaller than the prose they came from; the heading above
+     them speaks at the page's shared section-name size. See spec/styling.md. -->
 <section aria-label={m['article.notes']({}, { locale })} class="notes">
-	<!-- The heading is chrome and stays quiet; the notes under it are not. -->
+	<!-- The heading speaks at the same size and colour as the article title and the newsletter
+	     heading: three sections of one page, one voice for their names. Only the notes under it
+	     stay small. -->
 	<h2 class="notes-heading">{m['article.notes']({}, { locale })}</h2>
 	<ol class="notes-list">
 		{#each notes as note (note.number)}
@@ -73,9 +75,11 @@
 	}
 
 	.notes-heading {
+		/* No font-size: it inherits the root size the article title and the newsletter heading
+		   render at, neither of which sets one either -- match by sharing the chain, not by
+		   copying a number. */
 		margin: 0 0 0.75rem;
-		color: var(--color-text-soft);
-		font-size: 0.875rem;
+		color: var(--color-text-strong);
 		font-weight: 500;
 	}
 
