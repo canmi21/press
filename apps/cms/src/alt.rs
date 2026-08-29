@@ -150,8 +150,12 @@ fn originals_by_id(originals: &Path) -> BTreeMap<String, PathBuf> {
 /// Through the shared runner, so `--model` picks who answers and the same allowance handling
 /// applies here as everywhere else. The provider and model recorded afterwards come from what
 /// actually ran rather than from a constant in this file.
-async fn describe(runner: Runner, path: &Path) -> Result<(String, Spend, String), Refusal> {
-	let Some(model) = runner.model_for_vision() else {
+async fn describe(
+	runner: Runner,
+	model_override: Option<&str>,
+	path: &Path,
+) -> Result<(String, Spend, String), Refusal> {
+	let Some(model) = model_override.or_else(|| runner.model_for_vision()) else {
 		return Err(Refusal::Failed(format!(
 			"{} cannot read an image; pick a runner that can",
 			runner.provider()
@@ -177,6 +181,8 @@ async fn describe(runner: Runner, path: &Path) -> Result<(String, Spend, String)
 pub struct Options<'a> {
 	pub repository: &'a Path,
 	pub runner: Runner,
+	/// A concrete model pinned for the whole run, `--model-id`; the vision default otherwise.
+	pub model_override: Option<String>,
 	pub merged: &'a Merged,
 	pub originals: &'a Path,
 	pub force: bool,
@@ -191,6 +197,7 @@ pub async fn run(options: Options<'_>) -> std::io::Result<Outcome> {
 	let Options {
 		repository,
 		runner,
+		model_override,
 		merged,
 		originals,
 		force,
@@ -235,6 +242,7 @@ pub async fn run(options: Options<'_>) -> std::io::Result<Outcome> {
 			let Some((cid, path)) = queue.next() else {
 				break;
 			};
+			let pinned = model_override.clone();
 			// Claimed before anything is spent. A picture another process is describing right now
 			// is left to it rather than paid for twice.
 			match claim::take(repository, "alt", &cid) {
@@ -248,9 +256,9 @@ pub async fn run(options: Options<'_>) -> std::io::Result<Outcome> {
 				}
 				Err(claim::Denied::Io(error)) => return Err(error),
 			}
-			running.push(tokio::spawn(
-				async move { (cid, describe(runner, &path).await) },
-			));
+			running.push(tokio::spawn(async move {
+				(cid, describe(runner, pinned.as_deref(), &path).await)
+			}));
 		}
 		if running.is_empty() {
 			break;
@@ -351,6 +359,7 @@ mod tests {
 		let outcome = run(Options {
 			repository: &root,
 			runner: Runner::Claude,
+			model_override: None,
 			merged: &merged,
 			originals: &originals,
 			force: false,

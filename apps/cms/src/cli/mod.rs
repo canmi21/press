@@ -433,6 +433,7 @@ fn describe_images(
 	limit: Option<usize>,
 ) -> anyhow::Result<ExitCode> {
 	let runner = model.runner(i18n::runner::DEFAULT_VISION);
+	let model_override = model.overrides(runner).map_err(anyhow::Error::msg)?;
 
 	let root = paths::repo_root()?;
 	let originals = root.join("data").join("image");
@@ -450,6 +451,7 @@ fn describe_images(
 	let outcome = match runtime.block_on(alt::run(alt::Options {
 		repository: &root,
 		runner,
+		model_override,
 		merged: &merged,
 		originals: &originals,
 		force,
