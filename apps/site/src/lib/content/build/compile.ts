@@ -241,17 +241,17 @@ function proseHtml(node: RootContent, newTabNote: string): string {
 						{
 							type: 'element',
 							tagName: 'sup',
-							properties: { className: ['fn-ref'] },
+							properties: { className: ['note-marker'] },
 							children: [
 								{
 									type: 'element',
 									tagName: 'a',
 									properties: {
-										href: `#fn-${number}`,
-										id: `fnref-${number}`,
+										href: `#note-${number}`,
+										id: `marker-${number}`,
 										// The id sits here, so the scroll margin has to as well: returning to a
 										// marker lands it in the same band arriving at a section does.
-										className: ['fn-ref-link', 'focus-link', 'jump-target'],
+										className: ['note-marker-link', 'focus-link', 'jump-target'],
 									},
 									children: [{ type: 'text', value: String(number) }],
 								},
@@ -950,7 +950,7 @@ export async function compile(
 			`<ol>${notes
 				.map(
 					({ number, phrase, text: said }) =>
-						`<li id="fn-${number}"><strong>${escapeHtml(phrase)}</strong> ${escapeHtml(said)}</li>`,
+						`<li id="note-${number}"><strong>${escapeHtml(phrase)}</strong> ${escapeHtml(said)}</li>`,
 				)
 				.join('')}</ol>`,
 		);

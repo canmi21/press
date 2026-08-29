@@ -28,21 +28,21 @@
      the dashed rule that is the article's ending boundary, so the rail and the table of contents
      never measure it. Quiet for the same reason -- the heading at the size of the metadata row,
      and the notes smaller than the prose they came from. See spec/styling.md. -->
-<section aria-label={m['article.notes']({}, { locale })} class="fn-notes">
+<section aria-label={m['article.notes']({}, { locale })} class="notes">
 	<!-- The heading is chrome and stays quiet; the notes under it are not. -->
-	<h2 class="fn-notes-heading">{m['article.notes']({}, { locale })}</h2>
-	<ol class="fn-notes-list">
+	<h2 class="notes-heading">{m['article.notes']({}, { locale })}</h2>
+	<ol class="notes-list">
 		{#each notes as note (note.number)}
-			<li id="fn-{note.number}" class="jump-target fn-note">
+			<li id="note-{note.number}" class="jump-target note">
 				<!-- The words first, so a note names what it is about instead of asking the reader
 				     to hold the sentence they left in their head. Then the same superscript the
 				     marker in the prose is, which makes the two one thing seen twice -- hidden
 				     from a screen reader, which is already being told the ordinal by the list. -->
-				<span class="fn-note-phrase">{note.phrase}</span><sup class="fn-ref" aria-hidden="true"
+				<span class="note-phrase">{note.phrase}</span><sup class="note-marker" aria-hidden="true"
 					>{note.number}</sup
 				>{note.text}<a
-					href="#fnref-{note.number}"
-					class="fn-note-back focus-link"
+					href="#marker-{note.number}"
+					class="note-back focus-link"
 					aria-label={m['article.notes.back']({ number: note.number }, { locale })}
 					onclick={jumpBack}
 				>
@@ -59,13 +59,13 @@
 	   offered rather than fenced off; the plain rule below the notes is then only a separator
 	   between two offerings. The spacing matches the newsletter's own (mt-16 plus its padding),
 	   so the boundary sits where it always has whether or not an article carried notes. */
-	.fn-notes {
+	.notes {
 		margin-top: 4rem;
 		border-top: 0.0625rem dashed var(--color-border);
 		padding-top: 1.5rem;
 	}
 
-	.fn-notes-heading {
+	.notes-heading {
 		margin: 0 0 0.75rem;
 		color: var(--color-text-soft);
 		font-size: 0.875rem;
@@ -74,7 +74,7 @@
 
 	/* An ordered list still, for what a screen reader is told, with nothing of a list drawn: the
 	   numbers a reader sees are the superscripts, which is how they were met in the prose. */
-	.fn-notes-list {
+	.notes-list {
 		display: flex;
 		margin: 0;
 		flex-direction: column;
@@ -93,7 +93,7 @@
 	   The first attempt at quiet was grey and small with nothing to catch on, which read as
 	   somebody else's apparatus. What makes it work now is the phrase: it holds the article's own
 	   colour, so each note has one strong point to find it by and can be soft everywhere else. */
-	.fn-note {
+	.note {
 		margin: 0;
 		font-size: 0.6875rem;
 		line-height: 1.6;
@@ -103,23 +103,23 @@
 	/* The quoted words are the article's, said again -- weight alone marks them. Colour is spent
 	   on the number instead: one bright thing per note, and it is the one that says which note
 	   this is. */
-	.fn-note-phrase {
+	.note-phrase {
 		font-weight: 500;
 	}
 
-	.fn-note > :global(.fn-ref) {
+	.note > :global(.note-marker) {
 		color: var(--color-text-strong);
 	}
 
 	/* Here the marker sits between the phrase and the note, so it needs air on the side facing
 	   the note. In the prose it follows the word it belongs to and must not be spaced off it. */
-	.fn-note > :global(.fn-ref) {
+	.note > :global(.note-marker) {
 		margin-inline-end: 0.3rem;
 	}
 
 	/* Trailing the last word, not parked at the right edge. The way back belongs to the sentence
 	   that was just read, and a column of arrows down the right reads as a table's furniture. */
-	.fn-note-back {
+	.note-back {
 		display: inline-flex;
 		margin-inline-start: 0.35rem;
 		/* Sized against the note, not against the page, for the same reason the marker is. */
@@ -131,13 +131,13 @@
 		transition: color 200ms ease-out;
 	}
 
-	.fn-note-back:hover,
-	.fn-note-back:focus-visible {
+	.note-back:hover,
+	.note-back:focus-visible {
 		color: var(--color-text-strong);
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.fn-note-back {
+		.note-back {
 			transition: none;
 		}
 	}

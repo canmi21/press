@@ -394,7 +394,7 @@
 	   looking for it should find it without hunting. Global because prose markers arrive as
 	   compiled HTML while a heading's are written by section.svelte -- one appearance, two
 	   origins. See spec/styling.md. */
-	.article-body :global(.fn-ref) {
+	.article-body :global(.note-marker) {
 		/* Relative, so one ratio serves both places a marker appears: beside prose it lands where
 		   the absolute 0.6875rem used to, and in the smaller notes below it shrinks with them. */
 		font-size: 0.73em;
@@ -402,20 +402,20 @@
 		line-height: 0;
 	}
 
-	.article-body :global(.fn-ref-link) {
+	.article-body :global(.note-marker-link) {
 		padding-inline: 0.0625rem;
 		color: var(--color-text-soft);
 		text-decoration: none;
 		transition: color 200ms ease-out;
 	}
 
-	.article-body :global(.fn-ref-link:hover),
-	.article-body :global(.fn-ref-link:focus-visible) {
+	.article-body :global(.note-marker-link:hover),
+	.article-body :global(.note-marker-link:focus-visible) {
 		color: var(--color-text-strong);
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.article-body :global(.fn-ref-link) {
+		.article-body :global(.note-marker-link) {
 			transition: none;
 		}
 	}

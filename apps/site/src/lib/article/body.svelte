@@ -66,7 +66,7 @@
 		if (!(target instanceof Element)) return undefined;
 		// Markers only. The way back lives in the notes section, which renders outside this
 		// root and owns its own clicks -- see footnotes.svelte.
-		const found = target.closest<HTMLAnchorElement>('a.fn-ref-link');
+		const found = target.closest<HTMLAnchorElement>('a.note-marker-link');
 		return found && root?.contains(found) ? found : undefined;
 	}
 

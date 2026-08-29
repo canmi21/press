@@ -85,7 +85,7 @@
 	 */
 	function headingText(el: HTMLElement): string {
 		const clone = el.cloneNode(true) as HTMLElement;
-		for (const marker of clone.querySelectorAll('.fn-ref')) marker.remove();
+		for (const marker of clone.querySelectorAll('.note-marker')) marker.remove();
 		return clone.textContent?.trim() ?? '';
 	}
 

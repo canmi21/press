@@ -388,7 +388,7 @@ attributes -- so the words arrive in the table of contents, where they belong, a
 not. That is the whole reason the note lives in an attribute rather than beside the words.
 
 That holds for the compiled entry. The rendered heading also carries a real superscript, so the
-table of contents strips `.fn-ref` before reading a heading back out of the DOM -- without it an
+table of contents strips `.note-marker` before reading a heading back out of the DOM -- without it an
 entry gained a stray digit at hydration, which is how the rule was found.
 
 ## A spoiler is fog, not redaction
