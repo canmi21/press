@@ -349,9 +349,11 @@
 		     See spec/styling.md. -->
 		{#if notes.length > 0}
 			<Footnotes {notes} locale={locale.code} />
-			<Newsletter locale={locale.code} class="border-t border-border pt-12" />
+			<!-- Closer than the article's own gap: the notes are small, quiet apparatus, and the
+			     distance that reads as a pause after prose reads as a hole after them. -->
+			<Newsletter locale={locale.code} class="mt-8 border-t border-border pt-12" />
 		{:else}
-			<Newsletter locale={locale.code} class="border-t border-dashed border-border pt-12" />
+			<Newsletter locale={locale.code} class="mt-16 border-t border-dashed border-border pt-12" />
 		{/if}
 	</div>
 </main>

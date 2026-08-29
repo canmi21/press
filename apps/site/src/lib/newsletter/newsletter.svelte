@@ -156,7 +156,11 @@ otherwise need. See spec/engagement.md. -->
 	</span>
 {/snippet}
 
-<section aria-labelledby="newsletter-heading" class="mt-16 {className}" style={sequenceStyle()}>
+<!-- The gap above belongs to whatever this follows, so it comes from the caller: after an article
+     it separates two offerings, after the collected notes it closes a smaller block of apparatus,
+     and those are not the same distance. A component that carried one number would make the
+     shorter one an override fighting it. -->
+<section aria-labelledby="newsletter-heading" class={className} style={sequenceStyle()}>
 	<h2 id="newsletter-heading" class="mb-3 font-medium text-text-strong">
 		{m['newsletter.heading']({}, { locale })}
 	</h2>

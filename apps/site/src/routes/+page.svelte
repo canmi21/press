@@ -117,7 +117,7 @@
 
 		<ArticleList articles={data.articles} heading={data.writing} />
 
-		<Newsletter locale={data.locale.code} />
+		<Newsletter locale={data.locale.code} class="mt-16" />
 
 		<Support
 			locale={data.locale.code}
