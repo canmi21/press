@@ -398,6 +398,22 @@ compromises are found and yanked inside that window.
 `minimumReleaseAgeExclude` holds the exemptions. Keep the list short: every entry is an
 accepted risk, justified only when the wait costs more than it protects.
 
+### Two copies of one package read as a type comparing badly to itself
+
+A workspace member with its own range for something the root also carries can be left on an older
+resolution after an update, even when its range admits the new one. Nothing warns; the graph
+simply holds both.
+
+**What it looks like is not what it is.** The compiler reports `Excessive stack depth comparing
+types 'Plugin<any>' and 'Plugin<any>'` -- a type against what appears to be itself -- plus
+`no overload matches this call` on the same object. The two are structurally identical and come
+from different copies, so nothing about the message says "duplicate". `pnpm why <package>` is what
+names it, and `pnpm dedupe` collapses it when no manifest range is actually in conflict.
+
+Worth recording because the update that produced it changed a compiler major at the same time, and
+the first suspicion was the compiler. It was not; both copies had been sitting there since the
+member last resolved.
+
 **Cargo has no equivalent delay and is not getting one.** The question is asked by the npm rule
 sitting here, and the answer is the user's: they watch that ecosystem themselves. So a crate
 published minutes ago can enter a build, and when one breaks it, the fix is a lockfile pin at the
