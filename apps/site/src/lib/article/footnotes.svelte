@@ -127,13 +127,16 @@
 		font-weight: 500;
 	}
 
-	.note > :global(.note-marker) {
+	/* Descendant rather than child: the marker sits inside .note-line, which the landing light
+	   below needs in order to fill the whole sentence. A child combinator here silently stopped
+	   matching when that wrapper arrived, and the number went quiet with no rule left to say so. */
+	.note :global(.note-marker) {
 		color: var(--color-text-strong);
 	}
 
 	/* Here the marker sits between the phrase and the note, so it needs air on the side facing
 	   the note. In the prose it follows the word it belongs to and must not be spaced off it. */
-	.note > :global(.note-marker) {
+	.note :global(.note-marker) {
 		margin-inline-end: 0.3rem;
 	}
 
