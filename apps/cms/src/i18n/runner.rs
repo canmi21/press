@@ -40,8 +40,9 @@ pub const EFFORT_CHOICES: &str = "low, medium, high, xhigh, max, or ultra";
 /// Build the concrete tier name stored by the CMS and split at the Codex boundary later.
 ///
 /// The runner remains a separate choice because it determines the binary and response envelope.
-/// A concrete model is currently useful only at the Codex binding, whose CLI takes model and
-/// effort as independent settings.
+/// A concrete model is useful at the bindings whose CLIs accept one: Codex, which takes model
+/// and effort as independent settings, and Claude, whose CLI takes a model name alone -- so
+/// `--effort` stays a Codex flag, and pinning opus is `--model claude --model-id opus`.
 pub fn model_override(
 	runner: Runner,
 	model: Option<&str>,
@@ -54,12 +55,19 @@ pub fn model_override(
 			Ok(None)
 		};
 	};
-	if runner != Runner::Codex {
-		return Err("--model-id requires --model codex".to_owned());
+	if !matches!(runner, Runner::Codex | Runner::Claude) {
+		return Err("--model-id requires --model codex or --model claude".to_owned());
 	}
 	let model = model.trim();
 	if model.is_empty() || model.starts_with('-') {
 		return Err("--model-id takes a model id".to_owned());
+	}
+	if runner == Runner::Claude {
+		return if effort.is_some() {
+			Err("--effort is a Codex setting; the Claude CLI takes only a model name".to_owned())
+		} else {
+			Ok(Some(model.to_owned()))
+		};
 	}
 	let Some(effort) = effort else {
 		return Ok(Some(model.to_owned()));
