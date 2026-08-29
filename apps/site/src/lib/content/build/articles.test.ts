@@ -41,7 +41,11 @@ describe('article widget build inputs', () => {
 			expect(view.blocks.filter(({ type }) => type === 'tokei')).toHaveLength(1);
 			expect(view.blocks.filter(({ type }) => type === 'github')).toHaveLength(1);
 			expect(view.blocks.filter(({ type }) => type === 'cargo')).toHaveLength(2);
-			expect(view.summary).toMatchObject({ provider: 'openai' });
+			// Which provider answered is a fact about the last run, not about the build: regenerating
+			// the summaries with another runner must not fail this test. That a view carries a
+			// summary with provenance at all is the invariant.
+			expect(view.summary?.provider).toEqual(expect.any(String));
+			expect(view.summary?.provider).not.toEqual('');
 		}
 		expect(files).toContain(
 			fileURLToPath(new URL('contents/development/rust-cargo-cranelift-tuning.summary.yaml', ROOT)),
