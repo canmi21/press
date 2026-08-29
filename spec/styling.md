@@ -331,15 +331,22 @@ mistake; grey with nothing in it was.
 Only the heading above the section is quiet for a different reason -- a heading there is chrome
 rather than content.
 
-**Every hairline that follows an article is dashed** -- above the notes, and above the newsletter
-below them. What comes after the last paragraph is offered rather than fenced off: the notes are
-the article's own words stepped down into, and the newsletter is an invitation. A solid rule reads
-as closing the document, which is the wrong gesture for both.
+**The notes render after the article, not at the end of it.** The rule above the newsletter had
+always been the article's ending boundary, and the notes are apparatus about the article rather
+than part of it -- so they belong below that boundary, not above it inside the body. Moving them
+out is also what keeps the rail and the table of contents honest without either changing: both
+measure the article, and the notes were the one thing inside it that was not article. The
+boundary rule is worn by whichever section comes first -- the notes when the article carries
+any, the newsletter otherwise -- and sits in the same place either way.
 
-Solid is left to panel chrome, where a rule really is a boundary between two parts of one control
--- the divider inside a translator's note popover is the case. The site draws dashed elsewhere on
-the same reasoning as here: the leader on an article card, joining a title to its date rather than
-dividing them, and the leaders on the licence pages.
+**The boundary hairline is dashed; the one between notes and newsletter is plain.** What follows
+the last paragraph is offered rather than fenced off -- the notes are the article's own words
+stepped down into, and the newsletter is an invitation -- so a solid rule there would read as
+closing a door the page wants open. Between the notes and the newsletter, though, a rule only
+separates two offerings from each other, and that is ordinary chrome: plain, like the divider
+inside a translator's note popover. The site draws dashed elsewhere on the boundary reasoning:
+the leader on an article card, joining a title to its date rather than dividing them, and the
+leaders on the licence pages.
 
 The notes are spaced tightly, closer than the paragraphs above them. At this size they are a
 block to be scanned rather than paragraphs to be read apart, and spacing carried over from larger

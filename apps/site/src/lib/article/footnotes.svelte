@@ -1,16 +1,33 @@
 <script lang="ts">
 	import CornerDownLeft from '@lucide/svelte/icons/corner-down-left';
 	import * as m from '$lib/paraglide/messages';
+	import { jumpTo, movesThisPage, targetOf } from '$lib/client/jump';
 	import type { ArticleNote } from '$lib/content/types';
 	import type { LocaleCode } from '$lib/locale';
 
 	/** `locale` is the view being rendered. Passed rather than read: see spec/locale.md. */
 	let { notes, locale }: { notes: ArticleNote[]; locale: LocaleCode } = $props();
+
+	/**
+	 * The way back, scrolled rather than jumped -- the same move the markers make, owned here
+	 * because this section renders outside the article body whose delegation covers them. A
+	 * component's own links do not need delegating; compiled prose has no component, which is
+	 * what the delegation in body.svelte is for.
+	 */
+	function jumpBack(event: MouseEvent & { currentTarget: HTMLAnchorElement }) {
+		if (!movesThisPage(event)) return;
+		const destination = targetOf(event.currentTarget);
+		if (!destination) return;
+		// The move is not an address: see spec/styling.md.
+		event.preventDefault();
+		jumpTo(destination);
+	}
 </script>
 
-<!-- The one place the article speaks in its own voice rather than the writer's, so it is quiet:
-     a rule above it, the heading at the size of the metadata row, and the notes smaller than the
-     prose they came from. -->
+<!-- Apparatus about the article, not part of it: this renders after the article closes, under
+     the dashed rule that is the article's ending boundary, so the rail and the table of contents
+     never measure it. Quiet for the same reason -- the heading at the size of the metadata row,
+     and the notes smaller than the prose they came from. See spec/styling.md. -->
 <section aria-label={m['article.notes']({}, { locale })} class="fn-notes">
 	<!-- The heading is chrome and stays quiet; the notes under it are not. -->
 	<h2 class="fn-notes-heading">{m['article.notes']({}, { locale })}</h2>
@@ -27,6 +44,7 @@
 					href="#fnref-{note.number}"
 					class="fn-note-back focus-link"
 					aria-label={m['article.notes.back']({ number: note.number }, { locale })}
+					onclick={jumpBack}
 				>
 					<CornerDownLeft class="size-[1.1em]" aria-hidden="true" />
 				</a>
@@ -36,10 +54,11 @@
 </section>
 
 <style>
-	/* Dashed, where the rule under the article is solid. A solid rule closes a document; this one
-	   only steps down into what the document already said, and the dashes say so before a word of
-	   it is read. The site draws one elsewhere for the same reason -- the leader on an article
-	   card, which joins a title to its date rather than dividing them. */
+	/* This rule is the article's ending boundary, worn by the notes when they exist and by the
+	   newsletter otherwise -- see article.svelte. Dashed because what follows an article is
+	   offered rather than fenced off; the plain rule below the notes is then only a separator
+	   between two offerings. The spacing matches the newsletter's own (mt-16 plus its padding),
+	   so the boundary sits where it always has whether or not an article carried notes. */
 	.fn-notes {
 		margin-top: 4rem;
 		border-top: 0.0625rem dashed var(--color-border);

@@ -13,11 +13,18 @@
 	import { remFromMeasuredPixels } from '$lib/client/units';
 	import * as m from '$lib/paraglide/messages';
 	import type { Snippet } from 'svelte';
-	import type { Alternate, ArticleMeta, ArticleSummary, TocEntry } from '$lib/content/types';
+	import type {
+		Alternate,
+		ArticleMeta,
+		ArticleNote,
+		ArticleSummary,
+		TocEntry,
+	} from '$lib/content/types';
 	import type { LocaleCode } from '$lib/locale';
 	import LanguageSwitcher from '$lib/locale/switcher.svelte';
 	import { CARD_HEIGHT, CARD_WIDTH, cardUrl } from '$lib/opengraph';
 	import Newsletter from '$lib/newsletter/newsletter.svelte';
+	import Footnotes from './footnotes.svelte';
 	import { createReadsQuery } from '$lib/engagement/reads.svelte';
 	import { formatCompact } from './format';
 	import HomeLink from './home-link.svelte';
@@ -41,6 +48,7 @@
 		chars,
 		summary,
 		locale,
+		notes = [],
 		children,
 	}: {
 		/** The article's path, which is what the read counter is keyed by. */
@@ -51,6 +59,8 @@
 		/** The selected locale, or its English fallback. Absent only when neither exists. */
 		summary?: ArticleSummary;
 		locale: ArticleLocale;
+		/** Collected author's notes, rendered after the article's closing rule. */
+		notes?: ArticleNote[];
 		children: Snippet;
 	} = $props();
 
@@ -331,9 +341,18 @@
 			</div>
 		</article>
 
-		<!-- Dashed, like the rule above the notes. What follows an article is offered rather than
-		     fenced off, and a hairline that closes is the wrong gesture for both. -->
-		<Newsletter locale={locale.code} class="border-t border-dashed border-border pt-12" />
+		<!-- The dashed rule that opens whatever follows the article is the article's closing
+		     boundary: dashed because what follows is offered rather than fenced off. With notes
+		     it sits on the notes section, which is about the article rather than part of it --
+		     which is also why the rail and the table of contents never see the notes. The plain
+		     rule between the notes and the newsletter then only separates two offerings.
+		     See spec/styling.md. -->
+		{#if notes.length > 0}
+			<Footnotes {notes} locale={locale.code} />
+			<Newsletter locale={locale.code} class="border-t border-border pt-12" />
+		{:else}
+			<Newsletter locale={locale.code} class="border-t border-dashed border-border pt-12" />
+		{/if}
 	</div>
 </main>
 

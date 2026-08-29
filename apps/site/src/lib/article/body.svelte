@@ -19,7 +19,6 @@
 	import type { Block } from '$lib/content/types';
 	import type { LocaleCode } from '$lib/locale';
 	import ArticleCard from './card.svelte';
-	import Footnotes from './footnotes.svelte';
 	import Section from './section.svelte';
 
 	let { blocks, locale }: { blocks: Block[]; locale: LocaleCode } = $props();
@@ -65,7 +64,9 @@
 	 */
 	function noteJump(target: EventTarget | null): HTMLAnchorElement | undefined {
 		if (!(target instanceof Element)) return undefined;
-		const found = target.closest<HTMLAnchorElement>('a.fn-ref-link, a.fn-note-back');
+		// Markers only. The way back lives in the notes section, which renders outside this
+		// root and owns its own clicks -- see footnotes.svelte.
+		const found = target.closest<HTMLAnchorElement>('a.fn-ref-link');
 		return found && root?.contains(found) ? found : undefined;
 	}
 
@@ -180,8 +181,6 @@
 				created={block.created}
 				path={block.path}
 			/>
-		{:else if block.type === 'footnotes'}
-			<Footnotes notes={block.notes} {locale} />
 		{:else if block.type === 'placeholder'}
 			<Placeholder kind={block.kind} meta={block.meta} />
 		{:else if block.type === 'svgCanvas'}
