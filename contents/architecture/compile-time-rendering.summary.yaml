@@ -1,52 +1,52 @@
 version: 1
 summary:
   de-DE:
-    text: Ausgehend von Next.js’ standardmäßigem SSR und dem Aufwand, wegen weniger dynamischer Daten den gesamten Baum neu zu rendern, wird gefragt, ob sich anfragespezifische Daten, SPA-Hydration und ein sprachübergreifendes Backend beibehalten lassen, während der Großteil des React-Renderings aus der Laufzeit verlagert wird. Abgewogen werden SSG, ISR/CDN-Caching und React 19.2 PPR, ebenso werden RSC und Astro untersucht; zu den Einschränkungen zählen JTD-Typverträge, offene Inhalte wie Markdown, bedingte Kombinationen, Hydration Mismatches, Serverless-Kosten und DX, der Prototyp ist noch nicht ausgereift.
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:07:13.370859Z
-    seconds: 12.83782775
-    tokens: 16087
+    text: Ausgehend vom standardmäßigen SSR in Next.js und den Kosten, für wenige dynamische Daten den gesamten Baum neu zu rendern, fragt der Text, ob sich Daten pro Request, SPA-Hydration und ein sprachübergreifendes Backend beibehalten lassen und dennoch der Großteil des React-Renderings aus der Laufzeit herausgezogen werden kann. Er wägt SSG, ISR/CDN-Caching und PPR aus React 19.2 ab und betrachtet auch RSC und Astro; zu den Einschränkungen zählen JTD-Typverträge, offene Inhalte wie Markdown, bedingte Kombinationen, Hydration-Mismatch, Serverless-Kosten und DX, der Prototyp ist noch nicht ausgereift.
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:40:15.90719Z
+    seconds: 11.691201833000001
+    tokens: 27753
     review: false
   en-US:
-    text: Starting from the cost of Next.js’s default SSR rerendering the entire tree for a small amount of dynamic data, it asks whether per-request data, SPA hydration, and polyglot backends can be preserved while moving most React rendering out of the runtime. It weighs SSG, ISR/CDN caching, and React 19.2 PPR, while also examining RSC and Astro; constraints include JTD type contracts, open-ended content such as Markdown, conditional combinations, hydration mismatches, Serverless costs, and DX, and the prototype remains immature.
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:06:47.503041Z
-    seconds: 10.524026125
-    tokens: 16010
+    text: Starting from Next.js's default SSR and the cost of re-rendering an entire tree for a small amount of dynamic data, it asks whether per-request data, SPA hydration and a cross-language backend can be kept while moving most React rendering out of the runtime. It weighs SSG, ISR/CDN caching and React 19.2 PPR, and also examines RSC and Astro; the constraints include JTD type contracts, open content such as Markdown, conditional composition, hydration mismatch, Serverless cost and DX, and the prototype is not yet mature.
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:40:02.674247Z
+    seconds: 6.264948708
+    tokens: 27388
     review: false
   es-ES:
-    text: Partiendo del coste del SSR predeterminado de Next.js, que vuelve a renderizar todo el árbol por unos pocos datos dinámicos, se pregunta si es posible conservar los datos por solicitud, la hidratación de la SPA y un backend multilenguaje, trasladando a la vez la mayor parte del renderizado de React fuera del runtime. Sopesa SSG, ISR/caché de CDN y PPR de React 19.2, y también examina RSC y Astro; las limitaciones incluyen contratos de tipos JTD, contenido abierto como Markdown, combinaciones condicionales, hydration mismatch, costes Serverless y DX, y el prototipo aún no está maduro.
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:07:53.158765Z
-    seconds: 9.692346625
-    tokens: 16063
+    text: Partiendo del SSR por defecto de Next.js y del coste de volver a renderizar el árbol entero por unos pocos datos dinámicos, se pregunta si es posible conservar los datos por petición, la hidratación SPA y un backend en otro lenguaje, y aun así sacar del runtime la mayor parte del renderizado de React. Sopesa SSG, ISR/caché en CDN y PPR de React 19.2, y también examina RSC y Astro; entre las limitaciones están los contratos de tipos JTD, el contenido abierto como Markdown, las combinaciones condicionales, el hydration mismatch, el coste de Serverless y la DX, y el prototipo aún no está maduro.
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:40:42.859189Z
+    seconds: 7.164780291
+    tokens: 27473
     review: false
   fr-FR:
-    text: Partant du SSR par défaut de Next.js et du coût lié au nouveau rendu de l’arbre entier pour quelques données dynamiques, il demande s’il serait possible de conserver les données propres à chaque requête, l’hydratation SPA et des backends multilingues, tout en déplaçant l’essentiel du rendu React hors du runtime. Il compare SSG, le cache ISR/CDN et PPR de React 19.2, et examine également RSC et Astro ; parmi les contraintes figurent les contrats de types JTD, les contenus ouverts comme Markdown, les combinaisons conditionnelles, les hydration mismatches, les coûts Serverless et la DX, le prototype n’étant pas encore mature.
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:07:40.889393Z
-    seconds: 12.268049334
-    tokens: 16220
+    text: Partant du SSR par défaut de Next.js et du coût d'un rendu intégral de l'arbre pour quelques données dynamiques, l'article demande s'il est possible de conserver les données par requête, l'hydratation SPA et un backend d'un autre langage, tout en sortant du runtime la majeure partie du rendu React. Il met en balance le SSG, le cache ISR/CDN et le PPR de React 19.2, et examine aussi les RSC et Astro ; les limites incluent les contrats de types JTD, les contenus ouverts comme le Markdown, les combinaisons conditionnelles, les hydration mismatch, le coût du Serverless et la DX, le prototype n'étant pas encore mûr.
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:40:35.776751Z
+    seconds: 7.081598292
+    tokens: 27478
     review: false
   ja-JP:
-    text: Next.js のデフォルト SSR が、わずかな動的データのためにツリー全体を再レンダリングするコストを起点に、リクエスト単位のデータ、SPA の hydration、言語横断のバックエンドを維持しつつ、React rendering の大半を runtime の外へ移せないかを問う。SSG、ISR/CDN cache、React 19.2 PPR を比較検討し、RSC と Astro も精査する。制約には JTD の型 contract、Markdown などのオープンな content、条件の組み合わせ、hydration mismatch、Serverless のコスト、DX があり、prototype はまだ成熟していない。
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:06:58.028346Z
-    seconds: 15.341075292
-    tokens: 16321
+    text: Next.js のデフォルトである SSR、そしてわずかな動的データのためにツリー全体を再レンダリングするコストを出発点に、リクエストごとのデータ、SPA のハイドレーション、多言語のバックエンドを保ったまま、React のレンダリングの大半をランタイムの外に出せるかを問う。SSG、ISR/CDN キャッシュ、React 19.2 の PPR を比較検討し、RSC と Astro も吟味する。制約には JTD の型契約、Markdown などのオープンなコンテンツ、条件の組み合わせ、hydration mismatch、Serverless のコスト、DX があり、プロトタイプはまだ成熟していない。
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:40:08.942197Z
+    seconds: 6.964262083
+    tokens: 27474
     review: false
   ko-KR:
-    text: Next.js 기본 SSR과 소량의 동적 데이터를 위해 전체 트리를 다시 렌더링하는 비용에서 출발해, 요청별 데이터와 SPA hydration, 여러 언어로 된 백엔드를 유지하면서도 React 렌더링 대부분을 런타임 밖으로 옮길 수 있는지 묻는다. SSG, ISR/CDN 캐시, React 19.2 PPR을 저울질하고 RSC와 Astro도 검토한다. 제약에는 JTD 타입 계약, Markdown 같은 개방형 콘텐츠, 조건 조합, hydration mismatch, Serverless 비용, DX가 포함되며, 프로토타입은 아직 성숙하지 않았다.
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:07:26.209753Z
-    seconds: 14.67857825
-    tokens: 16269
+    text: Next.js의 기본값인 SSR, 그리고 소량의 동적 데이터를 위해 트리 전체를 다시 렌더링하는 비용에서 출발해, 요청별 데이터와 SPA 하이드레이션, 다국어 백엔드를 유지하면서도 대부분의 React 렌더링을 런타임 밖으로 옮길 수 있는지 묻는다. SSG, ISR/CDN 캐싱, React 19.2의 PPR을 저울질하고 RSC와 Astro도 살펴본다. 제약으로는 JTD 타입 계약, Markdown 같은 개방형 콘텐츠, 조건부 조합, hydration mismatch, Serverless 비용과 DX가 있으며, 프로토타입은 아직 무르익지 않았다.
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:40:27.599315Z
+    seconds: 8.176731958
+    tokens: 27509
     review: false
   zh-CN:
     text: 从 Next.js 默认 SSR、为少量动态数据整树重渲染的开销出发，追问能否保留逐请求数据、SPA 水合与跨语言后端，却把多数 React 渲染移出运行时。它权衡 SSG、ISR/CDN 缓存和 React 19.2 PPR，也审视 RSC 与 Astro；限制包括 JTD 类型契约、Markdown 等开放内容、条件组合、hydration mismatch、Serverless 成本和 DX，原型尚未成熟。
@@ -57,10 +57,10 @@ summary:
     tokens: 41601
     review: false
   zh-TW:
-    text: 從 Next.js 預設 SSR、為少量動態資料整棵樹重新渲染的開銷出發，追問能否保留逐請求資料、SPA 水合與跨語言後端，卻將多數 React 渲染移出執行期。它權衡 SSG、ISR/CDN 快取和 React 19.2 PPR，也檢視 RSC 與 Astro；限制包括 JTD 型別契約、Markdown 等開放內容、條件組合、hydration mismatch、Serverless 成本和 DX，原型尚未成熟。
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:08:02.852158Z
-    seconds: 9.355689208
-    tokens: 16036
+    text: 從 Next.js 預設 SSR、為少量動態資料整棵樹重新渲染的開銷出發，追問能否保留逐請求資料、SPA hydration 與跨語言後端，卻把多數 React 渲染移出執行期。它權衡 SSG、ISR/CDN 快取和 React 19.2 PPR，也審視 RSC 與 Astro；限制包括 JTD 型別契約、Markdown 等開放內容、條件組合、hydration mismatch、Serverless 成本和 DX，原型尚未成熟。
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:40:50.024851Z
+    seconds: 8.007999375
+    tokens: 27420
     review: false

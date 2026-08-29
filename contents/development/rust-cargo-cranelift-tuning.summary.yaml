@@ -1,52 +1,52 @@
 version: 1
 summary:
   de-DE:
-    text: Ausgehend davon, wie Cargo-Kompilierung und ld-Linking den Rust-Entwicklungszyklus ausbremsen, fragt der Artikel, wie sich schnelles dev-Feedback mit release-Performance und -Größe vereinbaren lässt. Er vergleicht LLVM, Cranelift sowie codegen-units, opt-level, LTO, strip und panic-Konfigurationen und untersucht die Grenzen von GNU ld, zig und blindem UPX-Einsatz. Praxistests berücksichtigen zugleich FFI, glibc/musl, Cross-Compiling, Apple Silicon und CI-Kompatibilität.
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:08:41.159428Z
-    seconds: 10.970613709
-    tokens: 16052
+    text: Ausgehend davon, dass Cargo-Kompilierung und ld-Linking den Rust-Entwicklungszyklus ausbremsen, wird gefragt, wie sich Rückmeldegeschwindigkeit im dev-Betrieb mit Performance und Größe im release-Betrieb vereinbaren lässt. Verglichen werden LLVM, Cranelift sowie die Konfiguration von codegen-units, opt-level, LTO, strip und panic; ebenso werden die Grenzen von GNU ld, zig und stumpfem UPX-Einsatz betrachtet. Die Messungen beziehen zudem FFI, glibc/musl, Cross-Compilation, Apple Silicon und CI-Kompatibilität ein.
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:42:25.698831Z
+    seconds: 7.867462458
+    tokens: 27538
     review: false
   en-US:
-    text: Starting from how Cargo compilation and ld linking slow the Rust development loop, it asks how to balance dev feedback speed with release performance and size. It compares LLVM, Cranelift, and codegen-units, opt-level, LTO, strip, and panic settings, while examining the limitations of GNU ld, Zig, and indiscriminate UPX use. Benchmarks also cover FFI, glibc/musl, cross-compilation, Apple Silicon, and CI compatibility.
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:08:12.209093Z
-    seconds: 8.976572583
-    tokens: 15978
+    text: Starting from how Cargo compilation and ld linking slow down the Rust development loop, it asks how to serve both dev feedback speed and release performance and size. It compares LLVM, Cranelift, and the codegen-units, opt-level, LTO, strip, and panic settings, and examines the limits of GNU ld, zig, and mindless UPX. The measurements also take in FFI, glibc/musl, cross compilation, Apple Silicon, and CI compatibility.
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:42:12.938932Z
+    seconds: 6.156597375
+    tokens: 27402
     review: false
   es-ES:
-    text: Partiendo de cómo la compilación con Cargo y el enlazado con ld ralentizan el ciclo de desarrollo en Rust, plantea cómo conciliar la rapidez de respuesta en dev con el rendimiento y el tamaño en release. Compara LLVM, Cranelift y las opciones codegen-units, opt-level, LTO, strip y panic, y examina las limitaciones de GNU ld, zig y el uso indiscriminado de UPX. Las pruebas también abarcan FFI, glibc/musl, compilación cruzada, Apple Silicon y compatibilidad con CI.
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:09:12.66246Z
-    seconds: 13.109751291
-    tokens: 15998
+    text: Partiendo de cómo la compilación de Cargo y el enlazado con ld ralentizan el ciclo de desarrollo en Rust, indaga en cómo conciliar la velocidad de feedback en dev con el rendimiento y el tamaño en release. Compara LLVM, Cranelift y las configuraciones de codegen-units, opt-level, LTO, strip y panic, y examina las limitaciones de GNU ld, zig y del uso irreflexivo de UPX. Las pruebas reales incluyen además FFI, glibc/musl, la compilación cruzada, Apple Silicon y la compatibilidad con CI.
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:42:52.190464Z
+    seconds: 7.680418541
+    tokens: 27465
     review: false
   fr-FR:
-    text: Partant du ralentissement de la boucle de développement Rust causé par la compilation Cargo et l’édition de liens avec ld, l’article s’interroge sur la manière de concilier rapidité du feedback en dev et performances et taille en release. Il compare LLVM, Cranelift ainsi que les réglages codegen-units, opt-level, LTO, strip et panic, tout en examinant les limites de GNU ld, de zig et d’un recours irréfléchi à UPX. Les tests pratiques prennent également en compte la FFI, glibc/musl, la compilation croisée, Apple Silicon et la compatibilité CI.
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:09:02.067162Z
-    seconds: 10.59436625
-    tokens: 16024
+    text: Part du constat que la compilation Cargo et l'édition de liens ld ralentissent la boucle de développement Rust, pour se demander comment concilier la rapidité du retour en dev avec les performances et la taille en release. Compare LLVM, Cranelift ainsi que les réglages codegen-units, opt-level, LTO, strip et panic, et examine les limites de GNU ld, de zig et d'un UPX appliqué sans réfléchir. Les mesures intègrent aussi FFI, glibc/musl, la compilation croisée, Apple Silicon et la compatibilité CI.
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:42:39.821619Z
+    seconds: 12.368088042
+    tokens: 27998
     review: false
   ja-JP:
-    text: Cargo のコンパイルと ld のリンクが Rust の開発サイクルを遅らせる問題を起点に、dev のフィードバック速度と release の性能・サイズをどう両立するかを問う。LLVM、Cranelift、および codegen-units、opt-level、LTO、strip、panic の設定を比較し、GNU ld、zig、安直な UPX 利用の限界も検討する。実測には FFI、glibc/musl、クロスコンパイル、Apple Silicon、CI 互換性も含める。
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:08:21.187282Z
-    seconds: 19.971085208
-    tokens: 16223
+    text: Cargo のコンパイルと ld のリンクが Rust の開発サイクルを遅らせるという点を出発点に、dev のフィードバック速度と release の性能・サイズをどう両立させるかを問う。LLVM と Cranelift、そして codegen-units、opt-level、LTO、strip、panic の設定を比較し、GNU ld、zig、および何も考えない UPX の限界を検証する。実測には FFI、glibc/musl、クロスコンパイル、Apple Silicon、CI 互換性も併せて含めた。
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:42:19.09642Z
+    seconds: 6.601717416
+    tokens: 27458
     review: false
   ko-KR:
-    text: Cargo 컴파일과 ld 링크가 Rust 개발 루프를 늦추는 데서 출발해, dev 피드백 속도와 release 성능·크기를 어떻게 함께 확보할지 묻는다. LLVM, Cranelift와 codegen-units, opt-level, LTO, strip, panic 설정을 비교하고 GNU ld, zig, 무작정 쓰는 UPX의 한계도 살핀다. 실측에는 FFI, glibc/musl, 크로스 컴파일, Apple Silicon, CI 호환성까지 함께 포함한다.
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:08:52.130849Z
-    seconds: 9.935383999999999
-    tokens: 15998
+    text: Cargo 컴파일과 ld 링크가 Rust 개발 루프를 느리게 만드는 지점에서 출발해, dev 피드백 속도와 release 성능, 크기를 어떻게 함께 잡을지 파고든다. LLVM, Cranelift 및 codegen-units, opt-level, LTO, strip, panic 설정을 비교하고, GNU ld와 zig, 그리고 생각 없이 쓰는 UPX의 한계를 살펴본다. 실측에는 FFI, glibc/musl, 크로스 컴파일, Apple Silicon과 CI 호환성까지 함께 포함한다.
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:42:33.567149Z
+    seconds: 6.2536075
+    tokens: 27492
     review: false
   zh-CN:
     text: 从 Cargo 编译与 ld 链接拖慢 Rust 开发循环出发，追问如何兼顾 dev 反馈速度与 release 性能、体积。比较 LLVM、Cranelift 及 codegen-units、opt-level、LTO、strip、panic 配置，并检视 GNU ld、zig 与无脑 UPX 的局限。实测同时纳入 FFI、glibc/musl、交叉编译、Apple Silicon 和 CI 兼容性。
@@ -57,10 +57,10 @@ summary:
     tokens: 28785
     review: false
   zh-TW:
-    text: 從 Cargo 編譯與 ld 連結拖慢 Rust 開發循環出發，追問如何兼顧 dev 回饋速度與 release 效能、體積。比較 LLVM、Cranelift 及 codegen-units、opt-level、LTO、strip、panic 設定，並檢視 GNU ld、zig 與無腦 UPX 的局限。實測同時納入 FFI、glibc/musl、交叉編譯、Apple Silicon 和 CI 相容性。
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:09:25.7731Z
-    seconds: 14.937773667
-    tokens: 16075
+    text: 從 Cargo 編譯與 ld 連結拖慢 Rust 開發循環出發，追問如何兼顧 dev 回饋速度與 release 效能、體積。比較 LLVM、Cranelift 及 codegen-units、opt-level、LTO、strip、panic 設定，並檢視 GNU ld、zig 與無腦 UPX 的侷限。實測同時納入 FFI、glibc/musl、交叉編譯、Apple Silicon 和 CI 相容性。
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:42:59.871541Z
+    seconds: 7.166349958
+    tokens: 27434
     review: false

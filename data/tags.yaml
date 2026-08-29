@@ -7,11 +7,11 @@ tags:
     display:
       de-DE:
         text: Algen
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:35.205437Z
-        seconds: 5.6978127910000005
-        tokens: 14932
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:02.564532Z
+        seconds: 3.191305625
+        tokens: 27180
         review: false
       en-US:
         text: Algae
@@ -23,51 +23,51 @@ tags:
         review: false
       es-ES:
         text: Algas
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:35.205437Z
-        seconds: 5.6978127910000005
-        tokens: 14932
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:02.564532Z
+        seconds: 3.191305625
+        tokens: 27180
         review: false
       fr-FR:
         text: Algues
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:35.205437Z
-        seconds: 5.6978127910000005
-        tokens: 14932
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:02.564532Z
+        seconds: 3.191305625
+        tokens: 27180
         review: false
       ja-JP:
         text: 藻類
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:35.205437Z
-        seconds: 5.6978127910000005
-        tokens: 14932
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:02.564532Z
+        seconds: 3.191305625
+        tokens: 27180
         review: false
       ko-KR:
         text: 조류
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:35.205437Z
-        seconds: 5.6978127910000005
-        tokens: 14932
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:02.564532Z
+        seconds: 3.191305625
+        tokens: 27180
         review: false
       zh-CN:
         text: 藻类
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:35.205437Z
-        seconds: 5.6978127910000005
-        tokens: 14932
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:02.564532Z
+        seconds: 3.191305625
+        tokens: 27180
         review: false
       zh-TW:
         text: 藻類
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:35.205437Z
-        seconds: 5.6978127910000005
-        tokens: 14932
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:02.564532Z
+        seconds: 3.191305625
+        tokens: 27180
         review: false
   anime-avatar:
     kind: ordinary
@@ -75,12 +75,12 @@ tags:
     meaning: stylized illustrated profile image
     display:
       de-DE:
-        text: Anime‑Avatar
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:40.905247Z
-        seconds: 5.357330042
-        tokens: 15110
+        text: Anime-Avatar
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:05.762911Z
+        seconds: 3.60099975
+        tokens: 27215
         review: false
       en-US:
         text: Anime Avatar
@@ -91,52 +91,52 @@ tags:
         tokens: 19385
         review: false
       es-ES:
-        text: Avatar de anime
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:40.905247Z
-        seconds: 5.357330042
-        tokens: 15110
+        text: Avatar anime
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:05.762911Z
+        seconds: 3.60099975
+        tokens: 27215
         review: false
       fr-FR:
-        text: Avatar d’anime
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:40.905247Z
-        seconds: 5.357330042
-        tokens: 15110
+        text: Avatar anime
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:05.762911Z
+        seconds: 3.60099975
+        tokens: 27215
         review: false
       ja-JP:
-        text: アニメアバター
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:40.905247Z
-        seconds: 5.357330042
-        tokens: 15110
+        text: アニメアイコン
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:05.762911Z
+        seconds: 3.60099975
+        tokens: 27215
         review: false
       ko-KR:
         text: 애니메이션 아바타
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:40.905247Z
-        seconds: 5.357330042
-        tokens: 15110
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:05.762911Z
+        seconds: 3.60099975
+        tokens: 27215
         review: false
       zh-CN:
         text: 动漫头像
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:40.905247Z
-        seconds: 5.357330042
-        tokens: 15110
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:05.762911Z
+        seconds: 3.60099975
+        tokens: 27215
         review: false
       zh-TW:
         text: 動漫頭像
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:40.905247Z
-        seconds: 5.357330042
-        tokens: 15110
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:05.762911Z
+        seconds: 3.60099975
+        tokens: 27215
         review: false
   automobile:
     kind: ordinary
@@ -145,11 +145,11 @@ tags:
     display:
       de-DE:
         text: Auto
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:46.264732Z
-        seconds: 3.9661925
-        tokens: 14794
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:09.368587Z
+        seconds: 9.053185375
+        tokens: 27641
         review: false
       en-US:
         text: Automobile
@@ -160,52 +160,52 @@ tags:
         tokens: 18379
         review: false
       es-ES:
-        text: Coche
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:46.264732Z
-        seconds: 3.9661925
-        tokens: 14794
+        text: Automóvil
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:09.368587Z
+        seconds: 9.053185375
+        tokens: 27641
         review: false
       fr-FR:
-        text: Voiture
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:46.264732Z
-        seconds: 3.9661925
-        tokens: 14794
+        text: Automobile
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:09.368587Z
+        seconds: 9.053185375
+        tokens: 27641
         review: false
       ja-JP:
         text: 自動車
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:46.264732Z
-        seconds: 3.9661925
-        tokens: 14794
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:09.368587Z
+        seconds: 9.053185375
+        tokens: 27641
         review: false
       ko-KR:
         text: 자동차
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:46.264732Z
-        seconds: 3.9661925
-        tokens: 14794
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:09.368587Z
+        seconds: 9.053185375
+        tokens: 27641
         review: false
       zh-CN:
         text: 汽车
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:46.264732Z
-        seconds: 3.9661925
-        tokens: 14794
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:09.368587Z
+        seconds: 9.053185375
+        tokens: 27641
         review: false
       zh-TW:
         text: 汽車
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:46.264732Z
-        seconds: 3.9661925
-        tokens: 14794
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:09.368587Z
+        seconds: 9.053185375
+        tokens: 27641
         review: false
   blog-framework:
     kind: ordinary
@@ -213,12 +213,12 @@ tags:
     meaning: software for publishing and managing blogs
     display:
       de-DE:
-        text: Blog‑Framework
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:50.23296Z
-        seconds: 6.140507292
-        tokens: 15205
+        text: Blog-Framework
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:18.426334Z
+        seconds: 3.713896666
+        tokens: 27214
         review: false
       en-US:
         text: Blog Framework
@@ -229,52 +229,52 @@ tags:
         tokens: 17559
         review: false
       es-ES:
-        text: Marco de blog
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:50.23296Z
-        seconds: 6.140507292
-        tokens: 15205
+        text: Framework de blogs
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:18.426334Z
+        seconds: 3.713896666
+        tokens: 27214
         review: false
       fr-FR:
-        text: Cadre de blog
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:50.23296Z
-        seconds: 6.140507292
-        tokens: 15205
+        text: Framework de blog
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:18.426334Z
+        seconds: 3.713896666
+        tokens: 27214
         review: false
       ja-JP:
         text: ブログフレームワーク
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:50.23296Z
-        seconds: 6.140507292
-        tokens: 15205
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:18.426334Z
+        seconds: 3.713896666
+        tokens: 27214
         review: false
       ko-KR:
         text: 블로그 프레임워크
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:50.23296Z
-        seconds: 6.140507292
-        tokens: 15205
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:18.426334Z
+        seconds: 3.713896666
+        tokens: 27214
         review: false
       zh-CN:
         text: 博客框架
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:50.23296Z
-        seconds: 6.140507292
-        tokens: 15205
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:18.426334Z
+        seconds: 3.713896666
+        tokens: 27214
         review: false
       zh-TW:
         text: 部落格框架
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:50.23296Z
-        seconds: 6.140507292
-        tokens: 15205
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:18.426334Z
+        seconds: 3.713896666
+        tokens: 27214
         review: false
   bytecode-alliance:
     kind: technical
@@ -291,11 +291,11 @@ tags:
     display:
       de-DE:
         text: Mobilfunknetz
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:56.375609Z
-        seconds: 4.8843765
-        tokens: 14923
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:22.144897Z
+        seconds: 3.750208417
+        tokens: 27224
         review: false
       en-US:
         text: Cellular Network
@@ -306,52 +306,52 @@ tags:
         tokens: 17128
         review: false
       es-ES:
-        text: Red celular
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:56.375609Z
-        seconds: 4.8843765
-        tokens: 14923
+        text: Red móvil
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:22.144897Z
+        seconds: 3.750208417
+        tokens: 27224
         review: false
       fr-FR:
         text: Réseau cellulaire
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:56.375609Z
-        seconds: 4.8843765
-        tokens: 14923
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:22.144897Z
+        seconds: 3.750208417
+        tokens: 27224
         review: false
       ja-JP:
-        text: セルラーネットワーク
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:56.375609Z
-        seconds: 4.8843765
-        tokens: 14923
+        text: モバイルネットワーク
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:22.144897Z
+        seconds: 3.750208417
+        tokens: 27224
         review: false
       ko-KR:
         text: 셀룰러 네트워크
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:56.375609Z
-        seconds: 4.8843765
-        tokens: 14923
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:22.144897Z
+        seconds: 3.750208417
+        tokens: 27224
         review: false
       zh-CN:
         text: 蜂窝网络
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:56.375609Z
-        seconds: 4.8843765
-        tokens: 14923
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:22.144897Z
+        seconds: 3.750208417
+        tokens: 27224
         review: false
       zh-TW:
         text: 行動網路
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:04:56.375609Z
-        seconds: 4.8843765
-        tokens: 14923
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:22.144897Z
+        seconds: 3.750208417
+        tokens: 27224
         review: false
   chinese-graffiti:
     kind: ordinary
@@ -359,12 +359,12 @@ tags:
     meaning: painted Chinese-language writing on a wall
     display:
       de-DE:
-        text: Chinesisches Graffiti
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:01.262275Z
-        seconds: 5.968114041
-        tokens: 15355
+        text: Chinesische Graffiti
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:25.899817Z
+        seconds: 4.165395667
+        tokens: 27234
         review: false
       en-US:
         text: Chinese Graffiti
@@ -375,52 +375,52 @@ tags:
         tokens: 19646
         review: false
       es-ES:
-        text: Grafiti chino
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:01.262275Z
-        seconds: 5.968114041
-        tokens: 15355
+        text: Grafitis chinos
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:25.899817Z
+        seconds: 4.165395667
+        tokens: 27234
         review: false
       fr-FR:
-        text: Graffiti chinois
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:01.262275Z
-        seconds: 5.968114041
-        tokens: 15355
+        text: Graffitis chinois
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:25.899817Z
+        seconds: 4.165395667
+        tokens: 27234
         review: false
       ja-JP:
-        text: 中国語落書き
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:01.262275Z
-        seconds: 5.968114041
-        tokens: 15355
+        text: 中国語のグラフィティ
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:25.899817Z
+        seconds: 4.165395667
+        tokens: 27234
         review: false
       ko-KR:
         text: 중국어 그래피티
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:01.262275Z
-        seconds: 5.968114041
-        tokens: 15355
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:25.899817Z
+        seconds: 4.165395667
+        tokens: 27234
         review: false
       zh-CN:
         text: 中文涂鸦
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:01.262275Z
-        seconds: 5.968114041
-        tokens: 15355
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:25.899817Z
+        seconds: 4.165395667
+        tokens: 27234
         review: false
       zh-TW:
         text: 中文塗鴉
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:01.262275Z
-        seconds: 5.968114041
-        tokens: 15355
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:25.899817Z
+        seconds: 4.165395667
+        tokens: 27234
         review: false
   cloud:
     kind: ordinary
@@ -429,11 +429,11 @@ tags:
     display:
       de-DE:
         text: Wolke
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:07.2328Z
-        seconds: 5.615618541
-        tokens: 14869
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:30.069905Z
+        seconds: 3.659675917
+        tokens: 27186
         review: false
       en-US:
         text: Cloud
@@ -445,51 +445,51 @@ tags:
         review: false
       es-ES:
         text: Nube
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:07.2328Z
-        seconds: 5.615618541
-        tokens: 14869
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:30.069905Z
+        seconds: 3.659675917
+        tokens: 27186
         review: false
       fr-FR:
         text: Nuage
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:07.2328Z
-        seconds: 5.615618541
-        tokens: 14869
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:30.069905Z
+        seconds: 3.659675917
+        tokens: 27186
         review: false
       ja-JP:
         text: 雲
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:07.2328Z
-        seconds: 5.615618541
-        tokens: 14869
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:30.069905Z
+        seconds: 3.659675917
+        tokens: 27186
         review: false
       ko-KR:
         text: 구름
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:07.2328Z
-        seconds: 5.615618541
-        tokens: 14869
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:30.069905Z
+        seconds: 3.659675917
+        tokens: 27186
         review: false
       zh-CN:
         text: 云
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:07.2328Z
-        seconds: 5.615618541
-        tokens: 14869
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:30.069905Z
+        seconds: 3.659675917
+        tokens: 27186
         review: false
       zh-TW:
         text: 雲
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:07.2328Z
-        seconds: 5.615618541
-        tokens: 14869
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:30.069905Z
+        seconds: 3.659675917
+        tokens: 27186
         review: false
   cloudflare:
     kind: technical
@@ -501,12 +501,12 @@ tags:
     meaning: text-based interface for running commands
     display:
       de-DE:
-        text: Befehlszeilenschnittstelle
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:12.851067Z
-        seconds: 5.413058416
-        tokens: 15241
+        text: Kommandozeile
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:33.734291Z
+        seconds: 3.587391959
+        tokens: 27228
         review: false
       en-US:
         text: Command-Line Interface
@@ -518,51 +518,51 @@ tags:
         review: false
       es-ES:
         text: Interfaz de línea de comandos
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:12.851067Z
-        seconds: 5.413058416
-        tokens: 15241
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:33.734291Z
+        seconds: 3.587391959
+        tokens: 27228
         review: false
       fr-FR:
         text: Interface en ligne de commande
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:12.851067Z
-        seconds: 5.413058416
-        tokens: 15241
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:33.734291Z
+        seconds: 3.587391959
+        tokens: 27228
         review: false
       ja-JP:
         text: コマンドラインインターフェース
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:12.851067Z
-        seconds: 5.413058416
-        tokens: 15241
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:33.734291Z
+        seconds: 3.587391959
+        tokens: 27228
         review: false
       ko-KR:
         text: 명령줄 인터페이스
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:12.851067Z
-        seconds: 5.413058416
-        tokens: 15241
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:33.734291Z
+        seconds: 3.587391959
+        tokens: 27228
         review: false
       zh-CN:
         text: 命令行界面
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:12.851067Z
-        seconds: 5.413058416
-        tokens: 15241
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:33.734291Z
+        seconds: 3.587391959
+        tokens: 27228
         review: false
       zh-TW:
         text: 命令列介面
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:12.851067Z
-        seconds: 5.413058416
-        tokens: 15241
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:33.734291Z
+        seconds: 3.587391959
+        tokens: 27228
         review: false
   compilation:
     kind: ordinary
@@ -571,11 +571,11 @@ tags:
     display:
       de-DE:
         text: Kompilierung
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:18.266899Z
-        seconds: 4.740756667
-        tokens: 15028
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:37.326371Z
+        seconds: 3.183018916
+        tokens: 27187
         review: false
       en-US:
         text: Compilation
@@ -587,51 +587,51 @@ tags:
         review: false
       es-ES:
         text: Compilación
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:18.266899Z
-        seconds: 4.740756667
-        tokens: 15028
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:37.326371Z
+        seconds: 3.183018916
+        tokens: 27187
         review: false
       fr-FR:
         text: Compilation
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:18.266899Z
-        seconds: 4.740756667
-        tokens: 15028
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:37.326371Z
+        seconds: 3.183018916
+        tokens: 27187
         review: false
       ja-JP:
         text: コンパイル
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:18.266899Z
-        seconds: 4.740756667
-        tokens: 15028
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:37.326371Z
+        seconds: 3.183018916
+        tokens: 27187
         review: false
       ko-KR:
         text: 컴파일
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:18.266899Z
-        seconds: 4.740756667
-        tokens: 15028
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:37.326371Z
+        seconds: 3.183018916
+        tokens: 27187
         review: false
       zh-CN:
         text: 编译
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:18.266899Z
-        seconds: 4.740756667
-        tokens: 15028
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:37.326371Z
+        seconds: 3.183018916
+        tokens: 27187
         review: false
       zh-TW:
         text: 編譯
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:18.266899Z
-        seconds: 4.740756667
-        tokens: 15028
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:37.326371Z
+        seconds: 3.183018916
+        tokens: 27187
         review: false
   concrete-wall:
     kind: ordinary
@@ -640,11 +640,11 @@ tags:
     display:
       de-DE:
         text: Betonwand
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:23.01064Z
-        seconds: 7.335201292
-        tokens: 15134
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:40.514099Z
+        seconds: 3.6604449580000002
+        tokens: 27213
         review: false
       en-US:
         text: Concrete Wall
@@ -656,51 +656,51 @@ tags:
         review: false
       es-ES:
         text: Muro de hormigón
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:23.01064Z
-        seconds: 7.335201292
-        tokens: 15134
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:40.514099Z
+        seconds: 3.6604449580000002
+        tokens: 27213
         review: false
       fr-FR:
         text: Mur en béton
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:23.01064Z
-        seconds: 7.335201292
-        tokens: 15134
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:40.514099Z
+        seconds: 3.6604449580000002
+        tokens: 27213
         review: false
       ja-JP:
         text: コンクリート壁
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:23.01064Z
-        seconds: 7.335201292
-        tokens: 15134
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:40.514099Z
+        seconds: 3.6604449580000002
+        tokens: 27213
         review: false
       ko-KR:
         text: 콘크리트 벽
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:23.01064Z
-        seconds: 7.335201292
-        tokens: 15134
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:40.514099Z
+        seconds: 3.6604449580000002
+        tokens: 27213
         review: false
       zh-CN:
         text: 混凝土墙
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:23.01064Z
-        seconds: 7.335201292
-        tokens: 15134
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:40.514099Z
+        seconds: 3.6604449580000002
+        tokens: 27213
         review: false
       zh-TW:
         text: 混凝土牆
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:23.01064Z
-        seconds: 7.335201292
-        tokens: 15134
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:40.514099Z
+        seconds: 3.6604449580000002
+        tokens: 27213
         review: false
   cranelift:
     kind: technical
@@ -716,12 +716,12 @@ tags:
     meaning: visible building utility pipes
     display:
       de-DE:
-        text: Freiliegende Rohre
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:30.348639Z
-        seconds: 5.507041
-        tokens: 15287
+        text: Sichtbare Rohre
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:44.179071Z
+        seconds: 3.7063235
+        tokens: 27212
         review: false
       en-US:
         text: Exposed Pipes
@@ -732,52 +732,52 @@ tags:
         tokens: 19646
         review: false
       es-ES:
-        text: Tuberías expuestas
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:30.348639Z
-        seconds: 5.507041
-        tokens: 15287
+        text: Tuberías vistas
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:44.179071Z
+        seconds: 3.7063235
+        tokens: 27212
         review: false
       fr-FR:
-        text: Tuyaux exposés
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:30.348639Z
-        seconds: 5.507041
-        tokens: 15287
+        text: Tuyaux apparents
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:44.179071Z
+        seconds: 3.7063235
+        tokens: 27212
         review: false
       ja-JP:
-        text: 露出した配管
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:30.348639Z
-        seconds: 5.507041
-        tokens: 15287
+        text: 露出配管
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:44.179071Z
+        seconds: 3.7063235
+        tokens: 27212
         review: false
       ko-KR:
-        text: 노출된 배관
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:30.348639Z
-        seconds: 5.507041
-        tokens: 15287
+        text: 노출 배관
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:44.179071Z
+        seconds: 3.7063235
+        tokens: 27212
         review: false
       zh-CN:
         text: 外露管道
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:30.348639Z
-        seconds: 5.507041
-        tokens: 15287
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:44.179071Z
+        seconds: 3.7063235
+        tokens: 27212
         review: false
       zh-TW:
-        text: 外露管道
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:30.348639Z
-        seconds: 5.507041
-        tokens: 15287
+        text: 外露管線
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:44.179071Z
+        seconds: 3.7063235
+        tokens: 27212
         review: false
   fallen-leaves:
     kind: ordinary
@@ -785,12 +785,12 @@ tags:
     meaning: dead leaves on the ground
     display:
       de-DE:
-        text: Herabgefallene Blätter
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:35.85848Z
-        seconds: 4.829146167
-        tokens: 15031
+        text: Laub
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:47.890028Z
+        seconds: 3.556782917
+        tokens: 27202
         review: false
       en-US:
         text: Fallen Leaves
@@ -802,51 +802,51 @@ tags:
         review: false
       es-ES:
         text: Hojas caídas
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:35.85848Z
-        seconds: 4.829146167
-        tokens: 15031
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:47.890028Z
+        seconds: 3.556782917
+        tokens: 27202
         review: false
       fr-FR:
         text: Feuilles mortes
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:35.85848Z
-        seconds: 4.829146167
-        tokens: 15031
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:47.890028Z
+        seconds: 3.556782917
+        tokens: 27202
         review: false
       ja-JP:
         text: 落ち葉
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:35.85848Z
-        seconds: 4.829146167
-        tokens: 15031
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:47.890028Z
+        seconds: 3.556782917
+        tokens: 27202
         review: false
       ko-KR:
         text: 낙엽
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:35.85848Z
-        seconds: 4.829146167
-        tokens: 15031
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:47.890028Z
+        seconds: 3.556782917
+        tokens: 27202
         review: false
       zh-CN:
         text: 落叶
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:35.85848Z
-        seconds: 4.829146167
-        tokens: 15031
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:47.890028Z
+        seconds: 3.556782917
+        tokens: 27202
         review: false
       zh-TW:
         text: 落葉
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:35.85848Z
-        seconds: 4.829146167
-        tokens: 15031
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:47.890028Z
+        seconds: 3.556782917
+        tokens: 27202
         review: false
   fire-hydrant:
     kind: ordinary
@@ -854,12 +854,12 @@ tags:
     meaning: fire-suppression equipment access point
     display:
       de-DE:
-        text: Feuerhydrant
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:40.690834Z
-        seconds: 5.109075584
-        tokens: 15050
+        text: Hydrant
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:51.451466Z
+        seconds: 3.613278791
+        tokens: 27207
         review: false
       en-US:
         text: Fire Hydrant
@@ -870,52 +870,52 @@ tags:
         tokens: 19646
         review: false
       es-ES:
-        text: Boca de incendio
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:40.690834Z
-        seconds: 5.109075584
-        tokens: 15050
+        text: Boca de incendios
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:51.451466Z
+        seconds: 3.613278791
+        tokens: 27207
         review: false
       fr-FR:
         text: Bouche d'incendie
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:40.690834Z
-        seconds: 5.109075584
-        tokens: 15050
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:51.451466Z
+        seconds: 3.613278791
+        tokens: 27207
         review: false
       ja-JP:
         text: 消火栓
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:40.690834Z
-        seconds: 5.109075584
-        tokens: 15050
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:51.451466Z
+        seconds: 3.613278791
+        tokens: 27207
         review: false
       ko-KR:
         text: 소화전
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:40.690834Z
-        seconds: 5.109075584
-        tokens: 15050
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:51.451466Z
+        seconds: 3.613278791
+        tokens: 27207
         review: false
       zh-CN:
-        text: 消火栓
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:40.690834Z
-        seconds: 5.109075584
-        tokens: 15050
+        text: 消防栓
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:51.451466Z
+        seconds: 3.613278791
+        tokens: 27207
         review: false
       zh-TW:
-        text: 消火栓
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:40.690834Z
-        seconds: 5.109075584
-        tokens: 15050
+        text: 消防栓
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:51.451466Z
+        seconds: 3.613278791
+        tokens: 27207
         review: false
   gnu-gold:
     kind: technical
@@ -932,11 +932,11 @@ tags:
     display:
       de-DE:
         text: Gras
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:45.802942Z
-        seconds: 4.857189416
-        tokens: 14925
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:55.069614Z
+        seconds: 3.089501917
+        tokens: 27176
         review: false
       en-US:
         text: Grass
@@ -948,51 +948,51 @@ tags:
         review: false
       es-ES:
         text: Hierba
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:45.802942Z
-        seconds: 4.857189416
-        tokens: 14925
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:55.069614Z
+        seconds: 3.089501917
+        tokens: 27176
         review: false
       fr-FR:
         text: Herbe
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:45.802942Z
-        seconds: 4.857189416
-        tokens: 14925
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:55.069614Z
+        seconds: 3.089501917
+        tokens: 27176
         review: false
       ja-JP:
         text: 草
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:45.802942Z
-        seconds: 4.857189416
-        tokens: 14925
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:55.069614Z
+        seconds: 3.089501917
+        tokens: 27176
         review: false
       ko-KR:
-        text: 풀
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:45.802942Z
-        seconds: 4.857189416
-        tokens: 14925
+        text: 잔디
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:55.069614Z
+        seconds: 3.089501917
+        tokens: 27176
         review: false
       zh-CN:
         text: 草
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:45.802942Z
-        seconds: 4.857189416
-        tokens: 14925
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:55.069614Z
+        seconds: 3.089501917
+        tokens: 27176
         review: false
       zh-TW:
         text: 草
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:45.802942Z
-        seconds: 4.857189416
-        tokens: 14925
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:55.069614Z
+        seconds: 3.089501917
+        tokens: 27176
         review: false
   hexo:
     kind: technical
@@ -1005,11 +1005,11 @@ tags:
     display:
       de-DE:
         text: Landingpage
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:50.663319Z
-        seconds: 6.137268917
-        tokens: 15263
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:58.163847Z
+        seconds: 3.309669833
+        tokens: 27202
         review: false
       en-US:
         text: Landing Page
@@ -1020,52 +1020,52 @@ tags:
         tokens: 18181
         review: false
       es-ES:
-        text: Página de aterrizaje
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:50.663319Z
-        seconds: 6.137268917
-        tokens: 15263
+        text: Página de destino
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:58.163847Z
+        seconds: 3.309669833
+        tokens: 27202
         review: false
       fr-FR:
-        text: Page d’atterrissage
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:50.663319Z
-        seconds: 6.137268917
-        tokens: 15263
+        text: Page de destination
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:58.163847Z
+        seconds: 3.309669833
+        tokens: 27202
         review: false
       ja-JP:
         text: ランディングページ
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:50.663319Z
-        seconds: 6.137268917
-        tokens: 15263
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:58.163847Z
+        seconds: 3.309669833
+        tokens: 27202
         review: false
       ko-KR:
         text: 랜딩 페이지
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:50.663319Z
-        seconds: 6.137268917
-        tokens: 15263
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:58.163847Z
+        seconds: 3.309669833
+        tokens: 27202
         review: false
       zh-CN:
         text: 落地页
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:50.663319Z
-        seconds: 6.137268917
-        tokens: 15263
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:58.163847Z
+        seconds: 3.309669833
+        tokens: 27202
         review: false
       zh-TW:
-        text: 落地頁
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:50.663319Z
-        seconds: 6.137268917
-        tokens: 15263
+        text: 到達頁面
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:12:58.163847Z
+        seconds: 3.309669833
+        tokens: 27202
         review: false
   laptop:
     kind: ordinary
@@ -1074,11 +1074,11 @@ tags:
     display:
       de-DE:
         text: Laptop
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:56.803999Z
-        seconds: 4.9430527909999995
-        tokens: 15095
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:01.478032Z
+        seconds: 3.371526333
+        tokens: 27198
         review: false
       en-US:
         text: Laptop
@@ -1089,52 +1089,52 @@ tags:
         tokens: 19198
         review: false
       es-ES:
-        text: Ordenador portátil
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:56.803999Z
-        seconds: 4.9430527909999995
-        tokens: 15095
+        text: Portátil
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:01.478032Z
+        seconds: 3.371526333
+        tokens: 27198
         review: false
       fr-FR:
         text: Ordinateur portable
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:56.803999Z
-        seconds: 4.9430527909999995
-        tokens: 15095
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:01.478032Z
+        seconds: 3.371526333
+        tokens: 27198
         review: false
       ja-JP:
         text: ノートパソコン
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:56.803999Z
-        seconds: 4.9430527909999995
-        tokens: 15095
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:01.478032Z
+        seconds: 3.371526333
+        tokens: 27198
         review: false
       ko-KR:
         text: 노트북
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:56.803999Z
-        seconds: 4.9430527909999995
-        tokens: 15095
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:01.478032Z
+        seconds: 3.371526333
+        tokens: 27198
         review: false
       zh-CN:
-        text: 笔记本
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:56.803999Z
-        seconds: 4.9430527909999995
-        tokens: 15095
+        text: 笔记本电脑
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:01.478032Z
+        seconds: 3.371526333
+        tokens: 27198
         review: false
       zh-TW:
-        text: 筆記本
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:05:56.803999Z
-        seconds: 4.9430527909999995
-        tokens: 15095
+        text: 筆記型電腦
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:01.478032Z
+        seconds: 3.371526333
+        tokens: 27198
         review: false
   lawn:
     kind: ordinary
@@ -1143,11 +1143,11 @@ tags:
     display:
       de-DE:
         text: Rasen
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:01.750514Z
-        seconds: 5.121434042
-        tokens: 15075
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:04.85437Z
+        seconds: 3.389547375
+        tokens: 27185
         review: false
       en-US:
         text: Lawn
@@ -1159,51 +1159,51 @@ tags:
         review: false
       es-ES:
         text: Césped
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:01.750514Z
-        seconds: 5.121434042
-        tokens: 15075
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:04.85437Z
+        seconds: 3.389547375
+        tokens: 27185
         review: false
       fr-FR:
         text: Pelouse
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:01.750514Z
-        seconds: 5.121434042
-        tokens: 15075
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:04.85437Z
+        seconds: 3.389547375
+        tokens: 27185
         review: false
       ja-JP:
         text: 芝生
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:01.750514Z
-        seconds: 5.121434042
-        tokens: 15075
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:04.85437Z
+        seconds: 3.389547375
+        tokens: 27185
         review: false
       ko-KR:
-        text: 잔디
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:01.750514Z
-        seconds: 5.121434042
-        tokens: 15075
+        text: 잔디밭
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:04.85437Z
+        seconds: 3.389547375
+        tokens: 27185
         review: false
       zh-CN:
         text: 草坪
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:01.750514Z
-        seconds: 5.121434042
-        tokens: 15075
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:04.85437Z
+        seconds: 3.389547375
+        tokens: 27185
         review: false
       zh-TW:
         text: 草坪
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:01.750514Z
-        seconds: 5.121434042
-        tokens: 15075
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:04.85437Z
+        seconds: 3.389547375
+        tokens: 27185
         review: false
   llvm-lld:
     kind: technical
@@ -1224,11 +1224,11 @@ tags:
     display:
       de-DE:
         text: Pilz
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:06.875544Z
-        seconds: 4.293278459
-        tokens: 14928
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:08.24871Z
+        seconds: 3.452648083
+        tokens: 27192
         review: false
       en-US:
         text: Mushroom
@@ -1239,52 +1239,52 @@ tags:
         tokens: 19898
         review: false
       es-ES:
-        text: Champiñón
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:06.875544Z
-        seconds: 4.293278459
-        tokens: 14928
+        text: Seta
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:08.24871Z
+        seconds: 3.452648083
+        tokens: 27192
         review: false
       fr-FR:
         text: Champignon
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:06.875544Z
-        seconds: 4.293278459
-        tokens: 14928
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:08.24871Z
+        seconds: 3.452648083
+        tokens: 27192
         review: false
       ja-JP:
         text: キノコ
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:06.875544Z
-        seconds: 4.293278459
-        tokens: 14928
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:08.24871Z
+        seconds: 3.452648083
+        tokens: 27192
         review: false
       ko-KR:
         text: 버섯
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:06.875544Z
-        seconds: 4.293278459
-        tokens: 14928
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:08.24871Z
+        seconds: 3.452648083
+        tokens: 27192
         review: false
       zh-CN:
         text: 蘑菇
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:06.875544Z
-        seconds: 4.293278459
-        tokens: 14928
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:08.24871Z
+        seconds: 3.452648083
+        tokens: 27192
         review: false
       zh-TW:
         text: 蘑菇
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:06.875544Z
-        seconds: 4.293278459
-        tokens: 14928
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:08.24871Z
+        seconds: 3.452648083
+        tokens: 27192
         review: false
   next-js:
     kind: technical
@@ -1305,11 +1305,11 @@ tags:
     display:
       de-DE:
         text: Parkweg
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:11.172576Z
-        seconds: 5.1838968340000005
-        tokens: 15089
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:11.706173Z
+        seconds: 3.81924775
+        tokens: 27207
         review: false
       en-US:
         text: Park Path
@@ -1320,52 +1320,52 @@ tags:
         tokens: 18467
         review: false
       es-ES:
-        text: Sendero del parque
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:11.172576Z
-        seconds: 5.1838968340000005
-        tokens: 15089
+        text: Paseo del parque
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:11.706173Z
+        seconds: 3.81924775
+        tokens: 27207
         review: false
       fr-FR:
-        text: Sentier du parc
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:11.172576Z
-        seconds: 5.1838968340000005
-        tokens: 15089
+        text: Allée de parc
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:11.706173Z
+        seconds: 3.81924775
+        tokens: 27207
         review: false
       ja-JP:
-        text: 公園散歩道
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:11.172576Z
-        seconds: 5.1838968340000005
-        tokens: 15089
+        text: 公園の遊歩道
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:11.706173Z
+        seconds: 3.81924775
+        tokens: 27207
         review: false
       ko-KR:
         text: 공원 산책로
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:11.172576Z
-        seconds: 5.1838968340000005
-        tokens: 15089
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:11.706173Z
+        seconds: 3.81924775
+        tokens: 27207
         review: false
       zh-CN:
-        text: 公园小径
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:11.172576Z
-        seconds: 5.1838968340000005
-        tokens: 15089
+        text: 公园步道
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:11.706173Z
+        seconds: 3.81924775
+        tokens: 27207
         review: false
       zh-TW:
-        text: 公園小徑
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:11.172576Z
-        seconds: 5.1838968340000005
-        tokens: 15089
+        text: 公園步道
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:11.706173Z
+        seconds: 3.81924775
+        tokens: 27207
         review: false
   pergola:
     kind: ordinary
@@ -1374,11 +1374,11 @@ tags:
     display:
       de-DE:
         text: Pergola
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:16.36019Z
-        seconds: 4.734907625
-        tokens: 14972
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:15.530145Z
+        seconds: 3.715436375
+        tokens: 27198
         review: false
       en-US:
         text: Pergola
@@ -1389,52 +1389,52 @@ tags:
         tokens: 18467
         review: false
       es-ES:
-        text: Pergola
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:16.36019Z
-        seconds: 4.734907625
-        tokens: 14972
+        text: Pérgola
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:15.530145Z
+        seconds: 3.715436375
+        tokens: 27198
         review: false
       fr-FR:
         text: Pergola
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:16.36019Z
-        seconds: 4.734907625
-        tokens: 14972
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:15.530145Z
+        seconds: 3.715436375
+        tokens: 27198
         review: false
       ja-JP:
         text: パーゴラ
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:16.36019Z
-        seconds: 4.734907625
-        tokens: 14972
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:15.530145Z
+        seconds: 3.715436375
+        tokens: 27198
         review: false
       ko-KR:
-        text: 퍼걸라
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:16.36019Z
-        seconds: 4.734907625
-        tokens: 14972
+        text: 퍼걸러
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:15.530145Z
+        seconds: 3.715436375
+        tokens: 27198
         review: false
       zh-CN:
-        text: 凉棚
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:16.36019Z
-        seconds: 4.734907625
-        tokens: 14972
+        text: 花架
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:15.530145Z
+        seconds: 3.715436375
+        tokens: 27198
         review: false
       zh-TW:
-        text: 涼棚
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:16.36019Z
-        seconds: 4.734907625
-        tokens: 14972
+        text: 花架
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:15.530145Z
+        seconds: 3.715436375
+        tokens: 27198
         review: false
   personal-website:
     kind: ordinary
@@ -1443,11 +1443,11 @@ tags:
     display:
       de-DE:
         text: Persönliche Website
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:21.098677Z
-        seconds: 5.468325084
-        tokens: 15079
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:19.250361Z
+        seconds: 3.396456958
+        tokens: 27205
         review: false
       en-US:
         text: Personal Website
@@ -1458,52 +1458,52 @@ tags:
         tokens: 19385
         review: false
       es-ES:
-        text: Sitio personal
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:21.098677Z
-        seconds: 5.468325084
-        tokens: 15079
+        text: Sitio web personal
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:19.250361Z
+        seconds: 3.396456958
+        tokens: 27205
         review: false
       fr-FR:
         text: Site personnel
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:21.098677Z
-        seconds: 5.468325084
-        tokens: 15079
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:19.250361Z
+        seconds: 3.396456958
+        tokens: 27205
         review: false
       ja-JP:
-        text: 個人ウェブサイト
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:21.098677Z
-        seconds: 5.468325084
-        tokens: 15079
+        text: 個人サイト
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:19.250361Z
+        seconds: 3.396456958
+        tokens: 27205
         review: false
       ko-KR:
         text: 개인 웹사이트
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:21.098677Z
-        seconds: 5.468325084
-        tokens: 15079
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:19.250361Z
+        seconds: 3.396456958
+        tokens: 27205
         review: false
       zh-CN:
         text: 个人网站
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:21.098677Z
-        seconds: 5.468325084
-        tokens: 15079
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:19.250361Z
+        seconds: 3.396456958
+        tokens: 27205
         review: false
       zh-TW:
         text: 個人網站
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:21.098677Z
-        seconds: 5.468325084
-        tokens: 15079
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:19.250361Z
+        seconds: 3.396456958
+        tokens: 27205
         review: false
   printed-circuit-board:
     kind: ordinary
@@ -1512,11 +1512,11 @@ tags:
     display:
       de-DE:
         text: Leiterplatte
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:26.571091Z
-        seconds: 5.352405125
-        tokens: 15020
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:22.65157Z
+        seconds: 4.628479208
+        tokens: 27225
         review: false
       en-US:
         text: Printed Circuit Board
@@ -1528,51 +1528,51 @@ tags:
         review: false
       es-ES:
         text: Placa de circuito impreso
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:26.571091Z
-        seconds: 5.352405125
-        tokens: 15020
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:22.65157Z
+        seconds: 4.628479208
+        tokens: 27225
         review: false
       fr-FR:
-        text: Carte de circuit imprimé
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:26.571091Z
-        seconds: 5.352405125
-        tokens: 15020
+        text: Circuit imprimé
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:22.65157Z
+        seconds: 4.628479208
+        tokens: 27225
         review: false
       ja-JP:
         text: プリント基板
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:26.571091Z
-        seconds: 5.352405125
-        tokens: 15020
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:22.65157Z
+        seconds: 4.628479208
+        tokens: 27225
         review: false
       ko-KR:
         text: 인쇄 회로 기판
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:26.571091Z
-        seconds: 5.352405125
-        tokens: 15020
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:22.65157Z
+        seconds: 4.628479208
+        tokens: 27225
         review: false
       zh-CN:
-        text: 印刷电路板
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:26.571091Z
-        seconds: 5.352405125
-        tokens: 15020
+        text: 印制电路板
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:22.65157Z
+        seconds: 4.628479208
+        tokens: 27225
         review: false
       zh-TW:
         text: 印刷電路板
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:26.571091Z
-        seconds: 5.352405125
-        tokens: 15020
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:22.65157Z
+        seconds: 4.628479208
+        tokens: 27225
         review: false
   railing:
     kind: ordinary
@@ -1581,11 +1581,11 @@ tags:
     display:
       de-DE:
         text: Geländer
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:31.927501Z
-        seconds: 4.928624667
-        tokens: 15020
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:27.284753Z
+        seconds: 4.083015042
+        tokens: 27186
         review: false
       en-US:
         text: Railing
@@ -1597,51 +1597,51 @@ tags:
         review: false
       es-ES:
         text: Barandilla
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:31.927501Z
-        seconds: 4.928624667
-        tokens: 15020
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:27.284753Z
+        seconds: 4.083015042
+        tokens: 27186
         review: false
       fr-FR:
-        text: Rampe
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:31.927501Z
-        seconds: 4.928624667
-        tokens: 15020
+        text: Garde-corps
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:27.284753Z
+        seconds: 4.083015042
+        tokens: 27186
         review: false
       ja-JP:
         text: 手すり
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:31.927501Z
-        seconds: 4.928624667
-        tokens: 15020
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:27.284753Z
+        seconds: 4.083015042
+        tokens: 27186
         review: false
       ko-KR:
         text: 난간
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:31.927501Z
-        seconds: 4.928624667
-        tokens: 15020
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:27.284753Z
+        seconds: 4.083015042
+        tokens: 27186
         review: false
       zh-CN:
-        text: 栏杆
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:31.927501Z
-        seconds: 4.928624667
-        tokens: 15020
+        text: 护栏
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:27.284753Z
+        seconds: 4.083015042
+        tokens: 27186
         review: false
       zh-TW:
         text: 欄杆
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:31.927501Z
-        seconds: 4.928624667
-        tokens: 15020
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:27.284753Z
+        seconds: 4.083015042
+        tokens: 27186
         review: false
   remix:
     kind: technical
@@ -1654,11 +1654,11 @@ tags:
     display:
       de-DE:
         text: Fluss
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:36.859965Z
-        seconds: 6.4045355
-        tokens: 15002
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:31.372567Z
+        seconds: 3.259834167
+        tokens: 27173
         review: false
       en-US:
         text: River
@@ -1670,51 +1670,51 @@ tags:
         review: false
       es-ES:
         text: Río
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:36.859965Z
-        seconds: 6.4045355
-        tokens: 15002
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:31.372567Z
+        seconds: 3.259834167
+        tokens: 27173
         review: false
       fr-FR:
-        text: Rivière
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:36.859965Z
-        seconds: 6.4045355
-        tokens: 15002
+        text: Fleuve
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:31.372567Z
+        seconds: 3.259834167
+        tokens: 27173
         review: false
       ja-JP:
         text: 川
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:36.859965Z
-        seconds: 6.4045355
-        tokens: 15002
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:31.372567Z
+        seconds: 3.259834167
+        tokens: 27173
         review: false
       ko-KR:
         text: 강
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:36.859965Z
-        seconds: 6.4045355
-        tokens: 15002
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:31.372567Z
+        seconds: 3.259834167
+        tokens: 27173
         review: false
       zh-CN:
         text: 河流
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:36.859965Z
-        seconds: 6.4045355
-        tokens: 15002
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:31.372567Z
+        seconds: 3.259834167
+        tokens: 27173
         review: false
       zh-TW:
         text: 河流
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:36.859965Z
-        seconds: 6.4045355
-        tokens: 15002
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:31.372567Z
+        seconds: 3.259834167
+        tokens: 27173
         review: false
   rust:
     kind: technical
@@ -1727,11 +1727,11 @@ tags:
     display:
       de-DE:
         text: Strauch
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:43.268921Z
-        seconds: 4.827717625
-        tokens: 15009
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:34.637029Z
+        seconds: 3.620866958
+        tokens: 27183
         review: false
       en-US:
         text: Shrub
@@ -1743,51 +1743,51 @@ tags:
         review: false
       es-ES:
         text: Arbusto
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:43.268921Z
-        seconds: 4.827717625
-        tokens: 15009
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:34.637029Z
+        seconds: 3.620866958
+        tokens: 27183
         review: false
       fr-FR:
         text: Arbuste
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:43.268921Z
-        seconds: 4.827717625
-        tokens: 15009
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:34.637029Z
+        seconds: 3.620866958
+        tokens: 27183
         review: false
       ja-JP:
         text: 低木
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:43.268921Z
-        seconds: 4.827717625
-        tokens: 15009
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:34.637029Z
+        seconds: 3.620866958
+        tokens: 27183
         review: false
       ko-KR:
         text: 관목
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:43.268921Z
-        seconds: 4.827717625
-        tokens: 15009
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:34.637029Z
+        seconds: 3.620866958
+        tokens: 27183
         review: false
       zh-CN:
         text: 灌木
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:43.268921Z
-        seconds: 4.827717625
-        tokens: 15009
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:34.637029Z
+        seconds: 3.620866958
+        tokens: 27183
         review: false
       zh-TW:
         text: 灌木
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:43.268921Z
-        seconds: 4.827717625
-        tokens: 15009
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:34.637029Z
+        seconds: 3.620866958
+        tokens: 27183
         review: false
   sim-card:
     kind: technical
@@ -1800,11 +1800,11 @@ tags:
     display:
       de-DE:
         text: Himmel
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:48.100817Z
-        seconds: 4.147296666
-        tokens: 14811
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:38.262652Z
+        seconds: 3.055890416
+        tokens: 27181
         review: false
       en-US:
         text: Sky
@@ -1816,51 +1816,51 @@ tags:
         review: false
       es-ES:
         text: Cielo
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:48.100817Z
-        seconds: 4.147296666
-        tokens: 14811
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:38.262652Z
+        seconds: 3.055890416
+        tokens: 27181
         review: false
       fr-FR:
         text: Ciel
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:48.100817Z
-        seconds: 4.147296666
-        tokens: 14811
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:38.262652Z
+        seconds: 3.055890416
+        tokens: 27181
         review: false
       ja-JP:
         text: 空
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:48.100817Z
-        seconds: 4.147296666
-        tokens: 14811
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:38.262652Z
+        seconds: 3.055890416
+        tokens: 27181
         review: false
       ko-KR:
         text: 하늘
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:48.100817Z
-        seconds: 4.147296666
-        tokens: 14811
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:38.262652Z
+        seconds: 3.055890416
+        tokens: 27181
         review: false
       zh-CN:
         text: 天空
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:48.100817Z
-        seconds: 4.147296666
-        tokens: 14811
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:38.262652Z
+        seconds: 3.055890416
+        tokens: 27181
         review: false
       zh-TW:
         text: 天空
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:48.100817Z
-        seconds: 4.147296666
-        tokens: 14811
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:38.262652Z
+        seconds: 3.055890416
+        tokens: 27181
         review: false
   streetlight:
     kind: ordinary
@@ -1869,11 +1869,11 @@ tags:
     display:
       de-DE:
         text: Straßenlaterne
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:52.252688Z
-        seconds: 4.809679291
-        tokens: 14979
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:41.323301Z
+        seconds: 3.465137
+        tokens: 27200
         review: false
       en-US:
         text: Streetlight
@@ -1885,51 +1885,51 @@ tags:
         review: false
       es-ES:
         text: Farola
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:52.252688Z
-        seconds: 4.809679291
-        tokens: 14979
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:41.323301Z
+        seconds: 3.465137
+        tokens: 27200
         review: false
       fr-FR:
         text: Lampadaire
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:52.252688Z
-        seconds: 4.809679291
-        tokens: 14979
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:41.323301Z
+        seconds: 3.465137
+        tokens: 27200
         review: false
       ja-JP:
         text: 街灯
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:52.252688Z
-        seconds: 4.809679291
-        tokens: 14979
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:41.323301Z
+        seconds: 3.465137
+        tokens: 27200
         review: false
       ko-KR:
         text: 가로등
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:52.252688Z
-        seconds: 4.809679291
-        tokens: 14979
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:41.323301Z
+        seconds: 3.465137
+        tokens: 27200
         review: false
       zh-CN:
         text: 路灯
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:52.252688Z
-        seconds: 4.809679291
-        tokens: 14979
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:41.323301Z
+        seconds: 3.465137
+        tokens: 27200
         review: false
       zh-TW:
         text: 路燈
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:52.252688Z
-        seconds: 4.809679291
-        tokens: 14979
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:41.323301Z
+        seconds: 3.465137
+        tokens: 27200
         review: false
   token-usage:
     kind: ordinary
@@ -1937,12 +1937,12 @@ tags:
     meaning: counts of AI language model tokens consumed
     display:
       de-DE:
-        text: Token‑Verbrauch
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:57.06687Z
-        seconds: 5.931394875
-        tokens: 15076
+        text: Token-Nutzung
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:44.792927Z
+        seconds: 3.289786083
+        tokens: 27214
         review: false
       en-US:
         text: Token Usage
@@ -1954,51 +1954,51 @@ tags:
         review: false
       es-ES:
         text: Uso de tokens
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:57.06687Z
-        seconds: 5.931394875
-        tokens: 15076
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:44.792927Z
+        seconds: 3.289786083
+        tokens: 27214
         review: false
       fr-FR:
         text: Utilisation des tokens
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:57.06687Z
-        seconds: 5.931394875
-        tokens: 15076
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:44.792927Z
+        seconds: 3.289786083
+        tokens: 27214
         review: false
       ja-JP:
         text: トークン使用量
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:57.06687Z
-        seconds: 5.931394875
-        tokens: 15076
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:44.792927Z
+        seconds: 3.289786083
+        tokens: 27214
         review: false
       ko-KR:
         text: 토큰 사용량
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:57.06687Z
-        seconds: 5.931394875
-        tokens: 15076
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:44.792927Z
+        seconds: 3.289786083
+        tokens: 27214
         review: false
       zh-CN:
-        text: 令牌使用
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:57.06687Z
-        seconds: 5.931394875
-        tokens: 15076
+        text: Token 用量
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:44.792927Z
+        seconds: 3.289786083
+        tokens: 27214
         review: false
       zh-TW:
-        text: 令牌使用量
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:06:57.06687Z
-        seconds: 5.931394875
-        tokens: 15076
+        text: Token 用量
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:44.792927Z
+        seconds: 3.289786083
+        tokens: 27214
         review: false
   tree:
     kind: ordinary
@@ -2007,11 +2007,11 @@ tags:
     display:
       de-DE:
         text: Baum
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:03.00264Z
-        seconds: 4.296226083
-        tokens: 14889
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:48.087162Z
+        seconds: 2.944903416
+        tokens: 27180
         review: false
       en-US:
         text: Tree
@@ -2023,51 +2023,51 @@ tags:
         review: false
       es-ES:
         text: Árbol
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:03.00264Z
-        seconds: 4.296226083
-        tokens: 14889
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:48.087162Z
+        seconds: 2.944903416
+        tokens: 27180
         review: false
       fr-FR:
         text: Arbre
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:03.00264Z
-        seconds: 4.296226083
-        tokens: 14889
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:48.087162Z
+        seconds: 2.944903416
+        tokens: 27180
         review: false
       ja-JP:
         text: 木
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:03.00264Z
-        seconds: 4.296226083
-        tokens: 14889
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:48.087162Z
+        seconds: 2.944903416
+        tokens: 27180
         review: false
       ko-KR:
         text: 나무
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:03.00264Z
-        seconds: 4.296226083
-        tokens: 14889
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:48.087162Z
+        seconds: 2.944903416
+        tokens: 27180
         review: false
       zh-CN:
         text: 树
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:03.00264Z
-        seconds: 4.296226083
-        tokens: 14889
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:48.087162Z
+        seconds: 2.944903416
+        tokens: 27180
         review: false
       zh-TW:
         text: 樹
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:03.00264Z
-        seconds: 4.296226083
-        tokens: 14889
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:48.087162Z
+        seconds: 2.944903416
+        tokens: 27180
         review: false
   typeless:
     kind: technical
@@ -2080,11 +2080,11 @@ tags:
     display:
       de-DE:
         text: Nutzungskosten
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:07.303627Z
-        seconds: 4.047068459
-        tokens: 14864
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:51.036758Z
+        seconds: 3.524978209
+        tokens: 27209
         review: false
       en-US:
         text: Usage Cost
@@ -2095,52 +2095,52 @@ tags:
         tokens: 20008
         review: false
       es-ES:
-        text: Costo de uso
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:07.303627Z
-        seconds: 4.047068459
-        tokens: 14864
+        text: Coste de uso
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:51.036758Z
+        seconds: 3.524978209
+        tokens: 27209
         review: false
       fr-FR:
-        text: Coût d’utilisation
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:07.303627Z
-        seconds: 4.047068459
-        tokens: 14864
+        text: Coût d'utilisation
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:51.036758Z
+        seconds: 3.524978209
+        tokens: 27209
         review: false
       ja-JP:
         text: 利用料金
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:07.303627Z
-        seconds: 4.047068459
-        tokens: 14864
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:51.036758Z
+        seconds: 3.524978209
+        tokens: 27209
         review: false
       ko-KR:
         text: 사용 요금
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:07.303627Z
-        seconds: 4.047068459
-        tokens: 14864
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:51.036758Z
+        seconds: 3.524978209
+        tokens: 27209
         review: false
       zh-CN:
         text: 使用费用
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:07.303627Z
-        seconds: 4.047068459
-        tokens: 14864
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:51.036758Z
+        seconds: 3.524978209
+        tokens: 27209
         review: false
       zh-TW:
         text: 使用費用
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:07.303627Z
-        seconds: 4.047068459
-        tokens: 14864
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:51.036758Z
+        seconds: 3.524978209
+        tokens: 27209
         review: false
   usb-c:
     kind: technical
@@ -2160,12 +2160,12 @@ tags:
     meaning: land or promenade beside a body of water
     display:
       de-DE:
-        text: Ufer
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:11.355522Z
-        seconds: 6.032306125
-        tokens: 15138
+        text: Uferpromenade
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:54.56645Z
+        seconds: 3.750783292
+        tokens: 27206
         review: false
       en-US:
         text: Waterfront
@@ -2176,52 +2176,52 @@ tags:
         tokens: 19198
         review: false
       es-ES:
-        text: Orilla
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:11.355522Z
-        seconds: 6.032306125
-        tokens: 15138
+        text: Paseo marítimo
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:54.56645Z
+        seconds: 3.750783292
+        tokens: 27206
         review: false
       fr-FR:
-        text: Bord de l'eau
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:11.355522Z
-        seconds: 6.032306125
-        tokens: 15138
+        text: Front de mer
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:54.56645Z
+        seconds: 3.750783292
+        tokens: 27206
         review: false
       ja-JP:
-        text: 水辺
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:11.355522Z
-        seconds: 6.032306125
-        tokens: 15138
+        text: ウォーターフロント
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:54.56645Z
+        seconds: 3.750783292
+        tokens: 27206
         review: false
       ko-KR:
-        text: 수변
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:11.355522Z
-        seconds: 6.032306125
-        tokens: 15138
+        text: 워터프런트
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:54.56645Z
+        seconds: 3.750783292
+        tokens: 27206
         review: false
       zh-CN:
-        text: 水岸
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:11.355522Z
-        seconds: 6.032306125
-        tokens: 15138
+        text: 滨水区
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:54.56645Z
+        seconds: 3.750783292
+        tokens: 27206
         review: false
       zh-TW:
-        text: 水岸
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:11.355522Z
-        seconds: 6.032306125
-        tokens: 15138
+        text: 濱水區
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:54.56645Z
+        seconds: 3.750783292
+        tokens: 27206
         review: false
   web-navigation:
     kind: ordinary
@@ -2229,12 +2229,12 @@ tags:
     meaning: website menu and search interface
     display:
       de-DE:
-        text: Webnavigation
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:17.392995Z
-        seconds: 5.363064167
-        tokens: 15010
+        text: Website-Navigation
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:58.322248Z
+        seconds: 3.441728708
+        tokens: 27211
         review: false
       en-US:
         text: Web Navigation
@@ -2245,52 +2245,52 @@ tags:
         tokens: 17559
         review: false
       es-ES:
-        text: Navegación web
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:17.392995Z
-        seconds: 5.363064167
-        tokens: 15010
+        text: Navegación del sitio
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:58.322248Z
+        seconds: 3.441728708
+        tokens: 27211
         review: false
       fr-FR:
-        text: Navigation web
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:17.392995Z
-        seconds: 5.363064167
-        tokens: 15010
+        text: Navigation du site
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:58.322248Z
+        seconds: 3.441728708
+        tokens: 27211
         review: false
       ja-JP:
-        text: ウェブナビゲーション
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:17.392995Z
-        seconds: 5.363064167
-        tokens: 15010
+        text: サイトナビゲーション
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:58.322248Z
+        seconds: 3.441728708
+        tokens: 27211
         review: false
       ko-KR:
-        text: 웹 탐색
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:17.392995Z
-        seconds: 5.363064167
-        tokens: 15010
+        text: 사이트 내비게이션
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:58.322248Z
+        seconds: 3.441728708
+        tokens: 27211
         review: false
       zh-CN:
-        text: 网页导航
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:17.392995Z
-        seconds: 5.363064167
-        tokens: 15010
+        text: 网站导航
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:58.322248Z
+        seconds: 3.441728708
+        tokens: 27211
         review: false
       zh-TW:
-        text: 網頁導覽
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:17.392995Z
-        seconds: 5.363064167
-        tokens: 15010
+        text: 網站導覽
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:13:58.322248Z
+        seconds: 3.441728708
+        tokens: 27211
         review: false
   wooden-decking:
     kind: ordinary
@@ -2298,12 +2298,12 @@ tags:
     meaning: weathered wooden boards forming an outdoor walking surface
     display:
       de-DE:
-        text: Holzterrasse
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:22.760927Z
-        seconds: 5.623789291
-        tokens: 15111
+        text: Holzsteg
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:14:01.76858Z
+        seconds: 4.18410475
+        tokens: 27219
         review: false
       en-US:
         text: Wooden Decking
@@ -2314,50 +2314,50 @@ tags:
         tokens: 20049
         review: false
       es-ES:
-        text: Entablado de madera
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:22.760927Z
-        seconds: 5.623789291
-        tokens: 15111
+        text: Entarimado de madera
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:14:01.76858Z
+        seconds: 4.18410475
+        tokens: 27219
         review: false
       fr-FR:
-        text: Deck en bois
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:22.760927Z
-        seconds: 5.623789291
-        tokens: 15111
+        text: Platelage en bois
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:14:01.76858Z
+        seconds: 4.18410475
+        tokens: 27219
         review: false
       ja-JP:
         text: ウッドデッキ
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:22.760927Z
-        seconds: 5.623789291
-        tokens: 15111
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:14:01.76858Z
+        seconds: 4.18410475
+        tokens: 27219
         review: false
       ko-KR:
-        text: 우드 데크
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:22.760927Z
-        seconds: 5.623789291
-        tokens: 15111
+        text: 나무 데크
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:14:01.76858Z
+        seconds: 4.18410475
+        tokens: 27219
         review: false
       zh-CN:
-        text: 木质甲板
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:22.760927Z
-        seconds: 5.623789291
-        tokens: 15111
+        text: 木栈道
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:14:01.76858Z
+        seconds: 4.18410475
+        tokens: 27219
         review: false
       zh-TW:
-        text: 木質甲板
-        provider: openai
-        model: gpt-oss-120b-medium
-        at: 2026-08-02T04:07:22.760927Z
-        seconds: 5.623789291
-        tokens: 15111
+        text: 木棧道
+        provider: anthropic
+        model: claude-opus-5
+        at: 2026-08-29T23:14:01.76858Z
+        seconds: 4.18410475
+        tokens: 27219
         review: false

@@ -1,52 +1,52 @@
 version: 1
 summary:
   de-DE:
-    text: Ausgehend vom Dilemma eines um zwei Jahre verzögerten Blogs zeichnet der Artikel die mehrfachen Neufassungen mit Hexo, Next.js, Vue/React sowie SSR/SSG/ISR nach und beleuchtet die Blockaden durch die für einen „künftigen Bedarf“ selbst entwickelten Systeme Vane, Seam, RFS und Canopy. Er vergleicht eigene Server, Docker/Nginx, Vercel und Cloudflare Serverless und untersucht im Zeitalter der Beschleunigung durch AI/Vibe Coding die Zwänge bei Zeit, Kosten, Verständnis und langfristiger Wartung sowie die Frage, warum Overengineering den Launch selbst verschwinden lässt.
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:10:03.742109Z
-    seconds: 15.159209375
-    tokens: 16043
+    text: Ausgehend von der Zwangslage eines zwei Jahre lang aufgeschobenen Blogs verfolgt der Text die mehrfachen Rewrites mit Hexo, Next.js, Vue/React und SSR/SSG/ISR zurück sowie die Blockade, die durch das Selbstbauen von Vane, Seam, RFS und Canopy für den „künftigen Bedarf“ entstand. Er vergleicht eigenen Server, Docker/Nginx, Vercel und Cloudflare Serverless und prüft die Zwänge von Zeit, Kosten, Verständnistiefe und langfristiger Wartung unter der Beschleunigung durch AI/Vibe Coding, sowie warum Overengineering das Livegehen selbst verschwinden lässt.
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:43:21.32531Z
+    seconds: 7.393890708
+    tokens: 27572
     review: false
   en-US:
-    text: Starting from a two-year struggle with procrastinating on a blog, this article traces multiple rewrites involving Hexo, Next.js, Vue/React, and SSR/SSG/ISR, along with the roadblocks created by building Vane, Seam, RFS, and Canopy for “future needs.” It compares self-hosted servers, Docker/Nginx, Vercel, and Cloudflare Serverless, examining constraints on time, cost, depth of understanding, and long-term maintenance amid AI/Vibe Coding acceleration, and why overengineering made shipping itself disappear.
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:09:40.712Z
-    seconds: 11.397264625
-    tokens: 16046
+    text: Starting from the predicament of a blog put off for two years, it traces the repeated rewrites across Hexo, Next.js, Vue/React and SSR/SSG/ISR, along with the blockage formed by building Vane, Seam, RFS and Canopy from scratch for "future needs". It compares self-hosted servers, Docker/Nginx, Vercel and Cloudflare Serverless, and examines the constraints of time, cost, depth of understanding and long-term maintenance under the acceleration of AI/Vibe Coding, and why over-engineering makes shipping itself disappear.
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:43:07.042065Z
+    seconds: 6.345968458
+    tokens: 27484
     review: false
   es-ES:
-    text: Partiendo del dilema de haber pospuesto el blog durante dos años, recorre las múltiples reescrituras con Hexo, Next.js, Vue/React y SSR/SSG/ISR, así como el bloqueo provocado por crear Vane, Seam, RFS y Canopy para «necesidades futuras». Compara servidores propios, Docker/Nginx, Vercel y Cloudflare Serverless, y examina las restricciones de tiempo, coste, profundidad de comprensión y mantenimiento a largo plazo bajo la aceleración de la AI/Vibe Coding, además de por qué la sobreingeniería hace desaparecer el propio lanzamiento.
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:10:50.321527Z
-    seconds: 15.090316084
-    tokens: 16035
+    text: Partiendo del atolladero de un blog aplazado durante dos años, recorre las sucesivas reescrituras con Hexo, Next.js, Vue/React y SSR/SSG/ISR, así como el bloqueo formado por construir Vane, Seam, RFS y Canopy para «necesidades futuras». Compara servidor propio, Docker/Nginx, Vercel y Cloudflare Serverless, y examina las restricciones de tiempo, coste, profundidad de comprensión y mantenimiento a largo plazo bajo la aceleración del AI/Vibe Coding, además de por qué la sobreingeniería hace desaparecer la publicación misma.
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:43:43.857747Z
+    seconds: 6.282580459
+    tokens: 27526
     review: false
   fr-FR:
-    text: Partant de l’impasse d’un blog repoussé pendant deux ans, l’article retrace les multiples réécritures avec Hexo, Next.js, Vue/React et SSR/SSG/ISR, ainsi que les blocages nés de la création de Vane, Seam, RFS et Canopy pour de « futurs besoins ». Il compare l’auto-hébergement, Docker/Nginx, Vercel et le Serverless de Cloudflare, puis examine, face à l’accélération apportée par l’AI/Vibe Coding, les contraintes de temps, de coût, de profondeur de compréhension et de maintenance à long terme, ainsi que les raisons pour lesquelles la suringénierie fait disparaître la mise en ligne elle-même.
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:10:30.489663Z
-    seconds: 19.830427084
-    tokens: 16417
+    text: Part du blocage d'un blog repoussé pendant deux ans et retrace les réécritures successives sous Hexo, Next.js, Vue/React et SSR/SSG/ISR, ainsi que l'impasse née de la création maison de Vane, Seam, RFS et Canopy pour de « futurs besoins ». Compare serveur auto-hébergé, Docker/Nginx, Vercel et Cloudflare Serverless, et examine les contraintes de temps, de coût, de profondeur de compréhension et de maintenance à long terme sous l'accélération de l'AI/Vibe Coding, et pourquoi la sur-ingénierie fait disparaître la mise en ligne elle-même.
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:43:36.310465Z
+    seconds: 7.546550958
+    tokens: 27549
     review: false
   ja-JP:
-    text: ブログを2年間先延ばしにした苦境を起点に、Hexo、Next.js、Vue/React、SSR/SSG/ISRによる度重なる書き直しと、「将来の必要」のためにVane、Seam、RFS、Canopyを自作したことで生じた停滞をたどる。自前サーバー、Docker/Nginx、Vercel、Cloudflare Serverlessを比較し、AI/Vibe Codingによる高速化のもとでの時間、コスト、理解の深さ、長期保守の制約、そして過剰なエンジニアリングがなぜ公開そのものを消し去るのかを検討する。
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:09:52.109936Z
-    seconds: 11.631333375
-    tokens: 16038
+    text: ブログを2年も先延ばしにしてきた行き詰まりを出発点に、Hexo、Next.js、Vue/React、そして SSR/SSG/ISR にまたがる幾度もの書き直しと、「将来必要になる」という理由で Vane、Seam、RFS、Canopy を自作したことで生じた停滞をたどる。自前サーバー、Docker/Nginx、Vercel、Cloudflare Serverless を比較し、AI/Vibe Coding による加速のもとでの時間、コスト、理解の深さ、長期的な保守の制約、そして過剰なエンジニアリングがなぜ公開そのものを消し去ってしまうのかを検討する。
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:43:13.389052Z
+    seconds: 7.935543917
+    tokens: 27546
     review: false
   ko-KR:
-    text: 블로그를 2년간 미뤄 온 난관에서 출발해 Hexo, Next.js, Vue/React와 SSR/SSG/ISR을 거치며 여러 차례 다시 작성한 과정, 그리고 ‘미래의 필요’를 위해 Vane, Seam, RFS, Canopy를 직접 만들면서 빚어진 정체를 되짚는다. 자체 서버, Docker/Nginx, Vercel과 Cloudflare Serverless를 비교하고, AI/Vibe Coding의 가속 속에서 시간, 비용, 이해의 깊이와 장기 유지보수의 제약, 그리고 과도한 엔지니어링이 왜 출시 자체를 사라지게 하는지 살펴본다.
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:10:18.902488Z
-    seconds: 11.586245334000001
-    tokens: 16085
+    text: 블로그를 2년간 미뤄 온 곤경에서 출발해, Hexo, Next.js, Vue/React와 SSR/SSG/ISR을 거친 여러 차례의 재작성, 그리고 "미래에 필요할 것"을 위해 Vane, Seam, RFS, Canopy를 직접 만들며 형성된 정체를 되짚는다. 자체 서버 구축, Docker/Nginx, Vercel과 Cloudflare Serverless를 비교하고, AI/Vibe Coding으로 가속된 상황에서의 시간, 비용, 이해의 깊이와 장기 유지보수라는 제약, 그리고 과잉 엔지니어링이 어째서 출시 그 자체를 사라지게 만드는지를 살펴본다.
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:43:28.719962Z
+    seconds: 7.589649542
+    tokens: 27571
     review: false
   zh-CN:
     text: 从博客拖延两年的困境出发，追溯 Hexo、Next.js、Vue/React 与 SSR/SSG/ISR 的多次重写，以及为“未来需要”自造 Vane、Seam、RFS、Canopy 所形成的阻塞。比较自建服务器、Docker/Nginx、Vercel 与 Cloudflare Serverless，审视 AI/Vibe Coding 加速下的时间、成本、理解深度和长期维护约束，以及过度工程为何让上线本身消失。
@@ -57,10 +57,10 @@ summary:
     tokens: 19393
     review: false
   zh-TW:
-    text: 從部落格拖延兩年的困境出發，追溯 Hexo、Next.js、Vue/React 與 SSR/SSG/ISR 的多次重寫，以及為「未來需要」自造 Vane、Seam、RFS、Canopy 所形成的阻塞。比較自建伺服器、Docker/Nginx、Vercel 與 Cloudflare Serverless，審視 AI/Vibe Coding 加速下的時間、成本、理解深度和長期維護限制，以及過度工程為何讓上線本身消失。
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:11:05.41252Z
-    seconds: 7.203196834
-    tokens: 15936
+    text: 從部落格拖延兩年的困境出發，追溯 Hexo、Next.js、Vue/React 與 SSR/SSG/ISR 的多次重寫，以及為「未來需要」自造 Vane、Seam、RFS、Canopy 所形成的阻塞。比較自建伺服器、Docker/Nginx、Vercel 與 Cloudflare Serverless，審視 AI/Vibe Coding 加速下的時間、成本、理解深度和長期維護約束，以及過度工程為何讓上線本身消失。
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:43:50.140981Z
+    seconds: 7.064891583
+    tokens: 27494
     review: false

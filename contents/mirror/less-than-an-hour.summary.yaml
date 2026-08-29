@@ -1,52 +1,52 @@
 version: 1
 summary:
   de-DE:
-    text: Langes Stubenhocken, ein umgekehrter Tag-Nacht-Rhythmus und Ängste rund ums Programmieren mit KI machen den ersten Gang nach draußen nach einem Claude Session Limit zu einer vorsichtigen Erkundung des „Draußen“. Die zu geringe Helligkeit des MacBook Air im Freien und das versagende Roaming-LTE des 17P machen sowohl das Weiterprogrammieren als auch das Scrollen am Handy unmöglich; die öde Flusslandschaft, der marode Bohlenweg und die stillgelegten Bauprojekte stoßen derweil immer wieder auf Kindheitserinnerungen. Es geht nicht um Produktivität im Freien, sondern um das Gefühl der Fremdheit, nachdem der Mensch den Takt mit Sonnenlicht, Stadt und früherem Leben verloren hat.
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:11:37.941506Z
-    seconds: 23.462875916
-    tokens: 16391
+    text: 'Langes Zuhausebleiben, ein umgedrehter Tag-Nacht-Rhythmus und die Angst vor dem Programmieren mit AI machen aus einem Rausgehen nach einem erreichten Claude Session Limit einen Versuch, das „Draußen“ auszuloten. Das MacBook Air ist im Freien nicht hell genug, das Roaming-LTE von 17P streikt: Weiterschreiben am Code oder Handydaddeln, beides fällt aus. Die karge Flusslandschaft, der marode Uferweg und die stillgelegten Wohnbauten stoßen dafür immer wieder auf Kindheitserinnerungen. Es geht dabei nicht um Produktivität im Freien, sondern um die Fremdheit, die entsteht, wenn ein Mensch den Gleichtakt mit dem Sonnenlicht, der Stadt und dem früheren Leben verloren hat.'
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:45:34.296291Z
+    seconds: 8.845506
+    tokens: 27662
     review: false
   en-US:
-    text: Long-term isolation, a reversed sleep schedule, and AI coding anxiety turn an outing after hitting Claude’s Session Limit into a tentative probe of the “outside.” The MacBook Air is too dim outdoors, while the 17P’s roaming LTE fails, ruling out both coding and scrolling; meanwhile, the desolate riverside, dilapidated boardwalk, and stalled development repeatedly collide with childhood memories. Its concern is not outdoor productivity, but the estrangement that follows when a person falls out of sync with sunlight, the city, and life as it once was.
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:11:12.616753Z
-    seconds: 12.779439542
-    tokens: 15989
+    text: Long stretches indoors, a reversed day-night cycle and anxiety about AI coding turned one trip outside, after hitting a Claude session limit, into a tentative probe of "out there." The MacBook Air was not bright enough outdoors and the 17P's roaming LTE failed, so neither writing code nor scrolling the phone was viable; meanwhile the desolate riverside, the decaying boardwalk and the halted housing development kept colliding with childhood memories. What it cares about is not outdoor productivity but the strangeness of falling out of sync with sunlight, with the city and with the life one used to live.
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:45:18.534656Z
+    seconds: 7.0402315
+    tokens: 27525
     review: false
   es-ES:
-    text: El encierro prolongado, los horarios invertidos y la ansiedad por programar con IA convierten una salida tras alcanzar el límite de sesión de Claude en un tanteo de «afuera». El MacBook Air no ofrece suficiente brillo al aire libre y el LTE en roaming del 17P falla, así que ni seguir programando ni mirar el móvil son opciones; mientras, los parajes desolados junto al río, las pasarelas destartaladas y las promociones paralizadas chocan una y otra vez con recuerdos de infancia. No le interesa la productividad al aire libre, sino la extrañeza de haber perdido la sincronía con el sol, la ciudad y la vida de antaño.
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:12:27.793027Z
-    seconds: 16.032392958
-    tokens: 16265
+    text: El encierro prolongado, el ciclo día-noche invertido y la ansiedad de programar con AI convierten una salida tras un Claude Session Limit en un tanteo de lo «de fuera». El MacBook Air no tiene brillo suficiente al aire libre y el roaming LTE del 17P falla; ni seguir escribiendo código ni mirar el móvil resultan viables. El paisaje yermo junto al río, la pasarela destartalada y los edificios con la obra parada chocan una y otra vez con los recuerdos de la infancia. No le interesa la productividad al aire libre, sino la extrañeza de quien ha perdido la sincronía con el sol, con la ciudad y con la vida de antes.
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:46:00.106221Z
+    seconds: 7.90484225
+    tokens: 27583
     review: false
   fr-FR:
-    text: L’isolement prolongé, les rythmes jour-nuit inversés et l’anxiété liée à la programmation avec l’IA transforment une sortie après avoir atteint la Claude Session Limit en tentative d’approche du « dehors ». La luminosité extérieure insuffisante du MacBook Air et l’itinérance LTE défaillante du 17P rendent impossible de continuer à coder ou de faire défiler son téléphone ; les paysages désolés au bord du fleuve, les passerelles délabrées et les chantiers immobiliers à l’arrêt se heurtent sans cesse aux souvenirs d’enfance. Ce qui importe ici n’est pas la productivité en extérieur, mais l’étrangeté ressentie quand l’être humain n’est plus en phase avec le soleil, la ville et sa vie d’autrefois.
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:12:13.898174Z
-    seconds: 13.896805167
-    tokens: 16187
+    text: 'Réclusion prolongée, jours et nuits inversés, anxiété du vibe coding avec l''IA : une sortie après une Claude Session Limit devient un test du « dehors ». Luminosité insuffisante du MacBook Air en plein air, LTE en roaming 17P hors service ; ni coder, ni scroller sur le téléphone. Le long du fleuve, paysages désolés, passerelles délabrées et chantiers à l''arrêt viennent sans cesse heurter les souvenirs d''enfance. Ce qui l''intéresse n''est pas la productivité en extérieur, mais l''étrangeté qui naît quand on perd la synchronisation avec le soleil, la ville et la vie d''avant.'
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:45:52.147615Z
+    seconds: 7.957832458
+    tokens: 27602
     review: false
   ja-JP:
-    text: 長い引きこもり生活、昼夜逆転、AIコーディングへの不安から、ClaudeのSession Limitを機に出かけたことが、「外」への探りとなる。MacBook Airは屋外では明るさが足りず、17PのローミングLTEも機能しないため、コードを書き続けることもスマホを見ることもできない。川沿いの荒涼とした風景、朽ちた桟道、工事の止まった建物は、繰り返し幼少期の記憶に触れる。それが見つめるのは屋外での生産性ではなく、人が陽光や都市、かつての暮らしと同期しなくなった後に覚える違和感だ。
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:11:25.39693Z
-    seconds: 12.543648625
-    tokens: 16182
+    text: 長期の引きこもり、昼夜逆転、そして AI コーディングへの不安が、Claude Session Limit をきっかけとした外出を「外」への試みに変えた。MacBook Air は屋外では輝度が足りず、17P のローミング LTE もつながらない。コードを書き続けることもスマホを眺めることもできないなか、川沿いの荒れた景色、朽ちた遊歩道、工事の止まったマンションが、次々と幼い日の記憶にぶつかっていく。ここで問われているのは屋外での生産性ではなく、人が陽の光や都市や、かつての暮らしとの同期を失ったあとに残る違和感である。
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:45:25.575751Z
+    seconds: 8.71965575
+    tokens: 27568
     review: false
   ko-KR:
-    text: 장기간의 칩거, 뒤바뀐 낮과 밤, AI 코딩 불안은 Claude Session Limit 뒤에 나선 외출을 ‘바깥’에 대한 탐색으로 만든다. MacBook Air는 야외 밝기가 부족하고 17P의 로밍 LTE는 먹통이라, 코드를 계속 쓰거나 휴대폰을 들여다보는 일 모두 불가능하다. 강변의 황량한 풍경, 낡은 잔도와 공사가 멈춘 건물은 자꾸만 어린 시절의 기억과 맞부딪힌다. 이 글이 주목하는 것은 야외 생산성이 아니라, 사람이 햇빛과 도시, 지난날의 삶과 엇박자가 난 뒤 느끼는 낯섦이다.
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:12:01.40551Z
-    seconds: 12.498650291
-    tokens: 16192
+    text: 장기간의 칩거, 낮과 밤이 뒤바뀐 생활, 그리고 AI 코딩에 대한 불안은 Claude Session Limit 이후의 외출을 「바깥」에 대한 탐색으로 만든다. MacBook Air는 야외에서 밝기가 부족하고 17P 로밍 LTE는 먹통이라 코딩을 이어가는 것도 휴대폰을 보는 것도 불가능하다. 강변의 황량한 풍경, 낡은 산책로와 공사가 멈춘 아파트 단지는 끊임없이 어린 시절의 기억과 부딪힌다. 이 글이 관심을 두는 것은 야외에서의 생산성이 아니라, 사람이 햇빛과 도시와 옛 생활로부터 동기화를 잃은 뒤에 찾아오는 낯섦이다.
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:45:43.142491Z
+    seconds: 9.004231584
+    tokens: 27641
     review: false
   zh-CN:
     text: 长期宅居、昼夜颠倒与 AI 编程焦虑，让一次 Claude Session Limit 后的出门成为对「外面」的试探。MacBook Air 户外亮度不足、17P 漫游 LTE 失灵，继续写代码或刷手机都不可行；沿江荒景、破旧栈道与停工楼盘，则不断撞上童年记忆。它关心的不是户外生产力，而是人与阳光、城市和旧日生活失去同步后的陌生感。
@@ -57,10 +57,10 @@ summary:
     tokens: 20470
     review: false
   zh-TW:
-    text: 長期宅居、晝夜顛倒與 AI 程式設計焦慮，讓一次 Claude Session Limit 後的出門成為對「外面」的試探。MacBook Air 戶外亮度不足、17P 漫遊 LTE 失靈，繼續寫程式或滑手機都不可行；沿江荒景、破舊棧道與停工建案，則不斷撞上童年記憶。它關心的不是戶外生產力，而是人與陽光、城市和舊日生活失去同步後的陌生感。
-    provider: openai
-    model: gpt-5-6-sol-xhigh
-    at: 2026-08-10T05:12:43.825367Z
-    seconds: 11.360879917
-    tokens: 16149
+    text: 長期宅居、日夜顛倒與 AI 編程焦慮，讓一次 Claude Session Limit 後的出門成為對「外面」的試探。MacBook Air 戶外亮度不足、17P 漫遊 LTE 失靈，繼續寫程式或滑手機都不可行；沿江荒景、破舊棧道與停工樓盤，則不斷撞上童年記憶。它關心的不是戶外生產力，而是人與陽光、城市和舊日生活失去同步後的陌生感。
+    provider: anthropic
+    model: claude-opus-5
+    at: 2026-08-29T23:46:08.011947Z
+    seconds: 8.897000166
+    tokens: 27529
     review: false
