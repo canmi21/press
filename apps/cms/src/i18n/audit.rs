@@ -19,6 +19,10 @@ use super::width;
 /// says nothing about whether the words were translated.
 const HAN_SCRIPT_LOCALES: [&str; 3] = ["zh-CN", "zh-TW", "ja-JP"];
 
+/// Marks that open something and are followed immediately by what they open. Deliberately
+/// without the French guillemet, which does take a space in its own typography.
+const OPENING_MARKS: [char; 6] = ['¿', '¡', '(', '[', '\u{201C}', '\u{2018}'];
+
 /// One suspect translation, named precisely enough to find and judge.
 #[derive(Debug, PartialEq)]
 pub struct Finding {
@@ -102,6 +106,19 @@ pub fn of(
 	if !super::validate::spacing_intact(translation) {
 		findings.push(finding(
 			"a note directive is glued to the word beside it".to_owned(),
+		));
+	}
+
+	// The correction overshooting: told to space a directive off the word beside it, a model
+	// also spaces it off an opening mark, where the mark is already the boundary and the space
+	// is a typographic error -- Spanish `¿ Modelo`. Reported rather than refused: which marks
+	// take a space is a per-language typographic convention, and French genuinely spaces its
+	// guillemets, so a threshold here would be wrong somewhere.
+	if OPENING_MARKS.iter().any(|mark| {
+		translation.contains(&format!("{mark} :fn[")) || translation.contains(&format!("{mark} :tn["))
+	}) {
+		findings.push(finding(
+			"a space follows an opening mark before a note directive".to_owned(),
 		));
 	}
 

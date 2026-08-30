@@ -195,7 +195,9 @@ pub fn build_for(
 			 - Written in a language that separates words with spaces, the label needs those spaces \
 			 around any note directive as well: the source may write one flush against the \
 			 neighbouring characters because its script does not space words, and copying that \
-			 joins two of your words into one.",
+			 joins two of your words into one. Only where a word actually touches it -- after an \
+			 opening mark such as ¿ or ( the directive stays flush against it, because that mark \
+			 is already the boundary and a space after it is a typographic error.",
 			han = super::width::ONE_LINE / 2,
 			latin = super::width::ONE_LINE,
 			clamp = super::width::CLAMP,
