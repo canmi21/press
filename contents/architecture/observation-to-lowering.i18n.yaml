@@ -585,71 +585,6 @@ segments:
       seconds: 4.159278083
       tokens: 27989
       review: false
-  0ce8c72ed341d47de2e72223966e14ea:
-    de-DE:
-      text: '## Lokale Ownership {#local-ownership}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:47:46.210611Z
-      seconds: 4.205991625
-      tokens: 28070
-      review: false
-    en-US:
-      text: '## Local ownership {#local-ownership}'
-      provider: anthropic
-      model: claude-fable-5
-      at: 2026-08-29T22:33:27.833298Z
-      seconds: 3.696531458
-      tokens: 28137
-      review: false
-    es-ES:
-      text: '## Propiedad local {#local-ownership}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:47:46.210611Z
-      seconds: 4.205991625
-      tokens: 28070
-      review: false
-    fr-FR:
-      text: '## Propriété locale {#local-ownership}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:47:46.210611Z
-      seconds: 4.205991625
-      tokens: 28070
-      review: false
-    ja-JP:
-      text: '## 局所的なオーナーシップ {#local-ownership}'
-      provider: anthropic
-      model: claude-fable-5
-      at: 2026-08-29T22:33:27.833298Z
-      seconds: 3.696531458
-      tokens: 28137
-      review: false
-    ko-KR:
-      text: '## 국소적 소유권 {#local-ownership}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:47:46.210611Z
-      seconds: 4.205991625
-      tokens: 28070
-      review: false
-    zh-CN:
-      text: '## 局部所有权 {#local-ownership}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:47:46.210611Z
-      seconds: 4.205991625
-      tokens: 28070
-      review: false
-    zh-TW:
-      text: '## 局部所有權 {#local-ownership}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:47:46.210611Z
-      seconds: 4.205991625
-      tokens: 28070
-      review: false
   10053b2847765f024701d88e98676163:
     de-DE:
       text: :spoiler[`UI structure` ≈ `template AST`, `JavaScript` ≈ `values` + `behavior` ist hier längst Alltag]
@@ -909,6 +844,71 @@ segments:
       at: 2026-08-29T22:47:55.758871Z
       seconds: 27.870072708
       tokens: 30282
+      review: false
+  11d247200773e600e2b75fae73cb513f:
+    de-DE:
+      text: '### Kein CSS-in-JS {#no-css-in-js}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:59:03.893188Z
+      seconds: 4.297633708
+      tokens: 28002
+      review: false
+    en-US:
+      text: '### No CSS-in-JS {#no-css-in-js}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:53.427068Z
+      seconds: 3.472226583
+      tokens: 28039
+      review: false
+    es-ES:
+      text: '### Nada de CSS-in-JS {#no-css-in-js}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:59:03.893188Z
+      seconds: 4.297633708
+      tokens: 28002
+      review: false
+    fr-FR:
+      text: '### Pas de CSS-in-JS {#no-css-in-js}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:59:03.893188Z
+      seconds: 4.297633708
+      tokens: 28002
+      review: false
+    ja-JP:
+      text: '### CSS-in-JS は使わない {#no-css-in-js}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:53.427068Z
+      seconds: 3.472226583
+      tokens: 28039
+      review: false
+    ko-KR:
+      text: '### CSS-in-JS는 쓰지 않는다 {#no-css-in-js}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:59:03.893188Z
+      seconds: 4.297633708
+      tokens: 28002
+      review: false
+    zh-CN:
+      text: '### 不要 CSS-in-JS {#no-css-in-js}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:59:03.893188Z
+      seconds: 4.297633708
+      tokens: 28002
+      review: false
+    zh-TW:
+      text: '### 不要 CSS-in-JS {#no-css-in-js}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:59:03.893188Z
+      seconds: 4.297633708
+      tokens: 28002
       review: false
   15b89b0fd7c4c83a4b1c2b985b764ee9:
     de-DE:
@@ -4046,6 +4046,71 @@ segments:
       seconds: 4.940130708
       tokens: 28005
       review: false
+  6a0a919ff78786762a5e98207087c824:
+    de-DE:
+      text: '### Lokale Ownership {#local-ownership}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:47:46.210611Z
+      seconds: 4.205991625
+      tokens: 28070
+      review: false
+    en-US:
+      text: '### Local ownership {#local-ownership}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:27.833298Z
+      seconds: 3.696531458
+      tokens: 28137
+      review: false
+    es-ES:
+      text: '### Propiedad local {#local-ownership}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:47:46.210611Z
+      seconds: 4.205991625
+      tokens: 28070
+      review: false
+    fr-FR:
+      text: '### Propriété locale {#local-ownership}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:47:46.210611Z
+      seconds: 4.205991625
+      tokens: 28070
+      review: false
+    ja-JP:
+      text: '### 局所的なオーナーシップ {#local-ownership}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:33:27.833298Z
+      seconds: 3.696531458
+      tokens: 28137
+      review: false
+    ko-KR:
+      text: '### 국소적 소유권 {#local-ownership}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:47:46.210611Z
+      seconds: 4.205991625
+      tokens: 28070
+      review: false
+    zh-CN:
+      text: '### 局部所有权 {#local-ownership}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:47:46.210611Z
+      seconds: 4.205991625
+      tokens: 28070
+      review: false
+    zh-TW:
+      text: '### 局部所有權 {#local-ownership}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:47:46.210611Z
+      seconds: 4.205991625
+      tokens: 28070
+      review: false
   6b3ba63b75ec447d9bd03d284c3627ff:
     de-DE:
       text: '## Blackbox {#react-black-box}'
@@ -4175,71 +4240,6 @@ segments:
       at: 2026-08-29T22:51:47.421848Z
       seconds: 12.916877667
       tokens: 28623
-      review: false
-  6bc7bbc2257b8b049b689b3df96677cf:
-    de-DE:
-      text: '## Vue {#why-not-vue}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:51:57.238224Z
-      seconds: 3.559939667
-      tokens: 29281
-      review: false
-    en-US:
-      text: '## Vue {#why-not-vue}'
-      provider: anthropic
-      model: claude-fable-5
-      at: 2026-08-29T22:35:24.922193Z
-      seconds: 3.458257083
-      tokens: 29375
-      review: false
-    es-ES:
-      text: '## Vue {#why-not-vue}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:51:57.238224Z
-      seconds: 3.559939667
-      tokens: 29281
-      review: false
-    fr-FR:
-      text: '## Vue {#why-not-vue}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:51:57.238224Z
-      seconds: 3.559939667
-      tokens: 29281
-      review: false
-    ja-JP:
-      text: '## Vue {#why-not-vue}'
-      provider: anthropic
-      model: claude-fable-5
-      at: 2026-08-29T22:35:24.922193Z
-      seconds: 3.458257083
-      tokens: 29375
-      review: false
-    ko-KR:
-      text: '## Vue {#why-not-vue}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:51:57.238224Z
-      seconds: 3.559939667
-      tokens: 29281
-      review: false
-    zh-CN:
-      text: '## Vue {#why-not-vue}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:51:57.238224Z
-      seconds: 3.559939667
-      tokens: 29281
-      review: false
-    zh-TW:
-      text: '## Vue {#why-not-vue}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:51:57.238224Z
-      seconds: 3.559939667
-      tokens: 29281
       review: false
   6c0f0b8b06684280f348bb507b06dc73:
     de-DE:
@@ -4435,6 +4435,71 @@ segments:
       at: 2026-08-29T22:52:00.804746Z
       seconds: 5.39344375
       tokens: 28110
+      review: false
+  71431f194150083b015716eeff7b21f4:
+    de-DE:
+      text: '### Vue {#why-not-vue}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:51:57.238224Z
+      seconds: 3.559939667
+      tokens: 29281
+      review: false
+    en-US:
+      text: '### Vue {#why-not-vue}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:24.922193Z
+      seconds: 3.458257083
+      tokens: 29375
+      review: false
+    es-ES:
+      text: '### Vue {#why-not-vue}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:51:57.238224Z
+      seconds: 3.559939667
+      tokens: 29281
+      review: false
+    fr-FR:
+      text: '### Vue {#why-not-vue}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:51:57.238224Z
+      seconds: 3.559939667
+      tokens: 29281
+      review: false
+    ja-JP:
+      text: '### Vue {#why-not-vue}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:35:24.922193Z
+      seconds: 3.458257083
+      tokens: 29375
+      review: false
+    ko-KR:
+      text: '### Vue {#why-not-vue}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:51:57.238224Z
+      seconds: 3.559939667
+      tokens: 29281
+      review: false
+    zh-CN:
+      text: '### Vue {#why-not-vue}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:51:57.238224Z
+      seconds: 3.559939667
+      tokens: 29281
+      review: false
+    zh-TW:
+      text: '### Vue {#why-not-vue}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:51:57.238224Z
+      seconds: 3.559939667
+      tokens: 29281
       review: false
   71dcc04d2acea4e8fdd9a1b1f822a9a7:
     de-DE:
@@ -6906,6 +6971,71 @@ segments:
       seconds: 13.444120542
       tokens: 28494
       review: false
+  c2d56a15d8e1ced7b5008683e1820140:
+    de-DE:
+      text: '### Solid {#solid-ecosystem}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:58:46.694632Z
+      seconds: 3.752079042
+      tokens: 28509
+      review: false
+    en-US:
+      text: '### Solid {#solid-ecosystem}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:48.082559Z
+      seconds: 3.471991125
+      tokens: 28575
+      review: false
+    es-ES:
+      text: '### Solid {#solid-ecosystem}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:58:46.694632Z
+      seconds: 3.752079042
+      tokens: 28509
+      review: false
+    fr-FR:
+      text: '### Solid {#solid-ecosystem}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:58:46.694632Z
+      seconds: 3.752079042
+      tokens: 28509
+      review: false
+    ja-JP:
+      text: '### Solid {#solid-ecosystem}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:48.082559Z
+      seconds: 3.471991125
+      tokens: 28575
+      review: false
+    ko-KR:
+      text: '### Solid {#solid-ecosystem}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:58:46.694632Z
+      seconds: 3.752079042
+      tokens: 28509
+      review: false
+    zh-CN:
+      text: '### Solid {#solid-ecosystem}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:58:46.694632Z
+      seconds: 3.752079042
+      tokens: 28509
+      review: false
+    zh-TW:
+      text: '### Solid {#solid-ecosystem}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:58:46.694632Z
+      seconds: 3.752079042
+      tokens: 28509
+      review: false
   c577d7c4f2d9b6ac8ecdac862aa14eaa:
     de-DE:
       text: 'Genau das ist es, was `Seam` am dringendsten braucht und am liebsten mag. In `React` herauszufinden, ob `attributes` nun `static` ist, geht im Grunde nur durch stures Durchprobieren: alle möglichen Eingaben einmal durchlaufen lassen — bleibt `attribute` unverändert, ist es `static`, ändert es sich, verpasst man ihm eben ein `slot`.'
@@ -7442,6 +7572,71 @@ segments:
       seconds: 26.289812458
       tokens: 30180
       review: false
+  d17a27f321d3d5ff80ee19b40b6ee14e:
+    de-DE:
+      text: '### React {#leaving-react}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:57:58.323104Z
+      seconds: 4.10939475
+      tokens: 28664
+      review: false
+    en-US:
+      text: '### React {#leaving-react}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:30.400697Z
+      seconds: 3.188288292
+      tokens: 28770
+      review: false
+    es-ES:
+      text: '### React {#leaving-react}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:57:58.323104Z
+      seconds: 4.10939475
+      tokens: 28664
+      review: false
+    fr-FR:
+      text: '### React {#leaving-react}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:57:58.323104Z
+      seconds: 4.10939475
+      tokens: 28664
+      review: false
+    ja-JP:
+      text: '### React {#leaving-react}'
+      provider: anthropic
+      model: claude-fable-5
+      at: 2026-08-29T22:37:30.400697Z
+      seconds: 3.188288292
+      tokens: 28770
+      review: false
+    ko-KR:
+      text: '### React {#leaving-react}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:57:58.323104Z
+      seconds: 4.10939475
+      tokens: 28664
+      review: false
+    zh-CN:
+      text: '### React {#leaving-react}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:57:58.323104Z
+      seconds: 4.10939475
+      tokens: 28664
+      review: false
+    zh-TW:
+      text: '### React {#leaving-react}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-29T22:57:58.323104Z
+      seconds: 4.10939475
+      tokens: 28664
+      review: false
   d3fb4cf158ccfef7fa076127326eaaf3:
     de-DE:
       text: Nur so wird die statische Referenz `compose`; es läuft weiterhin über das `hatch` unten, woraus sich ergibt, dass die Einheit von CTR der statische Komponentengraph ist und nicht die einzelne Datei. Das meiste ist standardmäßig `structure known`, ein kleiner Teil ausdrücklich `escape hatch`, und `SSR fallback` begegnet einem im Alltag fast nie. Alles Übrige, was nicht in der Tabelle steht, wird durchweg als `opaque` behandelt -- ist das geklärt, muss man überhaupt nicht mehr raten. `CTR` ist nur das `execution model` über dieser Teilmenge, und selbst wenn ich zu Svelte wechsle, will ich nicht :fn[für den gesamten Umfang von Svelte]{is="garantieren -- das kann niemand, jede Sprache hat schrullige und doch legitime Schreibweisen, und ich kann nur eine gute Lösung für vernünftige Anwendungsfälle anbieten"} garantieren (x)
@@ -7896,71 +8091,6 @@ segments:
       at: 2026-08-29T22:57:58.323039Z
       seconds: 9.763064375
       tokens: 28749
-      review: false
-  dd578702bb519ac402fa6b8a4849e978:
-    de-DE:
-      text: '## React {#leaving-react}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:57:58.323104Z
-      seconds: 4.10939475
-      tokens: 28664
-      review: false
-    en-US:
-      text: '## React {#leaving-react}'
-      provider: anthropic
-      model: claude-fable-5
-      at: 2026-08-29T22:37:30.400697Z
-      seconds: 3.188288292
-      tokens: 28770
-      review: false
-    es-ES:
-      text: '## React {#leaving-react}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:57:58.323104Z
-      seconds: 4.10939475
-      tokens: 28664
-      review: false
-    fr-FR:
-      text: '## React {#leaving-react}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:57:58.323104Z
-      seconds: 4.10939475
-      tokens: 28664
-      review: false
-    ja-JP:
-      text: '## React {#leaving-react}'
-      provider: anthropic
-      model: claude-fable-5
-      at: 2026-08-29T22:37:30.400697Z
-      seconds: 3.188288292
-      tokens: 28770
-      review: false
-    ko-KR:
-      text: '## React {#leaving-react}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:57:58.323104Z
-      seconds: 4.10939475
-      tokens: 28664
-      review: false
-    zh-CN:
-      text: '## React {#leaving-react}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:57:58.323104Z
-      seconds: 4.10939475
-      tokens: 28664
-      review: false
-    zh-TW:
-      text: '## React {#leaving-react}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:57:58.323104Z
-      seconds: 4.10939475
-      tokens: 28664
       review: false
   de962da0b682180e0b0f42daede59835:
     de-DE:
@@ -8547,71 +8677,6 @@ segments:
       seconds: 4.115015583
       tokens: 28246
       review: false
-  e752b785b80b2b87badb4606948ec605:
-    de-DE:
-      text: '## Solid {#solid-ecosystem}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:58:46.694632Z
-      seconds: 3.752079042
-      tokens: 28509
-      review: false
-    en-US:
-      text: '## Solid {#solid-ecosystem}'
-      provider: anthropic
-      model: claude-fable-5
-      at: 2026-08-29T22:37:48.082559Z
-      seconds: 3.471991125
-      tokens: 28575
-      review: false
-    es-ES:
-      text: '## Solid {#solid-ecosystem}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:58:46.694632Z
-      seconds: 3.752079042
-      tokens: 28509
-      review: false
-    fr-FR:
-      text: '## Solid {#solid-ecosystem}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:58:46.694632Z
-      seconds: 3.752079042
-      tokens: 28509
-      review: false
-    ja-JP:
-      text: '## Solid {#solid-ecosystem}'
-      provider: anthropic
-      model: claude-fable-5
-      at: 2026-08-29T22:37:48.082559Z
-      seconds: 3.471991125
-      tokens: 28575
-      review: false
-    ko-KR:
-      text: '## Solid {#solid-ecosystem}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:58:46.694632Z
-      seconds: 3.752079042
-      tokens: 28509
-      review: false
-    zh-CN:
-      text: '## Solid {#solid-ecosystem}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:58:46.694632Z
-      seconds: 3.752079042
-      tokens: 28509
-      review: false
-    zh-TW:
-      text: '## Solid {#solid-ecosystem}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:58:46.694632Z
-      seconds: 3.752079042
-      tokens: 28509
-      review: false
   e75f2c659d91bdb036794c327d573ad1:
     de-DE:
       text: 'Ein weiterer riesiger Gewinn ist eigentlich CSS: In Svelte lässt sich das schreiben als'
@@ -8872,70 +8937,70 @@ segments:
       seconds: 14.933699459
       tokens: 28980
       review: false
-  f06673d218b40b2095ed66d5395976a9:
+  ef859ed0e4f61fe7d54c8bdcc41b8494:
     de-DE:
-      text: '## Kein CSS-in-JS {#no-css-in-js}'
+      text: '## :fn[Pseudo-SSR]{is="meint hier gezielt, zur Anfragezeit kein klassisches UI-Render auszuführen und den Effekt von SSR auf anderem Weg zu erreichen"} {#beyond-ssr}'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:59:03.893188Z
-      seconds: 4.297633708
-      tokens: 28002
+      at: 2026-08-30T02:55:14.206367Z
+      seconds: 10.208693416
+      tokens: 29642
       review: false
     en-US:
-      text: '## No CSS-in-JS {#no-css-in-js}'
+      text: '## :fn[Pseudo SSR]{is="here specifically means not running a traditional UI render at request time, yet achieving the effect of SSR by other means"} {#beyond-ssr}'
       provider: anthropic
-      model: claude-fable-5
-      at: 2026-08-29T22:37:53.427068Z
-      seconds: 3.472226583
-      tokens: 28039
+      model: claude-opus-5
+      at: 2026-08-30T02:55:14.206367Z
+      seconds: 10.208693416
+      tokens: 29642
       review: false
     es-ES:
-      text: '## Nada de CSS-in-JS {#no-css-in-js}'
+      text: '## :fn[Pseudo-SSR]{is="se refiere aquí a no ejecutar un render de UI tradicional en el momento de la petición y lograr el efecto del SSR por otra vía"} {#beyond-ssr}'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:59:03.893188Z
-      seconds: 4.297633708
-      tokens: 28002
+      at: 2026-08-30T02:55:14.206367Z
+      seconds: 10.208693416
+      tokens: 29642
       review: false
     fr-FR:
-      text: '## Pas de CSS-in-JS {#no-css-in-js}'
+      text: '## :fn[Pseudo-SSR]{is="désigne ici le fait de ne pas exécuter de render d''UI classique au moment de la requête, tout en obtenant l''effet du SSR par un autre moyen"} {#beyond-ssr}'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:59:03.893188Z
-      seconds: 4.297633708
-      tokens: 28002
+      at: 2026-08-30T02:55:14.206367Z
+      seconds: 10.208693416
+      tokens: 29642
       review: false
     ja-JP:
-      text: '## CSS-in-JS は使わない {#no-css-in-js}'
+      text: '## :fn[擬似 SSR]{is="ここではリクエスト時に従来の UI render を実行せず、別の方法で SSR と同じ効果を得ることを指す"} {#beyond-ssr}'
       provider: anthropic
-      model: claude-fable-5
-      at: 2026-08-29T22:37:53.427068Z
-      seconds: 3.472226583
-      tokens: 28039
+      model: claude-opus-5
+      at: 2026-08-30T02:55:14.206367Z
+      seconds: 10.208693416
+      tokens: 29642
       review: false
     ko-KR:
-      text: '## CSS-in-JS는 쓰지 않는다 {#no-css-in-js}'
+      text: '## :fn[유사 SSR]{is="여기서는 요청 시점에 전통적인 UI render를 실행하지 않고 다른 방식으로 SSR과 같은 효과를 얻는 것을 가리킨다"} {#beyond-ssr}'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:59:03.893188Z
-      seconds: 4.297633708
-      tokens: 28002
+      at: 2026-08-30T02:55:14.206367Z
+      seconds: 10.208693416
+      tokens: 29642
       review: false
     zh-CN:
-      text: '## 不要 CSS-in-JS {#no-css-in-js}'
+      text: '## :fn[伪 SSR]{is="在这里特指请求时不执行传统的 UI render，而是用其他方式达到了 SSR 的效果"} {#beyond-ssr}'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:59:03.893188Z
-      seconds: 4.297633708
-      tokens: 28002
+      at: 2026-08-30T02:55:14.206367Z
+      seconds: 10.208693416
+      tokens: 29642
       review: false
     zh-TW:
-      text: '## 不要 CSS-in-JS {#no-css-in-js}'
+      text: '## :fn[偽 SSR]{is="在這裡特指請求時不執行傳統的 UI render，而是用其他方式達到了 SSR 的效果"} {#beyond-ssr}'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:59:03.893188Z
-      seconds: 4.297633708
-      tokens: 28002
+      at: 2026-08-30T02:55:14.206367Z
+      seconds: 10.208693416
+      tokens: 29642
       review: false
   f7294aee60d51ba2aa4bdcaf7a548d75:
     de-DE:

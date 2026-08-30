@@ -845,6 +845,71 @@ segments:
       seconds: 23.496486208
       tokens: 16867
       review: false
+  5a870bf216aa87d3b94b01e036b341b3:
+    de-DE:
+      text: '## MUSL gegen glibc {#musl}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:03:03.873652Z
+      seconds: 4.334889917
+      tokens: 28824
+      review: false
+    en-US:
+      text: '## MUSL vs glibc {#musl}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:03:03.873652Z
+      seconds: 4.334889917
+      tokens: 28824
+      review: false
+    es-ES:
+      text: '## MUSL frente a glibc {#musl}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:03:03.873652Z
+      seconds: 4.334889917
+      tokens: 28824
+      review: false
+    fr-FR:
+      text: '## MUSL contre glibc {#musl}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:03:03.873652Z
+      seconds: 4.334889917
+      tokens: 28824
+      review: false
+    ja-JP:
+      text: '## MUSL と glibc {#musl}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:03:03.873652Z
+      seconds: 4.334889917
+      tokens: 28824
+      review: false
+    ko-KR:
+      text: '## MUSL과 glibc {#musl}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:03:03.873652Z
+      seconds: 4.334889917
+      tokens: 28824
+      review: false
+    zh-CN:
+      text: '## MUSL 与 glibc {#musl}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:03:03.873652Z
+      seconds: 4.334889917
+      tokens: 28824
+      review: false
+    zh-TW:
+      text: '## MUSL 與 glibc {#musl}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:03:03.873652Z
+      seconds: 4.334889917
+      tokens: 28824
+      review: false
   5aa2aca5f3799916473ef8b5a278b286:
     de-DE:
       text: So lassen sich Drittanbieterabhängigkeiten mit O3 kompilieren, wodurch sich nur der erste vollständige Build verlängert; alle weiteren Builds erfolgen inkrementell. Externe Abhängigkeiten werden in der Regel nicht häufig aktualisiert. Wenn man für sie O3 und für den eigenen Anwendungscode O0 verwendet, erhält man daher meist eine gute Entwicklungsumgebung mit einem ausgewogenen Verhältnis zwischen Geschwindigkeit und Binärgröße. Im Veröffentlichungsmodus empfehle ich jedoch weiterhin, die Optimierung mit O3 oder Z voll auszureizen – dazu gibt es nicht viel mehr zu sagen.

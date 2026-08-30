@@ -156,7 +156,7 @@ rustflags = ["-C", "link-arg=-fuse-ld=mold"]
 
 提升还是很明显的，但是很遗憾 macOS 上只有 sold 这个商业项目，但是好消息是 macOS 上的 lld or Apple 自带的 ld64 本身已经不慢了，尤其是 Xcode 15 之后那个新链接器，速度提升超级明显，不过这个玩意唯一的不好就是 macOS 无人值守 CI 和更新后每次都要 sudo Accept 一个条款，导致我好几次 CI 定时任务挂掉。
 
-## MUSL {#musl}
+## MUSL 与 glibc {#musl}
 
 我本人是一个 MUSL 厨，非常讨厌 GNU glibc，但是开发我还是推荐你使用 `x86_64-unknown-linux-gnu` 为什么呢，因为快，MUSL 最大的卖点是能生成完全静态链接的二进制——不依赖系统上的任何动态库，编译出来的东西拷到任何 Linux 机器上就能跑，特别适合容器和嵌入式，但是慢也慢在静态链接，因为链接器需要把所有东西都打包进去，链接阶段的工作量比动态链接大不少。
 

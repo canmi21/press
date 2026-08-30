@@ -1300,6 +1300,71 @@ segments:
       seconds: 74.805423541
       tokens: 19810
       review: false
+  42dcc4ead4871b4b808025500bffec62:
+    de-DE:
+      text: '## Seam und SeamJS {#seamjs}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:02:59.209925Z
+      seconds: 4.6538446669999995
+      tokens: 28936
+      review: false
+    en-US:
+      text: '## Seam and SeamJS {#seamjs}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:02:59.209925Z
+      seconds: 4.6538446669999995
+      tokens: 28936
+      review: false
+    es-ES:
+      text: '## Seam y SeamJS {#seamjs}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:02:59.209925Z
+      seconds: 4.6538446669999995
+      tokens: 28936
+      review: false
+    fr-FR:
+      text: '## Seam et SeamJS {#seamjs}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:02:59.209925Z
+      seconds: 4.6538446669999995
+      tokens: 28936
+      review: false
+    ja-JP:
+      text: '## Seam と SeamJS {#seamjs}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:02:59.209925Z
+      seconds: 4.6538446669999995
+      tokens: 28936
+      review: false
+    ko-KR:
+      text: '## Seam과 SeamJS {#seamjs}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:02:59.209925Z
+      seconds: 4.6538446669999995
+      tokens: 28936
+      review: false
+    zh-CN:
+      text: '## Seam 与 SeamJS {#seamjs}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:02:59.209925Z
+      seconds: 4.6538446669999995
+      tokens: 28936
+      review: false
+    zh-TW:
+      text: '## Seam 與 SeamJS {#seamjs}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:02:59.209925Z
+      seconds: 4.6538446669999995
+      tokens: 28936
+      review: false
   46a2851690f3ecc92712fd6b0091238d:
     de-DE:
       text: Tatsächlich ist mir aber ein ziemlich raffinierter `Pipeline` eingefallen, um das umzusetzen, und genau deshalb muss ich es als eine Art `Protocol` bezeichnen. Außerdem fand ich es schon immer ausgesprochen töricht, dass Full-Stack-Frameworks die Grenze zwischen Frontend und Backend verwischen. (Allerdings muss ich zugeben, dass Next.js in den letzten Jahren in dieser Hinsicht eine sehr gute Entwicklererfahrung geboten hat, wodurch viele Einsteiger glauben, eine Full-Stack-Anwendung zu entwickeln sei ganz einfach; tatsächlich entstehen daraus jedoch auch viele Sicherheitsrisiken – aber ich schweife ab.)
@@ -2210,71 +2275,6 @@ segments:
       seconds: 31.586537459
       tokens: 16775
       review: false
-  74a3ce40be4e9268244b3b26976864d5:
-    de-DE:
-      text: '## CTR × SSR {#ctr-x-ssr}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:29:15.013876Z
-      seconds: 23.614611292
-      tokens: 16950
-      review: false
-    en-US:
-      text: '## CTR × SSR {#ctr-x-ssr}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:29:15.013876Z
-      seconds: 23.614611292
-      tokens: 16950
-      review: false
-    es-ES:
-      text: '## CTR × SSR {#ctr-x-ssr}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:29:15.013876Z
-      seconds: 23.614611292
-      tokens: 16950
-      review: false
-    fr-FR:
-      text: '## CTR × SSR {#ctr-x-ssr}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:29:15.013876Z
-      seconds: 23.614611292
-      tokens: 16950
-      review: false
-    ja-JP:
-      text: '## CTR × SSR {#ctr-x-ssr}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:29:15.013876Z
-      seconds: 23.614611292
-      tokens: 16950
-      review: false
-    ko-KR:
-      text: '## CTR × SSR {#ctr-x-ssr}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:29:15.013876Z
-      seconds: 23.614611292
-      tokens: 16950
-      review: false
-    zh-CN:
-      text: '## CTR 与 SSR {#ctr-x-ssr}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:44:20.722206Z
-      seconds: 4.723000167
-      tokens: 19245
-      review: false
-    zh-TW:
-      text: '## CTR × SSR {#ctr-x-ssr}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:29:15.013876Z
-      seconds: 23.614611292
-      tokens: 16950
-      review: false
   74c8398859e4ce8be3842fbe1f8a9902:
     de-DE:
       text: '## Frontend-UI-Unabhängigkeit {#ui-framework-agnostic}'
@@ -2925,71 +2925,6 @@ segments:
       seconds: 65.704865416
       tokens: 19034
       review: false
-  9090e380fb1b42aff540bfabaad95bbe:
-    de-DE:
-      text: '## Vielleicht CTR? {#maybe-ctr}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:30:06.074107Z
-      seconds: 28.705303291
-      tokens: 16994
-      review: false
-    en-US:
-      text: '## Maybe CTR? {#maybe-ctr}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:30:06.074107Z
-      seconds: 28.705303291
-      tokens: 16994
-      review: false
-    es-ES:
-      text: '## ¿Quizá el CTR? {#maybe-ctr}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:30:06.074107Z
-      seconds: 28.705303291
-      tokens: 16994
-      review: false
-    fr-FR:
-      text: '## Peut-être le CTR ? {#maybe-ctr}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:30:06.074107Z
-      seconds: 28.705303291
-      tokens: 16994
-      review: false
-    ja-JP:
-      text: '## CTRかも？ {#maybe-ctr}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:30:06.074107Z
-      seconds: 28.705303291
-      tokens: 16994
-      review: false
-    ko-KR:
-      text: '## 어쩌면 CTR? {#maybe-ctr}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:30:06.074107Z
-      seconds: 28.705303291
-      tokens: 16994
-      review: false
-    zh-CN:
-      text: '## 也许是 CTR？ {#maybe-ctr}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:44:45.736455Z
-      seconds: 20.193825209
-      tokens: 19289
-      review: false
-    zh-TW:
-      text: '## 也許是 CTR？ {#maybe-ctr}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:30:06.074107Z
-      seconds: 28.705303291
-      tokens: 16994
-      review: false
   93d2cba94164810c8b03f0f6a0a0fa30:
     de-DE:
       text: 'Zurück zu **Abweichungen bei der Hydration**: Da wir den Typ jedes `slot` bereits zur Kompilierzeit kennen, können wir eine zusätzliche CTR-Äquivalenzprüfung einbauen. Dazu füllen wir das vollständig expandierte HTML mit aus den Typdefinitionen abgeleiteten Testdaten, führen anschließend das herkömmliche `renderToReadableStream()` einmal aus und vergleichen dann, ob die beiden DOM-Bäume semantisch äquivalent sind; Unterschiede bei der Formatierung spielen dabei keine Rolle. Die Formatierung kann geringfügig abweichen, doch solange die DOM-Strukturen streng und vollständig äquivalent sind, ~~kann man sich tatsächlich endgültig von~~ **~~Abweichungen bei der Hydration~~** ~~verabschieden~~. Warum ist das mit herkömmlichem SSR nicht möglich? Weil diese Systeme den Vorgang erst zur Laufzeit ausführen, während die CTR-Struktur verlangt, dass sämtliche Einschränkungen bereits zur Kompilierzeit umgesetzt werden. Natürlich stellen wir mit `any` auch einen Ausweg bereit, doch wie bei TypeScript gilt: Wer `any` verwendet, muss die Folgen bewusst in Kauf nehmen. Die CLI warnt beim Kompilieren, dass `any` als Ausweg über eine offene Zeichenkette zu einer Abweichung führen kann.'
@@ -3184,6 +3119,71 @@ segments:
       at: 2026-08-10T05:30:20.214866Z
       seconds: 31.0416265
       tokens: 17215
+      review: false
+  999de041d87fd6d09ff79171ddeb7687:
+    de-DE:
+      text: '### Konsistenz? {#consistency}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:30:56.954327Z
+      seconds: 29.141627
+      tokens: 16875
+      review: false
+    en-US:
+      text: '### Consistency? {#consistency}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:30:56.954327Z
+      seconds: 29.141627
+      tokens: 16875
+      review: false
+    es-ES:
+      text: '### ¿Coherencia? {#consistency}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:30:56.954327Z
+      seconds: 29.141627
+      tokens: 16875
+      review: false
+    fr-FR:
+      text: '### Cohérence ? {#consistency}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:30:56.954327Z
+      seconds: 29.141627
+      tokens: 16875
+      review: false
+    ja-JP:
+      text: '### 一貫性は？ {#consistency}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:30:56.954327Z
+      seconds: 29.141627
+      tokens: 16875
+      review: false
+    ko-KR:
+      text: '### 일관성은? {#consistency}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:30:56.954327Z
+      seconds: 29.141627
+      tokens: 16875
+      review: false
+    zh-CN:
+      text: '### 如何保证一致性？ {#consistency}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:16.991655Z
+      seconds: 6.5741791670000005
+      tokens: 19216
+      review: false
+    zh-TW:
+      text: '### 一致性？ {#consistency}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:30:56.954327Z
+      seconds: 29.141627
+      tokens: 16875
       review: false
   999ec04ab43a9fbfb8fa0a97118cf4bf:
     de-DE:
@@ -3445,70 +3445,200 @@ segments:
       seconds: 30.120323
       tokens: 16678
       review: false
-  b97d3cbcdfe80335d3662a3dc06f45a2:
+  aaa3b26c2edbfd0bdbe11a35f722f9e0:
     de-DE:
-      text: '## Konsistenz? {#consistency}'
+      text: '### JTD-Spezifikation {#jtd-spec}'
       provider: openai
       model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:30:56.954327Z
-      seconds: 29.141627
-      tokens: 16875
+      at: 2026-08-10T05:31:43.480992Z
+      seconds: 21.971730083
+      tokens: 16793
       review: false
     en-US:
-      text: '## Consistency? {#consistency}'
+      text: '### JTD Specification {#jtd-spec}'
       provider: openai
       model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:30:56.954327Z
-      seconds: 29.141627
-      tokens: 16875
+      at: 2026-08-10T05:31:43.480992Z
+      seconds: 21.971730083
+      tokens: 16793
       review: false
     es-ES:
-      text: '## ¿Coherencia? {#consistency}'
+      text: '### Especificación JTD {#jtd-spec}'
       provider: openai
       model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:30:56.954327Z
-      seconds: 29.141627
-      tokens: 16875
+      at: 2026-08-10T05:31:43.480992Z
+      seconds: 21.971730083
+      tokens: 16793
       review: false
     fr-FR:
-      text: '## Cohérence ? {#consistency}'
+      text: '### Spécification JTD {#jtd-spec}'
       provider: openai
       model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:30:56.954327Z
-      seconds: 29.141627
-      tokens: 16875
+      at: 2026-08-10T05:31:43.480992Z
+      seconds: 21.971730083
+      tokens: 16793
       review: false
     ja-JP:
-      text: '## 一貫性は？ {#consistency}'
+      text: '### JTD 仕様 {#jtd-spec}'
       provider: openai
       model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:30:56.954327Z
-      seconds: 29.141627
-      tokens: 16875
+      at: 2026-08-10T05:31:43.480992Z
+      seconds: 21.971730083
+      tokens: 16793
       review: false
     ko-KR:
-      text: '## 일관성은? {#consistency}'
+      text: '### JTD 사양 {#jtd-spec}'
       provider: openai
       model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:30:56.954327Z
-      seconds: 29.141627
-      tokens: 16875
+      at: 2026-08-10T05:31:43.480992Z
+      seconds: 21.971730083
+      tokens: 16793
       review: false
     zh-CN:
-      text: '## 如何保证一致性？ {#consistency}'
+      text: '### JTD 规范 {#jtd-spec}'
       provider: openai
       model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:45:16.991655Z
-      seconds: 6.5741791670000005
-      tokens: 19216
+      at: 2026-08-26T06:45:40.176404Z
+      seconds: 6.629373917
+      tokens: 19113
       review: false
     zh-TW:
-      text: '## 一致性？ {#consistency}'
+      text: '### JTD 規範 {#jtd-spec}'
       provider: openai
       model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:30:56.954327Z
-      seconds: 29.141627
-      tokens: 16875
+      at: 2026-08-10T05:31:43.480992Z
+      seconds: 21.971730083
+      tokens: 16793
+      review: false
+  aed78fa768bc52ddaf480d26a6a9fc0f:
+    de-DE:
+      text: '### Vielleicht CTR? {#maybe-ctr}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:30:06.074107Z
+      seconds: 28.705303291
+      tokens: 16994
+      review: false
+    en-US:
+      text: '### Maybe CTR? {#maybe-ctr}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:30:06.074107Z
+      seconds: 28.705303291
+      tokens: 16994
+      review: false
+    es-ES:
+      text: '### ¿Quizá el CTR? {#maybe-ctr}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:30:06.074107Z
+      seconds: 28.705303291
+      tokens: 16994
+      review: false
+    fr-FR:
+      text: '### Peut-être le CTR ? {#maybe-ctr}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:30:06.074107Z
+      seconds: 28.705303291
+      tokens: 16994
+      review: false
+    ja-JP:
+      text: '### CTRかも？ {#maybe-ctr}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:30:06.074107Z
+      seconds: 28.705303291
+      tokens: 16994
+      review: false
+    ko-KR:
+      text: '### 어쩌면 CTR? {#maybe-ctr}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:30:06.074107Z
+      seconds: 28.705303291
+      tokens: 16994
+      review: false
+    zh-CN:
+      text: '### 也许是 CTR？ {#maybe-ctr}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:45.736455Z
+      seconds: 20.193825209
+      tokens: 19289
+      review: false
+    zh-TW:
+      text: '### 也許是 CTR？ {#maybe-ctr}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:30:06.074107Z
+      seconds: 28.705303291
+      tokens: 16994
+      review: false
+  bb61f07aee917a79b0843d8a0423e5e3:
+    de-DE:
+      text: '### CTR × SSR {#ctr-x-ssr}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:29:15.013876Z
+      seconds: 23.614611292
+      tokens: 16950
+      review: false
+    en-US:
+      text: '### CTR × SSR {#ctr-x-ssr}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:29:15.013876Z
+      seconds: 23.614611292
+      tokens: 16950
+      review: false
+    es-ES:
+      text: '### CTR × SSR {#ctr-x-ssr}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:29:15.013876Z
+      seconds: 23.614611292
+      tokens: 16950
+      review: false
+    fr-FR:
+      text: '### CTR × SSR {#ctr-x-ssr}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:29:15.013876Z
+      seconds: 23.614611292
+      tokens: 16950
+      review: false
+    ja-JP:
+      text: '### CTR × SSR {#ctr-x-ssr}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:29:15.013876Z
+      seconds: 23.614611292
+      tokens: 16950
+      review: false
+    ko-KR:
+      text: '### CTR × SSR {#ctr-x-ssr}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:29:15.013876Z
+      seconds: 23.614611292
+      tokens: 16950
+      review: false
+    zh-CN:
+      text: '### CTR 与 SSR {#ctr-x-ssr}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:44:20.722206Z
+      seconds: 4.723000167
+      tokens: 19245
+      review: false
+    zh-TW:
+      text: '### CTR × SSR {#ctr-x-ssr}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:29:15.013876Z
+      seconds: 23.614611292
+      tokens: 16950
       review: false
   bf55e6c2f2de634378a342c1010f5ce1:
     de-DE:
@@ -3770,71 +3900,6 @@ segments:
       seconds: 69.134337584
       tokens: 19307
       review: false
-  c482d57c15362611aafa1d19896dd6e0:
-    de-DE:
-      text: '## Sentinel-Wert {#sentinel}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:26.103606Z
-      seconds: 21.802971458000002
-      tokens: 16893
-      review: false
-    en-US:
-      text: '## Sentinel {#sentinel}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:26.103606Z
-      seconds: 21.802971458000002
-      tokens: 16893
-      review: false
-    es-ES:
-      text: '## Valor centinela {#sentinel}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:26.103606Z
-      seconds: 21.802971458000002
-      tokens: 16893
-      review: false
-    fr-FR:
-      text: '## Valeur sentinelle {#sentinel}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:26.103606Z
-      seconds: 21.802971458000002
-      tokens: 16893
-      review: false
-    ja-JP:
-      text: '## センチネル値 {#sentinel}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:26.103606Z
-      seconds: 21.802971458000002
-      tokens: 16893
-      review: false
-    ko-KR:
-      text: '## 센티널 값 {#sentinel}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:26.103606Z
-      seconds: 21.802971458000002
-      tokens: 16893
-      review: false
-    zh-CN:
-      text: '## 哨兵值 {#sentinel}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:45:24.576939Z
-      seconds: 4.874594
-      tokens: 19152
-      review: false
-    zh-TW:
-      text: '## 哨兵值 {#sentinel}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:26.103606Z
-      seconds: 21.802971458000002
-      tokens: 16893
-      review: false
   ccb2b39319a4c601dec48bcab6bae2f5:
     de-DE:
       text: '## SeamJS {#seamjs}'
@@ -4095,71 +4160,6 @@ segments:
       seconds: 16.173543917
       tokens: 16497
       review: false
-  e20db97cd7c94390ebb1913943b9cac7:
-    de-DE:
-      text: '## JTD-Spezifikation {#jtd-spec}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:43.480992Z
-      seconds: 21.971730083
-      tokens: 16793
-      review: false
-    en-US:
-      text: '## JTD Specification {#jtd-spec}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:43.480992Z
-      seconds: 21.971730083
-      tokens: 16793
-      review: false
-    es-ES:
-      text: '## Especificación JTD {#jtd-spec}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:43.480992Z
-      seconds: 21.971730083
-      tokens: 16793
-      review: false
-    fr-FR:
-      text: '## Spécification JTD {#jtd-spec}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:43.480992Z
-      seconds: 21.971730083
-      tokens: 16793
-      review: false
-    ja-JP:
-      text: '## JTD 仕様 {#jtd-spec}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:43.480992Z
-      seconds: 21.971730083
-      tokens: 16793
-      review: false
-    ko-KR:
-      text: '## JTD 사양 {#jtd-spec}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:43.480992Z
-      seconds: 21.971730083
-      tokens: 16793
-      review: false
-    zh-CN:
-      text: '## JTD 规范 {#jtd-spec}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:45:40.176404Z
-      seconds: 6.629373917
-      tokens: 19113
-      review: false
-    zh-TW:
-      text: '## JTD 規範 {#jtd-spec}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:43.480992Z
-      seconds: 21.971730083
-      tokens: 16793
-      review: false
   e4701007cd132158d1e103345fbf40de:
     de-DE:
       text: '## Der Preis von „kein JS-Runtime" {#no-js-runtime-cost}'
@@ -4354,6 +4354,71 @@ segments:
       at: 2026-08-29T22:14:17.120902Z
       seconds: 47.489193917
       tokens: 32429
+      review: false
+  e63b212666562d148d12ad407641a56f:
+    de-DE:
+      text: '### Sentinel-Wert {#sentinel}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:31:26.103606Z
+      seconds: 21.802971458000002
+      tokens: 16893
+      review: false
+    en-US:
+      text: '### Sentinel {#sentinel}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:31:26.103606Z
+      seconds: 21.802971458000002
+      tokens: 16893
+      review: false
+    es-ES:
+      text: '### Valor centinela {#sentinel}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:31:26.103606Z
+      seconds: 21.802971458000002
+      tokens: 16893
+      review: false
+    fr-FR:
+      text: '### Valeur sentinelle {#sentinel}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:31:26.103606Z
+      seconds: 21.802971458000002
+      tokens: 16893
+      review: false
+    ja-JP:
+      text: '### センチネル値 {#sentinel}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:31:26.103606Z
+      seconds: 21.802971458000002
+      tokens: 16893
+      review: false
+    ko-KR:
+      text: '### 센티널 값 {#sentinel}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:31:26.103606Z
+      seconds: 21.802971458000002
+      tokens: 16893
+      review: false
+    zh-CN:
+      text: '### 哨兵值 {#sentinel}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:45:24.576939Z
+      seconds: 4.874594
+      tokens: 19152
+      review: false
+    zh-TW:
+      text: '### 哨兵值 {#sentinel}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:31:26.103606Z
+      seconds: 21.802971458000002
+      tokens: 16893
       review: false
   f8549fd13877656daca0cfd15179969a:
     de-DE:

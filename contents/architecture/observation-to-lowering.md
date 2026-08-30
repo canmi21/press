@@ -19,7 +19,7 @@ lastmod: 2026-08-23T05:27:18Z
 
 大概从今年下半年开始，我把本站完全从 `TanStack Start` **React** 完全 `port` 为了 `SvelteKit` **Svelte** 全部迁移完之后，我发现它确实很好：`ssr` 的性能开销差不多降了一个数量级别，水合开销非常小，跑起来很舒服，框架编译的哲学也非常棒、非常轻量。但是 `Kit` 的部分总有一些让我觉得很不尽人意的地方。但是这其中大部分可以通过插件解决~~毕竟是 Vite 拼的~~ ，但是总是又一些部分是不能动的；但是这大概率也是我的问题，因为 seam 想要改的地方可能和任何一个存在的 `meta` 框架都有本质上冲突，~~本质上是我在挑战他们的 执行模型(每请求跑 render 函数)、数据边界(load 和 UI 糊在一起)、后端能力(绑死 JS runtime)~~.
 
-## 更精简的:fn[伪 SSR]{is="这里特指请求时不执行传统的 UI render 但是使用其他方式达到了 SSR 的效果"} {#beyond-ssr}
+## :fn[伪 SSR]{is="这里特指请求时不执行传统的 UI render 但是使用其他方式达到了 SSR 的效果"} {#beyond-ssr}
 
 这里不用想肯定有人问：这不就是 `Astro` / `Qwik` / `Marko` 嘛，雀食 seam 在语言形状上 `Marko` 最近，默认少 JS 上 `Astro` 最近，不 `replay hydrate` 上 `Qwik` 最接近；但是呢 他们的 `request-time` 仍是在跑 UI 程序 `island` 各自 `render`、`Qwik` 那次 `SSR`、`Marko` 编译出来的 JS 模板函数，都还是每请求执行一块 `renderer`.
 
@@ -47,17 +47,17 @@ Seam 会水合，但不是传统那种，也不是 Qwik 那种。传统水合是
 
 现在的我非常认同「:fn[***Svelte: for building, not frameworking.***]{is="该理念出自 Rich Harris 2016 《Framework without the frameworking》"}」
 
-## React {#leaving-react}
+### React {#leaving-react}
 
 先说 `React` 吧，抛开被 **Vercel** `Next.js` 商业绑定和 它有自己的 `roadmap` 不谈，首先它 **CVE** 满天飞，~~光这点就注定了你每时每刻都要盯着 **Social Media** 看有没有新的漏洞被 **report & release**~~. 其他家的 **Router** 基本处于:fn[不可用状态特别是 **Remix**]{is="个人主观看法，因人而异，事实上被官方和社区考虑为可用，但是我不同意"}，但 26年 有一个非常特别的选项，那就是 **TanStack** **Start**，我很早就用 **TanStack Router** 了，对此可以给出~~除了:fn[命名风格和数据结构做的不是很美观]{is="纯个人主观偏好，并非框架设计缺陷"}~~，但是从功能性上来说这是我唯一认可的选项。新是新了点，但是它解决了 **Next.js 16** 的 `next-server` 进程至今都没有解决的冷启动页面首次访问速度问题，**Next.js** 其实一直莫名其妙会有这个卡顿问题，不是服务器性能不够，实际上我会归因为要么是 启动 **Load** 没有加载完成，那么就是 `runtime` 还在编译某些内容。~~而且这个结构注定了不太适合 **Cloudflare Worker** 那种多地实例 最近启动的原则~~，只有 :fn[**Vercel** 那种传统 **Node 长进程**]{is="Vercel 并不是传统进程，它会休眠等到实际运行时会被唤醒 但是长进程的思想成立"}不会吃到这个问题(?) ~~有点扯远了，关于 Next.js 以后可以单独写一整片来吐槽~~，但是 :fn[**TanStack**]{is="这里特指目前的 TanStack Start 而不包含其他正在 RC Beta 的库，就比如早期 Router 连稳定都算不上谈何生产"} 真的是我认为已经足够成熟到可以商业使用了，至少我有给某项目的销售站用上了。但这仅仅是唯二的选项(x)
 
-## Vue {#why-not-vue}
+### Vue {#why-not-vue}
 
 Vue 的话我个人从 Vue 2 迁到 Vue 3 的时候，对语法等机制就不太认同了，我心中的 Vue 永远是 Vue2。不可否认的是 Vue 3 有很多很棒的 `feature`，但对比 Vue 2，它的核心对我来说感觉变了；而且变得很大。另外从商业角度上来考量 `Vue` 越来越被 meta 层彻底绑死、被生态控制？处境感觉和 `Svelte` 非常相似，都是开源，但是真的基本上很难有第三者站出来给你做第二个实现，这也是为什么 **TanStack Start** 加入的洗牌给 **Next.js** 的打击真的很大，必须表扬 [Tanner Linsley](https://x.com/tannerlinsley). 另外还有一点也是 `Vue` 的一个不可忽略的问题，早年的 `Vue` 确实是一种革新；但是任何 **UI Stack** 在生态起来后都会遇见生态问题，~~也就是为了兼容性而出现一定的妥协?~~ 特别是这个问题在 `React` 上真的非常明显，现在的 `Vue` 也不例外，开始出现这种:fn[内容]{is="这里可以举例为 Options API + Component Instance Proxy 兼容层，我认为这是早期 Vue 最漂亮的设计之一 至少在 2016 年这让框架看起来不像框架。但到了 TS + Composition API 时代成本明显，新项目不会再用了但又因为是早期成功设计无法真的彻底丢掉"}的时候一般我就会考虑为 **Slop** 了，~~但是也不能说它不好~~，因为当 Nuxt 成为下一个 "企业级" 的框架后，首要的考量已经不再是技术正确不正确，优雅不优雅，而是某些向后兼容 + 稳定性(x
 
 所以 [Evan You](https://github.com/yyx990803) 其实并没有做错什么，甚至乎可以说有人必须站出来当这个 ~~大坏人~~ 而他恰好就是最合适的人选，只是做了最合适的事而已...
 
-## Solid {#solid-ecosystem}
+### Solid {#solid-ecosystem}
 
 **SolidJS** 框架很好、核心也足够稳定，~~但没人愿意给它写生态~~。`Solid` 其实就是早年的 `Rust`，但是 `Rust` 已经挺过来了，`Rust` 在编程领域确实也有类似生态少什么都要自己造轮子的处境，但 `Rust` 工具链能顺滑的让你把轮子造出来、让最小可用单元跑起来，造轮子的难度其实并不是很大？但是很不幸 **SolidJS** 暂时还没有挺过这个阶段，但是就遇到了 **AI 寒冬**；尤其是会在 26年后变得非常困难，Solid 2.0 核心已经很好了也很稳定，但是外围没滚起来，想法非常对，只是可惜生不逢时；就算有少数几个外围，那也只存在于某一两个零散的方面 ~~(比如 TanStack 就有 Solid 实验 Router)~~ 拼不起完整生态。这让它在当前以及未来都处于一个尴尬的位置：没有完整生态，在如今 Agent 爆炸的时代；雪球还没滚起来那么 Agent 就不会优先选择它，如果 AI 都不会优先偏好他意味着更少的机会得到贡献，尤其是当 [Linus Torvalds](https://github.com/torvalds) 都开始 Vibe 的年代，感觉 Solid 很遗憾，想法很好、技术很正确、实现很优雅，但是真的是很可惜它生不逢时...
 
@@ -431,7 +431,7 @@ flowchart LR
 
 以上流程是完全不需要 JS runtime 参与的
 
-## No CSS-in-JS {#no-css-in-js}
+### No CSS-in-JS {#no-css-in-js}
 
 而 CSS-in-JS 我也不接，那倒不是 React 逼着我要兼容下面这样的表达
 
@@ -568,7 +568,7 @@ featureFlags
 
 用 Next.js 的人基本上已经:fn[不在乎性能]{is="用 Next.js 有在乎性能的人，但是他们在乎的是业务逻辑性能而不是 farmwork level 的"}了，我可以很负责的说这句话；他们更多的是再为 Vercel 配套设施买单，如果你用 Next.js 不 hosted on Vercel 那真是一点好处都不吃 😡
 
-## Local ownership {#local-ownership}
+### Local ownership {#local-ownership}
 
 反观 Svelte，它会是非常容易形成局部 ownership 的；
 

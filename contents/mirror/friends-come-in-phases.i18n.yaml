@@ -325,6 +325,71 @@ segments:
       seconds: 9.147366625
       tokens: 19295
       review: false
+  66416b304139cf50b77876115b5c8b45:
+    de-DE:
+      text: '## Zyklen {#cycles}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:03:08.215254Z
+      seconds: 4.012920542
+      tokens: 28998
+      review: false
+    en-US:
+      text: '## Cycles {#cycles}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:03:08.215254Z
+      seconds: 4.012920542
+      tokens: 28998
+      review: false
+    es-ES:
+      text: '## Los ciclos {#cycles}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:03:08.215254Z
+      seconds: 4.012920542
+      tokens: 28998
+      review: false
+    fr-FR:
+      text: '## Les cycles {#cycles}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:03:08.215254Z
+      seconds: 4.012920542
+      tokens: 28998
+      review: false
+    ja-JP:
+      text: '## 周期性 {#cycles}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:03:08.215254Z
+      seconds: 4.012920542
+      tokens: 28998
+      review: false
+    ko-KR:
+      text: '## 주기성 {#cycles}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:03:08.215254Z
+      seconds: 4.012920542
+      tokens: 28998
+      review: false
+    zh-CN:
+      text: '## 周期性 {#cycles}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:03:08.215254Z
+      seconds: 4.012920542
+      tokens: 28998
+      review: false
+    zh-TW:
+      text: '## 週期性 {#cycles}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T03:03:08.215254Z
+      seconds: 4.012920542
+      tokens: 28998
+      review: false
   764ab5e3a41884365925b92929d8c193:
     de-DE:
       text: 'Und wie genau wird es kalt? Es ist nie ein einzelner Moment. Viel wahrscheinlicher ist, dass ein Kontakt sich Stück für Stück von dir entfernt: Die Nachrichten werden weniger und weniger, es bleibt nichts Substanzielles darin, bis alles zu einer Art :tn[Strähne-am-Leben-Halten]{is="Im Original stand 续火花, der chinesische Ausdruck dafür, jemandem nur deshalb täglich zu schreiben, um das Flammen- oder Serien-Abzeichen einer Chat-App zu erhalten — eine Produktmechanik, die Freundschaft in einen Zähler verwandelt, der nicht zurückspringen darf."} wird? Und am Ende verkommt es zu vollständigem Ignorieren. Wie ein Frosch im langsam erwärmten Wasser: Die Wärme versickert, und sie verschwinden aus deinem Leben. Der Kontakt wird vielleicht nie gelöscht, aber das macht keinen wirklichen Unterschied dazu, dass sie aus deiner Welt verschwunden sind. Und wenn danach doch etwas sie zu dir zurückführt, werden sie sich völlig anders als früher :tn[in Pose werfen]{is="Das Original setzte das englische Verb `act` in Code-Formatierung und hängte eine chinesische Grammatikpartikel daran; der absichtlich holprige Sprachwechsel lässt die veränderte Haltung des anderen gestellt und künstlich wirken."} — kein selbstverständlicher Gefallen mehr unter Vertrauten, sondern etwas über eine unsichtbare Distanz hinweg …'

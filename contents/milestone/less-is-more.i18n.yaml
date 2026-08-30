@@ -780,6 +780,71 @@ segments:
       seconds: 23.029113875
       tokens: 16592
       review: false
+  6d06a086c31d5a91bed4aa41da38e26c:
+    de-DE:
+      text: '### Weniger ist mehr {#less-is-more}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:41:06.93439Z
+      seconds: 18.549389583
+      tokens: 16719
+      review: false
+    en-US:
+      text: '### Less is more {#less-is-more}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:41:06.93439Z
+      seconds: 18.549389583
+      tokens: 16719
+      review: false
+    es-ES:
+      text: '### Menos es más {#less-is-more}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:41:06.93439Z
+      seconds: 18.549389583
+      tokens: 16719
+      review: false
+    fr-FR:
+      text: '### Moins, c’est plus {#less-is-more}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:41:06.93439Z
+      seconds: 18.549389583
+      tokens: 16719
+      review: false
+    ja-JP:
+      text: '### 少ないほど豊か {#less-is-more}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:41:06.93439Z
+      seconds: 18.549389583
+      tokens: 16719
+      review: false
+    ko-KR:
+      text: '### 적을수록 좋다 {#less-is-more}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:41:06.93439Z
+      seconds: 18.549389583
+      tokens: 16719
+      review: false
+    zh-CN:
+      text: '### 少即是多 {#less-is-more}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-26T06:49:20.659184Z
+      seconds: 4.521708584
+      tokens: 18990
+      review: false
+    zh-TW:
+      text: '### 少即是多 {#less-is-more}'
+      provider: openai
+      model: gpt-5-6-sol-xhigh
+      at: 2026-08-10T05:41:06.93439Z
+      seconds: 18.549389583
+      tokens: 16719
+      review: false
   7ee9767101581747f4ff96ad967dabb1:
     de-DE:
       text: 'Das Ironischste daran ist, dass all diese Dinge eigentlich erst nach dem Blog entstehen sollten, dokumentiert, während ich sie baue. Stattdessen wurde der Blog :tn[immer wieder sitzengelassen]{is="Im Original steht 鸽了又鸽, vom chinesischen Slangausdruck 放鸽子 — wörtlich ‚eine Taube fliegen lassen‘, also jemanden versetzen. Ein leichtes, selbstironisches Wort, kein neutrales ‚verschoben‘."}, die Ideen wurden immer mehr, und es gab keinen einzigen Ort, an dem ich sie hätte festhalten können. Auf der einen Seite klagte mich mein Inneres an: Du hast gesagt, Vane wird fertig, also darfst du jetzt nicht aufhören. Auf der anderen Seite eine Ohnmacht, die mit jedem Schritt größer wurde, weil ich mich immer weiter entfernte. Ich wusste die ganze Zeit, was ich tun wollte, ich brachte es nur nicht zustande. Wenn ich genauer darüber nachdenke, habe ich schon sehr lange nicht mehr dagesessen und irgendetwas geschrieben. Im Rückblick zeigt das alles auf dasselbe -- auf Overengineering.'
@@ -1104,71 +1169,6 @@ segments:
       at: 2026-08-10T05:40:54.532582Z
       seconds: 76.627431042
       tokens: 19264
-      review: false
-  98b470be75ff6650b1e7b5e7cdc8791b:
-    de-DE:
-      text: '## Weniger ist mehr {#less-is-more}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:41:06.93439Z
-      seconds: 18.549389583
-      tokens: 16719
-      review: false
-    en-US:
-      text: '## Less is more {#less-is-more}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:41:06.93439Z
-      seconds: 18.549389583
-      tokens: 16719
-      review: false
-    es-ES:
-      text: '## Menos es más {#less-is-more}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:41:06.93439Z
-      seconds: 18.549389583
-      tokens: 16719
-      review: false
-    fr-FR:
-      text: '## Moins, c’est plus {#less-is-more}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:41:06.93439Z
-      seconds: 18.549389583
-      tokens: 16719
-      review: false
-    ja-JP:
-      text: '## 少ないほど豊か {#less-is-more}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:41:06.93439Z
-      seconds: 18.549389583
-      tokens: 16719
-      review: false
-    ko-KR:
-      text: '## 적을수록 좋다 {#less-is-more}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:41:06.93439Z
-      seconds: 18.549389583
-      tokens: 16719
-      review: false
-    zh-CN:
-      text: '## 少即是多 {#less-is-more}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:49:20.659184Z
-      seconds: 4.521708584
-      tokens: 18990
-      review: false
-    zh-TW:
-      text: '## 少即是多 {#less-is-more}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:41:06.93439Z
-      seconds: 18.549389583
-      tokens: 16719
       review: false
   9b3c3ea302ecdb63c26e09738b202a95:
     de-DE:
