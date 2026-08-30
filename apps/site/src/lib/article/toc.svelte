@@ -23,6 +23,17 @@
 	 * line of writing.
 	 */
 	const MIN_BAR_WIDTH = 16;
+	/**
+	 * How far below the shortest entry the bar scale starts, in characters of the heading's own
+	 * type -- the difference between this and a plain min-max, which would put the shortest bar
+	 * at nothing.
+	 *
+	 * One rather than two. At two the scale started far enough below the entries that the
+	 * shortest bar came back nearly as long as the middle ones, which is the flattening this
+	 * exists to undo; one leaves it a stub with presence and keeps the range worth reading. The
+	 * floor below still catches whatever this leaves too short.
+	 */
+	const BASELINE_CHARS = 1;
 	const BAR_HEIGHT = 4;
 	const INDICATOR_HEIGHT = 12;
 	const REVEAL_DELAY = 180;
@@ -46,6 +57,10 @@
 	type AnimationControl = { stop: () => void };
 
 	let hydratedEntries = $state.raw<HydratedEntries>();
+	/** One character of the heading type, which is what the bar baseline is counted in. */
+	let headingEm = $state(0);
+	/** The widest label as the rail will draw it, which is the widest a bar may be. */
+	let labelCeiling = $state(0);
 	const entries = $derived(
 		hydratedEntries?.source === toc
 			? hydratedEntries.entries
@@ -112,7 +127,7 @@
 	}
 
 	/**
-	 * How many lines this entry occupies once the text is showing.
+	 * How the rail will lay this entry out: how many lines it takes, and how wide it draws.
 	 *
 	 * The bars are a thumbnail of the list, so an entry has to contribute the shape it will
 	 * actually have. Measured collapsed, a heading that wraps still reported its single-line
@@ -125,17 +140,53 @@
 	 * at the rail's size, and the two fonts are not proportional to each other. Clamped at two,
 	 * as the label itself is.
 	 */
-	function entryLines(text: string, label: HTMLElement | undefined, available: number): number {
-		if (!label || !Number.isFinite(available) || available <= 0) return 1;
+	function labelMetrics(
+		text: string,
+		label: HTMLElement | undefined,
+		available: number,
+	): { lines: number; drawn: number } {
+		if (!label || !Number.isFinite(available) || available <= 0) return { lines: 1, drawn: 0 };
 		const width = measureNaturalWidth(prepareWithSegments(text, fontOf(label)));
-		return Math.min(2, Math.max(1, Math.ceil(width / available)));
+		return {
+			lines: Math.min(2, Math.max(1, Math.ceil(width / available))),
+			// What the label actually occupies: it cannot exceed the rail, which is where it wraps.
+			drawn: Math.min(width, available),
+		};
 	}
 
-	function linearBars(widths: number[]): number[] {
+	/**
+	 * Bar widths, scaled against the entries rather than against zero.
+	 *
+	 * Measuring every bar as a fraction of the longest assumes the shortest entry is near
+	 * nothing, and an article whose headings are all long breaks that assumption: the bars all
+	 * land in the top of the range and the thumbnail flattens into a block of near-equal lines,
+	 * saying nothing about the list it stands for. Subtracting a baseline restores the contrast
+	 * -- what is drawn is then how much longer each heading is than the shortest one.
+	 *
+	 * The baseline sits `BASELINE_CHARS` below the shortest entry rather than at it, which is
+	 * the whole difference between this and a plain min-max: at the shortest entry the smallest
+	 * bar would be zero, and an entry that exists must be visible. Two characters of the
+	 * heading's own type leaves it a stub with presence. When the shortest entry is already
+	 * shorter than that -- a `前言` or a `CTR` among long ones -- the baseline clamps to zero and
+	 * this is exactly the old scaling, because there is no crowding to undo.
+	 */
+	function linearBars(widths: number[], em: number, ceiling: number): number[] {
 		if (widths.length === 0) return [];
+		// A bar may never be wider than the widest label. The rail's box is `fit-content` around
+		// its entries, sized for them at full expansion -- see spec/styling.md -- and that holds
+		// only while the text is the widest thing in it. In an article whose headings are all
+		// short it is not: the longest label in these two ran to 52px against a 64px bar, so the
+		// bars set the width, and hydrating them from their served 2rem to their real length
+		// widened the box under a control that is centred on it. The rail sat still and `Back`
+		// slid 6px left, over the whole length of the bar animation.
+		const longest = Math.min(MAX_BAR_WIDTH, ceiling > 0 ? ceiling : MAX_BAR_WIDTH);
+		const shortest = Math.min(MIN_BAR_WIDTH, longest);
 		const max = Math.max(...widths);
-		if (max < 1) return widths.map(() => MAX_BAR_WIDTH / 2);
-		return widths.map((w) => Math.max(MIN_BAR_WIDTH, (w / max) * MAX_BAR_WIDTH));
+		if (max < 1) return widths.map(() => longest / 2);
+		const baseline = Math.max(0, Math.min(...widths) - BASELINE_CHARS * em);
+		const span = max - baseline;
+		if (span < 1) return widths.map(() => longest);
+		return widths.map((w) => Math.max(shortest, ((w - baseline) / span) * longest));
 	}
 
 	function indicatorGeometry(button: HTMLElement): IndicatorGeometry {
@@ -221,7 +272,13 @@
 		};
 	}
 
-	const barWidths = $derived(linearBars(entries.map((e) => e.width)));
+	const barWidths = $derived(
+		linearBars(
+			entries.map((e) => e.width),
+			headingEm,
+			labelCeiling,
+		),
+	);
 	const showText = $derived(phase === 'revealed');
 
 	function handleEnter() {
@@ -299,13 +356,17 @@
 			const measured: Entry[] = [];
 			const labels = asideEl?.querySelectorAll<HTMLElement>('[data-toc-text]');
 			const available = expandedLabelWidth();
+			headingEm = headings[0] ? Number.parseFloat(getComputedStyle(headings[0]).fontSize) || 0 : 0;
+			let widest = 0;
 			for (const [index, el] of headings.entries()) {
 				const text = headingText(el);
 				const prepared = prepareWithSegments(text, fontOf(el));
 				const w = measureNaturalWidth(prepared);
-				const label = labels?.[index];
-				measured.push({ el, slug: el.id, width: w / entryLines(text, label, available), text });
+				const { lines, drawn } = labelMetrics(text, labels?.[index], available);
+				widest = Math.max(widest, drawn);
+				measured.push({ el, slug: el.id, width: w / lines, text });
 			}
+			labelCeiling = widest;
 			hydratedEntries = { source, entries: measured };
 			if (initialTarget) {
 				// Bar-width animation snapshots scrollY while resolving keyframes. Start after that

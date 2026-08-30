@@ -195,6 +195,24 @@ size and the two fonts are not proportional to each other.
 A quarter is the shortest that still reads as a line of writing. The floor compresses the range
 rather than reporting it faithfully, and that is the point: this is a thumbnail, not a chart.
 
+**The scale starts below the shortest entry, not at zero.** Measuring each bar as a fraction of
+the longest assumes the shortest is near nothing, and an article whose headings are all long
+breaks that assumption: every bar lands in the top of the range and the thumbnail flattens into
+a block of near-equal lines, which says nothing about the list. The baseline sits one character
+of the heading's own type below the shortest entry -- below rather than at it, which is the
+whole difference from a plain min-max, where the shortest bar would be zero and an entry that
+exists would be invisible. When the shortest entry is already shorter than that, the baseline
+clamps to zero and this is the plain scaling, because there is no crowding to undo.
+
+**A bar may never be wider than the widest label.** The box is `fit-content` around the entries
+at full expansion, which holds only while the text is the widest thing in it -- and in an
+article whose headings are all short it is not. Two of them had a longest label of 52px against
+a 64px bar, so the bars sized the box, and hydrating them from their served width to their real
+one widened it under a control centred on the same box: the rail sat still while `Back` slid 6px
+left, over the whole length of the bar animation. Capping the bars at the widest label as drawn
+restores the invariant rather than patching the symptom -- a thumbnail should not be wider than
+what it is a thumbnail of.
+
 ### Absent rather than squeezed
 
 The rail appears only where the region holds it with `--rail-edge` clear on both sides. An earlier
