@@ -217,6 +217,13 @@ blind spot.
 the user controls, and one edit here reaches all of them through `sync`. Wanting different rules
 in a sub-repo means changing what is copied, not editing the copy.
 
+**What reaches a sub-repo without being copied is the agent hooks.** They are found by walking
+up from the nearest jj workspace root, so an agent committing inside `repos/foo` is held to this
+repository's commit conventions -- the message policy applies with nothing installed in the
+sub-repo. It follows an agent, not a checkout, so a contributor's own clone is unaffected, which
+is the right split: the conventions are the user's, and a contributor writing a pull request is
+not writing this repository's history.
+
 ## The task runner is mise, and it is the only one
 
 A sub-repo carries its own `mise.toml`. mise reads configuration up the directory tree, which

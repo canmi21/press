@@ -84,10 +84,15 @@ def base_root() -> pathlib.Path:
 
 
 def cloned(where: pathlib.Path = REPOS) -> list[pathlib.Path]:
-	"""Sub-repos actually present. Absent ones are not an error -- a checkout may want none."""
+	"""Sub-repos actually present. Absent ones are not an error -- a checkout may want none.
+
+	Any directory counts, rather than only one holding a package.json. A sub-repo may be Rust,
+	or may be a repository nothing has been written into yet, and both still want the shared
+	configuration and still want `check` to notice when they are not a repository at all.
+	"""
 	if not where.is_dir():
 		return []
-	return sorted(p for p in where.iterdir() if p.is_dir() and (p / "package.json").is_file())
+	return sorted(p for p in where.iterdir() if p.is_dir())
 
 
 def is_repository(repo: pathlib.Path) -> bool:
@@ -120,6 +125,8 @@ def pins(repo: pathlib.Path) -> list[tuple[str, str]]:
 
 def consumed(repo: pathlib.Path) -> list[str]:
 	"""Library directories the sub-repo declares a git dependency on, read off package.json."""
+	if not (repo / "package.json").is_file():
+		return []
 	manifest = json.loads((repo / "package.json").read_text())
 	names = []
 	for specifier in manifest.get("dependencies", {}).values():
