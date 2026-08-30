@@ -87,18 +87,30 @@ pub fn of(
 		reason,
 	};
 
-	// A heading is also a rail label. Two lines are allowed and `validate` refuses only what
-	// gets cut off, so the interesting band -- wider than a line, still readable -- is reported
-	// here with the source beside it, because whether a language could have said it shorter is
-	// the judgement a person makes and a threshold cannot.
+	// A section heading is also a rail label. Two lines are allowed and `validate` refuses only
+	// what gets cut off, so the interesting band -- wider than a line, still readable -- is
+	// reported here with the source beside it, because whether a language could have said it
+	// shorter is the judgement a person makes and a threshold cannot.
+	//
+	// A subsection is never listed in the rail, so no width can be wrong for it and nothing here
+	// is a rule it broke. It is still worth saying when one runs very long: it is read in the
+	// prose, where the source headings are short, and a translation several times their length is
+	// usually the translator explaining the section rather than naming it. Reported at the clamp
+	// -- twice a rail line -- so only the genuinely long ones are mentioned.
 	if kind == Kind::Heading {
 		let columns = width::of(translation);
-		if columns > width::ONE_LINE {
-			findings.push(finding(format!(
+		match width::level(source) {
+			Some(2) if columns > width::ONE_LINE => findings.push(finding(format!(
 				"heading wraps the table of contents ({columns} columns, source is {}; one line is {})",
 				width::of(source),
 				width::ONE_LINE,
-			)));
+			))),
+			Some(level) if level > 2 && columns > width::CLAMP => findings.push(finding(format!(
+				"subsection heading runs long ({columns} columns, source is {}); it is not in the \
+				 table of contents, so this is a reading judgement rather than a fit",
+				width::of(source),
+			))),
+			_ => {}
 		}
 	}
 

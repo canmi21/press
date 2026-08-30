@@ -141,6 +141,7 @@ fn validate_reply(
 		boundary,
 		segment::Kind::Prose,
 		region,
+		"",
 		masked,
 		&prompt::LOCALES,
 		None,
@@ -152,6 +153,7 @@ fn validate_reply_for(
 	boundary: &str,
 	kind: segment::Kind,
 	region: segment::Region,
+	source: &str,
 	masked: &segment::Masked,
 	locales: &[&str],
 	_source_locale: Option<&str>,
@@ -165,6 +167,9 @@ fn validate_reply_for(
 	// which is a long way from the reply that caused it. A block cannot gain lines in
 	// translation, so counting them catches it at the point it happens.
 	let allowed = body_lines(masked.text.as_str());
+	// Read from the source rather than from the answer: a reply that changed the marks is a
+	// different fault, and it must not be able to talk its way out of this one.
+	let level = width::level(source);
 	// Width is read after restoring, not before: a marker stands in for code of a different
 	// length, so measuring the masked text would charge the heading for the wrong glyphs.
 	let mut too_wide = Vec::new();
@@ -185,7 +190,7 @@ fn validate_reply_for(
 				glued.push(locale.clone());
 				return false;
 			}
-			let fits = validate::heading_fits(kind, region, text);
+			let fits = validate::heading_fits(kind, region, level, text);
 			if !fits {
 				too_wide.push(format!("{locale} at {} columns", width::of(text)));
 			}
@@ -283,6 +288,7 @@ async fn translate(
 			&request.boundary,
 			item.kind,
 			item.region,
+			&item.source,
 			&masked,
 			&locale_refs,
 			options.source_locale.as_deref(),
@@ -826,6 +832,7 @@ mod tests {
 				boundary,
 				segment::Kind::Prose,
 				segment::Region::Body,
+				"",
 				&masked,
 				&["zh-CN"],
 				Some("zh-CN"),
@@ -838,6 +845,7 @@ mod tests {
 				boundary,
 				segment::Kind::Prose,
 				segment::Region::Body,
+				"",
 				&masked,
 				&["zh-CN"],
 				Some("zh-CN"),

@@ -22,6 +22,20 @@ pub const ONE_LINE: usize = 28;
 /// which is the one outcome that is a loss rather than a judgement -- see `validate`.
 pub const CLAMP: usize = ONE_LINE * 2;
 
+/// The heading level of a source block, or `None` if it is not a heading.
+///
+/// Only a level-2 heading is listed in the rail, so only it is bound by the rail's width -- see
+/// spec/styling.md. A subsection is reached by arriving at its parent, and how long its own
+/// heading runs is a question about the prose, not about a column 8.5rem wide.
+pub fn level(source: &str) -> Option<usize> {
+	let marks = source
+		.trim_start()
+		.chars()
+		.take_while(|c| *c == '#')
+		.count();
+	(2..=6).contains(&marks).then_some(marks)
+}
+
 /// What the table of contents will actually print for this heading.
 ///
 /// The stored segment is markdown: the `##` marks, an explicit `{#slug}` anchor, and any note
@@ -92,6 +106,13 @@ mod tests {
 	#[test]
 	fn emphasis_and_code_marks_are_not_drawn() {
 		assert_eq!(of("## The `slot` protocol"), of("## The slot protocol"));
+	}
+
+	#[test]
+	fn a_level_is_read_from_the_marks_and_nothing_else_is_a_heading() {
+		assert_eq!(level("## Adoption {#adoption}"), Some(2));
+		assert_eq!(level("### Local ownership {#local}"), Some(3));
+		assert_eq!(level("A paragraph about ## things"), None);
 	}
 
 	#[test]

@@ -60,16 +60,23 @@ pub fn spacing_intact(text: &str) -> bool {
 	true
 }
 
-/// Whether a body heading still fits the rail it becomes a navigation label in.
+/// Whether a body section heading still fits the rail it becomes a navigation label in.
 ///
-/// Only the clamp is refused, not the one-line budget. A heading occupying two lines is a
-/// legitimate outcome -- some languages cannot say it shorter, and the rail is built for it --
-/// so rejecting that would buy the same answer again and eventually take a worse one. Past two
-/// lines the end is not shown at all, which is a loss rather than a judgement, and a loss is
-/// what this boundary is for. Everything between the two is reported by `audit` for a person.
-/// See spec/i18n.md.
-pub fn heading_fits(kind: Kind, region: Region, text: &str) -> bool {
-	kind != Kind::Heading || region != Region::Body || width::of(text) <= width::CLAMP
+/// **Only a section is bound by this.** A subsection is not listed in the rail at all, so the
+/// rail's width says nothing about it; its length is a question about the prose, answered by the
+/// prompt and reported by `audit`, not refused here. See spec/styling.md.
+///
+/// For a section, only the clamp is refused, not the one-line budget. A heading occupying two
+/// lines is a legitimate outcome -- some languages cannot say it shorter, and the rail is built
+/// for it -- so rejecting that would buy the same answer again and eventually take a worse one.
+/// Past two lines the end is not shown at all, which is a loss rather than a judgement, and a
+/// loss is what this boundary is for. Everything between the two is reported by `audit` for a
+/// person. See spec/i18n.md.
+pub fn heading_fits(kind: Kind, region: Region, level: Option<usize>, text: &str) -> bool {
+	kind != Kind::Heading
+		|| region != Region::Body
+		|| level != Some(2)
+		|| width::of(text) <= width::CLAMP
 }
 
 /// Whether every `:tn` is one complete `:tn[words]{is="explanation"}` directive.
