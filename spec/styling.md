@@ -179,9 +179,11 @@ around either would push every entry right by the width of a decoration.
 
 ### Collapsed, the bars are a thumbnail of the list
 
-Each bar is its heading's rendered width scaled against the longest, so the collapsed rail reads
-as the table of contents seen from too far away to make out words. Two things decide whether that
-reads as writing or as noise, and both were wrong.
+The collapsed rail reads as the table of contents seen from too far away to make out words: how
+long each entry is, and where the list rises and falls. That is all anyone reads off a column of
+bars, and it is the whole design brief -- **a thumbnail, not a chart**. Exact widths were tried
+first and said less than they cost; below a tenth of the longest heading the differences are
+noise dressed as precision.
 
 **An entry that wraps contributes half its width per line.** Measured flat, a heading that will
 occupy two lines still reported one long line -- and being the longest, it set the scale every
@@ -190,19 +192,41 @@ line at all, and everything else was flattened underneath it. The width is measu
 label's own font rather than the heading's, because the wrap happens in the rail at the rail's
 size and the two fonts are not proportional to each other.
 
-**A bar never falls below a quarter of the longest.** At an eighth, one-word entries -- `Vue`,
-`CTR`, `CSS` -- drew dots between long lines, which is the texture of noise rather than of a page.
-A quarter is the shortest that still reads as a line of writing. The floor compresses the range
-rather than reporting it faithfully, and that is the point: this is a thumbnail, not a chart.
+**Ten steps of the longest heading**, so a bar is the fraction of the longest heading that this
+one is -- which is what it looks like it means. Scaling between the shortest and the longest
+instead would spend the whole range on whatever spread the article happens to have, drawing two
+headings of six and seven characters a third of the rail apart.
 
-**The scale starts below the shortest entry, not at zero.** Measuring each bar as a fraction of
-the longest assumes the shortest is near nothing, and an article whose headings are all long
-breaks that assumption: every bar lands in the top of the range and the thumbnail flattens into
-a block of near-equal lines, which says nothing about the list. The baseline sits one character
-of the heading's own type below the shortest entry -- below rather than at it, which is the
-whole difference from a plain min-max, where the shortest bar would be zero and an entry that
-exists would be invisible. When the shortest entry is already shorter than that, the baseline
-clamps to zero and this is the plain scaling, because there is no crowding to undo.
+Three rules then shape the column, and each exists because the step alone produced something
+that read badly.
+
+**No entry stands more than three steps above a neighbour, and the outlier comes down.** Raising
+everything around it satisfies the same constraint and is not the same thing: one entry towering
+over its neighbours is what reads badly, so the fix is to pull _it_ back rather than stretch the
+rest of the column toward it, which would spend the top of the scale on an article that has
+nothing that long in it. **The tenth step is therefore not something every article reaches** --
+it is there for a heading long enough to earn it against the company it keeps, and an outlier, by
+being an outlier, does not.
+
+**Two neighbours on the same step are separated by one step**, toward whichever side they were
+already nearer. One step rather than more: these two headings are genuinely the same length, and
+a bigger push would say they are not. Two steps was tried and is too much -- with evenly sized
+headings it leaves only differences of two and three, so the column can do nothing but alternate,
+and equal headings get drawn three steps apart. **A tie is broken by the heading's own text**, so
+the same heading falls the same way on every render while two different ones in the same position
+do not; anything derived from the index would make every article break its ties identically,
+which is a pattern rather than a choice.
+
+**A column where nothing reaches the low end slides down until its shortest entry rests on the
+third step.** An article whose headings are all long has no short bar to anchor it and reads as
+uniformly heavy, with the bottom of the scale unused. The third step rather than the first,
+because the shortest entry in such an article is still a long heading. This is **a shift, never a
+rescale**: every difference above it was chosen by the two rules, and rescaling would quietly
+undo them, where moving all of the steps by one amount changes none of them.
+
+So neither end of the scale is guaranteed. The first step is reached by an article that really
+has a two-character heading among longer ones; the last by one that has a heading long enough to
+earn it. The middle is where every column lives.
 
 **A bar may never be wider than the widest label.** The box is `fit-content` around the entries
 at full expansion, which holds only while the text is the widest thing in it -- and in an
@@ -212,6 +236,9 @@ one widened it under a control centred on the same box: the rail sat still while
 left, over the whole length of the bar animation. Capping the bars at the widest label as drawn
 restores the invariant rather than patching the symptom -- a thumbnail should not be wider than
 what it is a thumbnail of.
+
+Every bar is served at the fifth step and animates to its own, so the column resolves outward
+from the middle rather than growing from nothing.
 
 ### Absent rather than squeezed
 
