@@ -4,9 +4,10 @@
 
 	let {
 		slug,
+		depth = 2,
 		notes = [],
 		children,
-	}: { slug: string; notes?: number[]; children: Snippet } = $props();
+	}: { slug: string; depth?: number; notes?: number[]; children: Snippet } = $props();
 
 	function copyHash(e: MouseEvent) {
 		e.preventDefault();
@@ -15,7 +16,20 @@
 	}
 </script>
 
-<h2 id={slug} class="group relative mt-12 font-semibold text-text-strong">
+<!-- A subsection is the same size, weight and colour as a section, and sits closer to what comes
+     before it. The type scale is already spent -- 16px title, 15px heading, 14px prose, one step
+     apart and separated by weight rather than size -- so there is no smaller step to give a third
+     level without flattening the first two. Space is the signal instead, and the honest one:
+     sitting nearer says "this belongs to what is above", which is exactly the relation. It also
+     earns the rail's filtering -- a reader who can see that a heading is a subsection reads a
+     table of contents that lists only sections as complete, not as missing something. -->
+<svelte:element
+	this={`h${depth}`}
+	id={slug}
+	class="group relative font-semibold text-text-strong"
+	class:mt-12={depth === 2}
+	class:mt-8={depth !== 2}
+>
 	<button
 		type="button"
 		aria-label="Copy link to section"
@@ -36,4 +50,4 @@
 				>{number}</a
 			></sup
 		>{/each}
-</h2>
+</svelte:element>

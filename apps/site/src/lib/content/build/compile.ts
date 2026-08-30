@@ -696,7 +696,12 @@ export async function compile(
 				text: heading,
 				...(marks.length > 0 ? { notes: marks } : {}),
 			});
-			toc.push({ slug, text: heading, depth: node.depth });
+			// Only the top level is offered as navigation. The rail is 192px wide and collapses to
+			// a column of bars, which makes it a way to reach a section rather than an outline of
+			// the article; a subsection is reached by arriving at its parent and reading on. Its
+			// anchor still exists and still resolves -- what is filtered is the listing, not the
+			// address. See spec/styling.md.
+			if (node.depth === 2) toc.push({ slug, text: heading, depth: node.depth });
 			feed.push(
 				`<h${node.depth} id="${slug}">${escapeHtml(heading)}${marks
 					.map((number) => `<sup>${number}</sup>`)

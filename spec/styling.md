@@ -224,6 +224,38 @@ The lengths this is computed from sit together on `:root` in
 is repeated by hand: the width at which the rail appears is written as a number in the media query
 and has to be kept in step with the ones it is derived from.
 
+## A subsection is nearer, and for that reason unlisted
+
+An article may carry a second heading level. It renders at the same size, weight and colour as
+a section, and differs only in sitting closer to what precedes it -- `mt-8` where a section
+takes `mt-12`.
+
+**Type size cannot carry this distinction, because it is already spent.** The scale runs 16px
+title, 15px heading, 14px prose: one pixel apart, separated by weight rather than size. A third
+level below that lands on the prose size with only weight left to spend, and weight is what
+divides a heading from prose in the first place. Enlarging the section to make room would undo
+the restraint the whole scale is built on. Space is the remaining signal, and the honest one:
+sitting nearer says _this belongs to what is above it_, which is exactly the relation.
+
+**Only sections are listed in the table of contents.** The rail is 192px wide and collapses to
+a column of bars -- a way to reach a section rather than an outline of the article. A subsection
+is reached by arriving at its parent and reading on.
+
+The two rules hold each other up, and neither works alone. Filtering the rail while the two
+levels look identical would make the listing look incomplete: a reader who cannot see that a
+heading is a subsection can only conclude the table of contents lost it. Made visibly nearer,
+the same listing reads as complete, and needs no explanation. It also keeps the levels honest
+for a screen reader, which is told the nesting either way.
+
+**What is filtered is the listing, not the address.** Both levels are anchored, both resolve,
+and a link to a subsection works exactly as before. Demoting a heading is therefore reversible
+in the reader's terms even though it changes the segment id -- see [i18n.md](i18n.md) on
+migrating the translations rather than rebuying them.
+
+Which headings may be demoted is a question about the article, not about the rail: a subsection
+is one its parent can stand for. Demoting a heading because it is short, or to tidy the rail,
+trades a reader's ability to reach it for an appearance, and that is the wrong way round.
+
 ## The return control rests level with the title
 
 The control at the top left of an article sits on the same line as the article's heading. The two

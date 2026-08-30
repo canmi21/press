@@ -128,7 +128,7 @@
 			     than suppressed; see spec/lint-format.md. -->
 			{@html block.html}
 		{:else if block.type === 'heading'}
-			<Section slug={block.slug} notes={block.notes}>{block.text}</Section>
+			<Section slug={block.slug} depth={block.depth} notes={block.notes}>{block.text}</Section>
 		{:else if block.type === 'code'}
 			<CodeBlock
 				label={block.label}
