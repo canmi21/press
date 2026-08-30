@@ -1,10 +1,12 @@
 //! Acceptance checks shared by fresh model replies and translations already on disk.
 
-use super::segment::{Region, Segment};
+use super::segment::{Kind, Region, Segment};
 use super::store::Sidecar;
+use super::width;
 use std::collections::BTreeMap;
 use std::fmt;
 use std::path::Path;
+use unicode_width::UnicodeWidthChar;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Error {
@@ -23,6 +25,51 @@ impl fmt::Display for Error {
 			}
 		}
 	}
+}
+
+/// Whether a note directive is separated from the words around it as that script requires.
+///
+/// The source can write `请求时的:fn[模型]` because Han script does not space its words. Copied
+/// into a language that does, the same shape renders `Modeloen la petición` -- one word that
+/// exists in no language, produced without any rule being broken on the way. The reply passed
+/// shape, the marker came back, and the sentence is wrong.
+///
+/// The test is the character, not the locale: a directive needs air when what it touches is a
+/// narrow letter or digit. A wide glyph does not space its words, and punctuation -- the `l'` of
+/// French elision, a hyphen, an opening `¿` -- is already a boundary the eye reads.
+pub fn spacing_intact(text: &str) -> bool {
+	let needs_space = |c: char| c.is_alphanumeric() && UnicodeWidthChar::width(c) == Some(1);
+	for name in [":fn[", ":tn["] {
+		let mut at = 0;
+		while let Some(found) = text[at..].find(name) {
+			let start = at + found;
+			if text[..start].chars().next_back().is_some_and(needs_space) {
+				return false;
+			}
+			// The far side: whatever follows the directive's closing brace.
+			let after = &text[start..];
+			let close = after.find("\"}").map(|i| start + i + 2);
+			if let Some(end) = close {
+				if text[end..].chars().next().is_some_and(needs_space) {
+					return false;
+				}
+			}
+			at = start + name.len();
+		}
+	}
+	true
+}
+
+/// Whether a body heading still fits the rail it becomes a navigation label in.
+///
+/// Only the clamp is refused, not the one-line budget. A heading occupying two lines is a
+/// legitimate outcome -- some languages cannot say it shorter, and the rail is built for it --
+/// so rejecting that would buy the same answer again and eventually take a worse one. Past two
+/// lines the end is not shown at all, which is a loss rather than a judgement, and a loss is
+/// what this boundary is for. Everything between the two is reported by `audit` for a person.
+/// See spec/i18n.md.
+pub fn heading_fits(kind: Kind, region: Region, text: &str) -> bool {
+	kind != Kind::Heading || region != Region::Body || width::of(text) <= width::CLAMP
 }
 
 /// Whether every `:tn` is one complete `:tn[words]{is="explanation"}` directive.
@@ -118,6 +165,49 @@ pub fn sidecar(
 mod tests {
 	use super::*;
 	use crate::i18n::store::Translation;
+
+	#[test]
+	fn a_directive_glued_to_a_latin_word_is_refused() {
+		// What the model wrote when it copied the source's spacing into Spanish.
+		assert!(!spacing_intact(
+			r#"## ¿Modelo:fn[en la petición]{is="el modelo de ejecución"}?"#
+		));
+		assert!(!spacing_intact(
+			r#"## Modell zur:fn[Anfragezeit]{is="das Ausführungsmodell"}?"#
+		));
+	}
+
+	#[test]
+	fn a_script_that_does_not_space_its_words_keeps_the_source_shape() {
+		assert!(spacing_intact(r#"## 请求时的:fn[模型]{is="指执行模型"}?"#));
+		assert!(spacing_intact(
+			r#"## リクエスト時:fn[モデル]{is="実行モデル"}?"#
+		));
+	}
+
+	#[test]
+	fn punctuation_is_already_a_boundary() {
+		// French elision and a hyphenated term both read correctly without a space.
+		assert!(spacing_intact(
+			r#"L':fn[AST]{is="the syntax tree"} visible"#
+		));
+		assert!(spacing_intact(
+			r#"pseudo-:fn[SSR]{is="not the traditional kind"} here"#
+		));
+	}
+
+	#[test]
+	fn a_spaced_directive_passes_on_both_sides() {
+		assert!(spacing_intact(
+			r#"## Request-time :fn[model]{is="the execution model"}?"#
+		));
+		assert!(spacing_intact(r#"the :fn[model]{is="a gloss"} matters"#));
+	}
+
+	#[test]
+	fn the_word_after_a_directive_needs_air_too() {
+		assert!(!spacing_intact(r#"the :fn[model]{is="a gloss"}matters"#));
+	}
 
 	fn stored(text: &str) -> Translation {
 		Translation {

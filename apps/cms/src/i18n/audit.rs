@@ -11,7 +11,9 @@
 //! findings and a person judges them. A hard gate would fail exactly the defensible minority
 //! the policy allows for.
 
+use super::segment::Kind;
 use super::tn;
+use super::width;
 
 /// The locales whose scripts legitimately contain Han characters, so a `:tn` wrapping them
 /// says nothing about whether the words were translated.
@@ -63,10 +65,15 @@ fn normalised(text: &str) -> String {
 }
 
 /// The policy findings for one stored translation of one body segment.
+///
+/// `kind` decides whether the navigation-width policy applies; `source` is what the heading was
+/// before translation, which is the only honest yardstick for it.
 pub fn of(
 	segment_id: &str,
 	locale: &str,
 	translation: &str,
+	kind: Kind,
+	source: &str,
 	glosses: Option<&tn::Entry>,
 ) -> Vec<Finding> {
 	let mut findings = Vec::new();
@@ -75,6 +82,28 @@ pub fn of(
 		locale: locale.to_owned(),
 		reason,
 	};
+
+	// A heading is also a rail label. Two lines are allowed and `validate` refuses only what
+	// gets cut off, so the interesting band -- wider than a line, still readable -- is reported
+	// here with the source beside it, because whether a language could have said it shorter is
+	// the judgement a person makes and a threshold cannot.
+	if kind == Kind::Heading {
+		let columns = width::of(translation);
+		if columns > width::ONE_LINE {
+			findings.push(finding(format!(
+				"heading wraps the table of contents ({columns} columns, source is {}; one line is {})",
+				width::of(source),
+				width::ONE_LINE,
+			)));
+		}
+	}
+
+	// The same rule `validate` now refuses on arrival, reported over what is already stored.
+	if !super::validate::spacing_intact(translation) {
+		findings.push(finding(
+			"a note directive is glued to the word beside it".to_owned(),
+		));
+	}
 
 	// An author's note explanation continues from its words; opening by restating them is the
 	// double reading the policy exists to avoid.
@@ -119,6 +148,11 @@ pub fn of(
 mod tests {
 	use super::*;
 
+	/// Prose with no source: the note policies under test do not read either field.
+	fn of_prose(id: &str, locale: &str, text: &str, glosses: Option<&tn::Entry>) -> Vec<Finding> {
+		of(id, locale, text, Kind::Prose, "", glosses)
+	}
+
 	fn gloss(phrase: &str) -> tn::Entry {
 		tn::Entry {
 			source: String::new(),
@@ -131,7 +165,7 @@ mod tests {
 
 	#[test]
 	fn a_restating_explanation_is_reported_and_a_continuing_one_is_not() {
-		let restating = of(
+		let restating = of_prose(
 			"s",
 			"en-US",
 			r#"The :fn[model]{is="model means the runtime"} here"#,
@@ -139,7 +173,7 @@ mod tests {
 		);
 		assert_eq!(restating.len(), 1);
 		assert!(restating[0].reason.contains("restates"));
-		let continuing = of(
+		let continuing = of_prose(
 			"s",
 			"en-US",
 			r#"The :fn[model]{is="the runtime, not the data"} here"#,
@@ -150,7 +184,7 @@ mod tests {
 
 	#[test]
 	fn restatement_ignores_case_and_leading_punctuation() {
-		let found = of(
+		let found = of_prose(
 			"s",
 			"en-US",
 			r#":fn[Seam]{is="-- seam is a protocol"} x"#,
@@ -162,25 +196,25 @@ mod tests {
 	#[test]
 	fn han_inside_a_latin_locales_tn_is_reported() {
 		let text = r#"he :tn[鸽了]{is="a note"} it"#;
-		assert_eq!(of("s", "en-US", text, None).len(), 1);
+		assert_eq!(of_prose("s", "en-US", text, None).len(), 1);
 		// The same words in a Han-script locale say nothing.
-		assert!(of("s", "zh-TW", text, None).is_empty());
+		assert!(of_prose("s", "zh-TW", text, None).is_empty());
 	}
 
 	#[test]
 	fn a_note_that_skips_the_original_is_reported_and_a_quoting_one_is_not() {
 		let glosses = gloss("鸽");
 		let skipping = r#"he :tn[put it off]{is="the source said postponing, like a no-show"} it"#;
-		assert_eq!(of("s", "en-US", skipping, Some(&glosses)).len(), 1);
+		assert_eq!(of_prose("s", "en-US", skipping, Some(&glosses)).len(), 1);
 		let quoting = r#"he :tn[put it off]{is="the source word 鸽, literally pigeon, means standing someone up"} it"#;
-		assert!(of("s", "en-US", quoting, Some(&glosses)).is_empty());
+		assert!(of_prose("s", "en-US", quoting, Some(&glosses)).is_empty());
 	}
 
 	#[test]
 	fn a_translation_with_no_directives_has_no_findings() {
-		assert!(of("s", "en-US", "plain prose", None).is_empty());
+		assert!(of_prose("s", "en-US", "plain prose", None).is_empty());
 		// A recorded gloss without any tn in the text is missing work, not a policy finding --
 		// the completeness audit owns that.
-		assert!(of("s", "en-US", "plain prose", Some(&gloss("鸽"))).is_empty());
+		assert!(of_prose("s", "en-US", "plain prose", Some(&gloss("鸽"))).is_empty());
 	}
 }

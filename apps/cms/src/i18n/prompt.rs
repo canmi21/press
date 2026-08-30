@@ -173,12 +173,35 @@ pub fn build_for(
 	} else {
 		""
 	};
+	// The rail is narrow and the source headings were written to fit it. What makes a translated
+	// one overrun is not the target language being wordy -- it is a translator trying to make the
+	// heading say the whole section, which the section itself is about to do. So the budget is
+	// stated as a width the model can picture, anchored to the source it can see, and the reason
+	// it is allowed to drop detail is stated too. See spec/i18n.md.
 	let navigation = if segment.kind == Kind::Heading && segment.region == Region::Body {
-		"\n- This heading also appears in a narrow table of contents. Translate it as a concise \
-		 navigation label. Preserve its meaning, tone, and necessary technical terms, but avoid \
-		 explanatory expansion, redundant wording, and parenthetical glosses."
+		let source_columns = super::width::of(&segment.source);
+		format!(
+			"\n- This heading is also a label in the article's table of contents, which is a \
+			 narrow rail: one line holds about {han} Han characters, or about {latin} Latin \
+			 characters. This heading is {source_columns} columns wide in the source, counting a \
+			 Han character as two, and your translation should read about that long. Two lines are \
+			 acceptable where the target language genuinely needs them; beyond {clamp} columns the \
+			 end is cut off and the reader never sees it.\n\
+			 - The label only has to let a reader recognise the section. It does not have to \
+			 explain it: the section's own opening paragraph is the context shown below, and a \
+			 reader who picks the entry arrives there immediately. Translate the heading, not what \
+			 the section is about -- no added qualifiers, no parenthetical glosses, no restating in \
+			 the target language what a technical term already says.\n\
+			 - Written in a language that separates words with spaces, the label needs those spaces \
+			 around any note directive as well: the source may write one flush against the \
+			 neighbouring characters because its script does not space words, and copying that \
+			 joins two of your words into one.",
+			han = super::width::ONE_LINE / 2,
+			latin = super::width::ONE_LINE,
+			clamp = super::width::CLAMP,
+		)
 	} else {
-		""
+		String::new()
 	};
 
 	// An entry exists because a person chose to record it: `cms tn` prints and only writes when
@@ -337,12 +360,26 @@ mod tests {
 	}
 
 	#[test]
-	fn body_heading_is_told_to_stay_concise_for_navigation() {
+	fn a_body_heading_is_given_the_rail_it_has_to_fit() {
 		let request = build(&segment(Kind::Heading), "A long heading", None, None, None);
 
-		assert!(request.text.contains("narrow table of contents"));
-		assert!(request.text.contains("concise navigation label"));
-		assert!(request.text.contains("avoid explanatory expansion"));
+		// The budget as a width that can be pictured, and the source's own width to aim at.
+		assert!(request.text.contains("narrow rail"));
+		assert!(request.text.contains("Han characters"));
+		assert!(
+			request
+				.text
+				.contains(&format!("{} columns", super::super::width::CLAMP))
+		);
+		// And the permission that makes shortening possible: the section explains itself.
+		assert!(request.text.contains("recognise the section"));
+		assert!(request.text.contains("no parenthetical glosses"));
+	}
+
+	#[test]
+	fn only_a_body_heading_is_told_about_the_rail() {
+		let prose = build(&segment(Kind::Prose), "A paragraph", None, None, None);
+		assert!(!prose.text.contains("narrow rail"));
 	}
 
 	#[test]

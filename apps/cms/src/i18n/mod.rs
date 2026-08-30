@@ -14,6 +14,7 @@ pub mod segment;
 pub mod store;
 pub mod tn;
 pub mod validate;
+pub mod width;
 
 use crate::task::{Record, claim, progress, registry, writer};
 use runner::{Refusal, Runner};
@@ -135,12 +136,21 @@ fn validate_reply(
 	region: segment::Region,
 	masked: &segment::Masked,
 ) -> Result<Vec<(String, String)>, Refusal> {
-	validate_reply_for(reply, boundary, region, masked, &prompt::LOCALES, None)
+	validate_reply_for(
+		reply,
+		boundary,
+		segment::Kind::Prose,
+		region,
+		masked,
+		&prompt::LOCALES,
+		None,
+	)
 }
 
 fn validate_reply_for(
 	reply: &str,
 	boundary: &str,
+	kind: segment::Kind,
 	region: segment::Region,
 	masked: &segment::Masked,
 	locales: &[&str],
@@ -155,6 +165,10 @@ fn validate_reply_for(
 	// which is a long way from the reply that caused it. A block cannot gain lines in
 	// translation, so counting them catches it at the point it happens.
 	let allowed = body_lines(masked.text.as_str());
+	// Width is read after restoring, not before: a marker stands in for code of a different
+	// length, so measuring the masked text would charge the heading for the wrong glyphs.
+	let mut too_wide = Vec::new();
+	let mut glued = Vec::new();
 	let kept: Vec<(String, String)> = parsed
 		.into_iter()
 		.filter(|(locale, text)| {
@@ -164,11 +178,37 @@ fn validate_reply_for(
 				&& validate::translation(region, text).is_ok()
 		})
 		.map(|(locale, text)| (locale, masked.restore(&text)))
+		.filter(|(locale, text)| {
+			// Spacing is read after restoring too: a marker is not the word it stands for, so
+			// masked text cannot say whether a directive is glued to its neighbour.
+			if !validate::spacing_intact(text) {
+				glued.push(locale.clone());
+				return false;
+			}
+			let fits = validate::heading_fits(kind, region, text);
+			if !fits {
+				too_wide.push(format!("{locale} at {} columns", width::of(text)));
+			}
+			fits
+		})
 		.collect();
 	if kept.is_empty() {
-		return Err(Refusal::Failed(
-			"no locale survived marker and shape validation".to_owned(),
-		));
+		// Naming the width when that is the reason: the generic message covers a lost marker, an
+		// added line and a malformed note alike, and none of those suggests the same next move.
+		return Err(Refusal::Failed(if !glued.is_empty() {
+			format!(
+				"a note directive is glued to the word beside it ({})",
+				glued.join(", ")
+			)
+		} else if too_wide.is_empty() {
+			"no locale survived marker and shape validation".to_owned()
+		} else {
+			format!(
+				"heading overruns the table of contents ({}; {} columns is the limit)",
+				too_wide.join(", "),
+				width::CLAMP
+			)
+		}));
 	}
 	Ok(kept)
 }
@@ -241,6 +281,7 @@ async fn translate(
 		let kept = match validate_reply_for(
 			&answer.text,
 			&request.boundary,
+			item.kind,
 			item.region,
 			&masked,
 			&locale_refs,
@@ -411,7 +452,14 @@ pub async fn run(
 					continue;
 				}
 				for (locale, translation) in locales {
-					for found in audit::of(id, locale, &translation.text, glosses.find(id)) {
+					for found in audit::of(
+						id,
+						locale,
+						&translation.text,
+						segment.kind,
+						&segment.source,
+						glosses.find(id),
+					) {
 						outcome.audit.push((path.display().to_string(), found));
 					}
 				}
@@ -776,6 +824,7 @@ mod tests {
 			validate_reply_for(
 				&polished,
 				boundary,
+				segment::Kind::Prose,
 				segment::Region::Body,
 				&masked,
 				&["zh-CN"],
@@ -787,6 +836,7 @@ mod tests {
 			validate_reply_for(
 				&rewritten,
 				boundary,
+				segment::Kind::Prose,
 				segment::Region::Body,
 				&masked,
 				&["zh-CN"],
