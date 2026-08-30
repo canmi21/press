@@ -8,8 +8,10 @@ const render = vi.fn(async (id: string, source: string) => ({
 vi.mock('mermaid', () => ({ default: { initialize, render } }));
 
 const palette: Record<string, string> = {
-	'--mermaid-page': '#fbfbfb',
-	'--mermaid-paper': '#ffffff',
+	// Production CSS minification shortens repeatable hex pairs; the reader must restore the
+	// six-digit values required by Mermaid rather than depending on source spelling.
+	'--mermaid-page': '#111',
+	'--mermaid-paper': '#fff',
 	'--mermaid-paper-hover': '#f2f2f2',
 	'--mermaid-border': '#e3e3e3',
 	'--mermaid-border-strong': '#d3d3d3',
@@ -45,6 +47,7 @@ it('initializes strict rendering from the colocated hex palette', async () => {
 			theme: 'base',
 			themeVariables: expect.objectContaining({
 				background: '#ffffff',
+				tertiaryColor: '#111111',
 				primaryColor: '#f2f2f2',
 				lineColor: '#d3d3d3',
 				textColor: '#161616',

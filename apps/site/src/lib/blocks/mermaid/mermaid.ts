@@ -8,10 +8,14 @@ let diagramId = 0;
 
 function color(style: CSSStyleDeclaration, name: string): string {
 	const value = style.getPropertyValue(name).trim();
-	if (!/^#[\da-f]{6}$/i.test(value)) {
-		throw new TypeError(`${name} must be one six-digit hex colour, got ${value || 'nothing'}`);
+	if (!/^#(?:[\da-f]{3}|[\da-f]{6})$/i.test(value)) {
+		throw new TypeError(
+			`${name} must be one three- or six-digit hex colour, got ${value || 'nothing'}`,
+		);
 	}
-	return value;
+	return value.length === 4
+		? `#${Array.from(value.slice(1), (digit) => digit.repeat(2)).join('')}`
+		: value;
 }
 
 function configuration(root: HTMLElement): MermaidConfig {
