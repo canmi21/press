@@ -46,6 +46,11 @@ data/**
 # Authored, not derived: the licence a person worked out for a package that declared none.
 !data/licenses.yaml
 !data/tn.yaml
+# What has already been announced to the IndexNow participants. Not derived from anything in the
+# tree -- it is a record of requests that were made -- so losing it cannot be recomputed, only
+# re-sent, which is the one thing that protocol asks us not to do. It has to travel with the
+# repository or a fresh clone announces the whole site. See spec/indexing.md.
+!data/indexnow.json
 # Under data/build/ the test is whether a CI build reads the file. These five are named by the
 # site's Vite config or its content build, and a site-only CI job has no Rust toolchain to
 # regenerate them. data/build/opengraph.json is absent on purpose: only `cms og` reads it, to
