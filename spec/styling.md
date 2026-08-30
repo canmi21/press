@@ -454,6 +454,21 @@ size and colour as the article title and the newsletter heading, none of which s
 its own -- three section names on one page, matched by sharing the inheritance chain rather
 than by copying a number. Only the notes under it stay small.
 
+**Closing the fold carries the page with it.** Closing shortens the document, so a reader near
+the end is left above a bottom that no longer exists and the browser pulls them up to the new
+one. It is right to, and it arrives at the worst moment: the pull begins partway through the
+animation, the instant the document becomes shorter than the current scroll position, and lands
+as up to 50px in a single frame after a stretch of no movement at all. That discontinuity is what
+reads as a lurch -- the movement itself is unavoidable, since the reader is looking at the very
+notes being folded away.
+
+So the movement is taken over and spent on the same spring as the height, with progress read from
+the distance the panel has covered rather than from a clock, which keeps the two on one curve
+instead of on two that agree by luck. Opening needs none of it: a longer document never forces
+the page to move. And the reader outranks it -- scrolling during the animation leaves the
+position away from where the carry last put it, which is taken as steering, and it stands down
+for the rest of the move.
+
 **A wrapped note is balanced, and that was measured rather than reasoned.** By category it is
 the wrong answer: a note is a sentence, and the prose elsewhere on this site uses `text-wrap:
 pretty`, which leaves lines full and only refuses to end on a word alone. Measured on the Spanish

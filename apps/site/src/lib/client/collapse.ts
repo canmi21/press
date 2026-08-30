@@ -45,16 +45,23 @@ export function prefersReducedMotion(): boolean {
  * A stopped animation is not guaranteed to stay silent, so a caller that has since started
  * another compares before acting: settling the wrong one would pin the panel to a height the
  * move it interrupted was travelling to.
+ *
+ * `onFrame` sees each height on its way, for anything that has to move in step with the panel
+ * rather than merely after it. It is called with the same value the element is given, so a
+ * caller can derive its own progress from the distance already covered and stay on the spring's
+ * curve instead of guessing one.
  */
 export function animateHeight(
 	element: HTMLElement,
 	targetPixels: number,
 	onSettle: (finished?: AnimationControl) => void,
+	onFrame?: (heightPixels: number) => void,
 ): AnimationControl | undefined {
 	const currentPixels = element.getBoundingClientRect().height;
 	element.style.height = remFromMeasuredPixels(currentPixels);
 
 	if (prefersReducedMotion() || Math.abs(currentPixels - targetPixels) < NEGLIGIBLE_PIXELS) {
+		onFrame?.(targetPixels);
 		onSettle();
 		return undefined;
 	}
@@ -67,6 +74,7 @@ export function animateHeight(
 		...COLLAPSE_SPRING,
 		onUpdate: (height) => {
 			element.style.setProperty('height', remFromMeasuredPixels(Math.max(0, height), rootPixels));
+			onFrame?.(height);
 		},
 		onComplete: () => onSettle(control),
 	});

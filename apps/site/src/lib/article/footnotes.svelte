@@ -71,10 +71,64 @@
 
 		phase = nextExpanded ? 'expanding' : 'collapsing';
 		const target = nextExpanded ? foldEl.scrollHeight : peekPixels(foldEl);
-		motion = animateHeight(foldEl, target, (finished) => {
-			if (finished !== undefined && motion !== finished) return;
-			settle(nextExpanded);
-		});
+		const carry = scrollCarry(foldEl.getBoundingClientRect().height, target);
+		motion = animateHeight(
+			foldEl,
+			target,
+			(finished) => {
+				if (finished !== undefined && motion !== finished) return;
+				settle(nextExpanded);
+			},
+			carry,
+		);
+	}
+
+	/**
+	 * Move the page in step with the fold, when closing it would otherwise drag the page along.
+	 *
+	 * Closing shortens the document. A reader near the end is then above a bottom that no longer
+	 * exists, so the browser pulls them up to the new one -- correctly, and at the worst possible
+	 * moment: the pull starts partway through the animation, the instant the document becomes
+	 * shorter than the current scroll position, and it arrives as up to 50px in a single frame
+	 * after a stretch of no movement at all. Measured on the article with thirty-three notes.
+	 * That discontinuity is what reads as a lurch; the movement itself is unavoidable, because
+	 * the reader is looking at the notes that are being folded away.
+	 *
+	 * So the movement is taken over and spent on the same curve as the height. Progress is read
+	 * from the distance the panel has actually covered rather than from a clock, which keeps the
+	 * scroll on the spring instead of on a second easing that would only agree with it by luck.
+	 *
+	 * Opening needs none of this: a longer document never forces the page to move.
+	 *
+	 * The reader wins any argument. Scrolling during the animation leaves the position away from
+	 * where this last put it, and that is taken as the reader steering -- the carry stands down
+	 * for the rest of the move rather than fighting for the wheel.
+	 */
+	function scrollCarry(from: number, to: number): ((height: number) => void) | undefined {
+		const shrink = from - to;
+		if (shrink <= 0) return undefined;
+		const start = window.scrollY;
+		const end = Math.max(0, Math.min(start, maxScroll() - shrink));
+		if (Math.abs(end - start) < 1) return undefined;
+
+		let placed = start;
+		let steering = false;
+		return (height) => {
+			if (steering) return;
+			if (Math.abs(window.scrollY - placed) > 1) {
+				steering = true;
+				return;
+			}
+			const covered = (from - height) / shrink;
+			const next = Math.round(start + (end - start) * Math.min(1, Math.max(0, covered)));
+			window.scrollTo(0, next);
+			placed = next;
+		};
+	}
+
+	/** How far the page can scroll, which closing the fold is about to reduce. */
+	function maxScroll(): number {
+		return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
 	}
 
 	/**
