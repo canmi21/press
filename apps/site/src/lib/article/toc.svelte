@@ -13,7 +13,16 @@
 	let { toc }: { toc: TocEntry[] } = $props();
 
 	const MAX_BAR_WIDTH = 64;
-	const MIN_BAR_WIDTH = 8;
+	/**
+	 * The shortest a bar may be drawn.
+	 *
+	 * A thumbnail of a list of headings should read as set text seen from too far away, and a
+	 * one-word entry is still a word. At an eighth of the longest bar it stopped being one: a
+	 * rail with `Vue`, `CTR` and `CSS` in it drew three dots among long lines, which is the
+	 * texture of noise rather than of a page. A quarter is the shortest that still reads as a
+	 * line of writing.
+	 */
+	const MIN_BAR_WIDTH = 16;
 	const BAR_HEIGHT = 4;
 	const INDICATOR_HEIGHT = 12;
 	const REVEAL_DELAY = 180;
@@ -92,6 +101,34 @@
 	function fontOf(el: HTMLElement): string {
 		const cs = getComputedStyle(el);
 		return `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+	}
+
+	/** How wide a label may be before it wraps: the shell's cap, which is where the text lives. */
+	function expandedLabelWidth(): number {
+		const shell = asideEl?.parentElement;
+		if (!shell) return Number.POSITIVE_INFINITY;
+		const cap = Number.parseFloat(getComputedStyle(shell).maxWidth);
+		return Number.isFinite(cap) && cap > 0 ? cap : shell.getBoundingClientRect().width;
+	}
+
+	/**
+	 * How many lines this entry occupies once the text is showing.
+	 *
+	 * The bars are a thumbnail of the list, so an entry has to contribute the shape it will
+	 * actually have. Measured collapsed, a heading that wraps still reported its single-line
+	 * width -- the longest bar in the rail belonged to the one entry that is not a long line at
+	 * all, and being the longest it set the scale everything else was divided by, flattening the
+	 * rest into dots. Reading the wrapped width as two half-lines is what makes the thumbnail
+	 * resemble the paragraph it stands for.
+	 *
+	 * Measured in the label's own font rather than the heading's: the wrap happens in the rail,
+	 * at the rail's size, and the two fonts are not proportional to each other. Clamped at two,
+	 * as the label itself is.
+	 */
+	function entryLines(text: string, label: HTMLElement | undefined, available: number): number {
+		if (!label || !Number.isFinite(available) || available <= 0) return 1;
+		const width = measureNaturalWidth(prepareWithSegments(text, fontOf(label)));
+		return Math.min(2, Math.max(1, Math.ceil(width / available)));
 	}
 
 	function linearBars(widths: number[]): number[] {
@@ -260,11 +297,14 @@
 
 		const raf = requestAnimationFrame(() => {
 			const measured: Entry[] = [];
-			for (const el of headings) {
+			const labels = asideEl?.querySelectorAll<HTMLElement>('[data-toc-text]');
+			const available = expandedLabelWidth();
+			for (const [index, el] of headings.entries()) {
 				const text = headingText(el);
 				const prepared = prepareWithSegments(text, fontOf(el));
 				const w = measureNaturalWidth(prepared);
-				measured.push({ el, slug: el.id, width: w, text });
+				const label = labels?.[index];
+				measured.push({ el, slug: el.id, width: w / entryLines(text, label, available), text });
 			}
 			hydratedEntries = { source, entries: measured };
 			if (initialTarget) {

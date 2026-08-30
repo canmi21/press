@@ -177,6 +177,24 @@ the return icon hang outside its left edge as ornaments. Both are tuned to that 
 translated left of it so the word the control carries lines up with the entries, and a box drawn
 around either would push every entry right by the width of a decoration.
 
+### Collapsed, the bars are a thumbnail of the list
+
+Each bar is its heading's rendered width scaled against the longest, so the collapsed rail reads
+as the table of contents seen from too far away to make out words. Two things decide whether that
+reads as writing or as noise, and both were wrong.
+
+**An entry that wraps contributes half its width per line.** Measured flat, a heading that will
+occupy two lines still reported one long line -- and being the longest, it set the scale every
+other bar was divided by. The rail's longest bar then belonged to the one entry that is not a long
+line at all, and everything else was flattened underneath it. The width is measured in the
+label's own font rather than the heading's, because the wrap happens in the rail at the rail's
+size and the two fonts are not proportional to each other.
+
+**A bar never falls below a quarter of the longest.** At an eighth, one-word entries -- `Vue`,
+`CTR`, `CSS` -- drew dots between long lines, which is the texture of noise rather than of a page.
+A quarter is the shortest that still reads as a line of writing. The floor compresses the range
+rather than reporting it faithfully, and that is the point: this is a thumbnail, not a chart.
+
 ### Absent rather than squeezed
 
 The rail appears only where the region holds it with `--rail-edge` clear on both sides. An earlier
