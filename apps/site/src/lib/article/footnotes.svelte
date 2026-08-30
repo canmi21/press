@@ -336,7 +336,17 @@
 		transition: color 200ms ease-out;
 	}
 
-	.note-link:hover,
+	/* Hover is read from the note, not from the link. A link is an inline box: it wraps into one
+	   box per line, and the leading between two of those belongs to neither, so a pointer
+	   crossing a wrapped note fell through the gap and the note went out mid-read. What the
+	   reader is pointing at is the note, which is a block and has no gaps in it.
+
+	   Not fixed by making the line an inline-block, which would also close the gap: the landing
+	   light reads `getClientRects()` to slice itself across the wrap, and one block box would
+	   collapse that back into a single rectangle. See note-flash.ts.
+
+	   Focus stays on the link, because focus is where the keyboard actually is. */
+	.note:hover .note-link,
 	.note-link:focus-visible {
 		color: var(--color-text-strong);
 	}
