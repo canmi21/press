@@ -4,6 +4,11 @@
 packages:
   - libs/*
   - apps/*
+  # Each is a separate repository this workspace ignores; the glob matches nothing when none
+  # are cloned. Membership here is what makes a sub-repo's git dependency resolve to local
+  # source, together with one override below per library it consumes.
+  # See spec/architecture/repos.md.
+  - repos/*
 
 # SvelteKit 2 retains cookie 0.6 for compatibility with invalid cookie attributes. Match only
 # that vulnerable edge, so a future upstream range starting at 0.7 or a newer SvelteKit major

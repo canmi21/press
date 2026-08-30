@@ -15,7 +15,8 @@ libs/       Libraries, any language.
 apps/       Deployable things, any language.
 contents/   Articles. Tracked, because prose is revised and wants diffs.
 data/       Assets and the records describing them. Bytes stay out of git; records go in.
-projs/      Reserved for large standalone projects. Not created yet.
+repos/      Applications published on their own. Each is a separate repository, ignored
+            here and cloned into place -- see repos.md.
 ```
 
 Which of `data/` git keeps, and what happens to an asset once it is stored, are their own

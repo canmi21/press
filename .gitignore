@@ -62,6 +62,12 @@ data/**
 !data/build/twitter.json
 !data/build/licenses.json
 
+# Every directory under repos/ is a separate repository, cloned into place. jj stops at a
+# nested .jj or .git on its own, so this entry is not for jj -- it is for git, which would
+# otherwise turn one into a submodule the moment `git add -A` runs in this colocated repo.
+# See spec/architecture/repos.md.
+repos/*/
+
 # Dependencies
 node_modules/
 

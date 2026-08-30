@@ -1,0 +1,263 @@
+#!/usr/bin/env python3
+#MISE description="Work with the separate repositories under repos/: `repos list`, `repos check`, `repos bump <name>`, `repos clone <url>`"
+"""Manage the sub-repositories nested under repos/. See spec/architecture/repos.md.
+
+Each directory there is its own repository, ignored by this workspace and cloned into place.
+A sub-repo reads this repository's libraries through a git dependency that its own lockfile
+pins to a commit, while an override in pnpm-workspace.yaml makes the same declaration resolve
+to local source for anyone working inside the workspace. Those two views drift, and most of
+this file exists to say so out loud.
+
+  list          what is cloned, where it came from, and which revision it pins
+  check         the pins still agree with libs/, and every consumed library can leave
+  bump <name>   re-resolve the pins, then restore local linking
+  clone <url>   add a sub-repo and install it
+
+check is part of `mise run verify` and is a no-op when repos/ holds nothing.
+"""
+
+import json
+import pathlib
+import re
+import shutil
+import subprocess
+import sys
+
+sys.dont_write_bytecode = True
+
+BASE = pathlib.Path(__file__).resolve().parents[2]
+REPOS = BASE / "repos"
+
+# pnpm writes one of these per git dependency. Parsed by pattern rather than by loading the
+# lockfile as YAML: this is the only line shape we need, and the alternative is a dependency
+# on a YAML parser for a file pnpm alone writes.
+RESOLUTION = re.compile(r"resolution: \{commit: ([0-9a-f]{40}), path: (/[^,]+), repo: ([^,]+), type: git\}")
+
+
+def fail(message: str) -> "SystemExit":
+	return SystemExit(f"error: {message}")
+
+
+def git(*args: str, cwd: pathlib.Path = BASE, check: bool = True) -> subprocess.CompletedProcess:
+	result = subprocess.run(["git", *args], cwd=cwd, capture_output=True, text=True)
+	if check and result.returncode != 0:
+		sys.stderr.write(result.stderr)
+		raise fail(f"git {' '.join(args)} failed")
+	return result
+
+
+def cloned() -> list[pathlib.Path]:
+	"""Sub-repos actually present. Absent ones are not an error -- a checkout may want none."""
+	if not REPOS.is_dir():
+		return []
+	return sorted(p for p in REPOS.iterdir() if p.is_dir() and (p / "package.json").is_file())
+
+
+def is_repository(repo: pathlib.Path) -> bool:
+	"""Whether this directory carries its own history rather than borrowing the workspace's.
+
+	Worth asking before every git command run inside one: git walks up, so a plain directory
+	under repos/ answers about this repository instead, and quietly reports the wrong remote.
+	"""
+	return (repo / ".git").exists() or (repo / ".jj").exists()
+
+
+def origin_of(repo: pathlib.Path) -> str:
+	if not is_repository(repo):
+		return "(not a repository -- nothing is tracking this directory)"
+	remote = git("remote", "get-url", "origin", cwd=repo, check=False)
+	return remote.stdout.strip() if remote.returncode == 0 else "(no origin)"
+
+
+def pins(repo: pathlib.Path) -> list[tuple[str, str]]:
+	"""(library name, pinned commit) for every git dependency this sub-repo takes on libs/."""
+	lock = repo / "pnpm-lock.yaml"
+	if not lock.is_file():
+		return []
+	found = {}
+	for commit, path, _ in RESOLUTION.findall(lock.read_text()):
+		if path.startswith("/libs/"):
+			found[path.removeprefix("/libs/")] = commit
+	return sorted(found.items())
+
+
+def consumed(repo: pathlib.Path) -> list[str]:
+	"""Library directories the sub-repo declares a git dependency on, read off package.json."""
+	manifest = json.loads((repo / "package.json").read_text())
+	names = []
+	for specifier in manifest.get("dependencies", {}).values():
+		if isinstance(specifier, str) and "#path:/libs/" in specifier:
+			names.append(specifier.split("#path:/libs/", 1)[1].split("&", 1)[0])
+	return sorted(set(names))
+
+
+def package_name(library: str) -> str | None:
+	manifest = BASE / "libs" / library / "package.json"
+	if not manifest.is_file():
+		return None
+	return json.loads(manifest.read_text()).get("name")
+
+
+def overrides() -> set[str]:
+	"""Package names pnpm-workspace.yaml redirects. Same reasoning as RESOLUTION above."""
+	text = (BASE / "pnpm-workspace.yaml").read_text()
+	block = re.search(r"^overrides:\n((?:[ \t].*\n|\n)*)", text, re.MULTILINE)
+	if not block:
+		return set()
+	return set(re.findall(r"^\s+'([^']+)':", block.group(1), re.MULTILINE))
+
+
+def head_of_main() -> str:
+	for ref in ("refs/heads/main", "HEAD"):
+		result = git("rev-parse", "--verify", "--quiet", ref, check=False)
+		if result.returncode == 0:
+			return result.stdout.strip()
+	raise fail("this repository has no main and no HEAD")
+
+
+def command_list() -> int:
+	present = cloned()
+	if not present:
+		print("repos/ holds no sub-repositories")
+		return 0
+	for repo in present:
+		print(f"{repo.name}  {origin_of(repo)}")
+		for library, commit in pins(repo):
+			print(f"    libs/{library} pinned at {commit[:12]}")
+	return 0
+
+
+def command_check() -> int:
+	present = cloned()
+	if not present:
+		return 0
+
+	main = head_of_main()
+	redirected = overrides()
+	problems = 0
+
+	# Reported once rather than per sub-repo: it is a fact about the working copy, and repeating
+	# it for each consumer would bury the pins underneath it.
+	dirty = git("diff", "--name-only", "--", "libs/").stdout.split()
+
+	for repo in present:
+		# A plain directory here is the one state worse than a drifted pin: git ignores it as a
+		# sub-repo and it has no history of its own, so whatever is in it is tracked by nothing.
+		if not is_repository(repo):
+			print(f"{repo.name}: not a repository -- repos/*/ is ignored here, so nothing tracks it")
+			print("    clone it, or move it under apps/ if it belongs to this workspace")
+			problems += 1
+
+		for library in consumed(repo):
+			name = package_name(library)
+			if name is None:
+				print(f"{repo.name}: depends on libs/{library}, which does not exist here")
+				problems += 1
+				continue
+			if name not in redirected:
+				print(f"{repo.name}: pnpm-workspace.yaml has no override for {name} --")
+				print(f"    add `'{name}': 'workspace:*'` or local edits will not reach it")
+				problems += 1
+			# A library that names another through the workspace protocol cannot be resolved
+			# from outside this repository at all. See spec/architecture/repos.md.
+			dependencies = json.loads((BASE / "libs" / library / "package.json").read_text())
+			workspace_deps = [
+				k for k, v in dependencies.get("dependencies", {}).items()
+				if isinstance(v, str) and v.startswith("workspace:")
+			]
+			if workspace_deps:
+				print(f"{repo.name}: libs/{library} depends on {', '.join(workspace_deps)}")
+				print("    through the workspace protocol, so nobody outside this repo can install it")
+				problems += 1
+
+		for library, commit in pins(repo):
+			if git("merge-base", "--is-ancestor", commit, main, check=False).returncode != 0:
+				print(f"{repo.name}: pinned {commit[:12]} for libs/{library} is not in this history")
+				print("    it was never pushed, or the revision it named has been rewritten")
+				problems += 1
+				continue
+			changed = git("diff", "--name-only", commit, "--", f"libs/{library}").stdout.split()
+			if changed:
+				print(f"{repo.name}: libs/{library} has moved since {commit[:12]}")
+				for path in changed:
+					print(f"    {path}")
+				print(f"    run `mise run repos bump {repo.name}` once the change is pushed")
+				problems += 1
+
+	if dirty and problems:
+		print("libs/ also has uncommitted changes, which nothing outside this checkout can build against:")
+		for path in dirty:
+			print(f"    {path}")
+
+	if problems == 0:
+		print(f"sub-repo pins agree with libs/ ({len(present)} checked)")
+	return 1 if problems else 0
+
+
+def command_bump(name: str | None) -> int:
+	if not name:
+		raise fail("give the sub-repo's name: `mise run repos bump foo`")
+	repo = REPOS / name
+	if not (repo / "package.json").is_file():
+		raise fail(f"repos/{name} is not a cloned sub-repository")
+
+	packages = [package_name(library) for library in consumed(repo)]
+	packages = [p for p in packages if p]
+	if not packages:
+		raise fail(f"repos/{name} takes no git dependency on libs/")
+
+	# Resolved the way a contributor would, which is the point: this is what writes the lockfile
+	# they install from. Named packages rather than a bare update, so an unrelated dependency
+	# does not move in the same step.
+	subprocess.run(["pnpm", "update", "--ignore-workspace", *packages], cwd=repo, check=True)
+
+	# The step that cannot be skipped. After the update above the sub-repo holds fetched copies,
+	# and a root install reports `Already up to date` without restoring the local links --
+	# `--force` included. Removing the tree first is what makes the next install do the work.
+	shutil.rmtree(repo / "node_modules", ignore_errors=True)
+	subprocess.run(["pnpm", "install"], cwd=BASE, check=True)
+
+	print(f"\nbumped repos/{name} and restored local linking")
+	for library, commit in pins(repo):
+		print(f"    libs/{library} now pinned at {commit[:12]}")
+	return 0
+
+
+def command_clone(url: str | None, name: str | None) -> int:
+	if not url:
+		raise fail("give the repository to clone: `mise run repos clone <url> [name]`")
+	name = name or url.rstrip("/").rsplit("/", 1)[-1].removesuffix(".git")
+	target = REPOS / name
+	if target.exists():
+		raise fail(f"repos/{name} already exists")
+
+	REPOS.mkdir(exist_ok=True)
+	# Colocated, like this repository: the sub-repo is worked on with jj too, and the git side
+	# is what its remote and its contributors speak.
+	subprocess.run(["jj", "git", "clone", "--colocate", url, str(target)], check=True)
+	subprocess.run(["pnpm", "install"], cwd=BASE, check=True)
+
+	print(f"\ncloned into repos/{name}")
+	print("next: add an override per library it consumes, then `mise run repos check`")
+	return 0
+
+
+def main(argv: list[str]) -> int:
+	action = argv[0] if argv else None
+	rest = argv[1:]
+	if action == "list":
+		return command_list()
+	if action == "check":
+		return command_check()
+	if action == "bump":
+		return command_bump(rest[0] if rest else None)
+	if action == "clone":
+		return command_clone(rest[0] if rest else None, rest[1] if len(rest) > 1 else None)
+	raise fail("usage: repos list | check | bump <name> | clone <url> [name]")
+
+
+if __name__ == "__main__":
+	try:
+		raise SystemExit(main(sys.argv[1:]))
+	except subprocess.CalledProcessError as error:
+		raise SystemExit(f"error: {' '.join(error.cmd)} failed") from error

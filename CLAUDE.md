@@ -28,8 +28,9 @@ imperative mood, 96 characters max. See [spec/commits.md](spec/commits.md).
 
 **Language** -- Talk to the user in simplified Chinese with English technical nouns left
 untranslated. Everything written into a file is English only, no exceptions: code, comments,
-docs, commit messages. Only an explicit user request overrides this.
-See [spec/voice.md](spec/voice.md).
+docs, commit messages. Only an explicit user request overrides this. "App" means a standalone
+application, a deployed service, or the desktop client depending on context -- read which from
+the sentence rather than asking every time. See [spec/voice.md](spec/voice.md).
 
 **Naming** -- Files and directories are lowercase English, hyphens allowed. A language with
 its own convention wins locally: Rust source files use underscores. Identifiers inside code
@@ -44,7 +45,7 @@ language. See [spec/lint-format.md](spec/lint-format.md).
 
 ```
 spec/   rules      libs/   libraries, any language      apps/   deployables, any language
-contents/  articles, tracked because prose wants diffs  projs/  reserved, not created yet
+contents/  articles, tracked because prose wants diffs  repos/  separate repos, ignored here
 data/   assets, plus the records about them: bytes stay out of git, records go in
 ```
 
@@ -97,6 +98,7 @@ each of its files is listed here rather than behind a second index.
 | Layout, namespaces, extraction thresholds | [spec/architecture/workspace.md](spec/architecture/workspace.md) |
 | What git keeps, what sync publishes       | [spec/architecture/data.md](spec/architecture/data.md)           |
 | The two CMS shells and one application    | [spec/architecture/cms.md](spec/architecture/cms.md)             |
+| Separate repositories nested under repos/ | [spec/architecture/repos.md](spec/architecture/repos.md)         |
 | Naming conventions                        | [spec/naming.md](spec/naming.md)                                 |
 
 **Assets, and how they reach a reader**
