@@ -13,7 +13,13 @@ import run
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 ENTRYPOINT = ROOT / "hooks" / "run.py"
 SYSTEM_PYTHON = "/usr/bin/python3"
-COMMAND = '/usr/bin/python3 "$(jj workspace root)/hooks/run.py"'
+# jj answers about the nearest repository, which is a sub-repo whenever the shell sits inside
+# one, so the entrypoint is found by walking up to the checkout that has hooks/.
+# See spec/architecture/repos.md.
+COMMAND = (
+	'd=$(jj workspace root); while [ ! -f "$d/hooks/run.py" ] && [ "$d" != / ]; '
+	'do d=$(dirname "$d"); done; /usr/bin/python3 "$d/hooks/run.py"'
+)
 
 
 def invoke(payload: dict) -> subprocess.CompletedProcess:

@@ -179,6 +179,104 @@ Left to a person to remember, this fails as a silent fall out of local developme
 stop taking effect and nothing says why. `mise run repos bump <name>` is the three steps as one
 command, and exists for that reason rather than for convenience.
 
+## What a lone clone needs has to be physically there
+
+Three facts have their home in this workspace and are invisible to somebody who cloned only a
+sub-repo: which revision of `libs/` it builds against, how its files are formatted, and which
+tool versions it is built with. The first has the pin above. The other two are settled the same
+way, and **not with a symlink.**
+
+A symlink is committed as a symlink -- git stores mode `120000` and the link text -- so it
+resolves inside the workspace and dangles everywhere else:
+
+```
+$ git ls-files -s
+120000 1b3ce07d... 0	.editorconfig
+$ cat .editorconfig        # inside the workspace
+root=true
+$ cat .editorconfig        # in a clone of the sub-repo alone
+cat: .editorconfig: No such file or directory
+```
+
+Nothing reports that. A formatter finds no configuration and uses its own defaults, so the first
+contribution arrives formatted by rules nobody chose, and the diff blames the contributor for it.
+A symlink is the one option that looks present without being present, which is why it is the one
+option ruled out rather than merely not preferred.
+
+So the configuration is **copied into each sub-repo, and the copy is checked**:
+`.editorconfig` always, `.oxlintrc.json` and `rustfmt.toml` when the sub-repo holds anything for
+them to govern. `mise run repos sync` writes them; `repos check` fails when one has drifted.
+
+This is not a new idea here. [`rustfmt.toml`](../../rustfmt.toml) exists because rustfmt cannot
+read `.editorconfig`, and it restates that file's indentation on purpose -- a checked copy of a
+fact whose home is elsewhere is already how this repository keeps a rule reaching a tool that
+cannot see it. A sub-repo is the same situation with a repository boundary instead of a tool's
+blind spot.
+
+**A sub-repo does not get to diverge.** The rules are the user's, they hold for every repository
+the user controls, and one edit here reaches all of them through `sync`. Wanting different rules
+in a sub-repo means changing what is copied, not editing the copy.
+
+## The task runner is mise, and it is the only one
+
+A sub-repo carries its own `mise.toml`. mise reads configuration up the directory tree, which
+inside the workspace does exactly the right thing: the sub-repo's own tasks win where the names
+collide, the workspace's other tasks are still callable, and tool versions are inherited without
+being restated.
+
+Adding a second runner -- `just` beside mise -- was considered and rejected. It buys a task
+syntax and nothing else, while mise also pins the toolchain, so a contributor who cloned the
+sub-repo alone gets the right node and rust from the same command that lists the tasks.
+
+The inheritance has a mirror image worth stating: **outside the workspace nothing is inherited.**
+A sub-repo's `mise.toml` therefore declares its own `[tools]`, and that declaration is a second
+place a version is written. It is checked rather than generated -- a sub-repo may legitimately
+need a tool this workspace has never heard of, but where both name the same tool they must name
+the same version.
+
+## An overlay enables a sub-repo only if it is changing it
+
+`repos/*/` is ignored, so a new overlay's checkout has no sub-repos at all. A sub-repo is brought
+into an overlay by giving it a jj workspace of its own, the same mechanism this repository uses
+for overlays, one per overlay that needs it:
+
+```
+~/workspace/repos/foo        the base's working copy, jj workspace `default`
+~/workspace-1/repos/foo      an overlay's, jj workspace `workspace-1`, same change graph
+```
+
+Both appear in one `jj log` inside the sub-repo, and coordination there is what it is everywhere
+else: the change graph, never a message. Two graphs are now in play -- this repository's and the
+sub-repo's -- and an agent changing a library and the application that consumes it commits to
+both, in that order.
+
+**Not every overlay gets every sub-repo, and most get none.** Whether to enable one is decided
+the way [toolchain.md](../toolchain.md) decides which dev servers an overlay runs: an overlay
+runs what it changes, and the rest stays the base's. An overlay that is not touching a sub-repo
+does not clone it, does not enable it, and pays nothing for its existence. `mise run repos enable
+<name>` from inside the overlay is the opt-in, and it is meant to be the exception rather than
+part of setting an overlay up.
+
+**A sub-repo is never symlinked back to the base**, and this is where it parts company with
+`data/`. That link works because an overlay only ever reads those bytes. A sub-repo is being
+edited, and two overlays pointed at one working tree is precisely the collision separate working
+copies exist to prevent.
+
+`mise run workspace forget` refuses while an overlay still has a sub-repo enabled. The sub-repo's
+history does not travel with this repository's, so removing the directory would take unfinished
+work with it and `jj log` here would never have shown it.
+
+## The agent hooks resolve upwards, because `jj workspace root` answers locally
+
+The harness hooks are found through `jj workspace root`, and jj answers about the nearest
+repository -- so the moment an agent's shell sits inside a sub-repo, the lookup points at the
+sub-repo and every hooked command fails with a missing `hooks/run.py`. Nothing about that is
+recoverable from inside the shell, because the hook runs before the command that would leave.
+
+The command in [`.claude/settings.json`](../../.claude/settings.json) therefore walks up from
+whatever jj reports until it finds a checkout that actually has `hooks/`. Pointing it at a fixed
+path was the alternative and is wrong: an overlay has to reach its own copy, not the base's.
+
 ## No manifest, until forgetting one is likely
 
 Nothing records the list of sub-repos and their remotes. A fresh clone of this workspace has an

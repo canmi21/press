@@ -169,6 +169,16 @@ def forget(slot: int) -> int:
 			"Finish it (rebase onto main and move the bookmark) or abandon it, then forget."
 		)
 
+	# A sub-repo enabled here is a working copy of a repository this one knows nothing about, so
+	# the revset above cannot see whether it holds work. Removing the directory would take it.
+	# See spec/architecture/repos.md.
+	enabled = sorted(p.name for p in (target / "repos").glob("*") if p.is_dir())
+	if enabled:
+		raise fail(
+			f"{name} still has sub-repositories enabled: {', '.join(enabled)}\n"
+			f"Run `mise run repos disable <name>` in {target} first."
+		)
+
 	jj("workspace", "forget", name)
 	if target.is_dir() and target.parent == BASE.parent and target.name == name:
 		shutil.rmtree(target)

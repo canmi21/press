@@ -231,6 +231,11 @@ tasks, computed from the same table. Bare `node`, vitest, and the workers themse
 override and get the base addresses, so the Rust mirror of the URL map renders the same in
 every workspace and `mise run verify` is stable across them.
 
+The same rule decides whether an overlay takes on a sub-repository at all. `repos/` is ignored
+here, so a new overlay has none, and one is enabled only by an overlay that is changing it --
+most never are. [repos.md](architecture/repos.md) has the mechanism and why a sub-repo is given
+its own jj workspace rather than being linked back to the base the way `data/` is.
+
 The base API accepts any loopback origin while it is itself answering on a loopback host,
 because an overlay's site calls the base API from a port the allowlist cannot name and the
 base cannot know how many slots exist. Production never answers on a loopback host, so the
