@@ -148,34 +148,60 @@ Stage 3 exists because a rail is read from the corner of the eye. Left centred f
 inward as the window grows, and on a wide monitor a rail halfway to the text is neither beside the
 article nor at the edge of anything.
 
-### The rail's box is what its entries occupy, and nothing measures it
+### The rail's box is one declared width
 
-Centring is only as honest as the box being centred, and this is where it first went wrong. The
-box was `--rail-width-max`, the widest the entries are _allowed_ to be. Articles with short
-headings never reach it, so the box carried dead space on its right that the centring rule counted
-as rail: at a 1241px window the box sat exactly centred at 130 while everything a reader could see
-ended at 135, its own centre at 85. Centred by the numbers, plainly left of centre to the eye.
+It is one box in the DOM, holding both the table of contents and the return control, rather than
+two elements agreeing on a number. `translate: -50%` centres it. **The width is declared --
+8.5rem -- and is the same on every article, in every language, and in the first frame the server
+sends.** Nothing measures anything to arrive at it.
 
-So the box is the entries at full expansion -- and it is one box in the DOM, holding both the
-table of contents and the return control, rather than two elements agreeing on a number.
-`width: fit-content` then makes the browser size it to the entries, and `translate: -50%` centres
-whatever that came to. Nothing measures anything, which is the whole point:
+Getting here took two wrong answers, and both are worth keeping because each looks correct until
+it is running.
 
-- **The first frame is already right.** The version before this published a measured width as a
-  custom property, which no server can know, so the page painted at one position and jumped to
-  another the moment it hydrated.
-- **A web font swapping in re-sizes the box** and re-centres it, with no listener to forget.
-- **There is no ratchet.** An element measured through script is as wide as the last answer made
-  it, so a second pass on a narrower article would shrink the rail and never let it back.
+**A measured width published as a custom property.** No server can know it, so the page painted
+at one position and jumped to another the moment it hydrated.
+
+**A box sized to its entries.** `width: fit-content` reads as obviously right -- the entries are
+the only thing a reader sees, so why centre anything else -- and it is stable within one view: a
+web font swapping in re-sizes and re-centres it with no listener to forget. What it is not stable
+across is _content_. The box moves its own centre whenever its entries change width, and the
+return control is centred on that box, so the control tracks the length of the longest heading.
+Switching one article between languages took the widest entry from 48px of Korean to 104px of
+German and slid `Back` 28px across the page. Measured across the corpus, the source views alone
+spread the box from 3.25rem to 8.34rem.
+
+That is the fault: **the return control is a fixed part of the page and has no business tracking a
+heading.** A reader switching languages is comparing two views of one article, which is exactly
+when a control moving 28px is most visible and least explicable.
+
+**8.5rem is where the source headings stop.** The widest source view reaches 8.34rem; the rest
+are well under. A translation longer than that wraps, which is what the second line is for -- and
+in the article whose headings are longest, five of thirteen Spanish entries take it. Wrapping is
+a legible outcome and a moving control is not, so the trade is made in that direction.
+
+The cost is accepted rather than hidden: an article with short headings no longer fills its box,
+so its entries sit left of centre with space to their right. That space buys a control that does
+not move.
+
+**A wrapped entry gets two comparable lines**, through `text-wrap: balance` on the label. Left to
+fill and spill, the break lands wherever the width runs out -- `Independencia de la` over `UI` put
+nineteen characters above two, which reads as a mistake rather than as a wrapped label. Balance is
+built for exactly this shape of text, short and headline-like, and it evens out one label's own
+lines without looking at its neighbours. Where it is unsupported the text fills as before.
 
 Collapsing changes nothing: the bars occupy less of the box, and the box, the centring and the hit
 area stay where they were.
 
-**Only the entries size the box.** The return control is taken out of its flow and the active
-indicator is absolutely positioned, so neither can widen it -- which is what lets the indicator and
-the return icon hang outside its left edge as ornaments. Both are tuned to that edge: the icon is
-translated left of it so the word the control carries lines up with the entries, and a box drawn
-around either would push every entry right by the width of a decoration.
+**Nothing inside can widen the box.** The return control is taken out of its flow and the active
+indicator is absolutely positioned, which is what lets the indicator and the return icon hang
+outside its left edge as ornaments. Both are tuned to that edge: the icon is translated left of it
+so the word the control carries lines up with the entries, and a box drawn around either would
+push every entry right by the width of a decoration.
+
+The breakpoint that decides whether the rail appears at all is derived from this width by hand --
+`8.5rem + 2 * 1.5rem` of clearance beside each side of a 45rem article -- because a media query
+cannot read a custom property. It is no longer a test of whether the widest possible rail would
+fit; with one declared width it is the rail. Change the width and change that number with it.
 
 ### Collapsed, the bars are a thumbnail of the list
 

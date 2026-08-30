@@ -799,6 +799,13 @@
 		overflow: hidden;
 		overflow-wrap: anywhere;
 		white-space: normal;
+		/* An entry that needs two lines gets two comparable lines. Left to fill and spill, the
+		   break lands wherever the width runs out: `Independencia de la` over `UI` puts nineteen
+		   characters above two, which reads as a mistake rather than as a wrapped label. This is
+		   what `balance` is for -- short, headline-shaped text, a couple of lines at most -- and
+		   it is the label's own line lengths it evens out, so entries stay independent of each
+		   other. Where it is unsupported the text simply fills, which is today's behaviour. */
+		text-wrap: balance;
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 2;
 		line-clamp: 2;

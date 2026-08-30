@@ -93,9 +93,9 @@
    The article's width is what everything else yields to: it is centred and fixed, the rail lives
    in what is left, and nothing here can push it. */
 :root {
-	/* The widest the rail's entries may render before they wrap. The box itself is narrower than
-	   this whenever the headings are shorter, which is most articles. */
-	--rail-width-max: 12rem;
+	/* The rail's width -- the same on every article and in every language, and the width at which
+	   its entries wrap. */
+	--rail-width: 8.5rem;
 	--rail-column: 45rem;
 	/* The blank region the rail lives in: window edge to the article's left frame. The article is
 	   centred on the window, so the region on the other side of it is the same width and is left
@@ -111,21 +111,23 @@
 /* The column running down the left of an article -- the table of contents and the return control
    -- is one rail, and it is one box, so they cannot disagree about where its left edge is.
 
-   The box is `fit-content`: the browser sizes it to the entries at full expansion, which is the
-   only thing a reader sees and therefore the only thing worth centring. Nothing measures anything
-   to make that true, so it is already true in the first frame the server sends and stays true when
-   a web font swaps in and the entries change width. An earlier version published a measured width
-   as a custom property and paid for it with a jump at hydration.
+   The box is one declared width, so it is the same box on every article, in every language, and
+   in the first frame the server sends. Two earlier versions each paid for not being: one
+   published a measured width as a custom property and jumped at hydration, the next sized the
+   box to its entries and moved whenever the entries did -- switching one article between
+   languages took the widest entry from 48px of Korean to 104px of German and slid the return
+   control 28px across the page. The control is a fixed part of the page and has no business
+   tracking the length of a heading. The width is 8.5rem because the source headings reach 8.34
+   and stop; a translation longer than that wraps, which is what the second line is for.
 
-   Only the entries size it. The return control is taken out of flow and the active indicator is
+   Nothing inside can widen it. The return control is taken out of flow and the active indicator is
    absolute, so neither can widen the box -- which is what lets the indicator and the return icon
    sit outside its left edge as ornaments rather than as content. See spec/styling.md. */
 .article-rail {
 	display: none;
 	position: fixed;
 	inset-block: 0;
-	width: fit-content;
-	max-width: var(--rail-width-max);
+	width: var(--rail-width);
 	/* Its centre line on the region's centre line, until the cap. `translate` rather than a
 	   computed `left`, because only the browser knows how wide `fit-content` made it. */
 	left: min(calc(var(--rail-region) / 2), var(--rail-centre-max));
@@ -142,14 +144,13 @@
 }
 
 /* Shown only where the region holds the rail at its cap with its clearance on both sides:
-   12rem + 2 * 1.5rem beside each side of a 45rem article. The cap rather than the box's real
-   width, because a media query can read neither -- so the test is whether the widest rail this
-   site can draw would fit, and an article with short headings is shown no earlier than one
-   without. Below it the rail is absent rather than squeezed: a table of contents narrowed until
+   8.5rem + 2 * 1.5rem beside each side of a 45rem article. One declared width for every article
+   now, so this is no longer a test of whether the widest possible rail would fit -- it is the
+   rail. Below it the rail is absent rather than squeezed: a table of contents narrowed until
    its entries wrap to three lines is not a smaller version of itself, and pressed against the
    window edge it reads as something that fell off the page. A media query cannot ask a custom
    property, so this number agrees with the ones above by hand; change one and check this. */
-@media (min-width: 75rem) {
+@media (min-width: 68rem) {
 	.article-rail {
 		display: flex;
 		align-items: center;
