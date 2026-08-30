@@ -14,26 +14,37 @@
 
 	const MAX_BAR_WIDTH = 64;
 	/**
-	 * The shortest a bar may be drawn.
+	 * How many steps the bar scale has, and how far one entry may stand above its neighbour.
 	 *
-	 * A thumbnail of a list of headings should read as set text seen from too far away, and a
-	 * one-word entry is still a word. At an eighth of the longest bar it stopped being one: a
-	 * rail with `Vue`, `CTR` and `CSS` in it drew three dots among long lines, which is the
-	 * texture of noise rather than of a page. A quarter is the shortest that still reads as a
-	 * line of writing.
+	 * Ten steps of the longest heading: finer than that is below what anyone reads off a column
+	 * of bars, and pretending otherwise only makes rounding look like meaning. Three is the
+	 * widest rise that still reads as a step rather than as one entry towering over the column.
 	 */
-	const MIN_BAR_WIDTH = 16;
+	const STEPS = 10;
+	const MAX_ADJACENT_STEP = 3;
 	/**
-	 * How far below the shortest entry the bar scale starts, in characters of the heading's own
-	 * type -- the difference between this and a plain min-max, which would put the shortest bar
-	 * at nothing.
+	 * How far apart neighbouring entries must be drawn.
 	 *
-	 * One rather than two. At two the scale started far enough below the entries that the
-	 * shortest bar came back nearly as long as the middle ones, which is the flattening this
-	 * exists to undo; one leaves it a stub with presence and keeps the range worth reading. The
-	 * floor below still catches whatever this leaves too short.
+	 * One step, which is the smallest move that separates them at all. Two was tried and is too
+	 * much: with headings as evenly sized as these, requiring two steps between neighbours leaves
+	 * only differences of two or three, so the column can do nothing but alternate -- and two
+	 * headings that are genuinely the same length get drawn three steps apart, which is the
+	 * thumbnail inventing a difference rather than reporting one. At one step they are told
+	 * apart and stay nearly equal, which is what they are.
 	 */
-	const BASELINE_CHARS = 1;
+	const MIN_ADJACENT_STEP = 1;
+	/**
+	 * Where the shortest bar sits when every entry cleared it anyway.
+	 *
+	 * An article whose headings are all long has no short bar to anchor the column, and the whole
+	 * rail then reads as uniformly heavy -- the scale is being spent at the top of its range while
+	 * the bottom of it goes unused. Sliding the column down until its shortest entry rests here
+	 * puts the range back in use without touching a single relationship inside it.
+	 *
+	 * Three rather than one: the shortest bar in such an article is still a long heading, and
+	 * dropping it to the floor would say otherwise.
+	 */
+	const RESTING_STEP = 3;
 	const BAR_HEIGHT = 4;
 	const INDICATOR_HEIGHT = 12;
 	const REVEAL_DELAY = 180;
@@ -57,8 +68,6 @@
 	type AnimationControl = { stop: () => void };
 
 	let hydratedEntries = $state.raw<HydratedEntries>();
-	/** One character of the heading type, which is what the bar baseline is counted in. */
-	let headingEm = $state(0);
 	/** The widest label as the rail will draw it, which is the widest a bar may be. */
 	let labelCeiling = $state(0);
 	const entries = $derived(
@@ -155,38 +164,138 @@
 	}
 
 	/**
-	 * Bar widths, scaled against the entries rather than against zero.
+	 * A stable number for a string, so a tie is broken the same way on every render.
 	 *
-	 * Measuring every bar as a fraction of the longest assumes the shortest entry is near
-	 * nothing, and an article whose headings are all long breaks that assumption: the bars all
-	 * land in the top of the range and the thumbnail flattens into a block of near-equal lines,
-	 * saying nothing about the list it stands for. Subtracting a baseline restores the contrast
-	 * -- what is drawn is then how much longer each heading is than the shortest one.
-	 *
-	 * The baseline sits `BASELINE_CHARS` below the shortest entry rather than at it, which is
-	 * the whole difference between this and a plain min-max: at the shortest entry the smallest
-	 * bar would be zero, and an entry that exists must be visible. Two characters of the
-	 * heading's own type leaves it a stub with presence. When the shortest entry is already
-	 * shorter than that -- a `前言` or a `CTR` among long ones -- the baseline clamps to zero and
-	 * this is exactly the old scaling, because there is no crowding to undo.
+	 * FNV-1a, which is a few lines and has no other requirement here than that two headings that
+	 * differ anywhere land on different numbers. Nothing depends on it being hard to reverse.
 	 */
-	function linearBars(widths: number[], em: number, ceiling: number): number[] {
+	function textHash(text: string): number {
+		let hash = 2166136261;
+		for (let index = 0; index < text.length; index += 1) {
+			hash ^= text.charCodeAt(index);
+			hash = Math.imul(hash, 16777619);
+		}
+		return hash >>> 0;
+	}
+
+	/**
+	 * Bar widths, in tenths of the longest heading.
+	 *
+	 * Exact widths turned out to say less than they cost. What a reader takes from the collapsed
+	 * rail is roughly how long each entry is and where the list rises and falls, and a tenth is
+	 * finer than that reading -- below it the differences are noise dressed as precision. Ten
+	 * steps of the longest heading, floored at one so an entry always draws something.
+	 *
+	 * Scaled against the longest rather than between the shortest and the longest: the second
+	 * spends the whole range on whatever spread the article happens to have, so two headings of
+	 * six and seven characters would be drawn a third of the rail apart. Against the longest, a
+	 * bar is the fraction of the longest heading that this one is, which is what it looks like
+	 * it means.
+	 */
+	function steppedBars(widths: number[], texts: string[], ceiling: number): number[] {
 		if (widths.length === 0) return [];
 		// A bar may never be wider than the widest label. The rail's box is `fit-content` around
 		// its entries, sized for them at full expansion -- see spec/styling.md -- and that holds
 		// only while the text is the widest thing in it. In an article whose headings are all
-		// short it is not: the longest label in these two ran to 52px against a 64px bar, so the
+		// short it is not: the longest label in two of them ran to 52px against a 64px bar, so the
 		// bars set the width, and hydrating them from their served 2rem to their real length
 		// widened the box under a control that is centred on it. The rail sat still and `Back`
 		// slid 6px left, over the whole length of the bar animation.
 		const longest = Math.min(MAX_BAR_WIDTH, ceiling > 0 ? ceiling : MAX_BAR_WIDTH);
-		const shortest = Math.min(MIN_BAR_WIDTH, longest);
 		const max = Math.max(...widths);
 		if (max < 1) return widths.map(() => longest / 2);
-		const baseline = Math.max(0, Math.min(...widths) - BASELINE_CHARS * em);
-		const span = max - baseline;
-		if (span < 1) return widths.map(() => longest);
-		return widths.map((w) => Math.max(shortest, ((w - baseline) / span) * longest));
+
+		const steps = widths.map((w) => Math.min(STEPS, Math.max(1, Math.round((w / max) * STEPS))));
+
+		// Bring the peaks down until no entry stands more than `MAX_ADJACENT_STEP` above a
+		// neighbour. Two passes, forward and back, are what makes the constraint hold in both
+		// directions at once.
+		//
+		// Down rather than up, which would satisfy the same constraint by raising everything
+		// around the outlier instead. The two are not equivalent: one entry that towers over its
+		// neighbours is the thing that reads badly, and the fix is to pull *it* back, not to
+		// stretch the rest of the column toward it. Raising them spends the top of the scale on
+		// an article that has nothing that long in it, and leaves the whole rail longer than the
+		// headings warrant.
+		//
+		// So the tenth step is not something every article reaches. It is there for a heading
+		// long enough to earn it against the company it keeps -- and an outlier, by being an
+		// outlier, does not.
+		//
+		// An entry is only ever pulled toward its neighbours, never levelled with them, so it
+		// stays the longest thing in its stretch.
+		const flatten = (from: number[]): number[] => {
+			const out: number[] = [];
+			for (const step of from) {
+				const previous = out.at(-1);
+				out.push(previous === undefined ? step : Math.min(step, previous + MAX_ADJACENT_STEP));
+			}
+			return out;
+		};
+		const shaved = flatten(flatten(steps).reverse()).reverse();
+
+		// Then the other half of the same idea: two neighbours on the same step read as one mark
+		// repeated rather than as two entries, so they are separated by a single step -- toward
+		// whichever side they were already nearer, so the move follows the lengths themselves.
+		//
+		// Both constraints are applied in one pass rather than one after the other. Run
+		// separately, the second undoes the first: pushing entries apart opens gaps wider than
+		// the limit, and shaving those closed lands them back on top of each other.
+		//
+		// A tie -- exactly between the two ends -- is broken by the heading's own text, so the
+		// same heading always goes the same way and two different ones in the same position do
+		// not. Anything derived from the index would make every article break its ties
+		// identically, which is a pattern rather than a choice.
+		const settled: number[] = [];
+		shaved.forEach((step, index) => {
+			const previous = settled.at(-1);
+			if (previous === undefined) {
+				settled.push(step);
+				return;
+			}
+			const held = Math.min(
+				previous + MAX_ADJACENT_STEP,
+				Math.max(previous - MAX_ADJACENT_STEP, step),
+			);
+			if (Math.abs(held - previous) >= MIN_ADJACENT_STEP) {
+				settled.push(held);
+				return;
+			}
+			// Moved just far enough to be a second mark rather than a repeat of the first. The
+			// separation is the point, not the distance: these two headings are the same length,
+			// and a bigger push would say they are not.
+			const down = Math.max(1, previous - MIN_ADJACENT_STEP);
+			const up = Math.min(STEPS, previous + MIN_ADJACENT_STEP);
+			// At either end of the scale one of the two directions is not a move at all -- from
+			// the tenth step, "up" is the tenth step. Whichever side still has somewhere to go
+			// takes it, and only a genuine choice between two of them consults the text.
+			const canGoDown = previous - down >= MIN_ADJACENT_STEP;
+			const canGoUp = up - previous >= MIN_ADJACENT_STEP;
+			if (!canGoDown && !canGoUp) {
+				settled.push(held);
+				return;
+			}
+			if (canGoDown !== canGoUp) {
+				settled.push(canGoDown ? down : up);
+				return;
+			}
+			const toDown = Math.abs(step - down);
+			const toUp = Math.abs(step - up);
+			if (toDown !== toUp) {
+				settled.push(toDown < toUp ? down : up);
+				return;
+			}
+			settled.push(textHash(texts[index] ?? '') % 2 === 0 ? down : up);
+		});
+
+		// Finally, slide the whole column down if nothing in it reaches the low end of the scale.
+		// A shift, not a rescale: every difference above was chosen against the two rules, and
+		// rescaling would quietly undo them. Moving all of the steps by one amount changes none of
+		// them.
+		const lowest = Math.min(...settled);
+		const excess = Math.max(0, lowest - RESTING_STEP);
+
+		return settled.map((step) => ((step - excess) / STEPS) * longest);
 	}
 
 	function indicatorGeometry(button: HTMLElement): IndicatorGeometry {
@@ -273,9 +382,9 @@
 	}
 
 	const barWidths = $derived(
-		linearBars(
+		steppedBars(
 			entries.map((e) => e.width),
-			headingEm,
+			entries.map((e) => e.text),
 			labelCeiling,
 		),
 	);
@@ -356,7 +465,6 @@
 			const measured: Entry[] = [];
 			const labels = asideEl?.querySelectorAll<HTMLElement>('[data-toc-text]');
 			const available = expandedLabelWidth();
-			headingEm = headings[0] ? Number.parseFloat(getComputedStyle(headings[0]).fontSize) || 0 : 0;
 			let widest = 0;
 			for (const [index, el] of headings.entries()) {
 				const text = headingText(el);
