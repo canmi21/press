@@ -420,6 +420,15 @@ says it continues and something is holding it back, and the control's count then
 much. The fade is a mask rather than a gradient painted in the paper's colour -- a painted one
 would be a second place the background is written down, wrong the moment either changes.
 
+**A fold that clips has to be positioned.** `overflow: hidden` does not clip an absolutely
+positioned descendant whose containing block lies further up, and every note carries one: the
+way back's purpose is written for a screen reader, and the utility that hides it visually takes
+it out of flow. Twenty-eight of those escaped a static fold, stood at their unclipped positions,
+and added a screen of empty document below the page with a scrollbar to match. The fold's own
+height had nothing to do with it -- setting it to zero changed nothing -- which is what made the
+symptom read as unexplainable. Anything here that clips is `position: relative` for that reason,
+not for stacking.
+
 **The fold opens before the scroll, not during it.** A marker in the prose may point at a note
 behind the fold, and the walk down must still land on it. `scrollIntoView` resolves its
 destination the moment it is called, so a fold opening afterwards pushes the note below the

@@ -254,6 +254,14 @@
 	   rest, so an open fold still follows its own content when the window changes. */
 	.notes-fold {
 		--peek-height: 1.75rem;
+		/* Positioned so that clipping actually holds. `overflow: hidden` does not clip an
+		   absolutely positioned descendant whose containing block is further up, and every note
+		   carries one: the way back's purpose, written for a screen reader as an `.sr-only` span,
+		   which that utility takes out of flow with `position: absolute`. Folded, twenty-eight of
+		   them escaped the clip and stood at their unclipped positions, adding a screen of empty
+		   document below the page and a scrollbar to match. The height of the fold had nothing to
+		   do with it, which is what made it look inexplicable. */
+		position: relative;
 		overflow: hidden;
 		height: var(--peek-height);
 	}
