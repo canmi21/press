@@ -160,13 +160,6 @@
 		data-domains={new URL(URLS.apps.production.site).hostname}
 		data-exclude="/@/*"
 	></script>
-	{#if !dev}
-		<script
-			defer
-			src={URLS.external.insights}
-			data-cf-beacon={`{"token": "c004f82a8f14429694781a554291a897"}`}
-		></script>
-	{/if}
 </svelte:head>
 
 <PersistQueryClientProvider client={queryClient} {persistOptions}>

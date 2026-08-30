@@ -1,7 +1,11 @@
 # Analytics
 
-Three services currently count visits to the site: Cloudflare Insights, umami, and OpenPanel.
-Nothing here argues for that number. The rules below are what they must agree on while it holds.
+Two services currently count visits to the site: umami and OpenPanel. Nothing here argues for
+that number. The rules below are what they must agree on while it holds.
+
+Cloudflare Insights was a third and has been removed. Its beacon was injected into every page
+from the layout, which is one more third-party script in the critical path for a count the
+other two already keep.
 
 ## Development loads the client and reports nothing
 
@@ -13,14 +17,15 @@ production.
 
 How each one is held to it, since no two offer the same switch:
 
-| Service             | Mechanism                                    |
-| ------------------- | -------------------------------------------- |
-| umami               | `data-domains="canmi.net"` on the script tag |
-| OpenPanel           | `filter: () => !dev`                         |
-| Cloudflare Insights | `{#if !dev}` around the script               |
+| Service   | Mechanism                                    |
+| --------- | -------------------------------------------- |
+| umami     | `data-domains="canmi.net"` on the script tag |
+| OpenPanel | `filter: () => !dev`                         |
 
-Cloudflare Insights is the odd one out and stays that way: its beacon takes no filter hook, so
-the only control is whether the tag renders.
+Both hold to the rule from inside the client. Cloudflare Insights could not: its beacon took no
+filter hook, so the only control was whether the tag rendered at all, and it was the one service
+here that had to be kept out of a dev page rather than told to stay quiet on one. That is not
+why it was removed, but it is why it never fitted.
 
 **For OpenPanel, `filter` is the only option that does this.** `send()` consults it before the
 queue check and resolves immediately when it returns false, so the payload is dropped rather

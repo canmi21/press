@@ -122,8 +122,6 @@ export const URLS = {
 		sentry: {
 			site: 'https://a7f2f790ed2fa4f8e0c4310d26d9c39f@o4511131162116096.ingest.us.sentry.io/4511380121976832',
 		},
-		// Analytics beacon, loaded by the browser from the page.
-		insights: 'https://static.cloudflareinsights.com/beacon.min.js',
 		// Named as the feed's generator. Nothing fetches it, but it is emitted into published
 		// output, so it belongs with the other URLs rather than inline in a route.
 		feedsmith: 'https://feedsmith.dev',
