@@ -15,5 +15,6 @@ declare module 'virtual:site' {
 			bluesky: string;
 		};
 		feed: { id: string; followDescription: string };
+		indexnow: string;
 	};
 }

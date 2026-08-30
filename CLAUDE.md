@@ -121,6 +121,7 @@ each of its files is listed here rather than behind a second index.
 | ----------------------------------------- | ---------------------------------------- |
 | Interface behaviour, focus rings, styling | [spec/styling.md](spec/styling.md)       |
 | Serving a reader their language           | [spec/locale.md](spec/locale.md)         |
+| Telling a search engine what changed      | [spec/indexing.md](spec/indexing.md)     |
 | Newsletter, likes, D1, and client cache   | [spec/engagement.md](spec/engagement.md) |
 | Analytics clients, dev behaviour, ids     | [spec/analytics.md](spec/analytics.md)   |
 

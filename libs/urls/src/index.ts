@@ -125,6 +125,10 @@ export const URLS = {
 		// Named as the feed's generator. Nothing fetches it, but it is emitted into published
 		// output, so it belongs with the other URLs rather than inline in a route.
 		feedsmith: 'https://feedsmith.dev',
+		// Where changed URLs are announced. The shared endpoint rather than one engine's own:
+		// participants agree to forward what they receive, so submitting here reaches all of
+		// them and picking one would be choosing which of them to tell. See spec/indexing.md.
+		indexnow: 'https://api.indexnow.org/IndexNow',
 		// Bases for social profile links. Handles stay in `site.config.yaml`; these are only
 		// where a handle is reachable.
 		//

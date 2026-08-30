@@ -37,6 +37,16 @@ feed:
   id: tag:canmi.net,2023:atom
   followDescription: feedId:259981957098517504+userId:125528261992773632
 
+# The IndexNow key. Public by construction: proving ownership means serving this exact string
+# at `/<key>.txt`, so anyone who can read the file can read the key. It is written here in
+# plain text for the same reason the analytics client id is -- see spec/analytics.md -- rather
+# than pretending a secret store could hide something the protocol requires be published.
+#
+# It is not a URL, so it does not belong in libs/urls; it is an identity this site proves, like
+# the Bluesky handle above. The route that serves it and the script that submits with it both
+# read it from here, so rotating the key is a one-line edit. See spec/indexing.md.
+indexnow: 4db98e0b887a45b1b983c3f5715afa90
+
 # Extra static 301 redirects (from: to), baked into the Cloudflare _redirects
 # file at build (see vite.config.ts). Built-in redirects (feed aliases, favicon)
 # are hardcoded in vite.config.ts and not configured here — this list is only

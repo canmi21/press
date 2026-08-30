@@ -25,6 +25,7 @@ pub const EXTERNAL_ROBOTSTXT: &str = "https://www.robotstxt.org/robotstxt.html";
 pub const EXTERNAL_SENTRY_SITE: &str =
 	"https://a7f2f790ed2fa4f8e0c4310d26d9c39f@o4511131162116096.ingest.us.sentry.io/4511380121976832";
 pub const EXTERNAL_FEEDSMITH: &str = "https://feedsmith.dev";
+pub const EXTERNAL_INDEXNOW: &str = "https://api.indexnow.org/IndexNow";
 pub const EXTERNAL_SOCIAL_TELEGRAM: &str = "https://t.me";
 pub const EXTERNAL_SOCIAL_TWITTER: &str = "https://twitter.com";
 pub const EXTERNAL_SOCIAL_TWITTER_INTENT: &str = "https://twitter.com/intent/follow";
