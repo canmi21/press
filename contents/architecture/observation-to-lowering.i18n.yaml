@@ -67,12 +67,12 @@ segments:
       review: false
   02838a6b1d344559afe6c736b44cbfc5:
     de-DE:
-      text: 'Wie schon im letzten Beitrag geschrieben: `Seam` ist zuallererst ein Protokoll, nicht noch eine weitere **SSR-Runtime**. Zur **Build-Zeit** entsteht ein `HTML skeleton` mit `slot`, zur **Request-Zeit** wird nur noch `injection` gemacht; `if` / `each` / `match` sind ebenfalls:fn[Protokollknoten]{is="„Knoten“ meint hier die Struktureinheiten, mit denen das Protokoll Seitenaufbau und Steuerbeziehungen beschreibt, und hat mit Netzwerkknoten oder VPNs nicht das Geringste zu tun"}'
+      text: Schade nur, dass ich für die UI damals React gewählt hatte und dort angefangen habe, das Messer anzusetzen; leider ist es auf React ausgesprochen schwierig, die Seitenstruktur zu erfassen und daraus Varianten zu erzeugen, und den Compiler umzubauen wäre kein geringerer Aufwand, als einen neu zu schreiben...
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:47:17.891355Z
-      seconds: 18.395801458
-      tokens: 29329
+      at: 2026-08-30T00:40:24.857413Z
+      seconds: 7.982967583
+      tokens: 28283
       review: false
     en-US:
       text: The pity is that I had already picked React for the UI and started cutting; unfortunately, capturing page structure and generating variants on top of React is extremely hard, and modifying the compiler would be no less work than rewriting one...
@@ -83,20 +83,20 @@ segments:
       tokens: 28382
       review: false
     es-ES:
-      text: Como ya escribí en el artículo anterior, `Seam` es ante todo un protocolo, no otro **runtime de SSR** más. En **tiempo de compilación** se produce un `HTML skeleton` con `slot`, y en **tiempo de petición** solo se hace `injection`; `if` / `each` / `match` también son:fn[nodos del protocolo]{is="aquí «nodo» se refiere a la unidad estructural con la que el protocolo describe la estructura de la página y sus relaciones de control, y no tiene absolutamente nada que ver con nodos de red ni con VPN"}
+      text: Lástima que en su momento elegí React para la UI y por ahí empecé a meter el bisturí; por desgracia, capturar la estructura de la página y generar variantes a partir de ella es dificilísimo en React, y tocar el compilador supondría un trabajo nada menor que reescribir uno entero...
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:47:17.891355Z
-      seconds: 18.395801458
-      tokens: 29329
+      at: 2026-08-30T00:40:24.857413Z
+      seconds: 7.982967583
+      tokens: 28283
       review: false
     fr-FR:
-      text: Comme je l'ai déjà écrit dans l'article précédent, `Seam` est d'abord un protocole, pas un **runtime SSR** de plus. À la **compilation**, on produit un `HTML skeleton` doté de `slot` ; à la **requête**, on ne fait que de l'`injection` ; `if` / `each` / `match` sont eux aussi des:fn[nœuds de protocole]{is="« nœud » désigne ici l'unité structurelle par laquelle le protocole décrit la structure de la page et ses relations de contrôle, et n'a strictement rien à voir avec un nœud réseau ou un VPN"}
+      text: Dommage seulement que j'avais choisi React pour l'UI et que c'est là que j'ai commencé à tailler ; malheureusement, capturer la structure de la page et en produire des variantes est extrêmement difficile sur React, et modifier le compilateur représenterait un travail équivalent à en réécrire un...
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:47:17.891355Z
-      seconds: 18.395801458
-      tokens: 29329
+      at: 2026-08-30T00:40:24.857413Z
+      seconds: 7.982967583
+      tokens: 28283
       review: false
     ja-JP:
       text: 惜しいことに、私は先に UI に React を選んで手を付け始めていた。不幸にも React の上でページ構造を捕捉して変体を生成するのは非常に難しく、コンパイラを改造するとなれば、その作業量はひとつ書き直すのと変わらない...
@@ -1042,12 +1042,12 @@ segments:
       review: false
   18cb4935d7725cd3e6b94b5bde19dab2:
     de-DE:
-      text: '[Evan You](https://github.com/yyx990803) hat also eigentlich nichts falsch gemacht; man könnte sogar sagen, irgendjemand musste den:tn[Bösewicht]{is="Im Original steht 大坏人, wörtlich „der große böse Mann“ — ein Wort aus der Kindersprache, hier ironisch auf Evan You gemünzt, der die schmerzhaften Entscheidungen trifft. Der verspielte, fast liebevolle Ton geht in der Übersetzung verloren."} geben, und er war zufällig genau der Richtige dafür, hat also nur das Richtige getan …'
+      text: '[Evan You](https://github.com/yyx990803) hat also eigentlich gar nichts falsch gemacht, man könnte sogar sagen: irgendjemand musste den ~~:tn[bösen Buhmann]{is="Im Original steht 大坏人, wörtlich „der große böse Mann“ – ein Ausdruck aus der Kindersprache, halb im Scherz auf Evan You gemünzt, der die schmerzhaften Entscheidungen trifft. Dieser verspielte, fast kindliche Ton lässt sich im Deutschen kaum halten."}~~ geben, und er war zufällig der Geeignetste dafür, hat also nur das Naheliegendste getan...'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:48:05.91322Z
-      seconds: 23.275926667
-      tokens: 30201
+      at: 2026-08-30T00:40:24.857387Z
+      seconds: 13.241409167
+      tokens: 29467
       review: false
     en-US:
       text: So [Evan You](https://github.com/yyx990803) did not really do anything wrong; you could even say someone had to step up and play the ~~:tn[big bad guy]{is="The original says 大坏人, a childlike, storybook phrase for a villain, used tongue-in-cheek about Evan You owning the breaking changes. The playful register is softer in English."}~~, and he just happened to be the best fit for it, doing nothing more than the most fitting thing...
@@ -1058,20 +1058,20 @@ segments:
       tokens: 29467
       review: false
     es-ES:
-      text: Así que [Evan You](https://github.com/yyx990803) en realidad no ha hecho nada mal; incluso se podría decir que alguien tenía que hacer de:tn[malo malísimo]{is="El original dice 大坏人, literalmente «el hombre muy malo», una expresión de lenguaje infantil usada aquí con ironía sobre Evan You, que carga con las decisiones que rompen la compatibilidad. El tono juguetón, casi cariñoso, se diluye al traducirlo."}, y resulta que él era la persona más adecuada, así que solo hizo lo más adecuado…
+      text: Así que [Evan You](https://github.com/yyx990803) en realidad no ha hecho nada mal; incluso se podría decir que alguien tenía que hacer de ~~:tn[malo malísimo]{is="El original dice 大坏人, literalmente « el hombre grande y malo », una expresión del habla infantil usada con ironía sobre Evan You y sus decisiones que rompen cosas. Ese registro juguetón, casi de cuento infantil, se pierde en castellano."}~~ y él resultaba ser el más indicado, así que se limitó a hacer lo más adecuado...
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:48:05.91322Z
-      seconds: 23.275926667
-      tokens: 30201
+      at: 2026-08-30T00:40:24.857387Z
+      seconds: 13.241409167
+      tokens: 29467
       review: false
     fr-FR:
-      text: Donc [Evan You](https://github.com/yyx990803) n'a en réalité rien fait de mal ; on pourrait même dire qu'il fallait bien que quelqu'un joue le:tn[grand méchant]{is="L'original dit 大坏人, littéralement « le grand méchant homme », une formule enfantine employée ici avec ironie à propos d'Evan You, qui assume les décisions qui cassent tout. Le ton joueur, presque affectueux, s'estompe à la traduction."}, et il se trouve qu'il était la personne la plus indiquée, il a donc simplement fait ce qu'il fallait…
+      text: Donc [Evan You](https://github.com/yyx990803) n'a en réalité rien fait de mal, on pourrait même dire qu'il fallait bien que quelqu'un joue les ~~:tn[grands méchants]{is="L'original dit 大坏人, littéralement « le grand méchant homme », une formule de langage enfantin employée avec ironie à propos d'Evan You et de ses décisions qui cassent tout. Ce ton badin, presque puéril, s'estompe en français."}~~ et qu'il se trouvait être le mieux placé, il a simplement fait ce qu'il y avait de plus juste à faire...
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:48:05.91322Z
-      seconds: 23.275926667
-      tokens: 30201
+      at: 2026-08-30T00:40:24.857387Z
+      seconds: 13.241409167
+      tokens: 29467
       review: false
     ja-JP:
       text: だから [Evan You](https://github.com/yyx990803) は別に何も間違ったことはしていない。むしろ誰かがこの ~~:tn[悪者]{is="原文の「大坏人」は子どもが使うような絵本的な言い回しで、破壊的変更を引き受けた Evan You を冗談めかして指している。その無邪気でおどけた語感は訳では弱まっている。"}~~ を引き受けなければならなかったと言ってもよく、彼はたまたま最適な人選で、最適なことをしただけなのだ……
@@ -1692,12 +1692,12 @@ segments:
       review: false
   2ba0907a6e0aa6c929e9a32949a430a0:
     de-DE:
-      text: 'Was Vue angeht: Als ich selbst von Vue 2 auf Vue 3 umgestiegen bin, konnte ich mich mit der Syntax und diesen Mechanismen nicht mehr anfreunden; das Vue in meinem Kopf bleibt für immer Vue 2. Unbestreitbar hat Vue 3 viele großartige `feature`, aber verglichen mit Vue 2 fühlt sich sein Kern für mich verändert an – und zwar gewaltig. Und aus geschäftlicher Sicht: Wird `Vue` nicht immer vollständiger an die Meta-Ebene gekettet und vom Ökosystem kontrolliert? Die Lage wirkt der von `Svelte` sehr ähnlich, beide Open Source, aber es kann praktisch kaum ein Dritter auftreten und dir eine zweite Implementierung bauen. Genau deshalb hat das Durchmischen der Karten durch **TanStack Start** **Next.js** wirklich hart getroffen; ein Lob an [Tanner Linsley](https://x.com/tannerlinsley). Es gibt noch einen weiteren, nicht zu übersehenden Punkt bei `Vue`: Das frühe `Vue` war tatsächlich eine Erneuerung, aber jeder **UI Stack** bekommt Ökosystemprobleme, sobald das Ökosystem wächst – ~~also gewisse Kompromisse um der Kompatibilität willen?~~ Besonders bei `React` ist das wirklich sehr deutlich, und das heutige `Vue` bildet da keine Ausnahme. Wenn solche:fn[Inhalte]{is="lassen sich hier am Kompatibilitätslayer aus Options API + Component Instance Proxy zeigen, meiner Meinung nach eines der schönsten Designs des frühen Vue – zumindest 2016 ließ es das Framework nicht wie ein Framework aussehen. Im Zeitalter von TS + Composition API ist der Preis aber offensichtlich: Neue Projekte greifen nicht mehr darauf zurück, und trotzdem lässt es sich, weil es ein früher Erfolgsentwurf war, nicht wirklich vollständig abwerfen"} auftauchen, stufe ich das in der Regel als **Slop** ein, ~~schlecht nennen kann man es aber auch nicht~~, denn sobald Nuxt zum nächsten „Enterprise-Framework“ wird, zählt zuerst nicht mehr, ob etwas technisch richtig oder elegant ist, sondern eine gewisse Rückwärtskompatibilität plus Stabilität (x'
+      text: 'Was Vue angeht: Als ich persönlich von Vue 2 auf Vue 3 migriert bin, konnte ich mich mit der Syntax und den übrigen Mechanismen nicht mehr recht anfreunden; das Vue in meinem Kopf wird immer Vue 2 sein. Unbestreitbar bringt Vue 3 viele großartige `feature` mit, aber verglichen mit Vue 2 fühlt sich sein Kern für mich verändert an -- und zwar stark verändert. Und wenn man es aus geschäftlicher Sicht betrachtet: Wird `Vue` nicht immer vollständiger an die Meta-Ebene gekettet, immer stärker vom Ökosystem kontrolliert? Die Lage wirkt der von `Svelte` sehr ähnlich: beides Open Source, aber praktisch tritt kaum je ein Dritter hervor und liefert dir eine zweite Implementierung. Genau deshalb hat das Neumischen der Karten durch **TanStack Start** **Next.js** so hart getroffen; ein Lob an [Tanner Linsley](https://x.com/tannerlinsley). Es gibt noch einen weiteren Punkt, ein nicht zu übersehendes Problem von `Vue`: In den frühen Jahren war `Vue` tatsächlich eine Neuerung; aber jeder **UI Stack** stößt, sobald sein Ökosystem gewachsen ist, auf Ökosystemprobleme, ~~also auf gewisse Kompromisse um der Kompatibilität willen?~~ Besonders deutlich zeigt sich das bei `React`, und das heutige `Vue` macht da keine Ausnahme. Wenn so etwas auftaucht wie :fn[dieser Inhalt]{is="lässt sich hier am Kompatibilitätslayer aus Options API + Component Instance Proxy zeigen, für mich eines der schönsten Designs des frühen Vue -- zumindest ließ es 2016 das Framework nicht wie ein Framework wirken. In der Ära von TS + Composition API sind die Kosten jedoch offensichtlich: neue Projekte greifen nicht mehr dazu, und weil es ein früher Erfolg war, kann man es doch nicht wirklich ganz fallen lassen"}, halte ich das üblicherweise für **Slop**, ~~wobei man nicht sagen kann, dass es schlecht wäre~~, denn sobald Nuxt zum nächsten „Enterprise“-Framework wird, ist die erste Erwägung nicht mehr, ob etwas technisch richtig oder elegant ist, sondern eine gewisse Rückwärtskompatibilität + Stabilität (x'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:48:43.993742Z
-      seconds: 70.330225625
-      tokens: 34027
+      at: 2026-08-30T00:40:24.857391Z
+      seconds: 38.077956625
+      tokens: 31394
       review: false
     en-US:
       text: 'As for Vue, when I personally migrated from Vue 2 to Vue 3 I could no longer get behind its syntax and mechanisms; the Vue in my heart will always be Vue 2. There is no denying that Vue 3 has many excellent `feature`, but compared with Vue 2 its core feels different to me, and very different at that. Then, looking at it from a commercial angle, is `Vue` being tied ever more tightly to the meta layer and controlled by its ecosystem? Its situation feels very much like `Svelte`: both are open source, but it is genuinely almost impossible for a third party to step up and build a second implementation for you, which is exactly why the shake-up brought by **TanStack Start** hit **Next.js** so hard; [Tanner Linsley](https://x.com/tannerlinsley) deserves real credit. There is one more thing, a problem of `Vue` that cannot be ignored: the early `Vue` really was a revolution, but every **UI Stack** runs into ecosystem problems once its ecosystem takes off, ~~that is, certain compromises made for compatibility?~~ and this problem is especially glaring in `React`; today''s `Vue` is no exception. When this kind of :fn[content]{is="can be exemplified here by the Options API + Component Instance Proxy compatibility layer, which I consider one of the most beautiful designs of early Vue; at least in 2016 it made the framework not look like a framework. But in the TS + Composition API era its cost is obvious: new projects will not use it anymore, yet because it was an early successful design it cannot really be thrown away entirely"} starts appearing, I usually consider it **Slop**, ~~though you cannot say it is bad either~~, because once Nuxt becomes the next "enterprise-grade" framework, the primary consideration is no longer whether the technology is correct or elegant, but a certain backward compatibility + stability (x'
@@ -1708,20 +1708,20 @@ segments:
       tokens: 30318
       review: false
     es-ES:
-      text: 'En cuanto a Vue, cuando yo mismo migré de Vue 2 a Vue 3 ya no compartía demasiado su sintaxis ni esos mecanismos; el Vue que llevo en la cabeza será siempre Vue 2. No se puede negar que Vue 3 tiene muchísimos `feature` estupendos, pero comparado con Vue 2 su núcleo, para mí, se siente cambiado; y cambiado muchísimo. Además, desde el punto de vista comercial, ¿no está `Vue` cada vez más completamente atado a la capa meta y controlado por el ecosistema? Su situación se parece muchísimo a la de `Svelte`: ambos son de código abierto, pero en la práctica es casi imposible que un tercero dé un paso al frente y te haga una segunda implementación. Por eso también el reparto de cartas que trajo **TanStack Start** golpeó tan fuerte a **Next.js**; hay que reconocerle el mérito a [Tanner Linsley](https://x.com/tannerlinsley). Y hay otro punto que tampoco se puede pasar por alto en `Vue`: el `Vue` de los primeros años fue realmente una innovación, pero cualquier **UI Stack** acaba encontrándose con problemas de ecosistema en cuanto este crece, ~~es decir, ¿ciertas concesiones hechas en nombre de la compatibilidad?~~ Este problema se ve especialmente claro en `React`, y el `Vue` de hoy no es una excepción. Cuando empieza a aparecer este tipo de:fn[contenido]{is="puede ilustrarse aquí con la capa de compatibilidad de Options API + Component Instance Proxy, para mí uno de los diseños más bonitos del Vue temprano: al menos en 2016 hacía que el framework no pareciera un framework. Pero en la era de TS + Composition API el coste es evidente: los proyectos nuevos ya no lo usarán y, aun así, por tratarse de un acierto de los inicios, no se puede tirar del todo"}, normalmente ya lo considero **Slop**, ~~aunque tampoco se puede decir que sea malo~~, porque una vez que Nuxt se convierte en el siguiente framework «de nivel empresarial», lo primero que se valora ya no es si algo es técnicamente correcto o elegante, sino cierta retrocompatibilidad + estabilidad (x'
+      text: 'En cuanto a Vue: cuando yo mismo migré de Vue 2 a Vue 3, la sintaxis y demás mecanismos ya no acababan de convencerme; el Vue que tengo en la cabeza será siempre Vue 2. No se puede negar que Vue 3 trae muchos `feature` estupendos, pero comparado con Vue 2 su núcleo me da la sensación de haber cambiado, y de haber cambiado mucho. Además, desde una perspectiva comercial, ¿no está `Vue` cada vez más completamente atado a la capa meta, cada vez más controlado por el ecosistema? Su situación se parece muchísimo a la de `Svelte`: ambos son código abierto, pero en la práctica es realmente difícil que un tercero dé un paso al frente y te haga una segunda implementación. Por eso mismo la redistribución de cartas que trajo **TanStack Start** golpeó tan fuerte a **Next.js**; hay que aplaudir a [Tanner Linsley](https://x.com/tannerlinsley). Hay otro punto más, un problema de `Vue` que no se puede pasar por alto: en sus primeros años `Vue` fue de verdad una innovación; pero cualquier **UI Stack** se topa con problemas de ecosistema una vez que este ha crecido, ~~es decir, ¿ciertas concesiones hechas en nombre de la compatibilidad?~~ Este problema resulta especialmente evidente en `React`, y el `Vue` de hoy no es una excepción: cuando empieza a aparecer :fn[este tipo de contenido]{is="que aquí se puede ejemplificar con la capa de compatibilidad de Options API + Component Instance Proxy, para mí uno de los diseños más bonitos del Vue temprano; al menos en 2016 hacía que el framework no pareciera un framework. Pero en la era de TS + Composition API el coste es evidente: los proyectos nuevos ya no lo usan y, por ser un acierto de los inicios, tampoco se puede soltar del todo"}, normalmente ya empiezo a considerarlo **Slop**, ~~aunque tampoco se puede decir que sea malo~~, porque una vez que Nuxt se convierte en el siguiente framework «empresarial», la primera consideración ya no es si algo es técnicamente correcto o elegante, sino cierta retrocompatibilidad + estabilidad (x'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:48:43.993742Z
-      seconds: 70.330225625
-      tokens: 34027
+      at: 2026-08-30T00:40:24.857391Z
+      seconds: 38.077956625
+      tokens: 31394
       review: false
     fr-FR:
-      text: 'Pour Vue, quand je suis moi-même passé de Vue 2 à Vue 3, je n''adhérais déjà plus vraiment à la syntaxe et à ces mécanismes ; le Vue que j''ai en tête restera toujours Vue 2. On ne peut pas nier que Vue 3 apporte beaucoup d''excellents `feature`, mais comparé à Vue 2, son cœur me semble avoir changé, et changé énormément. Par ailleurs, d''un point de vue commercial, `Vue` n''est-il pas de plus en plus complètement ligoté par la couche meta et contrôlé par l''écosystème ? Sa situation ressemble beaucoup à celle de `Svelte` : tous deux open source, mais il est en réalité quasiment impossible qu''un tiers se lève pour vous fournir une deuxième implémentation. C''est aussi pourquoi la redistribution des cartes provoquée par l''arrivée de **TanStack Start** a porté un coup si rude à **Next.js** ; il faut saluer [Tanner Linsley](https://x.com/tannerlinsley). Il y a encore un point qu''on ne peut pas ignorer à propos de `Vue` : le `Vue` des débuts était bel et bien une innovation, mais n''importe quel **UI Stack** finit par rencontrer des problèmes d''écosystème une fois celui-ci développé, ~~c''est-à-dire un certain nombre de compromis faits au nom de la compatibilité ?~~ Ce problème est particulièrement flagrant sur `React`, et le `Vue` d''aujourd''hui ne fait pas exception. Quand ce genre de:fn[contenu]{is="peut s''illustrer ici par la couche de compatibilité Options API + Component Instance Proxy, à mes yeux l''un des plus beaux designs des débuts de Vue : en 2016 au moins, il faisait qu''un framework n''avait pas l''air d''un framework. Mais à l''ère de TS + Composition API, le coût saute aux yeux : les nouveaux projets ne l''utiliseront plus, et pourtant, parce qu''il s''agit d''une réussite des origines, impossible de vraiment s''en débarrasser tout à fait"} commence à apparaître, je le classe en général comme du **Slop**, ~~sans pour autant pouvoir dire que c''est mauvais~~, parce qu''une fois que Nuxt devient le prochain framework « de niveau entreprise », la première considération n''est plus de savoir si c''est techniquement juste ou élégant, mais une certaine rétrocompatibilité + stabilité (x'
+      text: 'Pour ce qui est de Vue : quand je suis personnellement passé de Vue 2 à Vue 3, je n''adhérais plus vraiment à la syntaxe ni aux mécanismes ; le Vue que j''ai en tête restera toujours Vue 2. On ne peut pas nier que Vue 3 apporte beaucoup d''excellents `feature`, mais comparé à Vue 2, son cœur me semble avoir changé -- et beaucoup changé. Par ailleurs, d''un point de vue commercial, `Vue` n''est-il pas de plus en plus complètement ligoté à la couche méta, contrôlé par l''écosystème ? Sa situation ressemble énormément à celle de `Svelte` : tous deux open source, mais en pratique il est vraiment très difficile qu''un tiers se lève pour t''offrir une seconde implémentation. C''est aussi pour cela que la redistribution des cartes provoquée par l''arrivée de **TanStack Start** a porté un coup si rude à **Next.js** ; il faut saluer [Tanner Linsley](https://x.com/tannerlinsley). Il y a encore un point, un problème de `Vue` qu''on ne peut pas ignorer : dans les premières années, `Vue` était bel et bien une innovation ; mais n''importe quel **UI Stack** rencontre des problèmes d''écosystème une fois celui-ci développé, ~~c''est-à-dire un certain nombre de compromis consentis au nom de la compatibilité ?~~ Ce problème est particulièrement flagrant sur `React`, et le `Vue` d''aujourd''hui ne fait pas exception : quand apparaît :fn[ce genre de contenu]{is="dont on peut donner ici pour exemple la couche de compatibilité Options API + Component Instance Proxy, à mes yeux l''un des plus beaux designs du Vue des débuts -- en 2016 au moins, il donnait au framework l''air de ne pas en être un. Mais à l''ère de TS + Composition API, le coût saute aux yeux : les nouveaux projets ne l''utilisent plus, et comme c''est une réussite des débuts, impossible de vraiment s''en défaire tout à fait"}, en général je commence à y voir du **Slop**, ~~sans pour autant pouvoir dire que c''est mauvais~~, car dès lors que Nuxt devient le prochain framework « entreprise », la première considération n''est plus de savoir si c''est techniquement juste ou élégant, mais une certaine rétrocompatibilité + stabilité (x'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:48:43.993742Z
-      seconds: 70.330225625
-      tokens: 34027
+      at: 2026-08-30T00:40:24.857391Z
+      seconds: 38.077956625
+      tokens: 31394
       review: false
     ja-JP:
       text: Vue については、個人的に Vue 2 から Vue 3 へ移行した際に、構文などの仕組みにあまり賛同できなくなった。私の心の中の Vue は永遠に Vue 2 だ。Vue 3 に素晴らしい `feature` が数多くあることは否定できないが、Vue 2 と比べると、そのコアは私にとって変わってしまったように感じる。しかも大きく変わった。また商業的な観点から考えると、`Vue` はますます meta 層に完全に縛り付けられ、エコシステムに支配されているのではないか?その状況は `Svelte` と非常によく似ていて、どちらもオープンソースではあるが、第三者が立ち上がって第二の実装を作ってくれることは本当にほぼありえない。これこそ **TanStack Start** の参入による再編が **Next.js** に与えた打撃が本当に大きかった理由であり、[Tanner Linsley](https://x.com/tannerlinsley) は称賛されるべきだ。もう一つ、`Vue` の無視できない問題がある。初期の `Vue` は確かに革新だったが、どんな **UI Stack** もエコシステムが育った後にはエコシステムの問題にぶつかる。~~つまり互換性のために一定の妥協が生まれるということ?~~ 特にこの問題は `React` で本当に顕著で、今の `Vue` も例外ではない。こうした:fn[内容]{is="の例としては Options API + Component Instance Proxy 互換層が挙げられる。私はこれを初期 Vue の最も美しい設計の一つだと考えており、少なくとも 2016 年にはフレームワークをフレームワークらしく見せない効果があった。しかし TS + Composition API の時代になるとコストが明らかで、新しいプロジェクトではもう使われないのに、初期の成功した設計であるがゆえに本当に完全には捨てられない"}が現れ始めたとき、私は大抵それを **Slop** と見なす。~~とはいえ悪いとも言えない~~。Nuxt が次の「エンタープライズ級」フレームワークになった後は、第一の考慮事項はもはや技術が正しいか、エレガントかではなく、ある種の後方互換性 + 安定性になるからだ(x
@@ -3528,12 +3528,12 @@ segments:
       review: false
   5720841b2738415b49f41038ae99d774:
     de-DE:
-      text: 'Aber:fn[dieses JS ist nicht jenes JS]{is="das „mehr JS“ meint hier nur, dass die syntaktische Form JavaScript näherkommt, und nicht, dass daraus gewöhnliche Funktionsaufrufe würden, die der Compiler nicht mehr versteht"}, und der Unterschied zu `useState` / `useMemo` / `useContext` / `useEffect` ist: **runes** sind weiterhin `compiler-recognized semantics`, deshalb kann Seam wissen, dass `$state` dem **client** gehört, `$derived` abgeleitet ist und `$effect` zur **client runtime** zählt; das liegt mit `const foo = someLibraryHook()` nicht in derselben Größenordnung.'
+      text: 'Aber :fn[dieses JS ist nicht jenes JS]{is="mit „mehr JS“ ist hier nur gemeint, dass die syntaktische Form JavaScript näherkommt; es heißt nicht, dass daraus gewöhnliche Funktionsaufrufe würden, die der Compiler nicht mehr versteht"} — der Unterschied zu `useState` / `useMemo` / `useContext` / `useEffect` ist: **Runes** sind weiterhin `compiler-recognized semantics`, also kann Seam wissen, dass `$state` dem **Client** gehört, dass `$derived` abgeleitet ist und dass `$effect` zur **Client-Runtime** zählt; das liegt mit `const foo = someLibraryHook()` nicht in derselben Größenordnung.'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:50:50.724172Z
-      seconds: 20.959057542
-      tokens: 29990
+      at: 2026-08-30T00:40:24.857465Z
+      seconds: 12.2562215
+      tokens: 28983
       review: false
     en-US:
       text: But :fn[this JS is not that JS]{is="here 'more JS' only means the syntax looks closer to JavaScript; it does not mean it has degraded into plain function calls the compiler cannot understand"}, and the difference from `useState` / `useMemo` / `useContext` / `useEffect` is that **runes** are still `compiler-recognized semantics`, so Seam can know that `$state` is owned by the **client**, `$derived` is derived, and `$effect` is **client runtime**; this is not in the same league as `const foo = someLibraryHook()`.
@@ -3544,20 +3544,20 @@ segments:
       tokens: 28815
       review: false
     es-ES:
-      text: 'Pero:fn[este JS no es aquel JS]{is="lo de « más JS » se refiere solo a que la forma sintáctica se acerca más a JavaScript, no a que degenere en llamadas a funciones corrientes que el compilador ya no entendería"}, y la diferencia con `useState` / `useMemo` / `useContext` / `useEffect` es esta: las **runes** siguen siendo `compiler-recognized semantics`, así que Seam puede saber que `$state` pertenece al **client**, que `$derived` es derivado y que `$effect` es del **client runtime**; esto no está al mismo nivel que `const foo = someLibraryHook()`.'
+      text: 'Pero :fn[este JS no es aquel JS]{is="lo de « más JS » solo se refiere a que la forma sintáctica se acerca a JavaScript, no a que degenere en llamadas a funciones corrientes que el compilador ya no pueda entender"} — la diferencia con `useState` / `useMemo` / `useContext` / `useEffect` es esta: las **runes** siguen siendo `compiler-recognized semantics`, así que Seam puede saber que `$state` pertenece al **cliente**, que `$derived` es derivado y que `$effect` es del **runtime del cliente**; eso no está al mismo nivel que `const foo = someLibraryHook()`.'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:50:50.724172Z
-      seconds: 20.959057542
-      tokens: 29990
+      at: 2026-08-30T00:40:24.857465Z
+      seconds: 12.2562215
+      tokens: 28983
       review: false
     fr-FR:
-      text: 'Mais:fn[ce JS n’est pas celui-là]{is="ce « plus JS » désigne seulement une forme syntaxique plus proche de JavaScript, et non une dégradation en simples appels de fonction que le compilateur ne comprendrait plus"}, et la différence avec `useState` / `useMemo` / `useContext` / `useEffect` est la suivante : les **runes** restent `compiler-recognized semantics`, donc Seam peut savoir que `$state` appartient au **client**, que `$derived` est dérivé et que `$effect` relève du **client runtime** ; cela n’a rien à voir, en termes d’ordre de grandeur, avec `const foo = someLibraryHook()`.'
+      text: 'Mais :fn[ce JS n’est pas l’autre JS]{is="ici, « plus JS » veut seulement dire que la forme syntaxique se rapproche de JavaScript, non que tout se réduise à de simples appels de fonctions que le compilateur ne comprendrait plus"} — la différence avec `useState` / `useMemo` / `useContext` / `useEffect` tient à ceci : les **runes** restent `compiler-recognized semantics`, donc Seam peut savoir que `$state` appartient au **client**, que `$derived` est dérivé et que `$effect` relève du **runtime client** ; ce n’est pas du même ordre de grandeur que `const foo = someLibraryHook()`.'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:50:50.724172Z
-      seconds: 20.959057542
-      tokens: 29990
+      at: 2026-08-30T00:40:24.857465Z
+      seconds: 12.2562215
+      tokens: 28983
       review: false
     ja-JP:
       text: ただし:fn[この JS はあの JS ではない]{is="ここでいう「より JS らしい」とは構文の形が JavaScript に近づいたというだけで、コンパイラが理解できない普通の関数呼び出しに退化したという意味ではない"}。`useState` / `useMemo` / `useContext` / `useEffect` との違いは、**runes** が依然として `compiler-recognized semantics` であることだ。だから Seam は `$state` が **client** の所有物であり、`$derived` が派生であり、`$effect` が **client runtime** であると知ることができる。これは `const foo = someLibraryHook()` とは次元が違う。
@@ -4698,12 +4698,12 @@ segments:
       review: false
   7e0886f6e9bf7582b65543981cb2c87c:
     de-DE:
-      text: 'Fangen wir mit `React` an. Lassen wir mal beiseite, dass es kommerziell an **Vercel** `Next.js` gebunden ist und dass es sein eigenes `roadmap` mitbringt -- zuallererst fliegen einem hier die **CVEs** nur so um die Ohren, ~~allein das verdammt dich dazu, pausenlos die sozialen Medien im Blick zu behalten, ob gerade eine neue Lücke gemeldet und veröffentlicht wurde~~. Die **Router** der anderen sind im Grunde:fn[unbrauchbar, besonders **Remix**]{is="eine rein persönliche, subjektive Einschätzung, die von Mensch zu Mensch anders ausfällt; offiziell und in der Community gelten sie durchaus als brauchbar, aber da bin ich anderer Meinung"}, doch 2026 gibt es eine ganz besondere Option: **TanStack Start**. Ich benutze **TanStack Router** schon sehr lange und kann dazu sagen: ~~abgesehen davon, dass:fn[Namensstil und Datenstrukturen nicht besonders schön geraten sind]{is="rein persönlicher Geschmack und kein Konstruktionsfehler des Frameworks"}~~ ist das rein funktional die einzige Option, die ich gelten lasse. Etwas neu ist sie schon, aber sie löst das Problem der Ladezeit beim allerersten Aufruf einer Seite nach dem Kaltstart, an dem der `next-server`-Prozess von **Next.js 16** bis heute scheitert. **Next.js** hat dieses Hängen eigentlich schon immer auf unerklärliche Weise; es liegt nicht an zu schwacher Serverleistung. Ich führe es vielmehr darauf zurück, dass entweder der **Load** beim Start noch nicht durch ist oder `runtime` noch irgendetwas kompiliert. ~~Außerdem passt diese Struktur schon von Natur aus schlecht zu dem Prinzip von **Cloudflare Worker**, Instanzen an vielen Standorten möglichst nah am Nutzer zu starten~~; nur :fn[ein traditioneller langlaufender **Node**-Prozess wie bei **Vercel**]{is="ist genau genommen kein traditioneller Prozess, denn er schläft ein und wird erst zur Laufzeit geweckt -- der Gedanke des langlaufenden Prozesses trägt aber trotzdem"} bekommt dieses Problem nicht ab (?). ~~Ich schweife etwas ab; über Next.js kann ich später einen ganzen eigenen Artikel zum Auslassen schreiben~~. Aber :fn[**TanStack**]{is="meint hier ausdrücklich das heutige TanStack Start und nicht die übrigen Bibliotheken, die noch im RC- oder Beta-Stadium stecken -- der frühe Router war ja nicht einmal stabil, von Produktivbetrieb ganz zu schweigen"} halte ich wirklich für reif genug für den kommerziellen Einsatz; zumindest habe ich es für die Verkaufsseite eines Projekts eingesetzt. Aber das ist eben nur eine von genau zwei Optionen (x)'
+      text: 'Reden wir zuerst über `React`: Sehen wir mal von der kommerziellen Bindung an **Vercel** `Next.js` und davon ab, dass es sein eigenes `roadmap` hat -- vor allem fliegen einem hier ständig **CVE** um die Ohren, ~~allein das verurteilt dich dazu, pausenlos die **Social Media** im Blick zu behalten, ob wieder eine Lücke **report & release** durchläuft~~. Die **Router** der anderen sind im Grunde :fn[unbrauchbar, **Remix** ganz besonders]{is="-- eine rein persönliche Einschätzung, die jeder anders sehen darf; offiziell und in der Community gelten sie sehr wohl als brauchbar, ich sehe das nur anders"}, aber 2026 gibt es eine ganz besondere Option, nämlich **TanStack** **Start**. Ich benutze **TanStack Router** schon sehr lange und kann dazu sagen: ~~abgesehen von :fn[einem Namensstil und Datenstrukturen, die nicht eben schön geraten sind]{is="-- reine persönliche Vorliebe, kein Designfehler des Frameworks"}~~ ist das funktional die einzige Option, die ich gelten lasse. Etwas neu ist sie schon, aber sie löst das Problem der Ladezeit beim ersten Aufruf nach einem Kaltstart, das der `next-server`-Prozess von **Next.js 16** bis heute nicht in den Griff bekommen hat. **Next.js** hat dieses Ruckeln eigentlich immer schon auf unerklärliche Weise, und es liegt nicht an zu schwacher Serverleistung; ich führe es darauf zurück, dass entweder der **Load** beim Start noch nicht durch ist oder `runtime` noch irgendetwas kompiliert. ~~Und diese Struktur passt zwangsläufig schlecht zu dem Prinzip von **Cloudflare Worker**, Instanzen an vielen Standorten möglichst nah am Nutzer zu starten~~; nur :fn[bei **Vercel** mit seinem klassischen langlebigen **Node**-Prozess]{is="ist es kein klassischer Prozess -- die Instanz schläft und wird erst geweckt, wenn wirklich etwas läuft; als Denkfigur trägt der langlebige Prozess trotzdem"} läuft man nicht in dieses Problem (?) ~~Das führt jetzt etwas weit, über Next.js kann ich später einen ganzen Artikel zum Ablästern schreiben~~, aber :fn[**TanStack**]{is="meint hier ausdrücklich das heutige TanStack Start und keine der übrigen Bibliotheken, die noch in RC oder Beta stecken -- der frühe Router war ja nicht einmal stabil, von Produktion ganz zu schweigen"} halte ich wirklich für reif genug für den kommerziellen Einsatz, immerhin habe ich es für die Vertriebsseite eines Projekts eingesetzt. Aber das sind eben erst die einzigen zwei Optionen (x)'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:52:36.6968Z
-      seconds: 88.697276917
-      tokens: 34901
+      at: 2026-08-30T00:41:14.411618Z
+      seconds: 45.016431334
+      tokens: 31626
       review: false
     en-US:
       text: 'Let''s start with `React`. Setting aside its commercial tie to **Vercel** `Next.js` and the fact that it has its own `roadmap`, the first problem is that **CVEs** rain down on it, ~~which alone means you are doomed to watch **Social Media** around the clock for whatever new vulnerability gets **reported & released**~~. The other **Routers** are basically :fn[unusable, **Remix** especially]{is="a purely personal opinion that will vary from person to person; officially and in the community they are considered usable, but I disagree"}, yet in 2026 there is one very special option: **TanStack** **Start**. I have used **TanStack Router** for a long time, and ~~apart from the :fn[naming style and data structures not being very pretty]{is="purely my own taste, not a design flaw of the framework"}~~, it is the only option I endorse on functionality. It is on the new side, but it solves the cold-start first-visit speed problem that the `next-server` process in **Next.js 16** still has not solved to this day. **Next.js** has always had this inexplicable stutter, and it is not that the server lacks power; I would attribute it to either the startup **Load** not having finished, or `runtime` still compiling something. ~~And that structure is inherently a poor fit for the **Cloudflare Worker** principle of many instances in many regions, each started recently~~; only :fn[a traditional **long-lived Node process** like **Vercel**''s]{is="Vercel is not a traditional process, it sleeps and is woken when actually run, but the long-lived process idea still holds"} avoids this problem (?) ~~That is drifting a bit; **Next.js** deserves a whole separate rant later~~, but :fn[**TanStack**]{is="here specifically the current TanStack Start, not the other libraries still in RC or Beta; the early Router, for instance, could not even be called stable, let alone production ready"} really is, in my view, mature enough for commercial use; at the very least I have put it on the sales site of a certain project. But it is only the second of two options (x)'
@@ -4714,20 +4714,20 @@ segments:
       tokens: 30413
       review: false
     es-ES:
-      text: 'Empecemos por `React`. Dejando de lado que está atado comercialmente a **Vercel** `Next.js` y que tiene su propio `roadmap`, lo primero es que le llueven los **CVE** por todas partes, ~~solo con eso ya estás condenado a vigilar las redes sociales a cada momento por si acaban de reportar y publicar una vulnerabilidad nueva~~. Los **Router** de los demás están básicamente:fn[inservibles, sobre todo **Remix**]{is="una opinión estrictamente personal y subjetiva, que varía según quién la sostenga; de hecho tanto el equipo oficial como la comunidad los consideran utilizables, pero yo no estoy de acuerdo"}, aunque en 2026 hay una opción muy especial: **TanStack Start**. Llevo usando **TanStack Router** desde hace mucho, y puedo decir esto: ~~salvo por:fn[un estilo de nombres y unas estructuras de datos no demasiado elegantes]{is="pura preferencia personal, no un defecto de diseño del framework"}~~, en lo puramente funcional es la única opción que reconozco. Es algo nueva, sí, pero resuelve el problema de lentitud en el primer acceso a una página tras un arranque en frío, que el proceso `next-server` de **Next.js 16** sigue sin resolver a día de hoy. **Next.js** en realidad arrastra desde siempre ese atasco inexplicable, y no es que falte potencia de servidor; yo lo achaco a que o bien el **Load** del arranque aún no ha terminado, o bien `runtime` sigue compilando algo. ~~Y esa estructura encaja por fuerza mal con el principio de **Cloudflare Worker**, con instancias repartidas y arrancadas lo más cerca posible~~; solo :fn[un proceso **Node** largo y tradicional como el de **Vercel**]{is="que en rigor no es un proceso tradicional, ya que se duerme y solo despierta en el momento de ejecutarse, aunque la idea del proceso largo sigue siendo válida"} se libra de este problema (?). ~~Me estoy yendo un poco por las ramas; sobre Next.js ya escribiré más adelante un artículo entero solo para despotricar~~. Pero :fn[**TanStack**]{is="se refiere aquí en concreto al TanStack Start actual, y no a las demás bibliotecas que siguen en RC o beta -- el Router de los primeros tiempos ni siquiera llegaba a estable, así que de producción ni hablamos"} me parece de verdad lo bastante maduro para uso comercial; al menos yo ya lo he puesto en la web de ventas de cierto proyecto. Pero esto no es más que una de las dos únicas opciones (x)'
+      text: 'Hablemos primero de `React`: dejando de lado su atadura comercial a **Vercel** `Next.js` y que tenga su propio `roadmap`, lo primero es que las **CVE** le llueven por todas partes, ~~solo eso ya te condena a estar pendiente a todas horas de las **Social Media** por si alguien pasa una vulnerabilidad nueva por **report & release**~~. Los **Router** de los demás están básicamente :fn[inservibles, **Remix** muy en particular]{is="-- opinión estrictamente personal, cada cual verá; de hecho tanto el equipo oficial como la comunidad los dan por utilizables, pero yo no lo comparto"}, aunque en 2026 hay una opción muy especial: **TanStack** **Start**. Llevo muchísimo tiempo usando **TanStack Router** y puedo decir esto: ~~dejando aparte :fn[un estilo de nombres y unas estructuras de datos poco vistosas]{is="-- pura preferencia personal, no un defecto de diseño del framework"}~~, en lo funcional es la única opción que doy por buena. Nueva lo es un poco, sí, pero resuelve el problema de la lentitud del primer acceso tras un arranque en frío que el proceso `next-server` de **Next.js 16** sigue sin resolver. **Next.js** siempre ha tenido ese tirón inexplicable, y no es que falte potencia en el servidor; yo lo atribuyo a que o bien el **Load** de arranque no ha terminado, o bien `runtime` sigue compilando algo. ~~Y esa estructura encaja por fuerza mal con el principio de **Cloudflare Worker**, con instancias en muchas regiones arrancadas lo más cerca posible~~; solo :fn[el clásico **proceso largo de Node** de **Vercel**]{is="no lo es en realidad: la instancia duerme y solo se despierta cuando toca ejecutar; aun así la idea del proceso largo se sostiene"} se libra de este problema (?) ~~Me estoy yendo un poco por las ramas; sobre Next.js ya escribiré otro día un artículo entero solo para despotricar~~, pero :fn[**TanStack**]{is="se refiere aquí en concreto al TanStack Start actual y no al resto de bibliotecas todavía en RC o Beta -- el Router de los primeros tiempos ni siquiera era estable, conque imagínate hablar de producción"} me parece de verdad lo bastante maduro para un uso comercial; de hecho lo he puesto en la web comercial de cierto proyecto. Pero esas son solo las dos únicas opciones (x)'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:52:36.6968Z
-      seconds: 88.697276917
-      tokens: 34901
+      at: 2026-08-30T00:41:14.411618Z
+      seconds: 45.016431334
+      tokens: 31626
       review: false
     fr-FR:
-      text: 'Commençons par `React`. Laissons de côté le fait qu''il soit commercialement lié à **Vercel** `Next.js` et qu''il ait son propre `roadmap` : d''abord, les **CVE** y pleuvent de partout, ~~rien que cela te condamne à surveiller les réseaux sociaux à chaque instant pour voir si une nouvelle faille vient d''être signalée et publiée~~. Les **Router** des autres sont en gros:fn[inutilisables, **Remix** tout particulièrement]{is="avis strictement personnel et subjectif, qui varie d''une personne à l''autre ; officiellement et dans la communauté on les tient pour utilisables, mais je ne suis pas d''accord"}, mais en 2026 il existe une option tout à fait à part : **TanStack Start**. J''utilise **TanStack Router** depuis très longtemps, et je peux dire ceci : ~~à part:fn[un style de nommage et des structures de données pas très élégants]{is="pure préférence personnelle, et non un défaut de conception du framework"}~~, sur le plan fonctionnel c''est la seule option que je reconnaisse. Elle est un peu jeune, certes, mais elle règle le problème de lenteur du tout premier accès à une page après un démarrage à froid, que le processus `next-server` de **Next.js 16** n''a toujours pas résolu à ce jour. **Next.js** traîne en fait depuis toujours ce blocage inexplicable, et ce n''est pas une question de puissance serveur ; personnellement je l''impute soit au **Load** de démarrage qui n''est pas encore terminé, soit à `runtime` qui compile encore quelque chose. ~~Et cette structure se prête forcément mal au principe de **Cloudflare Worker**, avec ses instances réparties et démarrées au plus près~~ ; seul :fn[un long processus **Node** traditionnel comme chez **Vercel**]{is="qui n''en est pas vraiment un, puisqu''il se met en veille et n''est réveillé qu''au moment de l''exécution -- l''idée du processus long reste néanmoins valable"} échappe à ce problème (?). ~~Je m''égare un peu ; sur Next.js je pourrai plus tard écrire un article entier rien que pour râler~~. Mais :fn[**TanStack**]{is="désigne ici précisément l''actuel TanStack Start, à l''exclusion des autres bibliothèques encore en RC ou en bêta -- le Router des débuts n''était même pas stable, alors la production, n''en parlons pas"} me semble vraiment assez mûr pour un usage commercial ; je l''ai au moins mis en place sur le site commercial d''un projet. Mais ça ne fait jamais que l''une des deux seules options (x)'
+      text: 'Parlons d''abord de `React` : laissons de côté sa dépendance commerciale à **Vercel** `Next.js` et le fait qu''il ait son propre `roadmap` -- avant tout, les **CVE** y volent en tous sens, ~~rien que cela te condamne à surveiller en permanence les **Social Media** pour voir si une nouvelle faille passe en **report & release**~~. Les **Router** des autres sont pour l''essentiel :fn[inutilisables, **Remix** tout particulièrement]{is="-- avis strictement personnel, chacun jugera ; ils sont d''ailleurs tenus pour utilisables par les équipes officielles et la communauté, mais je ne partage pas cet avis"}, mais en 2026 il existe une option très particulière : **TanStack** **Start**. J''utilise **TanStack Router** depuis très longtemps et je peux dire ceci : ~~mise à part :fn[une convention de nommage et des structures de données peu élégantes]{is="-- pure préférence personnelle, et non un défaut de conception du framework"}~~, sur le plan fonctionnel c''est la seule option que je reconnaisse. Un peu jeune, certes, mais elle résout le problème de lenteur au premier accès après un démarrage à froid, que le processus `next-server` de **Next.js 16** n''a toujours pas réglé. **Next.js** a d''ailleurs toujours eu cette saccade inexplicable, et ce n''est pas une question de puissance du serveur ; je l''attribue soit au **Load** de démarrage qui n''est pas terminé, soit à `runtime` qui compile encore quelque chose. ~~Et cette structure se prête forcément mal au principe de **Cloudflare Worker**, avec ses instances multirégionales démarrées au plus près~~ ; seul :fn[le **processus Node long** classique de **Vercel**]{is="n''en est pas vraiment un -- l''instance dort et n''est réveillée qu''au moment de l''exécution réelle ; l''idée du processus long tient néanmoins"} échappe à ce problème (?) ~~Je m''égare un peu ; sur Next.js je pourrai écrire un article entier rien que pour râler~~, mais :fn[**TanStack**]{is="désigne ici précisément TanStack Start dans son état actuel, à l''exclusion des autres bibliothèques encore en RC ou en Beta -- le Router des débuts n''était même pas stable, alors parler de production…"} me paraît vraiment assez mûr pour un usage commercial ; j''en ai d''ailleurs équipé le site commercial d''un projet. Mais cela ne fait jamais que les deux seules options (x)'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:52:36.6968Z
-      seconds: 88.697276917
-      tokens: 34901
+      at: 2026-08-30T00:41:14.411618Z
+      seconds: 45.016431334
+      tokens: 31626
       review: false
     ja-JP:
       text: まず `React` から。**Vercel** `Next.js` との商業的な結びつきや、独自の `roadmap` を持っていることはさておき、何よりまず **CVE** が飛び交いすぎる。~~それだけで、新しい脆弱性が **report & release** されていないか、四六時中 **Social Media** を見張る羽目になる~~。他の **Router** は基本的に:fn[使えない状態、特に **Remix** は]{is="あくまで個人の主観であり人によって違う。公式やコミュニティでは使えるものと見なされているが、私は同意しない"}。ただ 2026年 には非常に特別な選択肢がある。**TanStack** **Start** だ。私はかなり早くから **TanStack Router** を使っていて、~~:fn[命名スタイルとデータ構造があまり美しくない]{is="純粋に個人の好みであり、フレームワークの設計上の欠陥ではない"}点を除けば~~、機能性の面では唯一認められる選択肢だと言える。新しいといえば新しいが、**Next.js 16** の `next-server` プロセスが今もって解決できていない、コールドスタート時の初回アクセス速度の問題を解決している。**Next.js** は実際、昔からわけもなくこの引っかかりがあり、サーバー性能が足りないのではなく、起動時の **Load** が完了していないか、`runtime` がまだ何かをコンパイルしているかのどちらかだと私は見ている。~~しかもこの構造は、**Cloudflare Worker** のような多地域インスタンスが直近に起動されるという原則とは相性が悪い~~。:fn[**Vercel** のような従来型の **Node 長時間プロセス**]{is="Vercel は従来型のプロセスではなく、休眠して実際に実行されるときに起こされるが、長時間プロセスという考え方は成り立つ"}だけがこの問題を食らわない(?) ~~少し話が逸れた。**Next.js** についてはいずれ丸ごと一本、愚痴を書ける~~。それでも :fn[**TanStack**]{is="ここでは現在の TanStack Start に限定し、まだ RC や Beta にある他のライブラリは含まない。たとえば初期の Router は安定とすら言えず、本番など論外だった"} は、商用利用に十分耐える成熟度に達していると本当に思う。少なくとも私はあるプロジェクトの販売サイトで使った。とはいえ、これは二つしかない選択肢の一つにすぎない(x)
@@ -6258,12 +6258,12 @@ segments:
       review: false
   b22ce3bd01f54f786960c6461355751a:
     de-DE:
-      text: 'Zudem löste CSS-in-JS in seiner Zeit genau die Probleme, um die sich heute Tailwind CSS und Motion kümmern. Wenn Tailwind CSS und Motion das inzwischen ausreichend lösen, ja sogar besser und eleganter, warum dann rückwärtsgehen? Wie ich vorhin schon sagte: „Sobald ein Ökosystem herangewachsen ist, kommt bei allem irgendwann der:fn[Kompromiss]{is="ist nicht zwangsläufig etwas Schlechtes, jedenfalls nicht in jeder Hinsicht. Vielleicht kann das, was im Design als Zugeständnis gilt, technisch sogar ein Vorteil sein?"}, ~~selten kommt eine erneuernde Umgestaltung mit Breaking Changes~~“. Wenn also rund um Seam noch gar kein Ökosystem gewachsen ist, warum dann nicht **kompromisslos radikal** sein?'
+      text: 'Und überhaupt: das Problem, das CSS-in-JS in seiner Zeit gelöst hat, war genau das, was Tailwind CSS & Motion damals noch nicht taten -- wenn TailwindCSS & Motion es heute schon gut genug lösen, sogar besser und eleganter, warum dann rückwärts gehen? Wie ich oben schon sagte: „Sobald ein Ökosystem gewachsen ist, kommen bei allem :fn[Kompromisse]{is="nicht zwangsläufig alle schlecht, jedenfalls nicht in jeder Hinsicht. Vielleicht kann das, was im Design als Zugeständnis gilt, technisch ein Vorteil sein?"}, ~~und nur selten kommt ein breaking Refactor, das alles erneuert~~." Nun, da Seam noch kein Ökosystem hat -- warum also nicht **bis zum Ende radikal** sein?'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:55:35.885139Z
-      seconds: 29.784592334
-      tokens: 30543
+      at: 2026-08-30T00:41:04.6702Z
+      seconds: 14.362090542
+      tokens: 29453
       review: false
     en-US:
       text: Besides, the problems CSS-in-JS was born to solve in its day were the very things Tailwind CSS & Motion now do; if Tailwind CSS & Motion already solve them well enough, or even better and more elegantly, why turn the clock back? As I said earlier, "once anything's ecosystem takes off, :fn[compromises]{is="are not necessarily all bad, or at least not in every respect. Perhaps what looks like a compromise in design can be a win in engineering?"} appear, ~~and breaking refactors that truly renew it become rare~~." So since Seam has no ecosystem yet, why not **go radical all the way**?
@@ -6274,20 +6274,20 @@ segments:
       tokens: 29247
       review: false
     es-ES:
-      text: 'Además, los problemas que CSS-in-JS resolvía en su momento son justo aquello de lo que hoy se ocupan Tailwind CSS y Motion. Si Tailwind CSS y Motion ya los resuelven de sobra, e incluso mejor y con más elegancia, ¿para qué dar marcha atrás? Como decía antes: «en cuanto un ecosistema se consolida, todo acaba llegando a su:fn[concesión]{is="que no tiene por qué ser algo malo, al menos no en todos los aspectos. ¿Y si lo que en el diseño se considera una renuncia resulta ser una ventaja en lo técnico?"}, ~~y rara vez llega una refactorización rupturista que lo renueve todo~~». Entonces, ya que el ecosistema de Seam aún no ha despegado, ¿por qué no ser **radical hasta el final**?'
+      text: 'Y además, el problema que CSS-in-JS resolvía en su época era justo lo que Tailwind CSS & Motion todavía no hacían; si hoy TailwindCSS & Motion ya lo resuelven de sobra, e incluso mejor y con más elegancia, ¿para qué dar marcha atrás? Como decía más arriba: «en cuanto un ecosistema se consolida, en todo aparecen :fn[concesiones]{is="no necesariamente malas todas, o al menos no en todos los aspectos. ¿Puede que lo que en el diseño se ve como una renuncia sea una ventaja de ingeniería?"}, ~~y rara vez llega una refactorización breaking que lo renueve todo~~». Pues bien, ya que Seam aún no tiene ecosistema, ¿por qué no ser **radical hasta el final**?'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:55:35.885139Z
-      seconds: 29.784592334
-      tokens: 30543
+      at: 2026-08-30T00:41:04.6702Z
+      seconds: 14.362090542
+      tokens: 29453
       review: false
     fr-FR:
-      text: 'Et puis, les problèmes que CSS-in-JS résolvait à son époque sont précisément ce dont s''occupent aujourd''hui Tailwind CSS et Motion. Si Tailwind CSS et Motion les règlent désormais de façon suffisante, voire meilleure et plus élégante, pourquoi faire marche arrière ? Comme je le disais plus haut : « une fois l''écosystème installé, tout finit par connaître son:fn[compromis]{is="qui n''est pas forcément une mauvaise chose, en tout cas pas sur tous les plans. Ce qu''on tient pour une concession de conception peut peut-être se révéler un avantage côté ingénierie ?"}, ~~et il est rare qu''une refonte avec ruptures vienne tout renouveler~~ ». Alors, puisque l''écosystème de Seam n''a pas encore décollé, pourquoi ne pas être **radical jusqu''au bout** ?'
+      text: 'Et puis, le problème que CSS-in-JS résolvait à son époque, c''était précisément ce que Tailwind CSS & Motion ne faisaient pas encore ; si TailwindCSS & Motion le résolvent aujourd''hui suffisamment bien, voire mieux et plus élégamment, pourquoi faire marche arrière ? Comme je le disais plus haut : « dès qu''un écosystème s''installe, tout finit par comporter des :fn[compromis]{is="pas forcément tous mauvais, du moins pas sur tous les plans. Ce qui passe pour une concession dans la conception peut peut-être devenir un avantage côté ingénierie ?"}, ~~et il est rare qu''un refactor breaking vienne tout renouveler~~ ». Alors, puisque Seam n''a pas encore d''écosystème, pourquoi ne pas être **radical jusqu''au bout** ?'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:55:35.885139Z
-      seconds: 29.784592334
-      tokens: 30543
+      at: 2026-08-30T00:41:04.6702Z
+      seconds: 14.362090542
+      tokens: 29453
       review: false
     ja-JP:
       text: それに、CSS-in-JS が登場した時代に解決していた問題は、今なら Tailwind CSS & Motion がやっていることそのものだ。Tailwind CSS & Motion がすでに十分に、むしろもっと上手くエレガントに解決しているのなら、なぜわざわざ後戻りする必要があるのか。前に書いたとおり「どんなものもエコシステムが育つと:fn[妥協]{is="が必ずしもすべて悪いわけではない、少なくともあらゆる面でそうとは限らない。設計上は妥協に見えるものが、エンジニアリング上は利点になることもあるのでは?"}が現れ、~~breaking な刷新のためのリファクタはめったに起きなくなる~~」のだから、Seam にまだエコシステムがないのなら、**徹底的にラディカル**にいかない手はないだろう?
@@ -7444,36 +7444,36 @@ segments:
       review: false
   d3fb4cf158ccfef7fa076127326eaaf3:
     de-DE:
-      text: 'Nur so ist die statische Referenz `compose`; es gilt weiterhin das `hatch` weiter unten. Daraus folgt: Die Einheit von CTR ist der statische Komponentengraph, nicht die einzelne Datei. Meistens ist `structure known` die Vorgabe, seltener explizit `escape hatch`, und `SSR fallback` begegnet einem im Alltag so gut wie nie. Alles andere, was nicht in der Tabelle steht, wird ausnahmslos als `opaque` behandelt — da muss man gar nicht erst raten. `CTR` ist nur das `execution model` auf dieser Teilmenge, und selbst wenn ich zu Svelte wechsle, will ich nicht für:fn[den gesamten Umfang von Svelte]{is="garantieren kann das niemand, jede Sprache hat schräge und zugleich vertretbare Schreibweisen, ich kann nur eine gute Lösung für einen vernünftigen Anwendungsfall liefern"} garantieren (lol)'
+      text: Nur so wird die statische Referenz `compose`; es läuft weiterhin über das `hatch` unten, woraus sich ergibt, dass die Einheit von CTR der statische Komponentengraph ist und nicht die einzelne Datei. Das meiste ist standardmäßig `structure known`, ein kleiner Teil ausdrücklich `escape hatch`, und `SSR fallback` begegnet einem im Alltag fast nie. Alles Übrige, was nicht in der Tabelle steht, wird durchweg als `opaque` behandelt -- ist das geklärt, muss man überhaupt nicht mehr raten. `CTR` ist nur das `execution model` über dieser Teilmenge, und selbst wenn ich zu Svelte wechsle, will ich nicht :fn[für den gesamten Umfang von Svelte]{is="garantieren -- das kann niemand, jede Sprache hat schrullige und doch legitime Schreibweisen, und ich kann nur eine gute Lösung für vernünftige Anwendungsfälle anbieten"} garantieren (x)
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:57:00.977775Z
-      seconds: 29.953905417
-      tokens: 30465
+      at: 2026-08-30T00:40:38.108648Z
+      seconds: 21.364160583
+      tokens: 29630
       review: false
     en-US:
-      text: That way the static references `compose`, while `hatch` still goes down the path below, which tells you the unit of CTR is the static component graph, not a single file. Most are `structure known` by default, a few are explicitly `escape hatch`, and you almost never run into `SSR fallback`; anything else not on the list is simply treated as `opaque`, no guessing needed at all. `CTR` is just the `execution model` over that subset, and even if I switch to Svelte I have no intention of guaranteeing:fn[the whole of Svelte]{is="which nobody can guarantee; every language has bizarre yet legitimate ways of writing things, and all I can offer is a good solution for reasonable business code"} (x)
+      text: Only then is the static reference `compose`; things still go through the `hatch` below, from which you can conclude that the unit of CTR is the static component graph, not the individual file. Most cases are `structure known` by default, a few are explicitly `escape hatch`, and you almost never run into `SSR fallback` day to day. Anything else not on the table is treated as `opaque` across the board -- settle it and there is no guessing left at all. `CTR` is only the `execution model` over this subset, and even if I switch to Svelte I do not intend to guarantee :fn[the whole of Svelte's range]{is="which nobody can -- every language has writings that are bizarre yet perfectly legal, and all I can offer is a good solution under reasonable business needs"} (x)
       provider: anthropic
-      model: claude-fable-5
-      at: 2026-08-29T22:37:13.034373Z
-      seconds: 11.534712375
-      tokens: 28944
+      model: claude-opus-5
+      at: 2026-08-30T00:40:38.108648Z
+      seconds: 21.364160583
+      tokens: 29630
       review: false
     es-ES:
-      text: Solo así la referencia estática queda `compose`; se sigue pasando por el `hatch` de abajo, de donde se deduce que la unidad de CTR es el grafo de componentes estático, no el archivo suelto. La mayoría de las veces es `structure known` por defecto, en unos pocos casos `escape hatch` de forma explícita, y `SSR fallback` casi nunca aparece en el día a día. Todo lo demás que no esté en la tabla se trata sin excepción como `opaque`, así que no hace falta adivinar nada. `CTR` no es más que el `execution model` sobre ese subconjunto, y aunque me pase a Svelte tampoco pienso garantizar:fn[todo el alcance de Svelte]{is="cosa que nadie puede garantizar, cualquier lenguaje admite formas rarísimas y a la vez razonables de escribirse, yo solo puedo dar una buena solución dentro de un caso de uso sensato"} (jaja)
+      text: Solo así la referencia estática queda `compose`; se sigue pasando por el `hatch` de abajo, de donde se deduce que la unidad de CTR es el grafo de componentes estático, y no el archivo suelto. La mayoría son `structure known` por defecto, una minoría explícitamente `escape hatch`, y `SSR fallback` casi nunca aparece en el día a día. Todo lo demás que no figure en la tabla se trata sin excepción como `opaque` -- resuelto eso, no hay nada que adivinar. `CTR` es solo el `execution model` sobre este subconjunto, y aunque me pase a Svelte tampoco pienso garantizar :fn[todo el alcance de Svelte]{is="algo que nadie puede hacer, pues cualquier lenguaje admite escrituras estrafalarias y aun así legítimas, y yo solo puedo ofrecer una buena solución dentro de un uso razonable"} (x)
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:57:00.977775Z
-      seconds: 29.953905417
-      tokens: 30465
+      at: 2026-08-30T00:40:38.108648Z
+      seconds: 21.364160583
+      tokens: 29630
       review: false
     fr-FR:
-      text: C'est seulement ainsi que la référence statique est `compose` ; on passe toujours par le `hatch` ci-dessous, d'où l'on peut conclure que l'unité de CTR est le graphe de composants statique, et non le fichier isolé. La plupart du temps c'est `structure known` par défaut, plus rarement `escape hatch` de façon explicite, et on ne croise pratiquement jamais `SSR fallback`. Tout le reste, absent du tableau, se traite systématiquement comme `opaque` — inutile de deviner quoi que ce soit. `CTR` n'est que le `execution model` sur ce sous-ensemble, et même si je passe à Svelte je ne compte pas garantir:fn[toute l'étendue de Svelte]{is="que personne ne saurait garantir, chaque langage a ses écritures bizarres mais défendables, je ne peux offrir qu'une bonne solution dans un cadre métier raisonnable"} (mdr)
+      text: C'est seulement ainsi que la référence statique devient `compose` ; on passe toujours par le `hatch` ci-dessous, d'où l'on peut déduire que l'unité du CTR est le graphe de composants statique, et non le fichier isolé. La plupart des cas sont `structure known` par défaut, une minorité explicitement `escape hatch`, et on ne croise pour ainsi dire jamais `SSR fallback` au quotidien. Tout le reste, absent du tableau, est traité uniformément comme `opaque` -- une fois cela réglé, il n'y a plus rien à deviner. `CTR` n'est que le `execution model` sur ce sous-ensemble, et même si je passe à Svelte je n'ai pas l'intention de garantir :fn[toute l'étendue de Svelte]{is="ce que personne ne peut faire, chaque langage ayant des écritures saugrenues mais parfaitement licites, et je ne peux offrir qu'une bonne solution dans un cadre métier raisonnable"} (x)
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:57:00.977775Z
-      seconds: 29.953905417
-      tokens: 30465
+      at: 2026-08-30T00:40:38.108648Z
+      seconds: 21.364160583
+      tokens: 29630
       review: false
     ja-JP:
       text: こうして静的参照は `compose` となり、`hatch` は引き続き下のパスを通る。ここから、CTR の単位は静的コンポーネントグラフであって単一ファイルではないと分かる。大半はデフォルトで `structure known`、一部は明示的に `escape hatch`、`SSR fallback` には普段ほとんど出くわさない。表にない残りはすべて `opaque` として扱えばよく、推測する必要などまったくない。`CTR` はこの部分集合上の `execution model` にすぎず、たとえ Svelte に切り替えたとしても:fn[Svelte 全体の範囲]{is="を保証できる人などいない。どの言語にも奇妙だが妥当な書き方があり、私に提供できるのは合理的な業務コードにおける最適解だけだ"}を担保するつもりはないのだ(x)
@@ -8159,12 +8159,12 @@ segments:
       review: false
   e35c84b47e793b6eb749df78f27e762c:
     de-DE:
-      text: 'Auf diesem Weg steht am Ende eigentlich nur **Svelte** genau auf dem perfekten Gleichgewichtspunkt. Es hat ein besseres Ökosystem als **SolidJS** ~~(schlicht das bessere Geburtsjahr)~~, und bei der Performance liegt es kaum zurück -- dank seines **Compilers** ist es sogar oft schneller und besser als **SolidJS**?!   Natürlich wird hier jemand einwenden: Sobald die Seitenzahl eine gewisse Größenordnung erreicht oder der Nutzer mehr und mehr Seiten durchklickt, wächst Svelte:fn[s Ressourcenaufwand]{is="gemeint ist der Vergleich: Sveltes Philosophie zerlegt das Framework in die einzelnen Komponenten, wobei sich die Framework-Ressourcen nicht komponentenübergreifend wiederverwenden lassen; Frameworks wie SolidJS setzen dagegen auf eine Framework-Runtime, die einmal geladen wird, sodass jede weitere Komponente nur noch geringe Kosten verursacht"} gegenüber SolidJS immer weiter? Es gibt immer mehr Netzwerk-Requests? Nun, theoretisch stimmt das, ~~aber ich finde, man muss es an echten Webseiten messen: Bei 99,9 % der persönlichen Seiten und Content-Seiten bleiben Besucher schlicht nicht lange, ein langer Aufenthalt ist geradezu ein **seltener** Ausnahmefall~~. Zumindest auf meiner Seite gibt es derzeit kaum tiefes Weiterklicken, also ist „viele Seiten durchblättern = Svelte lohnt sich weniger“ für mich kein Problem. Aber das ist nicht der Grund, warum ich Svelte gewählt habe; der Kern bleibt der **Markup-AST**.'
+      text: 'Auf diesem Weg trifft eigentlich nur **Svelte** genau den perfekten Ausgleichspunkt. Es hat ein besseres Ökosystem als **SolidJS** ~~(das bessere Geburtsjahr)~~, und bei der Performance liegt es kaum zurück, ja manchmal ist es dank seines **Compilers** sogar schneller und besser als **SolidJS**?! Natürlich wird hier jemand einwerfen, dass ab einer gewissen Seitenzahl oder je mehr eine Nutzerin herumklickt, Sveltes :fn[Ressourcenaufwand]{is="gemeint ist der Vergleich zwischen der Svelte-Philosophie, das Framework in die Komponenten hinein aufzulösen, wobei sich Framework-Ressourcen nicht über Komponenten hinweg wiederverwenden lassen, und der Runtime-Philosophie von Frameworks wie Solid, bei der nach einmaligem Laden der Runtime jede Komponente nur noch geringe Kosten verursacht"} gegenüber SolidJS immer größer wird? Dass es immer mehr Netzwerkanfragen gibt? Well, theoretisch stimmt das, ~~aber ich finde, man muss es an echten Webseiten messen: Bei 99,9 % der persönlichen Seiten oder Content-Seiten bleiben Besucher kaum lange, und ein wirklich langer Aufenthalt darf getrost als **Ausnahmefall** gelten~~. Zumindest auf meiner Seite gibt es derzeit kaum tiefes Durchklicken, also ist „viele Seiten durchblättern = Svelte lohnt sich weniger“ für mich kein Problem. Aber das ist nicht der Grund, warum ich Svelte wähle; der Kern bleibt der **Markup-AST**.'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:58:11.343407Z
-      seconds: 51.258364375
-      tokens: 32265
+      at: 2026-08-30T00:40:59.482497Z
+      seconds: 25.942937541
+      tokens: 30298
       review: false
     en-US:
       text: 'So along that road, the one that lands right on the perfect balance point is really only **Svelte**. It has a better ecosystem than **SolidJS** ~~(a better birth year)~~, its performance is not far behind, and sometimes, thanks to its **Compiler**, it is often even faster and leaner than **SolidJS**?!   Of course someone here will surely say that once the number of pages climbs to a certain scale, or the more a user browses, Svelte''s :fn[resource overhead]{is="means the comparison between the Svelte philosophy, which scatters the framework into components so framework resources cannot be reused across them, and the framework runtime under the philosophy of Solid and others, where once the runtime is loaded each component costs only a little"} compared with SolidJS will keep growing? Network requests will keep multiplying? Well, in theory that is true, ~~but I think it has to be looked at against real websites: on 99.9% of personal or content sites, visitors basically do not stay long, and lingering a long time can even be considered a very **rare** case~~. At least on my site, deep click-throughs are currently very few, so "flipping through many pages = Svelte loses more" is not a problem for me. But that is not the reason for choosing Svelte; the real core is still the **markup AST**.'
@@ -8175,20 +8175,20 @@ segments:
       tokens: 29733
       review: false
     es-ES:
-      text: 'Así que en este camino, el único que se planta justo en el punto de equilibrio perfecto es en realidad **Svelte**. Tiene mejor ecosistema que **SolidJS** ~~(sencillamente nació en una época mejor)~~, su rendimiento no queda muy por detrás e incluso, gracias a su **Compiler**, muchas veces resulta más rápido y mejor que **SolidJS** ?!   Claro que aquí alguien dirá: cuando el número de páginas alcanza cierta magnitud, o cuanto más navega el usuario, ¿no crece cada vez más el:fn[coste en recursos]{is="se refiere a esta comparación: la filosofía de Svelte reparte el framework dentro de cada componente, de modo que esos recursos no pueden reutilizarse entre componentes; la filosofía de frameworks como SolidJS, en cambio, mantiene un runtime del framework que se carga una sola vez, tras lo cual cada componente apenas añade coste"} de Svelte frente a SolidJS? ¿No se multiplican las peticiones de red? Bueno, en teoría es cierto, ~~pero creo que hay que mirarlo con webs reales: en el 99,9 % de los sitios personales o de contenido, los visitantes apenas se quedan mucho rato, y una estancia larga puede considerarse incluso un caso muy **raro**~~. Al menos en mi sitio, hoy por hoy la navegación en profundidad es escasísima, así que «pasar muchas páginas = Svelte sale perdiendo» no me supone un problema. Pero esa no es la razón por la que elegí Svelte; el núcleo sigue siendo el **AST del markup**.'
+      text: 'En este camino, el único que cae justo en el punto de equilibrio perfecto es, de hecho, **Svelte**. Tiene mejor ecosistema que **SolidJS** ~~(mejor año de nacimiento)~~, en rendimiento apenas se queda atrás e incluso a veces, gracias a su **compilador**, resulta más rápido y mejor que **SolidJS**?! Claro que aquí alguien dirá que, cuando el número de páginas sube a cierto nivel o cuanto más navega el usuario, el :fn[coste de recursos]{is="se refiere a la comparación entre la filosofía de Svelte, que reparte el framework dentro de los componentes sin poder reutilizar esos recursos entre ellos, y la de frameworks como Solid, cuyo runtime, una vez cargado, deja a cada componente solo un coste mínimo"} de Svelte frente a SolidJS será cada vez mayor. ¿Que habrá cada vez más peticiones de red? Well, en teoría es cierto, ~~pero creo que hay que mirarlo con webs reales: en el 99,9 % de los sitios personales o de contenido, las visitas apenas se quedan mucho rato, y una estancia realmente larga puede considerarse un caso **rarísimo**~~. Al menos en mi sitio, hoy por hoy la navegación profunda es mínima, así que «pasar muchas páginas = Svelte sale perdiendo» no me supone un problema. Pero esa no es la razón para elegir Svelte; el núcleo sigue siendo el **AST del markup**.'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:58:11.343407Z
-      seconds: 51.258364375
-      tokens: 32265
+      at: 2026-08-30T00:40:59.482497Z
+      seconds: 25.942937541
+      tokens: 30298
       review: false
     fr-FR:
-      text: 'Sur ce chemin, le seul à se tenir exactement sur le point d''équilibre parfait, c''est en fait **Svelte**. Il a un meilleur écosystème que **SolidJS** ~~(il est simplement né à une meilleure époque)~~, ses performances ne sont guère en retrait, et parfois même, grâce à son **Compiler**, il se révèle plus rapide et meilleur que **SolidJS** ?!   Bien sûr, quelqu''un objectera ici : dès que le nombre de pages atteint un certain ordre de grandeur, ou que l''utilisateur en parcourt davantage, le:fn[coût en ressources]{is="désigne la comparaison suivante : la philosophie de Svelte éclate le framework dans chaque composant, sans que ces ressources puissent être réutilisées d''un composant à l''autre ; la philosophie de frameworks comme SolidJS repose au contraire sur un runtime de framework chargé une seule fois, après quoi chaque composant ne coûte plus grand-chose"} de Svelte ne se creuse-t-il pas face à SolidJS ? Les requêtes réseau ne se multiplient-elles pas ? Eh bien, en théorie c''est vrai, ~~mais je pense qu''il faut regarder les pages réelles : sur 99,9 % des sites personnels ou de contenu, les visiteurs ne restent tout simplement pas longtemps, et une longue visite peut même être considérée comme un cas très **rare**~~. Du moins sur mon site, la navigation en profondeur est aujourd''hui extrêmement rare, donc « feuilleter beaucoup de pages = Svelte y perd » ne me pose pas de problème. Mais ce n''est pas la raison de mon choix ; le cœur reste l''**AST du markup**.'
+      text: 'Sur ce chemin, en réalité, seul **Svelte** tombe pile sur le point d''équilibre parfait. Il possède un meilleur écosystème que **SolidJS** ~~(une meilleure année de naissance)~~, ses performances ne sont guère en retrait, et parfois même, grâce à son **compilateur**, il se révèle plus rapide et plus efficace que **SolidJS** ?! Bien sûr, quelqu''un objectera ici qu''une fois le nombre de pages monté à un certain niveau, ou plus l''utilisateur navigue, le :fn[coût en ressources]{is="désigne la comparaison entre la philosophie de Svelte, qui éclate le framework dans les composants sans que ces ressources puissent être réutilisées d''un composant à l''autre, et celle de frameworks comme Solid, dont le runtime, une fois chargé, ne laisse à chaque composant qu''un coût minime"} de Svelte face à SolidJS ne cesse de croître ? Que les requêtes réseau se multiplient ? Well, en théorie c''est un fait, ~~mais je crois qu''il faut regarder de vrais sites : sur 99,9 % des sites personnels ou de contenu, les visiteurs ne restent pratiquement jamais longtemps, et une visite qui s''éternise peut même être tenue pour un cas **rarissime**~~. Du moins sur mon site, la navigation en profondeur est aujourd''hui très rare, donc « feuilleter beaucoup de pages = Svelte y perd » ne me pose pas de problème. Mais ce n''est pas la raison pour laquelle je choisis Svelte ; l''essentiel reste l''**AST du markup**.'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:58:11.343407Z
-      seconds: 51.258364375
-      tokens: 32265
+      at: 2026-08-30T00:40:59.482497Z
+      seconds: 25.942937541
+      tokens: 30298
       review: false
     ja-JP:
       text: そしてこの道の上で、まさに完璧なバランス点を踏んでいるのは実は **Svelte** だけです。**SolidJS** よりも良いエコシステムを持ち ~~(生まれた年代が良かった)~~、性能もさほど劣らず、時には **Compiler** の恩恵で、むしろ **SolidJS** より速くて優れていることさえ多い?!   もちろんここで、ページ数が一定の規模まで増えたり、ユーザーが閲覧すればするほど、Svelte の:fn[リソースオーバーヘッド]{is="とは、フレームワークをコンポーネントに分散させるためコンポーネント間でフレームワークのリソースを再利用できない Svelte の思想と、ランタイムを一度読み込めば各コンポーネントは小さなコストで済む Solid などの思想におけるフレームワーク runtime との比較を指す"}が SolidJS と比べてどんどん大きくなるのでは？ネットワークリクエストがどんどん増えるのでは？と言う人が必ずいるでしょう。Well、理論上それは事実ですが、~~実際のウェブページに照らして見るべきだと思います。個人サイトやコンテンツサイトの 99.9% では、訪問者は基本的に長く留まらず、長時間の滞在はむしろ非常に**稀**なケースとみなしてもいいくらいです~~。少なくとも私のこのサイトでは、今のところ深い連続クリックは極めて少ないので、「たくさんページをめくる = Svelte のほうが損」は私にとって問題になりません。しかしそれが Svelte を選んだ理由ではなく、核心はあくまで **markup AST** です。
@@ -8419,12 +8419,12 @@ segments:
       review: false
   e4b68ffb053ab72af435d1df0de23b61:
     de-DE:
-      text: '## Modell zur:fn[Anfragezeit]{is="gemeint ist das Ausführungsmodell, nicht das Datenmodell"}? {#request-time-model}'
+      text: '## Modell :fn[zur Laufzeit]{is="gemeint ist hier das Ausführungsmodell, nicht das Datenmodell"} ? {#request-time-model}'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:58:41.2902Z
-      seconds: 6.687283541
-      tokens: 29089
+      at: 2026-08-30T00:41:02.945008Z
+      seconds: 4.904024958
+      tokens: 29022
       review: false
     en-US:
       text: '## Request-time :fn[model]{is="meaning the execution model here, not the data model"}? {#request-time-model}'
@@ -8435,20 +8435,20 @@ segments:
       tokens: 28930
       review: false
     es-ES:
-      text: '## ¿El:fn[modelo]{is="se refiere al modelo de ejecución, no al de datos"} en tiempo de petición? {#request-time-model}'
+      text: '## ¿:fn[Modelo]{is="aquí se refiere al de ejecución, no al de datos"} en la petición? {#request-time-model}'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:58:41.2902Z
-      seconds: 6.687283541
-      tokens: 29089
+      at: 2026-08-30T00:43:04.189304Z
+      seconds: 3.984616042
+      tokens: 28953
       review: false
     fr-FR:
-      text: '## Le:fn[modèle]{is="il s’agit du modèle d’exécution, pas du modèle de données"} au moment de la requête ? {#request-time-model}'
+      text: '## Modèle :fn[au moment de la requête]{is="il s''agit ici du modèle d''exécution, pas du modèle de données"} ? {#request-time-model}'
       provider: anthropic
       model: claude-opus-5
-      at: 2026-08-29T22:58:41.2902Z
-      seconds: 6.687283541
-      tokens: 29089
+      at: 2026-08-30T00:41:02.945008Z
+      seconds: 4.904024958
+      tokens: 29022
       review: false
     ja-JP:
       text: '## リクエスト時:fn[モデル]{is="ここでは実行モデルのことで、データモデルではない"}? {#request-time-model}'

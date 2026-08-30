@@ -1124,11 +1124,11 @@ segments:
       review: false
     es-ES:
       text: '## El ideal y la realidad de PPR {#ppr-ideal-vs-reality}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:23:15.741119Z
-      seconds: 19.941364042
-      tokens: 16901
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:15.065602Z
+      seconds: 3.641807042
+      tokens: 28475
       review: false
     fr-FR:
       text: '## Idéal et réalité du PPR {#ppr-ideal-vs-reality}'
@@ -1497,12 +1497,12 @@ segments:
       review: false
   495255041b4e86206efd13dac3abbd9c:
     de-DE:
-      text: '## Mehr als nur ein Webframework {#beyond-web}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:28:38.215515Z
-      seconds: 36.793914875
-      tokens: 17060
+      text: '## Mehr als ein Web-Framework {#beyond-web}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:15.065605Z
+      seconds: 4.154602833
+      tokens: 28450
       review: false
     en-US:
       text: '## More Than a Web Framework {#beyond-web}'
@@ -1513,12 +1513,12 @@ segments:
       tokens: 17060
       review: false
     es-ES:
-      text: '## Más que un marco de desarrollo web {#beyond-web}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:28:38.215515Z
-      seconds: 36.793914875
-      tokens: 17060
+      text: '## Más que un framework web {#beyond-web}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:15.065605Z
+      seconds: 4.154602833
+      tokens: 28450
       review: false
     fr-FR:
       text: '## Plus qu’un cadriciel web {#beyond-web}'
@@ -1529,12 +1529,12 @@ segments:
       tokens: 17060
       review: false
     ja-JP:
-      text: '## Webフレームワークだけではない {#beyond-web}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:28:38.215515Z
-      seconds: 36.793914875
-      tokens: 17060
+      text: '## Web フレームワークだけではない {#beyond-web}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:15.065605Z
+      seconds: 4.154602833
+      tokens: 28450
       review: false
     ko-KR:
       text: '## 웹 프레임워크 그 이상 {#beyond-web}'
@@ -2293,20 +2293,20 @@ segments:
       tokens: 16944
       review: false
     es-ES:
-      text: '## Independencia de la UI del frontend {#ui-framework-agnostic}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:29:20.858152Z
-      seconds: 32.78084575
-      tokens: 16944
+      text: '## Independencia del framework UI {#ui-framework-agnostic}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:15.065603Z
+      seconds: 3.613079625
+      tokens: 28437
       review: false
     fr-FR:
-      text: '## Indépendance de l’UI front-end {#ui-framework-agnostic}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:29:20.858152Z
-      seconds: 32.78084575
-      tokens: 16944
+      text: '## Indépendance du framework UI {#ui-framework-agnostic}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:15.065603Z
+      seconds: 3.613079625
+      tokens: 28437
       review: false
     ja-JP:
       text: '## フロントエンド UI 非依存性 {#ui-framework-agnostic}'
@@ -2748,12 +2748,12 @@ segments:
       tokens: 16828
       review: false
     es-ES:
-      text: '## RSC sigue siendo imprescindible {#rsc-still-needed}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:29:53.646514Z
-      seconds: 22.568980125
-      tokens: 16828
+      text: '## RSC tampoco sobra {#rsc-still-needed}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:15.065664Z
+      seconds: 3.644819167
+      tokens: 28333
       review: false
     fr-FR:
       text: '## RSC reste indispensable {#rsc-still-needed}'
@@ -3593,12 +3593,12 @@ segments:
       tokens: 16800
       review: false
     es-ES:
-      text: '## ¿Renderizado en tiempo de compilación? {#compile-time-rendering}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:08.361086Z
-      seconds: 26.357134
-      tokens: 16800
+      text: '## ¿Renderizar al compilar? {#compile-time-rendering}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:18.685319Z
+      seconds: 3.295701667
+      tokens: 28234
       review: false
     fr-FR:
       text: '## Rendu à la compilation ? {#compile-time-rendering}'
@@ -4162,12 +4162,12 @@ segments:
       review: false
   e4701007cd132158d1e103345fbf40de:
     de-DE:
-      text: '## Der Preis einer fehlenden JS-Laufzeitumgebung {#no-js-runtime-cost}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:47.917922Z
-      seconds: 18.985504291
-      tokens: 16963
+      text: '## Der Preis von „kein JS-Runtime" {#no-js-runtime-cost}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:18.713668Z
+      seconds: 4.031490542
+      tokens: 28521
       review: false
     en-US:
       text: '## The Cost of No JS Runtime {#no-js-runtime-cost}'
@@ -4178,20 +4178,20 @@ segments:
       tokens: 16963
       review: false
     es-ES:
-      text: '## El coste de no tener un entorno de ejecución JS {#no-js-runtime-cost}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:47.917922Z
-      seconds: 18.985504291
-      tokens: 16963
+      text: '## El precio de no tener runtime JS {#no-js-runtime-cost}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:18.713668Z
+      seconds: 4.031490542
+      tokens: 28521
       review: false
     fr-FR:
-      text: '## Le coût de l’absence d’un environnement d’exécution JS {#no-js-runtime-cost}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:47.917922Z
-      seconds: 18.985504291
-      tokens: 16963
+      text: '## Le prix du sans-runtime JS {#no-js-runtime-cost}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:18.713668Z
+      seconds: 4.031490542
+      tokens: 28521
       review: false
     ja-JP:
       text: '## JS ランタイムを持たない代償 {#no-js-runtime-cost}'
@@ -4357,52 +4357,52 @@ segments:
       review: false
   f8549fd13877656daca0cfd15179969a:
     de-DE:
-      text: '## Abschied von Hydratisierungsfehlern? {#farewell-hydration-mismatch}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:57.147746Z
-      seconds: 29.142277375
-      tokens: 17268
+      text: '## Abschied von Hydration-Fehlern? {#farewell-hydration-mismatch}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:18.719532Z
+      seconds: 5.361578917
+      tokens: 28752
       review: false
     en-US:
-      text: '## Farewell to hydration mismatches? {#farewell-hydration-mismatch}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:57.147746Z
-      seconds: 29.142277375
-      tokens: 17268
+      text: '## Farewell to hydration errors? {#farewell-hydration-mismatch}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:18.719532Z
+      seconds: 5.361578917
+      tokens: 28752
       review: false
     es-ES:
       text: '## ¿Adiós a los errores de hidratación? {#farewell-hydration-mismatch}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:57.147746Z
-      seconds: 29.142277375
-      tokens: 17268
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:18.719532Z
+      seconds: 5.361578917
+      tokens: 28752
       review: false
     fr-FR:
-      text: '## Adieu aux erreurs d’hydratation ? {#farewell-hydration-mismatch}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:57.147746Z
-      seconds: 29.142277375
-      tokens: 17268
+      text: '## Adieu aux erreurs d''hydratation ? {#farewell-hydration-mismatch}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:18.719532Z
+      seconds: 5.361578917
+      tokens: 28752
       review: false
     ja-JP:
-      text: '## ハイドレーションエラーにさよなら？ {#farewell-hydration-mismatch}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:57.147746Z
-      seconds: 29.142277375
-      tokens: 17268
+      text: '## ハイドレーションエラーに別れを? {#farewell-hydration-mismatch}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:18.719532Z
+      seconds: 5.361578917
+      tokens: 28752
       review: false
     ko-KR:
-      text: '## 하이드레이션 오류와 작별할 수 있을까? {#farewell-hydration-mismatch}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:31:57.147746Z
-      seconds: 29.142277375
-      tokens: 17268
+      text: '## 하이드레이션 오류와 작별? {#farewell-hydration-mismatch}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:18.719532Z
+      seconds: 5.361578917
+      tokens: 28752
       review: false
     zh-CN:
       text: '## 也许能告别水合错误？ {#farewell-hydration-mismatch}'

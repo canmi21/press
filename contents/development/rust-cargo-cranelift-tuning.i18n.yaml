@@ -1189,11 +1189,11 @@ segments:
       review: false
     es-ES:
       text: '## Unidades de generación de código {#codegen-units}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:36:01.298431Z
-      seconds: 20.521130333
-      tokens: 16876
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:28.320592Z
+      seconds: 3.205693041
+      tokens: 28405
       review: false
     fr-FR:
       text: '## Unités de génération de code {#codegen-units}'
@@ -2229,19 +2229,19 @@ segments:
       review: false
     es-ES:
       text: '## Eliminar los símbolos de depuración {#strip-debug-symbols}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:37:31.36696Z
-      seconds: 16.561217625
-      tokens: 16786
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:28.320646Z
+      seconds: 3.682283084
+      tokens: 28396
       review: false
     fr-FR:
-      text: '## Supprimer les symboles de débogage {#strip-debug-symbols}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:37:31.36696Z
-      seconds: 16.561217625
-      tokens: 16786
+      text: '## Éliminer les symboles de débogage {#strip-debug-symbols}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:28.320646Z
+      seconds: 3.682283084
+      tokens: 28396
       review: false
     ja-JP:
       text: '## デバッグシンボルを削除 {#strip-debug-symbols}'
@@ -2748,20 +2748,20 @@ segments:
       tokens: 16789
       review: false
     es-ES:
-      text: '## Optimización en tiempo de enlace {#link-time-optimization}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:38:22.474197Z
-      seconds: 23.107644584
-      tokens: 16789
+      text: '## Optimización en el enlazado {#link-time-optimization}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:28.320708Z
+      seconds: 7.042787333
+      tokens: 28393
       review: false
     fr-FR:
-      text: '## Optimisation à l’édition des liens {#link-time-optimization}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:38:22.474197Z
-      seconds: 23.107644584
-      tokens: 16789
+      text: '## Optimisation à l''édition de liens {#link-time-optimization}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:28.320708Z
+      seconds: 7.042787333
+      tokens: 28393
       review: false
     ja-JP:
       text: '## リンク時最適化 {#link-time-optimization}'

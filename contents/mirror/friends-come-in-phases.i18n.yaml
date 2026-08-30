@@ -1326,12 +1326,12 @@ segments:
       tokens: 19413
       review: false
     fr-FR:
-      text: '## Liens dictés par les événements {#event-driven}'
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:53:32.190359Z
-      seconds: 16.025010917
-      tokens: 19413
+      text: '## Par événements {#event-driven}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T00:36:35.373144Z
+      seconds: 3.106747291
+      tokens: 28105
       review: false
     ja-JP:
       text: '## 出来事に左右される関係 {#event-driven}'
