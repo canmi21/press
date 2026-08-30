@@ -3,6 +3,8 @@
 	"article.back": "Volver",
 	"article.notes": "Notas",
 	"article.notes.back": "Volver a la nota {number}",
+	"article.notes.fold": "Mostrar menos",
+	"article.notes.unfold": "Mostrar {count} más",
 	"article.summary": "Resumen",
 	"article.translator-note": "Nota del traductor",
 	"article.translator-note.close": "Cerrar la nota del traductor",

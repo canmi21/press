@@ -3,6 +3,8 @@
 	"article.back": "返回",
 	"article.notes": "注释",
 	"article.notes.back": "返回注释 {number}",
+	"article.notes.fold": "收起",
+	"article.notes.unfold": "展开剩余 {count} 条",
 	"article.summary": "总结",
 	"article.translator-note": "来自译者",
 	"article.translator-note.close": "关闭译者注",

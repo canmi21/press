@@ -1,13 +1,102 @@
 <script lang="ts">
+	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import CornerDownLeft from '@lucide/svelte/icons/corner-down-left';
 	import * as m from '$lib/paraglide/messages';
 	import { jumpTo, movesThisPage, targetOf } from '$lib/client/jump';
+	import { animateHeight, type AnimationControl, type CollapsePhase } from '$lib/client/collapse';
+	import { DEFAULT_PIXELS_PER_REM } from '$lib/client/units';
+	import { onDestroy } from 'svelte';
 	import { flashOnArrival } from './note-flash';
+	import { offerNoteReveal } from './note-reveal';
 	import type { ArticleNote } from '$lib/content/types';
 	import type { LocaleCode } from '$lib/locale';
 
 	/** `locale` is the view being rendered. Passed rather than read: see spec/locale.md. */
 	let { notes, locale }: { notes: ArticleNote[]; locale: LocaleCode } = $props();
+
+	/**
+	 * How many notes stand outside the fold.
+	 *
+	 * Enough to see that this is a list and how dense it is, few enough that a long article's
+	 * apparatus cannot outweigh the article. A count rather than a height: the notes vary in
+	 * length, and folding by height would cut one mid-sentence at a boundary nobody chose.
+	 */
+	const SHOWN = 5;
+
+	const shown = $derived(notes.slice(0, SHOWN));
+	const folded = $derived(notes.slice(SHOWN));
+	const collapsible = $derived(folded.length > 0);
+
+	let expanded = $state(false);
+	let phase = $state<CollapsePhase>('collapsed');
+	let foldEl = $state<HTMLElement>();
+	let motion: AnimationControl | undefined;
+
+	const instanceId = $props.id();
+	const panelId = `${instanceId}-folded-notes`;
+	const foldHidden = $derived(collapsible && !expanded);
+
+	function settle(nextExpanded: boolean) {
+		// Back to `auto`, never pinned to the number it landed on: a panel held at a measured
+		// height stops following its own content when the window resizes or a font arrives.
+		if (foldEl) foldEl.style.height = nextExpanded ? 'auto' : '';
+		phase = nextExpanded ? 'expanded' : 'collapsed';
+		motion = undefined;
+	}
+
+	/** The closed height, read from the stylesheet so the peek and its fade stay one number. */
+	function peekPixels(element: HTMLElement): number {
+		const rem =
+			Number.parseFloat(getComputedStyle(document.documentElement).fontSize) ||
+			DEFAULT_PIXELS_PER_REM;
+		return Number.parseFloat(getComputedStyle(element).getPropertyValue('--peek-height')) * rem;
+	}
+
+	/**
+	 * Open or close the fold, playing the move unless `animated` says not to.
+	 *
+	 * The unanimated path is not an optimisation -- it is what a jump into a folded note needs.
+	 * See `reveal`.
+	 */
+	function setExpanded(nextExpanded: boolean, animated = true) {
+		if (!collapsible || nextExpanded === expanded || !foldEl) return;
+		motion?.stop();
+		motion = undefined;
+		expanded = nextExpanded;
+
+		if (!animated) {
+			settle(nextExpanded);
+			return;
+		}
+
+		phase = nextExpanded ? 'expanding' : 'collapsing';
+		const target = nextExpanded ? foldEl.scrollHeight : peekPixels(foldEl);
+		motion = animateHeight(foldEl, target, (finished) => {
+			if (finished !== undefined && motion !== finished) return;
+			settle(nextExpanded);
+		});
+	}
+
+	/**
+	 * Open the fold for a note the reader is about to be carried to, without playing it.
+	 *
+	 * Called before the scroll is asked for, and that is the whole of the timing.
+	 * `scrollIntoView` resolves its destination at the moment it is called, so a fold opening
+	 * afterwards pushes the note below the position the scroll is already travelling to and the
+	 * reader lands short. Opening first is also what keeps it unseen: the section is still below
+	 * the fold, so the height changes where nobody is looking and the reader arrives at a
+	 * section that was simply already open. Animating it would be the visible version of the
+	 * same thing, and slower than the scroll it is racing.
+	 */
+	function reveal(target: Element): boolean {
+		if (!collapsible || expanded || !foldEl?.contains(target)) return false;
+		setExpanded(true, false);
+		return true;
+	}
+
+	$effect(() => offerNoteReveal(reveal));
+
+	onDestroy(() => motion?.stop());
 
 	/**
 	 * The way back, scrolled rather than jumped -- the same move the markers make, owned here
@@ -41,35 +130,74 @@
 	     stay small. -->
 	<h2 class="notes-heading">{m['article.notes']({}, { locale })}</h2>
 	<ol class="notes-list">
-		{#each notes as note (note.number)}
-			<li id="note-{note.number}" class="jump-target note">
-				<!-- The words first, so a note names what it is about instead of asking the reader
-				     to hold the sentence they left in their head. Then the same superscript the
-				     marker in the prose is, which makes the two one thing seen twice -- hidden
-				     from a screen reader, which is already being told the ordinal by the list.
-
-				     The explanation is the way back, not just the arrow at its end: an icon-sized
-				     target at the end of a wrapped line asks for aim this size of text does not
-				     deserve. The phrase and its number stay outside the link -- they are the
-				     note's address, not its content, and the address is what the walk returns to.
-				     The link's accessible name stays the explanation itself -- an aria-label would
-				     replace it -- and the purpose rides after it as words only a screen reader
-				     gets. -->
-				<span class="note-line"
-					><span class="note-phrase">{note.phrase}</span><sup class="note-marker" aria-hidden="true"
-						>{note.number}</sup
-					><a href="#marker-{note.number}" class="note-link focus-link" onclick={jumpBack}
-						>{note.text}<span class="note-back" aria-hidden="true">
-							<CornerDownLeft class="size-[1.1em]" />
-						</span><span class="sr-only">
-							({m['article.notes.back']({ number: note.number }, { locale })})</span
-						></a
-					></span
-				>
-			</li>
-		{/each}
+		{#each shown as note (note.number)}{@render entry(note)}{/each}
 	</ol>
+
+	{#if collapsible}
+		<!-- The rest, behind a fold that leaves the next note's first line showing and fades it
+		     out. The fade is the honest half of the disclosure: a hard cut says the list ends
+		     here, while text dissolving mid-line says it continues and something is holding it
+		     back. The count on the control then says how much. -->
+		<div bind:this={foldEl} class="notes-fold" data-phase={phase}>
+			<!-- A second list rather than more items in the first: `ol` takes only list items, so
+			     a fold that can be measured and animated has to be an element the list cannot
+			     contain. `start` keeps the ordinals a screen reader announces true to the
+			     numbers printed beside them. -->
+			<ol
+				id={panelId}
+				class="notes-list"
+				start={SHOWN + 1}
+				aria-hidden={foldHidden}
+				inert={foldHidden}
+			>
+				{#each folded as note (note.number)}{@render entry(note)}{/each}
+			</ol>
+		</div>
+
+		<button
+			type="button"
+			class="notes-toggle focus-link"
+			aria-expanded={expanded}
+			aria-controls={panelId}
+			onclick={() => setExpanded(!expanded)}
+		>
+			{expanded
+				? m['article.notes.fold']({}, { locale })
+				: m['article.notes.unfold']({ count: folded.length }, { locale })}
+			<span class="notes-chevron" class:up={expanded} aria-hidden="true">
+				<ChevronDown class="size-[1.1em]" />
+			</span>
+		</button>
+	{/if}
 </section>
+
+{#snippet entry(note: ArticleNote)}
+	<li id="note-{note.number}" class="jump-target note">
+		<!-- The words first, so a note names what it is about instead of asking the reader
+		     to hold the sentence they left in their head. Then the same superscript the
+		     marker in the prose is, which makes the two one thing seen twice -- hidden
+		     from a screen reader, which is already being told the ordinal by the list.
+
+		     The explanation is the way back, not just the arrow at its end: an icon-sized
+		     target at the end of a wrapped line asks for aim this size of text does not
+		     deserve. The phrase and its number stay outside the link -- they are the
+		     note's address, not its content, and the address is what the walk returns to.
+		     The link's accessible name stays the explanation itself -- an aria-label would
+		     replace it -- and the purpose rides after it as words only a screen reader
+		     gets. -->
+		<span class="note-line"
+			><span class="note-phrase">{note.phrase}</span><sup class="note-marker" aria-hidden="true"
+				>{note.number}</sup
+			><a href="#marker-{note.number}" class="note-link focus-link" onclick={jumpBack}
+				>{note.text}<span class="note-back" aria-hidden="true">
+					<CornerDownLeft class="size-[1.1em]" />
+				</span><span class="sr-only">
+					({m['article.notes.back']({ number: note.number }, { locale })})</span
+				></a
+			></span
+		>
+	</li>
+{/snippet}
 
 <style>
 	/* This rule is the article's ending boundary, worn by the notes when they exist and by the
@@ -118,6 +246,64 @@
 		font-size: 0.6875rem;
 		line-height: 1.6;
 		color: var(--color-text-soft);
+	}
+
+	/* The fold. Closed, it stands one line tall so the next note starts and dissolves rather
+	   than being cut off -- see the markup. The height is animated between measured numbers by
+	   the shared disclosure the code blocks use, so the two open with one motion; `auto` at
+	   rest, so an open fold still follows its own content when the window changes. */
+	.notes-fold {
+		--peek-height: 1.75rem;
+		overflow: hidden;
+		height: var(--peek-height);
+	}
+
+	/* Not a gradient drawn over the text: a mask, so whatever the theme paints behind the page
+	   is what shows through. A translucent overlay in the paper's colour would be a second
+	   place the background is written down, and would be wrong the moment either changes. */
+	.notes-fold:not([data-phase='expanded']) {
+		mask-image: linear-gradient(to bottom, black 0.35rem, transparent);
+	}
+
+	.notes-fold[data-phase='expanded'] {
+		height: auto;
+	}
+
+	.notes-fold[data-phase='collapsing'],
+	.notes-fold[data-phase='expanding'] {
+		will-change: height;
+	}
+
+	/* The control sits under the fade, where the list ran out -- the reader's eye is already
+	   there. Quiet like the notes and brightening whole on approach, the same way a note's own
+	   explanation does: one gesture vocabulary for this section. */
+	.notes-toggle {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.25rem;
+		margin-top: 0.5rem;
+		border: 0;
+		background: transparent;
+		padding: 0;
+		font-size: 0.6875rem;
+		line-height: 1.6;
+		color: var(--color-text-soft);
+		cursor: pointer;
+		transition: color 200ms ease-out;
+	}
+
+	.notes-toggle:hover,
+	.notes-toggle:focus-visible {
+		color: var(--color-text-strong);
+	}
+
+	.notes-chevron {
+		display: inline-flex;
+		transition: transform 200ms ease-out;
+	}
+
+	.notes-chevron.up {
+		transform: rotate(180deg);
 	}
 
 	/* The quoted words are the article's, said again -- weight alone marks them. Colour is spent
@@ -171,7 +357,9 @@
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.note-link {
+		.note-link,
+		.notes-toggle,
+		.notes-chevron {
 			transition: none;
 		}
 	}

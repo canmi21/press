@@ -3,6 +3,8 @@
 	"article.back": "戻る",
 	"article.notes": "注釈",
 	"article.notes.back": "注 {number} に戻る",
+	"article.notes.fold": "閉じる",
+	"article.notes.unfold": "残り {count} 件を表示",
 	"article.summary": "要約",
 	"article.translator-note": "訳者より",
 	"article.translator-note.close": "訳注を閉じる",

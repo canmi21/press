@@ -12,6 +12,7 @@
 	import Twitter from '$lib/blocks/twitter.svelte';
 	import { jumpTo, movesThisPage, targetOf } from '$lib/client/jump';
 	import { flashOnArrival } from './note-flash';
+	import { revealNoteBeforeJump } from './note-reveal';
 	import PopoverContent from '$lib/components/popover-content.svelte';
 	import * as m from '$lib/paraglide/messages';
 	import Info from '@lucide/svelte/icons/info';
@@ -83,6 +84,9 @@
 		if (!destination) return;
 		// The move is not an address: see spec/styling.md.
 		event.preventDefault();
+		// Before the scroll, never after: a note behind the fold has to really be where it is
+		// going to be by the time `scrollIntoView` resolves its destination. See note-reveal.ts.
+		revealNoteBeforeJump(destination);
 		jumpTo(destination);
 		// Landing light for the walk down: the note's whole line, phrase and explanation
 		// together, because they compose one sentence. See footnotes.svelte for its shape.

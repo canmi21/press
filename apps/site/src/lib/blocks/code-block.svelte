@@ -5,7 +5,12 @@
 	import X from '@lucide/svelte/icons/x';
 	import { animate } from 'motion';
 	import { onDestroy, untrack } from 'svelte';
-	import { DEFAULT_PIXELS_PER_REM, remFromMeasuredPixels } from '$lib/client/units';
+	import {
+		animateHeight,
+		prefersReducedMotion,
+		type AnimationControl,
+		type CollapsePhase,
+	} from '$lib/client/collapse';
 
 	type Props = {
 		label?: string;
@@ -30,16 +35,8 @@
 		html,
 	}: Props = $props();
 
-	type AnimationControl = { stop: () => void };
-	type CollapsePhase = 'collapsed' | 'collapsing' | 'expanded' | 'expanding';
 	type CopyState = 'copied' | 'copying' | 'failed' | 'idle';
 
-	const COLLAPSE_SPRING = {
-		type: 'spring' as const,
-		stiffness: 420,
-		damping: 38,
-		mass: 0.9,
-	};
 	const COPY_REVEAL_SPRING = {
 		type: 'spring' as const,
 		stiffness: 500,
@@ -87,40 +84,16 @@
 	function setExpanded(nextExpanded: boolean) {
 		if (!canCollapse || nextExpanded === expanded || !collapseEl) return;
 
-		const currentHeight = collapseEl.getBoundingClientRect().height;
 		collapseMotion?.stop();
 		collapseMotion = undefined;
-		collapseEl.style.height = remFromMeasuredPixels(currentHeight);
 		expanded = nextExpanded;
 		phase = nextExpanded ? 'expanding' : 'collapsing';
 
 		const targetHeight = nextExpanded ? collapseEl.scrollHeight : 0;
-		if (
-			window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-			Math.abs(currentHeight - targetHeight) < 0.5
-		) {
+		collapseMotion = animateHeight(collapseEl, targetHeight, (finished) => {
+			if (finished !== undefined && collapseMotion !== finished) return;
 			settle(nextExpanded);
-			return;
-		}
-
-		const rootPixels =
-			Number.parseFloat(getComputedStyle(document.documentElement).fontSize) ||
-			DEFAULT_PIXELS_PER_REM;
-		let control: AnimationControl;
-		control = animate(currentHeight, targetHeight, {
-			...COLLAPSE_SPRING,
-			onUpdate: (height) => {
-				collapseEl?.style.setProperty(
-					'height',
-					remFromMeasuredPixels(Math.max(0, height), rootPixels),
-				);
-			},
-			onComplete: () => {
-				if (collapseMotion !== control) return;
-				settle(nextExpanded);
-			},
 		});
-		collapseMotion = control;
 	}
 
 	function renderCopyReveal(progress: number) {
@@ -157,10 +130,7 @@
 		const target = revealed ? 1 : 0;
 		copyRevealMotion?.stop();
 		copyRevealMotion = undefined;
-		if (
-			window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-			Math.abs(copyRevealProgress - target) < 0.001
-		) {
+		if (prefersReducedMotion() || Math.abs(copyRevealProgress - target) < 0.001) {
 			completeCopyReveal(target);
 			return;
 		}

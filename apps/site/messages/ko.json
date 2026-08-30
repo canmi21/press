@@ -3,6 +3,8 @@
 	"article.back": "뒤로",
 	"article.notes": "주석",
 	"article.notes.back": "주석 {number}(으)로 돌아가기",
+	"article.notes.fold": "접기",
+	"article.notes.unfold": "{count}개 더 보기",
 	"article.summary": "요약",
 	"article.translator-note": "번역자 주",
 	"article.translator-note.close": "번역자 주 닫기",

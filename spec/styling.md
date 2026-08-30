@@ -404,6 +404,41 @@ so the visible superscript is hidden from it, or the ordinal would be announced 
 back trails the note's last word rather than sitting at the right edge: it belongs to the sentence
 just read, and a column of arrows is more furniture.
 
+#### Past five, the rest is folded away
+
+An article can carry more notes than the article has room to end on -- one here carries
+thirty-three -- and a page whose last screen is apparatus reads as though the apparatus were
+the point. So five stand outside the fold and the rest sit behind it, opened by a control
+that says how many are there.
+
+**Five by count, not by height.** A height would cut a note mid-sentence at a boundary nobody
+chose; five is enough to show that this is a list and how dense it is.
+
+The fold is left one line tall rather than closed to nothing, and that line fades out. A hard
+cut says the list ends there, which is the one thing it must not say; text dissolving mid-line
+says it continues and something is holding it back, and the control's count then says how
+much. The fade is a mask rather than a gradient painted in the paper's colour -- a painted one
+would be a second place the background is written down, wrong the moment either changes.
+
+**The fold opens before the scroll, not during it.** A marker in the prose may point at a note
+behind the fold, and the walk down must still land on it. `scrollIntoView` resolves its
+destination the moment it is called, so a fold opening afterwards pushes the note below the
+position the scroll is already travelling to and the reader lands short. Opening first is also
+what keeps it unseen: the section is still below the fold, so the height changes where nobody
+is looking and the reader arrives at a section that was simply already open. Animating that
+opening would be the visible version of the same thing, and slower than the scroll it races.
+
+The marker cannot ask the section whether a note is folded -- it is compiled HTML with no
+component of its own, delegated at the article root -- so the section leaves one revealer
+behind a module for as long as it is mounted. One slot rather than a registry: a page has one
+collected-notes section or none, and a second subscriber's question, which section did the
+reader mean, has no answer.
+
+The motion is the code block's, by sharing it rather than by copying its numbers. Both are the
+same gesture -- a panel answering a press -- and two springs written out separately are two
+numbers to keep in step with no way to tell later whether they were meant to be equal. See
+[the titled code block](#a-titled-code-block-is-one-framed-disclosure), which was first.
+
 ### The marker wraps the words it explains
 
 `:fn[the words]{is="what they mean"}` -- the same shape as a translator's note, and for the same

@@ -3,6 +3,8 @@
 	"article.back": "Zurück",
 	"article.notes": "Anmerkungen",
 	"article.notes.back": "Zurück zu Anmerkung {number}",
+	"article.notes.fold": "Weniger anzeigen",
+	"article.notes.unfold": "{count} weitere anzeigen",
 	"article.summary": "Zusammenfassung",
 	"article.translator-note": "Anmerkung des Übersetzers",
 	"article.translator-note.close": "Anmerkung schließen",

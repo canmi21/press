@@ -1,0 +1,74 @@
+/**
+ * The one way a disclosure opens and closes on this site.
+ *
+ * Animating to `height: auto` is not possible, so the height is animated between two measured
+ * numbers and handed back to `auto` at rest -- a panel that stayed pinned to a measured height
+ * would stop following its own content when the window resizes or a font finishes loading.
+ *
+ * Shared rather than copied. A second disclosure with the same spring written out again is two
+ * numbers to keep in step and no way to tell, later, whether they were meant to be equal or
+ * merely happen to be. The code block was first; the collected notes are the second, and the
+ * pair is what moved this out here.
+ */
+
+import { animate } from 'motion';
+import { DEFAULT_PIXELS_PER_REM, remFromMeasuredPixels } from '$lib/client/units';
+
+/** Firm and barely overshooting: a panel answering a press, not a thing being thrown. */
+export const COLLAPSE_SPRING = {
+	type: 'spring' as const,
+	stiffness: 420,
+	damping: 38,
+	mass: 0.9,
+};
+
+export type AnimationControl = { stop: () => void };
+
+/** Where a disclosure is, including the two states it is only passing through. */
+export type CollapsePhase = 'collapsed' | 'collapsing' | 'expanded' | 'expanding';
+
+/** Below this the move is not worth playing: it would read as a flicker, not a motion. */
+const NEGLIGIBLE_PIXELS = 0.5;
+
+export function prefersReducedMotion(): boolean {
+	return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+/**
+ * Drive `element`'s height from where it is to `targetPixels`, calling `onSettle` when it lands.
+ *
+ * Returns the control to stop it, or nothing when no animation was needed -- reduced motion, or
+ * a distance too small to see. In both of those cases `onSettle` has already run, so a caller
+ * never has to ask which of the two happened.
+ *
+ * `onSettle` is handed the control that finished, and nothing when the landing was immediate.
+ * A stopped animation is not guaranteed to stay silent, so a caller that has since started
+ * another compares before acting: settling the wrong one would pin the panel to a height the
+ * move it interrupted was travelling to.
+ */
+export function animateHeight(
+	element: HTMLElement,
+	targetPixels: number,
+	onSettle: (finished?: AnimationControl) => void,
+): AnimationControl | undefined {
+	const currentPixels = element.getBoundingClientRect().height;
+	element.style.height = remFromMeasuredPixels(currentPixels);
+
+	if (prefersReducedMotion() || Math.abs(currentPixels - targetPixels) < NEGLIGIBLE_PIXELS) {
+		onSettle();
+		return undefined;
+	}
+
+	const rootPixels =
+		Number.parseFloat(getComputedStyle(document.documentElement).fontSize) ||
+		DEFAULT_PIXELS_PER_REM;
+	let control: AnimationControl;
+	control = animate(currentPixels, targetPixels, {
+		...COLLAPSE_SPRING,
+		onUpdate: (height) => {
+			element.style.setProperty('height', remFromMeasuredPixels(Math.max(0, height), rootPixels));
+		},
+		onComplete: () => onSettle(control),
+	});
+	return control;
+}
