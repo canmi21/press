@@ -454,6 +454,18 @@ size and colour as the article title and the newsletter heading, none of which s
 its own -- three section names on one page, matched by sharing the inheritance chain rather
 than by copying a number. Only the notes under it stay small.
 
+**A wrapped note is balanced, and that was measured rather than reasoned.** By category it is
+the wrong answer: a note is a sentence, and the prose elsewhere on this site uses `text-wrap:
+pretty`, which leaves lines full and only refuses to end on a word alone. Measured on the Spanish
+view of the article with thirty-three notes, `pretty` changed nothing at all -- every line came
+out identical to plain filling, because it intervenes only when the last line is down to about a
+word, and these end on a quarter of a line. `balance` closed all four of the short endings. The
+same property is on the table of contents labels for the ordinary reason, that they are titles.
+
+Neither does anything for the Chinese views. Chinese breaks between almost any two characters, so
+filling already reaches the end of the line and there is nothing left to even out -- all three
+modes render identically. This class of property is for the languages that break between words.
+
 **The walk back from a note lights the words it lands on.** Arriving in the right scroll band
 is not the same as knowing which words were left: the noted words may sit anywhere in their
 line and appear more than once in the paragraph. So the return fills the words with the

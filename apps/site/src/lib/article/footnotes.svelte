@@ -246,6 +246,16 @@
 		font-size: 0.6875rem;
 		line-height: 1.6;
 		color: var(--color-text-soft);
+		/* `balance` rather than `pretty`, which is the opposite of what the shape of the text
+		   suggests -- a note is a sentence, and the prose elsewhere on this site uses `pretty`.
+		   Measured on the Spanish view, `pretty` did nothing at all: every line of every note
+		   came out identical to plain filling, because it only intervenes when the last line is
+		   down to about one word, and these end on a quarter of a line instead. Balance closed all
+		   four of the short endings. The rule follows the measurement rather than the category.
+
+		   Declared on the note rather than on the line inside it, because this is the block that
+		   establishes the lines; the span within it establishes none of its own. */
+		text-wrap: balance;
 	}
 
 	/* The fold. Closed, it stands one line tall so the next note starts and dissolves rather
