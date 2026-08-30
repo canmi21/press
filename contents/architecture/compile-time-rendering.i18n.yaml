@@ -1820,6 +1820,71 @@ segments:
       seconds: 59.465780208
       tokens: 18543
       review: false
+  51946dcb1a2a3889e5f47e305cf50c12:
+    de-DE:
+      text: '## UI-Unabhängigkeit {#ui-framework-agnostic}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257101Z
+      seconds: 5.880285542
+      tokens: 28746
+      review: false
+    en-US:
+      text: '## UI Agnosticism {#ui-framework-agnostic}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257101Z
+      seconds: 5.880285542
+      tokens: 28746
+      review: false
+    es-ES:
+      text: '## Independencia de la UI {#ui-framework-agnostic}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257101Z
+      seconds: 5.880285542
+      tokens: 28746
+      review: false
+    fr-FR:
+      text: '## Indépendance de l''UI {#ui-framework-agnostic}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257101Z
+      seconds: 5.880285542
+      tokens: 28746
+      review: false
+    ja-JP:
+      text: '## UI 非依存性 {#ui-framework-agnostic}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257101Z
+      seconds: 5.880285542
+      tokens: 28746
+      review: false
+    ko-KR:
+      text: '## UI 비의존성 {#ui-framework-agnostic}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257101Z
+      seconds: 5.880285542
+      tokens: 28746
+      review: false
+    zh-CN:
+      text: '## UI 无关性 {#ui-framework-agnostic}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257101Z
+      seconds: 5.880285542
+      tokens: 28746
+      review: false
+    zh-TW:
+      text: '## UI 無關性 {#ui-framework-agnostic}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257101Z
+      seconds: 5.880285542
+      tokens: 28746
+      review: false
   52637a9cf61525f4292e4e42d769263b:
     de-DE:
       text: Dasselbe gilt für bedingtes Rendern und das Rendern von Listen.
@@ -2145,6 +2210,71 @@ segments:
       seconds: 173.828777792
       tokens: 25110
       review: false
+  64dac0007f0d9056ca6e061a93d40fe9:
+    de-DE:
+      text: '## Die PPR-Lücke {#ppr-ideal-vs-reality}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257103Z
+      seconds: 5.867199375
+      tokens: 28850
+      review: false
+    en-US:
+      text: '## The PPR Gap {#ppr-ideal-vs-reality}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257103Z
+      seconds: 5.867199375
+      tokens: 28850
+      review: false
+    es-ES:
+      text: '## La brecha del PPR {#ppr-ideal-vs-reality}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257103Z
+      seconds: 5.867199375
+      tokens: 28850
+      review: false
+    fr-FR:
+      text: '## L''écart de PPR {#ppr-ideal-vs-reality}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257103Z
+      seconds: 5.867199375
+      tokens: 28850
+      review: false
+    ja-JP:
+      text: '## PPR の落差 {#ppr-ideal-vs-reality}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257103Z
+      seconds: 5.867199375
+      tokens: 28850
+      review: false
+    ko-KR:
+      text: '## PPR의 낙차 {#ppr-ideal-vs-reality}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257103Z
+      seconds: 5.867199375
+      tokens: 28850
+      review: false
+    zh-CN:
+      text: '## PPR 的落差 {#ppr-ideal-vs-reality}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257103Z
+      seconds: 5.867199375
+      tokens: 28850
+      review: false
+    zh-TW:
+      text: '## PPR 的落差 {#ppr-ideal-vs-reality}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257103Z
+      seconds: 5.867199375
+      tokens: 28850
+      review: false
   6c50245db5ab6c44c41bcec16801afba:
     de-DE:
       text: 'Abschließend noch der Vergleich mit traditionellem SSG: Ich habe dasselbe erreicht wie SSG – im Wesentlichen wird alles, was zur Kompilierzeit feststeht, vollständig gerendert. Wir sind jedoch **dynamischer**, denn `slot`-Werte einfacher Typen lassen sich zur Laufzeit vollständig ersetzen. **Man kann es sich so vorstellen: Wir haben SSG als eine Art Einstiegspunkt für eine MPA gerendert. Vor der Hydration ist es eine MPA, danach wird es zu einer SPA, wobei die „dynamischen“ Fähigkeiten erhalten bleiben.**'
@@ -2209,6 +2339,71 @@ segments:
       at: 2026-08-10T05:28:59.410511Z
       seconds: 80.796298917
       tokens: 19758
+      review: false
+  6caea02a3255d206dd5ca42da32ebd87:
+    de-DE:
+      text: '## Und RSC {#rsc-still-needed}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257142Z
+      seconds: 5.4783504579999995
+      tokens: 28666
+      review: false
+    en-US:
+      text: '## And RSC {#rsc-still-needed}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257142Z
+      seconds: 5.4783504579999995
+      tokens: 28666
+      review: false
+    es-ES:
+      text: '## Y RSC {#rsc-still-needed}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257142Z
+      seconds: 5.4783504579999995
+      tokens: 28666
+      review: false
+    fr-FR:
+      text: '## Et RSC {#rsc-still-needed}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257142Z
+      seconds: 5.4783504579999995
+      tokens: 28666
+      review: false
+    ja-JP:
+      text: '## あと RSC {#rsc-still-needed}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257142Z
+      seconds: 5.4783504579999995
+      tokens: 28666
+      review: false
+    ko-KR:
+      text: '## 그리고 RSC {#rsc-still-needed}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257142Z
+      seconds: 5.4783504579999995
+      tokens: 28666
+      review: false
+    zh-CN:
+      text: '## 还有 RSC {#rsc-still-needed}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257142Z
+      seconds: 5.4783504579999995
+      tokens: 28666
+      review: false
+    zh-TW:
+      text: '## 還有 RSC {#rsc-still-needed}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257142Z
+      seconds: 5.4783504579999995
+      tokens: 28666
       review: false
   7039d1334cf4ac0b9759edca4d22b17c:
     de-DE:
@@ -2729,6 +2924,71 @@ segments:
       at: 2026-08-10T05:29:38.631531Z
       seconds: 64.919294083
       tokens: 18718
+      review: false
+  87037d4523ef5b60227fcbd8f0d6ff7d:
+    de-DE:
+      text: '## Hydration-Fehler? {#farewell-hydration-mismatch}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257219Z
+      seconds: 5.399711
+      tokens: 28862
+      review: false
+    en-US:
+      text: '## Hydration mismatch? {#farewell-hydration-mismatch}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257219Z
+      seconds: 5.399711
+      tokens: 28862
+      review: false
+    es-ES:
+      text: '## ¿Error de hidratación? {#farewell-hydration-mismatch}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257219Z
+      seconds: 5.399711
+      tokens: 28862
+      review: false
+    fr-FR:
+      text: '## Erreur d''hydratation ? {#farewell-hydration-mismatch}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257219Z
+      seconds: 5.399711
+      tokens: 28862
+      review: false
+    ja-JP:
+      text: '## ハイドレーションエラー? {#farewell-hydration-mismatch}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257219Z
+      seconds: 5.399711
+      tokens: 28862
+      review: false
+    ko-KR:
+      text: '## 하이드레이션 오류? {#farewell-hydration-mismatch}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257219Z
+      seconds: 5.399711
+      tokens: 28862
+      review: false
+    zh-CN:
+      text: '## 水合错误？ {#farewell-hydration-mismatch}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257219Z
+      seconds: 5.399711
+      tokens: 28862
+      review: false
+    zh-TW:
+      text: '## 水合錯誤？ {#farewell-hydration-mismatch}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:44.257219Z
+      seconds: 5.399711
+      tokens: 28862
       review: false
   8a158baf206a259b9e845bbf5010c99d:
     de-DE:
@@ -3574,6 +3834,71 @@ segments:
       at: 2026-08-10T05:30:06.074107Z
       seconds: 28.705303291
       tokens: 16994
+      review: false
+  b00d7fdc2e492527e4a5ccd7846a17e3:
+    de-DE:
+      text: '## Serverless {#serverless}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:49.66552Z
+      seconds: 4.270180541
+      tokens: 28964
+      review: false
+    en-US:
+      text: '## Serverless {#serverless}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:49.66552Z
+      seconds: 4.270180541
+      tokens: 28964
+      review: false
+    es-ES:
+      text: '## Sin servidor {#serverless}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:49.66552Z
+      seconds: 4.270180541
+      tokens: 28964
+      review: false
+    fr-FR:
+      text: '## Sans serveur {#serverless}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:49.66552Z
+      seconds: 4.270180541
+      tokens: 28964
+      review: false
+    ja-JP:
+      text: '## サーバーレス {#serverless}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:49.66552Z
+      seconds: 4.270180541
+      tokens: 28964
+      review: false
+    ko-KR:
+      text: '## 서버리스 {#serverless}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:49.66552Z
+      seconds: 4.270180541
+      tokens: 28964
+      review: false
+    zh-CN:
+      text: '## 无服务器 {#serverless}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:49.66552Z
+      seconds: 4.270180541
+      tokens: 28964
+      review: false
+    zh-TW:
+      text: '## 無伺服器 {#serverless}'
+      provider: anthropic
+      model: claude-opus-5
+      at: 2026-08-30T04:15:49.66552Z
+      seconds: 4.270180541
+      tokens: 28964
       review: false
   bb61f07aee917a79b0843d8a0423e5e3:
     de-DE:
