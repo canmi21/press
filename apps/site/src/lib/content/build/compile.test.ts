@@ -618,3 +618,40 @@ it('gives the markdown target real footnotes', async () => {
 	expect(compiled.markdown).toContain('[^1]: One.');
 	expect(compiled.markdown).toContain('[^2]: Two.');
 });
+
+it('crops a link card cover like ::image, defaults and overrides alike', async () => {
+	const source = [
+		'---',
+		'title: Test',
+		'lang: en-US',
+		'---',
+		'',
+		'::linkcard{src="a.avif" url="https://example.com" title="Plain"}',
+		'',
+		'::linkcard{src="b.avif" url="https://example.com" title="Tall" ratio="4:5" align="top"}',
+		'',
+	].join('\n');
+	const compiled = await compile(source, '/article', {
+		newTabNote: 'opens in new tab',
+		resolveAsset: () => null,
+		highlight: async () => '',
+	});
+
+	const cards = compiled.blocks.filter((block) => block.type === 'linkcard');
+	expect(cards).toHaveLength(2);
+	// A cover the author said nothing about takes the shared default, so a column of cards is
+	// one shape rather than one per screenshot.
+	expect(cards[0]).toMatchObject({ crop: '16 / 9' });
+	expect(cards[0]?.type === 'linkcard' && cards[0].align).toBeUndefined();
+	expect(cards[1]).toMatchObject({ crop: '4 / 5', align: 'top' });
+});
+
+it('names ::linkcard, not ::image, when a card ratio is malformed', async () => {
+	await expect(
+		compile(
+			'---\ntitle: Test\nlang: en-US\n---\n\n::linkcard{src="a.avif" url="https://example.com" title="T" ratio="wide"}\n',
+			'/article',
+			{ newTabNote: 'opens in new tab', resolveAsset: () => null, highlight: async () => '' },
+		),
+	).rejects.toThrow('::linkcard ratio must be W:H with positive numbers');
+});

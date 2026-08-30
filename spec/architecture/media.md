@@ -296,6 +296,17 @@ shown here" instead of "this image" -- which would take the addressing model wit
 `cms gc` reaches assets through the ids articles name. The cost is that the hidden part of the
 image is still downloaded; that is the cheaper of the two.
 
+**A link card's cover is cropped the same way, by the same default.** `::linkcard` is a
+directive typed on purpose, so the argument above applies to it unchanged: saying nothing about
+the ratio reads as "the usual one", not as "leave it alone". It takes `ratio` and `align` too,
+and the shared helpers name whichever directive rejected the value.
+
+That this was missing was not a decision, it was a place the rule never reached: the default
+lives in the compiler's `::image` branch, while the card only borrowed the *component* -- whose
+contract is that an absent crop shows the whole image, because `![]()` depends on it. Covers are
+screenshots, so they arrive at whatever shape a window happened to be. The ten in this corpus
+ran from 1.52 to 1.96, which is a column of cards at ten heights.
+
 A crop does not reach the feed or the markdown target. Neither runs a layout, and how a page
 frames an image is not something the image says.
 

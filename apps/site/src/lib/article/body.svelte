@@ -176,6 +176,8 @@
 				height={block.height}
 				preview={block.preview}
 				srcset={block.srcset}
+				crop={block.crop}
+				align={block.align}
 				description={block.description}
 			/>
 		{:else if block.type === 'article'}

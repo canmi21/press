@@ -63,6 +63,10 @@ export type Block =
 			height?: number;
 			preview?: string;
 			srcset?: string;
+			/** The cover's crop, defaulted like `::image`'s. See the `image` variant below. */
+			crop?: string;
+			/** `object-position` for that crop. Absent means centred. */
+			align?: string;
 			/** What the cover shows. Offered as the link's description, never as its name. */
 			description?: string;
 	  }

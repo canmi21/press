@@ -454,21 +454,27 @@ const ALIGNMENTS = ['center', 'top', 'bottom', 'left', 'right'] as const;
  * nobody asked for, and a typo in a ratio is invisible in a way a missing image is not --
  * the page still looks deliberate.
  */
-function cropRatio(value: string | null | undefined, url: string): string {
+function cropRatio(value: string | null | undefined, url: string, directive: string): string {
 	if (value == null) return DEFAULT_CROP;
 	const match = /^(\d+(?:\.\d+)?):(\d+(?:\.\d+)?)$/.exec(value.trim());
 	if (!match || Number(match[1]) <= 0 || Number(match[2]) <= 0) {
-		throw new Error(`::image ratio must be W:H with positive numbers, got "${value}": ${url}`);
+		throw new Error(
+			`::${directive} ratio must be W:H with positive numbers, got "${value}": ${url}`,
+		);
 	}
 	return `${match[1]} / ${match[2]}`;
 }
 
-function cropAlign(value: string | null | undefined, url: string): string | undefined {
+function cropAlign(
+	value: string | null | undefined,
+	url: string,
+	directive: string,
+): string | undefined {
 	if (value == null) return undefined;
 	const wanted = value.trim().toLowerCase();
 	if (!(ALIGNMENTS as readonly string[]).includes(wanted)) {
 		throw new Error(
-			`::image align must be one of ${ALIGNMENTS.join(', ')}, got "${value}": ${url}`,
+			`::${directive} align must be one of ${ALIGNMENTS.join(', ')}, got "${value}": ${url}`,
 		);
 	}
 	return wanted === 'center' ? undefined : wanted;
@@ -800,10 +806,16 @@ export async function compile(
 			const tone: 'light' | 'dark' | undefined =
 				attrs.tone === 'dark' ? 'dark' : attrs.tone === 'light' ? 'light' : undefined;
 			const card = { src: attrs.src ?? '', url: attrs.url ?? '', title: attrs.title ?? '', tone };
+			// Cropped like `::image`, defaults included: a card is typed on purpose, so saying
+			// nothing about the ratio reads as "the usual one" rather than as "leave it alone".
+			// Screenshots arrive at whatever shape a window happened to be, and a column of
+			// cards at ten heights is the thing a default ratio exists to prevent.
+			const crop = cropRatio(attrs.ratio, url, 'linkcard');
+			const align = cropAlign(attrs.align, url, 'linkcard');
 			// A card's cover is an asset like any other, so it gets the same variants and
 			// placeholder. Resolving here rather than in the component keeps the manifest --
 			// every base64 preview in it -- out of the client bundle.
-			blocks.push({ type: 'linkcard', ...card, ...resolveAsset(card.src) });
+			blocks.push({ type: 'linkcard', ...card, crop, align, ...resolveAsset(card.src) });
 			feed.push(`<p><a href="${card.url}">${escapeHtml(card.title)}</a></p>`);
 			md.push(`[${card.title}](${card.url})`);
 			continue;
@@ -838,8 +850,8 @@ export async function compile(
 		if (node.type === 'leafDirective' && node.name === 'image') {
 			const attrs = node.attributes ?? {};
 			const src = attrs.src ?? '';
-			const crop = cropRatio(attrs.ratio, url);
-			const align = cropAlign(attrs.align, url);
+			const crop = cropRatio(attrs.ratio, url, 'image');
+			const align = cropAlign(attrs.align, url, 'image');
 			const absolute = `${IMAGE_CDN}/image/${src}`;
 			const resolved = resolveAsset(src);
 			const alt = altFor(attrs.alt, resolved);

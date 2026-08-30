@@ -26,11 +26,27 @@
 		height?: number;
 		preview?: string;
 		srcset?: string;
+		/** The cover's crop, resolved at compile time. See spec/architecture/media.md. */
+		crop?: string;
+		/** `object-position` within that crop. Absent means centred. */
+		align?: string;
 		/** What the cover shows, from the manifest. See the markup for where it goes. */
 		description?: string;
 	};
-	let { locale, src, url, title, tone, width, height, preview, srcset, description }: Props =
-		$props();
+	let {
+		locale,
+		src,
+		url,
+		title,
+		tone,
+		width,
+		height,
+		preview,
+		srcset,
+		crop,
+		align,
+		description,
+	}: Props = $props();
 
 	const describedBy = $props.id();
 
@@ -130,7 +146,7 @@
 				? 'group-hover:brightness-110'
 				: ''}"
 	>
-		<Image {src} alt="" {width} {height} {preview} {srcset} bind:el={imgEl} />
+		<Image {src} alt="" {width} {height} {preview} {srcset} {crop} {align} bind:el={imgEl} />
 	</div>
 	<div class="absolute right-12 bottom-3 left-3 flex items-center gap-2">
 		<img src={faviconSrc} alt="" aria-hidden="true" loading="lazy" class="h-4 w-4 shrink-0" />
