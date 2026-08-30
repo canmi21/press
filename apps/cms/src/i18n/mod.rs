@@ -88,6 +88,11 @@ pub struct Outcome {
 	pub exhausted: Option<String>,
 	/// Report-only policy findings from `--check`: article, then what audit::of saw.
 	pub audit: Vec<(String, audit::Finding)>,
+	/// Locale views that will not render at all: article, locale, and how many body segments are
+	/// missing. One is enough -- the site serves the source article rather than mixing languages
+	/// inside a page -- so this is reported as its own outcome rather than left to be inferred
+	/// from a count of missing entries.
+	pub blocked_views: Vec<(String, String, usize)>,
 }
 
 /// When a file was last written, or `None` if it does not exist yet.
@@ -141,7 +146,7 @@ fn validate_reply(
 		boundary,
 		segment::Kind::Prose,
 		region,
-		"",
+		masked.text.as_str(),
 		masked,
 		&prompt::LOCALES,
 		None,
@@ -174,16 +179,48 @@ fn validate_reply_for(
 	// length, so measuring the masked text would charge the heading for the wrong glyphs.
 	let mut too_wide = Vec::new();
 	let mut glued = Vec::new();
+	let mut oversized = Vec::new();
+	let wrong_block = std::cell::RefCell::new(Vec::new());
 	let kept: Vec<(String, String)> = parsed
 		.into_iter()
 		.filter(|(locale, text)| {
-			locales.contains(&locale.as_str())
-				&& masked.intact(text)
-				&& body_lines(text) <= allowed
-				&& validate::translation(region, text).is_ok()
+			// The shape checks read the masked text, which is what was asked for. Masking lifts
+			// inline code and nothing else, so the note counts they compare are the same on either
+			// side of it.
+			if !locales.contains(&locale.as_str()) {
+				return false;
+			}
+			if !masked.intact(text) || body_lines(text) > allowed {
+				return false;
+			}
+			match validate::translation(region, masked.text.as_str(), text) {
+				Ok(()) => true,
+				// Named rather than swept into the generic message: an author's note that did not
+				// come back is not a translation of this block at all, and the next move is to
+				// look at what block it *is* -- not to ask the same question again.
+				Err(error @ validate::Error::AuthorNoteCountChanged) => {
+					wrong_block.borrow_mut().push(format!("{locale} ({error})"));
+					false
+				}
+				Err(_) => false,
+			}
 		})
 		.map(|(locale, text)| (locale, masked.restore(&text)))
 		.filter(|(locale, text)| {
+			// Read after restoring: every marker this block owns has just been put back, so one
+			// still standing here belongs to the folded context and was copied out of it.
+			if !validate::markers_resolved(text) {
+				wrong_block
+					.borrow_mut()
+					.push(format!("{locale} ({})", validate::Error::UnresolvedMarker));
+				return false;
+			}
+			// Size is compared against the real source, not the masked one, for the same reason
+			// the two below are read here: a marker stands in for code of a different length.
+			if !validate::size_plausible(source, text) {
+				oversized.push(format!("{locale} at {} columns", width::raw(text)));
+				return false;
+			}
 			// Spacing is read after restoring too: a marker is not the word it stands for, so
 			// masked text cannot say whether a directive is glued to its neighbour.
 			if !validate::spacing_intact(text) {
@@ -200,7 +237,20 @@ fn validate_reply_for(
 	if kept.is_empty() {
 		// Naming the width when that is the reason: the generic message covers a lost marker, an
 		// added line and a malformed note alike, and none of those suggests the same next move.
-		return Err(Refusal::Failed(if !glued.is_empty() {
+		let wrong_block = wrong_block.into_inner();
+		return Err(Refusal::Failed(if !wrong_block.is_empty() {
+			format!(
+				"the reply is about a different block ({})",
+				wrong_block.join(", ")
+			)
+		} else if !oversized.is_empty() {
+			format!(
+				"a translation is far larger than its source ({}; source is {} columns) -- the \
+				 reply is probably the neighbouring context rather than this block",
+				oversized.join(", "),
+				width::raw(source)
+			)
+		} else if !glued.is_empty() {
 			format!(
 				"a note directive is glued to the word beside it ({})",
 				glued.join(", ")
@@ -469,24 +519,77 @@ pub async fn run(
 						outcome.audit.push((path.display().to_string(), found));
 					}
 				}
+				// And once more with every locale of this segment in hand: the checks above cannot
+				// see a sibling, and a sibling is what catches an answer that is well-formed and
+				// simply about something else.
+				let together: Vec<(&str, &str)> = locales
+					.iter()
+					.map(|(locale, translation)| (locale.as_str(), translation.text.as_str()))
+					.collect();
+				for found in audit::across_locales(id, &segment.source, &together) {
+					outcome.audit.push((path.display().to_string(), found));
+				}
+			}
+			// A missing body segment is not a gap in one paragraph. The site refuses to mix
+			// languages within a page, so it serves the whole article in the source language and
+			// says the translation is unavailable -- which means one absent block and a wholly
+			// untranslated locale are the same event, and a count alone does not say so.
+			for locale in locales {
+				let blocked = wanted
+					.iter()
+					.filter(|(id, missing)| {
+						missing.iter().any(|m| m == locale)
+							&& live
+								.get(*id)
+								.is_some_and(|segment| segment.region == segment::Region::Body)
+					})
+					.count();
+				if blocked > 0 {
+					outcome
+						.blocked_views
+						.push((path.display().to_string(), (*locale).to_owned(), blocked));
+				}
 			}
 			continue;
 		}
 
-		// Order for context comes from the article, which is the only place it lives.
-		let ordered: Vec<&Segment> = {
-			let mut all: Vec<&Segment> = live.values().collect();
-			all.sort_by_key(|s| s.line);
-			all
-		};
-		let neighbours = |id: &str| {
-			let at = ordered.iter().position(|s| s.id == id);
+		// Order for context comes from the article, which is the only place it lives. Two things
+		// this list is not: it is not `live`, and it is not the whole article.
+		//
+		// Not `live`, because that one is filtered to what gets translated -- so a code fence or a
+		// figure between two paragraphs was invisible here and the "neighbouring paragraph" was
+		// whatever prose lay beyond it. Every block is a neighbour now; `context_of` folds the
+		// unreadable ones down to a word.
+		//
+		// Not the whole article, because `live` also carries the frontmatter title, subtitle and
+		// description, and they sort ahead of the body by line. That made the article's own
+		// description the "previous paragraph" of its first body block -- a dense, self-contained
+		// summary presented to the model as the thing this paragraph follows on from. It came back
+		// translated in its place. Metadata is not prose that leads anywhere, so it takes no
+		// context and gives none. See spec/i18n.md.
+		let ordered: Vec<Segment> = segment::split(&article)
+			.map_err(|error| {
+				std::io::Error::new(
+					std::io::ErrorKind::InvalidData,
+					format!("{}: {error}", path.display()),
+				)
+			})?
+			.into_iter()
+			.filter(|segment| segment.region == segment::Region::Body)
+			.collect();
+		let neighbours = |item: &Segment| {
+			if item.region != segment::Region::Body {
+				return (None, None);
+			}
+			// By offset rather than by id: one id can sit in an article many times -- every
+			// horizontal rule shares one -- and a position found by id would be the first of them.
+			let at = ordered.iter().position(|s| s.start == item.start);
 			at.map_or((None, None), |at| {
 				(
 					at.checked_sub(1)
 						.and_then(|i| ordered.get(i))
-						.map(|s| s.source.clone()),
-					ordered.get(at + 1).map(|s| s.source.clone()),
+						.map(segment::context_of),
+					ordered.get(at + 1).map(segment::context_of),
 				)
 			})
 		};
@@ -577,7 +680,7 @@ pub async fn run(
 				held.insert(item.id.clone(), claimed);
 
 				progress.set_message(progress::preview(&item.source, 44));
-				let (before, after) = neighbours(&item.id);
+				let (before, after) = neighbours(&item);
 				let model_override = model_override.clone();
 				let gloss = glosses.find(&item.id).cloned();
 				let source_locale = source_locale.clone();
@@ -832,7 +935,7 @@ mod tests {
 				boundary,
 				segment::Kind::Prose,
 				segment::Region::Body,
-				"",
+				source,
 				&masked,
 				&["zh-CN"],
 				Some("zh-CN"),
@@ -845,7 +948,7 @@ mod tests {
 				boundary,
 				segment::Kind::Prose,
 				segment::Region::Body,
-				"",
+				source,
 				&masked,
 				&["zh-CN"],
 				Some("zh-CN"),

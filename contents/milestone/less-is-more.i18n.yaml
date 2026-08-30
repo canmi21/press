@@ -50,7 +50,7 @@ segments:
       tokens: 18758
       review: false
     zh-CN:
-      text: 回头看之前走过的弯路，我后悔吗？不后悔。有些事如果不亲自试一试，也许永远都想不明白。更何况在人工智能时代，想再走我当年的老路，基本已经没有机会了，太多工作流程都已被改变。另外，这个项目是 [Taki](https://github.com/canmi21/taki)，完全由人工智能编程完成，但这并不意味着它无法长期维护，也不意味着它没有人情味。其实是否使用人工智能并不重要。再说了，我喜欢的本来就不是写代码本身，而是把一样东西构建出来……
+      text: 回头看之前走过的弯路，我后悔吗？不后悔。有些事如果不亲自试一试，也许永远都想不明白。更何况在 AI 时代，想再走我当年的老路，基本已经没有机会了，太多工作流程都已被改变。另外，这个项目是 [Taki](https://github.com/canmi21/taki)，完全由 AI 编程完成，但这并不意味着它无法长期维护，也不意味着它没有人情味。其实是否使用 AI 并不重要。再说了，我喜欢的本来就不是写代码本身，而是把一样东西构建出来……
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-26T06:48:40.144729Z
@@ -58,7 +58,7 @@ segments:
       tokens: 19282
       review: false
     zh-TW:
-      text: 回頭看以前走過的彎路，後悔嗎？不後悔。有些事若不親自試試，也許永遠都想不明白。更何況在人工智慧時代，想重走我當年的老路已經幾乎不可能了，太多工作流程都已改變。另外，這個專案是 [Taki](https://github.com/canmi21/taki)，完全由人工智慧編寫程式碼，但這並不代表它無法長期維護，也不代表它沒有人情味。其實是否使用人工智慧並不重要。再說了，我喜歡的也不是寫程式碼本身，而是創造一個東西……
+      text: 回頭看以前走過的彎路，後悔嗎？不後悔。有些事若不親自試試，也許永遠都想不明白。更何況在 AI 時代，想重走我當年的老路已經幾乎不可能了，太多工作流程都已改變。另外，這個專案是 [Taki](https://github.com/canmi21/taki)，完全由 AI 編寫程式碼，但這並不代表它無法長期維護，也不代表它沒有人情味。其實是否使用 AI 並不重要。再說了，我喜歡的也不是寫程式碼本身，而是創造一個東西……
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:39:59.027955Z
@@ -83,7 +83,7 @@ segments:
       tokens: 17257
       review: false
     es-ES:
-      text: Durante dos años, el autor pospuso tanto el blog que acabó convirtiéndolo en un subproducto de un proxy inverso, un entorno de trabajo propio y un sistema de archivos virtual; entre la ansiedad por la IA, aprendió a soltar, lo apostó todo por Cloudflare y por fin publicó la primera entrada. Una confesión de ingeniería excesiva aplazada desde Next.js 13 hasta la versión 16.
+      text: Durante dos años, el autor pospuso tanto el blog que acabó convirtiéndolo en un subproducto de un proxy inverso, un framework propio y un sistema de archivos virtual; entre la ansiedad por la IA, aprendió a soltar, lo apostó todo por Cloudflare y por fin publicó la primera entrada. Una confesión de ingeniería excesiva aplazada desde Next.js 13 hasta la versión 16.
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:39:59.027976Z
@@ -91,7 +91,7 @@ segments:
       tokens: 17257
       review: false
     fr-FR:
-      text: Pendant deux ans, l’auteur a tant repoussé son blog qu’il en a fait le sous-produit d’un proxy inverse, d’un cadriciel maison et d’un système de fichiers virtuel, avant d’apprendre à lâcher prise malgré l’anxiété liée à l’IA, de tout miser sur Cloudflare et de publier enfin son premier article. L’aveu d’une ingénierie excessive, reportée de Next.js 13 à 16.
+      text: Pendant deux ans, l’auteur a tant repoussé son blog qu’il en a fait le sous-produit d’un proxy inverse, d’un framework maison et d’un système de fichiers virtuel, avant d’apprendre à lâcher prise malgré l’anxiété liée à l’IA, de tout miser sur Cloudflare et de publier enfin son premier article. L’aveu d’une ingénierie excessive, reportée de Next.js 13 à 16.
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:39:59.027976Z
@@ -115,7 +115,7 @@ segments:
       tokens: 17257
       review: false
     zh-CN:
-      text: 我花了两年，把博客做成了反向代理、自研框架和 vfs 的副产物；又在 AI 焦虑中学会放手，All in Cloudflare，终于上线了第一篇文章。这是一段从 Next.js 13 一路拖到 16 的过度工程自白。
+      text: 笔者花了两年，把博客做成了反向代理、自研框架和 vfs 的副产物；又在 AI 焦虑中学会放手，All in Cloudflare，终于上线了第一篇文章。这是一段从 Next.js 13 一路拖到 16 的过度工程自白。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-26T06:48:40.144811Z
@@ -123,7 +123,7 @@ segments:
       tokens: 19005
       review: false
     zh-TW:
-      text: 筆者花了兩年把部落格拖成反向代理、自研框架與虛擬檔案系統的副產品，在人工智慧焦慮中學會放手，全力投入 Cloudflare，終於上線了第一篇文章。一段從 Next.js 13 鴿到 16 的過度工程自白。
+      text: 筆者花了兩年把部落格拖成反向代理、自研框架與虛擬檔案系統的副產品，在 AI 焦慮中學會放手，全力投入 Cloudflare，終於上線了第一篇文章。一段從 Next.js 13 鴿到 16 的過度工程自白。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:39:59.027976Z
@@ -188,7 +188,7 @@ segments:
       tokens: 18934
       review: false
     zh-TW:
-      text: 然後人工智慧時代來了，焦慮又翻了一倍。
+      text: 然後 AI 時代來了，焦慮又翻了一倍。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:39:59.027996Z
@@ -262,7 +262,7 @@ segments:
       review: false
   0718215ea97d512da49fb3554686b339:
     de-DE:
-      text: '"Gewollt" trifft es nicht ganz, es war eher eine fixe Idee. Sie war schon da, als ich weder Frontend noch Backend schreiben konnte und auch keinen Embedded-Code. Damals bastelte ich noch an Elektronik herum, und zufällig stieß ich auf die Videos von [@ushio](https://github.com/sakura-ushio) auf :tn[B站]{is="Im Original steht „B站“, der vertrauliche chinesische Kosename für die Videoplattform Bilibili — das Kürzel der Eingeweihten, das der volle Markenname nüchtern und offiziell klingen ließe."} und auf ihre Website, und :tn[窝]{is="Das Original schreibt das Personalpronomen „我“ (ich) als gleichlautendes „窝“ (wörtlich „Nest“) — ein absichtlicher Verschreiber aus dem chinesischen Netzjargon, der dem Satz einen kindlich-niedlichen Ton gibt, den ein normales Pronomen nicht trägt."} fand das so toll, dass ich das auch haben wollte. Danach brauchte ich ein knappes halbes Jahr, lernte C von Grund auf, dazu ein bisschen JS und CSS, baute mit Hexo einen statischen Blog und stellte ihn auf Github Pages — damit hatte ich endlich mein eigenes kleines Fleckchen.'
+      text: '"Gewollt" trifft es nicht ganz, es war eher eine fixe Idee. Sie war schon da, als ich weder Frontend noch Backend schreiben konnte und auch keinen Embedded-Code. Damals bastelte ich noch an Elektronik herum, und zufällig stieß ich auf die Videos von [@ushio](https://github.com/sakura-ushio) auf :tn[Bilibili]{is="Im Original steht „B站“, der vertrauliche chinesische Kosename für die Videoplattform Bilibili — das Kürzel der Eingeweihten, das der volle Markenname nüchtern und offiziell klingen ließe."} und auf ihre Website, und :tn[ich]{is="Das Original schreibt das Personalpronomen „我“ (ich) als gleichlautendes „窝“ (wörtlich „Nest“) — ein absichtlicher Verschreiber aus dem chinesischen Netzjargon, der dem Satz einen kindlich-niedlichen Ton gibt, den ein normales Pronomen nicht trägt."} fand das so toll, dass ich das auch haben wollte. Danach brauchte ich ein knappes halbes Jahr, lernte C von Grund auf, dazu ein bisschen JS und CSS, baute mit Hexo einen statischen Blog und stellte ihn auf Github Pages — damit hatte ich endlich mein eigenes kleines Fleckchen.'
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:17:07.80515Z
@@ -270,7 +270,7 @@ segments:
       tokens: 32042
       review: false
     en-US:
-      text: Saying I "thought about it" isn't quite right; it was closer to an obsession. It started back when I couldn't write frontend or backend code, couldn't write embedded code either. I was messing around with electronics then, and I stumbled onto [@ushio](https://github.com/sakura-ushio)'s videos on :tn[B站]{is="The original writes “B站”, the affectionate Chinese nickname for the video platform Bilibili — the shorthand insiders use, which a plain rendering as the full brand name flattens into something official."} and their website, and :tn[窝]{is="Here the original writes the pronoun “我” (I) as “窝”, a deliberate homophone misspelling — literally “nest” — that gives the sentence a small, cutesy, internet-childish lilt no ordinary pronoun can carry."} thought it was so much fun that I wanted one too. Over the next six months or so I learned C from scratch, plus a little JS and CSS, and put up a static blog with Hexo deployed on Github Pages — my own little corner of the world, at last.
+      text: Saying I "thought about it" isn't quite right; it was closer to an obsession. It started back when I couldn't write frontend or backend code, couldn't write embedded code either. I was messing around with electronics then, and I stumbled onto [@ushio](https://github.com/sakura-ushio)'s videos on :tn[Bilibili]{is="The original writes “B站”, the affectionate Chinese nickname for the video platform Bilibili — the shorthand insiders use, which a plain rendering as the full brand name flattens into something official."} and their website, and :tn[I]{is="Here the original writes the pronoun “我” (I) as “窝”, a deliberate homophone misspelling — literally “nest” — that gives the sentence a small, cutesy, internet-childish lilt no ordinary pronoun can carry."} thought it was so much fun that I wanted one too. Over the next six months or so I learned C from scratch, plus a little JS and CSS, and put up a static blog with Hexo deployed on Github Pages — my own little corner of the world, at last.
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:17:07.80515Z
@@ -278,7 +278,7 @@ segments:
       tokens: 32042
       review: false
     es-ES:
-      text: Decir que lo "pensaba" no es del todo exacto; era más bien una obsesión. Ya estaba ahí cuando aún no sabía escribir ni frontend ni backend, ni tampoco código embebido. Por entonces todavía andaba trasteando con electrónica y, de casualidad, di con los vídeos de [@ushio](https://github.com/sakura-ushio) en :tn[B站]{is="El original escribe «B站», el apodo cariñoso que los internautas chinos usan para la plataforma de vídeo Bilibili. Es la abreviatura de los de dentro, y el nombre completo de la marca la deja sonando oficial."} y con su web, y :tn[窝]{is="El original escribe el pronombre «我» (yo) como el homófono «窝» (literalmente «nido»), una falta deliberada del argot de internet chino que da a la frase un tono infantil y entrañable que un pronombre normal no conserva."} pensé que aquello era genial y que yo también quería uno. Después pasé casi medio año aprendiendo C desde cero, y algo de JS y CSS, y monté un blog estático con Hexo desplegado en Github Pages. Por fin tenía mi propio rinconcito.
+      text: Decir que lo "pensaba" no es del todo exacto; era más bien una obsesión. Ya estaba ahí cuando aún no sabía escribir ni frontend ni backend, ni tampoco código embebido. Por entonces todavía andaba trasteando con electrónica y, de casualidad, di con los vídeos de [@ushio](https://github.com/sakura-ushio) en :tn[Bilibili]{is="El original escribe «B站», el apodo cariñoso que los internautas chinos usan para la plataforma de vídeo Bilibili. Es la abreviatura de los de dentro, y el nombre completo de la marca la deja sonando oficial."} y con su web, y :tn[yo]{is="El original escribe el pronombre «我» (yo) como el homófono «窝» (literalmente «nido»), una falta deliberada del argot de internet chino que da a la frase un tono infantil y entrañable que un pronombre normal no conserva."} pensé que aquello era genial y que yo también quería uno. Después pasé casi medio año aprendiendo C desde cero, y algo de JS y CSS, y monté un blog estático con Hexo desplegado en Github Pages. Por fin tenía mi propio rinconcito.
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:17:07.80515Z
@@ -286,7 +286,7 @@ segments:
       tokens: 32042
       review: false
     fr-FR:
-      text: 'Dire que j''y « pensais » n''est pas tout à fait exact, c''était plutôt une obsession. Elle était déjà là à l''époque où je ne savais écrire ni frontend ni backend, ni le moindre code embarqué. Je bricolais encore de l''électronique quand je suis tombé par hasard sur les vidéos de [@ushio](https://github.com/sakura-ushio) sur :tn[B站]{is="L''original écrit « B站 », le surnom affectueux que les internautes chinois donnent à la plateforme vidéo Bilibili. C''est le diminutif des initiés, que le nom officiel de la marque aplatirait."} et sur son site, et :tn[窝]{is="L''original écrit le pronom « 我 » (je) sous la forme homophone « 窝 » (littéralement « nid »), une faute volontaire du jargon d''internet chinois qui donne à la phrase un ton enfantin et attendrissant qu''un pronom normal ne porte pas."} me suis dit que c''était génial et que j''en voulais un aussi. J''y ai passé ensuite près de six mois : j''ai appris le C en partant de zéro, un peu de JS et de CSS, et j''ai monté un blog statique avec Hexo déployé sur Github Pages. J''avais enfin mon petit coin à moi.'
+      text: 'Dire que j''y « pensais » n''est pas tout à fait exact, c''était plutôt une obsession. Elle était déjà là à l''époque où je ne savais écrire ni frontend ni backend, ni le moindre code embarqué. Je bricolais encore de l''électronique quand je suis tombé par hasard sur les vidéos de [@ushio](https://github.com/sakura-ushio) sur :tn[Bilibili]{is="L''original écrit « B站 », le surnom affectueux que les internautes chinois donnent à la plateforme vidéo Bilibili. C''est le diminutif des initiés, que le nom officiel de la marque aplatirait."} et sur son site, et :tn[je]{is="L''original écrit le pronom « 我 » (je) sous la forme homophone « 窝 » (littéralement « nid »), une faute volontaire du jargon d''internet chinois qui donne à la phrase un ton enfantin et attendrissant qu''un pronom normal ne porte pas."} me suis dit que c''était génial et que j''en voulais un aussi. J''y ai passé ensuite près de six mois : j''ai appris le C en partant de zéro, un peu de JS et de CSS, et j''ai monté un blog statique avec Hexo déployé sur Github Pages. J''avais enfin mon petit coin à moi.'
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:17:07.80515Z
@@ -302,7 +302,7 @@ segments:
       tokens: 32042
       review: false
     ko-KR:
-      text: '"생각했다"는 말은 사실 정확하지 않고, 오히려 집념에 가깝다. 프런트엔드도 백엔드도 못 쓰고 임베디드 코드도 못 쓰던 시절부터 이미 있었다. 그때는 아직 전자공작을 만지작거리고 있었는데, 우연히 [@ushio](https://github.com/sakura-ushio) 의 :tn[B站]{is="원문은 동영상 플랫폼 Bilibili를 가리키는 중국 네티즌들의 친근한 애칭 “B站”을 썼다. 정식 명칭으로 옮기면 그 내부자 같은 말맛이 사라진다."} 영상과 사이트를 보게 됐고, :tn[窝]{is="원문은 일인칭 “我”(나)를 같은 소리가 나는 “窝”(둥지)로 일부러 틀리게 적었다. 중국 인터넷 특유의 어리고 귀여운 말투인데, 평범한 인칭대명사로는 그 표기의 효과가 남지 않는다."}는 너무 재밌어 보여서 나도 갖고 싶어졌다. 그 뒤로 반년 가까이 걸려 C를 맨바닥부터 배우고 JS와 CSS도 조금 익혀서, Hexo로 정적 블로그를 만들어 Github Pages에 올렸다. 그렇게 나만의 작은 공간이 생긴 셈이다.'
+      text: '"생각했다"는 말은 사실 정확하지 않고, 오히려 집념에 가깝다. 프런트엔드도 백엔드도 못 쓰고 임베디드 코드도 못 쓰던 시절부터 이미 있었다. 그때는 아직 전자공작을 만지작거리고 있었는데, 우연히 [@ushio](https://github.com/sakura-ushio) 의 :tn[Bilibili]{is="원문은 동영상 플랫폼 Bilibili를 가리키는 중국 네티즌들의 친근한 애칭 “B站”을 썼다. 정식 명칭으로 옮기면 그 내부자 같은 말맛이 사라진다."} 영상과 사이트를 보게 됐고, :tn[나]{is="원문은 일인칭 “我”(나)를 같은 소리가 나는 “窝”(둥지)로 일부러 틀리게 적었다. 중국 인터넷 특유의 어리고 귀여운 말투인데, 평범한 인칭대명사로는 그 표기의 효과가 남지 않는다."}는 너무 재밌어 보여서 나도 갖고 싶어졌다. 그 뒤로 반년 가까이 걸려 C를 맨바닥부터 배우고 JS와 CSS도 조금 익혀서, Hexo로 정적 블로그를 만들어 Github Pages에 올렸다. 그렇게 나만의 작은 공간이 생긴 셈이다.'
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:17:07.80515Z
@@ -318,7 +318,7 @@ segments:
       tokens: 32042
       review: false
     zh-TW:
-      text: 說「想」其實不太準確，更像是一種執念。它在我還不會寫前端後端、也不會寫嵌入式程式碼的時候就已經有了。那時候我還在玩電子，偶然滑到了 [@ushio](https://github.com/sakura-ushio) 的 :tn[B站]{is="原文用的是「B站」，中文網友對 Bilibili 這個平台的親暱簡稱，寫全名會失去那種圈內人的語氣。"}影片和網站，:tn[窝]{is="原文把第一人稱「我」寫成同音的「窝」，是網路上常見的故意錯字，帶著一點稚氣可愛的語氣，規範寫法留不住這個效果。"}覺得很好玩，我也想要一個。後來我花了小半年，從零學會了 C，還學了一點 JS 和 CSS，用 Hexo 搭了一個靜態部落格，部署在 Github Pages 上，總算也有了自己的一片小天地。
+      text: 說「想」其實不太準確，更像是一種執念。它在我還不會寫前端後端、也不會寫嵌入式程式碼的時候就已經有了。那時候我還在玩電子，偶然滑到了 [@ushio](https://github.com/sakura-ushio) 的 :tn[B站]{is="原文用的是「B站」，中文網友對 Bilibili 這個平台的親暱簡稱，寫全名會失去那種圈內人的語氣。"}影片和網站，:tn[窩]{is="原文把第一人稱「我」寫成同音的「窝」，是網路上常見的故意錯字，帶著一點稚氣可愛的語氣，規範寫法留不住這個效果。"}覺得很好玩，我也想要一個。後來我花了小半年，從零學會了 C，還學了一點 JS 和 CSS，用 Hexo 搭了一個靜態部落格，部署在 Github Pages 上，總算也有了自己的一片小天地。
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:17:07.80515Z
@@ -465,7 +465,7 @@ segments:
       tokens: 18435
       review: false
     en-US:
-      text: It wasn’t that I didn’t realize I was going off track at the time. Vane? The blog would need to be deployed eventually anyway, so I’d need a reverse proxy. Seam? I’d have to write full-stack code sooner or later, so I might as well build my ideal framework first. Every step had a rationale; every step was something I’d “need later.” But the problem was, “later” would never come, because I never even started...
+      text: I honestly didn’t feel I was going off track at the time. Vane? The blog would need to be deployed eventually anyway, so I’d need a reverse proxy. Seam? I’d have to write full-stack code sooner or later, so I might as well build my ideal framework first. Every step had a rationale; every step was something I’d “need later.” But the problem was, “later” would never come, because I never even started...
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:39:59.028182Z
@@ -473,7 +473,7 @@ segments:
       tokens: 18435
       review: false
     es-ES:
-      text: En aquel momento, tampoco es que no me diera cuenta de que me estaba desviando. ¿Vane? Al fin y al cabo, algún día tendría que desplegar el blog, así que necesitaría un proxy inverso. ¿Seam? Tarde o temprano tendría que desarrollar tanto el frontend como el backend, así que mejor crear primero mi entorno de trabajo ideal. Cada paso tenía su justificación; todo iba a «servirme más adelante». Pero el problema era que ese «más adelante» nunca llegaría, porque jamás había empezado...
+      text: En aquel momento, tampoco es que no me diera cuenta de que me estaba desviando. ¿Vane? Al fin y al cabo, algún día tendría que desplegar el blog, así que necesitaría un proxy inverso. ¿Seam? Tarde o temprano tendría que desarrollar tanto el frontend como el backend, así que mejor crear primero mi framework ideal. Cada paso tenía su justificación; todo iba a «servirme más adelante». Pero el problema era que ese «más adelante» nunca llegaría, porque jamás había empezado...
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:39:59.028182Z
@@ -481,7 +481,7 @@ segments:
       tokens: 18435
       review: false
     fr-FR:
-      text: À l’époque, ce n’est pas que je ne me rendais pas compte que je m’égarais. Vane ? De toute façon, il faudrait bien déployer le blog un jour, donc il me faudrait forcément un serveur mandataire inverse. Seam ? Puisque je devrais tôt ou tard développer toute la pile, autant commencer par créer le cadre logiciel idéal à mes yeux. Chaque étape avait sa raison d’être, et tout allait « servir plus tard ». Mais le problème, c’est que ce « plus tard » n’arriverait jamais, puisque je n’avais même jamais commencé...
+      text: À l’époque, ce n’est pas que je ne me rendais pas compte que je m’égarais. Vane ? De toute façon, il faudrait bien déployer le blog un jour, donc il me faudrait forcément un serveur mandataire inverse. Seam ? Puisque je devrais tôt ou tard développer toute la pile, autant commencer par créer le framework idéal à mes yeux. Chaque étape avait sa raison d’être, et tout allait « servir plus tard ». Mais le problème, c’est que ce « plus tard » n’arriverait jamais, puisque je n’avais même jamais commencé...
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:39:59.028182Z
@@ -489,7 +489,7 @@ segments:
       tokens: 18435
       review: false
     ja-JP:
-      text: 当時、実は自分が脱線していると感じていなかったわけではない。Vane？どうせブログもいずれ公開するのだから、リバースプロキシは必要だろう。Seam？どうせ遅かれ早かれフルスタックで書くのなら、先に理想のフレームワークを作ってしまえばいい。一歩一歩に理由があり、そのどれもが「いずれ役に立つ」ものだった。だが問題は、その「いずれ」が永遠に来ないことだ。僕は一度も始めてすらいなかったのだから……
+      text: 当時、実は自分が脱線していると感じていなかったわけではない。Vane？どうせブログもいずれ公開するのだから、リバースプロキシは必要だろう。Seam？どうせ遅かれ早かれフルスタックで書くのなら、先に理想のフレームワークを作ってしまえばいい。一歩一歩に理由があり、そのどれもが「いずれ役に立つ」ものだった。だが問題は、その「いずれ」が永遠に来ないことだ。私は一度も始めてすらいなかったのだから……
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:39:59.028182Z
@@ -497,7 +497,7 @@ segments:
       tokens: 18435
       review: false
     ko-KR:
-      text: 당시에도 사실 내가 방향을 벗어나고 있다는 생각이 전혀 없었던 건 아니다. Vane? 어차피 블로그도 나중에는 배포해야 하니 리버스 프록시가 하나쯤은 필요하지 않겠는가. Seam? 어차피 언젠가는 풀스택으로 개발해야 하니 먼저 내가 꿈꾸던 프레임워크부터 제대로 만들어 두면 되지 않겠는가. 모든 단계에는 이유가 있었고, 모든 것은 “나중에 쓸모가 있을” 일이었다. 하지만 문제는 그 “나중”이 영원히 오지 않는다는 것이었다. 나는 단 한 번도 시작하지 않았으니까...
+      text: 당시에는 사실 내가 방향을 벗어나고 있다는 생각이 들지 않았다. Vane? 어차피 블로그도 나중에는 배포해야 하니 리버스 프록시가 하나쯤은 필요하지 않겠는가. Seam? 어차피 언젠가는 풀스택으로 개발해야 하니 먼저 내가 꿈꾸던 프레임워크부터 제대로 만들어 두면 되지 않겠는가. 모든 단계에는 이유가 있었고, 모든 것은 “나중에 쓸모가 있을” 일이었다. 하지만 문제는 그 “나중”이 영원히 오지 않는다는 것이었다. 나는 단 한 번도 시작하지 않았으니까...
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:39:59.028182Z
@@ -513,7 +513,7 @@ segments:
       tokens: 19123
       review: false
     zh-TW:
-      text: 我當時其實並不不覺得自己在跑偏。Vane？反正部落格以後也要部署，總得有個反向代理吧。Seam？反正遲早要寫全端，不如先把我理想中的框架搞好。每一步都有理由，每一步都是「以後用得上」。但問題是，「以後」永遠不會來，因為我從未開始……
+      text: 我當時其實並不覺得自己在跑偏。Vane？反正部落格以後也要部署，總得有個反向代理吧。Seam？反正遲早要寫全端，不如先把我理想中的框架搞好。每一步都有理由，每一步都是「以後用得上」。但問題是，「以後」永遠不會來，因為我從未開始……
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:39:59.028182Z
@@ -554,7 +554,7 @@ segments:
       tokens: 220974
       review: false
     ja-JP:
-      text: エンジニアリングの本質に立ち返る。「Make it function, make it correct, then make it exceptional.」ようやく正しい道に戻り、まずは動くものにできた。今のブログは粗末か？粗末だ。未完成か？確かに未完成だ。でも、ないよりはいい。何一つ公開できていないのに、「必要かもしれない」ものを作り続け、目に見えない完璧さばかり追い求めていたら、結局何も形にできない。これは妥協ではなく、エンジニアリング上の取捨選択だ。少なくとも僕はもう吹っ切れた。そう、吹っ切れたのだ。一つの細部にこだわるのをやめたら、かえって外へ出られた。スマホの写真には、もう長いこと屋外で撮ったものがなかったので、道端の風景を何気なく一枚撮った——ずっと外に出ていなかったからね（
+      text: エンジニアリングの本質に立ち返る。「Make it function, make it correct, then make it exceptional.」ようやく正しい道に戻り、まずは動くものにできた。今のブログは粗末か？粗末だ。未完成か？確かに未完成だ。でも、ないよりはいい。何一つ公開できていないのに、「必要かもしれない」ものを作り続け、目に見えない完璧さばかり追い求めていたら、結局何も形にできない。これは妥協ではなく、エンジニアリング上の取捨選択だ。少なくとも私はもう吹っ切れた。そう、吹っ切れたのだ。一つの細部にこだわるのをやめたら、かえって外へ出られた。スマホの写真には、もう長いこと屋外で撮ったものがなかったので、道端の風景を何気なく一枚撮った——ずっと外に出ていなかったからね（
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:39:59.028295Z
@@ -903,7 +903,7 @@ segments:
       tokens: 31664
       review: false
     zh-TW:
-      text: 最諷刺的是，這些東西本來都應該是在有了部落格之後，一邊記錄一邊做的。結果部落格:tn[鴿了又鴿]{is="原文用的是「鴿了又鴿」，來自網路用語「放鴿子」，指一再拖延、把答應好的事一次次擱下，帶著自嘲的輕鬆語氣，不是中性的「延後」。"}，想法越來越多，卻沒有一個地方能把它們記下來。一邊是內心不停地譴責自己：說好了 Vane 要做完，就不能停；另一邊是越做越遠、越做越無力。我一直都記得自己要做什麼，就是做不出來。仔細想想，我其實已經很久沒有坐下來寫過任何東西了。現在回頭看，這一切都指向同一件事——過度工程。
+      text: 最諷刺的是，這些東西本來都應該是在有了部落格之後，一邊記錄一邊做的。結果部落格:tn[鴿了又鴿]{is="原文用的是「鸽了又鸽」，來自網路用語「放鸽子」，指一再拖延、把答應好的事一次次擱下，帶著自嘲的輕鬆語氣，不是中性的「延後」。"}，想法越來越多，卻沒有一個地方能把它們記下來。一邊是內心不停地譴責自己：說好了 Vane 要做完，就不能停；另一邊是越做越遠、越做越無力。我一直都記得自己要做什麼，就是做不出來。仔細想想，我其實已經很久沒有坐下來寫過任何東西了。現在回頭看，這一切都指向同一件事——過度工程。
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:17:07.805372Z
@@ -1009,7 +1009,7 @@ segments:
       tokens: 31562
       review: false
     ja-JP:
-      text: AI 時代のテンポは速すぎる。モデルは次から次へと更新され、新しい技術は波のように湧いてくる。僕はどんどん焦っていった。立ち止まったら追い抜かれる気がして。いちばん狂っていた頃は一日 16 時間コードを書き、Token だけで一日 $1.9k USD 燃やせた ~~(たしか 2 月ごろ)~~。体はもうぼろぼろだった。でもそれを全部止めたのは悟りなんかじゃなく、ただ単に疲れただけだ。どんどんきつくなるテンポの中で、最後の一本の藁が乗ったとき、僕はかえって吹っ切れた、割り切った、:tn[何もかも投げ出した]{is="原文は中国語ネットスラングの「摆烂」。体面を保つことも努力を続けることもやめ、事態が悪くなるに任せるという意味で、自嘲まじりの軽さと、肩の荷が下りたような解放感がある。ただの「あきらめる」では出ない語感。"}。それでも、これはこれで悪くない。
+      text: AI 時代のテンポは速すぎる。モデルは次から次へと更新され、新しい技術は波のように湧いてくる。私はどんどん焦っていった。立ち止まったら追い抜かれる気がして。いちばん狂っていた頃は一日 16 時間コードを書き、Token だけで一日 $1.9k USD 燃やせた ~~(たしか 2 月ごろ)~~。体はもうぼろぼろだった。でもそれを全部止めたのは悟りなんかじゃなく、ただ単に疲れただけだ。どんどんきつくなるテンポの中で、最後の一本の藁が乗ったとき、私はかえって吹っ切れた、割り切った、:tn[何もかも投げ出した]{is="原文は中国語ネットスラングの「摆烂」。体面を保つことも努力を続けることもやめ、事態が悪くなるに任せるという意味で、自嘲まじりの軽さと、肩の荷が下りたような解放感がある。ただの「あきらめる」では出ない語感。"}。それでも、これはこれで悪くない。
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:17:07.805305Z
@@ -1107,7 +1107,7 @@ segments:
       review: false
   980b053f0b14f93a70ff6fc01aa3405f:
     de-DE:
-      text: Doch das war nur die Spitze des Eisbergs. Nachdem ich React entdeckt hatte, arbeitete ich mich von der Steinzeit mit Hexo und reinem JavaScript bis zum Seitenrouter von Next.js 13 vor, machte dann einen Abstecher zu Vue, beschäftigte mich mit der Routensteuerung von Einzelseitenanwendungen, verstand schließlich den Rückfall auf index.html und setzte das Projekt unzählige Male neu auf. Ich kaufte einen Server und experimentierte mit Docker, Nginx und einem netzgebundenen Speichersystem; weil ich 1Panel hässlich fand, schrieb ich kurzerhand das Canopy-Bedienfeld selbst, erforschte Speicherverbünde und entwickelte RFS, und als mich bei der Einrichtung von Zertifikaten für die sichere Socket-Schicht das im chinesischen Umfeld ständig streikende acme.sh zur Verzweiflung brachte, schrieb ich in Rust einen Reverse-Proxy namens Vane & Lazyacme. Ursprünglich waren das nur achthundert Zeilen Schrott, die ich an einem Abend in drei Stunden hingehackt hatte, doch nachdem mich ein paar Leute aus der Chatgruppe angestachelt hatten, arbeitete ich vier Monate daran und stopfte HTTP/3, kopierfreie Verarbeitung, ein Schichtenmodell und eine Fluss-Engine hinein. Danach kam noch Seam, ein Full-Stack-Framework und ebenfalls ein bodenloses Fass – aber davon ein andermal.
+      text: Doch das war nur die Spitze des Eisbergs. Nachdem ich React entdeckt hatte, arbeitete ich mich von der Steinzeit mit Hexo und reinem JavaScript bis zum Seitenrouter von Next.js 13 vor, machte dann einen Abstecher zu Vue, beschäftigte mich mit der Routensteuerung von Einzelseitenanwendungen, verstand schließlich den Rückfall auf index.html und setzte das Projekt unzählige Male neu auf. Ich kaufte einen Server und experimentierte mit Docker, Nginx und einem netzgebundenen Speichersystem; weil ich 1Panel hässlich fand, schrieb ich kurzerhand das Canopy-Bedienfeld selbst, erforschte Speicherverbünde und entwickelte RFS, und als mich bei der Einrichtung von SSL-Zertifikaten das im chinesischen Umfeld ständig streikende acme.sh zur Verzweiflung brachte, schrieb ich in Rust einen Reverse-Proxy namens Vane & Lazyacme. Ursprünglich waren das nur achthundert Zeilen Schrott, die ich an einem Abend in drei Stunden hingehackt hatte, doch nachdem mich ein paar Leute aus der Chatgruppe angestachelt hatten, arbeitete ich vier Monate daran und stopfte HTTP/3, kopierfreie Verarbeitung, ein Schichtenmodell und eine Fluss-Engine hinein. Danach kam noch Seam, ein Full-Stack-Framework und ebenfalls ein bodenloses Fass – aber davon ein andermal.
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:40:54.532582Z
@@ -1123,7 +1123,7 @@ segments:
       tokens: 19264
       review: false
     es-ES:
-      text: 'Pero aquello no era más que la punta del iceberg. Tras descubrir React, pasé de la Edad de Piedra de Hexo y JavaScript puro al enrutador de páginas de Next.js 13; luego me desvié hacia Vue, estudié el enrutamiento de aplicaciones de página única, entendí el mecanismo de respaldo de index.html y volví a crear el proyecto incontables veces. Compré un servidor y trasteé con Docker, Nginx y un sistema de almacenamiento conectado a la red; como 1Panel me parecía feo, programé a mano el panel Canopy, investigué matrices de almacenamiento y escribí RFS. Al configurar certificados de capa de sockets seguros, acme.sh fallaba tanto en el entorno chino que acabé escribiendo en Rust un proxy inverso: Vane & Lazyacme. Al principio no eran más que ochocientas líneas de código basura escritas en tres horas una noche, pero unos amigos del chat me animaron a continuar y terminé dedicándole cuatro meses, metiéndole HTTP/3, copia cero, un modelo por capas y un motor de flujos. Después también está Seam, un entorno de trabajo de pila completa y otro pozo sin fondo, pero de eso ya hablaré otro día.'
+      text: 'Pero aquello no era más que la punta del iceberg. Tras descubrir React, pasé de la Edad de Piedra de Hexo y JavaScript puro al enrutador de páginas de Next.js 13; luego me desvié hacia Vue, estudié el enrutamiento de aplicaciones de página única, entendí el mecanismo de respaldo de index.html y volví a crear el proyecto incontables veces. Compré un servidor y trasteé con Docker, Nginx y un sistema de almacenamiento conectado a la red; como 1Panel me parecía feo, programé a mano el panel Canopy, investigué matrices de almacenamiento y escribí RFS. Al configurar certificados SSL, acme.sh fallaba tanto en el entorno chino que acabé escribiendo en Rust un proxy inverso: Vane & Lazyacme. Al principio no eran más que ochocientas líneas de código basura escritas en tres horas una noche, pero unos amigos del chat me animaron a continuar y terminé dedicándole cuatro meses, metiéndole HTTP/3, copia cero, un modelo por capas y un motor de flujos. Después también está Seam, un framework full-stack y otro pozo sin fondo, pero de eso ya hablaré otro día.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:40:54.532582Z
@@ -1131,7 +1131,7 @@ segments:
       tokens: 19264
       review: false
     fr-FR:
-      text: 'Mais ce n’était que la partie émergée de l’iceberg. Après avoir découvert React, je suis passé de l’âge de pierre avec Hexo et du JavaScript natif au routeur de pages de Next.js 13, avant de faire un détour par Vue, d’étudier le routage des applications monopages, de comprendre le mécanisme de repli vers index.html et de recréer le projet un nombre incalculable de fois. J’ai acheté un serveur et bricolé avec Docker, Nginx et un système de stockage en réseau ; trouvant 1Panel laid, j’ai écrit moi-même le panneau Canopy, puis j’ai étudié les grappes de stockage et créé RFS. Enfin, les caprices d’acme.sh dans l’environnement chinois m’ont tellement fait souffrir lors de la configuration des certificats de couche de sockets sécurisés que j’ai fini par écrire en Rust un serveur mandataire inverse : Vane & Lazyacme. Au départ, ce n’étaient que huit cents lignes de code poubelle écrites en trois heures un soir, mais des amis d’un groupe de discussion m’ayant poussé à continuer, j’y ai travaillé quatre mois et y ai entassé HTTP/3, la copie zéro, un modèle en couches et un moteur de flux. Il y a ensuite Seam, un cadriciel complet qui constitue lui aussi un gouffre sans fond, mais ce sera pour une autre fois.'
+      text: 'Mais ce n’était que la partie émergée de l’iceberg. Après avoir découvert React, je suis passé de l’âge de pierre avec Hexo et du JavaScript natif au routeur de pages de Next.js 13, avant de faire un détour par Vue, d’étudier le routage des applications monopages, de comprendre le mécanisme de repli vers index.html et de recréer le projet un nombre incalculable de fois. J’ai acheté un serveur et bricolé avec Docker, Nginx et un système de stockage en réseau ; trouvant 1Panel laid, j’ai écrit moi-même le panneau Canopy, puis j’ai étudié les grappes de stockage et créé RFS. Enfin, les caprices d’acme.sh dans l’environnement chinois m’ont tellement fait souffrir lors de la configuration des certificats SSL que j’ai fini par écrire en Rust un serveur mandataire inverse : Vane & Lazyacme. Au départ, ce n’étaient que huit cents lignes de code poubelle écrites en trois heures un soir, mais des amis d’un groupe de discussion m’ayant poussé à continuer, j’y ai travaillé quatre mois et y ai entassé HTTP/3, la copie zéro, un modèle en couches et un moteur de flux. Il y a ensuite Seam, un framework full-stack qui constitue lui aussi un gouffre sans fond, mais ce sera pour une autre fois.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:40:54.532582Z
@@ -1773,7 +1773,7 @@ segments:
       tokens: 17369
       review: false
     es-ES:
-      text: 'En realidad, crear un blog no requiere ni un proxy inverso ni un framework desarrollado internamente. Sin embargo, por aquel entonces los traté como requisitos previos y los convertí en una justificación que parecía razonable, aunque me impedía avanzar indefinidamente. Pero nunca fueron requisitos. Solo había uno de verdad: sentarme y escribir el primer artículo.'
+      text: 'En realidad, crear un blog no requiere ni un proxy inverso ni un framework propio. Sin embargo, por aquel entonces los traté como requisitos previos y los convertí en una justificación que parecía razonable, aunque me impedía avanzar indefinidamente. Pero nunca fueron requisitos. Solo había uno de verdad: sentarme y escribir el primer artículo.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:42:14.251134Z
@@ -1781,7 +1781,7 @@ segments:
       tokens: 17369
       review: false
     fr-FR:
-      text: 'En réalité, créer un blog ne nécessite ni proxy inverse ni framework développé en interne. Pourtant, à l’époque, j’en avais fait des prérequis et une justification qui semblait raisonnable tout en m’empêchant indéfiniment d’avancer. Mais ils n’en avaient jamais été. Il n’existait qu’un seul véritable prérequis : m’asseoir et écrire le premier article.'
+      text: 'En réalité, créer un blog ne nécessite ni proxy inverse ni framework maison. Pourtant, à l’époque, j’en avais fait des prérequis et une justification qui semblait raisonnable tout en m’empêchant indéfiniment d’avancer. Mais ils n’en avaient jamais été. Il n’existait qu’un seul véritable prérequis : m’asseoir et écrire le premier article.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:42:14.251134Z

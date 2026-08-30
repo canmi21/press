@@ -31,11 +31,17 @@ pub enum Kind {
 	Code,
 	/// A directive. Structure only, never translated.
 	Directive,
+	/// A thematic break. Markdown structure that happens to be spelled with punctuation, so it
+	/// reaches this classifier looking like a very short paragraph. There is no natural language
+	/// in `---` to translate, and asking for one buys a coin flip: the model either echoes it or
+	/// narrates about it, and a narration fails validation and is asked for again until the
+	/// attempts run out. See spec/i18n.md.
+	Rule,
 }
 
 impl Kind {
 	pub fn translatable(self) -> bool {
-		!matches!(self, Self::Code | Self::Directive)
+		!matches!(self, Self::Code | Self::Directive | Self::Rule)
 	}
 
 	/// Whether this block is structural enough that a light model is not a gamble.
@@ -59,8 +65,6 @@ pub struct Segment {
 	/// Byte offsets in the complete source article. Stored in the build artifact.
 	pub start: usize,
 	pub end: usize,
-	/// Line number in the article, for reporting only. Never stored.
-	pub line: usize,
 }
 
 /// The sentinel wrapped around anything that must survive translation untouched.
@@ -127,6 +131,36 @@ pub fn mask(source: &str) -> Masked {
 	Masked { text, slots }
 }
 
+/// What a neighbouring block looks like when it is shown as context.
+///
+/// Two things this is not: it is not the block's source, and it is not translatable material. A
+/// neighbour is in the request so the sentence being translated has somewhere to lead; it is
+/// never the answer. So it arrives folded rather than whole.
+///
+/// A block with nothing to read -- code, a directive, a rule -- collapses to a word saying what
+/// sits there, because its bytes would be the longest and most confident-looking passage in the
+/// request while carrying no meaning the translator needs. Prose keeps its words but loses its
+/// inline code to a placeholder that cannot be restored, which is the point: the masked block is
+/// the only text in the request whose markers map back to anything, so text copied from here
+/// arrives carrying a marker that resolves to nothing and is refused. See spec/i18n.md.
+pub const CONTEXT_CODE: &str = "⟦code⟧";
+
+pub fn context_of(segment: &Segment) -> String {
+	match segment.kind {
+		Kind::Code => "(a code block, not shown)".to_owned(),
+		Kind::Directive => "(an embedded figure or card, not shown)".to_owned(),
+		Kind::Rule => "(a horizontal rule)".to_owned(),
+		Kind::Heading | Kind::Prose | Kind::Quote => {
+			let folded = mask(&segment.source);
+			let mut text = folded.text;
+			for index in 0..folded.slots.len() {
+				text = text.replace(&marker(index), CONTEXT_CODE);
+			}
+			text
+		}
+	}
+}
+
 /// The id of a block: the hash of its canonical bytes, truncated the same way asset ids are.
 ///
 /// The TypeScript write path makes the article canonical before Rust sees it. Reimplementing
@@ -152,16 +186,11 @@ pub fn split(article: &str) -> Result<Vec<Segment>, Malformed> {
 	};
 	let mut block: Vec<&str> = Vec::new();
 	let mut fenced = false;
-	let mut start_line = 0;
 	let mut block_start = body_start;
 	let mut block_end = body_start;
 	let mut cursor = body_start;
-	let body_line = article[..body_start]
-		.bytes()
-		.filter(|byte| *byte == b'\n')
-		.count();
 
-	for (offset, line) in body.split('\n').enumerate() {
+	for line in body.split('\n') {
 		let line_start = cursor;
 		let line_end = line_start + line.len();
 		cursor = line_end.saturating_add(1);
@@ -170,27 +199,12 @@ pub fn split(article: &str) -> Result<Vec<Segment>, Malformed> {
 			if fenced {
 				block.push(line);
 				block_end = line_end;
-				push(
-					article,
-					&mut segments,
-					&mut block,
-					body_line + start_line,
-					block_start,
-					block_end,
-				);
+				push(article, &mut segments, &mut block, block_start, block_end);
 				fenced = false;
 				continue;
 			}
-			push(
-				article,
-				&mut segments,
-				&mut block,
-				body_line + start_line,
-				block_start,
-				block_end,
-			);
+			push(article, &mut segments, &mut block, block_start, block_end);
 			fenced = true;
-			start_line = offset;
 			block_start = line_start;
 			block_end = line_end;
 			block.push(line);
@@ -202,31 +216,16 @@ pub fn split(article: &str) -> Result<Vec<Segment>, Malformed> {
 			continue;
 		}
 		if line.trim().is_empty() {
-			push(
-				article,
-				&mut segments,
-				&mut block,
-				body_line + start_line,
-				block_start,
-				block_end,
-			);
+			push(article, &mut segments, &mut block, block_start, block_end);
 			continue;
 		}
 		if block.is_empty() {
-			start_line = offset;
 			block_start = line_start;
 		}
 		block.push(line);
 		block_end = line_end;
 	}
-	push(
-		article,
-		&mut segments,
-		&mut block,
-		body_line + start_line,
-		block_start,
-		block_end,
-	);
+	push(article, &mut segments, &mut block, block_start, block_end);
 	Ok(segments)
 }
 
@@ -292,20 +291,37 @@ fn frontmatter_segments(
 			region: Region::Frontmatter,
 			start: absolute_start + line_start + colon + 1,
 			end: absolute_start + end,
-			line: index + 2,
 		});
 	}
 	Ok(segments)
 }
 
-fn push(
-	article: &str,
-	into: &mut Vec<Segment>,
-	block: &mut Vec<&str>,
-	line: usize,
-	start: usize,
-	end: usize,
-) {
+/// Whether a block is CommonMark's thematic break: three or more of one mark, spaces allowed.
+///
+/// Recognised positively rather than by what is left over. The classifier above is otherwise a
+/// chain ending in "anything else is prose", and that ending is what sent `---` to a translator
+/// in the first place; a new structural spelling should have to be named here to be understood,
+/// not fall through by default. See spec/i18n.md.
+fn is_thematic_break(trimmed: &str) -> bool {
+	if trimmed.lines().count() != 1 {
+		return false;
+	}
+	let mut marks = trimmed.chars().filter(|c| !c.is_whitespace());
+	let Some(first) = marks.next() else {
+		return false;
+	};
+	if !matches!(first, '-' | '*' | '_') {
+		return false;
+	}
+	let rest = trimmed
+		.chars()
+		.filter(|c| !c.is_whitespace())
+		.take_while(|c| *c == first)
+		.count();
+	rest >= 3 && trimmed.chars().all(|c| c == first || c.is_whitespace())
+}
+
+fn push(article: &str, into: &mut Vec<Segment>, block: &mut Vec<&str>, start: usize, end: usize) {
 	if block.is_empty() {
 		return;
 	}
@@ -324,6 +340,8 @@ fn push(
 		Kind::Quote
 	} else if trimmed.starts_with("::") {
 		Kind::Directive
+	} else if is_thematic_break(trimmed) {
+		Kind::Rule
 	} else {
 		Kind::Prose
 	};
@@ -334,7 +352,6 @@ fn push(
 		region: Region::Body,
 		start,
 		end,
-		line: line + 1,
 	});
 }
 
@@ -424,6 +441,7 @@ mod tests {
 	#[test]
 	fn directives_are_never_sent_anywhere() {
 		assert!(!Kind::Directive.translatable());
+		assert!(!Kind::Rule.translatable());
 		let kept = translatable("prose\n\n::image{src=\"asset.avif\"}").expect("segments");
 		assert_eq!(kept.len(), 1);
 	}
@@ -509,6 +527,47 @@ mod tests {
 		assert!(sources.contains(&"Body"));
 		assert!(!sources.contains(&"zh"));
 		assert!(!sources.contains(&"Never send me"));
+	}
+
+	#[test]
+	fn a_thematic_break_is_structure_rather_than_a_very_short_paragraph() {
+		let article = "---\nlang: zh\n---\n\nFirst.\n\n---\n\nSecond.\n\n***\n\n___\n";
+		let kinds: Vec<Kind> = split(article)
+			.expect("segments")
+			.into_iter()
+			.filter(|segment| segment.region == Region::Body)
+			.map(|segment| segment.kind)
+			.collect();
+		assert_eq!(
+			kinds,
+			vec![Kind::Prose, Kind::Rule, Kind::Prose, Kind::Rule, Kind::Rule]
+		);
+		// Prose that merely begins with a dash is not one.
+		assert!(!is_thematic_break("- a list item"));
+		assert!(!is_thematic_break("-- an aside --"));
+		assert!(!is_thematic_break("---\nand a second line"));
+		assert!(is_thematic_break("- - -"));
+	}
+
+	#[test]
+	fn a_neighbour_is_folded_rather_than_reproduced() {
+		let article =
+			"---\nlang: zh\n---\n\nA `token` here.\n\n```\ncode\n```\n\n---\n\n::image{src=\"a\"}\n";
+		let blocks: Vec<String> = split(article)
+			.expect("segments")
+			.into_iter()
+			.filter(|segment| segment.region == Region::Body)
+			.map(|segment| context_of(&segment))
+			.collect();
+
+		// Prose keeps its words, but its inline code becomes a placeholder that restores to
+		// nothing -- which is what makes copied context detectable in an answer.
+		assert_eq!(blocks[0], format!("A {CONTEXT_CODE} here."));
+		assert!(!blocks[0].contains('`'));
+		// Everything with nothing to read collapses to a word saying what sits there.
+		assert!(blocks[1].starts_with("(a code block"));
+		assert_eq!(blocks[2], "(a horizontal rule)");
+		assert!(blocks[3].starts_with("(an embedded figure"));
 	}
 
 	#[test]

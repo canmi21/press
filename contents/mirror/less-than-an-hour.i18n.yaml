@@ -773,7 +773,7 @@ segments:
       tokens: 19671
       review: false
     zh-TW:
-      text: 走了大概一兩百米就到了江邊。人行道旁邊的石欄杆有一點寬度，剛好能放下一臺筆記本。我其實不是真的想在這裡寫代碼——就是到了江邊嘛，很久沒出來了，先拿手機拍了張照。拍完發現好像戶外的感覺好像還行於是順手把 MacBook 掏出來架在欄杆上，解鎖屏幕後就是一堆編輯器和終端。不知道為什麼，我當時就想發一條推，大概就是那種有人在雪山上、在釣魚的時候打開 MacBook，屏幕上全是 IDE 和 Terminal，然後配一句 "what can stop you coding like this"，但是我很快放棄了，因為 25款 MBA 的 LCD 屏幕激發亮度真的太低了...
+      text: 走了大概一兩百公尺就到了江邊。人行道旁邊的石欄杆有一點寬度，剛好能放下一台筆電。我其實不是真的想在這裡寫程式——就是到了江邊嘛，很久沒出來了，先拿手機拍了張照。拍完發現好像戶外的感覺好像還行於是順手把 MacBook 掏出來架在欄杆上，解鎖螢幕後就是一堆編輯器和終端機。不知道為什麼，我當時就想發一條推，大概就是那種有人在雪山上、在釣魚的時候打開 MacBook，螢幕上全是 IDE 和 Terminal，然後配一句 "what can stop you coding like this"，但是我很快放棄了，因為 25 款 MBA 的 LCD 螢幕激發亮度真的太低了...
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T13:23:54.43779Z
@@ -847,7 +847,7 @@ segments:
       review: false
   86c5fbdb33d50086883e7552c0b7c428:
     de-DE:
-      text: 'Ich bin ein ausgesprochener Stubenhocker, und irgendwann – wann genau, weiß ich nicht – ist "Ausgehen" zu einem Wort geworden, das mir fremd vorkommt. Oft verlasse ich einen ganzen Monat lang das Haus nur, wenn es sein muss, und selbst dann ist mein Leben :tn[eine Linie, die zwei Punkte verbindet]{is="Im Original steht die chinesische Redewendung 两决一线, wörtlich ‚zwei Punkte, eine Linie‘: ein Leben, das nur zwischen der Wohnung und einem einzigen weiteren Ort hin- und herpendelt. Der Witz liegt in der Geometrie – der ganze Tag schrumpft auf eine einzige Strecke zusammen."}, meist noch mit dem Auto. Wenn ich genauer darüber nachdenke: Es ist sehr lange her, dass ich wirklich einmal draußen war. Nachdem ich die Blase und die Angst des KI-Zeitalters durchlebt habe, habe ich mir eine schlechte Angewohnheit zugelegt – ich schreibe oft mitten in der Nacht Code und scheine mit der Welt, in der ich lebe, nicht mehr in derselben "Zeitzone" zu leben. Auch heute Morgen habe ich mich bis nach zwölf hinausgezögert, esse nur zwei Mahlzeiten am Tag, setzte mich gleich nach dem Aufwachen ins Arbeitszimmer, klappte den Rechner auf und fing an zu schreiben. Code zu schreiben ist an sich eine sehr vergnügliche Sache, aber Code schreiben im KI-Zeitalter ist es nicht mehr. Ich starrte bis in den Nachmittag auf den Bildschirm und brachte nichts zustande, keine Idee für ein Design, alles kam mir unvollkommen vor.'
+      text: 'Ich bin ein ausgesprochener Stubenhocker, und irgendwann – wann genau, weiß ich nicht – ist "Ausgehen" zu einem Wort geworden, das mir fremd vorkommt. Oft verlasse ich einen ganzen Monat lang das Haus nur, wenn es sein muss, und selbst dann ist mein Leben :tn[eine Linie, die zwei Punkte verbindet]{is="Im Original steht die chinesische Redewendung 两点一线, wörtlich ‚zwei Punkte, eine Linie‘: ein Leben, das nur zwischen der Wohnung und einem einzigen weiteren Ort hin- und herpendelt. Der Witz liegt in der Geometrie – der ganze Tag schrumpft auf eine einzige Strecke zusammen."}, meist noch mit dem Auto. Wenn ich genauer darüber nachdenke: Es ist sehr lange her, dass ich wirklich einmal draußen war. Nachdem ich die Blase und die Angst des KI-Zeitalters durchlebt habe, habe ich mir eine schlechte Angewohnheit zugelegt – ich schreibe oft mitten in der Nacht Code und scheine mit der Welt, in der ich lebe, nicht mehr in derselben "Zeitzone" zu leben. Auch heute Morgen habe ich mich bis nach zwölf im Bett herumgedrückt; ich esse nur zwei Mahlzeiten am Tag, setzte mich gleich nach dem Aufwachen ins Arbeitszimmer, klappte den Rechner auf und fing an zu schreiben. Code zu schreiben ist an sich eine sehr vergnügliche Sache, aber Code schreiben im KI-Zeitalter ist es nicht mehr. Ich starrte bis in den Nachmittag auf den Bildschirm und brachte nichts zustande, keine Idee für ein Design, alles kam mir unvollkommen vor.'
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:20:45.40337Z
@@ -903,7 +903,7 @@ segments:
       tokens: 32766
       review: false
     zh-TW:
-      text: 我是個很宅的人。不知從什麼時候開始，「出門」對我來說已經變成一個陌生的詞。我常常整整一個月只在必要時出門，就算出門，過的也是:tn[兩點之間連成的一條線]{is="原文用的是成語「兩點一線」，字面上是兩個點連成一條線，指生活只在家和另一個地方之間往返。妙處就在這層幾何感：一整天被壓縮成一條線段。"}那樣的生活，而且多半還是坐車。仔細想想，我已經很久沒有真正離開過室內了。在經歷過 AI 時代的泡沫與焦慮之後，我染上了一個壞習慣——常常在凌晨寫程式，好像已經和自己生活的這個世界不在同一個「時區」了。今天早上也一樣，一直拖到十二點多才起床，一天只吃兩餐，醒來就坐進書房，打開電腦開始寫。寫程式本來是件很好玩的事，但 AI 時代的寫程式已經不是了。盯著螢幕一直盯到下午，什麼都寫不出來，沒有任何設計靈感，覺得一切都不完美。
+      text: 我是個很宅的人。不知從什麼時候開始，「出門」對我來說已經變成一個陌生的詞。我常常整整一個月只在必要時出門，就算出門，過的也是:tn[兩點之間連成的一條線]{is="原文用的是成語「两点一线」，字面上是兩個點連成一條線，指生活只在家和另一個地方之間往返。妙處就在這層幾何感：一整天被壓縮成一條線段。"}那樣的生活，而且多半還是坐車。仔細想想，我已經很久沒有真正離開過室內了。在經歷過 AI 時代的泡沫與焦慮之後，我染上了一個壞習慣——常常在凌晨寫程式，好像已經和自己生活的這個世界不在同一個「時區」了。今天早上也一樣，一直拖到十二點多才起床，一天只吃兩餐，醒來就坐進書房，打開電腦開始寫。寫程式本來是件很好玩的事，但 AI 時代的寫程式已經不是了。盯著螢幕一直盯到下午，什麼都寫不出來，沒有任何設計靈感，覺得一切都不完美。
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:20:45.40337Z
@@ -1529,7 +1529,7 @@ segments:
       tokens: 18540
       review: false
     ja-JP:
-      text: 団地の門を出て、通りを大通りとの交差点まで歩くと、二棟のビルの間から突然、風が吹き込んできた。そこで立ち止まり、一瞬呆然とした。「風」!? こんなものを感じたのは、いったいいつ以来だろう。エアコンの風でも、扇風機の風でもない。不規則で、温度があり、どこか柔らかく、遠いところから吹いてくる風。音のある風。街の喧騒をまとった風。そのとき僕は AirPods で音楽を聴いていたけれど、外にいるという感覚に促されるように、無意識にノイズキャンセリングを切った。そして左手に水を持ち、右脇にノートパソコンを抱えたまま、大通りを川辺へ向かって歩いた。今回はスマートフォンの画面を見つめながら歩かなかった。なぜかは分からない。ただ、まずは川辺まで行ってみようと思った。
+      text: 団地の門を出て、通りを大通りとの交差点まで歩くと、二棟のビルの間から突然、風が吹き込んできた。そこで立ち止まり、一瞬呆然とした。「風」!? こんなものを感じたのは、いったいいつ以来だろう。エアコンの風でも、扇風機の風でもない。不規則で、温度があり、どこか柔らかく、遠いところから吹いてくる風。音のある風。街の喧騒をまとった風。そのとき私は AirPods で音楽を聴いていたけれど、外にいるという感覚に促されるように、無意識にノイズキャンセリングを切った。そして左手に水を持ち、右脇にノートパソコンを抱えたまま、大通りを川辺へ向かって歩いた。今回はスマートフォンの画面を見つめながら歩かなかった。なぜかは分からない。ただ、まずは川辺まで行ってみようと思った。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:46:19.451776Z
@@ -1724,7 +1724,7 @@ segments:
       tokens: 19593
       review: false
     ja-JP:
-      text: 小道を抜けると、もう川沿いの通りがある一帯からは離れていて、工事現場に沿ってしばらく先へ進んだ。街の建物にはとうに見飽きていた。特に、こういう二線、三線都市の集合住宅は、びっしりと立ち並んでいるくせに高層ビルのような迫力はなく、美しさのかけらもない。だから意識して撮らないようにした。空でも撮りたかったのだが、それは想像していたより難しかった。歩道に立ってスマホを高く掲げ、道路も街灯も入らないようにしても、画面には木の影や向かいの集合住宅が少し入り込んでしまう。建物があまりにも密集していて、この街で何にも遮られていない空を見つけるのは難しい。今日の天気は、実のところとても心地よかった。日差しはあるものの強くはなく、どちらかといえば曇りに近い。見上げれば雲は濃くなく、まばらに散らばっていて、霞がたなびくような趣がありながら、大きく開けた空も残している。雲がきれいだった。普段「室内」にいると絶対に気づかない類いの美しさだ。ただ、日本のアニメに出てくるような、僕の好きな空とも違う。「ああいうものは、たぶん現実の日本にも存在しないんだろうな」
+      text: 小道を抜けると、もう川沿いの通りがある一帯からは離れていて、工事現場に沿ってしばらく先へ進んだ。街の建物にはとうに見飽きていた。特に、こういう二線、三線都市の集合住宅は、びっしりと立ち並んでいるくせに高層ビルのような迫力はなく、美しさのかけらもない。だから意識して撮らないようにした。空でも撮りたかったのだが、それは想像していたより難しかった。歩道に立ってスマホを高く掲げ、道路も街灯も入らないようにしても、画面には木の影や向かいの集合住宅が少し入り込んでしまう。建物があまりにも密集していて、この街で何にも遮られていない空を見つけるのは難しい。今日の天気は、実のところとても心地よかった。日差しはあるものの強くはなく、どちらかといえば曇りに近い。見上げれば雲は濃くなく、まばらに散らばっていて、霞がたなびくような趣がありながら、大きく開けた空も残している。雲がきれいだった。普段「室内」にいると絶対に気づかない類いの美しさだ。ただ、日本のアニメに出てくるような、私の好きな空とも違う。「ああいうものは、たぶん現実の日本にも存在しないんだろうな」
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:46:54.498168Z
@@ -1789,7 +1789,7 @@ segments:
       tokens: 18854
       review: false
     ja-JP:
-      text: 話がそれたが、それでもやはり駄目だった。MBA の液晶画面は、ついに初めて明らかな弱点を実感させ、ここで僕は屋外でコードを書くことを完全に諦めた。来年の僕は薄さと軽さを重視するのをやめるかもしれないし、次もノートパソコンを選ぶなら MBP にするかもしれない。この時点ではもう戻って書こうと思っていた。たまに外へ出て息抜きするだけで十分だ。とはいえ、せっかくここまで歩いてきたのだから、川沿いの道の反対側へ渡って歩いて帰ろう。けれど歩いているうちに、なんとなく帰りたくなくなってきた。どこか目的地があるわけではない。ただ、長いこと味わっていなかった感覚があった。屋外そのものが、まだ僕を少し惹きつけているような、うまく言葉にできない感覚だ。ところが本当にそれを感じ取ろうとすると、周囲のすべてが記憶の中の風景から切り離されてしまったように思えた。どこもかしこもしっくりこない。とうの昔に、ぼんやりとした記憶とは一致しなくなっていた……
+      text: 話がそれたが、それでもやはり駄目だった。MBA の液晶画面は、ついに初めて明らかな弱点を実感させ、ここで私は屋外でコードを書くことを完全に諦めた。来年の私は薄さと軽さを重視するのをやめるかもしれないし、次もノートパソコンを選ぶなら MBP にするかもしれない。この時点ではもう戻って書こうと思っていた。たまに外へ出て息抜きするだけで十分だ。とはいえ、せっかくここまで歩いてきたのだから、川沿いの道の反対側へ渡って歩いて帰ろう。けれど歩いているうちに、なんとなく帰りたくなくなってきた。どこか目的地があるわけではない。ただ、長いこと味わっていなかった感覚があった。屋外そのものが、まだ私を少し惹きつけているような、うまく言葉にできない感覚だ。ところが本当にそれを感じ取ろうとすると、周囲のすべてが記憶の中の風景から切り離されてしまったように思えた。どこもかしこもしっくりこない。とうの昔に、ぼんやりとした記憶とは一致しなくなっていた……
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:46:55.625697Z

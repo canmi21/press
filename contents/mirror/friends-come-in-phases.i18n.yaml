@@ -99,7 +99,7 @@ segments:
       tokens: 19715
       review: false
     ja-JP:
-      text: 周期的な友人とは、一定の期間ごとに同じ人が現れるという意味ではありません。親友や最も大切な関係も、時の流れとともに少しずつ変わっていく可能性があるということです。しかも、たいていその変化には気づきません。気づいたときには、すでに失っていることが多いのです。
+      text: 周期的な友人とは、一定の期間ごとに同じ人が現れるという意味ではない。親友や最も大切な関係も、時の流れとともに少しずつ変わっていく可能性があるということだ。しかも、たいていその変化には気づかない。気づいたときには、すでに失っていることが多い。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-26T06:50:28.86356Z
@@ -107,7 +107,7 @@ segments:
       tokens: 19715
       review: false
     ko-KR:
-      text: 주기적인 친구란 일정한 시간이 흐를 때마다 같은 사람이 다시 나타난다는 뜻이 아닙니다. 가장 친한 친구와 가장 소중한 관계도 시간이 지나면서 서서히 달라질 수 있다는 뜻입니다. 대개는 그런 변화를 알아차리지 못하다가, 마침내 깨달았을 때는 이미 잃어버린 뒤인 경우가 많습니다.
+      text: 주기적인 친구란 일정한 시간이 흐를 때마다 같은 사람이 다시 나타난다는 뜻이 아니다. 가장 친한 친구와 가장 소중한 관계도 시간이 지나면서 서서히 달라질 수 있다는 뜻이다. 대개는 그런 변화를 알아차리지 못하다가, 마침내 깨달았을 때는 이미 잃어버린 뒤인 경우가 많다.
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-26T06:50:28.86356Z
@@ -424,7 +424,7 @@ segments:
       tokens: 32837
       review: false
     ja-JP:
-      text: では、どうやって冷めていくのか。それは決して一瞬の出来事ではない。もっとありそうなのは、ある連絡先が少しずつあなたから離れていくことだ。メッセージは減っていき、中身のある内容もなくなり、やがて :tn[連続記録をつなぐためだけのやりとり]{is="原文は中国語の「続火花」。チャットアプリで毎日やりとりを続けないと消えてしまう「炎」や連続記録のバッジを維持するためだけに送り合う行為を指す言い方で、友情がカウンターの維持作業に変わってしまうことを表す。"} のようなものになる。そして最後には完全に無視されるところまで退化する。ぬるま湯で茹でられる蛙のように、温度がゆっくり抜けていき、あなたの生活から消えていく。連絡先は消されないかもしれないが、あなたの世界から消えたのと実際には変わらない。そのあとで何か用があって連絡してきたとしても、その態度は以前とはまったく違う :tn[芝居がかったもの]{is="原文は英語の動詞 `act` をコード書式で囲み、そこに中国語の助詞をつなげている。わざとぎこちなくした言語の混ぜ方が、相手の変わった態度をわざとらしい演技のように見せている。"} になる。かつてのような、気心の知れた者どうしの頼みごとではなく、見えない距離を挟んだ何かになるのだ……
+      text: では、どうやって冷めていくのか。それは決して一瞬の出来事ではない。もっとありそうなのは、ある連絡先が少しずつあなたから離れていくことだ。メッセージは減っていき、中身のある内容もなくなり、やがて :tn[連続記録をつなぐためだけのやりとり]{is="原文は中国語の「续火花」。チャットアプリで毎日やりとりを続けないと消えてしまう「炎」や連続記録のバッジを維持するためだけに送り合う行為を指す言い方で、友情がカウンターの維持作業に変わってしまうことを表す。"} のようなものになる。そして最後には完全に無視されるところまで退化する。ぬるま湯で茹でられる蛙のように、温度がゆっくり抜けていき、あなたの生活から消えていく。連絡先は消されないかもしれないが、あなたの世界から消えたのと実際には変わらない。そのあとで何か用があって連絡してきたとしても、その態度は以前とはまったく違う :tn[芝居がかったもの]{is="原文は英語の動詞 `act` をコード書式で囲み、そこに中国語の助詞をつなげている。わざとぎこちなくした言語の混ぜ方が、相手の変わった態度をわざとらしい演技のように見せている。"} になる。かつてのような、気心の知れた者どうしの頼みごとではなく、見えない距離を挟んだ何かになるのだ……
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:28:31.870873Z
@@ -448,7 +448,7 @@ segments:
       tokens: 32837
       review: false
     zh-TW:
-      text: 那到底是怎麼冷下來的呢？其實從來不是某一個瞬間。更常見的是某個聯絡人一點一點地疏遠你：訊息越來越少，也越來越沒有實質內容，最後變成一種 :tn[為了保住連續互動而聊天]{is="原文用的是「續火花」，指為了維持聊天軟體上的火花或連續互動標記而每天傳訊息，字面看不出這是被產品機制推著走的行為。"} 的行為？再往後就徹底退化成完全不理你。就像溫水煮青蛙，熱度慢慢散掉，然後他們從你的生活裡消失。聯絡人可能一直沒刪，但這和從你的世界裡消失其實沒有什麼區別。而之後如果真有什麼事來找你，他們的姿態也會 :tn[完全換成另一副樣子]{is="原文把英語動詞 `act` 用程式碼格式括起來，再接上中文的「得」，這種刻意生硬的中英混用讓對方換的那副態度顯得像在演戲。"}，不再是從前熟人之間順手的幫忙，而像是隔著一層看不見的距離……
+      text: 那到底是怎麼冷下來的呢？其實從來不是某一個瞬間。更常見的是某個聯絡人一點一點地疏遠你：訊息越來越少，也越來越沒有實質內容，最後變成一種 :tn[為了保住連續互動而聊天]{is="原文用的是「续火花」，指為了維持聊天軟體上的火花或連續互動標記而每天傳訊息，字面看不出這是被產品機制推著走的行為。"} 的行為？再往後就徹底退化成完全不理你。就像溫水煮青蛙，熱度慢慢散掉，然後他們從你的生活裡消失。聯絡人可能一直沒刪，但這和從你的世界裡消失其實沒有什麼區別。而之後如果真有什麼事來找你，他們的姿態也會 :tn[完全換成另一副樣子]{is="原文把英語動詞 `act` 用程式碼格式括起來，再接上中文的「得」，這種刻意生硬的中英混用讓對方換的那副態度顯得像在演戲。"}，不再是從前熟人之間順手的幫忙，而像是隔著一層看不見的距離……
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:28:31.870873Z
@@ -912,7 +912,7 @@ segments:
       review: false
   a7e3e8d229fddd4d11a25f96f7a1e5d9:
     de-DE:
-      text: 'Dabei hatte ich diese Richtung in den letzten ein, zwei Jahren längst geahnt, nur bin ich dem Thema immer ausgewichen. Bis ich vor einiger Zeit eines Abends so lange durch Twitter scrollte, bis ich :tn[trübsinnig]{is="Im Original steht das lateinisch geschriebene englische Wort „emo“ direkt als chinesisches Prädikat – „我 emo 了“ –, ein Netzausdruck für gedrückte Stimmung mit halb selbstironischem Ton."} wurde: Da sah ich Leute, die einander früher kannten, :tn[Twitter-Kumpels]{is="Das Original schreibt 推油, eine gleichlautende Spielform von 推友 („Twitter-Freund“); sie trägt die Zärtlichkeit eines chinesischen Netz-Kosenamens."}, die sich :tn[aneinanderschmiegten]{is="Das Original schreibt 贴贴, ein verdoppeltes Netzwort, das einen schmusigen, kindlichen Tonfall nachahmt; ein schlichtes „Umarmen“ verliert dieses Kleinkindhafte."} und umarmten, sich guten Morgen und gute Nacht wünschten, einander sogar antworteten – und erst da wurde mir klar: Vielleicht bin ich der Überflüssige … Dieser ganze Kreis besteht noch. Nur mein eigener Freundeskreis ist längst nicht mehr der von damals, und ich glaube, vielleicht bin ich der „Außenstehende“.'
+      text: 'Dabei hatte ich diese Richtung in den letzten ein, zwei Jahren längst geahnt, nur bin ich dem Thema immer ausgewichen. Bis ich vor einiger Zeit eines Abends so lange durch Twitter scrollte, bis ich :tn[trübsinnig]{is="Im Original steht das lateinisch geschriebene englische Wort „emo“ direkt als chinesisches Prädikat – „我 emo 了“ –, ein Netzausdruck für gedrückte Stimmung mit halb selbstironischem Ton."} wurde: Da sah ich Leute, die einander früher kannten, :tn[Twitter-Kumpels]{is="Das Original schreibt 推油, eine gleichlautende Spielform von 推友 („Twitter-Freund“); sie trägt die Zärtlichkeit eines chinesischen Netz-Kosenamens."}, die sich :tn[aneinanderschmiegten]{is="Das Original schreibt 贴贴, ein verdoppeltes Netzwort, das einen schmusigen, kindlichen Tonfall nachahmt; ein schlichtes „Umarmen“ verliert dieses Kleinkindhafte."} und umarmten, sich guten Morgen und gute Nacht wünschten, einander sogar antworteten – und erst da wurde mir klar: Vielleicht bin ich der Überflüssige … Dieser ganze Kreis besteht noch. Nur mein eigener Freundeskreis ist längst nicht mehr der von damals, und ich glaube, vielleicht bin ich der „Außenseiter“.'
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:18:31.544913Z
@@ -928,7 +928,7 @@ segments:
       tokens: 32442
       review: false
     es-ES:
-      text: 'En realidad, durante el último año o dos ya intuía vagamente esta deriva, pero seguía esquivando el tema. Hasta que una noche, hace algún tiempo, estuve pasando Twitter hasta quedarme :tn[con el ánimo por los suelos]{is="El original usa tal cual la palabra inglesa «emo», en alfabeto latino, como predicado chino — «我 emo 了» —, una muletilla de internet que nombra el bajón con un tono medio autoirónico."}: vi a gente que antes se conocía entre sí, :tn[colegas de Twitter]{is="El original escribe 推油, un juego homófono sobre 推友 («amigo de Twitter»); lleva el cariño de un apodo del internet chino."}, :tn[apretujándose]{is="El original escribe 贴贴, una palabra reduplicada de internet que imita un tono mimoso y aniñado; un simple «abrazo» pierde esa suavidad infantil."} y abrazándose, dándose los buenos días y las buenas noches, respondiéndose incluso — y solo entonces me di cuenta: quizá el que sobra soy yo… Ese círculo sigue ahí. Es mi propio círculo de amigos el que hace mucho dejó de ser el de antes, y creo que tal vez el «forastero» soy yo.'
+      text: 'En realidad, durante el último año o dos ya intuía vagamente esta deriva, pero seguía esquivando el tema. Hasta que una noche, hace algún tiempo, estuve pasando Twitter hasta quedarme :tn[con el ánimo por los suelos]{is="El original usa tal cual la palabra inglesa «emo», en alfabeto latino, como predicado chino — «我 emo 了» —, una muletilla de internet que nombra el bajón con un tono medio autoirónico."}: vi a gente que antes se conocía entre sí, :tn[colegas de Twitter]{is="El original escribe 推油, un juego homófono sobre 推友 («amigo de Twitter»); lleva el cariño de un apodo del internet chino."}, :tn[apretujándose]{is="El original escribe 贴贴, una palabra reduplicada de internet que imita un tono mimoso y aniñado; un simple «abrazo» pierde esa suavidad infantil."} y abrazándose, dándose los buenos días y las buenas noches, respondiéndose incluso — y solo entonces me di cuenta: quizá el que sobra soy yo… Ese círculo sigue ahí. Es mi propio círculo de amigos el que hace mucho dejó de ser el de antes, y creo que tal vez el «intruso» soy yo.'
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:18:31.544913Z
@@ -936,7 +936,7 @@ segments:
       tokens: 32442
       review: false
     fr-FR:
-      text: 'Depuis un an ou deux, je pressentais vaguement cette évolution, mais j''évitais le sujet. Jusqu''à ce soir-là, il y a quelque temps, où j''ai fait défiler Twitter jusqu''à en :tn[avoir le cafard]{is="L''original emploie tel quel le mot anglais « emo », en alphabet latin, comme prédicat chinois — « 我 emo 了 » —, un tic d''internet qui dit l''abattement sur un ton à demi auto-ironique."} : j''y ai vu des gens qui se connaissaient autrefois, des :tn[potes de Twitter]{is="L''original écrit 推油, jeu homophone sur 推友 (« ami de Twitter ») ; le mot a la tendresse d''un petit surnom d''internet chinois."}, se :tn[coller l''un à l''autre]{is="L''original écrit 贴贴, un mot d''internet redoublé qui imite une voix câline, presque enfantine ; un simple « câlin » en perdrait la douceur puérile."} et s''embrasser, se souhaiter bonjour et bonne nuit, se répondre même — et c''est seulement là que j''ai compris : celui qui est de trop, c''est peut-être moi… Ce cercle-là tient toujours. C''est mon cercle d''amis à moi qui, depuis longtemps, n''est plus celui d''avant, et je me dis que c''est peut-être moi, « l''étranger ».'
+      text: 'Depuis un an ou deux, je pressentais vaguement cette évolution, mais j''évitais le sujet. Jusqu''à ce soir-là, il y a quelque temps, où j''ai fait défiler Twitter jusqu''à en :tn[avoir le cafard]{is="L''original emploie tel quel le mot anglais « emo », en alphabet latin, comme prédicat chinois — « 我 emo 了 » —, un tic d''internet qui dit l''abattement sur un ton à demi auto-ironique."} : j''y ai vu des gens qui se connaissaient autrefois, des :tn[potes de Twitter]{is="L''original écrit 推油, jeu homophone sur 推友 (« ami de Twitter ») ; le mot a la tendresse d''un petit surnom d''internet chinois."}, se :tn[coller l''un à l''autre]{is="L''original écrit 贴贴, un mot d''internet redoublé qui imite une voix câline, presque enfantine ; un simple « câlin » en perdrait la douceur puérile."} et s''embrasser, se souhaiter bonjour et bonne nuit, se répondre même — et c''est seulement là que j''ai compris : celui qui est de trop, c''est peut-être moi… Ce cercle-là tient toujours. C''est mon cercle d''amis à moi qui, depuis longtemps, n''est plus celui d''avant, et je me dis que c''est peut-être moi, « l''intrus ».'
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:18:31.544913Z
@@ -968,7 +968,7 @@ segments:
       tokens: 32442
       review: false
     zh-TW:
-      text: 但最近一兩年，我其實已經隱約感覺到事情在往這個方向走，只是一直迴避這個話題。直到早些時候的某個晚上，我刷推刷到:tn[心裡發悶]{is="原文直接把拉丁字母的英語詞 emo 當中文謂語用——「我 emo 了」——是一種網路化、半自嘲的低落語氣。"}，看見曾經彼此認識的:tn[推友]{is="原文寫作「推油」，是「推友」的諧音趣寫，指在 Twitter 上結識的朋友，帶著中文網路暱稱的親暱感。"}互相:tn[貼貼]{is="這是用疊詞模擬撒嬌語氣的網路用語，表示親近、依偎或公開示好，換成普通的「擁抱」就會丟掉那股幼態的語感。"}抱抱、道早安晚安，甚至彼此回覆，我才意識到——也許多餘的那個人是我……那一圈人都還在，只是我的交友圈早就不是當初那個了，我想，也許我才是那個「局外人」。
+      text: 但最近一兩年，我其實已經隱約感覺到事情在往這個方向走，只是一直迴避這個話題。直到早些時候的某個晚上，我刷推刷到:tn[心裡發悶]{is="原文直接把拉丁字母的英語詞 emo 當中文謂語用——「我 emo 了」——是一種網路化、半自嘲的低落語氣。"}，看見曾經彼此認識的:tn[推友]{is="原文寫作「推油」，是「推友」的諧音趣寫，指在 Twitter 上結識的朋友，帶著中文網路暱稱的親暱感。"}互相:tn[貼貼]{is="原文用的是「贴贴」，這是用疊詞模擬撒嬌語氣的網路用語，表示親近、依偎或公開示好，換成普通的「擁抱」就會丟掉那股幼態的語感。"}抱抱、道早安晚安，甚至彼此回覆，我才意識到——也許多餘的那個人是我……那一圈人都還在，只是我的交友圈早就不是當初那個了，我想，也許我才是那個「局外人」。
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:18:31.544913Z
@@ -1066,7 +1066,7 @@ segments:
       tokens: 20938
       review: false
     fr-FR:
-      text: 'La même chose se produit sur Twitter : les interactions se raréfient progressivement, puis la personne disparaît peu à peu de votre fil. Il vous arrive de parcourir vos abonnements et d’ouvrir son profil pour découvrir qu’elle continue à faire le même genre de choses et à partager la même vie, mais qu’elle ne semble plus avoir aucun lien avec vous. Parfois, même si vous vous suivez toujours mutuellement, l’un finit par mettre l’autre en sourdine. Vous étiez autrefois très proches, mais cette personne n’apparaît désormais plus autour de vous ; pourtant, à cause de votre histoire commune et parce qu’il serait gênant de rompre ouvertement ce lien, elle ne se désabonne pas et vous oppose plutôt le silence le plus glacial qui soit, aussi invisible qu’impalpable...'
+      text: 'La même chose se produit sur Twitter : les interactions se raréfient progressivement, puis la personne disparaît peu à peu de ton fil. Il t’arrive de parcourir tes abonnements et d’ouvrir son profil pour découvrir qu’elle continue à faire le même genre de choses et à partager la même vie, mais qu’elle ne semble plus avoir aucun lien avec toi. Parfois, même si vous vous suivez toujours mutuellement, l’un finit par mettre l’autre en sourdine. Vous étiez autrefois très proches, mais cette personne n’apparaît désormais plus autour de vous ; pourtant, à cause de votre histoire commune et parce qu’il serait gênant de rompre ouvertement ce lien, elle ne se désabonne pas et t’oppose plutôt le silence le plus glacial qui soit, aussi invisible qu’impalpable...'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-26T06:51:58.831844Z
@@ -1204,7 +1204,7 @@ segments:
       tokens: 19686
       review: false
     ja-JP:
-      text: この一週間、ほとんどずっとこの話が頭から離れなかった。長いこと考えた末、今の僕は認めざるを得ない——友人関係とは確かに段階的なものであり、周期的ですらあり、あるいは「出来事」によって生まれるものなのだと。
+      text: この一週間、ほとんどずっとこの話が頭から離れなかった。長いこと考えた末、今の私は認めざるを得ない——友人関係とは確かに段階的なものであり、周期的ですらあり、あるいは「出来事」によって生まれるものなのだと。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-26T06:52:56.498939Z
@@ -1293,7 +1293,7 @@ segments:
       tokens: 34375
       review: false
     zh-TW:
-      text: 人是情感動物，想把朋友據為己有，這種念頭通常再正常不過；但這並不是說你真的要占有他，真的要控制他的行為或想法，而是說明你在乎他，你和他是 `close friend`。可正如我說過的，你的朋友也是人，他也該有自己的生活、自己的 timeline，所以他和別人變成 `mutual friend`，也是再正常不過的事。真要怪，就怪 Twitter :tn[捅破了這層窗戶紙]{is="原文用的就是「捅破窗戶紙」，指把大家心裡都明白、卻沒人說破的事攤到檯面上來。"}，硬是逼你看見了這個過程。但這未必是壞事。讓你看見這個過程，在讓你難過的同時，不也給了你更多認識人的機會？拋開以私訊為主的舊秩序，沒有長期維繫一段 `close friend` 的壓力，剩下的只有最單純的互道晚安和 :tn[發電]{is="「發電」是中文網路社群的諧音玩法，取自「發癲」，指因喜歡、迷戀或慾望而毫無節制地輸出內容。"}，那也是最純粹的社交。看到 `mutual friend` 時到底會不會難過，其實取決於你自己。無論走哪條路，哪怕是線下，你也擋不住這個過程發生。只要你自己想得開，也許就不會難過了，也許會慢慢學會放下吧。
+      text: 人是情感動物，想把朋友據為己有，這種念頭通常再正常不過；但這並不是說你真的要占有他，真的要控制他的行為或想法，而是說明你在乎他，你和他是 `close friend`。可正如我說過的，你的朋友也是人，他也該有自己的生活、自己的 timeline，所以他和別人變成 `mutual friend`，也是再正常不過的事。真要怪，就怪 Twitter :tn[捅破了這層窗戶紙]{is="原文用的就是「捅破窗户纸」，指把大家心裡都明白、卻沒人說破的事攤到檯面上來。"}，硬是逼你看見了這個過程。但這未必是壞事。讓你看見這個過程，在讓你難過的同時，不也給了你更多認識人的機會？拋開以私訊為主的舊秩序，沒有長期維繫一段 `close friend` 的壓力，剩下的只有最單純的互道晚安和 :tn[發電]{is="原文用的是「发电」，是中文網路社群的諧音玩法，取自「发癫」，指因喜歡、迷戀或慾望而毫無節制地輸出內容。"}，那也是最純粹的社交。看到 `mutual friend` 時到底會不會難過，其實取決於你自己。無論走哪條路，哪怕是線下，你也擋不住這個過程發生。只要你自己想得開，也許就不會難過了，也許會慢慢學會放下吧。
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:18:31.544958Z
@@ -1310,7 +1310,7 @@ segments:
       tokens: 29137
       review: false
     en-US:
-      text: 'But honestly, I''m no different. The first time I noticed someone doing this to me, I did stop and ask myself whether I had ever behaved the same way toward others, and looking back now, I have. Thinking about it feels a little cruel, but as the saying goes, "time reveals a person''s heart." Not everyone I happen to meet is someone I click with, and not everyone''s behaviour leaves me comfortable. For the people I haven''t quite figured out yet, politeness does keep me from unfollowing them outright, but if someone really crosses the line, I Block without hesitating. Maybe sometimes a `mute` — one-directional, silent, and still letting `@mention` messages through — is the best option available. Maybe you often can''t feel it when you make someone uncomfortable, or maybe that just is the truest version of you: you see nothing wrong with what you do, while other people are unimpressed. Maybe the moment someone feels uncomfortable is the moment I get Muted? (Though if most people don''t Mute you, chances are they''re just :tn[太过玻璃心]{is="原文用的是「玻璃心」，一个中文网络说法，把敏感脆弱的人形容成一颗一碰就碎的玻璃做的心，通常带着嘲讽。"} — or maybe it''s the other way round.)'
+      text: 'But honestly, I''m no different. The first time I noticed someone doing this to me, I did stop and ask myself whether I had ever behaved the same way toward others, and looking back now, I have. Thinking about it feels a little cruel, but as the saying goes, "time reveals a person''s heart." Not everyone I happen to meet is someone I click with, and not everyone''s behaviour leaves me comfortable. For the people I haven''t quite figured out yet, politeness does keep me from unfollowing them outright, but if someone really crosses the line, I Block without hesitating. Maybe sometimes a `mute` — one-directional, silent, and still letting `@mention` messages through — is the best option available. Maybe you often can''t feel it when you make someone uncomfortable, or maybe that just is the truest version of you: you see nothing wrong with what you do, while other people are unimpressed. Maybe the moment someone feels uncomfortable is the moment I get Muted? (Though if most people don''t Mute you, chances are they''re just :tn[too thin-skinned]{is="The original says 玻璃心, literally a heart made of glass — a Chinese internet term for someone so fragile they shatter at a touch, usually said with a sneer."} — or maybe it''s the other way round.)'
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:19:21.519715Z
@@ -1326,7 +1326,7 @@ segments:
       tokens: 33152
       review: false
     fr-FR:
-      text: 'Mais en vérité, je suis pareil. La première fois que j''ai senti quelqu''un me faire ça, je me suis vraiment demandé si j''avais déjà agi ainsi envers d''autres, et avec le recul, oui. Y penser me paraît un peu cruel, mais comme le dit le proverbe, « c''est le temps qui révèle le cœur des gens ». Je n''accroche pas avec tous ceux que je croise par hasard, et le comportement de chacun ne me met pas forcément à l''aise. Pour ceux que je n''ai pas encore cernés, la politesse m''empêche de me désabonner sur-le-champ ; mais si quelqu''un dépasse vraiment les bornes, je le Block sans hésiter. Peut-être qu''à certains moments, un `mute` – unilatéral, sans notification, et qui ne filtre pas `@mention` vos messages – est le meilleur choix possible. Peut-être que la plupart du temps tu ne sens pas que tu mets les autres mal à l''aise, ou peut-être que c''est simplement toi, au plus vrai : tu ne vois aucun problème à ce que tu fais, alors que les autres n''en pensent pas moins de bien. Peut-être que l''instant où quelqu''un se sent mal à l''aise est justement l''instant où l''on me Mute ? (Mais si la plupart des gens ne te Mutent pas, c''est sans doute qu''ils ont simplement :tn[le cœur en verre]{is="L''original emploie « 玻璃心 », une expression chinoise d''internet qui compare une personne hypersensible à un cœur de verre qui se brise au moindre contact ; le ton est généralement moqueur."} – ou alors c''est l''inverse.)'
+      text: 'Mais en vérité, je suis pareil. La première fois que j''ai senti quelqu''un me faire ça, je me suis vraiment demandé si j''avais déjà agi ainsi envers d''autres, et avec le recul, oui. Y penser me paraît un peu cruel, mais comme le dit le proverbe, « c''est le temps qui révèle le cœur des gens ». Je n''accroche pas avec tous ceux que je croise par hasard, et le comportement de chacun ne me met pas forcément à l''aise. Pour ceux que je n''ai pas encore cernés, la politesse m''empêche de me désabonner sur-le-champ ; mais si quelqu''un dépasse vraiment les bornes, je le Block sans hésiter. Peut-être qu''à certains moments, un `mute` – unilatéral, sans notification, et qui ne filtre pas `@mention` tes messages – est le meilleur choix possible. Peut-être que la plupart du temps tu ne sens pas que tu mets les autres mal à l''aise, ou peut-être que c''est simplement toi, au plus vrai : tu ne vois aucun problème à ce que tu fais, alors que les autres, eux, ne sont pas de cet avis. Peut-être que l''instant où quelqu''un se sent mal à l''aise est justement l''instant où l''on me Mute ? (Mais si la plupart des gens ne te Mutent pas, c''est sans doute que celui-là a simplement :tn[le cœur en verre]{is="L''original emploie « 玻璃心 », une expression chinoise d''internet qui compare une personne hypersensible à un cœur de verre qui se brise au moindre contact ; le ton est généralement moqueur."} – ou alors c''est l''inverse.)'
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:19:21.519715Z
@@ -1334,7 +1334,7 @@ segments:
       tokens: 33152
       review: false
     ja-JP:
-      text: でも実のところ、僕も同じだ。誰かが自分にそうしていると初めて気づいたあと、自分も他人に似たことをしていなかったか振り返ってみた。今にして思えば、していた。そう考えると少し残酷かもしれないが、よく言うように「人の心は時間が経ってこそ見える」。たまたま出会った人全員と話が合うわけではないし、全員のふるまいが心地よいわけでもない。すぐには見極められない相手を、礼儀としてすぐフォロー解除することはしない。ただ、あまりに度が過ぎるなら迷わず Block する。ときには、一方通行で、通知も出ず、`@mention` あなたのメッセージを弾くこともない `mute` こそが、その場面での最善の選択なのかもしれない。他人を不快にさせていても、自分では気づけないことは多い。あるいは、それこそが最も素のあなたで、自分の行動に問題を感じていないのに、周りは納得していない。誰かが不快さを覚えたその瞬間が、僕が Mute される瞬間なのだろうか？（ただし、大半の人があなたを Mute しないなら、たぶん相手が:tn[ガラスのハートすぎる]{is="原文の中国語は「玻璃心」。傷つきやすい人を、触れただけで割れるガラスの心にたとえるネットスラングで、たいてい皮肉が込められている。"}だけだろうし、逆もまた然りだ。）
+      text: でも実のところ、私も同じだ。誰かが自分にそうしていると初めて気づいたあと、自分も他人に似たことをしていなかったか振り返ってみた。今にして思えば、していた。そう考えると少し残酷かもしれないが、よく言うように「人の心は時間が経ってこそ見える」。たまたま出会った人全員と話が合うわけではないし、全員のふるまいが心地よいわけでもない。すぐには見極められない相手を、礼儀としてすぐフォロー解除することはしない。ただ、あまりに度が過ぎるなら迷わず Block する。ときには、一方通行で、通知も出ず、`@mention` あなたのメッセージを弾くこともない `mute` こそが、その場面での最善の選択なのかもしれない。他人を不快にさせていても、自分では気づけないことは多い。あるいは、それこそが最も素のあなたで、自分の行動に問題を感じていないのに、周りは納得していない。誰かが不快さを覚えたその瞬間が、私が Mute される瞬間なのだろうか？（ただし、大半の人があなたを Mute しないなら、たぶん相手が:tn[ガラスのハートすぎる]{is="原文の中国語は「玻璃心」。傷つきやすい人を、触れただけで割れるガラスの心にたとえるネットスラングで、たいてい皮肉が込められている。"}だけだろうし、逆もまた然りだ。）
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:19:21.519715Z
@@ -1342,7 +1342,7 @@ segments:
       tokens: 33152
       review: false
     ko-KR:
-      text: 그런데 사실 나도 똑같다. 누군가 나에게 그렇게 하고 있다는 걸 처음 느낀 뒤, 나도 남에게 비슷한 행동을 한 적이 없는지 돌아봤고, 지금 보니 있었다. 이렇게 생각하면 조금 잔인할지도 모르지만, 흔히 말하듯 「사람 마음은 오래 겪어봐야 안다」. 우연히 만난 사람이 모두 나와 말이 통하는 것도 아니고, 모두의 행동이 나를 편하게 해주는 것도 아니다. 아직 파악이 안 된 사람은 예의상 곧바로 언팔하지는 않지만, 정말 도가 지나치면 나는 망설임 없이 Block 한다. 어쩌면 어떤 때에는 일방적이고, 알림도 뜨지 않고, `@mention` 당신의 메시지를 걸러내지도 않는 `mute` 이야말로 그 순간의 최선일지 모른다. 남을 불편하게 만들면서도 정작 자신은 못 느끼는 경우가 많고, 아니면 그게 가장 진짜 당신일 수도 있다. 자기 행동에 문제가 없다고 여기는데, 남들은 그렇게 보지 않는 것이다. 누군가 불편함을 느끼는 그 순간이, 내가 Mute 당하는 순간일까? (다만 대부분이 당신을 Mute 하지 않는다면 상대가 :tn[유리 심장이 너무 얇은]{is="원문은 중국어 인터넷 표현 「玻璃心」으로, 예민하고 상처받기 쉬운 사람을 살짝만 건드려도 깨지는 유리로 만든 심장에 빗댄 말이며 대개 비꼬는 뉘앙스를 담고 있다."} 것일 테고, 반대의 경우도 마찬가지다.)
+      text: 그런데 사실 나도 똑같다. 누군가 나에게 그렇게 하고 있다는 걸 처음 느낀 뒤, 나도 남에게 비슷한 행동을 한 적이 없는지 돌아봤고, 지금 보니 있었다. 이렇게 생각하면 조금 잔인할지도 모르지만, 흔히 말하듯 「사람 마음은 오래 겪어봐야 안다」. 우연히 만난 사람이 모두 나와 말이 통하는 것도 아니고, 모두의 행동이 나를 편하게 해주는 것도 아니다. 아직 파악이 안 된 사람은 예의상 곧바로 언팔하지는 않지만, 정말 도가 지나치면 나는 망설임 없이 Block 한다. 어쩌면 어떤 때에는 일방적이고, 알림도 뜨지 않고, 당신을 `@mention` 한 메시지는 걸러내지도 않는 `mute` 이야말로 그 순간의 최선일지 모른다. 남을 불편하게 만들면서도 정작 자신은 못 느끼는 경우가 많고, 아니면 그게 가장 진짜 당신일 수도 있다. 자기 행동에 문제가 없다고 여기는데, 남들은 그렇게 보지 않는 것이다. 누군가 불편함을 느끼는 그 순간이, 내가 Mute 당하는 순간일까? (다만 대부분이 당신을 Mute 하지 않는다면 상대가 :tn[유리 심장이 너무 얇은]{is="원문은 중국어 인터넷 표현 「玻璃心」으로, 예민하고 상처받기 쉬운 사람을 살짝만 건드려도 깨지는 유리로 만든 심장에 빗댄 말이며 대개 비꼬는 뉘앙스를 담고 있다."} 것일 테고, 반대의 경우도 마찬가지다.)
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:19:21.519715Z
@@ -1529,7 +1529,7 @@ segments:
       tokens: 20990
       review: false
     ja-JP:
-      text: 特にTwitterでは、ときどき「自分の友達が誰か別の人の友達になってしまった」と感傷的になることがある。でも、よく考えれば、それはごく自然なことだ。そもそも、この世界に同じタイムラインは二つとなく、僕とあなたのタイムラインが運よく交わったこと自体、すでに幸運なのだ。あるコミュニティーに入って人と知り合えば、そこにいる人たちも互いに知り合えるのと同じだ。従来のグループチャットでは、そうした交流は個別のやり取りなので、その過程が目に入ることはない。けれどもTwitterは、残念ながらその境界を取り払ってしまった。誰もが公開しているツイートの中では、たいていこの動きを簡単に見て取れる。他人と自分を結ぶ関係が周期的に入れ替わり始めると、その現象はいとも簡単に目につくようになる。
+      text: 特にTwitterでは、ときどき「自分の友達が誰か別の人の友達になってしまった」と感傷的になることがある。でも、よく考えれば、それはごく自然なことだ。そもそも、この世界に同じタイムラインは二つとなく、私とあなたのタイムラインが運よく交わったこと自体、すでに幸運なのだ。あるコミュニティーに入って人と知り合えば、そこにいる人たちも互いに知り合えるのと同じだ。従来のグループチャットでは、そうした交流は個別のやり取りなので、その過程が目に入ることはない。けれどもTwitterは、残念ながらその境界を取り払ってしまった。誰もが公開しているツイートの中では、たいていこの動きを簡単に見て取れる。他人と自分を結ぶ関係が周期的に入れ替わり始めると、その現象はいとも簡単に目につくようになる。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-26T06:54:11.418944Z
@@ -1586,7 +1586,7 @@ segments:
       tokens: 20420
       review: false
     fr-FR:
-      text: Pourquoi donc parler du caractère cyclique de ces amitiés ? Comme je l’ai dit plus haut, l’amitié est une forme d’interaction qui relie quelqu’un à vous pendant une étape particulière de la vie. Or, une étape désigne généralement une période précise, avec un début et une fin. Souvent, vous ne vous en rendez pas compte, mais elle est étroitement liée à un événement de votre vie. Il se peut que ce cycle se soit achevé naturellement sans même que vous l’ayez remarqué ; viennent alors une nouvelle étape, de nouveaux événements et de nouvelles rencontres. Lorsque votre parcours commence à évoluer avec vous, le caractère cyclique des amitiés se révèle tout naturellement.
+      text: Pourquoi donc parler du caractère cyclique de ces amitiés ? Comme je l’ai dit plus haut, l’amitié est une forme d’interaction qui relie quelqu’un à vous pendant une étape particulière de la vie. Or, une étape désigne généralement une période précise, avec un début et une fin. Souvent, tu ne t’en rends pas compte, mais elle est étroitement liée à un événement de ta vie. Il se peut que ce cycle se soit achevé naturellement sans même que tu l’aies remarqué ; viennent alors une nouvelle étape, de nouveaux événements et de nouvelles rencontres. Lorsque ton parcours commence à évoluer avec toi, le caractère cyclique des amitiés se révèle tout naturellement.
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-26T06:54:43.618625Z
@@ -1594,7 +1594,7 @@ segments:
       tokens: 20420
       review: false
     ja-JP:
-      text: では、なぜそれを周期的なものと言うのでしょうか。先に述べたように、友人とは、人生のある段階であなたとの関わりを持つ人です。そして「段階」とは通常、始まりと終わりのある具体的な期間を意味します。多くの場合、あなたは気づいていませんが、その関係は人生における何らかの出来事と固く結びついています。気づかないうちにその周期が自然と終わり、やがて新たな段階、新たな出来事を迎え、新たな人々と出会うのかもしれません。あなた自身の変化によって人生の時間軸が動き始めると、友人関係の周期性もおのずと姿を現すのです。
+      text: では、なぜそれを周期的なものと言うのか。先に述べたように、友人とは、人生のある段階であなたとの関わりを持つ人だ。そして「段階」とは通常、始まりと終わりのある具体的な期間を意味する。多くの場合、あなたは気づいていないが、その関係は人生における何らかの出来事と固く結びついている。気づかないうちにその周期が自然と終わり、やがて新たな段階、新たな出来事を迎え、新たな人々と出会うのかもしれない。あなた自身の変化によって人生の時間軸が動き始めると、友人関係の周期性もおのずと姿を現す。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-26T06:54:43.618625Z
@@ -1627,7 +1627,7 @@ segments:
       review: false
   eed224288e33c1447f7dbad8a87bd42e:
     de-DE:
-      text: 'Tja … „**Freundschaften gehören immer nur zu einer bestimmten Lebensphase.**“ Vielleicht war mir dieser Satz schon vor langer Zeit begegnet, doch damals wollte ich ihn nicht wahrhaben. Wobei „nicht wahrhaben wollen“ es auch nicht ganz trifft: Eher wollte ich nicht vollständig eingestehen, dass er stimmt. Früher glaubte ich, es gäbe so etwas wie Freunde fürs Leben – oder zumindest ein oder zwei Menschen, die einen ein Leben lang begleiten. Selbst wenn so etwas selten ist, müsste es das doch geben.'
+      text: 'Tja … „**Freundschaften gehören immer nur zu bestimmten Lebensphasen.**“ Vielleicht war mir dieser Satz schon vor langer Zeit begegnet, doch damals wollte ich ihn nicht wahrhaben. Wobei „nicht wahrhaben wollen“ es auch nicht ganz trifft: Eher wollte ich nicht vollständig eingestehen, dass er stimmt. Früher glaubte ich, es gäbe so etwas wie Freunde fürs Leben – oder zumindest ein oder zwei Menschen, die einen ein Leben lang begleiten. Selbst wenn so etwas selten ist, müsste es das doch geben.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-26T06:55:00.12793Z
@@ -1643,7 +1643,7 @@ segments:
       tokens: 20082
       review: false
     es-ES:
-      text: La verdad… «**Los amigos solo lo son durante una etapa de la vida.**» Puede que ya hubiera leído esta frase mucho tiempo atrás, pero entonces no quería admitirla. Aunque decir que no la admitía tampoco es del todo exacto; más bien, no quería reconocer por completo que fuera cierta. Antes creía que existían los amigos para siempre, o que al menos habría una o dos personas que te acompañarían toda la vida. Aunque algo así fuera poco común, alguno tendría que haber, ¿no?
+      text: La verdad… «**Las amistades solo duran una etapa.**» Puede que ya hubiera leído esta frase mucho tiempo atrás, pero entonces no quería admitirla. Aunque decir que no la admitía tampoco es del todo exacto; más bien, no quería reconocer por completo que fuera cierta. Antes creía que existían los amigos para siempre, o que al menos habría una o dos personas que te acompañarían toda la vida. Aunque algo así fuera poco común, alguno tendría que haber, ¿no?
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-26T06:55:00.12793Z
@@ -1651,7 +1651,7 @@ segments:
       tokens: 20082
       review: false
     fr-FR:
-      text: 'Enfin… « **Les amis ne le sont que pour une étape de notre vie.** » J’avais peut-être déjà lu cette phrase il y a longtemps, mais à l’époque, je refusais de l’admettre. Enfin, « refuser de l’admettre » n’est pas tout à fait exact : disons plutôt que je ne voulais pas reconnaître pleinement qu’elle disait vrai. Autrefois, je croyais qu’il existait des amis pour toujours, ou qu’au moins une ou deux personnes vous accompagneraient toute votre vie. Même si cela était rare, ça devait bien exister, non ?'
+      text: 'Enfin… « **Les amitiés ne durent qu’un temps.** » J’avais peut-être déjà lu cette phrase il y a longtemps, mais à l’époque, je refusais de l’admettre. Enfin, « refuser de l’admettre » n’est pas tout à fait exact : disons plutôt que je ne voulais pas reconnaître pleinement qu’elle disait vrai. Autrefois, je croyais qu’il existait des amis pour toujours, ou qu’au moins une ou deux personnes t’accompagneraient toute ta vie. Même si cela était rare, ça devait bien exister, non ?'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-26T06:55:00.12793Z

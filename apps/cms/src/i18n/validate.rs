@@ -13,6 +13,8 @@ pub enum Error {
 	MalformedTranslatorNote,
 	MalformedAuthorNote,
 	TranslatorNoteInFrontmatter,
+	AuthorNoteCountChanged,
+	UnresolvedMarker,
 }
 
 impl fmt::Display for Error {
@@ -23,8 +25,50 @@ impl fmt::Display for Error {
 			Self::TranslatorNoteInFrontmatter => {
 				formatter.write_str("translator's note is not allowed in frontmatter")
 			}
+			Self::AuthorNoteCountChanged => formatter.write_str(
+				"the translation does not carry the author's notes its source does -- it is \
+				 probably a translation of the neighbouring block",
+			),
+			Self::UnresolvedMarker => formatter.write_str(
+				"the translation carries a marker that stands for nothing -- text copied from \
+				 the neighbouring context",
+			),
 		}
 	}
+}
+
+/// Whether a translation is a plausible size for the block it translates.
+///
+/// See `width::SIZE_FACTOR` for the numbers and what they are drawn from. This is deliberately
+/// generous: it is not a style rule about length, it is the last check that catches a reply which
+/// translated the wrong block -- the neighbouring paragraph carried in the request as context.
+/// Nothing else sees that. A short source has no code markers to lose, one line against one line
+/// passes the line count, and the shape is perfectly valid; the answer is simply about something
+/// else, and its size is the only trace.
+pub fn size_plausible(source: &str, text: &str) -> bool {
+	width::raw(text) <= width::raw(source) * width::SIZE_FACTOR + width::SIZE_ALLOWANCE
+}
+
+/// Whether the translation carries exactly the author's notes its source does.
+///
+/// `:fn` is the author's, never the translator's -- a model has `:tn` for its own remarks -- so
+/// the count is fixed by the source and is not a matter of judgement. That makes it the one
+/// cheap invariant that catches a reply about a different block: measured over 2744 stored
+/// translations it never fired on a correct one, and it named every locale of the block whose
+/// answer was its neighbour's. Size could not: the neighbour was twice the source, and twice is
+/// what an ordinary German paragraph does. See spec/i18n.md.
+pub fn author_notes_preserved(source: &str, text: &str) -> bool {
+	source.matches(":fn[").count() == text.matches(":fn[").count()
+}
+
+/// Whether the translation is free of markers that stand for something it cannot have.
+///
+/// Every `⟦tk:N⟧` in the block has been put back by `restore` before this runs, so a surviving
+/// `⟦` came from somewhere else -- and the only other place one exists is the neighbouring
+/// context, where inline code is folded to a placeholder that deliberately restores to nothing.
+/// Text copied out of the context therefore arrives holding proof of where it came from.
+pub fn markers_resolved(text: &str) -> bool {
+	!text.contains(super::segment::OPEN)
 }
 
 /// Whether a note directive is separated from the words around it as that script requires.
@@ -130,7 +174,15 @@ pub fn author_notes_well_formed(text: &str) -> bool {
 	well_formed(text, ":fn")
 }
 
-pub fn translation(region: Region, text: &str) -> Result<(), Error> {
+/// The checks that read a translation against its source, whether or not code is masked in it.
+///
+/// **`markers_resolved` is deliberately not among them.** A fresh reply is validated before its
+/// markers are put back, so at that point it is *supposed* to be full of `⟦tk:N⟧`; running the
+/// check here refused every block containing inline code, which cost a whole article's worth of
+/// paid requests before the message -- the generic `no locale survived` -- gave any hint why.
+/// The marker check belongs where the text is final: after `restore` in the reply path, and on
+/// stored text in `sidecar` below.
+pub fn translation(region: Region, source: &str, text: &str) -> Result<(), Error> {
 	if region == Region::Frontmatter && text.contains(":tn") {
 		return Err(Error::TranslatorNoteInFrontmatter);
 	}
@@ -139,6 +191,9 @@ pub fn translation(region: Region, text: &str) -> Result<(), Error> {
 	}
 	if !author_notes_well_formed(text) {
 		return Err(Error::MalformedAuthorNote);
+	}
+	if !author_notes_preserved(source, text) {
+		return Err(Error::AuthorNoteCountChanged);
 	}
 	Ok(())
 }
@@ -157,7 +212,16 @@ pub fn sidecar(
 			continue;
 		};
 		for (locale, stored) in locales {
-			if let Err(error) = translation(segment.region, &stored.text) {
+			// Stored text is final -- its markers were restored before it was written -- so the
+			// marker check applies here, where it cannot apply to a reply still holding them.
+			let checked = translation(segment.region, &segment.source, &stored.text).and_then(|()| {
+				if markers_resolved(&stored.text) {
+					Ok(())
+				} else {
+					Err(Error::UnresolvedMarker)
+				}
+			});
+			if let Err(error) = checked {
 				return Err(std::io::Error::new(
 					std::io::ErrorKind::InvalidData,
 					format!("{}: segment {id} locale {locale}: {error}", path.display()),
@@ -231,10 +295,63 @@ mod tests {
 	#[test]
 	fn frontmatter_never_accepts_a_translator_note() {
 		assert_eq!(
-			translation(Region::Frontmatter, ":tn[translated]{is=\"a gloss\"}"),
+			translation(
+				Region::Frontmatter,
+				"source",
+				":tn[translated]{is=\"a gloss\"}"
+			),
 			Err(Error::TranslatorNoteInFrontmatter)
 		);
-		assert!(translation(Region::Body, ":tn[translated]{is=\"a gloss\"}").is_ok());
+		assert!(translation(Region::Body, "source", ":tn[translated]{is=\"a gloss\"}").is_ok());
+	}
+
+	#[test]
+	fn a_reply_that_is_the_neighbouring_block_is_refused_by_its_author_notes() {
+		// The measured case: three locales of a block with no author's note came back holding the
+		// previous block's translation, which has one. Every other check passed -- the shape was
+		// valid, the line count matched, and at twice the source's width it was an ordinary
+		// German-shaped expansion.
+		let source = "只可惜之前我 UI 选了 React 开始动刀";
+		let neighbour =
+			"就像上一篇写过的，Seam 首先是一套协议，`if` 也是:fn[协议节点]{is=\"结构单元\"}";
+		assert!(!author_notes_preserved(source, neighbour));
+		assert_eq!(
+			translation(Region::Body, source, neighbour),
+			Err(Error::AuthorNoteCountChanged)
+		);
+		// A real translation of the same source keeps the count at zero and passes.
+		assert!(author_notes_preserved(
+			source,
+			"The pity is that I had already picked React for the UI"
+		));
+		// And a block that does carry a note keeps exactly that many.
+		let noted = "请求时的:fn[模型]{is=\"执行模型\"}";
+		assert!(author_notes_preserved(
+			noted,
+			"the :fn[model]{is=\"the execution one\"} at request time"
+		));
+	}
+
+	#[test]
+	fn a_reply_still_holding_its_markers_is_not_refused_for_holding_them() {
+		// The reply path validates before `restore`, so a block with inline code arrives full of
+		// `⟦tk:N⟧` and that is correct. Running the marker check here refused every such block --
+		// two thirds of an article -- and reported it as the generic shape failure.
+		let masked = crate::i18n::segment::mask("run `cargo build` twice");
+		assert!(masked.text.contains('⟦'));
+		assert!(translation(Region::Body, &masked.text, &masked.text).is_ok());
+	}
+
+	#[test]
+	fn a_marker_that_stands_for_nothing_is_refused() {
+		// Inline code in the context is folded to a placeholder that restores to nothing, so text
+		// copied out of the context arrives still carrying it.
+		assert!(!markers_resolved("the ⟦code⟧ was copied from the context"));
+		assert!(markers_resolved(
+			"ordinary prose with `code` restored into it"
+		));
+		// Refused by the caller that owns the final text, not by `translation`.
+		assert!(translation(Region::Body, "source", "carries a ⟦code⟧ marker").is_ok());
 	}
 
 	#[test]
@@ -265,10 +382,21 @@ mod tests {
 	#[test]
 	fn a_translation_carrying_a_broken_author_note_is_refused() {
 		assert_eq!(
-			translation(Region::Body, ":fn[model]{is=\"broken}"),
+			translation(
+				Region::Body,
+				":fn[model]{is=\"source\"}",
+				":fn[model]{is=\"broken}"
+			),
 			Err(Error::MalformedAuthorNote)
 		);
-		assert!(translation(Region::Body, ":fn[model]{is=\"fine\"}").is_ok());
+		assert!(
+			translation(
+				Region::Body,
+				":fn[model]{is=\"source\"}",
+				":fn[model]{is=\"fine\"}"
+			)
+			.is_ok()
+		);
 	}
 
 	#[test]

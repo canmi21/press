@@ -466,7 +466,6 @@ mod tests {
 			region: super::super::segment::Region::Body,
 			start: 0,
 			end: 0,
-			line: 1,
 		};
 		let inside = Gloss {
 			phrase: "脱裤子放屁".into(),

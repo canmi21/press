@@ -80,6 +80,29 @@ pub fn of(source: &str) -> usize {
 	UnicodeWidthStr::width(label(source).trim())
 }
 
+/// Columns a block occupies as written, markdown and all.
+///
+/// Unlike `of`, nothing is stripped: this is used to compare a translation against its source,
+/// where the marks are part of what was asked for and part of what came back.
+pub fn raw(text: &str) -> usize {
+	UnicodeWidthStr::width(text.trim())
+}
+
+/// How much wider than its source a translation may be before it is not a translation.
+///
+/// A block cannot say several times more than the block it renders, so a reply that does is
+/// answering something else -- in practice the neighbouring context, which the request carries
+/// and the prompt forbids repeating. The failure is invisible to every other check: the markers
+/// are intact because a short source has none, the line count matches because both are one line,
+/// and the shape is valid. Only the size gives it away.
+///
+/// Four times plus forty columns. Measured over 2744 stored translations, the widest legitimate
+/// one runs 2.4 times its source, and short blocks need the constant -- `OR` is two columns and
+/// its German is four. Nine entries exceeded it, and all nine were the fault this describes:
+/// a two-column `OR` answered with five hundred, a horizontal rule with three hundred.
+pub const SIZE_FACTOR: usize = 4;
+pub const SIZE_ALLOWANCE: usize = 40;
+
 #[cfg(test)]
 mod tests {
 	use super::*;

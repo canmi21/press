@@ -91,7 +91,7 @@ segments:
       tokens: 31571
       review: false
     fr-FR:
-      text: 'Je suis moi-même un :tn[fanatique de MUSL]{is="L''original écrit « MUSL 厨 ». Le suffixe 厨, venu de la culture internet japonaise et passé dans le chinois en ligne, désigne l''amateur fanatique d''une chose ; l''auteur se l''applique ici à lui-même sur un ton d''autodérision."} et je déteste GNU glibc, mais pour le développement je te recommande quand même `x86_64-unknown-linux-gnu`. Pourquoi ? Parce que c''est rapide. Le grand argument de vente de MUSL, c''est de pouvoir produire des binaires entièrement liés en statique — sans dépendre d''aucune bibliothèque dynamique du système : tu copies le binaire compilé sur n''importe quelle machine Linux et il tourne, ce qui convient particulièrement aux conteneurs et à l''embarqué. Mais la lenteur vient elle aussi de cette liaison statique : l''éditeur de liens doit tout empaqueter, et la phase de liaison représente donc bien plus de travail qu''en liaison dynamique.'
+      text: 'Je suis moi-même un :tn[fanatique de MUSL]{is="L''original écrit « MUSL 厨 ». Le suffixe 厨, venu de la culture internet japonaise et passé dans le chinois en ligne, désigne l''amateur fanatique d''une chose ; l''auteur se l''applique ici à lui-même sur un ton d''autodérision."} et je déteste GNU glibc, mais pour le développement je vous recommande quand même `x86_64-unknown-linux-gnu`. Pourquoi ? Parce que c''est rapide. Le grand argument de vente de MUSL, c''est de pouvoir produire des binaires entièrement liés en statique — sans dépendre d''aucune bibliothèque dynamique du système : vous copiez le binaire compilé sur n''importe quelle machine Linux et il tourne, ce qui convient particulièrement aux conteneurs et à l''embarqué. Mais la lenteur vient elle aussi de cette liaison statique : l''éditeur de liens doit tout empaqueter, et la phase de liaison représente donc bien plus de travail qu''en liaison dynamique.'
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:15:41.60439Z
@@ -172,7 +172,7 @@ segments:
       tokens: 17592
       review: false
     ko-KR:
-      text: Linux에서 Rust는 기본적으로 GNU ld(bfd)를 사용합니다. 맞습니다. 가장 오래되고 가장 느린 바로 그 링커입니다. 단일 스레드로 동작하는 데다 심벌 해석과 재배치도 모두 순차 탐색으로 처리하므로 프로젝트가 커지면 눈에 띄게 발목을 잡습니다. Linux에서는 [@Rui Ueyama](https://github.com/rui314)가 만든 [mold](https://github.com/rui314)를 사용해 볼 수 있으며, 설정도 `.cargo/config.toml`에 한 줄만 추가하면 될 정도로 간단합니다.
+      text: Linux에서 Rust는 기본적으로 GNU ld(bfd)를 사용합니다. 맞습니다. 가장 오래되고 가장 느린 바로 그 링커입니다. 단일 스레드로 동작하는 데다 심벌 해석과 재배치도 모두 순차 탐색으로 처리하므로 프로젝트가 커지면 눈에 띄게 발목을 잡습니다. Linux에서는 [@Rui Ueyama](https://github.com/rui314)가 만든 [mold](https://github.com/rui314/mold)를 사용해 볼 수 있으며, 설정도 `.cargo/config.toml`에 한 줄만 추가하면 될 정도로 간단합니다.
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:34:48.781049Z
@@ -611,7 +611,7 @@ segments:
       tokens: 33509
       review: false
     fr-FR:
-      text: 'Voilà pour les avantages -- et le prix ? L''évidence d''abord : le code produit par Cranelift s''exécute plus lentement que celui de LLVM, environ 10%~30% plus lentement selon les cas. Mais dès qu''on lâche prise, on s''aperçoit que cela n''a aucune importance en phase de développement. À quoi me servirait cette vitesse ? Je fais un benchmark, ou une build release en CI ? Je veux :tn[putain]{is="L''original écrit 他妈, un juron chinois, sous la forme des initiales de sa transcription pinyin : tm. La force du gros mot reste entière, et les lettres lui posent en même temps un voile mince."} juste que `cargo build` finisse plus vite, pour voir si la logique tient. Et je parie que la plupart des programmes que tu écris ne peuvent pas saturer les ressources de calcul plus de 80% du temps -- il faudrait qu''il y ait de la vraie charge, et quelle charge y a-t-il pendant que tu développes ? Ton CPU doit :tn[tirer au flanc]{is="L''original dit 摸鱼, littéralement « tâter les poissons », argot d''internet chinois pour glander pendant les heures de travail. Appliqué à un CPU, cela traite le matériel comme un employé qui traîne à son bureau."} du début à la fin, alors que c''est moi qui ai besoin de voir le résultat et de vérifier la logique. Ce troc du temps de compilation contre l''efficacité à l''exécution, ne faudrait-il donc pas faire le compte à l''envers à l''intérieur de la boucle de développement ?'
+      text: 'Voilà pour les avantages -- et le prix ? L''évidence d''abord : le code produit par Cranelift s''exécute plus lentement que celui de LLVM, environ 10%~30% plus lentement selon les cas. Mais dès qu''on lâche prise, on s''aperçoit que cela n''a aucune importance en phase de développement. À quoi me servirait cette vitesse ? Je fais un benchmark, ou une build release en CI ? Je veux :tn[putain]{is="L''original écrit 他妈, un juron chinois, sous la forme des initiales de sa transcription pinyin : tm. La force du gros mot reste entière, et les lettres lui posent en même temps un voile mince."} juste que `cargo build` finisse plus vite, pour voir si la logique tient. Et je parie que la plupart des programmes que vous écrivez ne peuvent pas saturer les ressources de calcul plus de 80% du temps -- il faudrait qu''il y ait de la vraie charge, et quelle charge y a-t-il pendant que vous développez ? Votre CPU doit :tn[tirer au flanc]{is="L''original dit 摸鱼, littéralement « tâter les poissons », argot d''internet chinois pour glander pendant les heures de travail. Appliqué à un CPU, cela traite le matériel comme un employé qui traîne à son bureau."} du début à la fin, alors que c''est moi qui ai besoin de voir le résultat et de vérifier la logique. Ce troc du temps de compilation contre l''efficacité à l''exécution, ne faudrait-il donc pas faire le compte à l''envers à l''intérieur de la boucle de développement ?'
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:15:41.604509Z
@@ -619,7 +619,7 @@ segments:
       tokens: 33509
       review: false
     ja-JP:
-      text: 利点は話し終えた、では代償は？まず明らかなのは、Cranelift が吐くコードは LLVM のものより実行が遅いということだ。場面によるが、だいたい 10%~30% ほど遅い。だが割り切ってしまえば、これは開発段階ではまるで重要でないと分かる。そんな速さが何の役に立つ？ベンチマークでも回すのか、CI の release ビルドでもするのか。俺は :tn[クソ]{is="原文は中国語の罵り言葉「他妈」を、その拼音の頭文字だけ取って tm と書いている。罵倒の勢いはそのままに、アルファベットで半分だけ覆い隠すという書き方になっている。"}、`cargo build` が速く終わってほしいだけだ、ロジックが出ているかどうか見たいだけだ。しかも賭けてもいい、君の書くプログラムの大半が計算資源を 8 割以上の時間埋め尽くすなんてことはあり得ない。実際の処理が流れ込んでこそだが、開発中にその処理がどれほどある？CPU はおそらく終始 :tn[サボっている]{is="原文の「摸鱼」は字義どおりには「魚をつかむ」、中国語のネットスラングで勤務中に手を抜いて時間をつぶすことを指す。CPU に使うことで、ハードウェアを机で油を売る社員のように扱う冗談になっている。"}、むしろ結果を見てロジックを確かめたいのはこっちの方だ。ならばコンパイル時間を実行効率と引き換えにするその計算、開発ループの中では逆向きに勘定すべきではないのか。
+      text: 利点は話し終えました、では代償は？まず明らかなのは、Cranelift が吐くコードは LLVM のものより実行が遅いということです。場面によりますが、だいたい 10%~30% ほど遅くなります。ですが割り切ってしまえば、これは開発段階ではまるで重要でないと分かります。そんな速さが何の役に立つのでしょう？ベンチマークでも回すのか、CI の release ビルドでもするのか。私は :tn[クソ]{is="原文は中国語の罵り言葉「他妈」を、その拼音の頭文字だけ取って tm と書いている。罵倒の勢いはそのままに、アルファベットで半分だけ覆い隠すという書き方になっている。"}、`cargo build` が速く終わってほしいだけです、ロジックが出ているかどうか見たいだけです。しかも賭けてもいいですが、あなたの書くプログラムの大半が計算資源を 8 割以上の時間埋め尽くすなんてことはあり得ません。実際の処理が流れ込んでこそですが、開発中にその処理がどれほどあるでしょう？CPU はおそらく終始 :tn[サボっている]{is="原文の「摸鱼」は字義どおりには「魚をつかむ」、中国語のネットスラングで勤務中に手を抜いて時間をつぶすことを指す。CPU に使うことで、ハードウェアを机で油を売る社員のように扱う冗談になっている。"}、むしろ結果を見てロジックを確かめたいのはこちらの方です。ならばコンパイル時間を実行効率と引き換えにするその計算、開発ループの中では逆向きに勘定すべきではないでしょうか。
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:15:41.604509Z
@@ -627,7 +627,7 @@ segments:
       tokens: 33509
       review: false
     ko-KR:
-      text: 장점은 다 말했으니, 대가는? 우선 뻔한 것부터. Cranelift가 만들어낸 코드는 LLVM의 것보다 실행이 느리다, 상황에 따라 대략 10%~30% 정도. 하지만 마음을 놓고 보면 알게 된다, 개발 단계에서 이건 전혀 중요하지 않다는 걸. 그 속도가 나한테 왜 필요한가? 벤치마크를 돌리나, CI의 release 빌드를 하나? 나는 :tn[씨발]{is="원문은 중국어 욕설 他妈를 병음 첫 글자만 따서 tm이라고 적었다. 욕의 힘은 그대로 두면서, 알파벳으로 얼굴 절반만 가린 표기다."} `cargo build`가 좀 빨리 끝나서 로직이 나왔는지 보고 싶을 뿐이다. 게다가 장담하는데, 네가 쓰는 프로그램 대부분은 계산 자원을 80% 넘는 시간 동안 꽉 채울 리가 없다. 실제 작업이 들어와야 하는데, 개발할 때 그 작업이 얼마나 되겠나? CPU는 아마 처음부터 끝까지 :tn[농땡이를 부리고]{is="원문의 摸鱼는 글자 그대로는 ‘물고기를 더듬는다’, 근무 시간에 요령껏 노는 걸 뜻하는 중국어 인터넷 은어다. CPU에 쓰면 하드웨어를 자리에서 시간이나 때우는 직원으로 취급하는 농담이 된다."} 있을 거고, 정작 결과를 보고 로직을 확인해야 하는 건 나다. 그렇다면 컴파일 시간을 실행 효율과 맞바꾸는 이 계산, 개발 루프 안에서는 거꾸로 따져야 하는 것 아닌가?
+      text: 장점은 다 말했으니, 대가는? 우선 뻔한 것부터 보겠습니다. Cranelift가 만들어낸 코드는 LLVM의 것보다 실행이 느립니다, 상황에 따라 대략 10%~30% 정도. 하지만 마음을 놓고 보면 알게 됩니다, 개발 단계에서 이건 전혀 중요하지 않다는 걸. 그 속도가 나한테 왜 필요할까요? 벤치마크를 돌리나, CI의 release 빌드를 하나? 나는 :tn[씨발]{is="원문은 중국어 욕설 他妈를 병음 첫 글자만 따서 tm이라고 적었다. 욕의 힘은 그대로 두면서, 알파벳으로 얼굴 절반만 가린 표기다."} `cargo build`가 좀 빨리 끝나서 로직이 나왔는지 보고 싶을 뿐입니다. 게다가 장담하는데, 여러분이 쓰는 프로그램 대부분은 계산 자원을 80% 넘는 시간 동안 꽉 채울 리가 없습니다. 실제 작업이 들어와야 하는데, 개발할 때 그 작업이 얼마나 되겠습니까? CPU는 아마 처음부터 끝까지 :tn[농땡이를 부리고]{is="원문의 摸鱼는 글자 그대로는 ‘물고기를 더듬는다’, 근무 시간에 요령껏 노는 걸 뜻하는 중국어 인터넷 은어다. CPU에 쓰면 하드웨어를 자리에서 시간이나 때우는 직원으로 취급하는 농담이 된다."} 있을 거고, 정작 결과를 보고 로직을 확인해야 하는 건 나입니다. 그렇다면 컴파일 시간을 실행 효율과 맞바꾸는 이 계산, 개발 루프 안에서는 거꾸로 따져야 하는 것 아닐까요?
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:15:41.604509Z
@@ -643,7 +643,7 @@ segments:
       tokens: 33509
       review: false
     zh-TW:
-      text: 好處說完了，代價呢？最明顯的一條是 Cranelift 產生的程式碼跑起來比 LLVM 慢，依場景不同大約慢 10%~30%。但想開了就會發現，這在開發階段根本不重要。我要那麼快做什麼？我是在跑分，還是在做 CI 的 release 建置？我 :tn[他媽]{is="原文把這兩個字寫成拼音首字母 tm，髒話照罵，字母又替它遮了半張臉。"} 就是要 `cargo build` 快一點，好看看邏輯有沒有跑出來。而且我敢打賭，你寫的大部分程式不可能有 80% 以上的時間把運算資源佔滿，總得有實際的工作進來才行，而開發的時候能有多少工作？CPU 怕是全程都在 :tn[摸魚]{is="原文用的就是「摸魚」，中文網路俚語，指上班時間偷懶混日子。用在 CPU 身上，等於把硬體說成一個在工位上磨洋工的員工。"}，反倒是我這邊要看效果、要驗證邏輯。那麼拿編譯時間換執行效率，這筆帳放進開發循環裡，是不是應該倒過來算？
+      text: 好處說完了，代價呢？最明顯的一條是 Cranelift 產生的程式碼跑起來比 LLVM 慢，依場景不同大約慢 10%~30%。但想開了就會發現，這在開發階段根本不重要。我要那麼快做什麼？我是在跑分，還是在做 CI 的 release 建置？我 :tn[他媽]{is="原文把這兩個字寫成拼音首字母 tm，髒話照罵，字母又替它遮了半張臉。"} 就是要 `cargo build` 快一點，好看看邏輯有沒有跑出來。而且我敢打賭，你寫的大部分程式不可能有 80% 以上的時間把運算資源佔滿，總得有實際的工作進來才行，而開發的時候能有多少工作？CPU 怕是全程都在 :tn[摸魚]{is="原文用的就是「摸鱼」，中文網路俚語，指上班時間偷懶混日子。用在 CPU 身上，等於把硬體說成一個在工位上磨洋工的員工。"}，反倒是我這邊要看效果、要驗證邏輯。那麼拿編譯時間換執行效率，這筆帳放進開發循環裡，是不是應該倒過來算？
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:15:41.604509Z
@@ -741,7 +741,7 @@ segments:
       tokens: 17633
       review: false
     fr-FR:
-      text: Le gain est très net, mais malheureusement, le seul choix sous macOS est sold, un projet commercial. La bonne nouvelle, c’est que lld sous macOS et ld64 fourni par Apple sont déjà plutôt rapides, surtout le nouveau lieur introduit avec Xcode 15, qui apporte une accélération spectaculaire. Son seul défaut est que les systèmes d’intégration continue macOS sans surveillance doivent accepter un accord avec sudo après chaque mise à jour, ce qui a fait échouer plusieurs fois mes tâches d’intégration continue planifiées.
+      text: Le gain est très net, mais malheureusement, le seul choix sous macOS est sold, un projet commercial. La bonne nouvelle, c’est que lld sous macOS et ld64 fourni par Apple sont déjà plutôt rapides, surtout le nouvel éditeur de liens introduit avec Xcode 15, qui apporte une accélération spectaculaire. Son seul défaut est que les systèmes d’intégration continue macOS sans surveillance doivent accepter un accord avec sudo après chaque mise à jour, ce qui a fait échouer plusieurs fois mes tâches d’intégration continue planifiées.
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:35:14.652604Z
@@ -1529,7 +1529,7 @@ segments:
       tokens: 38299
       review: false
     ja-JP:
-      text: 総合結果を見る限り、この2つは実のところ大差なく、質的な変化とまでは言えないものの、違いは間違いなくはっきり体感できる。主な理由はApple Siliconがあまりにも強力で、Mシリーズチップのシングルコア性能もメモリ帯域幅も桁外れに高く、計算負荷とI/O負荷の両方が大きいコンパイル処理がちょうどその恩恵を受けるからだ。Linuxで試せば通常は差がさらに広がるが、MacBookにAsahi Linuxなどを入れて比べるなら、間違いなくLinuxの勝ちだ。
+      text: 総合結果を見る限り、この 2 つは実のところ大差なく、質的な変化とまでは言えないものの、違いは間違いなくはっきり体感できます。主な理由は Apple Silicon があまりにも強力で、M シリーズチップのシングルコア性能もメモリ帯域幅も桁外れに高く、計算負荷と I/O 負荷の両方が大きいコンパイル処理がちょうどその恩恵を受けるからです。Linux で試せば通常は差がさらに広がりますが、MacBook に Asahi Linux などを入れて比べるなら、間違いなく Linux の勝ちです。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:36:23.136902Z
@@ -1537,7 +1537,7 @@ segments:
       tokens: 38299
       review: false
     ko-KR:
-      text: 종합적인 결과를 보면 둘은 사실 큰 차이가 없다. 질적인 도약이라고 할 정도는 아니지만, 차이는 분명하게 체감된다. 주된 이유는 Apple Silicon이 워낙 강력하기 때문이다. M 시리즈 칩은 싱글 코어 성능과 메모리 대역폭이 터무니없이 뛰어나며, 연산과 I/O 부하가 모두 큰 컴파일 작업은 이런 장점을 그대로 활용한다. 일반적으로 Linux에서 실행하면 격차가 더 벌어지지만, MacBook에 Asahi Linux 같은 것을 설치해 비교한다면 단연 Linux가 이긴다.
+      text: 종합적인 결과를 보면 둘은 사실 큰 차이가 없습니다. 질적인 도약이라고 할 정도는 아니지만, 차이는 분명하게 체감됩니다. 주된 이유는 Apple Silicon이 워낙 강력하기 때문입니다. M 시리즈 칩은 싱글 코어 성능과 메모리 대역폭이 터무니없이 뛰어나며, 연산과 I/O 부하가 모두 큰 컴파일 작업은 이런 장점을 그대로 활용합니다. 일반적으로 Linux에서 실행하면 격차가 더 벌어지지만, MacBook에 Asahi Linux 같은 것을 설치해 비교한다면 단연 Linux가 이깁니다.
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:36:23.136902Z
@@ -1789,7 +1789,7 @@ segments:
       tokens: 18126
       review: false
     ja-JP:
-      text: 私はもう長いこと Rust が好きだ。その長所は明らかだが、短所も同じくらい明らかだ。ガベージコレクションなしのメモリ安全性、ゼロコスト抽象化、並行処理の安全性、現時点ではほぼ最高といえるツールチェーンと周辺エコシステム、クラウド上のウェブサーバーからマイクロコントローラーまでを網羅する圧倒的な適用範囲、そして非常に優れたエラー処理設計がある。一方の短所は？学習曲線が険しいこと？所有権や借用といったモデルの制約を理解しにくいこと？コードを書くのに時間がかかること？
+      text: 私はもう長いこと Rust が好きです。その長所は明らかですが、短所も同じくらい明らかです。ガベージコレクションなしのメモリ安全性、ゼロコスト抽象化、並行処理の安全性、現時点ではほぼ最高といえるツールチェーンと周辺エコシステム、クラウド上のウェブサーバーからマイクロコントローラーまでを網羅する圧倒的な適用範囲、そして非常に優れたエラー処理設計があります。一方の短所は？学習曲線が険しいこと？所有権や借用といったモデルの制約を理解しにくいこと？コードを書くのに時間がかかること？
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:36:42.337974Z
@@ -1797,7 +1797,7 @@ segments:
       tokens: 18126
       review: false
     ko-KR:
-      text: 나는 오래전부터 Rust를 좋아해 왔다. 장점은 분명하지만 단점도 그만큼 분명하다. 쓰레기 수집 없이 보장되는 메모리 안전성, 비용 없는 추상화, 동시성 안전성, 현시점에서 거의 최고라 할 만한 도구 체계와 주변 생태계, 클라우드 웹 서버부터 마이크로컨트롤러까지 아우르는 막강한 적용 범위, 그리고 매우 뛰어난 오류 처리 설계를 갖추고 있다. 단점이라면? 가파른 학습 곡선? 소유권과 빌림 같은 모델의 제약을 이해하기 어렵다는 점? 코드를 작성하는 데 오래 걸린다는 점?
+      text: 나는 오래전부터 Rust를 좋아해 왔습니다. 장점은 분명하지만 단점도 그만큼 분명합니다. 쓰레기 수집 없이 보장되는 메모리 안전성, 비용 없는 추상화, 동시성 안전성, 현시점에서 거의 최고라 할 만한 도구 체계와 주변 생태계, 클라우드 웹 서버부터 마이크로컨트롤러까지 아우르는 막강한 적용 범위, 그리고 매우 뛰어난 오류 처리 설계를 갖추고 있습니다. 단점이라면? 가파른 학습 곡선? 소유권과 빌림 같은 모델의 제약을 이해하기 어렵다는 점? 코드를 작성하는 데 오래 걸린다는 점?
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:36:42.337974Z
@@ -1846,7 +1846,7 @@ segments:
       tokens: 18842
       review: false
     fr-FR:
-      text: 'La LTO (optimisation à l’édition de liens) est une autre fonctionnalité très gourmande en mémoire et en temps de compilation, mais son activation est recommandée pour les versions de production de la plupart des projets. Lors d’une compilation normale, chaque crate est optimisée séparément : le moteur de compilation ne voit donc pas les relations d’appel entre les crates et ne peut pas effectuer certaines mises en ligne ni éliminations de code mort entre crates, alors que ces situations sont très fréquentes. La LTO supprime cette frontière et fournit à l’optimiseur la représentation intermédiaire de toutes les crates au moment de l’édition de liens afin d’effectuer une passe d’optimisation globale. N’ajoutez toutefois jamais `lto = true` directement à un profil sans réfléchir, car la compilation de Rust deviendrait désespérément lente ; vérifiez soigneusement la configuration et ne l’activez que dans le profil de production.'
+      text: 'La LTO (optimisation à l’édition de liens) est une autre fonctionnalité très gourmande en mémoire et en temps de compilation, mais son activation est recommandée pour les versions de production de la plupart des projets. Lors d’une compilation normale, chaque crate est optimisée séparément : le backend du compilateur ne voit donc pas les relations d’appel entre les crates et ne peut pas effectuer certaines mises en ligne ni éliminations de code mort entre crates, alors que ces situations sont très fréquentes. La LTO supprime cette frontière et fournit à l’optimiseur la représentation intermédiaire de toutes les crates au moment de l’édition de liens afin d’effectuer une passe d’optimisation globale. N’ajoutez toutefois jamais `lto = true` directement à un profil sans réfléchir, car la compilation de Rust deviendrait désespérément lente ; vérifiez soigneusement la configuration et ne l’activez que dans le profil de production.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:36:45.687626Z
@@ -1878,7 +1878,7 @@ segments:
       tokens: 19244
       review: false
     zh-TW:
-      text: LTO（連結時最佳化）是另一項非常消耗記憶體和編譯時間的功能，但大多數專案都建議在發行建置中啟用它。正常編譯時，每個軟體套件都會獨立最佳化，編譯器後端無法看到軟體套件之間的呼叫關係，因此無法執行某些跨軟體套件內嵌和無用程式碼消除，而這種情況非常常見。LTO 會打破這個邊界，讓最佳化器在連結時取得所有軟體套件的中間表示，並進行一次全域最佳化。不過，千萬不要不加考慮地直接在設定檔中加入 `lto = true`，否則 Rust 編譯會慢得讓你懷疑人生；請仔細檢查，只在使用發行設定檔時啟用它。
+      text: LTO（連結時最佳化）是另一項非常消耗記憶體和編譯時間的功能，但大多數專案都建議在發行建置中啟用它。正常編譯時，每個 crate 都會獨立最佳化，編譯器後端無法看到 crate 之間的呼叫關係，因此無法執行某些跨 crate 內嵌和無用程式碼消除，而這種情況非常常見。LTO 會打破這個邊界，讓最佳化器在連結時取得所有 crate 的中間表示，並進行一次全域最佳化。不過，千萬不要不加考慮地直接在設定檔中加入 `lto = true`，否則 Rust 編譯會慢得讓你懷疑人生；請仔細檢查，只在使用發行設定檔時啟用它。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:36:45.687626Z
@@ -1992,7 +1992,7 @@ segments:
       tokens: 24170
       review: false
     ko-KR:
-      text: 따라서 좋은 코드라면 한 종류의 정상 경로를 다루는 테스트와 적어도 하나의 오류 경로를 다루는 테스트가 있어야 한다. 같은 종류의 오류 경로는 한 사례만 다뤄도 오류가 Err로 반환되는지 시험할 수 있으므로, 대체 논리를 작성하고 자연스럽게 `thiserror`로 열거하거나 `anyhow`로 가로채 평탄화하고 출력하고 기록할 수 있다. 요컨대 코드 자체가 이런 상황을 처리할 장치를 작성하도록 강제한다. 이 단계까지 해냈다면 `panic`는 쓸모가 없으며, 이를 “이론상 불가능”이라고 이해할 수 있다. 하지만 어디까지나 이론상일 뿐이다. 현실에는 운영체제 오류, 메모리 오류, 우주선의 단일 전자로 인한 비트 반전, 기묘한 오버플로 등이 있으며, 이런 상황을 전부 다루는 것은 영원히 불가능하다. 그렇다면 왜 패닉을 일으키지 않아야 할까? 이런 상황은 높은 확률로, 즉 90%의 확률로 코드 문제가 아니기 때문이다. `panic`의 본질은 그것이 발생할 때 Rust가 호출 스택을 한 단계씩 거슬러 올라가면서 각 프레임의 소멸자(drop)를 차례로 호출해 자원을 정리한다는 데 있다. 이 과정에는 비즈니스 논리의 오류 지점을 찾기 위해 컴파일러가 생성하는 추가 `unwind` 테이블이 필요하다. 오류 자체가 코드에서 비롯되지 않았을 가능성이 높다면 그 정보가 무슨 가치가 있겠는가? 이를 남겨 두면 컴파일 산출물의 크기도 커지고 링커의 작업량도 늘어나므로, 끄는 것이 정답이다. 코드를 충분히 테스트했고 그만큼 자신이 있다면 `panic = abort` 설정을 권한다.
+      text: 따라서 좋은 코드라면 한 종류의 정상 경로를 다루는 테스트와 적어도 하나의 오류 경로를 다루는 테스트가 있어야 합니다. 같은 종류의 오류 경로는 한 사례만 다뤄도 오류가 Err로 반환되는지 시험할 수 있으므로, 대체 논리를 작성하고 자연스럽게 `thiserror`로 열거하거나 `anyhow`로 가로채 평탄화하고 출력하고 기록할 수 있습니다. 요컨대 코드 자체가 이런 상황을 처리할 장치를 작성하도록 강제합니다. 이 단계까지 해냈다면 `panic`는 쓸모가 없으며, 이를 “이론상 불가능”이라고 이해할 수 있습니다. 하지만 어디까지나 이론상일 뿐입니다. 현실에는 운영체제 오류, 메모리 오류, 우주선의 단일 전자로 인한 비트 반전, 기묘한 오버플로 등이 있으며, 이런 상황을 전부 다루는 것은 영원히 불가능합니다. 그렇다면 왜 패닉을 일으키지 않아야 할까요? 이런 상황은 높은 확률로, 즉 90%의 확률로 코드 문제가 아니기 때문입니다. `panic`의 본질은 그것이 발생할 때 Rust가 호출 스택을 한 단계씩 거슬러 올라가면서 각 프레임의 소멸자(drop)를 차례로 호출해 자원을 정리한다는 데 있습니다. 이 과정에는 비즈니스 논리의 오류 지점을 찾기 위해 컴파일러가 생성하는 추가 `unwind` 테이블이 필요합니다. 오류 자체가 코드에서 비롯되지 않았을 가능성이 높다면 그 정보가 무슨 가치가 있겠는가? 이를 남겨 두면 컴파일 산출물의 크기도 커지고 링커의 작업량도 늘어나므로, 끄는 것이 정답입니다. 코드를 충분히 테스트했고 그만큼 자신이 있다면 `panic = abort` 설정을 권합니다.
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:36:58.22731Z
@@ -2017,7 +2017,7 @@ segments:
       review: false
   97df4075d878ac7b8a6b12e70ee5b037:
     de-DE:
-      text: 'Im Kern steckt die lange Kompilierzeit also größtenteils nicht im Rust-Frontend selbst, sondern in LLVM, diesem "schweren Backend". Damit stellt sich die Frage: Kann man es nicht einfach weglassen? ~~:tn[Doch, man kann, miau]{is="Im Original endet der Satz auf ein angehängtes ‚喵'', ein Katzenmiauen, das im chinesischen Netzjargon als betont niedliche, schmeichelnde Schlusspartikel dient und den Satz bewusst albern klingen lässt."}~~ — es gibt ein Backend namens Cranelift, das genau für diesen Bedarf gebaut wurde. Ursprünglich hieß es Cretonne, gestartet 2016, entwickelt von der [Bytecode Alliance](https://bytecodealliance.org), und war anfangs :tn[eine Portion Teigtaschen, eigens für Wasmtime gefaltet]{is="Das Original nennt Cranelift die für Wasmtime ‚gefalteten Jiaozi'' und spielt damit auf die chinesische Wendung an, für jemanden eigens Teigtaschen zu machen — also etwas ganz Persönliches, nur für diesen einen Zweck Gekochtes."} — als Codegen-Backend genau dafür entworfen; später nahm Rust es offiziell auf und machte es zum optionalen Codegen-Backend.'
+      text: 'Im Kern steckt die lange Kompilierzeit also größtenteils nicht im Rust-Frontend selbst, sondern in LLVM, diesem "schweren Backend". Damit stellt sich die Frage: Kann man es nicht einfach weglassen? ~~:tn[Doch, man kann, miau]{is="Im Original endet der Satz auf ein angehängtes ‚喵'', ein Katzenmiauen, das im chinesischen Netzjargon als betont niedliche, schmeichelnde Schlusspartikel dient und den Satz bewusst albern klingen lässt."}~~ — es gibt ein Backend namens Cranelift, das genau für diesen Bedarf gebaut wurde. Ursprünglich hieß es Cretonne, gestartet 2016, entwickelt von der [Bytecode Alliance](https://bytecodealliance.org), und war anfangs :tn[eine Portion Teigtaschen, eigens für Wasmtime gefaltet]{is="Das Original nennt Cranelift die für Wasmtime ‚包的饺子'', die eigens gefalteten Jiaozi, und spielt damit auf die chinesische Wendung an, für jemanden eigens Teigtaschen zu machen — also etwas ganz Persönliches, nur für diesen einen Zweck Gekochtes."} — als Codegen-Backend genau dafür entworfen; später nahm Rust es offiziell auf und machte es zum optionalen Codegen-Backend.'
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:16:50.373673Z
@@ -2049,7 +2049,7 @@ segments:
       tokens: 32462
       review: false
     ja-JP:
-      text: つまり本質的に、コンパイルが遅い時間の大部分は Rust 自身のフロントエンドではなく、LLVM という「重量級バックエンド」に費やされている。ではここで問題だ、これを捨てることはできないのか。~~:tn[答えはあるのですにゃ]{is="原文は文末に猫の鳴き声「喵」を甘えた終助詞として付けている。中国語ネットでわざと可愛こぶるときの語感。"}~~ Cranelift というバックエンドが、まさにこの需要のために作られている。もとは Cretonne という名で 2016 年に始まり、[Bytecode Alliance](https://bytecodealliance.org) が開発した。最初は [Wasmtime](https://github.com/bytecodealliance/wasmtime) のために:tn[わざわざ手料理をこしらえるように用意された]{is="原文では Cranelift を Wasmtime のために「包的饺子」（包んだ餃子）と呼ぶ。誰かのためにわざわざ餃子を包む、という中国の家庭的な言い回しを借りた冗談。"}コード生成バックエンドで、その後 Rust 公式に取り込まれ、オプションの codegen バックエンドになった。
+      text: つまり本質的に、コンパイルが遅い時間の大部分は Rust 自身のフロントエンドではなく、LLVM という「重量級バックエンド」に費やされています。ではここで問題です、これを捨てることはできないのでしょうか。~~:tn[答えはあるのですにゃ]{is="原文は文末に猫の鳴き声「喵」を甘えた終助詞として付けている。中国語ネットでわざと可愛こぶるときの語感。"}~~ Cranelift というバックエンドが、まさにこの需要のために作られています。もとは Cretonne という名で 2016 年に始まり、[Bytecode Alliance](https://bytecodealliance.org) が開発しました。最初は [Wasmtime](https://github.com/bytecodealliance/wasmtime) のために:tn[わざわざ手料理をこしらえるように用意された]{is="原文では Cranelift を Wasmtime のために「包的饺子」（包んだ餃子）と呼ぶ。誰かのためにわざわざ餃子を包む、という中国の家庭的な言い回しを借りた冗談。"}コード生成バックエンドで、その後 Rust 公式に取り込まれ、オプションの codegen バックエンドになりました。
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:15:41.60464Z
@@ -2057,7 +2057,7 @@ segments:
       tokens: 32462
       review: false
     ko-KR:
-      text: 그러니까 본질적으로, 컴파일이 느린 시간의 상당 부분은 Rust 자체의 프런트엔드가 아니라 LLVM이라는 "중량급 백엔드"에서 소모된다. 그럼 여기서 문제, 이걸 버릴 수는 없을까? ~~:tn[답은 있다냥]{is="원문은 문장 끝에 고양이 울음소리 喵를 애교 섞인 종결 어미처럼 붙였다. 중국어 인터넷에서 일부러 귀여운 척할 때 쓰는 말투다."}~~ Cranelift라는 백엔드가 바로 이 요구를 위해 만들어졌다. 처음 이름은 Cretonne였고 2016년에 시작되어 [Bytecode Alliance](https://bytecodealliance.org)가 개발했으며, 애초에 [Wasmtime](https://github.com/bytecodealliance/wasmtime)을 위해 :tn[따로 상을 차려주듯 준비한]{is="원문은 Cranelift가 Wasmtime을 위해 \u0022빚은 만두(饺子)\u0022라고 표현한다. 특정한 사람이나 일을 위해 일부러 만두를 빚는다는 중국의 정겨운 관용적 비유다."} 코드 생성 백엔드였다. 이후 Rust 공식 프로젝트에 편입되어 선택 가능한 codegen 백엔드가 되었다.
+      text: 그러니까 본질적으로, 컴파일이 느린 시간의 상당 부분은 Rust 자체의 프런트엔드가 아니라 LLVM이라는 "중량급 백엔드"에서 소모됩니다. 그럼 여기서 문제, 이걸 버릴 수는 없을까요? ~~:tn[답은 있다냥]{is="원문은 문장 끝에 고양이 울음소리 喵를 애교 섞인 종결 어미처럼 붙였다. 중국어 인터넷에서 일부러 귀여운 척할 때 쓰는 말투다."}~~ Cranelift라는 백엔드가 바로 이 요구를 위해 만들어졌습니다. 처음 이름은 Cretonne였고 2016년에 시작되어 [Bytecode Alliance](https://bytecodealliance.org)가 개발했으며, 애초에 [Wasmtime](https://github.com/bytecodealliance/wasmtime)을 위해 :tn[따로 상을 차려주듯 준비한]{is="원문은 Cranelift가 Wasmtime을 위해 \u0022빚은 만두(饺子)\u0022라고 표현한다. 특정한 사람이나 일을 위해 일부러 만두를 빚는다는 중국의 정겨운 관용적 비유다."} 코드 생성 백엔드였습니다. 이후 Rust 공식 프로젝트에 편입되어 선택 가능한 codegen 백엔드가 되었습니다.
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:15:41.60464Z
@@ -2073,7 +2073,7 @@ segments:
       tokens: 29337
       review: false
     zh-TW:
-      text: 所以本質上，編譯慢的時間有很大一部分並不花在 Rust 自己的前端，而是花在 LLVM 這個「重型後端」上。那麼問題來了：有沒有可能把它丟掉？~~:tn[答案是有的喵]{is="原文句尾用貓叫聲「喵」當成撒嬌式的語氣詞，是中文網路上刻意賣萌的語感。"}~~ 確實有——有一個叫 Cranelift 的後端，就是為了這個需求做的。它最早叫 Cretonne，2016 年啟動，由 [Bytecode Alliance](https://bytecodealliance.org) 開發，一開始就是:tn[專門為]{is="原文說 Cranelift 是替 Wasmtime「包的餃子」，借用了為某人某事特地包一頓餃子的在地說法，帶著家常的親暱味。"} [Wasmtime](https://github.com/bytecodealliance/wasmtime) 量身備好的程式碼生成後端；後來被 Rust 官方收編，成為可選的 codegen 後端。
+      text: 所以本質上，編譯慢的時間有很大一部分並不花在 Rust 自己的前端，而是花在 LLVM 這個「重型後端」上。那麼問題來了：有沒有可能把它丟掉？~~:tn[答案是有的喵]{is="原文句尾用貓叫聲「喵」當成撒嬌式的語氣詞，是中文網路上刻意賣萌的語感。"}~~ 有一個叫 Cranelift 的後端，就是為了這個需求做的。它最早叫 Cretonne，2016 年啟動，由 [Bytecode Alliance](https://bytecodealliance.org) 開發，一開始就是:tn[專門為 Wasmtime 包的餃子]{is="原文說 Cranelift 是替 Wasmtime「包的饺子」，借用了為某人某事特地包一頓餃子的在地說法，帶著家常的親暱味。"}，[Wasmtime](https://github.com/bytecodealliance/wasmtime) 專用的程式碼生成後端；後來被 Rust 官方收編，成為可選的 codegen 後端。
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:15:41.60464Z
@@ -2943,7 +2943,7 @@ segments:
       tokens: 18305
       review: false
     es-ES:
-      text: 'Hablemos también de `codegen-units`. Este parámetro controla en cuántas unidades mínimas divide el compilador una crate para que el motor de compilación las procese en paralelo. De forma predeterminada, se usan 256 unidades en modo de depuración y 16 en modo de publicación. Cuanto mayor sea el número, mayor será el paralelismo y más rápida la compilación, ya que varios núcleos de la CPU pueden ejecutar simultáneamente la generación de código del motor. El coste es una optimización menos eficaz: como cada unidad se optimiza por separado, LLVM (o Cranelift) dispone de menos contexto, por lo que hay menos oportunidades de inserción en línea y optimización entre unidades.'
+      text: 'Hablemos también de `codegen-units`. Este parámetro controla en cuántas unidades mínimas divide el compilador una crate para que el backend las procese en paralelo. De forma predeterminada, se usan 256 unidades en modo de depuración y 16 en modo de publicación. Cuanto mayor sea el número, mayor será el paralelismo y más rápida la compilación, ya que varios núcleos de la CPU pueden ejecutar simultáneamente la generación de código del backend. El coste es una optimización menos eficaz: como cada unidad se optimiza por separado, LLVM (o Cranelift) dispone de menos contexto, por lo que hay menos oportunidades de inserción en línea y optimización entre unidades.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:38:37.186324Z
@@ -2951,7 +2951,7 @@ segments:
       tokens: 18305
       review: false
     fr-FR:
-      text: 'Parlons également de `codegen-units`. Ce paramètre détermine en combien d’unités minimales le compilateur divise une crate afin que le moteur de compilation les traite en parallèle. Par défaut, il y en a 256 en mode débogage et 16 en mode production. Plus ce nombre est élevé, plus le parallélisme est important et plus la compilation est rapide, car plusieurs cœurs du processeur peuvent exécuter simultanément la génération de code du moteur. En contrepartie, l’optimisation est moins efficace : chaque unité étant optimisée séparément, LLVM (ou Cranelift) dispose de moins de contexte, ce qui réduit les possibilités de mise en ligne et d’optimisation entre unités.'
+      text: 'Parlons également de `codegen-units`. Ce paramètre détermine en combien d’unités minimales le compilateur divise une crate afin que le backend les traite en parallèle. Par défaut, il y en a 256 en mode débogage et 16 en mode production. Plus ce nombre est élevé, plus le parallélisme est important et plus la compilation est rapide, car plusieurs cœurs du processeur peuvent exécuter simultanément la génération de code du backend. En contrepartie, l’optimisation est moins efficace : chaque unité étant optimisée séparément, LLVM (ou Cranelift) dispose de moins de contexte, ce qui réduit les possibilités de mise en ligne et d’optimisation entre unités.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:38:37.186324Z
@@ -3122,7 +3122,7 @@ segments:
       review: false
   ff317262076663bb2d98caaad83893c9:
     de-DE:
-      text: 'Dieses Problem ist jedoch durchaus lösbar: Das Backend lässt sich mit `cfg` auswählen, und im Cranelift-Modus genügt es, mit `ring` zu kompilieren. Nachdem die Entwicklungs- und Veröffentlichungsprofile wie oben beschrieben konfiguriert wurden, zeigt ein einfacher Vergleich der CLI-Kompilierung, dass Entwicklungs-Builds unter diesen Bedingungen mindestens dreimal so schnell wie Veröffentlichungs-Builds sind – selbst bei vollständigen Kompilierungen ohne inkrementelle Verarbeitung. Mit O0 und deaktivierter Optimierung zur Verbindungszeit sollte das Entwicklungsprofil bei späteren inkrementellen Aktualisierungen sogar um ein Vielfaches von zehn schneller als das Veröffentlichungsprofil sein. Techniken wie die Optimierung zur Verbindungszeit beruhen nämlich darauf, die Grenzen zwischen den einzelnen Paketen einzuebnen. Sobald alles zu einer Einheit verschmolzen ist, erzwingt jede Codeänderung eine erneute Kompilierung der gesamten Einheit, sodass korrekte inkrementelle Aktualisierungen nicht mehr möglich sind.'
+      text: 'Dieses Problem ist jedoch durchaus lösbar: Das Backend lässt sich mit `cfg` auswählen, und im Cranelift-Modus genügt es, mit `ring` zu kompilieren. Nachdem die Entwicklungs- und Veröffentlichungsprofile wie oben beschrieben konfiguriert wurden, zeigt ein einfacher Vergleich der CLI-Kompilierung, dass Entwicklungs-Builds unter diesen Bedingungen mindestens dreimal so schnell wie Veröffentlichungs-Builds sind – selbst bei vollständigen Kompilierungen ohne inkrementelle Verarbeitung. Mit O0 und deaktivierter Linkzeitoptimierung sollte das Entwicklungsprofil bei späteren inkrementellen Aktualisierungen sogar um ein Vielfaches von zehn schneller als das Veröffentlichungsprofil sein. Techniken wie die Linkzeitoptimierung beruhen nämlich darauf, die Grenzen zwischen den einzelnen Paketen einzuebnen. Sobald alles zu einer Einheit verschmolzen ist, erzwingt jede Codeänderung eine erneute Kompilierung der gesamten Einheit, sodass korrekte inkrementelle Aktualisierungen nicht mehr möglich sind.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:38:48.909973Z
@@ -3138,7 +3138,7 @@ segments:
       tokens: 18985
       review: false
     es-ES:
-      text: 'Sin embargo, este problema sí tiene solución: se puede seleccionar el motor con `cfg` y compilar con `ring` en el modo Cranelift. Tras configurar los perfiles de desarrollo y producción como se describió anteriormente, basta con comparar la compilación de la interfaz de línea de comandos para comprobar que, en estas condiciones, la compilación de desarrollo es al menos tres veces más rápida que la de producción, incluso tratándose de compilaciones en frío sin procesamiento incremental. Con el nivel de optimización O0 y la optimización en tiempo de enlace desactivada, el perfil de desarrollo debería ser decenas de veces más rápido que el de producción durante las actualizaciones incrementales posteriores. Esto se debe a que técnicas como la optimización en tiempo de enlace funcionan aplanando los límites entre los distintos paquetes; una vez que todo se convierte en una sola unidad, modificar una parte del código obliga a recompilarla por completo e impide realizar correctamente las actualizaciones incrementales.'
+      text: 'Sin embargo, este problema sí tiene solución: se puede seleccionar el backend con `cfg` y compilar con `ring` en el modo Cranelift. Tras configurar los perfiles de desarrollo y producción como se describió anteriormente, basta con comparar la compilación de la interfaz de línea de comandos para comprobar que, en estas condiciones, la compilación de desarrollo es al menos tres veces más rápida que la de producción, incluso tratándose de compilaciones en frío sin procesamiento incremental. Con el nivel de optimización O0 y la optimización en tiempo de enlace desactivada, el perfil de desarrollo debería ser decenas de veces más rápido que el de producción durante las actualizaciones incrementales posteriores. Esto se debe a que técnicas como la optimización en tiempo de enlace funcionan aplanando los límites entre los distintos paquetes; una vez que todo se convierte en una sola unidad, modificar una parte del código obliga a recompilarla por completo e impide realizar correctamente las actualizaciones incrementales.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:38:48.909973Z
@@ -3146,7 +3146,7 @@ segments:
       tokens: 18985
       review: false
     fr-FR:
-      text: 'Ce problème n’est toutefois pas insoluble : il suffit de sélectionner le moteur avec `cfg` et de compiler avec `ring` en mode Cranelift. Après avoir configuré les profils de développement et de production comme indiqué ci-dessus, une simple comparaison de la compilation du CLI montre que, dans ces conditions, la version de développement est au moins trois fois plus rapide que celle de production, même lors d’une compilation à froid sans traitement incrémental. Avec le niveau d’optimisation O0 et l’optimisation à l’édition des liens désactivée, le profil de développement devrait même être des dizaines de fois plus rapide que celui de production lors des mises à jour incrémentales suivantes. En effet, des techniques comme l’optimisation à l’édition des liens reposent sur l’aplatissement des frontières entre les différents paquets ; une fois tous les éléments fusionnés en un seul bloc, la modification d’une portion de code impose de tout recompiler et empêche le bon fonctionnement des mises à jour incrémentales.'
+      text: 'Ce problème n’est toutefois pas insoluble : il suffit de sélectionner le backend avec `cfg` et de compiler avec `ring` en mode Cranelift. Après avoir configuré les profils de développement et de production comme indiqué ci-dessus, une simple comparaison de la compilation du CLI montre que, dans ces conditions, la version de développement est au moins trois fois plus rapide que celle de production, même lors d’une compilation à froid sans traitement incrémental. Avec le niveau d’optimisation O0 et l’optimisation à l’édition des liens désactivée, le profil de développement devrait même être des dizaines de fois plus rapide que celui de production lors des mises à jour incrémentales suivantes. En effet, des techniques comme l’optimisation à l’édition des liens reposent sur l’aplatissement des frontières entre les différents paquets ; une fois tous les éléments fusionnés en un seul bloc, la modification d’une portion de code impose de tout recompiler et empêche le bon fonctionnement des mises à jour incrémentales.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:38:48.909973Z
@@ -3178,7 +3178,7 @@ segments:
       tokens: 19631
       review: false
     zh-TW:
-      text: 不過這個問題並非無解：可以使用 `cfg` 選擇後端，並在 Cranelift 模式下使用 `ring` 編譯。按照上述說明設定好開發與發行設定檔後，只要簡單比較一下命令列工具的編譯速度，就會發現開發建置至少比發行建置快三倍，而且這還是在沒有增量編譯的冷編譯情況下。使用 O0 並關閉連結時最佳化後，開發設定檔在後續增量更新中的速度應該能比發行設定檔快數十倍。連結時最佳化之類的技術實際上仰賴消除各個軟體套件之間的邊界來實現最佳化；當它們合併成一個整體後，只要修改一處程式碼，整個整體都必須重新編譯，因此無法正確進行增量更新。
+      text: 不過這個問題並非無解：可以使用 `cfg` 選擇後端，並在 Cranelift 模式下使用 `ring` 編譯。按照上述說明設定好開發與發行設定檔後，只要簡單比較一下命令列工具的編譯速度，就會發現開發建置至少比發行建置快三倍，而且這還是在沒有增量編譯的冷編譯情況下。使用 O0 並關閉連結時最佳化後，開發設定檔在後續增量更新中的速度應該能比發行設定檔快數十倍。連結時最佳化之類的技術實際上仰賴消除各個 crate 之間的邊界來實現最佳化；當它們合併成一個整體後，只要修改一處程式碼，整個整體都必須重新編譯，因此無法正確進行增量更新。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:38:48.909973Z

@@ -589,6 +589,14 @@ fn translate_articles(args: I18nArgs<'_>) -> anyhow::Result<ExitCode> {
 			finding.reason
 		);
 	}
+	// Said out loud rather than left to arithmetic: the site does not render a half-translated
+	// page, so one missing body block and a locale nobody can read are the same fact.
+	for (article, locale, blocked) in &outcome.blocked_views {
+		println!(
+			"blocked {article} {locale}: {blocked} body segment(s) missing, so the whole view \
+			 falls back to the source article"
+		);
+	}
 	println!(
 		"{} translations across {} segments, {} failed; {} incomplete segments ({} missing locale entries)",
 		outcome.translated,

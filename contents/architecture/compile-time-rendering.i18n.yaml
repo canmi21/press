@@ -107,7 +107,7 @@ segments:
       tokens: 20322
       review: false
     ko-KR:
-      text: 이렇게 이해하면 **CTR**은 본질적으로 **PPR(부분 사전 렌더링)**의 가장 이상적인 형태다. 캐시할 수 있는 모든 것을 컴파일 시점에 렌더링해 두므로 실행 시 추가 비용은 전혀 없고, 실제로 바뀌는 소량의 데이터에만 비용이 든다. 그렇다면 `React 19.2`의 PPR과는 무엇이 다를까? 답은 내 방식이 더 철저하고 더 과감하다는 것이다. `PPR` 모든 정적 부분이 캐시되어 있고 작은 동적 콘텐츠 조각만 갱신하면 되는 가장 이상적인 상황에서도, 그 변경이 단순한 문자열 하나의 변경에 불과하더라도 React는 `renderToReadableStream()`을 다시 실행해야 하며, 그 비용은 결코 작지 않다.
+      text: 이렇게 이해하면 **CTR**은 본질적으로 **PPR(부분 사전 렌더링)**의 가장 이상적인 형태입니다. 캐시할 수 있는 모든 것을 컴파일 시점에 렌더링해 두므로 실행 시 추가 비용은 전혀 없고, 실제로 바뀌는 소량의 데이터에만 비용이 듭니다. 그렇다면 `React 19.2`의 PPR과는 무엇이 다를까요? 답은 내 방식이 더 철저하고 더 과감하다는 것입니다. `PPR` 모든 정적 부분이 캐시되어 있고 작은 동적 콘텐츠 조각만 갱신하면 되는 가장 이상적인 상황에서도, 그 변경이 단순한 문자열 하나의 변경에 불과하더라도 React는 `renderToReadableStream()`을 다시 실행해야 하며, 그 비용은 결코 작지 않습니다.
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:16:05.711152Z
@@ -123,7 +123,7 @@ segments:
       tokens: 19540
       review: false
     zh-TW:
-      text: 這樣理解下來，**CTR** 本質上就是 **PPR(Partial Prerendering)** 最理想的情況，所有能緩存的東西全部在編譯期渲染完了，零運行時開銷，只有真正變化的那一點數據才有成本。那和 `React 19.2` 的 PPR 不同的是什麼呢？答案是我更徹底，更激進 `PPR` 就算在最理想的情況下，所有靜態部分都緩存好了，只有一小段動態內容需要更新，但哪怕這個動態內容只是一個簡單的字符串變了，React 還是得重新跑一遍 `renderToReadableStream()`，這個代價是不小的。
+      text: 這樣理解下來，**CTR** 本質上就是 **PPR(Partial Prerendering)** 最理想的情況，所有能快取的東西全部在編譯期渲染完了，零執行階段開銷，只有真正變化的那一點資料才有成本。那和 `React 19.2` 的 PPR 不同的是什麼呢？答案是我更徹底，更激進 `PPR` 就算在最理想的情況下，所有靜態部分都快取好了，只有一小段動態內容需要更新，但哪怕這個動態內容只是一個簡單的字串變了，React 還是得重新跑一遍 `renderToReadableStream()`，這個代價是不小的。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T13:08:39.440063Z
@@ -197,7 +197,7 @@ segments:
       review: false
   0e1434b80402c02fdc8b7a74be1e70ae:
     de-DE:
-      text: 'An diesem Punkt ist Ihnen vielleicht schon aufgefallen, dass diese `slot` **„Slots mit Typmarkierungen“** sind. Die Aufgabe der serverseitigen Laufzeitumgebung wird nun denkbar einfach: Sie nimmt die echten Daten entgegen und füllt damit diese Lücken – nichts weiter als reine Textersetzung. `renderToString()`, eine JavaScript-Laufzeitumgebung oder `vDOM` werden überhaupt nicht benötigt. Jede Sprache, die **HTML**-Kommentare auswerten und **Text ersetzen** kann, eignet sich als Backend – Rust, Go und TypeScript funktionieren alle. Deshalb handelt es sich um ein Protokoll und nicht um ein Framework.'
+      text: 'An diesem Punkt ist dir vielleicht schon aufgefallen, dass diese `slot` **„Slots mit Typmarkierungen“** sind. Die Aufgabe der serverseitigen Laufzeitumgebung wird nun denkbar einfach: Sie nimmt die echten Daten entgegen und füllt damit diese Lücken – nichts weiter als reine Textersetzung. `renderToString()`, eine JavaScript-Laufzeitumgebung oder `vDOM` werden überhaupt nicht benötigt. Jede Sprache, die **HTML**-Kommentare auswerten und **Text ersetzen** kann, eignet sich als Backend – Rust, Go und TypeScript funktionieren alle. Deshalb handelt es sich um ein Protokoll und nicht um ein Framework.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:16:05.711148Z
@@ -221,7 +221,7 @@ segments:
       tokens: 18475
       review: false
     fr-FR:
-      text: 'À ce stade, vous avez peut-être déjà compris que ces `slot` sont des **« emplacements munis d’un marqueur de type »**. Le rôle de l’environnement d’exécution côté serveur devient alors extrêmement simple : récupérer les données réelles et insérer les valeurs dans ces trous, par un simple remplacement de chaînes de caractères. Nul besoin de `renderToString()`, d’un environnement d’exécution JavaScript ou de `vDOM`. Tout langage capable d’analyser des commentaires **HTML** et d’effectuer un **remplacement de chaînes de caractères** peut servir de moteur côté serveur : Rust, Go et TypeScript conviennent tous. Voilà pourquoi il s’agit d’un protocole et non d’un cadre logiciel.'
+      text: 'À ce stade, vous avez peut-être déjà compris que ces `slot` sont des **« emplacements munis d’un marqueur de type »**. Le rôle de l’environnement d’exécution côté serveur devient alors extrêmement simple : récupérer les données réelles et insérer les valeurs dans ces trous, par un simple remplacement de chaînes de caractères. Nul besoin de `renderToString()`, d’un environnement d’exécution JavaScript ou de `vDOM`. Tout langage capable d’analyser des commentaires **HTML** et d’effectuer un **remplacement de chaînes de caractères** peut servir de moteur côté serveur : Rust, Go et TypeScript conviennent tous. Voilà pourquoi il s’agit d’un protocole et non d’un framework.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:16:05.711148Z
@@ -253,7 +253,7 @@ segments:
       tokens: 19388
       review: false
     zh-TW:
-      text: 到這一步你可能已經看出來了這些 `slot` 就是 **"有類型標記的插槽"**。這個時候服務端運行時要做的事情變得極其簡單，那就是拿到真實數據，往這些孔裡填值，純粹的字符串替換。完全不需要 `renderToString()`，不需要 JavaScript 運行時，不需要 `vDOM`。任何能解析 **HTML** 註釋、能做**字符串替換**的語言都能當後端，Rust、Go、TypeScript 都行，這就是為什麼它是一個協議而不是一個框架。
+      text: 到這一步你可能已經看出來了這些 `slot` 就是 **"有型別標記的插槽"**。這個時候伺服器端執行環境要做的事情變得極其簡單，那就是拿到真實資料，往這些孔裡填值，純粹的字串替換。完全不需要 `renderToString()`，不需要 JavaScript 執行環境，不需要 `vDOM`。任何能解析 **HTML** 註解、能做**字串替換**的語言都能當後端，Rust、Go、TypeScript 都行，這就是為什麼它是一個協定而不是一個框架。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T13:08:39.440177Z
@@ -294,7 +294,7 @@ segments:
       tokens: 18155
       review: false
     ja-JP:
-      text: ここで着想を与えてくれた **TypeScript** にも感謝したい。いわゆる「値」がコンパイル時に実際には何であるかは重要ではなく、大切なのはその型だ。`slot` にどのような内容を入れる場合でも、それが `Open String` のようなもの（無限に多くの値を取り得る文字列）でない限り、有限個の可能性を表す型として包むことができる。たとえばダッシュボードを作っていて、ある部分を条件付きで描画する必要があるとしても、結局はユーザーや管理者など、すべて定義し切れる型にすぎない。現実世界で条件付き描画や論理判断が必要になる箇所のほぼすべては、いくつかの明確な可能性へと整理できる。
+      text: ここで着想を与えてくれた **TypeScript** にも感謝したいところです。いわゆる「値」がコンパイル時に実際には何であるかは重要ではなく、大切なのはその型です。`slot` にどのような内容を入れる場合でも、それが `Open String` のようなもの（無限に多くの値を取り得る文字列）でない限り、有限個の可能性を表す型として包むことができます。たとえばダッシュボードを作っていて、ある部分を条件付きで描画する必要があるとしても、結局はユーザーや管理者など、すべて定義し切れる型にすぎません。現実世界で条件付き描画や論理判断が必要になる箇所のほぼすべては、いくつかの明確な可能性へと整理できます。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:16:23.917116Z
@@ -302,7 +302,7 @@ segments:
       tokens: 18155
       review: false
     ko-KR:
-      text: 이런 영감을 준 **TypeScript**에도 감사해야 한다. 이른바 ‘값’이 컴파일 시점에 실제로 무엇인지는 중요하지 않고, 중요한 것은 그 타입이다. `slot` 안에 어떤 내용을 넣든 `Open String` 같은 것, 즉 가능한 값이 무한한 문자열만 아니라면 유한한 가능성을 나타내는 타입으로 감쌀 수 있다. 예를 들어 대시보드를 만들면서 어떤 영역을 조건부로 렌더링해야 한다면 결국 사용자나 관리자 같은 경우로 나뉘며, 그 타입들은 모두 빠짐없이 정의할 수 있다. 현실 세계에서 조건부 렌더링이나 논리적 판단이 필요한 거의 모든 곳은 몇 가지 확정적인 가능성으로 정리할 수 있다.
+      text: 이런 영감을 준 **TypeScript**에도 감사해야 합니다. 이른바 ‘값’이 컴파일 시점에 실제로 무엇인지는 중요하지 않고, 중요한 것은 그 타입입니다. `slot` 안에 어떤 내용을 넣든 `Open String` 같은 것, 즉 가능한 값이 무한한 문자열만 아니라면 유한한 가능성을 나타내는 타입으로 감쌀 수 있습니다. 예를 들어 대시보드를 만들면서 어떤 영역을 조건부로 렌더링해야 한다면 결국 사용자나 관리자 같은 경우로 나뉘며, 그 타입들은 모두 빠짐없이 정의할 수 있습니다. 현실 세계에서 조건부 렌더링이나 논리적 판단이 필요한 거의 모든 곳은 몇 가지 확정적인 가능성으로 정리할 수 있습니다.
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:16:23.917116Z
@@ -318,7 +318,7 @@ segments:
       tokens: 19586
       review: false
     zh-TW:
-      text: 這裡也要感謝 **TypeScript** 給我的靈感，其實所謂的 "值" 本身在編譯期是什麼並不重要，重要的是它的類型；一個 `slot` 裡要填什麼內容，只要它不是那種 `Open String` (有無限種可能的字符串)，它就可以被包裹為有限可能性的類型。比如你在寫一個 dashboard，需要條件渲染某塊內容，無非就是 User 或 Admin 等等但是總歸是可以定義完的類型；真實世界中幾乎所有需要條件渲染、需要做邏輯判斷的地方，都可以被歸納為幾種確定的可能性。
+      text: 這裡也要感謝 **TypeScript** 給我的靈感，其實所謂的 "值" 本身在編譯期是什麼並不重要，重要的是它的型別；一個 `slot` 裡要填什麼內容，只要它不是那種 `Open String` (有無限種可能的字串)，它就可以被包裹為有限可能性的型別。比如你在寫一個 dashboard，需要條件渲染某塊內容，無非就是 User 或 Admin 等等但是總歸是可以定義完的型別；真實世界中幾乎所有需要條件渲染、需要做邏輯判斷的地方，都可以被歸納為幾種確定的可能性。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T13:08:39.440168Z
@@ -383,7 +383,7 @@ segments:
       tokens: 19621
       review: false
     zh-TW:
-      text: 這樣就可以在組件裡還是寫一些計算邏輯，這部分邏輯會在後端拿到數據之後跑一段小 JS，把它推導為 `ready-to-display` 的狀態，然後再發回給前端做首屏的水合。這樣 CTR 滿意了，拿到了嚴格結構的派生數據，用戶 DX 開心了，組件只寫一遍。當然如果你願意嚴格遵守純類型約束的話，後端確實可以做到 **No JS Runtime**，~~這個承諾其實還是成立的~~。但無論怎麼說，新增的這個很小的 JavaScript Runtime，它的性能開銷、內存佔用和體積都遠遠比 Node 之類的東西小得多，基本上就是 200-300KB 的事情，卻帶來了非常大的靈活性。
+      text: 這樣就可以在元件裡還是寫一些計算邏輯，這部分邏輯會在後端拿到資料之後跑一段小 JS，把它推導為 `ready-to-display` 的狀態，然後再發回給前端做首屏的水合。這樣 CTR 滿意了，拿到了嚴格結構的派生資料，使用者 DX 開心了，元件只寫一遍。當然如果你願意嚴格遵守純型別約束的話，後端確實可以做到 **No JS Runtime**，~~這個承諾其實還是成立的~~。但無論怎麼說，新增的這個很小的 JavaScript Runtime，它的效能開銷、記憶體佔用和體積都遠遠比 Node 之類的東西小得多，基本上就是 200-300KB 的事情，卻帶來了非常大的靈活性。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T13:08:39.440134Z
@@ -513,7 +513,7 @@ segments:
       tokens: 19219
       review: false
     zh-TW:
-      text: 這些 `%%SEAM:...%%` 就是 **Sentinel**，它們占住了每一個動態值的位置。React 拿著這些 **Sentinel** 資料跑完 `renderToString()` 之後，輸出的 **HTML** 裡這些位置就被標記出來了。接下來構建管線會把這些哨兵轉換成 HTML 註釋形式的 slot 標記
+      text: 這些 `%%SEAM:...%%` 就是 **Sentinel**，它們占住了每一個動態值的位置。React 拿著這些 **Sentinel** 資料跑完 `renderToString()` 之後，輸出的 **HTML** 裡這些位置就被標記出來了。接下來建置管線會把這些哨兵轉換成 HTML 註解形式的 slot 標記
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T13:08:39.440135Z
@@ -562,7 +562,7 @@ segments:
       tokens: 18475
       review: false
     ko-KR:
-      text: 내가 보기에는 `RSC`와 수많은 `SSR` 프레임워크가 사실상 `render`을 남용하고 있다. `SSG`은 내가 원하던 방식, 즉 빌드할 때 페이지를 미리 생성해 두고 요청 시 다시 렌더링할 필요가 없는 방식을 구현하기는 했지만, 진정한 동적 기능은 없다 (x). 한편 ISR은 SSG와 SSR 사이에서 균형점을 찾아 어느 정도 유연성을 확보한 것처럼 보이지만, 본질적으로는 내 기대에 미치지 못한다. 내 생각에 ISR은 사실 SSR의 낮은 성능을 보완하기 위해 등장했으며, 이후의 여러 CDN 캐시 전략 같은 조치도 결국 일종의 **우회책**일 뿐 진정으로 우아한 해결책은 아니다.
+      text: 내가 보기에는 `RSC`와 수많은 `SSR` 프레임워크가 사실상 `render`을 남용하고 있습니다. `SSG`은 내가 원하던 방식, 즉 빌드할 때 페이지를 미리 생성해 두고 요청 시 다시 렌더링할 필요가 없는 방식을 구현하기는 했지만, 진정한 동적 기능은 없습니다 (x). 한편 ISR은 SSG와 SSR 사이에서 균형점을 찾아 어느 정도 유연성을 확보한 것처럼 보이지만, 본질적으로는 내 기대에 미치지 못합니다. 내 생각에 ISR은 사실 SSR의 낮은 성능을 보완하기 위해 등장했으며, 이후의 여러 CDN 캐시 전략 같은 조치도 결국 일종의 **우회책**일 뿐 진정으로 우아한 해결책은 아닙니다.
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:17:25.267875Z
@@ -578,7 +578,7 @@ segments:
       tokens: 19502
       review: false
     zh-TW:
-      text: 在我看來，`RSC` 和一眾 `SSR` 框架其實都在濫用 `render` 這件事。`SSG` 倒是做到了我想要的風格——頁面在構建時就生成好了，請求時不需要重新渲染——但它沒有真正的動態能力(x)。而 ISR 呢，看起來是在 SSG 和 SSR 之間找了個平衡，做到了一定的靈活性，但它本質上並沒有達到我的期望；我覺得 ISR 的出現其實就是為了彌補 SSR 性能差的問題，包括後續的各種 CDN 緩存策略之類的操作，它們其實都算是一種 **workaround**，而不是真正優雅的解決方案。
+      text: 在我看來，`RSC` 和一眾 `SSR` 框架其實都在濫用 `render` 這件事。`SSG` 倒是做到了我想要的風格——頁面在建置時就生成好了，請求時不需要重新渲染——但它沒有真正的動態能力(x)。而 ISR 呢，看起來是在 SSG 和 SSR 之間找了個平衡，做到了一定的靈活性，但它本質上並沒有達到我的期望；我覺得 ISR 的出現其實就是為了彌補 SSR 效能差的問題，包括後續的各種 CDN 快取策略之類的操作，它們其實都算是一種 **workaround**，而不是真正優雅的解決方案。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T13:08:39.440205Z
@@ -627,7 +627,7 @@ segments:
       tokens: 20705
       review: false
     ko-KR:
-      text: 그러면 분명 또 누군가는 걱정할 것이다. 조건부 렌더링의 조합 수가 지수적으로 폭발하지 않을까? 가령 3～5개의 변수가 조건부 렌더링을 제어하고 변수마다 가능한 값이 10개라면, 이를 곱한 수는 확실히 상당히 커 보인다. 하지만 실제로는 겉보기에만 위협적인 숫자다. 우선 문자열형 값은 대부분 실제 내용을 모두 열거할 필요가 없고, 값이 있는지 없는지 `nullable` 만 확인하면 되므로 실질적으로는 두 가지뿐이다. 또한 실제로 조건 판단에 쓰이는 필드라면 그 타입은 반드시 열거 가능해야 한다. 예를 들어 `open string` 을 가지고 `if` 판단을 하지는 않을 테니까. 설령 모든 조합을 정말로 열거하더라도 현대적인 **CPU**에서는 몇 `ms` 만에 끝날 수 있다. 게다가 이 부담은 전부 컴파일 시점에만 발생한다. **Rust** 컴파일처럼 컴파일할 때는 비교적 큰 비용을 치르지만, 실행 시점에는 순수한 문자열 치환만 남는다. 어떻게 계산해도 남는 장사이며, 여기에는 특별한 마법조차 없다. 다만 작은 복선 하나는 깔아 둘 수 있다. 뒤에서는 복잡한 추론을 처리하기 위해 아주 작은 내장형 **JavaScript** 실행 환경을 도입한다. 이는 일종의 타협이며, 그 이유와 이론적으로는 없어도 되는 까닭을 뒤에서 설명하겠다.
+      text: 그러면 분명 또 누군가는 걱정할 것입니다. 조건부 렌더링의 조합 수가 지수적으로 폭발하지 않을까? 가령 3～5개의 변수가 조건부 렌더링을 제어하고 변수마다 가능한 값이 10개라면, 이를 곱한 수는 확실히 상당히 커 보입니다. 하지만 실제로는 겉보기에만 위협적인 숫자입니다. 우선 문자열형 값은 대부분 실제 내용을 모두 열거할 필요가 없고, 값이 있는지 없는지 `nullable` 만 확인하면 되므로 실질적으로는 두 가지뿐입니다. 또한 실제로 조건 판단에 쓰이는 필드라면 그 타입은 반드시 열거 가능해야 합니다. 예를 들어 `open string` 을 가지고 `if` 판단을 하지는 않을 테니까요. 설령 모든 조합을 정말로 열거하더라도 현대적인 **CPU**에서는 몇 `ms` 만에 끝날 수 있습니다. 게다가 이 부담은 전부 컴파일 시점에만 발생합니다. **Rust** 컴파일처럼 컴파일할 때는 비교적 큰 비용을 치르지만, 실행 시점에는 순수한 문자열 치환만 남습니다. 어떻게 계산해도 남는 장사이며, 여기에는 특별한 마법조차 없습니다. 다만 작은 복선 하나는 깔아 둘 수 있습니다. 뒤에서는 복잡한 추론을 처리하기 위해 아주 작은 내장형 **JavaScript** 실행 환경을 도입합니다. 이는 일종의 타협이며, 그 이유와 이론적으로는 없어도 되는 까닭을 뒤에서 설명하겠습니다.
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:18:33.06625Z
@@ -773,7 +773,7 @@ segments:
       tokens: 19349
       review: false
     zh-TW:
-      text: 那這個東西做出來有什麼用呢？實際上它不只侷限於 Web。比如說我把 `Transport` 通道也給抽象掉之後，是可以後續移植到類似於 **Electron** 或者 **Tauri** 之類的 Desktop 環境的，只要把 `HTTP` 傳輸管線換成 `IPC` 通訊，跑的還是一樣的 Seam 協議，取而代之的就是那些 Electron 應用開屏的時候再也不用放 loading 了，很多東西能夠直接像 SSR 一樣本地渲染出來，這就是 CTR 的魔法！
+      text: 那這個東西做出來有什麼用呢？實際上它不只侷限於 Web。比如說我把 `Transport` 通道也給抽象掉之後，是可以後續移植到類似於 **Electron** 或者 **Tauri** 之類的 Desktop 環境的，只要把 `HTTP` 傳輸管線換成 `IPC` 通訊，跑的還是一樣的 Seam 協定，取而代之的就是那些 Electron 應用開屏的時候再也不用放 loading 了，很多東西能夠直接像 SSR 一樣本地渲染出來，這就是 CTR 的魔法！
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T13:09:19.11882Z
@@ -879,7 +879,7 @@ segments:
       tokens: 33867
       review: false
     ja-JP:
-      text: ここまで散々語ってきたけれど、実際いつ :tn[食べられる]{is="原文は「吃上」（食べられる）。「いつ使えるようになるのか」を「いつ食べられるのか」と言い換えるネット口調で、新作を待ちわびる軽さがある。"}のか。たぶん、まだまだ先です。本当に :tn[すっぽかしたい]{is="原文は「鸽子」（鳩）。「放鸽子」（鳩を放つ）＝約束を破る・すっぽかす、という俗語から来ていて、ここでは遅延している自分への自嘲。"}わけじゃなくて、今の段階ではこいつに人質に取られている部分があまりに多すぎるんです。開発にしか使えないとなると、実質アプリが書けない。何を書いてもまずフレームワークに足を引っかけられる。ましてや最近はこのサイトまわりばかり書いていたわけで。だから吹っ切れました。まずサイトをある程度の規模まで作ってしまえばいい。そうすれば自分の要求が何なのかが分かる。その後あらためて SeamJS を書くときには TODO List が手元にある。一つずつ機能を実装していけば使えるようになる。~~ついでに移行の話と Benchmark でもう一本水増しできる~~？よし、:tn[絵に描いた餅は描き終わり]{is="原文は「大饼」（大きな餅）。「画大饼」＝壮大だが実現するとは限らない約束をする、という言い回しで、上の展望全体を「一枚描き上げた餅」と自嘲している。"}。理念はここにある。今日使えるかどうかはひとまず措いて、少なくとも考え方の上ではプロトタイプは動いた。おやすみ 💤
+      text: ここまで散々語ってきたけれど、実際いつ :tn[食べられる]{is="原文は「吃上」（食べられる）。「いつ使えるようになるのか」を「いつ食べられるのか」と言い換えるネット口調で、新作を待ちわびる軽さがある。"}のか。たぶん、まだまだ先です。本当に :tn[すっぽかしたい]{is="原文は「鸽子」（鳩）。「放鸽子」（鳩を放つ）＝約束を破る・すっぽかす、という俗語から来ていて、ここでは遅延している自分への自嘲。"}わけじゃなくて、今の段階ではこいつに人質に取られている部分があまりに多すぎるんです。開発にしか使えないとなると、実質アプリが書けません。何を書いてもまずフレームワークに足を引っかけられます。ましてや最近はこのサイトまわりばかり書いていたわけです。だから吹っ切れました。まずサイトをある程度の規模まで作ってしまえばいいのです。そうすれば自分の要求が何なのかが分かります。その後あらためて SeamJS を書くときには TODO List が手元にあります。一つずつ機能を実装していけば使えるようになります。~~ついでに移行の話と Benchmark でもう一本水増しできる~~？よし、:tn[絵に描いた餅は描き終わり]{is="原文は「大饼」（大きな餅）。「画大饼」＝壮大だが実現するとは限らない約束をする、という言い回しで、上の展望全体を「一枚描き上げた餅」と自嘲している。"}。理念はここにあります。今日使えるかどうかはひとまず措いて、少なくとも考え方の上ではプロトタイプは動きました。おやすみ 💤
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:14:17.120719Z
@@ -887,7 +887,7 @@ segments:
       tokens: 33867
       review: false
     ko-KR:
-      text: 이렇게나 떠들었는데, 대체 언제쯤 :tn[먹어볼]{is="원문은 吃上, 곧 ‘먹게 되다’로, ‘언제쯤 써볼 수 있나’를 ‘언제쯤 먹어보나’로 바꿔 말하는 인터넷 말투다. 신메뉴를 기다리는 듯한 기대감이 담겨 있다."} 수 있을까? 아마 아주 오래 걸릴 것이다. 정말 내가 :tn[바람맞히고]{is="원문은 鸽子, 곧 ‘비둘기’로, ‘비둘기를 날리다’라는 뜻의 속어 放鸽子에서 왔다. 약속을 미루거나 어긴다는 말이며, 여기서는 프로젝트를 미룬 자신을 향한 자조다."} 싶어서가 아니라, 현 단계에서 이 물건이 나를 너무너무 많이 인질로 붙잡고 있어서다. 이걸 개발하는 데만 쓸 수 있다면 사실상 애플리케이션은 못 쓴다. 뭘 쓰든 프레임워크가 먼저 발을 건다. 게다가 요즘 나는 주로 이 웹사이트 같은 것만 만들고 있었다. 그래서 마음을 정했다. 차라리 웹사이트를 어느 정도 규모까지 먼저 만들자. 그러면 내 요구사항이 정확히 뭔지 알게 된다. 나중에 다시 SeamJS를 쓸 때는 TODO List가 손에 있을 것이고, 기능을 하나씩 제대로 구현하면 쓸 수 있게 된다. ~~그다음엔 마이그레이션이랑 Benchmark로 한 편 더 때울 수도 있고~~? 자, :tn[큰 떡은 다 그렸다]{is="원문은 大饼, 곧 ‘큰 전병’으로, ‘떡을 그리다’라는 뜻의 画大饼에서 왔다. 거창하지만 지켜질지 모르는 약속을 뜻하며, 위의 전망 전체를 다 그려낸 떡 한 장이라 자조한 것이다."}. 이념은 여기 있다. 오늘 당장 쓸 수 있는지는 일단 접어두자. 적어도 생각 위에서는 프로토타입이 돌아갔다. 잘 자요 💤
+      text: 이렇게나 떠들었는데, 대체 언제쯤 :tn[먹어볼]{is="원문은 吃上, 곧 ‘먹게 되다’로, ‘언제쯤 써볼 수 있나’를 ‘언제쯤 먹어보나’로 바꿔 말하는 인터넷 말투다. 신메뉴를 기다리는 듯한 기대감이 담겨 있다."} 수 있을까요? 아마 아주 오래 걸릴 것입니다. 정말 내가 :tn[바람맞히고]{is="원문은 鸽子, 곧 ‘비둘기’로, ‘비둘기를 날리다’라는 뜻의 속어 放鸽子에서 왔다. 약속을 미루거나 어긴다는 말이며, 여기서는 프로젝트를 미룬 자신을 향한 자조다."} 싶어서가 아니라, 현 단계에서 이 물건이 나를 너무너무 많이 인질로 붙잡고 있어서입니다. 이걸 개발하는 데만 쓸 수 있다면 사실상 애플리케이션은 못 씁니다. 뭘 쓰든 프레임워크가 먼저 발을 겁니다. 게다가 요즘 나는 주로 이 웹사이트 같은 것만 만들고 있었습니다. 그래서 마음을 정했습니다. 차라리 웹사이트를 어느 정도 규모까지 먼저 만들기로 했습니다. 그러면 내 요구사항이 정확히 뭔지 알게 됩니다. 나중에 다시 SeamJS를 쓸 때는 TODO List가 손에 있을 것이고, 기능을 하나씩 제대로 구현하면 쓸 수 있게 됩니다. ~~그다음엔 마이그레이션이랑 Benchmark로 한 편 더 때울 수도 있고~~? 자, :tn[큰 떡은 다 그렸다]{is="원문은 大饼, 곧 ‘큰 전병’으로, ‘떡을 그리다’라는 뜻의 画大饼에서 왔다. 거창하지만 지켜질지 모르는 약속을 뜻하며, 위의 전망 전체를 다 그려낸 떡 한 장이라 자조한 것이다."}. 이념은 여기 있습니다. 오늘 당장 쓸 수 있는지는 일단 접어두죠. 적어도 생각 위에서는 프로토타입이 돌아갔습니다. 잘 자요 💤
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:14:17.120719Z
@@ -928,7 +928,7 @@ segments:
       tokens: 17904
       review: false
     es-ES:
-      text: 'Por último está la muy atractiva independencia del protocolo. En esencia, solo necesitamos captar un punto clave, `renderToString`; el framework de interfaz que se utilice por delante no tiene realmente ninguna relación con el protocolo. Entonces, ¿en qué se diferencia esto de **Astro**? Pero no se preocupen: desde luego, no estoy creando otro **Astro**. A primera vista, mi concepto puede parecerse un poco a las islas de **Astro**, pero en realidad existen grandes diferencias.'
+      text: 'Por último está la muy atractiva independencia del protocolo. En esencia, solo necesitamos captar un punto clave, `renderToString`; el framework de interfaz que se utilice por delante no tiene realmente ninguna relación con el protocolo. Entonces, ¿en qué se diferencia esto de **Astro**? Pero no te preocupes: desde luego, no estoy creando otro **Astro**. A primera vista, mi concepto puede parecerse un poco a las islas de **Astro**, pero en realidad existen grandes diferencias.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:20:04.394233Z
@@ -1196,7 +1196,7 @@ segments:
       tokens: 31665
       review: false
     fr-FR:
-      text: 'Pour revenir à `raw HTML slot` : ce qu''il résout, ce sont surtout des cas comme `Markdown` ou `Rich Text` — le **HTML** rendu est injecté via `dangerouslySetInnerHTML`, et après l''hydratation cette zone ne participe plus à aucune interaction, elle est **"morte"**. Cette partie doit rester la plus réduite possible : si tu veux ajouter des bordures ou du style à l''article, cela s''écrit en composants React, et non mêlé à ce bloc de HTML. L''inconvénient, c''est qu''elle ne peut plus changer une fois l''hydratation faite, mais elle ramène vraiment le coût du "SSR" dans ces conditions à un niveau très bas, proche du Zero Cost. Parmi les cas qui réclament réellement du SSR, environ 60% relèvent de cette injection de HTML statique ; seuls les 40% restants ont besoin de ce que propose RSC : exécuter des composants arbitraires côté serveur.'
+      text: 'Pour revenir à `raw HTML slot` : ce qu''il résout, ce sont surtout des cas comme `Markdown` ou `Rich Text` — le **HTML** rendu est injecté via `dangerouslySetInnerHTML`, et après l''hydratation cette zone ne participe plus à aucune interaction, elle est **"morte"**. Cette partie doit rester la plus réduite possible : si vous voulez ajouter des bordures ou du style à l''article, cela s''écrit en composants React, et non mêlé à ce bloc de HTML. L''inconvénient, c''est qu''elle ne peut plus changer une fois l''hydratation faite, mais elle ramène vraiment le coût du "SSR" dans ces conditions à un niveau très bas, proche du Zero Cost. Parmi les cas qui réclament réellement du SSR, environ 60% relèvent de cette injection de HTML statique ; seuls les 40% restants ont besoin de ce que propose RSC : exécuter des composants arbitraires côté serveur.'
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:30:55.208746Z
@@ -1228,7 +1228,7 @@ segments:
       tokens: 31665
       review: false
     zh-TW:
-      text: 再說回 `raw HTML slot`，它主要解決的是 `Markdown`、`Rich Text` 這類場景：算繪出來的 **HTML** 透過 `dangerouslySetInnerHTML` 注入，水合之後這塊區域不參與互動，是 **"死的"**。這部分內容應該盡量少，你想幫文章加邊框、加樣式，那些應該寫成 React 元件，而不是混在這段 HTML 裡。這種做法的缺點是水合之後它不能再改變，但它確實把這個前提下的 "SSR" 成本壓到非常低，接近於零成本。在真正需要 SSR 的場景裡，大概 60% 都屬於這種靜態 HTML 注入；剩下 40% 才需要 RSC 那種在伺服器端執行任意元件的能力。
+      text: 再說回 `raw HTML slot`，它主要解決的是 `Markdown`、`Rich Text` 這類場景：渲染出來的 **HTML** 透過 `dangerouslySetInnerHTML` 注入，水合之後這塊區域不參與互動，是 **"死的"**。這部分內容應該盡量少，你想幫文章加邊框、加樣式，那些應該寫成 React 元件，而不是混在這段 HTML 裡。這種做法的缺點是水合之後它不能再改變，但它確實把這個前提下的 "SSR" 成本壓到非常低，接近於零成本。在真正需要 SSR 的場景裡，大概 60% 都屬於這種靜態 HTML 注入；剩下 40% 才需要 RSC 那種在伺服器端執行任意元件的能力。
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:30:55.208746Z
@@ -1261,7 +1261,7 @@ segments:
       tokens: 19810
       review: false
     fr-FR:
-      text: Par la suite, c’est devenu un obstacle intérieur, une question à laquelle je ne pouvais m’empêcher de réfléchir. Pourtant, après avoir parcouru près de dix ans d’évolution du développement frontal, ainsi que **Vue**, **Svelte**, **Solid** et leurs cadres logiciels **Next.js**, **TanStack** **Start**, **Remix**, **Nuxt**, **Sveltekit** et **Soild** **Start**, j’ai ironiquement eu l’impression que tout le monde s’était égaré. Le **RSC** de **React**, en particulier, est une erreur, même si son existence s’explique en réalité ; j’aurai peut-être l’occasion d’y revenir en détail plus tard...
+      text: Par la suite, c’est devenu un obstacle intérieur, une question à laquelle je ne pouvais m’empêcher de réfléchir. Pourtant, après avoir parcouru près de dix ans d’évolution du développement frontal, ainsi que **Vue**, **Svelte**, **Solid** et leurs frameworks **Next.js**, **TanStack** **Start**, **Remix**, **Nuxt**, **Sveltekit** et **Soild** **Start**, j’ai ironiquement eu l’impression que tout le monde s’était égaré. Le **RSC** de **React**, en particulier, est une erreur, même si son existence s’explique en réalité ; j’aurai peut-être l’occasion d’y revenir en détail plus tard...
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:23:15.744262Z
@@ -1269,7 +1269,7 @@ segments:
       tokens: 19810
       review: false
     ja-JP:
-      text: やがてそれは私の心の引っかかりとなり、考えずにはいられない問題になった。しかし皮肉なことに、この10年近くにわたるフロントエンドの発展と、**Vue**、**Svelte**、**Solid**、そしてそれらのフレームワークである **Next.js**、**TanStack** **Start**、**Remix**、**Nuxt**、**Sveltekit**、**Soild** **Start** を見渡したあと、どうやら皆が道を踏み外してしまったように思えた。とりわけ **React** の **RSC** は誤りだと思うが、それが存在するのにも実は理由がある。この点については、また機会があれば詳しく話してみたい...
+      text: やがてそれは私の心の引っかかりとなり、考えずにはいられない問題になりました。しかし皮肉なことに、この10年近くにわたるフロントエンドの発展と、**Vue**、**Svelte**、**Solid**、そしてそれらのフレームワークである **Next.js**、**TanStack** **Start**、**Remix**、**Nuxt**、**Sveltekit**、**Soild** **Start** を見渡したあと、どうやら皆が道を踏み外してしまったように思えました。とりわけ **React** の **RSC** は誤りだと思いますが、それが存在するのにも実は理由があります。この点については、また機会があれば詳しく話してみたいと思います...
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:23:15.744262Z
@@ -1277,7 +1277,7 @@ segments:
       tokens: 19810
       review: false
     ko-KR:
-      text: 그러다 보니 나중에는 그것이 내 마음속의 걸림돌이자 반드시 생각해 봐야 하는 문제가 되었다. 하지만 아이러니하게도 지난 10년 가까운 프런트엔드의 발전과 **Vue**, **Svelte**, **Solid**, 그리고 그 프레임워크인 **Next.js**, **TanStack** **Start**, **Remix**, **Nuxt**, **Sveltekit**, **Soild** **Start**를 살펴보고 나니, 모두가 방향을 잘못 잡은 듯했다. 특히 **React**의 **RSC**는 잘못이지만, 그것이 존재하는 데에는 사실 나름의 이유가 있다. 이 점은 나중에 기회가 되면 자세히 이야기해 볼지도 모르겠다...
+      text: 그러다 보니 나중에는 그것이 내 마음속의 걸림돌이자 반드시 생각해 봐야 하는 문제가 되었습니다. 하지만 아이러니하게도 지난 10년 가까운 프런트엔드의 발전과 **Vue**, **Svelte**, **Solid**, 그리고 그 프레임워크인 **Next.js**, **TanStack** **Start**, **Remix**, **Nuxt**, **Sveltekit**, **Soild** **Start**를 살펴보고 나니, 모두가 방향을 잘못 잡은 듯했습니다. 특히 **React**의 **RSC**는 잘못이지만, 그것이 존재하는 데에는 사실 나름의 이유가 있습니다. 이 점은 나중에 기회가 되면 자세히 이야기해 볼지도 모르겠습니다...
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:23:15.744262Z
@@ -1391,7 +1391,7 @@ segments:
       tokens: 18190
       review: false
     fr-FR:
-      text: Mais j’ai en fait imaginé un `Pipeline` assez ingénieux pour y parvenir, et c’est précisément pourquoi je dois appeler cela une sorte de `Protocol`. Par ailleurs, j’ai toujours trouvé particulièrement stupide que les cadriciels pour pile complète brouillent la frontière entre le frontal et le dorsal. (Même s’il faut reconnaître que, ces dernières années, Next.js a offert une excellente expérience de développement sur ce plan, donnant ainsi à beaucoup de débutants l’impression que créer une application couvrant toute la pile est très simple, alors qu’en réalité cela engendre aussi de nombreux risques de sécurité — mais je m’égare.)
+      text: Mais j’ai en fait imaginé un `Pipeline` assez ingénieux pour y parvenir, et c’est précisément pourquoi je dois appeler cela une sorte de `Protocol`. Par ailleurs, j’ai toujours trouvé particulièrement stupide que les frameworks full-stack brouillent la frontière entre le frontal et le dorsal. (Même s’il faut reconnaître que, ces dernières années, Next.js a offert une excellente expérience de développement sur ce plan, donnant ainsi à beaucoup de débutants l’impression que créer une application couvrant toute la pile est très simple, alors qu’en réalité cela engendre aussi de nombreux risques de sécurité — mais je m’égare.)
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:23:15.74591Z
@@ -1399,7 +1399,7 @@ segments:
       tokens: 18190
       review: false
     ja-JP:
-      text: とはいえ、実はこれを実現するための、なかなか巧妙な `Pipeline` を思いついた。だからこそ、これを一種の `Protocol` と呼ぶ必要がある。それとは別に、私は以前から、フルスタックフレームワークがフロントエンドとバックエンドの境界を曖昧にするのは非常に愚かなことだと思っている（もっとも、ここ数年の Next.js がこの点で優れた開発者体験を提供してきたことは認めざるを得ず、そのため多くの初心者がフルスタックアプリケーションの開発はとても簡単だと感じているのだが、実際にはそこから多くのセキュリティ上のリスクも生じている——話がそれた）。
+      text: とはいえ、実はこれを実現するための、なかなか巧妙な `Pipeline` を思いつきました。だからこそ、これを一種の `Protocol` と呼ぶ必要があります。それとは別に、私は以前から、フルスタックフレームワークがフロントエンドとバックエンドの境界を曖昧にするのは非常に愚かなことだと思っています（もっとも、ここ数年の Next.js がこの点で優れた開発者体験を提供してきたことは認めざるを得ず、そのため多くの初心者がフルスタックアプリケーションの開発はとても簡単だと感じているのですが、実際にはそこから多くのセキュリティ上のリスクも生じています——話がそれました）。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:23:15.74591Z
@@ -1407,7 +1407,7 @@ segments:
       tokens: 18190
       review: false
     ko-KR:
-      text: 하지만 사실 이 일을 구현할 꽤나 정교한 `Pipeline` 을 생각해 냈고, 바로 그래서 이것을 일종의 `Protocol` 이라고 불러야 한다. 또 한편으로 나는 풀스택 프레임워크가 프런트엔드와 백엔드의 경계를 뒤섞는 것이 늘 아주 어리석다고 생각해 왔다. (다만 최근 몇 년간 Next.js가 이 점에서 훌륭한 개발자 경험을 제공해 많은 초보자가 풀스택 애플리케이션을 만드는 일을 매우 간단하게 여기게 했다는 사실은 인정할 수밖에 없다. 하지만 실제로는 이 때문에 많은 보안 위험도 생긴다—이야기가 옆길로 샜다.)
+      text: 하지만 사실 이 일을 구현할 꽤나 정교한 `Pipeline` 을 생각해 냈고, 바로 그래서 이것을 일종의 `Protocol` 이라고 불러야 합니다. 또 한편으로 나는 풀스택 프레임워크가 프런트엔드와 백엔드의 경계를 뒤섞는 것이 늘 아주 어리석다고 생각해 왔습니다. (다만 최근 몇 년간 Next.js가 이 점에서 훌륭한 개발자 경험을 제공해 많은 초보자가 풀스택 애플리케이션을 만드는 일을 매우 간단하게 여기게 했다는 사실은 인정할 수밖에 없습니다. 하지만 실제로는 이 때문에 많은 보안 위험도 생깁니다—이야기가 옆길로 샜습니다.)
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:23:15.74591Z
@@ -1464,7 +1464,7 @@ segments:
       tokens: 17319
       review: false
     ja-JP:
-      text: コンポーネント内でのデータ取得も同じで、私は境界を明確にする方法を好む——コンポーネントは純粋なコンポーネントに徹し、データ取得は完全に切り離すべきだ。そして、この前提を受け入れて純粋なコンポーネントとデータを分離すると、話は面白くなる。データそのものが実は分類できることに気づくのだ。
+      text: コンポーネント内でのデータ取得も同じで、私は境界を明確にする方法を好みます——コンポーネントは純粋なコンポーネントに徹し、データ取得は完全に切り離すべきです。そして、この前提を受け入れて純粋なコンポーネントとデータを分離すると、話は面白くなります。データそのものが実は分類できることに気づくのです。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:23:35.686591Z
@@ -1472,7 +1472,7 @@ segments:
       tokens: 17319
       review: false
     ko-KR:
-      text: 컴포넌트 안에서 데이터를 가져오는 것도 마찬가지다. 나는 경계가 명확한 방식을 선호한다. 즉, 컴포넌트는 순수 컴포넌트여야 하고 데이터 가져오기는 완전히 분리되어야 한다. 이 전제를 받아들여 순수 컴포넌트와 데이터를 분리하고 나면 흥미로운 점이 드러난다. 데이터 자체도 사실 분류할 수 있다는 것이다.
+      text: 컴포넌트 안에서 데이터를 가져오는 것도 마찬가지입니다. 나는 경계가 명확한 방식을 선호합니다. 즉, 컴포넌트는 순수 컴포넌트여야 하고 데이터 가져오기는 완전히 분리되어야 합니다. 이 전제를 받아들여 순수 컴포넌트와 데이터를 분리하고 나면 흥미로운 점이 드러납니다. 데이터 자체도 사실 분류할 수 있다는 것입니다.
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:23:35.686591Z
@@ -1553,7 +1553,7 @@ segments:
       tokens: 19308
       review: false
     zh-TW:
-      text: 這就是註解的藝術：這裡選擇註解，只是因為它恰好是合法的 HTML，僅此而已。那麼，這些條件區塊和迴圈區塊是如何在**建置時**確定並產生的呢？其實方法也相當巧妙：雖然沒有虛擬 DOM，但我們可以彩現兩次 HTML 並比較差異。以條件式彩現為例，第一次使用完整的哨兵資料彩現，第二次將某個 `nullable` 欄位設為 `null` 後再彩現一次；比較兩次輸出，消失的那段 HTML 就是由該欄位控制的條件區塊，直接用 `<!--seam:if:...-->` 包起來即可。陣列也是同理。
+      text: 這就是註解的藝術：這裡選擇註解，只是因為它恰好是合法的 HTML，僅此而已。那麼，這些條件區塊和迴圈區塊是如何在**建置時**確定並產生的呢？其實方法也相當巧妙：雖然沒有虛擬 DOM，但我們可以渲染兩次 HTML 並比較差異。以條件式渲染為例，第一次使用完整的哨兵資料渲染，第二次將某個 `nullable` 欄位設為 `null` 後再渲染一次；比較兩次輸出，消失的那段 HTML 就是由該欄位控制的條件區塊，直接用 `<!--seam:if:...-->` 包起來即可。陣列也是同理。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:28:38.215514Z
@@ -1586,7 +1586,7 @@ segments:
       tokens: 28450
       review: false
     fr-FR:
-      text: '## Plus qu’un cadriciel web {#beyond-web}'
+      text: '## Plus qu’un framework web {#beyond-web}'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:28:38.215515Z
@@ -1683,7 +1683,7 @@ segments:
       tokens: 19299
       review: false
     zh-TW:
-      text: 我並沒有在單一頁面中水合多個執行環境。嗯，其實我覺得真正需要這樣做的情境非常有限，不同技術堆疊之間的元件狀態通訊會變得非常昂貴。它更像是一種過渡方案：從一個技術堆疊遷移到另一個技術堆疊時，無法一次完成替換，所以先用它來過渡。其次，**Astro** 本質上是 **MPA**，而我們可以在水合前維持 **MPA**，水合後再變成 **SPA**，像 **Next.js** 一樣提供用戶端路由並實現跨頁面動畫——這是 **Astro** 夢寐以求的能力。
+      text: 我並沒有在單一頁面中水合多個執行環境。嗯，其實我覺得真正需要這樣做的情境非常有限，不同技術堆疊之間的元件狀態通訊會變得非常昂貴。它更像是一種過渡方案：從一個技術堆疊遷移到另一個技術堆疊時，無法一次完成替換，所以先用它來過渡。其次，**Astro** 本質上是 **MPA**，而我們可以在水合前維持 **MPA**，水合後再變成 **SPA**，像 **Next.js** 一樣提供使用者端路由並實現跨頁面動畫——這是 **Astro** 夢寐以求的能力。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:28:38.215514Z
@@ -2147,7 +2147,7 @@ segments:
       review: false
   648829f27f27ca013ea5ee55b54ac91a:
     de-DE:
-      text: 'Doch gegenüber anderen Frameworks stand ich vor einer zusätzlichen Herausforderung: Da das Backend nun nicht mehr an die **JavaScript**-Laufzeit gebunden war, musste es keine Einheit mehr mit dem Frontend bilden; man kann es ohne Weiteres in **Rust** oder **Go** schreiben. In einem **TypeScript**-Full-Stack-Framework lässt sich die Konsistenz zwischen Frontend und Backend unmittelbar durch Typen gewährleisten – aber wie funktioniert das mit anderen Sprachen? Tatsächlich setze ich hier auf **Codegenerierung**: Unabhängig von der Sprache des Backends dient es als Referenz, und die für das Frontend verfügbaren Variablen und Typen werden direkt als **TypeScript** **generiert**, damit das Frontend sie importieren kann. Dadurch ist die Grenze zwischen Frontend und Backend zwar klar gezogen, beide können aber wie in einem **TypeScript**-Full-Stack-Framework im selben Ordner leben, den Gepflogenheiten eines **einzigen Repositorys** folgen und sich direkt gegenseitig aufrufen, ohne Programmierschnittstellen oder Dinge wie `gen` **OpenAPI** von Hand schreiben zu müssen. Tatsächlich verwende ich den privaten Pfad `/_seam/` als Standard-Endpunkt des Frameworks, der wie bei Nuxt konfigurierbar ist; durch Ausführen von `JTD Typed-RPC` lassen sich dann die Probleme der Datenübertragung und der Ressourcenfreigabe zwischen Ursprüngen lösen.'
+      text: 'Doch gegenüber anderen Frameworks stand ich vor einer zusätzlichen Herausforderung: Da das Backend nun nicht mehr an die **JavaScript**-Laufzeit gebunden war, musste es keine Einheit mehr mit dem Frontend bilden; man kann es ohne Weiteres in **Rust** oder **Go** schreiben. In einem **TypeScript**-Full-Stack-Framework lässt sich die Konsistenz zwischen Frontend und Backend unmittelbar durch Typen gewährleisten – aber wie funktioniert das mit anderen Sprachen? Tatsächlich setze ich hier auf **Codegenerierung**: Unabhängig von der Sprache des Backends dient es als Referenz, und die für das Frontend verfügbaren Variablen und Typen werden direkt als **TypeScript** **generiert**, damit das Frontend sie importieren kann. Dadurch ist die Grenze zwischen Frontend und Backend zwar klar gezogen, beide können aber wie in einem **TypeScript**-Full-Stack-Framework im selben Ordner leben, den Gepflogenheiten eines **einzigen Repositorys** folgen und sich direkt gegenseitig aufrufen, ohne Programmierschnittstellen oder Dinge wie `gen` **OpenAPI** von Hand schreiben zu müssen. Tatsächlich verwende ich den privaten Pfad `/_seam/` als Standard-Endpunkt des Frameworks, der wie bei Nuxt konfigurierbar ist; durch Ausführen von `JTD Typed-RPC` lassen sich dann die Probleme der Datenübertragung und der CORS lösen.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:28:38.215868Z
@@ -2163,7 +2163,7 @@ segments:
       tokens: 25110
       review: false
     es-ES:
-      text: 'Pero yo tenía un reto adicional frente a otros marcos de trabajo: al liberar el lado servidor del entorno de ejecución de **JavaScript**, este ya no tenía que formar un todo con el lado cliente; puedes escribirlo perfectamente en **Rust** o **Go**. En un marco de pila completa basado en **TypeScript**, la coherencia entre cliente y servidor puede garantizarse directamente mediante los tipos; ¿pero qué ocurre con otros lenguajes? En realidad, aquí usé **generación de código**: sin importar el lenguaje en que esté escrito el servidor, este actúa como referencia, y las variables y los tipos disponibles para el cliente se **generan** directamente como **TypeScript** para que pueda importarlos. Así, aunque la frontera entre cliente y servidor queda claramente delimitada, ambos pueden vivir en la misma carpeta como en un marco de pila completa basado en **TypeScript**, de acuerdo con las prácticas de un **repositorio único**, y llamarse directamente entre sí sin escribir a mano interfaces de programación ni elementos como `gen` **OpenAPI**. En realidad, uso la ruta privada `/_seam/` como punto de conexión predeterminado del marco, configurable igual que en Nuxt; ejecutar `JTD Typed-RPC` basta para resolver los problemas de transmisión de datos y de intercambio de recursos entre orígenes.'
+      text: 'Pero yo tenía un reto adicional frente a otros marcos de trabajo: al liberar el lado servidor del entorno de ejecución de **JavaScript**, este ya no tenía que formar un todo con el lado cliente; puedes escribirlo perfectamente en **Rust** o **Go**. En un marco de pila completa basado en **TypeScript**, la coherencia entre cliente y servidor puede garantizarse directamente mediante los tipos; ¿pero qué ocurre con otros lenguajes? En realidad, aquí usé **generación de código**: sin importar el lenguaje en que esté escrito el servidor, este actúa como referencia, y las variables y los tipos disponibles para el cliente se **generan** directamente como **TypeScript** para que pueda importarlos. Así, aunque la frontera entre cliente y servidor queda claramente delimitada, ambos pueden vivir en la misma carpeta como en un marco de pila completa basado en **TypeScript**, de acuerdo con las prácticas de un **repositorio único**, y llamarse directamente entre sí sin escribir a mano interfaces de programación ni elementos como `gen` **OpenAPI**. En realidad, uso la ruta privada `/_seam/` como punto de conexión predeterminado del marco, configurable igual que en Nuxt; ejecutar `JTD Typed-RPC` basta para resolver los problemas de transmisión de datos y de CORS.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:28:38.215868Z
@@ -2171,7 +2171,7 @@ segments:
       tokens: 25110
       review: false
     fr-FR:
-      text: 'Mais je devais relever un défi supplémentaire par rapport aux autres cadres logiciels : puisque la partie serveur était libérée de l’environnement d’exécution **JavaScript**, elle n’avait plus à faire corps avec la partie cliente, et rien n’empêche de l’écrire en **Rust** ou en **Go**. Dans un cadre logiciel **TypeScript** couvrant toute la pile, la cohérence entre les parties cliente et serveur peut être garantie directement par les types ; mais qu’en est-il des autres langages ? En pratique, j’ai utilisé ici la **génération de code** : quel que soit le langage du serveur, celui-ci sert de référence, et les variables et types accessibles à la partie cliente sont directement **générés** en **TypeScript** pour qu’elle puisse les importer. Ainsi, même si la frontière entre les deux parties est clairement tracée, elles peuvent vivre dans le même dossier comme dans un cadre logiciel **TypeScript** couvrant toute la pile, conformément aux usages d’un **dépôt unique**, et s’appeler directement sans écrire manuellement d’interfaces de programmation ni quoi que ce soit comme `gen` **OpenAPI**. J’ai en fait choisi le chemin privé `/_seam/` comme point de terminaison par défaut du cadre logiciel, configurable comme dans Nuxt ; il suffit alors d’exécuter `JTD Typed-RPC` pour régler les problèmes de transfert de données et de partage de ressources entre origines.'
+      text: 'Mais je devais relever un défi supplémentaire par rapport aux autres frameworks : puisque la partie serveur était libérée de l’environnement d’exécution **JavaScript**, elle n’avait plus à faire corps avec la partie cliente, et rien n’empêche de l’écrire en **Rust** ou en **Go**. Dans un framework **TypeScript** couvrant toute la pile, la cohérence entre les parties cliente et serveur peut être garantie directement par les types ; mais qu’en est-il des autres langages ? En pratique, j’ai utilisé ici la **génération de code** : quel que soit le langage du serveur, celui-ci sert de référence, et les variables et types accessibles à la partie cliente sont directement **générés** en **TypeScript** pour qu’elle puisse les importer. Ainsi, même si la frontière entre les deux parties est clairement tracée, elles peuvent vivre dans le même dossier comme dans un framework **TypeScript** couvrant toute la pile, conformément aux usages d’un **dépôt unique**, et s’appeler directement sans écrire manuellement d’interfaces de programmation ni quoi que ce soit comme `gen` **OpenAPI**. J’ai en fait choisi le chemin privé `/_seam/` comme point de terminaison par défaut du framework, configurable comme dans Nuxt ; il suffit alors d’exécuter `JTD Typed-RPC` pour régler les problèmes de transfert de données et de CORS.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:28:38.215868Z
@@ -2569,7 +2569,7 @@ segments:
       tokens: 17359
       review: false
     ja-JP:
-      text: レンダリングをコンパイル時に行うというのは、かなり馬鹿げた話に聞こえる。というのも、サーバーサイドレンダリングが存在する根本的な理由は、実行時のその時点にならなければ解決できない値や条件があり、それが何なのか分からない以上、判断のしようもないからだ。だから、たいていの人が真っ先に私の考えを退けるのも無理はなく、理解できる。
+      text: レンダリングをコンパイル時に行うというのは、かなり馬鹿げた話に聞こえます。というのも、サーバーサイドレンダリングが存在する根本的な理由は、実行時のその時点にならなければ解決できない値や条件があり、それが何なのか分からない以上、判断のしようもないからです。だから、たいていの人が真っ先に私の考えを退けるのも無理はありませんし、理解できます。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:29:23.839856Z
@@ -2577,7 +2577,7 @@ segments:
       tokens: 17359
       review: false
     ko-KR:
-      text: 렌더링을 컴파일 시점으로 옮긴다는 것은 상당히 터무니없는 이야기처럼 들린다. 서버 사이드 렌더링이 존재하는 핵심 이유부터가 어떤 값이나 조건은 런타임의 바로 그 시점이 되기 전까지는 도저히 알아낼 수 없고, 그것이 무엇인지 모르니 판단도 내릴 수 없기 때문이다. 그러니 대부분의 사람이 내 생각을 듣자마자 부정하는 것도 나름의 이유가 있으며 충분히 이해할 만하다.
+      text: 렌더링을 컴파일 시점으로 옮긴다는 것은 상당히 터무니없는 이야기처럼 들립니다. 서버 사이드 렌더링이 존재하는 핵심 이유부터가 어떤 값이나 조건은 런타임의 바로 그 시점이 되기 전까지는 도저히 알아낼 수 없고, 그것이 무엇인지 모르니 판단도 내릴 수 없기 때문입니다. 그러니 대부분의 사람이 내 생각을 듣자마자 부정하는 것도 나름의 이유가 있으며 충분히 이해할 만합니다.
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:29:23.839856Z
@@ -2764,7 +2764,7 @@ segments:
       tokens: 18306
       review: false
     ja-JP:
-      text: では次に、**RSC（React サーバーコンポーネント）**について話そう。以前、**RSC** は誤りかもしれないと述べた。~~それはフロントエンドとバックエンドの境界をあまりにも曖昧にしたからで~~、~~**少なからぬセキュリティ上のリスク**をもたらし~~、~~数多くの CVE まで生んだからだ~~。しかし実際には、これは **Next.js** やほかの SSR 方式に負うところのほうが大きく、**ユーザーには使わないという選択肢がそもそもない**。動的なものが欲しければ **SSR** を使うしかない状態になっているが、実のところ、私たちのような文字列置換でもまったく問題なく実現できる。その一方で、**RSC** がサーバー側に非常に重要な能力、つまり任意の React コンポーネントをレンダリングする能力、言い換えれば任意のコードを実行する能力を与えたことは認めざるを得ない。
+      text: では次に、**RSC（React サーバーコンポーネント）**について話しましょう。以前、**RSC** は誤りかもしれないと述べました。~~それはフロントエンドとバックエンドの境界をあまりにも曖昧にしたからで~~、~~**少なからぬセキュリティ上のリスク**をもたらし~~、~~数多くの CVE まで生んだからです~~。しかし実際には、これは **Next.js** やほかの SSR 方式に負うところのほうが大きく、**ユーザーには使わないという選択肢がそもそもありません**。動的なものが欲しければ **SSR** を使うしかない状態になっていますが、実のところ、私たちのような文字列置換でもまったく問題なく実現できます。その一方で、**RSC** がサーバー側に非常に重要な能力、つまり任意の React コンポーネントをレンダリングする能力、言い換えれば任意のコードを実行する能力を与えたことは認めざるを得ません。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:29:34.068123Z
@@ -2772,7 +2772,7 @@ segments:
       tokens: 18306
       review: false
     ko-KR:
-      text: 이제 **RSC(React 서버 컴포넌트)**에 관해 이야기해 보자. 앞서 **RSC**가 잘못된 선택일 수 있다고 말했는데, ~~프런트엔드와 백엔드 사이의 경계를 지나치게 흐리고~~, ~~**적지 않은 보안 위험**을 초래하며~~ ~~수많은 CVE까지 낳았기 때문이다~~. 하지만 사실 이는 **Next.js**와 다른 SSR 방식의 잘못이 더 크다. **사용자에게는 아예 사용하지 않을 선택권이 없고**, 동적인 콘텐츠를 원하면 반드시 **SSR**을 써야 하는 상황이 되었기 때문이다. 그러나 실제로는 우리가 하는 것과 같은 문자열 치환도 충분히 잘 작동한다. 또한 **RSC**가 서버에 매우 중요한 능력, 즉 임의의 React 컴포넌트를 렌더링하는 능력, 다시 말해 임의의 코드를 실행하는 능력을 부여했다는 점은 인정할 수밖에 없다.
+      text: 이제 **RSC(React 서버 컴포넌트)**에 관해 이야기해 보겠습니다. 앞서 **RSC**가 잘못된 선택일 수 있다고 말했는데, ~~프런트엔드와 백엔드 사이의 경계를 지나치게 흐리고~~, ~~**적지 않은 보안 위험**을 초래하며~~ ~~수많은 CVE까지 낳았기 때문입니다~~. 하지만 사실 이는 **Next.js**와 다른 SSR 방식의 잘못이 더 큽니다. **사용자에게는 아예 사용하지 않을 선택권이 없고**, 동적인 콘텐츠를 원하면 반드시 **SSR**을 써야 하는 상황이 되었기 때문입니다. 그러나 실제로는 우리가 하는 것과 같은 문자열 치환도 충분히 잘 작동합니다. 또한 **RSC**가 서버에 매우 중요한 능력, 즉 임의의 React 컴포넌트를 렌더링하는 능력, 다시 말해 임의의 코드를 실행하는 능력을 부여했다는 점은 인정할 수밖에 없습니다.
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:29:34.068123Z
@@ -2788,7 +2788,7 @@ segments:
       tokens: 19392
       review: false
     zh-TW:
-      text: 那再來談談 **RSC（React 伺服器元件）**。之前說過 **RSC** 可能是一個錯誤，~~那是因為它模糊了太多前後端的界線~~，~~帶來了**不少安全隱患**~~，~~以及眾多 CVE~~。但其實這更多是 **Next.js** 和其他 SSR 方案的錯，**使用者根本沒有機會不用**，變成了想要動態內容就必須用 **SSR**，可實際上像我們這樣做字串替換也完全行得通。另外不得不承認，**RSC** 賦予了伺服器端一項很重要的能力，那就是算繪任意 React 元件，也就是執行任意程式碼。
+      text: 那再來談談 **RSC（React 伺服器元件）**。之前說過 **RSC** 可能是一個錯誤，~~那是因為它模糊了太多前後端的界線~~，~~帶來了**不少安全隱患**~~，~~以及眾多 CVE~~。但其實這更多是 **Next.js** 和其他 SSR 方案的錯，**使用者根本沒有機會不用**，變成了想要動態內容就必須用 **SSR**，可實際上像我們這樣做字串替換也完全行得通。另外不得不承認，**RSC** 賦予了伺服器端一項很重要的能力，那就是渲染任意 React 元件，也就是執行任意程式碼。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:29:34.068123Z
@@ -2829,7 +2829,7 @@ segments:
       tokens: 17645
       review: false
     ja-JP:
-      text: もちろん、SSR 自体が間違いなのではない。SSR は多くの現実的なユースケースに対応できる優れた仕組みだ。問題は、こうしたフレームワークが SSR を極端なまでに既定の選択肢として位置づけた結果、開発者が実際に SSR を使う場面のうち、おそらく 95% は本来まったく必要としていないことにある。ページ上のコンテンツの大部分は固定されており、本当に動的な部分はごくわずかなのに、リクエストのたびにコンポーネントツリー全体を実行している。
+      text: もちろん、SSR 自体が間違いなのではありません。SSR は多くの現実的なユースケースに対応できる優れた仕組みです。問題は、こうしたフレームワークが SSR を極端なまでに既定の選択肢として位置づけた結果、開発者が実際に SSR を使う場面のうち、おそらく 95% は本来まったく必要としていないことにあります。ページ上のコンテンツの大部分は固定されており、本当に動的な部分はごくわずかなのに、リクエストのたびにコンポーネントツリー全体を実行しています。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:29:37.683945Z
@@ -2837,7 +2837,7 @@ segments:
       tokens: 17645
       review: false
     ko-KR:
-      text: 물론 SSR 자체가 잘못된 것은 아니다. SSR은 수많은 실제 사용 사례를 해결하는 훌륭한 기술이다. 문제는 이러한 프레임워크가 SSR을 지나칠 정도로 기본 선택지로 내세운 탓에, 개발자가 실제로 SSR을 사용하는 상황의 약 95%에서는 사실 SSR이 전혀 필요하지 않을 수 있다는 점이다. 페이지 콘텐츠의 대부분은 고정되어 있고 실제로 동적인 부분은 극히 적지만, 요청이 들어올 때마다 여전히 전체 컴포넌트 트리를 실행한다.
+      text: 물론 SSR 자체가 잘못된 것은 아닙니다. SSR은 수많은 실제 사용 사례를 해결하는 훌륭한 기술입니다. 문제는 이러한 프레임워크가 SSR을 지나칠 정도로 기본 선택지로 내세운 탓에, 개발자가 실제로 SSR을 사용하는 상황의 약 95%에서는 사실 SSR이 전혀 필요하지 않을 수 있다는 점입니다. 페이지 콘텐츠의 대부분은 고정되어 있고 실제로 동적인 부분은 극히 적지만, 요청이 들어올 때마다 여전히 전체 컴포넌트 트리를 실행합니다.
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:29:37.683945Z
@@ -2918,7 +2918,7 @@ segments:
       tokens: 19457
       review: false
     zh-TW:
-      text: 接著是 `raw HTML slot`，這其實又回到了那 **5%** 的**邊緣情況**，例如 `Markdown`、`Rich Text` 之類的東西，編譯時根本不可能知道它們的值，而且**用型別約束它們的成本非常高**。當然，你也可以擴充協定，列出 Markdown 的所有語法，再於執行時進行解析，但那樣的工作量基本上就等於重寫一個 Markdown 轉譯器了，不是嗎？而我們只約束最少的幾種型別，這和重寫整個轉譯引擎的工作量完全不可同日而語。這也回到了我一開始提到的理念：**以更低的成本、更優雅地解決問題**。
+      text: 接著是 `raw HTML slot`，這其實又回到了那 **5%** 的**邊緣情況**，例如 `Markdown`、`Rich Text` 之類的東西，編譯時根本不可能知道它們的值，而且**用型別約束它們的成本非常高**。當然，你也可以擴充協定，列出 Markdown 的所有語法，再於執行時進行解析，但那樣的工作量基本上就等於重寫一個 Markdown 渲染器了，不是嗎？而我們只約束最少的幾種型別，這和重寫整個渲染引擎的工作量完全不可同日而語。這也回到了我一開始提到的理念：**以更低的成本、更優雅地解決問題**。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:29:38.631531Z
@@ -3081,7 +3081,7 @@ segments:
       tokens: 21289
       review: false
     fr-FR:
-      text: 'Bien sûr, il ne faut pas non plus écarter l’option **sans serveur**. Ces dernières années, l’expérience offerte par le **sans serveur** est devenue excellente ; selon moi, « hormis le coût, cela n’a pratiquement aucun défaut ». Or, CTR se prête naturellement très bien à ce scénario : les opérations effectuées à l’exécution sont légères et peu nombreuses, si bien que le fonctionnement est extrêmement rapide dans un environnement sans serveur, avec une nette amélioration du temps de réponse comme de la surcharge. Les seuls cas qui ne peuvent guère en bénéficier sont ceux comme le rendu de Markdown, mais ils devraient absolument être optimisés dans la logique métier, par exemple en prérendant et en stockant Markdown afin de ne pas devoir le rendre de nouveau à chaque requête, comme le fait mon site actuel. C’est un problème relevant de la couche métier, qu’un cadre logiciel ne peut pas résoudre ; en revanche, celui-ci peut ramener presque à zéro la surcharge de toutes les autres opérations simples. Par rapport au SSR traditionnel, cette surcharge n’est même plus du même ordre de grandeur. À quel point est-elle faible ? Elle se situe environ entre quelques centaines de microsecondes et 1 milliseconde, ce qui serait inimaginable avec un SSR traditionnel.'
+      text: 'Bien sûr, il ne faut pas non plus écarter l’option **sans serveur**. Ces dernières années, l’expérience offerte par le **sans serveur** est devenue excellente ; selon moi, « hormis le coût, cela n’a pratiquement aucun défaut ». Or, CTR se prête naturellement très bien à ce scénario : les opérations effectuées à l’exécution sont légères et peu nombreuses, si bien que le fonctionnement est extrêmement rapide dans un environnement sans serveur, avec une nette amélioration du temps de réponse comme de la surcharge. Les seuls cas qui ne peuvent guère en bénéficier sont ceux comme le rendu de Markdown, mais ils devraient absolument être optimisés dans la logique métier, par exemple en prérendant et en stockant Markdown afin de ne pas devoir le rendre de nouveau à chaque requête, comme le fait mon site actuel. C’est un problème relevant de la couche métier, qu’un framework ne peut pas résoudre ; en revanche, celui-ci peut ramener presque à zéro la surcharge de toutes les autres opérations simples. Par rapport au SSR traditionnel, cette surcharge n’est même plus du même ordre de grandeur. À quel point est-elle faible ? Elle se situe environ entre quelques centaines de microsecondes et 1 milliseconde, ce qui serait inimaginable avec un SSR traditionnel.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:29:57.292537Z
@@ -3178,7 +3178,7 @@ segments:
       tokens: 19607
       review: false
     zh-TW:
-      text: 所以好消息是，`raw HTML slot` 其實可以讓 `CTR` 和 `SSR` 共存。這意味著一個頁面的大部分使用者介面都可以用 `CTR` 來實作，幾乎沒有執行階段成本；然後最核心的那篇 **Markdown** 文章則用 `SSR` 來算繪。由於後端已經不受限制，你既可以用 TypeScript 匯入原本那套 `SSR` 算繪方法，也可以打開思路！既然後端用的是 Rust，當然也可以用 Rust 的 Markdown 編譯器來算繪。反正最後只要產生一個 HTML 字串，插入 `raw slot` 後就能顯示。使用 `CTR` 並不意味著不能使用 `SSR`，兩者完全可以共存。
+      text: 所以好消息是，`raw HTML slot` 其實可以讓 `CTR` 和 `SSR` 共存。這意味著一個頁面的大部分使用者介面都可以用 `CTR` 來實作，幾乎沒有執行階段成本；然後最核心的那篇 **Markdown** 文章則用 `SSR` 來渲染。由於後端已經不受限制，你既可以用 TypeScript 匯入原本那套 `SSR` 渲染方法，也可以打開思路！既然後端用的是 Rust，當然也可以用 Rust 的 Markdown 編譯器來渲染。反正最後只要產生一個 HTML 字串，插入 `raw slot` 後就能顯示。使用 `CTR` 並不意味著不能使用 `SSR`，兩者完全可以共存。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:29:57.551483Z
@@ -3276,7 +3276,7 @@ segments:
       tokens: 17808
       review: false
     fr-FR:
-      text: 'Mais que faire si le serveur utilise un autre langage ? Prenons Cloudflare Workers : de nombreuses plateformes sans serveur prennent en charge WASM, si bien que d’autres langages peuvent eux aussi être compilés en binaires WASM et servir côté serveur. En substance, je compile l’interface en ressources entièrement statiques, comme pour un rendu côté client ; mais associées à une passerelle privée, `/_seam/`, ces ressources offrent les mêmes capacités dynamiques que de véritables cadriciels à pile complète et sont donc naturellement compatibles avec les plateformes sans serveur.'
+      text: 'Mais que faire si le serveur utilise un autre langage ? Prenons Cloudflare Workers : de nombreuses plateformes sans serveur prennent en charge WASM, si bien que d’autres langages peuvent eux aussi être compilés en binaires WASM et servir côté serveur. En substance, je compile l’interface en ressources entièrement statiques, comme pour un rendu côté client ; mais associées à une passerelle privée, `/_seam/`, ces ressources offrent les mêmes capacités dynamiques que de véritables frameworks full-stack et sont donc naturellement compatibles avec les plateformes sans serveur.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:30:16.222343Z
@@ -3308,7 +3308,7 @@ segments:
       tokens: 19586
       review: false
     zh-TW:
-      text: 那如果後端使用其他語言呢？以 Cloudflare Workers 為例，其實許多無伺服器平台都支援 WASM，因此其他語言編譯成 WASM 二進位檔後，同樣可以用於後端。本質上，我只是把前端編譯成純靜態資源，類似用戶端算繪；但這批純靜態資源搭配一個私有橋接器 `/_seam/`，就能實現與真正的全端框架相同的動態能力，自然也完全相容於無伺服器平台。
+      text: 那如果後端使用其他語言呢？以 Cloudflare Workers 為例，其實許多無伺服器平台都支援 WASM，因此其他語言編譯成 WASM 二進位檔後，同樣可以用於後端。本質上，我只是把前端編譯成純靜態資源，類似使用者端渲染；但這批純靜態資源搭配一個私有橋接器 `/_seam/`，就能實現與真正的全端框架相同的動態能力，自然也完全相容於無伺服器平台。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:30:16.222343Z
@@ -3487,7 +3487,7 @@ segments:
       tokens: 18281
       review: false
     ko-KR:
-      text: 아마도 나는 타고나길 사물의 근본 원리에 호기심이 아주 많고, 때로는 왜 그렇게 하면 안 되는지 끝까지 따져 묻는 데 집착하기 때문인지도 모르겠다. 아마 그런 이유로 가끔 독특한 아이디어를 떠올릴 수 있는 것 같은데, 이것도 그중 하나다. 이 생각은 일찍이 2025년 11월에 떠올랐고 당시 주변의 많은 친구와 이야기를 나눴지만, 진행 중이던 프로젝트들과 일정이 겹치는 바람에 계속 미루다가 **2026** 년 새해 무렵이 되어서야 실제로 첫 버전을 만들었다. 그러고는 다시 묵혀 두었다. 웹사이트를 만들러 갔기 때문이다. 블로그도 아직 완전히 갖춰지지는 않았지만, 그래도 무언가를 기록할 만한 공간은 생겼으니 이 이야기를 다시 꺼내 보려고 한다.
+      text: 아마도 나는 타고나길 사물의 근본 원리에 호기심이 아주 많고, 때로는 왜 그렇게 하면 안 되는지 끝까지 따져 묻는 데 집착하기 때문인지도 모르겠습니다. 아마 그런 이유로 가끔 독특한 아이디어를 떠올릴 수 있는 것 같은데, 이것도 그중 하나입니다. 이 생각은 일찍이 2025년 11월에 떠올랐고 당시 주변의 많은 친구와 이야기를 나눴지만, 진행 중이던 프로젝트들과 일정이 겹치는 바람에 계속 미루다가 **2026** 년 새해 무렵이 되어서야 실제로 첫 버전을 만들었습니다. 그러고는 다시 묵혀 두었습니다. 웹사이트를 만들러 갔기 때문입니다. 블로그도 아직 완전히 갖춰지지는 않았지만, 그래도 무언가를 기록할 만한 공간은 생겼으니 이 이야기를 다시 꺼내 보려고 합니다.
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:30:26.93407Z
@@ -3633,7 +3633,7 @@ segments:
       tokens: 19128
       review: false
     zh-TW:
-      text: 從 SSR、SSG、ISR、RSC 的渲染譜系出發，提出 CTR（編譯時渲染）與 Seam 協定——將元件結構和資料視為兩個獨立發布物，於執行階段拼接。圍繞 JTD、Sentinel、SeamJS 探討將使用者介面視為協定而非可執行程式碼的可能性。
+      text: 從 SSR、SSG、ISR、RSC 的渲染譜系出發，提出 CTR（編譯期渲染）與 Seam 協定——將元件結構和資料視為兩個獨立發布物，於執行階段拼接。圍繞 JTD、Sentinel、SeamJS 探討將使用者介面視為協定而非可執行程式碼的可能性。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:30:51.263988Z
@@ -4129,7 +4129,7 @@ segments:
       tokens: 18256
       review: false
     ja-JP:
-      text: まず、先に一点断っておきたい。私は `SSR` がよくないと言っているわけではない。ただ、私が見てきた傾向からすると、あまりにも多くの人がこれを濫用しており、全体として流れに身を任せながら、ある問題を避けようとしているように思う。このことについては多くの人と話し合ってきたが、返ってくる反応の大半は曖昧だった。自分の構想も話したことがあるが、相手はいつも、そこにはさまざまな問題や境界条件があるのではないかと懸念する。それに正直なところ、毎回この考え方の全体を最初から最後まで説明し直したいとも思わない。そこで今日は、いっそのこと詳しく書き残し、いくつかの疑問と技術的な原理を明確にしてみようと思う。
+      text: まず、先に一点断っておきます。私は `SSR` がよくないと言っているわけではありません。ただ、私が見てきた傾向からすると、あまりにも多くの人がこれを濫用しており、全体として流れに身を任せながら、ある問題を避けようとしているように思います。このことについては多くの人と話し合ってきましたが、返ってくる反応の大半は曖昧でした。自分の構想も話したことがありますが、相手はいつも、そこにはさまざまな問題や境界条件があるのではないかと懸念します。それに正直なところ、毎回この考え方の全体を最初から最後まで説明し直したいとも思いません。そこで今日は、いっそのこと詳しく書き残し、いくつかの疑問と技術的な原理を明確にしてみようと思います。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:31:16.376165Z
@@ -4137,7 +4137,7 @@ segments:
       tokens: 18256
       review: false
     ko-KR:
-      text: 먼저 한 가지 분명히 해두고 싶다. 나는 `SSR` 자체가 나쁘다고 말하는 것이 아니다. 다만 내가 지켜본 흐름으로 판단하면 너무 많은 사람이 이를 남용하고 있으며, 전체적인 방향도 시류에 휩쓸린 채 어떤 문제를 회피하는 쪽으로 가고 있다고 생각한다. 이 문제를 여러 사람과 논의해 보았지만 돌아오는 답은 대부분 확신이 없었다. 내 구상도 이야기해 보았지만 상대는 늘 그 안에 온갖 문제와 경계 조건이 있을까 봐 걱정했다. 게다가 솔직히 말해 매번 전체 사고 과정을 처음부터 끝까지 완전히 설명하고 싶지도 않다. 그래서 오늘은 아예 이를 자세히 글로 정리하면서 몇 가지 의문과 기술적 원리를 명확히 설명해 보려고 한다.
+      text: 먼저 한 가지 분명히 해두고 싶습니다. 나는 `SSR` 자체가 나쁘다고 말하는 것이 아닙니다. 다만 내가 지켜본 흐름으로 판단하면 너무 많은 사람이 이를 남용하고 있으며, 전체적인 방향도 시류에 휩쓸린 채 어떤 문제를 회피하는 쪽으로 가고 있다고 생각합니다. 이 문제를 여러 사람과 논의해 보았지만 돌아오는 답은 대부분 확신이 없었습니다. 내 구상도 이야기해 보았지만 상대는 늘 그 안에 온갖 문제와 경계 조건이 있을까 봐 걱정했습니다. 게다가 솔직히 말해 매번 전체 사고 과정을 처음부터 끝까지 완전히 설명하고 싶지도 않습니다. 그래서 오늘은 아예 이를 자세히 글로 정리하면서 몇 가지 의문과 기술적 원리를 명확히 설명해 보려고 합니다.
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:31:16.376165Z
@@ -4162,7 +4162,7 @@ segments:
       review: false
   c1902d0bdcbabcc9f04b1821c234aa66:
     de-DE:
-      text: '**JTD (JSON-Typdefinition)** ist in [RFC 8927](https://www.rfc-editor.org/rfc/rfc8927.html) definiert und kennt acht **Schemaformen**: Leer, Referenz, Typ (Boolesche Werte, Zeichenketten, Zeitstempel und Zahlentypen verschiedener Genauigkeit), Aufzählung, Elemente, Eigenschaften, Werte und Diskriminator; außerdem kann jedes Schema als `nullable` gekennzeichnet werden. Der Vorteil von JTD liegt in seiner Sprachunabhängigkeit: Für **JavaScript**, **Rust**, **Go** und nahezu jede andere Sprache gibt es entsprechende Typabbildungen. Dadurch wird es auf natürliche Weise zu einer Brücke zwischen Frontend und Backend, während sein Trägerformat **JSON** ohnehin bereits der **kleinste gemeinsame Nenner von Frontend und Backend** ist. In der Praxis beschränken sich **95%** der Webanwendungen darauf, Zeichenketten oder Zahlenfelder anzuzeigen oder Entscheidungen anhand Boolescher Werte zu treffen – all das fällt in diesen Bereich. Sobald das klar ist, eröffnet sich uns tatsächlich ein großer Handlungsspielraum. Natürlich ist auch JTD nicht perfekt; es gibt Ausnahmen wie **Markdown**, auf die wir später noch ausführlich eingehen werden. Genau hier liegt für mich der eigentliche Sinn von `SSR`.'
+      text: '**JTD (JSON-Typdefinition)** ist in [RFC 8927](https://www.rfc-editor.org/rfc/rfc8927.html) definiert und kennt acht **Schema Forms**: Empty, Ref, Type (Boolesche Werte, Zeichenketten, Zeitstempel und Zahlentypen verschiedener Genauigkeit), Enum, Elements, Properties, Values und Discriminator; außerdem kann jedes Schema als `nullable` gekennzeichnet werden. Der Vorteil von JTD liegt in seiner Sprachunabhängigkeit: Für **JavaScript**, **Rust**, **Go** und nahezu jede andere Sprache gibt es entsprechende Typabbildungen. Dadurch wird es auf natürliche Weise zu einer Brücke zwischen Frontend und Backend, während sein Trägerformat **JSON** ohnehin bereits der **kleinste gemeinsame Nenner von Frontend und Backend** ist. In der Praxis beschränken sich **95%** der Webanwendungen darauf, Zeichenketten oder Zahlenfelder anzuzeigen oder Entscheidungen anhand Boolescher Werte zu treffen – all das fällt in diesen Bereich. Sobald das klar ist, eröffnet sich uns tatsächlich ein großer Handlungsspielraum. Natürlich ist auch JTD nicht perfekt; es gibt Ausnahmen wie **Markdown**, auf die wir später noch ausführlich eingehen werden. Genau hier liegt für mich der eigentliche Sinn von `SSR`.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:31:23.187195Z
@@ -4178,7 +4178,7 @@ segments:
       tokens: 19307
       review: false
     es-ES:
-      text: '**JTD (definición de tipos JSON)**, definida en la [RFC 8927](https://www.rfc-editor.org/rfc/rfc8927.html), tiene ocho **formas de esquema**: vacío, referencia, tipo (booleano, cadena, marca temporal y tipos numéricos de distintas precisiones), enumeración, elementos, propiedades, valores y discriminador; además, cualquier esquema puede marcarse como `nullable`. La ventaja de JTD es que funciona entre lenguajes: existen correspondencias de tipos para **JavaScript**, **Rust**, **Go** y casi cualquier otro lenguaje. Esto la convierte de forma natural en un puente entre el frontend y el backend, mientras que su formato, **JSON**, ya es de por sí el **mínimo común denominador entre el frontend y el backend**. En el mundo real, el **95%** de las aplicaciones web apenas hacen algo más que mostrar cadenas o campos numéricos, o tomar decisiones mediante valores booleanos, y todo ello queda dentro de este ámbito. Una vez aclarado esto, el margen con el que podemos trabajar es realmente muy amplio. Por supuesto, JTD tampoco es perfecta y existen excepciones, como **Markdown**, pero hablaremos de ellas con más detalle más adelante. Aquí es, en realidad, donde verdaderamente reconozco el valor de `SSR`.'
+      text: '**JTD (definición de tipos JSON)**, definida en la [RFC 8927](https://www.rfc-editor.org/rfc/rfc8927.html), tiene ocho **Schema Forms**: Empty, Ref, Type (booleano, cadena, marca temporal y tipos numéricos de distintas precisiones), Enum, Elements, Properties, Values y Discriminator; además, cualquier esquema puede marcarse como `nullable`. La ventaja de JTD es que funciona entre lenguajes: existen correspondencias de tipos para **JavaScript**, **Rust**, **Go** y casi cualquier otro lenguaje. Esto la convierte de forma natural en un puente entre el frontend y el backend, mientras que su formato, **JSON**, ya es de por sí el **mínimo común denominador entre el frontend y el backend**. En el mundo real, el **95%** de las aplicaciones web apenas hacen algo más que mostrar cadenas o campos numéricos, o tomar decisiones mediante valores booleanos, y todo ello queda dentro de este ámbito. Una vez aclarado esto, el margen con el que podemos trabajar es realmente muy amplio. Por supuesto, JTD tampoco es perfecta y existen excepciones, como **Markdown**, pero hablaremos de ellas con más detalle más adelante. Aquí es, en realidad, donde verdaderamente reconozco el valor de `SSR`.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:31:23.187195Z
@@ -4186,7 +4186,7 @@ segments:
       tokens: 19307
       review: false
     fr-FR:
-      text: 'La **JTD (définition de types JSON)**, définie par la [RFC 8927](https://www.rfc-editor.org/rfc/rfc8927.html), comporte huit **formes de schéma** : vide, référence, type (booléen, chaîne de caractères, horodatage et types numériques de différentes précisions), énumération, éléments, propriétés, valeurs et discriminateur ; en outre, tout schéma peut être marqué `nullable`. L’avantage de la JTD est qu’elle fonctionne dans plusieurs langages : il existe des correspondances de types pour **JavaScript**, **Rust**, **Go** et presque tous les autres langages. Elle constitue donc naturellement un pont entre le frontend et le backend, tandis que son format, **JSON**, est déjà le **plus petit dénominateur commun entre le frontend et le backend**. Dans la réalité, **95%** des applications web ne font guère plus qu’afficher des chaînes de caractères ou des champs numériques, ou prendre des décisions à partir de valeurs booléennes, autant de cas qui entrent dans ce cadre. Une fois ce point établi, notre marge de manœuvre devient en réalité très vaste. Bien entendu, la JTD n’est pas parfaite et connaît des exceptions, comme **Markdown**, mais nous y reviendrons en détail plus loin. C’est précisément là que je reconnais véritablement l’intérêt de `SSR`.'
+      text: 'La **JTD (définition de types JSON)**, définie par la [RFC 8927](https://www.rfc-editor.org/rfc/rfc8927.html), comporte huit **Schema Forms** : Empty, Ref, Type (booléen, chaîne de caractères, horodatage et types numériques de différentes précisions), Enum, Elements, Properties, Values et Discriminator ; en outre, tout schéma peut être marqué `nullable`. L’avantage de la JTD est qu’elle fonctionne dans plusieurs langages : il existe des correspondances de types pour **JavaScript**, **Rust**, **Go** et presque tous les autres langages. Elle constitue donc naturellement un pont entre le frontend et le backend, tandis que son format, **JSON**, est déjà le **plus petit dénominateur commun entre le frontend et le backend**. Dans la réalité, **95%** des applications web ne font guère plus qu’afficher des chaînes de caractères ou des champs numériques, ou prendre des décisions à partir de valeurs booléennes, autant de cas qui entrent dans ce cadre. Une fois ce point établi, notre marge de manœuvre devient en réalité très vaste. Bien entendu, la JTD n’est pas parfaite et connaît des exceptions, comme **Markdown**, mais nous y reviendrons en détail plus loin. C’est précisément là que je reconnais véritablement l’intérêt de `SSR`.'
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:31:23.187195Z
@@ -4478,7 +4478,7 @@ segments:
       tokens: 18764
       review: false
     zh-TW:
-      text: 將算繪視為一種協定
+      text: 將渲染視為一種協定
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:31:39.880605Z
@@ -4608,7 +4608,7 @@ segments:
       tokens: 20085
       review: false
     zh-TW:
-      text: 這就是我所說的 **CTR（編譯時彩現）**。至於限制，它其實和 SSR 的限制完全一樣：例如，`<!--seam:path-->` 插入文字時會自動進行 HTML 跳脫（`&`、`<`、`>` 等），如果需要插入原始 HTML，就必須明確使用 `<!--seam:path:html-->`；缺少的資料路徑在文字 `slot` 中會變成空字串，在屬性 `slot` 中則會略過注入；`each` 區塊拿到的如果不是陣列，也會直接略過。這些行為與 SSR 框架中的邊界情況並沒有本質區別，我只是把 SSR 的彩現步驟移到編譯期執行，僅此而已。**CTR** 會在**建置時**遍歷所有條件變數型別取值的笛卡兒積，使用任意自動產生且符合型別的模擬值，或由使用者指定的特殊模擬值（一般不需要手動提供產生所有 HTML 變體所需的模擬值，不過也可以提供；否則系統會自動選取符合相應型別的值）。每種組合都會彩現一次，再透過比較結果找出所有條件區塊和迴圈區塊的邊界，最終得到一個完整展開的 HTML 骨架。從數學上說，只要執行時傳入的資料符合這些型別定義，就一定能被正確注入這個骨架，因為所有可能的分支路徑都已經在編譯期被窮舉過了。
+      text: 這就是我所說的 **CTR（編譯期渲染）**。至於限制，它其實和 SSR 的限制完全一樣：例如，`<!--seam:path-->` 插入文字時會自動進行 HTML 跳脫（`&`、`<`、`>` 等），如果需要插入原始 HTML，就必須明確使用 `<!--seam:path:html-->`；缺少的資料路徑在文字 `slot` 中會變成空字串，在屬性 `slot` 中則會略過注入；`each` 區塊拿到的如果不是陣列，也會直接略過。這些行為與 SSR 框架中的邊界情況並沒有本質區別，我只是把 SSR 的渲染步驟移到編譯期執行，僅此而已。**CTR** 會在**建置時**遍歷所有條件變數型別取值的笛卡兒積，使用任意自動產生且符合型別的模擬值，或由使用者指定的特殊模擬值（一般不需要手動提供產生所有 HTML 變體所需的模擬值，不過也可以提供；否則系統會自動選取符合相應型別的值）。每種組合都會渲染一次，再透過比較結果找出所有條件區塊和迴圈區塊的邊界，最終得到一個完整展開的 HTML 骨架。從數學上說，只要執行時傳入的資料符合這些型別定義，就一定能被正確注入這個骨架，因為所有可能的分支路徑都已經在編譯期被窮舉過了。
       provider: openai
       model: gpt-5-6-sol-xhigh
       at: 2026-08-10T05:31:54.715583Z
@@ -4641,7 +4641,7 @@ segments:
       tokens: 32429
       review: false
     fr-FR:
-      text: 'Tu es peut-être déjà perdu dans la relation entre **Seam** et **SeamJS**. C''est en fait très simple : Seam est le protocole. Il définit comment marquer les positions dynamiques avec `Sentinel`, comment cela se transforme en marqueurs `slot`, comment se fait la détection `diff` pour les blocs conditionnels et les boucles, et comment le runtime injecte les données à partir de l''**AST**. Le protocole lui-même est indépendant du langage : n''importe quel backend capable d''analyser des commentaires **HTML** et de faire du remplacement de chaînes peut l''implémenter. **SeamJS** est le framework, une implémentation concrète bâtie sur ce protocole. Il :tn[coud]{is="L''original emploie 缝, « coudre » — le mot même qui donne son nom au framework en chinois (Seam, la couture). La phrase explique donc au passage d''où vient le nom."} ensemble des roues déjà existantes comme **Vite**, **TanStack Router** et **TanStack Query**, puis comble ce qu''elles ne couvrent pas : mon extraction de **skeleton**, le moteur d''injection, le **CLI**, et ainsi de suite.'
+      text: 'Vous êtes peut-être déjà perdu dans la relation entre **Seam** et **SeamJS**. C''est en fait très simple : Seam est le protocole. Il définit comment marquer les positions dynamiques avec `Sentinel`, comment cela se transforme en marqueurs `slot`, comment se fait la détection `diff` pour les blocs conditionnels et les boucles, et comment le runtime injecte les données à partir de l''**AST**. Le protocole lui-même est indépendant du langage : n''importe quel backend capable d''analyser des commentaires **HTML** et de faire du remplacement de chaînes peut l''implémenter. **SeamJS** est le framework, une implémentation concrète bâtie sur ce protocole. Il :tn[coud]{is="L''original emploie 缝, « coudre » — le mot même qui donne son nom au framework en chinois (Seam, la couture). La phrase explique donc au passage d''où vient le nom."} ensemble des roues déjà existantes comme **Vite**, **TanStack Router** et **TanStack Query**, puis comble ce qu''elles ne couvrent pas : mon extraction de **skeleton**, le moteur d''injection, le **CLI**, et ainsi de suite.'
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:14:17.120902Z
@@ -4673,7 +4673,7 @@ segments:
       tokens: 32429
       review: false
     zh-TW:
-      text: 所以你是不是已經被 **Seam** 和 **SeamJS** 的關係搞糊塗了？其實這兩者很簡單。Seam 是協定，它定義的是：怎麼用 `Sentinel` 標記動態位置、怎麼轉換成 `slot` 標記、條件區塊和迴圈區塊怎麼做 `diff` 偵測，以及執行期怎麼基於 **AST** 做資料注入。協定本身與語言無關，任何能解析 **HTML** 註解、能做字串取代的後端都能實作它。**SeamJS** 是框架，是基於這套協定做出來的一個具體實作：它把 **Vite**、**TanStack Router**、**TanStack Query** 這些現成的輪子:tn[縫]{is="這裡的「縫」既指把現成工具拼接在一起，也正好是框架名 Seam（接縫）的本義，一語雙關。"}在一起，再補上它們涵蓋不到的地方，例如我這套 **skeleton** 擷取、注入引擎、**CLI** 之類的東西。
+      text: 所以你是不是已經被 **Seam** 和 **SeamJS** 的關係搞糊塗了？其實這兩者很簡單。Seam 是協定，它定義的是：怎麼用 `Sentinel` 標記動態位置、怎麼轉換成 `slot` 標記、條件區塊和迴圈區塊怎麼做 `diff` 偵測，以及執行期怎麼基於 **AST** 做資料注入。協定本身與語言無關，任何能解析 **HTML** 註解、能做字串取代的後端都能實作它。**SeamJS** 是框架，是基於這套協定做出來的一個具體實作：它把 **Vite**、**TanStack Router**、**TanStack Query** 這些現成的輪子:tn[縫]{is="原文用的是「缝」，既指把現成工具拼接在一起，也正好是框架名 Seam（接縫）的本義，一語雙關。"}在一起，再補上它們涵蓋不到的地方，例如我這套 **skeleton** 擷取、注入引擎、**CLI** 之類的東西。
       provider: anthropic
       model: claude-opus-5
       at: 2026-08-29T22:14:17.120902Z
