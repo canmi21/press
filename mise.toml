@@ -145,7 +145,7 @@ depends = [
 # Inherited from the workspace: node, rust, pnpm, jj, oxlint. Stated here is what only this
 # project needs -- rclone syncs this project's bucket and nothing else uses it.
 [tools]
-rclone = "latest"
+rclone = "1"
 
 [tasks.gc]
 description = "Compact the object stores and list published assets no article references"
