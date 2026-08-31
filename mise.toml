@@ -1,10 +1,4 @@
 [env]
-# jj's repo config lives outside the working copy and cannot be version controlled.
-# JJ_CONFIG merges a colon-separated list left to right, so this keeps the user's personal
-# jj settings and layers the repo's rules (see jj.toml) on top. mise scopes this to the
-# directory, so it applies here and nowhere else.
-JJ_CONFIG = "{{env.HOME}}/.config/jj/config.toml:{{config_root}}/jj.toml"
-
 # Read by both the Rust binary that binds it and the Vite config that proxies to it, which is
 # why it lives here rather than in libs/urls -- Rust cannot read a TypeScript library.
 # Pinned, never auto-incremented; see spec/toolchain.md.
