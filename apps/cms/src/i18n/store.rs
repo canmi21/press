@@ -58,10 +58,7 @@ pub fn path_for(article: &Path) -> PathBuf {
 /// is the expected way to break it, and the translations and `review` flags underneath are what
 /// a silent overwrite would destroy.
 pub fn load(path: &Path) -> std::io::Result<Sidecar> {
-	Ok(load_checked(path)?.unwrap_or_else(|| Sidecar {
-		version: VERSION,
-		segments: BTreeMap::new(),
-	}))
+	Ok(load_checked(path)?.unwrap_or_else(|| Sidecar { version: VERSION, segments: BTreeMap::new() }))
 }
 
 /// As `load`, but tells a missing sidecar apart from an empty one.
@@ -88,12 +85,7 @@ pub fn save(path: &Path, sidecar: &Sidecar) -> std::io::Result<()> {
 /// They are kept until swept rather than dropped on sight: a corrected typo leaves a
 /// translation that is still almost right, and worth reading before it goes.
 pub fn orphans(sidecar: &Sidecar, live: &BTreeMap<String, super::segment::Segment>) -> Vec<String> {
-	sidecar
-		.segments
-		.keys()
-		.filter(|id| !live.contains_key(*id))
-		.cloned()
-		.collect()
+	sidecar.segments.keys().filter(|id| !live.contains_key(*id)).cloned().collect()
 }
 
 /// What still needs translating: every (segment, locale) with no entry, or with an outdated one.
@@ -118,10 +110,7 @@ pub fn missing(
 	for (id, segment) in live.iter() {
 		let have = sidecar.segments.get(id);
 		let required = if segment.region == super::segment::Region::Body {
-			glosses
-				.find(id)
-				.map(|entry| entry.spans.as_slice())
-				.unwrap_or_default()
+			glosses.find(id).map(|entry| entry.spans.as_slice()).unwrap_or_default()
 		} else {
 			&[]
 		};
@@ -198,10 +187,7 @@ mod tests {
 		// Not deleted on sight: after a typo fix the old text is still nearly right, and worth
 		// a look before it is swept.
 		let mut sidecar = Sidecar::default();
-		sidecar.segments.insert(
-			"old".to_owned(),
-			BTreeMap::from([("ja-JP".to_owned(), entry())]),
-		);
+		sidecar.segments.insert("old".to_owned(), BTreeMap::from([("ja-JP".to_owned(), entry())]));
 		let live = segment::translatable("a new paragraph").expect("segments");
 		assert_eq!(orphans(&sidecar, &live), vec!["old"]);
 	}
@@ -211,9 +197,7 @@ mod tests {
 		let live = segment::translatable("hello world").expect("segments");
 		let id = live.keys().next().expect("segment").clone();
 		let mut sidecar = Sidecar::default();
-		sidecar
-			.segments
-			.insert(id.clone(), BTreeMap::from([("ja-JP".to_owned(), entry())]));
+		sidecar.segments.insert(id.clone(), BTreeMap::from([("ja-JP".to_owned(), entry())]));
 
 		let want = missing(
 			&sidecar,
@@ -235,17 +219,10 @@ mod tests {
 		copied.provider = "source".to_owned();
 		copied.model = "source".to_owned();
 		let mut sidecar = Sidecar::default();
-		sidecar
-			.segments
-			.insert(id.clone(), BTreeMap::from([("zh-CN".to_owned(), copied)]));
+		sidecar.segments.insert(id.clone(), BTreeMap::from([("zh-CN".to_owned(), copied)]));
 
-		let wanted = missing(
-			&sidecar,
-			&live,
-			&["zh-CN"],
-			Some("zh-CN"),
-			&crate::i18n::tn::Table::default(),
-		);
+		let wanted =
+			missing(&sidecar, &live, &["zh-CN"], Some("zh-CN"), &crate::i18n::tn::Table::default());
 		assert_eq!(wanted[&id], vec!["zh-CN"]);
 	}
 
@@ -293,13 +270,7 @@ mod tests {
 		);
 
 		// The annotated one is left alone; the one that lost the note is asked for again.
-		let want = missing(
-			&sidecar,
-			&live,
-			&["ja-JP", "de-DE"],
-			Some("zh-CN"),
-			&glosses,
-		);
+		let want = missing(&sidecar, &live, &["ja-JP", "de-DE"], Some("zh-CN"), &glosses);
 		assert_eq!(want[&id], vec!["de-DE"]);
 	}
 
@@ -308,20 +279,12 @@ mod tests {
 		let mut translation = entry();
 		translation.text = ":tn[first]{is=\"one note\"} and an unannotated second effect".into();
 		let required = vec![
-			crate::i18n::tn::Gloss {
-				phrase: "first".into(),
-				guidance: "first effect".into(),
-			},
-			crate::i18n::tn::Gloss {
-				phrase: "second".into(),
-				guidance: "second effect".into(),
-			},
+			crate::i18n::tn::Gloss { phrase: "first".into(), guidance: "first effect".into() },
+			crate::i18n::tn::Gloss { phrase: "second".into(), guidance: "second effect".into() },
 		];
 
 		assert!(translation_missing(Some(&translation), &required));
-		translation
-			.text
-			.push_str(" :tn[second]{is=\"second note\"}");
+		translation.text.push_str(" :tn[second]{is=\"second note\"}");
 		assert!(!translation_missing(Some(&translation), &required));
 	}
 
@@ -361,13 +324,7 @@ mod tests {
 		);
 
 		assert_eq!(
-			missing(
-				&sidecar,
-				&live,
-				&["zh-CN", "zh-TW"],
-				Some("zh-CN"),
-				&glosses,
-			)[&id],
+			missing(&sidecar, &live, &["zh-CN", "zh-TW"], Some("zh-CN"), &glosses,)[&id],
 			vec!["zh-CN", "zh-TW"]
 		);
 	}

@@ -84,11 +84,7 @@ fn found(package: CratePackage) -> Found {
 	Found {
 		purl: purl("cargo", None, &package.name, &package.version),
 		spdx: package.license,
-		authors: package
-			.authors
-			.iter()
-			.filter_map(|entry| author(entry))
-			.collect(),
+		authors: package.authors.iter().filter_map(|entry| author(entry)).collect(),
 		description: package.description,
 		homepage: web_url(package.homepage),
 		documentation: web_url(package.documentation),
@@ -96,11 +92,7 @@ fn found(package: CratePackage) -> Found {
 		origins: BTreeMap::new(),
 		dependents: BTreeSet::new(),
 		// The manifest's directory is the crate root, which is where a licence sits.
-		directory: package
-			.manifest_path
-			.parent()
-			.map(Path::to_path_buf)
-			.unwrap_or_default(),
+		directory: package.manifest_path.parent().map(Path::to_path_buf).unwrap_or_default(),
 	}
 }
 
@@ -120,12 +112,7 @@ fn from_metadata(metadata: Metadata) -> Vec<Found> {
 		.packages
 		.iter()
 		.filter(|package| package.source.is_some())
-		.map(|package| {
-			(
-				package.id.clone(),
-				purl("cargo", None, &package.name, &package.version),
-			)
-		})
+		.map(|package| (package.id.clone(), purl("cargo", None, &package.name, &package.version)))
 		.collect();
 	let root_names: BTreeMap<String, String> = metadata
 		.packages
@@ -156,14 +143,7 @@ fn from_metadata(metadata: Metadata) -> Vec<Found> {
 		let Some(root_name) = root_names.get(&root) else {
 			continue;
 		};
-		trace_origins(
-			&root,
-			root_name,
-			&graph,
-			&labels,
-			&package_purls,
-			&mut found,
-		);
+		trace_origins(&root, root_name, &graph, &labels, &package_purls, &mut found);
 	}
 
 	found.into_values().collect()
@@ -289,10 +269,7 @@ mod tests {
 		assert_eq!(found[0].purl, "pkg:cargo/serde@1.0.219");
 		assert_eq!(found[0].authors[0].name, "Ada");
 		assert_eq!(found[0].origins["cms"], ["pkg:cargo/serde@1.0.219"]);
-		assert_eq!(
-			found[0].dependents.iter().collect::<Vec<_>>(),
-			["workspace:cms"]
-		);
+		assert_eq!(found[0].dependents.iter().collect::<Vec<_>>(), ["workspace:cms"]);
 		assert_eq!(found[0].directory, PathBuf::from("/cache/serde-1.0.219"));
 	}
 }

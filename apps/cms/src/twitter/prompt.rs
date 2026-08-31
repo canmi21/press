@@ -30,10 +30,9 @@ impl std::fmt::Display for ParseError {
 		match self {
 			Self::MissingCount => write!(formatter, "the reply had no count"),
 			Self::BadCount(value) => write!(formatter, "the count was not a number: {value}"),
-			Self::CountMismatch { declared, found } => write!(
-				formatter,
-				"the reply declared {declared} records but contained {found}"
-			),
+			Self::CountMismatch { declared, found } => {
+				write!(formatter, "the reply declared {declared} records but contained {found}")
+			}
 			Self::BoundaryLeak => write!(formatter, "the reply echoed the query fence"),
 		}
 	}
@@ -102,10 +101,7 @@ pub fn users_request(query: &str, count: u32) -> Request {
 		mark("bio"),
 		mark("followers"),
 	);
-	Request {
-		text,
-		boundary: fence,
-	}
+	Request { text, boundary: fence }
 }
 
 pub fn keyword_request(query: &str, limit: u32, mode: Mode) -> Request {
@@ -144,10 +140,7 @@ pub fn keyword_request(query: &str, limit: u32, mode: Mode) -> Request {
 		mode.as_str(),
 		post_format(false, false),
 	);
-	Request {
-		text,
-		boundary: fence,
-	}
+	Request { text, boundary: fence }
 }
 
 pub fn thread_request(post_id: &str) -> Request {
@@ -183,10 +176,7 @@ pub fn thread_request(post_id: &str) -> Request {
 		 you have called the tool.",
 		post_format(false, true),
 	);
-	Request {
-		text,
-		boundary: fence,
-	}
+	Request { text, boundary: fence }
 }
 
 pub fn semantic_request(options: &Semantic) -> Request {
@@ -207,10 +197,7 @@ pub fn semantic_request(options: &Semantic) -> Request {
 		params.push_str(&format!("\nusernames: {}", options.usernames.join(", ")));
 	}
 	if !options.exclude_usernames.is_empty() {
-		params.push_str(&format!(
-			"\nexclude_usernames: {}",
-			options.exclude_usernames.join(", ")
-		));
+		params.push_str(&format!("\nexclude_usernames: {}", options.exclude_usernames.join(", ")));
 	}
 	let text = format!(
 		"You are reporting the results of one Twitter lookup. Call the named tool exactly once with \
@@ -244,10 +231,7 @@ pub fn semantic_request(options: &Semantic) -> Request {
 		post_format(true, false),
 		options.query,
 	);
-	Request {
-		text,
-		boundary: fence,
-	}
+	Request { text, boundary: fence }
 }
 
 fn post_format(score: bool, parent: bool) -> String {
@@ -305,10 +289,7 @@ pub fn fields(reply: &str) -> Vec<Field> {
 	for line in reply.lines() {
 		if let Some(name) = marker_name(line) {
 			if let Some(previous) = current.take() {
-				found.push(Field {
-					name: previous,
-					value: join_value(&buffer),
-				});
+				found.push(Field { name: previous, value: join_value(&buffer) });
 			}
 			buffer.clear();
 			current = Some(name.to_owned());
@@ -319,10 +300,7 @@ pub fn fields(reply: &str) -> Vec<Field> {
 		}
 	}
 	if let Some(previous) = current {
-		found.push(Field {
-			name: previous,
-			value: join_value(&buffer),
-		});
+		found.push(Field { name: previous, value: join_value(&buffer) });
 	}
 	found
 }
@@ -340,11 +318,7 @@ fn marker_name(line: &str) -> Option<&str> {
 	let start = trimmed.find(OPEN)?;
 	let token = &trimmed[start..];
 	let inner = token.strip_prefix(OPEN)?.strip_suffix(CLOSE)?;
-	if inner.is_empty()
-		|| !inner
-			.bytes()
-			.all(|byte| byte.is_ascii_lowercase() || byte == b'-')
-	{
+	if inner.is_empty() || !inner.bytes().all(|byte| byte.is_ascii_lowercase() || byte == b'-') {
 		return None;
 	}
 	Some(inner)
@@ -414,10 +388,7 @@ fn record_blocks(reply: &str, start: &str) -> Result<Vec<Vec<Field>>, ParseError
 		blocks.push(block);
 	}
 	if declared != blocks.len() {
-		return Err(ParseError::CountMismatch {
-			declared,
-			found: blocks.len(),
-		});
+		return Err(ParseError::CountMismatch { declared, found: blocks.len() });
 	}
 	Ok(blocks)
 }
@@ -429,10 +400,8 @@ fn take_count(parsed: &[Field]) -> Result<(usize, &[Field]), ParseError> {
 	if first.name != "count" {
 		return Err(ParseError::MissingCount);
 	}
-	let count = first
-		.value
-		.parse::<usize>()
-		.map_err(|_| ParseError::BadCount(first.value.clone()))?;
+	let count =
+		first.value.parse::<usize>().map_err(|_| ParseError::BadCount(first.value.clone()))?;
 	Ok((count, &parsed[1..]))
 }
 
@@ -462,11 +431,7 @@ fn post_from(block: &[Field], need_score: bool, need_parent: bool) -> Option<sup
 	let likes = number(block, "likes")?;
 	let reposts = number(block, "reposts")?;
 	let replies = number(block, "replies")?;
-	let score = if need_score {
-		Some(float(block, "score")?)
-	} else {
-		None
-	};
+	let score = if need_score { Some(float(block, "score")?) } else { None };
 	let parent = if need_parent {
 		match field(block, "parent") {
 			None => return None,
@@ -491,10 +456,7 @@ fn post_from(block: &[Field], need_score: bool, need_parent: bool) -> Option<sup
 }
 
 fn field<'a>(block: &'a [Field], name: &str) -> Option<&'a str> {
-	block
-		.iter()
-		.find(|field| field.name == name)
-		.map(|field| field.value.as_str())
+	block.iter().find(|field| field.name == name).map(|field| field.value.as_str())
 }
 
 fn require<'a>(block: &'a [Field], name: &str) -> Option<&'a str> {
@@ -738,13 +700,7 @@ mod tests {
 			&mark("followers"),
 			"1",
 		]);
-		assert_eq!(
-			parse_users(&text, None),
-			Err(ParseError::CountMismatch {
-				declared: 2,
-				found: 1
-			})
-		);
+		assert_eq!(parse_users(&text, None), Err(ParseError::CountMismatch { declared: 2, found: 1 }));
 	}
 
 	#[test]
@@ -796,10 +752,7 @@ mod tests {
 	fn a_fence_echo_rejects_the_reply() {
 		let fence = "VVF4KTLBKEI0X2NJT7FOCD2N6HO4C0N2";
 		let text = reply(&[&mark("count"), "0", fence]);
-		assert_eq!(
-			parse_users(&text, Some(fence)),
-			Err(ParseError::BoundaryLeak)
-		);
+		assert_eq!(parse_users(&text, Some(fence)), Err(ParseError::BoundaryLeak));
 	}
 
 	#[test]
@@ -906,11 +859,7 @@ mod tests {
 		assert!(request.text.contains("count: 3"));
 		assert!(request.text.contains(&mark("count")));
 		assert!(request.text.contains(&mark("user")));
-		let fences: Vec<&str> = request
-			.text
-			.lines()
-			.filter(|line| *line == request.boundary)
-			.collect();
+		let fences: Vec<&str> = request.text.lines().filter(|line| *line == request.boundary).collect();
 		assert_eq!(fences.len(), 2);
 		let start = request.text.find(&request.boundary).expect("fence");
 		let body = &request.text[start + request.boundary.len()..];

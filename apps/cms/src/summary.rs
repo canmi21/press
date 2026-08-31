@@ -74,10 +74,7 @@ pub fn source_locale(lang: &str) -> Option<&'static str> {
 	let rest: Vec<&str> = parts.collect();
 	Some(match primary {
 		"zh" => {
-			if rest
-				.iter()
-				.any(|part| *part == "hant" || matches!(*part, "tw" | "hk" | "mo"))
-			{
+			if rest.iter().any(|part| *part == "hant" || matches!(*part, "tw" | "hk" | "mo")) {
 				"zh-TW"
 			} else {
 				"zh-CN"
@@ -136,10 +133,7 @@ fn prompt(body: &str, lang: &str) -> crate::i18n::prompt::Request {
 		 Output boundary:\n{output_boundary}\n\n\
 		 {source_boundary}\n{body}\n{source_boundary}"
 	);
-	crate::i18n::prompt::Request {
-		text,
-		boundary: output_boundary,
-	}
+	crate::i18n::prompt::Request { text, boundary: output_boundary }
 }
 
 fn plain(text: &str) -> String {
@@ -295,10 +289,7 @@ pub fn subtitle_of(fields: &Fields) -> Option<&str> {
 /// `lastmod` when the author set one, and the creation date otherwise. The rule lives here rather
 /// than at each call site so the two keys cannot be consulted in different orders in two places.
 pub fn modified_of(fields: &Fields) -> Option<&str> {
-	fields
-		.get("lastmod")
-		.or_else(|| fields.get("created"))
-		.map(String::as_str)
+	fields.get("lastmod").or_else(|| fields.get("created")).map(String::as_str)
 }
 
 /// Which articles still want a summary in their own language.
@@ -369,9 +360,7 @@ async fn summarise(
 ) -> Result<Generated, Refusal> {
 	let source =
 		std::fs::read_to_string(&article.path).map_err(|error| Refusal::Failed(error.to_string()))?;
-	let model = model_override
-		.as_deref()
-		.unwrap_or_else(|| runner.model_for(Kind::Prose, 0));
+	let model = model_override.as_deref().unwrap_or_else(|| runner.model_for(Kind::Prose, 0));
 
 	// Stamped before the request rather than after it, so `at` says when the article was read
 	// and not when the queue happened to drain.
@@ -421,27 +410,15 @@ pub struct Options<'a> {
 }
 
 pub async fn run(options: Options<'_>) -> std::io::Result<Outcome> {
-	let Options {
-		repository,
-		runner,
-		model_override,
-		force,
-		limit,
-		shell,
-		sink,
-	} = options;
+	let Options { repository, runner, model_override, force, limit, shell, sink } = options;
 	let contents = repository.join("contents");
 	let (mut todo, skipped, reviewed) = pending(&contents, force)?;
 	let wanted = todo.len();
 	if let Some(limit) = limit {
 		todo.truncate(limit);
 	}
-	let mut outcome = Outcome {
-		skipped,
-		reviewed,
-		deferred: wanted - todo.len(),
-		..Outcome::default()
-	};
+	let mut outcome =
+		Outcome { skipped, reviewed, deferred: wanted - todo.len(), ..Outcome::default() };
 
 	let progress = crate::task::start(repository, "summary", shell, todo.len() as u64, sink)?;
 	let writer = writer::Writer::start(repository, Record::Summaries)?;
@@ -459,11 +436,7 @@ pub async fn run(options: Options<'_>) -> std::io::Result<Outcome> {
 			let Some(article) = queue.next() else {
 				break;
 			};
-			let key = article
-				.path
-				.strip_prefix(&contents)
-				.unwrap_or(&article.path)
-				.to_path_buf();
+			let key = article.path.strip_prefix(&contents).unwrap_or(&article.path).to_path_buf();
 			// Claimed before anything is spent: an article another run is summarising right now
 			// is left to it rather than paid for twice.
 			match claim::take(repository, "summary", &key.display().to_string()) {
@@ -604,10 +577,7 @@ mod tests {
 	#[test]
 	fn markdown_never_reaches_the_sidecar() {
 		assert_eq!(plain("a **bold** and `code` word"), "a bold and code word");
-		assert_eq!(
-			plain("see [the docs](https://x.test/a) now"),
-			"see the docs now"
-		);
+		assert_eq!(plain("see [the docs](https://x.test/a) now"), "see the docs now");
 		assert_eq!(plain("## Heading\n\nBody"), "Body");
 		assert_eq!(plain("- one\n- two"), "one two");
 		assert_eq!(plain("_em_ and __strong__"), "em and strong");
@@ -661,11 +631,7 @@ mod tests {
 			"---\ntitle: A\nsummary: Written by hand.\n---\n\nBody\n",
 		)
 		.unwrap();
-		std::fs::write(
-			dir.join("post.md"),
-			"---\ntitle: B\nlang: zh\n---\n\nBody\n",
-		)
-		.unwrap();
+		std::fs::write(dir.join("post.md"), "---\ntitle: B\nlang: zh\n---\n\nBody\n").unwrap();
 		let (todo, _, _) = pending(&dir, false).expect("pending");
 		assert_eq!(todo.len(), 1);
 		assert!(todo[0].path.ends_with("post.md"));
@@ -692,11 +658,7 @@ mod tests {
 				review: true,
 			},
 		);
-		std::fs::write(
-			sidecar_for(&article),
-			serde_yaml_ng::to_string(&sidecar).unwrap(),
-		)
-		.unwrap();
+		std::fs::write(sidecar_for(&article), serde_yaml_ng::to_string(&sidecar).unwrap()).unwrap();
 
 		let (todo, _, reviewed) = pending(&dir, true).expect("pending");
 		assert!(todo.is_empty());

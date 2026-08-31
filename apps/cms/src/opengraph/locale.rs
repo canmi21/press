@@ -25,42 +25,15 @@ pub struct View {
 /// The eight targets match `i18n::prompt::LOCALES`; a ninth entry exists here because the
 /// source article is a view somebody can be served even though nothing translated it.
 pub const VIEWS: [View; 9] = [
-	View {
-		code: SOURCE,
-		tag: None,
-	},
-	View {
-		code: "en",
-		tag: Some("en-US"),
-	},
-	View {
-		code: "zh",
-		tag: Some("zh-CN"),
-	},
-	View {
-		code: "tw",
-		tag: Some("zh-TW"),
-	},
-	View {
-		code: "ja",
-		tag: Some("ja-JP"),
-	},
-	View {
-		code: "ko",
-		tag: Some("ko-KR"),
-	},
-	View {
-		code: "de",
-		tag: Some("de-DE"),
-	},
-	View {
-		code: "fr",
-		tag: Some("fr-FR"),
-	},
-	View {
-		code: "es",
-		tag: Some("es-ES"),
-	},
+	View { code: SOURCE, tag: None },
+	View { code: "en", tag: Some("en-US") },
+	View { code: "zh", tag: Some("zh-CN") },
+	View { code: "tw", tag: Some("zh-TW") },
+	View { code: "ja", tag: Some("ja-JP") },
+	View { code: "ko", tag: Some("ko-KR") },
+	View { code: "de", tag: Some("de-DE") },
+	View { code: "fr", tag: Some("fr-FR") },
+	View { code: "es", tag: Some("es-ES") },
 ];
 
 #[cfg(test)]

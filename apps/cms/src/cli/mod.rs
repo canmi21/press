@@ -21,11 +21,7 @@ pub fn run() -> ExitCode {
 		// names what was wrong. Its own exit code carries which of those it was.
 		Err(error) => {
 			let _ = error.print();
-			return if error.use_stderr() {
-				ExitCode::FAILURE
-			} else {
-				ExitCode::SUCCESS
-			};
+			return if error.use_stderr() { ExitCode::FAILURE } else { ExitCode::SUCCESS };
 		}
 	};
 
@@ -60,74 +56,38 @@ fn dispatch(command: Command) -> anyhow::Result<ExitCode> {
 		Command::Check => check_assets(),
 		Command::Licenses => collect_licenses(),
 		Command::Favicon { force, domains } => fetch_favicons(force, &domains),
-		Command::Image {
-			force,
-			original,
-			files,
-		} => process_images(force, original, &files),
+		Command::Image { force, original, files } => process_images(force, original, &files),
 		Command::Og { force } => render_cards(force),
-		Command::Alt {
-			model,
-			force,
-			limit,
-		} => describe_images(&model, force, limit),
-		Command::Tag {
-			model,
-			force,
-			limit,
-		} => classify_images(&model, force, limit),
-		Command::Summary {
-			model,
-			force,
-			limit,
-		} => summarise_articles(&model, force, limit),
-		Command::I18n {
-			model,
-			force,
-			check,
-			frontmatter,
-			limit,
-			parallel,
-			locale,
-			articles,
-		} => translate_articles(I18nArgs {
-			model: &model,
-			force,
-			check,
-			frontmatter,
-			limit,
-			parallel,
-			locale: &locale,
-			articles: &articles,
-		}),
-		Command::Tn {
-			model,
-			force,
-			articles,
-		} => scan_notes(&model, force, &articles),
+		Command::Alt { model, force, limit } => describe_images(&model, force, limit),
+		Command::Tag { model, force, limit } => classify_images(&model, force, limit),
+		Command::Summary { model, force, limit } => summarise_articles(&model, force, limit),
+		Command::I18n { model, force, check, frontmatter, limit, parallel, locale, articles } => {
+			translate_articles(I18nArgs {
+				model: &model,
+				force,
+				check,
+				frontmatter,
+				limit,
+				parallel,
+				locale: &locale,
+				articles: &articles,
+			})
+		}
+		Command::Tn { model, force, articles } => scan_notes(&model, force, &articles),
 		Command::Embed { force } => fetch_embeds(force),
-		Command::Locale {
-			model,
-			force,
-			limit,
-		} => translate_locales(&model, force, limit),
-		Command::Invalidate {
-			live,
-			segment,
-			containing,
-			translation_containing,
-			locale,
-			articles,
-		} => invalidate_translations(
-			live,
-			&i18n::invalidate::Selection {
-				segments: &segment,
-				containing: &containing,
-				translation_containing: &translation_containing,
-				locales: &locale,
-			},
-			&articles,
-		),
+		Command::Locale { model, force, limit } => translate_locales(&model, force, limit),
+		Command::Invalidate { live, segment, containing, translation_containing, locale, articles } => {
+			invalidate_translations(
+				live,
+				&i18n::invalidate::Selection {
+					segments: &segment,
+					containing: &containing,
+					translation_containing: &translation_containing,
+					locales: &locale,
+				},
+				&articles,
+			)
+		}
 		Command::Gc { live } => collect_garbage(live),
 		Command::Twitter { command } => twitter_command(command),
 	}
@@ -160,11 +120,7 @@ fn invalidate_translations(
 		println!(
 			"kept {} reviewed entr{} a person vouched for; unset review to include them",
 			report.kept_reviewed,
-			if report.kept_reviewed == 1 {
-				"y"
-			} else {
-				"ies"
-			}
+			if report.kept_reviewed == 1 { "y" } else { "ies" }
 		);
 	}
 	let entries: usize = report.dropped.iter().map(|(_, _, l)| l.len()).sum();
@@ -296,11 +252,7 @@ fn fetch_favicons(force: bool, domains: &[String]) -> anyhow::Result<ExitCode> {
 	} else {
 		favicon::host::normalise(inputs)
 			.into_iter()
-			.map(|domain| refs::Wanted {
-				domain,
-				source: None,
-				tone: None,
-			})
+			.map(|domain| refs::Wanted { domain, source: None, tone: None })
 			.collect()
 	};
 
@@ -397,10 +349,7 @@ fn summarise_articles(
 		eprintln!("fail  {path}: {error}");
 	}
 	if outcome.claimed_elsewhere > 0 {
-		eprintln!(
-			"note  {} left to a run already summarising them",
-			outcome.claimed_elsewhere
-		);
+		eprintln!("note  {} left to a run already summarising them", outcome.claimed_elsewhere);
 	}
 	println!(
 		"{} written, {} already had one, {} reviewed, {} deferred, {} failed",
@@ -415,11 +364,7 @@ fn summarise_articles(
 		println!("{} in, ${:.2}", spent.total_in(), spent.usd);
 		println!("run `cms locale` to translate the new values");
 	}
-	if outcome.failed.is_empty() {
-		Ok(ExitCode::SUCCESS)
-	} else {
-		Ok(ExitCode::FAILURE)
-	}
+	if outcome.failed.is_empty() { Ok(ExitCode::SUCCESS) } else { Ok(ExitCode::FAILURE) }
 }
 
 /// Describe every asset that has no description yet.
@@ -475,10 +420,7 @@ fn describe_images(
 		eprintln!("warn  no original on hand for {cid}");
 	}
 	if outcome.claimed_elsewhere > 0 {
-		eprintln!(
-			"note  {} left to a run already describing them",
-			outcome.claimed_elsewhere
-		);
+		eprintln!("note  {} left to a run already describing them", outcome.claimed_elsewhere);
 	}
 	let _ = public;
 
@@ -501,11 +443,7 @@ fn describe_images(
 			spent.usd
 		);
 	}
-	if outcome.failed.is_empty() {
-		Ok(ExitCode::SUCCESS)
-	} else {
-		Ok(ExitCode::FAILURE)
-	}
+	if outcome.failed.is_empty() { Ok(ExitCode::SUCCESS) } else { Ok(ExitCode::FAILURE) }
 }
 
 /// Translate every article segment that has no translation yet.
@@ -513,21 +451,8 @@ fn describe_images(
 /// One request covers one segment's missing locales, so an edited paragraph costs one call while
 /// a partial repair does not repay for completed languages.
 fn translate_articles(args: I18nArgs<'_>) -> anyhow::Result<ExitCode> {
-	let I18nArgs {
-		model,
-		force,
-		check,
-		frontmatter,
-		limit,
-		parallel,
-		locale,
-		articles,
-	} = args;
-	let scope = if frontmatter {
-		i18n::Scope::Frontmatter
-	} else {
-		i18n::Scope::All
-	};
+	let I18nArgs { model, force, check, frontmatter, limit, parallel, locale, articles } = args;
+	let scope = if frontmatter { i18n::Scope::Frontmatter } else { i18n::Scope::All };
 	let parallel =
 		i18n::parallelism(parallel.map(|n| n.to_string()).as_deref()).map_err(anyhow::Error::msg)?;
 	let locales = i18n::selected_locales(locale).map_err(anyhow::Error::msg)?;
@@ -663,10 +588,7 @@ fn translate_locales(
 		eprintln!("fail  {id}: {error}");
 	}
 	if outcome.claimed_elsewhere > 0 {
-		eprintln!(
-			"note  {} left to a run already translating them",
-			outcome.claimed_elsewhere
-		);
+		eprintln!("note  {} left to a run already translating them", outcome.claimed_elsewhere);
 	}
 	if let Some(reason) = &outcome.exhausted {
 		println!("stopped: {reason}");
@@ -699,18 +621,14 @@ fn render_cards(force: bool) -> anyhow::Result<ExitCode> {
 
 	// The site name, the author and their role all come from the file the pages read them
 	// from, so a card and the page it belongs to cannot introduce the site differently.
-	let outcome = match opengraph::run(
-		&root,
-		&root.join("data").join("public"),
-		&root.join("contents"),
-		force,
-	) {
-		Ok(outcome) => outcome,
-		Err(error) => {
-			eprintln!("{error}");
-			return Ok(ExitCode::FAILURE);
-		}
-	};
+	let outcome =
+		match opengraph::run(&root, &root.join("data").join("public"), &root.join("contents"), force) {
+			Ok(outcome) => outcome,
+			Err(error) => {
+				eprintln!("{error}");
+				return Ok(ExitCode::FAILURE);
+			}
+		};
 
 	for (slug, error) in &outcome.failed {
 		eprintln!("fail  {slug}: {error}");
@@ -721,11 +639,7 @@ fn render_cards(force: bool) -> anyhow::Result<ExitCode> {
 		outcome.skipped,
 		outcome.failed.len()
 	);
-	if outcome.failed.is_empty() {
-		Ok(ExitCode::SUCCESS)
-	} else {
-		Ok(ExitCode::FAILURE)
-	}
+	if outcome.failed.is_empty() { Ok(ExitCode::SUCCESS) } else { Ok(ExitCode::FAILURE) }
 }
 
 /// Give every asset a category and a handful of tags.
@@ -774,11 +688,7 @@ fn classify_images(
 	if outcome.classified > 0 {
 		println!("{} tokens, ${:.2}", outcome.tokens, outcome.usd);
 	}
-	if outcome.failed.is_empty() {
-		Ok(ExitCode::SUCCESS)
-	} else {
-		Ok(ExitCode::FAILURE)
-	}
+	if outcome.failed.is_empty() { Ok(ExitCode::SUCCESS) } else { Ok(ExitCode::FAILURE) }
 }
 
 /// Report what the articles reference and `data/public` cannot answer for.
@@ -788,11 +698,7 @@ fn classify_images(
 fn check_assets() -> anyhow::Result<ExitCode> {
 	let root = paths::repo_root()?;
 
-	let gaps = match check::report(
-		&root,
-		&root.join("data").join("public"),
-		&root.join("contents"),
-	) {
+	let gaps = match check::report(&root, &root.join("data").join("public"), &root.join("contents")) {
 		Ok(gaps) => gaps,
 		Err(error) => {
 			eprintln!("could not read articles: {error}");
@@ -806,21 +712,11 @@ fn check_assets() -> anyhow::Result<ExitCode> {
 	}
 
 	for gap in &gaps {
-		let action = gap
-			.action
-			.map(|action| format!(" -- run cms {}", action.command()))
-			.unwrap_or_default();
-		println!(
-			"{}  {}: {}{action}",
-			gap.level.label(),
-			gap.what,
-			gap.detail
-		);
+		let action =
+			gap.action.map(|action| format!(" -- run cms {}", action.command())).unwrap_or_default();
+		println!("{}  {}: {}{action}", gap.level.label(), gap.what, gap.detail);
 	}
-	let warnings = gaps
-		.iter()
-		.filter(|gap| gap.level == check::Level::Warn)
-		.count();
+	let warnings = gaps.iter().filter(|gap| gap.level == check::Level::Warn).count();
 	println!("{} missing, {warnings} of them images", gaps.len());
 	Ok(ExitCode::SUCCESS)
 }
@@ -904,19 +800,12 @@ fn collect_licenses() -> anyhow::Result<ExitCode> {
 		return Ok(ExitCode::FAILURE);
 	}
 
-	println!(
-		"{} unique texts, {} KiB in the full notice",
-		written.objects,
-		document.len() / 1024
-	);
+	println!("{} unique texts, {} KiB in the full notice", written.objects, document.len() / 1024);
 	for purl in &written.stale {
 		println!("stale assertion, the package now declares its own or is gone: {purl}");
 	}
 	if !written.textless.is_empty() {
-		println!(
-			"{} packages declare terms but ship no text",
-			written.textless.len()
-		);
+		println!("{} packages declare terms but ship no text", written.textless.len());
 	}
 	println!("wrote data/build/licenses.json");
 
@@ -951,11 +840,7 @@ fn process_images(
 	let public = root.join("data").join("public");
 	let articles = root.join("contents");
 
-	let options = image::run::Options {
-		force,
-		keep_original,
-		only: &only,
-	};
+	let options = image::run::Options { force, keep_original, only: &only };
 	let outcome =
 		image::run::run(&root, &originals, &public, &articles, &options).context("could not write")?;
 
@@ -976,11 +861,7 @@ fn process_images(
 		outcome.rewritten
 	);
 
-	if outcome.failed.is_empty() {
-		Ok(ExitCode::SUCCESS)
-	} else {
-		Ok(ExitCode::FAILURE)
-	}
+	if outcome.failed.is_empty() { Ok(ExitCode::SUCCESS) } else { Ok(ExitCode::FAILURE) }
 }
 
 /// The `cms tn` command: which passages a translation will have to keep and explain.
@@ -1049,16 +930,7 @@ fn scan_notes(
 			}
 		}
 	} else {
-		only
-			.into_iter()
-			.map(|item| {
-				if item.is_absolute() {
-					item
-				} else {
-					root.join(item)
-				}
-			})
-			.collect()
+		only.into_iter().map(|item| if item.is_absolute() { item } else { root.join(item) }).collect()
 	}
 	.into_iter()
 	.filter(|article| {
@@ -1077,11 +949,8 @@ fn scan_notes(
 	// skipped would report a total that had never been true.
 	let progress = task::progress::Progress::new_terminal(wanted.len() as u64);
 	for article in &wanted {
-		let key = article
-			.strip_prefix(&contents)
-			.unwrap_or(article)
-			.to_string_lossy()
-			.replace('\\', "/");
+		let key =
+			article.strip_prefix(&contents).unwrap_or(article).to_string_lossy().replace('\\', "/");
 		progress.set_message(key.clone());
 		if !force && table.scanned(&key) {
 			progress.inc(1);
@@ -1205,16 +1074,10 @@ fn fetch_embeds(force: bool) -> anyhow::Result<ExitCode> {
 	want.repos.sort();
 	want.repos.dedup();
 
-	let todo: Vec<&String> = want
-		.crates
-		.iter()
-		.filter(|name| !crates.crates.contains_key(*name))
-		.collect();
-	let todo_repos: Vec<&String> = want
-		.repos
-		.iter()
-		.filter(|name| !repos.repos.contains_key(*name))
-		.collect();
+	let todo: Vec<&String> =
+		want.crates.iter().filter(|name| !crates.crates.contains_key(*name)).collect();
+	let todo_repos: Vec<&String> =
+		want.repos.iter().filter(|name| !repos.repos.contains_key(*name)).collect();
 
 	let progress = task::progress::Progress::new_terminal((todo.len() + todo_repos.len()) as u64);
 	let mut failed = 0usize;
@@ -1223,11 +1086,7 @@ fn fetch_embeds(force: bool) -> anyhow::Result<ExitCode> {
 		match embed::fetch::krate(name) {
 			Some(resolved) => {
 				progress.suspend(|| {
-					println!(
-						"  {name} {} -- {} deps",
-						resolved.version,
-						resolved.deps.len()
-					);
+					println!("  {name} {} -- {} deps", resolved.version, resolved.deps.len());
 				});
 				crates.crates.insert(name.clone(), resolved);
 			}
@@ -1256,28 +1115,20 @@ fn fetch_embeds(force: bool) -> anyhow::Result<ExitCode> {
 
 	if let Err(error) = image::store::write(
 		&embed::crates_path(&root),
-		serde_json::to_string_pretty(&crates)
-			.unwrap_or_default()
-			.as_bytes(),
+		serde_json::to_string_pretty(&crates).unwrap_or_default().as_bytes(),
 	) {
 		eprintln!("could not write crates.json: {error}");
 		return Ok(ExitCode::FAILURE);
 	}
 	if let Err(error) = image::store::write(
 		&embed::repos_path(&root),
-		serde_json::to_string_pretty(&repos)
-			.unwrap_or_default()
-			.as_bytes(),
+		serde_json::to_string_pretty(&repos).unwrap_or_default().as_bytes(),
 	) {
 		eprintln!("could not write repos.json: {error}");
 		return Ok(ExitCode::FAILURE);
 	}
 
-	println!(
-		"{} crates, {} repositories, {failed} failed",
-		crates.crates.len(),
-		repos.repos.len()
-	);
+	println!("{} crates, {} repositories, {failed} failed", crates.crates.len(), repos.repos.len());
 	Ok(ExitCode::SUCCESS)
 }
 
@@ -1285,10 +1136,7 @@ fn twitter_command(command: TwitterCommand) -> anyhow::Result<ExitCode> {
 	match command {
 		TwitterCommand::User { query, count } => {
 			let query = query.join(" ");
-			run_lookup(
-				twitter::users(&query, count.unwrap_or(twitter::DEFAULT_COUNT)),
-				"user search",
-			)
+			run_lookup(twitter::users(&query, count.unwrap_or(twitter::DEFAULT_COUNT)), "user search")
 		}
 		TwitterCommand::Keyword { query, limit, mode } => {
 			let mode = match mode.as_deref().map(twitter::Mode::parse) {
@@ -1306,15 +1154,7 @@ fn twitter_command(command: TwitterCommand) -> anyhow::Result<ExitCode> {
 			)
 		}
 		TwitterCommand::Thread { id } => run_lookup(twitter::thread(&id), "thread"),
-		TwitterCommand::Semantic {
-			query,
-			limit,
-			from,
-			to,
-			user,
-			exclude_user,
-			min_score,
-		} => {
+		TwitterCommand::Semantic { query, limit, from, to, user, exclude_user, min_score } => {
 			let mut options = twitter::Semantic::new(query.join(" "));
 			if let Some(limit) = limit {
 				options.limit = limit;

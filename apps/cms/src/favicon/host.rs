@@ -91,10 +91,7 @@ mod tests {
 
 	#[test]
 	fn pulls_the_host_out_of_a_url() {
-		assert_eq!(
-			hostname("https://blog.example.com/a/b?c=1#d").as_deref(),
-			Some("blog.example.com")
-		);
+		assert_eq!(hostname("https://blog.example.com/a/b?c=1#d").as_deref(), Some("blog.example.com"));
 	}
 
 	#[test]
@@ -154,12 +151,7 @@ mod tests {
 	#[test]
 	fn honours_a_base_href() {
 		assert_eq!(
-			absolute(
-				"example.com",
-				Some("https://cdn.example.net/assets/"),
-				"icon.png"
-			)
-			.as_deref(),
+			absolute("example.com", Some("https://cdn.example.net/assets/"), "icon.png").as_deref(),
 			Some("https://cdn.example.net/assets/icon.png")
 		);
 	}

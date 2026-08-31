@@ -80,10 +80,7 @@ pub struct Media {
 
 impl Default for Media {
 	fn default() -> Self {
-		Self {
-			version: VERSION,
-			media: BTreeMap::new(),
-		}
+		Self { version: VERSION, media: BTreeMap::new() }
 	}
 }
 
@@ -124,9 +121,7 @@ pub fn save(path: &Path, media: &Media) -> std::io::Result<()> {
 #[allow(dead_code)]
 pub fn is_valid_tag(name: &str) -> bool {
 	!name.is_empty()
-		&& name
-			.chars()
-			.all(|c| c.is_ascii_lowercase() || c.is_ascii_digit() || c == '-')
+		&& name.chars().all(|c| c.is_ascii_lowercase() || c.is_ascii_digit() || c == '-')
 		&& !name.starts_with('-')
 		&& !name.ends_with('-')
 }

@@ -34,10 +34,7 @@ impl Size {
 			return self;
 		}
 		let factor = f64::from(target) / f64::from(current);
-		Self::new(
-			scale(self.width, factor).max(1),
-			scale(self.height, factor).max(1),
-		)
+		Self::new(scale(self.width, factor).max(1), scale(self.height, factor).max(1))
 	}
 }
 
@@ -111,10 +108,7 @@ mod tests {
 	}
 
 	fn rungs(size: Size, keep_original: bool) -> Vec<u32> {
-		ladder(size, keep_original)
-			.into_iter()
-			.map(|s| s.long_edge())
-			.collect()
+		ladder(size, keep_original).into_iter().map(|s| s.long_edge()).collect()
 	}
 
 	#[test]
@@ -126,10 +120,7 @@ mod tests {
 
 	#[test]
 	fn keeps_the_full_frame_only_when_asked() {
-		assert_eq!(
-			rungs(Size::new(2400, 1600), true),
-			vec![640, 1280, 1920, 2400]
-		);
+		assert_eq!(rungs(Size::new(2400, 1600), true), vec![640, 1280, 1920, 2400]);
 	}
 
 	#[test]
@@ -155,10 +146,7 @@ mod tests {
 	#[test]
 	fn an_image_below_the_lowest_tier_yields_only_itself() {
 		// Re-encoded, not resized. Offering it at 640 would upscale a 200px image.
-		assert_eq!(
-			ladder(Size::new(200, 150), false),
-			vec![Size::new(200, 150)]
-		);
+		assert_eq!(ladder(Size::new(200, 150), false), vec![Size::new(200, 150)]);
 	}
 
 	#[test]

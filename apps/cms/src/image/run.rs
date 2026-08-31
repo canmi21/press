@@ -91,14 +91,7 @@ pub fn run(
 			continue;
 		}
 
-		match super::publish(
-			&bytes,
-			mime_of(&path),
-			public,
-			previous,
-			keep,
-			gazetteer.as_ref(),
-		) {
+		match super::publish(&bytes, mime_of(&path), public, previous, keep, gazetteer.as_ref()) {
 			Ok(media) => {
 				if let Some(target) = reference.as_deref() {
 					note(&mut rewrites, target, &id, Some(&media));
@@ -118,10 +111,7 @@ pub fn run(
 		let Some((cid, _)) = image.resolved() else {
 			continue;
 		};
-		if let Some(name) = merged
-			.media
-			.get(cid)
-			.and_then(|media| resolved_name(cid, media))
+		if let Some(name) = merged.media.get(cid).and_then(|media| resolved_name(cid, media))
 			&& name != image.value
 		{
 			rewrites.insert(image.value.clone(), name);
@@ -154,11 +144,7 @@ fn wanted(
 	outcome: &mut Outcome,
 ) -> Vec<(Option<String>, PathBuf)> {
 	if !options.only.is_empty() {
-		return options
-			.only
-			.iter()
-			.map(|path| (None, path.clone()))
-			.collect();
+		return options.only.iter().map(|path| (None, path.clone())).collect();
 	}
 
 	let mut found: Vec<(Option<String>, PathBuf)> = Vec::new();
@@ -174,11 +160,8 @@ fn wanted(
 
 	// A finished reference whose variants are gone -- swept, or never published on this
 	// machine. The original is found by hashing, because the id is the hash.
-	let unpublished: Vec<String> = scan
-		.cids()
-		.into_iter()
-		.filter(|cid| !published(public, merged.media.get(cid)))
-		.collect();
+	let unpublished: Vec<String> =
+		scan.cids().into_iter().filter(|cid| !published(public, merged.media.get(cid))).collect();
 	if !unpublished.is_empty() {
 		let by_id = originals_by_id(originals);
 		for cid in unpublished {
@@ -270,10 +253,7 @@ fn note(
 /// single pixel. Re-deriving to publish a changed field would spend minutes producing bytes
 /// that are already correct.
 pub fn republish(public: &Path, cid: &str, media: &Media) -> std::io::Result<()> {
-	let document = manifest::Document {
-		version: manifest::VERSION,
-		media: media.clone(),
-	};
+	let document = manifest::Document { version: manifest::VERSION, media: media.clone() };
 	let json = serde_json::to_string_pretty(&document)
 		.map_err(|error| std::io::Error::other(error.to_string()))?;
 	store::write(&store::meta_path(public, cid), json.as_bytes())
@@ -318,10 +298,7 @@ fn sources(directory: &Path) -> std::io::Result<Vec<PathBuf>> {
 }
 
 fn is_hidden(path: &Path) -> bool {
-	path
-		.file_name()
-		.and_then(|name| name.to_str())
-		.is_some_and(|name| name.starts_with('.'))
+	path.file_name().and_then(|name| name.to_str()).is_some_and(|name| name.starts_with('.'))
 }
 
 /// Point every rewritten reference at what it became.
@@ -407,11 +384,7 @@ mod tests {
 
 	#[test]
 	fn a_missing_directory_is_empty_rather_than_an_error() {
-		assert!(
-			sources(Path::new("/nowhere-at-all"))
-				.expect("sources")
-				.is_empty()
-		);
+		assert!(sources(Path::new("/nowhere-at-all")).expect("sources").is_empty());
 	}
 
 	#[test]
@@ -419,26 +392,17 @@ mod tests {
 		let root = temp("rewrite");
 		std::fs::create_dir_all(root.join("deep")).expect("dir");
 		std::fs::write(root.join("a.md"), "![](shot.png) and ![](shot.png)").expect("write");
-		std::fs::write(
-			root.join("deep/b.md"),
-			r#"::linkcard{src="shot.png" url="https://a.example"}"#,
-		)
-		.expect("write");
+		std::fs::write(root.join("deep/b.md"), r#"::linkcard{src="shot.png" url="https://a.example"}"#)
+			.expect("write");
 
 		let mut rewrites = BTreeMap::new();
 		rewrites.insert("shot.png".to_owned(), "newcid.avif".to_owned());
 		let changed = rewrite_references(&root, &rewrites).expect("rewrite");
 
 		assert_eq!(changed, 3);
+		assert!(std::fs::read_to_string(root.join("a.md")).unwrap().contains("](newcid.avif)"));
 		assert!(
-			std::fs::read_to_string(root.join("a.md"))
-				.unwrap()
-				.contains("](newcid.avif)")
-		);
-		assert!(
-			std::fs::read_to_string(root.join("deep/b.md"))
-				.unwrap()
-				.contains(r#"src="newcid.avif""#)
+			std::fs::read_to_string(root.join("deep/b.md")).unwrap().contains(r#"src="newcid.avif""#)
 		);
 		std::fs::remove_dir_all(&root).ok();
 	}
@@ -453,11 +417,7 @@ mod tests {
 		rewrites.insert("shot.png".to_owned(), "newcid.avif".to_owned());
 
 		assert_eq!(rewrite_references(&root, &rewrites).expect("rewrite"), 0);
-		assert!(
-			std::fs::read_to_string(root.join("a.md"))
-				.unwrap()
-				.contains("shot.png")
-		);
+		assert!(std::fs::read_to_string(root.join("a.md")).unwrap().contains("shot.png"));
 		std::fs::remove_dir_all(&root).ok();
 	}
 
@@ -509,21 +469,13 @@ mod tests {
 		// 1000x2400 with --original: the ladder caps at 1920 on the long edge, so the full frame
 		// is a rung of its own. Re-deriving used to ask whether the *width* cleared the cap --
 		// 1000 does not -- and dropped a variant that was already published. See ladder::Size.
-		let tall = derived(
-			1000,
-			2400,
-			&[(267, 640), (533, 1280), (800, 1920), (1000, 2400)],
-		);
+		let tall = derived(1000, 2400, &[(267, 640), (533, 1280), (800, 1920), (1000, 2400)]);
 		assert!(keeps_full_frame(&tall));
 	}
 
 	#[test]
 	fn a_wide_image_keeps_the_full_frame_it_published() {
-		let wide = derived(
-			2400,
-			1000,
-			&[(640, 267), (1280, 533), (1920, 800), (2400, 1000)],
-		);
+		let wide = derived(2400, 1000, &[(640, 267), (1280, 533), (1920, 800), (2400, 1000)]);
 		assert!(keeps_full_frame(&wide));
 	}
 
@@ -620,22 +572,15 @@ mod tests {
 		};
 		store::write(
 			&root.join(MERGED),
-			serde_json::to_string_pretty(&merged)
-				.expect("merged")
-				.as_bytes(),
+			serde_json::to_string_pretty(&merged).expect("merged").as_bytes(),
 		)
 		.expect("write merged");
-		let mut stale = serde_json::to_value(manifest::Document {
-			version: 2,
-			media: media.clone(),
-		})
-		.expect("stale document");
+		let mut stale = serde_json::to_value(manifest::Document { version: 2, media: media.clone() })
+			.expect("stale document");
 		stale["media"]["preview"] = "obsolete".into();
 		store::write(
 			&store::meta_path(&public, cid),
-			serde_json::to_string_pretty(&stale)
-				.expect("stale json")
-				.as_bytes(),
+			serde_json::to_string_pretty(&stale).expect("stale json").as_bytes(),
 		)
 		.expect("write stale sidecar");
 
@@ -644,11 +589,7 @@ mod tests {
 			&root.join("data/image"),
 			&public,
 			&articles,
-			&Options {
-				force: false,
-				keep_original: false,
-				only: &[],
-			},
+			&Options { force: false, keep_original: false, only: &[] },
 		)
 		.expect("run");
 

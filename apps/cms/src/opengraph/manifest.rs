@@ -27,10 +27,7 @@ pub struct Manifest {
 
 impl Default for Manifest {
 	fn default() -> Self {
-		Self {
-			version: VERSION,
-			cards: BTreeMap::new(),
-		}
+		Self { version: VERSION, cards: BTreeMap::new() }
 	}
 }
 
@@ -66,11 +63,7 @@ pub fn save(path: &Path, manifest: &Manifest) -> std::io::Result<()> {
 /// Relative, so the record does not depend on where the repository is checked out -- an
 /// absolute path would make every card look new on another machine.
 pub fn key_for(public: &Path, target: &Path) -> String {
-	target
-		.strip_prefix(public)
-		.unwrap_or(target)
-		.to_string_lossy()
-		.into_owned()
+	target.strip_prefix(public).unwrap_or(target).to_string_lossy().into_owned()
 }
 
 /// A hash of everything that decides what a card looks like.
@@ -92,10 +85,8 @@ mod tests {
 
 	#[test]
 	fn a_card_is_keyed_by_where_it_sits_below_the_root() {
-		let key = key_for(
-			Path::new("/repo/data/public"),
-			Path::new("/repo/data/public/opengraph/ja/x.png"),
-		);
+		let key =
+			key_for(Path::new("/repo/data/public"), Path::new("/repo/data/public/opengraph/ja/x.png"));
 		assert_eq!(key, "opengraph/ja/x.png");
 	}
 

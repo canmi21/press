@@ -106,19 +106,10 @@ pub fn article_of(root: &Path, path: &Path) -> Option<Article> {
 	let slug = relative.to_str()?.to_owned();
 	// The top directory is the category, so an article's place in the tree is the only thing
 	// that has to say what it is about.
-	let category = relative
-		.parent()
-		.and_then(|p| p.file_name())
-		.and_then(|n| n.to_str())
-		.map(str::to_owned);
+	let category =
+		relative.parent().and_then(|p| p.file_name()).and_then(|n| n.to_str()).map(str::to_owned);
 
-	Some(Article {
-		slug,
-		title: title?,
-		subtitle,
-		category,
-		created,
-	})
+	Some(Article { slug, title: title?, subtitle, category, created })
 }
 
 /// `2026-04-13T19:18:28.488Z` as `Apr 13, 2026`.
@@ -137,10 +128,7 @@ pub fn short_date(iso: &str) -> Option<String> {
 /// rewrite. Nothing outside this repository ever sees the layout -- a reader asks for
 /// `/opengraph/{slug}.png?lang=ja` and the CDN resolves it. See spec/architecture/media.md.
 pub fn card_path(public: &Path, view: &str, slug: &str) -> PathBuf {
-	public
-		.join("opengraph")
-		.join(view)
-		.join(format!("{slug}.png"))
+	public.join("opengraph").join(view).join(format!("{slug}.png"))
 }
 
 /// The translation of one frontmatter value, or `None` when this view has none.
@@ -150,12 +138,7 @@ pub fn card_path(public: &Path, view: &str, slug: &str) -> PathBuf {
 /// article's own words.
 fn translated(sidecar: &store::Sidecar, view: &locale::View, source: &str) -> Option<String> {
 	let tag = view.tag?;
-	let text = sidecar
-		.segments
-		.get(&segment::id_of(source))?
-		.get(tag)?
-		.text
-		.clone();
+	let text = sidecar.segments.get(&segment::id_of(source))?.get(tag)?.text.clone();
 	(!text.trim().is_empty()).then_some(text)
 }
 
@@ -194,13 +177,7 @@ impl Job {
 	fn inputs(&self) -> String {
 		let mut parts = vec![self.site.as_str(), self.domain.as_str()];
 		match &self.face {
-			Face::Article {
-				title,
-				subtitle,
-				category,
-				date,
-				stats,
-			} => {
+			Face::Article { title, subtitle, category, date, stats } => {
 				parts.push("article");
 				parts.push(title);
 				parts.push(subtitle.as_deref().unwrap_or_default());
@@ -208,13 +185,7 @@ impl Job {
 				parts.push(date.as_deref().unwrap_or_default());
 				parts.push(stats);
 			}
-			Face::Route {
-				title,
-				subtitle,
-				section,
-				qualifier,
-				badge,
-			} => {
+			Face::Route { title, subtitle, section, qualifier, badge } => {
 				parts.push("route");
 				parts.push(title);
 				parts.push(subtitle.as_deref().unwrap_or_default());
@@ -295,9 +266,7 @@ fn article_jobs(
 				let others = locale::VIEWS.len().saturating_sub(1).to_string();
 				let stats = messages::for_view(catalogs, view.code)
 					.get("card.languages")
-					.map_or(String::new(), |template| {
-						messages::fill(template, &[("count", &others)])
-					});
+					.map_or(String::new(), |template| messages::fill(template, &[("count", &others)]));
 
 				Job {
 					label: format!("{} {}", view.code, article.slug),
@@ -350,11 +319,7 @@ pub fn census(articles: &Path) -> Result<Census, String> {
 		characters += body.chars().filter(|c| !c.is_whitespace()).count();
 	}
 
-	Ok(Census {
-		articles: counted,
-		characters,
-		languages: locale::VIEWS.len(),
-	})
+	Ok(Census { articles: counted, characters, languages: locale::VIEWS.len() })
 }
 
 /// The home card, once per view, worded by that view's own catalog.
@@ -409,10 +374,7 @@ fn route_jobs(
 	};
 
 	let mut jobs = Vec::new();
-	for route in routes::directories(&record)
-		.into_iter()
-		.chain(routes::packages(&record))
-	{
+	for route in routes::directories(&record).into_iter().chain(routes::packages(&record)) {
 		for view in locale::VIEWS {
 			let catalog = messages::for_view(catalogs, view.code);
 			let (title, subtitle, section, badge) = routes::worded(&route, catalog);
@@ -421,13 +383,7 @@ fn route_jobs(
 				target: card_path(public, view.code, &route.slug),
 				site: config.name.clone(),
 				domain: config.domain.clone(),
-				face: Face::Route {
-					title,
-					subtitle,
-					section,
-					qualifier: route.qualifier.clone(),
-					badge,
-				},
+				face: Face::Route { title, subtitle, section, qualifier: route.qualifier.clone(), badge },
 			});
 		}
 	}
@@ -445,10 +401,7 @@ fn load_avatar(repo: &Path) -> Option<Avatar> {
 	// Square, from the top-left, because the portrait is already square and a rectangle here
 	// would mean choosing a crop nobody asked for.
 	Some(Avatar {
-		rgba: image::DynamicImage::ImageRgba8(decoded)
-			.crop_imm(0, 0, size, size)
-			.to_rgba8()
-			.into_raw(),
+		rgba: image::DynamicImage::ImageRgba8(decoded).crop_imm(0, 0, size, size).to_rgba8().into_raw(),
 		size,
 	})
 }
@@ -508,13 +461,7 @@ pub fn render_all(
 			|fonts, planned| {
 				let job = &planned.job;
 				let pixels = match &job.face {
-					Face::Article {
-						title,
-						subtitle,
-						category,
-						date,
-						stats,
-					} => layout::render(
+					Face::Article { title, subtitle, category, date, stats } => layout::render(
 						fonts,
 						FAMILY,
 						&Card {
@@ -527,13 +474,7 @@ pub fn render_all(
 							stats,
 						},
 					),
-					Face::Route {
-						title,
-						subtitle,
-						section,
-						qualifier,
-						badge,
-					} => layout::render(
+					Face::Route { title, subtitle, section, qualifier, badge } => layout::render(
 						fonts,
 						FAMILY,
 						&Card {
@@ -574,10 +515,7 @@ pub fn render_all(
 		next.cards.insert(planned.key.clone(), planned.hash.clone());
 	}
 
-	let mut outcome = Outcome {
-		skipped: current.len(),
-		..Outcome::default()
-	};
+	let mut outcome = Outcome { skipped: current.len(), ..Outcome::default() };
 	for result in results {
 		match result {
 			Ok(planned) => {
@@ -713,10 +651,7 @@ mod tests {
 
 	#[test]
 	fn dates_are_shown_rather_than_printed() {
-		assert_eq!(
-			short_date("2026-04-13T19:18:28.488Z").as_deref(),
-			Some("Apr 13, 2026")
-		);
+		assert_eq!(short_date("2026-04-13T19:18:28.488Z").as_deref(), Some("Apr 13, 2026"));
 		assert_eq!(short_date("not a date"), None);
 	}
 

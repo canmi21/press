@@ -199,15 +199,9 @@ where
 	}
 	check_limit(count, "count")?;
 	let request = prompt::users_request(query, count);
-	let answer = ask(request.text, MODEL.to_owned())
-		.await
-		.map_err(Error::Refused)?;
+	let answer = ask(request.text, MODEL.to_owned()).await.map_err(Error::Refused)?;
 	let (users, rejected) = prompt::parse_users(&answer.text, Some(&request.boundary))?;
-	Ok(Users {
-		query: query.to_owned(),
-		users,
-		rejected,
-	})
+	Ok(Users { query: query.to_owned(), users, rejected })
 }
 
 async fn keyword_with<F, Fut>(query: &str, limit: u32, mode: Mode, ask: F) -> Result<Posts, Error>
@@ -220,9 +214,7 @@ where
 	}
 	check_limit(limit, "limit")?;
 	let request = prompt::keyword_request(query, limit, mode);
-	let answer = ask(request.text, MODEL.to_owned())
-		.await
-		.map_err(Error::Refused)?;
+	let answer = ask(request.text, MODEL.to_owned()).await.map_err(Error::Refused)?;
 	let (posts, rejected) = prompt::parse_posts(&answer.text, false, false, Some(&request.boundary))?;
 	Ok(Posts {
 		query: query.to_owned(),
@@ -246,15 +238,9 @@ where
 		return Err(Error::Invalid("post id is a 19-digit snowflake"));
 	}
 	let request = prompt::thread_request(post_id);
-	let answer = ask(request.text, MODEL.to_owned())
-		.await
-		.map_err(Error::Refused)?;
+	let answer = ask(request.text, MODEL.to_owned()).await.map_err(Error::Refused)?;
 	let (posts, rejected) = prompt::parse_posts(&answer.text, false, true, Some(&request.boundary))?;
-	Ok(Thread {
-		post_id: post_id.to_owned(),
-		posts,
-		rejected,
-	})
+	Ok(Thread { post_id: post_id.to_owned(), posts, rejected })
 }
 
 async fn semantic_with<F, Fut>(options: Semantic, ask: F) -> Result<Posts, Error>
@@ -276,9 +262,7 @@ where
 		return Err(Error::Invalid("min-score must be a non-negative number"));
 	}
 	let request = prompt::semantic_request(&options);
-	let answer = ask(request.text, MODEL.to_owned())
-		.await
-		.map_err(Error::Refused)?;
+	let answer = ask(request.text, MODEL.to_owned()).await.map_err(Error::Refused)?;
 	let (posts, rejected) = prompt::parse_posts(&answer.text, true, false, Some(&request.boundary))?;
 	Ok(Posts {
 		query: options.query,
@@ -335,12 +319,7 @@ mod tests {
 	}
 
 	fn answer(text: &str) -> Answer {
-		Answer {
-			text: text.to_owned(),
-			model: "grok-4-6".into(),
-			tokens: 0,
-			usd: 0.0,
-		}
+		Answer { text: text.to_owned(), model: "grok-4-6".into(), tokens: 0, usd: 0.0 }
 	}
 
 	#[tokio::test]

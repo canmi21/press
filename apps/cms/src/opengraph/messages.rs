@@ -11,11 +11,7 @@ use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 
 pub fn catalog_path(repo: &Path, view: &str) -> PathBuf {
-	repo
-		.join("apps")
-		.join("site")
-		.join("messages")
-		.join(format!("{view}.json"))
+	repo.join("apps").join("site").join("messages").join(format!("{view}.json"))
 }
 
 /// Every message for one view, or an empty map when the catalog cannot be read.
@@ -32,10 +28,7 @@ pub fn load(repo: &Path, view: &str) -> BTreeMap<String, String> {
 /// command does not write them -- so reading one per card meant reading nine files several
 /// thousand times to get nine answers. Loading them up front turns that into nine reads.
 pub fn load_all(repo: &Path) -> BTreeMap<&'static str, BTreeMap<String, String>> {
-	super::locale::VIEWS
-		.iter()
-		.map(|view| (view.code, load(repo, view.code)))
-		.collect()
+	super::locale::VIEWS.iter().map(|view| (view.code, load(repo, view.code))).collect()
 }
 
 /// The catalogue for one view, or an empty one when that view has none.
@@ -47,9 +40,7 @@ pub fn for_view<'a>(
 	view: &str,
 ) -> &'a BTreeMap<String, String> {
 	static EMPTY: std::sync::OnceLock<BTreeMap<String, String>> = std::sync::OnceLock::new();
-	catalogs
-		.get(view)
-		.unwrap_or_else(|| EMPTY.get_or_init(BTreeMap::new))
+	catalogs.get(view).unwrap_or_else(|| EMPTY.get_or_init(BTreeMap::new))
 }
 
 /// Fill `{slot}` from the pairs given, leaving anything unnamed as it stands.
@@ -115,10 +106,7 @@ mod tests {
 			// picture. The slots are the other half of that contract: a message that loses one
 			// renders without the number it was supposed to carry.
 			for (key, slots) in [
-				(
-					"card.stats",
-					["{articles}", "{characters}", "{languages}"].as_slice(),
-				),
+				("card.stats", ["{articles}", "{characters}", "{languages}"].as_slice()),
 				("card.languages", ["{count}"].as_slice()),
 				("card.packages", ["{count}"].as_slice()),
 				("card.more_licenses", ["{count}"].as_slice()),

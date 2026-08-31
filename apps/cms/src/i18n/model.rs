@@ -162,10 +162,7 @@ Write every dot as a hyphen, and use lower case throughout.";
 /// The entry point for a provider that cannot be asked any other way. Nothing calls it yet.
 #[allow(dead_code)]
 pub fn anonymous(reply: &str) -> Option<(String, String)> {
-	let line = reply
-		.lines()
-		.map(str::trim)
-		.find(|line| line.contains('/') && !line.contains(' '))?;
+	let line = reply.lines().map(str::trim).find(|line| line.contains('/') && !line.contains(' '))?;
 	let (provider, model) = line.split_once('/')?;
 	let model = normalise(model);
 	// Believed only as far as it agrees with itself: a model claiming to be a Claude while
@@ -230,19 +227,10 @@ mod tests {
 
 	#[test]
 	fn a_provider_is_recognised_from_its_family() {
-		assert_eq!(
-			Provider::of_model("claude-opus-4-8"),
-			Some(Provider::Anthropic)
-		);
+		assert_eq!(Provider::of_model("claude-opus-4-8"), Some(Provider::Anthropic));
 		assert_eq!(Provider::of_model("gpt-5-6-luna"), Some(Provider::Openai));
-		assert_eq!(
-			Provider::of_model("qwen-3-235b-a22b"),
-			Some(Provider::Alibaba)
-		);
-		assert_eq!(
-			Provider::of_model("deepseek-prover-v2"),
-			Some(Provider::Deepseek)
-		);
+		assert_eq!(Provider::of_model("qwen-3-235b-a22b"), Some(Provider::Alibaba));
+		assert_eq!(Provider::of_model("deepseek-prover-v2"), Some(Provider::Deepseek));
 		assert_eq!(Provider::of_model("composer-2-5"), Some(Provider::Cursor));
 		assert_eq!(Provider::of_model("grok-4-6"), Some(Provider::Xai));
 		assert_eq!(Provider::of_model("something-else"), None);

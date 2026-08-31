@@ -33,19 +33,13 @@ pub enum Tag {
 
 impl Tag {
 	pub fn ordinary(source: impl Into<String>, meaning: impl Into<String>) -> Self {
-		Self::Ordinary {
-			source: source.into(),
-			meaning: meaning.into(),
-			display: BTreeMap::new(),
-		}
+		Self::Ordinary { source: source.into(), meaning: meaning.into(), display: BTreeMap::new() }
 	}
 
 	pub fn translation_source(&self) -> Option<(&str, &str)> {
 		match self {
 			Self::Technical { .. } => None,
-			Self::Ordinary {
-				source, meaning, ..
-			} => Some((source, meaning)),
+			Self::Ordinary { source, meaning, .. } => Some((source, meaning)),
 		}
 	}
 
@@ -73,10 +67,7 @@ pub struct Registry {
 
 impl Default for Registry {
 	fn default() -> Self {
-		Self {
-			version: VERSION,
-			tags: BTreeMap::new(),
-		}
+		Self { version: VERSION, tags: BTreeMap::new() }
 	}
 }
 
@@ -120,9 +111,9 @@ pub fn known(registry: &Registry) -> Vec<String> {
 			Tag::Technical { display, meaning } => {
 				format!("{name} | technical | display: {display} | meaning: {meaning}")
 			}
-			Tag::Ordinary {
-				source, meaning, ..
-			} => format!("{name} | ordinary | source: {source} | meaning: {meaning}"),
+			Tag::Ordinary { source, meaning, .. } => {
+				format!("{name} | ordinary | source: {source} | meaning: {meaning}")
+			}
 		})
 		.collect()
 }
@@ -184,10 +175,7 @@ mod tests {
 				meaning: "programming language".to_owned()
 			}
 		);
-		assert_eq!(
-			registry.tags["terminal"].translations().expect("ordinary")["zh-CN"].text,
-			"终端"
-		);
+		assert_eq!(registry.tags["terminal"].translations().expect("ordinary")["zh-CN"].text, "终端");
 		assert_eq!(known(&registry).len(), 2);
 	}
 
@@ -208,12 +196,7 @@ mod tests {
 		let text = serde_yaml_ng::to_string(&registry).expect("yaml");
 		let back: Registry = serde_yaml_ng::from_str(&text).expect("parse");
 		assert!(back.tags.contains_key("wasm"));
-		assert!(
-			back.tags["terminal"]
-				.translations()
-				.expect("ordinary")
-				.is_empty()
-		);
+		assert!(back.tags["terminal"].translations().expect("ordinary").is_empty());
 		assert!(text.contains("kind: technical"));
 		assert!(text.contains("kind: ordinary"));
 		assert!(text.contains("source: Terminal"));

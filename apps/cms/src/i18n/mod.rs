@@ -109,10 +109,7 @@ pub fn selected_locales(values: &[String]) -> Result<Vec<&'static str>, String> 
 	}
 	for value in values {
 		if !prompt::LOCALES.contains(&value.as_str()) {
-			return Err(format!(
-				"--locale takes one of {}",
-				prompt::LOCALES.join(", ")
-			));
+			return Err(format!("--locale takes one of {}", prompt::LOCALES.join(", ")));
 		}
 	}
 	Ok(
@@ -210,9 +207,7 @@ fn validate_reply_for(
 			// Read after restoring: every marker this block owns has just been put back, so one
 			// still standing here belongs to the folded context and was copied out of it.
 			if !validate::markers_resolved(text) {
-				wrong_block
-					.borrow_mut()
-					.push(format!("{locale} ({})", validate::Error::UnresolvedMarker));
+				wrong_block.borrow_mut().push(format!("{locale} ({})", validate::Error::UnresolvedMarker));
 				return false;
 			}
 			// Size is compared against the real source, not the masked one, for the same reason
@@ -239,10 +234,7 @@ fn validate_reply_for(
 		// added line and a malformed note alike, and none of those suggests the same next move.
 		let wrong_block = wrong_block.into_inner();
 		return Err(Refusal::Failed(if !wrong_block.is_empty() {
-			format!(
-				"the reply is about a different block ({})",
-				wrong_block.join(", ")
-			)
+			format!("the reply is about a different block ({})", wrong_block.join(", "))
 		} else if !oversized.is_empty() {
 			format!(
 				"a translation is far larger than its source ({}; source is {} columns) -- the \
@@ -251,10 +243,7 @@ fn validate_reply_for(
 				width::raw(source)
 			)
 		} else if !glued.is_empty() {
-			format!(
-				"a note directive is glued to the word beside it ({})",
-				glued.join(", ")
-			)
+			format!("a note directive is glued to the word beside it ({})", glued.join(", "))
 		} else if too_wide.is_empty() {
 			"no locale survived marker and shape validation".to_owned()
 		} else {
@@ -377,11 +366,7 @@ async fn translate(
 		last = Refusal::Failed(format!("{} did not survive validation", pending.join(", ")));
 		attempt += 1;
 	}
-	if entries.is_empty() {
-		Err(last)
-	} else {
-		Ok((entries, total_tokens, total_usd, pending))
-	}
+	if entries.is_empty() { Err(last) } else { Ok((entries, total_tokens, total_usd, pending)) }
 }
 
 /// One line, rewritten in place, showing what is being worked on.
@@ -433,10 +418,7 @@ pub async fn run(
 		// Named articles narrow the run. Retranslating one edited piece should not mean walking
 		// everything before it in the tree.
 		.filter(|path| {
-			only.is_empty()
-				|| only
-					.iter()
-					.any(|wanted| path.ends_with(wanted) || path == wanted)
+			only.is_empty() || only.iter().any(|wanted| path.ends_with(wanted) || path == wanted)
 		})
 		.collect();
 
@@ -467,28 +449,17 @@ pub async fn run(
 		};
 		let source_locale = crate::summary::source_locale(lang).map(str::to_owned);
 		let live = segment::translatable(&article).map_err(|error| {
-			std::io::Error::new(
-				std::io::ErrorKind::InvalidData,
-				format!("{}: {error}", path.display()),
-			)
+			std::io::Error::new(std::io::ErrorKind::InvalidData, format!("{}: {error}", path.display()))
 		})?;
 		let sidecar_path = store::path_for(&path);
 		let mut sidecar = store::load(&sidecar_path)?;
-		outcome.segments += live
-			.values()
-			.filter(|segment| scope.includes(segment))
-			.count();
+		outcome.segments += live.values().filter(|segment| scope.includes(segment)).count();
 		outcome.orphans += store::orphans(&sidecar, &live).len();
 
 		let mut wanted = if force && !check {
 			live
 				.keys()
-				.map(|id| {
-					(
-						id.clone(),
-						locales.iter().map(|locale| (*locale).to_owned()).collect(),
-					)
-				})
+				.map(|id| (id.clone(), locales.iter().map(|locale| (*locale).to_owned()).collect()))
 				.collect::<std::collections::BTreeMap<_, _>>()
 		} else {
 			store::missing(&sidecar, &live, locales, source_locale.as_deref(), &glosses)
@@ -539,15 +510,11 @@ pub async fn run(
 					.iter()
 					.filter(|(id, missing)| {
 						missing.iter().any(|m| m == locale)
-							&& live
-								.get(*id)
-								.is_some_and(|segment| segment.region == segment::Region::Body)
+							&& live.get(*id).is_some_and(|segment| segment.region == segment::Region::Body)
 					})
 					.count();
 				if blocked > 0 {
-					outcome
-						.blocked_views
-						.push((path.display().to_string(), (*locale).to_owned(), blocked));
+					outcome.blocked_views.push((path.display().to_string(), (*locale).to_owned(), blocked));
 				}
 			}
 			continue;
@@ -569,10 +536,7 @@ pub async fn run(
 		// context and gives none. See spec/i18n.md.
 		let ordered: Vec<Segment> = segment::split(&article)
 			.map_err(|error| {
-				std::io::Error::new(
-					std::io::ErrorKind::InvalidData,
-					format!("{}: {error}", path.display()),
-				)
+				std::io::Error::new(std::io::ErrorKind::InvalidData, format!("{}: {error}", path.display()))
 			})?
 			.into_iter()
 			.filter(|segment| segment.region == segment::Region::Body)
@@ -586,9 +550,7 @@ pub async fn run(
 			let at = ordered.iter().position(|s| s.start == item.start);
 			at.map_or((None, None), |at| {
 				(
-					at.checked_sub(1)
-						.and_then(|i| ordered.get(i))
-						.map(segment::context_of),
+					at.checked_sub(1).and_then(|i| ordered.get(i)).map(segment::context_of),
 					ordered.get(at + 1).map(segment::context_of),
 				)
 			})
@@ -596,11 +558,7 @@ pub async fn run(
 
 		let todo: Vec<(Segment, Vec<String>)> = wanted
 			.iter()
-			.filter_map(|(id, locales)| {
-				live
-					.get(id)
-					.map(|segment| (segment.clone(), locales.clone()))
-			})
+			.filter_map(|(id, locales)| live.get(id).map(|segment| (segment.clone(), locales.clone())))
 			.take(budget)
 			.collect();
 		budget -= todo.len();
@@ -616,18 +574,11 @@ pub async fn run(
 			std::collections::HashMap::new();
 		// The article key claims are namespaced by, so two articles holding a segment with the
 		// same id -- which happens, since an id is the hash of the text -- are two items.
-		let article_key = path
-			.strip_prefix(articles)
-			.unwrap_or(&path)
-			.display()
-			.to_string();
+		let article_key = path.strip_prefix(articles).unwrap_or(&path).display().to_string();
 		let mut sidecar_seen = modified_at(&sidecar_path);
 
 		let mut queue = todo.into_iter();
-		type Finished = (
-			String,
-			Result<(Vec<(String, Translation)>, u64, f64, Vec<String>), Refusal>,
-		);
+		type Finished = (String, Result<(Vec<(String, Translation)>, u64, f64, Vec<String>), Refusal>);
 		let mut running = tokio::task::JoinSet::<Finished>::new();
 
 		loop {
@@ -660,10 +611,7 @@ pub async fn run(
 					sidecar_seen = latest;
 				}
 				let required = if item.region == segment::Region::Body {
-					glosses
-						.find(&item.id)
-						.map(|entry| entry.spans.as_slice())
-						.unwrap_or_default()
+					glosses.find(&item.id).map(|entry| entry.spans.as_slice()).unwrap_or_default()
 				} else {
 					&[]
 				};
@@ -693,13 +641,7 @@ pub async fn run(
 							&owned,
 							before,
 							after,
-							TranslationOptions {
-								runner,
-								model_override,
-								locales,
-								source_locale,
-								gloss,
-							},
+							TranslationOptions { runner, model_override, locales, source_locale, gloss },
 						)
 						.await,
 					)
@@ -745,10 +687,7 @@ pub async fn run(
 					}
 					sidecar_seen = modified_at(&sidecar_path);
 					if !lost.is_empty() {
-						outcome.failed.push((
-							id,
-							format!("{} did not survive validation", lost.join(", ")),
-						));
+						outcome.failed.push((id, format!("{} did not survive validation", lost.join(", "))));
 					}
 				}
 				// One spent allowance ends the run. Every request after it would fail the same
@@ -804,10 +743,8 @@ mod tests {
 			"---\ntitle: Visible title\nlang: en-US\n---\n\nBody that must stay out of this run.",
 		)
 		.expect("frontmatter");
-		let selected = segments
-			.iter()
-			.filter(|segment| Scope::Frontmatter.includes(segment))
-			.collect::<Vec<_>>();
+		let selected =
+			segments.iter().filter(|segment| Scope::Frontmatter.includes(segment)).collect::<Vec<_>>();
 
 		assert_eq!(selected.len(), 1);
 		assert_eq!(selected[0].source, "Visible title");
@@ -826,13 +763,9 @@ mod tests {
 		// The one that reached a page: no closing quote, so the whole attribute block is text.
 		assert!(!validate::notes_well_formed("a :tn[word]{is=\"a note} b"));
 		// The syntax has no escape for a quote inside the value; it simply ends there.
-		assert!(!validate::notes_well_formed(
-			"a :tn[word]{is=\"he said \"no\" loudly\"} b"
-		));
+		assert!(!validate::notes_well_formed("a :tn[word]{is=\"he said \"no\" loudly\"} b"));
 		assert!(!validate::notes_well_formed("a :tn[word] b"));
-		assert!(!validate::notes_well_formed(
-			"a :tn[word]{was=\"wrong key\"} b"
-		));
+		assert!(!validate::notes_well_formed("a :tn[word]{was=\"wrong key\"} b"));
 	}
 
 	#[test]
@@ -840,10 +773,8 @@ mod tests {
 		// Metadata has no rendering channel for the explanation. Prompt wording is not an
 		// acceptance boundary, so a model that ignores it must enter the retry path here.
 		let boundary = "F7Q2L9DM4KX8V1C6R0PB3HNS5WJATGEU";
-		let reply = format!(
-			"{}\n:tn[Translated title]{{is=\"a gloss\"}}\n",
-			prompt::locale_marker("en-US"),
-		);
+		let reply =
+			format!("{}\n:tn[Translated title]{{is=\"a gloss\"}}\n", prompt::locale_marker("en-US"),);
 
 		assert!(matches!(
 			validate_reply(
@@ -870,12 +801,7 @@ mod tests {
 			prompt::locale_marker("en-US"),
 		);
 		assert!(matches!(
-			validate_reply(
-				&echoed,
-				boundary,
-				segment::Region::Body,
-				&segment::mask(source)
-			),
+			validate_reply(&echoed, boundary, segment::Region::Body, &segment::mask(source)),
 			Err(Refusal::Failed(_))
 		));
 
@@ -885,13 +811,7 @@ mod tests {
 			prompt::locale_marker("de-DE"),
 		);
 		assert!(
-			validate_reply(
-				&clean,
-				boundary,
-				segment::Region::Body,
-				&segment::mask(source)
-			)
-			.is_ok()
+			validate_reply(&clean, boundary, segment::Region::Body, &segment::mask(source)).is_ok()
 		);
 	}
 
@@ -900,18 +820,9 @@ mod tests {
 		// A list translates line for line, so the rule is "no more than", never "exactly one".
 		let boundary = "PQ9WZ4WX2TN7VLKD8RYC5MBFA1GHJ0SE";
 		let source = "- first\n- second\n- third";
-		let reply = format!(
-			"{}\n- erste\n- zweite\n- dritte\n",
-			prompt::locale_marker("de-DE"),
-		);
+		let reply = format!("{}\n- erste\n- zweite\n- dritte\n", prompt::locale_marker("de-DE"),);
 		assert!(
-			validate_reply(
-				&reply,
-				boundary,
-				segment::Region::Body,
-				&segment::mask(source)
-			)
-			.is_ok()
+			validate_reply(&reply, boundary, segment::Region::Body, &segment::mask(source)).is_ok()
 		);
 	}
 
@@ -964,12 +875,7 @@ mod tests {
 			"{}\n{boundary}\nPaid-for prose remains intact.\n{boundary}\n",
 			prompt::locale_marker("en-US"),
 		);
-		let result = validate_reply(
-			&reply,
-			boundary,
-			segment::Region::Body,
-			&segment::mask("source"),
-		);
+		let result = validate_reply(&reply, boundary, segment::Region::Body, &segment::mask("source"));
 		assert!(matches!(&result, Err(Refusal::Failed(_))));
 
 		let mut sidecar = store::Sidecar::default();
@@ -996,10 +902,6 @@ mod tests {
 			);
 		}
 		assert!(sidecar.segments.is_empty());
-		assert!(
-			!serde_yaml_ng::to_string(&sidecar)
-				.expect("sidecar")
-				.contains(boundary)
-		);
+		assert!(!serde_yaml_ng::to_string(&sidecar).expect("sidecar").contains(boundary));
 	}
 }

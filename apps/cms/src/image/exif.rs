@@ -169,10 +169,7 @@ pub fn read(bytes: &[u8]) -> Option<Metadata> {
 		}
 	};
 
-	let camera = Camera {
-		model: text(exif::Tag::Model),
-		manufacturer: text(exif::Tag::Make),
-	};
+	let camera = Camera { model: text(exif::Tag::Model), manufacturer: text(exif::Tag::Make) };
 	let lens = Lens {
 		model: text(exif::Tag::LensModel),
 		manufacturer: text(exif::Tag::LensMake),
@@ -238,10 +235,8 @@ fn degrees(exif: &exif::Exif, value: exif::Tag, reference: exif::Tag) -> Option<
 /// Assembled rather than taken whole because EXIF splits one instant across three tags. An
 /// instant missing its offset is not an instant, it is a wall clock reading.
 fn captured(exif: &exif::Exif) -> Option<String> {
-	let plain = exif
-		.get_field(exif::Tag::DateTimeOriginal, exif::In::PRIMARY)?
-		.display_value()
-		.to_string();
+	let plain =
+		exif.get_field(exif::Tag::DateTimeOriginal, exif::In::PRIMARY)?.display_value().to_string();
 	let stamp = plain.trim().replacen(' ', "T", 1);
 	let sub = exif
 		.get_field(exif::Tag::SubSecTimeOriginal, exif::In::PRIMARY)

@@ -73,10 +73,7 @@ pub fn model_override(
 		return Ok(Some(model.to_owned()));
 	};
 	let effort = effort.trim().to_ascii_lowercase();
-	if !matches!(
-		effort.as_str(),
-		"low" | "medium" | "high" | "xhigh" | "max" | "ultra"
-	) {
+	if !matches!(effort.as_str(), "low" | "medium" | "high" | "xhigh" | "max" | "ultra") {
 		return Err(format!("--effort takes {EFFORT_CHOICES}"));
 	}
 	Ok(Some(format!("{model}-{effort}")))
@@ -246,13 +243,9 @@ async fn claude(prompt: &str, model: &str) -> Result<Answer, Refusal> {
 	// have any business writing, and this runs unattended over a whole library.
 	let builder = ClaudeCliBuilder::new().model(model).allowed_tools(["Read"]);
 
-	let mut client = AsyncClient::from_builder(builder)
-		.await
-		.map_err(|error| Refusal::Failed(error.to_string()))?;
-	let outputs = client
-		.query(prompt)
-		.await
-		.map_err(|error| Refusal::Failed(error.to_string()))?;
+	let mut client =
+		AsyncClient::from_builder(builder).await.map_err(|error| Refusal::Failed(error.to_string()))?;
+	let outputs = client.query(prompt).await.map_err(|error| Refusal::Failed(error.to_string()))?;
 	let _ = client.shutdown().await;
 
 	let result = outputs
@@ -289,11 +282,7 @@ async fn claude(prompt: &str, model: &str) -> Result<Answer, Refusal> {
 fn failed_command(binary: &str, output: &std::process::Output) -> Refusal {
 	let stderr = String::from_utf8_lossy(&output.stderr);
 	let stdout = String::from_utf8_lossy(&output.stdout);
-	let detail = if stderr.trim().is_empty() {
-		stdout.trim()
-	} else {
-		stderr.trim()
-	};
+	let detail = if stderr.trim().is_empty() { stdout.trim() } else { stderr.trim() };
 	classify(&format!(
 		"{binary} exited {}: {}",
 		output.status,
@@ -305,33 +294,21 @@ fn failed_command(binary: &str, output: &std::process::Output) -> Refusal {
 fn codex_result(stdout: &[u8]) -> Result<(String, u64), Refusal> {
 	let mut answer = None;
 	let mut tokens = 0;
-	for line in stdout
-		.split(|byte| *byte == b'\n')
-		.filter(|line| !line.is_empty())
-	{
+	for line in stdout.split(|byte| *byte == b'\n').filter(|line| !line.is_empty()) {
 		let event: serde_json::Value = serde_json::from_slice(line)
 			.map_err(|error| Refusal::Failed(format!("invalid codex event: {error}")))?;
 		match event.get("type").and_then(serde_json::Value::as_str) {
 			Some("item.completed")
-				if event
-					.pointer("/item/type")
-					.and_then(serde_json::Value::as_str)
+				if event.pointer("/item/type").and_then(serde_json::Value::as_str)
 					== Some("agent_message") =>
 			{
-				answer = event
-					.pointer("/item/text")
-					.and_then(serde_json::Value::as_str)
-					.map(str::to_owned);
+				answer = event.pointer("/item/text").and_then(serde_json::Value::as_str).map(str::to_owned);
 			}
 			Some("turn.completed") => {
-				let input = event
-					.pointer("/usage/input_tokens")
-					.and_then(serde_json::Value::as_u64)
-					.unwrap_or(0);
-				let output = event
-					.pointer("/usage/output_tokens")
-					.and_then(serde_json::Value::as_u64)
-					.unwrap_or(0);
+				let input =
+					event.pointer("/usage/input_tokens").and_then(serde_json::Value::as_u64).unwrap_or(0);
+				let output =
+					event.pointer("/usage/output_tokens").and_then(serde_json::Value::as_u64).unwrap_or(0);
 				tokens = input + output;
 			}
 			_ => {}
@@ -541,12 +518,7 @@ fn grok_vision_args(prompt: &str, model: &str, mime: &str, data: &str) -> Vec<Os
 			"text": prompt,
 		},
 	]);
-	let mut args = vec![
-		"--prompt-json".into(),
-		blocks.to_string().into(),
-		"-m".into(),
-		model.into(),
-	];
+	let mut args = vec!["--prompt-json".into(), blocks.to_string().into(), "-m".into(), model.into()];
 	restrict_grok_transform(&mut args);
 	args
 }
@@ -556,12 +528,7 @@ async fn grok(prompt: &str, model: &str, image: Option<&Path>) -> Result<Answer,
 		Some(path) => {
 			let bytes = std::fs::read(path)
 				.map_err(|error| Refusal::Failed(format!("could not read {}: {error}", path.display())))?;
-			grok_vision_args(
-				prompt,
-				model,
-				crate::image::mime_of(path),
-				&STANDARD.encode(bytes),
-			)
+			grok_vision_args(prompt, model, crate::image::mime_of(path), &STANDARD.encode(bytes))
 		}
 		None => grok_args(prompt, model),
 	};
@@ -614,10 +581,7 @@ struct AgyUsage {
 /// spell it the same way: `Resets in 0s`, `Resets in 167h29m42s`.
 fn resets_in(message: &str) -> Option<std::time::Duration> {
 	let at = message.to_ascii_lowercase().find("resets in ")? + "resets in ".len();
-	let tail: String = message[at..]
-		.chars()
-		.take_while(|c| c.is_ascii_alphanumeric())
-		.collect();
+	let tail: String = message[at..].chars().take_while(|c| c.is_ascii_alphanumeric()).collect();
 
 	let mut seconds = 0u64;
 	let mut value = 0u64;
@@ -729,11 +693,7 @@ mod tests {
 		// file, and codex went looking for the prompt on a closed stdin -- reporting that
 		// nothing arrived there rather than that a flag had eaten it. Every image tagged in one
 		// run failed identically before this was found.
-		let args = codex_args(
-			"describe this",
-			"gpt-5.6-terra-medium",
-			Some(Path::new("/a.png")),
-		);
+		let args = codex_args("describe this", "gpt-5.6-terra-medium", Some(Path::new("/a.png")));
 		let end = &args[args.len() - 2..];
 		assert_eq!(end, ["--", "describe this"]);
 
@@ -748,20 +708,11 @@ mod tests {
 	fn codex_is_given_the_effort_apart_from_the_model() {
 		// It rejects `gpt-5.6-terra-medium` as a model name and takes the effort as a config
 		// override instead. Everywhere else the tier is one string, so the split lives here.
-		assert_eq!(
-			split_effort("gpt-5.6-terra-medium"),
-			("gpt-5.6-terra", Some("medium"))
-		);
-		assert_eq!(
-			split_effort("gpt-5.6-luna-high"),
-			("gpt-5.6-luna", Some("high"))
-		);
+		assert_eq!(split_effort("gpt-5.6-terra-medium"), ("gpt-5.6-terra", Some("medium")));
+		assert_eq!(split_effort("gpt-5.6-luna-high"), ("gpt-5.6-luna", Some("high")));
 		// A name that merely ends in a word is not an effort.
 		assert_eq!(split_effort("gpt-5.6-sol"), ("gpt-5.6-sol", None));
-		assert_eq!(
-			split_effort("gpt-5.6-sol-xhigh"),
-			("gpt-5.6-sol", Some("xhigh"))
-		);
+		assert_eq!(split_effort("gpt-5.6-sol-xhigh"), ("gpt-5.6-sol", Some("xhigh")));
 
 		let args = codex_args("hi", "gpt-5.6-terra-medium", None);
 		assert!(args.contains(&OsString::from("gpt-5.6-terra")));
@@ -794,17 +745,11 @@ mod tests {
 			r#"{"type":"error","message":"{\"error\":{\"message\":\"model not supported\"}}"}"#,
 			"\n"
 		);
-		assert_eq!(
-			codex_error(stream.as_bytes()).as_deref(),
-			Some("model not supported")
-		);
+		assert_eq!(codex_error(stream.as_bytes()).as_deref(), Some("model not supported"));
 
 		// A plain message survives the unwrapping attempt intact.
 		let plain = "{\"type\":\"error\",\"message\":\"stream disconnected\"}\n";
-		assert_eq!(
-			codex_error(plain.as_bytes()).as_deref(),
-			Some("stream disconnected")
-		);
+		assert_eq!(codex_error(plain.as_bytes()).as_deref(), Some("stream disconnected"));
 		assert_eq!(codex_error(b"{\"type\":\"turn.completed\"}\n"), None);
 	}
 
@@ -833,18 +778,9 @@ mod tests {
 
 	#[test]
 	fn codex_uses_the_three_requested_tiers() {
-		assert_eq!(
-			Runner::Codex.model_for(Kind::Heading, 0),
-			"gpt-5.6-luna-medium"
-		);
-		assert_eq!(
-			Runner::Codex.model_for(Kind::Prose, 0),
-			"gpt-5.6-terra-medium"
-		);
-		assert_eq!(
-			Runner::Codex.model_for(Kind::Prose, 2),
-			"gpt-5.6-terra-high"
-		);
+		assert_eq!(Runner::Codex.model_for(Kind::Heading, 0), "gpt-5.6-luna-medium");
+		assert_eq!(Runner::Codex.model_for(Kind::Prose, 0), "gpt-5.6-terra-medium");
+		assert_eq!(Runner::Codex.model_for(Kind::Prose, 2), "gpt-5.6-terra-high");
 	}
 
 	#[test]
@@ -885,11 +821,8 @@ mod tests {
 	fn grok_accepts_extra_flags_after_the_common_ones() {
 		// Twitter lookups pass these; translation does not. The common shape stays in one
 		// function so a second binding cannot drift. See spec/twitter.md.
-		let args = grok_text_args(
-			"find this",
-			"grok-4.6",
-			&["--disable-web-search", "--max-turns", "8"],
-		);
+		let args =
+			grok_text_args("find this", "grok-4.6", &["--disable-web-search", "--max-turns", "8"]);
 		assert!(args.contains(&OsString::from("--disable-web-search")));
 		assert!(args.contains(&OsString::from("--max-turns")));
 		assert!(args.contains(&OsString::from("8")));
@@ -929,10 +862,7 @@ mod tests {
 	fn text_and_vision_have_separate_defaults() {
 		assert_eq!(DEFAULT_TEXT, Runner::GptOss);
 		assert_eq!(DEFAULT_VISION, Runner::Codex);
-		assert_eq!(
-			DEFAULT_VISION.model_for_vision(),
-			Some("gpt-5.6-terra-medium")
-		);
+		assert_eq!(DEFAULT_VISION.model_for_vision(), Some("gpt-5.6-terra-medium"));
 
 		// The open-weight model is text only, and saying so is the whole reason this returns an
 		// option. Measured: asked to look at a file it cancels the turn and fills in no error,
@@ -955,14 +885,8 @@ mod tests {
 	fn gemini_spells_effort_into_the_model_id() {
 		// `agy` takes --effort separately, but its model list already carries the tier, so one
 		// string says both and there is no second flag to keep in step.
-		assert_eq!(
-			Runner::Gemini.model_for(Kind::Prose, 0),
-			"gemini-3.6-flash-high"
-		);
-		assert_eq!(
-			Runner::Gemini.model_for(Kind::Prose, 2),
-			"gemini-3.1-pro-high"
-		);
+		assert_eq!(Runner::Gemini.model_for(Kind::Prose, 0), "gemini-3.6-flash-high");
+		assert_eq!(Runner::Gemini.model_for(Kind::Prose, 2), "gemini-3.1-pro-high");
 	}
 
 	#[test]
@@ -976,14 +900,8 @@ mod tests {
 
 	#[test]
 	fn a_grok_model_normalises_to_the_recorded_spelling() {
-		assert_eq!(
-			model::normalise(Runner::Grok.model_for(Kind::Heading, 0)),
-			"grok-4-5"
-		);
-		assert_eq!(
-			model::normalise(Runner::Grok.model_for(Kind::Prose, 0)),
-			"grok-4-6"
-		);
+		assert_eq!(model::normalise(Runner::Grok.model_for(Kind::Heading, 0)), "grok-4-5");
+		assert_eq!(model::normalise(Runner::Grok.model_for(Kind::Prose, 0)), "grok-4-6");
 	}
 
 	#[test]

@@ -173,10 +173,7 @@ pub fn resolve(
 			depth,
 		});
 		if is_traversed(&wanted) {
-			for next in chosen
-				.deps
-				.iter()
-				.filter(|dep| dep.kind.as_deref().unwrap_or("normal") != "dev")
+			for next in chosen.deps.iter().filter(|dep| dep.kind.as_deref().unwrap_or("normal") != "dev")
 			{
 				queue.push_back((next.clone(), depth + 1));
 			}
@@ -243,14 +240,8 @@ mod tests {
 			yanked,
 			entry("x", "2.0.0", vec![]),
 		];
-		assert_eq!(
-			best_match(&entries, "^1").map(|e| e.vers.as_str()),
-			Some("1.4.0")
-		);
-		assert_eq!(
-			best_match(&entries, "^2").map(|e| e.vers.as_str()),
-			Some("2.0.0")
-		);
+		assert_eq!(best_match(&entries, "^1").map(|e| e.vers.as_str()), Some("1.4.0"));
+		assert_eq!(best_match(&entries, "^2").map(|e| e.vers.as_str()), Some("2.0.0"));
 		assert!(best_match(&entries, "^3").is_none());
 	}
 
@@ -258,14 +249,8 @@ mod tests {
 	fn a_prerelease_is_not_picked_up_by_a_plain_range() {
 		// cargo's own rule: `^1` must not resolve to 2.0.0-alpha, and must not resolve to
 		// 1.1.0-beta either.
-		let entries = vec![
-			entry("x", "1.0.0", vec![]),
-			entry("x", "1.1.0-beta", vec![]),
-		];
-		assert_eq!(
-			best_match(&entries, "^1").map(|e| e.vers.as_str()),
-			Some("1.0.0")
-		);
+		let entries = vec![entry("x", "1.0.0", vec![]), entry("x", "1.1.0-beta", vec![])];
+		assert_eq!(best_match(&entries, "^1").map(|e| e.vers.as_str()), Some("1.0.0"));
 	}
 
 	#[test]
@@ -289,12 +274,7 @@ mod tests {
 		assert_eq!(resolved.deps.len(), 3);
 		assert!(resolved.deps.iter().any(|dep| dep.optional));
 		assert!(resolved.deps.iter().any(|dep| dep.kind == "dev"));
-		assert!(
-			!resolved
-				.deps
-				.iter()
-				.any(|dep| dep.name == "must-not-appear")
-		);
+		assert!(!resolved.deps.iter().any(|dep| dep.name == "must-not-appear"));
 	}
 
 	#[test]
@@ -315,11 +295,7 @@ mod tests {
 		// A diamond is one dependency a consumer compiles once. Listing it twice would double
 		// its bytes in the total, and a depth-first walk would report whichever route it took
 		// first rather than how far the crate actually is.
-		let root = entry(
-			"root",
-			"1.0.0",
-			vec![needs("shared", "^1"), needs("mid", "^1")],
-		);
+		let root = entry("root", "1.0.0", vec![needs("shared", "^1"), needs("mid", "^1")]);
 		let resolved = resolve(
 			&root,
 			|name| match name {
@@ -329,18 +305,8 @@ mod tests {
 			},
 			|_, _| Some(100),
 		);
-		assert_eq!(
-			resolved.deps.iter().filter(|d| d.name == "shared").count(),
-			1
-		);
-		assert_eq!(
-			resolved
-				.deps
-				.iter()
-				.find(|d| d.name == "shared")
-				.map(|d| d.depth),
-			Some(0)
-		);
+		assert_eq!(resolved.deps.iter().filter(|d| d.name == "shared").count(), 1);
+		assert_eq!(resolved.deps.iter().find(|d| d.name == "shared").map(|d| d.depth), Some(0));
 		assert_eq!(resolved.total_dep_size, 200);
 	}
 
@@ -351,11 +317,7 @@ mod tests {
 		let root = entry(
 			"root",
 			"1.0.0",
-			vec![
-				needs("left", "^1"),
-				needs("middle", "^1"),
-				needs("right", "^1"),
-			],
+			vec![needs("left", "^1"), needs("middle", "^1"), needs("right", "^1")],
 		);
 		let resolved = resolve(
 			&root,
@@ -363,19 +325,12 @@ mod tests {
 				"left" => Some(vec![entry("left", "1.0.0", vec![needs("syn", "^2")])]),
 				"middle" => Some(vec![entry("middle", "1.0.0", vec![needs("syn", "^3")])]),
 				"right" => Some(vec![entry("right", "1.0.0", vec![needs("syn", "^2")])]),
-				"syn" => Some(vec![
-					entry("syn", "2.0.0", vec![]),
-					entry("syn", "3.0.0", vec![]),
-				]),
+				"syn" => Some(vec![entry("syn", "2.0.0", vec![]), entry("syn", "3.0.0", vec![])]),
 				_ => None,
 			},
 			|_, _| Some(100),
 		);
-		let syn = resolved
-			.deps
-			.iter()
-			.filter(|dep| dep.name == "syn")
-			.collect::<Vec<_>>();
+		let syn = resolved.deps.iter().filter(|dep| dep.name == "syn").collect::<Vec<_>>();
 		assert_eq!(syn.len(), 2);
 		assert_eq!(resolved.total_dep_size, 500);
 	}
@@ -383,11 +338,7 @@ mod tests {
 	#[test]
 	fn a_crate_the_index_does_not_have_is_skipped_rather_than_fatal() {
 		// One unreachable dependency should cost that dependency, not the card.
-		let root = entry(
-			"root",
-			"1.0.0",
-			vec![needs("gone", "^1"), needs("here", "^1")],
-		);
+		let root = entry("root", "1.0.0", vec![needs("gone", "^1"), needs("here", "^1")]);
 		let resolved = resolve(
 			&root,
 			|name| (name == "here").then(|| vec![entry("here", "1.0.0", vec![])]),

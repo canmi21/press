@@ -28,10 +28,7 @@ fn paint_domain(
 	let mut laid = lay(fonts, domain, DOMAIN_SIZE, 1.2, TEXT_WIDTH, family);
 	// Sitting on the site name's baseline, which is a larger size, so it is pushed down by the
 	// difference rather than aligned on its own box.
-	let at = (
-		WIDTH as f32 - PAD_X - laid.width,
-		PAD_Y + (SITE_SIZE - DOMAIN_SIZE) * 0.8,
-	);
+	let at = (WIDTH as f32 - PAD_X - laid.width, PAD_Y + (SITE_SIZE - DOMAIN_SIZE) * 0.8);
 	paint(pixmap, fonts, cache, &mut laid, at, colour(DOMAIN_ALPHA));
 }
 
@@ -178,14 +175,7 @@ pub fn render_home(fonts: &mut FontSystem, family: &str, card: &Home<'_>) -> Vec
 	let mut cache = SwashCache::new();
 
 	let mut site = lay(fonts, card.site, SITE_SIZE, 1.2, TEXT_WIDTH, family);
-	paint(
-		&mut pixmap,
-		fonts,
-		&mut cache,
-		&mut site,
-		(PAD_X, PAD_Y),
-		colour(SITE_ALPHA),
-	);
+	paint(&mut pixmap, fonts, &mut cache, &mut site, (PAD_X, PAD_Y), colour(SITE_ALPHA));
 
 	// Set against the site name across the top. The other free corner is the bottom-left, and
 	// that one belongs to the domain X draws over every card it renders.
@@ -202,52 +192,23 @@ pub fn render_home(fonts: &mut FontSystem, family: &str, card: &Home<'_>) -> Vec
 
 	let mut left = PAD_X;
 	if let Some(avatar) = card.avatar {
-		draw_avatar(
-			&mut pixmap,
-			avatar,
-			(left, top + (band - AVATAR) / 2.0),
-			AVATAR,
-		);
+		draw_avatar(&mut pixmap, avatar, (left, top + (band - AVATAR) / 2.0), AVATAR);
 		left += AVATAR + AVATAR_GAP;
 	}
 
 	// Text is centred against the avatar rather than sharing its top edge, so a short name and
 	// a tall portrait still look set on one line.
 	let mut y = top + (band - text_height) / 2.0;
-	paint(
-		&mut pixmap,
-		fonts,
-		&mut cache,
-		&mut name,
-		(left, y),
-		colour(1.0),
-	);
+	paint(&mut pixmap, fonts, &mut cache, &mut name, (left, y), colour(1.0));
 	y += name.height + GAP * 0.5;
-	paint(
-		&mut pixmap,
-		fonts,
-		&mut cache,
-		&mut role,
-		(left, y),
-		colour(ROLE_ALPHA),
-	);
+	paint(&mut pixmap, fonts, &mut cache, &mut role, (left, y), colour(ROLE_ALPHA));
 
 	// Bottom band, right-aligned, in the corner the article card uses for its own metadata.
 	if !card.stats.is_empty() {
 		let mut stats = lay(fonts, card.stats, STATS_SIZE, 1.2, TEXT_WIDTH, family);
 		// Read before the borrow the paint call takes, since the position depends on the width.
-		let at = (
-			WIDTH as f32 - PAD_X - stats.width,
-			HEIGHT as f32 - PAD_Y - STATS_SIZE * 1.2,
-		);
-		paint(
-			&mut pixmap,
-			fonts,
-			&mut cache,
-			&mut stats,
-			at,
-			colour(STATS_ALPHA),
-		);
+		let at = (WIDTH as f32 - PAD_X - stats.width, HEIGHT as f32 - PAD_Y - STATS_SIZE * 1.2);
+		paint(&mut pixmap, fonts, &mut cache, &mut stats, at, colour(STATS_ALPHA));
 	}
 
 	pixels
@@ -275,12 +236,7 @@ fn lay(
 ) -> Line {
 	let mut buffer = Buffer::new(fonts, Metrics::new(size, size * line_height));
 	buffer.set_size(Some(max_width), Some(HEIGHT as f32));
-	buffer.set_text(
-		text,
-		&Attrs::new().family(Family::Name(family)),
-		Shaping::Advanced,
-		None,
-	);
+	buffer.set_text(text, &Attrs::new().family(Family::Name(family)), Shaping::Advanced, None);
 	buffer.shape_until_scroll(fonts, false);
 
 	// Measured from what was actually laid out rather than from the string: a CJK title wraps
@@ -293,12 +249,7 @@ fn lay(
 		lines += 1;
 	}
 	let height = lines as f32 * size * line_height;
-	Line {
-		buffer,
-		width,
-		height,
-		lines,
-	}
+	Line { buffer, width, height, lines }
 }
 
 fn paint(
@@ -362,14 +313,7 @@ pub fn render(fonts: &mut FontSystem, family: &str, card: &Card<'_>) -> Vec<u8> 
 	let mut cache = SwashCache::new();
 
 	let mut site = lay(fonts, card.site, SITE_SIZE, 1.2, TEXT_WIDTH, family);
-	paint(
-		&mut pixmap,
-		fonts,
-		&mut cache,
-		&mut site,
-		(PAD_X, PAD_Y),
-		colour(SITE_ALPHA),
-	);
+	paint(&mut pixmap, fonts, &mut cache, &mut site, (PAD_X, PAD_Y), colour(SITE_ALPHA));
 	paint_domain(&mut pixmap, fonts, &mut cache, family, card.domain);
 
 	let mut title = fit_title(fonts, card.title, family);
@@ -389,24 +333,10 @@ pub fn render(fonts: &mut FontSystem, family: &str, card: &Card<'_>) -> Vec<u8> 
 	let latest = (middle_bottom - middle).max(middle_top);
 	let mut y = ((HEIGHT as f32 - middle) / 2.0).clamp(middle_top, latest);
 
-	paint(
-		&mut pixmap,
-		fonts,
-		&mut cache,
-		&mut title,
-		(PAD_X, y),
-		colour(1.0),
-	);
+	paint(&mut pixmap, fonts, &mut cache, &mut title, (PAD_X, y), colour(1.0));
 	y += title.height + GAP;
 	if let Some(subtitle) = &mut subtitle {
-		paint(
-			&mut pixmap,
-			fonts,
-			&mut cache,
-			subtitle,
-			(PAD_X, y),
-			colour(SUBTITLE_ALPHA),
-		);
+		paint(&mut pixmap, fonts, &mut cache, subtitle, (PAD_X, y), colour(SUBTITLE_ALPHA));
 	}
 
 	// Bottom band, right-aligned and laid out from the right edge inward, on two lines: what
@@ -422,14 +352,7 @@ pub fn render(fonts: &mut FontSystem, family: &str, card: &Card<'_>) -> Vec<u8> 
 	if let Some(category) = card.category.filter(|c| !c.is_empty()) {
 		let mut laid = lay(fonts, category, CATEGORY_SIZE, 1.2, TEXT_WIDTH, family);
 		right -= laid.width;
-		paint(
-			&mut pixmap,
-			fonts,
-			&mut cache,
-			&mut laid,
-			(right, meta_row),
-			colour(CATEGORY_ALPHA),
-		);
+		paint(&mut pixmap, fonts, &mut cache, &mut laid, (right, meta_row), colour(CATEGORY_ALPHA));
 		right -= BOTTOM_GAP;
 	}
 	if let Some(date) = card.date.filter(|d| !d.is_empty()) {
@@ -450,14 +373,7 @@ pub fn render(fonts: &mut FontSystem, family: &str, card: &Card<'_>) -> Vec<u8> 
 	if !card.stats.is_empty() {
 		let mut stats = lay(fonts, card.stats, STATS_SIZE, 1.2, TEXT_WIDTH, family);
 		let at = (WIDTH as f32 - PAD_X - stats.width, stats_row);
-		paint(
-			&mut pixmap,
-			fonts,
-			&mut cache,
-			&mut stats,
-			at,
-			colour(STATS_ALPHA),
-		);
+		paint(&mut pixmap, fonts, &mut cache, &mut stats, at, colour(STATS_ALPHA));
 	}
 
 	pixels

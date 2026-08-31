@@ -72,9 +72,7 @@ fn has_han(text: &str) -> bool {
 
 /// Leading characters that are neither letters nor digits carry no restatement signal.
 fn normalised(text: &str) -> String {
-	text
-		.trim_start_matches(|c: char| !c.is_alphanumeric())
-		.to_lowercase()
+	text.trim_start_matches(|c: char| !c.is_alphanumeric()).to_lowercase()
 }
 
 /// The policy findings for one stored translation of one body segment.
@@ -90,11 +88,8 @@ pub fn of(
 	glosses: Option<&tn::Entry>,
 ) -> Vec<Finding> {
 	let mut findings = Vec::new();
-	let finding = |reason: String| Finding {
-		segment: segment_id.to_owned(),
-		locale: locale.to_owned(),
-		reason,
-	};
+	let finding =
+		|reason: String| Finding { segment: segment_id.to_owned(), locale: locale.to_owned(), reason };
 
 	// A section heading is also a rail label. Two lines are allowed and `validate` refuses only
 	// what gets cut off, so the interesting band -- wider than a line, still readable -- is
@@ -144,9 +139,7 @@ pub fn of(
 
 	// The same rule `validate` now refuses on arrival, reported over what is already stored.
 	if !super::validate::spacing_intact(translation) {
-		findings.push(finding(
-			"a note directive is glued to the word beside it".to_owned(),
-		));
+		findings.push(finding("a note directive is glued to the word beside it".to_owned()));
 	}
 
 	// The correction overshooting: told to space a directive off the word beside it, a model
@@ -157,18 +150,14 @@ pub fn of(
 	if OPENING_MARKS.iter().any(|mark| {
 		translation.contains(&format!("{mark} :fn[")) || translation.contains(&format!("{mark} :tn["))
 	}) {
-		findings.push(finding(
-			"a space follows an opening mark before a note directive".to_owned(),
-		));
+		findings.push(finding("a space follows an opening mark before a note directive".to_owned()));
 	}
 
 	// An author's note explanation continues from its words; opening by restating them is the
 	// double reading the policy exists to avoid.
 	for (words, note) in directives(translation, ":fn") {
 		if !words.is_empty() && normalised(&note).starts_with(&normalised(&words)) {
-			findings.push(finding(format!(
-				":fn explanation restates the words it follows ({words})"
-			)));
+			findings.push(finding(format!(":fn explanation restates the words it follows ({words})")));
 		}
 	}
 
@@ -178,9 +167,7 @@ pub fn of(
 	if !HAN_SCRIPT_LOCALES.contains(&locale) {
 		for (words, _) in &tn_pairs {
 			if has_han(words) {
-				findings.push(finding(format!(
-					":tn wraps untranslated source script ({words})"
-				)));
+				findings.push(finding(format!(":tn wraps untranslated source script ({words})")));
 			}
 		}
 	}
@@ -199,10 +186,7 @@ pub fn of(
 			let quoted =
 				quotable(&span.phrase).any(|piece| tn_pairs.iter().any(|(_, note)| note.contains(piece)));
 			if !tn_pairs.is_empty() && !quoted {
-				findings.push(finding(format!(
-					":tn note does not quote the original ({})",
-					span.phrase
-				)));
+				findings.push(finding(format!(":tn note does not quote the original ({})", span.phrase)));
 			}
 		}
 	}
@@ -287,40 +271,24 @@ mod tests {
 	fn gloss(phrase: &str) -> tn::Entry {
 		tn::Entry {
 			source: String::new(),
-			spans: vec![tn::Gloss {
-				phrase: phrase.to_owned(),
-				guidance: String::new(),
-			}],
+			spans: vec![tn::Gloss { phrase: phrase.to_owned(), guidance: String::new() }],
 		}
 	}
 
 	#[test]
 	fn a_restating_explanation_is_reported_and_a_continuing_one_is_not() {
-		let restating = of_prose(
-			"s",
-			"en-US",
-			r#"The :fn[model]{is="model means the runtime"} here"#,
-			None,
-		);
+		let restating =
+			of_prose("s", "en-US", r#"The :fn[model]{is="model means the runtime"} here"#, None);
 		assert_eq!(restating.len(), 1);
 		assert!(restating[0].reason.contains("restates"));
-		let continuing = of_prose(
-			"s",
-			"en-US",
-			r#"The :fn[model]{is="the runtime, not the data"} here"#,
-			None,
-		);
+		let continuing =
+			of_prose("s", "en-US", r#"The :fn[model]{is="the runtime, not the data"} here"#, None);
 		assert!(continuing.is_empty());
 	}
 
 	#[test]
 	fn restatement_ignores_case_and_leading_punctuation() {
-		let found = of_prose(
-			"s",
-			"en-US",
-			r#":fn[Seam]{is="-- seam is a protocol"} x"#,
-			None,
-		);
+		let found = of_prose("s", "en-US", r#":fn[Seam]{is="-- seam is a protocol"} x"#, None);
 		assert_eq!(found.len(), 1);
 	}
 
@@ -359,10 +327,7 @@ mod tests {
 					"zh-CN",
 					"今天正好是我搬到美国满一个月。落地北卡后，日常起居都安顿好了，附近的地区和几个稍近的景点也基本逛遍了，人就闲了下来。",
 				),
-				(
-					"zh-TW",
-					"不過在開始吐槽別人之前，大概還是得先補一點背景知識",
-				),
+				("zh-TW", "不過在開始吐槽別人之前，大概還是得先補一點背景知識"),
 			],
 		);
 		assert_eq!(found.len(), 1);
@@ -398,10 +363,7 @@ mod tests {
 			across_locales(
 				"s",
 				"甚至模式匹配",
-				&[
-					("zh-CN", "甚至连模式匹配也不例外。"),
-					("zh-TW", "甚至模式匹配")
-				],
+				&[("zh-CN", "甚至连模式匹配也不例外。"), ("zh-TW", "甚至模式匹配")],
 			)
 			.is_empty()
 		);

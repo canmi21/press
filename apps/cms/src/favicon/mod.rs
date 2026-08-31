@@ -44,10 +44,7 @@ pub fn write_fetched(root: &Path, domain: &str, icons: &Icons) -> Result<Stored,
 		std::fs::write(&path, bytes).map_err(Error::Write)?;
 		written.push(path);
 	}
-	Ok(Stored {
-		written,
-		skipped: false,
-	})
+	Ok(Stored { written, skipped: false })
 }
 
 #[derive(Debug)]
@@ -111,10 +108,7 @@ pub fn store_named(
 	force: bool,
 ) -> Result<Stored, Error> {
 	let Some(icons) = fetch_named(root, domain, source, tone, force)? else {
-		return Ok(Stored {
-			written: Vec::new(),
-			skipped: true,
-		});
+		return Ok(Stored { written: Vec::new(), skipped: true });
 	};
 	write_fetched(root, domain, &icons)
 }
@@ -179,11 +173,8 @@ pub fn fetch_for(root: &Path, domain: &str, force: bool) -> Result<Option<Icons>
 		let Some(extension) = crate::extension::for_icon(&icon.content_type) else {
 			continue;
 		};
-		let tones: &[Tone] = if single {
-			&[Tone::Light, Tone::Dark]
-		} else {
-			std::slice::from_ref(&tone)
-		};
+		let tones: &[Tone] =
+			if single { &[Tone::Light, Tone::Dark] } else { std::slice::from_ref(&tone) };
 		for tone in tones {
 			files.push((format!("{}.{extension}", tone.suffix()), icon.bytes.clone()));
 		}
@@ -198,10 +189,7 @@ pub fn fetch_for(root: &Path, domain: &str, force: bool) -> Result<Option<Icons>
 /// Fetch every variant a site offers and store them, unless the domain was already checked.
 pub fn store(root: &Path, domain: &str, force: bool) -> Result<Stored, Error> {
 	let Some(icons) = fetch_for(root, domain, force)? else {
-		return Ok(Stored {
-			written: Vec::new(),
-			skipped: true,
-		});
+		return Ok(Stored { written: Vec::new(), skipped: true });
 	};
 	write_fetched(root, domain, &icons)
 }
@@ -247,9 +235,7 @@ fn resolve(domain: &str) -> Vec<(Tone, fetch::Fetched)> {
 	if let Some(url) = dark
 		&& let Some(icon) = fetch::bytes(&url)
 	{
-		let differs = out
-			.first()
-			.is_none_or(|(_, light)| light.bytes != icon.bytes);
+		let differs = out.first().is_none_or(|(_, light)| light.bytes != icon.bytes);
 		if differs {
 			out.push((Tone::Dark, icon));
 		}

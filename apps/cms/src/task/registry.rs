@@ -100,16 +100,9 @@ pub fn publish(repository: &Path, task: &str, shell: Shell, total: u64) -> std::
 	// Keyed by pid and task, so one process running two different tasks publishes two entries and
 	// a pid reused by the operating system after a crash cannot collide with a live run.
 	let path = directory.join(format!("{}-{task}.run", std::process::id()));
-	let file = OpenOptions::new()
-		.read(true)
-		.write(true)
-		.create(true)
-		.truncate(false)
-		.open(&path)?;
+	let file = OpenOptions::new().read(true).write(true).create(true).truncate(false).open(&path)?;
 	if file.try_lock().is_err() {
-		return Err(std::io::Error::other(
-			"this process already publishes a run for that task",
-		));
+		return Err(std::io::Error::other("this process already publishes a run for that task"));
 	}
 	let mut entry = Entry {
 		path,
@@ -177,9 +170,7 @@ pub struct Published {
 
 impl Published {
 	pub fn new(entry: Entry) -> Self {
-		Self {
-			entry: std::sync::Mutex::new(entry),
-		}
+		Self { entry: std::sync::Mutex::new(entry) }
 	}
 }
 
@@ -223,9 +214,7 @@ mod tests {
 	fn progress_reaches_the_reader() {
 		let root = temp("progress");
 		let mut entry = publish(&root, "i18n", Shell::Desktop, 100).expect("publish");
-		entry
-			.update(42, 100, "less-is-more.md ja-JP")
-			.expect("update");
+		entry.update(42, 100, "less-is-more.md ja-JP").expect("update");
 		let listed = live(&root).expect("live");
 		assert_eq!(listed[0].done, 42);
 		assert_eq!(listed[0].message, "less-is-more.md ja-JP");

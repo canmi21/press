@@ -54,11 +54,8 @@ fn main() {
 	#[cfg(desktop)]
 	let builder = builder.plugin(tauri_plugin_window_state::Builder::default().build());
 	#[cfg(all(desktop, debug_assertions, feature = "mcp"))]
-	let builder = builder.plugin(
-		tauri_plugin_mcp_bridge::Builder::new()
-			.bind_address("127.0.0.1")
-			.build(),
-	);
+	let builder =
+		builder.plugin(tauri_plugin_mcp_bridge::Builder::new().bind_address("127.0.0.1").build());
 
 	builder
 		.invoke_handler(tauri::generate_handler![

@@ -100,12 +100,7 @@ fn gaps(scan: &Scan, public: &Path, described: &crate::media::Media) -> Vec<Gap>
 				Some(tone) => format!("no {tone} icon collected"),
 				None => "no icon collected".to_owned(),
 			};
-			found.push(Gap {
-				level: Level::Info,
-				what: domain,
-				detail,
-				action: Some(Action::Favicon),
-			});
+			found.push(Gap { level: Level::Info, what: domain, detail, action: Some(Action::Favicon) });
 		}
 	}
 
@@ -141,14 +136,8 @@ mod tests {
 		);
 
 		let found = report(&root, &root.join("public"), &root.join("contents")).expect("report");
-		let image = found
-			.iter()
-			.find(|gap| gap.what == "shot.png")
-			.expect("image");
-		let icon = found
-			.iter()
-			.find(|gap| gap.what == "a.example")
-			.expect("icon");
+		let image = found.iter().find(|gap| gap.what == "shot.png").expect("image");
+		let icon = found.iter().find(|gap| gap.what == "a.example").expect("icon");
 
 		assert_eq!(image.level, Level::Warn);
 		assert_eq!(icon.level, Level::Info);
@@ -184,10 +173,7 @@ mod tests {
 		// first is a warning -- a missing record leaves a hole, a missing description does not.
 		let found = report(&root, &root.join("public"), &root.join("contents")).expect("report");
 		assert_eq!(found.len(), 2);
-		assert_eq!(
-			found.iter().filter(|gap| gap.level == Level::Warn).count(),
-			1
-		);
+		assert_eq!(found.iter().filter(|gap| gap.level == Level::Warn).count(), 1);
 		std::fs::remove_dir_all(&root).ok();
 	}
 }

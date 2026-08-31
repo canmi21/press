@@ -85,9 +85,7 @@ mod tests {
 			"watchers": 12,
 			"network_count": 3
 		}"#;
-		let repo: Repo = serde_json::from_str::<Response>(json)
-			.expect("parse")
-			.into();
+		let repo: Repo = serde_json::from_str::<Response>(json).expect("parse").into();
 		assert_eq!(repo.full_name, "canmi21/seam");
 		assert_eq!(repo.stars, 12);
 		assert_eq!(repo.license.as_deref(), Some("MIT"));
@@ -102,9 +100,7 @@ mod tests {
 			"license": { "spdx_id": "NOASSERTION" },
 			"pushed_at": null
 		}"#;
-		let repo: Repo = serde_json::from_str::<Response>(json)
-			.expect("parse")
-			.into();
+		let repo: Repo = serde_json::from_str::<Response>(json).expect("parse").into();
 		assert_eq!(repo.license, None);
 		assert_eq!(repo.stars, 0);
 	}

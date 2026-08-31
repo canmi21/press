@@ -92,11 +92,7 @@ pub struct Scan {
 impl Scan {
 	/// Content ids the articles resolve to -- exactly the set worth keeping in `data/public`.
 	pub fn cids(&self) -> BTreeSet<String> {
-		self
-			.images
-			.iter()
-			.filter_map(|image| image.resolved().map(|(cid, _)| cid.to_owned()))
-			.collect()
+		self.images.iter().filter_map(|image| image.resolved().map(|(cid, _)| cid.to_owned())).collect()
 	}
 
 	/// References that still name a file rather than a content id, deduplicated.
@@ -114,11 +110,7 @@ impl Scan {
 
 	/// Every icon the articles need, as domain and the tone that must exist for it.
 	pub fn icons(&self) -> BTreeSet<(String, Option<String>)> {
-		self
-			.favicons
-			.iter()
-			.map(|icon| (icon.domain.clone(), icon.tone.clone()))
-			.collect()
+		self.favicons.iter().map(|icon| (icon.domain.clone(), icon.tone.clone())).collect()
 	}
 
 	/// The domains to collect from, each with whatever an article said about its icon.
@@ -166,10 +158,7 @@ fn collect(file: &Path, text: &str, into: &mut Scan) {
 	// only the src. Missing it would be worse than cosmetic: an asset referenced solely by a
 	// cropped directive would look unreferenced, and `cms gc` would delete it.
 	for directive in IMAGE_DIRECTIVE.captures_iter(text) {
-		if let Some((_, src)) = attributes(&directive[1])
-			.iter()
-			.find(|(key, _)| key == "src")
-		{
+		if let Some((_, src)) = attributes(&directive[1]).iter().find(|(key, _)| key == "src") {
 			push_image(file, src, into);
 		}
 	}
@@ -199,10 +188,7 @@ fn push_image(file: &Path, value: &str, into: &mut Scan) {
 	if is_external(value) {
 		return;
 	}
-	into.images.push(ImageRef {
-		file: file.to_path_buf(),
-		value: value.to_owned(),
-	});
+	into.images.push(ImageRef { file: file.to_path_buf(), value: value.to_owned() });
 }
 
 fn attributes(block: &str) -> Vec<(String, String)> {
@@ -213,10 +199,7 @@ fn attributes(block: &str) -> Vec<(String, String)> {
 }
 
 fn domain_of(link: &str) -> Option<String> {
-	url::Url::parse(link)
-		.ok()?
-		.host_str()
-		.map(str::to_ascii_lowercase)
+	url::Url::parse(link).ok()?.host_str().map(str::to_ascii_lowercase)
 }
 
 pub fn markdown_under(directory: &Path) -> std::io::Result<Vec<PathBuf>> {
@@ -301,10 +284,7 @@ mod tests {
 		let found = scan_text(
 			r#"::linkcard{url="https://sakura.example" favicon="https://cdn.example/u/1.png"}"#,
 		);
-		assert_eq!(
-			found.favicons[0].source.as_deref(),
-			Some("https://cdn.example/u/1.png")
-		);
+		assert_eq!(found.favicons[0].source.as_deref(), Some("https://cdn.example/u/1.png"));
 	}
 
 	#[test]

@@ -83,11 +83,7 @@ impl std::fmt::Display for Error {
 /// the fallback costs one transformation rather than a permanent duplicate of the whole
 /// library. See spec/architecture/delivery.md.
 pub fn formats_for(image: &DynamicImage) -> Vec<Format> {
-	if is_flat_colour(image) {
-		vec![Format::Png]
-	} else {
-		vec![Format::Avif]
-	}
+	if is_flat_colour(image) { vec![Format::Png] } else { vec![Format::Avif] }
 }
 
 pub fn encode(image: &DynamicImage, format: Format) -> Result<Vec<u8>, Error> {
@@ -101,10 +97,8 @@ pub fn encode(image: &DynamicImage, format: Format) -> Result<Vec<u8>, Error> {
 fn avif(image: &DynamicImage) -> Result<Vec<u8>, Error> {
 	let rgba = image.to_rgba8();
 	let (width, height) = (rgba.width() as usize, rgba.height() as usize);
-	let pixels: Vec<rgb::RGBA8> = rgba
-		.pixels()
-		.map(|p| rgb::RGBA8::new(p[0], p[1], p[2], p[3]))
-		.collect();
+	let pixels: Vec<rgb::RGBA8> =
+		rgba.pixels().map(|p| rgb::RGBA8::new(p[0], p[1], p[2], p[3])).collect();
 	ravif::Encoder::new()
 		.with_quality(AVIF_QUALITY)
 		.with_speed(AVIF_SPEED)

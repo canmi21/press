@@ -96,10 +96,7 @@ impl Spec {
 	/// about their *mutations*, which the writer serialises. This answers the coarser question
 	/// an interface asks first: may these two be offered together.
 	pub fn conflicts_with(&self, other: &Spec) -> bool {
-		self
-			.writes
-			.iter()
-			.any(|record| other.writes.contains(record))
+		self.writes.iter().any(|record| other.writes.contains(record))
 	}
 }
 
@@ -240,11 +237,7 @@ pub const CATALOG: &[Spec] = &[
 		reads: &[Record::Articles],
 		// Deleting is writing. It is listed last and depends on everything that publishes,
 		// because running it before those have caught up removes what they were about to claim.
-		writes: &[
-			Record::PublicImage,
-			Record::PublicFavicon,
-			Record::PublicOpengraph,
-		],
+		writes: &[Record::PublicImage, Record::PublicFavicon, Record::PublicOpengraph],
 		after: &["image", "favicon", "og"],
 	},
 ];
@@ -275,10 +268,7 @@ pub fn start(
 	let entry = registry::publish(repository, task, shell, total)?;
 	Ok(progress::Progress::new(
 		total,
-		Box::new(Both {
-			first: sink,
-			second: Box::new(registry::Published::new(entry)),
-		}),
+		Box::new(Both { first: sink, second: Box::new(registry::Published::new(entry)) }),
 	))
 }
 
@@ -343,11 +333,7 @@ mod tests {
 	#[test]
 	fn no_task_depends_on_itself() {
 		for spec in CATALOG {
-			assert!(
-				!spec.after.contains(&spec.id),
-				"{} depends on itself",
-				spec.id
-			);
+			assert!(!spec.after.contains(&spec.id), "{} depends on itself", spec.id);
 		}
 	}
 

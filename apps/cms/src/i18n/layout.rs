@@ -36,10 +36,7 @@ pub fn build(root: &Path) -> std::io::Result<Layout> {
 	for path in crate::refs::markdown_under(&contents)? {
 		let article = std::fs::read_to_string(&path)?;
 		let live = super::segment::translatable(&article).map_err(|error| {
-			std::io::Error::new(
-				std::io::ErrorKind::InvalidData,
-				format!("{}: {error}", path.display()),
-			)
+			std::io::Error::new(std::io::ErrorKind::InvalidData, format!("{}: {error}", path.display()))
 		})?;
 		let sidecar_path = super::store::path_for(&path);
 		if let Some(sidecar) = super::store::load_checked(&sidecar_path)? {
@@ -54,10 +51,7 @@ pub fn build(root: &Path) -> std::io::Result<Layout> {
 			.to_owned();
 		let spans = super::segment::split(&article)
 			.map_err(|error| {
-				std::io::Error::new(
-					std::io::ErrorKind::InvalidData,
-					format!("{}: {error}", path.display()),
-				)
+				std::io::Error::new(std::io::ErrorKind::InvalidData, format!("{}: {error}", path.display()))
 			})?
 			.into_iter()
 			.filter(|segment| segment.kind.translatable())
@@ -78,10 +72,7 @@ pub fn build(root: &Path) -> std::io::Result<Layout> {
 			.collect();
 		articles.insert(relative, spans);
 	}
-	Ok(Layout {
-		version: VERSION,
-		articles,
-	})
+	Ok(Layout { version: VERSION, articles })
 }
 
 /// FNV-1a over the exact source bytes. This detects stale offsets; it is not an address.

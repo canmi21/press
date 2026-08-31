@@ -232,10 +232,7 @@ mod tests {
 			},
 		};
 		let text = serde_json::to_string(&document).expect("serialise");
-		assert_eq!(
-			serde_json::from_str::<Document>(&text).expect("deserialise"),
-			document
-		);
+		assert_eq!(serde_json::from_str::<Document>(&text).expect("deserialise"), document);
 		// `type` is a keyword in Rust and a field name in the document; the rename has to
 		// survive both directions.
 		assert!(text.contains("\"type\":\"image\""));

@@ -119,10 +119,7 @@ impl Gazetteer {
 			for line in text.lines().filter(|l| !l.starts_with('#')) {
 				let f: Vec<&str> = line.split('\t').collect();
 				if f.len() > 8 {
-					countries.insert(
-						f[0].to_owned(),
-						(f[4].to_owned(), continent_of(f[8]).to_owned()),
-					);
+					countries.insert(f[0].to_owned(), (f[4].to_owned(), continent_of(f[8]).to_owned()));
 				}
 			}
 		}
@@ -215,22 +212,10 @@ impl Gazetteer {
 	/// the nearest town would state something no source claimed.
 	pub fn lookup(&self, lat: f64, lon: f64) -> Option<Address> {
 		let place = self.tree.nearest_neighbor([lon, lat])?;
-		let (country, continent) = self
-			.countries
-			.get(&place.country)
-			.cloned()
-			.unwrap_or_default();
-		let region = self
-			.regions
-			.get(&format!("{}.{}", place.country, place.admin1))
-			.cloned();
-		let subregion = self
-			.subregions
-			.get(&format!(
-				"{}.{}.{}",
-				place.country, place.admin1, place.admin2
-			))
-			.cloned();
+		let (country, continent) = self.countries.get(&place.country).cloned().unwrap_or_default();
+		let region = self.regions.get(&format!("{}.{}", place.country, place.admin1)).cloned();
+		let subregion =
+			self.subregions.get(&format!("{}.{}.{}", place.country, place.admin1, place.admin2)).cloned();
 		// Found by position, then checked against the country the town is in: a code is not
 		// unique on its own, and the nearest point to a border could belong to the other side.
 		let postal_code = self

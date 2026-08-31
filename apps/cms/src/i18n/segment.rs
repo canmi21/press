@@ -173,12 +173,8 @@ pub fn id_of(source: &str) -> String {
 /// Split allowlisted frontmatter values and body blocks; the frontmatter block itself is never
 /// a segment.
 pub fn split(article: &str) -> Result<Vec<Segment>, Malformed> {
-	let document::Document {
-		frontmatter,
-		frontmatter_start,
-		body,
-		body_start,
-	} = document::split(article)?;
+	let document::Document { frontmatter, frontmatter_start, body, body_start } =
+		document::split(article)?;
 
 	let mut segments = match frontmatter {
 		Some(source) => frontmatter_segments(source, frontmatter_start)?,
@@ -282,11 +278,7 @@ fn frontmatter_segments(
 		}
 		segments.push(Segment {
 			id: id_of(source),
-			kind: if matches!(key, "title" | "subtitle") {
-				Kind::Heading
-			} else {
-				Kind::Prose
-			},
+			kind: if matches!(key, "title" | "subtitle") { Kind::Heading } else { Kind::Prose },
 			source: source.clone(),
 			region: Region::Frontmatter,
 			start: absolute_start + line_start + colon + 1,
@@ -313,11 +305,7 @@ fn is_thematic_break(trimmed: &str) -> bool {
 	if !matches!(first, '-' | '*' | '_') {
 		return false;
 	}
-	let rest = trimmed
-		.chars()
-		.filter(|c| !c.is_whitespace())
-		.take_while(|c| *c == first)
-		.count();
+	let rest = trimmed.chars().filter(|c| !c.is_whitespace()).take_while(|c| *c == first).count();
 	rest >= 3 && trimmed.chars().all(|c| c == first || c.is_whitespace())
 }
 
@@ -345,14 +333,7 @@ fn push(article: &str, into: &mut Vec<Segment>, block: &mut Vec<&str>, start: us
 	} else {
 		Kind::Prose
 	};
-	into.push(Segment {
-		id: id_of(&source),
-		kind,
-		source,
-		region: Region::Body,
-		start,
-		end,
-	});
+	into.push(Segment { id: id_of(&source), kind, source, region: Region::Body, start, end });
 }
 
 /// Every segment worth translating, keyed by id, deduplicated.
@@ -455,10 +436,7 @@ mod tests {
 		// Word order changes in translation; the markers move with it and still restore.
 		let translated = format!("{} を {} に設定", marker(1), marker(0));
 		assert!(masked.intact(&translated));
-		assert_eq!(
-			masked.restore(&translated),
-			"`Cargo.toml` を `opt-level` に設定"
-		);
+		assert_eq!(masked.restore(&translated), "`Cargo.toml` を `opt-level` に設定");
 	}
 
 	#[test]
@@ -486,11 +464,7 @@ mod tests {
 		assert_eq!(segments.len(), 2);
 		assert_eq!(segments[0].source, "A");
 		assert_eq!(segments[0].region, Region::Frontmatter);
-		assert!(
-			!segments
-				.iter()
-				.any(|segment| segment.source.contains("title:"))
-		);
+		assert!(!segments.iter().any(|segment| segment.source.contains("title:")));
 		assert_eq!(&article[segments[0].start..segments[0].end], " A");
 		assert_eq!(segments[1].source, "body text");
 		assert_eq!(segments[1].region, Region::Body);
@@ -518,10 +492,7 @@ mod tests {
 		let live = translatable(
 			"---\ntitle: Visible\nlang: zh\ncreated: 2026-08-02\nviews: 5\nfuture: Never send me\n---\n\nBody",
 		).expect("segments");
-		let sources = live
-			.values()
-			.map(|segment| segment.source.as_str())
-			.collect::<Vec<_>>();
+		let sources = live.values().map(|segment| segment.source.as_str()).collect::<Vec<_>>();
 		assert_eq!(sources.len(), 2);
 		assert!(sources.contains(&"Visible"));
 		assert!(sources.contains(&"Body"));
@@ -538,10 +509,7 @@ mod tests {
 			.filter(|segment| segment.region == Region::Body)
 			.map(|segment| segment.kind)
 			.collect();
-		assert_eq!(
-			kinds,
-			vec![Kind::Prose, Kind::Rule, Kind::Prose, Kind::Rule, Kind::Rule]
-		);
+		assert_eq!(kinds, vec![Kind::Prose, Kind::Rule, Kind::Prose, Kind::Rule, Kind::Rule]);
 		// Prose that merely begins with a dash is not one.
 		assert!(!is_thematic_break("- a list item"));
 		assert!(!is_thematic_break("-- an aside --"));
@@ -575,9 +543,6 @@ mod tests {
 		let article = "---\ndescription:\n  first line\n  second line\nlang: zh\n---\n\nBody";
 		let segments = split(article).expect("segments");
 		assert_eq!(segments[0].source, "first line second line");
-		assert_eq!(
-			&article[segments[0].start..segments[0].end],
-			"\n  first line\n  second line"
-		);
+		assert_eq!(&article[segments[0].start..segments[0].end], "\n  first line\n  second line");
 	}
 }

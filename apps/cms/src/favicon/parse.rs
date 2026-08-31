@@ -90,10 +90,7 @@ pub fn media_tone(media: Option<&str>) -> MediaTone {
 /// The largest width a `sizes` attribute declares. `sizes="any"` and junk both yield None.
 pub fn max_declared_size(sizes: Option<&str>) -> Option<u32> {
 	let sizes = sizes?;
-	size_re()
-		.captures_iter(sizes)
-		.filter_map(|c| c[1].parse::<u32>().ok())
-		.max()
+	size_re().captures_iter(sizes).filter_map(|c| c[1].parse::<u32>().ok()).max()
 }
 
 /// Rels that contain the word "icon" but are not the site's favicon.
@@ -103,16 +100,11 @@ pub fn max_declared_size(sizes: Option<&str>) -> Option<u32> {
 /// are the wrong picture, and both are common enough that GitHub ships them side by side with
 /// its actual favicon.
 fn is_not_a_favicon(rel: &str) -> bool {
-	rel
-		.split_whitespace()
-		.any(|part| part == "mask-icon" || part == "fluid-icon")
+	rel.split_whitespace().any(|part| part == "mask-icon" || part == "fluid-icon")
 }
 
 fn is_svg(link: &IconLink) -> bool {
-	let by_type = link
-		.kind
-		.as_deref()
-		.is_some_and(|k| k.to_lowercase().contains("svg"));
+	let by_type = link.kind.as_deref().is_some_and(|k| k.to_lowercase().contains("svg"));
 	let path = link.href.split(['?', '#']).next().unwrap_or_default();
 	by_type || path.to_lowercase().ends_with(".svg")
 }
@@ -161,19 +153,15 @@ pub fn pick_icon(links: &[IconLink], tone: Option<Tone>) -> Option<&IconLink> {
 			Tone::Dark => MediaTone::Dark,
 			Tone::Light => MediaTone::Light,
 		};
-		let matching: Vec<&IconLink> = links
-			.iter()
-			.filter(|link| media_tone(link.media.as_deref()) == wanted)
-			.collect();
+		let matching: Vec<&IconLink> =
+			links.iter().filter(|link| media_tone(link.media.as_deref()) == wanted).collect();
 		if let Some(index) = pick_by_quality(&matching) {
 			return Some(matching[index]);
 		}
 	}
 
-	let untargeted: Vec<&IconLink> = links
-		.iter()
-		.filter(|link| media_tone(link.media.as_deref()) == MediaTone::Any)
-		.collect();
+	let untargeted: Vec<&IconLink> =
+		links.iter().filter(|link| media_tone(link.media.as_deref()) == MediaTone::Any).collect();
 	if let Some(index) = pick_by_quality(&untargeted) {
 		return Some(untargeted[index]);
 	}
@@ -190,9 +178,8 @@ fn selector(css: &'static str) -> &'static Selector {
 	if let Some((_, selector)) = entries.iter().find(|(key, _)| *key == css) {
 		return selector;
 	}
-	let leaked: &'static Selector = Box::leak(Box::new(
-		Selector::parse(css).expect("static selector is valid"),
-	));
+	let leaked: &'static Selector =
+		Box::leak(Box::new(Selector::parse(css).expect("static selector is valid")));
 	entries.push((css, leaked));
 	leaked
 }
@@ -247,10 +234,7 @@ mod tests {
 	fn reads_the_base_href() {
 		let html =
 			r#"<head><base href="https://cdn.example.com/"><link rel="icon" href="/i.png"></head>"#;
-		assert_eq!(
-			parse_head(html).base.as_deref(),
-			Some("https://cdn.example.com/")
-		);
+		assert_eq!(parse_head(html).base.as_deref(), Some("https://cdn.example.com/"));
 	}
 
 	#[test]
@@ -286,11 +270,7 @@ mod tests {
 
 	#[test]
 	fn skips_a_link_with_no_href() {
-		assert!(
-			parse_head(r#"<head><link rel="icon"></head>"#)
-				.links
-				.is_empty()
-		);
+		assert!(parse_head(r#"<head><link rel="icon"></head>"#).links.is_empty());
 	}
 
 	#[test]
@@ -302,24 +282,16 @@ mod tests {
 
 	#[test]
 	fn recognises_a_color_scheme_query() {
-		assert_eq!(
-			media_tone(Some("(prefers-color-scheme: dark)")),
-			MediaTone::Dark
-		);
-		assert_eq!(
-			media_tone(Some("(prefers-color-scheme:light)")),
-			MediaTone::Light
-		);
+		assert_eq!(media_tone(Some("(prefers-color-scheme: dark)")), MediaTone::Dark);
+		assert_eq!(media_tone(Some("(prefers-color-scheme:light)")), MediaTone::Light);
 		assert_eq!(media_tone(Some("print")), MediaTone::Any);
 		assert_eq!(media_tone(None), MediaTone::Any);
 	}
 
 	#[test]
 	fn prefers_vector_over_any_raster() {
-		let links = vec![
-			link("/big.png", Some("512x512"), None, None),
-			link("/icon.svg", None, None, None),
-		];
+		let links =
+			vec![link("/big.png", Some("512x512"), None, None), link("/icon.svg", None, None, None)];
 		assert_eq!(pick_icon(&links, None).unwrap().href, "/icon.svg");
 	}
 
@@ -344,34 +316,19 @@ mod tests {
 
 	#[test]
 	fn falls_back_to_the_largest_when_everything_is_small() {
-		let links = vec![
-			link("/16.png", Some("16x16"), None, None),
-			link("/24.png", Some("24x24"), None, None),
-		];
+		let links =
+			vec![link("/16.png", Some("16x16"), None, None), link("/24.png", Some("24x24"), None, None)];
 		assert_eq!(pick_icon(&links, None).unwrap().href, "/24.png");
 	}
 
 	#[test]
 	fn prefers_an_icon_declaring_the_requested_theme() {
 		let links = vec![
-			link(
-				"/light.png",
-				Some("32x32"),
-				None,
-				Some("(prefers-color-scheme: light)"),
-			),
-			link(
-				"/dark.png",
-				Some("32x32"),
-				None,
-				Some("(prefers-color-scheme: dark)"),
-			),
+			link("/light.png", Some("32x32"), None, Some("(prefers-color-scheme: light)")),
+			link("/dark.png", Some("32x32"), None, Some("(prefers-color-scheme: dark)")),
 			link("/plain.png", Some("32x32"), None, None),
 		];
-		assert_eq!(
-			pick_icon(&links, Some(Tone::Dark)).unwrap().href,
-			"/dark.png"
-		);
+		assert_eq!(pick_icon(&links, Some(Tone::Dark)).unwrap().href, "/dark.png");
 	}
 
 	#[test]
@@ -379,17 +336,9 @@ mod tests {
 		// A themed request must still return the site's ordinary icon rather than nothing.
 		let links = vec![
 			link("/plain.png", Some("32x32"), None, None),
-			link(
-				"/light.png",
-				Some("32x32"),
-				None,
-				Some("(prefers-color-scheme: light)"),
-			),
+			link("/light.png", Some("32x32"), None, Some("(prefers-color-scheme: light)")),
 		];
-		assert_eq!(
-			pick_icon(&links, Some(Tone::Dark)).unwrap().href,
-			"/plain.png"
-		);
+		assert_eq!(pick_icon(&links, Some(Tone::Dark)).unwrap().href, "/plain.png");
 	}
 
 	#[test]

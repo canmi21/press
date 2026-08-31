@@ -107,11 +107,7 @@ fn pending(
 		.media
 		.keys()
 		.filter(|cid| {
-			force
-				|| described
-					.media
-					.get(*cid)
-					.is_none_or(|entry| entry.description.is_empty())
+			force || described.media.get(*cid).is_none_or(|entry| entry.description.is_empty())
 		})
 		.collect();
 	if wanted.is_empty() {
@@ -194,17 +190,8 @@ pub struct Options<'a> {
 
 /// Describe every asset that has no description yet, and record what came back.
 pub async fn run(options: Options<'_>) -> std::io::Result<Outcome> {
-	let Options {
-		repository,
-		runner,
-		model_override,
-		merged,
-		originals,
-		force,
-		limit,
-		shell,
-		sink,
-	} = options;
+	let Options { repository, runner, model_override, merged, originals, force, limit, shell, sink } =
+		options;
 	let described_path = media::path_for(repository);
 	let described = media::load(&described_path)?;
 
@@ -256,9 +243,8 @@ pub async fn run(options: Options<'_>) -> std::io::Result<Outcome> {
 				}
 				Err(claim::Denied::Io(error)) => return Err(error),
 			}
-			running.push(tokio::spawn(async move {
-				(cid, describe(runner, pinned.as_deref(), &path).await)
-			}));
+			running
+				.push(tokio::spawn(async move { (cid, describe(runner, pinned.as_deref(), &path).await) }));
 		}
 		if running.is_empty() {
 			break;
@@ -321,10 +307,7 @@ pub async fn run(options: Options<'_>) -> std::io::Result<Outcome> {
 
 /// Whether this asset still wants a description.
 pub fn wants_description(described: &media::Media, cid: &str) -> bool {
-	described
-		.media
-		.get(cid)
-		.is_none_or(|entry| entry.description.is_empty())
+	described.media.get(cid).is_none_or(|entry| entry.description.is_empty())
 }
 
 #[cfg(test)]

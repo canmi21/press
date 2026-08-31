@@ -150,13 +150,7 @@ pub fn derive(original: &[u8], keep_original: bool) -> Result<Derived, Error> {
 	// Only the hash is kept. The decoded form the site inlines is produced at build time from
 	// this, so storing one here would be the same picture written twice.
 	let thumb = placeholder(&image)?;
-	Ok(Derived {
-		cid: cid(original),
-		width: size.width,
-		height: size.height,
-		thumb,
-		variants,
-	})
+	Ok(Derived { cid: cid(original), width: size.width, height: size.height, thumb, variants })
 }
 
 /// Derive one source into a value ready to write, without touching the published tree.
@@ -196,16 +190,10 @@ pub fn write_derived(public: &Path, prepared: &Prepared) -> Result<(), Error> {
 		store::write(&target, &variant.bytes).map_err(Error::Write)?;
 	}
 
-	let document = manifest::Document {
-		version: manifest::VERSION,
-		media: prepared.media.clone(),
-	};
+	let document = manifest::Document { version: manifest::VERSION, media: prepared.media.clone() };
 	let json = serde_json::to_string_pretty(&document).map_err(Error::Serialize)?;
-	store::write(
-		&store::meta_path(public, &prepared.derived.cid),
-		json.as_bytes(),
-	)
-	.map_err(Error::Write)
+	store::write(&store::meta_path(public, &prepared.derived.cid), json.as_bytes())
+		.map_err(Error::Write)
 }
 
 /// Derive and publish one image, preserving its first-seen timestamp when it already exists.
@@ -271,10 +259,7 @@ fn resize(image: &DynamicImage, target: Size) -> DynamicImage {
 		return image.clone();
 	}
 	let mut destination = FirImage::new(target.width, target.height, PixelType::U8x4);
-	if Resizer::new()
-		.resize(image, &mut destination, &ResizeOptions::new())
-		.is_err()
-	{
+	if Resizer::new().resize(image, &mut destination, &ResizeOptions::new()).is_err() {
 		return image.clone();
 	}
 	image::RgbaImage::from_raw(target.width, target.height, destination.into_vec())
@@ -293,16 +278,9 @@ fn resize(image: &DynamicImage, target: Size) -> DynamicImage {
 /// site build now produces from this -- one picture, one stored form.
 fn placeholder(image: &DynamicImage) -> Result<Vec<u8>, Error> {
 	// thumbhash reads a small input by design; anything larger is wasted work.
-	let small = resize(
-		image,
-		Size::new(image.width(), image.height()).scaled_to_long_edge(100),
-	);
+	let small = resize(image, Size::new(image.width(), image.height()).scaled_to_long_edge(100));
 	let rgba = small.to_rgba8();
-	Ok(thumbhash::rgba_to_thumb_hash(
-		rgba.width() as usize,
-		rgba.height() as usize,
-		rgba.as_raw(),
-	))
+	Ok(thumbhash::rgba_to_thumb_hash(rgba.width() as usize, rgba.height() as usize, rgba.as_raw()))
 }
 
 #[cfg(test)]
@@ -366,17 +344,9 @@ mod tests {
 		// one transformation rather than a second permanent copy of every image.
 		let derived = derive(&photo(1500, 1000), false).expect("derive");
 		for width in [640, 1280, 1500] {
-			let at_tier: Vec<encode::Format> = derived
-				.variants
-				.iter()
-				.filter(|v| v.width == width)
-				.map(|v| v.format)
-				.collect();
-			assert_eq!(
-				at_tier,
-				vec![encode::Format::Avif],
-				"wrong formats at {width}"
-			);
+			let at_tier: Vec<encode::Format> =
+				derived.variants.iter().filter(|v| v.width == width).map(|v| v.format).collect();
+			assert_eq!(at_tier, vec![encode::Format::Avif], "wrong formats at {width}");
 		}
 	}
 
@@ -413,11 +383,7 @@ mod tests {
 		// depending on the aspect ratio and whether alpha is present. What matters is that it
 		// stays small enough to sit in a manifest without thought, so the bound is asserted
 		// rather than a value that happened to come out of one image.
-		assert!(
-			(16..=32).contains(&derived.thumb.len()),
-			"thumbhash is {} bytes",
-			derived.thumb.len()
-		);
+		assert!((16..=32).contains(&derived.thumb.len()), "thumbhash is {} bytes", derived.thumb.len());
 		// The decoded form the site inlines is no longer produced here, so there is nothing
 		// else to assert: the hash is the whole output.
 	}

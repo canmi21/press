@@ -108,10 +108,7 @@ fn parse_tag(value: &str, registry: &tags::Registry) -> Option<Tagged> {
 	let value = value.trim();
 	if !value.contains('|') {
 		let tag = registry.tags.get(value)?;
-		return media::is_valid_tag(value).then(|| Tagged {
-			name: value.to_owned(),
-			tag: tag.clone(),
-		});
+		return media::is_valid_tag(value).then(|| Tagged { name: value.to_owned(), tag: tag.clone() });
 	}
 
 	let mut fields = value.split('|').map(str::trim);
@@ -128,17 +125,11 @@ fn parse_tag(value: &str, registry: &tags::Registry) -> Option<Tagged> {
 		return None;
 	}
 	let tag = match kind {
-		"technical" => Tag::Technical {
-			display: label.to_owned(),
-			meaning: meaning.to_owned(),
-		},
+		"technical" => Tag::Technical { display: label.to_owned(), meaning: meaning.to_owned() },
 		"ordinary" => Tag::ordinary(label, meaning),
 		_ => return None,
 	};
-	Some(Tagged {
-		name: name.to_owned(),
-		tag,
-	})
+	Some(Tagged { name: name.to_owned(), tag })
 }
 
 fn parse(reply: &str, registry: &tags::Registry) -> (Option<Category>, Vec<Tagged>) {
@@ -180,10 +171,7 @@ fn needs_classification(entry: Option<&Entry>, registry: &tags::Registry, force:
 		|| entry.is_none_or(|entry| {
 			entry.category.is_none()
 				|| entry.tags.is_empty()
-				|| entry
-					.tags
-					.iter()
-					.any(|tag| !registry.tags.contains_key(tag))
+				|| entry.tags.iter().any(|tag| !registry.tags.contains_key(tag))
 		})
 }
 
@@ -192,10 +180,7 @@ fn insert_new_tag(registry: &mut tags::Registry, tagged: &Tagged, creator: &Tran
 		return false;
 	}
 	let mut tag = tagged.tag.clone();
-	if let Tag::Ordinary {
-		source, display, ..
-	} = &mut tag
-	{
+	if let Tag::Ordinary { source, display, .. } = &mut tag {
 		let mut english = creator.clone();
 		english.text.clone_from(source);
 		display.insert(SOURCE_LOCALE.to_owned(), english);
@@ -216,14 +201,7 @@ pub struct Options<'a> {
 }
 
 pub async fn run(options: Options<'_>) -> std::io::Result<Outcome> {
-	let Options {
-		repository: repo,
-		runner,
-		force,
-		limit,
-		shell,
-		sink,
-	} = options;
+	let Options { repository: repo, runner, force, limit, shell, sink } = options;
 	let merged = crate::image::run::load(&repo.join(crate::image::run::MERGED))?;
 	let described_path = media::path_for(repo);
 	let mut described = media::load(&described_path)?;
@@ -237,10 +215,7 @@ pub async fn run(options: Options<'_>) -> std::io::Result<Outcome> {
 		.cloned()
 		.collect();
 
-	let mut outcome = Outcome {
-		skipped: merged.media.len() - wanted.len(),
-		..Outcome::default()
-	};
+	let mut outcome = Outcome { skipped: merged.media.len() - wanted.len(), ..Outcome::default() };
 	if wanted.is_empty() {
 		return Ok(outcome);
 	}
@@ -263,10 +238,7 @@ pub async fn run(options: Options<'_>) -> std::io::Result<Outcome> {
 	let Some(model) = runner.model_for_vision() else {
 		outcome.failed.push((
 			String::new(),
-			format!(
-				"{} cannot read an image; pick a runner that can",
-				runner.provider()
-			),
+			format!("{} cannot read an image; pick a runner that can", runner.provider()),
 		));
 		return Ok(outcome);
 	};
@@ -319,9 +291,7 @@ pub async fn run(options: Options<'_>) -> std::io::Result<Outcome> {
 
 		let (category, found) = parse(&answer.text, &registry);
 		if found.len() < MIN_TAGS {
-			outcome
-				.failed
-				.push((cid, format!("only {} usable tags", found.len())));
+			outcome.failed.push((cid, format!("only {} usable tags", found.len())));
 			progress.inc(1);
 			continue;
 		}
@@ -343,12 +313,7 @@ pub async fn run(options: Options<'_>) -> std::io::Result<Outcome> {
 			}
 		}
 		let names: Vec<String> = found.iter().map(|tagged| tagged.name.clone()).collect();
-		described
-			.media
-			.entry(cid.clone())
-			.or_insert_with(Entry::default)
-			.tags
-			.clone_from(&names);
+		described.media.entry(cid.clone()).or_insert_with(Entry::default).tags.clone_from(&names);
 
 		// Written as they arrive, for the reason every other command here writes as it goes:
 		// each of these was paid for, and holding a run's worth in memory means one interrupt
@@ -471,10 +436,7 @@ mod tests {
 		);
 		registry.tags.insert(
 			"rust".to_owned(),
-			Tag::Technical {
-				display: "Rust".to_owned(),
-				meaning: "programming language".to_owned(),
-			},
+			Tag::Technical { display: "Rust".to_owned(), meaning: "programming language".to_owned() },
 		);
 		registry
 	}
@@ -493,10 +455,7 @@ mod tests {
 		assert_eq!(
 			tags,
 			vec![
-				Tagged {
-					name: "terminal".to_owned(),
-					tag: registry.tags["terminal"].clone(),
-				},
+				Tagged { name: "terminal".to_owned(), tag: registry.tags["terminal"].clone() },
 				Tagged {
 					name: "cargo".to_owned(),
 					tag: Tag::Technical {
@@ -530,10 +489,7 @@ mod tests {
 			&registry,
 		);
 		assert_eq!(
-			tags
-				.iter()
-				.map(|tagged| tagged.name.as_str())
-				.collect::<Vec<_>>(),
+			tags.iter().map(|tagged| tagged.name.as_str()).collect::<Vec<_>>(),
 			vec!["terminal"]
 		);
 	}
@@ -592,11 +548,7 @@ mod tests {
 			tags: vec!["terminal".to_owned()],
 			..Entry::default()
 		};
-		assert!(needs_classification(
-			Some(&entry),
-			&tags::Registry::default(),
-			false
-		));
+		assert!(needs_classification(Some(&entry), &tags::Registry::default(), false));
 		assert!(!needs_classification(Some(&entry), &registry(), false));
 	}
 
@@ -621,9 +573,8 @@ mod tests {
 		};
 
 		assert!(insert_new_tag(&mut registry, &tagged, &creator));
-		let english = &registry.tags["cellular-network"]
-			.translations()
-			.expect("ordinary")[SOURCE_LOCALE];
+		let english =
+			&registry.tags["cellular-network"].translations().expect("ordinary")[SOURCE_LOCALE];
 		assert_eq!(english.text, "Cellular Network");
 		assert_eq!(english.provider, creator.provider);
 		assert_eq!(english.model, creator.model);

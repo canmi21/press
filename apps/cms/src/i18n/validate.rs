@@ -215,11 +215,7 @@ pub fn sidecar(
 			// Stored text is final -- its markers were restored before it was written -- so the
 			// marker check applies here, where it cannot apply to a reply still holding them.
 			let checked = translation(segment.region, &segment.source, &stored.text).and_then(|()| {
-				if markers_resolved(&stored.text) {
-					Ok(())
-				} else {
-					Err(Error::UnresolvedMarker)
-				}
+				if markers_resolved(&stored.text) { Ok(()) } else { Err(Error::UnresolvedMarker) }
 			});
 			if let Err(error) = checked {
 				return Err(std::io::Error::new(
@@ -240,38 +236,26 @@ mod tests {
 	#[test]
 	fn a_directive_glued_to_a_latin_word_is_refused() {
 		// What the model wrote when it copied the source's spacing into Spanish.
-		assert!(!spacing_intact(
-			r#"## ¿Modelo:fn[en la petición]{is="el modelo de ejecución"}?"#
-		));
-		assert!(!spacing_intact(
-			r#"## Modell zur:fn[Anfragezeit]{is="das Ausführungsmodell"}?"#
-		));
+		assert!(!spacing_intact(r#"## ¿Modelo:fn[en la petición]{is="el modelo de ejecución"}?"#));
+		assert!(!spacing_intact(r#"## Modell zur:fn[Anfragezeit]{is="das Ausführungsmodell"}?"#));
 	}
 
 	#[test]
 	fn a_script_that_does_not_space_its_words_keeps_the_source_shape() {
 		assert!(spacing_intact(r#"## 请求时的:fn[模型]{is="指执行模型"}?"#));
-		assert!(spacing_intact(
-			r#"## リクエスト時:fn[モデル]{is="実行モデル"}?"#
-		));
+		assert!(spacing_intact(r#"## リクエスト時:fn[モデル]{is="実行モデル"}?"#));
 	}
 
 	#[test]
 	fn punctuation_is_already_a_boundary() {
 		// French elision and a hyphenated term both read correctly without a space.
-		assert!(spacing_intact(
-			r#"L':fn[AST]{is="the syntax tree"} visible"#
-		));
-		assert!(spacing_intact(
-			r#"pseudo-:fn[SSR]{is="not the traditional kind"} here"#
-		));
+		assert!(spacing_intact(r#"L':fn[AST]{is="the syntax tree"} visible"#));
+		assert!(spacing_intact(r#"pseudo-:fn[SSR]{is="not the traditional kind"} here"#));
 	}
 
 	#[test]
 	fn a_spaced_directive_passes_on_both_sides() {
-		assert!(spacing_intact(
-			r#"## Request-time :fn[model]{is="the execution model"}?"#
-		));
+		assert!(spacing_intact(r#"## Request-time :fn[model]{is="the execution model"}?"#));
 		assert!(spacing_intact(r#"the :fn[model]{is="a gloss"} matters"#));
 	}
 
@@ -295,11 +279,7 @@ mod tests {
 	#[test]
 	fn frontmatter_never_accepts_a_translator_note() {
 		assert_eq!(
-			translation(
-				Region::Frontmatter,
-				"source",
-				":tn[translated]{is=\"a gloss\"}"
-			),
+			translation(Region::Frontmatter, "source", ":tn[translated]{is=\"a gloss\"}"),
 			Err(Error::TranslatorNoteInFrontmatter)
 		);
 		assert!(translation(Region::Body, "source", ":tn[translated]{is=\"a gloss\"}").is_ok());
@@ -315,10 +295,7 @@ mod tests {
 		let neighbour =
 			"就像上一篇写过的，Seam 首先是一套协议，`if` 也是:fn[协议节点]{is=\"结构单元\"}";
 		assert!(!author_notes_preserved(source, neighbour));
-		assert_eq!(
-			translation(Region::Body, source, neighbour),
-			Err(Error::AuthorNoteCountChanged)
-		);
+		assert_eq!(translation(Region::Body, source, neighbour), Err(Error::AuthorNoteCountChanged));
 		// A real translation of the same source keeps the count at zero and passes.
 		assert!(author_notes_preserved(
 			source,
@@ -347,9 +324,7 @@ mod tests {
 		// Inline code in the context is folded to a placeholder that restores to nothing, so text
 		// copied out of the context arrives still carrying it.
 		assert!(!markers_resolved("the ⟦code⟧ was copied from the context"));
-		assert!(markers_resolved(
-			"ordinary prose with `code` restored into it"
-		));
+		assert!(markers_resolved("ordinary prose with `code` restored into it"));
 		// Refused by the caller that owns the final text, not by `translation`.
 		assert!(translation(Region::Body, "source", "carries a ⟦code⟧ marker").is_ok());
 	}
@@ -364,14 +339,10 @@ mod tests {
 
 	#[test]
 	fn malformed_author_note_shapes_are_rejected() {
-		assert!(author_notes_well_formed(
-			"The :fn[model]{is=\"execution, not data\"} here"
-		));
+		assert!(author_notes_well_formed("The :fn[model]{is=\"execution, not data\"} here"));
 		assert!(author_notes_well_formed("no notes at all"));
 		// The shape a straight quote leaves behind: the attribute ends early, the rest is loose.
-		assert!(!author_notes_well_formed(
-			":fn[said]{is=\"quote \"hi\" here\"}"
-		));
+		assert!(!author_notes_well_formed(":fn[said]{is=\"quote \"hi\" here\"}"));
 		assert!(!author_notes_well_formed(":fn[]{is=\"a note\"}"));
 		assert!(!author_notes_well_formed(":fn[word]{is=\"\"}"));
 		assert!(!author_notes_well_formed(":fn[word]{is=\"unclosed brace\""));
@@ -382,20 +353,11 @@ mod tests {
 	#[test]
 	fn a_translation_carrying_a_broken_author_note_is_refused() {
 		assert_eq!(
-			translation(
-				Region::Body,
-				":fn[model]{is=\"source\"}",
-				":fn[model]{is=\"broken}"
-			),
+			translation(Region::Body, ":fn[model]{is=\"source\"}", ":fn[model]{is=\"broken}"),
 			Err(Error::MalformedAuthorNote)
 		);
 		assert!(
-			translation(
-				Region::Body,
-				":fn[model]{is=\"source\"}",
-				":fn[model]{is=\"fine\"}"
-			)
-			.is_ok()
+			translation(Region::Body, ":fn[model]{is=\"source\"}", ":fn[model]{is=\"fine\"}").is_ok()
 		);
 	}
 
@@ -411,18 +373,11 @@ mod tests {
 			version: 1,
 			segments: BTreeMap::from([(
 				id.clone(),
-				BTreeMap::from([(
-					"en-US".to_owned(),
-					stored(":tn[Translated]{is=\"a gloss\"}"),
-				)]),
+				BTreeMap::from([("en-US".to_owned(), stored(":tn[Translated]{is=\"a gloss\"}"))]),
 			)]),
 		};
-		let error = sidecar(
-			Path::new("contents/example.i18n.yaml"),
-			&live,
-			&stored_sidecar,
-		)
-		.expect_err("invalid content must stop the build record");
+		let error = sidecar(Path::new("contents/example.i18n.yaml"), &live, &stored_sidecar)
+			.expect_err("invalid content must stop the build record");
 
 		let message = error.to_string();
 		assert!(message.contains("contents/example.i18n.yaml"));

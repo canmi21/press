@@ -149,10 +149,7 @@ fn walk(
 		// path means the app itself asked for it, which is a dependent worth naming rather
 		// than a gap: a package the deployable depends on directly is a different fact from
 		// one that only arrived through a library.
-		let parent = path
-			.last()
-			.cloned()
-			.unwrap_or_else(|| format!("workspace:{root}"));
+		let parent = path.last().cloned().unwrap_or_else(|| format!("workspace:{root}"));
 		found.dependents.insert(parent);
 
 		let mut next = path.to_vec();
@@ -180,12 +177,7 @@ fn declared(directory: &Path) -> Option<Declared> {
 	let manifest = serde_json::from_slice::<Manifest>(&bytes).ok()?;
 	Some(Declared {
 		spdx: manifest.license.as_ref().and_then(license_expression),
-		authors: manifest
-			.author
-			.as_ref()
-			.and_then(person)
-			.into_iter()
-			.collect(),
+		authors: manifest.author.as_ref().and_then(person).into_iter().collect(),
 		description: nonempty_text(manifest.description),
 		homepage: web_url(manifest.homepage),
 		repository: manifest.repository.as_ref().and_then(repository_url),
@@ -211,14 +203,8 @@ fn person(value: &serde_json::Value) -> Option<Person> {
 		serde_json::Value::String(text) => author(text),
 		serde_json::Value::Object(map) => {
 			let name = map.get("name")?.as_str()?;
-			let email = map
-				.get("email")
-				.and_then(serde_json::Value::as_str)
-				.unwrap_or_default();
-			let url = map
-				.get("url")
-				.and_then(serde_json::Value::as_str)
-				.unwrap_or_default();
+			let email = map.get("email").and_then(serde_json::Value::as_str).unwrap_or_default();
+			let url = map.get("url").and_then(serde_json::Value::as_str).unwrap_or_default();
 			author(&format!("{name} <{email}> ({url})"))
 		}
 		_ => None,
@@ -226,9 +212,7 @@ fn person(value: &serde_json::Value) -> Option<Person> {
 }
 
 fn nonempty_text(value: Option<String>) -> Option<String> {
-	value
-		.map(|text| text.trim().to_owned())
-		.filter(|text| !text.is_empty())
+	value.map(|text| text.trim().to_owned()).filter(|text| !text.is_empty())
 }
 
 /// The repository field's legacy shorthands, reduced to a URL a browser can open.
@@ -289,10 +273,8 @@ mod tests {
 	#[test]
 	fn reads_both_shapes_of_the_author_field() {
 		assert_eq!(
-			person(&serde_json::json!(
-				"Ada <ada@example.com> (https://example.com)"
-			))
-			.map(|person| person.name),
+			person(&serde_json::json!("Ada <ada@example.com> (https://example.com)"))
+				.map(|person| person.name),
 			Some("Ada".to_owned())
 		);
 		assert_eq!(
@@ -300,10 +282,7 @@ mod tests {
 				"name": "Ada",
 				"email": "123+octocat@users.noreply.github.com"
 			})),
-			Some(Person {
-				name: "Ada".to_owned(),
-				github: Some("octocat".to_owned()),
-			})
+			Some(Person { name: "Ada".to_owned(), github: Some("octocat".to_owned()) })
 		);
 	}
 
@@ -324,11 +303,7 @@ mod tests {
 	fn installed(root: &Path, name: &str, manifest: serde_json::Value) -> PathBuf {
 		let directory = root.join(name);
 		std::fs::create_dir_all(&directory).unwrap();
-		std::fs::write(
-			directory.join("package.json"),
-			serde_json::to_vec(&manifest).unwrap(),
-		)
-		.unwrap();
+		std::fs::write(directory.join("package.json"), serde_json::to_vec(&manifest).unwrap()).unwrap();
 		directory
 	}
 
@@ -344,11 +319,7 @@ mod tests {
 				path: Some(root.join("urls")),
 				dependencies: BTreeMap::from([(
 					"hono".to_owned(),
-					Node {
-						version: "4.12.34".to_owned(),
-						path: Some(hono),
-						dependencies: BTreeMap::new(),
-					},
+					Node { version: "4.12.34".to_owned(), path: Some(hono), dependencies: BTreeMap::new() },
 				)]),
 			},
 		)]);
@@ -360,10 +331,7 @@ mod tests {
 			["workspace:@canmi/urls", "pkg:npm/hono@4.12.34"]
 		);
 		assert_eq!(
-			found["pkg:npm/hono@4.12.34"]
-				.dependents
-				.iter()
-				.collect::<Vec<_>>(),
+			found["pkg:npm/hono@4.12.34"].dependents.iter().collect::<Vec<_>>(),
 			["workspace:@canmi/urls"]
 		);
 
@@ -398,18 +366,12 @@ mod tests {
 
 		// The app depends on it directly, and so does the package beside it.
 		assert_eq!(
-			found["pkg:npm/shared@1.0.0"]
-				.dependents
-				.iter()
-				.collect::<Vec<_>>(),
+			found["pkg:npm/shared@1.0.0"].dependents.iter().collect::<Vec<_>>(),
 			["pkg:npm/middle@2.0.0", "workspace:site"]
 		);
 		// The shortest path is still the direct one, which is why the second parent needs
 		// somewhere else to be said.
-		assert_eq!(
-			found["pkg:npm/shared@1.0.0"].origins["site"],
-			["pkg:npm/shared@1.0.0"]
-		);
+		assert_eq!(found["pkg:npm/shared@1.0.0"].origins["site"], ["pkg:npm/shared@1.0.0"]);
 
 		std::fs::remove_dir_all(&root).unwrap();
 	}
@@ -422,11 +384,7 @@ mod tests {
 		let nodes = BTreeMap::from([
 			(
 				"here".to_owned(),
-				Node {
-					version: "1.0.0".to_owned(),
-					path: Some(here),
-					dependencies: BTreeMap::new(),
-				},
+				Node { version: "1.0.0".to_owned(), path: Some(here), dependencies: BTreeMap::new() },
 			),
 			(
 				// Resolved by pnpm, never installed on this machine: no directory at all.

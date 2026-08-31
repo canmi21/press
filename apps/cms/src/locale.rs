@@ -174,10 +174,8 @@ fn pending_summaries(
 				continue;
 			};
 			let sidecar = crate::summary::load(&path)?;
-			let Some(source) = sidecar
-				.summary
-				.get(source_locale)
-				.filter(|entry| !entry.text.trim().is_empty())
+			let Some(source) =
+				sidecar.summary.get(source_locale).filter(|entry| !entry.text.trim().is_empty())
 			else {
 				continue;
 			};
@@ -250,10 +248,7 @@ fn summary_request(item: &Item, locale: &str) -> crate::i18n::prompt::Request {
 		 {source_boundary}\n{}\n{source_boundary}",
 		item.source_locale, item.source
 	);
-	crate::i18n::prompt::Request {
-		text,
-		boundary: output_boundary,
-	}
+	crate::i18n::prompt::Request { text, boundary: output_boundary }
 }
 
 fn description_request(item: &Item, locale: &str) -> String {
@@ -288,9 +283,7 @@ where
 			}
 			_ => (description_request(item, locale), None),
 		};
-		let model = model_override
-			.unwrap_or_else(|| runner.model_for(item.kind, attempt))
-			.to_owned();
+		let model = model_override.unwrap_or_else(|| runner.model_for(item.kind, attempt)).to_owned();
 		let at = crate::image::manifest::now();
 		let clock = std::time::Instant::now();
 		match ask(runner, prompt, model).await {
@@ -359,9 +352,7 @@ where
 
 	while attempt < ATTEMPTS {
 		let prompt = tag_request(item);
-		let model = model_override
-			.unwrap_or_else(|| runner.model_for(item.kind, attempt))
-			.to_owned();
+		let model = model_override.unwrap_or_else(|| runner.model_for(item.kind, attempt)).to_owned();
 		let at = crate::image::manifest::now();
 		let clock = std::time::Instant::now();
 		match ask(runner, prompt, model).await {
@@ -424,15 +415,7 @@ pub struct Options<'a> {
 }
 
 pub async fn run(options: Options<'_>) -> std::io::Result<Outcome> {
-	let Options {
-		repository,
-		runner,
-		model_override,
-		force,
-		limit,
-		shell,
-		sink,
-	} = options;
+	let Options { repository, runner, model_override, force, limit, shell, sink } = options;
 	run_with_model(
 		repository,
 		runner,
@@ -507,12 +490,8 @@ where
 		items.truncate(limit);
 	}
 
-	let mut outcome = Outcome {
-		sources: items.len(),
-		skipped,
-		deferred: wanted - items.len(),
-		..Outcome::default()
-	};
+	let mut outcome =
+		Outcome { sources: items.len(), skipped, deferred: wanted - items.len(), ..Outcome::default() };
 	let calls: usize = items
 		.iter()
 		.map(|item| match item.destination {
@@ -545,15 +524,9 @@ where
 				};
 				match translate_tag(runner, model_override, &item, &mut ask).await {
 					Ok((entries, tokens, usd)) => {
-						let Some(display) = registry
-							.tags
-							.get_mut(name)
-							.and_then(tags::Tag::translations_mut)
+						let Some(display) = registry.tags.get_mut(name).and_then(tags::Tag::translations_mut)
 						else {
-							outcome.failed.push((
-								format!("tag {name}"),
-								"tag is no longer ordinary".to_owned(),
-							));
+							outcome.failed.push((format!("tag {name}"), "tag is no longer ordinary".to_owned()));
 							progress.inc(1);
 							continue;
 						};
@@ -576,9 +549,7 @@ where
 							}
 							tags::save(&path, &current)
 						}) {
-							outcome
-								.failed
-								.push((format!("tag {name}"), error.to_string()));
+							outcome.failed.push((format!("tag {name}"), error.to_string()));
 						}
 					}
 					Err(Refusal::Exhausted(reason)) => {
@@ -586,9 +557,7 @@ where
 						progress.finish_and_clear();
 						return Ok(outcome);
 					}
-					Err(error) => outcome
-						.failed
-						.push((format!("tag {name}"), error.to_string())),
+					Err(error) => outcome.failed.push((format!("tag {name}"), error.to_string())),
 				}
 				drop(claimed);
 				progress.inc(1);
@@ -659,12 +628,7 @@ where
 							let locale = locale.clone();
 							let applied = media_writer.apply(move || {
 								let mut current = media::load(&path)?;
-								current
-									.media
-									.entry(key)
-									.or_default()
-									.description
-									.insert(locale, translation);
+								current.media.entry(key).or_default().description.insert(locale, translation);
 								media::save(&path, &current)
 							});
 							if let Err(error) = applied {
@@ -736,12 +700,7 @@ mod tests {
 	}
 
 	fn answer(text: &str) -> Answer {
-		Answer {
-			text: text.to_owned(),
-			model: "gpt-oss-120b-medium".to_owned(),
-			tokens: 12,
-			usd: 0.0,
-		}
+		Answer { text: text.to_owned(), model: "gpt-oss-120b-medium".to_owned(), tokens: 12, usd: 0.0 }
 	}
 
 	fn ordinary(
@@ -751,16 +710,9 @@ mod tests {
 	) -> tags::Tag {
 		let mut display =
 			std::collections::BTreeMap::from([(SOURCE_LOCALE.to_owned(), translation(source))]);
-		display.extend(
-			entries
-				.into_iter()
-				.map(|(locale, translation)| (locale.to_owned(), translation)),
-		);
-		tags::Tag::Ordinary {
-			source: source.to_owned(),
-			meaning: meaning.to_owned(),
-			display,
-		}
+		display
+			.extend(entries.into_iter().map(|(locale, translation)| (locale.to_owned(), translation)));
+		tags::Tag::Ordinary { source: source.to_owned(), meaning: meaning.to_owned(), display }
 	}
 
 	fn marked(entries: &[(&str, &str)]) -> String {
@@ -788,17 +740,10 @@ mod tests {
 
 		let held = claim::take(&temp.root, "locale", "tag terminal/").expect("claim");
 		let mut requests = 0;
-		let outcome = run_with(
-			&temp.root,
-			Runner::GptOss,
-			false,
-			None,
-			&["zh-CN"],
-			|_, _, _| {
-				requests += 1;
-				async { Ok(answer("终端")) }
-			},
-		)
+		let outcome = run_with(&temp.root, Runner::GptOss, false, None, &["zh-CN"], |_, _, _| {
+			requests += 1;
+			async { Ok(answer("终端")) }
+		})
 		.await
 		.expect("run");
 		drop(held);
@@ -823,17 +768,10 @@ mod tests {
 		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
 
 		let mut requests = 0;
-		let outcome = run_with(
-			&temp.root,
-			Runner::GptOss,
-			false,
-			None,
-			&["zh-CN"],
-			|_, _, _| {
-				requests += 1;
-				std::future::ready(Ok(answer("unexpected")))
-			},
-		)
+		let outcome = run_with(&temp.root, Runner::GptOss, false, None, &["zh-CN"], |_, _, _| {
+			requests += 1;
+			std::future::ready(Ok(answer("unexpected")))
+		})
 		.await
 		.expect("run");
 
@@ -863,68 +801,44 @@ mod tests {
 		);
 		media::save(&media::path_for(&temp.root), &described).expect("media");
 
-		let outcome = run_with(
-			&temp.root,
-			Runner::GptOss,
-			true,
-			None,
-			&[SOURCE_LOCALE, "zh-CN"],
-			|_, _, _| std::future::ready(Ok(answer("translated"))),
-		)
-		.await
-		.expect("run");
+		let outcome =
+			run_with(&temp.root, Runner::GptOss, true, None, &[SOURCE_LOCALE, "zh-CN"], |_, _, _| {
+				std::future::ready(Ok(answer("translated")))
+			})
+			.await
+			.expect("run");
 
 		assert_eq!(outcome.translated, 1);
 		let saved_media = media::load(&media::path_for(&temp.root)).expect("media");
-		assert_eq!(
-			saved_media.media["asset"].description[SOURCE_LOCALE].text,
-			"Original description"
-		);
+		assert_eq!(saved_media.media["asset"].description[SOURCE_LOCALE].text, "Original description");
 	}
 
 	#[tokio::test]
 	async fn a_failed_unit_does_not_discard_another_answer() {
 		let temp = Temp::new("failure");
 		let mut registry = tags::Registry::default();
-		registry
-			.tags
-			.insert("first".to_owned(), ordinary("First", "first concept", []));
-		registry.tags.insert(
-			"second".to_owned(),
-			ordinary("Second", "second concept", []),
-		);
+		registry.tags.insert("first".to_owned(), ordinary("First", "first concept", []));
+		registry.tags.insert("second".to_owned(), ordinary("Second", "second concept", []));
 		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
 
 		let mut requests = 0;
-		let outcome = run_with(
-			&temp.root,
-			Runner::GptOss,
-			false,
-			None,
-			&[SOURCE_LOCALE, "zh-CN"],
-			|_, _, _| {
+		let outcome =
+			run_with(&temp.root, Runner::GptOss, false, None, &[SOURCE_LOCALE, "zh-CN"], |_, _, _| {
 				requests += 1;
 				std::future::ready(if requests <= ATTEMPTS {
 					Err(Refusal::Failed("bad answer".to_owned()))
 				} else {
 					Ok(answer(&marked(&[("zh-CN", "第二")])))
 				})
-			},
-		)
-		.await
-		.expect("run");
+			})
+			.await
+			.expect("run");
 
 		assert_eq!(outcome.failed.len(), 1);
 		assert_eq!(outcome.translated, 1);
 		let saved = tags::load(&tags::path_for(&temp.root)).expect("tags");
-		assert_eq!(
-			saved.tags["first"].translations().expect("ordinary").len(),
-			1
-		);
-		assert_eq!(
-			saved.tags["second"].translations().expect("ordinary")["zh-CN"].text,
-			"第二"
-		);
+		assert_eq!(saved.tags["first"].translations().expect("ordinary").len(), 1);
+		assert_eq!(saved.tags["second"].translations().expect("ordinary")["zh-CN"].text, "第二");
 	}
 
 	#[tokio::test]
@@ -941,19 +855,13 @@ mod tests {
 		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
 
 		let mut requests = 0;
-		let outcome = run_with(
-			&temp.root,
-			Runner::GptOss,
-			true,
-			None,
-			&crate::i18n::prompt::LOCALES,
-			|_, _, _| {
+		let outcome =
+			run_with(&temp.root, Runner::GptOss, true, None, &crate::i18n::prompt::LOCALES, |_, _, _| {
 				requests += 1;
 				std::future::ready(Ok(answer("unexpected")))
-			},
-		)
-		.await
-		.expect("run");
+			})
+			.await
+			.expect("run");
 
 		assert_eq!(requests, 0);
 		assert_eq!(outcome.sources, 0);
@@ -963,10 +871,9 @@ mod tests {
 	async fn one_tag_requests_every_non_source_locale_once() {
 		let temp = Temp::new("one-call");
 		let mut registry = tags::Registry::default();
-		registry.tags.insert(
-			"browser".to_owned(),
-			ordinary("Browser", "software for viewing websites", []),
-		);
+		registry
+			.tags
+			.insert("browser".to_owned(), ordinary("Browser", "software for viewing websites", []));
 		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
 		let translations: Vec<(&str, &str)> = crate::i18n::prompt::LOCALES
 			.iter()
@@ -984,9 +891,8 @@ mod tests {
 			&crate::i18n::prompt::LOCALES,
 			|_, prompt, _| {
 				requests += 1;
-				for locale in crate::i18n::prompt::LOCALES
-					.into_iter()
-					.filter(|locale| *locale != SOURCE_LOCALE)
+				for locale in
+					crate::i18n::prompt::LOCALES.into_iter().filter(|locale| *locale != SOURCE_LOCALE)
 				{
 					assert!(prompt.contains(&crate::i18n::prompt::locale_marker(locale)));
 				}
@@ -1054,9 +960,7 @@ mod tests {
 		assert!(prompts[0].contains("Raw identifier: terminal"));
 		assert_eq!(outcome.deferred, 1);
 		assert!(
-			!media::load(&media::path_for(&temp.root))
-				.expect("media")
-				.media["000-first-by-key"]
+			!media::load(&media::path_for(&temp.root)).expect("media").media["000-first-by-key"]
 				.description
 				.contains_key("zh-CN")
 		);

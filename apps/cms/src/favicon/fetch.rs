@@ -35,10 +35,7 @@ fn agent() -> &'static ureq::Agent {
 // this is. The URL is a citation for a human, not something this program resolves -- but it
 // is still the site's address, so it comes from the map rather than being a second copy.
 fn user_agent() -> String {
-	format!(
-		"Mozilla/5.0 (compatible; favicon/1.0; +{})",
-		crate::urls::APPS_PRODUCTION_SITE
-	)
+	format!("Mozilla/5.0 (compatible; favicon/1.0; +{})", crate::urls::APPS_PRODUCTION_SITE)
 }
 
 /// The site's home page, or None for anything that is not reachable HTML.
@@ -51,12 +48,8 @@ pub fn html(domain: &str) -> Option<String> {
 	if !content_type.to_lowercase().contains("text/html") {
 		return None;
 	}
-	let body = response
-		.body_mut()
-		.with_config()
-		.limit(HTML_READ_LIMIT as u64)
-		.read_to_string()
-		.ok()?;
+	let body =
+		response.body_mut().with_config().limit(HTML_READ_LIMIT as u64).read_to_string().ok()?;
 	Some(truncate_on_char_boundary(body, HTML_PARSE_LIMIT))
 }
 
@@ -78,27 +71,15 @@ pub fn bytes(url: &str) -> Option<Fetched> {
 		return None;
 	}
 	let header_type = header(&response, "content-type");
-	let bytes = response
-		.body_mut()
-		.with_config()
-		.limit(ICON_LIMIT as u64)
-		.read_to_vec()
-		.ok()?;
+	let bytes = response.body_mut().with_config().limit(ICON_LIMIT as u64).read_to_vec().ok()?;
 	if bytes.is_empty() {
 		return None;
 	}
-	Some(Fetched {
-		content_type: infer_content_type(url, header_type.as_deref()),
-		bytes,
-	})
+	Some(Fetched { content_type: infer_content_type(url, header_type.as_deref()), bytes })
 }
 
 fn header<T>(response: &ureq::http::Response<T>, name: &str) -> Option<String> {
-	response
-		.headers()
-		.get(name)
-		.and_then(|value| value.to_str().ok())
-		.map(str::to_owned)
+	response.headers().get(name).and_then(|value| value.to_str().ok()).map(str::to_owned)
 }
 
 /// Trust the server's `Content-Type` only when it claims an image. Plenty of hosts serve
@@ -106,21 +87,12 @@ fn header<T>(response: &ureq::http::Response<T>, name: &str) -> Option<String> {
 /// signal in those cases.
 pub fn infer_content_type(url: &str, header: Option<&str>) -> String {
 	if let Some(header) = header {
-		let cleaned = header
-			.split(';')
-			.next()
-			.unwrap_or_default()
-			.trim()
-			.to_lowercase();
+		let cleaned = header.split(';').next().unwrap_or_default().trim().to_lowercase();
 		if cleaned.starts_with("image/") {
 			return cleaned;
 		}
 	}
-	let path = url
-		.split(['?', '#'])
-		.next()
-		.unwrap_or_default()
-		.to_lowercase();
+	let path = url.split(['?', '#']).next().unwrap_or_default().to_lowercase();
 	match () {
 		() if path.ends_with(".svg") => "image/svg+xml",
 		() if path.ends_with(".png") => "image/png",
@@ -142,10 +114,7 @@ mod tests {
 
 	#[test]
 	fn strips_charset_from_the_header() {
-		assert_eq!(
-			infer_content_type("/x", Some("image/svg+xml; charset=utf-8")),
-			"image/svg+xml"
-		);
+		assert_eq!(infer_content_type("/x", Some("image/svg+xml; charset=utf-8")), "image/svg+xml");
 	}
 
 	#[test]
@@ -153,32 +122,20 @@ mod tests {
 		// Serving an icon as octet-stream is common enough that trusting the header blindly
 		// would store a lot of files under the wrong name.
 		assert_eq!(
-			infer_content_type(
-				"https://a.example/icon.svg",
-				Some("application/octet-stream")
-			),
+			infer_content_type("https://a.example/icon.svg", Some("application/octet-stream")),
 			"image/svg+xml"
 		);
-		assert_eq!(
-			infer_content_type("https://a.example/icon.ico", None),
-			"image/x-icon"
-		);
+		assert_eq!(infer_content_type("https://a.example/icon.ico", None), "image/x-icon");
 	}
 
 	#[test]
 	fn ignores_query_strings_when_reading_the_extension() {
-		assert_eq!(
-			infer_content_type("https://a.example/i.png?v=2", None),
-			"image/png"
-		);
+		assert_eq!(infer_content_type("https://a.example/i.png?v=2", None), "image/png");
 	}
 
 	#[test]
 	fn gives_up_on_an_unrecognised_type() {
-		assert_eq!(
-			infer_content_type("https://a.example/i", None),
-			"application/octet-stream"
-		);
+		assert_eq!(infer_content_type("https://a.example/i", None), "application/octet-stream");
 		assert_eq!(crate::extension::for_icon("application/octet-stream"), None);
 	}
 

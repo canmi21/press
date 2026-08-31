@@ -70,10 +70,7 @@ pub struct Table {
 
 impl Default for Table {
 	fn default() -> Self {
-		Self {
-			version: VERSION,
-			articles: BTreeMap::new(),
-		}
+		Self { version: VERSION, articles: BTreeMap::new() }
 	}
 }
 
@@ -84,10 +81,7 @@ impl Table {
 	/// in each and either answers. Translation asks about a segment and does not care which
 	/// article carried the scan.
 	pub fn find(&self, id: &str) -> Option<&Entry> {
-		self
-			.articles
-			.values()
-			.find_map(|article| article.segments.get(id))
+		self.articles.values().find_map(|article| article.segments.get(id))
 	}
 
 	/// Whether this article has been read, however little came back.
@@ -239,10 +233,8 @@ pub fn parse_scan(reply: &str) -> Vec<Gloss> {
 			let guidance = guidance.trim();
 			let short = phrase.chars().count() <= LONGEST_SPAN;
 			let concise = guidance.chars().count() <= LONGEST_GUIDANCE;
-			(!phrase.is_empty() && !guidance.is_empty() && short && concise).then(|| Gloss {
-				phrase: phrase.to_owned(),
-				guidance: guidance.to_owned(),
-			})
+			(!phrase.is_empty() && !guidance.is_empty() && short && concise)
+				.then(|| Gloss { phrase: phrase.to_owned(), guidance: guidance.to_owned() })
 		})
 		.collect()
 }
@@ -311,10 +303,7 @@ pub fn attach(
 			.1
 			.push(gloss.clone());
 	}
-	by_segment
-		.into_iter()
-		.map(|(id, (source, spans))| (id, source, spans))
-		.collect()
+	by_segment.into_iter().map(|(id, (source, spans))| (id, source, spans)).collect()
 }
 
 /// The strong model reads the article once; the translator never sees the whole of it.
@@ -361,10 +350,7 @@ mod tests {
 		let segments =
 			crate::i18n::segment::split("---\ntitle: A local idiom\n---\n\nBody without that phrase.")
 				.expect("segments");
-		let found = vec![Gloss {
-			phrase: "local idiom".to_owned(),
-			guidance: "context".to_owned(),
-		}];
+		let found = vec![Gloss { phrase: "local idiom".to_owned(), guidance: "context".to_owned() }];
 
 		assert!(attach(&segments, &found).is_empty());
 	}
@@ -391,9 +377,7 @@ mod tests {
 	#[test]
 	fn a_table_round_trips_and_finds_a_segment_through_its_article() {
 		let mut table = Table::default();
-		table
-			.articles
-			.insert("milestone/a.md".to_owned(), article());
+		table.articles.insert("milestone/a.md".to_owned(), article());
 		let text = serde_yaml_ng::to_string(&table).expect("yaml");
 		let back: Table = serde_yaml_ng::from_str(&text).expect("parse");
 		assert_eq!(back.find("abc123"), Some(&entry()));
@@ -407,9 +391,7 @@ mod tests {
 		let mut table = Table::default();
 		let mut empty = article();
 		empty.segments.clear();
-		table
-			.articles
-			.insert("milestone/quiet.md".to_owned(), empty);
+		table.articles.insert("milestone/quiet.md".to_owned(), empty);
 		assert!(table.scanned("milestone/quiet.md"));
 		assert!(!table.scanned("milestone/unread.md"));
 	}
@@ -426,11 +408,7 @@ mod tests {
 			None,
 			Some(&entry()),
 		);
-		assert!(
-			request
-				.text
-				.contains("Translate or localise the passage naturally")
-		);
+		assert!(request.text.contains("Translate or localise the passage naturally"));
 		assert!(request.text.contains("古法"));
 	}
 
@@ -442,14 +420,8 @@ mod tests {
 		let segments =
 			crate::i18n::segment::split("---\nlang: zh\n---\n\n奇怪的是，古法编程").expect("segments");
 		let found = vec![
-			Gloss {
-				phrase: "古法".to_owned(),
-				guidance: "the old method".to_owned(),
-			},
-			Gloss {
-				phrase: "never written".to_owned(),
-				guidance: "invented by the scanner".to_owned(),
-			},
+			Gloss { phrase: "古法".to_owned(), guidance: "the old method".to_owned() },
+			Gloss { phrase: "never written".to_owned(), guidance: "invented by the scanner".to_owned() },
 		];
 		let attached = attach(&segments, &found);
 		assert_eq!(attached.len(), 1);
@@ -467,20 +439,12 @@ mod tests {
 			start: 0,
 			end: 0,
 		};
-		let inside = Gloss {
-			phrase: "脱裤子放屁".into(),
-			guidance: "a crude idiom".into(),
-		};
+		let inside = Gloss { phrase: "脱裤子放屁".into(), guidance: "a crude idiom".into() };
 		assert!(attach(&[segment.clone()], &[inside]).is_empty());
 		// The same phrase in open prose still attaches.
-		let open = super::super::segment::Segment {
-			source: "这就是脱裤子放屁而已".into(),
-			..segment
-		};
-		let gloss = Gloss {
-			phrase: "脱裤子放屁".into(),
-			guidance: "a crude idiom".into(),
-		};
+		let open =
+			super::super::segment::Segment { source: "这就是脱裤子放屁而已".into(), ..segment };
+		let gloss = Gloss { phrase: "脱裤子放屁".into(), guidance: "a crude idiom".into() };
 		assert_eq!(attach(&[open], &[gloss]).len(), 1);
 	}
 

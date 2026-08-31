@@ -40,18 +40,12 @@ pub fn plan(repo: &Path, public: &Path, articles: &Path) -> std::io::Result<Swee
 	}
 
 	let mut sweep = Sweep {
-		entries: merged
-			.media
-			.keys()
-			.filter(|cid| !wanted.contains(*cid))
-			.cloned()
-			.collect(),
+		entries: merged.media.keys().filter(|cid| !wanted.contains(*cid)).cloned().collect(),
 		..Sweep::default()
 	};
 
-	for path in files_under(&public.join("image"))?
-		.into_iter()
-		.chain(files_under(&public.join("meta"))?)
+	for path in
+		files_under(&public.join("image"))?.into_iter().chain(files_under(&public.join("meta"))?)
 	{
 		if !keep.contains(&stem_of(&path)) {
 			sweep.bytes += path.metadata().map(|meta| meta.len()).unwrap_or_default();
@@ -65,11 +59,7 @@ pub fn plan(repo: &Path, public: &Path, articles: &Path) -> std::io::Result<Swee
 	let wanted_domains: BTreeSet<String> =
 		scan.wanted().into_iter().map(|icon| icon.domain).collect();
 	for directory in directories_under(&public.join("favicon"))? {
-		let name = directory
-			.file_name()
-			.and_then(|n| n.to_str())
-			.unwrap_or_default()
-			.to_owned();
+		let name = directory.file_name().and_then(|n| n.to_str()).unwrap_or_default().to_owned();
 		if !wanted_domains.contains(&name) {
 			sweep.bytes += files_under(&directory)?
 				.iter()
@@ -137,11 +127,7 @@ pub fn apply(repo: &Path, sweep: &Sweep) -> std::io::Result<()> {
 
 /// The content id a stored file is named by, whatever it is nested under.
 fn stem_of(path: &Path) -> String {
-	path
-		.file_stem()
-		.and_then(|stem| stem.to_str())
-		.unwrap_or_default()
-		.to_owned()
+	path.file_stem().and_then(|stem| stem.to_str()).unwrap_or_default().to_owned()
 }
 
 fn files_under(directory: &Path) -> std::io::Result<Vec<PathBuf>> {
@@ -190,13 +176,7 @@ mod tests {
 		let mut variants = BTreeMap::new();
 		variants.insert(
 			variant.to_owned(),
-			VariantRecord {
-				mime: "image/avif".into(),
-				width: 640,
-				height: 360,
-				quality: 0.68,
-				bytes: 1,
-			},
+			VariantRecord { mime: "image/avif".into(), width: 640, height: 360, quality: 0.68, bytes: 1 },
 		);
 		Media {
 			kind: "image".into(),
@@ -276,11 +256,7 @@ mod tests {
 		apply(&root, &sweep).expect("apply");
 		let merged = load(&root.join(MERGED)).expect("merged");
 		assert_eq!(merged.media.len(), 1);
-		assert!(
-			merged
-				.media
-				.contains_key("44b6081deaf0242ca3bf83d62a3b6c95")
-		);
+		assert!(merged.media.contains_key("44b6081deaf0242ca3bf83d62a3b6c95"));
 		std::fs::remove_dir_all(&root).ok();
 	}
 
@@ -299,11 +275,8 @@ mod tests {
 	fn sweeps_an_icon_directory_no_article_links_to() {
 		let root = temp("icons");
 		std::fs::create_dir_all(root.join("contents")).expect("dir");
-		std::fs::write(
-			root.join("contents/a.md"),
-			r#"::linkcard{url="https://kept.example"}"#,
-		)
-		.expect("write");
+		std::fs::write(root.join("contents/a.md"), r#"::linkcard{url="https://kept.example"}"#)
+			.expect("write");
 
 		let public = root.join("public");
 		for domain in ["kept.example", "gone.example"] {

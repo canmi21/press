@@ -54,11 +54,7 @@ struct State {
 impl Progress {
 	pub fn new(total: u64, sink: Box<dyn Sink>) -> Self {
 		sink.started(total);
-		Self {
-			total,
-			state: Mutex::new(State::default()),
-			sink,
-		}
+		Self { total, state: Mutex::new(State::default()), sink }
 	}
 
 	/// A run whose progress nobody is watching.
@@ -127,9 +123,7 @@ pub struct Terminal {
 
 impl Terminal {
 	pub fn new() -> Self {
-		Self {
-			bar: indicatif::ProgressBar::hidden(),
-		}
+		Self { bar: indicatif::ProgressBar::hidden() }
 	}
 }
 
@@ -148,9 +142,7 @@ impl Sink for Terminal {
 			indicatif::ProgressStyle::with_template("  {bar:28} {pos}/{len}  {wide_msg}")
 				.unwrap_or_else(|_| indicatif::ProgressStyle::default_bar()),
 		);
-		self
-			.bar
-			.set_draw_target(indicatif::ProgressDrawTarget::stderr());
+		self.bar.set_draw_target(indicatif::ProgressDrawTarget::stderr());
 	}
 
 	fn advanced(&self, done: u64, _total: u64, message: &str) {
@@ -259,10 +251,7 @@ mod tests {
 		// characters would have let twice that through and wrapped the terminal row.
 		let cjk = "不许 Cargo 再摸鱼了，来看看实践中的 Rust 开发配置调优吧";
 		let out = preview(cjk, 20);
-		let columns: usize = out
-			.chars()
-			.map(|c| if (c as u32) > 0x2e80 { 2 } else { 1 })
-			.sum();
+		let columns: usize = out.chars().map(|c| if (c as u32) > 0x2e80 { 2 } else { 1 }).sum();
 		assert!(columns <= 21, "{out} used {columns} columns");
 		assert!(out.ends_with('…'));
 	}
@@ -274,9 +263,6 @@ mod tests {
 
 	#[test]
 	fn a_preview_takes_the_first_line_with_anything_on_it() {
-		assert_eq!(
-			preview("\n\n  first real line\nsecond", 40),
-			"first real line"
-		);
+		assert_eq!(preview("\n\n  first real line\nsecond", 40), "first real line");
 	}
 }

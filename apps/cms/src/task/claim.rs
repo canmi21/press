@@ -69,11 +69,9 @@ pub enum Denied {
 impl std::fmt::Display for Denied {
 	fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
 		match self {
-			Self::Taken(held) => write!(
-				formatter,
-				"{} is already claimed by cms {} (pid {})",
-				held.key, held.task, held.pid
-			),
+			Self::Taken(held) => {
+				write!(formatter, "{} is already claimed by cms {} (pid {})", held.key, held.task, held.pid)
+			}
 			Self::Io(error) => error.fmt(formatter),
 		}
 	}
@@ -97,10 +95,7 @@ pub fn directory(repository: &Path) -> PathBuf {
 /// itself: nothing needs to identify an item *from* its file name, because the key is written
 /// inside the file, so the hash costs no legibility here.
 fn file_name(task: &str, key: &str) -> String {
-	format!(
-		"{}.claim",
-		crate::i18n::segment::id_of(&format!("{task}\u{0}{key}"))
-	)
+	format!("{}.claim", crate::i18n::segment::id_of(&format!("{task}\u{0}{key}")))
 }
 
 fn now() -> String {
@@ -116,12 +111,7 @@ pub fn take(repository: &Path, task: &str, key: &str) -> Result<Claim, Denied> {
 	std::fs::create_dir_all(&directory)?;
 	let path = directory.join(file_name(task, key));
 
-	let file = OpenOptions::new()
-		.read(true)
-		.write(true)
-		.create(true)
-		.truncate(false)
-		.open(&path)?;
+	let file = OpenOptions::new().read(true).write(true).create(true).truncate(false).open(&path)?;
 
 	// The whole decision. Everything else in this function is bookkeeping around it.
 	if file.try_lock().is_err() {
@@ -139,22 +129,15 @@ pub fn take(repository: &Path, task: &str, key: &str) -> Result<Claim, Denied> {
 
 	// Written after the lock is ours, so a reader never sees another process's metadata under our
 	// lock. Truncated first because a reclaimed file still holds the dead holder's record.
-	let held = Held {
-		task: task.to_owned(),
-		key: key.to_owned(),
-		pid: std::process::id(),
-		at: now(),
-	};
+	let held =
+		Held { task: task.to_owned(), key: key.to_owned(), pid: std::process::id(), at: now() };
 	let mut file = file;
 	file.set_len(0)?;
 	file.rewind()?;
 	file.write_all(serde_json::to_string(&held)?.as_bytes())?;
 	file.flush()?;
 
-	Ok(Claim {
-		path,
-		file: Some(file),
-	})
+	Ok(Claim { path, file: Some(file) })
 }
 
 impl From<serde_json::Error> for Denied {
@@ -303,10 +286,7 @@ mod tests {
 		let held = take(&root, "favicon", "alive.example").expect("alive");
 		let listed = live(&root).expect("live");
 		assert_eq!(
-			listed
-				.iter()
-				.map(|entry| entry.key.as_str())
-				.collect::<Vec<_>>(),
+			listed.iter().map(|entry| entry.key.as_str()).collect::<Vec<_>>(),
 			vec!["alive.example"]
 		);
 		drop(held);

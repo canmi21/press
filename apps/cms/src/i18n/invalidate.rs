@@ -43,10 +43,7 @@ impl Selection<'_> {
 		}
 		self.segments.iter().any(|wanted| wanted == id)
 			|| source.is_some_and(|source| self.containing.iter().any(|needle| source.contains(needle)))
-			|| self
-				.translation_containing
-				.iter()
-				.any(|needle| text.contains(needle))
+			|| self.translation_containing.iter().any(|needle| text.contains(needle))
 	}
 }
 
@@ -67,11 +64,7 @@ pub fn run(
 ) -> std::io::Result<Report> {
 	let mut report = Report::default();
 	for path in crate::refs::markdown_under(articles)? {
-		if !only.is_empty()
-			&& !only
-				.iter()
-				.any(|wanted| path.ends_with(wanted) || path == *wanted)
-		{
+		if !only.is_empty() && !only.iter().any(|wanted| path.ends_with(wanted) || path == *wanted) {
 			continue;
 		}
 		let sidecar_path = store::path_for(&path);
@@ -81,12 +74,7 @@ pub fn run(
 		};
 		let article = std::fs::read_to_string(&path)?;
 		let sources: std::collections::BTreeMap<String, String> = segment::translatable(&article)
-			.map(|live| {
-				live
-					.into_iter()
-					.map(|(id, segment)| (id, segment.source))
-					.collect()
-			})
+			.map(|live| live.into_iter().map(|(id, segment)| (id, segment.source)).collect())
 			.unwrap_or_default();
 
 		let mut changed = false;
@@ -105,9 +93,7 @@ pub fn run(
 			});
 			if !dropped.is_empty() {
 				changed = true;
-				report
-					.dropped
-					.push((path.display().to_string(), id.clone(), dropped));
+				report.dropped.push((path.display().to_string(), id.clone(), dropped));
 			}
 		}
 		sidecar.segments.retain(|_, locales| !locales.is_empty());
@@ -128,12 +114,7 @@ mod tests {
 		translation_containing: &'a [String],
 		locales: &'a [String],
 	) -> Selection<'a> {
-		Selection {
-			segments,
-			containing,
-			translation_containing,
-			locales,
-		}
+		Selection { segments, containing, translation_containing, locales }
 	}
 
 	#[test]

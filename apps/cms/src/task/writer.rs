@@ -44,10 +44,7 @@ pub struct Writer {
 
 /// Where the cross-process lock for a record lives.
 pub fn lock_path(repository: &Path, record: Record) -> PathBuf {
-	repository
-		.join(".cms")
-		.join("records")
-		.join(format!("{}.lock", name_of(record)))
+	repository.join(".cms").join("records").join(format!("{}.lock", name_of(record)))
 }
 
 /// A stable file-name-safe name per record. Written out rather than derived from the enum's
@@ -92,11 +89,7 @@ impl Writer {
 					let _ = reply.send(result);
 				}
 			})?;
-		Ok(Self {
-			record,
-			sender: Some(sender),
-			thread: Some(thread),
-		})
+		Ok(Self { record, sender: Some(sender), thread: Some(thread) })
 	}
 
 	pub fn record(&self) -> Record {
@@ -112,16 +105,12 @@ impl Writer {
 		F: FnOnce() -> std::io::Result<()> + Send + 'static,
 	{
 		let (reply, answer) = mpsc::channel();
-		let sender = self
-			.sender
-			.as_ref()
-			.ok_or_else(|| std::io::Error::other("the writer is stopping"))?;
+		let sender =
+			self.sender.as_ref().ok_or_else(|| std::io::Error::other("the writer is stopping"))?;
 		sender
 			.send(Message::Apply(Box::new(job), reply))
 			.map_err(|_| std::io::Error::other("the writer has stopped"))?;
-		answer
-			.recv()
-			.map_err(|_| std::io::Error::other("the writer stopped before applying"))?
+		answer.recv().map_err(|_| std::io::Error::other("the writer stopped before applying"))?
 	}
 }
 
@@ -138,12 +127,8 @@ impl Drop for Writer {
 
 /// Run one job with the record held against every other process.
 fn with_record_lock(path: &Path, job: Job) -> std::io::Result<()> {
-	let file = std::fs::OpenOptions::new()
-		.read(true)
-		.write(true)
-		.create(true)
-		.truncate(false)
-		.open(path)?;
+	let file =
+		std::fs::OpenOptions::new().read(true).write(true).create(true).truncate(false).open(path)?;
 	// Blocking, unlike a claim. A claim asks "is somebody else doing this work", where the answer
 	// "yes" means there is nothing to do; here the work is ours and only the file is contended.
 	file.lock()?;
@@ -205,10 +190,8 @@ mod tests {
 					let store = store.clone();
 					writer
 						.apply(move || {
-							let current: u32 = std::fs::read_to_string(&store)?
-								.trim()
-								.parse()
-								.map_err(std::io::Error::other)?;
+							let current: u32 =
+								std::fs::read_to_string(&store)?.trim().parse().map_err(std::io::Error::other)?;
 							// Widening the window on purpose: without serialisation this loses
 							// updates every run rather than occasionally.
 							std::thread::sleep(std::time::Duration::from_micros(50));

@@ -52,11 +52,8 @@ fn is_license_file(name: &str) -> bool {
 		|| lower.starts_with("notice");
 	// `license_check.js` and `license.ts` are real files in real packages, and neither is a
 	// licence. The name alone cannot tell them apart from `LICENSE-MIT`; the extension can.
-	let extension = Path::new(&lower)
-		.extension()
-		.and_then(|value| value.to_str())
-		.unwrap_or_default()
-		.to_owned();
+	let extension =
+		Path::new(&lower).extension().and_then(|value| value.to_str()).unwrap_or_default().to_owned();
 	named && !NOT_A_LICENSE.contains(&extension.as_str())
 }
 
@@ -89,10 +86,7 @@ pub struct Person {
 #[derive(Debug, Clone, Deserialize)]
 pub struct Assertion {
 	pub spdx: String,
-	#[allow(
-		dead_code,
-		reason = "the note is evidence for a reader of the file, not an input"
-	)]
+	#[allow(dead_code, reason = "the note is evidence for a reader of the file, not an input")]
 	#[serde(default)]
 	pub note: String,
 }
@@ -161,10 +155,7 @@ pub struct Record {
 
 impl Default for Record {
 	fn default() -> Self {
-		Self {
-			version: VERSION,
-			packages: BTreeMap::new(),
-		}
+		Self { version: VERSION, packages: BTreeMap::new() }
 	}
 }
 
@@ -213,11 +204,7 @@ pub fn record_path(repo: &Path) -> PathBuf {
 pub fn text_path(public_root: &Path, cid: &str) -> PathBuf {
 	let first = cid.get(..2).unwrap_or(cid);
 	let second = cid.get(2..4).unwrap_or("");
-	public_root
-		.join("license")
-		.join(first)
-		.join(second)
-		.join(format!("{cid}.txt"))
+	public_root.join("license").join(first).join(second).join(format!("{cid}.txt"))
 }
 
 /// `license/full.txt` under the published root.
@@ -250,12 +237,7 @@ fn encode(segment: &str) -> String {
 /// `pkg:{type}/{namespace}/{name}@{version}`, with the namespace omitted when there is none.
 pub fn purl(kind: &str, namespace: Option<&str>, name: &str, version: &str) -> String {
 	match namespace {
-		Some(space) => format!(
-			"pkg:{kind}/{}/{}@{}",
-			encode(space),
-			encode(name),
-			encode(version)
-		),
+		Some(space) => format!("pkg:{kind}/{}/{}@{}", encode(space), encode(name), encode(version)),
 		None => format!("pkg:{kind}/{}@{}", encode(name), encode(version)),
 	}
 }
@@ -270,11 +252,8 @@ pub fn author_name(entry: &str) -> Option<String> {
 	// Some entries put the address in the name position with no brackets around it at all --
 	// `contact@geoffroycouprie.com`, or `Rich Geldreich richgel99@gmail.com`. Dropping any word
 	// carrying an `@` catches both, and no name contains one, so nothing real is lost.
-	let name = head
-		.split_whitespace()
-		.filter(|word| !word.contains('@'))
-		.collect::<Vec<_>>()
-		.join(" ");
+	let name =
+		head.split_whitespace().filter(|word| !word.contains('@')).collect::<Vec<_>>().join(" ");
 	(!name.is_empty()).then_some(name)
 }
 
@@ -285,30 +264,19 @@ pub fn author_name(entry: &str) -> Option<String> {
 /// account: a plausible avatar on the wrong person would be worse than no avatar at all.
 pub fn author(entry: &str) -> Option<Person> {
 	let name = author_name(entry)?;
-	Some(Person {
-		name,
-		github: github_profile(entry).or_else(|| github_noreply(entry)),
-	})
+	Some(Person { name, github: github_profile(entry).or_else(|| github_noreply(entry)) })
 }
 
 pub fn github_profile(value: &str) -> Option<String> {
-	let start = [value.find("https://"), value.find("http://")]
-		.into_iter()
-		.flatten()
-		.min()?;
-	let candidate = value[start..]
-		.split([')', '>', ' ', '\t', '\r', '\n'])
-		.next()
-		.unwrap_or_default();
+	let start = [value.find("https://"), value.find("http://")].into_iter().flatten().min()?;
+	let candidate =
+		value[start..].split([')', '>', ' ', '\t', '\r', '\n']).next().unwrap_or_default();
 	let url = url::Url::parse(candidate).ok()?;
 	let github = url::Url::parse(crate::urls::EXTERNAL_GITHUB_WEB).ok()?;
 	if url.host_str() != github.host_str() || url.query().is_some() || url.fragment().is_some() {
 		return None;
 	}
-	let segments = url
-		.path_segments()?
-		.filter(|segment| !segment.is_empty())
-		.collect::<Vec<_>>();
+	let segments = url.path_segments()?.filter(|segment| !segment.is_empty()).collect::<Vec<_>>();
 	match segments.as_slice() {
 		[login] if github_login(login) => Some((*login).to_owned()),
 		_ => None,
@@ -330,9 +298,7 @@ fn github_login(value: &str) -> bool {
 		&& value.len() <= 39
 		&& !value.starts_with('-')
 		&& !value.ends_with('-')
-		&& value
-			.bytes()
-			.all(|byte| byte.is_ascii_alphanumeric() || byte == b'-')
+		&& value.bytes().all(|byte| byte.is_ascii_alphanumeric() || byte == b'-')
 }
 
 /// A manifest URL that is safe and useful as a browser link.
@@ -440,20 +406,9 @@ pub fn write(
 		);
 	}
 
-	let stale = assertions
-		.asserted
-		.keys()
-		.filter(|purl| !used.contains(*purl))
-		.cloned()
-		.collect();
+	let stale = assertions.asserted.keys().filter(|purl| !used.contains(*purl)).cloned().collect();
 
-	Ok(Written {
-		record,
-		objects: objects.len(),
-		textless,
-		undeclared,
-		stale,
-	})
+	Ok(Written { record, objects: objects.len(), textless, undeclared, stale })
 }
 
 /// The whole attribution notice as one document.
@@ -472,12 +427,7 @@ pub fn full_document(public_root: &Path, record: &Record) -> std::io::Result<Str
 		if !package.authors.is_empty() {
 			out.push_str(&format!(
 				"Authors: {}\n",
-				package
-					.authors
-					.iter()
-					.map(|author| author.name.as_str())
-					.collect::<Vec<_>>()
-					.join(", ")
+				package.authors.iter().map(|author| author.name.as_str()).collect::<Vec<_>>().join(", ")
 			));
 		}
 		match (&package.spdx, package.asserted) {
@@ -524,14 +474,8 @@ mod tests {
 
 	#[test]
 	fn builds_a_purl_for_each_registry_shape() {
-		assert_eq!(
-			purl("cargo", None, "serde", "1.0.219"),
-			"pkg:cargo/serde@1.0.219"
-		);
-		assert_eq!(
-			purl("npm", Some("@sveltejs"), "kit", "2.0.0"),
-			"pkg:npm/%40sveltejs/kit@2.0.0"
-		);
+		assert_eq!(purl("cargo", None, "serde", "1.0.219"), "pkg:cargo/serde@1.0.219");
+		assert_eq!(purl("npm", Some("@sveltejs"), "kit", "2.0.0"), "pkg:npm/%40sveltejs/kit@2.0.0");
 	}
 
 	#[test]
@@ -545,10 +489,7 @@ mod tests {
 			author_name("The Babel Team (https://babel.example/team)").as_deref(),
 			Some("The Babel Team")
 		);
-		assert_eq!(
-			author_name("Ada <ada@example.com> (https://example.com)").as_deref(),
-			Some("Ada")
-		);
+		assert_eq!(author_name("Ada <ada@example.com> (https://example.com)").as_deref(), Some("Ada"));
 		// Written with no brackets at all, which several crates and wrangler both do.
 		assert_eq!(
 			author_name("Rich Geldreich richgel99@gmail.com").as_deref(),
@@ -604,11 +545,7 @@ mod tests {
 		prefer_origin(
 			&mut origins,
 			"site",
-			vec![
-				"pkg:npm/long@1".to_owned(),
-				"pkg:npm/path@1".to_owned(),
-				"pkg:npm/target@1".to_owned(),
-			],
+			vec!["pkg:npm/long@1".to_owned(), "pkg:npm/path@1".to_owned(), "pkg:npm/target@1".to_owned()],
 		);
 		assert_eq!(origins["site"], ["pkg:npm/a@1", "pkg:npm/target@1"]);
 	}
@@ -620,13 +557,9 @@ mod tests {
 		}
 		// Named for a licence, but code or data. Every one of these is shipped by a package in
 		// the current tree; `LICENSE-3rdparty.csv` is a machine-readable dependency inventory.
-		for name in [
-			"README.md",
-			"Cargo.toml",
-			"license_check.js",
-			"license.ts",
-			"LICENSE-3rdparty.csv",
-		] {
+		for name in
+			["README.md", "Cargo.toml", "license_check.js", "license.ts", "LICENSE-3rdparty.csv"]
+		{
 			assert!(!is_license_file(name), "{name}");
 		}
 		// A notice is not a licence and is collected anyway: Apache-2.0 section 4(d) makes
@@ -738,10 +671,7 @@ mod tests {
 			Package {
 				spdx: Some("MIT".to_owned()),
 				asserted: false,
-				authors: vec![Person {
-					name: "Ada".to_owned(),
-					github: None,
-				}],
+				authors: vec![Person { name: "Ada".to_owned(), github: None }],
 				description: None,
 				homepage: None,
 				documentation: None,

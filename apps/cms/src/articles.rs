@@ -103,10 +103,7 @@ pub fn listing_at(repository: &Path) -> std::io::Result<Listing> {
 		let source_locale = summary::source_locale(&lang);
 
 		let live = i18n::segment::translatable(&source).map_err(|error| {
-			std::io::Error::new(
-				std::io::ErrorKind::InvalidData,
-				format!("{}: {error}", path.display()),
-			)
+			std::io::Error::new(std::io::ErrorKind::InvalidData, format!("{}: {error}", path.display()))
 		})?;
 		let sidecar = i18n::store::load(&i18n::store::path_for(&path))?;
 		let missing = i18n::store::missing(&sidecar, &live, &locales, source_locale, &glosses);
@@ -116,14 +113,9 @@ pub fn listing_at(repository: &Path) -> std::io::Result<Listing> {
 		let mut gaps: Vec<LocaleGap> = locales
 			.iter()
 			.filter_map(|locale| {
-				let segments = missing
-					.values()
-					.filter(|absent| absent.iter().any(|value| value == locale))
-					.count();
-				(segments > 0).then(|| LocaleGap {
-					locale: (*locale).to_owned(),
-					segments,
-				})
+				let segments =
+					missing.values().filter(|absent| absent.iter().any(|value| value == locale)).count();
+				(segments > 0).then(|| LocaleGap { locale: (*locale).to_owned(), segments })
 			})
 			.collect();
 		gaps.sort_by_key(|gap| std::cmp::Reverse(gap.segments));
@@ -151,15 +143,9 @@ pub fn listing_at(repository: &Path) -> std::io::Result<Listing> {
 				.collect::<Vec<_>>()
 				.join("/"),
 			section,
-			title: summary::title_of(&fields)
-				.map(str::to_owned)
-				.unwrap_or_else(|| {
-					relative
-						.file_stem()
-						.and_then(|stem| stem.to_str())
-						.unwrap_or("untitled")
-						.to_owned()
-				}),
+			title: summary::title_of(&fields).map(str::to_owned).unwrap_or_else(|| {
+				relative.file_stem().and_then(|stem| stem.to_str()).unwrap_or("untitled").to_owned()
+			}),
 			subtitle: summary::subtitle_of(&fields).map(str::to_owned),
 			modified: summary::modified_of(&fields).map(str::to_owned),
 			lang,
@@ -174,14 +160,8 @@ pub fn listing_at(repository: &Path) -> std::io::Result<Listing> {
 	}
 
 	articles.sort_by(|left, right| {
-		left
-			.section
-			.cmp(&right.section)
-			.then_with(|| left.path.cmp(&right.path))
+		left.section.cmp(&right.section).then_with(|| left.path.cmp(&right.path))
 	});
 
-	Ok(Listing {
-		locales: locales.iter().map(|locale| (*locale).to_owned()).collect(),
-		articles,
-	})
+	Ok(Listing { locales: locales.iter().map(|locale| (*locale).to_owned()).collect(), articles })
 }

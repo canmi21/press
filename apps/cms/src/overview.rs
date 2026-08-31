@@ -139,9 +139,7 @@ fn snapshot_at(repository: &Path) -> std::io::Result<Snapshot> {
 	recent_articles.sort_by(|left, right| {
 		let left_stamp: jiff::Timestamp = left.modified.parse().expect("validated timestamp");
 		let right_stamp: jiff::Timestamp = right.modified.parse().expect("validated timestamp");
-		right_stamp
-			.cmp(&left_stamp)
-			.then_with(|| left.title.cmp(&right.title))
+		right_stamp.cmp(&left_stamp).then_with(|| left.title.cmp(&right.title))
 	});
 	recent_articles.truncate(3);
 
@@ -153,10 +151,8 @@ fn snapshot_at(repository: &Path) -> std::io::Result<Snapshot> {
 		.iter()
 		.filter(|content_id| image::store::meta_path(&public, content_id).is_file())
 		.count();
-	let descriptions = content_ids
-		.iter()
-		.filter(|content_id| !alt::wants_description(&described, content_id))
-		.count();
+	let descriptions =
+		content_ids.iter().filter(|content_id| !alt::wants_description(&described, content_id)).count();
 
 	let gaps: Vec<Gap> = check::report(repository, &public, &contents)?
 		.into_iter()
@@ -182,16 +178,8 @@ fn snapshot_at(repository: &Path) -> std::io::Result<Snapshot> {
 				.collect(),
 			recent: recent_articles,
 		},
-		media: Media {
-			referenced,
-			published,
-			described: descriptions,
-		},
-		health: Health {
-			warnings,
-			notices,
-			gaps,
-		},
+		media: Media { referenced, published, described: descriptions },
+		health: Health { warnings, notices, gaps },
 	})
 }
 
@@ -221,10 +209,7 @@ mod tests {
 		assert_eq!(found.articles.total, 1);
 		assert_eq!(
 			found.articles.sections,
-			vec![ArticleSection {
-				name: "notes".to_owned(),
-				articles: 1,
-			}]
+			vec![ArticleSection { name: "notes".to_owned(), articles: 1 }]
 		);
 		assert_eq!(
 			found.articles.recent,
@@ -251,19 +236,13 @@ mod tests {
 		std::fs::create_dir_all(root.join("data/public")).expect("public data");
 		for (name, created, lastmod) in [
 			("First", "2026-08-01T00:00:00Z", None),
-			(
-				"Revised",
-				"2026-08-02T00:00:00Z",
-				Some("2026-08-05T00:00:00Z"),
-			),
+			("Revised", "2026-08-02T00:00:00Z", Some("2026-08-05T00:00:00Z")),
 			("Third", "2026-08-03T00:00:00Z", None),
 			("Fourth", "2026-08-04T00:00:00Z", None),
 		] {
 			let revision = lastmod.map_or_else(String::new, |value| format!("lastmod: {value}\n"));
 			std::fs::write(
-				root
-					.join("contents/notes")
-					.join(format!("{}.md", name.to_lowercase())),
+				root.join("contents/notes").join(format!("{}.md", name.to_lowercase())),
 				format!("---\ntitle: {name}\nlang: en\ncreated: {created}\n{revision}---\n\nBody"),
 			)
 			.expect("article");
@@ -271,12 +250,7 @@ mod tests {
 
 		let found = snapshot_at(&root).expect("snapshot");
 		assert_eq!(
-			found
-				.articles
-				.recent
-				.iter()
-				.map(|article| article.title.as_str())
-				.collect::<Vec<_>>(),
+			found.articles.recent.iter().map(|article| article.title.as_str()).collect::<Vec<_>>(),
 			vec!["Revised", "Fourth", "Third"]
 		);
 		assert_eq!(found.articles.recent[0].modified, "2026-08-05T00:00:00Z");

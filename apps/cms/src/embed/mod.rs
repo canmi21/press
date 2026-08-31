@@ -39,19 +39,13 @@ pub struct Repos {
 
 impl Default for Crates {
 	fn default() -> Self {
-		Self {
-			version: VERSION,
-			crates: BTreeMap::new(),
-		}
+		Self { version: VERSION, crates: BTreeMap::new() }
 	}
 }
 
 impl Default for Repos {
 	fn default() -> Self {
-		Self {
-			version: VERSION,
-			repos: BTreeMap::new(),
-		}
+		Self { version: VERSION, repos: BTreeMap::new() }
 	}
 }
 

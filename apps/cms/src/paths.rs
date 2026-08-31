@@ -20,12 +20,7 @@ pub struct NotFound;
 pub fn repo_root() -> Result<PathBuf, NotFound> {
 	let start = std::env::current_dir().map_err(|_| NotFound)?;
 	find_upwards(&start)
-		.and_then(|public| {
-			public
-				.parent()
-				.and_then(Path::parent)
-				.map(Path::to_path_buf)
-		})
+		.and_then(|public| public.parent().and_then(Path::parent).map(Path::to_path_buf))
 		.ok_or(NotFound)
 }
 
@@ -47,10 +42,7 @@ mod tests {
 		std::fs::create_dir_all(&nested).unwrap();
 		std::fs::create_dir_all(root.join("data").join("public")).unwrap();
 
-		assert_eq!(
-			find_upwards(&nested),
-			Some(root.join("data").join("public"))
-		);
+		assert_eq!(find_upwards(&nested), Some(root.join("data").join("public")));
 
 		std::fs::remove_dir_all(&root).unwrap();
 	}

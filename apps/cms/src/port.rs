@@ -32,10 +32,7 @@ pub fn from_env() -> Result<u16, Error> {
 }
 
 fn parse(raw: &str) -> Result<u16, Error> {
-	raw
-		.trim()
-		.parse::<u16>()
-		.map_err(|_| Error::NotANumber(raw.to_owned()))
+	raw.trim().parse::<u16>().map_err(|_| Error::NotANumber(raw.to_owned()))
 }
 
 #[cfg(test)]

@@ -64,12 +64,7 @@ pub struct Document<'a> {
 /// `contents/` relies on the lenient reading -- checked when this was written.
 pub fn split(text: &str) -> Result<Document<'_>, Malformed> {
 	let Some(rest) = text.strip_prefix("---\n") else {
-		return Ok(Document {
-			frontmatter: None,
-			frontmatter_start: 0,
-			body: text,
-			body_start: 0,
-		});
+		return Ok(Document { frontmatter: None, frontmatter_start: 0, body: text, body_start: 0 });
 	};
 	let Some(end) = rest.find("\n---") else {
 		return Err(Malformed::Unterminated);
@@ -119,10 +114,7 @@ pub fn fields(text: &str) -> Result<Fields, Malformed> {
 /// places that read an article, and one of them would word it differently.
 pub fn fields_of(text: &str, path: &std::path::Path) -> std::io::Result<Fields> {
 	fields(text).map_err(|error| {
-		std::io::Error::new(
-			std::io::ErrorKind::InvalidData,
-			format!("{}: {error}", path.display()),
-		)
+		std::io::Error::new(std::io::ErrorKind::InvalidData, format!("{}: {error}", path.display()))
 	})
 }
 
@@ -156,10 +148,7 @@ mod tests {
 		let text = "---\ntitle: A\n---\n\nBody.\n";
 		let document = split(text).expect("split");
 		assert_eq!(document.frontmatter, Some("title: A"));
-		assert_eq!(
-			&text[document.frontmatter_start..document.frontmatter_start + 8],
-			"title: A"
-		);
+		assert_eq!(&text[document.frontmatter_start..document.frontmatter_start + 8], "title: A");
 		assert_eq!(&text[document.body_start..], document.body);
 	}
 

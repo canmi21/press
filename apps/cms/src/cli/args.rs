@@ -367,19 +367,14 @@ mod tests {
 		let error = Cli::try_parse_from(["cms", "alt", "--model", "gpt-5"])
 			.expect_err("an unknown runner is refused")
 			.to_string();
-		assert!(
-			error.contains("gpt-oss"),
-			"the error lists what is accepted"
-		);
+		assert!(error.contains("gpt-oss"), "the error lists what is accepted");
 	}
 
 	#[test]
 	fn free_arguments_still_reach_the_commands_that_take_them() {
 		let cli = Cli::try_parse_from(["cms", "image", "--original", "a.png", "b.png"]).expect("parse");
 		match cli.command {
-			Command::Image {
-				original, files, ..
-			} => {
+			Command::Image { original, files, .. } => {
 				assert!(original);
 				assert_eq!(files.len(), 2);
 			}
@@ -402,9 +397,7 @@ mod tests {
 		let cli =
 			Cli::try_parse_from(["cms", "twitter", "semantic", "a", "b", "--limit", "5"]).expect("parse");
 		match cli.command {
-			Command::Twitter {
-				command: TwitterCommand::Semantic { query, limit, .. },
-			} => {
+			Command::Twitter { command: TwitterCommand::Semantic { query, limit, .. } } => {
 				assert_eq!(query, ["a", "b"]);
 				assert_eq!(limit, Some(5));
 			}

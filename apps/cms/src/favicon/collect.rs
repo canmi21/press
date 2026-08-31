@@ -43,24 +43,12 @@ pub fn from_articles(
 	sink: Box<dyn progress::Sink>,
 ) -> std::io::Result<Outcome> {
 	let wanted = crate::refs::scan(&repository.join("contents"))?.wanted();
-	run(Options {
-		repository,
-		wanted: &wanted,
-		force,
-		shell,
-		sink,
-	})
+	run(Options { repository, wanted: &wanted, force, shell, sink })
 }
 
 /// Collect every icon in `wanted` that this process can claim.
 pub fn run(options: Options<'_>) -> std::io::Result<Outcome> {
-	let Options {
-		repository,
-		wanted,
-		force,
-		shell,
-		sink,
-	} = options;
+	let Options { repository, wanted, force, shell, sink } = options;
 	let public = repository.join("data").join("public");
 
 	let progress = crate::task::start(repository, "favicon", shell, wanted.len() as u64, sink)?;
@@ -157,11 +145,7 @@ mod tests {
 	}
 
 	fn wanted(domain: &str) -> Wanted {
-		Wanted {
-			domain: domain.to_owned(),
-			source: None,
-			tone: None,
-		}
+		Wanted { domain: domain.to_owned(), source: None, tone: None }
 	}
 
 	/// A domain already collected is skipped without reaching the network, which is what makes a
@@ -213,11 +197,7 @@ mod tests {
 	fn the_run_publishes_itself_and_cleans_up() {
 		let root = temp("published");
 		std::fs::create_dir_all(root.join("data/public/favicon/example.com")).expect("dir");
-		assert!(
-			registry::running(&root, "favicon")
-				.expect("before")
-				.is_none()
-		);
+		assert!(registry::running(&root, "favicon").expect("before").is_none());
 		run(Options {
 			repository: &root,
 			wanted: &[wanted("example.com")],
@@ -226,11 +206,7 @@ mod tests {
 			sink: Box::new(progress::Silent),
 		})
 		.expect("run");
-		assert!(
-			registry::running(&root, "favicon")
-				.expect("after")
-				.is_none()
-		);
+		assert!(registry::running(&root, "favicon").expect("after").is_none());
 		std::fs::remove_dir_all(root).ok();
 	}
 

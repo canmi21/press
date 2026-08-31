@@ -94,14 +94,8 @@ pub fn report_at(repository: &Path) -> std::io::Result<Report> {
 	let cids = scan.cids();
 	let described = media::load(&media::path_for(repository))?;
 
-	let published = cids
-		.iter()
-		.filter(|cid| image::store::meta_path(&public, cid).is_file())
-		.count();
-	let descriptions = cids
-		.iter()
-		.filter(|cid| !alt::wants_description(&described, cid))
-		.count();
+	let published = cids.iter().filter(|cid| image::store::meta_path(&public, cid).is_file()).count();
+	let descriptions = cids.iter().filter(|cid| !alt::wants_description(&described, cid)).count();
 
 	let icons = scan.icons();
 	let collected = icons
@@ -110,18 +104,11 @@ pub fn report_at(repository: &Path) -> std::io::Result<Report> {
 		.count();
 
 	let listing = articles::listing_at(repository)?;
-	let translated: usize = listing
-		.articles
-		.iter()
-		.map(|article| article.translated)
-		.sum();
+	let translated: usize = listing.articles.iter().map(|article| article.translated).sum();
 	let translatable: usize = listing.articles.iter().map(|article| article.wanted).sum();
 	let summaries_wanted = listing.articles.len() * listing.locales.len();
-	let summaries_missing: usize = listing
-		.articles
-		.iter()
-		.map(|article| article.summary_gaps.len())
-		.sum();
+	let summaries_missing: usize =
+		listing.articles.iter().map(|article| article.summary_gaps.len()).sum();
 
 	Ok(Report {
 		classes: vec![

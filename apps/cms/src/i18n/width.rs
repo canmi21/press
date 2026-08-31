@@ -28,11 +28,7 @@ pub const CLAMP: usize = ONE_LINE * 2;
 /// spec/styling.md. A subsection is reached by arriving at its parent, and how long its own
 /// heading runs is a question about the prose, not about a column 8.5rem wide.
 pub fn level(source: &str) -> Option<usize> {
-	let marks = source
-		.trim_start()
-		.chars()
-		.take_while(|c| *c == '#')
-		.count();
+	let marks = source.trim_start().chars().take_while(|c| *c == '#').count();
 	(2..=6).contains(&marks).then_some(marks)
 }
 

@@ -87,28 +87,14 @@ struct Coordinates {
 fn coordinates_of(purl: &str) -> Option<Coordinates> {
 	let (registry, package) = purl.strip_prefix("pkg:")?.split_once('/')?;
 	let at = package.rfind('@')?;
-	let name = percent_decode_str(&package[..at])
-		.decode_utf8()
-		.ok()?
-		.into_owned();
-	let version = percent_decode_str(&package[at + 1..])
-		.decode_utf8()
-		.ok()?
-		.into_owned();
-	Some(Coordinates {
-		registry: registry.to_owned(),
-		name,
-		version,
-	})
+	let name = percent_decode_str(&package[..at]).decode_utf8().ok()?.into_owned();
+	let version = percent_decode_str(&package[at + 1..]).decode_utf8().ok()?.into_owned();
+	Some(Coordinates { registry: registry.to_owned(), name, version })
 }
 
 /// The registry a purl names, and the name the pages show for it.
 fn registry_of(purl: &str) -> Option<String> {
-	purl
-		.strip_prefix("pkg:")?
-		.split('/')
-		.next()
-		.map(str::to_owned)
+	purl.strip_prefix("pkg:")?.split('/').next().map(str::to_owned)
 }
 
 fn registry_name(id: &str) -> &str {
@@ -280,10 +266,8 @@ pub fn worded(
 	};
 	let subtitle = match &route.subtitle {
 		Subtitle::Message(key, values) => catalog.get(*key).map(|template| {
-			let pairs: Vec<(&str, &str)> = values
-				.iter()
-				.map(|(name, value)| (*name, value.as_str()))
-				.collect();
+			let pairs: Vec<(&str, &str)> =
+				values.iter().map(|(name, value)| (*name, value.as_str())).collect();
 			messages::fill(template, &pairs)
 		}),
 		Subtitle::Literal(text) => Some(text.clone()),
@@ -320,18 +304,12 @@ mod tests {
 			terms("Apache-2.0 WITH LLVM-exception OR MIT"),
 			["Apache-2.0 WITH LLVM-exception", "MIT"]
 		);
-		assert_eq!(
-			terms("(MIT OR Apache-2.0) AND NCSA"),
-			["MIT", "Apache-2.0", "NCSA"]
-		);
+		assert_eq!(terms("(MIT OR Apache-2.0) AND NCSA"), ["MIT", "Apache-2.0", "NCSA"]);
 	}
 
 	#[test]
 	fn a_licence_route_matches_the_slug_the_site_serves() {
-		assert_eq!(
-			slug_of("Apache-2.0 WITH LLVM-exception"),
-			"apache-2-0-with-llvm-exception"
-		);
+		assert_eq!(slug_of("Apache-2.0 WITH LLVM-exception"), "apache-2-0-with-llvm-exception");
 		assert_eq!(slug_of("MIT"), "mit");
 		assert_eq!(slug_of("0BSD"), "0bsd");
 	}
@@ -367,22 +345,14 @@ mod tests {
 		let record = Record {
 			packages: BTreeMap::from([(
 				"pkg:cargo/example@1.2.3".to_owned(),
-				Package {
-					spdx: None,
-					description: None,
-				},
+				Package { spdx: None, description: None },
 			)]),
 		};
 		let routes = packages(&record);
 		let route = routes.first().expect("package route");
 		assert_eq!(
 			worded(route, &BTreeMap::new()),
-			(
-				"example".to_owned(),
-				None,
-				Some("crates.io".to_owned()),
-				String::new(),
-			)
+			("example".to_owned(), None, Some("crates.io".to_owned()), String::new(),)
 		);
 	}
 
