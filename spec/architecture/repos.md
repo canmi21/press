@@ -273,6 +273,43 @@ copies exist to prevent.
 history does not travel with this repository's, so removing the directory would take unfinished
 work with it and `jj log` here would never have shown it.
 
+## A sub-repo's design is not written down here, and mostly not written down at all
+
+`CLAUDE.md` says every rule the user states gets written down and never left in chat only.
+**Inside a sub-repo that rule is off.** It has to be, or it would drag the design of a separate
+application into this repository's spec, and being separate is the reason the application is in
+`repos/` at all.
+
+So the default in a sub-repo is to write nothing. An agent keeps what the user told it -- the
+product, the reasoning, the constraints -- in the conversation, and produces code. No
+`CLAUDE.md`, no `AGENTS.md`, no spec directory, no README, unless the user asks for one. Comments
+explain the line they sit on and nothing wider.
+
+When something does belong to this workspace, the user says so, and that part follows this
+workspace's rules like any other change here. Everything else follows what the user said
+directly, in the sub-repo, for that application.
+
+The line is about ownership, not about importance. A decision that shapes a standalone
+application is the application's, however well argued; a decision about how sub-repos work at
+all -- the entry below is one -- is this workspace's, and belongs in this file.
+
+## Cargo does not honour `.gitignore`, so a Rust sub-repo detaches itself
+
+git and jj stop at `repos/*/`. Cargo does not: it walks up the filesystem looking for a
+workspace and finds this repository's `Cargo.toml`, whatever the ignore rules say.
+
+```
+error: current package believes it's in a workspace when it's not:
+current:   .../repos/still/Cargo.toml
+workspace: .../Cargo.toml
+```
+
+A Rust sub-repo therefore carries an empty `[workspace]` table, which ends the walk. Adding it
+to this repository's `members` is the other thing Cargo suggests and is exactly wrong -- a
+missing directory in that list is a hard error, so a checkout without the sub-repo cloned would
+break every cargo command. That is the same reason the members are listed by hand rather than
+globbed; see [workspace.md](workspace.md).
+
 ## The agent hooks resolve upwards, because `jj workspace root` answers locally
 
 The harness hooks are found through `jj workspace root`, and jj answers about the nearest

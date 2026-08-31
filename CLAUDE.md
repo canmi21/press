@@ -20,6 +20,8 @@ Every rule the user states gets written down. Never leave one in chat only.
 - When the user says "remember this" or "update yourself": do not write to agent memory. Audit
   `spec/` and this file instead, then verify a zero-memory agent could recover the project
   from `CLAUDE.md` alone. See [spec/agent-protocol.md](spec/agent-protocol.md).
+- **This rule stops at `repos/`.** A sub-repo's design is its own, so nothing is written down
+  there unless the user asks -- see [spec/architecture/repos.md](spec/architecture/repos.md).
 
 ## Core rules
 
