@@ -32,7 +32,7 @@
 		"mdast-util-to-hast": "^13.2.1",
 		"mdast-util-to-string": "^4.0.0",
 		"mermaid": "^11.17.2",
-		"motion": "^12.43.0",
+		"motion": "^13.1.1",
 		"remark-directive": "^4.0.0",
 		"remark-frontmatter": "^5.0.0",
 		"remark-gfm": "^4.0.1",
