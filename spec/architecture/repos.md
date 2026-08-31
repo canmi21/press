@@ -75,7 +75,7 @@ A sub-repo declares a git dependency pointing into this repository, which is pub
 therefore already a resolvable dependency source:
 
 ```json
-"@canmi/urls": "git+https://github.com/canmi21/workspace#path:/libs/urls"
+"@canmi/urls": "git+https://github.com/canmi21/press#path:/libs/urls"
 ```
 
 No publishing, no version numbers, and no build step added to the library -- the `exports`

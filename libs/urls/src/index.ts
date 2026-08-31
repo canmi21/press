@@ -80,7 +80,7 @@ export const URLS = {
 	// licence routes, which have to state the terms of the code around the credits as well as
 	// the credits themselves -- so it is a published fact, not a convenience, and belongs
 	// beside the other URLs rather than written into a route.
-	source: 'https://github.com/canmi21/workspace',
+	source: 'https://github.com/canmi21/press',
 	// Domains owned here but not built here. `infra` is the apex that api and cdn hang off;
 	// `link` currently redirects to the site rather than serving content of its own.
 	internal: {
