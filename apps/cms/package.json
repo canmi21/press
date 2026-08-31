@@ -28,8 +28,8 @@
 		"@hypothesi/tauri-mcp-server": "0.12.0",
 		"@tailwindcss/vite": "^4.3.3",
 		"@tauri-apps/cli": "^2.11.4",
-		"@types/node": "^26.2.0",
+		"@types/node": "^26.4.0",
 		"tailwindcss": "^4.3.3",
-		"vite": "^8.2.1"
+		"vite": "^8.2.2"
 	}
 }

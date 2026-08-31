@@ -6,6 +6,6 @@
 		".": "./src/index.ts"
 	},
 	"dependencies": {
-		"@cloudflare/workers-types": "^5.20260816.1"
+		"@cloudflare/workers-types": "^5.20260831.1"
 	}
 }
