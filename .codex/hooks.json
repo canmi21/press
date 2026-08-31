@@ -7,7 +7,7 @@
 				"hooks": [
 					{
 						"type": "command",
-						"command": "d=$(jj workspace root); while [ ! -f \"$d/hooks/run.py\" ] && [ \"$d\" != / ]; do d=$(dirname \"$d\"); done; /usr/bin/python3 \"$d/hooks/run.py\"",
+						"command": "d=$(jj workspace root 2>/dev/null || pwd); while [ ! -f \"$d/hooks/run.py\" ] && [ \"$d\" != / ]; do d=$(dirname \"$d\"); done; [ -f \"$d/hooks/run.py\" ] && exec /usr/bin/python3 \"$d/hooks/run.py\" || exit 0",
 						"timeout": 120,
 						"statusMessage": "Applying repository policy"
 					}
@@ -20,7 +20,7 @@
 				"hooks": [
 					{
 						"type": "command",
-						"command": "d=$(jj workspace root); while [ ! -f \"$d/hooks/run.py\" ] && [ \"$d\" != / ]; do d=$(dirname \"$d\"); done; /usr/bin/python3 \"$d/hooks/run.py\"",
+						"command": "d=$(jj workspace root 2>/dev/null || pwd); while [ ! -f \"$d/hooks/run.py\" ] && [ \"$d\" != / ]; do d=$(dirname \"$d\"); done; [ -f \"$d/hooks/run.py\" ] && exec /usr/bin/python3 \"$d/hooks/run.py\" || exit 0",
 						"timeout": 30,
 						"statusMessage": "Applying repository policy"
 					}
@@ -32,7 +32,7 @@
 				"hooks": [
 					{
 						"type": "command",
-						"command": "d=$(jj workspace root); while [ ! -f \"$d/hooks/run.py\" ] && [ \"$d\" != / ]; do d=$(dirname \"$d\"); done; /usr/bin/python3 \"$d/hooks/run.py\"",
+						"command": "d=$(jj workspace root 2>/dev/null || pwd); while [ ! -f \"$d/hooks/run.py\" ] && [ \"$d\" != / ]; do d=$(dirname \"$d\"); done; [ -f \"$d/hooks/run.py\" ] && exec /usr/bin/python3 \"$d/hooks/run.py\" || exit 0",
 						"timeout": 30,
 						"statusMessage": "Applying repository policy"
 					}

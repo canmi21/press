@@ -17,8 +17,9 @@ SYSTEM_PYTHON = "/usr/bin/python3"
 # one, so the entrypoint is found by walking up to the checkout that has hooks/.
 # See spec/architecture/repos.md.
 COMMAND = (
-	'd=$(jj workspace root); while [ ! -f "$d/hooks/run.py" ] && [ "$d" != / ]; '
-	'do d=$(dirname "$d"); done; /usr/bin/python3 "$d/hooks/run.py"'
+	'd=$(jj workspace root 2>/dev/null || pwd); '
+	'while [ ! -f "$d/hooks/run.py" ] && [ "$d" != / ]; do d=$(dirname "$d"); done; '
+	'[ -f "$d/hooks/run.py" ] && exec /usr/bin/python3 "$d/hooks/run.py" || exit 0'
 )
 
 

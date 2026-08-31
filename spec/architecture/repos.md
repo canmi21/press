@@ -319,7 +319,14 @@ recoverable from inside the shell, because the hook runs before the command that
 
 The command in [`.claude/settings.json`](../../.claude/settings.json) therefore walks up from
 whatever jj reports until it finds a checkout that actually has `hooks/`. Pointing it at a fixed
-path was the alternative and is wrong: an overlay has to reach its own copy, not the base's.
+path was the alternative and is wrong: a checkout has to reach its own copy, not another's.
+
+**The walk starts from `pwd` when jj answers nothing.** Outside any repository `jj workspace
+root` fails, and the empty string it leaves behind is a fixed point of `dirname` -- it returns
+`.` forever, so the loop never reaches `/` and never ends. A hook that hangs blocks every command
+in the session, including the one that would leave the directory, so this is unrecoverable from
+inside the shell. Falling back to an absolute path guarantees the walk terminates, and finding
+no `hooks/` exits cleanly rather than running nothing at a path that does not exist.
 
 ## No manifest, until forgetting one is likely
 
