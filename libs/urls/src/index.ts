@@ -1,71 +1,30 @@
 /**
- * The base ports each app answers on in development.
+ * The ports each app answers on in development.
  *
- * Slot 0 -- the base workspace -- binds exactly these. An overlay workspace with slot n binds
- * each one shifted by n * SLOT_STRIDE, so every overlay's addresses follow from its number and
- * nothing is looked up or negotiated. The stride leaves room for each app's inspector port,
- * which wrangler takes as port + 1, and keeps CMS_PORT (mise.toml) clear of every slot: the CMS
- * is a machine-wide singleton and does not shift. See spec/toolchain.md.
+ * Pinned, and bound by exactly one checkout at a time. The gaps are the inspector ports, which
+ * wrangler takes as port + 1, and they keep clear of CMS_PORT (mise.toml). A second copy of an
+ * app collides here rather than drifting to a free port, which is the cheapest mutex there is.
+ * See spec/toolchain.md.
  */
 export const DEVELOPMENT_PORTS = { site: 26511, api: 26512, cdn: 26516 } as const;
-export const SLOT_STRIDE = 100;
 
 export type AppName = keyof typeof DEVELOPMENT_PORTS;
 export type DevelopmentUrls = Readonly<Record<AppName, string>>;
 
-export function slotPort(app: AppName, slot: number): number {
-	if (!Number.isInteger(slot) || slot < 0) {
-		throw new Error(`A workspace slot is a non-negative integer, got ${String(slot)}`);
-	}
-	return DEVELOPMENT_PORTS[app] + slot * SLOT_STRIDE;
+export function developmentUrl(app: AppName): string {
+	return `http://localhost:${DEVELOPMENT_PORTS[app]}`;
 }
 
-/**
- * The slot named by a WORKSPACE_SLOT value. mise sets the variable: "0" in the base checkout,
- * each overlay's number in its own mise.local.toml. Unset or empty -- a CI build, a shell
- * without mise -- means the base. Callers pass the value in rather than this reading the
- * environment, so the library stays free of `process` and bundles for the browser unchanged.
- */
-export function parseSlot(raw: string | undefined): number {
-	if (raw === undefined || raw === '') return 0;
-	const slot = Number(raw);
-	if (!Number.isInteger(slot) || slot < 0) {
-		throw new Error(`WORKSPACE_SLOT must be a non-negative integer, got ${JSON.stringify(raw)}`);
-	}
-	return slot;
-}
-
-export function developmentUrl(app: AppName, slot: number): string {
-	return `http://localhost:${slotPort(app, slot)}`;
-}
-
-/** Every app's address when one workspace runs all of them, at the given slot. */
-export function developmentUrls(slot: number): DevelopmentUrls {
+/** Every app's address in development. */
+export function developmentUrls(): DevelopmentUrls {
 	return {
-		site: developmentUrl('site', slot),
-		api: developmentUrl('api', slot),
-		cdn: developmentUrl('cdn', slot),
+		site: developmentUrl('site'),
+		api: developmentUrl('api'),
+		cdn: developmentUrl('cdn'),
 	};
 }
 
-declare global {
-	/**
-	 * Where each app is reached from the workspace a bundle was built in: the workspace's own
-	 * slot for the apps it runs itself, the base for the rest. Only a dev server defines it,
-	 * having probed its slot ports at startup (apps/site/vite.config.ts). Under bare node, in
-	 * vitest, and inside the workers it is absent and the base addresses stand -- which is also
-	 * what the Rust mirror renders, and why `mise run urls` is stable across workspaces.
-	 * See spec/toolchain.md.
-	 */
-	// oxlint-disable-next-line no-underscore-dangle -- the shape bundler-defined globals take
-	const __DEV_URLS__: DevelopmentUrls | undefined;
-}
-
-// `typeof` first: the identifier is undeclared wherever no bundler defined it, and reading an
-// undeclared identifier throws where `typeof` merely answers 'undefined'.
-// oxlint-disable-next-line no-underscore-dangle -- see the declaration above
-const development: DevelopmentUrls =
-	typeof __DEV_URLS__ === 'undefined' ? developmentUrls(0) : __DEV_URLS__;
+const development: DevelopmentUrls = developmentUrls();
 
 export const URLS = {
 	apps: {
@@ -187,21 +146,6 @@ export const LOOPBACK_HOST = '127.0.0.1';
 
 export function isDevHost(hostname: string): boolean {
 	return hostname === 'localhost' || hostname === LOOPBACK_HOST;
-}
-
-/**
- * Whether an Origin header names a development host, whatever its port.
- *
- * The port is deliberately not checked: an overlay workspace's site answers on its slot port
- * and still has to reach the base API, so the API cannot list one development origin and call
- * the rest strangers. Anything that is not a URL is not a development origin.
- */
-export function isDevOrigin(origin: string): boolean {
-	try {
-		return isDevHost(new URL(origin).hostname);
-	} catch {
-		return false;
-	}
 }
 
 export function loopbackUrl(port: number): string {

@@ -1,4 +1,4 @@
-import { developmentUrl, URLS } from '@canmi/urls';
+import { URLS } from '@canmi/urls';
 import { describe, expect, it } from 'vitest';
 import app from './app';
 
@@ -45,17 +45,11 @@ describe('CORS', () => {
 		expect(res.headers.get('Access-Control-Allow-Origin')).toBe(URLS.apps.production.site);
 	});
 
-	// An overlay workspace's site answers on a slot port the list cannot name; see
-	// spec/toolchain.md. The base API lets it in only while it is itself a development host.
-	it('allows an overlay site while answering on a development host', async () => {
-		const overlay = developmentUrl('site', 2);
-		const res = await app.fetch(new Request(dev, { headers: { Origin: overlay } }));
-		expect(res.headers.get('Access-Control-Allow-Origin')).toBe(overlay);
-	});
-
-	it('does not extend that to production', async () => {
-		const overlay = developmentUrl('site', 2);
-		const res = await app.fetch(new Request(prod, { headers: { Origin: overlay } }));
+	// A loopback origin used to be allowed whatever its port, so a second checkout's site
+	// could reach this API. There is no second checkout, and an unlisted port is a stranger.
+	it('does not allow a loopback origin on an unlisted port', async () => {
+		const other = 'http://localhost:26611';
+		const res = await app.fetch(new Request(dev, { headers: { Origin: other } }));
 		expect(res.headers.get('Access-Control-Allow-Origin')).toBeNull();
 	});
 

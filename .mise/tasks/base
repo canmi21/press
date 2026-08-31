@@ -14,7 +14,6 @@ ports, and an overlay starting this would collide with it. tmux itself is a mach
 (Homebrew), not a mise tool -- see the spec for why.
 """
 
-import os
 import pathlib
 import subprocess
 import sys
@@ -35,11 +34,6 @@ def tmux(*args: str, check: bool = True) -> str:
 		sys.stderr.write(result.stderr)
 		raise SystemExit(f"tmux {' '.join(args)} failed")
 	return result.stdout
-
-
-def in_base() -> None:
-	if os.environ.get("WORKSPACE_SLOT", "0") != "0":
-		raise SystemExit("error: the base's servers are started from the base workspace, not an overlay")
 
 
 def session_exists() -> bool:
@@ -70,7 +64,6 @@ def start(app: str, existing: dict[str, str]) -> str:
 
 
 def up(extra: list[str]) -> int:
-	in_base()
 	unknown = [app for app in extra if app not in OPTIONAL]
 	if unknown:
 		raise SystemExit(f"error: unknown server(s) {', '.join(unknown)}; optional: {', '.join(sorted(OPTIONAL))}")
@@ -94,7 +87,6 @@ def status() -> int:
 
 
 def down() -> int:
-	in_base()
 	if not session_exists():
 		print(f"no session {SESSION}")
 		return 0

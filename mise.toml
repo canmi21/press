@@ -10,12 +10,6 @@ JJ_CONFIG = "{{env.HOME}}/.config/jj/config.toml:{{config_root}}/jj.toml"
 # Pinned, never auto-incremented; see spec/toolchain.md.
 CMS_PORT = "26521"
 
-# Always 0 now. It used to select a second checkout of this repository and shift every dev
-# port it bound; projects are separate repositories now, so there is no second checkout to
-# keep out of the way. The variable survives only because libs/urls and its consumers still
-# read it, and that code goes in its own change rather than this one.
-WORKSPACE_SLOT = "0"
-
 # Credentials, decrypted by mise on entering the directory. The file is committed encrypted;
 # only the age private key opens it. See spec/toolchain.md for the key setup and for why this
 # is JSON rather than a dotenv.
@@ -105,7 +99,7 @@ run = 'pnpm exec wrangler deploy --env=""'
 [tasks.dev-api]
 description = "Run the API worker"
 dir = "apps/api"
-run = "pnpm run dev $(node {{config_root}}/libs/urls/scripts/wrangler-ports.ts api)"
+run = "pnpm run dev"
 
 [tasks.dev-site]
 description = "Run the site worker"
@@ -115,7 +109,7 @@ run = "pnpm run dev"
 [tasks.dev-cdn]
 description = "Run the CDN worker against data/public"
 dir = "apps/cdn"
-run = "pnpm run dev $(node {{config_root}}/libs/urls/scripts/wrangler-ports.ts cdn)"
+run = "pnpm run dev"
 
 [tasks.dev-cms]
 description = "Run the CMS desktop client"
