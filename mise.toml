@@ -142,10 +142,9 @@ depends = [
 	"test-rust",
 ]
 
-# Inherited from the meta repository: node, rust, pnpm, jj. Stated here is what only this
-# project needs.
+# Inherited from the workspace: node, rust, pnpm, jj, oxlint. Stated here is what only this
+# project needs -- rclone syncs this project's bucket and nothing else uses it.
 [tools]
-oxlint = "latest"
 rclone = "latest"
 
 [tasks.gc]
