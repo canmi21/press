@@ -34,7 +34,7 @@ wasm and whose surface is TypeScript is still one directory with one name. Split
 libraries by language at the top level would tear that library in half.
 
 The same applies to `apps/`. A Rust binary and a SvelteKit site sit side by side, named for
-what they do. What a member may be called is [naming.md](../naming.md)'s.
+what they do. What a member may be called is the workspace's `naming.md`'s.
 
 How the desktop CMS and the command-line shell divide one application between them is its own
 subject: [cms.md](cms.md).

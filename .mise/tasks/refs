@@ -196,6 +196,24 @@ def pair_graph() -> dict[str, list[str]]:
 	return graph
 
 
+def spec_exists(spec: str) -> bool:
+	"""Whether a cited spec file is reachable from here.
+
+	Rules that follow the author rather than this project live in the workspace above, so a
+	citation of `spec/code.md` resolves one directory up. Walk rather than hardcode the depth:
+	the same file has to answer the same way whether this repository sits inside that workspace
+	or was cloned on its own -- in which case nothing above it exists and the citation is
+	genuinely dead. See the meta repository's architecture/repos.md.
+	"""
+	directory = ROOT
+	while True:
+		if (directory / spec).exists():
+			return True
+		if directory.parent == directory:
+			return False
+		directory = directory.parent
+
+
 def main() -> int:
 	graph = pair_graph()
 
@@ -207,7 +225,7 @@ def main() -> int:
 	problems += [
 		f"missing spec cited by {cited}: {spec}"
 		for spec, cited in sorted(graph.items())
-		if not (ROOT / spec).exists()
+		if not spec_exists(spec)
 		for cited in [", ".join(cited)]
 	]
 	problems += [

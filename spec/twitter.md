@@ -95,6 +95,6 @@ free one, paid for with a redirect nobody waits on, and spent on the name that r
 
 Two exceptions, both the same rule. **Grok's tool names keep their `x_` spelling** --
 `x_user_search` and its siblings are the vendor's identifiers, not this repository's, and
-[naming.md](naming.md) puts a vendor's name at the binding edge and nowhere else. And **article
+The workspace's `naming.md` puts a vendor's name at the binding edge and nowhere else. And **article
 prose is the author's**: what `contents/` calls the service, and which of its hosts an article
 links to, is writing rather than configuration, and nothing here reaches into it.

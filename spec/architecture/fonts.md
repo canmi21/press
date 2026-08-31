@@ -61,7 +61,7 @@ Measured, nothing there is ever emphasised. Neither `one-light` nor `one-dark-pr
 and no rule gives `code` a weight of its own. Six of the eight cuts therefore cannot be requested,
 and the latin-ext regular waits on an article whose code contains a character above U+00FF.
 
-They stay, under the rule in [code.md](../code.md): a monospace family cut to a single weight has
+They stay, under the rule in the workspace's `code.md`: a monospace family cut to a single weight has
 to be re-cut the moment anything wants emphasis, and until then it costs a reader nothing. A
 `@font-face` is a declaration; the browser fetches a cut only when text matches its family, its
 style and weight, and its `unicode-range`. The unreachable six are bytes in the bucket, not bytes

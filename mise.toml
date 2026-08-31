@@ -10,11 +10,10 @@ JJ_CONFIG = "{{env.HOME}}/.config/jj/config.toml:{{config_root}}/jj.toml"
 # Pinned, never auto-incremented; see spec/toolchain.md.
 CMS_PORT = "26521"
 
-# Which workspace this checkout is. 0 is the base: this directory, on main, running the full
-# set of dev servers. An overlay checkout overrides it in its own gitignored mise.local.toml
-# (written by `mise run workspace add`), and the number shifts every dev port it binds so it
-# never collides with the base. Read by libs/urls' consumers, not by libs/urls itself.
-# See spec/toolchain.md.
+# Always 0 now. It used to select a second checkout of this repository and shift every dev
+# port it bound; projects are separate repositories now, so there is no second checkout to
+# keep out of the way. The variable survives only because libs/urls and its consumers still
+# read it, and that code goes in its own change rather than this one.
 WORKSPACE_SLOT = "0"
 
 # Credentials, decrypted by mise on entering the directory. The file is committed encrypted;
@@ -56,14 +55,6 @@ run = [
 [tasks.check-fonts]
 description = "Check the font manifest, published chunks, stylesheets, and splitter runtime"
 run = ".mise/tasks/fonts --check"
-
-[tasks.check-repos]
-description = "Check that each sub-repo's pinned revision still agrees with libs/"
-run = ".mise/tasks/repos check"
-
-[tasks.check-hooks]
-description = "Exercise the shared agent-hook entrypoint with macOS system Python"
-run = "/usr/bin/python3 -m unittest discover -s hooks -p 'test_*.py'"
 
 [tasks.lint]
 description = "Lint the workspace"
@@ -156,8 +147,6 @@ depends = [
 	"check",
 	"check-site",
 	"check-fonts",
-	"check-repos",
-	"check-hooks",
 	"lint",
 	"test",
 	"refs",
@@ -165,11 +154,9 @@ depends = [
 	"test-rust",
 ]
 
+# Inherited from the meta repository: node, rust, pnpm, jj. Stated here is what only this
+# project needs.
 [tools]
-node = "latest"
-rust = "stable"
-pnpm = "latest"
-jj = "latest"
 oxlint = "latest"
 rclone = "latest"
 
