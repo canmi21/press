@@ -8,6 +8,7 @@
 	import { PersistQueryClientProvider } from '@tanstack/svelte-query-persist-client';
 	import { advance, readTrail, writeTrail } from '$lib/article/trail';
 	import { installFocusSourceTracker } from '$lib/client/focus-source';
+	import SearchDialog from '$lib/search/dialog.svelte';
 	import { localeUrl } from '$lib/locale';
 	import { QUERY_CACHE_MAX_AGE, QUERY_STALE_TIME } from '$lib/query';
 	import { site } from '$lib/site';
@@ -164,4 +165,8 @@
 
 <PersistQueryClientProvider client={queryClient} {persistOptions}>
 	{@render children()}
+	<!-- Mounted once for the whole site rather than per page: the binding that opens it is global,
+	     so a page that forgot to include it would be a hole in a site-wide shortcut. It renders
+	     nothing until it is opened. -->
+	<SearchDialog locale={locale?.code ?? 'mw'} />
 </PersistQueryClientProvider>

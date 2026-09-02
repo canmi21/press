@@ -16,5 +16,7 @@ declare module 'virtual:site' {
 		};
 		feed: { id: string; followDescription: string };
 		indexnow: string;
+		// Both public by construction: they ship in the browser bundle. See spec/search.md.
+		algolia: { appId: string; searchKey: string };
 	};
 }

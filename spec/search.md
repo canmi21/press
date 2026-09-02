@@ -194,6 +194,76 @@ run the command. `indexnow` already behaves this way, so it is consistent rather
 kind of surprise, but it is written here because "I pushed and search is stale" is otherwise a
 thing to rediscover.
 
+## The field is the site's, not the vendor's
+
+Algolia ships several ready-made search interfaces and none of them is used here. Two carry
+framework bindings this site could not use anyway -- there is no Svelte one -- but the reason
+that matters is the one [architecture/workspace.md](architecture/workspace.md) already gives:
+each of them brings its own DOM and its own stylesheet, and importing one stands up a second
+design system beside the site's. What is imported is `algoliasearch/lite`, which has no
+interface at all. It earns its place twice over: it carries the retry across the four search
+hosts, which is the only part of talking to this service that is not one POST, and it has no
+write methods, so a key pasted into the wrong place in browser code cannot reach anything but
+search.
+
+The dialog is mounted once in the layout rather than per page, because the shortcut that opens
+it is global and a page that forgot to include it would be a hole in a site-wide binding. It
+renders nothing until it is opened.
+
+### A request goes out when typing stops
+
+300ms after the last keystroke. The alternatives are worse in opposite directions: a request per
+keystroke spends ten of them on one search, against a budget that is the first limit to bind,
+and waiting for Enter asks for a keypress that the pause has already reported. 300 rather than
+250 because the difference is below what a typist notices and above what the monthly budget
+does.
+
+**Debouncing does not order the answers, and something has to.** Type, pause, type, pause, and
+the first response can still arrive second, leaving the reader looking at results for a prefix
+of what they typed -- which reads as the search being wrong rather than late. Each request takes
+a ticket and only the newest may write to the screen. Not an `AbortController`, because the
+client exposes no signal to abort with, and because the request has left either way: cancelling
+would refund no part of the budget and save only the parsing. What has to be right is which
+answer may be believed.
+
+### One Han character is a query; one Latin letter is not
+
+The usual threshold is two characters, and it is half wrong here. `a` matches nearly everything
+and means nearly nothing, while `渲`, `锈` and `码` are each a real thing to look for -- holding
+Chinese to the Latin rule would cost a reader of the language this site is mostly written in one
+search every time. So the test is the script: Han passes at one character, everything else waits
+for two.
+
+Kana and Hangul stay with Latin rather than joining Han, which is the part worth stating because
+"CJK" would have swept them in. A lone `の` is a particle and a lone `이` usually is one too;
+they are those scripts' equivalent of `a`, not of `渲`. Counted in code points, so a character
+outside the basic plane is one character here as it is to whoever typed it.
+
+### An article is named once, and its sections are what is chosen between
+
+A record is a section, so an article whose subject _is_ the query matches in many of them and the
+raw list is the same title repeated down the panel -- spending a line each time on something the
+first line already said. The results are grouped by article: the title appears once, and the
+sections under it carry the heading and the snippet.
+
+Order is the service's, not a second opinion computed here: a group sits where its best section
+sat, and sections keep their order within it. Re-scoring a truncated list would only be a worse
+ranking than the one already paid for. Both caps -- five articles, three sections each -- exist
+to keep the panel a glance; a reader who needs the fourth section of the sixth article is served
+by a better query, not a longer list.
+
+Arrow keys move between sections and not between articles. The grouping is a thing to see, not a
+level to step through.
+
+### Highlighting is assembled here, because the service does not escape
+
+Algolia returns the stored value with its tags inserted and escapes nothing around them. This
+corpus is about web development, so its prose genuinely contains `<title>` and `<div>`, and
+rendering the answer as received would let an article's own words become markup. The tags are
+therefore requested as two control characters -- which cannot occur in the source text -- and the
+value is escaped in full before they are swapped for `<mark>`. The only markup that survives is
+the markup this site put there.
+
 ## What the corpus costs, and which limit binds first
 
 Six articles across nine locales are 770 records. The multiplier is the sectioning, not the
