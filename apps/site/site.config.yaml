@@ -47,6 +47,16 @@ feed:
 # read it from here, so rotating the key is a one-line edit. See spec/indexing.md.
 indexnow: 4db98e0b887a45b1b983c3f5715afa90
 
+# The search index's application id and its search-only key. Both reach the browser, so both
+# are public by construction and are written here in plain text rather than pretending a secret
+# store could hide what ships in a bundle -- the same treatment as the IndexNow key above and
+# the analytics client id, see spec/analytics.md. What restricts them is the key's own scoping
+# and rate limit. The write key is a different credential entirely and is never in this file;
+# it lives encrypted in secrets.json. See spec/search.md.
+algolia:
+  appId: KDD8OEZHPB
+  searchKey: 1c92e54e4e374d247b4fda440a67fd9f
+
 # Extra static 301 redirects (from: to), baked into the Cloudflare _redirects
 # file at build (see vite.config.ts). Built-in redirects (feed aliases, favicon)
 # are hardcoded in vite.config.ts and not configured here — this list is only

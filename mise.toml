@@ -35,10 +35,7 @@ run = "pnpm exec vitest run"
 description = "Type check every workspace package, in both runtime contexts"
 # Two programs, because workerd and the browser declare different things under the same names.
 # See spec/architecture/workspace.md; tsconfig.json says which is which.
-run = [
-	"pnpm exec tsc -p tsconfig.json --noEmit",
-	"pnpm exec tsc -p tsconfig.workers.json --noEmit",
-]
+run = ["pnpm exec tsc -p tsconfig.json --noEmit", "pnpm exec tsc -p tsconfig.workers.json --noEmit"]
 
 [tasks.check-fonts]
 description = "Check the font manifest, published chunks, stylesheets, and splitter runtime"
@@ -127,6 +124,13 @@ description = "Submit changed URLs to the IndexNow participants"
 # Reads the live sitemap, so it wants a deployed site rather than a dev server -- run it after
 # deploy-site, not before. `--dry` prints what would go and touches nothing.
 run = "node apps/site/scripts/indexnow.ts"
+
+[tasks.search]
+description = "Align the search index with the corpus"
+# Reads the built corpus and diffs it against the index itself, so it needs no deployed site --
+# but the records name live addresses, so it belongs after deploy-site all the same. `--dry`
+# prints what would be written and sends nothing. See spec/search.md.
+run = "node apps/site/scripts/search.ts"
 
 [tasks.verify]
 description = "Everything a change has to pass, across both languages"

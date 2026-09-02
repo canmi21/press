@@ -3,7 +3,9 @@
 The sitemap is the pull side of discovery: it lists every address and waits to be crawled. See
 [locale.md](locale.md) for what an address is and [architecture/data.md](architecture/data.md)
 for what is allowed into it. This file is the push side -- IndexNow, which notifies the
-participating engines that something moved rather than waiting for them to notice.
+participating engines that something moved rather than waiting for them to notice. Searching
+this site's own corpus is [search.md](search.md), which runs beside this one and shares its
+ordering, but answers a reader here rather than announcing an address elsewhere.
 
 ## The key is published, because the protocol requires publishing it
 
