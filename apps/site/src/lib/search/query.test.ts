@@ -71,7 +71,7 @@ describe('groupHits', () => {
 		objectID: `${path}:mw:${heading}`,
 		path,
 		locale: 'mw',
-		url: `https://example.test/${path}`,
+		url: `https://example.test/${path}#${heading}`,
 		title: path === 'a' ? 'Cargo' : 'SeamJS',
 		subtitle: '',
 		heading,
@@ -102,5 +102,29 @@ describe('groupHits', () => {
 
 	it('has nothing to group when nothing matched', () => {
 		expect(groupHits([])).toEqual([]);
+	});
+});
+
+describe('groupHits and one destination per row', () => {
+	const chunk = (path: string, heading: string, text: string): SearchHit => ({
+		objectID: `${path}:mw:${heading}:${text}`,
+		path,
+		locale: 'mw',
+		url: `https://example.test/${path}#${heading}`,
+		title: 'Cargo',
+		subtitle: '',
+		heading,
+		text,
+	});
+
+	it('keeps one row when a long section was stored as several records', () => {
+		// Both chunks carry the same heading and the same anchor, so both go to one place.
+		const groups = groupHits([
+			chunk('a', 'bench', 'first half'),
+			chunk('a', 'bench', 'second half'),
+			chunk('a', 'panic', 'other'),
+		]);
+		expect(groups[0]?.sections.map((section) => section.heading)).toEqual(['bench', 'panic']);
+		expect(groups[0]?.sections[0]?.text).toBe('first half');
 	});
 });

@@ -99,14 +99,26 @@ export function groupHits(hits: SearchHit[], maxGroups = 5, maxPerGroup = 3): Se
 	const groups: SearchGroup[] = [];
 	const byPath = new Map<string, SearchGroup>();
 
+	const seen = new Map<string, Set<string>>();
+
 	for (const hit of hits) {
 		let group = byPath.get(hit.path);
 		if (!group) {
 			if (groups.length >= maxGroups) continue;
 			group = { path: hit.path, title: hit.title, sections: [] };
 			byPath.set(hit.path, group);
+			seen.set(hit.path, new Set());
 			groups.push(group);
 		}
+		// One row per destination. A section longer than the record ceiling is stored as several
+		// records that share a heading and an anchor, so listing each would offer the reader a
+		// choice between rows that go to the same place -- and the heading would appear twice
+		// under a title that appears once, which is the repetition this grouping exists to end.
+		// The first is kept because the service ranked it first.
+		const anchors = seen.get(hit.path);
+		const anchor = new URL(hit.url).hash;
+		if (anchors?.has(anchor)) continue;
+		anchors?.add(anchor);
 		if (group.sections.length < maxPerGroup) group.sections.push(hit);
 	}
 
