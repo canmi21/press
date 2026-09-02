@@ -18,12 +18,23 @@ import { buildArticles } from '../src/lib/content/build/articles.ts';
 import { LOCALE_CODES } from '../src/lib/locale/index.ts';
 import type { Article, ArticleView } from '../src/lib/content/types.ts';
 
-/** One index holds every locale; see spec/search.md for why the languages are not declared. */
-const INDEX = 'press_articles';
-
 const ROOT = new URL('../../../', import.meta.url);
 const SITE = new URL('apps/site/', ROOT);
 const CONFIG = fileURLToPath(new URL('site.config.yaml', SITE));
+
+type SiteConfig = { algolia?: { appId?: string; index?: string } };
+
+const config = parseYaml(await readFile(CONFIG, 'utf8')) as SiteConfig;
+
+/**
+ * One index holds every locale; see spec/search.md for why the languages are not declared.
+ *
+ * Read from the site config rather than written here, because the browser client needs the same
+ * name and a second copy of it would only ever be discovered by a search that quietly returns
+ * nothing.
+ */
+const INDEX = config.algolia?.index;
+if (!INDEX) throw new Error('site.config.yaml has no algolia.index');
 
 /** A record's shape in the index. `fingerprint` is written but never searched. */
 type Record = {
@@ -40,7 +51,7 @@ type Record = {
 
 type Credentials = { appId: string; writeKey: string };
 
-function credentials(config: { algolia?: { appId?: string } }): Credentials {
+function credentials(): Credentials {
 	const appId = config.algolia?.appId;
 	const writeKey = process.env.ALGOLIA_WRITE_KEY;
 	if (!appId) throw new Error('site.config.yaml has no algolia.appId');
@@ -255,8 +266,7 @@ class Client {
 }
 
 const dry = process.argv.includes('--dry');
-const config = parseYaml(await readFile(CONFIG, 'utf8')) as { algolia?: { appId?: string } };
-const client = new Client(credentials(config));
+const client = new Client(credentials());
 
 const { articles } = await buildArticles({
 	contents: fileURLToPath(new URL('contents', ROOT)),

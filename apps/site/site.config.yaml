@@ -56,6 +56,11 @@ indexnow: 4db98e0b887a45b1b983c3f5715afa90
 algolia:
   appId: KDD8OEZHPB
   searchKey: 1c92e54e4e374d247b4fda440a67fd9f
+  # The index every locale shares. Named for what it holds rather than for the site that holds
+  # it -- the application id above is already the namespace, so a `press_` prefix would be the
+  # same fact written twice. Read by the browser client and by `mise run search`, which is why
+  # it is here and not a constant in either of them.
+  index: articles
 
 # Extra static 301 redirects (from: to), baked into the Cloudflare _redirects
 # file at build (see vite.config.ts). Built-in redirects (feed aliases, favicon)

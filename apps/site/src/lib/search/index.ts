@@ -4,7 +4,7 @@ import type { LocaleCode } from '$lib/locale/index.ts';
 import { MARK_CLOSE, MARK_OPEN, type SearchHit } from './query.ts';
 
 /** The index every locale shares; see spec/search.md for why it is one and not nine. */
-const INDEX = 'press_articles';
+const INDEX = site.algolia.index;
 
 /**
  * `liteClient` rather than the full client, for two reasons that both matter here.

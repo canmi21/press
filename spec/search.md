@@ -82,6 +82,18 @@ writes 水合不匹配, while `tw` keeps the English. Three Chinese views, three
 about one term. Titles differ too: `mw` carries the source title, every other view a translated
 one. A reader on `mw` searching `hydration mismatch` finds it only in the `mw` records.
 
+### The index is named for what it holds
+
+`articles`, in `site.config.yaml` beside the application id. Not `press_articles`: the
+application id is already the namespace, so the site's name in front of it would be the same
+fact written twice, and the workspace's `naming.md` asks for what a thing does rather than who
+owns it.
+
+It lives in the config because both sides need it. The browser reads it through `virtual:site`
+and `mise run search` parses the same file, so the two cannot drift. A constant in each would
+disagree exactly once, and the symptom would be a search that quietly returns nothing rather
+than anything that reads as an error.
+
 ## A record is a section of a view, and its address is already computed
 
 One record per (article path, locale, section), with `objectID` those three joined so that
@@ -168,13 +180,14 @@ everything above the edge: the task is `search`, the spec is this file, and no m
 function inside the site or the push script carries the supplier's name. Changing suppliers
 rewrites the binding layer rather than every place that touched it.
 
-It is scoped to the `press_*` indices, the same move as the R2 token scoped to one bucket in
-[toolchain.md](toolchain.md): the boundary holds because the credential cannot cross it, not
-because whoever ran the command was careful. What it is _not_ scoped to is destruction --
-`deleteIndex` is left on deliberately, and the reason is that the two credentials are not
-comparable. Losing a bucket loses the only copy of an object; losing this index costs one run
-of `mise run search`, because `contents/` is the source and the index is derived from it in
-full. A permission whose worst outcome is a command being run again does not need fencing.
+It is deliberately **not** fenced the way the R2 token in [toolchain.md](toolchain.md) is --
+neither to one index nor away from `deleteIndex` -- because the two credentials are not
+comparable. That token guards a bucket holding the only copy of an object, so the boundary has
+to hold because the credential cannot cross it. This one guards a derivative: `contents/` is
+the source, and every record is rebuilt by one run of `mise run search`. A permission whose
+worst outcome is a command being run again does not earn a fence, and a fence nobody needs is
+one more thing to be wrong about later. Both halves were measured rather than assumed -- a
+`DELETE` returns `200`, and an index outside any prefix returns `404` rather than `403`.
 
 Reading settings back is not granted, and that shows up in normal use the way the R2 token's
 missing list permission does: `GET /1/indexes/{index}/settings` returns `403` while writing
