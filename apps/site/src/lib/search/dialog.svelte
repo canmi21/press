@@ -3,6 +3,8 @@
 	import CornerDownLeft from '@lucide/svelte/icons/corner-down-left';
 	import { Dialog } from 'bits-ui';
 	import { goto } from '$app/navigation';
+	import { animateHeight, type AnimationControl } from '$lib/client/collapse';
+	import { remFromMeasuredPixels } from '$lib/client/units';
 	import { m } from '$lib/paraglide/messages';
 	import type { LocaleCode } from '$lib/locale/index.ts';
 	import { groupHits, markup, search, worthSearching, type SearchHit } from './index.ts';
@@ -26,6 +28,27 @@
 	let searching = $state(false);
 	let failed = $state(false);
 	let input = $state<HTMLInputElement>();
+	let bodyEl = $state<HTMLElement>();
+	/** Hidden overflow and a pinned height belong to the move, not to the panel at rest. */
+	let bodyMoving = $state(false);
+	let bodyMotion: AnimationControl | undefined;
+	/**
+	 * What the body was last measured against.
+	 *
+	 * `undefined` means nothing has been measured yet, which is the state a freshly opened dialog
+	 * is in: the panel plays its own entrance, and a body animating its height inside that would
+	 * be two moves arguing about the same edge. So the first pass records the height it was given
+	 * and animates nothing.
+	 */
+	let bodyState: string | undefined;
+	/**
+	 * The height the body had before the contents it is holding were replaced.
+	 *
+	 * Read in `$effect.pre` because a plain effect is too late: by the time it runs the box has
+	 * already been laid out around the new results, so asking it where it is would answer with
+	 * where it is going and the move would be a jump of nothing.
+	 */
+	let bodyFrom: number | undefined;
 
 	let timer: ReturnType<typeof setTimeout> | undefined;
 	/**
@@ -48,6 +71,11 @@
 		clearTimeout(timer);
 		// Nothing already in flight may write to a dialog that has been closed and reopened.
 		issued += 1;
+		bodyMotion?.stop();
+		bodyMotion = undefined;
+		bodyMoving = false;
+		bodyState = undefined;
+		bodyFrom = undefined;
 	}
 
 	function onOpenChange(next: boolean) {
@@ -142,6 +170,75 @@
 	const empty = $derived(
 		!searching && !failed && hits.length === 0 && worthSearching(query.trim()),
 	);
+
+	/**
+	 * A stand-in for what the body is showing, so the height is re-measured when that changes and
+	 * not once per keystroke. Typing inside a debounce leaves the results standing; measuring
+	 * then would cost two forced reflows to discover that nothing moved.
+	 */
+	const bodyShowing = $derived(
+		groups.length > 0
+			? groups.map((group) => `${group.path}/${group.sections.length}`).join('|')
+			: failed
+				? 'failed'
+				: empty
+					? 'empty'
+					: 'idle',
+	);
+
+	function settleBody() {
+		// Handed back to `auto`, so the body keeps following its own content: a panel pinned to a
+		// measured number would stop answering a window resize or a font landing late.
+		if (bodyEl) bodyEl.style.height = 'auto';
+		bodyMoving = false;
+		bodyMotion = undefined;
+	}
+
+	/**
+	 * Carry the body from the height it has to the height its new contents want.
+	 *
+	 * The target is measured by letting the layout settle it -- `auto` for one synchronous read,
+	 * with the panel's own max-height doing the clamping through flex -- rather than by taking
+	 * `scrollHeight` the way a disclosure does. A list of forty hits wants far more room than the
+	 * panel will ever give it, and the number to animate to is the one the panel would have
+	 * arrived at anyway. Reading it this way also means the header and footer are never written
+	 * down here as a figure to subtract and keep in step.
+	 */
+	function resizeBody(from: number) {
+		if (!bodyEl) return;
+		bodyMotion?.stop();
+		bodyMotion = undefined;
+
+		bodyEl.style.height = 'auto';
+		const target = bodyEl.getBoundingClientRect().height;
+		// Back before the browser paints, so the measurement is never a frame the reader sees.
+		bodyEl.style.height = remFromMeasuredPixels(from);
+
+		bodyMoving = true;
+		bodyMotion = animateHeight(bodyEl, target, (finished) => {
+			// A stopped animation is not guaranteed to stay silent; settling the wrong one would
+			// pin the body to the height an interrupted move was travelling to.
+			if (finished !== undefined && bodyMotion !== finished) return;
+			settleBody();
+		});
+	}
+
+	$effect.pre(() => {
+		const showing = bodyShowing;
+		if (!bodyEl || showing === bodyState) return;
+		bodyFrom = bodyEl.getBoundingClientRect().height;
+	});
+
+	$effect(() => {
+		const showing = bodyShowing;
+		if (!bodyEl || showing === bodyState) return;
+		const first = bodyState === undefined;
+		bodyState = showing;
+		const from = bodyFrom;
+		bodyFrom = undefined;
+		if (first || from === undefined) return;
+		resizeBody(from);
+	});
 </script>
 
 <svelte:window onkeydown={onWindowKeydown} />
@@ -154,7 +251,7 @@
 		>
 			<Dialog.Title class="sr-only">{m['search.title']({}, { locale })}</Dialog.Title>
 
-			<div class="flex items-center gap-3 border-b border-border px-4">
+			<div class="flex shrink-0 items-center gap-3 border-b border-border px-4">
 				<SearchIcon class="size-4 shrink-0 text-text-soft" aria-hidden="true" />
 				<input
 					bind:this={input}
@@ -174,56 +271,62 @@
 				{/if}
 			</div>
 
-			{#if groups.length > 0}
-				<ul class="min-h-0 flex-1 overflow-y-auto p-1.5">
-					{#each groups as group (group.path)}
-						<li class="mb-1 last:mb-0">
-							<!-- The title once, for the whole group. Repeating it on every section spent a line
-							     each time telling the reader something the first line already told them. -->
-							<p class="truncate px-2.5 pt-2 pb-1 text-[0.9375rem] font-medium text-text-strong">
-								{group.title}
-							</p>
-							<ul>
-								{#each group.sections as hit (hit.objectID)}
-									{@const index = rows.indexOf(hit)}
-									<li>
-										<button
-											type="button"
-											onclick={() => open_(hit)}
-											onmousemove={() => (active = index)}
-											class="focus-ring block w-full rounded-md px-2.5 py-1.5 text-left transition-colors duration-100"
-											class:bg-paper-hover={index === active}
-										>
-											{#if hit.heading}
-												<span class="block truncate text-[0.8125rem] text-text">
-													<!-- Escaped in `markup`; the only tags here are the ones it inserted. -->
-													{@html markup(hit._highlightResult?.heading?.value, hit.heading)}
+			<!-- One element holds every state the body can be in, because the height is animated
+			     between them and a height belongs to a box that stays put. -->
+			<div bind:this={bodyEl} class="search-body min-h-0" data-moving={bodyMoving || undefined}>
+				{#if groups.length > 0}
+					<ul class="p-1.5">
+						{#each groups as group (group.path)}
+							<li class="mb-1 last:mb-0">
+								<!-- The title once, for the whole group. Repeating it on every section spent a line
+								     each time telling the reader something the first line already told them. -->
+								<p class="truncate px-2.5 pt-2 pb-1 text-[0.9375rem] font-medium text-text-strong">
+									{group.title}
+								</p>
+								<ul>
+									{#each group.sections as hit (hit.objectID)}
+										{@const index = rows.indexOf(hit)}
+										<li>
+											<button
+												type="button"
+												onclick={() => open_(hit)}
+												onmousemove={() => (active = index)}
+												class="focus-ring block w-full rounded-md px-2.5 py-1.5 text-left transition-colors duration-100"
+												class:bg-paper-hover={index === active}
+											>
+												{#if hit.heading}
+													<span class="block truncate text-[0.8125rem] text-text">
+														<!-- Escaped in `markup`; the only tags here are the ones it inserted. -->
+														{@html markup(hit._highlightResult?.heading?.value, hit.heading)}
+													</span>
+												{/if}
+												<span
+													class="block line-clamp-2 text-[0.8125rem] leading-snug text-text-soft"
+												>
+													{@html markup(hit._snippetResult?.text?.value, hit.text.slice(0, 160))}
 												</span>
-											{/if}
-											<span class="block line-clamp-2 text-[0.8125rem] leading-snug text-text-soft">
-												{@html markup(hit._snippetResult?.text?.value, hit.text.slice(0, 160))}
-											</span>
-										</button>
-									</li>
-								{/each}
-							</ul>
-						</li>
-					{/each}
-				</ul>
-			{:else}
-				<p class="px-4 py-6 text-center text-[0.8125rem] text-text-soft">
-					{#if failed}
-						{m['search.failed']({}, { locale })}
-					{:else if empty}
-						{m['search.empty']({}, { locale })}
-					{:else}
-						{m['search.idle']({}, { locale })}
-					{/if}
-				</p>
-			{/if}
+											</button>
+										</li>
+									{/each}
+								</ul>
+							</li>
+						{/each}
+					</ul>
+				{:else}
+					<p class="px-4 py-6 text-center text-[0.8125rem] text-text-soft">
+						{#if failed}
+							{m['search.failed']({}, { locale })}
+						{:else if empty}
+							{m['search.empty']({}, { locale })}
+						{:else}
+							{m['search.idle']({}, { locale })}
+						{/if}
+					</p>
+				{/if}
+			</div>
 
 			<div
-				class="flex items-center justify-between gap-3 border-t border-border px-4 py-2 text-[0.6875rem] text-text-soft"
+				class="flex shrink-0 items-center justify-between gap-3 border-t border-border px-4 py-2 text-[0.6875rem] text-text-soft"
 			>
 				<span class="flex items-center gap-1.5">
 					<kbd class="search-key">↑</kbd>
@@ -305,6 +408,19 @@
 		50% {
 			opacity: 1;
 		}
+	}
+
+	/*
+	 * The body scrolls at rest and is clipped while it moves: an animated height that let its
+	 * scrollbar show would flash one in and out on every result that changes the panel's size.
+	 */
+	.search-body {
+		overflow-y: auto;
+	}
+
+	.search-body[data-moving] {
+		overflow: hidden;
+		will-change: height;
 	}
 
 	/* The search input's own clear button is the browser's, not this design system's. */

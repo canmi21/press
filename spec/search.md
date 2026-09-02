@@ -268,6 +268,29 @@ by a better query, not a longer list.
 Arrow keys move between sections and not between articles. The grouping is a thing to see, not a
 level to step through.
 
+### The panel resizes on a spring, and its results are one box
+
+Idle text, a list of hits and a failure message are three contents of one element, not three
+elements that take turns. The height between them is animated, because a panel that jumped from
+one to the next would read as a new surface arriving each time rather than as the same one
+answering. The motion is the disclosure's -- the code block's spring, shared through
+[collapse.ts](../apps/site/src/lib/client/collapse.ts) rather than written out again -- for the
+reason that file already gives: two springs meant to be equal and stated separately are two
+numbers to keep in step with no way to tell later whether they were.
+
+**Where it is going is measured by letting the layout answer, not by adding up the chrome.** The
+panel has a ceiling, and a long list is clamped to it; `scrollHeight` would name a height the
+panel will never take. So the body is set to `auto` for one synchronous read, which is the number
+flex would have settled on, and the header and footer are never written down here as a figure to
+subtract and keep in step with the stylesheet.
+
+**Where it is coming from has to be taken before the results change.** After the update the box
+has already been laid out around the new hits, so asking it then reports the destination and the
+move covers no distance -- which is what it did, until the reading was moved ahead of the DOM.
+The body is clipped while it travels and scrolls again once it lands, so a result that grows the
+panel does not flash a scrollbar on the way; a reduced-motion reader gets the new height without
+the journey.
+
 ### Highlighting is assembled here, because the service does not escape
 
 Algolia returns the stored value with its tags inserted and escapes nothing around them. This

@@ -9,6 +9,11 @@
  * numbers to keep in step and no way to tell, later, whether they were meant to be equal or
  * merely happen to be. The code block was first; the collected notes are the second, and the
  * pair is what moved this out here.
+ *
+ * The search panel is the third and the one that is not a disclosure: nothing is pressed, the
+ * results simply become other results and the box carries itself between the two heights. Its
+ * target is measured differently for that reason -- see spec/search.md -- but the gesture is the
+ * same one, so the spring is too.
  */
 
 import { animate } from 'motion';
