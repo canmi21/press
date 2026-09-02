@@ -88,7 +88,8 @@ function fingerprint(paths: string[]): string {
  * the primitive segment ids and asset ids already use.
  */
 function sources(path: string, articles: string[]): string[] | undefined {
-	const [route, query] = path.split('?');
+	// `split` always yields a first element; the fallback is what says so to the checker.
+	const [route = path, query] = path.split('?');
 
 	// The licence directories are in the sitemap so they can be crawled, and that is all they
 	// need. They are derived pages nobody is waiting on, and the only timestamp they have is the
@@ -129,7 +130,8 @@ async function addresses(): Promise<string[]> {
 
 	const found: string[] = [];
 	for (const block of xml.matchAll(/<url>([\s\S]*?)<\/url>/g)) {
-		const loc = /<loc>(.*?)<\/loc>/.exec(block[1])?.[1];
+		const inner = block[1];
+		const loc = inner ? /<loc>(.*?)<\/loc>/.exec(inner)?.[1] : undefined;
 		if (!loc) continue;
 		// Stored without the origin: this record describes one site, and carrying the host in
 		// every row would be the same string repeated a few hundred times. The query survives,
@@ -175,7 +177,7 @@ const found = await addresses();
 const articles = [
 	...new Set(
 		found
-			.map((path) => path.split('?')[0])
+			.map((path) => path.split('?')[0] ?? path)
 			.filter((route) => route !== '/' && !route.startsWith('/licenses')),
 	),
 ];

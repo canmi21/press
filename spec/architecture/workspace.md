@@ -86,9 +86,10 @@ tooltips and surrounding statistics use the same surfaces as the rest of the sit
 
 ## A runtime's globals decide which program checks a file
 
-Type checking runs twice, over two programs: [tsconfig.json](../../tsconfig.json) for the browser
-and anything indifferent to a runtime, [tsconfig.workers.json](../../tsconfig.workers.json) for
-the two Workers and `libs/store`.
+Type checking runs three times, over three programs: [tsconfig.json](../../tsconfig.json) for the
+browser and anything indifferent to a runtime, [tsconfig.workers.json](../../tsconfig.workers.json)
+for the two Workers and `libs/store`, and [tsconfig.scripts.json](../../tsconfig.scripts.json) for
+the node programs under an app's `scripts/`.
 
 The split is forced rather than chosen. `@cloudflare/workers-types` declares its own
 `ReadableStream`, `Response` and `Cache`, and the DOM library declares those names too. Nothing
@@ -100,8 +101,17 @@ real one would have made every Hono handler disagree about `Response`. Both are 
 casts across that boundary now.
 
 **A file belongs to the program whose globals it actually runs against**, which is not always the
-directory it sits in. `apps/api/scripts/` is a node script and is checked as one. A worker's
-tests are checked _with the worker_, because they exercise worker code and mock worker bindings
+directory it sits in. `apps/api/scripts/` is a node script and is checked as one -- by the third
+program, which exists because saying so was not the same as arranging it. `tsconfig.json` excludes
+`apps/site` wholesale, since SvelteKit generates the `$lib` aliases that only svelte-check sees;
+svelte-check in turn reads SvelteKit's own generated file list, which stops at `src`. Every
+`scripts/` directory fell through the gap between those two and was checked by nothing at all --
+found by putting `const x: number = 'not a number'` in one and watching `verify` pass, which is
+also the check worth repeating on any program claimed to cover something. It carries the browser's
+lib beside node's, and that is not the collision this section warns about: what forced the split is
+DOM against `@cloudflare/workers-types`, and no script imports those.
+
+A worker's tests are checked _with the worker_, because they exercise worker code and mock worker bindings
 -- putting them elsewhere pulls the whole worker into a program that has the browser's globals,
 which is the thing being avoided.
 

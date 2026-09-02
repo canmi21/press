@@ -1,0 +1,27 @@
+{
+	// The node programs under an app's `scripts/`.
+	//
+	// A third program rather than a home in either of the other two, for the reason the split
+	// exists at all: a file belongs to the program whose globals it actually runs against. These
+	// are run by bare node -- `node apps/site/scripts/search.ts` -- so they have node's globals
+	// and neither the browser's nor workerd's. tsconfig.json excludes apps/site wholesale because
+	// SvelteKit generates the `$lib` aliases that svelte-check needs, and svelte-check in turn
+	// only reads SvelteKit's own generated file list, which stops at `src`. The scripts fell
+	// through the gap between the two and were checked by nothing.
+	//
+	// See spec/architecture/workspace.md.
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		// The browser's globals as well as node's, which is not the contradiction it looks like.
+		// The conflict the other split exists to avoid is DOM against `@cloudflare/workers-types`,
+		// and nothing here carries those. What these scripts do import is shared build code and,
+		// in the CMS's case, a browser module they type-import -- so they need `WebAssembly`,
+		// `HTMLElement` and `HeadersInit` for exactly the reason tsconfig.json does.
+		"lib": ["es2023", "dom"],
+		"types": ["node"],
+		// pnpm installs @types/node under the member that asked for it, not at this root.
+		"typeRoots": ["apps/site/node_modules/@types", "node_modules/@types"]
+	},
+	"include": ["apps/*/scripts/**/*.ts"],
+	"exclude": ["**/node_modules", "**/dist", "**/build"]
+}

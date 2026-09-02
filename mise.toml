@@ -32,10 +32,14 @@ description = "Run every test in the workspace"
 run = "pnpm exec vitest run"
 
 [tasks.check]
-description = "Type check every workspace package, in both runtime contexts"
-# Two programs, because workerd and the browser declare different things under the same names.
-# See spec/architecture/workspace.md; tsconfig.json says which is which.
-run = ["pnpm exec tsc -p tsconfig.json --noEmit", "pnpm exec tsc -p tsconfig.workers.json --noEmit"]
+description = "Type check every workspace package, in each runtime context"
+# Three programs, because workerd, the browser and bare node declare different things under the
+# same names. See spec/architecture/workspace.md; each tsconfig says which is which.
+run = [
+	"pnpm exec tsc -p tsconfig.json --noEmit",
+	"pnpm exec tsc -p tsconfig.workers.json --noEmit",
+	"pnpm exec tsc -p tsconfig.scripts.json --noEmit",
+]
 
 [tasks.check-fonts]
 description = "Check the font manifest, published chunks, stylesheets, and splitter runtime"
