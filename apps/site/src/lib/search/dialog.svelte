@@ -191,7 +191,7 @@
 											type="button"
 											onclick={() => open_(hit)}
 											onmousemove={() => (active = index)}
-											class="focus-ring block w-full rounded-md px-2.5 py-1.5 text-left transition-[background-color] duration-100"
+											class="focus-ring block w-full rounded-md px-2.5 py-1.5 text-left transition-colors duration-100"
 											class:bg-paper-hover={index === active}
 										>
 											{#if hit.heading}

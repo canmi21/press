@@ -44,6 +44,17 @@
 		border-radius: 0.25rem;
 	}
 
+	/* The outline's colour is stated at rest, where no outline is drawn, so that focusing one
+	   changes only its width. Without this the colour is `currentColor` until the rule below
+	   names the accent -- and Tailwind v4 put `outline-color` into `transition-colors`, which
+	   nearly every control here carries for its hover. The ring therefore faded in from the
+	   element's own text colour: a pale flash before the blue on anything light-on-dark, over
+	   whatever duration the hover happened to use. Declaring it here leaves nothing to
+	   interpolate. See spec/styling.md. */
+	:where(.focus-ring, .focus-ring-inner, .focus-ring-within, .focus-link, .focus-link-inner) {
+		outline-color: var(--color-accent);
+	}
+
 	:where(.focus-link, .focus-link-inner) {
 		--focus-link-height: 1.25rem;
 		line-height: var(--focus-link-height);

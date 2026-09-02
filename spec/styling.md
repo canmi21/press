@@ -894,6 +894,31 @@ same accent outline rather than removing it, so a control that was never given a
 visible to the keyboard rather than going silent. Suppressing focus outright belongs only where
 something else already marks the position, as with a parent that hands its outline to a child.
 
+### The ring's colour is declared at rest, or it fades in from the text
+
+An outline has a colour even while `outline-style` is `none` and nothing is drawn, and unless it
+is set that colour is `currentColor`. Naming the accent only inside `:focus-visible` therefore
+leaves a control whose outline colour _changes_ when it is focused -- which is invisible until
+something animates it.
+
+Something does. Tailwind v4 added `outline-color` to `transition-colors`, and nearly every
+control here carries that utility for its hover. So the ring faded in from the element's own text
+colour over whatever duration the hover happened to use: a pale flash ahead of the blue, worst on
+anything light-on-dark, and reported as "a white ring, then the blue one". Ten controls on the
+home page alone were doing it, measured as a resting `outline-color` equal to each element's
+`color`.
+
+The fix belongs to the utilities and not to the fifteen call sites: the focus classes state
+`outline-color: var(--color-accent)` at rest, so focusing a control changes only the outline's
+width and there is nothing left to interpolate. A component that reaches for a narrower
+`transition-[background-color]` to dodge this is treating the symptom, and the next component
+will not know to.
+
+The general rule, which outlives this one property: **a value that only appears under a state
+should be declared in the base too, whenever anything transitions it.** A transition interpolates
+from the value that was already there, and "there was no value" resolves to something -- here the
+text colour -- rather than to nothing.
+
 Text links are a separate visual category from buttons and cards. Their outline follows the text
 line height and a tight corner, even when an outer button has padding to make its hit target larger.
 Inline icon-and-label links use that same height. Padding belongs to interaction geometry and must
