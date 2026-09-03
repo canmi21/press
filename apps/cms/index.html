@@ -119,6 +119,15 @@
 						<section class="overview-section recent-section" data-recent>
 							<h2>Recently updated</h2>
 							<ul class="recent-list" data-recent-list></ul>
+							<!-- The three most recent are a glance, not a listing. This is the way out to the
+							     whole library, and it stays hidden while there is nothing beyond the three
+							     already on screen -- an exit to a page holding exactly what is above it. -->
+							<button class="recent-all" type="button" data-recent-all data-goto-page="articles" hidden>
+								<span data-recent-all-label></span>
+								<svg aria-hidden="true" viewBox="0 0 24 24">
+									<path d="M5 12h14M13 6l6 6-6 6" />
+								</svg>
+							</button>
 						</section>
 					</div>
 

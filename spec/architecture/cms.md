@@ -118,11 +118,26 @@ sheet within the main pane. Compact marks identify the live workspace state and 
 attention; they sit immediately after their labels without entering the text flow, while ordinary
 section labels remain text-only. Recently updated rows reuse the public homepage's article preview:
 row geometry, paper thumbnail, title, dotted leader, date and subtitle are one
-`@canmi/primitives` surface. The site keeps its link, focus, hover and content-derived line motion;
-the CMS keeps a read-only static rendering. Those are consumer behaviours rather than two visual
-definitions. Labels and article copy retain one uninterrupted left edge, and individual facts stay
+`@canmi/primitives` surface. The site keeps its link, focus and content-derived line motion; the
+CMS keeps a read-only static rendering. Those are consumer behaviours rather than two visual
+definitions. Hover was counted among them until the CMS wanted it as well, and the row it got
+stayed flat where the site's lit up -- one row, two answers, which is the thing the shared package
+exists to prevent. It is a property of the surface rather than of what a consumer does with it, so
+it moved into the package and the site's own copy of the rule came out. Labels and article copy retain one uninterrupted left edge, and individual facts stay
 unbadged so the icons establish hierarchy without turning every piece of content back into
 interface chrome.
+
+How many of those rows appear is measured against the window rather than chosen. A fixed count is
+a short list on a tall window or a scrollbar on a short one, and which of the two it is depends on
+the machine rather than on anything the design decided -- so every article the snapshot carries is
+laid out and the ones that overflow are taken back, leaving the brief exactly full. One row always
+survives that trimming: a window too short for a single row is one nothing can be fitted to, and an
+empty section under its heading reads as "no articles" rather than as "no room", so the page
+scrolls instead. Beneath the last row that fits is the way out to the library, placed before the
+trimming because it occupies the room the final row would otherwise be measured into and hidden
+only when the rows on screen are already the whole corpus. The snapshot itself still carries a
+ceiling, since it must stay a fixed size as the corpus grows; it is set past what the tallest
+window can draw, so it bounds the payload without ever deciding the page.
 
 Articles is the writing library rather than a translation-coverage dashboard. It keeps section
 grouping but presents each article with the same title, paper thumbnail, authored date and subtitle

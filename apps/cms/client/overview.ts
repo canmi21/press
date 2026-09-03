@@ -113,41 +113,93 @@ function renderHealth(root: HTMLElement, snapshot: OverviewSnapshot): void {
 	}
 }
 
+function recentRow(article: OverviewSnapshot['articles']['recent'][number]): HTMLLIElement {
+	const item = document.createElement('li');
+	item.className = 'article-preview';
+	const copy = document.createElement('div');
+	copy.className = 'article-preview-copy';
+	const heading = document.createElement('div');
+	heading.className = 'article-preview-heading';
+	const title = document.createElement('strong');
+	title.className = 'article-preview-title';
+	title.textContent = article.title;
+	const leader = document.createElement('span');
+	leader.className = 'article-preview-leader';
+	const modified = document.createElement('time');
+	modified.className = 'article-preview-date';
+	modified.dateTime = article.modified;
+	modified.textContent = formatArticleDate(article.modified);
+	heading.appendChild(title);
+	heading.appendChild(leader);
+	heading.appendChild(modified);
+	copy.appendChild(heading);
+	if (article.subtitle !== null) {
+		const subtitle = document.createElement('p');
+		subtitle.className = 'article-preview-subtitle';
+		subtitle.textContent = article.subtitle;
+		copy.appendChild(subtitle);
+	}
+	item.appendChild(articleThumbnail());
+	item.appendChild(copy);
+	return item;
+}
+
+// What the page last rendered, kept so the list can be re-fitted to a window that changed size
+// without asking the workspace for a second snapshot -- the answer would be the same, and reading
+// it costs a walk of every article.
+let shown: { root: HTMLElement; snapshot: OverviewSnapshot } | undefined;
+let watchingViewport = false;
+
+/**
+ * Fills the recent list with as many articles as the window has room for.
+ *
+ * The count is measured rather than chosen: a fixed number is either a short list on a tall
+ * window or a scrollbar on a short one, and which of the two it is depends on the machine. So
+ * every article the snapshot carries is laid out and the ones that overflow are taken back,
+ * leaving the page exactly full. The exit to the library is placed before the trimming rather
+ * than after it, because it occupies the room the last row would otherwise be measured into.
+ *
+ * One article always stays. A window too short for even that is a window nothing can be fitted
+ * to, and an empty section under a heading reads as "no articles" rather than as "no room" -- so
+ * the page scrolls, which is the honest failure of the two.
+ *
+ * A hidden page has no geometry to read, so this stands aside for one -- `main.ts` calls it again
+ * when the Overview comes back.
+ */
+export function fitRecent(): void {
+	if (shown === undefined) return;
+	const { root, snapshot } = shown;
+	const scroller = root.closest<HTMLElement>('.page-content');
+	if (scroller === null || root.hidden || scroller.clientHeight === 0) return;
+
+	const list = requiredElement<HTMLUListElement>(root, '[data-recent-list]');
+	const all = requiredElement<HTMLButtonElement>(root, '[data-recent-all]');
+	list.replaceChildren(...snapshot.articles.recent.map(recentRow));
+
+	const overflows = (): boolean => scroller.scrollHeight > scroller.clientHeight;
+	all.hidden = !overflows() && snapshot.articles.recent.length >= snapshot.articles.total;
+	while (list.childElementCount > 1 && overflows()) list.lastElementChild?.remove();
+	all.hidden = list.childElementCount >= snapshot.articles.total;
+}
+
 function renderRecent(root: HTMLElement, snapshot: OverviewSnapshot): void {
 	const section = requiredElement<HTMLElement>(root, '[data-recent]');
-	const list = requiredElement<HTMLUListElement>(root, '[data-recent-list]');
-	list.replaceChildren();
 	section.hidden = snapshot.articles.recent.length === 0;
 
-	for (const article of snapshot.articles.recent) {
-		const item = document.createElement('li');
-		item.className = 'article-preview';
-		const copy = document.createElement('div');
-		copy.className = 'article-preview-copy';
-		const heading = document.createElement('div');
-		heading.className = 'article-preview-heading';
-		const title = document.createElement('strong');
-		title.className = 'article-preview-title';
-		title.textContent = article.title;
-		const leader = document.createElement('span');
-		leader.className = 'article-preview-leader';
-		const modified = document.createElement('time');
-		modified.className = 'article-preview-date';
-		modified.dateTime = article.modified;
-		modified.textContent = formatArticleDate(article.modified);
-		heading.appendChild(title);
-		heading.appendChild(leader);
-		heading.appendChild(modified);
-		copy.appendChild(heading);
-		if (article.subtitle !== null) {
-			const subtitle = document.createElement('p');
-			subtitle.className = 'article-preview-subtitle';
-			subtitle.textContent = article.subtitle;
-			copy.appendChild(subtitle);
+	// The snapshot carries the workspace total beside the articles it sends, so the exit names the
+	// number rather than promising "more".
+	requiredElement<HTMLElement>(root, '[data-recent-all-label]').textContent =
+		`View all ${countLabel(snapshot.articles.total, 'article')}`;
+
+	shown = { root, snapshot };
+	fitRecent();
+
+	if (!watchingViewport) {
+		const scroller = root.closest<HTMLElement>('.page-content');
+		if (scroller !== null) {
+			watchingViewport = true;
+			new ResizeObserver(() => fitRecent()).observe(scroller);
 		}
-		item.appendChild(articleThumbnail());
-		item.appendChild(copy);
-		list.appendChild(item);
 	}
 }
 

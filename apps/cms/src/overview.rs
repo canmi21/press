@@ -97,6 +97,14 @@ pub fn snapshot() -> Result<Snapshot, Error> {
 	Ok(snapshot_at(&repository)?)
 }
 
+/// How many recent articles a snapshot carries.
+///
+/// The Overview shows as many as its window has room for, so this is a ceiling and not the number
+/// on screen. It exists because the snapshot must stay a fixed size as the corpus grows, and it is
+/// this size because a full-height window on the tallest display anyone runs this on fits about
+/// two dozen rows -- an article past that could not be drawn whatever the layout did.
+const RECENT_CEILING: usize = 24;
+
 fn snapshot_at(repository: &Path) -> std::io::Result<Snapshot> {
 	let contents = repository.join("contents");
 	let public = repository.join("data").join("public");
@@ -141,7 +149,7 @@ fn snapshot_at(repository: &Path) -> std::io::Result<Snapshot> {
 		let right_stamp: jiff::Timestamp = right.modified.parse().expect("validated timestamp");
 		right_stamp.cmp(&left_stamp).then_with(|| left.title.cmp(&right.title))
 	});
-	recent_articles.truncate(3);
+	recent_articles.truncate(RECENT_CEILING);
 
 	let scan = refs::scan(&contents)?;
 	let content_ids = scan.cids();
@@ -229,7 +237,7 @@ mod tests {
 	}
 
 	#[test]
-	fn recent_articles_use_the_latest_authored_timestamp_and_stop_at_three() {
+	fn recent_articles_use_the_latest_authored_timestamp() {
 		let root = std::env::temp_dir().join(format!("cms-overview-recent-{}", std::process::id()));
 		let _ = std::fs::remove_dir_all(&root);
 		std::fs::create_dir_all(root.join("contents/notes")).expect("contents");
@@ -251,7 +259,7 @@ mod tests {
 		let found = snapshot_at(&root).expect("snapshot");
 		assert_eq!(
 			found.articles.recent.iter().map(|article| article.title.as_str()).collect::<Vec<_>>(),
-			vec!["Revised", "Fourth", "Third"]
+			vec!["Revised", "Fourth", "Third", "First"]
 		);
 		assert_eq!(found.articles.recent[0].modified, "2026-08-05T00:00:00Z");
 

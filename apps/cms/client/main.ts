@@ -9,7 +9,7 @@ import {
 	type DerivedReport,
 	type TaskRun,
 } from './derived';
-import { renderOverview, renderOverviewError, type OverviewSnapshot } from './overview';
+import { fitRecent, renderOverview, renderOverviewError, type OverviewSnapshot } from './overview';
 import './style.css';
 import { requiredElement } from './dom';
 
@@ -105,10 +105,23 @@ function selectPage(page: Page): void {
 	articles.hidden = page !== 'articles';
 	derived.hidden = page !== 'derived';
 	document.title = selected.title;
+	// The recent list is measured against the window, and a hidden page has nothing to measure.
+	// Coming back to the Overview is the moment its geometry exists again.
+	if (page === 'overview') fitRecent();
 }
 
 for (const link of pageLinks) {
 	link.addEventListener('click', () => selectPage(pageOf(link)));
+}
+
+// A shortcut to a page from somewhere that is not the page list -- the overview's way out to every
+// article. It selects a page without claiming to be the current one, which is why it is a separate
+// attribute rather than another `data-page`: the Articles link in the sidebar is what answers
+// "where am I", and two elements claiming aria-current give a screen reader two answers.
+for (const shortcut of document.querySelectorAll<HTMLButtonElement>('[data-goto-page]')) {
+	const page = shortcut.dataset.gotoPage;
+	if (page === undefined || !(page in pages)) throw new Error('a shortcut names no known page');
+	shortcut.addEventListener('click', () => selectPage(page as Page));
 }
 
 if ('__TAURI_INTERNALS__' in window) {

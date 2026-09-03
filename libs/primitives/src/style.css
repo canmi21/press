@@ -10,6 +10,13 @@
 	border-radius: 0.875rem;
 }
 
+/* Hovering belongs to the shared row, not to each consumer. The site carried it as a utility
+   class on its own <a> and the CMS carried nothing, so one app lit the row up and the other left
+   it flat -- a difference nobody chose, in the one package that exists to stop exactly that. */
+.article-preview:hover {
+	background: var(--color-paper-hover);
+}
+
 .article-preview-thumbnail {
 	display: flex;
 	width: 2.9375rem;
