@@ -16,18 +16,18 @@
  * same one, so the spring is too.
  */
 
-import { NEGLIGIBLE_PIXELS, pressSpring, prefersReducedMotion } from '@canmi/motion';
+import { NEGLIGIBLE_PIXELS, pressMotion, prefersReducedMotion } from '@canmi/motion';
 import { animate } from 'motion';
 import { DEFAULT_PIXELS_PER_REM, remFromMeasuredPixels } from '$lib/client/units';
 
 /**
- * Firm and barely overshooting: a panel answering a press, not a thing being thrown.
+ * A panel answering a press, not a thing being thrown.
  *
- * Derived from the distance rather than fixed, so a short disclosure is a quick one -- see
- * `TRAVEL_SPEED` in `@canmi/motion` for the measurements that forced that. The name stays because
- * this is what the site's disclosures call the gesture.
+ * Derived from the distance rather than fixed, so a short disclosure is a quick one, and a tween
+ * rather than a spring so it ends when it says it will -- see `@canmi/motion` for the
+ * measurements behind both.
  */
-export const collapseSpring = pressSpring;
+export const collapseMotion = pressMotion;
 
 export type AnimationControl = { stop: () => void };
 
@@ -73,7 +73,7 @@ export function animateHeight(
 		DEFAULT_PIXELS_PER_REM;
 	let control: AnimationControl;
 	control = animate(currentPixels, targetPixels, {
-		...collapseSpring(targetPixels - currentPixels),
+		...collapseMotion(targetPixels - currentPixels),
 		onUpdate: (height) => {
 			element.style.setProperty('height', remFromMeasuredPixels(Math.max(0, height), rootPixels));
 			onFrame?.(height);

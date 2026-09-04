@@ -13,7 +13,7 @@
  * put it there. See spec/architecture/cms.md.
  */
 
-import { NEGLIGIBLE_PIXELS, pressSpring, prefersReducedMotion } from '@canmi/motion';
+import { NEGLIGIBLE_PIXELS, pressMotion, prefersReducedMotion } from '@canmi/motion';
 import { animate } from 'motion';
 
 type Control = { stop: () => void };
@@ -67,7 +67,7 @@ export function slideIndicator(indicator: HTMLElement, active: HTMLElement): voi
 	// The bar's own travel, so a hop between two neighbours is quicker than one across the strip.
 	const travelled = Math.abs(to - from) + Math.abs(width - fromWidth);
 	const control: Control = animate(0, 1, {
-		...pressSpring(travelled),
+		...pressMotion(travelled),
 		onUpdate: (progress: number) => {
 			apply(from + (to - from) * progress, fromWidth + (width - fromWidth) * progress);
 		},
@@ -115,7 +115,7 @@ export function animateHeight(panel: HTMLElement, expanded: boolean): void {
 
 	panel.style.height = `${from}px`;
 	const control: Control = animate(from, to, {
-		...pressSpring(to - from),
+		...pressMotion(to - from),
 		onUpdate: (height: number) => {
 			panel.style.height = `${Math.max(0, height)}px`;
 		},

@@ -195,10 +195,20 @@ the large. The distance now sets the time, from `TRAVEL_SPEED` in `@canmi/motion
 large move's own speed because that gesture already felt right. After: 0.39 and 0.33, with the
 article's panel down from 466ms to 265ms.
 
-`visualDuration` is the knob rather than `duration`: it is the time to visually arrive, with the
-spring's settle after it, so it is the number a person perceives and the right one to derive from
-a speed. Floors and ceilings keep a few pixels from finishing inside a frame and a very tall panel
-from outlasting the press that asked for it.
+**And it is a tween, not a spring, because a spring has no end.** It approaches its target
+asymptotically and stops when the library decides it is close enough -- for `motion` that is a
+`restDelta` of 0.01, a hundredth of a pixel, which is the right default for an opacity travelling
+0 to 1 and the wrong one for a height in pixels. Measured folding a group: 182ms of a 468ms move,
+39% of the time, spent covering the last three and a half pixels. Nothing visible happens during
+it and it reads as the panel being slow to let go -- not as dropped frames, which were measured
+and were zero. Correcting the rest thresholds recovered 74ms of that; the remainder is the curve
+itself, so the curve went.
+
+A duration with a strong ease-out keeps the character -- out hard, decelerating in -- and ends
+when it says it will, which is what makes a speed a promise rather than an average. It also makes
+opening and closing symmetric, measured at 247ms and 250ms for the same 178px where the spring
+was near 470ms both ways. Floors and ceilings keep a few pixels from finishing inside one frame
+and a very tall panel from outlasting the press that asked for it.
 
 **A page measures nothing while it is hidden.** The window opens on the Overview, so the library's
 first draw happens with its tabs reporting zero width -- and an indicator placed there is pinned
