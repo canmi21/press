@@ -3266,71 +3266,6 @@ segments:
       seconds: 8.470347875
       tokens: 28857
       review: false
-  4edc626d80604f0f2f8fe841edd3a028:
-    de-DE:
-      text: '## Schlankeres :fn[Pseudo-SSR]{is="meint hier, dass zur Request-Zeit kein klassisches UI-Rendering läuft, der SSR-Effekt aber auf anderem Weg entsteht"} {#beyond-ssr}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:50:40.891262Z
-      seconds: 9.487355333
-      tokens: 29101
-      review: false
-    en-US:
-      text: '## Leaner :fn[pseudo-SSR]{is="here meaning specifically that no traditional UI render runs at request time, yet the effect of SSR is achieved by other means"} {#beyond-ssr}'
-      provider: anthropic
-      model: claude-fable-5
-      at: 2026-08-29T22:34:54.013015Z
-      seconds: 7.073140458
-      tokens: 28859
-      review: false
-    es-ES:
-      text: '## Un :fn[pseudo-SSR]{is="se refiere aquí a no ejecutar un render de UI tradicional en el momento de la petición y lograr el mismo efecto por otras vías"} más ligero {#beyond-ssr}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:50:40.891262Z
-      seconds: 9.487355333
-      tokens: 29101
-      review: false
-    fr-FR:
-      text: '## Un :fn[pseudo-SSR]{is="désigne ici le fait de ne pas exécuter de rendu d''UI classique au moment de la requête tout en obtenant le même effet par d''autres moyens"} plus léger {#beyond-ssr}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:50:40.891262Z
-      seconds: 9.487355333
-      tokens: 29101
-      review: false
-    ja-JP:
-      text: '## より軽量な:fn[疑似 SSR]{is="ここでは特に、リクエスト時に従来の UI render を実行せず、別の手段で SSR と同じ効果を得ることを指す"} {#beyond-ssr}'
-      provider: anthropic
-      model: claude-fable-5
-      at: 2026-08-29T22:34:54.013015Z
-      seconds: 7.073140458
-      tokens: 28859
-      review: false
-    ko-KR:
-      text: '## 더 간결한 :fn[유사 SSR]{is="요청 시점에 전통적인 UI 렌더를 실행하지 않고 다른 방식으로 SSR 효과를 낸다는 뜻"} {#beyond-ssr}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:50:40.891262Z
-      seconds: 9.487355333
-      tokens: 29101
-      review: false
-    zh-CN:
-      text: '## 更精简的:fn[伪 SSR]{is="特指请求时不执行传统的 UI render，而是用别的方式达到同样的 SSR 效果"} {#beyond-ssr}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:50:40.891262Z
-      seconds: 9.487355333
-      tokens: 29101
-      review: false
-    zh-TW:
-      text: '## 更精簡的:fn[偽 SSR]{is="特指在請求時不執行傳統的 UI render，而是用其他方式達到同樣的 SSR 效果"} {#beyond-ssr}'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:50:40.891262Z
-      seconds: 9.487355333
-      tokens: 29101
-      review: false
   53a659643a4d971d8216f8aee8c14b25:
     de-DE:
       text: 'Aber das kommt dem Idealzustand, den ich für Seam erreichen will, schon sehr nahe: Eine Svelte-Komponente entspricht nicht mehr „einem Renderer, der ausgeführt werden muss", sondern wird zu einer Ressource, die der Svelte-5-Compiler auseinandernehmen kann. Allein das umzusetzen ist für mich bereits eine sehr große konzeptionelle Verbesserung.'
@@ -8871,31 +8806,6 @@ segments:
       at: 2026-08-30T06:56:26.072026Z
       seconds: 11.910740542
       tokens: 29299
-      review: false
-  ebb02f3f8ed7d9f0b4f11d2108cbe47d:
-    de-DE:
-      text: '---'
-      provider: openai
-      model: gpt-oss-120b-medium
-      at: 2026-08-30T05:46:34.62398Z
-      seconds: 7.797984833
-      tokens: 13576
-      review: false
-    en-US:
-      text: '---'
-      provider: anthropic
-      model: claude-fable-5
-      at: 2026-08-29T22:37:52.6434Z
-      seconds: 3.058864458
-      tokens: 28153
-      review: false
-    ja-JP:
-      text: '---'
-      provider: anthropic
-      model: claude-fable-5
-      at: 2026-08-29T22:37:52.6434Z
-      seconds: 3.058864458
-      tokens: 28153
       review: false
   ef859ed0e4f61fe7d54c8bdcc41b8494:
     de-DE:

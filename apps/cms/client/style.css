@@ -745,10 +745,7 @@ button {
 	stroke-width: 2.75;
 }
 
-.col-modified {
-	justify-content: flex-end;
-	text-align: right;
-}
+
 
 .row {
 	position: relative;
@@ -874,7 +871,6 @@ button {
 
 .row-modified {
 	font-variant-numeric: tabular-nums;
-	text-align: right;
 }
 
 .row-detail-text[data-tone='underway'] {
