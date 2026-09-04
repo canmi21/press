@@ -146,7 +146,12 @@
 	 * for what they were writing.
 	 */
 	function onWindowKeydown(event: KeyboardEvent) {
-		if (event.key.toLowerCase() === 'k' && (event.metaKey || event.ctrlKey)) {
+		// `key` is absent when the keydown did not come from the browser. A real one always
+		// carries it, so what this guards is the environment rather than the keyboard: an
+		// extension, a password manager or an automation harness dispatching a plain Event
+		// under the `keydown` name reaches here typed as something it is not, and calling a
+		// string method on nothing threw for a live reader mid-sentence in the newsletter field.
+		if (event.key?.toLowerCase() === 'k' && (event.metaKey || event.ctrlKey)) {
 			event.preventDefault();
 			onOpenChange(!open);
 		}
