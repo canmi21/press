@@ -187,6 +187,26 @@ from task to the findings it closes is one table in
 there rather than a branch. This is the page's only claim about live state, and it is the reason
 the library polls the same registry the Derived page does.
 
+**A press moves at a speed, not for a duration.** A spring with fixed stiffness settles in roughly
+the same time whatever distance it covers, so a short move is a slow one. Measured on this page,
+both on the same spring: a group of four folded 203px in 512ms while one article's panel opened
+86px in 466ms -- 0.40 against 0.19 pixels a millisecond, and the small one read as sluggish beside
+the large. The distance now sets the time, from `TRAVEL_SPEED` in `@canmi/motion`, which is the
+large move's own speed because that gesture already felt right. After: 0.39 and 0.33, with the
+article's panel down from 466ms to 265ms.
+
+`visualDuration` is the knob rather than `duration`: it is the time to visually arrive, with the
+spring's settle after it, so it is the number a person perceives and the right one to derive from
+a speed. Floors and ceilings keep a few pixels from finishing inside a frame and a very tall panel
+from outlasting the press that asked for it.
+
+**A page measures nothing while it is hidden.** The window opens on the Overview, so the library's
+first draw happens with its tabs reporting zero width -- and an indicator placed there is pinned
+to nothing and, worse, marked as placed, so its real placement then animates in from the left edge
+as though it were a loading effect. Both halves are needed: the placement declines to run without
+geometry, and being shown re-runs it. The Overview already re-fits its recent list for this exact
+reason; the rule is the page's, not that one list's.
+
 **Anything that opens or closes animates its own height, on the one spring.** A group folding, an
 article's panel, and whatever grows a disclosure next: if a press changes the shape of a box, the
 box travels between the two shapes rather than snapping. The gesture is `animateHeight` in
@@ -207,6 +227,10 @@ spring as everything else and the motion is interruptible by construction: a run
 stopped before another starts and the new one departs from wherever the old had reached, so a
 double press reverses rather than queueing. Folding is the one interaction that does not redraw
 the list, because a rebuild mid-flight would destroy the element the animation is holding.
+
+A row's grid sets `column-gap` rather than `gap`. With both, the folded panel underneath still cost
+a row-gap's band beneath the title, so the hover rectangle stood 7px taller than its content and
+the title sat above its centre -- a gap around a zero-height thing is still a gap.
 
 **Rows carry ticks, and the actions read what the ticks mean.** A row's tick sits directly under
 its group's mark, which is why the band, the column names and the rows share one leading column --

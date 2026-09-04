@@ -2,6 +2,7 @@ import { followSystemTheme } from '@canmi/theme';
 import { invoke } from '@tauri-apps/api/core';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import {
+	fitArticles,
 	renderArticles,
 	renderArticleRuns,
 	renderArticlesError,
@@ -112,9 +113,11 @@ function selectPage(page: Page): void {
 	articles.hidden = page !== 'articles';
 	derived.hidden = page !== 'derived';
 	document.title = selected.title;
-	// The recent list is measured against the window, and a hidden page has nothing to measure.
-	// Coming back to the Overview is the moment its geometry exists again.
+	// Measured against the window, and a hidden page has nothing to measure. Being shown is the
+	// moment a page's geometry exists: the Overview re-fits its recent list, and the library
+	// re-places the bar under its tabs.
 	if (page === 'overview') fitRecent();
+	if (page === 'articles') fitArticles();
 }
 
 for (const link of pageLinks) {

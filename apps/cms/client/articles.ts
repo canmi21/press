@@ -586,6 +586,21 @@ export function renderArticles(root: HTMLElement, next: ArticleListing): void {
 	draw();
 }
 
+/**
+ * Re-measure what only exists on screen.
+ *
+ * The tab indicator is positioned from its tab's box, and a hidden page has no box -- the same
+ * reason the Overview re-fits its recent list when it is shown. Showing the library is the moment
+ * that geometry exists.
+ */
+export function fitArticles(): void {
+	const root = document.querySelector<HTMLElement>('[data-articles]');
+	if (root === null) return;
+	const active = root.querySelector<HTMLButtonElement>('[data-group][aria-selected="true"]');
+	const indicator = root.querySelector<HTMLElement>('[data-tab-indicator]');
+	if (active !== null && indicator !== null) slideIndicator(indicator, active);
+}
+
 export function renderArticleRuns(next: TaskRun[]): void {
 	runs = next;
 	draw();

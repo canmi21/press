@@ -13,7 +13,7 @@
  * put it there. See spec/architecture/cms.md.
  */
 
-import { NEGLIGIBLE_PIXELS, PRESS_SPRING, prefersReducedMotion } from '@canmi/motion';
+import { NEGLIGIBLE_PIXELS, pressSpring, prefersReducedMotion } from '@canmi/motion';
 import { animate } from 'motion';
 
 type Control = { stop: () => void };
@@ -34,6 +34,11 @@ export function slideIndicator(indicator: HTMLElement, active: HTMLElement): voi
 
 	const to = active.offsetLeft;
 	const width = active.offsetWidth;
+	// A hidden page has no geometry, and the CMS opens on the Overview -- so the library's first
+	// draw happens while its tabs measure zero. Placing the bar there would pin it to nothing and,
+	// worse, mark it placed, so the real placement would then animate in from the left edge.
+	// Leaving both alone means the first press, or the page being shown, is still the silent one.
+	if (width === 0) return;
 	const placed = indicator.dataset.placed !== undefined;
 
 	running.get(indicator)?.stop();
@@ -59,8 +64,10 @@ export function slideIndicator(indicator: HTMLElement, active: HTMLElement): voi
 
 	// One animation drives both values off a single 0..1 progress, so the bar cannot arrive at its
 	// destination before it has finished resizing.
+	// The bar's own travel, so a hop between two neighbours is quicker than one across the strip.
+	const travelled = Math.abs(to - from) + Math.abs(width - fromWidth);
 	const control: Control = animate(0, 1, {
-		...PRESS_SPRING,
+		...pressSpring(travelled),
 		onUpdate: (progress: number) => {
 			apply(from + (to - from) * progress, fromWidth + (width - fromWidth) * progress);
 		},
@@ -108,7 +115,7 @@ export function animateHeight(panel: HTMLElement, expanded: boolean): void {
 
 	panel.style.height = `${from}px`;
 	const control: Control = animate(from, to, {
-		...PRESS_SPRING,
+		...pressSpring(to - from),
 		onUpdate: (height: number) => {
 			panel.style.height = `${Math.max(0, height)}px`;
 		},

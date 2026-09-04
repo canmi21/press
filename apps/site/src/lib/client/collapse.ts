@@ -16,18 +16,18 @@
  * same one, so the spring is too.
  */
 
-import { NEGLIGIBLE_PIXELS, PRESS_SPRING, prefersReducedMotion } from '@canmi/motion';
+import { NEGLIGIBLE_PIXELS, pressSpring, prefersReducedMotion } from '@canmi/motion';
 import { animate } from 'motion';
 import { DEFAULT_PIXELS_PER_REM, remFromMeasuredPixels } from '$lib/client/units';
 
 /**
  * Firm and barely overshooting: a panel answering a press, not a thing being thrown.
  *
- * Re-exported rather than declared: the CMS's tab indicator rides the same spring, so the numbers
- * moved to `@canmi/motion` when it became the second consumer. The name stays because this is
- * what the site's disclosures call it.
+ * Derived from the distance rather than fixed, so a short disclosure is a quick one -- see
+ * `TRAVEL_SPEED` in `@canmi/motion` for the measurements that forced that. The name stays because
+ * this is what the site's disclosures call the gesture.
  */
-export const COLLAPSE_SPRING = PRESS_SPRING;
+export const collapseSpring = pressSpring;
 
 export type AnimationControl = { stop: () => void };
 
@@ -73,7 +73,7 @@ export function animateHeight(
 		DEFAULT_PIXELS_PER_REM;
 	let control: AnimationControl;
 	control = animate(currentPixels, targetPixels, {
-		...COLLAPSE_SPRING,
+		...collapseSpring(targetPixels - currentPixels),
 		onUpdate: (height) => {
 			element.style.setProperty('height', remFromMeasuredPixels(Math.max(0, height), rootPixels));
 			onFrame?.(height);
