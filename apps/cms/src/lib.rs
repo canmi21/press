@@ -7,7 +7,7 @@ mod classify;
 mod embed;
 mod extension;
 pub mod favicon;
-mod gc;
+pub mod gc;
 mod i18n;
 pub mod image;
 mod licenses;

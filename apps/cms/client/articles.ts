@@ -1,3 +1,4 @@
+import { invoke } from '@tauri-apps/api/core';
 import { requiredElement } from './dom';
 import { animateHeight, animateWidth, slideIndicator } from './motion';
 import type { TaskRun } from './derived';
@@ -148,8 +149,14 @@ function detailText(article: Article): string {
 	return `${article.segments} segments, all current`;
 }
 
-function commandFor(article: Article): string {
-	return article.orphans > 0 || article.gaps.length > 0 ? 'cms locale' : 'cms summary';
+/**
+ * Whether this article has anything a sweep would take.
+ *
+ * Stale segments are the only thing an article carries that deleting fixes. Missing translations
+ * and missing summaries are work to be *made*, and no sweep makes them.
+ */
+function sweepable(article: Article): boolean {
+	return article.orphans > 0;
 }
 
 function detail(article: Article, locales: string[]): HTMLElement {
@@ -179,16 +186,25 @@ function detail(article: Article, locales: string[]): HTMLElement {
  * the half of a run mechanism that lies. The shape is here so that enabling one later changes no
  * layout. See spec/architecture/cms.md.
  */
-function actionMenu(entries: Array<[string, string]>): HTMLElement {
+type Action = { name: string; why: string; run?: () => void };
+
+function actionMenu(entries: Action[]): HTMLElement {
 	const panel = element('div', 'menu');
 	panel.dataset.menu = 'actions';
-	for (const [name, why] of entries) {
+	for (const entry of entries) {
 		const option = document.createElement('button');
 		option.type = 'button';
 		option.className = 'menu-option';
-		option.textContent = name;
-		option.disabled = true;
-		option.title = why;
+		option.textContent = entry.name;
+		option.title = entry.why;
+		if (entry.run === undefined) option.disabled = true;
+		else {
+			option.addEventListener('click', (event) => {
+				event.stopPropagation();
+				menu = null;
+				entry.run?.();
+			});
+		}
 		panel.appendChild(option);
 	}
 	return panel;
@@ -196,7 +212,7 @@ function actionMenu(entries: Array<[string, string]>): HTMLElement {
 
 /** Dots rather than a named button: there will be more than one action, and Run repeated down a
  *  column was the same word said six times. */
-function dots(key: string, entries: Array<[string, string]>): HTMLElement {
+function dots(key: string, entries: Action[]): HTMLElement {
 	const anchor = element('div', 'menu-anchor');
 	const button = document.createElement('button');
 	button.type = 'button';
@@ -283,12 +299,19 @@ function renderRow(article: Article, locales: string[]): HTMLElement {
 	open.append(element('span', 'row-title', article.title), line, modified);
 	row.appendChild(open);
 
-	const command = commandFor(article);
 	row.appendChild(
-		dots(`row:${article.path}`, [
-			[`Run ${command}`, `Not runnable from here yet -- \`${command}\` closes this in a terminal.`],
-			['Open in the editor', 'The editor is not built yet.'],
-		]),
+		dots(
+			`row:${article.path}`,
+			sweepable(article)
+				? [
+						{
+							name: `Sweep ${article.orphans} stale ${article.orphans === 1 ? 'segment' : 'segments'}`,
+							why: 'Deletes translations for paragraphs this article no longer has.',
+							run: () => sweep([article.path]),
+						},
+					]
+				: [{ name: 'Open in the editor', why: 'The editor is not built yet.' }],
+		),
 	);
 
 	// Always built, and folded shut when closed. A panel that only exists while open cannot be
@@ -398,23 +421,47 @@ function ordered(articles: Article[]): Article[] {
  * than left to be discovered, because one button with two readings is exactly what an interface
  * has to state out loud.
  */
-function groupEntries(name: string, articles: Article[]): Array<[string, string]> {
-	const ticked = articles.filter((article) => selected.has(article.path)).length;
-	// Short enough not to wrap, and it still says which of the two things it would do. The count
-	// belongs in the title, where it can be as long as it needs to be.
-	return ticked > 0
-		? [
-				[
-					'Run selected',
-					`Not runnable from here yet -- would cover the ${ticked} ticked in ${name}.`,
-				],
-			]
-		: [
-				[
-					`Run ${name}`,
-					`Not runnable from here yet -- would cover all ${articles.length} in ${name}.`,
-				],
-			];
+function groupEntries(name: string, articles: Article[]): Action[] {
+	const ticked = articles.filter((article) => selected.has(article.path));
+	const considered = ticked.length > 0 ? ticked : articles;
+	const covered = considered.filter(sweepable);
+	const scope = ticked.length > 0 ? `${considered.length} ticked` : `${considered.length} in ${name}`;
+	const segments = covered.reduce((total, article) => total + article.orphans, 0);
+
+	// Short enough not to wrap, and it still says which of the two things it would do. What it
+	// would cover belongs in the title, where it can be as long as it needs to be.
+	if (segments === 0) return [{ name: 'Sweep', why: `Nothing stale in the ${scope}.` }];
+	return [
+		{
+			name: ticked.length > 0 ? 'Sweep selected' : `Sweep ${name}`,
+			why: `Deletes ${segments} stale ${segments === 1 ? 'segment' : 'segments'} from ${covered.length} of the ${scope}.`,
+			run: () => sweep(covered.map((article) => article.path)),
+		},
+	];
+}
+
+/**
+ * Take the stale segments out of these articles, then read the library back.
+ *
+ * Not a task and not on a thread. The catalogue exists for work that takes minutes, asks a model,
+ * or cannot safely run twice at once; this is a YAML rewrite per article under the record's own
+ * lock, and giving it a progress bar would describe something nobody can watch. What it does need
+ * is the listing again, because the numbers it just changed are on screen.
+ */
+function sweep(paths: string[]): void {
+	if (paths.length === 0) return;
+	void invoke<number>('sweep_segments', { articles: paths })
+		.then(() => invoke<ArticleListing>('article_listing'))
+		.then((next) => {
+			listing = next;
+			draw();
+		})
+		.catch((error: unknown) => {
+			const notice = document.querySelector<HTMLElement>('[data-articles-error]');
+			if (notice === null) return;
+			notice.hidden = false;
+			notice.textContent = error instanceof Error ? error.message : String(error);
+		});
 }
 
 function renderGroup(

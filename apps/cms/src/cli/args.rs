@@ -261,6 +261,12 @@ pub enum Command {
 		/// Actually delete. Without it the sweep is printed and nothing is touched.
 		#[arg(long)]
 		live: bool,
+		/// Sweep translations for paragraphs an article no longer has, instead of published bytes
+		#[arg(long)]
+		segments: bool,
+		/// Limit to these articles, relative to `contents`; repeatable. Implies `--segments`
+		#[arg(long, value_name = "PATH")]
+		article: Vec<String>,
 	},
 
 	/// Search Twitter

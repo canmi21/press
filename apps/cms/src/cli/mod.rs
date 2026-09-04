@@ -88,7 +88,13 @@ fn dispatch(command: Command) -> anyhow::Result<ExitCode> {
 				&articles,
 			)
 		}
-		Command::Gc { live } => collect_garbage(live),
+		Command::Gc { live, segments, article } => {
+			if segments || !article.is_empty() {
+				collect_segments(live, &article)
+			} else {
+				collect_garbage(live)
+			}
+		}
 		Command::Twitter { command } => twitter_command(command),
 	}
 }
@@ -723,6 +729,45 @@ fn check_assets() -> anyhow::Result<ExitCode> {
 
 /// Drop everything in `data/public` that no article asks for.
 ///
+/// Translations for paragraphs an article no longer has.
+///
+/// A separate sweep from the one below rather than part of it, because they collect unrelated
+/// rubbish and a person asking about one is not asking about the other. `cms gc` on its own still
+/// means exactly what it always meant. See spec/architecture/cms.md.
+///
+/// Scoped by `--article`, which is the same operation the desktop client calls with the rows
+/// somebody ticked.
+fn collect_segments(live: bool, scope: &[String]) -> anyhow::Result<ExitCode> {
+	let root = paths::repo_root()?;
+	let contents = root.join("contents");
+	let sweep = gc::segments::plan(&contents, scope).context("could not plan")?;
+
+	if sweep.is_empty() {
+		println!("nothing to collect");
+		return Ok(ExitCode::SUCCESS);
+	}
+
+	for stale in &sweep.articles {
+		println!("drop  {} stale segments in {}", stale.ids.len(), stale.article);
+	}
+	println!("{} segments across {} articles", sweep.total(), sweep.articles.len());
+
+	if !live {
+		println!("dry run -- pass --live to delete");
+		return Ok(ExitCode::SUCCESS);
+	}
+	match gc::segments::apply(&root, &contents, &sweep) {
+		Ok(dropped) => {
+			println!("collected {dropped} segments");
+			Ok(ExitCode::SUCCESS)
+		}
+		Err(error) => {
+			eprintln!("could not delete: {error}");
+			Ok(ExitCode::FAILURE)
+		}
+	}
+}
+
 /// Dry by default. The listing is the review, and `--live` is the answer to it.
 fn collect_garbage(live: bool) -> anyhow::Result<ExitCode> {
 	let root = paths::repo_root()?;

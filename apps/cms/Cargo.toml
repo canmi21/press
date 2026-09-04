@@ -82,3 +82,10 @@ anyhow = "1.0.104"
 # approximate by hand, since it is the Hangul and full-width ranges that a hand-rolled guess gets
 # wrong, exactly where this is asked. See spec/i18n.md.
 unicode-width = "0.2.2"
+
+[dev-dependencies]
+# Temporary directories for tests. The hand-rolled alternative -- `std::env::temp_dir()` joined
+# with the process id -- is scattered through nine test modules here and has two faults this does
+# not: nothing removes the directory when a test panics, and two tests in one process that pick the
+# same name share it. `TempDir` deletes on drop and its name is unique by construction.
+tempfile = "3.27.0"

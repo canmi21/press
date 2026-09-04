@@ -162,6 +162,13 @@ second statement of the same fact was competing with the tick for the same edge.
 page is now spent on exactly one thing: blue, on the line of an article a run is touching right
 now, which nothing else says.
 
+A stale segment is not missing work. Editing a paragraph changes its id, so the old id keeps the
+translations it had -- one per locale, with the provider and token count that paid for them --
+while the new id gets its own. Nothing reader-facing is wrong: every live paragraph is translated.
+What is left is a sidecar growing by eight entries per typo. They are kept rather than dropped on
+sight because a corrected typo leaves a translation still almost right; that is the argument for a
+sweep somebody asks for, and against one a translation run performs on its way past.
+
 **Rows are grouped by what they need, not by where they live.** Todo, In Progress, Complete -- and
 a group with nothing in it is not drawn. A group opens with a band across the full width carrying
 its name and a count, and the rows beneath it carry no rule between them: the band already says
@@ -284,12 +291,22 @@ gives no reason to believe pressing it a third time would do anything.
 With no column pressed the menu above decides, which is what default means here, and choosing from
 that menu takes the ordering back off whichever column was holding it.
 
-**An action is drawn before it can run, and drawn visibly inert.** The Action column carries the
-control that will start the work, disabled, with the command that does it today in its title. This
-is the one place the rule above is approached from the other side: the affordance exists so the
-page has its final shape, and it is unmistakably not pressable so it cannot be the half of a run
-mechanism that lies. It becomes live when the operation moves below both shells, and nothing about
-the layout changes when it does.
+**A mutation is not a task, and does not wait for the task substrate.** The catalogue exists for
+work that takes minutes, asks a model, or cannot safely run twice at once. Sweeping an article's
+stale segments is a YAML rewrite taken under that record's own lock: it has no progress worth
+reporting and nothing to refuse a second copy of beyond the lock it already takes. So it is a live
+menu entry today, called synchronously, and the listing is read back afterwards because the numbers
+it changed are on screen. Drawing a progress bar for it would describe something nobody can watch.
+
+An action that *is* a task stays drawn and visibly inert until the operation moves below both
+shells -- the affordance exists so the page has its final shape, and it is unmistakably not
+pressable so it cannot be the half of a run mechanism that lies.
+
+**What an action offers has to be something that exists.** The row menu offered `cms locale`
+against stale segments, and running it would not have removed one: `store::orphans` was called in
+two places and both were counting. The number was a notice the CLI printed, and the interface read
+it as a queue. Sweeping them is now a real operation, so the entry is real; the group's own entry
+covers the whole group, or the ticked rows, and says which in its title.
 
 **Selection moves rather than redraws.** A tab strip is about place, so one bar travels between
 the tabs instead of each tab lighting its own underline, and the rail it rides on is not drawn at

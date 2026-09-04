@@ -7,6 +7,13 @@
 //! algorithm, so the deletion waits to be asked for. See spec/architecture/data.md.
 //!
 //! Dry by default, like `mise run sync`, and for the same reason: the output is the review.
+//!
+//! **Two sweeps live here and they collect different rubbish.** This module drops published bytes
+//! nothing references; [segments] drops translations for paragraphs an article no longer contains.
+//! They share a word -- each calls its findings orphans -- and nothing else, which is why they are
+//! separate modules rather than one plan carrying two lists.
+
+pub mod segments;
 
 use crate::image::run::{MERGED, load};
 use crate::licenses;
