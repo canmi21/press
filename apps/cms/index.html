@@ -132,11 +132,20 @@
 					</div>
 
 					<div class="articles" data-articles aria-live="polite" hidden>
-						<header class="page-subheading">
-							<span data-articles-total>— articles</span>
-							<span data-articles-state>Reading…</span>
+						<header class="library-head">
+							<div class="library-title">
+								<h1>Articles</h1>
+								<div class="segmented" role="group" aria-label="Filter articles">
+									<button type="button" data-filter="all" aria-pressed="true">All</button>
+									<button type="button" data-filter="attention" aria-pressed="false">
+										Needs a pass
+									</button>
+								</div>
+							</div>
+							<p class="library-lede" data-articles-state>Reading the library…</p>
+							<div class="library-meta" data-articles-total aria-label="Library summary"></div>
 						</header>
-						<div data-articles-list></div>
+						<div class="ledger" data-articles-list></div>
 					</div>
 
 					<div class="derived" data-derived aria-live="polite" hidden>

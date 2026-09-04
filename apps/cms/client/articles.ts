@@ -1,4 +1,3 @@
-import { articleThumbnail, formatArticleDate } from './article-preview';
 import { requiredElement } from './dom';
 
 export type ArticleListing = {
@@ -22,6 +21,31 @@ export type ArticleListing = {
 
 type Article = ArticleListing['articles'][number];
 
+type Filter = 'all' | 'attention';
+
+let listing: ArticleListing | null = null;
+let filter: Filter = 'all';
+let opened: string | null = null;
+
+/**
+ * Whether an article is carrying work.
+ *
+ * Three unrelated conditions, and they are equally outstanding: a locale short of segments, a
+ * missing summary, and segments an edit left stale. Nothing here ranks them, because the page
+ * does not know which the author would rather do first.
+ */
+function outstanding(article: Article): boolean {
+	return article.gaps.length > 0 || article.summaryGaps.length > 0 || article.orphans > 0;
+}
+
+function formatDate(value: string): string {
+	return new Date(value).toLocaleDateString('en-US', {
+		year: 'numeric',
+		month: 'short',
+		day: 'numeric',
+	});
+}
+
 function sectionLabel(name: string): string {
 	return name
 		.split('-')
@@ -29,109 +53,171 @@ function sectionLabel(name: string): string {
 		.join(' ');
 }
 
-function gapSummary(article: Article): string | null {
-	const parts: string[] = [];
-	const segments = article.gaps.reduce((total, gap) => total + gap.segments, 0);
-	if (segments > 0) {
+function element<K extends keyof HTMLElementTagNameMap>(
+	tag: K,
+	className: string,
+	text?: string,
+): HTMLElementTagNameMap[K] {
+	const node = document.createElement(tag);
+	node.className = className;
+	if (text !== undefined) node.textContent = text;
+	return node;
+}
+
+/** The work an article is carrying, as short phrases rather than one joined sentence. */
+function findings(article: Article): string[] {
+	const found: string[] = [];
+	const missing = article.gaps.reduce((total, gap) => total + gap.segments, 0);
+	if (missing > 0) {
 		const locales = article.gaps.map((gap) => gap.locale).join(', ');
-		parts.push(
-			`${segments} translation ${segments === 1 ? 'segment' : 'segments'} missing in ${locales}`,
-		);
+		found.push(`${missing} ${missing === 1 ? 'segment' : 'segments'} untranslated in ${locales}`);
 	}
 	if (article.summaryGaps.length > 0) {
-		parts.push(`Summary missing in ${article.summaryGaps.join(', ')}`);
+		found.push(`No summary in ${article.summaryGaps.join(', ')}`);
 	}
 	if (article.orphans > 0) {
-		parts.push(
+		found.push(
 			`${article.orphans} stale ${article.orphans === 1 ? 'segment' : 'segments'} from an edit`,
 		);
 	}
-	return parts.length === 0 ? null : parts.join(' · ');
+	return found;
 }
 
-function renderArticle(article: Article): HTMLLIElement {
-	const item = document.createElement('li');
-	item.className = 'article-preview article-library-row';
+/**
+ * The panel a row opens.
+ *
+ * It carries what the row deliberately left out -- the subtitle, the path, where each locale
+ * stands -- plus the command that closes the work. The command is text, not a button: an
+ * operation only becomes a control once the task substrate can watch it and refuse a second
+ * copy, and `cms locale` has not moved below the shells yet. See spec/architecture/cms.md.
+ */
+function detail(article: Article, locales: string[]): HTMLElement {
+	const panel = element('div', 'row-detail');
 
-	const copy = document.createElement('div');
-	copy.className = 'article-preview-copy';
-	const heading = document.createElement('div');
-	heading.className = 'article-preview-heading';
-	const title = document.createElement('strong');
-	title.className = 'article-preview-title';
-	title.textContent = article.title;
-	heading.appendChild(title);
+	if (article.subtitle !== null) panel.appendChild(element('p', 'row-subtitle', article.subtitle));
+	panel.appendChild(element('p', 'row-path', article.path));
 
-	if (article.modified !== null) {
-		const leader = document.createElement('span');
-		leader.className = 'article-preview-leader';
-		const modified = document.createElement('time');
-		modified.className = 'article-preview-date';
-		modified.dateTime = article.modified;
-		modified.textContent = formatArticleDate(article.modified);
-		heading.appendChild(leader);
-		heading.appendChild(modified);
+	const short = new Map(article.gaps.map((gap) => [gap.locale, gap.segments]));
+	const coverage = element('div', 'locales');
+	for (const locale of locales) {
+		const missing = short.get(locale) ?? 0;
+		const chip = element('span', 'locale', locale);
+		// The source language is not a translation of anything, so it is marked as the origin
+		// rather than counted as complete.
+		if (locale === locales[0]) chip.dataset.state = 'source';
+		else if (missing > 0) chip.dataset.state = 'short';
+		if (missing > 0) chip.title = `${missing} segments missing`;
+		coverage.appendChild(chip);
 	}
-	copy.appendChild(heading);
+	panel.appendChild(coverage);
 
-	const subtitle = document.createElement('p');
-	subtitle.className = 'article-preview-subtitle';
-	subtitle.textContent = article.subtitle ?? article.path;
-	copy.appendChild(subtitle);
+	const found = findings(article);
+	if (found.length > 0) {
+		const list = element('ul', 'row-findings');
+		for (const line of found) list.appendChild(element('li', '', line));
+		panel.appendChild(list);
 
-	const gap = gapSummary(article);
-	if (gap !== null) {
-		const detail = document.createElement('p');
-		detail.className = 'article-library-gap';
-		detail.textContent = gap;
-		copy.appendChild(detail);
+		const command = element('p', 'row-command');
+		command.appendChild(element('code', '', article.orphans > 0 ? 'cms locale' : 'cms summary'));
+		command.appendChild(document.createTextNode(' closes this from a terminal.'));
+		panel.appendChild(command);
 	}
 
-	item.appendChild(articleThumbnail());
-	item.appendChild(copy);
-	return item;
+	return panel;
 }
 
-export function renderArticles(root: HTMLElement, listing: ArticleListing): void {
-	const total = listing.articles.length;
-	const sections = new Map<string, Article[]>();
-	for (const article of listing.articles) {
-		const existing = sections.get(article.section);
-		if (existing === undefined) sections.set(article.section, [article]);
-		else existing.push(article);
+function renderRow(article: Article, locales: string[]): HTMLElement {
+	const row = element('div', 'row');
+	if (outstanding(article)) row.dataset.attention = '';
+	if (opened === article.path) row.dataset.open = '';
+
+	const summary = document.createElement('button');
+	summary.type = 'button';
+	summary.className = 'row-summary';
+	summary.setAttribute('aria-expanded', opened === article.path ? 'true' : 'false');
+
+	const identity = element('span', 'row-identity');
+	identity.appendChild(element('span', 'row-title', article.title));
+
+	const section = element('span', 'row-section', sectionLabel(article.section));
+	const segments = element('span', 'row-segments', String(article.segments));
+
+	const state = element('span', 'row-state');
+	if (article.orphans > 0) state.textContent = `${article.orphans} stale`;
+	else if (article.gaps.length > 0 || article.summaryGaps.length > 0) state.textContent = 'Gaps';
+
+	const modified = element('span', 'row-modified');
+	if (article.modified !== null) modified.textContent = formatDate(article.modified);
+
+	summary.append(identity, section, segments, state, modified);
+	summary.addEventListener('click', () => {
+		opened = opened === article.path ? null : article.path;
+		draw();
+	});
+
+	row.appendChild(summary);
+	if (opened === article.path) row.appendChild(detail(article, locales));
+	return row;
+}
+
+function draw(): void {
+	if (listing === null) return;
+	const root = requiredElement<HTMLElement>(document, '[data-articles]');
+	const behind = listing.articles.filter(outstanding);
+
+	// Outstanding first, then most recently touched. Sorting by date alone buries the work under
+	// whatever was edited last, which is the arrangement this page had and the reason it read as
+	// an index rather than a queue.
+	const shown = (filter === 'attention' ? behind : listing.articles).toSorted((a, b) => {
+		if (outstanding(a) !== outstanding(b)) return outstanding(a) ? -1 : 1;
+		return (b.modified ?? '').localeCompare(a.modified ?? '');
+	});
+
+	const lede = requiredElement<HTMLElement>(root, '[data-articles-state]');
+	const stale = behind.reduce((total, article) => total + article.orphans, 0);
+	lede.textContent =
+		behind.length === 0
+			? 'Every article is translated, summarised and current.'
+			: `${stale} stale ${stale === 1 ? 'segment' : 'segments'} across ${behind.length} ${behind.length === 1 ? 'article' : 'articles'}.`;
+	lede.dataset.state = behind.length === 0 ? 'ready' : 'attention';
+
+	const meta = requiredElement<HTMLElement>(root, '[data-articles-total]');
+	const total = listing.articles.reduce((sum, article) => sum + article.segments, 0);
+	meta.replaceChildren(
+		element('span', '', `${listing.articles.length} articles`),
+		element('span', '', `${total} segments`),
+		element('span', '', `${listing.locales.length} locales`),
+	);
+
+	for (const control of root.querySelectorAll<HTMLButtonElement>('[data-filter]')) {
+		const active = control.dataset.filter === filter;
+		control.setAttribute('aria-pressed', active ? 'true' : 'false');
 	}
-
-	requiredElement<HTMLElement>(root, '[data-articles-total]').textContent =
-		total === 0
-			? 'No articles yet.'
-			: `${total} ${total === 1 ? 'article' : 'articles'} across ${sections.size} ${sections.size === 1 ? 'section' : 'sections'}.`;
-
-	const behind = listing.articles.filter((article) => gapSummary(article) !== null).length;
-	const state = requiredElement<HTMLElement>(root, '[data-articles-state]');
-	state.hidden = behind === 0;
-	state.textContent = behind === 0 ? '' : `${behind} need attention`;
-	delete state.dataset.state;
 
 	const list = requiredElement<HTMLElement>(root, '[data-articles-list]');
 	list.replaceChildren();
-	for (const [section, articles] of sections) {
-		const group = document.createElement('section');
-		group.className = 'article-group';
-		const heading = document.createElement('h2');
-		heading.textContent = sectionLabel(section);
-		const items = document.createElement('ul');
-		items.className = 'article-list';
-		for (const article of articles) items.appendChild(renderArticle(article));
-		group.appendChild(heading);
-		group.appendChild(items);
-		list.appendChild(group);
+	if (shown.length === 0) {
+		list.appendChild(element('p', 'ledger-empty', 'Nothing needs a pass.'));
+		return;
 	}
+	for (const article of shown) list.appendChild(renderRow(article, listing.locales));
+}
+
+export function renderArticles(root: HTMLElement, next: ArticleListing): void {
+	listing = next;
+	for (const control of root.querySelectorAll<HTMLButtonElement>('[data-filter]')) {
+		control.addEventListener('click', () => {
+			filter = control.dataset.filter === 'attention' ? 'attention' : 'all';
+			draw();
+		});
+	}
+	draw();
 }
 
 export function renderArticlesError(root: HTMLElement, error: unknown): void {
-	requiredElement<HTMLElement>(root, '[data-articles-total]').textContent = 'Articles unavailable.';
-	const state = requiredElement<HTMLElement>(root, '[data-articles-state]');
-	state.hidden = false;
-	state.textContent = error instanceof Error ? error.message : String(error);
-	state.dataset.state = 'error';
+	const lede = requiredElement<HTMLElement>(root, '[data-articles-state]');
+	lede.textContent = error instanceof Error ? error.message : String(error);
+	lede.dataset.state = 'error';
+	requiredElement<HTMLElement>(root, '[data-articles-total]').replaceChildren();
+	requiredElement<HTMLElement>(root, '[data-articles-list]').replaceChildren();
 }

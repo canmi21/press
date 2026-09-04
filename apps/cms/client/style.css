@@ -418,42 +418,237 @@ button {
 	color: var(--color-red);
 }
 
-.articles .page-subheading {
-	justify-content: flex-start;
-	padding-bottom: 0;
-	border-bottom: 0;
+/* The library is a ledger: one line per article, values in fixed columns, and a hairline only
+   between rows. No card, no outer box -- the opaque main pane is already the content surface,
+   and putting a second one inside it is the dashboard look this deliberately is not. */
+.library-head {
+	padding-bottom: 1.25rem;
 }
 
-.articles .page-subheading [data-articles-state] {
+.library-title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.library-title h1 {
+	margin: 0;
+	color: var(--color-text-strong);
+	font-size: 1.5rem;
+	font-weight: 600;
+	letter-spacing: -0.025em;
+	line-height: 1.25;
+}
+
+/* A segmented control in the platform's vocabulary rather than a pair of web buttons. Built here
+   from the neutral ramp: the native tokens next door are alpha colours meant to sit over macOS's
+   sidebar material, and over the opaque page they would read as grey smears. */
+.segmented {
+	display: flex;
+	flex: none;
+	padding: 0.125rem;
+	border: 0.0625rem solid var(--color-border);
+	border-radius: 0.5rem;
+	gap: 0.125rem;
+}
+
+.segmented button {
+	padding: 0.25rem 0.625rem;
+	border: 0;
+	border-radius: 0.375rem;
+	background: transparent;
+	color: var(--color-text-soft);
+	cursor: pointer;
+	font-size: 0.75rem;
+	transition:
+		background-color 160ms,
+		color 160ms;
+}
+
+.segmented button:hover {
+	color: var(--color-text);
+}
+
+.segmented button[aria-pressed='true'] {
+	background: var(--color-paper);
+	box-shadow: 0 0.0625rem 0.125rem oklch(0 0 0 / 0.08);
+	color: var(--color-text-strong);
+}
+
+.library-lede {
+	margin: 0.625rem 0 0;
+	color: var(--color-text);
+	font-size: 0.9375rem;
+	line-height: 1.55;
+}
+
+.library-lede[data-state='error'] {
 	color: var(--color-red);
 }
 
-.article-group + .article-group {
-	margin-top: 2rem;
+.library-meta {
+	display: flex;
+	margin-top: 0.625rem;
+	flex-wrap: wrap;
+	gap: 0.25rem 0.625rem;
+	color: var(--color-text-soft);
+	font-size: 0.75rem;
+	font-variant-numeric: tabular-nums;
+	line-height: 1.5;
 }
 
-.article-group h2 {
-	margin: 1.75rem 0 0.625rem;
+.row {
+	position: relative;
+}
+
+.row + .row {
+	border-top: 0.0625rem solid var(--color-border);
+}
+
+/* The one mark on the page. A row carrying work says so at the edge, where four of six reads at
+   a glance and without the eye crossing to a column. Rows that are fine draw nothing: completion
+   is the resting state, and a tick beside every healthy article would make status the subject. */
+.row[data-attention]::before {
+	position: absolute;
+	top: 0.875rem;
+	bottom: 0.875rem;
+	left: -0.625rem;
+	width: 0.125rem;
+	border-radius: 0.0625rem;
+	background: var(--color-red);
+	content: '';
+}
+
+/* One grid, declared once, so every value lands on the same edge down the page. Columns are sized
+   to their content rather than shared out: a date is a date on every row, and giving it a
+   fraction of the width would make it drift as the titles change. */
+.row-summary {
+	display: grid;
+	width: 100%;
+	align-items: baseline;
+	padding: 0.875rem 0.5rem;
+	border: 0;
+	border-radius: 0.5rem;
+	background: transparent;
+	color: inherit;
+	cursor: pointer;
+	gap: 1.25rem;
+	grid-template-columns: minmax(0, 1fr) 6rem 3rem 5rem 6.5rem;
+	text-align: left;
+	transition: background-color 160ms;
+}
+
+.row-summary:hover {
+	background: var(--color-paper-hover);
+}
+
+.row-identity {
+	display: block;
+	min-width: 0;
+}
+
+.row-title {
+	display: block;
+	overflow: hidden;
 	color: var(--color-text-strong);
-	font-size: 0.8125rem;
-	font-weight: 600;
+	font-size: 0.9375rem;
+	font-weight: 500;
+	line-height: 1.4;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
-.article-list {
+.row-section,
+.row-segments,
+.row-state,
+.row-modified {
+	color: var(--color-text-soft);
+	font-size: 0.75rem;
+	line-height: 1.4;
+}
+
+.row-segments,
+.row-modified {
+	font-variant-numeric: tabular-nums;
+	text-align: right;
+}
+
+.row-state {
+	color: var(--color-red);
+	font-variant-numeric: tabular-nums;
+}
+
+.row-detail {
+	padding: 0 0.5rem 1.125rem;
+}
+
+.row-subtitle {
 	margin: 0;
+	color: var(--color-text);
+	font-size: 0.8125rem;
+	line-height: 1.6;
+}
+
+.row-path {
+	margin: 0.25rem 0 0;
+	color: var(--color-text-soft);
+	font-size: 0.75rem;
+}
+
+.locales {
+	display: flex;
+	margin-top: 0.75rem;
+	flex-wrap: wrap;
+	gap: 0.25rem;
+}
+
+/* Every locale is drawn, including the complete ones, because the question this answers is
+   "where does this stand" and a list of only the failures cannot say how many there were. */
+.locale {
+	padding: 0.125rem 0.375rem;
+	border: 0.0625rem solid var(--color-border);
+	border-radius: 0.3125rem;
+	color: var(--color-text-soft);
+	font-size: 0.6875rem;
+	line-height: 1.5;
+}
+
+.locale[data-state='source'] {
+	border-color: var(--color-border-strong);
+	color: var(--color-text);
+}
+
+.locale[data-state='short'] {
+	border-color: var(--color-red);
+	color: var(--color-red);
+}
+
+.row-findings {
+	margin: 0.75rem 0 0;
 	padding: 0;
+	color: var(--color-red);
+	font-size: 0.75rem;
+	line-height: 1.7;
 	list-style: none;
 }
 
-.article-list .article-preview + .article-preview {
-	margin-top: 0.125rem;
+.row-command {
+	margin: 0.5rem 0 0;
+	color: var(--color-text-soft);
+	font-size: 0.75rem;
 }
 
-.article-library-gap {
-	margin: 0.125rem 0 0;
-	color: var(--color-red);
+.row-command code {
+	color: var(--color-text);
 	font-size: 0.75rem;
-	line-height: 1.5;
+}
+
+.ledger-empty {
+	margin: 0;
+	padding: 2rem 0.5rem;
+	color: var(--color-text-soft);
+	font-size: 0.8125rem;
 }
 
 .derived-list {

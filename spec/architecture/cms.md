@@ -139,14 +139,32 @@ only when the rows on screen are already the whole corpus. The snapshot itself s
 ceiling, since it must stay a fixed size as the corpus grows; it is set past what the tallest
 window can draw, so it bounds the payload without ever deciding the page.
 
-Articles is the writing library rather than a translation-coverage dashboard. It keeps section
-grouping but presents each article with the same title, paper thumbnail, authored date and subtitle
-primitive used by Overview and the public homepage. A healthy article carries no completion badge,
-progress bar or repeated locale strip: completion is the resting state, and repeating it across the
-page makes status look like the subject instead of the writing. Only work that needs attention --
-missing translation segments, missing summaries or stale segments left by an edit -- adds a detail
-line to its article. This flat inventory may be wider than Overview's reading column, but it stays on
-the main pane instead of dividing every article into a separate card.
+Articles is a ledger, and the one page here that is not built from the reading primitive. Overview
+keeps it, because Overview is a brief and its recent list exists to be read; the library exists to
+be worked, and the same row served both badly. Reused there it made the tool look like the site it
+manages, promised a click it did not answer, and buried the only actionable fact -- a locale short
+of segments, an absent summary, segments an edit left stale -- as a third line under a subtitle
+nobody needed in order to identify an article they wrote.
+
+So a row is one line: title, section, segment count, what is outstanding, authored date, in fixed
+columns so every value lands on the same edge down the page. Section grouping is gone with it. Four
+sections over six articles cost a screen of headings to impose a taxonomy unrelated to what needs
+doing, and the ordering that does relate to it -- outstanding first, then most recently touched --
+is the one the page now sorts by. Identification is the row's job; reading is not, so the subtitle,
+the path and the per-locale standing move into a panel the row opens.
+
+**Completion is still the resting state.** A healthy article draws no tick, no badge and no locale
+strip; the rows carrying work are marked by a single hairline rail at the left edge, which is the
+only pigment on the page. Marking the exception scales with a corpus and marking the norm does not:
+eight complete locales repeated down every row is a screen of green saying nothing. The count of
+segments is stated because it is the unit the work is measured in -- two stale segments out of a
+hundred and forty-one is a different job from six out of sixty-nine -- and the panel names the
+command that closes it as text, under the rule above.
+
+Controls here are view state only: a filter between everything and what needs a pass, and the
+disclosure. Neither runs anything, so neither waits on the task substrate. The ledger stays on the
+main pane and gains no outer box -- the opaque pane is already the surface, and a second one inside
+it is the dashboard chrome this deliberately is not.
 
 The first window is a centred 1280 by 720 logical pixels, a 16:9 default rather than a minimum or
 a fixed canvas. After that first launch, geometry belongs to the native shell: Tauri's window-state
