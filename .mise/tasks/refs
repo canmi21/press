@@ -26,6 +26,8 @@ at -- see spec/toolchain.md. `@context` is a namespace identifier, like an xmlns
 Run with --json to emit the pair graph instead of validating.
 """
 
+from __future__ import annotations
+
 import json
 import pathlib
 import re

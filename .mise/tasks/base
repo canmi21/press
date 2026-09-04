@@ -14,6 +14,8 @@ ports, and an overlay starting this would collide with it. tmux itself is a mach
 (Homebrew), not a mise tool -- see the spec for why.
 """
 
+from __future__ import annotations
+
 import pathlib
 import subprocess
 import sys
