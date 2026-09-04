@@ -305,8 +305,8 @@ function renderRow(article: Article, locales: string[]): HTMLElement {
 			sweepable(article)
 				? [
 						{
-							name: `Sweep ${article.orphans} stale ${article.orphans === 1 ? 'segment' : 'segments'}`,
-							why: 'Deletes translations for paragraphs this article no longer has.',
+							name: 'Sweep stale segments',
+							why: `Deletes ${article.orphans} ${article.orphans === 1 ? 'translation' : 'translations'} for paragraphs this article no longer has.`,
 							run: () => sweep([article.path]),
 						},
 					]
