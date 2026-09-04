@@ -654,13 +654,13 @@ markup → follow the table above; runes are not a free CTR pass
 <marker id="arrow-pipeline" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
 </defs>
 
-<g class="node c-gray" onclick="sendPrompt('What enters the Svelte and Seam compiler pipeline?')">
+<g class="node c-gray">
 <rect x="18" y="90" width="112" height="50" rx="8" stroke-width="0.5"/>
 <text class="th" x="74" y="115" text-anchor="middle" dominant-baseline="central">Svelte source</text>
 </g>
 <line x1="130" y1="115" x2="164" y2="115" class="arr" marker-end="url(#arrow-pipeline)"/>
 
-<g class="node c-gray" onclick="sendPrompt('What becomes visible in the Svelte and Seam AST?')">
+<g class="node c-gray">
 <rect x="166" y="80" width="166" height="70" rx="8" stroke-width="0.5"/>
 <text class="th" x="249" y="106" text-anchor="middle" dominant-baseline="central">Svelte / Seam AST</text>
 <text class="ts" x="249" y="128" text-anchor="middle" dominant-baseline="central">visible + typed</text>
@@ -670,7 +670,7 @@ markup → follow the table above; runes are not a free CTR pass
 <line x1="356" y1="115" x2="382" y2="115" class="arr" marker-end="url(#arrow-pipeline)"/>
 <path d="M356 115V186H382" class="arr" marker-end="url(#arrow-pipeline)"/>
 
-<g class="node c-teal" onclick="sendPrompt('What is preserved in the Structure lane?')">
+<g class="node c-teal">
 <rect x="384" y="18" width="122" height="52" rx="8" stroke-width="0.5"/>
 <text class="th" x="445" y="36" text-anchor="middle" dominant-baseline="central">Structure</text>
 <text class="ts" x="445" y="54" text-anchor="middle" dominant-baseline="central">markup AST</text>
@@ -681,7 +681,7 @@ markup → follow the table above; runes are not a free CTR pass
 <text class="th" x="602" y="44" text-anchor="middle" dominant-baseline="central">Static HTML</text>
 </g>
 
-<g class="node c-amber" onclick="sendPrompt('How does Seam classify values and derived expressions?')">
+<g class="node c-amber">
 <rect x="384" y="89" width="122" height="52" rx="8" stroke-width="0.5"/>
 <text class="th" x="445" y="107" text-anchor="middle" dominant-baseline="central">Values</text>
 <text class="ts" x="445" y="125" text-anchor="middle" dominant-baseline="central">data + derives</text>
@@ -693,7 +693,7 @@ markup → follow the table above; runes are not a free CTR pass
 <text class="ts" x="602" y="125" text-anchor="middle" dominant-baseline="central">lowered data</text>
 </g>
 
-<g class="node c-coral" onclick="sendPrompt('What remains in the Behavior lane?')">
+<g class="node c-coral">
 <rect x="384" y="160" width="122" height="52" rx="8" stroke-width="0.5"/>
 <text class="th" x="445" y="178" text-anchor="middle" dominant-baseline="central">Behavior</text>
 <text class="ts" x="445" y="196" text-anchor="middle" dominant-baseline="central">state + effects</text>
@@ -716,14 +716,14 @@ markup → follow the table above; runes are not a free CTR pass
 <marker id="arrow-lowering" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
 </defs>
 
-<g class="node c-amber" onclick="sendPrompt('What qualifies as a CTR candidate?')">
+<g class="node c-amber">
 <rect x="18" y="68" width="118" height="54" rx="8" stroke-width="0.5"/>
 <text class="th" x="77" y="86" text-anchor="middle" dominant-baseline="central">CTR candidate</text>
 <text class="ts" x="77" y="104" text-anchor="middle" dominant-baseline="central">value / derive</text>
 </g>
 <line x1="136" y1="95" x2="170" y2="95" class="arr" marker-end="url(#arrow-lowering)"/>
 
-<g class="node c-gray" onclick="sendPrompt('Which facts decide how a CTR value is lowered?')">
+<g class="node c-gray">
 <rect x="172" y="56" width="178" height="78" rx="8" stroke-width="0.5"/>
 <text class="th" x="261" y="78" text-anchor="middle" dominant-baseline="central">Lowering decision</text>
 <text class="ts" x="261" y="100" text-anchor="middle" dominant-baseline="central">origin · purity · visibility</text>
@@ -733,7 +733,7 @@ markup → follow the table above; runes are not a free CTR pass
 <path d="M350 95H376V48H402" class="arr" marker-end="url(#arrow-lowering)"/>
 <path d="M376 95V142H402" class="arr" marker-end="url(#arrow-lowering)"/>
 
-<g class="node c-teal" onclick="sendPrompt('When can Seam emit generated JavaScript for a derived value?')">
+<g class="node c-teal">
 <rect x="404" y="22" width="116" height="52" rx="8" stroke-width="0.5"/>
 <text class="th" x="462" y="40" text-anchor="middle" dominant-baseline="central">simple</text>
 <text class="ts" x="462" y="58" text-anchor="middle" dominant-baseline="central">pure + visible</text>
@@ -744,7 +744,7 @@ markup → follow the table above; runes are not a free CTR pass
 <text class="th" x="605" y="48" text-anchor="middle" dominant-baseline="central">generated JS</text>
 </g>
 
-<g class="node c-coral" onclick="sendPrompt('When does a value need QuickJS or an SSR fallback?')">
+<g class="node c-coral">
 <rect x="404" y="116" width="116" height="52" rx="8" stroke-width="0.5"/>
 <text class="th" x="462" y="134" text-anchor="middle" dominant-baseline="central">complex</text>
 <text class="ts" x="462" y="152" text-anchor="middle" dominant-baseline="central">opaque / hatch</text>
