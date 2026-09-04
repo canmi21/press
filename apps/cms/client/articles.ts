@@ -538,8 +538,13 @@ function paintSortControl(root: HTMLElement): void {
 		// property writes the string "undefined", which still matches `[data-reset]` -- so the
 		// control stayed in its reset styling for good.
 		control.toggleAttribute('data-reset', resetting);
-		requiredElement<HTMLElement>(slot, '[data-mark="sort"]').hidden = resetting;
-		requiredElement<HTMLElement>(slot, '[data-mark="reset"]').hidden = !resetting;
+		// `toggleAttribute`, not `.hidden = `, and typed as `Element` so nothing lets it be the
+		// latter again: `hidden` is on HTMLElement's prototype and not on SVGElement's, so
+		// assigning it to a mark sets a plain JavaScript property that reflects to nothing. The
+		// icon stayed put while the label changed, and casting the mark to HTMLElement was what
+		// let it compile.
+		requiredElement<Element>(slot, '[data-mark="sort"]').toggleAttribute('hidden', resetting);
+		requiredElement<Element>(slot, '[data-mark="reset"]').toggleAttribute('hidden', !resetting);
 	});
 }
 

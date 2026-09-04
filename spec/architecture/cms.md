@@ -332,6 +332,18 @@ already know. Under the pointer it becomes the reset instead, and the press then
 opening the menu underneath would answer a different question from the one the button is currently
 asking.
 
+**State goes on the attribute, never on a property that may not reflect one.** Two faults on this
+control came from the same habit within a day. `dataset.x = undefined` writes the string
+`"undefined"`, so `[data-x]` kept matching and the button sat in its reset styling for good. And
+`hidden` lives on `HTMLElement`'s prototype and not on `SVGElement`'s, so assigning it to an icon
+set a plain JavaScript property that reflects nowhere -- verified in the window: after the
+assignment the attribute was still absent and the element still `display: block`, while
+`toggleAttribute` set it and hid it. A cast to `HTMLElement` is what let that compile, so the
+marks are typed `Element` now, where the wrong form is not available to write.
+
+`toggleAttribute(name, on)` is the form for both. It is also the one that reads the same as the
+question being asked.
+
 **A control resizing because its content changed does it in motion.** Swapping a label changes a
 button's width, and a snap between two sizes reads as the interface being retyped. The width is
 measured before and after the change, pinned, driven, and released back to `auto` -- pinning it
