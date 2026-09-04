@@ -123,3 +123,4 @@ export function animateHeight(panel: HTMLElement, expanded: boolean): void {
 	});
 	running.set(panel, control);
 }
+

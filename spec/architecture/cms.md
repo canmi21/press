@@ -187,13 +187,19 @@ from task to the findings it closes is one table in
 there rather than a branch. This is the page's only claim about live state, and it is the reason
 the library polls the same registry the Derived page does.
 
-**A press moves at a speed, not for a duration.** A spring with fixed stiffness settles in roughly
-the same time whatever distance it covers, so a short move is a slow one. Measured on this page,
-both on the same spring: a group of four folded 203px in 512ms while one article's panel opened
-86px in 466ms -- 0.40 against 0.19 pixels a millisecond, and the small one read as sluggish beside
-the large. The distance now sets the time, from `TRAVEL_SPEED` in `@canmi/motion`, which is the
-large move's own speed because that gesture already felt right. After: 0.39 and 0.33, with the
-article's panel down from 466ms to 265ms.
+**How long a move takes is derived from how far it goes, and not in a straight line.** Three
+arrangements were measured on this page, and the first two were both wrong in opposite directions.
+
+A fixed spring settles in about the same time whatever distance it covers, so a short move is a
+slow one: a group of four folded 203px in 512ms while one article's panel opened 86px in 466ms,
+0.40 pixels a millisecond against 0.19. Dividing by a constant speed corrects that and overshoots
+-- the same panel then finished in a tenth of a second, which reads as a flash rather than a
+movement. Neither is how the eye reads travel.
+
+So the time grows with the **square root** of the distance, anchored on the fold that already felt
+right. A move four times as long takes twice as long: short ones get proportionally more time than
+their size and long ones less. At the anchor, against the constant speed it replaced, 86px goes
+from 108ms to 154ms and 600px from 750ms to 408ms.
 
 **And it is a tween, not a spring, because a spring has no end.** It approaches its target
 asymptotically and stops when the library decides it is close enough -- for `motion` that is a
@@ -201,14 +207,16 @@ asymptotically and stops when the library decides it is close enough -- for `mot
 0 to 1 and the wrong one for a height in pixels. Measured folding a group: 182ms of a 468ms move,
 39% of the time, spent covering the last three and a half pixels. Nothing visible happens during
 it and it reads as the panel being slow to let go -- not as dropped frames, which were measured
-and were zero. Correcting the rest thresholds recovered 74ms of that; the remainder is the curve
-itself, so the curve went.
+and were zero. Correcting the rest thresholds recovered 74ms; the remainder is the curve itself.
 
-A duration with a strong ease-out keeps the character -- out hard, decelerating in -- and ends
-when it says it will, which is what makes a speed a promise rather than an average. It also makes
-opening and closing symmetric, measured at 247ms and 250ms for the same 178px where the spring
-was near 470ms both ways. Floors and ceilings keep a few pixels from finishing inside one frame
-and a very tall panel from outlasting the press that asked for it.
+**The curve is chosen on what its worst frame costs.** That is what smoothness is at 60fps: not
+the average rate but the largest jump. Over the reference fold, against the 13.7px a linear ramp
+would use per frame, the ease-out quintic first tried put **56.8px in its opening frame** -- a
+third of the distance in 16ms, which is what "there is an animation but it is not smooth" was
+describing, since no frame was dropped. CSS's own `ease` peaks at 30.6px and opens with 11.1, so
+it is 46% flatter at the top and still moves visibly on the first frame after the press. Curves
+that start from rest are flatter again and were rejected for it: two frames of stillness after a
+click reads as the control not having heard it.
 
 **A page measures nothing while it is hidden.** The window opens on the Overview, so the library's
 first draw happens with its tabs reporting zero width -- and an indicator placed there is pinned
