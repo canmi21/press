@@ -27,7 +27,16 @@ type Grouping = 'status' | 'section';
 type Filter = 'all' | 'attention' | 'current';
 type Sort = 'recent' | 'longest' | 'title';
 type Column = 'title' | 'detail' | 'modified';
-type Mark = 'status' | 'section' | 'todo' | 'progress' | 'complete' | 'more' | 'check';
+type Mark =
+	| 'status'
+	| 'section'
+	| 'todo'
+	| 'progress'
+	| 'complete'
+	| 'more'
+	| 'check'
+	| 'dash'
+	| 'sort';
 
 /**
  * Which catalogue task closes which kind of finding.
@@ -203,14 +212,39 @@ function dots(key: string, entries: Array<[string, string]>): HTMLElement {
 	return anchor;
 }
 
+type Tick = 'true' | 'false' | 'mixed';
+
+/** A tick's whole appearance, in one place: three controls now put a box into these states. */
+function paintTick(box: HTMLElement, state: Tick): void {
+	box.setAttribute('aria-checked', state);
+	if (state === 'true') box.replaceChildren(mark('check'));
+	else if (state === 'mixed') box.replaceChildren(mark('dash'));
+	else box.replaceChildren();
+}
+
+/**
+ * Bring a group's select-all into line with the rows under it.
+ *
+ * Called after any tick rather than redrawing, so the header follows individual changes -- which
+ * is what makes "select all, then untick the two I do not want" work: the header drops to mixed
+ * instead of fighting the rows back to full.
+ */
+function syncSelectAll(group: Element | null): void {
+	if (group === null) return;
+	const head = group.querySelector<HTMLElement>('.select-all');
+	if (head === null) return;
+	const boxes = [...group.querySelectorAll<HTMLElement>('.row .checkbox')];
+	const ticked = boxes.filter((box) => box.getAttribute('aria-checked') === 'true').length;
+	paintTick(head, ticked === 0 ? 'false' : ticked === boxes.length ? 'true' : 'mixed');
+}
+
 function checkbox(article: Article): HTMLElement {
 	const box = document.createElement('button');
 	box.type = 'button';
 	box.className = 'checkbox';
 	box.setAttribute('role', 'checkbox');
-	box.setAttribute('aria-checked', selected.has(article.path) ? 'true' : 'false');
 	box.setAttribute('aria-label', `Select ${article.title}`);
-	if (selected.has(article.path)) box.appendChild(mark('check'));
+	paintTick(box, selected.has(article.path) ? 'true' : 'false');
 	box.addEventListener('click', (event) => {
 		event.stopPropagation();
 		// Updated in place rather than by redrawing. A redraw would drop the row under the pointer
@@ -218,9 +252,9 @@ function checkbox(article: Article): HTMLElement {
 		if (selected.has(article.path)) selected.delete(article.path);
 		else selected.add(article.path);
 		const on = selected.has(article.path);
-		box.setAttribute('aria-checked', on ? 'true' : 'false');
-		box.replaceChildren(...(on ? [mark('check')] : []));
+		paintTick(box, on ? 'true' : 'false');
 		box.closest('.row')?.toggleAttribute('data-selected', on);
+		syncSelectAll(box.closest('.group'));
 		// A group's menu names what it would act on, so a tick changes its wording.
 		if (menu?.startsWith('group:') === true) draw();
 	});
@@ -272,25 +306,51 @@ function renderRow(article: Article, locales: string[]): HTMLElement {
  * column already in force reverses it, and with none pressed the menu above decides, which is what
  * default means here.
  */
-function columnHeader(): HTMLElement {
+function columnHeader(articles: Article[]): HTMLElement {
 	const head = element('div', 'row-columns');
-	head.appendChild(element('span', 'col-select'));
+
+	const all = document.createElement('button');
+	all.type = 'button';
+	all.className = 'checkbox select-all';
+	all.setAttribute('role', 'checkbox');
+	all.setAttribute('aria-label', 'Select every article in this group');
+	const ticked = articles.filter((article) => selected.has(article.path)).length;
+	paintTick(all, ticked === 0 ? 'false' : ticked === articles.length ? 'true' : 'mixed');
+	all.addEventListener('click', (event) => {
+		event.stopPropagation();
+		// Anything short of everything means the press is asking for everything; only a full box
+		// clears. That is what makes a mixed state actionable rather than a third thing to undo.
+		const fill = all.getAttribute('aria-checked') !== 'true';
+		const group = all.closest('.group');
+		for (const article of articles) {
+			if (fill) selected.add(article.path);
+			else selected.delete(article.path);
+		}
+		for (const box of group?.querySelectorAll<HTMLElement>('.row .checkbox') ?? []) {
+			paintTick(box, fill ? 'true' : 'false');
+			box.closest('.row')?.toggleAttribute('data-selected', fill);
+		}
+		paintTick(all, fill ? 'true' : 'false');
+		if (menu?.startsWith('group:') === true) draw();
+	});
+	head.appendChild(all);
 
 	const inner = element('div', 'row-columns-inner');
 	for (const [key, name, className] of COLUMNS) {
 		const button = document.createElement('button');
 		button.type = 'button';
 		button.className = `col-sort ${className}`;
-		button.textContent = name;
+		button.appendChild(element('span', 'col-label', name));
+		button.appendChild(mark('sort'));
 		if (column === key) button.dataset.direction = ascending ? 'asc' : 'desc';
 		button.addEventListener('click', () => {
-			if (column === key) ascending = !ascending;
-			else {
+			// Three states in a ring: off, up, down, off. The arrows are always drawn, so the ring
+			// needs no reset control -- the way back out is one more press of the same heading.
+			if (column !== key) {
 				column = key;
-				// A date reads newest first on a first press and text reads A to Z. Both are what
-				// somebody expects, and they are opposite directions.
-				ascending = key !== 'modified';
-			}
+				ascending = true;
+			} else if (ascending) ascending = false;
+			else column = null;
 			draw();
 		});
 		inner.appendChild(button);
@@ -361,7 +421,7 @@ function renderGroup(
 	group.appendChild(head);
 
 	const panel = element('div', 'group-panel');
-	panel.appendChild(columnHeader());
+	panel.appendChild(columnHeader(articles));
 	const body = element('div', 'group-rows');
 	for (const article of articles) body.appendChild(renderRow(article, locales));
 	panel.appendChild(body);

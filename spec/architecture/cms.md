@@ -185,7 +185,18 @@ double press reverses rather than queueing. Folding is the one interaction that 
 the list, because a rebuild mid-flight would destroy the element the animation is holding.
 
 **Rows carry ticks, and the actions read what the ticks mean.** A row's tick sits directly under
-its group's mark, which is why the band, the column names and the rows share one leading column.
+its group's mark, which is why the band, the column names and the rows share one leading column --
+and why they also share its horizontal padding. Without it the rows began at the panel edge while
+the band began inside its own, so the tick sat a padding's width left of the mark it belongs under
+and the attention rail fell outside the row box entirely, where it fought the hover surface for the
+same edge. The tick is centred in that column rather than started at its edge, since the mark fills
+the column and a tick is narrower.
+
+The column names carry a tick of their own, which takes the whole group. Anything short of
+everything means the press is asking for everything, and only a full box clears -- that is what
+makes the mixed state actionable rather than a third thing to get out of. It follows the rows
+rather than commanding them: ticking one row drops the header to mixed, which is what makes
+"take all of them, then drop the two I do not want" work.
 Nothing ticked means a group action covers the whole group; ticks mean it covers those, and the
 menu entry says which in its own words -- one control with two readings is exactly what an
 interface has to state out loud rather than leave to be discovered. Ticking is applied in place
@@ -196,12 +207,16 @@ down a column was one word said six times. They are revealed on hover and kept f
 and for an open menu.
 
 **A column name is the sort control, and the last one pressed is the one in force.** Pressing a
-second column moves the ordering onto it rather than adding a tie-break nobody asked for; pressing
-the column that already holds it reverses. Only the column in force draws a caret, because an
-arrow on every heading is four claims to be sorting. A first press on a date reads newest first
-and on text reads A to Z -- both are the answer somebody expects, and they are opposite
-directions. With no column pressed the menu above decides, which is what default means here, and
-choosing from that menu takes the ordering back off whichever column was holding it.
+second column moves the ordering onto it rather than adding a tie-break nobody asked for.
+
+Each heading draws both arrows, grey, and a press walks a ring of three: off, up, down, off. That
+ring is why there is no reset control anywhere -- the way back out is one more press of the same
+heading, which is where somebody would look for it. Drawing the arrows greyed rather than only on
+the active column is what makes the third state discoverable: a heading with nothing beside it
+gives no reason to believe pressing it a third time would do anything.
+
+With no column pressed the menu above decides, which is what default means here, and choosing from
+that menu takes the ordering back off whichever column was holding it.
 
 **An action is drawn before it can run, and drawn visibly inert.** The Action column carries the
 control that will start the work, disabled, with the command that does it today in its title. This
