@@ -232,6 +232,20 @@ as though it were a loading effect. Both halves are needed: the placement declin
 geometry, and being shown re-runs it. The Overview already re-fits its recent list for this exact
 reason; the rule is the page's, not that one list's.
 
+**A move is only played where it can be seen.** A panel taller than the window spends most of a
+fold below the fold, and nothing on screen changes while it does. Measured folding a 3474px list in
+a 536px window: 300ms of a 500ms move passed before anything in view shifted, so the press read as
+ignored for that whole time and then everything happened at once.
+
+So the travel is capped at what is visible -- from the panel's top edge to the bottom of whatever
+scrolls it, and never more than that scroller's own height. The rest of the distance is taken
+instantly, where nobody is looking. The same fold now moves in view on the first frame, and takes
+334ms rather than 500 because the distance it is scaled from is the distance somebody watches. A
+panel that already fits is untouched: the cap does not bind, and it plays in full.
+
+A panel entirely below the fold animates not at all. There is no honest animation of something
+nobody can see, and playing one is only delay.
+
 **Anything that opens or closes animates its own height, on the one spring.** A group folding, an
 article's panel, and whatever grows a disclosure next: if a press changes the shape of a box, the
 box travels between the two shapes rather than snapping. The gesture is `animateHeight` in

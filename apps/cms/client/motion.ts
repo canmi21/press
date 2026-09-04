@@ -132,14 +132,25 @@ export function animateHeight(panel: HTMLElement, expanded: boolean): void {
 		running.delete(panel);
 	};
 
-	if (prefersReducedMotion() || Math.abs(from - to) < NEGLIGIBLE_PIXELS) {
+	const budget = visibleBudget(panel);
+	if (prefersReducedMotion() || Math.abs(from - to) < NEGLIGIBLE_PIXELS || budget === 0) {
 		settle();
 		return;
 	}
 
-	panel.style.height = remFromMeasuredPixels(from);
-	const control: Control = animate(from, to, {
-		...pressMotion(to - from),
+	// Only the part that can be seen is played. A panel taller than the window spends most of a
+	// move below the fold, where nothing on screen changes: measured folding a 3474px list in a
+	// 536px window, 300ms of a 500ms move passed before anything in view shifted at all, and the
+	// press read as ignored for that whole time. The rest is taken instantly, where nobody is
+	// looking, and what is animated is what somebody watches.
+	const travel = Math.min(Math.abs(to - from), budget);
+	const folding = to < from;
+	const departure = folding ? to + travel : from;
+	const arrival = folding ? to : from + travel;
+
+	panel.style.height = remFromMeasuredPixels(departure);
+	const control: Control = animate(departure, arrival, {
+		...pressMotion(travel),
 		onUpdate: (height: number) => {
 			panel.style.height = remFromMeasuredPixels(Math.max(0, height));
 		},
@@ -148,6 +159,20 @@ export function animateHeight(panel: HTMLElement, expanded: boolean): void {
 	running.set(panel, control);
 }
 
+/**
+ * How much of a panel's growth or fold can actually be watched.
+ *
+ * From its top edge to the bottom of whatever scrolls it, capped at that scroller's own height --
+ * a panel whose top is above the fold can still only show a window's worth. Zero when the panel is
+ * entirely below the fold, where the honest animation is none.
+ */
+function visibleBudget(panel: HTMLElement): number {
+	const scroller = panel.closest('.page-content');
+	if (scroller === null) return Number.POSITIVE_INFINITY;
+	const view = scroller.getBoundingClientRect();
+	const top = panel.getBoundingClientRect().top;
+	return Math.max(0, Math.min(view.bottom - top, view.height));
+}
 
 /**
  * Let a control resize itself, rather than jump, when what it says changes.
