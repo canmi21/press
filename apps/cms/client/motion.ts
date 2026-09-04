@@ -74,3 +74,45 @@ function getTranslateX(element: HTMLElement): number {
 	const matrix = new DOMMatrixReadOnly(transform);
 	return matrix.m41;
 }
+
+/**
+ * Open or close `panel`, animating between two measured heights.
+ *
+ * `height: auto` cannot be animated, so the natural height is measured by briefly setting it and
+ * reading back, then handed to `auto` once the panel has arrived -- a panel pinned to a measured
+ * number would stop following its own content when the window resizes. The same reasoning, and
+ * the same spring, as the site's disclosures.
+ *
+ * Interruptible by construction: the running animation for this panel is stopped before another
+ * starts, and the new one departs from wherever the old one had reached rather than from the
+ * state it was travelling to. Clicking a header twice quickly reverses the motion instead of
+ * queueing a second one.
+ */
+export function animateHeight(panel: HTMLElement, expanded: boolean): void {
+	running.get(panel)?.stop();
+	running.delete(panel);
+
+	const from = panel.getBoundingClientRect().height;
+	panel.style.height = 'auto';
+	const to = expanded ? panel.getBoundingClientRect().height : 0;
+
+	const settle = () => {
+		panel.style.height = expanded ? 'auto' : '0px';
+		running.delete(panel);
+	};
+
+	if (prefersReducedMotion() || Math.abs(from - to) < NEGLIGIBLE_PIXELS) {
+		settle();
+		return;
+	}
+
+	panel.style.height = `${from}px`;
+	const control: Control = animate(from, to, {
+		...PRESS_SPRING,
+		onUpdate: (height: number) => {
+			panel.style.height = `${Math.max(0, height)}px`;
+		},
+		onComplete: settle,
+	});
+	running.set(panel, control);
+}

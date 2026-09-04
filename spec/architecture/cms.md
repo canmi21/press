@@ -176,6 +176,33 @@ from task to the findings it closes is one table in
 there rather than a branch. This is the page's only claim about live state, and it is the reason
 the library polls the same registry the Derived page does.
 
+**A group folds from its middle.** The band's name and count are the collapse control, which is
+why the mark on its left and the dots on its right sit outside that button -- pressing either of
+those would otherwise fold the group as a side effect. The panel's height is animated on the same
+spring as everything else and the motion is interruptible by construction: a running animation is
+stopped before another starts and the new one departs from wherever the old had reached, so a
+double press reverses rather than queueing. Folding is the one interaction that does not redraw
+the list, because a rebuild mid-flight would destroy the element the animation is holding.
+
+**Rows carry ticks, and the actions read what the ticks mean.** A row's tick sits directly under
+its group's mark, which is why the band, the column names and the rows share one leading column.
+Nothing ticked means a group action covers the whole group; ticks mean it covers those, and the
+menu entry says which in its own words -- one control with two readings is exactly what an
+interface has to state out loud rather than leave to be discovered. Ticking is applied in place
+rather than by redrawing, for the same reason folding is.
+
+**Actions are dots, not a word.** There will be more than one of them, and a named button repeated
+down a column was one word said six times. They are revealed on hover and kept for the keyboard
+and for an open menu.
+
+**A column name is the sort control, and the last one pressed is the one in force.** Pressing a
+second column moves the ordering onto it rather than adding a tie-break nobody asked for; pressing
+the column that already holds it reverses. Only the column in force draws a caret, because an
+arrow on every heading is four claims to be sorting. A first press on a date reads newest first
+and on text reads A to Z -- both are the answer somebody expects, and they are opposite
+directions. With no column pressed the menu above decides, which is what default means here, and
+choosing from that menu takes the ordering back off whichever column was holding it.
+
 **An action is drawn before it can run, and drawn visibly inert.** The Action column carries the
 control that will start the work, disabled, with the command that does it today in its title. This
 is the one place the rule above is approached from the other side: the affordance exists so the
@@ -193,6 +220,10 @@ no previous tab to travel from, and a bar sweeping in on load reads as a loading
 The spring is `@canmi/motion`, shared with the site's disclosures, which is the pair that moved it
 out of the site. The gesture itself is in [motion.ts](../../apps/cms/client/motion.ts) rather than
 in the page, because every page that grows a tab strip wants the same one.
+
+Marks appear on the tabs and on the group bands, and the type on both rises to the size the band's
+own name is set in. The restraint this file asks for is about colour, and applying it to size and
+contrast as well had left the controls quieter than the rows they act on.
 
 **A control is a surface, not a word.** The page is the ground; anything pressable sits on paper
 with a hairline around it, the same pairing the derived cards and the run panel already use. The

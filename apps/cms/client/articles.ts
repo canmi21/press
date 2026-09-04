@@ -1,5 +1,5 @@
 import { requiredElement } from './dom';
-import { slideIndicator } from './motion';
+import { animateHeight, slideIndicator } from './motion';
 import type { TaskRun } from './derived';
 
 export type ArticleListing = {
@@ -26,14 +26,15 @@ type Article = ArticleListing['articles'][number];
 type Grouping = 'status' | 'section';
 type Filter = 'all' | 'attention' | 'current';
 type Sort = 'recent' | 'longest' | 'title';
+type Column = 'title' | 'detail' | 'modified';
+type Mark = 'status' | 'section' | 'todo' | 'progress' | 'complete' | 'more' | 'check';
 
 /**
  * Which catalogue task closes which kind of finding.
  *
- * A run does not record the items it is working on, only its task id -- so an article cannot be
- * matched to a run exactly. What is knowable is coarser and still true: while `locale` is running,
- * the articles short of translations are the ones being worked on. Stated as a map rather than
- * inferred at the call site so that adding a task is one line here.
+ * A run records its task id and not the items it is working on, so an article cannot be matched to
+ * a run exactly. What is knowable is coarser and still true: while `locale` runs, the articles
+ * short of translations are the ones being worked on.
  */
 const CLOSES: Record<string, (article: Article) => boolean> = {
 	locale: (article) => article.gaps.length > 0 || article.orphans > 0,
@@ -41,18 +42,10 @@ const CLOSES: Record<string, (article: Article) => boolean> = {
 	summary: (article) => article.summaryGaps.length > 0,
 };
 
-let listing: ArticleListing | null = null;
-let runs: TaskRun[] = [];
-let grouping: Grouping = 'status';
-let filter: Filter = 'all';
-let sort: Sort = 'recent';
-let opened: string | null = null;
-let menu: string | null = null;
-
 const FILTERS: Array<[Filter, string]> = [
 	['all', 'Everything'],
 	['attention', 'Todo'],
-	['current', 'Current only'],
+	['current', 'Complete only'],
 ];
 
 const SORTS: Array<[Sort, string]> = [
@@ -61,11 +54,29 @@ const SORTS: Array<[Sort, string]> = [
 	['title', 'Title'],
 ];
 
+const COLUMNS: Array<[Column, string, string]> = [
+	['title', 'Article', 'col-title'],
+	['detail', 'Detail', 'col-detail'],
+	['modified', 'Modified', 'col-modified'],
+];
+
+let listing: ArticleListing | null = null;
+let runs: TaskRun[] = [];
+let grouping: Grouping = 'status';
+let filter: Filter = 'all';
+let sort: Sort = 'recent';
+/** The column a press put the ordering on, or nothing while the menu above still owns it. */
+let column: Column | null = null;
+let ascending = true;
+let opened: string | null = null;
+let menu: string | null = null;
+const collapsed = new Set<string>();
+const selected = new Set<string>();
+
 function outstanding(article: Article): boolean {
 	return article.gaps.length > 0 || article.summaryGaps.length > 0 || article.orphans > 0;
 }
 
-/** Whether a live run is closing this article's kind of work right now. */
 function underway(article: Article): boolean {
 	return runs.some((run) => CLOSES[run.task]?.(article) === true);
 }
@@ -96,6 +107,12 @@ function element<K extends keyof HTMLElementTagNameMap>(
 	return node;
 }
 
+function mark(name: Mark): DocumentFragment {
+	const template = document.querySelector<HTMLTemplateElement>(`[data-icon="${name}"]`);
+	if (template === null) throw new Error(`no icon template for ${name}`);
+	return template.content.cloneNode(true) as DocumentFragment;
+}
+
 function findings(article: Article): string[] {
 	const found: string[] = [];
 	const missing = article.gaps.reduce((total, gap) => total + gap.segments, 0);
@@ -110,6 +127,18 @@ function findings(article: Article): string[] {
 		);
 	}
 	return found;
+}
+
+/** The line a row shows under Detail, which is also what that column sorts on. */
+function detailText(article: Article): string {
+	if (underway(article)) return 'Running now';
+	const found = findings(article);
+	if (found.length > 0) return found.join(', ');
+	return `${article.segments} segments, all current`;
+}
+
+function commandFor(article: Article): string {
+	return article.orphans > 0 || article.gaps.length > 0 ? 'cms locale' : 'cms summary';
 }
 
 function detail(article: Article, locales: string[]): HTMLElement {
@@ -128,182 +157,281 @@ function detail(article: Article, locales: string[]): HTMLElement {
 		coverage.appendChild(chip);
 	}
 	panel.appendChild(coverage);
+	return panel;
+}
 
-	const found = findings(article);
-	if (found.length > 0) {
-		const list = element('ul', 'row-findings');
-		for (const line of found) list.appendChild(element('li', '', line));
-		panel.appendChild(list);
-
-		// Text, not a button. An operation becomes a control once the task substrate can watch it
-		// and refuse a second copy; `locale` and `summary` have not been lifted out of the CLI
-		// adapter yet. See spec/architecture/cms.md.
-		const command = element('p', 'row-command');
-		command.appendChild(element('code', '', article.orphans > 0 ? 'cms locale' : 'cms summary'));
-		command.appendChild(document.createTextNode(' closes this from a terminal.'));
-		panel.appendChild(command);
+/**
+ * The menu behind a row of dots.
+ *
+ * Every entry is disabled and says why. The operations have not moved below both shells, so the
+ * task substrate cannot watch one or refuse a second copy -- and an entry that starts nothing is
+ * the half of a run mechanism that lies. The shape is here so that enabling one later changes no
+ * layout. See spec/architecture/cms.md.
+ */
+function actionMenu(entries: Array<[string, string]>): HTMLElement {
+	const panel = element('div', 'menu');
+	panel.dataset.menu = 'actions';
+	for (const [name, why] of entries) {
+		const option = document.createElement('button');
+		option.type = 'button';
+		option.className = 'menu-option';
+		option.textContent = name;
+		option.disabled = true;
+		option.title = why;
+		panel.appendChild(option);
 	}
 	return panel;
+}
+
+/** Dots rather than a named button: there will be more than one action, and Run repeated down a
+ *  column was the same word said six times. */
+function dots(key: string, entries: Array<[string, string]>): HTMLElement {
+	const anchor = element('div', 'menu-anchor');
+	const button = document.createElement('button');
+	button.type = 'button';
+	button.className = 'dots';
+	button.setAttribute('aria-label', 'Actions');
+	button.setAttribute('aria-expanded', menu === key ? 'true' : 'false');
+	button.appendChild(mark('more'));
+	button.addEventListener('click', (event) => {
+		event.stopPropagation();
+		menu = menu === key ? null : key;
+		draw();
+	});
+	anchor.appendChild(button);
+	if (menu === key) anchor.appendChild(actionMenu(entries));
+	return anchor;
+}
+
+function checkbox(article: Article): HTMLElement {
+	const box = document.createElement('button');
+	box.type = 'button';
+	box.className = 'checkbox';
+	box.setAttribute('role', 'checkbox');
+	box.setAttribute('aria-checked', selected.has(article.path) ? 'true' : 'false');
+	box.setAttribute('aria-label', `Select ${article.title}`);
+	if (selected.has(article.path)) box.appendChild(mark('check'));
+	box.addEventListener('click', (event) => {
+		event.stopPropagation();
+		// Updated in place rather than by redrawing. A redraw would drop the row under the pointer
+		// and, in a group still collapsing, destroy the element its height animation is driving.
+		if (selected.has(article.path)) selected.delete(article.path);
+		else selected.add(article.path);
+		const on = selected.has(article.path);
+		box.setAttribute('aria-checked', on ? 'true' : 'false');
+		box.replaceChildren(...(on ? [mark('check')] : []));
+		box.closest('.row')?.toggleAttribute('data-selected', on);
+		// A group's menu names what it would act on, so a tick changes its wording.
+		if (menu?.startsWith('group:') === true) draw();
+	});
+	return box;
 }
 
 function renderRow(article: Article, locales: string[]): HTMLElement {
 	const row = element('div', 'row');
 	if (outstanding(article)) row.dataset.attention = '';
+	if (selected.has(article.path)) row.dataset.selected = '';
 
-	const summary = document.createElement('button');
-	summary.type = 'button';
-	summary.className = 'row-summary';
-	summary.setAttribute('aria-expanded', opened === article.path ? 'true' : 'false');
+	row.appendChild(checkbox(article));
 
-	const title = element('span', 'row-title', article.title);
+	const open = document.createElement('button');
+	open.type = 'button';
+	open.className = 'row-open';
+	open.setAttribute('aria-expanded', opened === article.path ? 'true' : 'false');
 
-	const found = findings(article);
-	const detailText = element('span', 'row-detail-text');
-	if (underway(article)) {
-		detailText.dataset.tone = 'underway';
-		detailText.textContent = 'Running now';
-	} else if (found.length > 0) {
-		detailText.dataset.tone = 'attention';
-		detailText.textContent = found.join(', ');
-	} else {
-		detailText.textContent = `${article.segments} segments, all current`;
-	}
-
+	const line = element('span', 'row-detail-text', detailText(article));
+	if (underway(article)) line.dataset.tone = 'underway';
+	else if (outstanding(article)) line.dataset.tone = 'attention';
 	const modified = element('span', 'row-modified');
 	if (article.modified !== null) modified.textContent = formatDate(article.modified);
 
-	summary.append(title, detailText, modified);
-	summary.addEventListener('click', () => {
+	open.append(element('span', 'row-title', article.title), line, modified);
+	open.addEventListener('click', () => {
 		opened = opened === article.path ? null : article.path;
 		draw();
 	});
+	row.appendChild(open);
 
-	const action = element('div', 'row-action');
-	action.appendChild(runControl(article, found.length > 0));
+	const command = commandFor(article);
+	row.appendChild(
+		dots(`row:${article.path}`, [
+			[`Run ${command}`, `Not runnable from here yet -- \`${command}\` closes this in a terminal.`],
+			['Open in the editor', 'The editor is not built yet.'],
+		]),
+	);
 
-	row.append(summary, action);
 	if (opened === article.path) row.appendChild(detail(article, locales));
 	return row;
 }
 
 /**
- * The control that would start the work.
+ * The column names, which are also the sort control.
  *
- * Disabled, and it stays that way until the operation has moved below both shells and the task
- * substrate can report its progress and refuse a second copy. An enabled button that starts
- * nothing is the failure spec/architecture/cms.md names -- half a run mechanism is the half that
- * lies -- so the affordance is drawn and visibly inert rather than drawn and hollow.
+ * One column orders the list at a time and the last one pressed is the one in force: pressing a
+ * second moves the ordering onto it rather than adding a tie-break nobody asked for. Pressing the
+ * column already in force reverses it, and with none pressed the menu above decides, which is what
+ * default means here.
  */
-function runControl(article: Article, hasWork: boolean): HTMLButtonElement {
-	const button = document.createElement('button');
-	button.type = 'button';
-	button.className = 'action-run';
-	button.disabled = true;
-	if (!hasWork) {
-		button.textContent = 'Open';
-		button.title = 'The editor is not built yet.';
-		return button;
-	}
-	const command = article.orphans > 0 || article.gaps.length > 0 ? 'cms locale' : 'cms summary';
-	button.textContent = 'Run';
-	button.title = `Not runnable from here yet -- \`${command}\` closes this from a terminal.`;
-	return button;
-}
-
-/** The header row naming each column, repeated per group so a long page never loses it. */
-function columns(): HTMLElement {
+function columnHeader(): HTMLElement {
 	const head = element('div', 'row-columns');
-	for (const [name, className] of [
-		['Article', 'col-title'],
-		['Detail', 'col-detail'],
-		['Modified', 'col-modified'],
-		['Action', 'col-action'],
-	] as const) {
-		head.appendChild(element('span', className, name));
+	head.appendChild(element('span', 'col-select'));
+
+	const inner = element('div', 'row-columns-inner');
+	for (const [key, name, className] of COLUMNS) {
+		const button = document.createElement('button');
+		button.type = 'button';
+		button.className = `col-sort ${className}`;
+		button.textContent = name;
+		if (column === key) button.dataset.direction = ascending ? 'asc' : 'desc';
+		button.addEventListener('click', () => {
+			if (column === key) ascending = !ascending;
+			else {
+				column = key;
+				// A date reads newest first on a first press and text reads A to Z. Both are what
+				// somebody expects, and they are opposite directions.
+				ascending = key !== 'modified';
+			}
+			draw();
+		});
+		inner.appendChild(button);
 	}
+	head.appendChild(inner);
+	head.appendChild(element('span', 'col-actions'));
 	return head;
 }
 
-function renderGroup(name: string, articles: Article[], locales: string[]): HTMLElement {
-	const group = element('section', 'group');
-
-	const head = element('header', 'group-head');
-	head.appendChild(element('span', 'group-name', name));
-	head.appendChild(element('span', 'group-count', String(articles.length)));
-	group.appendChild(head);
-
-	group.appendChild(columns());
-	const body = element('div', 'group-rows');
-	for (const article of articles) body.appendChild(renderRow(article, locales));
-	group.appendChild(body);
-	return group;
-}
-
 function ordered(articles: Article[]): Article[] {
+	if (column === null) {
+		return articles.toSorted((a, b) => {
+			if (sort === 'longest') return b.segments - a.segments;
+			if (sort === 'title') return a.title.localeCompare(b.title);
+			return (b.modified ?? '').localeCompare(a.modified ?? '');
+		});
+	}
+	const direction = ascending ? 1 : -1;
+	const held = column;
 	return articles.toSorted((a, b) => {
-		if (sort === 'longest') return b.segments - a.segments;
-		if (sort === 'title') return a.title.localeCompare(b.title);
-		return (b.modified ?? '').localeCompare(a.modified ?? '');
+		if (held === 'modified') {
+			return direction * (a.modified ?? '').localeCompare(b.modified ?? '');
+		}
+		if (held === 'detail') return direction * detailText(a).localeCompare(detailText(b));
+		return direction * a.title.localeCompare(b.title);
 	});
 }
 
-function menuPanel(
-	kind: 'filter' | 'sort',
-	options: Array<[string, string]>,
-	active: string,
-	choose: (value: string) => void,
-): HTMLElement {
-	const panel = element('div', 'menu');
-	for (const [value, name] of options) {
-		const option = document.createElement('button');
-		option.type = 'button';
-		option.className = 'menu-option';
-		option.textContent = name;
-		if (value === active) option.dataset.active = '';
-		option.addEventListener('click', () => {
-			choose(value);
-			menu = null;
-			draw();
-		});
-		panel.appendChild(option);
-	}
-	panel.dataset.menu = kind;
-	return panel;
+/**
+ * What a group's own menu would act on.
+ *
+ * Nothing ticked means the whole group; ticks mean those. Said in the entry's own words rather
+ * than left to be discovered, because one button with two readings is exactly what an interface
+ * has to state out loud.
+ */
+function groupEntries(name: string, articles: Article[]): Array<[string, string]> {
+	const ticked = articles.filter((article) => selected.has(article.path));
+	const scope = ticked.length > 0 ? `${ticked.length} selected` : `all ${articles.length} in ${name}`;
+	return [
+		[`Run for ${scope}`, 'Not runnable from here yet -- see the command on each article.'],
+		['Open the first', 'The editor is not built yet.'],
+	];
 }
 
-function draw(): void {
-	if (listing === null) return;
-	const root = requiredElement<HTMLElement>(document, '[data-articles]');
+function renderGroup(
+	key: string,
+	name: string,
+	shape: Mark,
+	articles: Article[],
+	locales: string[],
+): HTMLElement {
+	const group = element('section', 'group');
 
+	const head = element('header', 'group-head');
+	const badge = element('span', 'group-mark');
+	badge.appendChild(mark(shape));
+	head.appendChild(badge);
+
+	const toggle = document.createElement('button');
+	toggle.type = 'button';
+	toggle.className = 'group-toggle';
+	toggle.setAttribute('aria-expanded', collapsed.has(key) ? 'false' : 'true');
+	toggle.append(
+		element('span', 'group-name', name),
+		element('span', 'group-count', String(articles.length)),
+	);
+	head.append(toggle, dots(`group:${key}`, groupEntries(name, articles)));
+	group.appendChild(head);
+
+	const panel = element('div', 'group-panel');
+	panel.appendChild(columnHeader());
+	const body = element('div', 'group-rows');
+	for (const article of articles) body.appendChild(renderRow(article, locales));
+	panel.appendChild(body);
+	if (collapsed.has(key)) panel.style.height = '0px';
+	group.appendChild(panel);
+
+	toggle.addEventListener('click', () => {
+		// Not a redraw: the panel has to survive so its height can be driven, and a rebuild
+		// mid-flight would drop the very element the animation is holding.
+		const opening = collapsed.has(key);
+		if (opening) collapsed.delete(key);
+		else collapsed.add(key);
+		toggle.setAttribute('aria-expanded', opening ? 'true' : 'false');
+		animateHeight(panel, opening);
+	});
+
+	return group;
+}
+
+function drawViewControls(root: HTMLElement): void {
 	let active: HTMLButtonElement | null = null;
 	for (const tab of root.querySelectorAll<HTMLButtonElement>('[data-group]')) {
-		const selected = tab.dataset.group === grouping;
-		tab.setAttribute('aria-selected', selected ? 'true' : 'false');
-		if (selected) active = tab;
+		const chosen = tab.dataset.group === grouping;
+		tab.setAttribute('aria-selected', chosen ? 'true' : 'false');
+		if (chosen) active = tab;
 	}
 	const indicator = root.querySelector<HTMLElement>('[data-tab-indicator]');
 	if (indicator !== null && active !== null) slideIndicator(indicator, active);
+
 	requiredElement<HTMLElement>(root, '[data-menu-label="filter"]').textContent =
 		FILTERS.find(([value]) => value === filter)?.[1] ?? 'Filter';
 	requiredElement<HTMLElement>(root, '[data-menu-label="sort"]').textContent =
-		SORTS.find(([value]) => value === sort)?.[1] ?? 'Recent';
+		column === null ? (SORTS.find(([value]) => value === sort)?.[1] ?? 'Recent') : 'By column';
 
-	for (const anchor of root.querySelectorAll<HTMLElement>('.menu-anchor')) {
+	for (const anchor of root.querySelectorAll<HTMLElement>('.view-controls .menu-anchor')) {
 		const control = requiredElement<HTMLButtonElement>(anchor, '[data-menu]');
 		const kind = control.dataset.menu;
 		anchor.querySelector('.menu')?.remove();
 		control.setAttribute('aria-expanded', menu === kind ? 'true' : 'false');
 		if (menu !== kind) continue;
-		anchor.appendChild(
-			kind === 'filter'
-				? menuPanel('filter', FILTERS, filter, (value) => {
-						filter = value as Filter;
-					})
-				: menuPanel('sort', SORTS, sort, (value) => {
-						sort = value as Sort;
-					}),
-		);
+
+		const panel = element('div', 'menu');
+		const options = kind === 'filter' ? FILTERS : SORTS;
+		for (const [value, name] of options) {
+			const option = document.createElement('button');
+			option.type = 'button';
+			option.className = 'menu-option';
+			option.textContent = name;
+			const current = kind === 'filter' ? filter : column === null ? sort : null;
+			if (current === value) option.dataset.active = '';
+			option.addEventListener('click', () => {
+				if (kind === 'filter') filter = value as Filter;
+				else {
+					sort = value as Sort;
+					// Choosing here takes the ordering back off whichever column was holding it.
+					column = null;
+				}
+				menu = null;
+				draw();
+			});
+			panel.appendChild(option);
+		}
+		anchor.appendChild(panel);
 	}
+}
+
+function draw(): void {
+	if (listing === null) return;
+	const root = requiredElement<HTMLElement>(document, '[data-articles]');
+	drawViewControls(root);
 
 	const kept = listing.articles.filter((article) => {
 		if (filter === 'attention') return outstanding(article);
@@ -313,7 +441,6 @@ function draw(): void {
 
 	const list = requiredElement<HTMLElement>(root, '[data-articles-list]');
 	list.replaceChildren();
-
 	if (kept.length === 0) {
 		list.appendChild(element('p', 'group-empty', 'Nothing here.'));
 		return;
@@ -327,25 +454,35 @@ function draw(): void {
 			else existing.push(article);
 		}
 		for (const [section, articles] of sections) {
-			list.appendChild(renderGroup(label(section), articles, listing.locales));
+			list.appendChild(
+				renderGroup(`section:${section}`, label(section), 'section', articles, listing.locales),
+			);
 		}
 		return;
 	}
 
-	// Status grouping is the default because it is the one that answers "what do I do next". An
-	// empty group is still drawn when a run could fill it, so the page does not appear to change
-	// shape when work starts.
 	const running = ordered(kept.filter(underway));
 	const behind = ordered(kept.filter((article) => outstanding(article) && !underway(article)));
 	const current = ordered(kept.filter((article) => !outstanding(article) && !underway(article)));
 
-	if (behind.length > 0) list.appendChild(renderGroup('Todo', behind, listing.locales));
-	if (running.length > 0) list.appendChild(renderGroup('In Progress', running, listing.locales));
-	if (current.length > 0) list.appendChild(renderGroup('Complete', current, listing.locales));
+	if (behind.length > 0) {
+		list.appendChild(renderGroup('todo', 'Todo', 'todo', behind, listing.locales));
+	}
+	if (running.length > 0) {
+		list.appendChild(renderGroup('progress', 'In Progress', 'progress', running, listing.locales));
+	}
+	if (current.length > 0) {
+		list.appendChild(renderGroup('complete', 'Complete', 'complete', current, listing.locales));
+	}
 }
 
 export function renderArticles(root: HTMLElement, next: ArticleListing): void {
 	listing = next;
+
+	for (const slot of root.querySelectorAll<HTMLElement>('[data-tab-icon]')) {
+		const name = slot.dataset.tabIcon;
+		if (name === 'status' || name === 'section') slot.appendChild(mark(name));
+	}
 
 	for (const tab of root.querySelectorAll<HTMLButtonElement>('[data-group]')) {
 		tab.addEventListener('click', () => {
@@ -360,8 +497,6 @@ export function renderArticles(root: HTMLElement, next: ArticleListing): void {
 			draw();
 		});
 	}
-	// A menu closes on the next click anywhere else, which is the platform behaviour and cheaper
-	// than a backdrop element that would also have to be kept out of the tab order.
 	document.addEventListener('click', () => {
 		if (menu === null) return;
 		menu = null;
@@ -371,7 +506,6 @@ export function renderArticles(root: HTMLElement, next: ArticleListing): void {
 	draw();
 }
 
-/** Live runs, so the status grouping can show what is being worked on right now. */
 export function renderArticleRuns(next: TaskRun[]): void {
 	runs = next;
 	draw();
