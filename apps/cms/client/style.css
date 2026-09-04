@@ -418,21 +418,19 @@ button {
 	color: var(--color-red);
 }
 
-/* The library is a ledger: one line per article, values in fixed columns, and a hairline only
-   between rows. No card, no outer box -- the opaque main pane is already the content surface,
-   and putting a second one inside it is the dashboard look this deliberately is not. */
-.library-head {
-	padding-bottom: 1.25rem;
-}
-
-.library-title {
+/* The library is a work surface: a title row that holds space for controls the window will own,
+   an action row beneath it, then rows grouped by what they need. No card and no outer box -- the
+   opaque main pane is already the surface, and a second one inside it is the dashboard chrome
+   this deliberately is not. */
+.view-title {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 1rem;
+	min-height: 2rem;
 }
 
-.library-title h1 {
+.view-title h1 {
 	margin: 0;
 	color: var(--color-text-strong);
 	font-size: 1.5rem;
@@ -441,61 +439,208 @@ button {
 	line-height: 1.25;
 }
 
-/* A segmented control in the platform's vocabulary rather than a pair of web buttons. Built here
-   from the neutral ramp: the native tokens next door are alpha colours meant to sit over macOS's
-   sidebar material, and over the opaque page they would read as grey smears. */
-.segmented {
+/* Held open, deliberately empty. Search, a create action and the signed-in identity belong to the
+   window rather than to a page, so this page reserves the corner instead of filling it with
+   controls that would have to move once they exist. */
+.view-global {
 	display: flex;
 	flex: none;
-	padding: 0.125rem;
-	border: 0.0625rem solid var(--color-border);
-	border-radius: 0.5rem;
-	gap: 0.125rem;
+	align-items: center;
+	gap: 0.5rem;
+	min-height: 1.75rem;
 }
 
-.segmented button {
-	padding: 0.25rem 0.625rem;
+.view-actions {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-top: 0.875rem;
+	padding-bottom: 0.75rem;
+	border-bottom: 0.0625rem solid var(--color-border);
+}
+
+/* Tabs carry the underline rather than a filled pill: the pill is the sidebar's way of showing
+   where you are, and repeating it here would make two things look equally like a location. */
+.tabs {
+	display: flex;
+	gap: 1.25rem;
+}
+
+.tabs button {
+	position: relative;
+	padding: 0 0 0.75rem;
 	border: 0;
-	border-radius: 0.375rem;
+	margin-bottom: -0.8125rem;
+	background: transparent;
+	color: var(--color-text-soft);
+	cursor: pointer;
+	font-size: 0.8125rem;
+	transition: color 160ms;
+}
+
+.tabs button:hover {
+	color: var(--color-text);
+}
+
+.tabs button[aria-selected='true'] {
+	color: var(--color-text-strong);
+}
+
+.tabs button[aria-selected='true']::after {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 0.0938rem;
+	background: var(--color-text-strong);
+	content: '';
+}
+
+.view-controls {
+	display: flex;
+	flex: none;
+	gap: 0.5rem;
+}
+
+.menu-anchor {
+	position: relative;
+}
+
+.control {
+	display: flex;
+	align-items: center;
+	padding: 0.25rem 0.625rem;
+	border: 0.0625rem solid var(--color-border);
+	border-radius: 0.5rem;
 	background: transparent;
 	color: var(--color-text-soft);
 	cursor: pointer;
 	font-size: 0.75rem;
+	gap: 0.375rem;
 	transition:
-		background-color 160ms,
+		border-color 160ms,
 		color 160ms;
 }
 
-.segmented button:hover {
-	color: var(--color-text);
-}
-
-.segmented button[aria-pressed='true'] {
-	background: var(--color-paper);
-	box-shadow: 0 0.0625rem 0.125rem oklch(0 0 0 / 0.08);
+.control:hover,
+.control[aria-expanded='true'] {
+	border-color: var(--color-border-strong);
 	color: var(--color-text-strong);
 }
 
-.library-lede {
-	margin: 0.625rem 0 0;
-	color: var(--color-text);
-	font-size: 0.9375rem;
-	line-height: 1.55;
+.control svg {
+	width: 0.875rem;
+	height: 0.875rem;
+	flex: none;
+	fill: none;
+	stroke: currentColor;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-width: 1.75;
 }
 
-.library-lede[data-state='error'] {
+.menu {
+	display: grid;
+	position: absolute;
+	z-index: 10;
+	top: calc(100% + 0.375rem);
+	right: 0;
+	min-width: 9rem;
+	padding: 0.25rem;
+	border: 0.0625rem solid var(--color-border);
+	border-radius: 0.625rem;
+	background: var(--color-paper);
+	box-shadow: 0 0.5rem 1.5rem oklch(0 0 0 / 0.18);
+	gap: 0.0625rem;
+}
+
+.menu-option {
+	padding: 0.375rem 0.5rem;
+	border: 0;
+	border-radius: 0.4375rem;
+	background: transparent;
+	color: var(--color-text);
+	cursor: pointer;
+	font-size: 0.8125rem;
+	text-align: left;
+	transition: background-color 120ms;
+}
+
+.menu-option:hover {
+	background: var(--color-paper-hover);
+}
+
+.menu-option[data-active] {
+	color: var(--color-text-strong);
+	font-weight: 550;
+}
+
+.group {
+	margin-top: 1.75rem;
+}
+
+.group-head {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.group-icon {
+	width: 0.9375rem;
+	height: 0.9375rem;
+	flex: none;
+	fill: none;
+	stroke: currentColor;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-width: 1.75;
+}
+
+.group[data-shape='attention'] .group-head {
 	color: var(--color-red);
 }
 
-.library-meta {
-	display: flex;
-	margin-top: 0.625rem;
-	flex-wrap: wrap;
-	gap: 0.25rem 0.625rem;
+.group[data-shape='underway'] .group-head {
+	color: var(--color-blue);
+}
+
+.group[data-shape='current'] .group-head,
+.group[data-shape='section'] .group-head {
+	color: var(--color-text-soft);
+}
+
+.group-name {
+	color: var(--color-text-strong);
+	font-size: 0.8125rem;
+	font-weight: 600;
+}
+
+.group-count {
 	color: var(--color-text-soft);
 	font-size: 0.75rem;
 	font-variant-numeric: tabular-nums;
-	line-height: 1.5;
+}
+
+/* One grid shared by the column header and every row under it, so a value and its name cannot
+   drift apart. Columns are sized to their content: a date is a date on every row, and giving it
+   a fraction of the width would make it move as the titles change. */
+.row-columns,
+.row-summary {
+	display: grid;
+	gap: 1.25rem;
+	grid-template-columns: minmax(0, 1fr) 7rem 4.5rem 5rem 6.5rem;
+}
+
+.row-columns {
+	padding: 0.75rem 0.5rem 0.5rem;
+	color: var(--color-text-soft);
+	font-size: 0.6875rem;
+}
+
+.col-segments,
+.col-modified {
+	text-align: right;
 }
 
 .row {
@@ -506,13 +651,13 @@ button {
 	border-top: 0.0625rem solid var(--color-border);
 }
 
-/* The one mark on the page. A row carrying work says so at the edge, where four of six reads at
-   a glance and without the eye crossing to a column. Rows that are fine draw nothing: completion
-   is the resting state, and a tick beside every healthy article would make status the subject. */
+/* The one mark on a row. Work says so at the edge, where four of six reads at a glance and
+   without the eye crossing to a column. A row that is fine draws nothing: completion is the
+   resting state, and a tick beside every healthy article would make status the subject. */
 .row[data-attention]::before {
 	position: absolute;
-	top: 0.875rem;
-	bottom: 0.875rem;
+	top: 0.75rem;
+	bottom: 0.75rem;
 	left: -0.625rem;
 	width: 0.125rem;
 	border-radius: 0.0625rem;
@@ -520,21 +665,15 @@ button {
 	content: '';
 }
 
-/* One grid, declared once, so every value lands on the same edge down the page. Columns are sized
-   to their content rather than shared out: a date is a date on every row, and giving it a
-   fraction of the width would make it drift as the titles change. */
 .row-summary {
-	display: grid;
 	width: 100%;
 	align-items: baseline;
-	padding: 0.875rem 0.5rem;
+	padding: 0.75rem 0.5rem;
 	border: 0;
 	border-radius: 0.5rem;
 	background: transparent;
 	color: inherit;
 	cursor: pointer;
-	gap: 1.25rem;
-	grid-template-columns: minmax(0, 1fr) 6rem 3rem 5rem 6.5rem;
 	text-align: left;
 	transition: background-color 160ms;
 }
@@ -543,16 +682,11 @@ button {
 	background: var(--color-paper-hover);
 }
 
-.row-identity {
-	display: block;
-	min-width: 0;
-}
-
 .row-title {
 	display: block;
 	overflow: hidden;
 	color: var(--color-text-strong);
-	font-size: 0.9375rem;
+	font-size: 0.875rem;
 	font-weight: 500;
 	line-height: 1.4;
 	text-overflow: ellipsis;
@@ -574,9 +708,12 @@ button {
 	text-align: right;
 }
 
-.row-state {
+.row-state[data-tone='attention'] {
 	color: var(--color-red);
-	font-variant-numeric: tabular-nums;
+}
+
+.row-state[data-tone='underway'] {
+	color: var(--color-blue);
 }
 
 .row-detail {
@@ -603,8 +740,8 @@ button {
 	gap: 0.25rem;
 }
 
-/* Every locale is drawn, including the complete ones, because the question this answers is
-   "where does this stand" and a list of only the failures cannot say how many there were. */
+/* Every locale is drawn, including the complete ones: the question this answers is "where does
+   this stand", and a list of only the failures cannot say how many there were. */
 .locale {
 	padding: 0.125rem 0.375rem;
 	border: 0.0625rem solid var(--color-border);
@@ -644,11 +781,16 @@ button {
 	font-size: 0.75rem;
 }
 
-.ledger-empty {
-	margin: 0;
-	padding: 2rem 0.5rem;
+.group-empty,
+.view-error {
+	margin: 2rem 0 0;
+	padding: 0 0.5rem;
 	color: var(--color-text-soft);
 	font-size: 0.8125rem;
+}
+
+.view-error {
+	color: var(--color-red);
 }
 
 .derived-list {

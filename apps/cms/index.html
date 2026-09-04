@@ -132,20 +132,70 @@
 					</div>
 
 					<div class="articles" data-articles aria-live="polite" hidden>
-						<header class="library-head">
-							<div class="library-title">
+						<header class="view-head">
+							<div class="view-title">
 								<h1>Articles</h1>
-								<div class="segmented" role="group" aria-label="Filter articles">
-									<button type="button" data-filter="all" aria-pressed="true">All</button>
-									<button type="button" data-filter="attention" aria-pressed="false">
-										Needs a pass
+								<!-- Reserved. Global controls -- search, a primary create action, the signed-in
+								     identity -- belong to the window rather than to this page, so the slot is
+								     held open here and stays empty until they exist. -->
+								<div class="view-global"></div>
+							</div>
+							<div class="view-actions">
+								<div class="tabs" role="tablist" aria-label="Group articles by" data-group-tabs>
+									<button type="button" role="tab" data-group="status" aria-selected="true">
+										Status
+									</button>
+									<button type="button" role="tab" data-group="section" aria-selected="false">
+										Section
 									</button>
 								</div>
+								<div class="view-controls">
+									<div class="menu-anchor">
+										<button type="button" class="control" data-menu="filter" aria-expanded="false">
+											<svg aria-hidden="true" viewBox="0 0 24 24">
+												<path d="M3 5h18M7 12h10M11 19h2" />
+											</svg>
+											<span data-menu-label="filter">Filter</span>
+										</button>
+									</div>
+									<div class="menu-anchor">
+										<button type="button" class="control" data-menu="sort" aria-expanded="false">
+											<svg aria-hidden="true" viewBox="0 0 24 24">
+												<path d="M4 6h10M4 12h7M4 18h4M17 5v14M17 19l3-3M17 19l-3-3" />
+											</svg>
+											<span data-menu-label="sort">Recent</span>
+										</button>
+									</div>
+								</div>
 							</div>
-							<p class="library-lede" data-articles-state>Reading the library…</p>
-							<div class="library-meta" data-articles-total aria-label="Library summary"></div>
 						</header>
-						<div class="ledger" data-articles-list></div>
+						<!-- Group marks. Authored here rather than built in script, like the Overview's status
+						     icons: an SVG element needs its namespace, and the one place markup already
+						     carries that is the document. -->
+						<template data-icon="attention">
+							<svg class="group-icon" aria-hidden="true" viewBox="0 0 24 24">
+								<path d="M12 3.5 2.8 19.5h18.4L12 3.5Z" />
+								<path d="M12 10v3.5M12 16.5v.01" />
+							</svg>
+						</template>
+						<template data-icon="underway">
+							<svg class="group-icon" aria-hidden="true" viewBox="0 0 24 24">
+								<path d="M12 3a9 9 0 1 0 9 9" />
+								<path d="M12 3v9" />
+							</svg>
+						</template>
+						<template data-icon="current">
+							<svg class="group-icon" aria-hidden="true" viewBox="0 0 24 24">
+								<path d="M20 6 9 17l-5-5" />
+							</svg>
+						</template>
+						<template data-icon="section">
+							<svg class="group-icon" aria-hidden="true" viewBox="0 0 24 24">
+								<path d="M4 6h16M4 12h16M4 18h10" />
+							</svg>
+						</template>
+						<div class="groups" data-articles-list></div>
+						<p class="view-error" data-articles-error hidden></p>
 					</div>
 
 					<div class="derived" data-derived aria-live="polite" hidden>

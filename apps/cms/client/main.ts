@@ -1,7 +1,12 @@
 import { followSystemTheme } from '@canmi/theme';
 import { invoke } from '@tauri-apps/api/core';
 import { getCurrentWindow } from '@tauri-apps/api/window';
-import { renderArticles, renderArticlesError, type ArticleListing } from './articles';
+import {
+	renderArticles,
+	renderArticleRuns,
+	renderArticlesError,
+	type ArticleListing,
+} from './articles';
 import {
 	renderDerived,
 	renderDerivedError,
@@ -73,6 +78,8 @@ async function refreshTaskRuns(): Promise<void> {
 	try {
 		liveTaskRuns = await invoke<TaskRun[]>('live_task_runs');
 		renderTaskRuns(derived, liveTaskRuns);
+		// The library groups by what is being worked on, so it needs the same poll.
+		renderArticleRuns(liveTaskRuns);
 		if (liveTaskRuns.length > 0) scheduleTaskPoll();
 		else if (hadLiveRuns) {
 			void invoke<DerivedReport>('derived_report').then(showDerivedReport, (error: unknown) =>

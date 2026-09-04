@@ -147,11 +147,29 @@ of segments, an absent summary, segments an edit left stale -- as a third line u
 nobody needed in order to identify an article they wrote.
 
 So a row is one line: title, section, segment count, what is outstanding, authored date, in fixed
-columns so every value lands on the same edge down the page. Section grouping is gone with it. Four
-sections over six articles cost a screen of headings to impose a taxonomy unrelated to what needs
-doing, and the ordering that does relate to it -- outstanding first, then most recently touched --
-is the one the page now sorts by. Identification is the row's job; reading is not, so the subtitle,
-the path and the per-locale standing move into a panel the row opens.
+columns that the group's own header names, so a value and its label cannot drift apart.
+Identification is the row's job and reading is not, so the subtitle, the path and the per-locale
+standing move into a panel the row opens.
+
+**Rows are grouped by what they need, not by where they live.** Needs a pass, In progress, Current
+-- and a group with nothing in it is not drawn. Section grouping survives as the other choice
+rather than the arrangement: four sections over six articles spent a screen imposing a taxonomy
+unrelated to the work. Which grouping is in force is a tab under the title; the filter and the sort
+are menus at the right of that same row, and each states its current value rather than a generic
+verb, because a control that reads `Filter` when a filter is applied hides the fact that the list
+is short for a reason.
+
+**In progress is derived from the live run registry.** A run records its task id and not the items
+it is working on, so an article cannot be matched to a run exactly -- what is knowable is that
+while `locale` runs, the articles short of translations are the ones being worked on. The mapping
+from task to the findings it closes is one table in
+[articles.ts](../../apps/cms/client/articles.ts), so a task that becomes runnable adds a line
+there rather than a branch. This is the page's only claim about live state, and it is the reason
+the library polls the same registry the Derived page does.
+
+**The top right of the title row is held open and stays empty.** Search, a primary create action
+and the signed-in identity belong to the window rather than to a page. Reserving the corner now
+costs nothing and stops those controls from being invented per page and then having to move.
 
 **Completion is still the resting state.** A healthy article draws no tick, no badge and no locale
 strip; the rows carrying work are marked by a single hairline rail at the left edge, which is the
