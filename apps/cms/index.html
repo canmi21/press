@@ -162,9 +162,14 @@
 									</div>
 									<div class="menu-anchor">
 										<button type="button" class="control" data-menu="sort" aria-expanded="false">
+											<!-- Both marks live here and one is hidden. Cloning a template in and out lost
+											     which icon belonged to this control the first time it was tried. -->
 											<span data-menu-icon="sort">
-												<svg aria-hidden="true" viewBox="0 0 24 24">
+												<svg data-mark="sort" aria-hidden="true" viewBox="0 0 24 24">
 													<path d="M4 6h10M4 12h7M4 18h4M17 5v14M17 19l3-3M17 19l-3-3" />
+												</svg>
+												<svg data-mark="reset" aria-hidden="true" viewBox="0 0 24 24" hidden>
+													<path d="M7 7l10 10M17 7 7 17" />
 												</svg>
 											</span>
 											<span data-menu-label="sort">Recent</span>
@@ -208,11 +213,6 @@
 								<circle cx="5" cy="12" r="1.4" fill="currentColor" stroke="none" />
 								<circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none" />
 								<circle cx="19" cy="12" r="1.4" fill="currentColor" stroke="none" />
-							</svg>
-						</template>
-						<template data-icon="close">
-							<svg class="mark" aria-hidden="true" viewBox="0 0 24 24">
-								<path d="M7 7l10 10M17 7 7 17" />
 							</svg>
 						</template>
 						<template data-icon="sort">

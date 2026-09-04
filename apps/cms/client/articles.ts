@@ -28,7 +28,6 @@ type Filter = 'all' | 'attention' | 'current';
 type Sort = 'recent' | 'longest' | 'title';
 type Column = 'title' | 'detail' | 'modified';
 type Mark =
-	| 'close'
 	| 'status'
 	| 'section'
 	| 'todo'
@@ -523,7 +522,7 @@ function drawViewControls(root: HTMLElement): void {
  */
 function paintSortControl(root: HTMLElement): void {
 	const control = requiredElement<HTMLButtonElement>(root, '[data-menu="sort"]');
-	const label = requiredElement<HTMLElement>(root, '[data-menu-label="sort"]');
+	const wording = requiredElement<HTMLElement>(root, '[data-menu-label="sort"]');
 	const slot = requiredElement<HTMLElement>(root, '[data-menu-icon="sort"]');
 	const resetting = column !== null && offeringReset;
 	const next = resetting
@@ -532,12 +531,15 @@ function paintSortControl(root: HTMLElement): void {
 			? (SORTS.find(([value]) => value === sort)?.[1] ?? 'Recent')
 			: 'By column';
 
-	if (label.textContent === next) return;
+	if (wording.textContent === next) return;
 	animateWidth(control, () => {
-		label.textContent = next;
-		control.dataset.reset = resetting ? '' : undefined;
-		if (resetting) slot.replaceChildren(mark('close'));
-		else if (slot.dataset.restore === undefined) slot.replaceChildren(mark('sort'));
+		wording.textContent = next;
+		// `toggleAttribute`, never `dataset.x = undefined`: assigning undefined to a dataset
+		// property writes the string "undefined", which still matches `[data-reset]` -- so the
+		// control stayed in its reset styling for good.
+		control.toggleAttribute('data-reset', resetting);
+		requiredElement<HTMLElement>(slot, '[data-mark="sort"]').hidden = resetting;
+		requiredElement<HTMLElement>(slot, '[data-mark="reset"]').hidden = !resetting;
 	});
 }
 

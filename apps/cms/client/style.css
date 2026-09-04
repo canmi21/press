@@ -549,11 +549,6 @@ button {
 	align-items: center;
 }
 
-.control[data-reset] {
-	border-color: var(--color-red);
-	color: var(--color-red);
-}
-
 .control svg,
 .tabs button svg {
 	width: 0.9375rem;
