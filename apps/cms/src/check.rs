@@ -110,13 +110,14 @@ fn gaps(scan: &Scan, public: &Path, described: &crate::media::Media) -> Vec<Gap>
 #[cfg(test)]
 mod tests {
 	use super::*;
-	use std::path::PathBuf;
 
-	fn temp(name: &str) -> PathBuf {
-		let path = std::env::temp_dir().join(format!("cms-check-{name}-{}", std::process::id()));
-		let _ = std::fs::remove_dir_all(&path);
-		std::fs::create_dir_all(&path).expect("temp");
-		path
+	/// A directory that removes itself, however the test ends.
+	///
+	/// `TempDir` deletes on drop, which the hand-rolled predecessor could not: a panicking test
+	/// left its directory behind, and the name carried the process id because two tests choosing
+	/// the same one would otherwise share a directory. Both problems belonged to the workaround.
+	fn temp() -> tempfile::TempDir {
+		tempfile::tempdir().expect("temp")
 	}
 
 	fn article(root: &Path, text: &str) {
@@ -128,7 +129,8 @@ mod tests {
 	fn a_missing_image_outranks_a_missing_icon() {
 		// One leaves a hole in the page and the other does not, so they must not be reported
 		// at the same level -- a report where everything is urgent is a report nobody reads.
-		let root = temp("levels");
+		let temporary = temp();
+		let root = temporary.path();
 		article(
 			&root,
 			r#"![](shot.png)
@@ -146,7 +148,8 @@ mod tests {
 
 	#[test]
 	fn a_published_reference_is_not_a_gap() {
-		let root = temp("published");
+		let temporary = temp();
+		let root = temporary.path();
 		let cid = "44b6081deaf0242ca3bf83d62a3b6c95";
 		article(&root, &format!("![]({cid}.avif)"));
 		let meta = image::store::meta_path(&root.join("public"), cid);
@@ -166,7 +169,8 @@ mod tests {
 	fn a_reference_whose_record_is_gone_is_reported() {
 		// The article says the work was done, and the bytes disagree. Sweeping too eagerly
 		// looks exactly like this, which is the reason to notice it.
-		let root = temp("swept");
+		let temporary = temp();
+		let root = temporary.path();
 		article(&root, "![](44b6081deaf0242ca3bf83d62a3b6c95.avif)");
 
 		// Two now: the record is gone, and nothing has described the asset either. Only the

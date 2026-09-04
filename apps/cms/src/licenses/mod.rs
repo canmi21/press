@@ -571,7 +571,8 @@ mod tests {
 
 	#[test]
 	fn stores_one_object_for_a_text_two_packages_share() {
-		let root = std::env::temp_dir().join(format!("cms-licenses-{}", std::process::id()));
+		let temporary = tempfile::tempdir().expect("temp");
+		let root = temporary.path();
 		let one = root.join("one");
 		let two = root.join("two");
 		std::fs::create_dir_all(&one).unwrap();
@@ -621,7 +622,8 @@ mod tests {
 
 	#[test]
 	fn reports_a_package_that_declares_terms_but_ships_none() {
-		let root = std::env::temp_dir().join(format!("cms-textless-{}", std::process::id()));
+		let temporary = tempfile::tempdir().expect("temp");
+		let root = temporary.path();
 		let bare = root.join("bare");
 		std::fs::create_dir_all(&bare).unwrap();
 

@@ -137,11 +137,13 @@ pub fn run(options: Options<'_>) -> std::io::Result<Outcome> {
 mod tests {
 	use super::*;
 
-	fn temp(name: &str) -> std::path::PathBuf {
-		let path = std::env::temp_dir().join(format!("cms-collect-{name}-{}", std::process::id()));
-		let _ = std::fs::remove_dir_all(&path);
-		std::fs::create_dir_all(&path).expect("temp");
-		path
+	/// A directory that removes itself, however the test ends.
+	///
+	/// `TempDir` deletes on drop, which the hand-rolled predecessor could not: a panicking test
+	/// left its directory behind, and the name carried the process id because two tests choosing
+	/// the same one would otherwise share a directory. Both problems belonged to the workaround.
+	fn temp() -> tempfile::TempDir {
+		tempfile::tempdir().expect("temp")
 	}
 
 	fn wanted(domain: &str) -> Wanted {
@@ -152,7 +154,8 @@ mod tests {
 	/// rerun cheap. Creating the directory is how this repository records "asked already".
 	#[test]
 	fn an_already_collected_domain_is_skipped() {
-		let root = temp("skip");
+		let temporary = temp();
+		let root = temporary.path();
 		std::fs::create_dir_all(root.join("data/public/favicon/example.com")).expect("dir");
 		let outcome = run(Options {
 			repository: &root,
@@ -172,7 +175,8 @@ mod tests {
 	/// held by another CMS. The item is reported as somebody else's and the run continues.
 	#[test]
 	fn an_item_claimed_elsewhere_is_left_alone() {
-		let root = temp("claimed");
+		let temporary = temp();
+		let root = temporary.path();
 		std::fs::create_dir_all(root.join("data/public/favicon/free.example")).expect("dir");
 		let held = claim::take(&root, "favicon", "taken.example").expect("claim");
 
@@ -195,7 +199,8 @@ mod tests {
 	/// The run is visible to another reader while it happens, and gone afterwards.
 	#[test]
 	fn the_run_publishes_itself_and_cleans_up() {
-		let root = temp("published");
+		let temporary = temp();
+		let root = temporary.path();
 		std::fs::create_dir_all(root.join("data/public/favicon/example.com")).expect("dir");
 		assert!(registry::running(&root, "favicon").expect("before").is_none());
 		run(Options {
@@ -215,7 +220,8 @@ mod tests {
 	/// directory appearing mid-run stands in for the other process having collected it.
 	#[test]
 	fn an_item_finished_by_someone_else_is_dropped_after_claiming() {
-		let root = temp("recheck");
+		let temporary = temp();
+		let root = temporary.path();
 		let collected = root.join("data/public/favicon/late.example");
 		std::fs::create_dir_all(&collected).expect("dir");
 
@@ -238,7 +244,8 @@ mod tests {
 	/// A claim taken for one domain is released before the run ends, so a second run can take it.
 	#[test]
 	fn claims_do_not_outlive_the_item() {
-		let root = temp("release");
+		let temporary = temp();
+		let root = temporary.path();
 		std::fs::create_dir_all(root.join("data/public/favicon/example.com")).expect("dir");
 		run(Options {
 			repository: &root,

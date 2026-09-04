@@ -37,7 +37,8 @@ mod tests {
 
 	#[test]
 	fn finds_the_marker_from_a_nested_directory() {
-		let root = std::env::temp_dir().join(format!("cms-paths-{}", std::process::id()));
+		let temporary = tempfile::tempdir().expect("temp");
+		let root = temporary.path();
 		let nested = root.join("apps").join("cms").join("src");
 		std::fs::create_dir_all(&nested).unwrap();
 		std::fs::create_dir_all(root.join("data").join("public")).unwrap();
@@ -49,7 +50,8 @@ mod tests {
 
 	#[test]
 	fn returns_nothing_when_there_is_no_marker() {
-		let root = std::env::temp_dir().join(format!("cms-empty-{}", std::process::id()));
+		let temporary = tempfile::tempdir().expect("temp");
+		let root = temporary.path();
 		std::fs::create_dir_all(&root).unwrap();
 		// A temp directory has no data/public above it, and finding one would mean the walk
 		// escaped into somebody's home.

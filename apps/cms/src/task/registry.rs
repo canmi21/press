@@ -191,16 +191,19 @@ impl super::progress::Sink for Published {
 mod tests {
 	use super::*;
 
-	fn temp(name: &str) -> PathBuf {
-		let path = std::env::temp_dir().join(format!("cms-registry-{name}-{}", std::process::id()));
-		let _ = std::fs::remove_dir_all(&path);
-		std::fs::create_dir_all(&path).expect("temp");
-		path
+	/// A directory that removes itself, however the test ends.
+	///
+	/// `TempDir` deletes on drop, which the hand-rolled predecessor could not: a panicking test
+	/// left its directory behind, and the name carried the process id because two tests choosing
+	/// the same one would otherwise share a directory. Both problems belonged to the workaround.
+	fn temp() -> tempfile::TempDir {
+		tempfile::tempdir().expect("temp")
 	}
 
 	#[test]
 	fn a_published_run_is_visible_to_a_reader() {
-		let root = temp("visible");
+		let temporary = temp();
+		let root = temporary.path();
 		let entry = publish(&root, "favicon", Shell::Cli, 8).expect("publish");
 		let listed = live(&root).expect("live");
 		assert_eq!(listed.len(), 1);
@@ -212,7 +215,8 @@ mod tests {
 
 	#[test]
 	fn progress_reaches_the_reader() {
-		let root = temp("progress");
+		let temporary = temp();
+		let root = temporary.path();
 		let mut entry = publish(&root, "i18n", Shell::Desktop, 100).expect("publish");
 		entry.update(42, 100, "less-is-more.md ja-JP").expect("update");
 		let listed = live(&root).expect("live");
@@ -224,7 +228,8 @@ mod tests {
 
 	#[test]
 	fn a_finished_run_stops_being_listed() {
-		let root = temp("finished");
+		let temporary = temp();
+		let root = temporary.path();
 		let entry = publish(&root, "favicon", Shell::Cli, 1).expect("publish");
 		drop(entry);
 		assert!(live(&root).expect("live").is_empty());
@@ -236,7 +241,8 @@ mod tests {
 	/// read as absent rather than as a run in progress.
 	#[test]
 	fn an_entry_left_by_a_dead_process_is_not_live() {
-		let root = temp("corpse");
+		let temporary = temp();
+		let root = temporary.path();
 		let directory = directory(&root);
 		std::fs::create_dir_all(&directory).expect("dir");
 		std::fs::write(
@@ -261,7 +267,8 @@ mod tests {
 
 	#[test]
 	fn running_names_the_holder() {
-		let root = temp("holder");
+		let temporary = temp();
+		let root = temporary.path();
 		let entry = publish(&root, "alt", Shell::Desktop, 24).expect("publish");
 		let found = running(&root, "alt").expect("running").expect("some");
 		assert_eq!(found.pid, std::process::id());
@@ -273,7 +280,8 @@ mod tests {
 
 	#[test]
 	fn one_process_publishes_two_different_tasks_at_once() {
-		let root = temp("two");
+		let temporary = temp();
+		let root = temporary.path();
 		let alt = publish(&root, "alt", Shell::Cli, 1).expect("alt");
 		let tag = publish(&root, "tag", Shell::Cli, 1).expect("tag");
 		assert_eq!(live(&root).expect("live").len(), 2);

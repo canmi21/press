@@ -515,8 +515,8 @@ mod tests {
 	/// which is what makes the property testable without one.
 	#[tokio::test]
 	async fn an_article_another_run_claimed_is_not_summarised_again() {
-		let root = std::env::temp_dir().join(format!("cms-summary-claimed-{}", std::process::id()));
-		let _ = std::fs::remove_dir_all(&root);
+		let temporary = tempfile::tempdir().expect("temp");
+		let root = temporary.path();
 		let contents = root.join("contents");
 		std::fs::create_dir_all(&contents).expect("contents");
 		std::fs::write(
@@ -549,8 +549,8 @@ mod tests {
 	/// make the article a candidate and buy the summary it already has a second time.
 	#[test]
 	fn a_broken_sidecar_is_an_error_rather_than_an_absent_summary() {
-		let path =
-			std::env::temp_dir().join(format!("cms-summary-{}.summary.yaml", std::process::id()));
+		let temporary = tempfile::tempdir().expect("temp");
+		let path = temporary.path().join("one.summary.yaml");
 		std::fs::write(&path, "summary: [not a map\n").expect("write");
 		let error = load(&path).expect_err("a broken sidecar must not read as empty");
 		assert_eq!(error.kind(), std::io::ErrorKind::InvalidData);
@@ -622,9 +622,8 @@ mod tests {
 
 	#[test]
 	fn a_page_without_lang_is_not_an_article() {
-		let dir = std::env::temp_dir().join("cms-summary-pending");
-		let _ = std::fs::remove_dir_all(&dir);
-		std::fs::create_dir_all(&dir).unwrap();
+		let temporary = tempfile::tempdir().expect("temp");
+		let dir = temporary.path();
 		// The homepage shape: a hand-written summary and no language of its own.
 		std::fs::write(
 			dir.join("homepage.md"),
@@ -635,14 +634,12 @@ mod tests {
 		let (todo, _, _) = pending(&dir, false).expect("pending");
 		assert_eq!(todo.len(), 1);
 		assert!(todo[0].path.ends_with("post.md"));
-		let _ = std::fs::remove_dir_all(&dir);
 	}
 
 	#[test]
 	fn a_reviewed_summary_survives_force() {
-		let dir = std::env::temp_dir().join("cms-summary-reviewed");
-		let _ = std::fs::remove_dir_all(&dir);
-		std::fs::create_dir_all(&dir).unwrap();
+		let temporary = tempfile::tempdir().expect("temp");
+		let dir = temporary.path();
 		let article = dir.join("post.md");
 		std::fs::write(&article, "---\nlang: zh\n---\n\nBody\n").unwrap();
 		let mut sidecar = Sidecar::default();
@@ -663,6 +660,5 @@ mod tests {
 		let (todo, _, reviewed) = pending(&dir, true).expect("pending");
 		assert!(todo.is_empty());
 		assert_eq!(reviewed, 1);
-		let _ = std::fs::remove_dir_all(&dir);
 	}
 }

@@ -107,7 +107,8 @@ mod tests {
 
 	#[test]
 	fn another_version_is_read_as_no_record_at_all() {
-		let root = std::env::temp_dir().join(format!("cms-og-manifest-{}", std::process::id()));
+		let temporary = tempfile::tempdir().expect("temp");
+		let root = temporary.path();
 		std::fs::create_dir_all(&root).expect("dir");
 		let path = root.join("opengraph.json");
 		std::fs::write(&path, r#"{"version":999,"cards":{"a.png":"deadbeef"}}"#).expect("write");

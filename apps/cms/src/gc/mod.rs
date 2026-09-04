@@ -172,11 +172,13 @@ mod tests {
 	use crate::image::manifest::{Media, Merged, Source, VariantRecord};
 	use std::collections::BTreeMap;
 
-	fn temp(name: &str) -> PathBuf {
-		let path = std::env::temp_dir().join(format!("cms-gc-{name}-{}", std::process::id()));
-		let _ = std::fs::remove_dir_all(&path);
-		std::fs::create_dir_all(&path).expect("temp");
-		path
+	/// A directory that removes itself, however the test ends.
+	///
+	/// `TempDir` deletes on drop, which the hand-rolled predecessor could not: a panicking test
+	/// left its directory behind, and the name carried the process id because two tests choosing
+	/// the same one would otherwise share a directory. Both problems belonged to the workaround.
+	fn temp() -> tempfile::TempDir {
+		tempfile::tempdir().expect("temp")
 	}
 
 	fn media(variant: &str) -> Media {
@@ -204,8 +206,12 @@ mod tests {
 	}
 
 	/// A repository with one referenced asset and one abandoned one.
-	fn scenario(name: &str) -> (PathBuf, String, String) {
-		let root = temp(name);
+	///
+	/// The guard comes back with the paths: it owns the directory, so dropping it here would
+	/// delete everything the caller is about to look at.
+	fn scenario() -> (tempfile::TempDir, PathBuf, String, String) {
+		let temporary = temp();
+		let root = temporary.path().to_path_buf();
 		let kept = "44b6081deaf0242ca3bf83d62a3b6c95".to_owned();
 		let dropped = "12faaa76365814de1195d6bdf1e5ba05".to_owned();
 		let kept_variant = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa".to_owned();
@@ -238,12 +244,12 @@ mod tests {
 			crate::image::store::write(&crate::image::store::meta_path(&public, cid), b"{}")
 				.expect("write");
 		}
-		(root, kept_variant, dropped_variant)
+		(temporary, root, kept_variant, dropped_variant)
 	}
 
 	#[test]
 	fn keeps_the_variants_of_a_referenced_asset() {
-		let (root, kept_variant, dropped_variant) = scenario("keep");
+		let (_temporary, root, kept_variant, dropped_variant) = scenario();
 		let sweep = plan(&root, &root.join("public"), &root.join("contents")).expect("plan");
 
 		let names: Vec<String> = sweep.orphans.iter().map(|p| stem_of(p)).collect();
@@ -256,7 +262,7 @@ mod tests {
 	fn drops_the_manifest_entry_along_with_the_bytes() {
 		// Leaving the record behind would make the manifest grow forever and would let a
 		// later reference resolve to variants that are no longer there.
-		let (root, _, _) = scenario("entries");
+		let (_temporary, root, _, _) = scenario();
 		let sweep = plan(&root, &root.join("public"), &root.join("contents")).expect("plan");
 		assert_eq!(sweep.entries, vec!["12faaa76365814de1195d6bdf1e5ba05"]);
 
@@ -269,7 +275,7 @@ mod tests {
 
 	#[test]
 	fn planning_alone_deletes_nothing() {
-		let (root, _, _) = scenario("dry");
+		let (_temporary, root, _, _) = scenario();
 		let sweep = plan(&root, &root.join("public"), &root.join("contents")).expect("plan");
 		assert!(!sweep.orphans.is_empty());
 		for path in &sweep.orphans {
@@ -280,7 +286,8 @@ mod tests {
 
 	#[test]
 	fn sweeps_an_icon_directory_no_article_links_to() {
-		let root = temp("icons");
+		let temporary = temp();
+		let root = temporary.path();
 		std::fs::create_dir_all(root.join("contents")).expect("dir");
 		std::fs::write(root.join("contents/a.md"), r#"::linkcard{url="https://kept.example"}"#)
 			.expect("write");

@@ -491,11 +491,11 @@ mod tests {
 	fn a_broken_table_is_an_error_rather_than_an_empty_one() {
 		// `cms tn` saves the whole table back at the end of a scan, so reading a broken one as
 		// empty would pay for every gloss again and then erase what it replaced.
-		let path = std::env::temp_dir().join(format!("cms-tn-{}.yaml", std::process::id()));
+		let temporary = tempfile::tempdir().expect("temp");
+		let path = temporary.path().join("notes.yaml");
 		std::fs::write(&path, "articles: [not a map\n").expect("write");
 		let error = load(&path).expect_err("a broken table must not read as empty");
 		assert_eq!(error.kind(), std::io::ErrorKind::InvalidData);
-		let _ = std::fs::remove_file(&path);
 	}
 
 	#[test]

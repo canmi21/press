@@ -123,11 +123,11 @@ mod tests {
 	#[test]
 	fn a_broken_registry_is_an_error_rather_than_an_empty_one() {
 		// The tag vocabulary is curated by a person and rewritten whole on every save.
-		let path = std::env::temp_dir().join(format!("cms-tags-{}.yaml", std::process::id()));
+		let temporary = tempfile::tempdir().expect("temp");
+		let path = temporary.path().join("tags.yaml");
 		std::fs::write(&path, "tags: [not a map\n").expect("write");
 		let error = super::load(&path).expect_err("a broken registry must not read as empty");
 		assert_eq!(error.kind(), std::io::ErrorKind::InvalidData);
-		let _ = std::fs::remove_file(&path);
 	}
 
 	use super::*;

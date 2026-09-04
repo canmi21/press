@@ -145,16 +145,19 @@ mod tests {
 	use std::sync::Arc;
 	use std::sync::atomic::{AtomicUsize, Ordering};
 
-	fn temp(name: &str) -> PathBuf {
-		let path = std::env::temp_dir().join(format!("cms-writer-{name}-{}", std::process::id()));
-		let _ = std::fs::remove_dir_all(&path);
-		std::fs::create_dir_all(&path).expect("temp");
-		path
+	/// A directory that removes itself, however the test ends.
+	///
+	/// `TempDir` deletes on drop, which the hand-rolled predecessor could not: a panicking test
+	/// left its directory behind, and the name carried the process id because two tests choosing
+	/// the same one would otherwise share a directory. Both problems belonged to the workaround.
+	fn temp() -> tempfile::TempDir {
+		tempfile::tempdir().expect("temp")
 	}
 
 	#[test]
 	fn mutations_are_applied() {
-		let root = temp("applied");
+		let temporary = temp();
+		let root = temporary.path();
 		let writer = Writer::start(&root, Record::Media).expect("writer");
 		let counter = Arc::new(AtomicUsize::new(0));
 		for _ in 0..8 {
@@ -176,7 +179,8 @@ mod tests {
 	/// translation run is paid output silently vanishing.
 	#[test]
 	fn concurrent_read_modify_write_loses_nothing() {
-		let root = temp("serial");
+		let temporary = temp();
+		let root = temporary.path();
 		let store = root.join("store");
 		std::fs::write(&store, "0").expect("seed");
 		let writer = Arc::new(Writer::start(&root, Record::Media).expect("writer"));
@@ -211,7 +215,8 @@ mod tests {
 
 	#[test]
 	fn a_failing_mutation_reports_to_its_caller() {
-		let root = temp("failure");
+		let temporary = temp();
+		let root = temporary.path();
 		let writer = Writer::start(&root, Record::Tags).expect("writer");
 		let result = writer.apply(|| Err(std::io::Error::other("no")));
 		assert!(result.is_err());
@@ -225,7 +230,8 @@ mod tests {
 	/// that have already been paid for.
 	#[test]
 	fn dropping_the_writer_drains_what_was_handed_over() {
-		let root = temp("drain");
+		let temporary = temp();
+		let root = temporary.path();
 		let counter = Arc::new(AtomicUsize::new(0));
 		{
 			let writer = Writer::start(&root, Record::Notes).expect("writer");
@@ -245,7 +251,8 @@ mod tests {
 
 	#[test]
 	fn each_record_has_its_own_lock_file() {
-		let root = temp("paths");
+		let temporary = temp();
+		let root = temporary.path();
 		let media = lock_path(&root, Record::Media);
 		let tags = lock_path(&root, Record::Tags);
 		assert_ne!(media, tags);

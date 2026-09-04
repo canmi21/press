@@ -190,16 +190,19 @@ pub fn live(repository: &Path) -> std::io::Result<Vec<Held>> {
 mod tests {
 	use super::*;
 
-	fn temp(name: &str) -> PathBuf {
-		let path = std::env::temp_dir().join(format!("cms-claim-{name}-{}", std::process::id()));
-		let _ = std::fs::remove_dir_all(&path);
-		std::fs::create_dir_all(&path).expect("temp");
-		path
+	/// A directory that removes itself, however the test ends.
+	///
+	/// `TempDir` deletes on drop, which the hand-rolled predecessor could not: a panicking test
+	/// left its directory behind, and the name carried the process id because two tests choosing
+	/// the same one would otherwise share a directory. Both problems belonged to the workaround.
+	fn temp() -> tempfile::TempDir {
+		tempfile::tempdir().expect("temp")
 	}
 
 	#[test]
 	fn a_claim_excludes_a_second_taker() {
-		let root = temp("exclusive");
+		let temporary = temp();
+		let root = temporary.path();
 		let first = take(&root, "favicon", "example.com").expect("first");
 		match take(&root, "favicon", "example.com") {
 			Err(Denied::Taken(held)) => {
@@ -214,7 +217,8 @@ mod tests {
 
 	#[test]
 	fn different_items_of_one_task_do_not_contend() {
-		let root = temp("items");
+		let temporary = temp();
+		let root = temporary.path();
 		let one = take(&root, "i18n", "a.md#seg1#ja-JP").expect("one");
 		let two = take(&root, "i18n", "a.md#seg2#ja-JP").expect("two");
 		drop((one, two));
@@ -225,7 +229,8 @@ mod tests {
 	/// treating those as one claim would serialise the pair this design exists to keep parallel.
 	#[test]
 	fn the_same_key_under_two_tasks_is_two_claims() {
-		let root = temp("tasks");
+		let temporary = temp();
+		let root = temporary.path();
 		let alt = take(&root, "alt", "44b6081d").expect("alt");
 		let tag = take(&root, "tag", "44b6081d").expect("tag");
 		drop((alt, tag));
@@ -234,7 +239,8 @@ mod tests {
 
 	#[test]
 	fn releasing_lets_the_next_taker_through() {
-		let root = temp("release");
+		let temporary = temp();
+		let root = temporary.path();
 		let first = take(&root, "favicon", "example.com").expect("first");
 		drop(first);
 		take(&root, "favicon", "example.com").expect("second");
@@ -245,7 +251,8 @@ mod tests {
 	/// behind with its metadata intact and no lock, and must be reclaimed rather than respected.
 	#[test]
 	fn a_claim_left_by_a_dead_process_is_reclaimed() {
-		let root = temp("corpse");
+		let temporary = temp();
+		let root = temporary.path();
 		let directory = directory(&root);
 		std::fs::create_dir_all(&directory).expect("dir");
 		let path = directory.join(file_name("favicon", "ghost.example"));
@@ -268,7 +275,8 @@ mod tests {
 
 	#[test]
 	fn a_dead_claim_is_left_out_of_the_live_listing() {
-		let root = temp("listing");
+		let temporary = temp();
+		let root = temporary.path();
 		let directory = directory(&root);
 		std::fs::create_dir_all(&directory).expect("dir");
 		std::fs::write(
@@ -295,7 +303,8 @@ mod tests {
 
 	#[test]
 	fn nothing_claimed_lists_nothing() {
-		let root = temp("empty");
+		let temporary = temp();
+		let root = temporary.path();
 		assert!(live(&root).expect("live").is_empty());
 		std::fs::remove_dir_all(root).ok();
 	}

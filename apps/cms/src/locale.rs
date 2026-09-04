@@ -660,31 +660,16 @@ where
 #[cfg(test)]
 mod tests {
 	use super::*;
-	use std::sync::atomic::{AtomicUsize, Ordering};
-
-	static NEXT_TEMP: AtomicUsize = AtomicUsize::new(0);
-
-	struct Temp {
-		root: std::path::PathBuf,
-	}
-
-	impl Temp {
-		fn new(name: &str) -> Self {
-			let root = std::env::temp_dir().join(format!(
-				"cms-locale-{name}-{}-{}",
-				std::process::id(),
-				NEXT_TEMP.fetch_add(1, Ordering::Relaxed)
-			));
-			let _ = std::fs::remove_dir_all(&root);
-			std::fs::create_dir_all(root.join("data")).expect("temp data");
-			Self { root }
-		}
-	}
-
-	impl Drop for Temp {
-		fn drop(&mut self) {
-			std::fs::remove_dir_all(&self.root).ok();
-		}
+	
+	/// A repository root that removes itself, with `data/` already in place.
+	///
+	/// This was a hand-rolled `Temp` with its own `Drop` and an atomic counter, because two tests
+	/// in one process choosing the same name would otherwise share a directory. `TempDir` is the
+	/// same guarantee without the counter: uniqueness is the library's, not a name's.
+	fn temp() -> tempfile::TempDir {
+		let temporary = tempfile::tempdir().expect("temp");
+		std::fs::create_dir_all(temporary.path().join("data")).expect("temp data");
+		temporary
 	}
 
 	fn translation(text: &str) -> Translation {
@@ -730,17 +715,17 @@ mod tests {
 	/// the money anyway.
 	#[tokio::test]
 	async fn a_value_another_run_claimed_is_not_translated_again() {
-		let temp = Temp::new("claimed");
+		let temp = temp();
 		let mut registry = tags::Registry::default();
 		registry.tags.insert(
 			"terminal".to_owned(),
 			ordinary("Terminal", "terminal emulator or command-line window", []),
 		);
-		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
+		tags::save(&tags::path_for(&temp.path()), &registry).expect("tags");
 
-		let held = claim::take(&temp.root, "locale", "tag terminal/").expect("claim");
+		let held = claim::take(&temp.path(), "locale", "tag terminal/").expect("claim");
 		let mut requests = 0;
-		let outcome = run_with(&temp.root, Runner::GptOss, false, None, &["zh-CN"], |_, _, _| {
+		let outcome = run_with(&temp.path(), Runner::GptOss, false, None, &["zh-CN"], |_, _, _| {
 			requests += 1;
 			async { Ok(answer("终端")) }
 		})
@@ -755,7 +740,7 @@ mod tests {
 
 	#[tokio::test]
 	async fn an_existing_translation_is_skipped_without_a_request() {
-		let temp = Temp::new("skip");
+		let temp = temp();
 		let mut registry = tags::Registry::default();
 		registry.tags.insert(
 			"terminal".to_owned(),
@@ -765,10 +750,10 @@ mod tests {
 				[("zh-CN", translation("终端"))],
 			),
 		);
-		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
+		tags::save(&tags::path_for(&temp.path()), &registry).expect("tags");
 
 		let mut requests = 0;
-		let outcome = run_with(&temp.root, Runner::GptOss, false, None, &["zh-CN"], |_, _, _| {
+		let outcome = run_with(&temp.path(), Runner::GptOss, false, None, &["zh-CN"], |_, _, _| {
 			requests += 1;
 			std::future::ready(Ok(answer("unexpected")))
 		})
@@ -778,7 +763,7 @@ mod tests {
 		assert_eq!(requests, 0);
 		assert_eq!(outcome.skipped, 1);
 		assert_eq!(
-			tags::load(&tags::path_for(&temp.root)).expect("tags").tags["terminal"]
+			tags::load(&tags::path_for(&temp.path())).expect("tags").tags["terminal"]
 				.translations()
 				.expect("ordinary")["zh-CN"],
 			registry.tags["terminal"].translations().expect("ordinary")["zh-CN"]
@@ -787,7 +772,7 @@ mod tests {
 
 	#[tokio::test]
 	async fn force_never_overwrites_the_source_locale() {
-		let temp = Temp::new("source");
+		let temp = temp();
 		let mut described = media::Media::default();
 		described.media.insert(
 			"asset".to_owned(),
@@ -799,31 +784,31 @@ mod tests {
 				..media::Entry::default()
 			},
 		);
-		media::save(&media::path_for(&temp.root), &described).expect("media");
+		media::save(&media::path_for(&temp.path()), &described).expect("media");
 
 		let outcome =
-			run_with(&temp.root, Runner::GptOss, true, None, &[SOURCE_LOCALE, "zh-CN"], |_, _, _| {
+			run_with(&temp.path(), Runner::GptOss, true, None, &[SOURCE_LOCALE, "zh-CN"], |_, _, _| {
 				std::future::ready(Ok(answer("translated")))
 			})
 			.await
 			.expect("run");
 
 		assert_eq!(outcome.translated, 1);
-		let saved_media = media::load(&media::path_for(&temp.root)).expect("media");
+		let saved_media = media::load(&media::path_for(&temp.path())).expect("media");
 		assert_eq!(saved_media.media["asset"].description[SOURCE_LOCALE].text, "Original description");
 	}
 
 	#[tokio::test]
 	async fn a_failed_unit_does_not_discard_another_answer() {
-		let temp = Temp::new("failure");
+		let temp = temp();
 		let mut registry = tags::Registry::default();
 		registry.tags.insert("first".to_owned(), ordinary("First", "first concept", []));
 		registry.tags.insert("second".to_owned(), ordinary("Second", "second concept", []));
-		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
+		tags::save(&tags::path_for(&temp.path()), &registry).expect("tags");
 
 		let mut requests = 0;
 		let outcome =
-			run_with(&temp.root, Runner::GptOss, false, None, &[SOURCE_LOCALE, "zh-CN"], |_, _, _| {
+			run_with(&temp.path(), Runner::GptOss, false, None, &[SOURCE_LOCALE, "zh-CN"], |_, _, _| {
 				requests += 1;
 				std::future::ready(if requests <= ATTEMPTS {
 					Err(Refusal::Failed("bad answer".to_owned()))
@@ -836,14 +821,14 @@ mod tests {
 
 		assert_eq!(outcome.failed.len(), 1);
 		assert_eq!(outcome.translated, 1);
-		let saved = tags::load(&tags::path_for(&temp.root)).expect("tags");
+		let saved = tags::load(&tags::path_for(&temp.path())).expect("tags");
 		assert_eq!(saved.tags["first"].translations().expect("ordinary").len(), 1);
 		assert_eq!(saved.tags["second"].translations().expect("ordinary")["zh-CN"].text, "第二");
 	}
 
 	#[tokio::test]
 	async fn a_technical_tag_never_produces_a_translation_request() {
-		let temp = Temp::new("technical");
+		let temp = temp();
 		let mut registry = tags::Registry::default();
 		registry.tags.insert(
 			"typescript".to_owned(),
@@ -852,11 +837,11 @@ mod tests {
 				meaning: "programming language".to_owned(),
 			},
 		);
-		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
+		tags::save(&tags::path_for(&temp.path()), &registry).expect("tags");
 
 		let mut requests = 0;
 		let outcome =
-			run_with(&temp.root, Runner::GptOss, true, None, &crate::i18n::prompt::LOCALES, |_, _, _| {
+			run_with(&temp.path(), Runner::GptOss, true, None, &crate::i18n::prompt::LOCALES, |_, _, _| {
 				requests += 1;
 				std::future::ready(Ok(answer("unexpected")))
 			})
@@ -869,12 +854,12 @@ mod tests {
 
 	#[tokio::test]
 	async fn one_tag_requests_every_non_source_locale_once() {
-		let temp = Temp::new("one-call");
+		let temp = temp();
 		let mut registry = tags::Registry::default();
 		registry
 			.tags
 			.insert("browser".to_owned(), ordinary("Browser", "software for viewing websites", []));
-		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
+		tags::save(&tags::path_for(&temp.path()), &registry).expect("tags");
 		let translations: Vec<(&str, &str)> = crate::i18n::prompt::LOCALES
 			.iter()
 			.filter(|locale| **locale != SOURCE_LOCALE)
@@ -884,7 +869,7 @@ mod tests {
 		let mut requests = 0;
 
 		let outcome = run_with(
-			&temp.root,
+			&temp.path(),
 			Runner::GptOss,
 			true,
 			None,
@@ -905,7 +890,7 @@ mod tests {
 
 		assert_eq!(requests, 1);
 		assert_eq!(outcome.translated, crate::i18n::prompt::LOCALES.len() - 1);
-		let saved = tags::load(&tags::path_for(&temp.root)).expect("tags");
+		let saved = tags::load(&tags::path_for(&temp.path())).expect("tags");
 		let display = saved.tags["browser"].translations().expect("ordinary");
 		assert_eq!(display.len(), crate::i18n::prompt::LOCALES.len());
 		assert_eq!(display[SOURCE_LOCALE].model, "claude-sonnet-5");
@@ -920,13 +905,13 @@ mod tests {
 
 	#[tokio::test]
 	async fn the_limit_reaches_tags_before_descriptions() {
-		let temp = Temp::new("order");
+		let temp = temp();
 		let mut registry = tags::Registry::default();
 		registry.tags.insert(
 			"terminal".to_owned(),
 			ordinary("Terminal", "terminal emulator or command-line window", []),
 		);
-		tags::save(&tags::path_for(&temp.root), &registry).expect("tags");
+		tags::save(&tags::path_for(&temp.path()), &registry).expect("tags");
 
 		let mut described = media::Media::default();
 		described.media.insert(
@@ -939,11 +924,11 @@ mod tests {
 				..media::Entry::default()
 			},
 		);
-		media::save(&media::path_for(&temp.root), &described).expect("media");
+		media::save(&media::path_for(&temp.path()), &described).expect("media");
 
 		let mut prompts = Vec::new();
 		let outcome = run_with(
-			&temp.root,
+			&temp.path(),
 			Runner::GptOss,
 			false,
 			Some(1),
@@ -960,7 +945,7 @@ mod tests {
 		assert!(prompts[0].contains("Raw identifier: terminal"));
 		assert_eq!(outcome.deferred, 1);
 		assert!(
-			!media::load(&media::path_for(&temp.root)).expect("media").media["000-first-by-key"]
+			!media::load(&media::path_for(&temp.path())).expect("media").media["000-first-by-key"]
 				.description
 				.contains_key("zh-CN")
 		);

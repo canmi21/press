@@ -309,7 +309,8 @@ mod tests {
 
 	#[test]
 	fn walks_past_a_linked_workspace_package_into_its_dependencies() {
-		let root = std::env::temp_dir().join(format!("cms-npm-walk-{}", std::process::id()));
+		let temporary = tempfile::tempdir().expect("temp");
+		let root = temporary.path();
 		let hono = installed(&root, "hono", serde_json::json!({ "license": "MIT" }));
 
 		let nodes = BTreeMap::from([(
@@ -341,7 +342,8 @@ mod tests {
 	/// The origin path keeps one route in; the dependents keep every package that asked.
 	#[test]
 	fn records_every_parent_of_a_package_two_of_them_share() {
-		let root = std::env::temp_dir().join(format!("cms-npm-dependents-{}", std::process::id()));
+		let temporary = tempfile::tempdir().expect("temp");
+		let root = temporary.path();
 		let shared = installed(&root, "shared", serde_json::json!({ "license": "MIT" }));
 		let middle = installed(&root, "middle", serde_json::json!({ "license": "MIT" }));
 
@@ -378,7 +380,8 @@ mod tests {
 
 	#[test]
 	fn leaves_out_a_package_resolved_for_another_platform() {
-		let root = std::env::temp_dir().join(format!("cms-npm-optional-{}", std::process::id()));
+		let temporary = tempfile::tempdir().expect("temp");
+		let root = temporary.path();
 		let here = installed(&root, "here", serde_json::json!({ "license": "MIT" }));
 
 		let nodes = BTreeMap::from([

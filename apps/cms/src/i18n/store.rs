@@ -334,11 +334,11 @@ mod tests {
 		// The whole point of the checked read. Treated as empty, every locale reports missing,
 		// `cms i18n` buys the article again, and the save at the end writes over the file a
 		// person was hand-editing when they left the colon out. See spec/i18n.md.
-		let path = std::env::temp_dir().join(format!("cms-sidecar-{}.i18n.yaml", std::process::id()));
+		let temporary = tempfile::tempdir().expect("temp");
+		let path = temporary.path().join("sidecar.i18n.yaml");
 		std::fs::write(&path, "segments: [this is not a map\n").expect("write");
 		let error = load(&path).expect_err("a broken sidecar must not read as empty");
 		assert_eq!(error.kind(), std::io::ErrorKind::InvalidData);
-		let _ = std::fs::remove_file(&path);
 	}
 
 	#[test]

@@ -369,8 +369,8 @@ mod tests {
 	/// A picture another run claimed is left to it rather than classified twice.
 	#[tokio::test]
 	async fn a_picture_another_run_claimed_is_not_classified_again() {
-		let root = std::env::temp_dir().join(format!("cms-tag-claimed-{}", std::process::id()));
-		let _ = std::fs::remove_dir_all(&root);
+		let temporary = tempfile::tempdir().expect("temp");
+		let root = temporary.path();
 		let originals = root.join("data").join("image");
 		std::fs::create_dir_all(&originals).expect("originals");
 

@@ -197,8 +197,8 @@ mod tests {
 
 	#[test]
 	fn reports_authored_content_and_resource_health() {
-		let root = std::env::temp_dir().join(format!("cms-overview-{}", std::process::id()));
-		let _ = std::fs::remove_dir_all(&root);
+		let temporary = tempfile::tempdir().expect("temp");
+		let root = temporary.path();
 		std::fs::create_dir_all(root.join("contents")).expect("contents");
 		std::fs::create_dir_all(root.join("data").join("public")).expect("public");
 		std::fs::create_dir_all(root.join("contents/notes")).expect("section");
@@ -238,8 +238,8 @@ mod tests {
 
 	#[test]
 	fn recent_articles_use_the_latest_authored_timestamp() {
-		let root = std::env::temp_dir().join(format!("cms-overview-recent-{}", std::process::id()));
-		let _ = std::fs::remove_dir_all(&root);
+		let temporary = tempfile::tempdir().expect("temp");
+		let root = temporary.path();
 		std::fs::create_dir_all(root.join("contents/notes")).expect("contents");
 		std::fs::create_dir_all(root.join("data/public")).expect("public data");
 		for (name, created, lastmod) in [

@@ -288,11 +288,13 @@ mod tests {
 	use super::*;
 	use image::{Rgba, RgbaImage};
 
-	fn temp(name: &str) -> std::path::PathBuf {
-		let path = std::env::temp_dir().join(format!("cms-image-{name}-{}", std::process::id()));
-		let _ = std::fs::remove_dir_all(&path);
-		std::fs::create_dir_all(&path).expect("temp");
-		path
+	/// A directory that removes itself, however the test ends.
+	///
+	/// `TempDir` deletes on drop, which the hand-rolled predecessor could not: a panicking test
+	/// left its directory behind, and the name carried the process id because two tests choosing
+	/// the same one would otherwise share a directory. Both problems belonged to the workaround.
+	fn temp() -> tempfile::TempDir {
+		tempfile::tempdir().expect("temp")
 	}
 
 	fn photo(width: u32, height: u32) -> Vec<u8> {
@@ -390,7 +392,8 @@ mod tests {
 
 	#[test]
 	fn deriving_prepares_the_record_without_writing_public_data() {
-		let root = temp("derive-only");
+		let temporary = temp();
+		let root = temporary.path();
 		let public = root.join("data/public");
 		let original = photo(20, 12);
 		let prepared = derive_for(&original, "image/png", None, false, None).expect("derive for write");
@@ -413,7 +416,8 @@ mod tests {
 
 	#[test]
 	fn a_single_image_returns_only_after_its_bytes_and_records_exist() {
-		let root = temp("store-one");
+		let temporary = temp();
+		let root = temporary.path();
 		let source = root.join("source.png");
 		let original = photo(20, 12);
 		std::fs::write(&source, &original).expect("source");

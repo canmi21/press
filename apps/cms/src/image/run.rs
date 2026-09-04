@@ -339,11 +339,13 @@ pub fn rewrite_references(
 mod tests {
 	use super::*;
 
-	fn temp(name: &str) -> PathBuf {
-		let path = std::env::temp_dir().join(format!("cms-run-{name}-{}", std::process::id()));
-		let _ = std::fs::remove_dir_all(&path);
-		std::fs::create_dir_all(&path).expect("temp");
-		path
+	/// A directory that removes itself, however the test ends.
+	///
+	/// `TempDir` deletes on drop, which the hand-rolled predecessor could not: a panicking test
+	/// left its directory behind, and the name carried the process id because two tests choosing
+	/// the same one would otherwise share a directory. Both problems belonged to the workaround.
+	fn temp() -> tempfile::TempDir {
+		tempfile::tempdir().expect("temp")
 	}
 
 	#[test]
@@ -351,7 +353,8 @@ mod tests {
 		// Every writer loads the whole document, edits a few entries and saves it back. Read as
 		// empty, the next save replaces a committed manifest -- and the paid descriptions in it
 		// -- with four fields. See spec/architecture/data.md.
-		let root = temp("broken-manifest");
+		let temporary = temp();
+		let root = temporary.path();
 		let path = root.join("metadata.json");
 		std::fs::write(&path, "{ not json").expect("write");
 		let error = load(&path).expect_err("a broken manifest must not read as empty");
@@ -360,7 +363,8 @@ mod tests {
 
 	#[test]
 	fn a_missing_manifest_is_a_fresh_repository() {
-		let root = temp("missing-manifest");
+		let temporary = temp();
+		let root = temporary.path();
 		let merged = load(&root.join("metadata.json")).expect("missing is not an error");
 		assert!(merged.media.is_empty());
 	}
@@ -374,7 +378,8 @@ mod tests {
 
 	#[test]
 	fn ignores_hidden_files() {
-		let root = temp("hidden");
+		let temporary = temp();
+		let root = temporary.path();
 		std::fs::write(root.join(".DS_Store"), b"x").expect("write");
 		std::fs::write(root.join("real.png"), b"x").expect("write");
 		let found = sources(&root).expect("sources");
@@ -389,7 +394,8 @@ mod tests {
 
 	#[test]
 	fn rewrites_references_across_nested_articles() {
-		let root = temp("rewrite");
+		let temporary = temp();
+		let root = temporary.path();
 		std::fs::create_dir_all(root.join("deep")).expect("dir");
 		std::fs::write(root.join("a.md"), "![](shot.png) and ![](shot.png)").expect("write");
 		std::fs::write(root.join("deep/b.md"), r#"::linkcard{src="shot.png" url="https://a.example"}"#)
@@ -411,7 +417,8 @@ mod tests {
 	fn leaves_prose_alone_that_merely_mentions_a_filename() {
 		// "shot.png" is a perfectly ordinary thing to write in a sentence. A substring replace
 		// would silently edit the text of the article.
-		let root = temp("prose");
+		let temporary = temp();
+		let root = temporary.path();
 		std::fs::write(root.join("a.md"), "I saved it as shot.png last week.").expect("write");
 		let mut rewrites = BTreeMap::new();
 		rewrites.insert("shot.png".to_owned(), "newcid.avif".to_owned());
@@ -423,7 +430,8 @@ mod tests {
 
 	#[test]
 	fn leaves_an_article_alone_when_nothing_matches() {
-		let root = temp("nomatch");
+		let temporary = temp();
+		let root = temporary.path();
 		std::fs::write(root.join("a.md"), "no images here").expect("write");
 		let mut rewrites = BTreeMap::new();
 		rewrites.insert("shot.png".to_owned(), "newcid.avif".to_owned());
@@ -541,7 +549,8 @@ mod tests {
 
 	#[test]
 	fn a_stale_sidecar_is_republished_when_the_aggregate_is_current() {
-		let root = temp("stale-sidecar");
+		let temporary = temp();
+		let root = temporary.path();
 		let public = root.join("public");
 		let articles = root.join("contents");
 		std::fs::create_dir_all(root.join("data")).expect("data");

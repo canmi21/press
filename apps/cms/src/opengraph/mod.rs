@@ -583,8 +583,8 @@ mod tests {
 	/// nothing, and falling back to the source language on every view without saying so.
 	#[test]
 	fn reads_a_folded_title_as_the_text_it_folds_to() {
-		let root = std::env::temp_dir().join(format!("cms-og-folded-{}", std::process::id()));
-		let _ = std::fs::remove_dir_all(&root);
+		let temporary = tempfile::tempdir().expect("temp");
+		let root = temporary.path();
 		std::fs::create_dir_all(root.join("essay")).expect("dir");
 		let path = root.join("essay/a.md");
 		std::fs::write(
@@ -602,8 +602,8 @@ mod tests {
 	/// quotes by hand, which is not what a quoted scalar means the moment one is escaped.
 	#[test]
 	fn reads_a_quoted_title_without_hand_stripping_quotes() {
-		let root = std::env::temp_dir().join(format!("cms-og-quoted-{}", std::process::id()));
-		let _ = std::fs::remove_dir_all(&root);
+		let temporary = tempfile::tempdir().expect("temp");
+		let root = temporary.path();
 		std::fs::create_dir_all(root.join("essay")).expect("dir");
 		let path = root.join("essay/a.md");
 		std::fs::write(
@@ -619,7 +619,8 @@ mod tests {
 
 	#[test]
 	fn reads_the_fields_the_card_shows() {
-		let root = std::env::temp_dir().join(format!("cms-og-{}", std::process::id()));
+		let temporary = tempfile::tempdir().expect("temp");
+		let root = temporary.path();
 		let dir = root.join("development");
 		std::fs::create_dir_all(&dir).expect("dir");
 		let path = dir.join("a-thing.md");
@@ -641,7 +642,8 @@ mod tests {
 
 	#[test]
 	fn an_article_without_a_title_has_no_card() {
-		let root = std::env::temp_dir().join(format!("cms-og-untitled-{}", std::process::id()));
+		let temporary = tempfile::tempdir().expect("temp");
+		let root = temporary.path();
 		std::fs::create_dir_all(&root).expect("dir");
 		let path = root.join("x.md");
 		std::fs::write(&path, "---\nsubtitle: only this\n---\n").expect("write");

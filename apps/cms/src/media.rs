@@ -132,11 +132,11 @@ mod tests {
 	fn a_broken_media_file_is_an_error_rather_than_an_empty_one() {
 		// data/media.yaml holds descriptions bought one model call at a time, and every writer
 		// saves the whole file back. Read as empty, the next save erases the lot.
-		let path = std::env::temp_dir().join(format!("cms-media-{}.yaml", std::process::id()));
+		let temporary = tempfile::tempdir().expect("temp");
+		let path = temporary.path().join("media.yaml");
 		std::fs::write(&path, "media: [not a map\n").expect("write");
 		let error = super::load(&path).expect_err("a broken media file must not read as empty");
 		assert_eq!(error.kind(), std::io::ErrorKind::InvalidData);
-		let _ = std::fs::remove_file(&path);
 	}
 
 	use super::*;
