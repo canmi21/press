@@ -1,5 +1,6 @@
 import { invoke } from '@tauri-apps/api/core';
 import { requiredElement } from './dom';
+import type { SegmentOutline, SegmentRow } from './segments';
 import { animateHeight, animateWidth, slideIndicator } from './motion';
 import type { TaskRun } from './derived';
 
@@ -23,34 +24,6 @@ export type ArticleListing = {
 };
 
 type Article = ArticleListing['articles'][number];
-
-/** One row of an article's own contents, from `article_segments`. */
-type SegmentRow = {
-	id: string;
-	stale: boolean;
-	source: string | null;
-	preview: string | null;
-	locales: string[];
-};
-
-type SegmentOutline = { article: string; rows: SegmentRow[] };
-
-type Rendering = {
-	locale: string;
-	text: string;
-	provider: string;
-	model: string;
-	at: string;
-	tokens: number;
-	review: boolean;
-};
-
-type SegmentDetail = {
-	id: string;
-	stale: boolean;
-	source: string | null;
-	renderings: Rendering[];
-};
 
 type Grouping = 'status' | 'section';
 type Filter = 'all' | 'attention' | 'current';
@@ -110,15 +83,14 @@ const opened = new Set<string>();
 let menu: string | null = null;
 /** Whether the pointer is over the sort control while a column holds the ordering. */
 let offeringReset = false;
+/** Handed in by the shell: show one article's segments on the page that reads them. */
+let readSegments: ((article: { path: string; title: string }) => void) | null = null;
 const collapsed = new Set<string>();
 const selected = new Set<string>();
 /** An article's contents, once it has been opened. Keyed by article path. */
 const outlines = new Map<string, SegmentOutline>();
-/** One segment's translations, once it has been opened. Keyed by `article#id`. */
-const renderings = new Map<string, SegmentDetail>();
 /** Segments ticked for deletion, keyed the same way. */
 const markedSegments = new Set<string>();
-const openSegments = new Set<string>();
 
 function outstanding(article: Article): boolean {
 	return article.gaps.length > 0 || article.summaryGaps.length > 0 || article.orphans > 0;
@@ -197,13 +169,9 @@ function sweepable(article: Article): boolean {
 /**
  * What an article is made of, once it has been opened.
  *
- * The panel is a listing of the article's own segments rather than a summary of it: its
- * paragraphs, and then the translations it no longer has a paragraph for. That second group is
- * the only place those translations exist at all -- their source was edited away, so no
- * before-and-after is possible and none is offered.
- *
- * Loaded on the first open and kept, since an article's contents do not change while the page is
- * looking at them, and the largest here is 609 KB across a thousand translations.
+ * A flat list of its segments and nothing framing them -- headings and notes about what a group
+ * meant were describing the list rather than adding to it. A row here identifies a segment and
+ * opens it; reading it, and comparing its translations, is the Segments page's job.
  */
 function detail(article: Article): HTMLElement {
 	const panel = element('div', 'row-detail');
@@ -220,56 +188,13 @@ function detail(article: Article): HTMLElement {
 		return panel;
 	}
 
-	const stale = outline.rows.filter((row) => row.stale);
-	const live = outline.rows.filter((row) => !row.stale);
-
-	if (stale.length > 0) {
-		panel.appendChild(
-			segmentGroup(
-				article,
-				`No longer in the article — ${stale.length}`,
-				stale,
-				'The paragraphs these translated were edited away. Nothing else holds this text.',
-			),
-		);
-	}
-	panel.appendChild(
-		segmentGroup(article, `Segments — ${live.length}`, live, 'What the article is made of now.'),
-	);
+	// The ones with no paragraph left first: they are the only thing here that can be acted on.
+	const rows = [
+		...outline.rows.filter((row) => row.stale),
+		...outline.rows.filter((row) => !row.stale),
+	];
+	for (const row of rows) panel.appendChild(segmentRow(article, row));
 	return panel;
-}
-
-/** A titled run of segment rows, with a note saying what the run is. */
-function segmentGroup(
-	article: Article,
-	name: string,
-	rows: SegmentRow[],
-	note: string,
-): HTMLElement {
-	const block = element('section', 'segments');
-	const head = element('header', 'segments-head');
-	head.appendChild(element('span', 'segments-name', name));
-	if (rows.some((row) => row.stale)) head.appendChild(dropControl(article, rows));
-	block.appendChild(head);
-	block.appendChild(element('p', 'segments-note', note));
-	for (const row of rows) block.appendChild(segmentRow(article, row));
-	return block;
-}
-
-/** Drop the ticked segments, or all of this run when none are ticked. */
-function dropControl(article: Article, rows: SegmentRow[]): HTMLElement {
-	const ticked = rows.filter((row) => markedSegments.has(`${article.path}#${row.id}`));
-	const covered = ticked.length > 0 ? ticked : rows;
-	const button = document.createElement('button');
-	button.type = 'button';
-	button.className = 'segments-drop';
-	button.textContent = ticked.length > 0 ? `Drop ${ticked.length}` : 'Drop all';
-	button.title = `Deletes ${covered.length} ${covered.length === 1 ? 'translation' : 'translations'} from this article.`;
-	button.addEventListener('click', (event) => {
-		event.stopPropagation();
-		dropSegments(article, covered.map((row) => row.id));
-	});
-	return button;
 }
 
 function segmentRow(article: Article, row: SegmentRow): HTMLElement {
@@ -298,54 +223,31 @@ function segmentRow(article: Article, row: SegmentRow): HTMLElement {
 	const open = document.createElement('button');
 	open.type = 'button';
 	open.className = 'segment-open';
-	open.setAttribute('aria-expanded', openSegments.has(key) ? 'true' : 'false');
 	open.appendChild(element('span', 'segment-text', row.source ?? row.preview ?? '(no text)'));
 	open.appendChild(element('span', 'segment-locales', String(row.locales.length)));
 	open.addEventListener('click', (event) => {
 		event.stopPropagation();
-		if (openSegments.has(key)) openSegments.delete(key);
-		else {
-			openSegments.add(key);
-			if (!renderings.has(key)) {
-				void invoke<SegmentDetail>('segment_detail', { article: article.path, id: row.id })
-					.then((next) => {
-						renderings.set(key, next);
-						draw();
-					})
-					.catch((error: unknown) => showError(error));
-			}
-		}
-		draw();
+		readSegments?.({ path: article.path, title: article.title });
 	});
 	item.appendChild(open);
 
-	if (openSegments.has(key)) item.appendChild(segmentBody(renderings.get(key)));
-	return item;
-}
+	if (row.stale) {
+		const drop = document.createElement('button');
+		drop.type = 'button';
+		drop.className = 'segment-drop';
+		drop.textContent = 'Drop';
+		drop.title = 'Deletes this translation, which the article no longer has a paragraph for.';
+		drop.addEventListener('click', (event) => {
+			event.stopPropagation();
+			const ticked = [...markedSegments]
+				.filter((marked) => marked.startsWith(`${article.path}#`))
+				.map((marked) => marked.slice(article.path.length + 1));
+			dropSegments(article, ticked.length > 0 ? ticked : [row.id]);
+		});
+		item.appendChild(drop);
+	}
 
-/** Every stored translation of one segment, which is what "read the whole thing" means here. */
-function segmentBody(rendering: SegmentDetail | undefined): HTMLElement {
-	const body = element('div', 'segment-body');
-	if (rendering === undefined) {
-		body.appendChild(element('p', 'row-note', 'Reading…'));
-		return body;
-	}
-	if (rendering.source !== null) {
-		const source = element('div', 'rendering');
-		source.appendChild(element('span', 'rendering-locale', 'source'));
-		source.appendChild(element('p', 'rendering-text', rendering.source));
-		body.appendChild(source);
-	}
-	for (const stored of rendering.renderings) {
-		const line = element('div', 'rendering');
-		line.appendChild(element('span', 'rendering-locale', stored.locale));
-		line.appendChild(element('p', 'rendering-text', stored.text));
-		line.appendChild(
-			element('span', 'rendering-meta', `${stored.model} · ${stored.tokens} tokens`),
-		);
-		body.appendChild(line);
-	}
-	return body;
+	return item;
 }
 
 function showError(error: unknown): void {
@@ -360,11 +262,7 @@ function dropSegments(article: Article, ids: string[]): void {
 	if (ids.length === 0) return;
 	void invoke<number>('drop_segments', { article: article.path, ids })
 		.then(() => {
-			for (const id of ids) {
-				markedSegments.delete(`${article.path}#${id}`);
-				openSegments.delete(`${article.path}#${id}`);
-				renderings.delete(`${article.path}#${id}`);
-			}
+			for (const id of ids) markedSegments.delete(`${article.path}#${id}`);
 			outlines.delete(article.path);
 			return invoke<ArticleListing>('article_listing');
 		})
@@ -824,6 +722,10 @@ function draw(): void {
 	if (current.length > 0) {
 		list.appendChild(renderGroup('complete', 'Complete', 'complete', current));
 	}
+}
+
+export function onReadSegments(open: (article: { path: string; title: string }) => void): void {
+	readSegments = open;
 }
 
 export function renderArticles(root: HTMLElement, next: ArticleListing): void {

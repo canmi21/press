@@ -1,3 +1,4 @@
+import { endonym } from '@canmi/locales';
 import * as m from '../paraglide/messages';
 import { PUBLIC_LANGUAGE, type LocaleCode } from './index';
 
@@ -13,20 +14,14 @@ export type LanguageChoice = {
 /**
  * Each language named as its own readers write it, and never translated.
  *
- * A reader who cannot read the interface still has to find their language in this list, so it
- * reads the same whichever view rendered it. Only the pairs that need telling apart carry a
- * qualifier -- there is one English here and two Chinese.
+ * Derived from `@canmi/locales`, which keys the same names by the tag the corpus stores. This view
+ * is keyed by the short code the URL uses, so the two are one table read through `PUBLIC_LANGUAGE`
+ * rather than two lists to keep in step -- the CMS became the second consumer and that is what
+ * moved them.
  */
-export const LANGUAGE_ENDONYMS = {
-	en: 'English',
-	zh: '中文 (简体)',
-	tw: '中文 (繁體)',
-	ja: '日本語',
-	ko: '한국어',
-	de: 'Deutsch',
-	fr: 'Français',
-	es: 'Español',
-} as const satisfies Record<TranslationCode, string>;
+export const LANGUAGE_ENDONYMS = Object.fromEntries(
+	Object.entries(PUBLIC_LANGUAGE).map(([code, tag]) => [code, endonym(tag)]),
+) as Record<TranslationCode, string>;
 
 /**
  * Two orders, chosen by what the reader's own language is rather than by the view.

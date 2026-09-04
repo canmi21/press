@@ -892,57 +892,38 @@ button {
 	font-size: 0.75rem;
 }
 
-/* An article opens into a listing of its own segments, so the panel is indented under the title
-   the way a folder's contents sit under its name. */
-.segments + .segments {
-	margin-top: 1.25rem;
-}
-
-.segments-head {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 1rem;
-	padding-bottom: 0.25rem;
-}
-
-.segments-name {
-	color: var(--color-text-strong);
-	font-size: 0.75rem;
-	font-weight: 600;
-}
-
-.segments-note {
-	margin: 0 0 0.5rem;
-	color: var(--color-text-soft);
-	font-size: 0.6875rem;
-	line-height: 1.5;
-}
-
-.segments-drop {
-	padding: 0.125rem 0.5rem;
-	border: 0.0625rem solid var(--color-border);
-	border-radius: 0.375rem;
-	background: var(--color-paper);
-	color: var(--color-text);
-	cursor: pointer;
-	font-size: 0.6875rem;
-	transition:
-		border-color 160ms,
-		color 160ms;
-}
-
-.segments-drop:hover {
-	border-color: var(--color-red);
-	color: var(--color-red);
-}
-
 .segment {
 	display: grid;
 	align-items: baseline;
 	column-gap: 0.5rem;
-	grid-template-columns: 0.9375rem minmax(0, 1fr);
+	grid-template-columns: 0.9375rem minmax(0, 1fr) auto;
 	row-gap: 0;
+}
+
+.segment-drop {
+	align-self: center;
+	padding: 0.0625rem 0.4375rem;
+	border: 0.0625rem solid var(--color-border);
+	border-radius: 0.3125rem;
+	background: var(--color-paper);
+	color: var(--color-text-soft);
+	cursor: pointer;
+	font-size: 0.6875rem;
+	opacity: 0;
+	transition:
+		opacity 160ms,
+		border-color 160ms,
+		color 160ms;
+}
+
+.segment:hover .segment-drop,
+.segment:focus-within .segment-drop {
+	opacity: 1;
+}
+
+.segment-drop:hover {
+	border-color: var(--color-red);
+	color: var(--color-red);
 }
 
 .segment-gutter {
@@ -1255,4 +1236,165 @@ button.health-action:disabled {
 
 .health-list li[data-level='warn'] .health-marker {
 	background: var(--color-red);
+}
+
+/* The segments page: one article's blocks, each opening into its source and every translation of
+   it. A reading surface rather than a table -- the panes stack so a long paragraph is read at the
+   width it was written for, not squeezed into a column. */
+.segments-page {
+	width: min(100%, 56rem);
+	margin: 0 auto;
+}
+
+.reading-empty,
+.reading-note {
+	margin: 1.5rem 0 0;
+	color: var(--color-text-soft);
+	font-size: 0.8125rem;
+	line-height: 1.6;
+}
+
+.reading {
+	border-bottom: 0.0625rem solid var(--color-border);
+}
+
+.reading-head {
+	display: grid;
+	width: 100%;
+	align-items: baseline;
+	padding: 0.75rem 0.5rem;
+	border: 0;
+	border-radius: 0.5rem;
+	background: transparent;
+	color: inherit;
+	cursor: pointer;
+	gap: 1rem;
+	grid-template-columns: minmax(0, 1fr) 5.5rem;
+	text-align: left;
+	transition: background-color 160ms;
+}
+
+.reading-head:hover {
+	background: var(--color-paper-hover);
+}
+
+.reading-lead {
+	overflow: hidden;
+	color: var(--color-text);
+	font-size: 0.8125rem;
+	line-height: 1.5;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* A block the article has lost reads as content rather than as a reference: its translation is
+   the only text of it that exists anywhere. */
+.reading[data-stale] .reading-lead {
+	color: var(--color-text-strong);
+}
+
+.reading-count {
+	color: var(--color-text-soft);
+	font-size: 0.6875rem;
+	font-variant-numeric: tabular-nums;
+	text-align: right;
+}
+
+.reading-panel {
+	overflow: hidden;
+}
+
+.reading-body {
+	display: grid;
+	padding: 0 0.5rem 1.25rem;
+	gap: 1.125rem;
+}
+
+.reading-pane {
+	display: grid;
+	gap: 0.25rem;
+}
+
+/* The original is marked by a rule rather than a colour: it is the same kind of thing as the
+   translations beside it, and only its position in the comparison differs. */
+.reading-pane[data-origin] {
+	padding-left: 0.75rem;
+	border-left: 0.125rem solid var(--color-border-strong);
+	margin-left: -0.875rem;
+}
+
+.reading-language {
+	color: var(--color-text-soft);
+	font-size: 0.6875rem;
+}
+
+.reading-meta {
+	color: var(--color-text-soft);
+	font-size: 0.625rem;
+}
+
+/* Markdown, drawn. The type here is the reading size rather than the interface size: this is the
+   one place in the CMS where prose is the content and not a label on something else. */
+.reading-prose {
+	color: var(--color-text);
+	font-size: 0.875rem;
+	line-height: 1.7;
+}
+
+.reading-prose > :first-child {
+	margin-top: 0;
+}
+
+.reading-prose > :last-child {
+	margin-bottom: 0;
+}
+
+.reading-prose p {
+	margin: 0.5rem 0;
+}
+
+.reading-prose h1,
+.reading-prose h2,
+.reading-prose h3,
+.reading-prose h4 {
+	margin: 0.75rem 0 0.375rem;
+	color: var(--color-text-strong);
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.reading-prose code {
+	padding: 0.0625rem 0.25rem;
+	border-radius: 0.25rem;
+	background: var(--color-paper-hover);
+	font-size: 0.8125rem;
+}
+
+.reading-prose pre {
+	overflow-x: auto;
+	padding: 0.75rem;
+	border-radius: 0.5rem;
+	background: var(--color-paper);
+}
+
+.reading-prose pre code {
+	padding: 0;
+	background: transparent;
+}
+
+.reading-prose a {
+	color: var(--color-blue);
+}
+
+.reading-prose blockquote {
+	margin: 0.5rem 0;
+	padding-left: 0.75rem;
+	border-left: 0.125rem solid var(--color-border);
+	color: var(--color-text-muted);
+}
+
+.reading-prose ul,
+.reading-prose ol {
+	margin: 0.5rem 0;
+	padding-left: 1.25rem;
 }

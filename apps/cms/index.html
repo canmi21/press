@@ -30,6 +30,12 @@
 						</svg>
 						<span>Articles</span>
 					</button>
+					<button class="page-link" type="button" data-page="segments">
+						<svg aria-hidden="true" viewBox="0 0 24 24">
+							<path d="M4 5h16M4 10h16M4 15h10M4 20h7" />
+						</svg>
+						<span>Segments</span>
+					</button>
 					<button class="page-link" type="button" data-page="media">
 						<svg aria-hidden="true" viewBox="0 0 24 24">
 							<rect width="18" height="18" x="3" y="3" rx="2" />
@@ -233,6 +239,26 @@
 						</template>
 						<div class="groups" data-articles-list></div>
 						<p class="view-error" data-articles-error hidden></p>
+					</div>
+
+					<div class="segments-page" data-segments aria-live="polite" hidden>
+						<header class="view-head">
+							<div class="view-title">
+								<h1 data-segments-title>Segments</h1>
+								<div class="view-global"></div>
+							</div>
+							<div class="view-actions">
+								<button type="button" class="control" data-segments-back hidden>
+									<svg aria-hidden="true" viewBox="0 0 24 24">
+										<path d="M15 5l-7 7 7 7" />
+									</svg>
+									<span>Back to the library</span>
+								</button>
+								<div class="view-controls"></div>
+							</div>
+						</header>
+						<p class="view-error" data-segments-error hidden></p>
+						<div data-segments-list></div>
 					</div>
 
 					<div class="derived" data-derived aria-live="polite" hidden>

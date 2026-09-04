@@ -111,6 +111,9 @@ importers:
       '@canmi/fonts':
         specifier: workspace:*
         version: link:../../libs/fonts
+      '@canmi/locales':
+        specifier: workspace:*
+        version: link:../../libs/locales
       '@canmi/motion':
         specifier: workspace:*
         version: link:../../libs/motion
@@ -128,19 +131,25 @@ importers:
         version: link:../../libs/urls
       '@milkdown/core':
         specifier: 7.22.1
-        version: 7.22.1
+        version: 7.22.1(supports-color@10.2.2)
       '@milkdown/ctx':
         specifier: 7.22.1
         version: 7.22.1
       '@milkdown/preset-commonmark':
         specifier: 7.22.1
-        version: 7.22.1
+        version: 7.22.1(supports-color@10.2.2)
       '@milkdown/utils':
         specifier: 7.22.1
-        version: 7.22.1
+        version: 7.22.1(supports-color@10.2.2)
       '@tauri-apps/api':
         specifier: ^2.11.1
         version: 2.11.1
+      hast-util-to-html:
+        specifier: ^9.0.5
+        version: 9.0.5
+      mdast-util-to-hast:
+        specifier: ^13.2.1
+        version: 13.2.1
       motion:
         specifier: ^13.1.1
         version: 13.1.1
@@ -150,6 +159,15 @@ importers:
       remark-frontmatter:
         specifier: 5.0.0
         version: 5.0.0(supports-color@10.2.2)
+      remark-gfm:
+        specifier: ^4.0.1
+        version: 4.0.1(supports-color@10.2.2)
+      remark-parse:
+        specifier: ^11.0.0
+        version: 11.0.0(supports-color@10.2.2)
+      unified:
+        specifier: ^11.0.5
+        version: 11.0.5
       yaml:
         specifier: 2.9.0
         version: 2.9.0
@@ -181,6 +199,9 @@ importers:
       '@canmi/imgsrc':
         specifier: workspace:*
         version: link:../../libs/imgsrc
+      '@canmi/locales':
+        specifier: workspace:*
+        version: link:../../libs/locales
       '@canmi/motion':
         specifier: workspace:*
         version: link:../../libs/motion
@@ -364,6 +385,8 @@ importers:
       '@canmi/urls':
         specifier: workspace:*
         version: link:../urls
+
+  libs/locales: {}
 
   libs/motion: {}
 
@@ -4995,12 +5018,12 @@ snapshots:
     dependencies:
       '@chevrotain/types': 11.1.2
 
-  '@milkdown/core@7.22.1':
+  '@milkdown/core@7.22.1(supports-color@10.2.2)':
     dependencies:
       '@milkdown/ctx': 7.22.1
       '@milkdown/exception': 7.22.1
       '@milkdown/prose': 7.22.1
-      '@milkdown/transformer': 7.22.1
+      '@milkdown/transformer': 7.22.1(supports-color@10.2.2)
       remark-parse: 11.0.0(supports-color@10.2.2)
       remark-stringify: 11.0.0
       unified: 11.0.5
@@ -5013,14 +5036,14 @@ snapshots:
 
   '@milkdown/exception@7.22.1': {}
 
-  '@milkdown/preset-commonmark@7.22.1':
+  '@milkdown/preset-commonmark@7.22.1(supports-color@10.2.2)':
     dependencies:
-      '@milkdown/core': 7.22.1
+      '@milkdown/core': 7.22.1(supports-color@10.2.2)
       '@milkdown/ctx': 7.22.1
       '@milkdown/exception': 7.22.1
       '@milkdown/prose': 7.22.1
-      '@milkdown/transformer': 7.22.1
-      '@milkdown/utils': 7.22.1
+      '@milkdown/transformer': 7.22.1(supports-color@10.2.2)
+      '@milkdown/utils': 7.22.1(supports-color@10.2.2)
       remark-inline-links: 7.0.0
       unist-util-visit: 5.1.0
       unist-util-visit-parents: 6.0.2
@@ -5044,22 +5067,22 @@ snapshots:
       prosemirror-transform: 1.12.0
       prosemirror-view: 1.42.3
 
-  '@milkdown/transformer@7.22.1':
+  '@milkdown/transformer@7.22.1(supports-color@10.2.2)':
     dependencies:
       '@milkdown/exception': 7.22.1
       '@milkdown/prose': 7.22.1
-      remark: 15.0.1
+      remark: 15.0.1(supports-color@10.2.2)
       unified: 11.0.5
     transitivePeerDependencies:
       - supports-color
 
-  '@milkdown/utils@7.22.1':
+  '@milkdown/utils@7.22.1(supports-color@10.2.2)':
     dependencies:
-      '@milkdown/core': 7.22.1
+      '@milkdown/core': 7.22.1(supports-color@10.2.2)
       '@milkdown/ctx': 7.22.1
       '@milkdown/exception': 7.22.1
       '@milkdown/prose': 7.22.1
-      '@milkdown/transformer': 7.22.1
+      '@milkdown/transformer': 7.22.1(supports-color@10.2.2)
       nanoid: 6.0.1
     transitivePeerDependencies:
       - supports-color
@@ -7496,7 +7519,7 @@ snapshots:
       mdast-util-to-markdown: 2.1.2
       unified: 11.0.5
 
-  remark@15.0.1:
+  remark@15.0.1(supports-color@10.2.2):
     dependencies:
       '@types/mdast': 4.0.4
       remark-parse: 11.0.0(supports-color@10.2.2)

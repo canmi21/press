@@ -379,9 +379,34 @@ restraint this file asks for is about colour carrying meaning, not about removin
 tells a button from a label -- taken absolutely it left the controls indistinguishable from text.
 
 **An article opens into its own contents, not into a summary of itself.** The panel lists the
-article's segments: its paragraphs, and then the translations it no longer has a paragraph for.
-Opening a segment shows every rendering of it -- the source, each locale, the model and token count
-that produced each.
+article's segments, flat: its paragraphs, and the translations it no longer has a paragraph for.
+Nothing frames them -- headings and notes about what a group meant were describing the list rather
+than adding to it. A row identifies a segment, offers to drop it when it is stale, and opens it on
+the page that reads them.
+
+**Reading a segment is its own destination.** Segments is a page in the sidebar because a
+comparison of one paragraph against eight translations of it is a thing somebody sits with, and
+the library is a place they were passing through. The page arrived at from a row remembers the
+way back; reached from the sidebar with nothing chosen, it says so.
+
+**A segment is drawn as the markdown it is.** Shown as plain text it reads as punctuation --
+backticks around code, asterisks around emphasis, hashes where a heading was -- and somebody
+comparing nine renderings of one paragraph is reading the prose, not the marks. The chain is the
+site's own: remark, GFM, mdast to hast, hast to HTML. A smaller renderer here would be a second
+answer to what a paragraph looks like, and this is the copy nobody would check.
+
+Its output is inserted rather than escaped, and the licence for that is narrower than "the corpus
+is trusted". Measured on this chain: `<script>`, an `onerror` attribute and an `onclick` one are
+all dropped, because `mdast-util-to-hast` ignores HTML nodes unless asked not to. What does come
+through is a `javascript:` URL written as an ordinary markdown link, so links are checked against
+a scheme list and lose their `href` when they fail it. One hole, closed where it is, rather than
+a claim about what the corpus contains.
+
+**A language is named the way it names itself.** `ko-KR` tells a writer nothing they were asking;
+한국어 tells them immediately. The names are `@canmi/locales`, shared with the site's language
+picker, which is what moved them out of the site: one table keyed by the tag the corpus stores,
+read there through the short code its URLs use. Only the pair that needs telling apart carries a
+qualifier -- there is one English and two Chinese, each written in its own script.
 
 The two groups are drawn differently because the data differs, not because the design chose to. A
 live segment has its paragraph, so the row shows that and the translations are what it became. A

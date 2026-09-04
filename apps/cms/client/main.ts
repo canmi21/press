@@ -3,11 +3,13 @@ import { invoke } from '@tauri-apps/api/core';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import {
 	fitArticles,
+	onReadSegments,
 	renderArticles,
 	renderArticleRuns,
 	renderArticlesError,
 	type ArticleListing,
 } from './articles';
+import { openArticleSegments, registerSegments } from './segments';
 import {
 	renderDerived,
 	renderDerivedError,
@@ -27,6 +29,9 @@ const pages = {
 	},
 	articles: {
 		title: 'Articles',
+	},
+	segments: {
+		title: 'Segments',
 	},
 	media: {
 		title: 'Media',
@@ -54,6 +59,7 @@ const pageLinks = Array.from(document.querySelectorAll<HTMLButtonElement>('[data
 const pageLabel = requiredElement<HTMLElement>(document, '[data-page-label]');
 const overview = requiredElement<HTMLElement>(document, '[data-overview]');
 const articles = requiredElement<HTMLElement>(document, '[data-articles]');
+const segments = requiredElement<HTMLElement>(document, '[data-segments]');
 const derived = requiredElement<HTMLElement>(document, '[data-derived]');
 let liveTaskRuns: TaskRun[] = [];
 let taskPoll: number | undefined;
@@ -111,6 +117,7 @@ function selectPage(page: Page): void {
 	pageLabel.dataset.page = page;
 	overview.hidden = page !== 'overview';
 	articles.hidden = page !== 'articles';
+	segments.hidden = page !== 'segments';
 	derived.hidden = page !== 'derived';
 	document.title = selected.title;
 	// Measured against the window, and a hidden page has nothing to measure. Being shown is the
@@ -146,6 +153,13 @@ if ('__TAURI_INTERNALS__' in window) {
 	void invoke<DerivedReport>('derived_report').then(showDerivedReport, (error: unknown) =>
 		renderDerivedError(derived, error),
 	);
+	registerSegments();
+	// Opening a segment from the library is a move to the page that reads them, and the way back
+	// is the page it came from. The library holds no second copy of that reading surface.
+	onReadSegments((next) => {
+		openArticleSegments(next, () => selectPage('articles'));
+		selectPage('segments');
+	});
 	void refreshTaskRuns();
 	window.addEventListener('focus', () => {
 		if (taskPoll === undefined) void refreshTaskRuns();
