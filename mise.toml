@@ -129,6 +129,15 @@ description = "Submit changed URLs to the IndexNow participants"
 # deploy-site, not before. `--dry` prints what would go and touches nothing.
 run = "node apps/site/scripts/indexnow.ts"
 
+[tasks.compat]
+description = "Report the polyfills the built site needs, against the declared browser baseline"
+# Reads `.svelte-kit/output/client`, so it wants a build rather than a checkout -- run it after
+# `pnpm --filter @canmi/site build`. Reports and never fails: core-js patches spec corners as
+# well as missing methods, so a hit is a thing to look at rather than a verdict. Out of `verify`
+# for the same reason `search` is: paying for a full build on every commit buys nothing.
+# See spec/compat.md.
+run = "node apps/site/scripts/compat.ts"
+
 [tasks.search]
 description = "Align the search index with the corpus"
 # Reads the built corpus and diffs it against the index itself, so it needs no deployed site --

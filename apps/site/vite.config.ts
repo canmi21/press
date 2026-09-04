@@ -72,6 +72,27 @@ const commitHash = (() => {
 // Sitemap <lastmod> for routes like "/" that have no article of their own to date from.
 const buildTime = new Date().toISOString();
 
+// The one baseline. `browserslist` in package.json says which browsers this site is for, and
+// both readers of that fact derive from it: esbuild compiles syntax down to it here, and
+// `mise run compat` asks core-js what built-ins it lacks. Two spellings of one number is how a
+// polyfill outlives the browser that needed it.
+//
+// Floors, never a relative query like `> 0.5%`. A relative query is resolved against
+// caniuse-lite, so the compiled output would change on an unrelated dependency update and a
+// rebuild of the same commit would not be the same bytes. Moving a floor stays a deliberate
+// edit, like every other pin here.
+const BROWSERSLIST: string[] = JSON.parse(
+	readFileSync(fileURLToPath(new URL('./package.json', import.meta.url)), 'utf8'),
+).browserslist;
+
+// esbuild wants `chrome111`; browserslist writes `chrome >= 111`. Same fact, two spellings,
+// and this is the whole distance between them.
+const esbuildTarget = BROWSERSLIST.map((query) => {
+	const floor = /^(\S+)\s*>=\s*(\S+)$/.exec(query);
+	if (!floor) throw new Error(`browserslist entry is not a floor, so esbuild cannot take it: ${query}`);
+	return `${floor[1]}${floor[2]}`;
+});
+
 /**
  * The Sentry upload credential, if this build is allowed to proceed without one.
  *
@@ -321,6 +342,9 @@ export default defineConfig(async ({ command, mode }) => {
 			noExternal: ['bits-ui', '@inlang/paraglide-js-svelte'],
 		},
 		build: {
+			// Stated rather than left to Vite's default, which is a baseline of its own choosing
+			// and can move under a major. See BROWSERSLIST above.
+			target: esbuildTarget,
 			sourcemap: 'hidden',
 			rollupOptions: {
 				output: {
