@@ -77,7 +77,7 @@ let sort: Sort = 'recent';
 /** The column a press put the ordering on, or nothing while the menu above still owns it. */
 let column: Column | null = null;
 let ascending = true;
-let opened: string | null = null;
+const opened = new Set<string>();
 let menu: string | null = null;
 const collapsed = new Set<string>();
 const selected = new Set<string>();
@@ -271,19 +271,14 @@ function renderRow(article: Article, locales: string[]): HTMLElement {
 	const open = document.createElement('button');
 	open.type = 'button';
 	open.className = 'row-open';
-	open.setAttribute('aria-expanded', opened === article.path ? 'true' : 'false');
+	open.setAttribute('aria-expanded', opened.has(article.path) ? 'true' : 'false');
 
 	const line = element('span', 'row-detail-text', detailText(article));
 	if (underway(article)) line.dataset.tone = 'underway';
-	else if (outstanding(article)) line.dataset.tone = 'attention';
 	const modified = element('span', 'row-modified');
 	if (article.modified !== null) modified.textContent = formatDate(article.modified);
 
 	open.append(element('span', 'row-title', article.title), line, modified);
-	open.addEventListener('click', () => {
-		opened = opened === article.path ? null : article.path;
-		draw();
-	});
 	row.appendChild(open);
 
 	const command = commandFor(article);
@@ -294,7 +289,22 @@ function renderRow(article: Article, locales: string[]): HTMLElement {
 		]),
 	);
 
-	if (opened === article.path) row.appendChild(detail(article, locales));
+	// Always built, and folded shut when closed. A panel that only exists while open cannot be
+	// animated: the element the motion drives would be created and destroyed by the toggle itself.
+	const panel = element('div', 'row-panel');
+	panel.appendChild(detail(article, locales));
+	if (!opened.has(article.path)) panel.style.height = '0px';
+	row.appendChild(panel);
+
+	open.addEventListener('click', () => {
+		// Not a redraw, for the reason folding a group is not: the panel has to survive the press.
+		const opening = !opened.has(article.path);
+		if (opening) opened.add(article.path);
+		else opened.delete(article.path);
+		open.setAttribute('aria-expanded', opening ? 'true' : 'false');
+		animateHeight(panel, opening);
+	});
+
 	return row;
 }
 
@@ -387,12 +397,22 @@ function ordered(articles: Article[]): Article[] {
  * has to state out loud.
  */
 function groupEntries(name: string, articles: Article[]): Array<[string, string]> {
-	const ticked = articles.filter((article) => selected.has(article.path));
-	const scope = ticked.length > 0 ? `${ticked.length} selected` : `all ${articles.length} in ${name}`;
-	return [
-		[`Run for ${scope}`, 'Not runnable from here yet -- see the command on each article.'],
-		['Open the first', 'The editor is not built yet.'],
-	];
+	const ticked = articles.filter((article) => selected.has(article.path)).length;
+	// Short enough not to wrap, and it still says which of the two things it would do. The count
+	// belongs in the title, where it can be as long as it needs to be.
+	return ticked > 0
+		? [
+				[
+					'Run selected',
+					`Not runnable from here yet -- would cover the ${ticked} ticked in ${name}.`,
+				],
+			]
+		: [
+				[
+					`Run ${name}`,
+					`Not runnable from here yet -- would cover all ${articles.length} in ${name}.`,
+				],
+			];
 }
 
 function renderGroup(

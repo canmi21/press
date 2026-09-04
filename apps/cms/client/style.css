@@ -746,21 +746,6 @@ button {
 	background: var(--color-paper);
 }
 
-/* The one mark on a row. Work says so at the edge, where four of six reads at a glance without
-   the eye crossing to a column. A row that is fine draws nothing. */
-.row[data-attention]::before {
-	position: absolute;
-	top: 0.5rem;
-	bottom: 0.5rem;
-	left: 0.1875rem;
-	width: 0.125rem;
-	border-radius: 0.0625rem;
-	background: var(--color-red);
-	content: '';
-}
-
-/* Centred in its cell rather than started at its edge: the group's mark fills that column and a
-   tick is narrower, so left-aligning the two put their centres three pixels apart. */
 .checkbox {
 	display: flex;
 	width: 0.9375rem;
@@ -855,11 +840,13 @@ button {
 	white-space: nowrap;
 }
 
+/* One step above the column names and one below the title: a record's own facts should be
+   readable without competing with the thing they describe. */
 .row-detail-text,
 .row-modified {
 	display: block;
 	overflow: hidden;
-	color: var(--color-text-soft);
+	color: var(--color-text-muted);
 	font-size: 0.8125rem;
 	line-height: 1.5;
 	text-overflow: ellipsis;
@@ -871,17 +858,17 @@ button {
 	text-align: right;
 }
 
-.row-detail-text[data-tone='attention'] {
-	color: var(--color-red);
-}
-
 .row-detail-text[data-tone='underway'] {
 	color: var(--color-blue);
 }
 
-.row-detail {
+.row-panel {
 	grid-column: 2 / 3;
-	padding: 0 0 1.125rem;
+	overflow: hidden;
+}
+
+.row-detail {
+	padding: 0.25rem 0 1.125rem;
 }
 
 .row-subtitle {

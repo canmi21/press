@@ -151,6 +151,17 @@ columns that the group's own header names, so a value and its label cannot drift
 Identification is the row's job and reading is not, so the subtitle, the path and the per-locale
 standing move into a panel the row opens.
 
+A record's own facts sit one step above the column names and one below its title, which is a tier
+the palette did not have: three loud tiers within 0.08 of each other and then a gap of 0.32 down to
+soft. `--color-text-muted` fills it. `--color-ink` was the near miss -- it sits in that range by
+number, but the site spends it as a background fill, and one name meaning both a surface and a
+text weight is how a palette stops being readable.
+
+The rail that marked a row needing work is gone with it. The Todo band already says so, and a
+second statement of the same fact was competing with the tick for the same edge. Colour on this
+page is now spent on exactly one thing: blue, on the line of an article a run is touching right
+now, which nothing else says.
+
 **Rows are grouped by what they need, not by where they live.** Todo, In Progress, Complete -- and
 a group with nothing in it is not drawn. A group opens with a band across the full width carrying
 its name and a count, and the rows beneath it carry no rule between them: the band already says
@@ -175,6 +186,19 @@ from task to the findings it closes is one table in
 [articles.ts](../../apps/cms/client/articles.ts), so a task that becomes runnable adds a line
 there rather than a branch. This is the page's only claim about live state, and it is the reason
 the library polls the same registry the Derived page does.
+
+**Anything that opens or closes animates its own height, on the one spring.** A group folding, an
+article's panel, and whatever grows a disclosure next: if a press changes the shape of a box, the
+box travels between the two shapes rather than snapping. The gesture is `animateHeight` in
+[motion.ts](../../apps/cms/client/motion.ts) and the spring is `@canmi/motion`, shared with the
+site, so there is one way a thing opens here and no second set of numbers to keep in step.
+
+Two consequences follow and both are load-bearing. **A panel is built whether or not it is open**,
+folded to nothing when closed -- one that exists only while open cannot be animated, because the
+element the motion drives would be created and destroyed by the very press that should move it.
+And **the press must not redraw the list**, since a rebuild mid-flight destroys the element the
+animation is holding. Those are the two interactions on this page that update in place, and this
+rule is why.
 
 **A group folds from its middle.** The band's name and count are the collapse control, which is
 why the mark on its left and the dots on its right sit outside that button -- pressing either of

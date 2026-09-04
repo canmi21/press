@@ -6,6 +6,10 @@
 	--color-border: oklch(0.917 0 0);
 	--color-border-strong: oklch(0.867 0 0);
 	--color-text: oklch(0.2 0 0);
+	/* Between body and soft, and the ramp had nothing there: the three loud tiers sat within
+	   0.08 of each other while the gap down to soft was 0.32 wide. A row of records needs a
+	   voice quieter than its own heading and louder than the column names above it. */
+	--color-text-muted: oklch(0.36 0 0);
 	--color-text-soft: oklch(0.521 0 0);
 	--color-text-strong: oklch(0.157 0 0);
 	--color-ink: oklch(0.241 0 0);
@@ -46,6 +50,7 @@ html {
 	--color-border: oklch(0.241 0 0);
 	--color-border-strong: oklch(0.291 0 0);
 	--color-text: oklch(0.878 0 0);
+	--color-text-muted: oklch(0.73 0 0);
 	--color-text-soft: oklch(0.587 0 0);
 	--color-text-strong: oklch(0.937 0 0);
 	--color-ink: oklch(0.892 0 0);
@@ -68,6 +73,7 @@ html {
 	--color-border: var(--color-border);
 	--color-border-strong: var(--color-border-strong);
 	--color-text: var(--color-text);
+	--color-text-muted: var(--color-text-muted);
 	--color-text-soft: var(--color-text-soft);
 	--color-text-strong: var(--color-text-strong);
 	--color-ink: var(--color-ink);
