@@ -16,6 +16,7 @@
 		"@canmi/primitives": "workspace:*",
 		"@canmi/robots": "workspace:*",
 		"@canmi/theme": "workspace:*",
+		"@canmi/units": "workspace:*",
 		"@canmi/urls": "workspace:*",
 		"@chenglou/pretext": "^0.0.8",
 		"@inlang/paraglide-js-svelte": "^1.0.4",

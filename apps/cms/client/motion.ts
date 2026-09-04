@@ -13,7 +13,14 @@
  * put it there. See spec/architecture/cms.md.
  */
 
-import { NEGLIGIBLE_PIXELS, pressMotion, prefersReducedMotion, travelMotion } from '@canmi/motion';
+import {
+	NEGLIGIBLE_PIXELS,
+	contentMotion,
+	pressMotion,
+	prefersReducedMotion,
+	travelMotion,
+} from '@canmi/motion';
+import { remFromMeasuredPixels } from '@canmi/units';
 import { animate } from 'motion';
 
 type Control = { stop: () => void };
@@ -47,8 +54,8 @@ export function slideIndicator(indicator: HTMLElement, active: HTMLElement): voi
 	travelling.delete(indicator);
 
 	const paint = (centre: number, width: number) => {
-		indicator.style.transform = `translateX(${centre - width / 2}px)`;
-		indicator.style.width = `${Math.max(0, width)}px`;
+		indicator.style.transform = `translateX(${remFromMeasuredPixels(centre - width / 2)})`;
+		indicator.style.width = remFromMeasuredPixels(Math.max(0, width));
 	};
 
 	if (indicator.dataset.placed === undefined || prefersReducedMotion()) {
@@ -121,7 +128,7 @@ export function animateHeight(panel: HTMLElement, expanded: boolean): void {
 	const to = expanded ? panel.getBoundingClientRect().height : 0;
 
 	const settle = () => {
-		panel.style.height = expanded ? 'auto' : '0px';
+		panel.style.height = expanded ? 'auto' : '0rem';
 		running.delete(panel);
 	};
 
@@ -130,14 +137,54 @@ export function animateHeight(panel: HTMLElement, expanded: boolean): void {
 		return;
 	}
 
-	panel.style.height = `${from}px`;
+	panel.style.height = remFromMeasuredPixels(from);
 	const control: Control = animate(from, to, {
 		...pressMotion(to - from),
 		onUpdate: (height: number) => {
-			panel.style.height = `${Math.max(0, height)}px`;
+			panel.style.height = remFromMeasuredPixels(Math.max(0, height));
 		},
 		onComplete: settle,
 	});
 	running.set(panel, control);
 }
 
+
+/**
+ * Let a control resize itself, rather than jump, when what it says changes.
+ *
+ * The width is measured before and after `change` runs, so the caller only has to describe the new
+ * content and never has to know how wide it will be. The element is pinned to where it was, driven
+ * to where it is going, and then released back to `auto` -- pinning it permanently would stop it
+ * following its own text at a different zoom or font size.
+ *
+ * Lifted from the site's support actions, which have done this since before there was anywhere to
+ * share it from. What they add on top -- revealing masked copy in step with the width -- stays
+ * theirs; what is common is measure, pin, travel, release.
+ */
+export function animateWidth(element: HTMLElement, change: () => void): void {
+	const from = element.getBoundingClientRect().width;
+	element.style.width = '';
+	change();
+	const to = element.getBoundingClientRect().width;
+
+	running.get(element)?.stop();
+	running.delete(element);
+
+	if (prefersReducedMotion() || Math.abs(to - from) < NEGLIGIBLE_PIXELS) return;
+
+	element.style.width = remFromMeasuredPixels(from);
+	const control: Control = animate(from, to, {
+		...contentMotion(),
+		onUpdate: (width: number) => {
+			element.style.width = remFromMeasuredPixels(Math.max(0, width));
+		},
+		onComplete: () => {
+			// Only the animation still in charge may release the width: an interrupted one settling
+			// late would hand the element back to `auto` in the middle of the move that replaced it.
+			if (running.get(element) !== control) return;
+			running.delete(element);
+			element.style.width = '';
+		},
+	});
+	running.set(element, control);
+}

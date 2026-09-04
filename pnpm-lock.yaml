@@ -120,6 +120,9 @@ importers:
       '@canmi/theme':
         specifier: workspace:*
         version: link:../../libs/theme
+      '@canmi/units':
+        specifier: workspace:*
+        version: link:../../libs/units
       '@canmi/urls':
         specifier: workspace:*
         version: link:../../libs/urls
@@ -190,6 +193,9 @@ importers:
       '@canmi/theme':
         specifier: workspace:*
         version: link:../../libs/theme
+      '@canmi/units':
+        specifier: workspace:*
+        version: link:../../libs/units
       '@canmi/urls':
         specifier: workspace:*
         version: link:../../libs/urls
@@ -380,6 +386,8 @@ importers:
   libs/theme: {}
 
   libs/tokens: {}
+
+  libs/units: {}
 
   libs/urls: {}
 

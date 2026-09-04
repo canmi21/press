@@ -1,5 +1,5 @@
 import { requiredElement } from './dom';
-import { animateHeight, slideIndicator } from './motion';
+import { animateHeight, animateWidth, slideIndicator } from './motion';
 import type { TaskRun } from './derived';
 
 export type ArticleListing = {
@@ -28,6 +28,7 @@ type Filter = 'all' | 'attention' | 'current';
 type Sort = 'recent' | 'longest' | 'title';
 type Column = 'title' | 'detail' | 'modified';
 type Mark =
+	| 'close'
 	| 'status'
 	| 'section'
 	| 'todo'
@@ -79,6 +80,8 @@ let column: Column | null = null;
 let ascending = true;
 const opened = new Set<string>();
 let menu: string | null = null;
+/** Whether the pointer is over the sort control while a column holds the ordering. */
+let offeringReset = false;
 const collapsed = new Set<string>();
 const selected = new Set<string>();
 
@@ -473,8 +476,7 @@ function drawViewControls(root: HTMLElement): void {
 
 	requiredElement<HTMLElement>(root, '[data-menu-label="filter"]').textContent =
 		FILTERS.find(([value]) => value === filter)?.[1] ?? 'Filter';
-	requiredElement<HTMLElement>(root, '[data-menu-label="sort"]').textContent =
-		column === null ? (SORTS.find(([value]) => value === sort)?.[1] ?? 'Recent') : 'By column';
+	paintSortControl(root);
 
 	for (const anchor of root.querySelectorAll<HTMLElement>('.view-controls .menu-anchor')) {
 		const control = requiredElement<HTMLButtonElement>(anchor, '[data-menu]');
@@ -506,6 +508,37 @@ function drawViewControls(root: HTMLElement): void {
 		}
 		anchor.appendChild(panel);
 	}
+}
+
+/**
+ * The sort control, which is also where a column sort is undone.
+ *
+ * A column heading takes the ordering, so the button above stops naming a menu choice and says the
+ * ordering came from elsewhere. That leaves no way back except pressing the same heading twice
+ * more, which is a route somebody has to already know. Under the pointer it becomes the reset --
+ * the one place the state is displayed is the place to offer its undo.
+ *
+ * The label changes width when it does, so the change goes through `animateWidth`: the control is
+ * measured, pinned, driven and released rather than snapping between two sizes.
+ */
+function paintSortControl(root: HTMLElement): void {
+	const control = requiredElement<HTMLButtonElement>(root, '[data-menu="sort"]');
+	const label = requiredElement<HTMLElement>(root, '[data-menu-label="sort"]');
+	const slot = requiredElement<HTMLElement>(root, '[data-menu-icon="sort"]');
+	const resetting = column !== null && offeringReset;
+	const next = resetting
+		? 'Cancel'
+		: column === null
+			? (SORTS.find(([value]) => value === sort)?.[1] ?? 'Recent')
+			: 'By column';
+
+	if (label.textContent === next) return;
+	animateWidth(control, () => {
+		label.textContent = next;
+		control.dataset.reset = resetting ? '' : undefined;
+		if (resetting) slot.replaceChildren(mark('close'));
+		else if (slot.dataset.restore === undefined) slot.replaceChildren(mark('sort'));
+	});
 }
 
 function draw(): void {
@@ -573,10 +606,31 @@ export function renderArticles(root: HTMLElement, next: ArticleListing): void {
 	for (const control of root.querySelectorAll<HTMLButtonElement>('[data-menu]')) {
 		control.addEventListener('click', (event) => {
 			event.stopPropagation();
+			// Offering the reset means the press is the reset. Opening the menu underneath it would
+			// be answering a different question from the one the button is currently asking.
+			if (control.dataset.reset !== undefined) {
+				column = null;
+				offeringReset = false;
+				menu = null;
+				draw();
+				return;
+			}
 			menu = menu === control.dataset.menu ? null : (control.dataset.menu ?? null);
 			draw();
 		});
 	}
+
+	const sortControl = root.querySelector<HTMLButtonElement>('[data-menu="sort"]');
+	sortControl?.addEventListener('pointerenter', () => {
+		if (column === null) return;
+		offeringReset = true;
+		paintSortControl(root);
+	});
+	sortControl?.addEventListener('pointerleave', () => {
+		if (!offeringReset) return;
+		offeringReset = false;
+		paintSortControl(root);
+	});
 	document.addEventListener('click', () => {
 		if (menu === null) return;
 		menu = null;

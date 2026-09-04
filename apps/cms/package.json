@@ -14,6 +14,7 @@
 		"@canmi/motion": "workspace:*",
 		"@canmi/primitives": "workspace:*",
 		"@canmi/theme": "workspace:*",
+		"@canmi/units": "workspace:*",
 		"@canmi/urls": "workspace:*",
 		"@milkdown/core": "7.22.1",
 		"@milkdown/ctx": "7.22.1",

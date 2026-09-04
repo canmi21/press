@@ -536,6 +536,24 @@ button {
 	color: var(--color-text-strong);
 }
 
+/* The width is driven by script while it changes, so nothing here may transition it -- two things
+   moving one length is how a control ends up fighting itself. */
+.control {
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.control [data-menu-icon] {
+	display: flex;
+	flex: none;
+	align-items: center;
+}
+
+.control[data-reset] {
+	border-color: var(--color-red);
+	color: var(--color-red);
+}
+
 .control svg,
 .tabs button svg {
 	width: 0.9375rem;

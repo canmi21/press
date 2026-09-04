@@ -114,6 +114,30 @@ export function travelMotion(distancePixels: number): {
 	};
 }
 
+/**
+ * A control resizing because its content changed.
+ *
+ * A spring here where a panel gets a tween, and the overshoot is the reason rather than an
+ * oversight: a button that swaps its label is a thing being pushed out or pulled in, and a little
+ * give at the end is what makes it read as elastic instead of as a box being retyped. The site's
+ * support actions have used this shape since before there was a module to keep it in -- stiffness
+ * 420 against damping 28 is a damping ratio near 0.74, so it passes its target and comes back.
+ *
+ * The rest thresholds are stated in pixels because the value being animated is a width. Left at
+ * the library's defaults of 0.01 they hold a spring open while it covers a hundredth of a pixel,
+ * which is what made a fold feel slow enough to be worth measuring.
+ */
+export function contentMotion(): {
+	type: 'spring';
+	stiffness: number;
+	damping: number;
+	mass: number;
+	restDelta: number;
+	restSpeed: number;
+} {
+	return { type: 'spring', stiffness: 420, damping: 28, mass: 0.85, restDelta: 0.5, restSpeed: 10 };
+}
+
 export function prefersReducedMotion(): boolean {
 	return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }

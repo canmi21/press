@@ -325,6 +325,25 @@ Marks appear on the tabs and on the group bands, and the type on both rises to t
 own name is set in. The restraint this file asks for is about colour, and applying it to size and
 contrast as well had left the controls quieter than the rows they act on.
 
+**A control that shows a state offers the way out of it.** When a column heading takes the
+ordering, the button above stops naming a menu choice and says the ordering came from elsewhere --
+which leaves no route back except pressing that heading twice more, a route somebody has to
+already know. Under the pointer it becomes the reset instead, and the press then *is* the reset:
+opening the menu underneath would answer a different question from the one the button is currently
+asking.
+
+**A control resizing because its content changed does it in motion.** Swapping a label changes a
+button's width, and a snap between two sizes reads as the interface being retyped. The width is
+measured before and after the change, pinned, driven, and released back to `auto` -- pinning it
+permanently would stop it following its own text at another zoom. The gesture is a spring here
+where a panel gets a tween, and the overshoot is the reason rather than an oversight: a control
+pushed out or pulled in wants a little give at the end. That shape came from the site's support
+actions, which had it before there was anywhere to keep it; what they add on top, revealing masked
+copy in step with the width, stays theirs.
+
+Nothing in CSS may transition that width. Two things driving one length is how a control ends up
+fighting itself.
+
 **A control is a surface, not a word.** The page is the ground; anything pressable sits on paper
 with a hairline around it, the same pairing the derived cards and the run panel already use. The
 restraint this file asks for is about colour carrying meaning, not about removing the contrast that
