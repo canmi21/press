@@ -24,6 +24,34 @@ export type ArticleListing = {
 
 type Article = ArticleListing['articles'][number];
 
+/** One row of an article's own contents, from `article_segments`. */
+type SegmentRow = {
+	id: string;
+	stale: boolean;
+	source: string | null;
+	preview: string | null;
+	locales: string[];
+};
+
+type SegmentOutline = { article: string; rows: SegmentRow[] };
+
+type Rendering = {
+	locale: string;
+	text: string;
+	provider: string;
+	model: string;
+	at: string;
+	tokens: number;
+	review: boolean;
+};
+
+type SegmentDetail = {
+	id: string;
+	stale: boolean;
+	source: string | null;
+	renderings: Rendering[];
+};
+
 type Grouping = 'status' | 'section';
 type Filter = 'all' | 'attention' | 'current';
 type Sort = 'recent' | 'longest' | 'title';
@@ -84,6 +112,13 @@ let menu: string | null = null;
 let offeringReset = false;
 const collapsed = new Set<string>();
 const selected = new Set<string>();
+/** An article's contents, once it has been opened. Keyed by article path. */
+const outlines = new Map<string, SegmentOutline>();
+/** One segment's translations, once it has been opened. Keyed by `article#id`. */
+const renderings = new Map<string, SegmentDetail>();
+/** Segments ticked for deletion, keyed the same way. */
+const markedSegments = new Set<string>();
+const openSegments = new Set<string>();
 
 function outstanding(article: Article): boolean {
 	return article.gaps.length > 0 || article.summaryGaps.length > 0 || article.orphans > 0;
@@ -159,33 +194,187 @@ function sweepable(article: Article): boolean {
 	return article.orphans > 0;
 }
 
-function detail(article: Article, locales: string[]): HTMLElement {
+/**
+ * What an article is made of, once it has been opened.
+ *
+ * The panel is a listing of the article's own segments rather than a summary of it: its
+ * paragraphs, and then the translations it no longer has a paragraph for. That second group is
+ * the only place those translations exist at all -- their source was edited away, so no
+ * before-and-after is possible and none is offered.
+ *
+ * Loaded on the first open and kept, since an article's contents do not change while the page is
+ * looking at them, and the largest here is 609 KB across a thousand translations.
+ */
+function detail(article: Article): HTMLElement {
 	const panel = element('div', 'row-detail');
-	if (article.subtitle !== null) panel.appendChild(element('p', 'row-subtitle', article.subtitle));
-	panel.appendChild(element('p', 'row-path', article.path));
+	const outline = outlines.get(article.path);
 
-	const short = new Map(article.gaps.map((gap) => [gap.locale, gap.segments]));
-	const coverage = element('div', 'locales');
-	for (const locale of locales) {
-		const missing = short.get(locale) ?? 0;
-		const chip = element('span', 'locale', locale);
-		if (locale === locales[0]) chip.dataset.state = 'source';
-		else if (missing > 0) chip.dataset.state = 'short';
-		if (missing > 0) chip.title = `${missing} segments missing`;
-		coverage.appendChild(chip);
+	if (outline === undefined) {
+		panel.appendChild(element('p', 'row-note', 'Reading the article…'));
+		void invoke<SegmentOutline>('article_segments', { article: article.path })
+			.then((next) => {
+				outlines.set(article.path, next);
+				draw();
+			})
+			.catch((error: unknown) => showError(error));
+		return panel;
 	}
-	panel.appendChild(coverage);
+
+	const stale = outline.rows.filter((row) => row.stale);
+	const live = outline.rows.filter((row) => !row.stale);
+
+	if (stale.length > 0) {
+		panel.appendChild(
+			segmentGroup(
+				article,
+				`No longer in the article — ${stale.length}`,
+				stale,
+				'The paragraphs these translated were edited away. Nothing else holds this text.',
+			),
+		);
+	}
+	panel.appendChild(
+		segmentGroup(article, `Segments — ${live.length}`, live, 'What the article is made of now.'),
+	);
 	return panel;
 }
 
-/**
- * The menu behind a row of dots.
- *
- * Every entry is disabled and says why. The operations have not moved below both shells, so the
- * task substrate cannot watch one or refuse a second copy -- and an entry that starts nothing is
- * the half of a run mechanism that lies. The shape is here so that enabling one later changes no
- * layout. See spec/architecture/cms.md.
- */
+/** A titled run of segment rows, with a note saying what the run is. */
+function segmentGroup(
+	article: Article,
+	name: string,
+	rows: SegmentRow[],
+	note: string,
+): HTMLElement {
+	const block = element('section', 'segments');
+	const head = element('header', 'segments-head');
+	head.appendChild(element('span', 'segments-name', name));
+	if (rows.some((row) => row.stale)) head.appendChild(dropControl(article, rows));
+	block.appendChild(head);
+	block.appendChild(element('p', 'segments-note', note));
+	for (const row of rows) block.appendChild(segmentRow(article, row));
+	return block;
+}
+
+/** Drop the ticked segments, or all of this run when none are ticked. */
+function dropControl(article: Article, rows: SegmentRow[]): HTMLElement {
+	const ticked = rows.filter((row) => markedSegments.has(`${article.path}#${row.id}`));
+	const covered = ticked.length > 0 ? ticked : rows;
+	const button = document.createElement('button');
+	button.type = 'button';
+	button.className = 'segments-drop';
+	button.textContent = ticked.length > 0 ? `Drop ${ticked.length}` : 'Drop all';
+	button.title = `Deletes ${covered.length} ${covered.length === 1 ? 'translation' : 'translations'} from this article.`;
+	button.addEventListener('click', (event) => {
+		event.stopPropagation();
+		dropSegments(article, covered.map((row) => row.id));
+	});
+	return button;
+}
+
+function segmentRow(article: Article, row: SegmentRow): HTMLElement {
+	const key = `${article.path}#${row.id}`;
+	const item = element('div', 'segment');
+	if (row.stale) item.dataset.stale = '';
+
+	if (row.stale) {
+		const tick = document.createElement('button');
+		tick.type = 'button';
+		tick.className = 'checkbox';
+		tick.setAttribute('role', 'checkbox');
+		tick.setAttribute('aria-label', 'Select this segment');
+		paintTick(tick, markedSegments.has(key) ? 'true' : 'false');
+		tick.addEventListener('click', (event) => {
+			event.stopPropagation();
+			if (markedSegments.has(key)) markedSegments.delete(key);
+			else markedSegments.add(key);
+			draw();
+		});
+		item.appendChild(tick);
+	} else {
+		item.appendChild(element('span', 'segment-gutter'));
+	}
+
+	const open = document.createElement('button');
+	open.type = 'button';
+	open.className = 'segment-open';
+	open.setAttribute('aria-expanded', openSegments.has(key) ? 'true' : 'false');
+	open.appendChild(element('span', 'segment-text', row.source ?? row.preview ?? '(no text)'));
+	open.appendChild(element('span', 'segment-locales', String(row.locales.length)));
+	open.addEventListener('click', (event) => {
+		event.stopPropagation();
+		if (openSegments.has(key)) openSegments.delete(key);
+		else {
+			openSegments.add(key);
+			if (!renderings.has(key)) {
+				void invoke<SegmentDetail>('segment_detail', { article: article.path, id: row.id })
+					.then((next) => {
+						renderings.set(key, next);
+						draw();
+					})
+					.catch((error: unknown) => showError(error));
+			}
+		}
+		draw();
+	});
+	item.appendChild(open);
+
+	if (openSegments.has(key)) item.appendChild(segmentBody(renderings.get(key)));
+	return item;
+}
+
+/** Every stored translation of one segment, which is what "read the whole thing" means here. */
+function segmentBody(rendering: SegmentDetail | undefined): HTMLElement {
+	const body = element('div', 'segment-body');
+	if (rendering === undefined) {
+		body.appendChild(element('p', 'row-note', 'Reading…'));
+		return body;
+	}
+	if (rendering.source !== null) {
+		const source = element('div', 'rendering');
+		source.appendChild(element('span', 'rendering-locale', 'source'));
+		source.appendChild(element('p', 'rendering-text', rendering.source));
+		body.appendChild(source);
+	}
+	for (const stored of rendering.renderings) {
+		const line = element('div', 'rendering');
+		line.appendChild(element('span', 'rendering-locale', stored.locale));
+		line.appendChild(element('p', 'rendering-text', stored.text));
+		line.appendChild(
+			element('span', 'rendering-meta', `${stored.model} · ${stored.tokens} tokens`),
+		);
+		body.appendChild(line);
+	}
+	return body;
+}
+
+function showError(error: unknown): void {
+	const notice = document.querySelector<HTMLElement>('[data-articles-error]');
+	if (notice === null) return;
+	notice.hidden = false;
+	notice.textContent = error instanceof Error ? error.message : String(error);
+}
+
+/** Delete named segments from one article, then read both the article and the library back. */
+function dropSegments(article: Article, ids: string[]): void {
+	if (ids.length === 0) return;
+	void invoke<number>('drop_segments', { article: article.path, ids })
+		.then(() => {
+			for (const id of ids) {
+				markedSegments.delete(`${article.path}#${id}`);
+				openSegments.delete(`${article.path}#${id}`);
+				renderings.delete(`${article.path}#${id}`);
+			}
+			outlines.delete(article.path);
+			return invoke<ArticleListing>('article_listing');
+		})
+		.then((next) => {
+			listing = next;
+			draw();
+		})
+		.catch((error: unknown) => showError(error));
+}
+
 type Action = { name: string; why: string; run?: () => void };
 
 function actionMenu(entries: Action[]): HTMLElement {
@@ -279,7 +468,7 @@ function checkbox(article: Article): HTMLElement {
 	return box;
 }
 
-function renderRow(article: Article, locales: string[]): HTMLElement {
+function renderRow(article: Article): HTMLElement {
 	const row = element('div', 'row');
 	if (outstanding(article)) row.dataset.attention = '';
 	if (selected.has(article.path)) row.dataset.selected = '';
@@ -317,7 +506,7 @@ function renderRow(article: Article, locales: string[]): HTMLElement {
 	// Always built, and folded shut when closed. A panel that only exists while open cannot be
 	// animated: the element the motion drives would be created and destroyed by the toggle itself.
 	const panel = element('div', 'row-panel');
-	panel.appendChild(detail(article, locales));
+	panel.appendChild(detail(article));
 	if (!opened.has(article.path)) panel.style.height = '0px';
 	row.appendChild(panel);
 
@@ -464,13 +653,7 @@ function sweep(paths: string[]): void {
 		});
 }
 
-function renderGroup(
-	key: string,
-	name: string,
-	shape: Mark,
-	articles: Article[],
-	locales: string[],
-): HTMLElement {
+function renderGroup(key: string, name: string, shape: Mark, articles: Article[]): HTMLElement {
 	const group = element('section', 'group');
 
 	const head = element('header', 'group-head');
@@ -492,7 +675,7 @@ function renderGroup(
 	const panel = element('div', 'group-panel');
 	panel.appendChild(columnHeader(articles));
 	const body = element('div', 'group-rows');
-	for (const article of articles) body.appendChild(renderRow(article, locales));
+	for (const article of articles) body.appendChild(renderRow(article));
 	panel.appendChild(body);
 	if (collapsed.has(key)) panel.style.height = '0px';
 	group.appendChild(panel);
@@ -622,7 +805,7 @@ function draw(): void {
 		}
 		for (const [section, articles] of sections) {
 			list.appendChild(
-				renderGroup(`section:${section}`, label(section), 'section', articles, listing.locales),
+				renderGroup(`section:${section}`, label(section), 'section', articles),
 			);
 		}
 		return;
@@ -633,13 +816,13 @@ function draw(): void {
 	const current = ordered(kept.filter((article) => !outstanding(article) && !underway(article)));
 
 	if (behind.length > 0) {
-		list.appendChild(renderGroup('todo', 'Todo', 'todo', behind, listing.locales));
+		list.appendChild(renderGroup('todo', 'Todo', 'todo', behind));
 	}
 	if (running.length > 0) {
-		list.appendChild(renderGroup('progress', 'In Progress', 'progress', running, listing.locales));
+		list.appendChild(renderGroup('progress', 'In Progress', 'progress', running));
 	}
 	if (current.length > 0) {
-		list.appendChild(renderGroup('complete', 'Complete', 'complete', current, listing.locales));
+		list.appendChild(renderGroup('complete', 'Complete', 'complete', current));
 	}
 }
 

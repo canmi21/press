@@ -63,6 +63,35 @@ fn sweep_segments(articles: Vec<String>) -> Result<usize, String> {
 	cms::gc::segments::apply(&repository, &contents, &sweep).map_err(|error| error.to_string())
 }
 
+/// What one article is made of: its own paragraphs, then the translations it no longer has one for.
+#[tauri::command]
+fn article_segments(article: String) -> Result<cms::segments::Outline, String> {
+	let repository = cms::paths::repo_root().map_err(|error| error.to_string())?;
+	cms::segments::outline(&repository.join("contents"), &article).map_err(|error| error.to_string())
+}
+
+/// One segment's translations, fetched when somebody opens it rather than with the outline.
+#[tauri::command]
+fn segment_detail(article: String, id: String) -> Result<cms::segments::Detail, String> {
+	let repository = cms::paths::repo_root().map_err(|error| error.to_string())?;
+	cms::segments::detail(&repository.join("contents"), &article, &id)
+		.map_err(|error| error.to_string())
+}
+
+/// Drop exactly these ids from this article.
+///
+/// Named rather than planned: the caller has already decided, one row at a time, and re-deriving
+/// the set here would delete what it thinks is stale instead of what was ticked.
+#[tauri::command]
+fn drop_segments(article: String, ids: Vec<String>) -> Result<usize, String> {
+	let repository = cms::paths::repo_root().map_err(|error| error.to_string())?;
+	let contents = repository.join("contents");
+	let sweep = cms::gc::segments::Sweep {
+		articles: vec![cms::gc::segments::Stale { article, ids }],
+	};
+	cms::gc::segments::apply(&repository, &contents, &sweep).map_err(|error| error.to_string())
+}
+
 #[tauri::command]
 fn live_task_runs() -> Result<Vec<cms::task::registry::Run>, String> {
 	let repository = cms::paths::repo_root().map_err(|error| error.to_string())?;
@@ -87,6 +116,9 @@ fn main() {
 			start_favicon_collection,
 			segment_sweep,
 			sweep_segments,
+			article_segments,
+			segment_detail,
+			drop_segments,
 			live_task_runs
 		])
 		.run(tauri::generate_context!())

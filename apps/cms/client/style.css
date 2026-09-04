@@ -886,46 +886,141 @@ button {
 	padding: 0.25rem 0 1.125rem;
 }
 
-.row-subtitle {
-	margin: 0;
-	color: var(--color-text);
-	font-size: 0.8125rem;
-	line-height: 1.6;
-}
-
-.row-path {
-	margin: 0.25rem 0 0;
+.row-note {
+	margin: 0.5rem 0;
 	color: var(--color-text-soft);
 	font-size: 0.75rem;
 }
 
-.locales {
-	display: flex;
-	margin-top: 0.75rem;
-	flex-wrap: wrap;
-	gap: 0.25rem;
+/* An article opens into a listing of its own segments, so the panel is indented under the title
+   the way a folder's contents sit under its name. */
+.segments + .segments {
+	margin-top: 1.25rem;
 }
 
-/* Every locale is drawn, including the complete ones: the question this answers is "where does
-   this stand", and a list of only the failures cannot say how many there were. */
-.locale {
-	padding: 0.125rem 0.375rem;
-	border: 0.0625rem solid var(--color-border);
-	border-radius: 0.3125rem;
-	background: var(--color-paper);
+.segments-head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding-bottom: 0.25rem;
+}
+
+.segments-name {
+	color: var(--color-text-strong);
+	font-size: 0.75rem;
+	font-weight: 600;
+}
+
+.segments-note {
+	margin: 0 0 0.5rem;
 	color: var(--color-text-soft);
 	font-size: 0.6875rem;
 	line-height: 1.5;
 }
 
-.locale[data-state='source'] {
-	border-color: var(--color-border-strong);
+.segments-drop {
+	padding: 0.125rem 0.5rem;
+	border: 0.0625rem solid var(--color-border);
+	border-radius: 0.375rem;
+	background: var(--color-paper);
+	color: var(--color-text);
+	cursor: pointer;
+	font-size: 0.6875rem;
+	transition:
+		border-color 160ms,
+		color 160ms;
+}
+
+.segments-drop:hover {
+	border-color: var(--color-red);
+	color: var(--color-red);
+}
+
+.segment {
+	display: grid;
+	align-items: baseline;
+	column-gap: 0.5rem;
+	grid-template-columns: 0.9375rem minmax(0, 1fr);
+	row-gap: 0;
+}
+
+.segment-gutter {
+	display: block;
+}
+
+.segment-open {
+	display: grid;
+	width: 100%;
+	align-items: baseline;
+	padding: 0.3125rem 0.375rem;
+	border: 0;
+	border-radius: 0.375rem;
+	background: transparent;
+	color: inherit;
+	cursor: pointer;
+	gap: 0.75rem;
+	grid-template-columns: minmax(0, 1fr) 1.5rem;
+	text-align: left;
+	transition: background-color 160ms;
+}
+
+.segment-open:hover {
+	background: var(--color-paper-hover);
+}
+
+.segment-text {
+	overflow: hidden;
+	color: var(--color-text-muted);
+	font-size: 0.75rem;
+	line-height: 1.5;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* A segment the article has lost is shown by its translation, which is the only text of it that
+   still exists -- so it is the one that reads as content rather than as a reference. */
+.segment[data-stale] .segment-text {
 	color: var(--color-text);
 }
 
-.locale[data-state='short'] {
-	border-color: var(--color-red);
-	color: var(--color-red);
+.segment-locales {
+	color: var(--color-text-soft);
+	font-size: 0.6875rem;
+	font-variant-numeric: tabular-nums;
+	text-align: right;
+}
+
+.segment-body {
+	display: grid;
+	grid-column: 2 / 3;
+	padding: 0.25rem 0.375rem 0.75rem;
+	gap: 0.5rem;
+}
+
+.rendering {
+	display: grid;
+	align-items: baseline;
+	column-gap: 0.75rem;
+	grid-template-columns: 3.5rem minmax(0, 1fr);
+}
+
+.rendering-locale {
+	color: var(--color-text-soft);
+	font-size: 0.6875rem;
+}
+
+.rendering-text {
+	margin: 0;
+	color: var(--color-text);
+	font-size: 0.75rem;
+	line-height: 1.6;
+}
+
+.rendering-meta {
+	grid-column: 2 / 3;
+	color: var(--color-text-soft);
+	font-size: 0.625rem;
 }
 
 .menu-option:disabled {

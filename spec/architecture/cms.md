@@ -378,6 +378,33 @@ with a hairline around it, the same pairing the derived cards and the run panel 
 restraint this file asks for is about colour carrying meaning, not about removing the contrast that
 tells a button from a label -- taken absolutely it left the controls indistinguishable from text.
 
+**An article opens into its own contents, not into a summary of itself.** The panel lists the
+article's segments: its paragraphs, and then the translations it no longer has a paragraph for.
+Opening a segment shows every rendering of it -- the source, each locale, the model and token count
+that produced each.
+
+The two groups are drawn differently because the data differs, not because the design chose to. A
+live segment has its paragraph, so the row shows that and the translations are what it became. A
+stale one has none: the paragraph was edited away, and the translation is the only text of it that
+exists anywhere. **No before-and-after is possible and none is offered** -- an interface showing
+one would be inventing the before, and reaching for git to recover it fails the moment articles
+stop living there.
+
+That is also what the panel is *for* in the Complete group, where nothing needs deleting: it is
+where a segment's full content can be found. The library is the only surface that can answer
+"what does this article actually say in Korean", and it now does.
+
+**Bodies are fetched when they are opened, in two steps.** The outline carries what a row needs --
+id, one line of text, how many locales hold it -- and a segment's renderings are fetched when that
+segment is opened. The largest sidecar here is 609 KB across 1128 translations, so sending it whole
+to draw a list of a hundred and forty rows would spend the entire file rendering each row's first
+line.
+
+**A stale segment can be dropped on its own.** The article-level sweep remains, and the panel adds
+the row-level one: tick the ones to go, or drop the group. The command takes the ids it is given
+rather than re-deriving them, because the caller has already decided one row at a time and a second
+opinion here would delete what it thinks is stale instead of what was ticked.
+
 **The top right of the title row is held open and stays empty.** Search, a primary create action
 and the signed-in identity belong to the window rather than to a page. Reserving the corner now
 costs nothing and stops those controls from being invented per page and then having to move.

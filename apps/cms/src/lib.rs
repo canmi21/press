@@ -27,4 +27,5 @@ pub mod cli;
 pub mod derived;
 pub mod document;
 pub mod overview;
+pub mod segments;
 pub mod task;
