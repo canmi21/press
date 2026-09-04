@@ -151,8 +151,17 @@ columns that the group's own header names, so a value and its label cannot drift
 Identification is the row's job and reading is not, so the subtitle, the path and the per-locale
 standing move into a panel the row opens.
 
-**Rows are grouped by what they need, not by where they live.** Needs a pass, In progress, Current
--- and a group with nothing in it is not drawn. Section grouping survives as the other choice
+**Rows are grouped by what they need, not by where they live.** Todo, In Progress, Complete -- and
+a group with nothing in it is not drawn. A group opens with a band across the full width carrying
+its name and a count, and the rows beneath it carry no rule between them: the band already says
+where a group starts and ends, so a line per row was a third kind of divider doing the same job
+twice. The band is the only place a heading is drawn, and it draws no glyph -- a coloured mark per
+heading put three accents on a page whose one meaningful mark is the rail saying a row needs work.
+
+The columns are the article, what it is short of, when it changed, and what to do about it.
+Section and segment count came out: a section is a grouping rather than a per-row fact, and the
+length belongs in the sentence that says what is wrong with it. Section grouping survives as the
+other choice
 rather than the arrangement: four sections over six articles spent a screen imposing a taxonomy
 unrelated to the work. Which grouping is in force is a tab under the title; the filter and the sort
 are menus at the right of that same row, and each states its current value rather than a generic
@@ -166,6 +175,29 @@ from task to the findings it closes is one table in
 [articles.ts](../../apps/cms/client/articles.ts), so a task that becomes runnable adds a line
 there rather than a branch. This is the page's only claim about live state, and it is the reason
 the library polls the same registry the Derived page does.
+
+**An action is drawn before it can run, and drawn visibly inert.** The Action column carries the
+control that will start the work, disabled, with the command that does it today in its title. This
+is the one place the rule above is approached from the other side: the affordance exists so the
+page has its final shape, and it is unmistakably not pressable so it cannot be the half of a run
+mechanism that lies. It becomes live when the operation moves below both shells, and nothing about
+the layout changes when it does.
+
+**Selection moves rather than redraws.** A tab strip is about place, so one bar travels between
+the tabs instead of each tab lighting its own underline, and the rail it rides on is not drawn at
+all -- the bar is what says where you are, and a visible track is a line the eye has to discount.
+Both offset and width are animated, because tabs are not equal widths and a bar that slid without
+resizing would arrive at the right place the wrong length. The first placement is silent: there is
+no previous tab to travel from, and a bar sweeping in on load reads as a loading animation.
+
+The spring is `@canmi/motion`, shared with the site's disclosures, which is the pair that moved it
+out of the site. The gesture itself is in [motion.ts](../../apps/cms/client/motion.ts) rather than
+in the page, because every page that grows a tab strip wants the same one.
+
+**A control is a surface, not a word.** The page is the ground; anything pressable sits on paper
+with a hairline around it, the same pairing the derived cards and the run panel already use. The
+restraint this file asks for is about colour carrying meaning, not about removing the contrast that
+tells a button from a label -- taken absolutely it left the controls indistinguishable from text.
 
 **The top right of the title row is held open and stays empty.** Search, a primary create action
 and the signed-in identity belong to the window rather than to a page. Reserving the corner now

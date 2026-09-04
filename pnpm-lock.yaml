@@ -111,6 +111,9 @@ importers:
       '@canmi/fonts':
         specifier: workspace:*
         version: link:../../libs/fonts
+      '@canmi/motion':
+        specifier: workspace:*
+        version: link:../../libs/motion
       '@canmi/primitives':
         specifier: workspace:*
         version: link:../../libs/primitives
@@ -135,6 +138,9 @@ importers:
       '@tauri-apps/api':
         specifier: ^2.11.1
         version: 2.11.1
+      motion:
+        specifier: ^13.1.1
+        version: 13.1.1
       remark-directive:
         specifier: ^4.0.0
         version: 4.0.0(supports-color@10.2.2)
@@ -172,6 +178,9 @@ importers:
       '@canmi/imgsrc':
         specifier: workspace:*
         version: link:../../libs/imgsrc
+      '@canmi/motion':
+        specifier: workspace:*
+        version: link:../../libs/motion
       '@canmi/primitives':
         specifier: workspace:*
         version: link:../../libs/primitives
@@ -349,6 +358,8 @@ importers:
       '@canmi/urls':
         specifier: workspace:*
         version: link:../urls
+
+  libs/motion: {}
 
   libs/primitives: {}
 

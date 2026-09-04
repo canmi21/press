@@ -1,4 +1,5 @@
 import { requiredElement } from './dom';
+import { slideIndicator } from './motion';
 import type { TaskRun } from './derived';
 
 export type ArticleListing = {
@@ -25,7 +26,6 @@ type Article = ArticleListing['articles'][number];
 type Grouping = 'status' | 'section';
 type Filter = 'all' | 'attention' | 'current';
 type Sort = 'recent' | 'longest' | 'title';
-type Shape = 'attention' | 'underway' | 'current' | 'section';
 
 /**
  * Which catalogue task closes which kind of finding.
@@ -51,7 +51,7 @@ let menu: string | null = null;
 
 const FILTERS: Array<[Filter, string]> = [
 	['all', 'Everything'],
-	['attention', 'Needs a pass'],
+	['attention', 'Todo'],
 	['current', 'Current only'],
 ];
 
@@ -94,13 +94,6 @@ function element<K extends keyof HTMLElementTagNameMap>(
 	node.className = className;
 	if (text !== undefined) node.textContent = text;
 	return node;
-}
-
-/** A group's mark, cloned from the templates in index.html. */
-function icon(shape: Shape): DocumentFragment {
-	const template = document.querySelector<HTMLTemplateElement>(`[data-icon="${shape}"]`);
-	if (template === null) throw new Error(`no icon template for ${shape}`);
-	return template.content.cloneNode(true) as DocumentFragment;
 }
 
 function findings(article: Article): string[] {
@@ -163,33 +156,58 @@ function renderRow(article: Article, locales: string[]): HTMLElement {
 	summary.setAttribute('aria-expanded', opened === article.path ? 'true' : 'false');
 
 	const title = element('span', 'row-title', article.title);
-	const section = element('span', 'row-section', label(article.section));
-	const segments = element('span', 'row-segments', String(article.segments));
 
-	const state = element('span', 'row-state');
+	const found = findings(article);
+	const detailText = element('span', 'row-detail-text');
 	if (underway(article)) {
-		state.dataset.tone = 'underway';
-		state.textContent = 'Running';
-	} else if (article.orphans > 0) {
-		state.dataset.tone = 'attention';
-		state.textContent = `${article.orphans} stale`;
-	} else if (article.gaps.length > 0 || article.summaryGaps.length > 0) {
-		state.dataset.tone = 'attention';
-		state.textContent = 'Gaps';
+		detailText.dataset.tone = 'underway';
+		detailText.textContent = 'Running now';
+	} else if (found.length > 0) {
+		detailText.dataset.tone = 'attention';
+		detailText.textContent = found.join(', ');
+	} else {
+		detailText.textContent = `${article.segments} segments, all current`;
 	}
 
 	const modified = element('span', 'row-modified');
 	if (article.modified !== null) modified.textContent = formatDate(article.modified);
 
-	summary.append(title, section, segments, state, modified);
+	summary.append(title, detailText, modified);
 	summary.addEventListener('click', () => {
 		opened = opened === article.path ? null : article.path;
 		draw();
 	});
 
-	row.appendChild(summary);
+	const action = element('div', 'row-action');
+	action.appendChild(runControl(article, found.length > 0));
+
+	row.append(summary, action);
 	if (opened === article.path) row.appendChild(detail(article, locales));
 	return row;
+}
+
+/**
+ * The control that would start the work.
+ *
+ * Disabled, and it stays that way until the operation has moved below both shells and the task
+ * substrate can report its progress and refuse a second copy. An enabled button that starts
+ * nothing is the failure spec/architecture/cms.md names -- half a run mechanism is the half that
+ * lies -- so the affordance is drawn and visibly inert rather than drawn and hollow.
+ */
+function runControl(article: Article, hasWork: boolean): HTMLButtonElement {
+	const button = document.createElement('button');
+	button.type = 'button';
+	button.className = 'action-run';
+	button.disabled = true;
+	if (!hasWork) {
+		button.textContent = 'Open';
+		button.title = 'The editor is not built yet.';
+		return button;
+	}
+	const command = article.orphans > 0 || article.gaps.length > 0 ? 'cms locale' : 'cms summary';
+	button.textContent = 'Run';
+	button.title = `Not runnable from here yet -- \`${command}\` closes this from a terminal.`;
+	return button;
 }
 
 /** The header row naming each column, repeated per group so a long page never loses it. */
@@ -197,27 +215,19 @@ function columns(): HTMLElement {
 	const head = element('div', 'row-columns');
 	for (const [name, className] of [
 		['Article', 'col-title'],
-		['Section', 'col-section'],
-		['Segments', 'col-segments'],
-		['State', 'col-state'],
+		['Detail', 'col-detail'],
 		['Modified', 'col-modified'],
+		['Action', 'col-action'],
 	] as const) {
 		head.appendChild(element('span', className, name));
 	}
 	return head;
 }
 
-function renderGroup(
-	name: string,
-	shape: Shape,
-	articles: Article[],
-	locales: string[],
-): HTMLElement {
+function renderGroup(name: string, articles: Article[], locales: string[]): HTMLElement {
 	const group = element('section', 'group');
-	group.dataset.shape = shape;
 
 	const head = element('header', 'group-head');
-	head.appendChild(icon(shape));
 	head.appendChild(element('span', 'group-name', name));
 	head.appendChild(element('span', 'group-count', String(articles.length)));
 	group.appendChild(head);
@@ -265,9 +275,14 @@ function draw(): void {
 	if (listing === null) return;
 	const root = requiredElement<HTMLElement>(document, '[data-articles]');
 
+	let active: HTMLButtonElement | null = null;
 	for (const tab of root.querySelectorAll<HTMLButtonElement>('[data-group]')) {
-		tab.setAttribute('aria-selected', tab.dataset.group === grouping ? 'true' : 'false');
+		const selected = tab.dataset.group === grouping;
+		tab.setAttribute('aria-selected', selected ? 'true' : 'false');
+		if (selected) active = tab;
 	}
+	const indicator = root.querySelector<HTMLElement>('[data-tab-indicator]');
+	if (indicator !== null && active !== null) slideIndicator(indicator, active);
 	requiredElement<HTMLElement>(root, '[data-menu-label="filter"]').textContent =
 		FILTERS.find(([value]) => value === filter)?.[1] ?? 'Filter';
 	requiredElement<HTMLElement>(root, '[data-menu-label="sort"]').textContent =
@@ -312,7 +327,7 @@ function draw(): void {
 			else existing.push(article);
 		}
 		for (const [section, articles] of sections) {
-			list.appendChild(renderGroup(label(section), 'section', articles, listing.locales));
+			list.appendChild(renderGroup(label(section), articles, listing.locales));
 		}
 		return;
 	}
@@ -324,15 +339,9 @@ function draw(): void {
 	const behind = ordered(kept.filter((article) => outstanding(article) && !underway(article)));
 	const current = ordered(kept.filter((article) => !outstanding(article) && !underway(article)));
 
-	if (behind.length > 0) {
-		list.appendChild(renderGroup('Needs a pass', 'attention', behind, listing.locales));
-	}
-	if (running.length > 0) {
-		list.appendChild(renderGroup('In progress', 'underway', running, listing.locales));
-	}
-	if (current.length > 0) {
-		list.appendChild(renderGroup('Current', 'current', current, listing.locales));
-	}
+	if (behind.length > 0) list.appendChild(renderGroup('Todo', behind, listing.locales));
+	if (running.length > 0) list.appendChild(renderGroup('In Progress', running, listing.locales));
+	if (current.length > 0) list.appendChild(renderGroup('Complete', current, listing.locales));
 }
 
 export function renderArticles(root: HTMLElement, next: ArticleListing): void {

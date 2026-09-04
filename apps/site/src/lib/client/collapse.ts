@@ -16,28 +16,25 @@
  * same one, so the spring is too.
  */
 
+import { NEGLIGIBLE_PIXELS, PRESS_SPRING, prefersReducedMotion } from '@canmi/motion';
 import { animate } from 'motion';
 import { DEFAULT_PIXELS_PER_REM, remFromMeasuredPixels } from '$lib/client/units';
 
-/** Firm and barely overshooting: a panel answering a press, not a thing being thrown. */
-export const COLLAPSE_SPRING = {
-	type: 'spring' as const,
-	stiffness: 420,
-	damping: 38,
-	mass: 0.9,
-};
+/**
+ * Firm and barely overshooting: a panel answering a press, not a thing being thrown.
+ *
+ * Re-exported rather than declared: the CMS's tab indicator rides the same spring, so the numbers
+ * moved to `@canmi/motion` when it became the second consumer. The name stays because this is
+ * what the site's disclosures call it.
+ */
+export const COLLAPSE_SPRING = PRESS_SPRING;
 
 export type AnimationControl = { stop: () => void };
 
 /** Where a disclosure is, including the two states it is only passing through. */
 export type CollapsePhase = 'collapsed' | 'collapsing' | 'expanded' | 'expanding';
 
-/** Below this the move is not worth playing: it would read as a flicker, not a motion. */
-const NEGLIGIBLE_PIXELS = 0.5;
-
-export function prefersReducedMotion(): boolean {
-	return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-}
+export { prefersReducedMotion };
 
 /**
  * Drive `element`'s height from where it is to `targetPixels`, calling `onSettle` when it lands.
