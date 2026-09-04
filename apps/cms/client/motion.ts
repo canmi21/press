@@ -13,66 +13,83 @@
  * put it there. See spec/architecture/cms.md.
  */
 
-import { NEGLIGIBLE_PIXELS, pressMotion, prefersReducedMotion } from '@canmi/motion';
+import { NEGLIGIBLE_PIXELS, pressMotion, prefersReducedMotion, travelMotion } from '@canmi/motion';
 import { animate } from 'motion';
 
 type Control = { stop: () => void };
 
 const running = new WeakMap<HTMLElement, Control>();
+// The indicator runs two at once, one per edge.
+const travelling = new WeakMap<HTMLElement, Control[]>();
 
 /**
- * Put `indicator` under `active`, animating from wherever it currently is.
+ * Put `indicator` under `active`, travelling from wherever it currently is.
  *
- * Both offset and width are driven, because tabs are not equal widths and a bar that slid without
- * resizing would arrive at the right place the wrong length. The first placement is silent: there
- * is no previous tab to travel from, and a bar sweeping in from the left edge on load reads as a
- * loading animation rather than as a position.
+ * The bar is driven by its centre, not its left edge. Its centre crosses the strip on one curve
+ * while its width adapts on another, over one duration, so the two start and land together --
+ * the bar moves and resizes at once rather than sliding and then correcting its length. Left and
+ * width are derived from that pair on each frame, never animated directly.
+ *
+ * The first placement is silent: there is no previous tab to travel from, and a bar sweeping in
+ * from the left edge on load reads as a loading animation rather than as a position.
  */
 export function slideIndicator(indicator: HTMLElement, active: HTMLElement): void {
-	const strip = indicator.parentElement;
-	if (strip === null) return;
+	if (indicator.parentElement === null) return;
 
-	const to = active.offsetLeft;
-	const width = active.offsetWidth;
+	const toWidth = active.offsetWidth;
 	// A hidden page has no geometry, and the CMS opens on the Overview -- so the library's first
 	// draw happens while its tabs measure zero. Placing the bar there would pin it to nothing and,
 	// worse, mark it placed, so the real placement would then animate in from the left edge.
-	// Leaving both alone means the first press, or the page being shown, is still the silent one.
-	if (width === 0) return;
-	const placed = indicator.dataset.placed !== undefined;
+	if (toWidth === 0) return;
+	const toCentre = active.offsetLeft + toWidth / 2;
 
-	running.get(indicator)?.stop();
-	running.delete(indicator);
+	for (const control of travelling.get(indicator) ?? []) control.stop();
+	travelling.delete(indicator);
 
-	const apply = (offset: number, size: number) => {
-		indicator.style.transform = `translateX(${offset}px)`;
-		indicator.style.width = `${size}px`;
+	const paint = (centre: number, width: number) => {
+		indicator.style.transform = `translateX(${centre - width / 2}px)`;
+		indicator.style.width = `${Math.max(0, width)}px`;
 	};
 
-	if (!placed || prefersReducedMotion()) {
+	if (indicator.dataset.placed === undefined || prefersReducedMotion()) {
 		indicator.dataset.placed = '';
-		apply(to, width);
+		paint(toCentre, toWidth);
 		return;
 	}
 
-	const from = indicator.offsetLeft + (getTranslateX(indicator) || 0);
 	const fromWidth = indicator.offsetWidth;
-	if (Math.abs(from - to) < NEGLIGIBLE_PIXELS && Math.abs(fromWidth - width) < NEGLIGIBLE_PIXELS) {
-		apply(to, width);
+	const fromCentre = indicator.offsetLeft + getTranslateX(indicator) + fromWidth / 2;
+	if (
+		Math.abs(fromCentre - toCentre) < NEGLIGIBLE_PIXELS &&
+		Math.abs(fromWidth - toWidth) < NEGLIGIBLE_PIXELS
+	) {
+		paint(toCentre, toWidth);
 		return;
 	}
 
-	// One animation drives both values off a single 0..1 progress, so the bar cannot arrive at its
-	// destination before it has finished resizing.
-	// The bar's own travel, so a hop between two neighbours is quicker than one across the strip.
-	const travelled = Math.abs(to - from) + Math.abs(width - fromWidth);
-	const control: Control = animate(0, 1, {
-		...pressMotion(travelled),
-		onUpdate: (progress: number) => {
-			apply(from + (to - from) * progress, fromWidth + (width - fromWidth) * progress);
-		},
-	});
-	running.set(indicator, control);
+	// The distance the bar covers is its centre's, which is what a person follows.
+	const { duration, centre, width } = travelMotion(toCentre - fromCentre);
+	let liveCentre = fromCentre;
+	let liveWidth = fromWidth;
+
+	travelling.set(indicator, [
+		animate(fromCentre, toCentre, {
+			duration,
+			ease: centre as never,
+			onUpdate: (value: number) => {
+				liveCentre = value;
+				paint(liveCentre, liveWidth);
+			},
+		}),
+		animate(fromWidth, toWidth, {
+			duration,
+			ease: width as never,
+			onUpdate: (value: number) => {
+				liveWidth = value;
+				paint(liveCentre, liveWidth);
+			},
+		}),
+	]);
 }
 
 function getTranslateX(element: HTMLElement): number {

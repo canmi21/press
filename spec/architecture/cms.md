@@ -294,9 +294,28 @@ the layout changes when it does.
 **Selection moves rather than redraws.** A tab strip is about place, so one bar travels between
 the tabs instead of each tab lighting its own underline, and the rail it rides on is not drawn at
 all -- the bar is what says where you are, and a visible track is a line the eye has to discount.
-Both offset and width are animated, because tabs are not equal widths and a bar that slid without
-resizing would arrive at the right place the wrong length. The first placement is silent: there is
-no previous tab to travel from, and a bar sweeping in on load reads as a loading animation.
+The first placement is silent: there is no previous tab to travel from, and a bar sweeping in on
+load reads as a loading animation.
+
+**It travels on its own gesture, not the one panels open with.** A box growing and an object
+crossing a strip are different things. What the bar has is a **centre** that moves and a **width**
+that adapts, and those are separate facts: the centre is where it is, the width is how much of the
+label beneath it is covered. Driving offset and width together conflates them into a rectangle
+redrawn at successive positions -- correct, and inert.
+
+So the centre is animated on one curve and the width on another, over a single duration, starting
+and landing together; left and width are derived from that pair each frame and neither is animated
+directly. The centre's curve leaves decisively and settles, because the movement is the gesture.
+The width's is the flatter of the two -- a resize that raced the movement would look like the bar
+snapping to its new size before arriving, and one that lagged would leave it the wrong length at
+rest for a frame.
+
+Measured across this page's own tabs, the centre crosses 27.5 to 104 while the width goes 55 to 62
+and stays strictly between them: it grows or shrinks, and never overshoots. An earlier version
+drove the two edges instead, which stretched the bar past both widths mid-flight; that reads as a
+bar being thrown rather than one moving. Travel is also slower for its distance than a panel
+opening, because a tab strip's hops are short enough that the panel curve would be over before the
+movement could be read as one.
 
 The spring is `@canmi/motion`, shared with the site's disclosures, which is the pair that moved it
 out of the site. The gesture itself is in [motion.ts](../../apps/cms/client/motion.ts) rather than

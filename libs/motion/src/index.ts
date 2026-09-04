@@ -67,6 +67,53 @@ export function pressMotion(distancePixels: number): {
 	return { duration: Math.min(MAX_SECONDS, Math.max(MIN_SECONDS, scaled)), ease: EASE };
 }
 
+/**
+ * The two curves an indicator travels on, and they describe different things.
+ *
+ * A bar crossing a strip is not a box growing, and one curve cannot say what it does. What it has
+ * is a **centre** that moves and a **width** that adapts, and those are separate facts: the centre
+ * is where the bar is, the width is how much of the label under it is covered. Driving offset and
+ * width together conflates them into a rectangle redrawn at successive positions -- correct, and
+ * inert.
+ *
+ * So the centre is animated on `CENTRE` and the width on `WIDTH`, over one duration, starting and
+ * landing together. The bar reads as an object that moves and resizes at once rather than one that
+ * is being retyped.
+ *
+ * `CENTRE` leaves decisively and settles, because the movement is the gesture. `WIDTH` is the
+ * flatter of the two: a resize that raced the movement would look like the bar snapping to its new
+ * size before it arrived, and one that lagged would leave it the wrong length at rest for a frame.
+ */
+const CENTRE = [0.32, 0.72, 0.24, 1] as const;
+const WIDTH = [0.4, 0, 0.2, 1] as const;
+
+/** A bar travelling between two tabs, rather than a surface opening. */
+const TRAVEL_REFERENCE_PIXELS = 60;
+const TRAVEL_REFERENCE_SECONDS = 0.24;
+const TRAVEL_MIN_SECONDS = 0.18;
+const TRAVEL_MAX_SECONDS = 0.38;
+
+/**
+ * How an indicator crosses to its new tab.
+ *
+ * Slower for its distance than a panel opening, and deliberately: a tab strip's hops are short
+ * enough that the panel curve would be over before the movement could be read as one. Scaled by
+ * the same square root for the same reason, with its own anchor because it is a different gesture.
+ */
+export function travelMotion(distancePixels: number): {
+	duration: number;
+	centre: readonly [number, number, number, number];
+	width: readonly [number, number, number, number];
+} {
+	const scaled =
+		TRAVEL_REFERENCE_SECONDS * Math.sqrt(Math.abs(distancePixels) / TRAVEL_REFERENCE_PIXELS);
+	return {
+		duration: Math.min(TRAVEL_MAX_SECONDS, Math.max(TRAVEL_MIN_SECONDS, scaled)),
+		centre: CENTRE,
+		width: WIDTH,
+	};
+}
+
 export function prefersReducedMotion(): boolean {
 	return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
