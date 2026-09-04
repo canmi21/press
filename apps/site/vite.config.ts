@@ -72,20 +72,26 @@ const commitHash = (() => {
 // Sitemap <lastmod> for routes like "/" that have no article of their own to date from.
 const buildTime = new Date().toISOString();
 
-// The one baseline. `browserslist` in package.json says which browsers this site is for, and
-// both readers of that fact derive from it: esbuild compiles syntax down to it here, and
-// `mise run compat` asks core-js what built-ins it lacks. Two spellings of one number is how a
-// polyfill outlives the browser that needed it.
+// The syntax floor, and the only place it is written down. `browserslist` in package.json says
+// which browsers the emitted JavaScript has to parse on, and esbuild compiles down to it here.
+//
+// It is set to the line the compatibility canary rescues to, and that is not a coincidence:
+// `compatibility.ts` loads core-js for a browser without `Array.prototype.toSorted`, which is
+// Chrome 110, Firefox 115 and Safari 16.0. A rescue only happens if the browser could parse the
+// code doing the rescuing, so a target above that line would hand those readers a bundle that
+// dies before the check runs. The two floors agree by construction. See spec/compat.md.
+//
+// Stated rather than left to Vite's default, which is a baseline of somebody else's choosing and
+// moves under a major -- it was chrome111, edge111, firefox114, safari16.4 when this was written.
 //
 // Floors, never a relative query like `> 0.5%`. A relative query is resolved against
 // caniuse-lite, so the compiled output would change on an unrelated dependency update and a
-// rebuild of the same commit would not be the same bytes. Moving a floor stays a deliberate
-// edit, like every other pin here.
+// rebuild of the same commit would not be the same bytes.
 const BROWSERSLIST: string[] = JSON.parse(
 	readFileSync(fileURLToPath(new URL('./package.json', import.meta.url)), 'utf8'),
 ).browserslist;
 
-// esbuild wants `chrome111`; browserslist writes `chrome >= 111`. Same fact, two spellings,
+// esbuild wants `chrome110`; browserslist writes `chrome >= 110`. Same fact, two spellings,
 // and this is the whole distance between them.
 const esbuildTarget = BROWSERSLIST.map((query) => {
 	const floor = /^(\S+)\s*>=\s*(\S+)$/.exec(query);
