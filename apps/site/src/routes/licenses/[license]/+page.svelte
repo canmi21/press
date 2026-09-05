@@ -60,7 +60,7 @@
 				<a
 					href={data.spdxHref}
 					target="_blank"
-					rel="noopener noreferrer"
+					rel="noopener"
 					class="quiet-control text-[0.9375rem]"
 				>
 					<span class="focus-link-inner inline-flex items-center gap-1.5">

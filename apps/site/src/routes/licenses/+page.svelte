@@ -83,14 +83,14 @@
 						{#snippet license()}<a
 								href="{URLS.external.spdx}/MIT.html"
 								target="_blank"
-								rel="noopener noreferrer"
+								rel="noopener"
 								class="focus-link spring-underline article-link text-text"
 								>{m['licenses.mit']({}, { locale })}</a
 							>{/snippet}
 						{#snippet link()}<a
 								href={URLS.source}
 								target="_blank"
-								rel="noopener noreferrer"
+								rel="noopener"
 								class="focus-link spring-underline article-link text-text"
 								>{m['licenses.repository']({}, { locale })}</a
 							>{/snippet}
@@ -108,7 +108,7 @@
 				{#snippet registries()}{#each registryParts as part, index (index)}{#if part.gapBefore}{' '}{/if}{#if part.registry}<a
 								href={part.registry.href}
 								target="_blank"
-								rel="noopener noreferrer"
+								rel="noopener"
 								class="focus-link spring-underline article-link text-text">{part.value}</a
 							>{:else}{part.value}{/if}{/each}{/snippet}
 			</ParaglideMessage>

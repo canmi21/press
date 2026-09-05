@@ -121,6 +121,26 @@ function hoistCharset(html: string): string {
 	return html.replace(charset[0], '').replace('<head>', `<head>${charset[0].trim()}`);
 }
 
+/**
+ * What a request from a page here tells the site it goes to.
+ *
+ * `origin-when-cross-origin`: a request inside the site carries the full URL, and one to another
+ * site carries the origin alone -- a site linked from an article learns that the link came from
+ * here and not which article, which is the most it should know and the least the author wants it
+ * told. Every link out is deliberately `noopener` without `noreferrer` for the same reason: the
+ * attribute would silence a policy set to speak.
+ *
+ * Set here, on every response the worker serves, so development and production answer the same
+ * and the value is read in the repository rather than in an edge setting nobody can grep. Listed
+ * before the markdown handler, which returns without resolving, so its responses carry it too.
+ * See spec/referrer.md.
+ */
+const referrerHandle: Handle = async ({ event, resolve }) => {
+	const response = await resolve(event);
+	response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
+	return response;
+};
+
 export const handle = sequence(
 	initCloudflareSentryHandle({
 		dsn: URLS.external.sentry.site,
@@ -128,6 +148,7 @@ export const handle = sequence(
 		environment: dev ? 'development' : 'production',
 	}),
 	sentryHandle(),
+	referrerHandle,
 	markdownHandle,
 	pageHandle,
 );

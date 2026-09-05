@@ -20,7 +20,7 @@
 					<a
 						href={seg.href}
 						class="focus-link inline-flex items-center gap-1 align-middle leading-tight text-text-strong"
-						{...seg.newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+						{...seg.newTab ? { target: '_blank', rel: 'noopener' } : {}}
 					>
 						{#if seg.icon}<Icon name={seg.icon} />{/if}
 						<span class="underline decoration-border underline-offset-4">{seg.label}</span>

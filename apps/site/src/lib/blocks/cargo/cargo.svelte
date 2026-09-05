@@ -144,7 +144,7 @@
 						<a
 							href="{URLS.external.registries.cargo}/crates/{tile.dep.name}/{tile.dep.version}"
 							target="_blank"
-							rel="noopener noreferrer"
+							rel="noopener"
 							aria-label="{tile.dep.name} {tile.dep.version}, {tile.dep.depth === 0
 								? 'direct'
 								: `transitive depth ${tile.dep.depth}`}, {formatBytes(tile.dep.size ?? 0)}"
@@ -248,7 +248,7 @@
 			<span><span class="muted">Size</span> <b>{formatBytes(crate.total_dep_size)}</b></span>
 			<span class="links">
 				{#each [[`${URLS.external.registries.cargo}/crates/${crate.name}`, 'crates.io'], [`${URLS.external.rust.lib}/crates/${crate.name}`, 'lib.rs'], [`${URLS.external.rust.docs}/${crate.name}`, 'docs.rs']] as [href, label] (label)}
-					<a class="focus-link" {href} target="_blank" rel="noopener noreferrer">
+					<a class="focus-link" {href} target="_blank" rel="noopener">
 						{label}<ArrowUpRight class="size-2.5" strokeWidth={2} aria-hidden="true" />
 					</a>
 				{/each}

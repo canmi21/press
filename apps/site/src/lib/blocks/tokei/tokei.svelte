@@ -373,7 +373,7 @@
 					class="focus-link"
 					href="{URLS.external.github.web}/XAMPPRocky/tokei"
 					target="_blank"
-					rel="noopener noreferrer"
+					rel="noopener"
 					>tokei<ArrowUpRight class="size-2.5" strokeWidth={2} aria-hidden="true" /></a
 				>
 			</div>

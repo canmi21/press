@@ -223,10 +223,12 @@ function proseHtml(node: RootContent, newTabNote: string): string {
 						properties: {
 							href,
 							className: ['focus-link', 'spring-underline', 'article-link', 'text-text-strong'],
-							// hast stores space-separated token lists as arrays. Writing this as one
-							// string produced `rel="noopener,noreferrer"` in the output, which is a
-							// single unrecognised token and so left the link unprotected.
-							...(newTab ? { target: '_blank', rel: ['noopener', 'noreferrer'] } : {}),
+							// hast stores space-separated token lists as arrays, so this stays one even
+							// with one token: written as a string, a two-token list once came out as
+							// `rel="noopener,noreferrer"`, a single unrecognised token. `noreferrer` is
+							// gone on purpose -- the site's referrer policy sends the origin to a site
+							// it links to, and this attribute would silence that. See spec/referrer.md.
+							...(newTab ? { target: '_blank', rel: ['noopener'] } : {}),
 						},
 						children,
 					};

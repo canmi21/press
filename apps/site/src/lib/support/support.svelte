@@ -187,7 +187,7 @@
 		<a
 			href={sourcePreferenceHref}
 			target="_blank"
-			rel="noopener noreferrer"
+			rel="noopener"
 			aria-label={`${m['support.google']({}, { locale })} (${m['support.new-tab']({}, { locale })})`}
 			data-expanded="false"
 			onmouseenter={expand}

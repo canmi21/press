@@ -11,7 +11,7 @@
 	const date = $derived(shortDate(tweet.created));
 </script>
 
-<a {href} target="_blank" rel="noopener noreferrer" class="tweet-card group focus-ring">
+<a {href} target="_blank" rel="noopener" class="tweet-card group focus-ring">
 	<header class="header">
 		<SocialIcon name="twitter" class="size-4" />
 		<span class="author">@{tweet.author}</span>

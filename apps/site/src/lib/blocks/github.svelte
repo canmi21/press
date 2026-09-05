@@ -43,7 +43,7 @@
 <a
 	{href}
 	target="_blank"
-	rel="noopener noreferrer"
+	rel="noopener"
 	class:card-center={align === 'center'}
 	class:card-right={align === 'right'}
 	class="repo-card group focus-ring"

@@ -135,7 +135,7 @@
 <a
 	href={url}
 	target="_blank"
-	rel="noopener noreferrer"
+	rel="noopener"
 	aria-describedby={description ? describedBy : undefined}
 	class="group relative isolate block"
 >

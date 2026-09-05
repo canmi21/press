@@ -139,7 +139,7 @@
 						title={link.label}
 						data-sveltekit-reload={'document' in link ? true : undefined}
 						class="focus-ring inline-flex size-5 items-center justify-center rounded-[0.3125rem] text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
-						{...link.href.startsWith('/') ? {} : { target: '_blank', rel: 'noopener noreferrer' }}
+						{...link.href.startsWith('/') ? {} : { target: '_blank', rel: 'noopener' }}
 					>
 						<Icon name={link.name} class={link.size} />
 					</a>
@@ -149,7 +149,7 @@
 			<a
 				href="{URLS.external.icpmoe}/?keyword=20260000"
 				target="_blank"
-				rel="noopener noreferrer"
+				rel="noopener"
 				class="focus-link inline-flex items-center gap-1.5 text-[0.9375rem] text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
 			>
 				<Lollipop class="h-4 w-4" aria-hidden="true" />

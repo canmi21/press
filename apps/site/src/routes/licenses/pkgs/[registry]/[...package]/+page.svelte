@@ -130,7 +130,7 @@
 						<a
 							href={data.registry.packageHref}
 							target="_blank"
-							rel="noopener noreferrer"
+							rel="noopener"
 							class="focus-link spring-underline article-link inline-flex max-w-full items-center gap-1.5"
 						>
 							<span class="truncate">{data.registry.name}</span>
@@ -154,13 +154,13 @@
 										<a
 											href="{data.githubHref}/{data.repository.github.owner}"
 											target="_blank"
-											rel="noopener noreferrer"
+											rel="noopener"
 											class="focus-link spring-underline article-link"
 											>{data.repository.github.owner}</a
 										>/<a
 											href={data.repository.github.url}
 											target="_blank"
-											rel="noopener noreferrer"
+											rel="noopener"
 											class="focus-link spring-underline article-link"
 											>{data.repository.github.name}</a
 										>
@@ -170,7 +170,7 @@
 								<a
 									href={data.repository.href}
 									target="_blank"
-									rel="noopener noreferrer"
+									rel="noopener"
 									class="focus-link spring-underline article-link block w-fit max-w-full truncate"
 									>{data.repository.href}</a
 								>
@@ -183,7 +183,7 @@
 							<a
 								href={data.entry.homepage}
 								target="_blank"
-								rel="noopener noreferrer"
+								rel="noopener"
 								class="focus-link spring-underline article-link block w-fit max-w-full truncate"
 								>{data.entry.homepage}</a
 							>
@@ -195,7 +195,7 @@
 							<a
 								href={data.entry.documentation}
 								target="_blank"
-								rel="noopener noreferrer"
+								rel="noopener"
 								class="focus-link spring-underline article-link block w-fit max-w-full truncate"
 								>{data.entry.documentation}</a
 							>
@@ -250,7 +250,7 @@
 										<a
 											href="{data.githubHref}/{author.github}"
 											target="_blank"
-											rel="noopener noreferrer"
+											rel="noopener"
 											class="focus-link spring-underline article-link min-w-0 truncate"
 											>{author.name} <span class="text-text-soft">@{author.github}</span></a
 										>
@@ -268,7 +268,7 @@
 								<a
 									href={textUrl(cdn, file.cid)}
 									target="_blank"
-									rel="noopener noreferrer"
+									rel="noopener"
 									class="focus-link spring-underline article-link font-mono text-[0.8125rem]"
 									>{file.name}</a
 								>
