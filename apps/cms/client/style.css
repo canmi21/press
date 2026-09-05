@@ -877,82 +877,6 @@ button {
 	color: var(--color-blue);
 }
 
-.row-panel {
-	grid-column: 2 / 3;
-	overflow: hidden;
-}
-
-.row-detail {
-	padding: 0.25rem 0 1.125rem;
-}
-
-.row-note {
-	margin: 0.5rem 0;
-	color: var(--color-text-soft);
-	font-size: 0.75rem;
-}
-
-/* A stale segment's row: tick, what it says, how many locales still hold it, and Drop. */
-.segment {
-	display: grid;
-	align-items: center;
-	column-gap: 0.5rem;
-	grid-template-columns: 0.9375rem minmax(0, 1fr) auto auto;
-	padding: 0.25rem 0;
-	row-gap: 0;
-}
-
-.segment-drop {
-	padding: 0.0625rem 0.4375rem;
-	border: 0.0625rem solid var(--color-border);
-	border-radius: 0.3125rem;
-	background: var(--color-paper);
-	color: var(--color-text-soft);
-	cursor: pointer;
-	font-size: 0.6875rem;
-	opacity: 0;
-	transition:
-		opacity 160ms,
-		border-color 160ms,
-		color 160ms;
-}
-
-.segment:hover .segment-drop,
-.segment:focus-within .segment-drop {
-	opacity: 1;
-}
-
-.segment-drop:hover {
-	border-color: var(--color-red);
-	color: var(--color-red);
-}
-
-/* Shown by its translation, which is the only text of it that still exists -- so it reads as
-   content rather than as a reference. */
-.segment-text {
-	overflow: hidden;
-	color: var(--color-text);
-	font-size: 0.75rem;
-	line-height: 1.5;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-.segment-locales {
-	color: var(--color-text-soft);
-	font-size: 0.6875rem;
-	font-variant-numeric: tabular-nums;
-}
-
-/* The door to the page that reads the article. One control, after whatever the panel had to say,
-   sized to the panel rather than to the title row. */
-.row-read {
-	width: fit-content;
-	margin-top: 0.5rem;
-	padding: 0.25rem 0.5625rem;
-	font-size: 0.75rem;
-}
-
 .menu-option:disabled {
 	color: var(--color-text-soft);
 	cursor: default;
@@ -1187,141 +1111,202 @@ button.health-action:disabled {
 	background: var(--color-red);
 }
 
-/* The segments page: one article's blocks, each opening into its source and every translation of
-   it. A reading surface rather than a table -- the panes stack so a long paragraph is read at the
-   width it was written for, not squeezed into a column. */
+/* The Segments page is a workbench rather than a document: the header stays put and the two
+   panes below it scroll on their own. The roster on the left is where a reader moves; the study
+   on the right is where they stop. Moving must not lose the roster's place and reading must not
+   scroll the roster away, which is the whole reason there are two scrollers. */
+.page-shell[data-page='segments'] .page-content {
+	display: flex;
+	flex-direction: column;
+}
+
 .segments-page {
-	width: min(100%, 56rem);
-	margin: 0 auto;
+	display: flex;
+	min-height: 0;
+	flex: 1;
+	flex-direction: column;
 }
 
-.reading-empty,
-.reading-note {
-	margin: 1.5rem 0 0;
-	color: var(--color-text-soft);
-	font-size: 0.8125rem;
-	line-height: 1.6;
+.segments-page .view-head {
+	flex: none;
 }
 
-.reading {
-	border-bottom: 0.0625rem solid var(--color-border);
-}
-
-/* The chooser: every article by title, one press to read it. The same paper-on-ground pairing as
-   a segment's head, so the page reads the same before and after something is chosen. */
-.pick {
+.workbench {
 	display: grid;
-	width: 100%;
-	align-items: baseline;
-	padding: 0.625rem 0.5rem;
-	border: 0;
-	border-bottom: 0.0625rem solid var(--color-border);
-	border-radius: 0;
-	background: transparent;
-	color: inherit;
-	cursor: pointer;
-	gap: 1rem;
-	grid-template-columns: minmax(0, 1fr) auto;
-	text-align: left;
-	transition: background-color 160ms;
+	min-height: 0;
+	flex: 1;
+	gap: 0 2rem;
+	grid-template-columns: minmax(16rem, 22rem) minmax(0, 1fr);
+	margin-top: 1rem;
 }
 
-.pick:hover {
-	background: var(--color-paper-hover);
+.roster,
+.study {
+	min-height: 0;
+	overflow: auto;
+	scrollbar-color: var(--color-border-strong) transparent;
+	scrollbar-width: thin;
 }
 
-.pick-title {
-	overflow: hidden;
-	color: var(--color-text);
-	font-size: 0.875rem;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+/* One hairline stands between the panes. A box around each would be the dashboard chrome this
+   page is not; the divider says only that the two scroll apart. */
+.roster {
+	padding-right: 1rem;
+	border-right: 0.0625rem solid var(--color-border);
 }
 
-.pick-facts {
+.roster-head {
+	display: flex;
+	position: sticky;
+	z-index: 1;
+	top: 0;
+	justify-content: space-between;
+	padding: 0.375rem 0.625rem 0.5rem;
+	background: var(--color-page);
 	color: var(--color-text-soft);
 	font-size: 0.75rem;
 	font-variant-numeric: tabular-nums;
-	white-space: nowrap;
 }
 
-.reading-head {
+.roster-stale {
+	color: var(--color-red);
+}
+
+.roster-row {
 	display: grid;
 	width: 100%;
 	align-items: baseline;
-	padding: 0.75rem 0.5rem;
+	padding: 0.4375rem 0.625rem;
 	border: 0;
 	border-radius: 0.5rem;
 	background: transparent;
 	color: inherit;
 	cursor: pointer;
-	gap: 1rem;
-	grid-template-columns: minmax(0, 1fr) 5.5rem;
+	gap: 0.625rem;
+	grid-template-columns: 1.5rem minmax(0, 1fr) auto;
 	text-align: left;
-	transition: background-color 160ms;
+	transition: background-color 120ms;
 }
 
-.reading-head:hover {
+.roster-row:hover {
 	background: var(--color-paper-hover);
 }
 
-.reading-lead {
-	overflow: hidden;
-	color: var(--color-text);
-	font-size: 0.8125rem;
-	line-height: 1.5;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+/* The row under study sits on paper like a selected article does in the library: the same
+   pairing means the same thing, "this one", on both pages. */
+.roster-row[aria-current] {
+	background: var(--color-paper);
 }
 
-/* A block the article has lost reads as content rather than as a reference: its translation is
-   the only text of it that exists anywhere. */
-.reading[data-stale] .reading-lead {
-	color: var(--color-text-strong);
-}
-
-.reading-count {
+.roster-index {
 	color: var(--color-text-soft);
 	font-size: 0.6875rem;
 	font-variant-numeric: tabular-nums;
 	text-align: right;
 }
 
-.reading-panel {
+.roster-text {
 	overflow: hidden;
+	color: var(--color-text-muted);
+	font-size: 0.8125rem;
+	line-height: 1.5;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
-.reading-body {
-	display: grid;
-	padding: 0 0.5rem 1.25rem;
-	gap: 1.125rem;
+.roster-row[aria-current] .roster-text {
+	color: var(--color-text-strong);
 }
 
-.reading-pane {
-	display: grid;
-	gap: 0.25rem;
+/* A segment the article lost is shown by its translation, which is the only text of it that
+   still exists, so it reads as content and carries the one word that says why it is listed. */
+.roster-row[data-stale] .roster-text {
+	color: var(--color-text);
 }
 
-/* The original is marked by a rule rather than a colour: it is the same kind of thing as the
-   translations beside it, and only its position in the comparison differs. */
-.reading-pane[data-origin] {
-	padding-left: 0.75rem;
-	border-left: 0.125rem solid var(--color-border-strong);
-	margin-left: -0.875rem;
+.roster-tag {
+	color: var(--color-red);
+	font-size: 0.625rem;
 }
 
-.reading-language {
+.study {
+	padding: 0 0.25rem 2rem 0;
+}
+
+.study-head {
+	display: flex;
+	position: sticky;
+	z-index: 1;
+	top: 0;
+	align-items: center;
+	justify-content: space-between;
+	min-height: 2rem;
+	padding: 0.25rem 0 0.75rem;
+	background: var(--color-page);
+	gap: 1rem;
+}
+
+.study-title {
+	color: var(--color-text-strong);
+	font-size: 0.875rem;
+	font-weight: 600;
+}
+
+.study-id {
 	color: var(--color-text-soft);
 	font-size: 0.6875rem;
 }
 
-.reading-meta {
-	color: var(--color-text-soft);
-	font-size: 0.625rem;
+.study-drop {
+	padding: 0.25rem 0.5625rem;
+	font-size: 0.75rem;
 }
 
-/* Markdown, drawn. The type here is the reading size rather than the interface size: this is the
-   one place in the CMS where prose is the content and not a label on something else. */
+.study-drop:hover {
+	border-color: var(--color-red);
+	color: var(--color-red);
+}
+
+/* A pane per language, the original first. Separated by hairlines and not by boxes, because
+   they are the same kind of thing and only their language differs. */
+.study-pane {
+	display: grid;
+	padding: 0.875rem 0;
+	border-top: 0.0625rem solid var(--color-border);
+	gap: 0.375rem;
+}
+
+.study-pane[data-origin] {
+	border-top: 0;
+}
+
+.study-line {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.study-language {
+	color: var(--color-text-strong);
+	font-size: 0.75rem;
+	font-weight: 600;
+}
+
+.study-meta {
+	color: var(--color-text-soft);
+	font-size: 0.6875rem;
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+
+.reading-note {
+	margin: 1rem 0;
+	color: var(--color-text-soft);
+	font-size: 0.8125rem;
+	line-height: 1.6;
+}
+
 .reading-prose {
 	color: var(--color-text);
 	font-size: 0.875rem;

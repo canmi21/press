@@ -1,6 +1,5 @@
 import { invoke } from '@tauri-apps/api/core';
 import { requiredElement } from './dom';
-import type { SegmentOutline, SegmentRow } from './segments';
 import { animateHeight, animateWidth, slideIndicator } from './motion';
 import type { TaskRun } from './derived';
 
@@ -79,7 +78,6 @@ let sort: Sort = 'recent';
 /** The column a press put the ordering on, or nothing while the menu above still owns it. */
 let column: Column | null = null;
 let ascending = true;
-const opened = new Set<string>();
 let menu: string | null = null;
 /** Whether the pointer is over the sort control while a column holds the ordering. */
 let offeringReset = false;
@@ -87,10 +85,6 @@ let offeringReset = false;
 let readSegments: ((article: { path: string; title: string }) => void) | null = null;
 const collapsed = new Set<string>();
 const selected = new Set<string>();
-/** An article's contents, once it has been opened. Keyed by article path. */
-const outlines = new Map<string, SegmentOutline>();
-/** Segments ticked for deletion, keyed the same way. */
-const markedSegments = new Set<string>();
 
 function outstanding(article: Article): boolean {
 	return article.gaps.length > 0 || article.summaryGaps.length > 0 || article.orphans > 0;
@@ -166,109 +160,11 @@ function sweepable(article: Article): boolean {
 	return article.orphans > 0;
 }
 
-/**
- * What an article opens into.
- *
- * Only what can be acted on here, and one way to the rest. A stale segment is the one thing an
- * article carries that this page can do something about, so those are listed, each with a tick
- * and a Drop. The paragraphs the article still has are not listed: a hundred and forty rows of
- * first lines said nothing a reader could use, and reading them is the Segments page's job, so
- * the panel ends in the door to it.
- */
-function detail(article: Article): HTMLElement {
-	const panel = element('div', 'row-detail');
-
-	if (sweepable(article)) {
-		const outline = outlines.get(article.path);
-		if (outline === undefined) {
-			panel.appendChild(element('p', 'row-note', 'Reading the article…'));
-			void invoke<SegmentOutline>('article_segments', { article: article.path })
-				.then((next) => {
-					outlines.set(article.path, next);
-					draw();
-				})
-				.catch((error: unknown) => showError(error));
-		} else {
-			for (const row of outline.rows) {
-				if (row.stale) panel.appendChild(staleRow(article, row));
-			}
-		}
-	}
-
-	const read = document.createElement('button');
-	read.type = 'button';
-	read.className = 'control row-read';
-	read.textContent = `Read ${article.segments} ${article.segments === 1 ? 'segment' : 'segments'}`;
-	read.addEventListener('click', (event) => {
-		event.stopPropagation();
-		readSegments?.({ path: article.path, title: article.title });
-	});
-	panel.appendChild(read);
-	return panel;
-}
-
-/** A translation the article no longer has a paragraph for: tick it, or drop it on its own. */
-function staleRow(article: Article, row: SegmentRow): HTMLElement {
-	const key = `${article.path}#${row.id}`;
-	const item = element('div', 'segment');
-
-	const tick = document.createElement('button');
-	tick.type = 'button';
-	tick.className = 'checkbox';
-	tick.setAttribute('role', 'checkbox');
-	tick.setAttribute('aria-label', 'Select this segment');
-	paintTick(tick, markedSegments.has(key) ? 'true' : 'false');
-	tick.addEventListener('click', (event) => {
-		event.stopPropagation();
-		if (markedSegments.has(key)) markedSegments.delete(key);
-		else markedSegments.add(key);
-		draw();
-	});
-	item.appendChild(tick);
-
-	item.appendChild(element('span', 'segment-text', row.preview ?? row.source ?? '(no text)'));
-	item.appendChild(
-		element('span', 'segment-locales', `${row.locales.length} ${row.locales.length === 1 ? 'locale' : 'locales'}`),
-	);
-
-	const drop = document.createElement('button');
-	drop.type = 'button';
-	drop.className = 'segment-drop';
-	drop.textContent = 'Drop';
-	drop.title = 'Deletes this translation, which the article no longer has a paragraph for.';
-	drop.addEventListener('click', (event) => {
-		event.stopPropagation();
-		const ticked = [...markedSegments]
-			.filter((marked) => marked.startsWith(`${article.path}#`))
-			.map((marked) => marked.slice(article.path.length + 1));
-		dropSegments(article, ticked.length > 0 ? ticked : [row.id]);
-	});
-	item.appendChild(drop);
-
-	return item;
-}
-
 function showError(error: unknown): void {
 	const notice = document.querySelector<HTMLElement>('[data-articles-error]');
 	if (notice === null) return;
 	notice.hidden = false;
 	notice.textContent = error instanceof Error ? error.message : String(error);
-}
-
-/** Delete named segments from one article, then read both the article and the library back. */
-function dropSegments(article: Article, ids: string[]): void {
-	if (ids.length === 0) return;
-	void invoke<number>('drop_segments', { article: article.path, ids })
-		.then(() => {
-			for (const id of ids) markedSegments.delete(`${article.path}#${id}`);
-			outlines.delete(article.path);
-			return invoke<ArticleListing>('article_listing');
-		})
-		.then((next) => {
-			listing = next;
-			draw();
-		})
-		.catch((error: unknown) => showError(error));
 }
 
 type Action = { name: string; why: string; run?: () => void };
@@ -371,10 +267,12 @@ function renderRow(article: Article): HTMLElement {
 
 	row.appendChild(checkbox(article));
 
+	// The row is the way to the page that reads the article. It used to open into a panel, and
+	// once that panel had shrunk to one control the disclosure was a press that bought nothing.
 	const open = document.createElement('button');
 	open.type = 'button';
 	open.className = 'row-open';
-	open.setAttribute('aria-expanded', opened.has(article.path) ? 'true' : 'false');
+	open.title = 'Read this article segment by segment';
 
 	const line = element('span', 'row-detail-text', detailText(article));
 	if (underway(article)) line.dataset.tone = 'underway';
@@ -382,6 +280,9 @@ function renderRow(article: Article): HTMLElement {
 	if (article.modified !== null) modified.textContent = formatDate(article.modified);
 
 	open.append(element('span', 'row-title', article.title), line, modified);
+	open.addEventListener('click', () =>
+		readSegments?.({ path: article.path, title: article.title }),
+	);
 	row.appendChild(open);
 
 	row.appendChild(
@@ -398,22 +299,6 @@ function renderRow(article: Article): HTMLElement {
 				: [{ name: 'Open in the editor', why: 'The editor is not built yet.' }],
 		),
 	);
-
-	// Always built, and folded shut when closed. A panel that only exists while open cannot be
-	// animated: the element the motion drives would be created and destroyed by the toggle itself.
-	const panel = element('div', 'row-panel');
-	panel.appendChild(detail(article));
-	if (!opened.has(article.path)) panel.style.height = '0px';
-	row.appendChild(panel);
-
-	open.addEventListener('click', () => {
-		// Not a redraw, for the reason folding a group is not: the panel has to survive the press.
-		const opening = !opened.has(article.path);
-		if (opening) opened.add(article.path);
-		else opened.delete(article.path);
-		open.setAttribute('aria-expanded', opening ? 'true' : 'false');
-		animateHeight(panel, opening);
-	});
 
 	return row;
 }
@@ -790,6 +675,16 @@ export function fitArticles(): void {
 	const active = root.querySelector<HTMLButtonElement>('[data-group][aria-selected="true"]');
 	const indicator = root.querySelector<HTMLElement>('[data-tab-indicator]');
 	if (active !== null && indicator !== null) slideIndicator(indicator, active);
+}
+
+/** Read the library back, after another page changed what an article carries. */
+export function reloadArticles(): void {
+	void invoke<ArticleListing>('article_listing')
+		.then((next) => {
+			listing = next;
+			draw();
+		})
+		.catch((error: unknown) => showError(error));
 }
 
 export function renderArticleRuns(next: TaskRun[]): void {

@@ -392,21 +392,23 @@ with a hairline around it, the same pairing the derived cards and the run panel 
 restraint this file asks for is about colour carrying meaning, not about removing the contrast that
 tells a button from a label -- taken absolutely it left the controls indistinguishable from text.
 
-**An article opens into what can be done to it here, and a door to the rest.** The panel lists
-the article's stale segments -- the translations it no longer has a paragraph for -- each with a
-tick and a Drop, because deleting those is the one thing this page can do to an article's
-contents. Its live paragraphs are not listed: a hundred and forty rows of first lines under a
-title said nothing a reader could use, and the same list was drawn again, better, on the page
-that reads it. So the panel ends in one control, "Read N segments", and for an article with
-nothing stale that control is the whole panel -- and the outline is not even fetched.
+**A row in the library is a press to the page that reads the article.** It used to open into a
+panel; the panel listed every segment, then only the stale ones with a control to the rest, and
+once it held one control the disclosure was a press that bought nothing. So the row goes straight
+there. Dropping a stale segment on its own moved with the reading: it is offered in the study of
+that segment, where the reader can see what they are deleting.
 
-**Reading a segment is its own destination, with its own way in.** Segments is a page in the
-sidebar because a comparison of one paragraph against eight translations of it is a thing
-somebody sits with, and the library is a place they were passing through. The page opens on a
-chooser -- every article by title, with its section and how much there is to read -- and an
-article chosen there or sent from the library reads the same. The library's control is a
-shortcut past the chooser, not the only door: a page that only works when another page sent you
-is not a page.
+**Segments is a workbench, not a document.** Two panes under a header that stays put: the roster
+on the left is every segment of the article in its own order, one line each, and the study on the
+right is the one under the cursor -- its paragraph, then each translation of it. They scroll
+apart, because moving to the ninetieth segment must not lose the roster's place and reading a
+long translation must not scroll the roster away. Up and down walk the roster. A stale segment is
+listed first and marked with the one word that says why it is there; its study offers the drop.
+
+The page chooses its own article. A menu at the top lists every one; the library's rows send one
+here as a shortcut past it; and with nothing chosen it opens the most recently written article
+rather than explaining that it is empty. A second menu narrows the study to one language against
+the original, which is what reviewing a single locale looks like.
 
 **A segment is drawn as the markdown it is.** Shown as plain text it reads as punctuation --
 backticks around code, asterisks around emphasis, hashes where a heading was -- and somebody

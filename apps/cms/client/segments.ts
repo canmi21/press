@@ -1,9 +1,23 @@
+/**
+ * The Segments page: one article, read a paragraph at a time against everything it became.
+ *
+ * Two panes. The roster on the left is every segment of the chosen article in the order the
+ * article has them, one line each, and the study on the right is the one under the cursor: its
+ * paragraph, then each translation of it. The roster is where a reader moves and the study is
+ * where they stop, which is why the two scroll separately -- moving to the ninetieth segment must
+ * not lose the roster's place, and reading a long translation must not scroll the roster away.
+ *
+ * The page chooses its own article. The library's rows send one here as a shortcut, and the menu
+ * at the top does the same from inside the page, so nothing about this surface depends on where
+ * somebody came from. With nothing chosen yet it opens the most recently written article rather
+ * than asking, because an empty page that explains itself is still an empty page.
+ */
+
 import { endonym } from '@canmi/locales';
 import { invoke } from '@tauri-apps/api/core';
+import { reloadArticles, type ArticleListing } from './articles';
 import { requiredElement } from './dom';
-import { animateHeight } from './motion';
 import { renderMarkdown } from './prose';
-import type { ArticleListing } from './articles';
 
 export type SegmentRow = {
 	id: string;
@@ -32,13 +46,18 @@ type SegmentDetail = {
 	renderings: Rendering[];
 };
 
-/** The article being read, and its title for the heading. Nothing chosen shows the chooser. */
-let article: { path: string; title: string } | null = null;
-let outline: SegmentOutline | null = null;
-/** What the chooser lists. Read when it is drawn, so it never shows an article that is gone. */
+type Chosen = { path: string; title: string };
+type Menu = 'article' | 'language';
+
 let library: ArticleListing | null = null;
+let article: Chosen | null = null;
+let outline: SegmentOutline | null = null;
+/** The segment in the study, by id. */
+let current: string | null = null;
+/** One locale to read against the original, or every one of them. */
+let language: string | null = null;
+let menu: Menu | null = null;
 const details = new Map<string, SegmentDetail>();
-const opened = new Set<string>();
 
 function element<K extends keyof HTMLElementTagNameMap>(
 	tag: K,
@@ -61,6 +80,36 @@ function fail(error: unknown): void {
 	notice.textContent = error instanceof Error ? error.message : String(error);
 }
 
+function clearError(): void {
+	requiredElement<HTMLElement>(root(), '[data-segments-error]').hidden = true;
+}
+
+/** Rows in reading order: the ones the article lost first, since they are why anyone sweeps. */
+function rows(): SegmentRow[] {
+	if (outline === null) return [];
+	return [...outline.rows.filter((row) => row.stale), ...outline.rows.filter((row) => !row.stale)];
+}
+
+/**
+ * One line of a segment with its markdown marks taken off.
+ *
+ * The roster is a place to recognise a paragraph, not to read it, and a first line seen through
+ * backticks and asterisks is harder to recognise than the words. Only the marks that survive a
+ * single line are handled; the study draws the segment properly.
+ */
+function plain(markdown: string): string {
+	return markdown
+		.replace(/^#{1,6}\s+/, '')
+		.replace(/\{#[^}]*\}\s*$/, '')
+		.replace(/[*_]{1,3}([^*_]+)[*_]{1,3}/g, '$1')
+		.replace(/`([^`]+)`/g, '$1')
+		.replace(/\[([^\]]+)\]\([^)]*\)/g, '$1');
+}
+
+function count(total: number, noun: string): string {
+	return `${total} ${total === 1 ? noun : `${noun}s`}`;
+}
+
 /**
  * Prose, rendered.
  *
@@ -69,92 +118,204 @@ function fail(error: unknown): void {
  * because the renderer emits no raw HTML and strips the one thing it would otherwise pass through
  * -- see prose.ts, where that is measured rather than assumed.
  */
-function prose(className: string, markdown: string): HTMLElement {
-	const node = element('div', className);
+function prose(markdown: string): HTMLElement {
+	const node = element('div', 'reading-prose');
 	node.innerHTML = renderMarkdown(markdown);
 	return node;
 }
 
-/**
- * One segment, with its source and every translation of it beneath.
- *
- * The comparison is the point of the page, so a rendering names its language the way that
- * language writes it -- `ko-KR` tells a writer nothing they were asking, and 한국어 tells them
- * immediately. Names come from `@canmi/locales`, shared with the site's own picker.
- */
-function renderSegment(row: SegmentRow): HTMLElement {
-	const item = element('section', 'reading');
-	if (row.stale) item.dataset.stale = '';
+// ---- The two menus ------------------------------------------------------------------------------
 
-	const head = document.createElement('button');
-	head.type = 'button';
-	head.className = 'reading-head';
-	head.setAttribute('aria-expanded', opened.has(row.id) ? 'true' : 'false');
-	head.appendChild(
-		element('span', 'reading-lead', row.source ?? row.preview ?? '(no text)'),
-	);
-	head.appendChild(
-		element('span', 'reading-count', `${row.locales.length} ${row.stale ? 'kept' : 'locales'}`),
-	);
-	item.appendChild(head);
-
-	const panel = element('div', 'reading-panel');
-	if (!opened.has(row.id)) panel.style.height = '0rem';
-	panel.appendChild(renderBody(row));
-	item.appendChild(panel);
-
-	head.addEventListener('click', () => {
-		const opening = !opened.has(row.id);
-		if (opening) opened.add(row.id);
-		else opened.delete(row.id);
-		head.setAttribute('aria-expanded', opening ? 'true' : 'false');
-		if (opening && !details.has(row.id)) {
-			void load(row.id).then(() => {
-				panel.replaceChildren(renderBody(row));
-				animateHeight(panel, true);
-			}, fail);
-		} else {
-			animateHeight(panel, opening);
-		}
+function option(name: string, active: boolean, pick: () => void): HTMLButtonElement {
+	const button = document.createElement('button');
+	button.type = 'button';
+	button.className = 'menu-option';
+	button.textContent = name;
+	if (active) button.dataset.active = '';
+	button.addEventListener('click', (event) => {
+		event.stopPropagation();
+		menu = null;
+		pick();
 	});
-
-	return item;
+	return button;
 }
 
-function renderBody(row: SegmentRow): HTMLElement {
-	const body = element('div', 'reading-body');
+function drawMenus(): void {
+	const shell = root();
+	requiredElement<HTMLElement>(shell, '[data-segments-label="article"]').textContent =
+		article?.title ?? 'Article';
+	requiredElement<HTMLElement>(shell, '[data-segments-label="language"]').textContent =
+		language === null ? 'Every language' : endonym(language);
+
+	for (const control of shell.querySelectorAll<HTMLButtonElement>('[data-segments-menu]')) {
+		const kind = control.dataset.segmentsMenu as Menu;
+		const anchor = control.parentElement;
+		if (anchor === null) continue;
+		anchor.querySelector('.menu')?.remove();
+		control.setAttribute('aria-expanded', menu === kind ? 'true' : 'false');
+		if (menu !== kind) continue;
+
+		const panel = element('div', 'menu');
+		if (kind === 'article') {
+			const entries = [...(library?.articles ?? [])].sort((a, b) =>
+				a.title.localeCompare(b.title, 'en-US'),
+			);
+			for (const entry of entries) {
+				panel.appendChild(
+					option(entry.title, entry.path === article?.path, () => {
+						openArticleSegments({ path: entry.path, title: entry.title });
+					}),
+				);
+			}
+		} else {
+			panel.appendChild(
+				option('Every language', language === null, () => {
+					language = null;
+					draw();
+				}),
+			);
+			for (const locale of library?.locales ?? []) {
+				panel.appendChild(
+					option(endonym(locale), language === locale, () => {
+						language = locale;
+						draw();
+					}),
+				);
+			}
+		}
+		anchor.appendChild(panel);
+	}
+}
+
+// ---- The roster ---------------------------------------------------------------------------------
+
+function drawRoster(): void {
+	const roster = requiredElement<HTMLElement>(root(), '[data-segments-roster]');
+	roster.replaceChildren();
+	if (outline === null) {
+		roster.appendChild(element('p', 'reading-note', 'Reading the article…'));
+		return;
+	}
+
+	const listed = rows();
+	const stale = listed.filter((row) => row.stale).length;
+	const head = element('div', 'roster-head');
+	head.appendChild(element('span', '', count(listed.length - stale, 'segment')));
+	if (stale > 0) head.appendChild(element('span', 'roster-stale', `${stale} stale`));
+	roster.appendChild(head);
+
+	let index = 0;
+	for (const row of listed) {
+		const line = document.createElement('button');
+		line.type = 'button';
+		line.className = 'roster-row';
+		if (row.stale) line.dataset.stale = '';
+		if (row.id === current) line.setAttribute('aria-current', 'true');
+		line.dataset.segment = row.id;
+		// Live ones are numbered in the article's order; a stale one has no place in it to number.
+		line.appendChild(element('span', 'roster-index', row.stale ? '' : String((index += 1))));
+		line.appendChild(element('span', 'roster-text', plain(row.source ?? row.preview ?? '(no text)')));
+		if (row.stale) line.appendChild(element('span', 'roster-tag', 'stale'));
+		line.addEventListener('click', () => select(row.id));
+		roster.appendChild(line);
+	}
+}
+
+/** Move the study to one segment. The roster is touched in place so it keeps its scroll. */
+function select(id: string): void {
+	current = id;
+	const roster = requiredElement<HTMLElement>(root(), '[data-segments-roster]');
+	for (const line of roster.querySelectorAll<HTMLElement>('.roster-row')) {
+		if (line.dataset.segment === id) line.setAttribute('aria-current', 'true');
+		else line.removeAttribute('aria-current');
+	}
+	drawStudy();
+	if (!details.has(id)) {
+		void load(id).then(() => {
+			if (current === id) drawStudy();
+		}, fail);
+	}
+}
+
+/** Up and down walk the roster; the study follows. */
+function step(direction: 1 | -1): void {
+	const listed = rows();
+	if (listed.length === 0) return;
+	const at = listed.findIndex((row) => row.id === current);
+	const next = listed[Math.min(listed.length - 1, Math.max(0, at + direction))];
+	if (next === undefined || next.id === current) return;
+	select(next.id);
+	root()
+		.querySelector<HTMLElement>(`.roster-row[data-segment="${next.id}"]`)
+		?.scrollIntoView({ block: 'nearest' });
+}
+
+// ---- The study ----------------------------------------------------------------------------------
+
+function pane(name: string, body: string, meta?: string): HTMLElement {
+	const block = element('section', 'study-pane');
+	const line = element('div', 'study-line');
+	line.appendChild(element('span', 'study-language', name));
+	if (meta !== undefined) line.appendChild(element('span', 'study-meta', meta));
+	block.appendChild(line);
+	block.appendChild(prose(body));
+	return block;
+}
+
+function drawStudy(): void {
+	const study = requiredElement<HTMLElement>(root(), '[data-segments-study]');
+	study.replaceChildren();
+	const listed = rows();
+	const row = listed.find((entry) => entry.id === current);
+	if (row === undefined) return;
+
+	const head = element('header', 'study-head');
+	const place = listed.filter((entry) => !entry.stale).findIndex((entry) => entry.id === row.id);
+	head.appendChild(
+		element('span', 'study-title', row.stale ? 'No longer in the article' : `Segment ${place + 1}`),
+	);
+	if (row.stale) {
+		const drop = document.createElement('button');
+		drop.type = 'button';
+		drop.className = 'control study-drop';
+		drop.textContent = `Drop ${count(row.locales.length, 'translation')}`;
+		drop.title = 'Deletes these translations. The paragraph they belong to has been edited away.';
+		drop.addEventListener('click', () => dropCurrent(row.id));
+		head.appendChild(drop);
+	} else {
+		head.appendChild(element('span', 'study-id', row.id));
+	}
+	study.appendChild(head);
+
 	const detail = details.get(row.id);
 	if (detail === undefined) {
-		body.appendChild(element('p', 'reading-note', 'Reading…'));
-		return body;
+		study.appendChild(element('p', 'reading-note', 'Reading…'));
+		return;
 	}
 
 	if (detail.source !== null) {
-		const pane = element('div', 'reading-pane');
-		pane.dataset.origin = '';
-		pane.appendChild(element('span', 'reading-language', 'Original'));
-		pane.appendChild(prose('reading-prose', detail.source));
-		body.appendChild(pane);
+		const origin = pane('Original', detail.source);
+		origin.dataset.origin = '';
+		study.appendChild(origin);
 	} else {
-		body.appendChild(
+		study.appendChild(
 			element(
 				'p',
 				'reading-note',
-				'The paragraph this translated is no longer in the article, so there is nothing to compare against.',
+				'The paragraph these translated is no longer in the article, so there is nothing to compare them against.',
 			),
 		);
 	}
-
 	for (const rendering of detail.renderings) {
-		const pane = element('div', 'reading-pane');
-		pane.appendChild(element('span', 'reading-language', endonym(rendering.locale)));
-		pane.appendChild(prose('reading-prose', rendering.text));
-		pane.appendChild(
-			element('span', 'reading-meta', `${rendering.model} · ${rendering.tokens} tokens`),
+		if (language !== null && rendering.locale !== language) continue;
+		study.appendChild(
+			pane(
+				endonym(rendering.locale),
+				rendering.text,
+				`${rendering.model}, ${count(rendering.tokens, 'token')}`,
+			),
 		);
-		body.appendChild(pane);
 	}
-	return body;
 }
 
 async function load(id: string): Promise<void> {
@@ -164,99 +325,98 @@ async function load(id: string): Promise<void> {
 }
 
 /**
- * The page's own way in.
+ * Delete one stale segment's translations, then read the article back.
  *
- * Reaching this page from the sidebar with nothing chosen used to say so and stop, which made it a
- * page that only worked when another page had sent you. The chooser is the fix: every article,
- * by title, with how much there is to read. The row in the library that opens an article here is
- * a shortcut past this, not the only door.
+ * The study moves to the row that took the dropped one's place, so a reader sweeping several can
+ * press the same control again rather than finding their way back to the roster each time.
  */
-function renderChooser(list: HTMLElement): void {
-	if (library === null) {
-		list.appendChild(element('p', 'reading-note', 'Reading the library…'));
-		return;
+function dropCurrent(id: string): void {
+	if (article === null) return;
+	const chosen = article;
+	const listed = rows();
+	const at = listed.findIndex((row) => row.id === id);
+	const successor = listed[at + 1] ?? listed[at - 1];
+	void invoke<number>('drop_segments', { article: chosen.path, ids: [id] })
+		.then(() => {
+			details.delete(id);
+			current = successor?.id ?? null;
+			reloadArticles();
+			return read(chosen);
+		})
+		.catch(fail);
+}
+
+async function read(chosen: Chosen): Promise<void> {
+	const loaded = await invoke<SegmentOutline>('article_segments', { article: chosen.path });
+	if (article?.path !== chosen.path) return;
+	outline = loaded;
+	if (current === null || !loaded.rows.some((row) => row.id === current)) {
+		current = rows()[0]?.id ?? null;
 	}
-	const articles = [...library.articles].sort((a, b) => a.title.localeCompare(b.title, 'en-US'));
-	for (const entry of articles) {
-		const pick = document.createElement('button');
-		pick.type = 'button';
-		pick.className = 'pick';
-		pick.appendChild(element('span', 'pick-title', entry.title));
-		const stale = entry.orphans > 0 ? `, ${entry.orphans} stale` : '';
-		pick.appendChild(
-			element('span', 'pick-facts', `${entry.section}, ${entry.segments} segments${stale}`),
-		);
-		pick.addEventListener('click', () =>
-			openArticleSegments({ path: entry.path, title: entry.title }),
-		);
-		list.appendChild(pick);
+	draw();
+	if (current !== null && !details.has(current)) {
+		const id = current;
+		await load(id);
+		if (current === id) drawStudy();
 	}
 }
 
 function draw(): void {
-	const shell = root();
-	const title = requiredElement<HTMLElement>(shell, '[data-segments-title]');
-	const change = requiredElement<HTMLButtonElement>(shell, '[data-segments-change]');
-	const list = requiredElement<HTMLElement>(shell, '[data-segments-list]');
-
-	title.textContent = article === null ? 'Segments' : article.title;
-	change.hidden = article === null;
-	list.replaceChildren();
-
-	if (article === null) {
-		renderChooser(list);
-		return;
-	}
-	if (outline === null) {
-		list.appendChild(element('p', 'reading-note', 'Reading the article…'));
-		return;
-	}
-
-	const stale = outline.rows.filter((row) => row.stale);
-	const live = outline.rows.filter((row) => !row.stale);
-	// The ones with no paragraph left come first: they are the only text of themselves that
-	// survives anywhere, so burying them under a hundred and forty live rows hides the reason
-	// somebody came here.
-	for (const row of [...stale, ...live]) list.appendChild(renderSegment(row));
+	drawMenus();
+	drawRoster();
+	drawStudy();
 }
 
-/** Put the chooser up, freshly read. */
-function chooseArticle(): void {
-	article = null;
+/** Show one article's segments. The library's rows call this as a shortcut past the menu. */
+export function openArticleSegments(next: Chosen): void {
+	if (article?.path === next.path && outline !== null) return;
+	article = next;
 	outline = null;
-	library = null;
-	requiredElement<HTMLElement>(root(), '[data-segments-error]').hidden = true;
+	current = null;
+	details.clear();
+	clearError();
+	draw();
+	void read(next).catch(fail);
+}
+
+export function registerSegments(): void {
+	const shell = root();
+	for (const control of shell.querySelectorAll<HTMLButtonElement>('[data-segments-menu]')) {
+		control.addEventListener('click', (event) => {
+			event.stopPropagation();
+			const kind = control.dataset.segmentsMenu as Menu;
+			menu = menu === kind ? null : kind;
+			drawMenus();
+		});
+	}
+	document.addEventListener('click', () => {
+		if (menu === null) return;
+		menu = null;
+		drawMenus();
+	});
+	requiredElement<HTMLElement>(shell, '[data-segments-roster]').addEventListener(
+		'keydown',
+		(event) => {
+			if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+			event.preventDefault();
+			step(event.key === 'ArrowDown' ? 1 : -1);
+			shell.querySelector<HTMLElement>('.roster-row[aria-current]')?.focus();
+		},
+	);
+
 	draw();
 	void invoke<ArticleListing>('article_listing')
 		.then((loaded) => {
 			library = loaded;
-			if (article === null) draw();
+			if (article !== null) {
+				drawMenus();
+				return;
+			}
+			// The most recently written article, which is the one most likely to be under review.
+			const latest = [...loaded.articles].sort((a, b) =>
+				(b.modified ?? '').localeCompare(a.modified ?? ''),
+			)[0];
+			if (latest !== undefined) openArticleSegments({ path: latest.path, title: latest.title });
 		})
 		.catch(fail);
-}
-
-/** Show one article's segments. The library's rows call this as a shortcut past the chooser. */
-export function openArticleSegments(next: { path: string; title: string }): void {
-	article = next;
-	outline = null;
-	details.clear();
-	opened.clear();
-	requiredElement<HTMLElement>(root(), '[data-segments-error]').hidden = true;
-	draw();
-
-	void invoke<SegmentOutline>('article_segments', { article: next.path })
-		.then((loaded) => {
-			if (article?.path !== next.path) return;
-			outline = loaded;
-			draw();
-		})
-		.catch(fail);
-}
-
-export function registerSegments(): void {
-	requiredElement<HTMLButtonElement>(root(), '[data-segments-change]').addEventListener(
-		'click',
-		chooseArticle,
-	);
-	chooseArticle();
 }
