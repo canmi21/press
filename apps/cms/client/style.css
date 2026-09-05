@@ -161,17 +161,23 @@ button {
 	background: var(--color-page);
 }
 
+/* The work surfaces run close to the pane's edge: a library and a workbench are wide things, and
+   the margin that framed the Overview's cards was empty ground on either side of a table. */
 .page-content {
-	--page-content-inset: clamp(1.5rem, 6vw, 4rem);
+	--page-content-inset: clamp(1.25rem, 3vw, 2.25rem);
 
 	min-height: 0;
 	flex: 1;
 	overflow: auto;
-	padding: 3rem var(--page-content-inset);
+	padding: 2rem var(--page-content-inset) 3rem;
 }
 
+/* The Overview keeps the wider frame it was drawn with: its cards were composed against that
+   margin, so the pane's edge moving in is compensated here rather than seen there. */
 .page-shell[data-page='overview'] .page-content {
-	padding-top: var(--page-content-inset);
+	--page-content-inset: clamp(1.5rem, 6vw, 4rem);
+
+	padding: var(--page-content-inset) var(--page-content-inset) 3rem;
 }
 
 /* The scrollbar is drawn from the same tokens as everything else, so it flips with the theme
@@ -192,7 +198,7 @@ button {
 }
 
 .articles {
-	width: min(100%, 56rem);
+	width: min(100%, 72rem);
 	margin: 0 auto;
 }
 
@@ -1129,6 +1135,12 @@ button.health-action:disabled {
 
 .segments-page .view-head {
 	flex: none;
+}
+
+/* Both menus sit at the right, where the library keeps its own; the left of the action row is
+   the tabs' place, and this page has none. */
+.segments-page .view-actions {
+	justify-content: flex-end;
 }
 
 .workbench {

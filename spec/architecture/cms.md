@@ -451,6 +451,13 @@ the row-level one: tick the ones to go, or drop the group. The command takes the
 rather than re-deriving them, because the caller has already decided one row at a time and a second
 opinion here would delete what it thinks is stale instead of what was ticked.
 
+**The work surfaces run close to the pane's edge; the Overview keeps its frame.** A library and a
+workbench are wide things, and the margin that framed the Overview's cards was empty ground on
+either side of a table. So the pane's inset is narrow, and the Overview alone restores the wider
+one -- it was composed against that margin, and moving the edge in is compensated there rather
+than seen. Controls on a page sit at the right of its action row, the library's and the
+workbench's alike; the left is for tabs, and a page with none leaves it empty.
+
 **The top right of the title row is held open and stays empty.** Search, a primary create action
 and the signed-in identity belong to the window rather than to a page. Reserving the corner now
 costs nothing and stops those controls from being invented per page and then having to move.
