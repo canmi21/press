@@ -1137,12 +1137,6 @@ button.health-action:disabled {
 	flex: none;
 }
 
-/* Both menus sit at the right, where the library keeps its own; the left of the action row is
-   the tabs' place, and this page has none. */
-.segments-page .view-actions {
-	justify-content: flex-end;
-}
-
 .workbench {
 	display: grid;
 	min-height: 0;
@@ -1167,42 +1161,16 @@ button.health-action:disabled {
 	border-right: 0.0625rem solid var(--color-border);
 }
 
-/* The counts are the filter: each is a view of the roster, and the one in force is the one in
-   the stronger ink. No bar under them -- three words in a row are not the library's tabs. */
+/* What the roster is listing, in the same voice the library's group heads use for a count. */
 .roster-head {
-	display: flex;
 	position: sticky;
 	z-index: 1;
 	top: 0;
-	padding: 0.25rem 0.375rem 0.5rem;
+	padding: 0.375rem 0.625rem 0.5rem;
 	background: var(--color-page);
-	gap: 0.25rem;
-}
-
-.roster-view {
-	padding: 0.125rem 0.375rem;
-	border: 0;
-	border-radius: 0.375rem;
-	background: transparent;
 	color: var(--color-text-soft);
-	cursor: pointer;
 	font-size: 0.75rem;
 	font-variant-numeric: tabular-nums;
-	transition:
-		background-color 120ms,
-		color 120ms;
-}
-
-.roster-view:hover {
-	background: var(--color-paper-hover);
-}
-
-.roster-view[aria-selected='true'] {
-	color: var(--color-text-strong);
-}
-
-.roster-view[data-stale][aria-selected='true'] {
-	color: var(--color-red);
 }
 
 .roster-row {
@@ -1324,6 +1292,13 @@ button.health-action:disabled {
 	color: var(--color-text-strong);
 	font-size: 0.75rem;
 	font-weight: 600;
+}
+
+.study-absent {
+	margin: 0;
+	color: var(--color-text-soft);
+	font-size: 0.8125rem;
+	line-height: 1.6;
 }
 
 .study-meta {

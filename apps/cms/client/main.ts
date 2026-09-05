@@ -9,7 +9,7 @@ import {
 	renderArticlesError,
 	type ArticleListing,
 } from './articles';
-import { openArticleSegments, registerSegments } from './segments';
+import { fitSegments, openArticleSegments, registerSegments } from './segments';
 import {
 	renderDerived,
 	renderDerivedError,
@@ -125,6 +125,7 @@ function selectPage(page: Page): void {
 	// re-places the bar under its tabs.
 	if (page === 'overview') fitRecent();
 	if (page === 'articles') fitArticles();
+	if (page === 'segments') fitSegments();
 }
 
 for (const link of pageLinks) {

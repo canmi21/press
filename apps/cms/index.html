@@ -248,6 +248,28 @@
 								<div class="view-global"></div>
 							</div>
 							<div class="view-actions">
+								<div class="tabs" role="tablist" aria-label="Which segments to list" data-view-tabs>
+									<button type="button" role="tab" data-view="all" aria-selected="true">
+										<svg aria-hidden="true" viewBox="0 0 24 24">
+											<path d="M4 6h16M4 12h16M4 18h16" />
+										</svg>
+										All
+									</button>
+									<button type="button" role="tab" data-view="stale" aria-selected="false">
+										<svg aria-hidden="true" viewBox="0 0 24 24">
+											<circle cx="12" cy="12" r="9" />
+											<path d="M8 12h8" />
+										</svg>
+										Stale
+									</button>
+									<button type="button" role="tab" data-view="missing" aria-selected="false">
+										<svg aria-hidden="true" viewBox="0 0 24 24">
+											<path d="M4 6h8M8 4v2M10.5 6c-.6 3.2-2.8 5.6-6 7M5.5 8.5c1 2 2.6 3.6 4.5 4.5M13 20l3.5-9 3.5 9M14.5 17h4" />
+										</svg>
+										Untranslated
+									</button>
+									<span class="tab-indicator" data-tab-indicator aria-hidden="true"></span>
+								</div>
 								<div class="view-controls">
 									<div class="menu-anchor">
 										<button

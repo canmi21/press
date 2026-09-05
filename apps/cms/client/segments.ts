@@ -17,6 +17,7 @@ import { endonym } from '@canmi/locales';
 import { invoke } from '@tauri-apps/api/core';
 import { reloadArticles, type ArticleListing } from './articles';
 import { requiredElement } from './dom';
+import { slideIndicator } from './motion';
 import { renderMarkdown } from './prose';
 
 export type SegmentRow = {
@@ -48,7 +49,11 @@ type SegmentDetail = {
 
 type Chosen = { path: string; title: string };
 type Menu = 'article' | 'language';
-/** Which rows the roster lists: all of them, the stale ones, or the ones the chosen language lacks. */
+/**
+ * Which rows the roster lists. The views are the page's tabs, the way Status and Section are the
+ * library's: all of them, the stale ones, or the ones short of a translation -- in the chosen
+ * language, or in any language while every one of them is shown.
+ */
 type View = 'all' | 'stale' | 'missing';
 
 let library: ArticleListing | null = null;
@@ -93,9 +98,14 @@ function allRows(): SegmentRow[] {
 	return [...outline.rows.filter((row) => row.stale), ...outline.rows.filter((row) => !row.stale)];
 }
 
-/** A live paragraph the chosen language has no translation of. Stale rows have nothing to lack. */
+/**
+ * A live paragraph short of a translation: of the chosen language, or of any language while every
+ * one is shown. A stale row has nothing to lack.
+ */
 function missing(row: SegmentRow): boolean {
-	return language !== null && !row.stale && !row.locales.includes(language);
+	if (row.stale) return false;
+	if (language !== null) return !row.locales.includes(language);
+	return (library?.locales ?? []).some((locale) => !row.locales.includes(locale));
 }
 
 /** The rows the roster lists under the current view, in reading order. */
@@ -156,8 +166,13 @@ function option(name: string, active: boolean, pick: () => void): HTMLButtonElem
 	return button;
 }
 
-function drawMenus(): void {
+function drawHeader(): void {
 	const shell = root();
+	for (const tab of shell.querySelectorAll<HTMLButtonElement>('[data-view]')) {
+		tab.setAttribute('aria-selected', tab.dataset.view === view ? 'true' : 'false');
+	}
+	fitSegments();
+
 	requiredElement<HTMLElement>(shell, '[data-segments-label="article"]').textContent =
 		article?.title ?? 'Article';
 	requiredElement<HTMLElement>(shell, '[data-segments-label="language"]').textContent =
@@ -187,7 +202,6 @@ function drawMenus(): void {
 			panel.appendChild(
 				option('Every language', language === null, () => {
 					language = null;
-					if (view === 'missing') view = 'all';
 					settle();
 					draw();
 				}),
@@ -216,25 +230,21 @@ function drawRoster(): void {
 		return;
 	}
 
-	// The counts are the filter. A number somebody would read to know how much is stale is also
-	// the thing they would press to see it, so the head is a row of views rather than a caption.
-	const every = allRows();
-	const stale = every.filter((row) => row.stale).length;
-	const lacking = every.filter(missing).length;
-	const head = element('div', 'roster-head');
-	head.setAttribute('role', 'tablist');
-	head.appendChild(viewTab('all', `All ${every.length - stale}`));
-	if (stale > 0) head.appendChild(viewTab('stale', `Stale ${stale}`));
-	if (language !== null) head.appendChild(viewTab('missing', `Untranslated ${lacking}`));
-	roster.appendChild(head);
-
 	const listed = rows();
+	const caption =
+		view === 'stale'
+			? count(listed.length, 'stale segment')
+			: view === 'missing'
+				? `${count(listed.length, 'segment')} untranslated${language === null ? '' : ` in ${endonym(language)}`}`
+				: count(listed.length, 'segment');
+	roster.appendChild(element('div', 'roster-head', caption));
+
 	if (listed.length === 0) {
 		roster.appendChild(element('p', 'reading-note', 'Nothing under this view.'));
 		return;
 	}
 
-	const live = every.filter((row) => !row.stale);
+	const live = allRows().filter((row) => !row.stale);
 	for (const row of listed) {
 		const line = document.createElement('button');
 		line.type = 'button';
@@ -251,22 +261,6 @@ function drawRoster(): void {
 		line.addEventListener('click', () => select(row.id));
 		roster.appendChild(line);
 	}
-}
-
-function viewTab(name: View, text: string): HTMLButtonElement {
-	const tab = document.createElement('button');
-	tab.type = 'button';
-	tab.className = 'roster-view';
-	tab.setAttribute('role', 'tab');
-	tab.setAttribute('aria-selected', view === name ? 'true' : 'false');
-	tab.textContent = text;
-	if (name === 'stale') tab.dataset.stale = '';
-	tab.addEventListener('click', () => {
-		view = name;
-		settle();
-		draw();
-	});
-	return tab;
 }
 
 /** Keep the study on a row the roster lists, moving it to the first one when the view hid it. */
@@ -367,26 +361,28 @@ function drawStudy(): void {
 			),
 		);
 	}
-	let shown = 0;
-	for (const rendering of detail.renderings) {
-		if (language !== null && rendering.locale !== language) continue;
-		shown += 1;
-		study.appendChild(
-			pane(
-				endonym(rendering.locale),
-				rendering.text,
-				`${rendering.model}, ${count(rendering.tokens, 'token')}`,
-			),
-		);
-	}
-	// Under one language, an absent pane and a pane still loading look the same, so the absence
-	// is said rather than left as space.
-	if (language !== null && shown === 0 && !row.stale) {
+	// Every language the corpus carries, in its order, and an absent one said rather than left as
+	// space: a pane that is not there and a pane still loading look the same.
+	const order = library?.locales ?? detail.renderings.map((rendering) => rendering.locale);
+	for (const locale of order) {
+		if (language !== null && locale !== language) continue;
+		const rendering = detail.renderings.find((entry) => entry.locale === locale);
+		if (rendering !== undefined) {
+			study.appendChild(
+				pane(
+					endonym(locale),
+					rendering.text,
+					`${rendering.model}, ${count(rendering.tokens, 'token')}`,
+				),
+			);
+			continue;
+		}
+		if (row.stale) continue;
 		const block = element('section', 'study-pane');
 		const line = element('div', 'study-line');
-		line.appendChild(element('span', 'study-language', endonym(language)));
+		line.appendChild(element('span', 'study-language', endonym(locale)));
 		block.appendChild(line);
-		block.appendChild(element('p', 'reading-note', 'Not translated yet.'));
+		block.appendChild(element('p', 'study-absent', 'Not translated yet.'));
 		study.appendChild(block);
 	}
 }
@@ -435,7 +431,7 @@ async function read(chosen: Chosen): Promise<void> {
 }
 
 function draw(): void {
-	drawMenus();
+	drawHeader();
 	drawRoster();
 	drawStudy();
 }
@@ -453,20 +449,39 @@ export function openArticleSegments(next: Chosen): void {
 	void read(next).catch(fail);
 }
 
+/**
+ * Re-place the bar under the tabs, which is measured from a box a hidden page does not have. The
+ * shell calls this when the page is shown, for the same reason the library's is called then.
+ */
+export function fitSegments(): void {
+	const shell = document.querySelector<HTMLElement>('[data-segments]');
+	if (shell === null || shell.hidden) return;
+	const active = shell.querySelector<HTMLButtonElement>('[data-view][aria-selected="true"]');
+	const indicator = shell.querySelector<HTMLElement>('[data-tab-indicator]');
+	if (active !== null && indicator !== null) slideIndicator(indicator, active);
+}
+
 export function registerSegments(): void {
 	const shell = root();
+	for (const tab of shell.querySelectorAll<HTMLButtonElement>('[data-view]')) {
+		tab.addEventListener('click', () => {
+			view = tab.dataset.view as View;
+			settle();
+			draw();
+		});
+	}
 	for (const control of shell.querySelectorAll<HTMLButtonElement>('[data-segments-menu]')) {
 		control.addEventListener('click', (event) => {
 			event.stopPropagation();
 			const kind = control.dataset.segmentsMenu as Menu;
 			menu = menu === kind ? null : kind;
-			drawMenus();
+			drawHeader();
 		});
 	}
 	document.addEventListener('click', () => {
 		if (menu === null) return;
 		menu = null;
-		drawMenus();
+		drawHeader();
 	});
 	requiredElement<HTMLElement>(shell, '[data-segments-roster]').addEventListener(
 		'keydown',
@@ -483,7 +498,7 @@ export function registerSegments(): void {
 		.then((loaded) => {
 			library = loaded;
 			if (article !== null) {
-				drawMenus();
+				drawHeader();
 				return;
 			}
 			// The most recently written article, which is the one most likely to be under review.

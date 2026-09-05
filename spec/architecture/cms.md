@@ -410,13 +410,16 @@ here as a shortcut past it; and with nothing chosen it opens the most recently w
 rather than explaining that it is empty. A second menu narrows the study to one language against
 the original, which is what reviewing a single locale looks like.
 
-**The roster's counts are its filter.** The number somebody would read to learn how much is stale
-is also the thing they would press to see it, so the roster's head is a row of views -- all, the
-stale ones, and once a language is chosen, the paragraphs it has no translation of -- rather than
-a caption above a list and a control somewhere else. A row keeps its number under any view: the
-twelfth paragraph is still the twelfth when it is the only one listed. Under one language, a
-paragraph that language lacks says so in the study, because an absent pane and one still loading
-look the same.
+**Which segments are listed is a tab, the way the library's grouping is.** All, Stale and
+Untranslated sit at the left of the action row under the same travelling bar, because they are
+one page shown three ways and that is what the library already says a tab means. They were the
+roster's own counts for a day, pressable, and that made a second kind of tab on a page that had
+the first kind a foot above it. The roster keeps a caption of what the view listed. Untranslated
+means short of the chosen language, or of any language while every one is shown, so the tab
+means something whichever menu is in force. A row keeps its number under any view: the twelfth
+paragraph is still the twelfth when it is the only one listed. The study lists every language the
+corpus carries and says "Not translated yet" where one is absent, because an absent pane and one
+still loading look the same.
 
 **A segment is drawn as the markdown it is.** Shown as plain text it reads as punctuation --
 backticks around code, asterisks around emphasis, hashes where a heading was -- and somebody
