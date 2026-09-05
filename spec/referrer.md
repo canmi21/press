@@ -22,12 +22,21 @@ twenty-five links carried it because that is the pair every guide recommends tog
 one of them was silencing a policy set to speak. The pair is not one thing, and only one half of
 it is wanted here. Article links compiled by `compile.ts` follow the same rule.
 
-## It lives in the repository, not at the edge
+## The security headers live in the repository, not at the edge
 
 Before this, the header on production was `same-origin`, and it came from nowhere in the
-repository: a zone-level setting at Cloudflare added it to every response, alongside
-`X-Frame-Options` and `X-Content-Type-Options`. Development served no policy, production served
-one nobody could grep for, and the two disagreed. The header is now set in `hooks.server.ts`,
-before the markdown handler so that its responses carry it too, and the edge must not overwrite
-it: a Cloudflare transform that *sets* rather than *adds* this header would win, so that setting
-is the thing to check whenever production and the repository disagree.
+repository: Cloudflare's "Add security headers" managed transform put it on every response,
+alongside `X-Frame-Options: SAMEORIGIN` and `X-Content-Type-Options: nosniff`. Development served
+none of the three, production served values nobody could grep for, and the two disagreed. When
+the worker started sending its own policy the transform overwrote it -- it sets, it does not add
+-- which was measured on the deployed build before the setting was turned off.
+
+That transform is off, and all three headers are set in `hooks.server.ts`, before the markdown
+handler so that its responses carry them too. `X-Frame-Options` and `X-Content-Type-Options` are
+kept because they were doing something worth keeping: no other site may frame these pages, and
+no browser may guess a type a response did not state. Whenever production and the repository
+disagree on a header, the zone's transform rules are the thing to check first.
+
+Static files the platform serves without running the worker -- `robots.txt`, the favicons, the
+fonts -- do not pass through the hook and carry none of these. None of them is a document a
+browser could frame or a page that sends a referrer, so nothing is lost there.

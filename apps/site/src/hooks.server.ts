@@ -122,22 +122,30 @@ function hoistCharset(html: string): string {
 }
 
 /**
- * What a request from a page here tells the site it goes to.
+ * The headers every response carries, set here and nowhere else.
  *
- * `origin-when-cross-origin`: a request inside the site carries the full URL, and one to another
- * site carries the origin alone -- a site linked from an article learns that the link came from
- * here and not which article, which is the most it should know and the least the author wants it
- * told. Every link out is deliberately `noopener` without `noreferrer` for the same reason: the
- * attribute would silence a policy set to speak.
+ * `Referrer-Policy: origin-when-cross-origin`: a request inside the site carries the full URL,
+ * and one to another site carries the origin alone -- a site linked from an article learns that
+ * the link came from here and not which article, which is the most it should know and the least
+ * the author wants it told. Every link out is deliberately `noopener` without `noreferrer` for
+ * the same reason: the attribute would silence a policy set to speak.
  *
- * Set here, on every response the worker serves, so development and production answer the same
- * and the value is read in the repository rather than in an edge setting nobody can grep. Listed
- * before the markdown handler, which returns without resolving, so its responses carry it too.
- * See spec/referrer.md.
+ * `X-Frame-Options: SAMEORIGIN` keeps the pages out of another site's frame, and
+ * `X-Content-Type-Options: nosniff` keeps a browser from guessing a type the response did not
+ * state. All three were once added by a zone setting at Cloudflare that nothing here knew about,
+ * which overwrote whatever the worker sent; that setting is off, and the repository is the one
+ * place these are read. Listed before the markdown handler, which returns without resolving, so
+ * its responses carry them too. See spec/referrer.md.
  */
-const referrerHandle: Handle = async ({ event, resolve }) => {
+const SECURITY_HEADERS: ReadonlyArray<readonly [string, string]> = [
+	['Referrer-Policy', 'origin-when-cross-origin'],
+	['X-Frame-Options', 'SAMEORIGIN'],
+	['X-Content-Type-Options', 'nosniff'],
+];
+
+const securityHandle: Handle = async ({ event, resolve }) => {
 	const response = await resolve(event);
-	response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
+	for (const [name, value] of SECURITY_HEADERS) response.headers.set(name, value);
 	return response;
 };
 
@@ -148,7 +156,7 @@ export const handle = sequence(
 		environment: dev ? 'development' : 'production',
 	}),
 	sentryHandle(),
-	referrerHandle,
+	securityHandle,
 	markdownHandle,
 	pageHandle,
 );
