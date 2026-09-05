@@ -419,7 +419,9 @@ means short of the chosen language, or of any language while every one is shown,
 means something whichever menu is in force. A row keeps its number under any view: the twelfth
 paragraph is still the twelfth when it is the only one listed. The study lists every language the
 corpus carries and says "Not translated yet" where one is absent, because an absent pane and one
-still loading look the same.
+still loading look the same. A view that lists nothing says what that means once, in the middle
+of the study, where the reader is looking and there is room for the sentence; the roster's
+caption already carries the zero, and a line under it was the same fact twice.
 
 **A segment is drawn as the markdown it is.** Shown as plain text it reads as punctuation --
 backticks around code, asterisks around emphasis, hashes where a heading was -- and somebody

@@ -1234,6 +1234,22 @@ button.health-action:disabled {
 	padding: 0 0.25rem 2rem 0;
 }
 
+/* An empty view sits in the middle of the study rather than at the top of the roster: the study
+   is where the reader is looking, and the sentence has room there to say what the emptiness
+   means. */
+.study-empty {
+	display: flex;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	padding: 0 2rem;
+	color: var(--color-text-soft);
+	font-size: 0.875rem;
+	line-height: 1.6;
+	text-align: center;
+}
+
 .study-head {
 	display: flex;
 	position: sticky;

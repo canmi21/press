@@ -239,11 +239,6 @@ function drawRoster(): void {
 				: count(listed.length, 'segment');
 	roster.appendChild(element('div', 'roster-head', caption));
 
-	if (listed.length === 0) {
-		roster.appendChild(element('p', 'reading-note', 'Nothing under this view.'));
-		return;
-	}
-
 	const live = allRows().filter((row) => !row.stale);
 	for (const row of listed) {
 		const line = document.createElement('button');
@@ -322,7 +317,14 @@ function drawStudy(): void {
 	study.replaceChildren();
 	const every = allRows();
 	const row = every.find((entry) => entry.id === current);
-	if (row === undefined) return;
+	if (row === undefined) {
+		// An empty view is said once, here, where there is room to say what it means. The roster's
+		// caption already carries the zero, and a second line under it was the same fact twice.
+		if (outline !== null && rows().length === 0) {
+			study.appendChild(element('p', 'study-empty', emptyText()));
+		}
+		return;
+	}
 
 	const head = element('header', 'study-head');
 	const place = every.filter((entry) => !entry.stale).findIndex((entry) => entry.id === row.id);
@@ -385,6 +387,17 @@ function drawStudy(): void {
 		block.appendChild(element('p', 'study-absent', 'Not translated yet.'));
 		study.appendChild(block);
 	}
+}
+
+/** What an empty view means, for the one reading it. */
+function emptyText(): string {
+	if (view === 'stale') return 'Nothing stale. Every translation here belongs to a paragraph the article still has.';
+	if (view === 'missing') {
+		return language === null
+			? 'Every paragraph is translated in every language.'
+			: `Every paragraph is translated in ${endonym(language)}.`;
+	}
+	return 'This article has no segments.';
 }
 
 async function load(id: string): Promise<void> {
