@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Icon from './icons.svelte';
-	import { m } from '$lib/paraglide/messages';
+	import * as m from '$lib/paraglide/messages';
 	import type { PageBlock } from '$lib/content/types';
 	import type { LocaleCode } from '$lib/locale';
 

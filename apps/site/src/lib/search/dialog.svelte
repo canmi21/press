@@ -5,7 +5,7 @@
 	import { goto } from '$app/navigation';
 	import { animateHeight, type AnimationControl } from '$lib/client/collapse';
 	import { remFromMeasuredPixels } from '$lib/client/units';
-	import { m } from '$lib/paraglide/messages';
+	import * as m from '$lib/paraglide/messages';
 	import type { LocaleCode } from '$lib/locale/index.ts';
 	import { groupHits, markup, search, worthSearching, type SearchHit } from './index.ts';
 

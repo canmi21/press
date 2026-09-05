@@ -280,6 +280,11 @@ ES2022, type-checks, and survives the production build -- and is `undefined` at 
 the dev server's transform, which turns every article page into a 500 that no check catches
 because the tests and the build both pass. It was tried; the namespace is not a preference.
 
+The namespace is written one way: `import * as m from '$lib/paraglide/messages'`. The generated
+module also re-exports itself as a named `m`, put there so an editor can auto-import it, and
+`import { m }` names the same object -- five files were written that way once and read the same.
+One spelling, because a reader grepping for how messages are imported should find one answer.
+
 The cost of dots is therefore paid in the linter: `import/namespace` rejects computed access and
 is turned off, on the grounds that the compiler already performs that check and names the
 offending key when it fails. See `.oxlintrc.json`.

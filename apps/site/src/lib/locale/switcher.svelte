@@ -14,7 +14,7 @@
 	import MenuContent from '$lib/components/menu-content.svelte';
 	import { languageChoices, selectContentLanguage, type LanguageChoice } from './switcher';
 	import { acceptedLocale, contentLanguageCookie, type LocaleCode } from './index';
-	import { m } from '$lib/paraglide/messages';
+	import * as m from '$lib/paraglide/messages';
 
 	// `sourceLanguage` is an article's own language, and names the qualifier on the original row.
 	// A page has none, and passes nothing; see languageChoices.

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { m } from '$lib/paraglide/messages';
+	import * as m from '$lib/paraglide/messages';
 	import type { LocaleCode } from '$lib/locale';
 
 	// The view being rendered, read off what the server stamped. An error page still answers in
