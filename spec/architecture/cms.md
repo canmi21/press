@@ -410,6 +410,14 @@ here as a shortcut past it; and with nothing chosen it opens the most recently w
 rather than explaining that it is empty. A second menu narrows the study to one language against
 the original, which is what reviewing a single locale looks like.
 
+**The roster's counts are its filter.** The number somebody would read to learn how much is stale
+is also the thing they would press to see it, so the roster's head is a row of views -- all, the
+stale ones, and once a language is chosen, the paragraphs it has no translation of -- rather than
+a caption above a list and a control somewhere else. A row keeps its number under any view: the
+twelfth paragraph is still the twelfth when it is the only one listed. Under one language, a
+paragraph that language lacks says so in the study, because an absent pane and one still loading
+look the same.
+
 **A segment is drawn as the markdown it is.** Shown as plain text it reads as punctuation --
 backticks around code, asterisks around emphasis, hashes where a heading was -- and somebody
 comparing nine renderings of one paragraph is reading the prose, not the marks. The chain is the

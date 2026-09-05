@@ -1167,20 +1167,41 @@ button.health-action:disabled {
 	border-right: 0.0625rem solid var(--color-border);
 }
 
+/* The counts are the filter: each is a view of the roster, and the one in force is the one in
+   the stronger ink. No bar under them -- three words in a row are not the library's tabs. */
 .roster-head {
 	display: flex;
 	position: sticky;
 	z-index: 1;
 	top: 0;
-	justify-content: space-between;
-	padding: 0.375rem 0.625rem 0.5rem;
+	padding: 0.25rem 0.375rem 0.5rem;
 	background: var(--color-page);
-	color: var(--color-text-soft);
-	font-size: 0.75rem;
-	font-variant-numeric: tabular-nums;
+	gap: 0.25rem;
 }
 
-.roster-stale {
+.roster-view {
+	padding: 0.125rem 0.375rem;
+	border: 0;
+	border-radius: 0.375rem;
+	background: transparent;
+	color: var(--color-text-soft);
+	cursor: pointer;
+	font-size: 0.75rem;
+	font-variant-numeric: tabular-nums;
+	transition:
+		background-color 120ms,
+		color 120ms;
+}
+
+.roster-view:hover {
+	background: var(--color-paper-hover);
+}
+
+.roster-view[aria-selected='true'] {
+	color: var(--color-text-strong);
+}
+
+.roster-view[data-stale][aria-selected='true'] {
 	color: var(--color-red);
 }
 

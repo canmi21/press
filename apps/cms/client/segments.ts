@@ -48,6 +48,8 @@ type SegmentDetail = {
 
 type Chosen = { path: string; title: string };
 type Menu = 'article' | 'language';
+/** Which rows the roster lists: all of them, the stale ones, or the ones the chosen language lacks. */
+type View = 'all' | 'stale' | 'missing';
 
 let library: ArticleListing | null = null;
 let article: Chosen | null = null;
@@ -57,6 +59,7 @@ let current: string | null = null;
 /** One locale to read against the original, or every one of them. */
 let language: string | null = null;
 let menu: Menu | null = null;
+let view: View = 'all';
 const details = new Map<string, SegmentDetail>();
 
 function element<K extends keyof HTMLElementTagNameMap>(
@@ -84,10 +87,23 @@ function clearError(): void {
 	requiredElement<HTMLElement>(root(), '[data-segments-error]').hidden = true;
 }
 
-/** Rows in reading order: the ones the article lost first, since they are why anyone sweeps. */
-function rows(): SegmentRow[] {
+/** Every row in reading order: the ones the article lost first, since they are why anyone sweeps. */
+function allRows(): SegmentRow[] {
 	if (outline === null) return [];
 	return [...outline.rows.filter((row) => row.stale), ...outline.rows.filter((row) => !row.stale)];
+}
+
+/** A live paragraph the chosen language has no translation of. Stale rows have nothing to lack. */
+function missing(row: SegmentRow): boolean {
+	return language !== null && !row.stale && !row.locales.includes(language);
+}
+
+/** The rows the roster lists under the current view, in reading order. */
+function rows(): SegmentRow[] {
+	const listed = allRows();
+	if (view === 'stale') return listed.filter((row) => row.stale);
+	if (view === 'missing') return listed.filter(missing);
+	return listed;
 }
 
 /**
@@ -171,6 +187,8 @@ function drawMenus(): void {
 			panel.appendChild(
 				option('Every language', language === null, () => {
 					language = null;
+					if (view === 'missing') view = 'all';
+					settle();
 					draw();
 				}),
 			);
@@ -178,6 +196,7 @@ function drawMenus(): void {
 				panel.appendChild(
 					option(endonym(locale), language === locale, () => {
 						language = locale;
+						settle();
 						draw();
 					}),
 				);
@@ -197,14 +216,25 @@ function drawRoster(): void {
 		return;
 	}
 
-	const listed = rows();
-	const stale = listed.filter((row) => row.stale).length;
+	// The counts are the filter. A number somebody would read to know how much is stale is also
+	// the thing they would press to see it, so the head is a row of views rather than a caption.
+	const every = allRows();
+	const stale = every.filter((row) => row.stale).length;
+	const lacking = every.filter(missing).length;
 	const head = element('div', 'roster-head');
-	head.appendChild(element('span', '', count(listed.length - stale, 'segment')));
-	if (stale > 0) head.appendChild(element('span', 'roster-stale', `${stale} stale`));
+	head.setAttribute('role', 'tablist');
+	head.appendChild(viewTab('all', `All ${every.length - stale}`));
+	if (stale > 0) head.appendChild(viewTab('stale', `Stale ${stale}`));
+	if (language !== null) head.appendChild(viewTab('missing', `Untranslated ${lacking}`));
 	roster.appendChild(head);
 
-	let index = 0;
+	const listed = rows();
+	if (listed.length === 0) {
+		roster.appendChild(element('p', 'reading-note', 'Nothing under this view.'));
+		return;
+	}
+
+	const live = every.filter((row) => !row.stale);
 	for (const row of listed) {
 		const line = document.createElement('button');
 		line.type = 'button';
@@ -212,12 +242,43 @@ function drawRoster(): void {
 		if (row.stale) line.dataset.stale = '';
 		if (row.id === current) line.setAttribute('aria-current', 'true');
 		line.dataset.segment = row.id;
-		// Live ones are numbered in the article's order; a stale one has no place in it to number.
-		line.appendChild(element('span', 'roster-index', row.stale ? '' : String((index += 1))));
+		// Numbered by place in the article, which a filtered view keeps: the twelfth paragraph is
+		// still the twelfth when it is the only one listed. A stale one has no place to number.
+		const place = row.stale ? '' : String(live.indexOf(row) + 1);
+		line.appendChild(element('span', 'roster-index', place));
 		line.appendChild(element('span', 'roster-text', plain(row.source ?? row.preview ?? '(no text)')));
 		if (row.stale) line.appendChild(element('span', 'roster-tag', 'stale'));
 		line.addEventListener('click', () => select(row.id));
 		roster.appendChild(line);
+	}
+}
+
+function viewTab(name: View, text: string): HTMLButtonElement {
+	const tab = document.createElement('button');
+	tab.type = 'button';
+	tab.className = 'roster-view';
+	tab.setAttribute('role', 'tab');
+	tab.setAttribute('aria-selected', view === name ? 'true' : 'false');
+	tab.textContent = text;
+	if (name === 'stale') tab.dataset.stale = '';
+	tab.addEventListener('click', () => {
+		view = name;
+		settle();
+		draw();
+	});
+	return tab;
+}
+
+/** Keep the study on a row the roster lists, moving it to the first one when the view hid it. */
+function settle(): void {
+	const listed = rows();
+	if (listed.some((row) => row.id === current)) return;
+	current = listed[0]?.id ?? null;
+	if (current !== null && !details.has(current)) {
+		const id = current;
+		void load(id).then(() => {
+			if (current === id) drawStudy();
+		}, fail);
 	}
 }
 
@@ -265,12 +326,12 @@ function pane(name: string, body: string, meta?: string): HTMLElement {
 function drawStudy(): void {
 	const study = requiredElement<HTMLElement>(root(), '[data-segments-study]');
 	study.replaceChildren();
-	const listed = rows();
-	const row = listed.find((entry) => entry.id === current);
+	const every = allRows();
+	const row = every.find((entry) => entry.id === current);
 	if (row === undefined) return;
 
 	const head = element('header', 'study-head');
-	const place = listed.filter((entry) => !entry.stale).findIndex((entry) => entry.id === row.id);
+	const place = every.filter((entry) => !entry.stale).findIndex((entry) => entry.id === row.id);
 	head.appendChild(
 		element('span', 'study-title', row.stale ? 'No longer in the article' : `Segment ${place + 1}`),
 	);
@@ -306,8 +367,10 @@ function drawStudy(): void {
 			),
 		);
 	}
+	let shown = 0;
 	for (const rendering of detail.renderings) {
 		if (language !== null && rendering.locale !== language) continue;
+		shown += 1;
 		study.appendChild(
 			pane(
 				endonym(rendering.locale),
@@ -315,6 +378,16 @@ function drawStudy(): void {
 				`${rendering.model}, ${count(rendering.tokens, 'token')}`,
 			),
 		);
+	}
+	// Under one language, an absent pane and a pane still loading look the same, so the absence
+	// is said rather than left as space.
+	if (language !== null && shown === 0 && !row.stale) {
+		const block = element('section', 'study-pane');
+		const line = element('div', 'study-line');
+		line.appendChild(element('span', 'study-language', endonym(language)));
+		block.appendChild(line);
+		block.appendChild(element('p', 'reading-note', 'Not translated yet.'));
+		study.appendChild(block);
 	}
 }
 
@@ -350,7 +423,7 @@ async function read(chosen: Chosen): Promise<void> {
 	const loaded = await invoke<SegmentOutline>('article_segments', { article: chosen.path });
 	if (article?.path !== chosen.path) return;
 	outline = loaded;
-	if (current === null || !loaded.rows.some((row) => row.id === current)) {
+	if (current === null || !rows().some((row) => row.id === current)) {
 		current = rows()[0]?.id ?? null;
 	}
 	draw();
@@ -373,6 +446,7 @@ export function openArticleSegments(next: Chosen): void {
 	article = next;
 	outline = null;
 	current = null;
+	view = 'all';
 	details.clear();
 	clearError();
 	draw();
