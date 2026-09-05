@@ -167,85 +167,83 @@ function sweepable(article: Article): boolean {
 }
 
 /**
- * What an article is made of, once it has been opened.
+ * What an article opens into.
  *
- * A flat list of its segments and nothing framing them -- headings and notes about what a group
- * meant were describing the list rather than adding to it. A row here identifies a segment and
- * opens it; reading it, and comparing its translations, is the Segments page's job.
+ * Only what can be acted on here, and one way to the rest. A stale segment is the one thing an
+ * article carries that this page can do something about, so those are listed, each with a tick
+ * and a Drop. The paragraphs the article still has are not listed: a hundred and forty rows of
+ * first lines said nothing a reader could use, and reading them is the Segments page's job, so
+ * the panel ends in the door to it.
  */
 function detail(article: Article): HTMLElement {
 	const panel = element('div', 'row-detail');
-	const outline = outlines.get(article.path);
 
-	if (outline === undefined) {
-		panel.appendChild(element('p', 'row-note', 'Reading the article…'));
-		void invoke<SegmentOutline>('article_segments', { article: article.path })
-			.then((next) => {
-				outlines.set(article.path, next);
-				draw();
-			})
-			.catch((error: unknown) => showError(error));
-		return panel;
+	if (sweepable(article)) {
+		const outline = outlines.get(article.path);
+		if (outline === undefined) {
+			panel.appendChild(element('p', 'row-note', 'Reading the article…'));
+			void invoke<SegmentOutline>('article_segments', { article: article.path })
+				.then((next) => {
+					outlines.set(article.path, next);
+					draw();
+				})
+				.catch((error: unknown) => showError(error));
+		} else {
+			for (const row of outline.rows) {
+				if (row.stale) panel.appendChild(staleRow(article, row));
+			}
+		}
 	}
 
-	// The ones with no paragraph left first: they are the only thing here that can be acted on.
-	const rows = [
-		...outline.rows.filter((row) => row.stale),
-		...outline.rows.filter((row) => !row.stale),
-	];
-	for (const row of rows) panel.appendChild(segmentRow(article, row));
-	return panel;
-}
-
-function segmentRow(article: Article, row: SegmentRow): HTMLElement {
-	const key = `${article.path}#${row.id}`;
-	const item = element('div', 'segment');
-	if (row.stale) item.dataset.stale = '';
-
-	if (row.stale) {
-		const tick = document.createElement('button');
-		tick.type = 'button';
-		tick.className = 'checkbox';
-		tick.setAttribute('role', 'checkbox');
-		tick.setAttribute('aria-label', 'Select this segment');
-		paintTick(tick, markedSegments.has(key) ? 'true' : 'false');
-		tick.addEventListener('click', (event) => {
-			event.stopPropagation();
-			if (markedSegments.has(key)) markedSegments.delete(key);
-			else markedSegments.add(key);
-			draw();
-		});
-		item.appendChild(tick);
-	} else {
-		item.appendChild(element('span', 'segment-gutter'));
-	}
-
-	const open = document.createElement('button');
-	open.type = 'button';
-	open.className = 'segment-open';
-	open.appendChild(element('span', 'segment-text', row.source ?? row.preview ?? '(no text)'));
-	open.appendChild(element('span', 'segment-locales', String(row.locales.length)));
-	open.addEventListener('click', (event) => {
+	const read = document.createElement('button');
+	read.type = 'button';
+	read.className = 'control row-read';
+	read.textContent = `Read ${article.segments} ${article.segments === 1 ? 'segment' : 'segments'}`;
+	read.addEventListener('click', (event) => {
 		event.stopPropagation();
 		readSegments?.({ path: article.path, title: article.title });
 	});
-	item.appendChild(open);
+	panel.appendChild(read);
+	return panel;
+}
 
-	if (row.stale) {
-		const drop = document.createElement('button');
-		drop.type = 'button';
-		drop.className = 'segment-drop';
-		drop.textContent = 'Drop';
-		drop.title = 'Deletes this translation, which the article no longer has a paragraph for.';
-		drop.addEventListener('click', (event) => {
-			event.stopPropagation();
-			const ticked = [...markedSegments]
-				.filter((marked) => marked.startsWith(`${article.path}#`))
-				.map((marked) => marked.slice(article.path.length + 1));
-			dropSegments(article, ticked.length > 0 ? ticked : [row.id]);
-		});
-		item.appendChild(drop);
-	}
+/** A translation the article no longer has a paragraph for: tick it, or drop it on its own. */
+function staleRow(article: Article, row: SegmentRow): HTMLElement {
+	const key = `${article.path}#${row.id}`;
+	const item = element('div', 'segment');
+
+	const tick = document.createElement('button');
+	tick.type = 'button';
+	tick.className = 'checkbox';
+	tick.setAttribute('role', 'checkbox');
+	tick.setAttribute('aria-label', 'Select this segment');
+	paintTick(tick, markedSegments.has(key) ? 'true' : 'false');
+	tick.addEventListener('click', (event) => {
+		event.stopPropagation();
+		if (markedSegments.has(key)) markedSegments.delete(key);
+		else markedSegments.add(key);
+		draw();
+	});
+	item.appendChild(tick);
+
+	item.appendChild(element('span', 'segment-text', row.preview ?? row.source ?? '(no text)'));
+	item.appendChild(
+		element('span', 'segment-locales', `${row.locales.length} ${row.locales.length === 1 ? 'locale' : 'locales'}`),
+	);
+
+	const drop = document.createElement('button');
+	drop.type = 'button';
+	drop.className = 'segment-drop';
+	drop.textContent = 'Drop';
+	drop.title = 'Deletes this translation, which the article no longer has a paragraph for.';
+	drop.addEventListener('click', (event) => {
+		event.stopPropagation();
+		const ticked = [...markedSegments]
+			.filter((marked) => marked.startsWith(`${article.path}#`))
+			.map((marked) => marked.slice(article.path.length + 1));
+		dropSegments(article, ticked.length > 0 ? ticked : [row.id]);
+	});
+	item.appendChild(drop);
 
 	return item;
 }

@@ -392,16 +392,21 @@ with a hairline around it, the same pairing the derived cards and the run panel 
 restraint this file asks for is about colour carrying meaning, not about removing the contrast that
 tells a button from a label -- taken absolutely it left the controls indistinguishable from text.
 
-**An article opens into its own contents, not into a summary of itself.** The panel lists the
-article's segments, flat: its paragraphs, and the translations it no longer has a paragraph for.
-Nothing frames them -- headings and notes about what a group meant were describing the list rather
-than adding to it. A row identifies a segment, offers to drop it when it is stale, and opens it on
-the page that reads them.
+**An article opens into what can be done to it here, and a door to the rest.** The panel lists
+the article's stale segments -- the translations it no longer has a paragraph for -- each with a
+tick and a Drop, because deleting those is the one thing this page can do to an article's
+contents. Its live paragraphs are not listed: a hundred and forty rows of first lines under a
+title said nothing a reader could use, and the same list was drawn again, better, on the page
+that reads it. So the panel ends in one control, "Read N segments", and for an article with
+nothing stale that control is the whole panel -- and the outline is not even fetched.
 
-**Reading a segment is its own destination.** Segments is a page in the sidebar because a
-comparison of one paragraph against eight translations of it is a thing somebody sits with, and
-the library is a place they were passing through. The page arrived at from a row remembers the
-way back; reached from the sidebar with nothing chosen, it says so.
+**Reading a segment is its own destination, with its own way in.** Segments is a page in the
+sidebar because a comparison of one paragraph against eight translations of it is a thing
+somebody sits with, and the library is a place they were passing through. The page opens on a
+chooser -- every article by title, with its section and how much there is to read -- and an
+article chosen there or sent from the library reads the same. The library's control is a
+shortcut past the chooser, not the only door: a page that only works when another page sent you
+is not a page.
 
 **A segment is drawn as the markdown it is.** Shown as plain text it reads as punctuation --
 backticks around code, asterisks around emphasis, hashes where a heading was -- and somebody
@@ -429,9 +434,9 @@ exists anywhere. **No before-and-after is possible and none is offered** -- an i
 one would be inventing the before, and reaching for git to recover it fails the moment articles
 stop living there.
 
-That is also what the panel is *for* in the Complete group, where nothing needs deleting: it is
-where a segment's full content can be found. The library is the only surface that can answer
-"what does this article actually say in Korean", and it now does.
+That is also what the page is *for* when nothing is stale: it is where a segment's full content
+can be found. It is the only surface that can answer "what does this article actually say in
+Korean", and it does.
 
 **Bodies are fetched when they are opened, in two steps.** The outline carries what a row needs --
 id, one line of text, how many locales hold it -- and a segment's renderings are fetched when that

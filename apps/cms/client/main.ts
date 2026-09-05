@@ -154,10 +154,10 @@ if ('__TAURI_INTERNALS__' in window) {
 		renderDerivedError(derived, error),
 	);
 	registerSegments();
-	// Opening a segment from the library is a move to the page that reads them, and the way back
-	// is the page it came from. The library holds no second copy of that reading surface.
+	// Opening an article from the library is a shortcut past the Segments page's own chooser: the
+	// page stands on its own, and the library holds no second copy of that reading surface.
 	onReadSegments((next) => {
-		openArticleSegments(next, () => selectPage('articles'));
+		openArticleSegments(next);
 		selectPage('segments');
 	});
 	void refreshTaskRuns();

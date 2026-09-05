@@ -3,6 +3,7 @@ import { invoke } from '@tauri-apps/api/core';
 import { requiredElement } from './dom';
 import { animateHeight } from './motion';
 import { renderMarkdown } from './prose';
+import type { ArticleListing } from './articles';
 
 export type SegmentRow = {
 	id: string;
@@ -31,12 +32,13 @@ type SegmentDetail = {
 	renderings: Rendering[];
 };
 
-/** The article being read, and its title for the heading. */
+/** The article being read, and its title for the heading. Nothing chosen shows the chooser. */
 let article: { path: string; title: string } | null = null;
 let outline: SegmentOutline | null = null;
+/** What the chooser lists. Read when it is drawn, so it never shows an article that is gone. */
+let library: ArticleListing | null = null;
 const details = new Map<string, SegmentDetail>();
 const opened = new Set<string>();
-let returnToLibrary: (() => void) | null = null;
 
 function element<K extends keyof HTMLElementTagNameMap>(
 	tag: K,
@@ -161,24 +163,48 @@ async function load(id: string): Promise<void> {
 	details.set(id, detail);
 }
 
+/**
+ * The page's own way in.
+ *
+ * Reaching this page from the sidebar with nothing chosen used to say so and stop, which made it a
+ * page that only worked when another page had sent you. The chooser is the fix: every article,
+ * by title, with how much there is to read. The row in the library that opens an article here is
+ * a shortcut past this, not the only door.
+ */
+function renderChooser(list: HTMLElement): void {
+	if (library === null) {
+		list.appendChild(element('p', 'reading-note', 'Reading the library…'));
+		return;
+	}
+	const articles = [...library.articles].sort((a, b) => a.title.localeCompare(b.title, 'en-US'));
+	for (const entry of articles) {
+		const pick = document.createElement('button');
+		pick.type = 'button';
+		pick.className = 'pick';
+		pick.appendChild(element('span', 'pick-title', entry.title));
+		const stale = entry.orphans > 0 ? `, ${entry.orphans} stale` : '';
+		pick.appendChild(
+			element('span', 'pick-facts', `${entry.section}, ${entry.segments} segments${stale}`),
+		);
+		pick.addEventListener('click', () =>
+			openArticleSegments({ path: entry.path, title: entry.title }),
+		);
+		list.appendChild(pick);
+	}
+}
+
 function draw(): void {
 	const shell = root();
 	const title = requiredElement<HTMLElement>(shell, '[data-segments-title]');
-	const back = requiredElement<HTMLButtonElement>(shell, '[data-segments-back]');
+	const change = requiredElement<HTMLButtonElement>(shell, '[data-segments-change]');
 	const list = requiredElement<HTMLElement>(shell, '[data-segments-list]');
 
 	title.textContent = article === null ? 'Segments' : article.title;
-	back.hidden = article === null;
+	change.hidden = article === null;
 	list.replaceChildren();
 
 	if (article === null) {
-		list.appendChild(
-			element(
-				'p',
-				'reading-empty',
-				'Open an article from the library to read what it is made of.',
-			),
-		);
+		renderChooser(list);
 		return;
 	}
 	if (outline === null) {
@@ -194,13 +220,24 @@ function draw(): void {
 	for (const row of [...stale, ...live]) list.appendChild(renderSegment(row));
 }
 
-/** Show one article's segments, and remember the way back. */
-export function openArticleSegments(
-	next: { path: string; title: string },
-	back: () => void,
-): void {
+/** Put the chooser up, freshly read. */
+function chooseArticle(): void {
+	article = null;
+	outline = null;
+	library = null;
+	requiredElement<HTMLElement>(root(), '[data-segments-error]').hidden = true;
+	draw();
+	void invoke<ArticleListing>('article_listing')
+		.then((loaded) => {
+			library = loaded;
+			if (article === null) draw();
+		})
+		.catch(fail);
+}
+
+/** Show one article's segments. The library's rows call this as a shortcut past the chooser. */
+export function openArticleSegments(next: { path: string; title: string }): void {
 	article = next;
-	returnToLibrary = back;
 	outline = null;
 	details.clear();
 	opened.clear();
@@ -209,6 +246,7 @@ export function openArticleSegments(
 
 	void invoke<SegmentOutline>('article_segments', { article: next.path })
 		.then((loaded) => {
+			if (article?.path !== next.path) return;
 			outline = loaded;
 			draw();
 		})
@@ -216,9 +254,9 @@ export function openArticleSegments(
 }
 
 export function registerSegments(): void {
-	requiredElement<HTMLButtonElement>(root(), '[data-segments-back]').addEventListener(
+	requiredElement<HTMLButtonElement>(root(), '[data-segments-change]').addEventListener(
 		'click',
-		() => returnToLibrary?.(),
+		chooseArticle,
 	);
-	draw();
+	chooseArticle();
 }
