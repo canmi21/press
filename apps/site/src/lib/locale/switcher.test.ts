@@ -8,6 +8,7 @@ import {
 	sourceCode,
 	sourceLabel,
 	sourceLanguageName,
+	triggerLabel,
 } from './switcher';
 import * as m from '../paraglide/messages';
 import type { LocaleCode } from './index';
@@ -233,5 +234,47 @@ describe('article language switcher', () => {
 		for (const current of ['de', 'en', 'es', 'fr', 'ja', 'ko', 'zh', 'tw'] as const) {
 			expect(stableEndonyms(current)).toEqual(expected);
 		}
+	});
+});
+
+describe('the closed switcher', () => {
+	it('names the language being read, with the region rather than the internal code', () => {
+		// zh is published as zh-CN and tw as zh-TW, so the bracket separates one language's two
+		// publications. `?lang=` codes would put `ZH` here, and those are ours alone.
+		expect(triggerLabel('zh', 'en')).toBe('简体中文 (CN)');
+		expect(triggerLabel('tw', 'en')).toBe('繁體中文 (TW)');
+		expect(triggerLabel('en', 'zh')).toBe('English (US)');
+		expect(triggerLabel('ja', 'zh')).toBe('日本語 (JP)');
+		expect(triggerLabel('ko', 'zh')).toBe('한국어 (KR)');
+		expect(triggerLabel('de', 'zh')).toBe('Deutsch (DE)');
+		expect(triggerLabel('fr', 'zh')).toBe('Français (FR)');
+		expect(triggerLabel('es', 'zh')).toBe('Español (ES)');
+	});
+
+	it('folds the script into the Chinese name instead of leaving two brackets', () => {
+		// The menu row keeps the endonym as `@canmi/locales` writes it; only the trigger folds it,
+		// because only the trigger already ends in a bracket.
+		expect(LANGUAGE_ENDONYMS.zh).toBe('中文 (简体)');
+		expect(LANGUAGE_ENDONYMS.tw).toBe('中文 (繁體)');
+		expect(triggerLabel('zh', undefined)).not.toContain('(简体)');
+		expect(triggerLabel('tw', undefined)).not.toContain('(繁體)');
+	});
+
+	it('names the article language on the original view, where the menu names the state', () => {
+		// The two say different things on purpose: the trigger answers what is being read, the row
+		// inside the menu answers which view it is.
+		expect(triggerLabel('mw', 'zh')).toBe('简体中文 (CN)');
+		expect(triggerLabel('mw', 'zh-Hant')).toBe('繁體中文 (TW)');
+		expect(triggerLabel('mw', 'ja')).toBe('日本語 (JP)');
+
+		const rows = languageChoices('mw', 'zh');
+		expect(rows.at(-1)?.name).toBe(`${m['language.original']({}, { locale: 'mw' })} (CN)`);
+	});
+
+	it('keeps Original where there is no language of ours to name', () => {
+		// A language this site publishes no view of has no endonym to show and no region that
+		// would mean anything; a page has no language at all.
+		expect(triggerLabel('mw', 'it')).toBe(`${m['language.original']({}, { locale: 'mw' })} (IT)`);
+		expect(triggerLabel('mw', undefined)).toBe(m['language.original']({}, { locale: 'mw' }));
 	});
 });

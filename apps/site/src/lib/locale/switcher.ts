@@ -79,10 +79,56 @@ export function sourceCode(sourceLanguage: string): TranslationCode | undefined 
 	});
 }
 
+/** The region subtag of the locale this site publishes a language under. */
+function regionFor(code: TranslationCode): string {
+	return PUBLIC_LANGUAGE[code].split('-')[1] ?? code.toUpperCase();
+}
+
 /** The region of the locale this site publishes a language under. */
 function regionOf(sourceLanguage: string): string | undefined {
 	const code = sourceCode(sourceLanguage);
-	return code ? PUBLIC_LANGUAGE[code].split('-')[1] : undefined;
+	return code ? regionFor(code) : undefined;
+}
+
+/**
+ * The name a language carries on the trigger: its own, with the script folded into it.
+ *
+ * `@canmi/locales` spells the two Chinese views `中文 (简体)` and `中文 (繁體)`. That is the right
+ * shape for a menu row and the wrong one for a control that already ends in a bracketed region --
+ * `中文 (简体) (CN)` reads as two afterthoughts on one label. Chinese is the only language here
+ * whose name splits by script, which `displayTag` below relies on as well, so the fold is applied
+ * to it alone rather than to any endonym that happens to carry brackets.
+ */
+function triggerName(code: TranslationCode): string {
+	const name = LANGUAGE_ENDONYMS[code];
+	if (!PUBLIC_LANGUAGE[code].startsWith('zh')) return name;
+	const split = /^(.*?)\s*[(（]([^)）]+)[)）]\s*$/.exec(name);
+	return split ? `${split[2]}${split[1]}` : name;
+}
+
+/**
+ * What the control says while it is closed: the language being read, written as its own readers
+ * write it, and the region that tells two publications of one language apart.
+ *
+ * **The region, not the `?lang=` code.** `zh` and `tw` are one language published in two places,
+ * and `CN` / `TW` is what separates them -- the answer `Original (CN)` has always given. The
+ * internal codes stay out of the interface; see spec/locale.md for why they are ours alone.
+ *
+ * On the original view it names the language the article is written in rather than the word
+ * `Original`. The trigger answers what is being read, and the row inside the menu is where the
+ * state gets named -- so the two say different things on purpose. An article written in a
+ * language this site publishes no view of keeps `Original (XX)`: there is no endonym to show it
+ * and no region that would mean anything. A page has no language at all and reads `Original`.
+ */
+export function triggerLabel(currentCode: LocaleCode, sourceLanguage: string | undefined): string {
+	if (currentCode !== 'mw') return `${triggerName(currentCode)} (${regionFor(currentCode)})`;
+
+	const original = m['language.original']({}, { locale: currentCode });
+	if (sourceLanguage === undefined) return original;
+
+	const source = sourceCode(sourceLanguage);
+	if (!source) return `${original} (${sourceLabel(sourceLanguage, currentCode)})`;
+	return `${triggerName(source)} (${regionFor(source)})`;
 }
 
 /**

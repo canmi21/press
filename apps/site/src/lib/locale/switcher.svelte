@@ -12,7 +12,12 @@
 	import Compass from '@lucide/svelte/icons/compass';
 	import { DropdownMenu } from 'bits-ui';
 	import MenuContent from '$lib/components/menu-content.svelte';
-	import { languageChoices, selectContentLanguage, type LanguageChoice } from './switcher';
+	import {
+		languageChoices,
+		selectContentLanguage,
+		triggerLabel,
+		type LanguageChoice,
+	} from './switcher';
 	import { acceptedLocale, contentLanguageCookie, type LocaleCode } from './index';
 	import * as m from '$lib/paraglide/messages';
 
@@ -63,6 +68,15 @@
 	const current = $derived(choices.find((choice) => choice.current) ?? choices[0]);
 
 	/**
+	 * The closed control names the language; the menu names the choices.
+	 *
+	 * So this is not the current row's label. A row has the whole list beside it for context and
+	 * can afford to read `Original`; the trigger stands alone in a metadata row and has to answer
+	 * what is being read without one. See switcher.ts.
+	 */
+	const label = $derived(triggerLabel(code, sourceLanguage));
+
+	/**
 	 * The trigger says where the reader stands; the menu says what each language is.
 	 *
 	 * So when the view already matches what this browser asked for, the trigger carries the
@@ -98,12 +112,12 @@
 
 <DropdownMenu.Root {open} onOpenChange={(next) => (open = next)}>
 	<DropdownMenu.Trigger
-		aria-label={m['language.switcher']({ name: current?.name ?? '' }, { locale: code })}
+		aria-label={m['language.switcher']({ name: label }, { locale: code })}
 		class="quiet-control"
 	>
 		<span class="focus-link-inner inline-flex items-center gap-1">
 			<CurrentMark class={markSize} aria-hidden="true" />
-			<span>{current?.name}</span>
+			<span>{label}</span>
 			<!-- Pulled back into the gap: the glyph carries its own padding inside the viewBox, so
 			     the 0.25rem gap reads as noticeably more than it does beside the mark on the left. -->
 			<IconUpSmall

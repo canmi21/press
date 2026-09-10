@@ -181,8 +181,31 @@ claim about its language; it does not stop being served.
 
 The article metadata row carries the content-language switcher, and so does any page that wants
 it -- `/licenses` does. It is separate from UI-message translation. Its trigger shows a globe on
-`mw`, a languages icon on a translation, and the current view's name in that language's own
-form.
+`mw` and a languages icon on a translation.
+
+### The closed control names a language; the menu names the choices
+
+They are not the same label, and the trigger is not the current row. A row is read with the whole
+list beside it and can afford to say `Original`; the trigger stands alone in a metadata row and
+has to answer what is being read without that context. So it reads `简体中文 (CN)`, `English (US)`,
+`日本語 (JP)` -- the language as its own readers write it, and the region beside it.
+
+**The region, never the `?lang=` code.** `zh` and `tw` are one language published in two places,
+and `CN` / `TW` is what separates them; it is also the answer `Original (CN)` has always given.
+Putting `ZH` there would move an internal code into the interface, which is the one thing the two
+vocabularies above exist to prevent.
+
+**The Chinese names are folded, and only the Chinese ones.** `@canmi/locales` writes them as
+`中文 (简体)` and `中文 (繁體)`, which is right for a menu row and wrong for a label that already
+ends in a bracket -- `中文 (简体) (CN)` reads as two afterthoughts. Chinese is the only language
+here whose name splits by script, so the fold is applied to it by language rather than to any
+endonym that happens to carry brackets. The menu row keeps the endonym unfolded.
+
+On the original view the trigger names the language the article is written in, so an original
+Chinese article reads `简体中文 (CN)` there while its menu row still reads `Original (CN)`. The
+trigger and the row are answering different questions. An article in a language this site
+publishes no view of keeps `Original (IT)`: there is no endonym to show and no region that would
+mean anything. A page has no language at all and reads `Original` alone.
 
 ### On a page, the original row loses its qualifier and keeps its place
 
