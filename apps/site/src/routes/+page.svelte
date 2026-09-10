@@ -8,7 +8,9 @@
 	import Modal from '$lib/components/modal.svelte';
 	import PageBody from '$lib/home/body.svelte';
 	import Icon from '$lib/home/icons.svelte';
+	import LanguageSwitcher from '$lib/locale/switcher.svelte';
 	import Newsletter from '$lib/newsletter/newsletter.svelte';
+	import ThemeToggle from '$lib/theme/toggle.svelte';
 	import { CARD_HEIGHT, CARD_WIDTH, HOME_SLUG, cardUrl } from '$lib/opengraph';
 	import * as m from '$lib/paraglide/messages';
 	import { site } from '$lib/site';
@@ -113,6 +115,20 @@
 		link live so its icon reuses the shared <Icon> component. -->
 		<div class="mt-8 space-y-4 leading-relaxed text-pretty">
 			<PageBody blocks={data.bio} locale={data.locale.code} />
+		</div>
+
+		<!-- Below the bio, not beside the name, because the bio is the one thing on this page that
+		     never answers to either control: it is identity copy, rendered from the source in every
+		     view (see spec/i18n.md). A language switcher sitting above text that will not change
+		     reads as broken the first time somebody uses it. Here it sits where its effect starts,
+		     and both are still well inside the first screen at every width the site supports.
+
+		     No heading and no rule. These are page furniture rather than a section, and the
+		     preferences they write are the site's, not this page's -- a divider across the column
+		     would say the opposite. -->
+		<div class="mt-8 flex flex-wrap items-center gap-4 text-[0.9375rem] text-text-soft">
+			<ThemeToggle locale={data.locale.code} />
+			<LanguageSwitcher code={data.locale.code} />
 		</div>
 
 		<ArticleList articles={data.articles} heading={data.writing} />

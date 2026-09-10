@@ -102,5 +102,6 @@
 	"support.like": "{count}件のいいね",
 	"support.new-tab": "新しいタブで開きます",
 	"support.sponsor": "コーヒーを一杯おごる",
-	"support.sponsor-short": "コーヒー"
+	"support.sponsor-short": "コーヒー",
+	"theme.switch": "テーマを切り替える"
 }

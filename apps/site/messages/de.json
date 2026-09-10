@@ -102,5 +102,6 @@
 	"support.like": "{count} Likes",
 	"support.new-tab": "öffnet in neuem Tab",
 	"support.sponsor": "Spendier mir einen Kaffee",
-	"support.sponsor-short": "Kaffee"
+	"support.sponsor-short": "Kaffee",
+	"theme.switch": "Design wechseln"
 }

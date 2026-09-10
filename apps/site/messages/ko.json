@@ -102,5 +102,6 @@
 	"support.like": "좋아요 {count}개",
 	"support.new-tab": "새 탭에서 열림",
 	"support.sponsor": "커피 한 잔으로 응원하기",
-	"support.sponsor-short": "커피 한 잔"
+	"support.sponsor-short": "커피 한 잔",
+	"theme.switch": "테마 전환"
 }

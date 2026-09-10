@@ -1117,3 +1117,45 @@ the one link that was built to open it.
 What a card holds is the subject's, not the shape's:
 [workspace.md](architecture/workspace.md) has why a card pointing inside the corpus carries no
 copy of its own.
+
+## The homepage carries the two site preferences, below the bio
+
+Theme and content language are settings for the whole site, and the homepage is where somebody
+arrives without having come to read one particular thing. It carries both, on one quiet row.
+
+**Below the bio rather than beside the name.** The bio is identity copy and is rendered from the
+source in every view -- see [i18n.md](i18n.md). A language switcher placed above it would be a
+control whose first use appears to do nothing, which is the worst thing a preference control can
+look like. Under the bio it sits exactly where its effect begins. Measured, that costs no
+findability: the row lands around 330px on a wide window and 380px on a narrow one, well inside
+the first screen either way.
+
+The row has no heading and no rule above it. These are page furniture, and what they write
+belongs to the site rather than to this page; a divider across the column would frame them as a
+section and imply the setting stopped there.
+
+### The theme control is a button, not a menu
+
+Two states, so the control is the choice rather than a way to reach it. It writes the cookie and
+toggles the class, and nothing reloads: every colour on the page is a token under that one class,
+which is the whole reason the class exists.
+
+**It reads the class, never the cookie.** The pre-paint script in `app.html` settles the theme
+before this component exists, from the cookie if there is one and from the system query if there
+is not -- so on a first visit the cookie says nothing and the document already says everything.
+The server cannot render the control for the same reason, and it renders neither icon until
+mounted rather than guessing one and swapping it a frame later.
+
+Both glyphs occupy one grid cell and the unused one is hidden rather than removed, so the row's
+height is the same in both states and the sun and the moon cross without anything below them
+moving. The turn is one rotation: the outgoing glyph leaves along the path the incoming one
+arrives by, so a press reads as one dial turning rather than two icons trading places.
+
+**It animates only after a press.** Arriving on a page that is already dark is not a change of
+theme, and spinning the icon on every load would announce something that did not happen. That is
+the same line the newsletter draws in [engagement.md](engagement.md) between what a reader just
+did and what they are.
+
+Path and lifetime for the cookie come from `@canmi/theme`, which also builds the pre-paint
+script, and a test holds the two to the same string. A control writing a shorter life than the
+script would expire a preference on one path and not the other, and nothing would report it.

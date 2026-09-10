@@ -102,5 +102,6 @@
 	"support.like": "{count} likes",
 	"support.new-tab": "opens in new tab",
 	"support.sponsor": "Sponsor my next coffee",
-	"support.sponsor-short": "Sponsor"
+	"support.sponsor-short": "Sponsor",
+	"theme.switch": "Switch theme"
 }

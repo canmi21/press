@@ -102,5 +102,6 @@
 	"support.like": "A {count} personas les gusta",
 	"support.new-tab": "se abre en una pestaña nueva",
 	"support.sponsor": "Un café para seguir creando",
-	"support.sponsor-short": "Un café"
+	"support.sponsor-short": "Un café",
+	"theme.switch": "Cambiar el tema"
 }

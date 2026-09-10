@@ -102,5 +102,6 @@
 	"support.like": "{count} 个赞",
 	"support.new-tab": "在新标签页中打开",
 	"support.sponsor": "请我喝杯 Coffee",
-	"support.sponsor-short": "Coffee"
+	"support.sponsor-short": "Coffee",
+	"theme.switch": "切换主题"
 }

@@ -102,5 +102,6 @@
 	"support.like": "{count} 個讚",
 	"support.new-tab": "在新分頁開啟",
 	"support.sponsor": "請我喝杯咖啡",
-	"support.sponsor-short": "咖啡"
+	"support.sponsor-short": "咖啡",
+	"theme.switch": "切換主題"
 }
