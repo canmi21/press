@@ -1,7 +1,7 @@
 import { readdir, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { URLS } from '@canmi/urls';
-import { Miniflare } from 'miniflare';
+import { convertV4MiniflareOptions, Miniflare } from 'miniflare';
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import app from './app';
 import type { Bindings } from './bindings';
@@ -16,12 +16,21 @@ let miniflare: Miniflare;
 let database: Awaited<ReturnType<Miniflare['getD1Database']>>;
 
 beforeAll(async () => {
-	miniflare = new Miniflare({
-		compatibilityDate: '2026-07-29',
-		modules: true,
-		script: 'export default { fetch() { return new Response("unused") } }',
-		d1Databases: ['DATABASE'],
-	});
+	// Miniflare 5 replaced the flat options object with one that mirrors wrangler's config, and
+	// ships `convertV4MiniflareOptions` to bridge the two. Taken rather than rewritten by hand:
+	// this harness wants a D1 and nothing else, and the new shape carries a worker config whose
+	// every other field would be noise here.
+	//
+	// The version is not a choice made here. wrangler depends on it, so pnpm resolves one copy and
+	// this harness runs the same runtime `wrangler dev` does.
+	miniflare = new Miniflare(
+		convertV4MiniflareOptions({
+			compatibilityDate: '2026-07-29',
+			modules: true,
+			script: 'export default { fetch() { return new Response("unused") } }',
+			d1Databases: ['DATABASE'],
+		}),
+	);
 	database = await miniflare.getD1Database('DATABASE');
 	const migrationNames = (await readdir(MIGRATIONS))
 		.filter((migrationName) => migrationName.endsWith('.sql'))

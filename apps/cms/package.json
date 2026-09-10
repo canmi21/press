@@ -24,7 +24,7 @@
 		"@tauri-apps/api": "^2.11.1",
 		"hast-util-to-html": "^9.0.5",
 		"mdast-util-to-hast": "^13.2.1",
-		"motion": "^13.1.1",
+		"motion": "^13.2.0",
 		"remark-directive": "^4.0.0",
 		"remark-frontmatter": "5.0.0",
 		"remark-gfm": "^4.0.1",
@@ -36,7 +36,7 @@
 		"@canmi/tokens": "workspace:*",
 		"@tailwindcss/vite": "^4.3.3",
 		"@tauri-apps/cli": "^2.11.4",
-		"@types/node": "^26.4.0",
+		"@types/node": "^26.5.1",
 		"tailwindcss": "^4.3.3",
 		"vite": "^8.2.2"
 	}

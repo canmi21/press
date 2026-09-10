@@ -124,3 +124,17 @@ resolution failure, and the declared range should still name the version the fix
 rather than whatever happens to be installable today. It becomes an error only when nothing in
 range is old enough, which is what an exemption is for.
 
+## The site holds TypeScript 6 and 7 at once, on purpose
+
+`apps/site` declares `typescript` at 6 and `@typescript/native` as an npm alias for 7. That pair
+is not a stale pin half-way through an upgrade. `svelte-check` needs both installed and refuses
+to start with only one, which is the arrangement Microsoft documented for running the native
+compiler alongside the one the editor tooling still reads.
+
+**So `typescript` in that manifest is a floor, not a lag.** Raising it to 7 collapses the pair and
+`check-site` stops before it type checks anything, reporting a missing TypeScript 6 rather than
+anything about the code. A dependency update crossing that major has broken the task, not fixed a
+pin, and the repair is to put the 6 back rather than to chase the error into `svelte-check`.
+
+The root manifest carries 7 in both slots and is right to: nothing there runs `svelte-check`.
+Only the site pays this cost, which is why only the site's manifest looks inconsistent.
