@@ -22,6 +22,17 @@ overrides:
   # of a patch-level bump across an exact pin. Drop it once a stable miniflare ships 7.29.
   'miniflare>undici': ^7.29.0
 
+  # paraglide's compiler reaches its message store through @inlang/sdk, which pins @lix-js/sdk
+  # exactly -- and the pair it pins at 3.0.4, lix 0.15.1, fails every compile with "No Lix
+  # transaction is active". The catalogues then stop regenerating silently and the build uses
+  # whatever the last working compile left on disk, so a message added after the break simply
+  # does not exist at runtime.
+  #
+  # Pinned here rather than at @lix-js/sdk: overriding the inner one fights an exact pin and
+  # produces a different failure. paraglide takes @inlang/sdk by range, so a patch there moved
+  # lix three minors on a pre-1.0 package. Drop it when a later @inlang/sdk compiles.
+  '@inlang/sdk': 3.0.2
+
   # drizzle-kit still pulls the deprecated @esbuild-kit loaders, which pin ~0.18.20 and can
   # therefore never reach the patched 0.25. The advisory is about esbuild's dev server, which
   # this chain never starts; the override exists so the alert does not mask a real one later.
