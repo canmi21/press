@@ -251,7 +251,15 @@
 	<div class="article-column px-6 py-24">
 		<article>
 			<header>
-				<h1 class="text-text-strong">{meta.title}</h1>
+				<!-- Inside the heading rather than beside it. A wrapper would exist on every article to
+				     serve the few that are drafts, and the side rail measures this very box to place the
+				     return control -- so a published article renders exactly the markup it did before,
+				     because the branch below produces nothing at all. See spec/drafts.md. -->
+				<h1 class="text-text-strong">
+					{meta.title}{#if meta.draft}<span class="draft-mark">
+							{m['article.draft']({}, { locale: locale.code })}
+						</span>{/if}
+				</h1>
 				<div class="mt-2 flex flex-wrap items-center gap-2 text-sm text-text-soft">
 					<time datetime={meta.created}>{date}</time>
 					<span
@@ -363,6 +371,25 @@
 </main>
 
 <style>
+	/* Never seen in production, so it spends nothing on being pretty: it has to be unmissable
+	   next to a title and it has to not be mistaken for part of one. Aligned to the middle of
+	   the title's own line box rather than its baseline, since it is a label about the article
+	   and not a word of its name. */
+	.draft-mark {
+		display: inline-block;
+		margin-inline-start: 0.5rem;
+		border-radius: 0.25rem;
+		background-color: var(--color-paper-hover);
+		padding-inline: 0.4375rem;
+		vertical-align: middle;
+		font-size: 0.75rem;
+		font-weight: 500;
+		line-height: 1.5rem;
+		letter-spacing: 0.02em;
+		color: var(--color-text-soft);
+		text-transform: uppercase;
+	}
+
 	/* Animating to `height: auto` is not possible, so the grid row is animated instead: 0fr to
 	   1fr resolves against the content's own height without anyone measuring it. The child
 	   needs `overflow: hidden` for the clip to happen. */

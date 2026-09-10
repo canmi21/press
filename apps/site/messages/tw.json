@@ -1,6 +1,7 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"article.back": "返回",
+	"article.draft": "草稿",
 	"article.notes": "註釋",
 	"article.notes.back": "返回註釋 {number}",
 	"article.notes.fold": "收合",

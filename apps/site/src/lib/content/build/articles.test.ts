@@ -6,22 +6,25 @@ import { sourceFingerprint, type SegmentSpan } from './assemble';
 
 const ROOT = new URL('../../../../../../', import.meta.url);
 
+/** The real corpus, which is what both suites below are about. */
+function paths() {
+	return {
+		contents: fileURLToPath(new URL('contents', ROOT)),
+		messages: fileURLToPath(new URL('apps/site/messages', ROOT)),
+		cdnUrl: URLS.apps.production.cdn,
+		assets: fileURLToPath(new URL('data/metadata.json', ROOT)),
+		media: fileURLToPath(new URL('data/media.yaml', ROOT)),
+		segments: fileURLToPath(new URL('data/build/segments.json', ROOT)),
+		crates: fileURLToPath(new URL('data/build/crates.json', ROOT)),
+		repos: fileURLToPath(new URL('data/build/repos.json', ROOT)),
+		tweets: fileURLToPath(new URL('data/build/twitter.json', ROOT)),
+	};
+}
+
 describe('article widget build inputs', () => {
 	it('watches embed records and compiles every widget in the real article', async () => {
-		const crates = fileURLToPath(new URL('data/build/crates.json', ROOT));
-		const repos = fileURLToPath(new URL('data/build/repos.json', ROOT));
-		const tweets = fileURLToPath(new URL('data/build/twitter.json', ROOT));
-		const { articles, files } = await buildArticles({
-			contents: fileURLToPath(new URL('contents', ROOT)),
-			messages: fileURLToPath(new URL('apps/site/messages', ROOT)),
-			cdnUrl: URLS.apps.production.cdn,
-			assets: fileURLToPath(new URL('data/metadata.json', ROOT)),
-			media: fileURLToPath(new URL('data/media.yaml', ROOT)),
-			segments: fileURLToPath(new URL('data/build/segments.json', ROOT)),
-			crates,
-			repos,
-			tweets,
-		});
+		const { crates, repos, tweets } = paths();
+		const { articles, files } = await buildArticles(paths(), { drafts: true });
 
 		expect(files).toEqual(expect.arrayContaining([crates, repos, tweets]));
 		const article = articles.find(
@@ -107,4 +110,28 @@ it('falls back a missing localized summary to English and then to no summary', (
 	expect(summaryFor({ 'en-US': english, 'de-DE': german }, 'de-DE')).toBe(german);
 	expect(summaryFor({ 'en-US': english }, 'de-DE')).toBe(english);
 	expect(summaryFor({}, 'de-DE')).toBeUndefined();
+});
+
+describe('drafts', () => {
+	it('keeps a draft out of a production build and in every other one', async () => {
+		const [withDrafts, withoutDrafts] = await Promise.all([
+			buildArticles(paths(), { drafts: true }),
+			buildArticles(paths(), { drafts: false }),
+		]);
+
+		const drafted = withDrafts.articles.filter((article) => article.meta.draft === true);
+		// An assertion about the corpus, not about a fixture: it is what makes the next two mean
+		// anything, and a corpus with no draft left in it should retire this suite rather than
+		// let it pass by having nothing to find.
+		expect(drafted.length).toBeGreaterThan(0);
+
+		const withheld = new Set(drafted.map((article) => article.path));
+		const published = withoutDrafts.articles.map((article) => article.path);
+		expect(published.filter((path) => withheld.has(path))).toEqual([]);
+		// Everything else survives, so the filter is the draft flag and not the build shape.
+		expect(published).toEqual(
+			withDrafts.articles.map((article) => article.path).filter((path) => !withheld.has(path)),
+		);
+		expect(withoutDrafts.articles.every((article) => article.meta.draft !== true)).toBe(true);
+	});
 });

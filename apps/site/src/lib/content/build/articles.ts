@@ -192,8 +192,19 @@ type Prepared = {
 	translationAvailable: Record<LocaleCode, boolean>;
 };
 
+/**
+ * Whether this build keeps the articles marked `draft`.
+ *
+ * Required rather than defaulted, and stated by the caller rather than read from the
+ * environment here: a build that forgets to decide is a type error, where a default would be a
+ * draft quietly shipped. The two callers answer it from what they are for -- the site build from
+ * its mode, the search indexer from the fact that it only ever writes to production.
+ */
+export type DraftPolicy = { drafts: boolean };
+
 export async function buildArticles(
 	paths: BuildPaths,
+	{ drafts }: DraftPolicy,
 ): Promise<{ articles: Article[]; files: string[] }> {
 	const files = await articleFiles(paths.contents);
 	const notes = await newTabNotes(paths.messages);
@@ -247,6 +258,12 @@ export async function buildArticles(
 			readFile(sidecarFile, 'utf8').catch(() => ''),
 		]);
 		const sidecar = (parseYaml(sidecarText) ?? {}) as TranslationSidecar;
+		// Dropped here rather than filtered out of the result, so a withheld article is never
+		// compiled and never becomes a reference either. An `::article` card naming a draft is
+		// then a failed production build rather than a dead card on a published page -- which is
+		// the report worth having, since the two articles were written to ship together.
+		// `draft` is not translatable, so the source frontmatter is the whole answer.
+		if (!drafts && articleFrontmatter(raw, file).draft === true) continue;
 		const summaries = await readSummaries(file);
 		const path = articlePath(paths.contents, file);
 		const url = `${URLS.apps.production.site}/${path}`;

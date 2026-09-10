@@ -1,6 +1,7 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"article.back": "Volver",
+	"article.draft": "Borrador",
 	"article.notes": "Notas",
 	"article.notes.back": "Volver a la nota {number}",
 	"article.notes.fold": "Mostrar menos",

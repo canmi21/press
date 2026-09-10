@@ -2,10 +2,7 @@ import { readFileSync } from 'node:fs';
 import { stat } from 'node:fs/promises';
 import { isAbsolute, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import {
-	DEVELOPMENT_PORTS,
-	URLS,
-} from '@canmi/urls';
+import { DEVELOPMENT_PORTS, URLS } from '@canmi/urls';
 import { sentrySvelteKit } from '@sentry/sveltekit';
 import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
@@ -95,7 +92,8 @@ const BROWSERSLIST: string[] = JSON.parse(
 // and this is the whole distance between them.
 const esbuildTarget = BROWSERSLIST.map((query) => {
 	const floor = /^(\S+)\s*>=\s*(\S+)$/.exec(query);
-	if (!floor) throw new Error(`browserslist entry is not a floor, so esbuild cannot take it: ${query}`);
+	if (!floor)
+		throw new Error(`browserslist entry is not a floor, so esbuild cannot take it: ${query}`);
 	return `${floor[1]}${floor[2]}`;
 });
 
@@ -150,17 +148,23 @@ export default defineConfig(async ({ command, mode }) => {
 
 	const compileContent = async () => {
 		const [articleBuild, pageBuild] = await Promise.all([
-			buildArticles({
-				contents: CONTENTS,
-				cdnUrl: urls.cdn,
-				messages: MESSAGES,
-				assets: ASSETS,
-				media: MEDIA,
-				segments: SEGMENTS,
-				crates: CRATES,
-				repos: REPOS,
-				tweets: TWEETS,
-			}),
+			buildArticles(
+				{
+					contents: CONTENTS,
+					cdnUrl: urls.cdn,
+					messages: MESSAGES,
+					assets: ASSETS,
+					media: MEDIA,
+					segments: SEGMENTS,
+					crates: CRATES,
+					repos: REPOS,
+					tweets: TWEETS,
+				},
+				// The same discriminator the URLs above are picked by, for the same reason: what
+				// this build is for. `vite build --mode development` therefore keeps drafts, which
+				// is the one way to see one inside a real build.
+				{ drafts: mode !== 'production' },
+			),
 			buildPages({ contents: CONTENTS, messages: MESSAGES, segments: SEGMENTS }),
 		]);
 		articleInputs.clear();

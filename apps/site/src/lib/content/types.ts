@@ -8,6 +8,15 @@ export type ArticleMeta = {
 	lang: string;
 	created: string;
 	lastmod: string;
+	/**
+	 * Written but not published. Absent means published, so an article says nothing to stay
+	 * ordinary and one word to be held back.
+	 *
+	 * A production build drops these before compiling them, so a draft has no page, no sitemap
+	 * entry, no feed item and no search record. Every other build keeps them, which is what makes
+	 * a draft previewable. See spec/drafts.md.
+	 */
+	draft?: boolean;
 };
 
 // One markdown source compiles to several targets; only the custom blocks below

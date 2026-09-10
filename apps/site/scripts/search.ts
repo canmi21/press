@@ -268,17 +268,21 @@ class Client {
 const dry = process.argv.includes('--dry');
 const client = new Client(credentials());
 
-const { articles } = await buildArticles({
-	contents: fileURLToPath(new URL('contents', ROOT)),
-	cdnUrl: URLS.apps.production.cdn,
-	messages: fileURLToPath(new URL('messages', SITE)),
-	assets: fileURLToPath(new URL('data/metadata.json', ROOT)),
-	media: fileURLToPath(new URL('data/media.yaml', ROOT)),
-	segments: fileURLToPath(new URL('data/build/segments.json', ROOT)),
-	crates: fileURLToPath(new URL('data/build/crates.json', ROOT)),
-	repos: fileURLToPath(new URL('data/build/repos.json', ROOT)),
-	tweets: fileURLToPath(new URL('data/build/twitter.json', ROOT)),
-});
+// This index is production's, and nothing else. A draft has no address to search for.
+const { articles } = await buildArticles(
+	{
+		contents: fileURLToPath(new URL('contents', ROOT)),
+		cdnUrl: URLS.apps.production.cdn,
+		messages: fileURLToPath(new URL('messages', SITE)),
+		assets: fileURLToPath(new URL('data/metadata.json', ROOT)),
+		media: fileURLToPath(new URL('data/media.yaml', ROOT)),
+		segments: fileURLToPath(new URL('data/build/segments.json', ROOT)),
+		crates: fileURLToPath(new URL('data/build/crates.json', ROOT)),
+		repos: fileURLToPath(new URL('data/build/repos.json', ROOT)),
+		tweets: fileURLToPath(new URL('data/build/twitter.json', ROOT)),
+	},
+	{ drafts: false },
+);
 
 const wanted = records(articles);
 const held = await client.browsed();

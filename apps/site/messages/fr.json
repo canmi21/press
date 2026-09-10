@@ -1,6 +1,7 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"article.back": "Retour",
+	"article.draft": "Brouillon",
 	"article.notes": "Notes",
 	"article.notes.back": "Retour à la note {number}",
 	"article.notes.fold": "Afficher moins",
