@@ -129,6 +129,24 @@ function styleClasses(attrs: DirectiveAttrs): string[] {
 	if ('bold' in attrs) classes.push('font-bold');
 	if ('underline' in attrs) classes.push('underline');
 	if ('nowrap' in attrs) classes.push('whitespace-nowrap');
+	// A run the page drops on a narrow screen. Only the page: the class means nothing to a feed
+	// reader and the markdown and text targets carry no classes at all, so `/llms.txt` and the
+	// `.md` view keep the sentence. Subtracting on a phone is a layout decision, not an edit.
+	if ('wide' in attrs) classes.push('hidden', 'sm:inline');
+	// A run that takes a line of its own on a narrow screen and stays in the sentence on a wide
+	// one. `display: block` rather than a `<br>`, so the break is a property of the run rather
+	// than an element whose only job is to be hidden half the time.
+	//
+	// Mark the run *before* the break, never the run after it. A `:link` rendered inside another
+	// directive stops being a top-level node, and the page renders those live for their icons --
+	// nested, they come back as plain anchors, and the accessible new-tab note comes back as the
+	// source file's path.
+	if ('ownline' in attrs) classes.push('max-sm:block');
+	// Space above a run that has taken a line of its own, so it reads as a new paragraph rather
+	// than a stray break. The number is the gap the bio already puts between its paragraphs;
+	// composable with `ownline` rather than folded into it, because a line of its own and a break
+	// before it are two decisions and an author may want only the first.
+	if ('apart' in attrs) classes.push('max-sm:mt-4');
 	return classes;
 }
 

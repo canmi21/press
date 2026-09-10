@@ -248,7 +248,10 @@
 		<Toc {toc} />
 		<HomeLink locale={locale.code} />
 	</div>
-	<div class="article-column px-6 py-24">
+	<!-- Same halving as the homepage: 6rem is most of a phone screen before a word is read, and
+	     the space under the footer competes with nothing. The rail is absent at this width, so
+	     nothing measures against the space that goes. See spec/styling.md. -->
+	<div class="article-column px-6 pt-12 pb-24 sm:pt-24">
 		<article>
 			<header>
 				<!-- Inside the heading rather than beside it. A wrapper would exist on every article to

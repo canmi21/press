@@ -93,7 +93,9 @@
 </svelte:head>
 
 <main class="min-h-screen bg-page text-text">
-	<article class="mx-auto max-w-180 px-6 py-24">
+	<!-- Less air above the fold on a phone, where 6rem is most of what the reader can see before
+	     scrolling. Only the top: the space under the footer is not competing with anything. -->
+	<article class="mx-auto max-w-180 px-6 pt-12 pb-24 sm:pt-24">
 		<header class="flex items-center gap-3">
 			<img
 				src={avatarSrc}

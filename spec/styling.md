@@ -1134,6 +1134,42 @@ The row has no heading and no rule above it. This is page furniture, and what it
 to the site rather than to this page; a divider across the column would frame it as a section and
 imply the setting stopped there.
 
+### The phone reads a shorter bio, and it is the same bio
+
+The bio is identity copy and is never translated, so a narrow screen cannot be given a different
+text without there being two texts to keep in step. There are not two. The markdown carries one
+bio and three markers say what a narrow screen does with parts of it.
+
+| Marker    | Compiles to        | What it means                           |
+| --------- | ------------------ | --------------------------------------- |
+| `wide`    | `hidden sm:inline` | Present only on a wide screen           |
+| `ownline` | `max-sm:block`     | Takes a line of its own on a narrow one |
+| `apart`   | `max-sm:mt-4`      | And a paragraph's gap above it          |
+
+`ownline` and `apart` are separate because a line of its own and a break before it are two
+decisions, and an author may want only the first. `apart` uses the gap the bio already puts
+between paragraphs, so the space it opens is the one the page already has rather than a second
+number.
+
+Only the page reads them. The markdown and text targets carry no classes, so `/homepage.md` and
+anything reading it get the whole sentence; a feed reader has no stylesheet and gets it too.
+**Subtracting on a phone is a layout decision, not an edit** -- which is also why the copy that
+disappears is the one sentence that enumerates rather than says anything: on a phone it is the
+first thing that reads as a list, and it carries the two unbreakable runs that made the paragraph
+rag badly in the first place.
+
+**Mark the run before a break, never the run after it.** A `:link` rendered inside another
+directive stops being a top-level node, and the homepage renders those live so their icons come
+from the shared component -- nested, they come back as plain anchors, and the accessible new-tab
+note comes back as the source file's absolute path. Wrapping the sentence that ends a line has
+the same effect on layout and none of that.
+
+Nothing responsive is written on the container's own wrapping style. The desktop composition was
+tuned as it stands, and a `text-wrap` that changed with width would change it; the difference
+between the two readings lives entirely in the markdown. The one exception is the container's top
+padding, which is halved below `sm`: 6rem is most of a phone screen before anything is read, and
+the space under the footer is not competing with anything.
+
 ## The theme control is a button, not a menu
 
 It is built and has no home yet: nothing on the site renders it while its placement is being
