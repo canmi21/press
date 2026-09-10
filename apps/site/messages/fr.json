@@ -84,7 +84,7 @@
 	"notice.polished": "Cet article est écrit principalement en {language}. La version que vous lisez peut comporter de légères retouches de formulation ; nous vous recommandons l’{#link}original{/link}.",
 	"notice.script": "Cet article est écrit principalement en {language}. La version que vous lisez a été convertie entre écritures ; l’{#link}original{/link} est plus proche de la formulation de l’auteur.",
 	"notice.translated": "Vous lisez une traduction. L’original est en {#link}{language}{/link}.",
-	"notice.unavailable": "Cet article n’est pas encore disponible en {language}. La version originale est affichée à la place.",
+	"notice.unavailable": "Cet article n'est pas encore disponible en {language}, la version affichée est en {source}",
 	"search.empty": "Aucun résultat",
 	"search.failed": "La recherche est indisponible pour le moment",
 	"search.hint.close": "fermer",

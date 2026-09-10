@@ -4,10 +4,12 @@
 	import { contentLanguageCookie, type LocaleCode } from '$lib/locale';
 	import {
 		contentLanguageHref,
-		LANGUAGE_ENDONYMS,
+		languageName,
+		publishedLabel,
 		sourceCode,
 		sourceLanguageName,
 	} from '$lib/locale/switcher';
+	import { fillSlot } from '$lib/locale/spacing';
 	import * as m from '$lib/paraglide/messages';
 
 	type TranslationCode = Exclude<LocaleCode, 'mw'>;
@@ -21,7 +23,31 @@
 	const language = $derived(sourceLanguageName(sourceLanguage, code));
 	const originalHref = $derived(contentLanguageHref('mw', page.url));
 	const source = $derived(sourceCode(sourceLanguage));
-	const requestedLanguage = $derived(LANGUAGE_ENDONYMS[code]);
+	// The folded name, not the endonym: this sits inside a sentence, and `中文 (简体)版本` puts a
+	// bracket between the language and the noun it qualifies. See spec/locale.md.
+	const requestedLanguage = $derived(languageName(code));
+
+	/**
+	 * The language the reader is being shown, named the way the closed switcher names it.
+	 *
+	 * An article written in a language this site publishes no view of has no such label, so it
+	 * falls back to the language spelled out in the reading view -- the same thing the notice
+	 * said before, rather than a bracket with nothing to put in it.
+	 */
+	const shown = $derived(
+		source ? publishedLabel(source) : sourceLanguageName(sourceLanguage, code),
+	);
+
+	/** Stands in for the language name while the sentence around it is measured. See fillSlot. */
+	const SLOT = '\u0000';
+
+	const unavailable = $derived(
+		fillSlot(
+			m['notice.unavailable']({ language: requestedLanguage, source: SLOT }, { locale: code }),
+			SLOT,
+			shown,
+		),
+	);
 
 	function showOriginal(event: MouseEvent) {
 		if (
@@ -76,7 +102,7 @@
 			</ParaglideMessage>
 		</p>
 	{:else}
-		<p>{m['notice.unavailable']({ language: requestedLanguage }, { locale: code })}</p>
+		<p>{unavailable}</p>
 	{/if}
 </div>
 

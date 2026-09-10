@@ -134,9 +134,12 @@ describe('article language switcher', () => {
 			m['notice.script'],
 			m['notice.unavailable'],
 		]) {
-			const original = render({ language: 'X' }, { locale: 'mw' });
+			// `source` is unused by three of the four; passing it to all of them keeps this loop
+			// one loop rather than a special case for the notice that names two languages.
+			const inputs = { language: 'X', source: 'Y' };
+			const original = render(inputs, { locale: 'mw' });
 			for (const locale of ['de', 'en', 'es', 'fr', 'ja', 'ko', 'tw'] as const) {
-				const rendered = render({ language: 'X' }, { locale });
+				const rendered = render(inputs, { locale });
 				expect(rendered).toContain('X');
 				expect(rendered).not.toBe(original);
 			}

@@ -91,7 +91,7 @@ function regionOf(sourceLanguage: string): string | undefined {
 }
 
 /**
- * The name a language carries on the trigger: its own, with the script folded into it.
+ * A language's own name, with the script folded into it.
  *
  * `@canmi/locales` spells the two Chinese views `中文 (简体)` and `中文 (繁體)`. That is the right
  * shape for a menu row and the wrong one for a control that already ends in a bracketed region --
@@ -99,11 +99,22 @@ function regionOf(sourceLanguage: string): string | undefined {
  * whose name splits by script, which `displayTag` below relies on as well, so the fold is applied
  * to it alone rather than to any endonym that happens to carry brackets.
  */
-function triggerName(code: TranslationCode): string {
+export function languageName(code: TranslationCode): string {
 	const name = LANGUAGE_ENDONYMS[code];
 	if (!PUBLIC_LANGUAGE[code].startsWith('zh')) return name;
 	const split = /^(.*?)\s*[(（]([^)）]+)[)）]\s*$/.exec(name);
 	return split ? `${split[2]}${split[1]}` : name;
+}
+
+/**
+ * A language named the way the closed switcher names it: its own name, and its region.
+ *
+ * Separate from `triggerLabel` because the notice above an article wants the same phrase without
+ * the original view's special cases -- it is naming a language, not reporting where the reader
+ * is standing.
+ */
+export function publishedLabel(code: TranslationCode): string {
+	return `${languageName(code)} (${regionFor(code)})`;
 }
 
 /**
@@ -121,14 +132,15 @@ function triggerName(code: TranslationCode): string {
  * and no region that would mean anything. A page has no language at all and reads `Original`.
  */
 export function triggerLabel(currentCode: LocaleCode, sourceLanguage: string | undefined): string {
-	if (currentCode !== 'mw') return `${triggerName(currentCode)} (${regionFor(currentCode)})`;
+	if (currentCode !== 'mw') return publishedLabel(currentCode);
 
 	const original = m['language.original']({}, { locale: currentCode });
 	if (sourceLanguage === undefined) return original;
 
 	const source = sourceCode(sourceLanguage);
-	if (!source) return `${original} (${sourceLabel(sourceLanguage, currentCode)})`;
-	return `${triggerName(source)} (${regionFor(source)})`;
+	return source
+		? publishedLabel(source)
+		: `${original} (${sourceLabel(sourceLanguage, currentCode)})`;
 }
 
 /**

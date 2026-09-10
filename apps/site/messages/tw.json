@@ -84,7 +84,7 @@
 	"notice.polished": "這篇文章主要以{language}寫成。你正在閱讀的譯本可能帶有細微的措辭潤飾，推薦閱讀{#link}原文{/link}。",
 	"notice.script": "這篇文章主要以{language}寫成。你正在閱讀的繁體版本經過字詞轉換，{#link}原文{/link}更接近作者本來的表達。",
 	"notice.translated": "你正在閱讀翻譯版本，原文是{#link}{language}{/link}。",
-	"notice.unavailable": "這篇文章還沒有{language}版本，已為你顯示原文。",
+	"notice.unavailable": "這篇文章暫未提供{language}的版本，已為你顯示{source}",
 	"search.empty": "沒有符合的內容",
 	"search.failed": "搜尋暫時無法使用",
 	"search.hint.close": "關閉",

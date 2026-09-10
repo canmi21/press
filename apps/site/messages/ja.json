@@ -84,7 +84,7 @@
 	"notice.polished": "この記事は主に{language}で書かれています。読んでいる版には細かな表現の調整が入っている場合があります。{#link}原文{/link}をおすすめします。",
 	"notice.script": "この記事は主に{language}で書かれています。読んでいる版は字体変換を経ているため、{#link}原文{/link}のほうが著者本来の表現に近くなります。",
 	"notice.translated": "翻訳版を読んでいます。原文は{#link}{language}{/link}です。",
-	"notice.unavailable": "この記事にはまだ{language}版がないため、原文を表示しています。",
+	"notice.unavailable": "この記事にはまだ{language}版がないため、{source}を表示しています",
 	"search.empty": "一致するものがありません",
 	"search.failed": "検索は現在利用できません",
 	"search.hint.close": "閉じる",

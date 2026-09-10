@@ -84,7 +84,7 @@
 	"notice.polished": "这篇文章主要以{language}写成。你正在阅读的译本可能带有细微的措辞润色，推荐阅读{#link}原文{/link}。",
 	"notice.script": "这篇文章主要以{language}写成。你正在阅读的版本经过字词转换，{#link}原文{/link}更接近作者本来的表达。",
 	"notice.translated": "你正在阅读翻译版本，原文是{#link}{language}{/link}。",
-	"notice.unavailable": "这篇文章还没有{language}版本，已为你显示原文。",
+	"notice.unavailable": "这篇文章暂未提供{language}的版本，已为你显示{source}",
 	"search.empty": "Nothing matches that",
 	"search.failed": "Search is unavailable right now",
 	"search.hint.close": "to close",

@@ -37,3 +37,20 @@ export function spaceScriptBoundaries(parts: readonly string[]): string[] {
 		return meets ? ` ${part}` : part;
 	});
 }
+
+/**
+ * Put a value into a sentence that was rendered with a placeholder standing in for it, spacing
+ * both joins by the characters that actually meet there.
+ *
+ * Which side needs a space is a fact about neither the template nor the locale. Chinese writes
+ * `已为你显示{source}` with nothing between and is right to, until the value turns out to be
+ * `English (US)`. Japanese puts a comma there and needs none. Korean has already typed one, and
+ * so has every Latin sentence. A per-locale flag would record which of those a message happens to
+ * be, and go stale the first time somebody rewrote a sentence.
+ *
+ * Rendering once with the placeholder is how the two neighbouring characters are found.
+ */
+export function fillSlot(rendered: string, slot: string, value: string): string {
+	const [before = '', after = ''] = rendered.split(slot);
+	return spaceScriptBoundaries([before, value, after]).join('');
+}

@@ -84,7 +84,7 @@
 	"notice.polished": "Dieser Artikel ist überwiegend auf {language} geschrieben. Die Fassung, die du liest, kann leichte sprachliche Glättungen enthalten; empfohlen wird das {#link}Original{/link}.",
 	"notice.script": "Dieser Artikel ist überwiegend auf {language} geschrieben. Die Fassung, die du liest, wurde zwischen Schriften umgesetzt; das {#link}Original{/link} kommt der Formulierung des Autors näher.",
 	"notice.translated": "Du liest eine Übersetzung. Das Original ist auf {#link}{language}{/link}.",
-	"notice.unavailable": "Dieser Artikel ist noch nicht auf {language} verfügbar. Stattdessen wird das Original angezeigt.",
+	"notice.unavailable": "Dieser Artikel ist noch nicht auf {language} verfügbar, daher wird {source} angezeigt",
 	"search.empty": "Keine Treffer",
 	"search.failed": "Die Suche ist derzeit nicht verfügbar",
 	"search.hint.close": "schließen",

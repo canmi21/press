@@ -433,6 +433,33 @@ error mislabels a page; in an `hreflang` it would discard the whole set.
 canonicals elsewhere and the entire set is discarded — which is what makes the next rule a
 correctness requirement rather than a tidiness one.
 
+### A fourth: the language has no version of this article yet
+
+Then the notice names two languages rather than one -- the one that was asked for, and the one
+being shown instead. It reads `这篇文章暂未提供简体中文的版本，已为你显示 English (US)`.
+
+The language asked for is the folded endonym, `简体中文` rather than `中文 (简体)`: it sits inside a
+sentence, qualifying a noun, and a bracket between the two reads as an aside. The language shown
+is the closed switcher's own phrase, `English (US)`, so the notice and the control above it name
+the same thing the same way. An article in a language this site publishes no view of has no such
+phrase and keeps the language spelled out in the reading view.
+
+**The final stop is dropped, in all nine.** The notice is one sentence alone in a strip of its
+own, now ending on a bracketed label, and a period after `(US)` reads as clutter rather than as
+punctuation.
+
+**Where the space before that label goes is decided by the characters, not by the locale.**
+Chinese writes `已为你显示{source}` with nothing between and is right to, until the value turns out
+to be Latin. Japanese puts a comma there and needs none. Korean has typed one already, and so has
+every Latin sentence. The message is therefore rendered once with a placeholder, and
+[spacing.ts](../apps/site/src/lib/locale/spacing.ts) reads the two characters that actually meet.
+A per-locale flag would instead record which shape each sentence happens to have, and go stale
+the first time one was rewritten.
+
+Korean takes the value with `입니다` rather than an object particle. `을` and `를` are chosen by the
+sound before them, and `English (US)` ends in a bracket -- a form no rule can pick correctly, and
+the one place in these nine sentences where the grammar depends on the value.
+
 ## A translation identical to its original defers to it
 
 An article written entirely in one language will come back from that language's translator
