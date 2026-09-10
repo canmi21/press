@@ -205,18 +205,30 @@ On the original view the trigger names the language the article is written in, s
 Chinese article reads `简体中文 (CN)` there while its menu row still reads `Original (CN)`. The
 trigger and the row are answering different questions. An article in a language this site
 publishes no view of keeps `Original (IT)`: there is no endonym to show and no region that would
-mean anything. A page has no language at all and reads `Original` alone.
+mean anything. A page is not that case -- it has the site's own language, and reads
+`English (US)` like anything else written in it.
 
-### On a page, the original row loses its qualifier and keeps its place
+### A page names the site's own language, which is what its tag already says
 
-`Original (CN)` names the language of the thing being read, and a page is not written in one.
-There the row reads `Original` alone rather than borrowing a tag from somewhere to fill the
-brackets.
+`Original (CN)` names the language of the thing being read, and a page has one as surely as an
+article does. Its prose is the site's own copy, English by the rule below, and the worker has
+always declared it: `<html lang="en-US">` goes out over `/` and over `/licenses` alike.
 
-**The row itself stays.** The switcher writes one cookie that governs the whole site, and
-preferring the original is a different answer from preferring English the moment the reader
-opens an article. Dropping the row on pages would quietly take that choice away from whoever
-happened to be standing on one.
+The row used to read `Original` alone there, on the grounds that a page is not written in a
+language. That was the switcher declining to name a language the document beside it was naming,
+and it left the homepage's closed control reading `Original` where every article reads a
+language. `SITE_LANGUAGE` in [locale/index.ts](../apps/site/src/lib/locale/index.ts) is now the
+one place that fact is written, and both readers of it -- the tag and the switcher -- take it
+from there.
+
+**The row itself stays**, for a reason that has nothing to do with the qualifier. The switcher
+writes one cookie that governs the whole site, and preferring the original is a different answer
+from preferring English the moment the reader opens an article. Dropping the row on pages would
+quietly take that choice away from whoever happened to be standing on one.
+
+Two rows can therefore look alike on a page: `Original (US)` and `English` show the same thing
+while they are being read. They are still two answers, and the difference appears on the next
+article.
 
 ### The original view labels itself in English
 

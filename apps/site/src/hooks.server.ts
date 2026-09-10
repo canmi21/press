@@ -7,7 +7,13 @@ import { sequence } from '@sveltejs/kit/hooks';
 import { articleRailScript } from '$lib/article/rail';
 import { articleHashScript } from '$lib/article/toc';
 import { getArticle, getPage } from '$lib/content';
-import { LANGUAGE_COOKIE_MAX_AGE, languageTag, privateHtml, resolveLocale } from '$lib/locale';
+import {
+	LANGUAGE_COOKIE_MAX_AGE,
+	languageTag,
+	privateHtml,
+	resolveLocale,
+	SITE_LANGUAGE,
+} from '$lib/locale';
 import { registerServerStrategy } from '$lib/locale/paraglide';
 
 registerServerStrategy();
@@ -71,7 +77,7 @@ const pageHandle: Handle = async ({ event, resolve }) => {
 		});
 		event.locals.locale = {
 			code,
-			languageTag: languageTag(code, article?.meta.lang ?? 'en-US'),
+			languageTag: languageTag(code, article?.meta.lang ?? SITE_LANGUAGE),
 		};
 		// Rewrite even an unchanged value so cookies created before client-side switching was
 		// introduced lose HttpOnly and become writable by the language controls.

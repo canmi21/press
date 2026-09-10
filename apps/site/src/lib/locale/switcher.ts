@@ -129,18 +129,18 @@ export function publishedLabel(code: TranslationCode): string {
  * `Original`. The trigger answers what is being read, and the row inside the menu is where the
  * state gets named -- so the two say different things on purpose. An article written in a
  * language this site publishes no view of keeps `Original (XX)`: there is no endonym to show it
- * and no region that would mean anything. A page has no language at all and reads `Original`.
+ * and no region that would mean anything.
+ *
+ * A page is not a case of its own. Its prose is the site's own copy, which `SITE_LANGUAGE` names
+ * and `<html lang>` already declares, so the caller hands that over and this reads it like any
+ * other source language.
  */
-export function triggerLabel(currentCode: LocaleCode, sourceLanguage: string | undefined): string {
+export function triggerLabel(currentCode: LocaleCode, sourceLanguage: string): string {
 	if (currentCode !== 'mw') return publishedLabel(currentCode);
 
-	const original = m['language.original']({}, { locale: currentCode });
-	if (sourceLanguage === undefined) return original;
-
 	const source = sourceCode(sourceLanguage);
-	return source
-		? publishedLabel(source)
-		: `${original} (${sourceLabel(sourceLanguage, currentCode)})`;
+	if (source) return publishedLabel(source);
+	return `${m['language.original']({}, { locale: currentCode })} (${sourceLabel(sourceLanguage, currentCode)})`;
 }
 
 /**
@@ -195,15 +195,18 @@ export function sourceLanguageName(sourceLanguage: string, currentCode: LocaleCo
  * `mw` is labelled in whichever language is being read rather than in the article's own, because
  * it names a state and not a language. The endonyms above stay fixed for the opposite reason.
  *
- * `sourceLanguage` is absent on a page that is not an article. The qualifier in `Original (CN)`
- * names the language of the thing being read, and a page has no such language to name -- so the
- * row reads `Original` alone rather than borrowing a tag from somewhere to fill the brackets.
- * The row itself stays: the choice is written to one site-wide cookie, and preferring the
- * original is a different answer from preferring English the moment the reader opens an article.
+ * The qualifier in `Original (CN)` names the language of the thing being read, and a page has one
+ * as surely as an article does: its prose is the site's own copy, in `SITE_LANGUAGE`, which is
+ * what `<html lang>` has always said about it. The row used to read `Original` alone there, which
+ * was the switcher declining to name a language the document beside it was naming.
+ *
+ * The row stays on every page for a separate reason: the choice is written to one site-wide
+ * cookie, and preferring the original is a different answer from preferring English the moment
+ * the reader opens an article.
  */
 export function languageChoices(
 	currentCode: LocaleCode,
-	sourceLanguage: string | undefined,
+	sourceLanguage: string,
 	preferred: LocaleCode = 'en',
 ): LanguageChoice[] {
 	return [
@@ -215,10 +218,7 @@ export function languageChoices(
 		})),
 		{
 			code: 'mw' as const,
-			name:
-				sourceLanguage === undefined
-					? m['language.original']({}, { locale: currentCode })
-					: `${m['language.original']({}, { locale: currentCode })} (${sourceLabel(sourceLanguage, currentCode)})`,
+			name: `${m['language.original']({}, { locale: currentCode })} (${sourceLabel(sourceLanguage, currentCode)})`,
 			original: true,
 			current: currentCode === 'mw',
 		},

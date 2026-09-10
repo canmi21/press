@@ -11,7 +11,7 @@ import {
 	triggerLabel,
 } from './switcher';
 import * as m from '../paraglide/messages';
-import type { LocaleCode } from './index';
+import { SITE_LANGUAGE, type LocaleCode } from './index';
 
 function stableEndonyms(current: LocaleCode) {
 	return languageChoices(current, 'zh')
@@ -50,14 +50,20 @@ describe('article language switcher', () => {
 	// qualifier to name. The row stays -- the preference it writes is site-wide, and choosing
 	// the original is a different answer from choosing English once an article is opened -- but
 	// the brackets go rather than being filled from somewhere.
-	it('drops the qualifier when there is no article to name', () => {
-		expect(languageChoices('zh', undefined).at(-1)).toMatchObject({ code: 'mw', name: '原文' });
-		expect(languageChoices('de', undefined).at(-1)).toMatchObject({
+	it('names the site language on a page, which is what its own tag already says', () => {
+		// A page used to read `Original` with nothing in brackets, while the worker was declaring
+		// `<html lang="en-US">` over the same document. The switcher now names what the page says
+		// it is.
+		expect(languageChoices('zh', SITE_LANGUAGE).at(-1)).toMatchObject({
 			code: 'mw',
-			name: 'Original',
+			name: '原文 (英语)',
+		});
+		expect(languageChoices('de', SITE_LANGUAGE).at(-1)).toMatchObject({
+			code: 'mw',
+			name: 'Original (US)',
 		});
 		// Still one row per language, and still last.
-		expect(languageChoices('en', undefined)).toHaveLength(9);
+		expect(languageChoices('en', SITE_LANGUAGE)).toHaveLength(9);
 	});
 
 	it('names the source language briefly, and follows the article rather than assuming Chinese', () => {
@@ -259,8 +265,8 @@ describe('the closed switcher', () => {
 		// because only the trigger already ends in a bracket.
 		expect(LANGUAGE_ENDONYMS.zh).toBe('中文 (简体)');
 		expect(LANGUAGE_ENDONYMS.tw).toBe('中文 (繁體)');
-		expect(triggerLabel('zh', undefined)).not.toContain('(简体)');
-		expect(triggerLabel('tw', undefined)).not.toContain('(繁體)');
+		expect(triggerLabel('zh', SITE_LANGUAGE)).not.toContain('(简体)');
+		expect(triggerLabel('tw', SITE_LANGUAGE)).not.toContain('(繁體)');
 	});
 
 	it('names the article language on the original view, where the menu names the state', () => {
@@ -276,8 +282,8 @@ describe('the closed switcher', () => {
 
 	it('keeps Original where there is no language of ours to name', () => {
 		// A language this site publishes no view of has no endonym to show and no region that
-		// would mean anything; a page has no language at all.
+		// would mean anything. A page is not that case: it has the site's own language.
 		expect(triggerLabel('mw', 'it')).toBe(`${m['language.original']({}, { locale: 'mw' })} (IT)`);
-		expect(triggerLabel('mw', undefined)).toBe(m['language.original']({}, { locale: 'mw' }));
+		expect(triggerLabel('mw', SITE_LANGUAGE)).toBe('English (US)');
 	});
 });

@@ -18,12 +18,13 @@
 		triggerLabel,
 		type LanguageChoice,
 	} from './switcher';
-	import { acceptedLocale, contentLanguageCookie, type LocaleCode } from './index';
+	import { acceptedLocale, contentLanguageCookie, SITE_LANGUAGE, type LocaleCode } from './index';
 	import * as m from '$lib/paraglide/messages';
 
-	// `sourceLanguage` is an article's own language, and names the qualifier on the original row.
-	// A page has none, and passes nothing; see languageChoices.
-	let { code, sourceLanguage }: { code: LocaleCode; sourceLanguage?: string } = $props();
+	// The language of the thing being read. An article passes its own; a page passes nothing and
+	// takes the site's, which is what its `<html lang>` already declares. See languageChoices.
+	let { code, sourceLanguage = SITE_LANGUAGE }: { code: LocaleCode; sourceLanguage?: string } =
+		$props();
 	let open = $state(false);
 
 	/**
