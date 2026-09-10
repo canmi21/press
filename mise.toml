@@ -9,6 +9,16 @@ CMS_PORT = "26521"
 # is JSON rather than a dotenv.
 _.file = "secrets.json"
 
+# Source maps are uploaded to Sentry by a production build, and the credential for it sits in
+# the file above -- decrypted on every machine that has the age key, which means a local build
+# was publishing maps for a worker nobody deploys.
+#
+# This is the switch that stops it, and it lives here rather than in a dotenv because CI does
+# not read mise.toml. Present on every machine holding the repository, absent from every build
+# that ships: neither side configures anything. `SENTRY_SKIP_UPLOAD= pnpm run build` uploads
+# once anyway. See apps/site/vite.config.ts.
+SENTRY_SKIP_UPLOAD = "1"
+
 # oxfmt lives in package.json rather than [tools] below: its svelte option resolves
 # `svelte/compiler` through node's module graph, which a mise-installed binary can never
 # reach. This keeps `oxfmt` and everything else pnpm carries invocable from the shell and

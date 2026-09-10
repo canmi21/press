@@ -98,18 +98,33 @@ const esbuildTarget = BROWSERSLIST.map((query) => {
 });
 
 /**
- * The Sentry upload credential, if this build is allowed to proceed without one.
+ * Whether this build sends its source maps to Sentry.
  *
- * Locally it is decrypted from `secrets.json` by mise, and a build without it is fine: the
- * maps are of no use to anyone on this machine anyway.
+ * Two conditions, not one. The credential has to be there, and the skip must not be set --
+ * because locally it *is* there. mise decrypts it out of `secrets.json` on entering the
+ * directory, so a local production build was uploading maps for a worker nobody deploys.
  *
- * In CI its absence is fatal. That build is going to be deployed, and skipping the upload
- * silently means every stack trace it ever produces is minified -- discovered weeks later,
- * while trying to read an error that no longer maps to any source. CI has no age private key,
- * so `secrets.json` cannot supply it there; it comes from the platform's own encrypted build
- * variables instead. See spec/architecture/workspace.md.
+ * The skip lives in `mise.toml`, which is the point: CI does not read that file, so it is on
+ * every machine that has the repository and on none that builds it for real. Neither side
+ * configures anything to get the behaviour it wants -- see spec/architecture/workspace.md.
+ *
+ * **The answer drives `autoUploadSourceMaps`, not just the token.** Withholding the credential
+ * is not enough: the plugin reads `SENTRY_AUTH_TOKEN` from the environment itself when the
+ * option is undefined, so a build that passed it nothing still uploaded. That was measured, not
+ * assumed.
+ *
+ * In CI a missing credential is still fatal. That build is going to be deployed, and skipping
+ * the upload silently means every stack trace it ever produces is minified, discovered weeks
+ * later while trying to read an error that no longer maps to any source. The check sits after
+ * the skip so that setting both is a deliberate quiet build rather than a contradiction that
+ * throws.
  */
-function sentryToken(): string | undefined {
+function uploadsSourceMaps(): boolean {
+	// Any non-empty value enables it, so `SENTRY_SKIP_UPLOAD= pnpm run build` is how one local
+	// build uploads after all. A value of `0` or `false` still skips: this is a switch, and
+	// reading words out of it would only invite the belief that it parses them.
+	if (process.env.SENTRY_SKIP_UPLOAD) return false;
+
 	const token = process.env.SENTRY_AUTH_TOKEN;
 	if (!token && process.env.CI) {
 		throw new Error(
@@ -117,11 +132,14 @@ function sentryToken(): string | undefined {
 				'deployed worker will report every error without a usable stack trace.',
 		);
 	}
-	return token;
+	return Boolean(token);
 }
 
 export default defineConfig(async ({ command, mode }) => {
 	const urls = mode === 'production' ? URLS.apps.production : URLS.apps.development;
+	// Asked once. It can throw, and a predicate that throws should do so at a point in the build
+	// somebody can place, rather than from inside a plugin's option list.
+	const uploadSourceMaps = uploadsSourceMaps();
 	const articleInputs = new Set<string>();
 	let generatedSegmentsMtime: number | undefined;
 	let activeSegmentSync: Promise<void> | undefined;
@@ -268,12 +286,14 @@ export default defineConfig(async ({ command, mode }) => {
 			sentrySvelteKit({
 				org: 'canmi',
 				project: 'canmi',
-				authToken: sentryToken(),
+				autoUploadSourceMaps: uploadSourceMaps,
+				authToken: uploadSourceMaps ? process.env.SENTRY_AUTH_TOKEN : undefined,
 				telemetry: false,
 				// Maps are uploaded to Sentry and then deleted, so the deployed worker carries
 				// none. Paired with `sourcemap: 'hidden'` below, which emits them without the
 				// `sourceMappingURL` comment, nothing in the browser goes looking for a file
-				// that is not there.
+				// that is not there. A build that does not upload emits none at all, so this
+				// list has nothing to match and nothing is left behind either way.
 				sourcemaps: {
 					filesToDeleteAfterUpload: ['.svelte-kit/cloudflare/**/*.map'],
 				},
@@ -355,7 +375,12 @@ export default defineConfig(async ({ command, mode }) => {
 			// Stated rather than left to Vite's default, which is a baseline of its own choosing
 			// and can move under a major. See BROWSERSLIST above.
 			target: esbuildTarget,
-			sourcemap: 'hidden',
+			// Only when they are going somewhere. `filesToDeleteAfterUpload` below cleans them up
+			// after an upload and cannot clean up after a build that did not do one, so a build
+			// that skips would otherwise leave 117 maps in the directory wrangler deploys -- the
+			// site's own source, served as static assets. Not emitting them is the shorter answer
+			// than emitting and sweeping, and on this machine they were never going to be read.
+			sourcemap: uploadSourceMaps ? 'hidden' : false,
 			rollupOptions: {
 				output: {
 					hashCharacters: 'hex',

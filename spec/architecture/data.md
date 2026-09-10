@@ -166,6 +166,19 @@ resolved:
   committed but sops-encrypted, and CI holds no age private key -- so the local path through
   mise cannot work there, and the two routes to the same variable stay separate on purpose.
 
+**That `mise.toml` stops at this machine is also what decides who uploads source maps.** Locally
+the credential is present -- mise decrypts it on entering the directory -- so a production build
+run here was sending maps to Sentry for a worker nobody deploys. `SENTRY_SKIP_UPLOAD` in
+`mise.toml` turns that off, and because CI cannot read that file, the same commit uploads there
+without either side being configured for its case.
+
+Two consequences worth stating, because neither is what the obvious version of this would do.
+The skip has to drive `autoUploadSourceMaps`, not merely withhold the token: the plugin reads
+`SENTRY_AUTH_TOKEN` out of the environment itself, so a build that passed it nothing still
+uploaded. And a build that does not upload emits no maps at all, because the plugin's
+`filesToDeleteAfterUpload` only runs after an upload -- leaving them would put the site's own
+source in the directory wrangler deploys.
+
 ## Assets are addressed by their content
 
 Every published image asset -- an original and each variant derived from it -- is stored under
