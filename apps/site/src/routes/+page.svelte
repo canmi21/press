@@ -104,15 +104,15 @@
 				class="h-13 w-13 rounded-full border-2 border-border"
 			/>
 			<div>
-				<h1 class="text-text-strong">{site.author.fullName}</h1>
-				<p class="text-text-soft">{site.author.role}</p>
+				<h1 class="selectable text-text-strong">{site.author.fullName}</h1>
+				<p class="selectable text-text-soft">{site.author.role}</p>
 			</div>
 		</header>
 
 		<!-- Bio prose is compiled from contents/index.md (DLC directives), single-sourced
 		with /llms.txt. PageBody keeps styled text as dead HTML and renders each social
 		link live so its icon reuses the shared <Icon> component. -->
-		<div class="mt-8 space-y-4 leading-relaxed text-pretty">
+		<div class="selectable mt-8 space-y-4 leading-relaxed text-pretty">
 			<PageBody blocks={data.bio} locale={data.locale.code} />
 		</div>
 
@@ -185,3 +185,17 @@
 	{/snippet}
 	{m['sponsor.notice']({}, { locale: data.locale.code })}
 </Modal>
+
+<style>
+	/* The page is prose in a few places and controls everywhere else, and a drag that starts on a
+	   card or a button should not sweep up a date, a count and a label with it. So selection is
+	   off here and the parts that are sentences turn it back on for themselves, with `.selectable`
+	   in styles/utilities.css -- including the ones inside components this page only composes.
+
+	   Off by default rather than named per control, because the controls outnumber the prose and
+	   that list grows every time one is added. The prose does not. */
+	main {
+		-webkit-user-select: none;
+		user-select: none;
+	}
+</style>

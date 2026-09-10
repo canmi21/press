@@ -46,9 +46,17 @@
    read back, because `rounded-full` clamps to half the height and CSS cannot see the result. Each
    consumer then pulls whichever sides actually touch the column, which is a layout question and
    stays local. */
+/* Two selectors, one block: on the pill itself, and on an ancestor that has to hand the same
+   numbers to something beside it. A row under a pill lines up with what is inside the pill, and
+   the overhang is part of that arithmetic -- deriving it a second time would put the coefficient
+   above in two places. */
+.pill-metrics,
 .pill {
 	--pill-radius: calc(var(--pill-height) / 2);
 	--pill-overhang: calc(var(--pill-radius) * 0.2146);
+}
+
+.pill {
 	height: var(--pill-height);
 }
 

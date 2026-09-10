@@ -143,8 +143,11 @@
 	});
 </script>
 
-<section bind:this={listEl} aria-label={heading} class="mt-16">
-	<h2 class="mb-3 font-medium text-text-strong">{heading}</h2>
+<!-- Labelled by the heading rather than by a copy of its text, which is how the newsletter
+     section does it and one fewer place the same string is written. The id is also what a caller
+     needs to reach this heading from outside. -->
+<section bind:this={listEl} aria-labelledby="writing-heading" class="mt-16">
+	<h2 id="writing-heading" class="selectable mb-3 font-medium text-text-strong">{heading}</h2>
 	<div>
 		{#each articles as article (article.path)}
 			<ArticleCard

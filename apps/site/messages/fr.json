@@ -79,7 +79,7 @@
 	"newsletter.subscribe": "Je m’inscris",
 	"newsletter.subscribed": "C’est noté",
 	"newsletter.subscribers": "Déjà {#cells}{count}{/cells} personnes sur la liste.",
-	"newsletter.unsubscribe": "Se désinscrire",
+	"newsletter.unsubscribe": "Annuler",
 	"newsletter.unsubscribed": "Vous n’êtes plus sur la liste. Revenez quand vous voulez.",
 	"notice.polished": "Cet article est écrit principalement en {language}. La version que vous lisez peut comporter de légères retouches de formulation ; nous vous recommandons l’{#link}original{/link}.",
 	"notice.script": "Cet article est écrit principalement en {language}. La version que vous lisez a été convertie entre écritures ; l’{#link}original{/link} est plus proche de la formulation de l’auteur.",

@@ -260,8 +260,8 @@
 							{m['article.draft']({}, { locale: locale.code })}
 						</span>{/if}
 				</h1>
-				<div class="mt-2 flex flex-wrap items-center gap-2 text-sm text-text-soft">
-					<time datetime={meta.created}>{date}</time>
+				<div class="meta mt-2 flex flex-wrap items-center gap-2 text-sm text-text-soft">
+					<time class="selectable" datetime={meta.created}>{date}</time>
 					<span
 						class="inline-flex items-center gap-1"
 						title="{chars} characters"
@@ -371,6 +371,19 @@
 </main>
 
 <style>
+	/* The apparatus around the article, not the article. A drag that starts on a heading in the
+	   table of contents or on the way back should not come away with the navigation; the same goes
+	   for the counts and controls under the title.
+
+	   Named here rather than switched off for the whole page, because on this page the prose is
+	   most of what there is. The body and everything in it -- including its own controls -- is
+	   left alone deliberately: somebody quoting a passage is the reason this page exists. */
+	.article-rail,
+	.meta {
+		-webkit-user-select: none;
+		user-select: none;
+	}
+
 	/* Never seen in production, so it spends nothing on being pretty: it has to be unmissable
 	   next to a title and it has to not be mistaken for part of one. Aligned to the middle of
 	   the title's own line box rather than its baseline, since it is a label about the article

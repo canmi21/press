@@ -193,12 +193,16 @@ otherwise need. See spec/engagement.md. -->
      and those are not the same distance. A component that carried one number would make the
      shorter one an override fighting it. -->
 {#if present}
-	<section aria-labelledby="newsletter-heading" class={className} style={sequenceStyle()}>
-		<h2 id="newsletter-heading" class="mb-3 font-medium text-text-strong">
+	<section
+		aria-labelledby="newsletter-heading"
+		class="pill-metrics {className}"
+		style={sequenceStyle()}
+	>
+		<h2 id="newsletter-heading" class="selectable mb-3 font-medium text-text-strong">
 			{m['newsletter.heading']({}, { locale })}
 		</h2>
 
-		<p class="text-pretty text-text-soft">{m['newsletter.pitch']({}, { locale })}</p>
+		<p class="selectable text-pretty text-text-soft">{m['newsletter.pitch']({}, { locale })}</p>
 
 		<!-- One pill across both states. The box, its border and the button's place never move; only
 		what sits in them is replaced, which is what leaves the swap something to animate rather than
@@ -267,19 +271,26 @@ otherwise need. See spec/engagement.md. -->
 		<!-- One row under the pill in every state, so nothing below the section moves as it changes.
 		The left slot carries whatever the reader most recently needs to know and falls back to the
 		count; the right slot is the only place a destructive action appears. -->
-		<div class="mt-3.5 flex items-baseline justify-between gap-6 text-[0.9375rem] text-text-soft">
+		<div
+			class="row mt-3.5 flex items-baseline justify-between gap-6 text-[0.9375rem] text-text-soft"
+		>
 			{#if status === 'error'}
-				<p role="alert">{m['newsletter.error']({}, { locale })}</p>
+				<p class="selectable" role="alert">{m['newsletter.error']({}, { locale })}</p>
 			{:else if status === 'cancelled'}
-				<p role="status" class:returning={stage === 'restoring'}>
+				<p class="selectable" role="status" class:returning={stage === 'restoring'}>
 					{m['newsletter.unsubscribed']({}, { locale })}
 				</p>
 			{:else if status === 'confirmed'}
-				<p role="status" class:arriving={entering} class:departing={stage === 'reverting'}>
+				<p
+					class="selectable"
+					role="status"
+					class:arriving={entering}
+					class:departing={stage === 'reverting'}
+				>
 					{m['newsletter.confirm']({}, { locale })}
 				</p>
 			{:else}
-				<p class:leaving={entering}>
+				<p class="selectable" class:leaving={entering}>
 					<ParaglideMessage
 						message={m['newsletter.subscribers']}
 						inputs={{ count: subscribers }}
@@ -298,27 +309,92 @@ otherwise need. See spec/engagement.md. -->
 			watching happen has nothing to undo yet, and it arrives directly below the button they just
 			pressed, where a second click would otherwise land on it. -->
 			{#if subscription && stage !== 'redacting' && stage !== 'settling'}
-				<button
-					type="button"
-					onclick={unsubscribe}
-					disabled={cancellation.isPending || stage === 'reverting'}
-					aria-busy={cancellation.isPending}
-					class:arriving={stage === 'undoing'}
-					class:departing={stage === 'reverting'}
-					class="focus-link spring-underline shrink-0 transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong disabled:opacity-60"
-				>
-					{m['newsletter.unsubscribe']({}, { locale })}
-				</button>
+				<!-- Centred under the button above, in a cell the button's own width decides.
+
+				     That width is not a number anybody can write: it is the wider of two labels as
+				     this font renders them, and it moves with the language. Measuring it would mean
+				     painting at one position and shifting after hydration, which is the failure
+				     styling.md records for the rail. So the cell reserves the width the same way the
+				     button does -- by laying both labels out and hiding them -- and the control
+				     centres inside whatever that comes to. -->
+				<span class="under-chip shrink-0">
+					<span class="ghost px-4 text-base font-medium" aria-hidden="true"
+						>{@render label(true)}</span
+					>
+					<button
+						type="button"
+						onclick={unsubscribe}
+						disabled={cancellation.isPending || stage === 'reverting'}
+						aria-busy={cancellation.isPending}
+						class:arriving={stage === 'undoing'}
+						class:departing={stage === 'reverting'}
+						class="focus-link spring-underline transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong disabled:opacity-60"
+					>
+						{m['newsletter.unsubscribe']({}, { locale })}
+					</button>
+				</span>
 			{/if}
 		</div>
 	</section>
 {/if}
 
 <style>
+	/* Set on the section rather than on the pill, so the row below can measure from it too.
+	   `.pill-metrics` above derives the radius and the overhang from this one number. */
+	section {
+		--pill-height: 3.375rem;
+	}
+
 	/* Both ends sit at the column edge, so both are pulled. The formula is in styles/app.css. */
 	.pill {
-		--pill-height: 3.375rem;
 		margin-inline: calc(-1 * var(--pill-overhang));
+		/* Stated rather than left to `auto`, which draws an I-beam wherever it lands on text. The
+		   only text here in the confirmed state is the masked address, and selecting that yields a
+		   row of bullets rather than an address -- an invitation to copy something that is not
+		   there. The field below re-asserts what a field is. */
+		cursor: default;
+	}
+
+	.pill input {
+		cursor: text;
+	}
+
+	/* Everything in this section that can be pressed says so, and nothing else does. The two here
+	   are a `button` and a `button`, which browsers draw with an arrow; the inert chip above keeps
+	   `not-allowed` because it is the one shaped like a control and is not one. */
+	.pill button,
+	.under-chip button {
+		cursor: pointer;
+	}
+
+	/* The row ends where the button above it ends, so the cell below the button is the button.
+	   The pill is drawn wider than the column by its overhang, and carries a border and a padding
+	   inside that, so the button's box ends this far in. */
+	.row {
+		padding-inline-end: calc(0.375rem + 1px - var(--pill-overhang));
+	}
+
+	/* One cell, as wide as the button above, holding the hidden labels that decide that width and
+	   the control that centres inside it. */
+	.under-chip {
+		display: inline-grid;
+		place-items: center;
+	}
+
+	.under-chip > * {
+		grid-area: 1 / 1;
+	}
+
+	/* It reserves width and paints nothing. `visibility` rather than `display` for the usual
+	   reason: a removed box measures nothing.
+
+	   It has to carry the button's own type, not the row's: this row is a size smaller and a
+	   weight lighter, and either difference makes the reserved cell narrower than the thing it is
+	   standing in for. The classes on it mirror `px-4` and `font-medium` on the button, plus the
+	   base size the pill inherits and this row overrides. */
+	.ghost {
+		visibility: hidden;
+		white-space: nowrap;
 	}
 
 	/* Both addresses occupy one cell, so the masked form arrives exactly where the field's text
@@ -346,6 +422,11 @@ otherwise need. See spec/engagement.md. -->
 	.chip {
 		background: var(--color-paper-hover);
 		color: var(--color-text-soft);
+		/* It keeps the button's shape on purpose -- that is what makes the swap read as one
+		   control settling rather than a second one appearing -- and the shape is the problem: a
+		   pill in the place a pill was just pressed invites a second press. There is nothing left
+		   to submit, so the pointer says so before the click happens. */
+		cursor: not-allowed;
 	}
 
 	.cooling {

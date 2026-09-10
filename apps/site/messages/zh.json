@@ -79,7 +79,7 @@
 	"newsletter.subscribe": "订阅我！",
 	"newsletter.subscribed": "已订阅",
 	"newsletter.subscribers": "已经有 {#cells}{count}{/cells} 个小可爱在等呢。",
-	"newsletter.unsubscribe": "取消订阅",
+	"newsletter.unsubscribe": "取消",
 	"newsletter.unsubscribed": "已经取消了哦，这里随时欢迎你回来！",
 	"notice.polished": "这篇文章主要以{language}写成。你正在阅读的译本可能带有细微的措辞润色，推荐阅读{#link}原文{/link}。",
 	"notice.script": "这篇文章主要以{language}写成。你正在阅读的简体版本经过字词转换，{#link}原文{/link}更接近作者本来的表达。",

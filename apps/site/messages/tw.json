@@ -79,7 +79,7 @@
 	"newsletter.subscribe": "先加入",
 	"newsletter.subscribed": "已訂閱",
 	"newsletter.subscribers": "已有 {#cells}{count}{/cells} 人在等第一期。",
-	"newsletter.unsubscribe": "取消訂閱",
+	"newsletter.unsubscribe": "取消",
 	"newsletter.unsubscribed": "已經把你從名單上移除了，隨時歡迎回來！",
 	"notice.polished": "這篇文章主要以{language}寫成。你正在閱讀的譯本可能帶有細微的措辭潤飾，推薦閱讀{#link}原文{/link}。",
 	"notice.script": "這篇文章主要以{language}寫成。你正在閱讀的繁體版本經過字詞轉換，{#link}原文{/link}更接近作者本來的表達。",

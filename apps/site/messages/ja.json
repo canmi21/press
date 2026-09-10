@@ -79,7 +79,7 @@
 	"newsletter.subscribe": "先行登録する",
 	"newsletter.subscribed": "登録済み",
 	"newsletter.subscribers": "現在 {#cells}{count}{/cells} 人が創刊号を待っています。",
-	"newsletter.unsubscribe": "配信を解除",
+	"newsletter.unsubscribe": "解除",
 	"newsletter.unsubscribed": "配信を解除しました。またいつでもどうぞ。",
 	"notice.polished": "この記事は主に{language}で書かれています。読んでいる版には細かな表現の調整が入っている場合があります。{#link}原文{/link}をおすすめします。",
 	"notice.script": "この記事は主に{language}で書かれています。読んでいる版は字体変換を経ているため、{#link}原文{/link}のほうが著者本来の表現に近くなります。",

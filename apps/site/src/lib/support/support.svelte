@@ -222,6 +222,9 @@
 
 <style>
 	.action {
+		/* Two of the three are buttons and the third is a link, so without this the row draws two
+		   arrows and one hand for three controls that do the same kind of thing. */
+		cursor: pointer;
 		display: inline-flex;
 		height: 2.25rem;
 		flex-shrink: 0;

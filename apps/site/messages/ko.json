@@ -79,7 +79,7 @@
 	"newsletter.subscribe": "미리 구독하기",
 	"newsletter.subscribed": "구독 중",
 	"newsletter.subscribers": "지금 {#cells}{count}{/cells}명이 첫 호를 기다리고 있어요.",
-	"newsletter.unsubscribe": "구독 취소",
+	"newsletter.unsubscribe": "취소",
 	"newsletter.unsubscribed": "구독을 취소했어요. 언제든 다시 오세요.",
 	"notice.polished": "이 글은 주로 {language}로 작성되었습니다. 지금 읽고 있는 판은 표현이 조금 다듬어졌을 수 있습니다. {#link}원문{/link}을 권합니다.",
 	"notice.script": "이 글은 주로 {language}로 작성되었습니다. 지금 읽고 있는 판은 자체 변환을 거쳤으므로 {#link}원문{/link}이 저자의 표현에 더 가깝습니다.",

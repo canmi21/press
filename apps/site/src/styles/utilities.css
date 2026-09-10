@@ -17,6 +17,20 @@
    or ancestor when the hit area and visible control are different. Keeping this in the components
    layer lets each control's rounded utility own its actual silhouette. See spec/styling.md. */
 @layer components {
+	/* Prose, in a page that has switched selection off.
+
+	   A component knows which of its parts are sentences and which are controls; a page knows
+	   whether it wants a drag to sweep the controls up. So the marking lives with the content and
+	   the policy lives with the page, and on a page that never restricts selection this does
+	   nothing at all.
+
+	   `-webkit-` is carried because Safari only dropped the prefix in 17 and the floor here is 16.
+	   Applied to the element itself, so it wins over a `none` inherited from any ancestor. */
+	.selectable {
+		-webkit-user-select: text;
+		user-select: text;
+	}
+
 	.quiet-control {
 		display: inline-flex;
 		margin-inline: -0.25rem;

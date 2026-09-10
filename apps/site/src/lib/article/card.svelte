@@ -31,10 +31,10 @@
 		<!-- Title shares its line with the dotted leader and date, so the leader
 		starts at the title's end rather than the (often longer) subtitle below. -->
 		<div class="article-preview-heading">
-			<h3 class="article-preview-title">{title}</h3>
+			<h3 class="selectable article-preview-title">{title}</h3>
 			<div class="article-preview-leader"></div>
 			<time datetime={created} class="article-preview-date">{date}</time>
 		</div>
-		<p class="article-preview-subtitle">{subtitle}</p>
+		<p class="selectable article-preview-subtitle">{subtitle}</p>
 	</div>
 </a>
