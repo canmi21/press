@@ -1,6 +1,57 @@
 {
   "version": 3,
   "articles": {
+    "architecture/2026-09-10.md": [
+      {
+        "id": "978598124b7df0bd966ce7ef04e65d95",
+        "start": 10,
+        "end": 19,
+        "fingerprint": "03426626",
+        "region": "frontmatter"
+      },
+      {
+        "id": "111a6f78428961718b6b2e04be7bcc17",
+        "start": 29,
+        "end": 86,
+        "fingerprint": "d6bd22dd",
+        "region": "frontmatter"
+      },
+      {
+        "id": "f3f1a5c7f238e27ffe47cb3cb275008a",
+        "start": 99,
+        "end": 261,
+        "fingerprint": "cff8a16e",
+        "region": "frontmatter"
+      },
+      {
+        "id": "a7a706087b033947ae65770b4d3153d5",
+        "start": 339,
+        "end": 594,
+        "fingerprint": "3b41c9a1",
+        "region": "body"
+      },
+      {
+        "id": "d64daaf23778f24122c592e3553dc01c",
+        "start": 596,
+        "end": 626,
+        "fingerprint": "1f0d1637",
+        "region": "body"
+      },
+      {
+        "id": "ea84a13d2f6d53a0238a5537fb6fa761",
+        "start": 628,
+        "end": 864,
+        "fingerprint": "bcb1a104",
+        "region": "body"
+      },
+      {
+        "id": "1301f37fb5391fe4f137f6092cb936c9",
+        "start": 866,
+        "end": 1074,
+        "fingerprint": "37968524",
+        "region": "body"
+      }
+    ],
     "architecture/compile-time-rendering.md": [
       {
         "id": "de0329c8ae5d94b2f882129a2de5a41a",
