@@ -22,9 +22,19 @@
 	let {
 		class: className = '',
 		locale,
+		offer = false,
 	}: {
 		class?: string;
 		locale: LocaleCode;
+		/**
+		 * Offer a subscription rather than stand as a fixture: present only on a device that
+		 * holds no subscription of its own.
+		 *
+		 * The homepage takes the default and is always there, because it is where a subscriber
+		 * goes to cancel and something has to stay reachable. After an article the section is an
+		 * offer, and an offer put to somebody who already accepted it is the thing this removes.
+		 */
+		offer?: boolean;
 	} = $props();
 
 	const engagement = createEngagementQuery();
@@ -50,10 +60,32 @@
 	);
 	let timers: ReturnType<typeof setTimeout>[] = [];
 
+	/**
+	 * Whether an offered section has been put on the page.
+	 *
+	 * **It is set once, at mount, and nothing ever clears it.** Deriving presence from the record
+	 * instead would delete the section at the moment somebody subscribed inside it -- 2.1 seconds
+	 * of confirmation playing inside an element that is removing itself. Latched, subscribing here
+	 * keeps everything it put on screen, the pill and the control that undoes it alike, until the
+	 * page is left; the next article is the first one to omit the section.
+	 *
+	 * That is the line the confirmation copy already sits on. What the reader just did lasts one
+	 * visit, and what they are is what the next load reads.
+	 */
+	let appended = $state(false);
+	const present = $derived(!offer || appended);
+
 	// The record is on the reader's device, so the server renders the form and this replaces it
-	// after mount. Both states are one pill tall, so the swap moves nothing around it.
+	// after mount. Both states are one pill tall, so the swap moves nothing around it. An offered
+	// section has nothing to replace: the server sends none, and one is appended here if this
+	// device turns out to have no subscription.
 	$effect(() => {
-		subscription = readSubscription();
+		// Read into a local and test that, never the state field. Testing `subscription` would make
+		// this effect depend on a value it also writes, so submitting -- which re-reads the record --
+		// would re-run it, and the cleanup below would clear the timers of the sequence still playing.
+		const record = readSubscription();
+		subscription = record;
+		if (!record) appended = true;
 		return stop;
 	});
 
@@ -160,125 +192,127 @@ otherwise need. See spec/engagement.md. -->
      it separates two offerings, after the collected notes it closes a smaller block of apparatus,
      and those are not the same distance. A component that carried one number would make the
      shorter one an override fighting it. -->
-<section aria-labelledby="newsletter-heading" class={className} style={sequenceStyle()}>
-	<h2 id="newsletter-heading" class="mb-3 font-medium text-text-strong">
-		{m['newsletter.heading']({}, { locale })}
-	</h2>
+{#if present}
+	<section aria-labelledby="newsletter-heading" class={className} style={sequenceStyle()}>
+		<h2 id="newsletter-heading" class="mb-3 font-medium text-text-strong">
+			{m['newsletter.heading']({}, { locale })}
+		</h2>
 
-	<p class="text-pretty text-text-soft">{m['newsletter.pitch']({}, { locale })}</p>
+		<p class="text-pretty text-text-soft">{m['newsletter.pitch']({}, { locale })}</p>
 
-	<!-- One pill across both states. The box, its border and the button's place never move; only
-	what sits in them is replaced, which is what leaves the swap something to animate rather than
-	something to jump between. -->
-	<div
-		class="pill focus-input-shell mt-4 flex items-center gap-2 rounded-full border border-border bg-paper p-1.5 pl-5"
-		role={shown ? 'status' : undefined}
-	>
-		{#if shown}
-			<span aria-hidden="true" class="swap min-w-0 flex-1">
-				{#if entering}
-					<!-- A plain copy of what was typed, standing in for the field that has just gone so
-					the address appears to be redacted in place rather than replaced. -->
-					<span class="typed">{entering}</span>
-				{/if}
-				<!-- The address is already unreadable, so nothing is gained by letting it wrap. -->
-				<span
-					class="masked text-text"
-					class:revealing={entering}
-					class:dissolving={stage === 'reverting'}
-				>
-					{masked}
+		<!-- One pill across both states. The box, its border and the button's place never move; only
+		what sits in them is replaced, which is what leaves the swap something to animate rather than
+		something to jump between. -->
+		<div
+			class="pill focus-input-shell mt-4 flex items-center gap-2 rounded-full border border-border bg-paper p-1.5 pl-5"
+			role={shown ? 'status' : undefined}
+		>
+			{#if shown}
+				<span aria-hidden="true" class="swap min-w-0 flex-1">
+					{#if entering}
+						<!-- A plain copy of what was typed, standing in for the field that has just gone so
+						the address appears to be redacted in place rather than replaced. -->
+						<span class="typed">{entering}</span>
+					{/if}
+					<!-- The address is already unreadable, so nothing is gained by letting it wrap. -->
+					<span
+						class="masked text-text"
+						class:revealing={entering}
+						class:dissolving={stage === 'reverting'}
+					>
+						{masked}
+					</span>
 				</span>
-			</span>
-			<!-- The button's surface stays and its copy states the outcome, so the shape the reader
-			just used becomes the label for what it did. It is inert -- there is nothing left to
-			submit -- and it is the pill's whole accessible content, the masked address being of no
-			use read aloud. -->
-			<span
-				class="chip flex h-full shrink-0 items-center rounded-full px-4 font-medium"
-				class:cooling={entering}
-				class:warming={stage === 'reverting'}
-			>
-				{@render label(stage !== 'reverting')}
-			</span>
-		{:else}
-			<!-- `type="email"` plus `required` leaves validation to the browser: it is localized
-			already, it reports before any request is made, and it needs no JavaScript.
-			`display: contents` keeps the form out of the shared pill's layout. -->
-			<form onsubmit={submit} class="contents">
-				<input
-					type="email"
-					name="email"
-					bind:value={email}
-					required
-					autocomplete="email"
-					placeholder="you@example.com"
-					aria-label={m['newsletter.email']({}, { locale })}
-					disabled={status === 'sending'}
-					class:returning={stage === 'restoring'}
-					class="focus-input min-w-0 flex-1 bg-transparent text-text placeholder:text-text-soft disabled:text-text-soft"
-				/>
+				<!-- The button's surface stays and its copy states the outcome, so the shape the reader
+				just used becomes the label for what it did. It is inert -- there is nothing left to
+				submit -- and it is the pill's whole accessible content, the masked address being of no
+				use read aloud. -->
+				<span
+					class="chip flex h-full shrink-0 items-center rounded-full px-4 font-medium"
+					class:cooling={entering}
+					class:warming={stage === 'reverting'}
+				>
+					{@render label(stage !== 'reverting')}
+				</span>
+			{:else}
+				<!-- `type="email"` plus `required` leaves validation to the browser: it is localized
+				already, it reports before any request is made, and it needs no JavaScript.
+				`display: contents` keeps the form out of the shared pill's layout. -->
+				<form onsubmit={submit} class="contents">
+					<input
+						type="email"
+						name="email"
+						bind:value={email}
+						required
+						autocomplete="email"
+						placeholder="you@example.com"
+						aria-label={m['newsletter.email']({}, { locale })}
+						disabled={status === 'sending'}
+						class:returning={stage === 'restoring'}
+						class="focus-input min-w-0 flex-1 bg-transparent text-text placeholder:text-text-soft disabled:text-text-soft"
+					/>
+					<button
+						type="submit"
+						disabled={status === 'sending'}
+						aria-busy={status === 'sending'}
+						class:reviving={stage === 'restoring'}
+						class="focus-ring h-full shrink-0 rounded-full bg-ink px-4 font-medium text-page transition-opacity duration-200 hover:opacity-85 disabled:opacity-60"
+					>
+						{@render label(false)}
+					</button>
+				</form>
+			{/if}
+		</div>
+
+		<!-- One row under the pill in every state, so nothing below the section moves as it changes.
+		The left slot carries whatever the reader most recently needs to know and falls back to the
+		count; the right slot is the only place a destructive action appears. -->
+		<div class="mt-3.5 flex items-baseline justify-between gap-6 text-[0.9375rem] text-text-soft">
+			{#if status === 'error'}
+				<p role="alert">{m['newsletter.error']({}, { locale })}</p>
+			{:else if status === 'cancelled'}
+				<p role="status" class:returning={stage === 'restoring'}>
+					{m['newsletter.unsubscribed']({}, { locale })}
+				</p>
+			{:else if status === 'confirmed'}
+				<p role="status" class:arriving={entering} class:departing={stage === 'reverting'}>
+					{m['newsletter.confirm']({}, { locale })}
+				</p>
+			{:else}
+				<p class:leaving={entering}>
+					<ParaglideMessage
+						message={m['newsletter.subscribers']}
+						inputs={{ count: subscribers }}
+						options={{ locale }}
+					>
+						<!-- The cells are drawn rather than taken from the message's own text; the markup tag
+						only records where a translator wants the number to sit. -->
+						{#snippet cells()}
+							<Counter value={subscribers} />
+						{/snippet}
+					</ParaglideMessage>
+				</p>
+			{/if}
+
+			<!-- Held back until the sequence reaches it. A control that undoes what the reader is still
+			watching happen has nothing to undo yet, and it arrives directly below the button they just
+			pressed, where a second click would otherwise land on it. -->
+			{#if subscription && stage !== 'redacting' && stage !== 'settling'}
 				<button
-					type="submit"
-					disabled={status === 'sending'}
-					aria-busy={status === 'sending'}
-					class:reviving={stage === 'restoring'}
-					class="focus-ring h-full shrink-0 rounded-full bg-ink px-4 font-medium text-page transition-opacity duration-200 hover:opacity-85 disabled:opacity-60"
+					type="button"
+					onclick={unsubscribe}
+					disabled={cancellation.isPending || stage === 'reverting'}
+					aria-busy={cancellation.isPending}
+					class:arriving={stage === 'undoing'}
+					class:departing={stage === 'reverting'}
+					class="focus-link spring-underline shrink-0 transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong disabled:opacity-60"
 				>
-					{@render label(false)}
+					{m['newsletter.unsubscribe']({}, { locale })}
 				</button>
-			</form>
-		{/if}
-	</div>
-
-	<!-- One row under the pill in every state, so nothing below the section moves as it changes.
-	The left slot carries whatever the reader most recently needs to know and falls back to the
-	count; the right slot is the only place a destructive action appears. -->
-	<div class="mt-3.5 flex items-baseline justify-between gap-6 text-[0.9375rem] text-text-soft">
-		{#if status === 'error'}
-			<p role="alert">{m['newsletter.error']({}, { locale })}</p>
-		{:else if status === 'cancelled'}
-			<p role="status" class:returning={stage === 'restoring'}>
-				{m['newsletter.unsubscribed']({}, { locale })}
-			</p>
-		{:else if status === 'confirmed'}
-			<p role="status" class:arriving={entering} class:departing={stage === 'reverting'}>
-				{m['newsletter.confirm']({}, { locale })}
-			</p>
-		{:else}
-			<p class:leaving={entering}>
-				<ParaglideMessage
-					message={m['newsletter.subscribers']}
-					inputs={{ count: subscribers }}
-					options={{ locale }}
-				>
-					<!-- The cells are drawn rather than taken from the message's own text; the markup tag
-					only records where a translator wants the number to sit. -->
-					{#snippet cells()}
-						<Counter value={subscribers} />
-					{/snippet}
-				</ParaglideMessage>
-			</p>
-		{/if}
-
-		<!-- Held back until the sequence reaches it. A control that undoes what the reader is still
-		watching happen has nothing to undo yet, and it arrives directly below the button they just
-		pressed, where a second click would otherwise land on it. -->
-		{#if subscription && stage !== 'redacting' && stage !== 'settling'}
-			<button
-				type="button"
-				onclick={unsubscribe}
-				disabled={cancellation.isPending || stage === 'reverting'}
-				aria-busy={cancellation.isPending}
-				class:arriving={stage === 'undoing'}
-				class:departing={stage === 'reverting'}
-				class="focus-link spring-underline shrink-0 transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong disabled:opacity-60"
-			>
-				{m['newsletter.unsubscribe']({}, { locale })}
-			</button>
-		{/if}
-	</div>
-</section>
+			{/if}
+		</div>
+	</section>
+{/if}
 
 <style>
 	/* Both ends sit at the column edge, so both are pulled. The formula is in styles/app.css. */

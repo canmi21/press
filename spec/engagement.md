@@ -47,6 +47,36 @@ That record is the only thing a returning reader is known by. HTML is rendered b
 cannot see `localStorage`, so the subscription form is what the server sends and the confirmed
 state replaces it after mount.
 
+### The homepage keeps its section; an article only offers one
+
+The two placements are not the same thing and no longer behave the same way. The homepage's
+section is a fixture: it is where a subscriber goes to cancel, so something has to stay reachable
+whatever the reader's state. The section after an article is an offer, and an offer put to
+somebody who has already accepted it is noise at the end of every article they read.
+
+So `offer` marks the article's, and an offered section is **absent from the served HTML and
+appended after hydration only when this device holds no subscription.** The server cannot read the
+record, and the two ways round are not equally priced. Sending the section and removing it means a
+subscriber is shown a form for one frame -- the one message they should never get -- and then
+watches a block disappear. Sending nothing and appending it costs the unsubscribed majority a
+block arriving late at the very bottom of the page, below the last thing on it, so nothing already
+rendered moves. The document gets longer and that is all.
+
+A reader with no JavaScript is therefore never offered a subscription on an article. The homepage
+still serves the form, which is where the offer has to survive.
+
+**The decision is latched at mount, not derived from the record.** Presence tracking the record
+would delete the section at the instant somebody subscribed inside it, which is the 2.1-second
+confirmation below playing inside an element that is removing itself. Subscribing after an article
+therefore keeps the pill and the unsubscribe control for the rest of the visit, and the next
+article is the first one to omit the section. That is the line the confirmation copy already sits
+on: what the reader just did lasts one visit, what they are is what the next load reads.
+
+The record is the only signal, so a device that subscribed without receiving a token is still
+offered the section. That is the known cost of having no accounts, and it is where an account
+system would answer instead -- a subscription bound to a login is readable by the server, which
+makes this an SSR decision and retires the append.
+
 **The pill itself is one element across both states.** Its box, its border and the place its
 button occupies do not move; only what sits in them is replaced. A check mark was there first and
 was the wrong shape for the moment: it re-announced what the sentence below already says, at the
