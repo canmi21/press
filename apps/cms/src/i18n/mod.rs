@@ -122,6 +122,30 @@ pub fn selected_locales(values: &[String]) -> Result<Vec<&'static str>, String> 
 }
 
 /// Lines a block occupies, ignoring the blank ones a reply may pad with.
+/// The file name of a page. The homepage is the whole of that category today.
+const PAGE_FILE: &str = "homepage.md";
+
+/// Refuse a file that is a page rather than an article.
+///
+/// A page has no `lang`, so nothing here could translate it out of anything; and it is identity
+/// copy the site renders from the source in every view, so a sidecar for it would be text nobody
+/// reads. See spec/i18n.md.
+///
+/// **This is not how pages are excluded.** `run` drops them while it is still building the list,
+/// before a byte is read, and that is the path taken every time. This exists for the day somebody
+/// edits that filter: without it a page would flow into the run and quietly acquire translations,
+/// and the first sign of it would be a sidecar appearing in a diff. With it the run says which
+/// file arrived and where it should have been stopped.
+fn refuse_page(path: &Path) -> Result<(), String> {
+	if path.file_name().is_some_and(|name| name == PAGE_FILE) {
+		return Err(format!(
+			"{PAGE_FILE} is a page, not an article, and is never translated. It reached the run \
+			 anyway, which means the filter in `run` no longer holds. See spec/i18n.md."
+		));
+	}
+	Ok(())
+}
+
 fn body_lines(text: &str) -> usize {
 	text.lines().filter(|line| !line.trim().is_empty()).count()
 }
@@ -420,6 +444,10 @@ pub async fn run(
 		.filter(|path| {
 			only.is_empty() || only.iter().any(|wanted| path.ends_with(wanted) || path == wanted)
 		})
+		// Pages leave here, before anything is read and before the total is published, so a run
+		// never counts work it was never going to do. `refuse_page` below is the guard for this
+		// line being changed, not the mechanism it uses.
+		.filter(|path| refuse_page(path).is_ok())
 		.collect();
 
 	// One entry for the whole run, counted in articles. The per-article bars below count segments;
@@ -437,6 +465,13 @@ pub async fn run(
 		{
 			use progress::Sink as _;
 			published.advanced(articles_done, planned_total, &path.display().to_string());
+		}
+		// Recorded rather than returned: one file arriving that should not have is a fault in
+		// this command, not a reason to abandon the articles that are fine. It lands in the run's
+		// own report, where a reader is already looking for what did not get done.
+		if let Err(reason) = refuse_page(&path) {
+			outcome.failed.push((path.display().to_string(), reason));
+			continue;
 		}
 		let article = std::fs::read_to_string(&path)?;
 		// A page is not an article and is never translated. The test is the same one `cms
@@ -719,6 +754,21 @@ pub async fn run(
 mod tests {
 	use super::*;
 	use std::collections::BTreeMap;
+
+	#[test]
+	fn a_page_is_refused_by_name_and_an_article_is_not() {
+		// The filter in `run` is what actually keeps pages out. This is the second line: it has to
+		// name the file that arrived, so a run that suddenly reports one says why rather than just
+		// failing somewhere further in.
+		let refused = refuse_page(Path::new("contents/homepage.md")).unwrap_err();
+		assert!(refused.contains(PAGE_FILE), "{refused}");
+		assert!(refused.contains("spec/i18n.md"), "{refused}");
+
+		assert!(refuse_page(Path::new("contents/architecture/homepage.md")).is_err());
+		assert!(refuse_page(Path::new("contents/milestone/less-is-more.md")).is_ok());
+		// Only the whole name. An article may end in those letters without being a page.
+		assert!(refuse_page(Path::new("contents/notes/not-homepage.md")).is_ok());
+	}
 
 	#[test]
 	fn parallelism_defaults_to_four_and_rejects_zero() {
