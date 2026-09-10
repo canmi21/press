@@ -4,9 +4,9 @@
 // this no longer matches contents/.
 
 export const ARTICLE_SLUGS: ReadonlySet<string> = new Set([
-	'architecture/2026-09-10',
 	'architecture/compile-time-rendering',
 	'architecture/observation-to-lowering',
+	'architecture/why-you-need-ssr',
 	'development/rust-cargo-cranelift-tuning',
 	'milestone/less-is-more',
 	'mirror/friends-come-in-phases',

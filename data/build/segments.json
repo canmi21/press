@@ -1,57 +1,6 @@
 {
   "version": 3,
   "articles": {
-    "architecture/2026-09-10.md": [
-      {
-        "id": "978598124b7df0bd966ce7ef04e65d95",
-        "start": 10,
-        "end": 19,
-        "fingerprint": "03426626",
-        "region": "frontmatter"
-      },
-      {
-        "id": "111a6f78428961718b6b2e04be7bcc17",
-        "start": 29,
-        "end": 86,
-        "fingerprint": "d6bd22dd",
-        "region": "frontmatter"
-      },
-      {
-        "id": "f3f1a5c7f238e27ffe47cb3cb275008a",
-        "start": 99,
-        "end": 261,
-        "fingerprint": "cff8a16e",
-        "region": "frontmatter"
-      },
-      {
-        "id": "a7a706087b033947ae65770b4d3153d5",
-        "start": 351,
-        "end": 606,
-        "fingerprint": "3b41c9a1",
-        "region": "body"
-      },
-      {
-        "id": "d64daaf23778f24122c592e3553dc01c",
-        "start": 608,
-        "end": 638,
-        "fingerprint": "1f0d1637",
-        "region": "body"
-      },
-      {
-        "id": "ea84a13d2f6d53a0238a5537fb6fa761",
-        "start": 640,
-        "end": 876,
-        "fingerprint": "bcb1a104",
-        "region": "body"
-      },
-      {
-        "id": "1301f37fb5391fe4f137f6092cb936c9",
-        "start": 878,
-        "end": 1086,
-        "fingerprint": "37968524",
-        "region": "body"
-      }
-    ],
     "architecture/compile-time-rendering.md": [
       {
         "id": "de0329c8ae5d94b2f882129a2de5a41a",
@@ -1523,6 +1472,106 @@
         "start": 53870,
         "end": 53964,
         "fingerprint": "3952bbe1",
+        "region": "body"
+      }
+    ],
+    "architecture/why-you-need-ssr.md": [
+      {
+        "id": "978598124b7df0bd966ce7ef04e65d95",
+        "start": 10,
+        "end": 19,
+        "fingerprint": "03426626",
+        "region": "frontmatter"
+      },
+      {
+        "id": "111a6f78428961718b6b2e04be7bcc17",
+        "start": 29,
+        "end": 86,
+        "fingerprint": "d6bd22dd",
+        "region": "frontmatter"
+      },
+      {
+        "id": "f3f1a5c7f238e27ffe47cb3cb275008a",
+        "start": 99,
+        "end": 261,
+        "fingerprint": "cff8a16e",
+        "region": "frontmatter"
+      },
+      {
+        "id": "c868b0261774d0914ab07176fddb97f0",
+        "start": 348,
+        "end": 360,
+        "fingerprint": "04cb7bac",
+        "region": "body"
+      },
+      {
+        "id": "36214156c61085ff9c6a3dd5df0ba938",
+        "start": 362,
+        "end": 700,
+        "fingerprint": "ade77bac",
+        "region": "body"
+      },
+      {
+        "id": "11a46e7b89d86dd246de2f3498296bc4",
+        "start": 702,
+        "end": 834,
+        "fingerprint": "eb9fbf08",
+        "region": "body"
+      },
+      {
+        "id": "69bfcac548ef11d68bd1aae998d6c25e",
+        "start": 836,
+        "end": 1102,
+        "fingerprint": "cc942671",
+        "region": "body"
+      },
+      {
+        "id": "a1fa30023efcbe6f619dd5d1e3c9055d",
+        "start": 1104,
+        "end": 1137,
+        "fingerprint": "8fbd7d09",
+        "region": "body"
+      },
+      {
+        "id": "370a726e6948a2d0448bf5694ec95a20",
+        "start": 1139,
+        "end": 1152,
+        "fingerprint": "43764bb9",
+        "region": "body"
+      },
+      {
+        "id": "f8572a78bdf01872d697541dff4e801e",
+        "start": 1154,
+        "end": 1181,
+        "fingerprint": "f5c5ebcf",
+        "region": "body"
+      },
+      {
+        "id": "ecbac8ca0d7d08a6da33846c17925393",
+        "start": 1183,
+        "end": 1432,
+        "fingerprint": "33e659e9",
+        "region": "body"
+      },
+      {
+        "id": "913d1f2300ef13eb7a02cd12eb91e8bb",
+        "start": 1434,
+        "end": 1789,
+        "fingerprint": "e7b24b62",
+        "region": "body"
+      },
+      {
+        "id": "223a4f6fb2068c92143859823189dfd8",
+        "start": 1791,
+        "end": 2105,
+        "fingerprint": "1028a451",
+        "region": "body"
+      },
+      {
+        "id": "f9e79c3253b2d9dc3e5611689be00c37",
+        "start": 2107,
+        "end": 2219,
+        "fingerprint": "234dc749",
         "region": "body"
       }
     ],
