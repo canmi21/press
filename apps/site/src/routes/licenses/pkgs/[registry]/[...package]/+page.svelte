@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
-	import { pickUrls, URLS } from '@canmi/urls';
+	import { pageUrls, URLS } from '@canmi/urls';
 	import ExternalLink from '@lucide/svelte/icons/external-link';
 	import FileText from '@lucide/svelte/icons/file-text';
 	import { localeUrl } from '$lib/locale';
@@ -12,7 +12,7 @@
 
 	let { data }: { data: PageData } = $props();
 	const locale = $derived(data.locale.code);
-	const cdn = pickUrls(dev).cdn;
+	const cdn = pageUrls(dev).cdn;
 	const title = $derived(data.coordinates.name);
 	const description = $derived(
 		data.entry.description ??

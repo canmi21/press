@@ -2,7 +2,7 @@
 	import { browser, dev } from '$app/environment';
 	import { afterNavigate } from '$app/navigation';
 	import { page } from '$app/state';
-	import { URLS, pickUrls } from '@canmi/urls';
+	import { URLS, pageUrls } from '@canmi/urls';
 	import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
 	import { QueryClient } from '@tanstack/svelte-query';
 	import { PersistQueryClientProvider } from '@tanstack/svelte-query-persist-client';
@@ -15,7 +15,7 @@
 	import '../styles/app.css';
 	import '@canmi/fonts/mono.css';
 
-	const cdn = pickUrls(dev).cdn;
+	const cdn = pageUrls(dev).cdn;
 	const locale = $derived('locale' in page.data ? page.data.locale : undefined);
 	const articleLocale = $derived(
 		locale && 'canonical' in locale && 'alternates' in locale ? locale : undefined,

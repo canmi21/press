@@ -1,6 +1,6 @@
 import { dev } from '$app/environment';
 import { error } from '@sveltejs/kit';
-import { pickUrls } from '@canmi/urls';
+import { pageUrls } from '@canmi/urls';
 import { HEADER, TEXT_HEADERS, find, licenseOf, textUrl } from '$lib/licenses';
 import type { RequestHandler } from './$types';
 
@@ -44,7 +44,7 @@ export const GET: RequestHandler = async ({ params }) => {
 
 	// At most a handful per package -- three is the widest seen, for a crate offering a choice
 	// of three licenses -- so these are fetched together rather than in sequence.
-	const cdn = pickUrls(dev).cdn;
+	const cdn = pageUrls(dev).cdn;
 	const bodies = await Promise.all(
 		texts.map(async (text) => {
 			const upstream = await fetch(textUrl(cdn, text.cid));

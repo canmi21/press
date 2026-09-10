@@ -2,7 +2,12 @@ import { readFileSync } from 'node:fs';
 import { stat } from 'node:fs/promises';
 import { isAbsolute, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { DEVELOPMENT_PORTS, URLS } from '@canmi/urls';
+import {
+	DEVELOPMENT_PORTS,
+	DEVELOPMENT_PROXY_PATHS,
+	developmentProxyTarget,
+	pageUrls,
+} from '@canmi/urls';
 import { sentrySvelteKit } from '@sentry/sveltekit';
 import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
@@ -136,7 +141,11 @@ function uploadsSourceMaps(): boolean {
 }
 
 export default defineConfig(async ({ command, mode }) => {
-	const urls = mode === 'production' ? URLS.apps.production : URLS.apps.development;
+	// The page-facing map, because all three readers of it below end up in a document: the asset
+	// URLs compiled into the corpus, the redirect targets a browser follows, and the font
+	// stylesheet's `__CDN_URL__`. In development those must be the proxied paths, or a page opened
+	// from another device asks that device for its own fonts. See libs/urls.
+	const urls = pageUrls(mode !== 'production');
 	// Asked once. It can throw, and a predicate that throws should do so at a point in the build
 	// somebody can place, rather than from inside a plugin's option list.
 	const uploadSourceMaps = uploadsSourceMaps();
@@ -363,6 +372,26 @@ export default defineConfig(async ({ command, mode }) => {
 			// the URL map, so moving the dev server stays a one-file edit.
 			port: DEVELOPMENT_PORTS.site,
 			strictPort: true,
+			// Every interface, so a phone on the same network can open this. `::` rather than
+			// `0.0.0.0` because Node leaves IPV6_V6ONLY off, so one value covers both stacks and
+			// the loopback addresses inside them -- `0.0.0.0` alone would drop `[::1]`, which is
+			// what `localhost` resolves to first on this machine.
+			host: '::',
+			// The other two workers, reached through this one. The prefix is stripped on the way
+			// out, so each worker sees the paths it actually serves and needs no knowledge of
+			// this. Both the prefix and the target come from libs/urls, which is where every
+			// address in this repository is declared -- and where the reasoning lives for why
+			// development collapses three origins into one and production does not.
+			proxy: Object.fromEntries(
+				Object.entries(DEVELOPMENT_PROXY_PATHS).map(([app, prefix]) => [
+					prefix,
+					{
+						target: developmentProxyTarget(app as 'api' | 'cdn'),
+						changeOrigin: true,
+						rewrite: (path: string) => path.slice(prefix.length),
+					},
+				]),
+			),
 		},
 		ssr: {
 			// Bits UI publishes Svelte source. Leaving it external in dev hands its `.svelte`

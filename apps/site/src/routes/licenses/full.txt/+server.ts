@@ -1,5 +1,5 @@
 import { dev } from '$app/environment';
-import { pickUrls } from '@canmi/urls';
+import { pageUrls } from '@canmi/urls';
 import { HEADER, TEXT_HEADERS, fullUrl } from '$lib/licenses';
 import type { RequestHandler } from './$types';
 
@@ -20,7 +20,7 @@ export const prerender = false;
  * code for no gain a reader could notice.
  */
 export const GET: RequestHandler = async () => {
-	const upstream = await fetch(fullUrl(pickUrls(dev).cdn));
+	const upstream = await fetch(fullUrl(pageUrls(dev).cdn));
 	if (!upstream.ok) {
 		// The notice has not been synced to the bucket yet. A missing published object is a
 		// known state here rather than a fault, so it is reported as one.

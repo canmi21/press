@@ -1,5 +1,5 @@
 import { browser, dev } from '$app/environment';
-import { pickUrls } from '@canmi/urls';
+import { pageUrls } from '@canmi/urls';
 import { createMutation, createQuery, useQueryClient } from '@tanstack/svelte-query';
 import { QUERY_CACHE_MAX_AGE, QUERY_STALE_TIME } from '$lib/query';
 
@@ -35,7 +35,7 @@ type LikeResult = {
 	liked: boolean;
 };
 
-const apiUrl = pickUrls(dev).api;
+const apiUrl = pageUrls(dev).api;
 
 export function createEngagementQuery() {
 	return createQuery(() => ({

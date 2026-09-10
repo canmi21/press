@@ -1,5 +1,5 @@
 import { browser, dev } from '$app/environment';
-import { pickUrls } from '@canmi/urls';
+import { pageUrls } from '@canmi/urls';
 import { createQuery } from '@tanstack/svelte-query';
 import { QUERY_CACHE_MAX_AGE, QUERY_STALE_TIME } from '$lib/query';
 
@@ -10,7 +10,7 @@ export type Reads = {
 	read_count: number;
 };
 
-const apiUrl = pickUrls(dev).api;
+const apiUrl = pageUrls(dev).api;
 
 /**
  * The article's read count, counting this visit as one of them.

@@ -74,6 +74,35 @@ file, and a TypeScript library cannot be read by a Rust process -- putting a cro
 fact there would force the duplication the rule exists to prevent. URLs only the TypeScript
 side resolves still belong in [workspace.md](architecture/workspace.md)'s URL map.
 
+### They bind every interface, and the other two are reached through the site
+
+`::` rather than a loopback address, in all three. Node leaves `IPV6_V6ONLY` off, so one value
+covers both stacks and the loopback addresses inside them; `0.0.0.0` alone would drop `[::1]`,
+which is what `localhost` resolves to first here. The site used to bind only `[::1]` and was
+therefore unreachable to anything forcing IPv4, which nobody noticed because `localhost` picks
+the address that worked.
+
+Exposed on purpose: a layout is not finished until it has been seen on a phone, and a phone can
+only reach this machine over the network. The port is still the mutex above -- what changes is
+that somebody else on the same network can also reach a dev API, which writes the local D1 and
+never the deployed one.
+
+**In development the API and the CDN answer under the site, at `/api` and `/cdn`.** The site's dev
+server proxies both, stripping the prefix, so each worker still sees the paths it serves and knows
+nothing about the arrangement. Production has three domains and no proxy; only development
+collapses them, and only because there they are three processes on one machine.
+
+That is what makes a phone work, and a runtime fix would not have. Fonts, avatars and the
+OpenGraph card are rendered into the HTML by the worker before any script runs, so reading
+`location.hostname` in the browser would have repaired the fetches and left every asset pointing
+at the phone itself. A page served from this machine's address now asks that same address for
+everything.
+
+Two consequences worth stating. `libs/urls` returns paths rather than origins for those two in
+development, so the Rust mirror does too -- the two languages still give one answer, which is what
+that mirror is for. And `og:image` is a relative URL in development, which is invalid to a crawler
+and reaches none; production is unaffected.
+
 ## The Tauri dev watcher is told where the frontend is
 
 `tauri dev` watches every directory Cargo reaches through a local `path` dependency, not just

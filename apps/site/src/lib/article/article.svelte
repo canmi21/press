@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
 	import { page } from '$app/state';
-	import { pickUrls } from '@canmi/urls';
+	import { pageUrls } from '@canmi/urls';
 	import { site } from '$lib/site';
 	import BookOpenText from '@lucide/svelte/icons/book-open-text';
 	import Sparkles from '@lucide/svelte/icons/sparkles';
@@ -64,7 +64,7 @@
 		children: Snippet;
 	} = $props();
 
-	const urls = pickUrls(dev);
+	const urls = pageUrls(dev);
 	const SUMMARY_PROVIDERS = {
 		anthropic: { icon: IconClaude, name: 'Anthropic' },
 		google: { icon: IconGemini, name: 'Google Gemini' },

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
 	import { imgsrc } from '@canmi/imgsrc';
-	import { pickUrls, URLS } from '@canmi/urls';
+	import { pageUrls, URLS } from '@canmi/urls';
 	import Coffee from '@lucide/svelte/icons/coffee';
 	import Lollipop from '@lucide/svelte/icons/lollipop';
 	import ArticleList from '$lib/article/list.svelte';
@@ -19,7 +19,7 @@
 	let { data }: { data: PageData } = $props();
 	let sponsorOpen = $state(false);
 
-	const cdnUrl = pickUrls(dev).cdn;
+	const cdnUrl = pageUrls(dev).cdn;
 	const avatarSrc = imgsrc(`github:avatar:${site.author.githubId}@192`, { cdnUrl });
 	const card = $derived(cardUrl(cdnUrl, HOME_SLUG, data.locale.code));
 	const githubProfileUrl = `${URLS.external.github.web}/${site.author.github}`;

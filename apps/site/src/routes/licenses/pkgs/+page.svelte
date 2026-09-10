@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
-	import { pickUrls, URLS } from '@canmi/urls';
+	import { pageUrls, URLS } from '@canmi/urls';
 	import ArrowLeft from '@lucide/svelte/icons/arrow-left';
 	import { localeUrl } from '$lib/locale';
 	import LanguageSwitcher from '$lib/locale/switcher.svelte';
@@ -16,7 +16,7 @@
 	const title = $derived(m['licenses.packages']({}, { locale }));
 	const description = $derived(m['licenses.packages_description']({ count }, { locale }));
 	const slug = 'licenses/pkgs';
-	const cdn = pickUrls(dev).cdn;
+	const cdn = pageUrls(dev).cdn;
 	const canonical = $derived(localeUrl(`${URLS.apps.production.site}/${slug}`, locale));
 	const card = $derived(cardUrl(cdn, slug, locale));
 </script>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
-	import { pickUrls } from '@canmi/urls';
+	import { pageUrls } from '@canmi/urls';
 	import Image from './image.svelte';
 	import ArrowUpRight from '@lucide/svelte/icons/arrow-up-right';
 	import * as m from '$lib/paraglide/messages';
@@ -50,7 +50,7 @@
 
 	const describedBy = $props.id();
 
-	const cdnUrl = pickUrls(dev).cdn;
+	const cdnUrl = pageUrls(dev).cdn;
 	const domain = $derived(new URL(url).hostname);
 	const faviconSrc = $derived(`${cdnUrl}/favicon/${domain}${tone ? `?tone=${tone}` : ''}`);
 

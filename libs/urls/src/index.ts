@@ -11,6 +11,35 @@ export const DEVELOPMENT_PORTS = { site: 26511, api: 26512, cdn: 26516 } as cons
 export type AppName = keyof typeof DEVELOPMENT_PORTS;
 export type DevelopmentUrls = Readonly<Record<AppName, string>>;
 
+/**
+ * Where the API and the CDN are reached *from a page* in development: through the site.
+ *
+ * The site's dev server proxies these two prefixes to the two workers, so a page carries no host
+ * of its own for them. That is what lets a phone on the same network open the site by its LAN
+ * address and have every request go back to the address it was loaded from -- `localhost` on that
+ * phone is the phone. It also covers what the browser never asks for directly: fonts, avatars and
+ * the OpenGraph card are rendered into the HTML by the worker, so an absolute `localhost` there is
+ * already wrong before any script runs.
+ *
+ * Production has three domains and no proxy. Only development collapses them, and only because
+ * in development they are three processes on one machine. See spec/toolchain.md.
+ */
+export const DEVELOPMENT_PROXY_PATHS = { api: '/api', cdn: '/cdn' } as const;
+
+/**
+ * Where the site's dev server forwards each proxied prefix.
+ *
+ * `127.0.0.1` rather than `localhost`, so the hop stays on one stack whatever the incoming
+ * request arrived on -- the servers bind both. Declared here rather than in the Vite config
+ * because every address this repository resolves is declared in this file; see
+ * spec/architecture/workspace.md. Not part of `URLS`, so the Rust mirror does not carry a number
+ * only a
+ * bundler ever reads.
+ */
+export function developmentProxyTarget(app: keyof typeof DEVELOPMENT_PROXY_PATHS): string {
+	return `http://127.0.0.1:${DEVELOPMENT_PORTS[app]}`;
+}
+
 export function developmentUrl(app: AppName): string {
 	return `http://localhost:${DEVELOPMENT_PORTS[app]}`;
 }
@@ -142,6 +171,22 @@ export type UrlMap = (typeof URLS.apps)[UrlEnvironment];
 
 export function pickUrls(isDev: boolean): UrlMap {
 	return isDev ? URLS.apps.development : URLS.apps.production;
+}
+
+/**
+ * The same map as `pickUrls`, as a page served by the site should ask for it.
+ *
+ * Two consumers want opposite things from the development entry, which is why there are two
+ * functions. A worker wants origins: the API's CORS list names the site, and its redirects to the
+ * site and the CDN have to be addresses somebody can follow. A page wants paths, because the host
+ * it should ask is whichever one it was opened from -- `localhost` is only right when that host
+ * is this machine, and the whole point of the proxy is that it need not be.
+ *
+ * Identical to `pickUrls` in production, where the three are three domains and nothing is
+ * proxied. See spec/toolchain.md.
+ */
+export function pageUrls(isDev: boolean): UrlMap {
+	return isDev ? { ...URLS.apps.development, ...DEVELOPMENT_PROXY_PATHS } : URLS.apps.production;
 }
 
 /**

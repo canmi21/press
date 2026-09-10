@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
-	import { pickUrls, URLS } from '@canmi/urls';
+	import { pageUrls, URLS } from '@canmi/urls';
 	import ArrowLeft from '@lucide/svelte/icons/arrow-left';
 	import ExternalLink from '@lucide/svelte/icons/external-link';
 	import { localeUrl } from '$lib/locale';
@@ -20,7 +20,7 @@
 		m['licenses.registry_description']({ registry: data.registry.name, count }, { locale }),
 	);
 	const slug = $derived(`licenses/pkgs/${data.registry.id}`);
-	const cdn = pickUrls(dev).cdn;
+	const cdn = pageUrls(dev).cdn;
 	const canonical = $derived(localeUrl(`${URLS.apps.production.site}/${slug}`, locale));
 	const card = $derived(cardUrl(cdn, slug, locale));
 </script>

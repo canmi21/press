@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
-	import { pickUrls, URLS } from '@canmi/urls';
+	import { pageUrls, URLS } from '@canmi/urls';
 	import ArrowLeft from '@lucide/svelte/icons/arrow-left';
 	import FileText from '@lucide/svelte/icons/file-text';
 	import FolderOpen from '@lucide/svelte/icons/folder-open';
@@ -19,7 +19,7 @@
 	const title = $derived(m['licenses.title']({}, { locale }));
 	const description = $derived(m['licenses.description']({}, { locale }));
 	const slug = 'licenses';
-	const cdn = pickUrls(dev).cdn;
+	const cdn = pageUrls(dev).cdn;
 	const canonical = $derived(localeUrl(`${URLS.apps.production.site}/${slug}`, locale));
 	const card = $derived(cardUrl(cdn, slug, locale));
 	const numberLocale = $derived(intlLocale(locale));
