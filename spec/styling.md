@@ -1118,23 +1118,26 @@ What a card holds is the subject's, not the shape's:
 [workspace.md](architecture/workspace.md) has why a card pointing inside the corpus carries no
 copy of its own.
 
-## The homepage carries the two site preferences, below the bio
+## The homepage carries the content-language control, below the bio
 
-Theme and content language are settings for the whole site, and the homepage is where somebody
-arrives without having come to read one particular thing. It carries both, on one quiet row.
+Content language is a setting for the whole site, and the homepage is where somebody arrives
+without having come to read one particular thing. It carries the switcher on its own quiet row.
 
 **Below the bio rather than beside the name.** The bio is identity copy and is rendered from the
-source in every view -- see [i18n.md](i18n.md). A language switcher placed above it would be a
-control whose first use appears to do nothing, which is the worst thing a preference control can
-look like. Under the bio it sits exactly where its effect begins. Measured, that costs no
-findability: the row lands around 330px on a wide window and 380px on a narrow one, well inside
-the first screen either way.
+source in every view -- see [i18n.md](i18n.md). A switcher placed above it would be a control
+whose first use appears to do nothing, which is the worst thing a preference control can look
+like. Under the bio it sits exactly where its effect begins. Measured, that costs no findability:
+the row lands around 330px on a wide window and 380px on a narrow one, well inside the first
+screen either way.
 
-The row has no heading and no rule above it. These are page furniture, and what they write
-belongs to the site rather than to this page; a divider across the column would frame them as a
-section and imply the setting stopped there.
+The row has no heading and no rule above it. This is page furniture, and what it writes belongs
+to the site rather than to this page; a divider across the column would frame it as a section and
+imply the setting stopped there.
 
-### The theme control is a button, not a menu
+## The theme control is a button, not a menu
+
+It is built and has no home yet: nothing on the site renders it while its placement is being
+decided. What follows is the component's own contract, which does not depend on where it lands.
 
 Two states, so the control is the choice rather than a way to reach it. It writes the cookie and
 toggles the class, and nothing reloads: every colour on the page is a token under that one class,
