@@ -585,12 +585,8 @@ mod tests {
 		assert_eq!(after.len(), 6);
 
 		// Two segments read the title: the title and the short form of it. Both move.
-		let moved: Vec<Option<Display>> = before
-			.iter()
-			.zip(&after)
-			.filter(|(b, a)| b.id != a.id)
-			.map(|(b, _)| b.display)
-			.collect();
+		let moved: Vec<Option<Display>> =
+			before.iter().zip(&after).filter(|(b, a)| b.id != a.id).map(|(b, _)| b.display).collect();
 		assert_eq!(moved, vec![Some(Display::Title), Some(Display::ShortTitle)]);
 	}
 
@@ -656,8 +652,8 @@ mod tests {
 
 	#[test]
 	fn a_drawn_frontmatter_field_brings_a_short_form_with_it() {
-		let segments = split("---\ntitle: A title\nsubtitle: A subtitle\nlang: zh\n---\n\nBody")
-			.expect("split");
+		let segments =
+			split("---\ntitle: A title\nsubtitle: A subtitle\nlang: zh\n---\n\nBody").expect("split");
 		let fields: Vec<Option<Display>> = segments.iter().map(|s| s.display).collect();
 		assert!(fields.contains(&Some(Display::Title)));
 		assert!(fields.contains(&Some(Display::Subtitle)));

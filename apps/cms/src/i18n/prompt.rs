@@ -762,10 +762,7 @@ mod tests {
 			"A title",
 			None,
 			"About.",
-			&[
-				("de-DE".to_owned(), Display::ShortTitle),
-				("ja-JP".to_owned(), Display::ShortTitle),
-			],
+			&[("de-DE".to_owned(), Display::ShortTitle), ("ja-JP".to_owned(), Display::ShortTitle)],
 			&[],
 			None,
 		);
@@ -823,11 +820,7 @@ mod tests {
 	#[test]
 	fn a_display_reply_that_leaks_the_fence_is_refused() {
 		let request = display_request();
-		let reply = format!(
-			"{}\n{}\n",
-			field_marker("de-DE", Display::ShortTitle),
-			request.boundary
-		);
+		let reply = format!("{}\n{}\n", field_marker("de-DE", Display::ShortTitle), request.boundary);
 		assert_eq!(parse_display(&reply, Some(&request.boundary)), Err(BoundaryLeak));
 	}
 }

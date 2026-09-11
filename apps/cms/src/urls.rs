@@ -37,5 +37,7 @@ pub const EXTERNAL_WEBRING_TRAVELLINGS: &str = "https://www.travellings.cn/go.ht
 pub const EXTERNAL_WEBRING_MOE: &str = "https://travel.moe/go?travel=on";
 pub const EXTERNAL_ICPMOE: &str = "https://icp.gov.moe";
 pub const EXTERNAL_UMAMI: &str = "https://cloud.umami.is/script.js";
+pub const EXTERNAL_UMAMI_GATEWAY: &str = "https://gateway.umami.is";
+pub const EXTERNAL_OPENPANEL: &str = "https://api.openpanel.dev";
 pub const EXTERNAL_GOOGLE_FONTS_CSS: &str = "https://fonts.googleapis.com";
 pub const EXTERNAL_GOOGLE_FONTS_STATIC: &str = "https://fonts.gstatic.com";

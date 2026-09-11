@@ -444,14 +444,8 @@ async fn translate_display(request: DisplayRequest<'_>) -> DisplayResult {
 	let mut rejected: Vec<String> = Vec::new();
 
 	while attempt < DISPLAY_ATTEMPTS && !wanted.is_empty() {
-		let built = prompt::build_display(
-			title,
-			subtitle,
-			context,
-			&wanted,
-			&have,
-			source_locale.as_deref(),
-		);
+		let built =
+			prompt::build_display(title, subtitle, context, &wanted, &have, source_locale.as_deref());
 		// What the previous attempt got wrong, in the units the rule is written in. A model shown
 		// "over by 28px" can act on it; one shown "invalid" can only guess again.
 		let text = if rejected.is_empty() {
@@ -511,10 +505,7 @@ async fn translate_display(request: DisplayRequest<'_>) -> DisplayResult {
 				title
 			};
 			if let Err(error) = validate::display(field, &answered, against) {
-				rejected.push(format!(
-					"{}  {error}: {answered}",
-					prompt::field_marker(&locale, field)
-				));
+				rejected.push(format!("{}  {error}: {answered}", prompt::field_marker(&locale, field)));
 				continue;
 			}
 			entries.push((
@@ -805,12 +796,11 @@ pub async fn run(
 			// drawn anywhere, so it costs the reader nothing to be long.
 			let context = live
 				.values()
-				.find(|segment| {
-					segment.region == segment::Region::Frontmatter && segment.display.is_none()
-				})
+				.find(|segment| segment.region == segment::Region::Frontmatter && segment.display.is_none())
 				.map(|segment| segment.source.clone())
 				.or_else(|| {
-					live.values()
+					live
+						.values()
 						.find(|segment| {
 							segment.region == segment::Region::Body && segment.kind == segment::Kind::Prose
 						})
@@ -841,11 +831,7 @@ pub async fn run(
 					}
 				}
 
-				let claimed = claim::take(
-					repository,
-					"i18n",
-					&format!("{article_key}#display"),
-				);
+				let claimed = claim::take(repository, "i18n", &format!("{article_key}#display"));
 				match claimed {
 					Err(claim::Denied::Taken(_)) => outcome.claimed_elsewhere += 1,
 					Err(claim::Denied::Io(error)) => return Err(error),

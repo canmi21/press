@@ -144,6 +144,13 @@ export const URLS = {
 		// Analytics loader fetched by the browser. The website id rides on the script tag: it is
 		// an identity, not an address.
 		umami: 'https://cloud.umami.is/script.js',
+		// Where the two analytics clients report to, which is not where either comes from.
+		// Neither host is written in this repository's own code -- umami's is a constant inside
+		// the script it downloads, and OpenPanel's is the default baked into `@openpanel/sdk` --
+		// so both are recorded here from having been read out of them. They are declared to be
+		// resolved early rather than to be fetched. See spec/analytics.md.
+		umamiGateway: 'https://gateway.umami.is',
+		openpanel: 'https://api.openpanel.dev',
 		// Hosts the Latin webfont stylesheet resolves through; preconnected before it is fetched.
 		googleFonts: {
 			css: 'https://fonts.googleapis.com',

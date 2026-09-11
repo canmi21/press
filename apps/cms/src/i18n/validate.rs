@@ -1,12 +1,12 @@
 //! Acceptance checks shared by fresh model replies and translations already on disk.
 
+use super::segment::Display;
 use super::segment::{Kind, Region, Segment};
 use super::store::Sidecar;
 use super::width;
 use std::collections::BTreeMap;
 use std::fmt;
 use std::path::Path;
-use super::segment::Display;
 use unicode_width::UnicodeWidthChar;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -17,7 +17,10 @@ pub enum Error {
 	AuthorNoteCountChanged,
 	UnresolvedMarker,
 	/// A drawn field wider than the place it is drawn in.
-	OverBudget { drawn: u32, budget: u32 },
+	OverBudget {
+		drawn: u32,
+		budget: u32,
+	},
 	/// A dash used to join two clauses where the author joined them some other way.
 	BorrowedDash,
 }
@@ -440,17 +443,29 @@ mod tests {
 		use super::Display;
 		// The source joins with a comma; the translation reaches for a dash to make the limit.
 		assert_eq!(
-			display(Display::ShortSubtitle, "Cooped up too long\u{2014}time to walk", "宅太久了，难得出去走走吧"),
+			display(
+				Display::ShortSubtitle,
+				"Cooped up too long\u{2014}time to walk",
+				"宅太久了，难得出去走走吧"
+			),
 			Err(Error::BorrowedDash),
 		);
-		assert!(display(Display::ShortSubtitle, "Cooped up too long, time to walk", "宅太久了，难得出去走走吧").is_ok());
+		assert!(
+			display(
+				Display::ShortSubtitle,
+				"Cooped up too long, time to walk",
+				"宅太久了，难得出去走走吧"
+			)
+			.is_ok()
+		);
 	}
 
 	#[test]
 	fn a_dash_the_author_already_spent_may_be_kept() {
 		use super::Display;
 		assert!(
-			display(Display::ShortTitle, "Too long in\u{2014}time out", "Cooped up\u{2014}time to walk").is_ok()
+			display(Display::ShortTitle, "Too long in\u{2014}time out", "Cooped up\u{2014}time to walk")
+				.is_ok()
 		);
 	}
 

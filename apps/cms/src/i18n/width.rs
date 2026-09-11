@@ -136,7 +136,8 @@ fn is_hangul(c: char) -> bool {
 }
 
 pub fn pixels(text: &str) -> f32 {
-	text.trim()
+	text
+		.trim()
 		.chars()
 		.map(|c| {
 			if is_hangul(c) {
@@ -389,7 +390,10 @@ mod tests {
 		// So a short title, written to the card, always clears the article page.
 		assert!(fits("Freunde auf Zeit", budget::ARTICLE_TITLE));
 		// And the longest title in the corpus does not.
-		assert!(!fits("Freundschaften gehören immer nur zu bestimmten Lebensphasen", budget::ARTICLE_TITLE));
+		assert!(!fits(
+			"Freundschaften gehören immer nur zu bestimmten Lebensphasen",
+			budget::ARTICLE_TITLE
+		));
 	}
 
 	#[test]

@@ -58,3 +58,19 @@ will not be updated when the first one rotates. Recompute it when it is needed.
 It records what a visitor did rather than counting that they came. That is a different bargain
 with the reader than page counting, and turning it on is a decision that belongs here in
 writing, not a commented-out block in a config.
+
+## The analytics hosts are resolved early, not connected early
+
+Three hosts serve the two counters: `cloud.umami.is`, which the loader is fetched from, and
+`gateway.umami.is` and `api.openpanel.dev`, which the two clients report to. Neither reporting
+host is written in this repository's own code -- umami's is a constant inside the script it
+downloads and OpenPanel's is the default baked into `@openpanel/sdk` -- so both are recorded in
+libs/urls from having been read out of them, where every address this repository resolves is
+declared.
+
+All three carry `dns-prefetch` rather than `preconnect`. A preconnect opens a socket and
+negotiates TLS before the first paint, which is the wrong trade for all three: the loader is
+deliberately `fetchpriority="low"`, and the two reporting addresses are not contacted until the
+reader already has the page. The lookup is the part that is slow on a cold cache and it is the
+part worth buying; the handshake would compete with the article for the one thing a first paint
+is short of.

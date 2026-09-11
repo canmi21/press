@@ -124,6 +124,15 @@
 	<link rel="preconnect" href={URLS.external.googleFonts.css} />
 	<link rel="preconnect" href={URLS.external.googleFonts.static} crossorigin="anonymous" />
 	<link rel="preconnect" href={new URL(URLS.external.github.cdn).origin} crossorigin="anonymous" />
+	<!-- Resolved early, not connected early. These three serve the analytics: the loader, and the
+	     two addresses the loaders report to. A preconnect would open a socket and negotiate TLS
+	     ahead of the first paint for a script deliberately marked `fetchpriority="low"` and for
+	     two requests that happen after the reader already has the page. `dns-prefetch` buys the
+	     lookup, which is the part that is slow on a cold cache, and costs nothing that competes
+	     with the article. See spec/analytics.md. -->
+	<link rel="dns-prefetch" href={new URL(URLS.external.umami).origin} />
+	<link rel="dns-prefetch" href={URLS.external.umamiGateway} />
+	<link rel="dns-prefetch" href={URLS.external.openpanel} />
 	<link
 		rel="stylesheet"
 		href="{URLS.external.googleFonts
