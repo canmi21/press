@@ -144,6 +144,22 @@ Extraction is also the moment to write the tests that only make sense for shared
 private helper is covered by its one caller; a library is not, because the behaviour each
 consumer depends on is no longer visible from any single one of them.
 
+## `app.html` carries no comments
+
+Comment freely everywhere else. This one file is a template rather than source: nothing compiles
+it, and everything in it that is not a placeholder is copied verbatim into the page template
+string and emitted on every response. A comment written there is not a note to the next reader of
+the code, it is two lines of markup served to every visitor for the life of the site, tabs
+included.
+
+Verified rather than assumed. A comment removed from it was found intact in the built server
+bundle, `.svelte-kit/output/server/chunks/internal.js`, with its indentation and newlines
+preserved -- inside the template string, not beside it.
+
+So an explanation that wants to be near the shell goes where the behaviour it explains lives: the
+component whose head emits the tag, the library the value comes from, or this file. What cannot
+happen is the explanation shipping to readers who did not ask for it.
+
 ## Where volatile facts live
 
 Directory structure is the skeleton: expensive to change, so it may only carry stable facts.
