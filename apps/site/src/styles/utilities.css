@@ -293,3 +293,67 @@ html[data-focus-source='kbd'] .focus-input-shell:has(.focus-input:focus-visible)
 	outline: 0.125rem solid var(--color-accent);
 	outline-offset: 0;
 }
+
+/* The article's line-breaking policy, declared per language rather than left to the browser.
+
+   Every value below was the browser's own default until it was written down, so pinning them
+   changes nothing today -- which is the point. These are the properties a UA is still free to
+   move, and two of them have moved recently: `text-spacing-trim` and `text-autospace` govern how
+   a CJK line treats punctuation and the seam between Han and Latin, and a change to either would
+   reshape every Chinese, Japanese and Korean paragraph on the site without anything here being
+   edited. `no-autospace` is the value this corpus needs rather than the one it happens to have:
+   Latin inside CJK is spaced with a real space the author typed, so a browser inserting its own
+   would be spacing it twice. See spec/styling.md.
+
+   The selector is `:lang()`, not a locale code, because `<html lang>` already carries the
+   resolved language -- including for the `mw` view, whose language is the article's own and
+   differs per article. A policy keyed to the language reaches that view without knowing it
+   exists. See spec/locale.md. */
+.article-content {
+	text-wrap: wrap;
+	hyphens: manual;
+	word-break: normal;
+	overflow-wrap: normal;
+	line-break: auto;
+	text-spacing-trim: normal;
+	text-autospace: no-autospace;
+}
+
+/* Languages that break between words get `pretty`, which spends nothing: measured over the 44
+   multi-line paragraphs of the longest article, it left the line count identical in all four and
+   only refused the short final lines. Paragraphs ending on under a sixth of the column went 4 to
+   1 in German, 6 to 4 in English, 3 to 0 in Spanish and 8 to 6 in French.
+
+   `balance` was measured against the same paragraphs and is not the answer here. It is capped by
+   line count, so it passes over the long paragraphs entirely and evens out only the short ones,
+   which leaves the page less consistent than it started -- and it did not clear the worst endings
+   either. It stays where it belongs, on titles. `hyphens: auto` is rejected on its own evidence:
+   it saves a handful of lines but manufactures break opportunities, and in German it took the
+   short endings the other way, 4 up to 7. See spec/styling.md. */
+.article-content:lang(en),
+.article-content:lang(de),
+.article-content:lang(es),
+.article-content:lang(fr) {
+	text-wrap: pretty;
+}
+
+/* Japanese forbids certain characters at the head of a line -- small kana, the long vowel mark,
+   closing punctuation -- and `auto` does not enforce it. Measured over the same article, `strict`
+   removed all twelve violations and cost no lines at all: 328 either way. Eight of the twelve
+   were a line opening on `ー`. See spec/styling.md. */
+.article-content:lang(ja) {
+	line-break: strict;
+}
+
+/* Korean is written with spaces but the default treats it as breakable between any two syllables,
+   so words split mid-eojeol. Measured over the same article, the default broke inside a word 110
+   times across 262 lines; `keep-all` removes every one for eight extra lines, a three percent
+   column. That is the trade this site takes: the reader's word stays whole.
+
+   Chinese needs none of this and gets none. Both scripts break between almost any two characters,
+   and `strict` was measured against `auto` on the Simplified and Traditional views: identical
+   line counts and no line opening on punctuation under either, so the default already enforces
+   the rule and there is nothing to pin beyond the block above. See spec/styling.md. */
+.article-content:lang(ko) {
+	word-break: keep-all;
+}

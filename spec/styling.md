@@ -473,7 +473,8 @@ for the rest of the move.
 
 **A wrapped note is balanced, and that was measured rather than reasoned.** By category it is
 the wrong answer: a note is a sentence, and the prose elsewhere on this site uses `text-wrap:
-pretty`, which leaves lines full and only refuses to end on a word alone. Measured on the Spanish
+pretty` wherever the language breaks between words, which leaves lines full and only refuses to
+end on a word alone -- see "Where a line ends is declared per language" below. Measured on the Spanish
 view of the article with thirty-three notes, `pretty` changed nothing at all -- every line came
 out identical to plain filling, because it intervenes only when the last line is down to about a
 word, and these end on a quarter of a line. `balance` closed all four of the short endings. The
@@ -703,6 +704,82 @@ carries useful precision (`1k`, `1.5k`, `16k`, `2.3M`). This applies to the lice
 as well as stat rows and chart axes. A count written into prose remains complete and
 locale-formatted through `Intl.NumberFormat`; compact notation is for a bounded indicator, not a
 sentence.
+
+## Where a line ends is declared per language
+
+Article prose carried no line-breaking policy at all until this was written. `.article-content`
+matched no CSS rule anywhere in the repository -- it was a hook for the note handlers and nothing
+else -- so every property governing where a line ends was whatever the browser had. Measured on
+the Simplified Chinese view before any of this: `text-wrap: wrap`, `hyphens: manual`,
+`word-break: normal`, `overflow-wrap: normal`, `line-break: auto`, `text-spacing-trim: normal`,
+`text-autospace: no-autospace`. All initial values, none of them chosen.
+
+**The policy is keyed on `:lang()`, never on a locale code.** `<html lang>` already carries the
+resolved language, and for the `mw` view that language is the article's own rather than a fixed
+one -- see [locale.md](locale.md). A rule written against the language reaches that view without
+having to know it exists, and it reaches the bare tags a frontmatter `lang` supplies (`zh`, `en`)
+as well as the full ones the eight translations carry (`zh-CN`, `en-US`).
+
+**The shared block pins the defaults, and pinning them changes nothing today.** That is the
+point. These are the values a browser is still free to move, and two of them are moving:
+`text-spacing-trim` and `text-autospace` decide how a CJK line treats its punctuation and the
+seam between Han and Latin, so a default changing under us reshapes every Chinese, Japanese and
+Korean paragraph on the site with nothing here edited. `no-autospace` is also the value this
+corpus wants rather than the one it happens to have, and the section below says why: the space
+between a Latin word and a Han character is a real space somebody typed, so a browser inserting
+its own would be spacing that seam twice.
+
+Everything below was measured on `compile-time-rendering`, the longest article in the corpus, at
+the 672px column the article is drawn at, across the forty-odd multi-line paragraphs each view
+has.
+
+**A language that breaks between words gets `text-wrap: pretty`.** It costs nothing: the line
+count came out identical to plain filling in all four -- 398 German, 329 English, 384 Spanish,
+398 French -- and only the short final lines moved. Paragraphs ending on under a sixth of the
+column:
+
+| view    | filled | `pretty` | `balance` |
+| ------- | ------ | -------- | --------- |
+| German  | 4      | 1        | 3         |
+| English | 6      | 4        | 5         |
+| Spanish | 3      | 0        | 1         |
+| French  | 8      | 6        | 6         |
+
+`balance` is not the answer for prose and the middle column is not why. It is capped by line
+count, so it passes over the long paragraphs entirely and evens out only the short ones, which
+leaves a page less consistent than it started: the median final line jumped from half the column
+to nearly three quarters in German and English while the worst endings stayed. It belongs on
+titles, which is where it already is -- the table of contents labels and the note list.
+
+`hyphens: auto` is rejected on its own evidence. It does save lines, three to eight per view, but
+it manufactures break opportunities, and more places to break means the fill can run closer to
+the edge and leave less for the last line. In German it took the short endings the wrong way, 4
+up to 7. Paired with `pretty` it is the best of the five combinations tried, at 2 -- still worse
+than `pretty` alone, which is what settled it.
+
+**Japanese gets `line-break: strict`.** Japanese typography forbids certain characters at the
+head of a line, and `auto` does not enforce it: twelve lines in this article opened on one, eight
+of them on the long vowel mark `ー` and the rest on small kana. `strict` removed all twelve and
+cost no lines at all, 328 either way. This is the clearest case on the page -- a rule the script
+has always had, applied by a value that is free.
+
+**Korean gets `word-break: keep-all`.** Korean is written with spaces, but the default treats it
+as breakable between any two syllables, so words split mid-eojeol: 110 times across 262 lines
+here. `keep-all` removes every one of them for eight extra lines, a three percent taller column.
+That is the trade this site takes, because the reader's word staying whole is worth more than
+three percent.
+
+The risk `keep-all` introduces is a long unbreakable run overflowing a narrow column, and it was
+measured rather than guarded against. Nothing overflows down to a 240px column; the first failure
+is at 200px, on a Korean parenthetical glued to a Latin initialism with no space between them.
+The article column never gets near that, so no `overflow-wrap` floor is written. If one is ever
+needed this is the paragraph that predicted it.
+
+**Chinese gets nothing beyond the shared block, and that was measured too.** `strict` was run
+against `auto` on both the Simplified and Traditional views: identical line counts, 223 and 224,
+and no line opening on punctuation under either. Chrome already applies the rule for Han, so
+there is nothing to buy. Both Chinese views take one configuration, which is also what the corpus
+wants -- the two scripts differ in their glyphs, not in where a line may end.
 
 ## Latin inside CJK is spaced with a real space
 
