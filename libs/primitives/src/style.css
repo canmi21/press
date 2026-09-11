@@ -47,7 +47,6 @@
 .article-preview-heading {
 	display: flex;
 	align-items: center;
-	gap: 0.75rem;
 }
 
 .article-preview-title {
@@ -62,9 +61,24 @@
 	white-space: nowrap;
 }
 
+/* The leader already collapses to nothing when the row runs out of room -- its flex basis is
+   zero -- but the clearance around it used to be the row's `gap`, which belongs to no item and so
+   stayed behind, holding 24px open beside a title that was being cut short for want of 2px. The
+   clearance on the title's side now lives inside the leader, where it collapses with it; the
+   date's side stays a real margin, because a truncated title still has to be told apart from the
+   date next to it. Nothing moves while there is room for the dashes. */
 .article-preview-leader {
-	height: 0;
+	display: flex;
+	min-width: 0;
 	flex: 1;
+	margin-inline-end: 0.75rem;
+	overflow: hidden;
+}
+
+.article-preview-leader::before {
+	content: '';
+	flex: 1;
+	margin-inline-start: 0.75rem;
 	border-top: 1px dashed var(--color-border-strong);
 }
 

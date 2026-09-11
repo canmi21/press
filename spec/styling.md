@@ -1099,6 +1099,25 @@ shows: an overshoot has to have somewhere to go. A spring driving `background-si
 is clipped at its limit, so the overshoot is spent on nothing and the curve should simply be
 damped out. A transform or an unconstrained layout dimension such as width has room to show it.
 
+## The leader carries the clearance it needs, so it can take it away
+
+An article row is a title, a dotted leader and a date on one line, and the leader is the part that
+gives way: its flex basis is zero, so it takes only the space the other two leave and closes to
+nothing on a narrow screen. Clearance around it was the row's `gap`, and a gap belongs to the row
+rather than to any item in it -- so when the leader closed, its 24px of clearance stayed behind,
+holding open a space with nothing in it while the title beside it was cut short for want of two
+pixels. On a phone that turned a title that fits into one ending in an ellipsis.
+
+The clearance on the title's side now lives inside the leader, as the margin of a pseudo-element
+that draws the dashes. It is part of the leader's own width, so it closes when the leader does,
+and while there is room it puts the dashes exactly where the gap used to. The date's side stays a
+real margin: it has to survive, because a title that genuinely does not fit still has to be told
+apart from the date beside it.
+
+The shape is self-limiting at the end. Once the leader is narrower than the clearance it holds,
+the dashes are zero-length and nothing is drawn, so the row never shows a two-dash stub on its way
+to showing none.
+
 ## An article is offered in one shape, wherever it is offered
 
 `::article` renders the row the homepage lists, unchanged -- the same sheet-of-bars thumbnail,
