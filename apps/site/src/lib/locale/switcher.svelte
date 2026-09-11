@@ -90,14 +90,23 @@
 	);
 
 	/**
-	 * The two icon sets are not sized the same way, and this is the one slot that holds either.
+	 * The one slot that holds either icon set, so the one place their difference is spelled out.
 	 *
-	 * Iconify marks are set by height with an automatic width; a Lucide glyph at that height
-	 * draws taller and lifts the whole metadata row, which is visible as the line shifting the
-	 * moment a reader lands on their own language. Everywhere else a slot holds one set only, so
-	 * this is the single place the difference has to be spelled out.
+	 * Iconify marks are set by height with an automatic width, and every Lucide glyph in the
+	 * metadata row this sits in is `size-3.5`. The compass was a step under that, on the grounds
+	 * that a larger Lucide glyph lifted the row -- measured at 3.25, 3.5 and 4, the row is 24rem
+	 * high at all three and nothing moves. That reason is gone.
+	 *
+	 * What is left is the glyph's own shape, and it is the reason this is not simply `size-3.5`.
+	 * Lucide does not fill its box consistently: at the same 14px, `Type` inks 10.5px and
+	 * `Sparkles` 12.8px. The compass inks 12.8px there too, but it reaches its box on every side
+	 * because it is a circle, and a circle that reaches its box reads smaller than a glyph that
+	 * only reaches it at the corners. So it is set one step above the row's Lucide size -- about
+	 * 7%, which is the usual correction for a round mark among angular ones.
 	 */
-	const markSize = $derived(code === preferred ? 'size-3.25' : 'h-4 w-auto');
+	const COMPASS_SIZE = 'size-3.75';
+
+	const markSize = $derived(code === preferred ? COMPASS_SIZE : 'h-4 w-auto');
 
 	function choose(nextCode: string) {
 		open = false;

@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'node:url';
 import { URLS } from '@canmi/urls';
-import { describe, expect, it } from 'vitest';
+import { beforeAll, describe, expect, it } from 'vitest';
 import { buildArticles, summaryFor, translatedRaws } from './articles';
 import { sourceFingerprint, type SegmentSpan } from './assemble';
 
@@ -21,10 +21,27 @@ function paths() {
 	};
 }
 
+/**
+ * One build of the real corpus, shared by everything below that needs the published set.
+ *
+ * Compiling every article is the expensive part of this file, and it was being paid three times:
+ * once here and twice by the draft suite. Two of those asked the same question. The remaining
+ * second build is the one that cannot be shared, because its whole point is the other policy.
+ *
+ * `beforeAll` carries its own timeout because the default is five seconds and this is a real
+ * compile of the whole corpus -- it fits alone and does not fit beside a Rust build, which is
+ * exactly what `mise run verify` runs it beside.
+ */
+let withDrafts: Awaited<ReturnType<typeof buildArticles>>;
+
+beforeAll(async () => {
+	withDrafts = await buildArticles(paths(), { drafts: true });
+}, 60_000);
+
 describe('article widget build inputs', () => {
 	it('watches embed records and compiles every widget in the real article', async () => {
 		const { crates, repos, tweets } = paths();
-		const { articles, files } = await buildArticles(paths(), { drafts: true });
+		const { articles, files } = withDrafts;
 
 		expect(files).toEqual(expect.arrayContaining([crates, repos, tweets]));
 		const article = articles.find(
@@ -114,10 +131,7 @@ it('falls back a missing localized summary to English and then to no summary', (
 
 describe('drafts', () => {
 	it('keeps a draft out of a production build and in every other one', async () => {
-		const [withDrafts, withoutDrafts] = await Promise.all([
-			buildArticles(paths(), { drafts: true }),
-			buildArticles(paths(), { drafts: false }),
-		]);
+		const withoutDrafts = await buildArticles(paths(), { drafts: false });
 
 		const drafted = withDrafts.articles.filter((article) => article.meta.draft === true);
 		// An assertion about the corpus, not about a fixture: it is what makes the next two mean
@@ -133,5 +147,5 @@ describe('drafts', () => {
 			withDrafts.articles.map((article) => article.path).filter((path) => !withheld.has(path)),
 		);
 		expect(withoutDrafts.articles.every((article) => article.meta.draft !== true)).toBe(true);
-	});
+	}, 60_000);
 });
