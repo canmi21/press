@@ -11,7 +11,11 @@ export type SegmentSpan = {
 	start: number;
 	end: number;
 	fingerprint: string;
-	region: 'frontmatter' | 'body';
+	/** `display` spans address a string that was asked for rather than written, so they have no
+	 *  bytes to substitute and the assembler steps over them. */
+	region: 'frontmatter' | 'body' | 'display';
+	/** Which drawn field a frontmatter or display span is. Absent for body prose. */
+	field?: 'title' | 'subtitle' | 'short-title' | 'short-subtitle';
 };
 
 export type SegmentLayout = {
@@ -41,8 +45,14 @@ export function assemble(
 	const decoder = new TextDecoder('utf-8', { fatal: true });
 	const missing: string[] = [];
 
+	// A `display` span carries a string the article does not contain -- a short title is asked
+	// for, not written -- so it addresses a sidecar entry and substitutes nothing. It also
+	// borrows the range of the full form it was written from, which would read here as two spans
+	// covering the same bytes. Substitution sees only the spans that are spans.
+	const placed = spans.filter((span) => span.region !== 'display');
+
 	let previousEnd = 0;
-	for (const span of spans) {
+	for (const span of placed) {
 		if (
 			!Number.isSafeInteger(span.start) ||
 			!Number.isSafeInteger(span.end) ||
@@ -63,7 +73,7 @@ export function assemble(
 	let translated = '';
 	const sourceContent: string[] = [];
 	const translatedContent: string[] = [];
-	for (const span of spans) {
+	for (const span of placed) {
 		try {
 			translated += decoder.decode(bytes.subarray(cursor, span.start));
 			const source = decoder.decode(bytes.subarray(span.start, span.end));

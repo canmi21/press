@@ -225,6 +225,10 @@ export type InlineSegment =
 			href: string;
 			label: string;
 			newTab: boolean;
+			/** `wide` / `narrow` from the directive, as the classes that act on them. A link is the
+			 *  one run that cannot be wrapped in `:t` -- nested, it stops being a link -- so it
+			 *  carries its own width the way a `:t` run carries one. See spec/styling.md. */
+			width?: string;
 	  };
 
 export type PageBlock = { type: 'p'; segments: InlineSegment[] } | { type: 'html'; html: string };

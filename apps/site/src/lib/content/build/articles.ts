@@ -43,7 +43,7 @@ import { languageTag, LOCALE_CODES, PUBLIC_LANGUAGE, type LocaleCode } from '../
 import { highlight } from './highlight.ts';
 import { buildPreviews } from './placeholder.ts';
 
-const SEGMENT_LAYOUT_VERSION = 3;
+const SEGMENT_LAYOUT_VERSION = 4;
 
 type SummarySidecar = { summary?: Record<string, { text?: string; provider?: string }> };
 

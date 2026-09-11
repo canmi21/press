@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "articles": {
     "architecture/compile-time-rendering.md": [
       {
@@ -7,14 +7,16 @@
         "start": 10,
         "end": 34,
         "fingerprint": "80d204c4",
-        "region": "frontmatter"
+        "region": "frontmatter",
+        "field": "title"
       },
       {
         "id": "7039d1334cf4ac0b9759edca4d22b17c",
         "start": 44,
         "end": 82,
         "fingerprint": "e8ec0b8a",
-        "region": "frontmatter"
+        "region": "frontmatter",
+        "field": "subtitle"
       },
       {
         "id": "a66d7e8297a97144113a2bed5312a375",
@@ -22,6 +24,22 @@
         "end": 363,
         "fingerprint": "a397f63f",
         "region": "frontmatter"
+      },
+      {
+        "id": "2e1dd1ddeca1e2a1d5ad21d6440da6a2",
+        "start": 10,
+        "end": 34,
+        "fingerprint": "80d204c4",
+        "region": "display",
+        "field": "short-title"
+      },
+      {
+        "id": "5d5a0b3a32b2f9c5bbc758dea68b7e53",
+        "start": 44,
+        "end": 82,
+        "fingerprint": "e8ec0b8a",
+        "region": "display",
+        "field": "short-subtitle"
       },
       {
         "id": "95c8b6f6d1d4ceebcfc333965ffee9cf",
@@ -492,14 +510,16 @@
         "start": 10,
         "end": 27,
         "fingerprint": "54a9c572",
-        "region": "frontmatter"
+        "region": "frontmatter",
+        "field": "title"
       },
       {
         "id": "3b29a848f07331b00d4556c1d50251c5",
         "start": 37,
         "end": 84,
         "fingerprint": "44f5a300",
-        "region": "frontmatter"
+        "region": "frontmatter",
+        "field": "subtitle"
       },
       {
         "id": "4231a504b932a858791b4e47a7379a8f",
@@ -507,6 +527,22 @@
         "end": 376,
         "fingerprint": "485bee7b",
         "region": "frontmatter"
+      },
+      {
+        "id": "0668ef005a29622182b016435c5aeda0",
+        "start": 10,
+        "end": 27,
+        "fingerprint": "54a9c572",
+        "region": "display",
+        "field": "short-title"
+      },
+      {
+        "id": "fb35d0a95ec5d6bf0cb507fea6dedce1",
+        "start": 37,
+        "end": 84,
+        "fingerprint": "44f5a300",
+        "region": "display",
+        "field": "short-subtitle"
       },
       {
         "id": "a6fff05b8d3ecbc09055244bcf25944a",
@@ -1481,14 +1517,16 @@
         "start": 10,
         "end": 19,
         "fingerprint": "03426626",
-        "region": "frontmatter"
+        "region": "frontmatter",
+        "field": "title"
       },
       {
         "id": "111a6f78428961718b6b2e04be7bcc17",
         "start": 29,
         "end": 86,
         "fingerprint": "d6bd22dd",
-        "region": "frontmatter"
+        "region": "frontmatter",
+        "field": "subtitle"
       },
       {
         "id": "f3f1a5c7f238e27ffe47cb3cb275008a",
@@ -1496,6 +1534,22 @@
         "end": 261,
         "fingerprint": "cff8a16e",
         "region": "frontmatter"
+      },
+      {
+        "id": "c5b2344515902165f6bf3279d4f5fa25",
+        "start": 10,
+        "end": 19,
+        "fingerprint": "03426626",
+        "region": "display",
+        "field": "short-title"
+      },
+      {
+        "id": "f63540330030da751a5d4f46cf0a1d77",
+        "start": 29,
+        "end": 86,
+        "fingerprint": "d6bd22dd",
+        "region": "display",
+        "field": "short-subtitle"
       },
       {
         "id": "c868b0261774d0914ab07176fddb97f0",
@@ -1581,14 +1635,16 @@
         "start": 10,
         "end": 36,
         "fingerprint": "68bfdf0f",
-        "region": "frontmatter"
+        "region": "frontmatter",
+        "field": "title"
       },
       {
         "id": "88551a1239b60d2cd9e0b979acf4e742",
         "start": 46,
         "end": 95,
         "fingerprint": "1f46a102",
-        "region": "frontmatter"
+        "region": "frontmatter",
+        "field": "subtitle"
       },
       {
         "id": "daf36a3490b545034e4de52103d4b575",
@@ -1596,6 +1652,22 @@
         "end": 339,
         "fingerprint": "c9ef3d3a",
         "region": "frontmatter"
+      },
+      {
+        "id": "a396d6de611aacf19d94b510f0dd93a0",
+        "start": 10,
+        "end": 36,
+        "fingerprint": "68bfdf0f",
+        "region": "display",
+        "field": "short-title"
+      },
+      {
+        "id": "9008a5e94ca3eb8cab34b3adf53db169",
+        "start": 46,
+        "end": 95,
+        "fingerprint": "1f46a102",
+        "region": "display",
+        "field": "short-subtitle"
       },
       {
         "id": "8f107e6c4908d70a5555730342bbba94",
@@ -1919,7 +1991,8 @@
         "start": 10,
         "end": 16,
         "fingerprint": "ed52b2e9",
-        "region": "frontmatter"
+        "region": "frontmatter",
+        "field": "title"
       },
       {
         "id": "b8de478138706b6f5c1aa10eec4f58ad",
@@ -1929,6 +2002,14 @@
         "region": "frontmatter"
       },
       {
+        "id": "caded9278c075de038f899589705abfc",
+        "start": 10,
+        "end": 16,
+        "fingerprint": "ed52b2e9",
+        "region": "display",
+        "field": "short-title"
+      },
+      {
         "id": "dd04681558cf3637d8a81ee1296ef772",
         "start": 207,
         "end": 597,
@@ -1936,10 +2017,10 @@
         "region": "body"
       },
       {
-        "id": "8f767e3ddce66f614421b98a2fe01a04",
+        "id": "07c04aa86ae2eca37962826b04eb23ec",
         "start": 599,
-        "end": 935,
-        "fingerprint": "bb837d65",
+        "end": 977,
+        "fingerprint": "ede16a30",
         "region": "body"
       }
     ],
@@ -1949,14 +2030,16 @@
         "start": 10,
         "end": 23,
         "fingerprint": "59f0c9ef",
-        "region": "frontmatter"
+        "region": "frontmatter",
+        "field": "title"
       },
       {
         "id": "b60e899dca8ebe5689336bfe87e8278c",
         "start": 33,
         "end": 66,
         "fingerprint": "9bbd9702",
-        "region": "frontmatter"
+        "region": "frontmatter",
+        "field": "subtitle"
       },
       {
         "id": "00aa63a1acb8da75178976e034a46db3",
@@ -1964,6 +2047,22 @@
         "end": 287,
         "fingerprint": "86441d8f",
         "region": "frontmatter"
+      },
+      {
+        "id": "45b98d1bf4517b822ec507922c39043c",
+        "start": 10,
+        "end": 23,
+        "fingerprint": "59f0c9ef",
+        "region": "display",
+        "field": "short-title"
+      },
+      {
+        "id": "e265208f244c923ee73af6dc04399e3c",
+        "start": 33,
+        "end": 66,
+        "fingerprint": "9bbd9702",
+        "region": "display",
+        "field": "short-subtitle"
       },
       {
         "id": "b99b9fcffe3b3af02b601b9e4b16d415",
@@ -2196,14 +2295,16 @@
         "start": 10,
         "end": 35,
         "fingerprint": "9bf03c93",
-        "region": "frontmatter"
+        "region": "frontmatter",
+        "field": "title"
       },
       {
         "id": "834c9e38aad83ded9c6245ca516987d2",
         "start": 45,
         "end": 82,
         "fingerprint": "22fdfd7b",
-        "region": "frontmatter"
+        "region": "frontmatter",
+        "field": "subtitle"
       },
       {
         "id": "9dea58104d5acf9da110bc4ad2084f2b",
@@ -2211,6 +2312,22 @@
         "end": 309,
         "fingerprint": "dd747024",
         "region": "frontmatter"
+      },
+      {
+        "id": "ea138aa292e47d23070889288f0653ca",
+        "start": 10,
+        "end": 35,
+        "fingerprint": "9bf03c93",
+        "region": "display",
+        "field": "short-title"
+      },
+      {
+        "id": "29aa793526aed29c912370065ed17569",
+        "start": 45,
+        "end": 82,
+        "fingerprint": "22fdfd7b",
+        "region": "display",
+        "field": "short-subtitle"
       },
       {
         "id": "eed224288e33c1447f7dbad8a87bd42e",
@@ -2373,14 +2490,16 @@
         "start": 10,
         "end": 26,
         "fingerprint": "570d2885",
-        "region": "frontmatter"
+        "region": "frontmatter",
+        "field": "title"
       },
       {
         "id": "397652d5755e8b85e26bbe709fdc99bc",
         "start": 36,
         "end": 73,
         "fingerprint": "dda4f1b4",
-        "region": "frontmatter"
+        "region": "frontmatter",
+        "field": "subtitle"
       },
       {
         "id": "b20418b65885f121bdfee9a54e31d21e",
@@ -2388,6 +2507,22 @@
         "end": 300,
         "fingerprint": "f6006bd4",
         "region": "frontmatter"
+      },
+      {
+        "id": "cbad6bc48cb84e8b6788c2c7d1c30eea",
+        "start": 10,
+        "end": 26,
+        "fingerprint": "570d2885",
+        "region": "display",
+        "field": "short-title"
+      },
+      {
+        "id": "b1fd5fc24f31e9cc846f51a90a710058",
+        "start": 36,
+        "end": 73,
+        "fingerprint": "dda4f1b4",
+        "region": "display",
+        "field": "short-subtitle"
       },
       {
         "id": "86c5fbdb33d50086883e7552c0b7c428",

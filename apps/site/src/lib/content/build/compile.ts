@@ -1050,12 +1050,24 @@ function inlineSegments(node: Paragraph, newTabNote: string): InlineSegment[] {
 			const attrs = (child.attributes ?? {}) as DirectiveAttrs;
 			const label = mdastToString(child);
 			const { href, newTab, platform } = resolveLink(label, attrs);
+			// Both spellings are variants, and a variant sorts after a plain utility. The `:t`
+			// markers above can say `hidden sm:inline` because a span has no display utility to
+			// argue with; a link is `inline-flex` for its icon, and `hidden` is the same kind of
+			// declaration at the same level, so which one won would be decided by Tailwind's
+			// emission order rather than by this file. `max-sm:hidden` is not that argument.
+			const width = [
+				'wide' in attrs ? 'max-sm:hidden' : '',
+				'narrow' in attrs ? 'sm:hidden' : '',
+			]
+				.filter(Boolean)
+				.join(' ');
 			segments.push({
 				type: 'link',
 				icon: platform,
 				href,
 				label,
 				newTab,
+				...(width ? { width } : {}),
 			});
 		} else {
 			run.push(proseHtml(child as RootContent, newTabNote));

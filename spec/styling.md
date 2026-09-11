@@ -1268,6 +1268,18 @@ disappears is the one sentence that enumerates rather than says anything: on a p
 first thing that reads as a list, and it carries the two unbreakable runs that made the paragraph
 rag badly in the first place.
 
+**A link carries its own width, because it is the one run that cannot be wrapped.** `:link`
+nested inside `:t` stops being a link, so the four markers above cannot reach it -- and the email
+link needs two forms, `drop me an email` on a wide screen and `Email` on a phone, where the
+capital is doing the work the dropped words did. So `wide` and `narrow` are read off the `:link`
+directive itself and travel with the segment.
+
+They are spelled as variants there, `max-sm:hidden` and `sm:hidden`, where a `:t` run says
+`hidden sm:inline`. A span has no display utility to argue with; a link is `inline-flex` for its
+icon, and `hidden` is the same kind of declaration at the same level, so which of the two won
+would be settled by Tailwind's emission order rather than by anything written here. A variant
+sorts after a plain utility and is not that argument.
+
 **Mark the run before a break, never the run after it.** A `:link` rendered inside another
 directive stops being a top-level node, and the homepage renders those live so their icons come
 from the shared component -- nested, they come back as plain anchors, and the accessible new-tab

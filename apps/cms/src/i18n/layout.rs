@@ -9,7 +9,7 @@ use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 
 pub const FILE: &str = "data/build/segments.json";
-pub const VERSION: u8 = 3;
+pub const VERSION: u8 = 4;
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Span {
@@ -17,7 +17,14 @@ pub struct Span {
 	pub start: usize,
 	pub end: usize,
 	pub fingerprint: String,
+	/// `frontmatter` and `body` are spans of the article, substituted in place. `display` is not:
+	/// it addresses a stored string that was asked for rather than written, so it has no bytes of
+	/// its own and the assembler steps over it. Its range is the full form it was written from,
+	/// which is what has to change for it to go stale.
 	pub region: String,
+	/// Which drawn field this is, for the spans that are one. Absent for body prose.
+	#[serde(skip_serializing_if = "Option::is_none")]
+	pub field: Option<String>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -57,16 +64,25 @@ pub fn build(root: &Path) -> std::io::Result<Layout> {
 			.filter(|segment| segment.kind.translatable())
 			.map(|segment| {
 				let bytes = &article.as_bytes()[segment.start..segment.end];
+				let short = matches!(
+					segment.display,
+					Some(super::segment::Display::ShortTitle | super::segment::Display::ShortSubtitle)
+				);
 				Span {
 					id: segment.id,
 					start: segment.start,
 					end: segment.end,
 					fingerprint: fingerprint(bytes),
-					region: match segment.region {
-						super::segment::Region::Frontmatter => "frontmatter",
-						super::segment::Region::Body => "body",
+					region: if short {
+						"display"
+					} else {
+						match segment.region {
+							super::segment::Region::Frontmatter => "frontmatter",
+							super::segment::Region::Body => "body",
+						}
 					}
 					.to_owned(),
+					field: segment.display.map(|field| field.name().to_owned()),
 				}
 			})
 			.collect();

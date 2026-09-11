@@ -804,9 +804,14 @@ mod tests {
 		let selected =
 			segments.iter().filter(|segment| Scope::Frontmatter.includes(segment)).collect::<Vec<_>>();
 
-		assert_eq!(selected.len(), 1);
-		assert_eq!(selected[0].source, "Visible title");
-		assert_eq!(selected[0].region, segment::Region::Frontmatter);
+		// The title and the short form written from it, and nothing from the body.
+		assert_eq!(selected.len(), 2);
+		assert!(selected.iter().all(|segment| segment.source == "Visible title"));
+		assert!(selected.iter().all(|segment| segment.region == segment::Region::Frontmatter));
+		assert_eq!(
+			selected.iter().map(|segment| segment.display).collect::<Vec<_>>(),
+			vec![Some(segment::Display::Title), Some(segment::Display::ShortTitle)],
+		);
 	}
 
 	#[test]

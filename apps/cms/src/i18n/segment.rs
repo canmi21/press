@@ -330,6 +330,35 @@ fn frontmatter_segments(
 			end: absolute_start + end,
 		});
 	}
+
+	// A phone card clips the title and the subtitle, so each also has a short form. Neither is
+	// written in the article: they are asked for, and they exist here so the rest of the pipeline
+	// -- what is missing, what is claimed, what is stored -- can treat them like any other block.
+	//
+	// The source of a short form is the full form, which is what has to be read to write one. Its
+	// id is that text under a namespace, so the two never collide and editing the title moves both
+	// of them at once. The byte range is the full form's, which is what the build artifact
+	// fingerprints: a short title goes stale exactly when the title it shortens is edited.
+	let shorts: Vec<Segment> = segments
+		.iter()
+		.filter_map(|segment| {
+			let short = match segment.display? {
+				Display::Title => Display::ShortTitle,
+				Display::Subtitle => Display::ShortSubtitle,
+				Display::ShortTitle | Display::ShortSubtitle => return None,
+			};
+			Some(Segment {
+				id: id_of(&format!("{}\n{}", short.name(), segment.source)),
+				kind: segment.kind,
+				source: segment.source.clone(),
+				region: segment.region,
+				display: Some(short),
+				start: segment.start,
+				end: segment.end,
+			})
+		})
+		.collect();
+	segments.extend(shorts);
 	Ok(segments)
 }
 
@@ -514,14 +543,15 @@ mod tests {
 	fn frontmatter_is_not_a_segment() {
 		let article = "---\ntitle: A\nlang: zh\n---\n\nbody text";
 		let segments = split(article).expect("segments");
-		assert_eq!(segments.len(), 2);
+		// The title, the short form it brings with it, and the body.
+		assert_eq!(segments.len(), 3);
 		assert_eq!(segments[0].source, "A");
 		assert_eq!(segments[0].region, Region::Frontmatter);
 		assert!(!segments.iter().any(|segment| segment.source.contains("title:")));
 		assert_eq!(&article[segments[0].start..segments[0].end], " A");
-		assert_eq!(segments[1].source, "body text");
-		assert_eq!(segments[1].region, Region::Body);
-		assert_eq!(&article[segments[1].start..segments[1].end], "body text");
+		let body = segments.iter().find(|s| s.region == Region::Body).expect("body");
+		assert_eq!(body.source, "body text");
+		assert_eq!(&article[body.start..body.end], "body text");
 	}
 
 	#[test]
@@ -532,12 +562,18 @@ mod tests {
 		let after = split(
 			"---\ntitle: After\nsubtitle: Same subtitle\ndescription: Same description\nlang: zh\n---\n\nSame body",
 		).expect("segments");
-		assert_eq!(before.len(), 4);
-		assert_eq!(after.len(), 4);
-		assert_ne!(before[0].id, after[0].id);
-		for index in 1..before.len() {
-			assert_eq!(before[index].id, after[index].id);
-		}
+		// Title, subtitle, description, the two short forms, and the body.
+		assert_eq!(before.len(), 6);
+		assert_eq!(after.len(), 6);
+
+		// Two segments read the title: the title and the short form of it. Both move.
+		let moved: Vec<Option<Display>> = before
+			.iter()
+			.zip(&after)
+			.filter(|(b, a)| b.id != a.id)
+			.map(|(b, _)| b.display)
+			.collect();
+		assert_eq!(moved, vec![Some(Display::Title), Some(Display::ShortTitle)]);
 	}
 
 	#[test]
@@ -546,8 +582,9 @@ mod tests {
 			"---\ntitle: Visible\nlang: zh\ncreated: 2026-08-02\nviews: 5\nfuture: Never send me\n---\n\nBody",
 		).expect("segments");
 		let sources = live.values().map(|segment| segment.source.as_str()).collect::<Vec<_>>();
-		assert_eq!(sources.len(), 2);
-		assert!(sources.contains(&"Visible"));
+		// `Visible` twice: the title, and the short form that is written from it.
+		assert_eq!(sources.len(), 3);
+		assert_eq!(sources.iter().filter(|s| **s == "Visible").count(), 2);
 		assert!(sources.contains(&"Body"));
 		assert!(!sources.contains(&"zh"));
 		assert!(!sources.contains(&"Never send me"));
@@ -597,5 +634,51 @@ mod tests {
 		let segments = split(article).expect("segments");
 		assert_eq!(segments[0].source, "first line second line");
 		assert_eq!(&article[segments[0].start..segments[0].end], "\n  first line\n  second line");
+	}
+
+	#[test]
+	fn a_drawn_frontmatter_field_brings_a_short_form_with_it() {
+		let segments = split("---\ntitle: A title\nsubtitle: A subtitle\nlang: zh\n---\n\nBody")
+			.expect("split");
+		let fields: Vec<Option<Display>> = segments.iter().map(|s| s.display).collect();
+		assert!(fields.contains(&Some(Display::Title)));
+		assert!(fields.contains(&Some(Display::Subtitle)));
+		assert!(fields.contains(&Some(Display::ShortTitle)));
+		assert!(fields.contains(&Some(Display::ShortSubtitle)));
+	}
+
+	#[test]
+	fn a_short_form_reads_the_full_form_and_is_addressed_apart_from_it() {
+		let segments = split("---\ntitle: A title\nlang: zh\n---\n\nBody").expect("split");
+		let full = segments.iter().find(|s| s.display == Some(Display::Title)).expect("title");
+		let short =
+			segments.iter().find(|s| s.display == Some(Display::ShortTitle)).expect("short title");
+		// What has to be read to write one is the full form, so that is the source.
+		assert_eq!(short.source, full.source);
+		// And it is stored under an id of its own, or the two would be one entry.
+		assert_ne!(short.id, full.id);
+	}
+
+	#[test]
+	fn a_description_is_not_drawn_and_brings_no_short_form() {
+		let segments =
+			split("---\ndescription: Something summarised\nlang: zh\n---\n\nBody").expect("split");
+		assert!(segments.iter().all(|s| s.display.is_none()));
+	}
+
+	#[test]
+	fn editing_a_title_moves_its_short_form_with_it() {
+		let short_of = |article: &str| {
+			split(article)
+				.expect("split")
+				.into_iter()
+				.find(|s| s.display == Some(Display::ShortTitle))
+				.expect("short title")
+				.id
+		};
+		assert_ne!(
+			short_of("---\ntitle: Before\nlang: zh\n---\n\nBody"),
+			short_of("---\ntitle: After\nlang: zh\n---\n\nBody"),
+		);
 	}
 }
