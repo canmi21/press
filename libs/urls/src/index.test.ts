@@ -60,6 +60,14 @@ describe('isDevHost', () => {
 		expect(isDevHost('127.0.0.1')).toBe(true);
 	});
 
+	it('matches the IPv6 loopback as a URL spells it', () => {
+		// The site binds `::`, so a request can arrive over IPv6. `URL.hostname` normalises every
+		// spelling to the bracketed one, which is what a caller actually hands over.
+		expect(isDevHost(new URL('http://[::1]:26512/').hostname)).toBe(true);
+		expect(isDevHost(new URL('http://[0:0:0:0:0:0:0:1]:26512/').hostname)).toBe(true);
+		expect(isDevHost('::1')).toBe(true);
+	});
+
 	it('rejects production hosts', () => {
 		expect(isDevHost(hostname(URLS.apps.production.site))).toBe(false);
 		expect(isDevHost(hostname(URLS.apps.production.api))).toBe(false);

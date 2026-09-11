@@ -190,8 +190,22 @@ export function pageUrls(isDev: boolean): UrlMap {
  */
 export const LOOPBACK_HOST = '127.0.0.1';
 
+/**
+ * The hostnames that mean this machine.
+ *
+ * `[::1]` in brackets, which is the form every caller here has: `URL.hostname` normalises each
+ * spelling of the IPv6 loopback to that one, and a `Host` header brackets it too. The bare form
+ * sits beside it for a caller that takes a host apart itself. Without them a request that arrived
+ * over IPv6 -- which it can, since the site binds `::` -- was read as production and answered
+ * with production addresses.
+ *
+ * The IPv4 literal is `LOOPBACK_HOST` because it is the same address, not because recognising a
+ * host and binding one are the same job.
+ */
+const DEV_HOSTS: ReadonlySet<string> = new Set(['localhost', LOOPBACK_HOST, '[::1]', '::1']);
+
 export function isDevHost(hostname: string): boolean {
-	return hostname === 'localhost' || hostname === LOOPBACK_HOST;
+	return DEV_HOSTS.has(hostname);
 }
 
 export function loopbackUrl(port: number): string {
