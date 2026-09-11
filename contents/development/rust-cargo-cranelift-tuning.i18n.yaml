@@ -1757,68 +1757,68 @@ segments:
       review: false
   9008a5e94ca3eb8cab34b3adf53db169:
     de-DE:
-      text: Rust-Konfiguration optimieren
+      text: Rust in der Praxis konfigurieren
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:58:17.749944Z
-      seconds: 43.507834042
-      tokens: 38719
+      at: 2026-09-11T17:56:25.963275Z
+      seconds: 4.514577041
+      tokens: 35357
       review: false
     en-US:
-      text: Rust config tuning in practice
+      text: Tuning Rust in practice
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:58:17.749944Z
-      seconds: 43.507834042
-      tokens: 38719
+      at: 2026-09-11T17:56:25.963275Z
+      seconds: 4.514577041
+      tokens: 35357
       review: false
     es-ES:
-      text: Optimizar la configuración de Rust
+      text: Configuración de Rust en la práctica
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:58:17.749944Z
-      seconds: 43.507834042
-      tokens: 38719
+      at: 2026-09-11T18:02:32.613414Z
+      seconds: 16.024702125
+      tokens: 36334
       review: false
     fr-FR:
-      text: Optimiser la config Rust
+      text: Configurer Rust sur le terrain
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:58:17.749944Z
-      seconds: 43.507834042
-      tokens: 38719
+      at: 2026-09-11T17:56:25.963275Z
+      seconds: 4.514577041
+      tokens: 35357
       review: false
     ja-JP:
-      text: 実践で学ぶ Rust 設定最適化
+      text: 実践で設定を最適化
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:58:17.749944Z
-      seconds: 43.507834042
-      tokens: 38719
+      at: 2026-09-11T17:56:25.963275Z
+      seconds: 4.514577041
+      tokens: 35357
       review: false
     ko-KR:
-      text: 실전 Rust 설정 최적화
+      text: 실전에서 설정 최적화
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:58:17.749944Z
-      seconds: 43.507834042
-      tokens: 38719
+      at: 2026-09-11T17:56:25.963275Z
+      seconds: 4.514577041
+      tokens: 35357
       review: false
     zh-CN:
-      text: 实际开发中的 Rust 配置调优
+      text: 实战里的配置调优
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:58:17.749944Z
-      seconds: 43.507834042
-      tokens: 38719
+      at: 2026-09-11T17:56:25.963275Z
+      seconds: 4.514577041
+      tokens: 35357
       review: false
     zh-TW:
-      text: 實務中的 Rust 設定調校
+      text: 實務中的設定調校
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:58:17.749944Z
-      seconds: 43.507834042
-      tokens: 38719
+      at: 2026-09-11T17:56:25.963275Z
+      seconds: 4.514577041
+      tokens: 35357
       review: false
   932ed4fb81fe3ff80b0d225149714615:
     de-DE:

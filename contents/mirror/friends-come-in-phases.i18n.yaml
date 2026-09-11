@@ -67,68 +67,68 @@ segments:
       review: false
   29aa793526aed29c912370065ed17569:
     de-DE:
-      text: Meine fragilen Beziehungen?
+      text: Über meine fragilen Beziehungen
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:07.638127Z
-      seconds: 7.103662708
-      tokens: 35411
+      at: 2026-09-11T17:55:31.030987Z
+      seconds: 4.3687495
+      tokens: 35297
       review: false
     en-US:
-      text: My fragile relationships?
+      text: On my fragile relationships
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:07.638127Z
-      seconds: 7.103662708
-      tokens: 35411
+      at: 2026-09-11T17:55:31.030987Z
+      seconds: 4.3687495
+      tokens: 35297
       review: false
     es-ES:
-      text: ¿Mis frágiles relaciones?
+      text: Sobre mis frágiles relaciones
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:07.638127Z
-      seconds: 7.103662708
-      tokens: 35411
+      at: 2026-09-11T17:55:31.030987Z
+      seconds: 4.3687495
+      tokens: 35297
       review: false
     fr-FR:
-      text: Mes relations fragiles ?
+      text: Sur mes relations fragiles
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:07.638127Z
-      seconds: 7.103662708
-      tokens: 35411
+      at: 2026-09-11T17:55:31.030987Z
+      seconds: 4.3687495
+      tokens: 35297
       review: false
     ja-JP:
-      text: 脆い人間関係を探る？
+      text: 私の脆い人間関係の話
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:07.638127Z
-      seconds: 7.103662708
-      tokens: 35411
+      at: 2026-09-11T17:55:31.030987Z
+      seconds: 4.3687495
+      tokens: 35297
       review: false
     ko-KR:
-      text: 나의 연약한 인간관계?
+      text: 나의 연약한 인간관계
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:07.638127Z
-      seconds: 7.103662708
-      tokens: 35411
+      at: 2026-09-11T17:55:31.030987Z
+      seconds: 4.3687495
+      tokens: 35297
       review: false
     zh-CN:
       text: 我那脆弱的人际关系？
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:07.638127Z
-      seconds: 7.103662708
-      tokens: 35411
+      at: 2026-09-11T17:55:31.030987Z
+      seconds: 4.3687495
+      tokens: 35297
       review: false
     zh-TW:
       text: 我那脆弱的人際關係？
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:07.638127Z
-      seconds: 7.103662708
-      tokens: 35411
+      at: 2026-09-11T17:55:31.030987Z
+      seconds: 4.3687495
+      tokens: 35297
       review: false
   2f54811542df442ca2b6c09151b005a1:
     de-DE:

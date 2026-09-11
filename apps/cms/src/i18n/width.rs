@@ -31,19 +31,104 @@ pub const CLAMP: usize = ONE_LINE * 2;
 /// 13.84, full-width punctuation 12.57, and a Latin character averages 7.72 over the real corpus
 /// with the widest single string reaching 8.55.
 ///
-/// So three classes, and each rounded the safe way. Latin is charged 8.6, above the widest string
-/// observed rather than at the average, because the homepage clips with an ellipsis and an
-/// underestimate is a visible truncation while an overestimate is only slightly shorter copy.
-/// Hangul is charged 14.0 rather than the 16.0 its width class would imply, which would cost
-/// Korean a fifth of its budget in a script that is already dense. Full-width punctuation is
-/// charged as wide, which is conservative and rare enough not to matter.
+/// Han and kana draw a full square and Hangul draws 13.84 of one, so those two are constants.
+/// Latin is a table, because a blunt average there is not a small error: `i` advances 3.88px and
+/// `W` 16.14, and a single figure chosen safely above both charges an ordinary sentence about a
+/// tenth more than it draws. That tenth is not free -- it is a tenth of every budget, taken from
+/// the copy -- and it is what left Spanish with three pixels of room on a line that needed four.
 ///
-/// The CMS has no font and should not grow a reason to load one, so this is an estimate. It is
-/// paired with a check that refuses what does not fit and asks again; see `runner`. What it must
-/// never do is come in under the truth, and the tests hold it to that against measured strings.
+/// The advances are measured, not looked up in the font file: each character is drawn twenty
+/// times on a canvas at the size and weight a card title uses -- the heavier of the two faces
+/// these budgets cover -- and the run divided by twenty, which is the
+/// shaped advance rather than the nominal one. Against whole strings the sum lands within 3px of
+/// what the browser renders, and always above it -- kerning only ever brings real text in
+/// narrower than the sum of its advances, so the estimate errs the one way it may.
 pub const PX_WIDE: f32 = 16.0;
 pub const PX_HANGUL: f32 = 14.0;
-pub const PX_NARROW: f32 = 8.6;
+/// A character outside the table, which for the nine locales here means none of them.
+pub const PX_UNKNOWN: f32 = 10.0;
+
+/// The advance of one Latin character at 16px, measured in the rendered page.
+fn latin(c: char) -> f32 {
+	match c {
+		'W' => 16.4,
+		'%' => 15.89,
+		'@' => 15.72,
+		'M' => 14.6,
+		'…' => 14.56,
+		'm' => 14.21,
+		'w' => 13.26,
+		'Q' => 12.3,
+		'O' | 'Ó' => 12.27,
+		'N' | 'Ñ' => 12.1,
+		'G' => 11.96,
+		'H' => 11.91,
+		'U' | 'Ú' | 'Ü' => 11.84,
+		'C' | 'Ç' => 11.74,
+		'A' | 'V' | 'À' | 'Á' => 11.56,
+		'D' => 11.55,
+		'X' => 11.21,
+		'Y' => 11.14,
+		'K' => 11.0,
+		'+' | '<' | '=' | '>' | '~' => 10.68,
+		'B' => 10.51,
+		'4' => 10.5,
+		'&' | 'T' => 10.45,
+		'R' => 10.37,
+		'$' | 'S' => 10.34,
+		'0' => 10.32,
+		'P' => 10.27,
+		'Z' => 10.25,
+		'#' => 10.22,
+		'6' | '9' | 'ß' => 10.08,
+		'8' => 10.07,
+		'3' => 10.03,
+		'g' => 9.91,
+		'b' | 'd' | 'p' | 'q' => 9.89,
+		'2' => 9.86,
+		'o' | 'ò' | 'ó' | 'ô' | 'õ' | 'ö' => 9.67,
+		'5' | 'E' | 'È' | 'É' | 'Ê' => 9.65,
+		'h' | 'u' | 'ù' | 'ú' | 'û' | 'ü' => 9.63,
+		'n' | 'ñ' => 9.62,
+		'7' | 'F' => 9.43,
+		'e' | 'è' | 'é' | 'ê' | 'ë' => 9.4,
+		'c' | 'ç' => 9.23,
+		'J' | 'y' => 9.2,
+		'v' => 9.19,
+		'a' | 'à' | 'á' | 'â' | 'ã' | 'ä' => 9.09,
+		'L' => 9.05,
+		'k' => 8.95,
+		'z' => 8.94,
+		'x' => 8.92,
+		's' => 8.62,
+		'?' => 8.44,
+		'*' => 8.32,
+		'"' => 7.91,
+		'^' => 7.62,
+		'“' => 7.58,
+		'”' => 7.53,
+		'-' | '_' => 7.4,
+		'{' | '}' => 7.05,
+		'1' => 6.64,
+		'ï' => 6.51,
+		'r' => 6.38,
+		'/' => 5.91,
+		'(' | ')' | '[' | ']' => 5.9,
+		'|' => 5.53,
+		'f' => 5.46,
+		'`' | 't' => 5.39,
+		'\\' => 5.17,
+		';' => 5.05,
+		'\'' => 5.0,
+		'!' => 4.87,
+		',' | '.' | ':' | '·' => 4.85,
+		'‘' | '’' => 4.44,
+		'I' | 'Í' => 4.36,
+		' ' => 4.26,
+		'i' | 'j' | 'l' | 'ì' | 'í' | 'î' => 4.03,
+		_ => PX_UNKNOWN,
+	}
+}
 
 /// Hangul syllables, plus the jamo blocks a decomposed syllable is written with.
 fn is_hangul(c: char) -> bool {
@@ -59,7 +144,7 @@ pub fn pixels(text: &str) -> f32 {
 			} else if UnicodeWidthChar::width(c) == Some(2) {
 				PX_WIDE
 			} else {
-				PX_NARROW
+				latin(c)
 			}
 		})
 		.sum()
@@ -73,10 +158,14 @@ pub fn pixels(text: &str) -> f32 {
 /// a model told the exact limit writes to it and lands on the boundary, where one wide letter
 /// decides the outcome.
 pub fn characters(budget: f32, locale: &str) -> usize {
+	// The average of a real sentence rather than of the alphabet: measured over the corpus, Latin
+	// prose runs 7.7px a character and the figure is rounded up so the count it yields is one a
+	// writer can actually land.
+	const PX_LATIN_PROSE: f32 = 8.0;
 	let per = match locale.split('-').next().unwrap_or(locale) {
 		"zh" | "ja" => PX_WIDE,
 		"ko" => PX_HANGUL,
-		_ => PX_NARROW,
+		_ => PX_LATIN_PROSE,
 	};
 	(budget / per).floor() as usize
 }
@@ -270,11 +359,12 @@ mod tests {
 	}
 
 	#[test]
-	fn the_estimate_stays_within_a_sixth_of_the_rendered_width() {
-		// Conservative is the point, but a budget nobody can spend is its own failure.
+	fn the_estimate_stays_within_a_fiftieth_of_the_rendered_width() {
+		// A per-character table rather than an average, so the tolerance is what kerning and
+		// rounding leave rather than what a blunt constant needed. It was a sixth.
 		for (text, measured) in MEASURED {
 			let over = (pixels(text) - measured) / measured;
-			assert!(over <= 1.0 / 6.0, "{text}: estimated {over:.2} over the measured {measured}");
+			assert!(over <= 0.02, "{text}: estimated {over:.3} over the measured {measured}");
 		}
 	}
 
@@ -307,7 +397,7 @@ mod tests {
 		assert_eq!(characters(budget::PHONE_TITLE, "zh-CN"), 11);
 		assert_eq!(characters(budget::PHONE_TITLE, "ja-JP"), 11);
 		assert_eq!(characters(budget::PHONE_TITLE, "ko-KR"), 13);
-		assert_eq!(characters(budget::PHONE_TITLE, "de-DE"), 21);
+		assert_eq!(characters(budget::PHONE_TITLE, "de-DE"), 23);
 	}
 
 	#[test]

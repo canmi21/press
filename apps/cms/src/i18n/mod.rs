@@ -511,7 +511,10 @@ async fn translate_display(request: DisplayRequest<'_>) -> DisplayResult {
 				title
 			};
 			if let Err(error) = validate::display(field, &answered, against) {
-				rejected.push(format!("{}  {error}", prompt::field_marker(&locale, field)));
+				rejected.push(format!(
+					"{}  {error}: {answered}",
+					prompt::field_marker(&locale, field)
+				));
 				continue;
 			}
 			entries.push((
@@ -536,14 +539,22 @@ async fn translate_display(request: DisplayRequest<'_>) -> DisplayResult {
 		if wanted.is_empty() {
 			return Ok((entries, total_tokens, total_usd, wanted));
 		}
-		last = Refusal::Failed(format!(
-			"{} did not come back within budget",
-			wanted
-				.iter()
-				.map(|(locale, field)| format!("{locale}:{}", field.name()))
-				.collect::<Vec<_>>()
-				.join(", ")
-		));
+		// Carrying what was measured, not only which field failed. A run that reports a name
+		// leaves the reader to reproduce the request to find out how far over it was, and how far
+		// over is the whole question: three characters is a prompt to tighten, three hundred is a
+		// model answering something else.
+		last = Refusal::Failed(if rejected.is_empty() {
+			format!(
+				"{} came back missing",
+				wanted
+					.iter()
+					.map(|(locale, field)| format!("{locale}:{}", field.name()))
+					.collect::<Vec<_>>()
+					.join(", ")
+			)
+		} else {
+			format!("{}", rejected.join("; "))
+		});
 		attempt += 1;
 	}
 	if entries.is_empty() && !wanted.is_empty() {

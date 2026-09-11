@@ -2082,68 +2082,68 @@ segments:
       review: false
   e265208f244c923ee73af6dc04399e3c:
     de-DE:
-      text: Von Next.js 13 bis 16 geschoben
+      text: Von Next.js 13 bis 16 verschleppt
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:01.265702Z
-      seconds: 6.364306083
-      tokens: 35300
+      at: 2026-09-11T17:55:26.406756Z
+      seconds: 4.618048583
+      tokens: 35264
       review: false
     en-US:
       text: Put off from Next.js 13 to 16
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:01.265702Z
-      seconds: 6.364306083
-      tokens: 35300
+      at: 2026-09-11T17:55:26.406756Z
+      seconds: 4.618048583
+      tokens: 35264
       review: false
     es-ES:
       text: Aplazado de Next.js 13 a 16
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:01.265702Z
-      seconds: 6.364306083
-      tokens: 35300
+      at: 2026-09-11T17:55:26.406756Z
+      seconds: 4.618048583
+      tokens: 35264
       review: false
     fr-FR:
       text: Repoussé de Next.js 13 à 16
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:01.265702Z
-      seconds: 6.364306083
-      tokens: 35300
+      at: 2026-09-11T17:55:26.406756Z
+      seconds: 4.618048583
+      tokens: 35264
       review: false
     ja-JP:
-      text: Next.js 13から16まで先延ばし
+      text: Next.js 13から16まで放置
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:01.265702Z
-      seconds: 6.364306083
-      tokens: 35300
+      at: 2026-09-11T17:55:26.406756Z
+      seconds: 4.618048583
+      tokens: 35264
       review: false
     ko-KR:
       text: Next.js 13에서 16까지 미루기
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:01.265702Z
-      seconds: 6.364306083
-      tokens: 35300
+      at: 2026-09-11T17:55:26.406756Z
+      seconds: 4.618048583
+      tokens: 35264
       review: false
     zh-CN:
       text: 从 Next.js 13 拖到 16
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:01.265702Z
-      seconds: 6.364306083
-      tokens: 35300
+      at: 2026-09-11T17:55:26.406756Z
+      seconds: 4.618048583
+      tokens: 35264
       review: false
     zh-TW:
       text: 從 Next.js 13 鴿到 16
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:01.265702Z
-      seconds: 6.364306083
-      tokens: 35300
+      at: 2026-09-11T17:55:26.406756Z
+      seconds: 4.618048583
+      tokens: 35264
       review: false
   e8f82735606f2fb8d14c78303c5bd343:
     de-DE:

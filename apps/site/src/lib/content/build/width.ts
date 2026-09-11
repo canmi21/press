@@ -17,8 +17,98 @@
 const PX_WIDE = 16;
 /** A Hangul syllable, which is a wide character that does not fill its square. */
 const PX_HANGUL = 14;
-/** Everything else, charged above the widest Latin string observed rather than at its average. */
-const PX_NARROW = 8.6;
+/** A character outside the table, which for the nine locales here means none of them. */
+const PX_UNKNOWN = 10;
+
+/**
+ * The advance of each Latin character at 16px, measured in the rendered page.
+ *
+ * A table rather than an average, because `i` advances 3.88px and `W` 16.14 and a single figure
+ * chosen safely above both charges an ordinary sentence about a tenth more than it draws. Grouped
+ * by width so the shape of the font is readable: the narrow uprights together, the round
+ * lowercase together, the wide capitals together.
+ */
+const LATIN: [number, string][] = [
+	[16.4, 'W'],
+	[15.89, '%'],
+	[15.72, '@'],
+	[14.6, 'M'],
+	[14.56, '…'],
+	[14.21, 'm'],
+	[13.26, 'w'],
+	[12.3, 'Q'],
+	[12.27, 'OÓ'],
+	[12.1, 'NÑ'],
+	[11.96, 'G'],
+	[11.91, 'H'],
+	[11.84, 'UÚÜ'],
+	[11.74, 'CÇ'],
+	[11.56, 'AVÀÁ'],
+	[11.55, 'D'],
+	[11.21, 'X'],
+	[11.14, 'Y'],
+	[11, 'K'],
+	[10.68, '+<=>~'],
+	[10.51, 'B'],
+	[10.5, '4'],
+	[10.45, '&T'],
+	[10.37, 'R'],
+	[10.34, '$S'],
+	[10.32, '0'],
+	[10.27, 'P'],
+	[10.25, 'Z'],
+	[10.22, '#'],
+	[10.08, '69ß'],
+	[10.07, '8'],
+	[10.03, '3'],
+	[9.91, 'g'],
+	[9.89, 'bdpq'],
+	[9.86, '2'],
+	[9.67, 'oòóôõö'],
+	[9.65, '5EÈÉÊ'],
+	[9.63, 'huùúûü'],
+	[9.62, 'nñ'],
+	[9.43, '7F'],
+	[9.4, 'eèéêë'],
+	[9.23, 'cç'],
+	[9.2, 'Jy'],
+	[9.19, 'v'],
+	[9.09, 'aàáâãä'],
+	[9.05, 'L'],
+	[8.95, 'k'],
+	[8.94, 'z'],
+	[8.92, 'x'],
+	[8.62, 's'],
+	[8.44, '?'],
+	[8.32, '*'],
+	[7.91, '"'],
+	[7.62, '^'],
+	[7.58, '“'],
+	[7.53, '”'],
+	[7.4, '-_'],
+	[7.05, '{}'],
+	[6.64, '1'],
+	[6.51, 'ï'],
+	[6.38, 'r'],
+	[5.91, '/'],
+	[5.9, '()[]'],
+	[5.53, '|'],
+	[5.46, 'f'],
+	[5.39, '`t'],
+	[5.17, '\\'],
+	[5.05, ';'],
+	[5, '\''],
+	[4.87, '!'],
+	[4.85, ',.:·'],
+	[4.44, '‘’'],
+	[4.36, 'IÍ'],
+	[4.26, ' '],
+	[4.03, 'ijlìíî'],
+];
+
+const ADVANCE = new Map<string, number>(
+	LATIN.flatMap(([width, chars]) => [...chars].map((c) => [c, width] as [string, number])),
+);
 
 function isHangul(code: number): boolean {
 	return (
@@ -60,7 +150,7 @@ export function pixels(text: string): number {
 		const code = character.codePointAt(0) ?? 0;
 		if (isHangul(code)) total += PX_HANGUL;
 		else if (isWide(code)) total += PX_WIDE;
-		else total += PX_NARROW;
+		else total += ADVANCE.get(character) ?? PX_UNKNOWN;
 	}
 	return total;
 }

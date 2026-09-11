@@ -1175,65 +1175,65 @@ segments:
       text: Zu lange drin, Zeit rauszugehen
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T17:38:44.058496Z
-      seconds: 3.3872115
-      tokens: 34726
+      at: 2026-09-11T17:55:35.406642Z
+      seconds: 31.126478083
+      tokens: 37520
       review: false
     en-US:
-      text: Cooped up too long, time to walk
+      text: Cooped Up Too Long, Time to Walk
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T17:38:44.058496Z
-      seconds: 3.3872115
-      tokens: 34726
+      at: 2026-09-11T17:55:35.406642Z
+      seconds: 31.126478083
+      tokens: 37520
       review: false
     es-ES:
-      text: Mucho encierro, salgo a andar
+      text: Demasiado tiempo en casa, salgamos
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:14.747911Z
-      seconds: 8.169898291
-      tokens: 35354
+      at: 2026-09-11T17:55:35.406642Z
+      seconds: 31.126478083
+      tokens: 37520
       review: false
     fr-FR:
-      text: Enfermé trop longtemps, sortons
+      text: Trop longtemps enfermé, sortons
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:14.747911Z
-      seconds: 8.169898291
-      tokens: 35354
+      at: 2026-09-11T17:55:35.406642Z
+      seconds: 31.126478083
+      tokens: 37520
       review: false
     ja-JP:
-      text: こもりすぎ、外を歩こう
+      text: 家にこもりすぎた、外を歩こう
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:14.747911Z
-      seconds: 8.169898291
-      tokens: 35354
+      at: 2026-09-11T17:55:35.406642Z
+      seconds: 31.126478083
+      tokens: 37520
       review: false
     ko-KR:
-      text: 너무 오래 집에만, 걷자
+      text: 집에만 있었으니, 밖에 나가 걷자
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:14.747911Z
-      seconds: 8.169898291
-      tokens: 35354
+      at: 2026-09-11T17:55:35.406642Z
+      seconds: 31.126478083
+      tokens: 37520
       review: false
     zh-CN:
-      text: 宅太久了，出门走走
+      text: 宅太久了，出去走走吧
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:14.747911Z
-      seconds: 8.169898291
-      tokens: 35354
+      at: 2026-09-11T17:55:35.406642Z
+      seconds: 31.126478083
+      tokens: 37520
       review: false
     zh-TW:
-      text: 宅太久，出門走走
+      text: 宅太久了，出去走走吧
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:14.747911Z
-      seconds: 8.169898291
-      tokens: 35354
+      at: 2026-09-11T17:55:35.406642Z
+      seconds: 31.126478083
+      tokens: 37520
       review: false
   b20418b65885f121bdfee9a54e31d21e:
     de-DE:

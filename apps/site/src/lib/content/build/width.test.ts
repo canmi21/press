@@ -28,10 +28,11 @@ describe('estimating how wide a line will draw', () => {
 		}
 	});
 
-	it('stays within a sixth of the rendered width', () => {
-		// Conservative is the point, but a budget nobody can spend is its own failure.
+	it('stays within a fiftieth of the rendered width', () => {
+		// A per-character table rather than an average, so the tolerance is what kerning and
+		// rounding leave rather than what a blunt constant needed. It was a sixth.
 		for (const [text, measured] of MEASURED) {
-			expect((pixels(text) - measured) / measured, text).toBeLessThanOrEqual(1 / 6);
+			expect((pixels(text) - measured) / measured, text).toBeLessThanOrEqual(0.02);
 		}
 	});
 

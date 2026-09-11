@@ -1001,12 +1001,12 @@ segments:
       tokens: 38853
       review: false
     fr-FR:
-      text: Rendu comme protocole
+      text: Le rendu, un protocole
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:56:03.533401Z
-      seconds: 50.285161
-      tokens: 38853
+      at: 2026-09-11T18:03:38.946253Z
+      seconds: 2.691135875
+      tokens: 35130
       review: false
     ja-JP:
       text: レンダリングプロトコル
@@ -2085,65 +2085,65 @@ segments:
       text: UI beschreiben, nicht ausführen.
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:55:53.572007Z
-      seconds: 9.961294875
-      tokens: 35341
+      at: 2026-09-11T17:53:15.922518Z
+      seconds: 75.890833291
+      tokens: 41386
       review: false
     en-US:
-      text: Describe the UI, don't run it.
+      text: Describe the UI, don't execute it.
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:55:53.572007Z
-      seconds: 9.961294875
-      tokens: 35341
+      at: 2026-09-11T17:53:15.922518Z
+      seconds: 75.890833291
+      tokens: 41386
       review: false
     es-ES:
-      text: Describir la UI, no ejecutarla.
+      text: Interfaz descrita, no ejecutada.
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:56:03.533401Z
-      seconds: 50.285161
-      tokens: 38853
+      at: 2026-09-11T17:53:15.922518Z
+      seconds: 75.890833291
+      tokens: 41386
       review: false
     fr-FR:
-      text: Décrire l'UI, pas l'exécuter.
+      text: Interface décrite, non exécutée.
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:56:03.533401Z
-      seconds: 50.285161
-      tokens: 38853
+      at: 2026-09-11T17:53:15.922518Z
+      seconds: 75.890833291
+      tokens: 41386
       review: false
     ja-JP:
-      text: UI は実行でなく記述で。
+      text: UIは実行ではなく記述されるべき。
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:55:53.572007Z
-      seconds: 9.961294875
-      tokens: 35341
+      at: 2026-09-11T17:53:15.922518Z
+      seconds: 75.890833291
+      tokens: 41386
       review: false
     ko-KR:
-      text: UI는 실행이 아닌 기술로.
+      text: UI는 실행이 아니라 기술된다.
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:55:53.572007Z
-      seconds: 9.961294875
-      tokens: 35341
+      at: 2026-09-11T17:53:15.922518Z
+      seconds: 75.890833291
+      tokens: 41386
       review: false
     zh-CN:
-      text: 界面靠描述，而非执行。
+      text: 用户界面应被描述，而非执行。
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:55:53.572007Z
-      seconds: 9.961294875
-      tokens: 35341
+      at: 2026-09-11T17:53:15.922518Z
+      seconds: 75.890833291
+      tokens: 41386
       review: false
     zh-TW:
-      text: 介面靠描述，而非執行。
+      text: 使用者介面應被描述，而非執行。
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:55:53.572007Z
-      seconds: 9.961294875
-      tokens: 35341
+      at: 2026-09-11T17:53:15.922518Z
+      seconds: 75.890833291
+      tokens: 41386
       review: false
   602407b7f2bce94e855549a24cdc1820:
     de-DE:

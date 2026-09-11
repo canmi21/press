@@ -262,66 +262,66 @@ segments:
       review: false
   f63540330030da751a5d4f46cf0a1d77:
     de-DE:
-      text: Platzhalter bis zum echten Text
+      text: Platzhalter, bis der Text da ist
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:57:55.514775Z
-      seconds: 11.003888291
-      tokens: 35574
+      at: 2026-09-11T17:54:37.313986Z
+      seconds: 4.696765125
+      tokens: 35126
       review: false
     en-US:
-      text: A placeholder until the real piece
+      text: A placeholder until the real text
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:57:55.514775Z
-      seconds: 11.003888291
-      tokens: 35574
+      at: 2026-09-11T17:54:37.313986Z
+      seconds: 4.696765125
+      tokens: 35126
       review: false
     es-ES:
-      text: Reservado hasta el texto real
+      text: Un hueco hasta que se escriba
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:57:55.514775Z
-      seconds: 11.003888291
-      tokens: 35574
+      at: 2026-09-11T17:54:37.313986Z
+      seconds: 4.696765125
+      tokens: 35126
       review: false
     fr-FR:
-      text: Réservé jusqu'au vrai texte
+      text: Une réservation, le temps du vrai
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:57:55.514775Z
-      seconds: 11.003888291
-      tokens: 35574
+      at: 2026-09-11T17:54:37.313986Z
+      seconds: 4.696765125
+      tokens: 35126
       review: false
     ja-JP:
       text: 本文が書かれるまでの仮置き
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:57:55.514775Z
-      seconds: 11.003888291
-      tokens: 35574
+      at: 2026-09-11T17:54:37.313986Z
+      seconds: 4.696765125
+      tokens: 35126
       review: false
     ko-KR:
       text: 진짜 글이 쓰일 때까지만
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:57:55.514775Z
-      seconds: 11.003888291
-      tokens: 35574
+      at: 2026-09-11T17:54:37.313986Z
+      seconds: 4.696765125
+      tokens: 35126
       review: false
     zh-CN:
-      text: 占位，等正文写出来
+      text: 临时占位，等正文写好
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:57:55.514775Z
-      seconds: 11.003888291
-      tokens: 35574
+      at: 2026-09-11T17:54:37.313986Z
+      seconds: 4.696765125
+      tokens: 35126
       review: false
     zh-TW:
-      text: 占位，等正文寫出來
+      text: 暫時占位，等正文寫好
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:57:55.514775Z
-      seconds: 11.003888291
-      tokens: 35574
+      at: 2026-09-11T17:54:42.010791Z
+      seconds: 4.224887625
+      tokens: 35034
       review: false

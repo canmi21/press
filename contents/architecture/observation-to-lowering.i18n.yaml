@@ -9199,68 +9199,68 @@ segments:
       review: false
   fb35d0a95ec5d6bf0cb507fea6dedce1:
     de-DE:
-      text: Reacts Blackbox, Sveltes AST
+      text: Von Reacts Blackbox zum AST
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:57:01.266009Z
-      seconds: 54.23325725
-      tokens: 39617
+      at: 2026-09-11T17:54:31.829851Z
+      seconds: 5.471730625
+      tokens: 35322
       review: false
     en-US:
-      text: React's black box, Svelte's AST
+      text: React's black box to a visible AST
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:57:01.266009Z
-      seconds: 54.23325725
-      tokens: 39617
+      at: 2026-09-11T17:54:31.829851Z
+      seconds: 5.471730625
+      tokens: 35322
       review: false
     es-ES:
       text: De la caja negra al AST visible
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:57:01.266009Z
-      seconds: 54.23325725
-      tokens: 39617
+      at: 2026-09-11T17:54:31.829851Z
+      seconds: 5.471730625
+      tokens: 35322
       review: false
     fr-FR:
       text: De la boîte noire à l'AST visible
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:57:01.266009Z
-      seconds: 54.23325725
-      tokens: 39617
+      at: 2026-09-11T17:54:31.829851Z
+      seconds: 5.471730625
+      tokens: 35322
       review: false
     ja-JP:
-      text: ブラックボックスから見える AST
+      text: 黒箱から見える AST へ
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:57:01.266009Z
-      seconds: 54.23325725
-      tokens: 39617
+      at: 2026-09-11T17:54:31.829851Z
+      seconds: 5.471730625
+      tokens: 35322
       review: false
     ko-KR:
       text: 블랙박스에서 보이는 AST로
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:57:01.266009Z
-      seconds: 54.23325725
-      tokens: 39617
+      at: 2026-09-11T17:54:31.829851Z
+      seconds: 5.471730625
+      tokens: 35322
       review: false
     zh-CN:
-      text: 从黑箱到可见的 AST
+      text: 从 React 黑箱到可见的 AST
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:57:01.266009Z
-      seconds: 54.23325725
-      tokens: 39617
+      at: 2026-09-11T17:54:31.829851Z
+      seconds: 5.471730625
+      tokens: 35322
       review: false
     zh-TW:
-      text: 從黑盒到看得見的 AST
+      text: 從 React 黑盒到看得見的 AST
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:57:01.266009Z
-      seconds: 54.23325725
-      tokens: 39617
+      at: 2026-09-11T17:54:31.829851Z
+      seconds: 5.471730625
+      tokens: 35322
       review: false
   fdedce013cca0c5346d209739824388e:
     de-DE:

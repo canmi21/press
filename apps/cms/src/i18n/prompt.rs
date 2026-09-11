@@ -769,8 +769,8 @@ mod tests {
 			&[],
 			None,
 		);
-		// A German short title has 21 Latin characters; a Japanese one has 11 of its own.
-		assert!(request.text.contains("at most 21 characters"));
+		// A German short title has 23 Latin characters; a Japanese one has 11 of its own.
+		assert!(request.text.contains("at most 23 characters"));
 		assert!(request.text.contains("at most 11 characters"));
 	}
 
