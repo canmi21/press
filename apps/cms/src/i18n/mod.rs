@@ -442,6 +442,9 @@ async fn translate_display(request: DisplayRequest<'_>) -> DisplayResult {
 	let mut total_tokens = 0u64;
 	let mut total_usd = 0.0;
 	let mut rejected: Vec<String> = Vec::new();
+	// The article's own title and subtitle, read as one. The dash rule asks whether the author
+	// spent a dash anywhere in what a card shows, not whether they spent it in this field.
+	let metadata = format!("{title}\n{}", subtitle.unwrap_or_default());
 
 	while attempt < DISPLAY_ATTEMPTS && !wanted.is_empty() {
 		let built =
@@ -496,15 +499,7 @@ async fn translate_display(request: DisplayRequest<'_>) -> DisplayResult {
 			if !wanted.iter().any(|(l, f)| l == &locale && f == &field) {
 				continue;
 			}
-			// The source the dash rule is measured against is the field's own: a short subtitle
-			// answers to the subtitle it shortens, not to the title above it.
-			let against = if matches!(field, segment::Display::Subtitle | segment::Display::ShortSubtitle)
-			{
-				subtitle.unwrap_or(title)
-			} else {
-				title
-			};
-			if let Err(error) = validate::display(field, &answered, against) {
+			if let Err(error) = validate::display(field, &answered, &metadata) {
 				rejected.push(format!("{}  {error}: {answered}", prompt::field_marker(&locale, field)));
 				continue;
 			}

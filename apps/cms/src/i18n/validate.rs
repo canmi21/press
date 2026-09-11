@@ -230,6 +230,8 @@ pub fn translation(region: Region, source: &str, text: &str) -> Result<(), Error
 /// splicing sentences, and German and French need it to.
 const JOINING_DASHES: [char; 4] = ['\u{2014}', '\u{2013}', '\u{2012}', '\u{FF0D}'];
 
+/// `source` is the article's own title and subtitle together, because the two license one
+/// another; see the dash rule below.
 pub fn display(field: Display, text: &str, source: &str) -> Result<(), Error> {
 	let drawn = width::pixels(text);
 	let budget = field.budget();
@@ -239,17 +241,24 @@ pub fn display(field: Display, text: &str, source: &str) -> Result<(), Error> {
 	// A dash is the author's punctuation to spend. It reads as voice, and a translator reaching
 	// for one where the source used a comma has written a line the author did not.
 	//
-	// This was scoped to short forms first, on the argument that a length limit is what makes a
-	// dash tempting -- two thoughts, one line, no conjunction to find. That is true and it is not
-	// the rule: the exception is keyed to the source, so what decides is whether the author spent
-	// one, not whether the translator was under pressure. Stated in the prompt as well; a check
-	// without one rejects work for a rule nobody was given.
-	if text.chars().any(|c| JOINING_DASHES.contains(&c))
-		&& !source.chars().any(|c| JOINING_DASHES.contains(&c))
-	{
+	// The title and the subtitle are read as one, so they license one another: a dash anywhere in
+	// the source metadata opens it to every field, and a source with none closes it to all four.
+	// Pairing them field by field was stricter than the rule and stricter than it should be --
+	// a subtitle continues the title it sits under, and the register they are written in is one
+	// register.
+	//
+	// Scoping it to short forms was the other thing this got wrong. A length limit is what makes
+	// a dash tempting, which is true and is not the rule: what decides is whether the author
+	// spent one, not whether the translator was under pressure. Stated in the prompt as well; a
+	// check without one rejects work for a rule nobody was given.
+	if dashed(text) && !dashed(source) {
 		return Err(Error::BorrowedDash);
 	}
 	Ok(())
+}
+
+fn dashed(text: &str) -> bool {
+	text.chars().any(|c| JOINING_DASHES.contains(&c))
 }
 
 /// Validate every live stored translation before CMS emits a build record.
@@ -479,6 +488,39 @@ mod tests {
 			display(Display::Subtitle, "Cooped up\u{2014}time to walk", "宅太久了"),
 			Err(Error::BorrowedDash),
 		);
+	}
+
+	#[test]
+	fn a_hyphen_in_the_source_does_not_open_a_dash() {
+		use super::Display;
+		// The two are different marks doing different work, and the rule is about the one that
+		// splices clauses. A German compound does not license an em dash.
+		assert_eq!(
+			display(Display::Title, "Rust\u{2014}konfiguriert", "Rust-Konfiguration"),
+			Err(Error::BorrowedDash),
+		);
+	}
+
+	#[test]
+	fn the_source_language_view_is_judged_against_the_same_pair() {
+		use super::Display;
+		// `mw` is the article itself and writes nothing, but the eight views that do are all
+		// judged against the article's own metadata rather than against each other.
+		let pair = "外面的世界\n宅太久了，难得出去走走吧";
+		assert_eq!(
+			display(Display::ShortTitle, "Out\u{2014}at last", pair),
+			Err(Error::BorrowedDash),
+		);
+	}
+
+	#[test]
+	fn a_dash_in_either_source_field_opens_it_to_both() {
+		use super::Display;
+		// The author spent one in the title; the subtitle continues that line and may spend one
+		// too. The source handed to the check is the pair, so this is what it sees.
+		let pair = "外面的世界\n宅太久了\u{2014}难得出去走走吧";
+		assert!(display(Display::Title, "Outside\u{2014}at last", pair).is_ok());
+		assert!(display(Display::ShortSubtitle, "Too long in\u{2014}out now", pair).is_ok());
 	}
 
 	#[test]
