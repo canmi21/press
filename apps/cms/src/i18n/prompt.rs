@@ -389,8 +389,8 @@ pub fn build_display(
 		 that simply fits.\n\
 		 - Keep the author's voice. A title that is playful stays playful; one that is plain stays \
 		 plain. Translate idioms into the target language's own, never word for word.\n\
-		 - No dash in a short form -- no em dash, en dash or fullwidth dash -- unless the source \
-		 above uses one. A dash is the cheapest way to meet a length limit: two thoughts, one \
+		 - No dash in any of these lines -- no em dash, en dash or fullwidth dash -- unless the \
+		 source above uses one. A dash is the cheapest way to meet a length limit: two thoughts, one \
 		 line, no conjunction to find. It reads as the author's punctuation and it is not yours \
 		 to spend. Find the shorter phrasing instead.\n\
 		 - A technical term keeps the word the full form uses. Do not reach for a shorter word \

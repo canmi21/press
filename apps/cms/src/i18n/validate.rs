@@ -236,13 +236,15 @@ pub fn display(field: Display, text: &str, source: &str) -> Result<(), Error> {
 	if drawn > budget {
 		return Err(Error::OverBudget { drawn: drawn as u32, budget: budget as u32 });
 	}
-	// A short form is written under a length limit, and a dash is the cheapest way to meet one:
-	// two thoughts, one line, no conjunction to find in the target language. It reads as the
-	// author's voice and is not -- so it is available only where the author already reached for
-	// it. The rule is stated in the prompt as well; a check without one rejects work for a rule
-	// nobody was given.
-	if field.is_short()
-		&& text.chars().any(|c| JOINING_DASHES.contains(&c))
+	// A dash is the author's punctuation to spend. It reads as voice, and a translator reaching
+	// for one where the source used a comma has written a line the author did not.
+	//
+	// This was scoped to short forms first, on the argument that a length limit is what makes a
+	// dash tempting -- two thoughts, one line, no conjunction to find. That is true and it is not
+	// the rule: the exception is keyed to the source, so what decides is whether the author spent
+	// one, not whether the translator was under pressure. Stated in the prompt as well; a check
+	// without one rejects work for a rule nobody was given.
+	if text.chars().any(|c| JOINING_DASHES.contains(&c))
 		&& !source.chars().any(|c| JOINING_DASHES.contains(&c))
 	{
 		return Err(Error::BorrowedDash);
@@ -470,11 +472,13 @@ mod tests {
 	}
 
 	#[test]
-	fn only_a_short_form_answers_to_the_dash_rule() {
+	fn a_full_form_answers_to_the_dash_rule_too() {
 		use super::Display;
-		// A full form is the article's own line and is not written under a length limit, so a
-		// dash there is a translation choice rather than a way to meet one.
-		assert!(display(Display::Subtitle, "Cooped up\u{2014}time to walk", "宅太久了").is_ok());
+		// The exception is keyed to the source, not to whether the writer was under a limit.
+		assert_eq!(
+			display(Display::Subtitle, "Cooped up\u{2014}time to walk", "宅太久了"),
+			Err(Error::BorrowedDash),
+		);
 	}
 
 	#[test]

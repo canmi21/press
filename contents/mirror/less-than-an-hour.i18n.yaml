@@ -327,20 +327,20 @@ segments:
       review: false
   397652d5755e8b85e26bbe709fdc99bc:
     de-DE:
-      text: Zu lange zu Hause – Zeit, endlich mal rauszugehen
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:44:17.37522Z
-      seconds: 29.501333291999998
-      tokens: 16617
+      text: Zu lange zu Hause gehockt, gehen wir endlich mal spazieren
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T18:28:43.409887Z
+      seconds: 30.693872625
+      tokens: 37219
       review: false
     en-US:
-      text: Been Cooped Up Too Long—Time to Go for a Walk
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:44:17.37522Z
-      seconds: 29.501333291999998
-      tokens: 16617
+      text: Cooped Up at Home Too Long, Let's Finally Take a Walk
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T18:28:43.409887Z
+      seconds: 30.693872625
+      tokens: 37219
       review: false
     es-ES:
       text: Demasiado tiempo en casa, salgamos a dar una vuelta
