@@ -1138,13 +1138,21 @@ imply the setting stopped there.
 
 The bio is identity copy and is never translated, so a narrow screen cannot be given a different
 text without there being two texts to keep in step. There are not two. The markdown carries one
-bio and three markers say what a narrow screen does with parts of it.
+bio and four markers say what a narrow screen does with parts of it.
 
 | Marker    | Compiles to        | What it means                           |
 | --------- | ------------------ | --------------------------------------- |
 | `wide`    | `hidden sm:inline` | Present only on a wide screen           |
+| `narrow`  | `sm:hidden`        | Present only on a narrow one            |
 | `ownline` | `max-sm:block`     | Takes a line of its own on a narrow one |
 | `apart`   | `max-sm:mt-4`      | And a paragraph's gap above it          |
+
+`narrow` is the only one that adds words rather than removing them, and it earns that before it is
+used. Subtracting left the first paragraph ending mid-thought, and the sentence that finishes it
+costs the desktop composition a fourth line with an orphan on it -- measured, that paragraph's fill
+drops from 84% to 76%. A `wide` and `narrow` pair also carries the second paragraph's two openings,
+which are one sentence in two word orders: the phone's avoids two paragraphs in a row beginning
+with `I`, and the desktop keeps the one that was written for it.
 
 `ownline` and `apart` are separate because a line of its own and a break before it are two
 decisions, and an author may want only the first. `apart` uses the gap the bio already puts
@@ -1153,6 +1161,13 @@ number.
 
 Only the page reads them. The markdown and text targets carry no classes, so `/homepage.md` and
 anything reading it get the whole sentence; a feed reader has no stylesheet and gets it too.
+
+**That is exact for `wide` and approximate for `narrow`.** A marker that only removes leaves the
+other targets reading the full text, which is what they should have. A marker that swaps leaves
+them reading both halves in a row -- `/homepage.md` says `I hope somedaySomeday I hope`. It is a
+known cost of the pair rather than a defect in either, and the fix, if it is ever worth one, is for
+those targets to read the markers too.
+
 **Subtracting on a phone is a layout decision, not an edit** -- which is also why the copy that
 disappears is the one sentence that enumerates rather than says anything: on a phone it is the
 first thing that reads as a list, and it carries the two unbreakable runs that made the paragraph

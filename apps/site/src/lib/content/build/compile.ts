@@ -133,6 +133,11 @@ function styleClasses(attrs: DirectiveAttrs): string[] {
 	// reader and the markdown and text targets carry no classes at all, so `/llms.txt` and the
 	// `.md` view keep the sentence. Subtracting on a phone is a layout decision, not an edit.
 	if ('wide' in attrs) classes.push('hidden', 'sm:inline');
+	// Its opposite, and the only marker that adds words rather than removing them. A phone reads a
+	// shorter bio, so a sentence that only it sees has to earn the space: this exists because
+	// subtracting left one paragraph ending mid-thought, and the sentence that finishes it costs
+	// the desktop composition a fourth line with an orphan on it.
+	if ('narrow' in attrs) classes.push('sm:hidden');
 	// A run that takes a line of its own on a narrow screen and stays in the sentence on a wide
 	// one. `display: block` rather than a `<br>`, so the break is a property of the run rather
 	// than an element whose only job is to be hidden half the time.

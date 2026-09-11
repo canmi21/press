@@ -1929,17 +1929,17 @@
         "region": "frontmatter"
       },
       {
-        "id": "070774e6f2370b714df555234d5d64fd",
+        "id": "dd04681558cf3637d8a81ee1296ef772",
         "start": 207,
-        "end": 516,
-        "fingerprint": "0e823fdb",
+        "end": 597,
+        "fingerprint": "75ece8a6",
         "region": "body"
       },
       {
-        "id": "57e3dd1087951c6bfb1e0124394f779c",
-        "start": 518,
-        "end": 818,
-        "fingerprint": "b194e0cc",
+        "id": "8f767e3ddce66f614421b98a2fe01a04",
+        "start": 599,
+        "end": 935,
+        "fingerprint": "bb837d65",
         "region": "body"
       }
     ],
