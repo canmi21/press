@@ -18,6 +18,8 @@ pub enum Error {
 	UnresolvedMarker,
 	/// A drawn field wider than the place it is drawn in.
 	OverBudget { drawn: u32, budget: u32 },
+	/// A dash used to join two clauses where the author joined them some other way.
+	BorrowedDash,
 }
 
 impl fmt::Display for Error {
@@ -40,6 +42,11 @@ impl fmt::Display for Error {
 				formatter,
 				"draws about {drawn}px where {budget}px is the room it has, so the reader would \
 				 lose the end of it"
+			),
+			Self::BorrowedDash => formatter.write_str(
+				"joins two clauses with a dash the source does not use -- a dash is the cheapest \
+				 way to fit two thoughts in one line and it is the author's punctuation to spend, \
+				 not the translator's",
 			),
 		}
 	}
@@ -216,11 +223,26 @@ pub fn translation(region: Region, source: &str, text: &str) -> Result<(), Error
 /// The budget, not the fifth held back. `HEADROOM` is the rule for what is already stored and
 /// whether it earns another look; this is the rule for what may be stored at all, and refusing a
 /// fresh answer for sitting in the last fifth would spend a retry on a line that fits.
-pub fn display(field: Display, text: &str) -> Result<(), Error> {
+/// Dashes long enough to join clauses. A hyphen is left alone: it builds words rather than
+/// splicing sentences, and German and French need it to.
+const JOINING_DASHES: [char; 4] = ['\u{2014}', '\u{2013}', '\u{2012}', '\u{FF0D}'];
+
+pub fn display(field: Display, text: &str, source: &str) -> Result<(), Error> {
 	let drawn = width::pixels(text);
 	let budget = field.budget();
 	if drawn > budget {
 		return Err(Error::OverBudget { drawn: drawn as u32, budget: budget as u32 });
+	}
+	// A short form is written under a length limit, and a dash is the cheapest way to meet one:
+	// two thoughts, one line, no conjunction to find in the target language. It reads as the
+	// author's voice and is not -- so it is available only where the author already reached for
+	// it. The rule is stated in the prompt as well; a check without one rejects work for a rule
+	// nobody was given.
+	if field.is_short()
+		&& text.chars().any(|c| JOINING_DASHES.contains(&c))
+		&& !source.chars().any(|c| JOINING_DASHES.contains(&c))
+	{
+		return Err(Error::BorrowedDash);
 	}
 	Ok(())
 }
@@ -411,5 +433,39 @@ mod tests {
 		assert!(message.contains(id));
 		assert!(message.contains("en-US"));
 		assert_eq!(segment.region, Region::Frontmatter);
+	}
+
+	#[test]
+	fn a_short_form_may_not_borrow_a_dash_the_source_never_spent() {
+		use super::Display;
+		// The source joins with a comma; the translation reaches for a dash to make the limit.
+		assert_eq!(
+			display(Display::ShortSubtitle, "Cooped up too long\u{2014}time to walk", "宅太久了，难得出去走走吧"),
+			Err(Error::BorrowedDash),
+		);
+		assert!(display(Display::ShortSubtitle, "Cooped up too long, time to walk", "宅太久了，难得出去走走吧").is_ok());
+	}
+
+	#[test]
+	fn a_dash_the_author_already_spent_may_be_kept() {
+		use super::Display;
+		assert!(
+			display(Display::ShortTitle, "Too long in\u{2014}time out", "Cooped up\u{2014}time to walk").is_ok()
+		);
+	}
+
+	#[test]
+	fn only_a_short_form_answers_to_the_dash_rule() {
+		use super::Display;
+		// A full form is the article's own line and is not written under a length limit, so a
+		// dash there is a translation choice rather than a way to meet one.
+		assert!(display(Display::Subtitle, "Cooped up\u{2014}time to walk", "宅太久了").is_ok());
+	}
+
+	#[test]
+	fn a_hyphen_is_not_a_joining_dash() {
+		use super::Display;
+		// German and French build words with it; refusing it would refuse the language.
+		assert!(display(Display::ShortTitle, "Rust-Konfiguration", "配置").is_ok());
 	}
 }

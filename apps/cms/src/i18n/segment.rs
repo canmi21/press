@@ -56,6 +56,11 @@ impl Display {
 		}
 	}
 
+	/// Whether this is a form written to replace another on a narrow screen.
+	pub fn is_short(self) -> bool {
+		matches!(self, Self::ShortTitle | Self::ShortSubtitle)
+	}
+
 	/// What the field is called in a request and in a report.
 	pub fn name(self) -> &'static str {
 		match self {

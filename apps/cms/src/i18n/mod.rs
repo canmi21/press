@@ -502,7 +502,15 @@ async fn translate_display(request: DisplayRequest<'_>) -> DisplayResult {
 			if !wanted.iter().any(|(l, f)| l == &locale && f == &field) {
 				continue;
 			}
-			if let Err(error) = validate::display(field, &answered) {
+			// The source the dash rule is measured against is the field's own: a short subtitle
+			// answers to the subtitle it shortens, not to the title above it.
+			let against = if matches!(field, segment::Display::Subtitle | segment::Display::ShortSubtitle)
+			{
+				subtitle.unwrap_or(title)
+			} else {
+				title
+			};
+			if let Err(error) = validate::display(field, &answered, against) {
 				rejected.push(format!("{}  {error}", prompt::field_marker(&locale, field)));
 				continue;
 			}

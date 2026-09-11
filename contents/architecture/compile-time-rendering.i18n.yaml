@@ -1008,6 +1008,14 @@ segments:
       seconds: 50.285161
       tokens: 38853
       review: false
+    ja-JP:
+      text: レンダリングプロトコル
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T17:38:22.986306Z
+      seconds: 21.04227725
+      tokens: 36075
+      review: false
     ko-KR:
       text: 프로토콜로서의 렌더링
       provider: anthropic

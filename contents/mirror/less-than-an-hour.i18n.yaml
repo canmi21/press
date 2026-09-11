@@ -1172,20 +1172,20 @@ segments:
       review: false
   b1fd5fc24f31e9cc846f51a90a710058:
     de-DE:
-      text: Zu lange drin – Zeit für draußen
+      text: Zu lange drin, Zeit rauszugehen
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:14.747911Z
-      seconds: 8.169898291
-      tokens: 35354
+      at: 2026-09-11T17:38:44.058496Z
+      seconds: 3.3872115
+      tokens: 34726
       review: false
     en-US:
-      text: Cooped up too long—time to walk
+      text: Cooped up too long, time to walk
       provider: anthropic
       model: claude-haiku-4-5
-      at: 2026-09-11T07:59:14.747911Z
-      seconds: 8.169898291
-      tokens: 35354
+      at: 2026-09-11T17:38:44.058496Z
+      seconds: 3.3872115
+      tokens: 34726
       review: false
     es-ES:
       text: Mucho encierro, salgo a andar
