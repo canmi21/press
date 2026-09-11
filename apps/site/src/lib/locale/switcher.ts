@@ -51,6 +51,25 @@ const MARK_OPTICAL = {
 export type MarkName = keyof typeof MARK_OPTICAL;
 
 /**
+ * Marks that are one drawing, and are therefore sized as one.
+ *
+ * `translate-2-line` and `translate-2-ai-line` are the same glyph: rasterised together at a 16px
+ * box they share 53.36px² of ink, the plain one has 0.86px² of its own -- an antialiased edge --
+ * and the whole of the other's extra 14.2px² sits in the top-right corner, which is the sparkle
+ * and nothing else.
+ *
+ * An ornament is ink, so it counts toward the figure above, and measuring the two apart hands the
+ * plain one a smaller number and a larger scale. The letterform they share then arrives at two
+ * sizes on rows that sit next to each other, which is the one comparison this whole correction
+ * exists to make come out right. So the ornament does not get to vote: the plain mark is sized by
+ * its sibling's measurement, and the drawing renders identically in both rows.
+ *
+ * This is the exception, not the rule. Two marks belong here only when they are one drawing that
+ * differs by a decoration; four glyphs that merely resemble each other are still measured apart.
+ */
+const MARK_DRAWING = new Map<MarkName, MarkName>([['translate-simplified', 'translate-ai']]);
+
+/**
  * One optical size for the whole control, taken from the compass on the closed trigger.
  *
  * That mark is the one size this control was already right at, and it is a correction of its own
@@ -71,14 +90,14 @@ const MARK_OPTICAL_TARGET = 10.68;
  */
 export const MARK_SIZE = {
 	translate: 'h-[1.1033rem] w-auto',
-	'translate-simplified': 'h-[1.1362rem] w-auto',
+	'translate-simplified': 'h-[1.0201rem] w-auto',
 	'translate-ai': 'h-[1.0201rem] w-auto',
 	world: 'h-[0.9834rem] w-auto',
 } as const satisfies Record<MarkName, string>;
 
 /** The height, in rem, that brings a mark to the control's one optical size. */
 export function markHeightRem(mark: MarkName): number {
-	return MARK_OPTICAL_TARGET / MARK_OPTICAL[mark];
+	return MARK_OPTICAL_TARGET / MARK_OPTICAL[MARK_DRAWING.get(mark) ?? mark];
 }
 
 /**

@@ -986,6 +986,19 @@ heaviest mark in the menu -- and mass alone under-corrects for the same reason i
 terms scale with the box, so the figure does too, and each mark's height is a ratio of measured
 numbers rather than a second round of guessing.
 
+**An ornament does not vote on size.** `translate-2-line` and `translate-2-ai-line` are one
+drawing: rasterised together at a 16px box they share 53.36px² of ink, the plain one has 0.86px²
+of its own from an antialiased edge, and the whole of the other's extra 14.2px² sits in the
+top-right corner, which is the sparkle. A sparkle is ink, so it raises its mark's figure and
+lowers its scale, while the plain mark's scale goes up -- and the letterform they share then
+arrives at two sizes on rows that sit next to each other, which is the one comparison this
+correction exists to get right. So the plain mark is sized by its sibling's measurement instead of
+its own. It measures smaller on the figure, 9.65 against 10.73, and that is the price of the
+drawing matching, which is the thing actually being looked at.
+
+This is an exception and is written as one. Two marks qualify only when they are the same drawing
+differing by a decoration; glyphs that merely resemble each other are still measured apart.
+
 **The size they are normalised to is the compass on the closed trigger**, which is itself a
 correction: `size-3.75` rather than the row's Lucide `size-3.5`, because a circle that reaches its
 box reads smaller than a glyph that only reaches it at the corners. That mark is the one this

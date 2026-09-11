@@ -301,6 +301,13 @@ describe('the marks the menu is scanned by', () => {
 		}
 	});
 
+	it('draws one glyph at one size, whatever is decorating it', () => {
+		// `translate-2-line` and `translate-2-ai-line` are the same drawing plus a sparkle. Sized
+		// on their own ink the plain one comes out larger, and the letterform they share renders
+		// at two sizes on neighbouring rows.
+		expect(MARK_SIZE['translate-simplified']).toBe(MARK_SIZE['translate-ai']);
+	});
+
 	it('leaves no mark at the shared height the set used to carry', () => {
 		// `h-4` was one class for four glyphs that do not fill their viewBox alike, which is the
 		// thing being corrected. A mark back at exactly 1rem would mean the table was bypassed.
