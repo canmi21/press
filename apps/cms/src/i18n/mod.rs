@@ -393,6 +393,158 @@ async fn translate(
 	if entries.is_empty() { Err(last) } else { Ok((entries, total_tokens, total_usd, pending)) }
 }
 
+/// How many times a display request is sent before the run gives up on it.
+///
+/// Two, where a body block gets three. A body block escalates through model tiers because a hard
+/// paragraph can defeat a cheap model; a title is short and the run is already on the strongest
+/// tier the caller named. What a second attempt buys here is one specific thing: the first reply
+/// is told, per field, that it came back over its budget, and a model that overshot by three
+/// characters usually fixes that when shown the number. A third would be the same ask again.
+const DISPLAY_ATTEMPTS: usize = 2;
+
+struct DisplayRequest<'a> {
+	title: &'a str,
+	subtitle: Option<&'a str>,
+	context: &'a str,
+	wanted: Vec<(String, segment::Display)>,
+	have: Vec<(String, segment::Display, String)>,
+	runner: Runner,
+	model_override: Option<String>,
+	source_locale: Option<String>,
+}
+
+type DisplayEntry = (String, segment::Display, Translation);
+type DisplayResult =
+	Result<(Vec<DisplayEntry>, u64, f64, Vec<(String, segment::Display)>), Refusal>;
+
+/// Ask for one article's display metadata: the missing fields, in one request, across all locales.
+///
+/// Mirrors `translate` and differs in what a reply can fail on. A body block is refused for its
+/// shape -- a lost marker, a malformed note. A title is refused for its size, because the column
+/// it is drawn in has a width and the reader loses whatever runs past it. So the retry carries the
+/// measurement back: not "that was wrong" but "that one drew 214px where 186 is the room".
+async fn translate_display(request: DisplayRequest<'_>) -> DisplayResult {
+	let DisplayRequest {
+		title,
+		subtitle,
+		context,
+		mut wanted,
+		mut have,
+		runner,
+		model_override,
+		source_locale,
+	} = request;
+
+	let mut last = Refusal::Failed(String::new());
+	let mut attempt = 0usize;
+	let mut backoff = BACKOFF_START;
+	let mut entries: Vec<DisplayEntry> = Vec::new();
+	let mut total_tokens = 0u64;
+	let mut total_usd = 0.0;
+	let mut rejected: Vec<String> = Vec::new();
+
+	while attempt < DISPLAY_ATTEMPTS && !wanted.is_empty() {
+		let built = prompt::build_display(
+			title,
+			subtitle,
+			context,
+			&wanted,
+			&have,
+			source_locale.as_deref(),
+		);
+		// What the previous attempt got wrong, in the units the rule is written in. A model shown
+		// "over by 28px" can act on it; one shown "invalid" can only guess again.
+		let text = if rejected.is_empty() {
+			built.text
+		} else {
+			format!(
+				"{}\n\nThe previous attempt came back over the limit on these. Write them shorter:\n{}",
+				built.text,
+				rejected.join("\n")
+			)
+		};
+		rejected.clear();
+
+		let model = model_override
+			.as_deref()
+			.unwrap_or_else(|| runner.model_for(segment::Kind::Heading, attempt));
+		let started = crate::image::manifest::now();
+		let clock = std::time::Instant::now();
+		let answer = match runner::ask(runner, &text, model).await {
+			Ok(answer) => answer,
+			Err(Refusal::Exhausted(reason)) => return Err(Refusal::Exhausted(reason)),
+			Err(Refusal::Throttled(_)) => {
+				tokio::time::sleep(backoff).await;
+				backoff = (backoff * 2).min(BACKOFF_MAX);
+				continue;
+			}
+			Err(error) => {
+				last = error;
+				attempt += 1;
+				continue;
+			}
+		};
+		total_tokens += answer.tokens;
+		total_usd += answer.usd;
+
+		let parsed = match prompt::parse_display(&answer.text, Some(&built.boundary)) {
+			Ok(parsed) => parsed,
+			Err(prompt::BoundaryLeak) => {
+				last = Refusal::Failed("the reply carried the fence back".to_owned());
+				attempt += 1;
+				continue;
+			}
+		};
+
+		let provider = runner.provider().to_owned();
+		let seconds = clock.elapsed().as_secs_f64();
+		for (locale, field, answered) in parsed {
+			if !wanted.iter().any(|(l, f)| l == &locale && f == &field) {
+				continue;
+			}
+			if let Err(error) = validate::display(field, &answered) {
+				rejected.push(format!("{}  {error}", prompt::field_marker(&locale, field)));
+				continue;
+			}
+			entries.push((
+				locale.clone(),
+				field,
+				Translation {
+					text: answered.clone(),
+					provider: provider.clone(),
+					model: answer.model.clone(),
+					at: started.clone(),
+					seconds,
+					tokens: answer.tokens,
+					review: false,
+				},
+			));
+			// Kept for the retry: a field written on this attempt is context for one written on
+			// the next, which is the whole reason the four are asked for together.
+			have.push((locale.clone(), field, answered));
+			wanted.retain(|(l, f)| !(l == &locale && f == &field));
+		}
+
+		if wanted.is_empty() {
+			return Ok((entries, total_tokens, total_usd, wanted));
+		}
+		last = Refusal::Failed(format!(
+			"{} did not come back within budget",
+			wanted
+				.iter()
+				.map(|(locale, field)| format!("{locale}:{}", field.name()))
+				.collect::<Vec<_>>()
+				.join(", ")
+		));
+		attempt += 1;
+	}
+	if entries.is_empty() && !wanted.is_empty() {
+		Err(last)
+	} else {
+		Ok((entries, total_tokens, total_usd, wanted))
+	}
+}
+
 /// One line, rewritten in place, showing what is being worked on.
 /// Translate every article under `articles`.
 pub struct RunOptions<'a> {
@@ -599,12 +751,145 @@ pub async fn run(
 			})
 		};
 
+		// The four drawn fields are asked for together, in one request, by the pass below. They
+		// are separate segments and separate stored entries -- what differs is only that a
+		// subtitle written without its title beside it, or a short form written without the full
+		// one, is written in ignorance of the thing it has to agree with.
+		let display_todo: Vec<(String, segment::Display, Vec<String>)> = wanted
+			.iter()
+			.filter_map(|(id, locales)| {
+				let field = live.get(id)?.display?;
+				Some((id.clone(), field, locales.clone()))
+			})
+			.collect();
 		let todo: Vec<(Segment, Vec<String>)> = wanted
 			.iter()
+			.filter(|(id, _)| live.get(*id).is_none_or(|segment| segment.display.is_none()))
 			.filter_map(|(id, locales)| live.get(id).map(|segment| (segment.clone(), locales.clone())))
 			.take(budget)
 			.collect();
 		budget -= todo.len();
+
+		// The article key claims are namespaced by, so two articles holding a segment with the
+		// same id -- which happens, since an id is the hash of the text -- are two items.
+		let article_key = path.strip_prefix(articles).unwrap_or(&path).display().to_string();
+		let mut sidecar_seen = modified_at(&sidecar_path);
+
+		if !display_todo.is_empty() && budget > 0 {
+			let by_field = |field: segment::Display| {
+				live.values().find(|segment| segment.display == Some(field)).cloned()
+			};
+			let title_segment = by_field(segment::Display::Title);
+			let subtitle_segment = by_field(segment::Display::Subtitle);
+			// What the article is about, so a short form can be written to the piece rather than
+			// to the words of the title. The description is written for exactly this and is not
+			// drawn anywhere, so it costs the reader nothing to be long.
+			let context = live
+				.values()
+				.find(|segment| {
+					segment.region == segment::Region::Frontmatter && segment.display.is_none()
+				})
+				.map(|segment| segment.source.clone())
+				.or_else(|| {
+					live.values()
+						.find(|segment| {
+							segment.region == segment::Region::Body && segment.kind == segment::Kind::Prose
+						})
+						.map(|segment| segment.source.chars().take(600).collect())
+				})
+				.unwrap_or_default();
+
+			if let Some(title_segment) = title_segment {
+				let ids: std::collections::HashMap<segment::Display, String> = live
+					.values()
+					.filter_map(|segment| Some((segment.display?, segment.id.clone())))
+					.collect();
+				let mut ask: Vec<(String, segment::Display)> = Vec::new();
+				for (_, field, missing) in &display_todo {
+					for locale in missing {
+						ask.push((locale.clone(), *field));
+					}
+				}
+				let mut held: Vec<(String, segment::Display, String)> = Vec::new();
+				for (field, id) in &ids {
+					let Some(stored) = sidecar.segments.get(id) else {
+						continue;
+					};
+					for (locale, entry) in stored {
+						if !ask.iter().any(|(l, f)| l == locale && f == field) {
+							held.push((locale.clone(), *field, entry.text.clone()));
+						}
+					}
+				}
+
+				let claimed = claim::take(
+					repository,
+					"i18n",
+					&format!("{article_key}#display"),
+				);
+				match claimed {
+					Err(claim::Denied::Taken(_)) => outcome.claimed_elsewhere += 1,
+					Err(claim::Denied::Io(error)) => return Err(error),
+					Ok(claimed) => {
+						let asked = ask.len();
+						let result = translate_display(DisplayRequest {
+							title: &title_segment.source,
+							subtitle: subtitle_segment.as_ref().map(|s| s.source.as_str()),
+							context: &context,
+							wanted: ask,
+							have: held,
+							runner,
+							model_override: model_override.clone(),
+							source_locale: source_locale.clone(),
+						})
+						.await;
+						budget = budget.saturating_sub(asked);
+						match result {
+							Ok((entries, tokens, usd, unfinished)) => {
+								for (locale, field, entry) in entries {
+									let Some(id) = ids.get(&field) else {
+										continue;
+									};
+									sidecar.segments.entry(id.clone()).or_default().insert(locale, entry);
+									outcome.translated += 1;
+								}
+								outcome.tokens += tokens;
+								outcome.usd += usd;
+								sidecar.version = store::VERSION;
+								{
+									let path = sidecar_path.clone();
+									let snapshot = sidecar.clone();
+									translations.apply(move || store::save(&path, &snapshot))?;
+								}
+								sidecar_seen = modified_at(&sidecar_path);
+								if !unfinished.is_empty() {
+									outcome.failed.push((
+										"display".to_owned(),
+										format!(
+											"{} did not come back within budget",
+											unfinished
+												.iter()
+												.map(|(locale, field)| format!("{locale}:{}", field.name()))
+												.collect::<Vec<_>>()
+												.join(", ")
+										),
+									));
+								}
+							}
+							Err(Refusal::Exhausted(reason)) => {
+								outcome.exhausted = Some(reason);
+								drop(claimed);
+								return Ok(outcome);
+							}
+							Err(error) => {
+								outcome.failed.push(("display".to_owned(), error.to_string()));
+							}
+						}
+						drop(claimed);
+					}
+				}
+			}
+		}
 
 		let progress = progress::Progress::new(todo.len() as u64, sinks());
 		progress.set_message(format!("{}", path.display()));
@@ -615,10 +900,6 @@ pub async fn run(
 		// process start the same segment while this one was still saving it.
 		let mut held: std::collections::HashMap<String, claim::Claim> =
 			std::collections::HashMap::new();
-		// The article key claims are namespaced by, so two articles holding a segment with the
-		// same id -- which happens, since an id is the hash of the text -- are two items.
-		let article_key = path.strip_prefix(articles).unwrap_or(&path).display().to_string();
-		let mut sidecar_seen = modified_at(&sidecar_path);
 
 		let mut queue = todo.into_iter();
 		type Finished = (String, Result<(Vec<(String, Translation)>, u64, f64, Vec<String>), Refusal>);

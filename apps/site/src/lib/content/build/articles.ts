@@ -3,7 +3,13 @@ import { join } from 'node:path';
 import { URLS } from '@canmi/urls';
 import { parse as parseYaml } from 'yaml';
 import { createAssetResolver, type AssetManifest, type MediaManifest } from './assets.ts';
-import { assemble, type SegmentLayout, type TranslationSidecar } from './assemble.ts';
+import {
+	assemble,
+	type SegmentLayout,
+	type SegmentSpan,
+	type TranslationLocale,
+	type TranslationSidecar,
+} from './assemble.ts';
 import { articleFrontmatter, compile, compilePage } from './compile.ts';
 import { indexingMetadata } from './indexing.ts';
 
@@ -153,12 +159,19 @@ export function translatedRaws(
 	raws: Record<LocaleCode, string>;
 	translatable: Record<LocaleCode, string>;
 	translationAvailable: Record<LocaleCode, boolean>;
+	short: Record<LocaleCode, { title?: string; subtitle?: string }>;
 } {
 	const spans = layout.articles[article];
 	if (!spans) throw new Error(`${file}: missing from data/build/segments.json`);
 	const raws = { mw: raw } as Record<LocaleCode, string>;
 	const translatable = {} as Record<LocaleCode, string>;
 	const translationAvailable = { mw: true } as Record<LocaleCode, boolean>;
+	// A short form is asked for rather than written, so it is not in the article and never
+	// reaches `assemble`. It is read straight out of the sidecar by the id its display span
+	// carries. Absent is the ordinary case for a view nobody has run the CMS for yet, and the
+	// caller falls back to the full form.
+	const shortSpans = spans.filter((span) => span.region === 'display');
+	const short = {} as Record<LocaleCode, { title?: string; subtitle?: string }>;
 	for (const [code, locale] of Object.entries(PUBLIC_LANGUAGE) as [
 		Exclude<LocaleCode, 'mw'>,
 		(typeof PUBLIC_LANGUAGE)[Exclude<LocaleCode, 'mw'>],
@@ -176,8 +189,32 @@ export function translatedRaws(
 			translationAvailable[code] = true;
 		}
 		translatable.mw = assembled.translatable.source;
+		// A view that fell back to the source article takes the source's title and subtitle with
+		// it, so its short forms have to fall back too. Otherwise a card reads `Untitled` above a
+		// German `Ohne Titel`: one string from the article, the other from the sidecar, and the
+		// gate that decided the first never saw the second.
+		short[code] = translationAvailable[code] ? shortForms(shortSpans, sidecar, locale) : {};
 	}
-	return { raws, translatable, translationAvailable };
+	// The source view reads whatever was written for the language the article is in; there is no
+	// separate entry for it, and the full forms stand where there is none.
+	short.mw = {};
+	return { raws, translatable, translationAvailable, short };
+}
+
+/** The short title and subtitle a view has, by the ids their display spans carry. */
+function shortForms(
+	spans: readonly SegmentSpan[],
+	sidecar: TranslationSidecar,
+	locale: TranslationLocale,
+): { title?: string; subtitle?: string } {
+	const found: { title?: string; subtitle?: string } = {};
+	for (const span of spans) {
+		const text = sidecar.segments?.[span.id]?.[locale]?.text?.trim();
+		if (!text) continue;
+		if (span.field === 'short-title') found.title = text;
+		if (span.field === 'short-subtitle') found.subtitle = text;
+	}
+	return found;
 }
 
 /** One article's assembled views, carried from the frontmatter pass into the compile pass. */
@@ -190,6 +227,7 @@ type Prepared = {
 	raws: Record<LocaleCode, string>;
 	translatable: Record<LocaleCode, string>;
 	translationAvailable: Record<LocaleCode, boolean>;
+	short: Record<LocaleCode, { title?: string; subtitle?: string }>;
 };
 
 /**
@@ -270,7 +308,7 @@ export async function buildArticles(
 		// The original's own locale, read off the frontmatter before anything is compiled --
 		// `compile` reports it, but the resolver below needs it to run at all.
 		const originLocale = sourceLocale(/^lang:\s*(\S+)/m.exec(raw)?.[1] ?? 'en-US');
-		const { raws, translatable, translationAvailable } = translatedRaws(
+		const { raws, translatable, translationAvailable, short } = translatedRaws(
 			file,
 			`${path}.md`,
 			raw,
@@ -279,7 +317,15 @@ export async function buildArticles(
 		);
 		for (const code of LOCALE_CODES) {
 			const { title, subtitle, created } = articleFrontmatter(raws[code], file);
-			references[code][path] = { title, subtitle, created };
+			// The short forms fall back to the full ones. A view the CMS has not been run for has
+			// none, and a card that showed nothing would be worse than one that clips.
+			references[code][path] = {
+				title,
+				subtitle,
+				created,
+				shortTitle: short[code].title ?? title,
+				shortSubtitle: short[code].subtitle ?? subtitle,
+			};
 		}
 		prepared.push({
 			file,
@@ -290,6 +336,7 @@ export async function buildArticles(
 			raws,
 			translatable,
 			translationAvailable,
+			short,
 		});
 	}
 
@@ -302,6 +349,7 @@ export async function buildArticles(
 		raws,
 		translatable,
 		translationAvailable,
+		short,
 	} of prepared) {
 		const source = await compile(raws.mw, url, {
 			newTabNote: notes.mw,
@@ -360,6 +408,10 @@ export async function buildArticles(
 						languageTag: languageTag(code, sourceLanguage),
 						canonical: canonical[code],
 						translationAvailable: translationAvailable[code],
+						short: {
+							title: short[code]?.title ?? view.meta.title,
+							subtitle: short[code]?.subtitle ?? view.meta.subtitle,
+						},
 						// `mw` takes the summary written in the article's own language rather
 						// than a translation of it, for the same reason it takes that language's
 						// alt text: the original view is the one nothing was done to.

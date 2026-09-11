@@ -22,7 +22,7 @@ pub enum Region {
 /// `Kind` cannot answer this: a title and a subtitle are both `Heading`, and so is every `##` in
 /// the body. They are told apart here because each is drawn in a different place and has a budget
 /// of its own -- see `width::budget`. Body segments carry `None`.
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum Display {
 	Title,
 	Subtitle,
@@ -40,6 +40,19 @@ impl Display {
 			Self::Subtitle => super::width::budget::DESKTOP_SUBTITLE,
 			Self::ShortTitle => super::width::budget::PHONE_TITLE,
 			Self::ShortSubtitle => super::width::budget::PHONE_SUBTITLE,
+		}
+	}
+
+	/// The width this field is written to, which is not always the width it is drawn in.
+	///
+	/// A full form holds a fifth back, so that editing the article later does not push a stored
+	/// translation past the column it is drawn in. A short form does not: it is the last fallback
+	/// there is, nothing shorter exists behind it, and writing it to 80% of a budget that already
+	/// cost the reader most of the sentence would be giving away room for nothing.
+	pub fn target(self) -> f32 {
+		match self {
+			Self::Title | Self::Subtitle => self.budget() * super::width::HEADROOM,
+			Self::ShortTitle | Self::ShortSubtitle => self.budget(),
 		}
 	}
 

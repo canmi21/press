@@ -1,0 +1,327 @@
+version: 1
+segments:
+  111a6f78428961718b6b2e04be7bcc17:
+    de-DE:
+      text: Ein Platzhalter, bis der echte Text geschrieben ist
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T08:01:46.035031Z
+      seconds: 3.721184375
+      tokens: 34805
+      review: false
+    en-US:
+      text: A placeholder, kept only until the real piece is written
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    es-ES:
+      text: Un hueco reservado hasta que se escriba el texto real
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T08:01:46.035031Z
+      seconds: 3.721184375
+      tokens: 34805
+      review: false
+    fr-FR:
+      text: Une réservation, le temps que le vrai texte s'écrive
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T08:01:46.035031Z
+      seconds: 3.721184375
+      tokens: 34805
+      review: false
+    ja-JP:
+      text: 仮置きの一本。本文が書かれるまでの間だけ
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    ko-KR:
+      text: 자리만 지키는 글, 진짜 글이 쓰일 때까지만
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    zh-CN:
+      text: 临时占位，等真正的文章写出来就撤掉
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    zh-TW:
+      text: 暫時占位，等真正的文章寫出來就撤掉
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+  978598124b7df0bd966ce7ef04e65d95:
+    de-DE:
+      text: Ohne Titel
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    en-US:
+      text: Untitled
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    es-ES:
+      text: Sin título
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    fr-FR:
+      text: Sans titre
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    ja-JP:
+      text: 無題
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    ko-KR:
+      text: 제목 없음
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    zh-CN:
+      text: 无标题
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    zh-TW:
+      text: 無標題
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+  c5b2344515902165f6bf3279d4f5fa25:
+    de-DE:
+      text: Ohne Titel
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    en-US:
+      text: Untitled
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    es-ES:
+      text: Sin título
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    fr-FR:
+      text: Sans titre
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    ja-JP:
+      text: 無題
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    ko-KR:
+      text: 제목 없음
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    zh-CN:
+      text: 无标题
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    zh-TW:
+      text: 無標題
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+  f3f1a5c7f238e27ffe47cb3cb275008a:
+    de-DE:
+      text: Ein Gerüstartikel, der noch nichts zu sagen hat. Er existiert, damit sich die Gestalt eines neuen Eintrags unter architecture schon gerendert betrachten lässt, bevor auch nur eines seiner Worte feststeht.
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:06.519879Z
+      seconds: 11.225617542
+      tokens: 34526
+      review: false
+    en-US:
+      text: A scaffold article with nothing to say yet. It exists so that the shape of a new entry under architecture can be seen rendering before any of its words are decided.
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:06.519879Z
+      seconds: 11.225617542
+      tokens: 34526
+      review: false
+    es-ES:
+      text: Un artículo de andamiaje que todavía no tiene nada que decir. Existe para que la forma de una nueva entrada en architecture pueda verse renderizada antes de que se decida ninguna de sus palabras.
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:06.519879Z
+      seconds: 11.225617542
+      tokens: 34526
+      review: false
+    fr-FR:
+      text: Un article d'échafaudage qui n'a encore rien à dire. Il existe pour que la forme d'une nouvelle entrée sous architecture puisse être vue au rendu avant qu'aucun de ses mots ne soit arrêté.
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:06.519879Z
+      seconds: 11.225617542
+      tokens: 34526
+      review: false
+    ja-JP:
+      text: まだ語ることのない足場だけの記事。architecture 配下に新しく置かれる項目の姿が、言葉が一つも決まらないうちにどう描画されるかを見るために存在している。
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:06.519879Z
+      seconds: 11.225617542
+      tokens: 34526
+      review: false
+    ko-KR:
+      text: 아직 할 말이 없는 뼈대만의 글이다. architecture 아래 새로 들어설 항목의 모습이 어떻게 렌더링되는지, 문장이 하나도 정해지기 전에 미리 보기 위해 존재한다.
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:06.519879Z
+      seconds: 11.225617542
+      tokens: 34526
+      review: false
+    zh-CN:
+      text: 一篇还无话可说的占位文章。它的存在，是为了在文字尚未定稿之前，就能看到 architecture 下一篇新条目的形态如何渲染出来。
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:06.519879Z
+      seconds: 11.225617542
+      tokens: 34526
+      review: false
+    zh-TW:
+      text: 一篇還無話可說的鷹架文章。它的存在，是為了在文字尚未定案之前，就能看見 architecture 底下一則新條目的形貌如何被算繪出來。
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:06.519879Z
+      seconds: 11.225617542
+      tokens: 34526
+      review: false
+  f63540330030da751a5d4f46cf0a1d77:
+    de-DE:
+      text: Platzhalter bis zum echten Text
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    en-US:
+      text: A placeholder until the real piece
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    es-ES:
+      text: Reservado hasta el texto real
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    fr-FR:
+      text: Réservé jusqu'au vrai texte
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    ja-JP:
+      text: 本文が書かれるまでの仮置き
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    ko-KR:
+      text: 진짜 글이 쓰일 때까지만
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    zh-CN:
+      text: 占位，等正文写出来
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false
+    zh-TW:
+      text: 占位，等正文寫出來
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:55.514775Z
+      seconds: 11.003888291
+      tokens: 35574
+      review: false

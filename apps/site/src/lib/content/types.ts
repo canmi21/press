@@ -111,7 +111,15 @@ export type Block =
  * The card reads these off the target rather than off the directive, so retitling an article
  * retitles every card naming it and each translated view names it in its own language.
  */
-export type ArticleReference = { title: string; subtitle: string; created: string };
+export type ArticleReference = {
+	title: string;
+	subtitle: string;
+	created: string;
+	/** What a phone card shows instead, where the row clips. Falls back to the full form for a
+	 *  view the CMS has not written one for. See spec/i18n.md. */
+	shortTitle: string;
+	shortSubtitle: string;
+};
 
 /**
  * One `:fn` note: the words it explains, the number it was given, and what it says.
@@ -148,6 +156,9 @@ export type ArticleView = Pick<Compiled, 'meta' | 'toc' | 'blocks' | 'feed' | 't
 	canonical: string;
 	/** False when this locale is showing the complete source article as a safe fallback. */
 	translationAvailable: boolean;
+	/** The title and subtitle a phone card shows instead of `meta`'s, where the row clips. Falls
+	 *  back to the full form for a view the CMS has not written one for. See spec/i18n.md. */
+	short: { title: string; subtitle: string };
 	/**
 	 * What the article is about, withholding what it concludes. Written by `cms summary` into a
 	 * sidecar rather than into the article, so it is absent until that has been run.

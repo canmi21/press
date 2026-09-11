@@ -585,6 +585,71 @@ segments:
       seconds: 180.610677542
       tokens: 220974
       review: false
+  45b98d1bf4517b822ec507922c39043c:
+    de-DE:
+      text: Weniger ist mehr
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:01.265702Z
+      seconds: 6.364306083
+      tokens: 35300
+      review: false
+    en-US:
+      text: Less is more
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:01.265702Z
+      seconds: 6.364306083
+      tokens: 35300
+      review: false
+    es-ES:
+      text: Menos es más
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:01.265702Z
+      seconds: 6.364306083
+      tokens: 35300
+      review: false
+    fr-FR:
+      text: Moins, c’est plus
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:01.265702Z
+      seconds: 6.364306083
+      tokens: 35300
+      review: false
+    ja-JP:
+      text: 少ないほど豊か
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:01.265702Z
+      seconds: 6.364306083
+      tokens: 35300
+      review: false
+    ko-KR:
+      text: 적을수록 좋다
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:01.265702Z
+      seconds: 6.364306083
+      tokens: 35300
+      review: false
+    zh-CN:
+      text: 少即是多
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:01.265702Z
+      seconds: 6.364306083
+      tokens: 35300
+      review: false
+    zh-TW:
+      text: 少即是多
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:01.265702Z
+      seconds: 6.364306083
+      tokens: 35300
+      review: false
   551935a9c558349b95fc6fe2d3ca8486:
     de-DE:
       text: '## Scheitern {#failure}'
@@ -2014,6 +2079,71 @@ segments:
       at: 2026-08-10T05:42:32.007845Z
       seconds: 72.746939209
       tokens: 19757
+      review: false
+  e265208f244c923ee73af6dc04399e3c:
+    de-DE:
+      text: Von Next.js 13 bis 16 geschoben
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:01.265702Z
+      seconds: 6.364306083
+      tokens: 35300
+      review: false
+    en-US:
+      text: Put off from Next.js 13 to 16
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:01.265702Z
+      seconds: 6.364306083
+      tokens: 35300
+      review: false
+    es-ES:
+      text: Aplazado de Next.js 13 a 16
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:01.265702Z
+      seconds: 6.364306083
+      tokens: 35300
+      review: false
+    fr-FR:
+      text: Repoussé de Next.js 13 à 16
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:01.265702Z
+      seconds: 6.364306083
+      tokens: 35300
+      review: false
+    ja-JP:
+      text: Next.js 13から16まで先延ばし
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:01.265702Z
+      seconds: 6.364306083
+      tokens: 35300
+      review: false
+    ko-KR:
+      text: Next.js 13에서 16까지 미루기
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:01.265702Z
+      seconds: 6.364306083
+      tokens: 35300
+      review: false
+    zh-CN:
+      text: 从 Next.js 13 拖到 16
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:01.265702Z
+      seconds: 6.364306083
+      tokens: 35300
+      review: false
+    zh-TW:
+      text: 從 Next.js 13 鴿到 16
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:01.265702Z
+      seconds: 6.364306083
+      tokens: 35300
       review: false
   e8f82735606f2fb8d14c78303c5bd343:
     de-DE:

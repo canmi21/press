@@ -351,12 +351,12 @@ segments:
       tokens: 16617
       review: false
     fr-FR:
-      text: Trop longtemps enfermé chez moi, allons enfin faire un tour
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:44:17.37522Z
-      seconds: 29.501333291999998
-      tokens: 16617
+      text: Trop longtemps enfermé, allons donc faire un tour dehors
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:14.747911Z
+      seconds: 8.169898291
+      tokens: 35354
       review: false
     ja-JP:
       text: 家にこもりすぎたし、たまには外を歩こう
@@ -1170,6 +1170,71 @@ segments:
       seconds: 152.683403333
       tokens: 43270
       review: false
+  b1fd5fc24f31e9cc846f51a90a710058:
+    de-DE:
+      text: Zu lange drin – Zeit für draußen
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:14.747911Z
+      seconds: 8.169898291
+      tokens: 35354
+      review: false
+    en-US:
+      text: Cooped up too long—time to walk
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:14.747911Z
+      seconds: 8.169898291
+      tokens: 35354
+      review: false
+    es-ES:
+      text: Mucho encierro, salgo a andar
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:14.747911Z
+      seconds: 8.169898291
+      tokens: 35354
+      review: false
+    fr-FR:
+      text: Enfermé trop longtemps, sortons
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:14.747911Z
+      seconds: 8.169898291
+      tokens: 35354
+      review: false
+    ja-JP:
+      text: こもりすぎ、外を歩こう
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:14.747911Z
+      seconds: 8.169898291
+      tokens: 35354
+      review: false
+    ko-KR:
+      text: 너무 오래 집에만, 걷자
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:14.747911Z
+      seconds: 8.169898291
+      tokens: 35354
+      review: false
+    zh-CN:
+      text: 宅太久了，出门走走
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:14.747911Z
+      seconds: 8.169898291
+      tokens: 35354
+      review: false
+    zh-TW:
+      text: 宅太久，出門走走
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:14.747911Z
+      seconds: 8.169898291
+      tokens: 35354
+      review: false
   b20418b65885f121bdfee9a54e31d21e:
     de-DE:
       text: Der Autor macht sich mit dem MacBook auf den Weg, um zum Programmieren an den Fluss zu gehen, wird jedoch von der Bildschirmhelligkeit, dem schlechten Empfang und den längst veränderten Straßen ausgebremst. Ein Essay über Erinnerungen und Entfremdung beim ersten Ausflug nach langer Zeit in den eigenen vier Wänden – ein etwa einstündiger Streifzug durch die Stadt.
@@ -1494,6 +1559,71 @@ segments:
       at: 2026-08-10T05:46:04.065422Z
       seconds: 17.198990083
       tokens: 16826
+      review: false
+  cbad6bc48cb84e8b6788c2c7d1c30eea:
+    de-DE:
+      text: Die Welt draußen
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:14.747911Z
+      seconds: 8.169898291
+      tokens: 35354
+      review: false
+    en-US:
+      text: The Outside World
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:14.747911Z
+      seconds: 8.169898291
+      tokens: 35354
+      review: false
+    es-ES:
+      text: El mundo exterior
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:14.747911Z
+      seconds: 8.169898291
+      tokens: 35354
+      review: false
+    fr-FR:
+      text: Le monde dehors
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:14.747911Z
+      seconds: 8.169898291
+      tokens: 35354
+      review: false
+    ja-JP:
+      text: 外の世界
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:14.747911Z
+      seconds: 8.169898291
+      tokens: 35354
+      review: false
+    ko-KR:
+      text: 바깥세상
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:14.747911Z
+      seconds: 8.169898291
+      tokens: 35354
+      review: false
+    zh-CN:
+      text: 外面的世界
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:14.747911Z
+      seconds: 8.169898291
+      tokens: 35354
+      review: false
+    zh-TW:
+      text: 外面的世界
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:14.747911Z
+      seconds: 8.169898291
+      tokens: 35354
       review: false
   e01d8e1e543f16b81140771368abcf4e:
     de-DE:

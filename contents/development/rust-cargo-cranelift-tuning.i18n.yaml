@@ -1497,12 +1497,12 @@ segments:
       review: false
   88551a1239b60d2cd9e0b979acf4e742:
     de-DE:
-      text: Optimierung der Rust-Entwicklungskonfiguration in der Praxis
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:36:23.87997Z
-      seconds: 30.0677415
-      tokens: 16573
+      text: Rust-Entwicklung in der Praxis richtig konfigurieren
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T08:01:49.76264Z
+      seconds: 3.212778375
+      tokens: 35028
       review: false
     en-US:
       text: Optimizing Rust Development Configuration in Practice
@@ -1513,20 +1513,20 @@ segments:
       tokens: 16573
       review: false
     es-ES:
-      text: Veamos cómo optimizar la configuración de desarrollo de Rust en la práctica
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:36:23.87997Z
-      seconds: 30.0677415
-      tokens: 16573
+      text: Afinemos la configuración de Rust en la práctica
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T08:01:49.76264Z
+      seconds: 3.212778375
+      tokens: 35028
       review: false
     fr-FR:
-      text: Optimisons la configuration de développement Rust en pratique
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:36:23.87997Z
-      seconds: 30.0677415
-      tokens: 16573
+      text: Optimisons la configuration de Rust sur le terrain
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T08:01:49.76264Z
+      seconds: 3.212778375
+      tokens: 35028
       review: false
     ja-JP:
       text: Rust 開発設定の最適化を実践から見てみよう
@@ -1754,6 +1754,71 @@ segments:
       at: 2026-08-10T05:36:42.337974Z
       seconds: 49.019600416
       tokens: 18126
+      review: false
+  9008a5e94ca3eb8cab34b3adf53db169:
+    de-DE:
+      text: Rust-Konfiguration optimieren
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:17.749944Z
+      seconds: 43.507834042
+      tokens: 38719
+      review: false
+    en-US:
+      text: Rust config tuning in practice
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:17.749944Z
+      seconds: 43.507834042
+      tokens: 38719
+      review: false
+    es-ES:
+      text: Optimizar la configuración de Rust
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:17.749944Z
+      seconds: 43.507834042
+      tokens: 38719
+      review: false
+    fr-FR:
+      text: Optimiser la config Rust
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:17.749944Z
+      seconds: 43.507834042
+      tokens: 38719
+      review: false
+    ja-JP:
+      text: 実践で学ぶ Rust 設定最適化
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:17.749944Z
+      seconds: 43.507834042
+      tokens: 38719
+      review: false
+    ko-KR:
+      text: 실전 Rust 설정 최적화
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:17.749944Z
+      seconds: 43.507834042
+      tokens: 38719
+      review: false
+    zh-CN:
+      text: 实际开发中的 Rust 配置调优
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:17.749944Z
+      seconds: 43.507834042
+      tokens: 38719
+      review: false
+    zh-TW:
+      text: 實務中的 Rust 設定調校
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:17.749944Z
+      seconds: 43.507834042
+      tokens: 38719
       review: false
   932ed4fb81fe3ff80b0d225149714615:
     de-DE:
@@ -2274,6 +2339,71 @@ segments:
       at: 2026-08-10T05:37:31.36696Z
       seconds: 16.561217625
       tokens: 16786
+      review: false
+  a396d6de611aacf19d94b510f0dd93a0:
+    de-DE:
+      text: Kein Faulenzen, Cargo
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:17.749944Z
+      seconds: 43.507834042
+      tokens: 38719
+      review: false
+    en-US:
+      text: Cargo, Stop Slacking
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:17.749944Z
+      seconds: 43.507834042
+      tokens: 38719
+      review: false
+    es-ES:
+      text: Cargo, no holgazanees
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:17.749944Z
+      seconds: 43.507834042
+      tokens: 38719
+      review: false
+    fr-FR:
+      text: Cargo, fini la flemme
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:17.749944Z
+      seconds: 43.507834042
+      tokens: 38719
+      review: false
+    ja-JP:
+      text: Cargo、サボり禁止
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:17.749944Z
+      seconds: 43.507834042
+      tokens: 38719
+      review: false
+    ko-KR:
+      text: Cargo, 농땡이 금지
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:17.749944Z
+      seconds: 43.507834042
+      tokens: 38719
+      review: false
+    zh-CN:
+      text: Cargo 别摸鱼了
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:17.749944Z
+      seconds: 43.507834042
+      tokens: 38719
+      review: false
+    zh-TW:
+      text: Cargo 別摸魚了
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:58:17.749944Z
+      seconds: 43.507834042
+      tokens: 38719
       review: false
   a94383d7cb9c5055fea17b7235acdae7:
     de-DE:

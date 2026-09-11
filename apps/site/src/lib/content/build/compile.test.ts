@@ -470,6 +470,8 @@ it('draws an ::article card from the target article rather than from the directi
 					title: 'Rendering as a Protocol',
 					subtitle: 'UI should be described, not executed.',
 					created: '2026-04-13T19:18:28.488Z',
+					shortTitle: 'Rendering as a Protocol',
+					shortSubtitle: 'Described, not executed.',
 				},
 			},
 			highlight: async () => '',
@@ -483,6 +485,9 @@ it('draws an ::article card from the target article rather than from the directi
 		title: 'Rendering as a Protocol',
 		subtitle: 'UI should be described, not executed.',
 		created: '2026-04-13T19:18:28.488Z',
+		// The card is the homepage's row, so it carries what that row needs on a phone too.
+		shortTitle: 'Rendering as a Protocol',
+		shortSubtitle: 'Described, not executed.',
 	});
 	// The feed and /llms.txt targets name the article too; neither runs a layout, so a card
 	// there is a link that says what it points at.

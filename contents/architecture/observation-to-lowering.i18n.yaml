@@ -390,6 +390,71 @@ segments:
       seconds: 10.760873042
       tokens: 29052
       review: false
+  0668ef005a29622182b016435c5aeda0:
+    de-DE:
+      text: Zukunft von SeamJS
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:01.266009Z
+      seconds: 54.23325725
+      tokens: 39617
+      review: false
+    en-US:
+      text: Future of SeamJS
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:01.266009Z
+      seconds: 54.23325725
+      tokens: 39617
+      review: false
+    es-ES:
+      text: El futuro de SeamJS
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:01.266009Z
+      seconds: 54.23325725
+      tokens: 39617
+      review: false
+    fr-FR:
+      text: L'avenir de SeamJS
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:01.266009Z
+      seconds: 54.23325725
+      tokens: 39617
+      review: false
+    ja-JP:
+      text: SeamJS の今後
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:01.266009Z
+      seconds: 54.23325725
+      tokens: 39617
+      review: false
+    ko-KR:
+      text: SeamJS의 미래
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:01.266009Z
+      seconds: 54.23325725
+      tokens: 39617
+      review: false
+    zh-CN:
+      text: SeamJS 的未来
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:01.266009Z
+      seconds: 54.23325725
+      tokens: 39617
+      review: false
+    zh-TW:
+      text: SeamJS 的未來
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:01.266009Z
+      seconds: 54.23325725
+      tokens: 39617
+      review: false
   066cb1c55b0e906252d09a249f2c3405:
     de-DE:
       text: 'Jedenfalls zeigt sich die Freundlichkeit von Runes darin, dass die Ownership syntaktisch markiert wird, und nicht darin, dass `$derived` von Haus aus **CTR**-fähig wäre. Das einzige Kriterium bleibt am Ende doch: Woher kommen die Daten, die der Pfad unten anzeigt, wie rein sind sie, und sind sie sichtbar (lol)'
@@ -9131,6 +9196,71 @@ segments:
       at: 2026-08-30T06:41:42.195962Z
       seconds: 5.084347291
       tokens: 28443
+      review: false
+  fb35d0a95ec5d6bf0cb507fea6dedce1:
+    de-DE:
+      text: Reacts Blackbox, Sveltes AST
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:01.266009Z
+      seconds: 54.23325725
+      tokens: 39617
+      review: false
+    en-US:
+      text: React's black box, Svelte's AST
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:01.266009Z
+      seconds: 54.23325725
+      tokens: 39617
+      review: false
+    es-ES:
+      text: De la caja negra al AST visible
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:01.266009Z
+      seconds: 54.23325725
+      tokens: 39617
+      review: false
+    fr-FR:
+      text: De la boîte noire à l'AST visible
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:01.266009Z
+      seconds: 54.23325725
+      tokens: 39617
+      review: false
+    ja-JP:
+      text: ブラックボックスから見える AST
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:01.266009Z
+      seconds: 54.23325725
+      tokens: 39617
+      review: false
+    ko-KR:
+      text: 블랙박스에서 보이는 AST로
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:01.266009Z
+      seconds: 54.23325725
+      tokens: 39617
+      review: false
+    zh-CN:
+      text: 从黑箱到可见的 AST
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:01.266009Z
+      seconds: 54.23325725
+      tokens: 39617
+      review: false
+    zh-TW:
+      text: 從黑盒到看得見的 AST
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:57:01.266009Z
+      seconds: 54.23325725
+      tokens: 39617
       review: false
   fdedce013cca0c5346d209739824388e:
     de-DE:

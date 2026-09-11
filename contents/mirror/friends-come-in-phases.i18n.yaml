@@ -2,12 +2,12 @@ version: 1
 segments:
   254086f3ffc966ca596512f0c71e3745:
     de-DE:
-      text: Freundschaften gehören immer nur zu bestimmten Lebensphasen
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-26T06:50:28.863453Z
-      seconds: 14.861251458
-      tokens: 19255
+      text: Freunde begleiten uns nur eine Weile
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T08:01:52.986061Z
+      seconds: 2.803223459
+      tokens: 34868
       review: false
     en-US:
       text: Friends are only there for a season
@@ -64,6 +64,71 @@ segments:
       at: 2026-08-26T06:50:28.863453Z
       seconds: 14.861251458
       tokens: 19255
+      review: false
+  29aa793526aed29c912370065ed17569:
+    de-DE:
+      text: Meine fragilen Beziehungen?
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:07.638127Z
+      seconds: 7.103662708
+      tokens: 35411
+      review: false
+    en-US:
+      text: My fragile relationships?
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:07.638127Z
+      seconds: 7.103662708
+      tokens: 35411
+      review: false
+    es-ES:
+      text: ¿Mis frágiles relaciones?
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:07.638127Z
+      seconds: 7.103662708
+      tokens: 35411
+      review: false
+    fr-FR:
+      text: Mes relations fragiles ?
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:07.638127Z
+      seconds: 7.103662708
+      tokens: 35411
+      review: false
+    ja-JP:
+      text: 脆い人間関係を探る？
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:07.638127Z
+      seconds: 7.103662708
+      tokens: 35411
+      review: false
+    ko-KR:
+      text: 나의 연약한 인간관계?
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:07.638127Z
+      seconds: 7.103662708
+      tokens: 35411
+      review: false
+    zh-CN:
+      text: 我那脆弱的人际关系？
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:07.638127Z
+      seconds: 7.103662708
+      tokens: 35411
+      review: false
+    zh-TW:
+      text: 我那脆弱的人際關係？
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:07.638127Z
+      seconds: 7.103662708
+      tokens: 35411
       review: false
   2f54811542df442ca2b6c09151b005a1:
     de-DE:
@@ -1559,6 +1624,71 @@ segments:
       at: 2026-08-26T06:54:43.618625Z
       seconds: 39.141259584
       tokens: 20420
+      review: false
+  ea138aa292e47d23070889288f0653ca:
+    de-DE:
+      text: Freunde auf Zeit
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:07.638127Z
+      seconds: 7.103662708
+      tokens: 35411
+      review: false
+    en-US:
+      text: Friends for a season
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:07.638127Z
+      seconds: 7.103662708
+      tokens: 35411
+      review: false
+    es-ES:
+      text: Amigos de una etapa
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:07.638127Z
+      seconds: 7.103662708
+      tokens: 35411
+      review: false
+    fr-FR:
+      text: Des amis d’un temps
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:07.638127Z
+      seconds: 7.103662708
+      tokens: 35411
+      review: false
+    ja-JP:
+      text: 友人は一時期だけ
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:07.638127Z
+      seconds: 7.103662708
+      tokens: 35411
+      review: false
+    ko-KR:
+      text: 한 시절의 친구들
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:07.638127Z
+      seconds: 7.103662708
+      tokens: 35411
+      review: false
+    zh-CN:
+      text: 朋友都是阶段性的
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:07.638127Z
+      seconds: 7.103662708
+      tokens: 35411
+      review: false
+    zh-TW:
+      text: 朋友都是階段性的
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:59:07.638127Z
+      seconds: 7.103662708
+      tokens: 35411
       review: false
   eed224288e33c1447f7dbad8a87bd42e:
     de-DE:

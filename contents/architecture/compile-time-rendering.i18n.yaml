@@ -975,6 +975,63 @@ segments:
       seconds: 56.311992083
       tokens: 17904
       review: false
+  2e1dd1ddeca1e2a1d5ad21d6440da6a2:
+    de-DE:
+      text: Rendern als Protokoll
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:56:03.533401Z
+      seconds: 50.285161
+      tokens: 38853
+      review: false
+    en-US:
+      text: Rendering as Protocol
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:55:53.572007Z
+      seconds: 9.961294875
+      tokens: 35341
+      review: false
+    es-ES:
+      text: Render como protocolo
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:56:03.533401Z
+      seconds: 50.285161
+      tokens: 38853
+      review: false
+    fr-FR:
+      text: Rendu comme protocole
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:56:03.533401Z
+      seconds: 50.285161
+      tokens: 38853
+      review: false
+    ko-KR:
+      text: 프로토콜로서의 렌더링
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:55:53.572007Z
+      seconds: 9.961294875
+      tokens: 35341
+      review: false
+    zh-CN:
+      text: 渲染即协议
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:55:53.572007Z
+      seconds: 9.961294875
+      tokens: 35341
+      review: false
+    zh-TW:
+      text: 渲染即協定
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:55:53.572007Z
+      seconds: 9.961294875
+      tokens: 35341
+      review: false
   2eeed0381e20a693773c97cf918e09cd:
     de-DE:
       text: 'Warum hat SeamJS am Ende dennoch eine JS-Laufzeit integriert? Weil ich bei der Umsetzung dieses Ansatzes auf ein Problem gestoßen bin: Die Idealvorstellung von CTR stellt äußerst strenge Anforderungen an die Daten für die erste Darstellung. Die Daten müssen eine vollständig ableitbare, deterministische Struktur bilden; sie dürfen nicht einmal Berechnungslogik enthalten, sondern ausschließlich Bedingungen. Das ist ausgesprochen restriktiv. Mit Blick auf die Entwicklungserfahrung eines Frameworks erwarten Entwickler, die an die herkömmliche Arbeit mit React gewöhnt sind, selbstverständlich, Berechnungen innerhalb einer Komponente durchführen und die daraus gewonnenen Werte direkt verwenden zu können. Die strikte Einhaltung der CTR-Vorgaben, um einen `ready-to-display`-Zustand zu erreichen, würde den Ablauf äußerst umständlich machen und könnte sogar dazu führen, dass dieselbe Komponente zweimal geschrieben werden muss.'
@@ -2015,6 +2072,71 @@ segments:
       seconds: 42.638360166
       tokens: 17567
       review: false
+  5d5a0b3a32b2f9c5bbc758dea68b7e53:
+    de-DE:
+      text: UI beschreiben, nicht ausführen.
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:55:53.572007Z
+      seconds: 9.961294875
+      tokens: 35341
+      review: false
+    en-US:
+      text: Describe the UI, don't run it.
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:55:53.572007Z
+      seconds: 9.961294875
+      tokens: 35341
+      review: false
+    es-ES:
+      text: Describir la UI, no ejecutarla.
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:56:03.533401Z
+      seconds: 50.285161
+      tokens: 38853
+      review: false
+    fr-FR:
+      text: Décrire l'UI, pas l'exécuter.
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:56:03.533401Z
+      seconds: 50.285161
+      tokens: 38853
+      review: false
+    ja-JP:
+      text: UI は実行でなく記述で。
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:55:53.572007Z
+      seconds: 9.961294875
+      tokens: 35341
+      review: false
+    ko-KR:
+      text: UI는 실행이 아닌 기술로.
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:55:53.572007Z
+      seconds: 9.961294875
+      tokens: 35341
+      review: false
+    zh-CN:
+      text: 界面靠描述，而非执行。
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:55:53.572007Z
+      seconds: 9.961294875
+      tokens: 35341
+      review: false
+    zh-TW:
+      text: 介面靠描述，而非執行。
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:55:53.572007Z
+      seconds: 9.961294875
+      tokens: 35341
+      review: false
   602407b7f2bce94e855549a24cdc1820:
     de-DE:
       text: Sogar Musterabgleich
@@ -2342,12 +2464,12 @@ segments:
       review: false
   7039d1334cf4ac0b9759edca4d22b17c:
     de-DE:
-      text: Benutzeroberflächen sollten beschrieben, nicht ausgeführt werden.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:29:00.493243Z
-      seconds: 31.586537459
-      tokens: 16775
+      text: Oberflächen beschreibt man, führt sie nicht aus.
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T08:01:10.955147Z
+      seconds: 35.061422375
+      tokens: 37851
       review: false
     en-US:
       text: UI should be described, not executed.
@@ -2366,20 +2488,20 @@ segments:
       tokens: 16775
       review: false
     fr-FR:
-      text: L’interface utilisateur doit être décrite, et non exécutée.
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:29:00.493243Z
-      seconds: 31.586537459
-      tokens: 16775
+      text: Une interface se décrit, elle ne s'exécute pas.
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T08:01:10.955147Z
+      seconds: 35.061422375
+      tokens: 37851
       review: false
     ja-JP:
-      text: ユーザーインターフェースは実行されるのではなく、記述されるべきだ。
-      provider: openai
-      model: gpt-5-6-sol-xhigh
-      at: 2026-08-10T05:29:00.493243Z
-      seconds: 31.586537459
-      tokens: 16775
+      text: ユーザーインターフェースは実行ではなく記述されるべきだ。
+      provider: anthropic
+      model: claude-haiku-4-5
+      at: 2026-09-11T07:55:53.572007Z
+      seconds: 9.961294875
+      tokens: 35341
       review: false
     ko-KR:
       text: 사용자 인터페이스는 실행되지 않고 기술되어야 한다.

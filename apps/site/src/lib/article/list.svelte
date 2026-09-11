@@ -11,6 +11,8 @@
 		articles: {
 			title: string;
 			subtitle: string;
+			shortTitle: string;
+			shortSubtitle: string;
 			created: string;
 			path: string;
 			paragraphs: string[];
@@ -153,6 +155,8 @@
 			<ArticleCard
 				title={article.title}
 				subtitle={article.subtitle}
+				shortTitle={article.shortTitle}
+				shortSubtitle={article.shortSubtitle}
 				created={article.created}
 				path={article.path}
 			/>

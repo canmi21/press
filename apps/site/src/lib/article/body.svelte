@@ -189,6 +189,8 @@
 			<ArticleCard
 				title={block.title}
 				subtitle={block.subtitle}
+				shortTitle={block.shortTitle}
+				shortSubtitle={block.shortSubtitle}
 				created={block.created}
 				path={block.path}
 			/>

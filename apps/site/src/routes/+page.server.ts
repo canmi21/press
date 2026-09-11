@@ -14,10 +14,12 @@ export const load: PageServerLoad = async ({ locals }) => {
 	if (!page) error(500, 'Missing contents/homepage.md');
 	const code = locals.locale?.code ?? 'mw';
 	const articles = (await getArticles()).map((article) => {
-		const { meta, text } = article.views[code];
+		const { meta, text, short } = article.views[code];
 		return {
 			title: meta.title,
 			subtitle: meta.subtitle,
+			shortTitle: short.title,
+			shortSubtitle: short.subtitle,
 			created: meta.created,
 			path: article.path,
 			// First few prose-ish blocks, capped — the article icon maps their wrapped

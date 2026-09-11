@@ -225,16 +225,18 @@ const PAIR_RATIO: f64 = 0.75;
 /// both belong to a person. `cms i18n --check` prints these; removing the entries is what makes
 /// the runner ask again.
 ///
-/// The test is `comfortable`, not `fits`. A translation sitting exactly on its budget is one
-/// source edit away from not fitting, and the longest title in the corpus draws 503px against a
-/// 504px cap. See spec/i18n.md.
+/// The test is `target`, not `budget`. A full form sitting exactly on its budget is one source
+/// edit away from not fitting -- the longest title in the corpus draws 503px against a 504px cap
+/// -- so a fifth is held back from it. A short form is written to its budget instead: it is the
+/// last fallback there is, and holding room back from it would shorten a line that has already
+/// given up most of the sentence. See spec/i18n.md.
 pub fn display(segment_id: &str, locale: &str, translation: &str, field: Display) -> Vec<Finding> {
-	if width::comfortable(translation, field.budget()) {
+	let drawn = width::pixels(translation);
+	if drawn <= field.target() {
 		return Vec::new();
 	}
-	let drawn = width::pixels(translation);
 	let budget = field.budget();
-	let verdict = if drawn > budget { "over" } else { "within a fifth of" };
+	let verdict = if drawn > budget { "over" } else { "inside the fifth held back from" };
 	vec![Finding {
 		segment: segment_id.to_owned(),
 		locale: locale.to_owned(),

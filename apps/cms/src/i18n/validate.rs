@@ -6,6 +6,7 @@ use super::width;
 use std::collections::BTreeMap;
 use std::fmt;
 use std::path::Path;
+use super::segment::Display;
 use unicode_width::UnicodeWidthChar;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -15,6 +16,8 @@ pub enum Error {
 	TranslatorNoteInFrontmatter,
 	AuthorNoteCountChanged,
 	UnresolvedMarker,
+	/// A drawn field wider than the place it is drawn in.
+	OverBudget { drawn: u32, budget: u32 },
 }
 
 impl fmt::Display for Error {
@@ -32,6 +35,11 @@ impl fmt::Display for Error {
 			Self::UnresolvedMarker => formatter.write_str(
 				"the translation carries a marker that stands for nothing -- text copied from \
 				 the neighbouring context",
+			),
+			Self::OverBudget { drawn, budget } => write!(
+				formatter,
+				"draws about {drawn}px where {budget}px is the room it has, so the reader would \
+				 lose the end of it"
 			),
 		}
 	}
@@ -194,6 +202,25 @@ pub fn translation(region: Region, source: &str, text: &str) -> Result<(), Error
 	}
 	if !author_notes_preserved(source, text) {
 		return Err(Error::AuthorNoteCountChanged);
+	}
+	Ok(())
+}
+
+/// Whether a drawn field fits the place it is drawn in.
+///
+/// Unlike everything else here, this is not a question about the shape of the reply. The text can
+/// be a perfect translation and still be refused, because a title wider than the column is clipped
+/// and the reader loses the end of it. `width::pixels` is an estimate and deliberately a generous
+/// one; a field that fails this is one no reasonable rendering would fit.
+///
+/// The budget, not the fifth held back. `HEADROOM` is the rule for what is already stored and
+/// whether it earns another look; this is the rule for what may be stored at all, and refusing a
+/// fresh answer for sitting in the last fifth would spend a retry on a line that fits.
+pub fn display(field: Display, text: &str) -> Result<(), Error> {
+	let drawn = width::pixels(text);
+	let budget = field.budget();
+	if drawn > budget {
+		return Err(Error::OverBudget { drawn: drawn as u32, budget: budget as u32 });
 	}
 	Ok(())
 }
