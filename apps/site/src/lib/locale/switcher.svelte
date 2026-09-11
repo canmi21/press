@@ -14,9 +14,11 @@
 	import MenuContent from '$lib/components/menu-content.svelte';
 	import {
 		languageChoices,
+		MARK_SIZE,
 		selectContentLanguage,
 		triggerLabel,
 		type LanguageChoice,
+		type MarkName,
 	} from './switcher';
 	import { acceptedLocale, contentLanguageCookie, SITE_LANGUAGE, type LocaleCode } from './index';
 	import * as m from '$lib/paraglide/messages';
@@ -35,18 +37,30 @@
 	 * original stands apart with a globe, being the one view nothing was done to.
 	 */
 	const MARKS = {
-		en: IconTranslate,
-		es: IconTranslate,
-		zh: IconTranslateSimplified,
-		tw: IconTranslateAi,
-		ja: IconTranslateAi,
-		ko: IconTranslateAi,
-		de: IconTranslateAi,
-		fr: IconTranslateAi,
-		mw: IconWorld,
-	} as const satisfies Record<LocaleCode, unknown>;
+		en: 'translate',
+		es: 'translate',
+		zh: 'translate-simplified',
+		tw: 'translate-ai',
+		ja: 'translate-ai',
+		ko: 'translate-ai',
+		de: 'translate-ai',
+		fr: 'translate-ai',
+		mw: 'world',
+	} as const satisfies Record<LocaleCode, MarkName>;
 
-	function markFor(choice: LanguageChoice) {
+	/**
+	 * Named rather than imported straight into the table above, because a mark is now two things:
+	 * the glyph, and the height that glyph needs to read the same size as the rest. The name is
+	 * what joins them, and it is what `MARK_SIZE` in switcher.ts is keyed by.
+	 */
+	const MARK_ICON = {
+		translate: IconTranslate,
+		'translate-simplified': IconTranslateSimplified,
+		'translate-ai': IconTranslateAi,
+		world: IconWorld,
+	} as const satisfies Record<MarkName, unknown>;
+
+	function markFor(choice: LanguageChoice): MarkName {
 		return MARKS[choice.code];
 	}
 
@@ -85,9 +99,10 @@
 	 * nothing needs changing. Inside the menu the marks keep naming languages, because there the
 	 * compass has the other job: pointing at a row worth moving to.
 	 */
-	const CurrentMark = $derived(
-		code === preferred || current === undefined ? Compass : markFor(current),
+	const currentMark = $derived(
+		code === preferred || current === undefined ? undefined : markFor(current),
 	);
+	const CurrentMark = $derived(currentMark ? MARK_ICON[currentMark] : Compass);
 
 	/**
 	 * The one slot that holds either icon set, so the one place their difference is spelled out.
@@ -106,7 +121,7 @@
 	 */
 	const COMPASS_SIZE = 'size-3.75';
 
-	const markSize = $derived(code === preferred ? COMPASS_SIZE : 'h-4 w-auto');
+	const markSize = $derived(currentMark ? MARK_SIZE[currentMark] : COMPASS_SIZE);
 
 	function choose(nextCode: string) {
 		open = false;
@@ -142,7 +157,8 @@
 	<MenuContent id="article-language-menu">
 		<DropdownMenu.RadioGroup value={code} onValueChange={choose}>
 			{#each choices as choice (choice.code)}
-				{@const Mark = markFor(choice)}
+				{@const mark = markFor(choice)}
+				{@const Mark = MARK_ICON[mark]}
 				<DropdownMenu.RadioItem
 					data-language-option
 					value={choice.code}
@@ -153,7 +169,7 @@
 				>
 					{#snippet children({ checked })}
 						<Mark
-							class="h-4 w-auto shrink-0 text-text-soft group-data-[highlighted]:text-text-strong"
+							class="{MARK_SIZE[mark]} shrink-0 text-text-soft group-data-[highlighted]:text-text-strong"
 							aria-hidden="true"
 						/>
 						<span class="flex-1 {checked ? 'text-text-strong' : 'text-text-soft'}"

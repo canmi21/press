@@ -24,6 +24,64 @@ export const LANGUAGE_ENDONYMS = Object.fromEntries(
 ) as Record<TranslationCode, string>;
 
 /**
+ * How large each mark reads, measured rather than assumed.
+ *
+ * Each glyph is rasterised at a 16px box and its painted pixels counted, which gives how far the
+ * ink reaches and how much of it there is inside that reach. The figure below is
+ * `sqrt(extent * sqrt(mass))`: reach, corrected by weight. Both terms scale with the box, so the
+ * figure does too, and the height a mark wants is a ratio rather than a second measurement.
+ *
+ * Mingcute does not fill its viewBox alike across this set, so one shared `h-4` shipped four
+ * sizes spanning 15.5%. `translate-line` and `translate-2-line` reach 12.00px of ink where
+ * `translate-2-ai-line` and `world-2-line` reach 13.38px, and the lighter of the two pairs is
+ * lighter again in mass -- so the English, Spanish and Simplified rows read smallest, in a column
+ * the eye compares by scanning straight down it.
+ *
+ * Reach alone is the wrong thing to equalise. Bringing a narrow mark up to the widest reach scales
+ * its strokes with it, and it arrives as the heaviest mark in the menu; weight alone
+ * under-corrects for the same reason in reverse. See spec/styling.md.
+ */
+const MARK_OPTICAL = {
+	translate: 9.68,
+	'translate-simplified': 9.4,
+	'translate-ai': 10.47,
+	world: 10.86,
+} as const;
+
+export type MarkName = keyof typeof MARK_OPTICAL;
+
+/**
+ * One optical size for the whole control, taken from the compass on the closed trigger.
+ *
+ * That mark is the one size this control was already right at, and it is a correction of its own
+ * -- `size-3.75` rather than the row's `size-3.5`, for reasons recorded in switcher.svelte. So the
+ * menu is brought to it rather than the other way round.
+ *
+ * It also settles the trigger, which was not one size but two: the compass reads 10.68 and the
+ * mark that replaces it when the view is not the reader's own read between 9.40 and 10.86, so the
+ * same slot changed size by up to 12% according to which language was being read.
+ */
+const MARK_OPTICAL_TARGET = 10.68;
+
+/**
+ * The height each mark is given, written out rather than computed.
+ *
+ * Tailwind reads source text and would not find a height it has to evaluate, so these are
+ * literals; `markHeightRem` is what they mean, and a test holds the two together.
+ */
+export const MARK_SIZE = {
+	translate: 'h-[1.1033rem] w-auto',
+	'translate-simplified': 'h-[1.1362rem] w-auto',
+	'translate-ai': 'h-[1.0201rem] w-auto',
+	world: 'h-[0.9834rem] w-auto',
+} as const satisfies Record<MarkName, string>;
+
+/** The height, in rem, that brings a mark to the control's one optical size. */
+export function markHeightRem(mark: MarkName): number {
+	return MARK_OPTICAL_TARGET / MARK_OPTICAL[mark];
+}
+
+/**
  * Two orders, chosen by what the reader's own language is rather than by the view.
  *
  * Names never change; only their sequence does, and it settles once per reader rather than

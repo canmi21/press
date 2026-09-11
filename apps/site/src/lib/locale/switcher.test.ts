@@ -3,6 +3,8 @@ import {
 	contentLanguageHref,
 	LANGUAGE_ENDONYMS,
 	languageChoices,
+	MARK_SIZE,
+	markHeightRem,
 	orderFor,
 	selectContentLanguage,
 	sourceCode,
@@ -285,5 +287,23 @@ describe('the closed switcher', () => {
 		// would mean anything. A page is not that case: it has the site's own language.
 		expect(triggerLabel('mw', 'it')).toBe(`${m['language.original']({}, { locale: 'mw' })} (IT)`);
 		expect(triggerLabel('mw', SITE_LANGUAGE)).toBe('English (US)');
+	});
+});
+
+describe('the marks the menu is scanned by', () => {
+	it('gives every mark the height its own ink asks for', () => {
+		// The classes are literals because Tailwind reads source text, so nothing in the build
+		// would notice one drifting from the measurement it stands for. This does.
+		for (const [mark, size] of Object.entries(MARK_SIZE)) {
+			const written = /^h-\[([\d.]+)rem\] w-auto$/.exec(size)?.[1];
+			expect(written, `${mark} is not a height this test can read`).toBeDefined();
+			expect(Number(written)).toBeCloseTo(markHeightRem(mark as keyof typeof MARK_SIZE), 3);
+		}
+	});
+
+	it('leaves no mark at the shared height the set used to carry', () => {
+		// `h-4` was one class for four glyphs that do not fill their viewBox alike, which is the
+		// thing being corrected. A mark back at exactly 1rem would mean the table was bypassed.
+		for (const size of Object.values(MARK_SIZE)) expect(size).not.toBe('h-4 w-auto');
 	});
 });

@@ -964,10 +964,43 @@ summary disclosure is the reference control, and language selection and licence-
 the same geometry and states rather than copying its utility list.
 
 The visible focus outline stays on a `focus-link-inner` child, matching the text-and-icon shape
-inside the padded hit area. A Lucide icon in this row is `0.875rem`. Mingcute icons use a
-`1rem` height and automatic width, while a Lucide icon occupying that same language-marker slot is
-`0.8125rem`; these are optical calibrations for their different view boxes, not interchangeable
-box sizes.
+inside the padded hit area. A Lucide icon in this row is `0.875rem`, and a Lucide icon in the
+language menu's trailing marker slot is `0.8125rem`. The language marks are not a box size at all;
+see below. None of these are interchangeable: they are optical calibrations for different view
+boxes.
+
+### An icon set is sized by the ink it carries, not by one class for all of it
+
+A box size is a promise about the space an icon may use, and that is not what the reader sees. The
+reader sees the ink. Mingcute's language marks do not fill their view boxes alike, so the one
+`h-4` they all carried shipped four different sizes: rasterised at a 16px box and measured by
+counting painted pixels, `translate-line` and `translate-2-line` reach 12.00px of ink where
+`translate-2-ai-line` and `world-2-line` reach 13.38px, and the first pair is lighter in mass
+besides. The English, Spanish and Simplified rows read up to 15.5% smaller than the five beside
+them, in a column whose whole job is to be compared by scanning straight down it.
+
+**The figure each mark is normalised on is `sqrt(extent * sqrt(mass))`**: how far the ink reaches,
+corrected by how much of it is inside that reach. Reach alone is the wrong thing to equalise --
+bringing a narrow mark up to the widest reach scales its strokes with it and it arrives as the
+heaviest mark in the menu -- and mass alone under-corrects for the same reason in reverse. Both
+terms scale with the box, so the figure does too, and each mark's height is a ratio of measured
+numbers rather than a second round of guessing.
+
+**The size they are normalised to is the compass on the closed trigger**, which is itself a
+correction: `size-3.75` rather than the row's Lucide `size-3.5`, because a circle that reaches its
+box reads smaller than a glyph that only reaches it at the corners. That mark is the one this
+control was already right at, so the menu is brought to it. It settles the trigger as well, which
+was two sizes rather than one: the compass and the mark that replaces it differed by up to 12%
+according to which language was being read.
+
+The heights are written out as literal classes, because Tailwind reads source text and would not
+find a height it has to evaluate. A test parses them back and holds each to the ratio its measured
+optical size asks for, so the literals cannot drift from the table they stand for.
+
+**The trailing marker is not brought along.** A check is a light statement -- it says only that
+this row is the one -- and a check enlarged to match a compass beside it would be a check
+insisting. It measures 6.06 against the compass's 9.29 in the same slot, and that difference is
+the two marks meaning different things rather than one of them being wrong.
 
 ## `:focus-visible` is the browser's guess, and the site keeps its own answer
 
