@@ -10,18 +10,20 @@
 	import { intlLocale } from '$lib/format';
 
 	/**
-	 * Expanding is a wide-screen affordance, and below `sm` the pills keep their short copy.
+	 * Expanding answers to whether the pointer can hover, not to how wide the window is.
 	 *
-	 * A phone has neither hover nor keyboard focus, but a tap synthesises `mouseenter` -- so the
-	 * pill would grow under the finger that meant to press it, and then sit expanded with no
-	 * pointer to leave and take it back. Reading it costs a press either way; growing first only
-	 * moves the target.
+	 * A touch screen has no hover, but a tap synthesises `mouseenter` -- so the pill would grow
+	 * under the finger that meant to press it, and then sit expanded with no pointer to leave and
+	 * take it back. Reading it costs a press either way; growing first only moves the target.
 	 *
-	 * Queried live rather than once, so a tablet that turns finds the other answer. The width is
-	 * Tailwind's `sm` written a second time because this is a script and that is a stylesheet;
-	 * there is no third place to keep them from drifting apart. See spec/styling.md.
+	 * Width was the wrong question. An iPad is wider than any breakpoint this site draws and still
+	 * has nothing that hovers, so a width guard was open on the one device class it was written
+	 * for. This asks the capability directly, which is also why it needs no copy of a breakpoint.
+	 *
+	 * Queried live rather than once, so a tablet that is given a trackpad finds the other answer.
+	 * See spec/styling.md.
 	 */
-	const EXPANDABLE = '(min-width: 40rem)';
+	const HOVERS = '(hover: hover)';
 
 	const WIDTH_SPRING = { type: 'spring' as const, stiffness: 420, damping: 28, mass: 0.85 };
 	type AnimationControl = { stop: () => void };
@@ -105,9 +107,6 @@
 	}
 
 	function setExpanded(action: HTMLElement, expanded: boolean) {
-		// Collapsing is never refused: a viewport that narrows while a pill is open has to be able
-		// to put it back.
-		if (expanded && !window.matchMedia(EXPANDABLE).matches) return;
 		const geometry = measureCopy(action);
 		if (!geometry) return;
 
@@ -147,6 +146,11 @@
 	}
 
 	function expand(event: MouseEvent) {
+		// Only the pointer path is guarded. Keyboard focus arrives through `expandFromFocus`, and
+		// `:focus-visible` is never what a tap produces, so it carries none of the risk above --
+		// a tablet with a keyboard still gets the full label on Tab. Collapsing is never guarded
+		// either: whatever opened a pill has to be able to put it back.
+		if (!window.matchMedia(HOVERS).matches) return;
 		setExpanded(event.currentTarget as HTMLElement, true);
 	}
 

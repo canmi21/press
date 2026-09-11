@@ -1046,13 +1046,22 @@ Hovering or focusing a remembered Like inverts it to the ink surface. The same s
 remain understandable through `aria-pressed`, and reduced-motion users get the final labels without
 the width transition.
 
-**The reveal is a wide-screen affordance, and a phone keeps the short copy.** A touch screen has
-neither hover nor keyboard focus, but a tap synthesises `mouseenter` -- so the pill would grow
-under the finger that meant to press it and then stay grown, with no pointer to leave and take it
-back. Reading the instruction costs a press either way; growing first only moves the target. The
-width is queried live rather than once, so a tablet that turns finds the other answer, and
-collapsing is never refused: a viewport that narrows while a pill is open has to be able to put
-it back.
+**The reveal answers to whether the pointer can hover, not to how wide the window is.** A touch
+screen has no hover, but a tap synthesises `mouseenter` -- so the pill would grow under the finger
+that meant to press it and then stay grown, with no pointer to leave and take it back. Reading the
+instruction costs a press either way; growing first only moves the target.
+
+This was first written as a width, and width is the wrong question. An iPad reports 1133px and
+`hover: none`: wider than any breakpoint this site draws, with nothing on it that hovers. The
+guard was open on the one device class it existed for, which is the failure a proxy makes and the
+capability it stands in for does not. `(hover: hover)` also answers correctly for the case no width
+can describe, a laptop whose screen is also a touch screen: it has a pointer that hovers, so it
+expands, and it is right that it does.
+
+Only the pointer path is guarded. Keyboard focus is never what a tap produces -- the component
+tests `:focus-visible` -- so a tablet with a keyboard still gets the full label on Tab. Collapsing
+is not guarded either: whatever opened a pill has to be able to put it back. The query is live
+rather than read once, so a tablet that is given a trackpad finds the other answer.
 
 Sponsor is deliberately unavailable while U.S. F-1 immigration restrictions apply. Activating it
 opens a modal notice instead of navigating away. The rest of the page blurs behind the modal, and
