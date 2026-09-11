@@ -684,6 +684,19 @@ monospace tabular figures let those narrow values scan as one column. Soft ink a
 boxes keep them subordinate to the names they quantify; this is directory structure, not a live
 state.
 
+**A live count takes tabular figures wherever it is set in proportional type.** Inter's digits are
+not the same width -- `1` is 6.6px against `4`'s 10.5px at the Support rail's size -- so a reader
+who gives a like watches the pill resize itself and push the two pills beside it, as the direct
+result of the press they just made. Tabular figures give every digit the widest one's advance, so
+the width answers only to how many digits there are, and that change has a reason the reader can
+see. The feature belongs to the same proportional font and is not a monospace face: only the
+digits take the fixed advance, and the word beside them is untouched.
+
+That is the general form of what the `value` cells do by other means. A boxed monospace number
+holds still because the face holds every glyph still; a number set in running type needs the
+figures asked for by name. Both exist for one reason, that a number which answers to the reader
+must not move the page while answering.
+
 Counts below one thousand stay as whole numbers. At one thousand and above, compact indicators
 use the shared `compactCount` notation: lowercase `k`, uppercase `M`, and a decimal only while it
 carries useful precision (`1k`, `1.5k`, `16k`, `2.3M`). This applies to the licence metric columns

@@ -186,6 +186,13 @@
 	</h2>
 
 	<div class="mt-3 flex flex-wrap items-center gap-1.5">
+		<!-- `tabular-nums` because the count is the one thing here that changes while the reader is
+		     looking at it, and Inter's proportional digits are not the same width: `1` is 6.6px
+		     against `4`'s 10.5px. A like the reader just gave would resize its own pill and shift
+		     the two beside it. Tabular figures give every digit the widest one's advance, so the
+		     width answers only to how many digits there are -- a change that has a reason the
+		     reader can see. It is a feature of this same font, not a monospace face: only the
+		     digits take the fixed advance and `likes` beside them is untouched. -->
 		<button
 			type="button"
 			aria-pressed={liked}
@@ -199,7 +206,7 @@
 			onmouseleave={collapse}
 			onfocus={expandFromFocus}
 			onblur={collapse}
-			class="action like focus-ring"
+			class="action like focus-ring tabular-nums"
 		>
 			<Heart class="icon" fill={liked ? 'currentColor' : 'none'} aria-hidden="true" />
 			{@render copy(formattedCount, m['support.like']({ count: formattedCount }, { locale }))}
