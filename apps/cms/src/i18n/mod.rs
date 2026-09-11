@@ -511,6 +511,14 @@ pub async fn run(
 					continue;
 				};
 				if segment.region != segment::Region::Body {
+					// Frontmatter carries no notes, but the fields that are drawn have a width.
+					if let Some(field) = segment.display {
+						for (locale, translation) in locales {
+							for found in audit::display(id, locale, &translation.text, field) {
+								outcome.audit.push((path.display().to_string(), found));
+							}
+						}
+					}
 					continue;
 				}
 				for (locale, translation) in locales {

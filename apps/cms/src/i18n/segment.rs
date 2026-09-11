@@ -17,6 +17,43 @@ pub enum Region {
 	Body,
 }
 
+/// Which piece of display metadata a frontmatter segment is.
+///
+/// `Kind` cannot answer this: a title and a subtitle are both `Heading`, and so is every `##` in
+/// the body. They are told apart here because each is drawn in a different place and has a budget
+/// of its own -- see `width::budget`. Body segments carry `None`.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Display {
+	Title,
+	Subtitle,
+	/// The title as a phone card shows it, where the row clips.
+	ShortTitle,
+	/// The subtitle as a phone card shows it.
+	ShortSubtitle,
+}
+
+impl Display {
+	/// The width this field is drawn into, in pixels. See `width::budget`.
+	pub fn budget(self) -> f32 {
+		match self {
+			Self::Title => super::width::budget::DESKTOP_TITLE,
+			Self::Subtitle => super::width::budget::DESKTOP_SUBTITLE,
+			Self::ShortTitle => super::width::budget::PHONE_TITLE,
+			Self::ShortSubtitle => super::width::budget::PHONE_SUBTITLE,
+		}
+	}
+
+	/// What the field is called in a request and in a report.
+	pub fn name(self) -> &'static str {
+		match self {
+			Self::Title => "title",
+			Self::Subtitle => "subtitle",
+			Self::ShortTitle => "short-title",
+			Self::ShortSubtitle => "short-subtitle",
+		}
+	}
+}
+
 /// What a block is, which decides whether it is translated and by which model.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Kind {
@@ -62,6 +99,9 @@ pub struct Segment {
 	/// frontmatter prose is the YAML scalar's decoded value.
 	pub source: String,
 	pub region: Region,
+	/// Which piece of display metadata this is, for the frontmatter fields that are drawn in a
+	/// place with a width. `None` for body blocks and for `description`, which is never drawn.
+	pub display: Option<Display>,
 	/// Byte offsets in the complete source article. Stored in the build artifact.
 	pub start: usize,
 	pub end: usize,
@@ -281,6 +321,11 @@ fn frontmatter_segments(
 			kind: if matches!(key, "title" | "subtitle") { Kind::Heading } else { Kind::Prose },
 			source: source.clone(),
 			region: Region::Frontmatter,
+			display: match key {
+				"title" => Some(Display::Title),
+				"subtitle" => Some(Display::Subtitle),
+				_ => None,
+			},
 			start: absolute_start + line_start + colon + 1,
 			end: absolute_start + end,
 		});
@@ -333,7 +378,15 @@ fn push(article: &str, into: &mut Vec<Segment>, block: &mut Vec<&str>, start: us
 	} else {
 		Kind::Prose
 	};
-	into.push(Segment { id: id_of(&source), kind, source, region: Region::Body, start, end });
+	into.push(Segment {
+		id: id_of(&source),
+		kind,
+		source,
+		region: Region::Body,
+		display: None,
+		start,
+		end,
+	});
 }
 
 /// Every segment worth translating, keyed by id, deduplicated.

@@ -436,6 +436,7 @@ mod tests {
 			kind: super::super::segment::Kind::Prose,
 			source: "结果就是 :fn[乱]{is=\"基本上就是脱裤子放屁\"} 而已".into(),
 			region: super::super::segment::Region::Body,
+			display: None,
 			start: 0,
 			end: 0,
 		};

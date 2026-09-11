@@ -11,7 +11,7 @@
 //! findings and a person judges them. A hard gate would fail exactly the defensible minority
 //! the policy allows for.
 
-use super::segment::Kind;
+use super::segment::{Display, Kind};
 use super::tn;
 use super::width;
 
@@ -217,6 +217,34 @@ const PAIR_RATIO: f64 = 0.75;
 ///
 /// Report-only, like everything else in this file: the pair is a signal, not a rule. See
 /// spec/i18n.md.
+/// Whether a stored piece of display metadata still earns its place.
+///
+/// Title and subtitle are drawn in a fixed width and clipped there, so a translation that does
+/// not fit is not a judgement call the way a note policy is -- the reader loses the end of it.
+/// This is still report-only, because what happens next is a deletion and a paid re-run, and
+/// both belong to a person. `cms i18n --check` prints these; removing the entries is what makes
+/// the runner ask again.
+///
+/// The test is `comfortable`, not `fits`. A translation sitting exactly on its budget is one
+/// source edit away from not fitting, and the longest title in the corpus draws 503px against a
+/// 504px cap. See spec/i18n.md.
+pub fn display(segment_id: &str, locale: &str, translation: &str, field: Display) -> Vec<Finding> {
+	if width::comfortable(translation, field.budget()) {
+		return Vec::new();
+	}
+	let drawn = width::pixels(translation);
+	let budget = field.budget();
+	let verdict = if drawn > budget { "over" } else { "within a fifth of" };
+	vec![Finding {
+		segment: segment_id.to_owned(),
+		locale: locale.to_owned(),
+		reason: format!(
+			"{} draws about {drawn:.0}px, {verdict} its {budget:.0}px budget: {translation}",
+			field.name()
+		),
+	}]
+}
+
 pub fn across_locales(segment_id: &str, source: &str, texts: &[(&str, &str)]) -> Vec<Finding> {
 	let mut findings = Vec::new();
 	if width::raw(source) < PAIR_FLOOR {

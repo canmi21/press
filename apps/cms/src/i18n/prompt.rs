@@ -338,6 +338,7 @@ mod tests {
 			kind,
 			source: source.into(),
 			region: segment::Region::Body,
+			display: None,
 			start: 0,
 			end: 4,
 		}
