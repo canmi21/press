@@ -1046,6 +1046,14 @@ Hovering or focusing a remembered Like inverts it to the ink surface. The same s
 remain understandable through `aria-pressed`, and reduced-motion users get the final labels without
 the width transition.
 
+**The reveal is a wide-screen affordance, and a phone keeps the short copy.** A touch screen has
+neither hover nor keyboard focus, but a tap synthesises `mouseenter` -- so the pill would grow
+under the finger that meant to press it and then stay grown, with no pointer to leave and take it
+back. Reading the instruction costs a press either way; growing first only moves the target. The
+width is queried live rather than once, so a tablet that turns finds the other answer, and
+collapsing is never refused: a viewport that narrows while a pill is open has to be able to put
+it back.
+
 Sponsor is deliberately unavailable while U.S. F-1 immigration restrictions apply. Activating it
 opens a modal notice instead of navigating away. The rest of the page blurs behind the modal, and
 either the close control or any point on that background dismisses it.
@@ -1184,6 +1192,33 @@ tuned as it stands, and a `text-wrap` that changed with width would change it; t
 between the two readings lives entirely in the markdown. The one exception is the container's top
 padding, which is halved below `sm`: 6rem is most of a phone screen before anything is read, and
 the space under the footer is not competing with anything.
+
+## Phone copy is two lines, and the second is the shorter one
+
+Every translated block of interface prose is written to a shape rather than a length: two lines on
+a phone, or one line followed by a shorter one. Never a third line holding a fragment, and never a
+second line longer than the first. A trailing three words read as an accident, and an ascending rag
+puts the widest line at the bottom of a block the eye is leaving.
+
+The rule is about the rag, so it is checked by measuring, not by counting characters. Each
+candidate is rendered at the phone's column width and the rendered lines are read back; the copy is
+then written to the measurement. English gained a word to make its first line fill -- `sent
+straight to your inbox` rather than `straight to your inbox` -- while German and Spanish each lost
+one to come back from three lines to two. Nine locales cannot all be trimmed the same way, so each
+is tuned against its own rendering.
+
+**The newsletter pitch swaps two elements; the bio swaps markers inside one string.** The two
+mechanisms differ because the bio is identity copy rendered from source in every view, while the
+pitch is translated nine times. Markers inside one string work when there is one string; here the
+short pitch is its own message key, and the component renders the long one above `sm` and the short
+one below it. Both are always in the document and CSS chooses, so the choice survives the server
+render.
+
+**Nothing sets `text-wrap: pretty` on copy tuned this way.** Chrome ignores the value on these
+paragraphs and lays them out exactly as `auto` does, while Safari 26 implements it by reflowing
+earlier lines to rescue the last one -- which empties the first line of a two-line block to avoid a
+short second, producing the ascending rag this rule exists to prevent. Greedy filling is both what
+the measurements are taken against and what the two engines agree on.
 
 ## The theme control is a button, not a menu
 

@@ -210,10 +210,10 @@ otherwise need. See spec/engagement.md. -->
 		     Both are in the markup and one is `display: none`, so a screen reader is read exactly
 		     one of them. The bio does this with markers inside its markdown; a message has no
 		     markdown to mark, so the choice is made here. See spec/styling.md. -->
-		<p class="selectable hidden text-pretty text-text-soft sm:block">
+		<p class="selectable hidden text-text-soft sm:block">
 			{m['newsletter.pitch']({}, { locale })}
 		</p>
-		<p class="selectable text-pretty text-text-soft sm:hidden">
+		<p class="selectable text-text-soft sm:hidden">
 			{m['newsletter.pitch.short']({}, { locale })}
 		</p>
 
