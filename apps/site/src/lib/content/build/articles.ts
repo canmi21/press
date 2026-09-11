@@ -12,6 +12,7 @@ import {
 } from './assemble.ts';
 import { articleFrontmatter, compile, compilePage } from './compile.ts';
 import { indexingMetadata } from './indexing.ts';
+import { ARTICLE_TITLE_BUDGET, fits } from './width.ts';
 
 /**
  * One interface string the compiler emits into markup rather than a component rendering it.
@@ -412,6 +413,13 @@ export async function buildArticles(
 							title: short[code]?.title ?? view.meta.title,
 							subtitle: short[code]?.subtitle ?? view.meta.subtitle,
 						},
+						// The article page gives its title 85% of the column and no more. A title
+						// that fits is shown whole; one that does not is replaced rather than
+						// wrapped, because a short title is a phrase written for this and a
+						// wrapped one is a full title that ran out of room.
+						phoneTitle: fits(view.meta.title, ARTICLE_TITLE_BUDGET)
+							? view.meta.title
+							: (short[code]?.title ?? view.meta.title),
 						// `mw` takes the summary written in the article's own language rather
 						// than a translation of it, for the same reason it takes that language's
 						// alt text: the original view is the one nothing was done to.

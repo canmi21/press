@@ -16,6 +16,7 @@
 <Article
 	slug={data.slug}
 	meta={data.meta}
+	phoneTitle={data.phoneTitle}
 	toc={data.toc}
 	chars={data.chars}
 	summary={data.summary}

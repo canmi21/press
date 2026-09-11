@@ -33,6 +33,7 @@ describe('packed virtual content', () => {
 				canonical: url,
 				translationAvailable: code === 'mw',
 				short: { title: source.meta.title, subtitle: source.meta.subtitle },
+				phoneTitle: source.meta.title,
 			} satisfies ArticleView;
 		}
 		const article: Article = {

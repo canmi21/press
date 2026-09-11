@@ -44,6 +44,7 @@
 	let {
 		slug,
 		meta,
+		phoneTitle,
 		toc,
 		chars,
 		summary,
@@ -54,6 +55,9 @@
 		/** The article's path, which is what the read counter is keyed by. */
 		slug: string;
 		meta: ArticleMeta;
+		/** The title a phone sees: `meta.title` where it fits the column, the short one where it
+		 *  does not. Decided in the build; see $lib/content/build/width.ts. */
+		phoneTitle: string;
 		toc: TocEntry[];
 		chars: number;
 		/** The selected locale, or its English fallback. Absent only when neither exists. */
@@ -258,8 +262,20 @@
 				     serve the few that are drafts, and the side rail measures this very box to place the
 				     return control -- so a published article renders exactly the markup it did before,
 				     because the branch below produces nothing at all. See spec/drafts.md. -->
-				<h1 class="text-text-strong">
+				<!-- Two headings, one shown. The article column gives a title 85% of its width on a
+				     phone, and a title past that is replaced by the short form rather than wrapped:
+				     a short title is a phrase written for the room, a wrapped one is a full title
+				     that ran out of it. Where the full title fits, the two strings are equal.
+				     Both are in the document and CSS chooses, so the choice survives the server
+				     render and the first frame is never the wrong one. `display: none` keeps the
+				     unshown one out of the accessibility tree, so only one is ever announced. -->
+				<h1 class="text-text-strong max-sm:hidden">
 					{meta.title}{#if meta.draft}<span class="draft-mark">
+							{m['article.draft']({}, { locale: locale.code })}
+						</span>{/if}
+				</h1>
+				<h1 class="text-text-strong sm:hidden">
+					{phoneTitle}{#if meta.draft}<span class="draft-mark">
 							{m['article.draft']({}, { locale: locale.code })}
 						</span>{/if}
 				</h1>

@@ -1319,6 +1319,32 @@ earlier lines to rescue the last one -- which empties the first line of a two-li
 short second, producing the ascending rag this rule exists to prevent. Greedy filling is both what
 the measurements are taken against and what the two engines agree on.
 
+## A phone is shown the title that fits, not the title cut short
+
+The article column gives its title 85% of its width on a phone, which is 300px inside the page
+padding on an iPhone 17 Pro. A title past that is replaced by the short form rather than wrapped:
+a short title is a phrase written for the room it has, and a wrapped one is a full title that ran
+out of room. The card list is the tighter case and is where the short forms are written to -- 186
+px beside a leader and a date -- so a short title always clears the article page.
+
+**The choice is made in the build, not in the browser.** Whether a title fits is a property of the
+string, so it cannot change between renders; computing it at runtime would mean the first frame
+guessing and correcting itself. Both headings are in the document and CSS chooses between them,
+which is the same shape the card uses and for the same reason: the choice survives the server
+render. `display: none` keeps the unshown one out of the accessibility tree, so exactly one is
+announced.
+
+Where the full title fits, the two strings are equal and the markup carries one title twice. That
+is the cost of deciding in CSS rather than in a media query the server cannot see, and it is paid
+in bytes rather than in a wrong first frame.
+
+**The estimate exists twice, and one corpus holds the two together.** `width::pixels` in the CMS
+refuses a translation that will not fit; `width.ts` in the site build chooses which title a phone
+sees. Neither can call the other -- one is Rust, and putting the choice in the build artifact
+would make that artifact depend on translation state with nothing to detect it going stale. So
+both are tested against the same ten strings measured in the rendered page, and a constant edited
+on one side turns the other side's tests red.
+
 ## The theme control is a button, not a menu
 
 It is built and has no home yet: nothing on the site renders it while its placement is being

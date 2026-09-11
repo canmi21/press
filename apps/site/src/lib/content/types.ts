@@ -160,6 +160,13 @@ export type ArticleView = Pick<Compiled, 'meta' | 'toc' | 'blocks' | 'feed' | 't
 	 *  back to the full form for a view the CMS has not written one for. See spec/i18n.md. */
 	short: { title: string; subtitle: string };
 	/**
+	 * The title the article page shows on a phone: `meta.title` where it fits the column, and
+	 * `short.title` where it does not. Decided here rather than in the browser -- the answer is a
+	 * property of the string, so it cannot change between renders, and computing it at runtime
+	 * would mean the first frame guessing. See spec/styling.md.
+	 */
+	phoneTitle: string;
+	/**
 	 * What the article is about, withholding what it concludes. Written by `cms summary` into a
 	 * sidecar rather than into the article, so it is absent until that has been run.
 	 */
