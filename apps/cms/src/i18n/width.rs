@@ -166,16 +166,22 @@ pub const SIZE_ALLOWANCE: usize = 40;
 ///
 /// The phone's card row spends 107px before any text: 48 of page padding, a 47px thumbnail and
 /// the 12px beside it. The title gives up 12 more for the leader's clearance and 97 for the date,
-/// which is the same English short form in every locale. The article page spends 48 and gives its
-/// title three quarters of what is left.
+/// which is the same English short form in every locale. The article page spends only the 48 and
+/// gives its title 85% of the 354px that leaves.
 pub mod budget {
 	/// A card title on a phone, where the row clips with an ellipsis.
 	pub const PHONE_TITLE: f32 = 186.0;
 	/// A card subtitle on a phone, which has the column to itself.
 	pub const PHONE_SUBTITLE: f32 = 295.0;
-	/// An article title on a phone. Not a clip but a decision: a title wider than this is replaced
-	/// by the short one, which always fits, rather than wrapping to a second line.
-	pub const ARTICLE_TITLE: f32 = 266.0;
+	/// An article title on a phone, which is a different question from the card title above.
+	///
+	/// A card title shares its row with a dotted leader and a date; an article title has the whole
+	/// column. So the figure is not taken from what is left over but from what the column is: 354px
+	/// inside the page padding on an iPhone 17 Pro, of which the title may take 85%.
+	///
+	/// Not a clip but a decision. A title wider than this is replaced by the short one, which
+	/// always fits, rather than being allowed to wrap to a second line.
+	pub const ARTICLE_TITLE: f32 = 300.0;
 	/// A card title once the article column is at its 45rem cap, which is every window past 768px.
 	pub const DESKTOP_TITLE: f32 = 504.0;
 	/// A card subtitle at that same cap.
@@ -284,6 +290,16 @@ mod tests {
 		// would take a fifth of Korean's budget away for nothing.
 		assert!(pixels("인연") < PX_WIDE * 2.0);
 		assert_eq!(pixels("인연"), PX_HANGUL * 2.0);
+	}
+
+	#[test]
+	fn an_article_title_has_more_room_than_a_card_title() {
+		// The card shares its row with a leader and a date; the article title has the column.
+		assert!(budget::ARTICLE_TITLE > budget::PHONE_TITLE);
+		// So a short title, written to the card, always clears the article page.
+		assert!(fits("Freunde auf Zeit", budget::ARTICLE_TITLE));
+		// And the longest title in the corpus does not.
+		assert!(!fits("Freundschaften gehören immer nur zu bestimmten Lebensphasen", budget::ARTICLE_TITLE));
 	}
 
 	#[test]
