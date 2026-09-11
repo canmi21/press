@@ -12,7 +12,7 @@
 //! reason to load. The two-to-one split is where nearly all the error is, and it is the half a
 //! table can settle. See spec/i18n.md.
 
-use unicode_width::UnicodeWidthStr;
+use unicode_width::{UnicodeWidthChar, UnicodeWidthStr};
 
 /// Columns the rail fits on one line: its cap is 192px at 13px type, so fourteen Han characters
 /// or twenty-eight Latin ones. A number about the layout, kept beside the rule that reads it.
@@ -21,6 +21,65 @@ pub const ONE_LINE: usize = 28;
 /// Two lines, where the label is clamped. Past this the end of the heading is not shown at all,
 /// which is the one outcome that is a loss rather than a judgement -- see `validate`.
 pub const CLAMP: usize = ONE_LINE * 2;
+
+/// What a string draws to, in pixels, at the 16px type the card list and the article title use.
+///
+/// Columns are the right unit for the table of contents, where the type is one size and the rail
+/// one width. They are the wrong unit here, because these budgets come from three different places
+/// in the layout and a column is not the same number of pixels in every script. Measured in the
+/// rendered page at 16px: a Han character or a kana draws exactly 16.00px, a Hangul syllable
+/// 13.84, full-width punctuation 12.57, and a Latin character averages 7.72 over the real corpus
+/// with the widest single string reaching 8.55.
+///
+/// So three classes, and each rounded the safe way. Latin is charged 8.6, above the widest string
+/// observed rather than at the average, because the homepage clips with an ellipsis and an
+/// underestimate is a visible truncation while an overestimate is only slightly shorter copy.
+/// Hangul is charged 14.0 rather than the 16.0 its width class would imply, which would cost
+/// Korean a fifth of its budget in a script that is already dense. Full-width punctuation is
+/// charged as wide, which is conservative and rare enough not to matter.
+///
+/// The CMS has no font and should not grow a reason to load one, so this is an estimate. It is
+/// paired with a check that refuses what does not fit and asks again; see `runner`. What it must
+/// never do is come in under the truth, and the tests hold it to that against measured strings.
+pub const PX_WIDE: f32 = 16.0;
+pub const PX_HANGUL: f32 = 14.0;
+pub const PX_NARROW: f32 = 8.6;
+
+/// Hangul syllables, plus the jamo blocks a decomposed syllable is written with.
+fn is_hangul(c: char) -> bool {
+	matches!(c, '\u{AC00}'..='\u{D7A3}' | '\u{1100}'..='\u{11FF}' | '\u{3130}'..='\u{318F}' | '\u{A960}'..='\u{A97F}' | '\u{D7B0}'..='\u{D7FF}')
+}
+
+pub fn pixels(text: &str) -> f32 {
+	text.trim()
+		.chars()
+		.map(|c| {
+			if is_hangul(c) {
+				PX_HANGUL
+			} else if UnicodeWidthChar::width(c) == Some(2) {
+				PX_WIDE
+			} else {
+				PX_NARROW
+			}
+		})
+		.sum()
+}
+
+/// Characters of `locale`'s own script that fit in a budget.
+///
+/// The prompt speaks to the model in characters, because that is the unit it can count as it
+/// writes; the check below speaks in pixels, because that is what the layout is. The two are the
+/// same rule read from either end, and the character figure is deliberately the stricter of them:
+/// a model told the exact limit writes to it and lands on the boundary, where one wide letter
+/// decides the outcome.
+pub fn characters(budget: f32, locale: &str) -> usize {
+	let per = match locale.split('-').next().unwrap_or(locale) {
+		"zh" | "ja" => PX_WIDE,
+		"ko" => PX_HANGUL,
+		_ => PX_NARROW,
+	};
+	(budget / per).floor() as usize
+}
 
 /// The heading level of a source block, or `None` if it is not a heading.
 ///
@@ -99,6 +158,45 @@ pub fn raw(text: &str) -> usize {
 pub const SIZE_FACTOR: usize = 4;
 pub const SIZE_ALLOWANCE: usize = 40;
 
+/// Where a title and a subtitle are drawn, and how much room each has.
+///
+/// Measured in Safari on an iPhone 17 Pro simulator and an iPad mini at the article column's cap,
+/// not in an emulated viewport -- the two engines agree on geometry but disagree by 12% on
+/// Japanese, which falls to a different font in each. See spec/i18n.md.
+///
+/// The phone's card row spends 107px before any text: 48 of page padding, a 47px thumbnail and
+/// the 12px beside it. The title gives up 12 more for the leader's clearance and 97 for the date,
+/// which is the same English short form in every locale. The article page spends 48 and gives its
+/// title three quarters of what is left.
+pub mod budget {
+	/// A card title on a phone, where the row clips with an ellipsis.
+	pub const PHONE_TITLE: f32 = 186.0;
+	/// A card subtitle on a phone, which has the column to itself.
+	pub const PHONE_SUBTITLE: f32 = 295.0;
+	/// An article title on a phone. Not a clip but a decision: a title wider than this is replaced
+	/// by the short one, which always fits, rather than wrapping to a second line.
+	pub const ARTICLE_TITLE: f32 = 266.0;
+	/// A card title once the article column is at its 45rem cap, which is every window past 768px.
+	pub const DESKTOP_TITLE: f32 = 504.0;
+	/// A card subtitle at that same cap.
+	pub const DESKTOP_SUBTITLE: f32 = 613.0;
+}
+
+/// The share of a budget a string may take and still be left alone.
+///
+/// A translation that lands inside its budget with nothing to spare is one edit away from not
+/// fitting, and the longest title in the corpus today draws 503px against a 504px cap. So a fifth
+/// is held back: what fits comfortably is kept, and what merely fits is written again.
+pub const HEADROOM: f32 = 0.8;
+
+pub fn fits(text: &str, budget: f32) -> bool {
+	pixels(text) <= budget
+}
+
+pub fn comfortable(text: &str, budget: f32) -> bool {
+	pixels(text) <= budget * HEADROOM
+}
+
 #[cfg(test)]
 mod tests {
 	use super::*;
@@ -138,5 +236,76 @@ mod tests {
 	fn a_heading_that_wraps_is_over_one_line() {
 		assert!(of("## Le modèle au moment de la requête ?") > ONE_LINE);
 		assert!(of("## Adoption") < ONE_LINE);
+	}
+
+	/// Measured in the rendered page; the estimate must never come in under these.
+	const MEASURED: [(&str, f32); 10] = [
+		("朋友只是同行一程", 128.0),
+		("将渲染视为协议", 112.0),
+		("プロトコルとしての描画", 176.0),
+		("친구는 한 시절의 인연", 137.0),
+		("Freunde auf Zeit", 125.0),
+		("Se acabó holgazanear", 170.0),
+		("Cargo stops slacking", 160.0),
+		("El renderizado como protocolo", 234.0),
+		("Le rendu, un protocole", 172.0),
+		("Friends are only there for a season", 265.0),
+	];
+
+	#[test]
+	fn the_estimate_never_comes_in_under_the_rendered_width() {
+		for (text, measured) in MEASURED {
+			assert!(
+				pixels(text) >= measured,
+				"{text}: estimated {} under the measured {measured}",
+				pixels(text)
+			);
+		}
+	}
+
+	#[test]
+	fn the_estimate_stays_within_a_sixth_of_the_rendered_width() {
+		// Conservative is the point, but a budget nobody can spend is its own failure.
+		for (text, measured) in MEASURED {
+			let over = (pixels(text) - measured) / measured;
+			assert!(over <= 1.0 / 6.0, "{text}: estimated {over:.2} over the measured {measured}");
+		}
+	}
+
+	#[test]
+	fn a_han_character_is_charged_the_full_square_it_draws() {
+		assert_eq!(pixels("朋友只是同行一程"), PX_WIDE * 8.0);
+		assert_eq!(pixels("プロトコル"), PX_WIDE * 5.0);
+	}
+
+	#[test]
+	fn hangul_is_charged_less_than_its_width_class_would_say() {
+		// Two columns each by East Asian Width, but 13.84px on the page. Charging the full square
+		// would take a fifth of Korean's budget away for nothing.
+		assert!(pixels("인연") < PX_WIDE * 2.0);
+		assert_eq!(pixels("인연"), PX_HANGUL * 2.0);
+	}
+
+	#[test]
+	fn the_character_budget_follows_the_script_the_locale_writes_in() {
+		assert_eq!(characters(budget::PHONE_TITLE, "zh-CN"), 11);
+		assert_eq!(characters(budget::PHONE_TITLE, "ja-JP"), 11);
+		assert_eq!(characters(budget::PHONE_TITLE, "ko-KR"), 13);
+		assert_eq!(characters(budget::PHONE_TITLE, "de-DE"), 21);
+	}
+
+	#[test]
+	fn a_title_that_merely_fits_is_not_comfortable() {
+		// The German title in the corpus today, against the desktop cap it is one pixel under.
+		let tight = "Freundschaften gehören immer nur zu bestimmten Lebensphasen";
+		assert!(!comfortable(tight, budget::DESKTOP_TITLE));
+		assert!(comfortable("Rendering as a Protocol", budget::DESKTOP_TITLE));
+	}
+
+	#[test]
+	fn the_short_versions_written_by_hand_fit_the_phone() {
+		for (text, _) in MEASURED.iter().take(7) {
+			assert!(fits(text, budget::PHONE_TITLE), "{text} does not fit the phone title budget");
+		}
 	}
 }
