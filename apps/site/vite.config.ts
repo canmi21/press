@@ -2,12 +2,7 @@ import { readFileSync } from 'node:fs';
 import { stat } from 'node:fs/promises';
 import { isAbsolute, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import {
-	DEVELOPMENT_PORTS,
-	DEVELOPMENT_PROXY_PATHS,
-	developmentProxyTarget,
-	pageUrls,
-} from '@canmi/urls';
+import { DEVELOPMENT_PORTS, DEVELOPMENT_PROXY_PATHS, developmentUrl, pageUrls } from '@canmi/urls';
 import { sentrySvelteKit } from '@sentry/sveltekit';
 import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
@@ -382,11 +377,16 @@ export default defineConfig(async ({ command, mode }) => {
 			// this. Both the prefix and the target come from libs/urls, which is where every
 			// address in this repository is declared -- and where the reasoning lives for why
 			// development collapses three origins into one and production does not.
+			//
+			// The target is the same address anything else would use to reach these two, so it is
+			// the same function. It was its own, resolving to `127.0.0.1` on the grounds that one
+			// hop should stay on one stack; the hop never varied by the family a request arrived
+			// on, and both workers bind both stacks.
 			proxy: Object.fromEntries(
 				Object.entries(DEVELOPMENT_PROXY_PATHS).map(([app, prefix]) => [
 					prefix,
 					{
-						target: developmentProxyTarget(app as 'api' | 'cdn'),
+						target: developmentUrl(app as 'api' | 'cdn'),
 						changeOrigin: true,
 						rewrite: (path: string) => path.slice(prefix.length),
 					},

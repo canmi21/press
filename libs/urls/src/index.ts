@@ -26,20 +26,6 @@ export type DevelopmentUrls = Readonly<Record<AppName, string>>;
  */
 export const DEVELOPMENT_PROXY_PATHS = { api: '/api', cdn: '/cdn' } as const;
 
-/**
- * Where the site's dev server forwards each proxied prefix.
- *
- * `127.0.0.1` rather than `localhost`, so the hop stays on one stack whatever the incoming
- * request arrived on -- the servers bind both. Declared here rather than in the Vite config
- * because every address this repository resolves is declared in this file; see
- * spec/architecture/workspace.md. Not part of `URLS`, so the Rust mirror does not carry a number
- * only a
- * bundler ever reads.
- */
-export function developmentProxyTarget(app: keyof typeof DEVELOPMENT_PROXY_PATHS): string {
-	return `http://127.0.0.1:${DEVELOPMENT_PORTS[app]}`;
-}
-
 export function developmentUrl(app: AppName): string {
 	return `http://localhost:${DEVELOPMENT_PORTS[app]}`;
 }
@@ -190,12 +176,17 @@ export function pageUrls(isDev: boolean): UrlMap {
 }
 
 /**
- * The address a dev server binds to and is reached on.
+ * The address the CMS dev server binds to, and is therefore reached at.
+ *
+ * The one place here a literal is right, and it is right because of what it binds rather than in
+ * spite of it. Local development is `localhost` (spec/toolchain.md), but a listen address is a
+ * separate question: this server binds a single address on purpose, so that a desktop app's dev
+ * server is not on the network, and Node binds exactly one address when given a name. `localhost`
+ * resolves to `::1` first on macOS, which nothing is listening on -- so the URL has to name the
+ * address that was bound rather than a name that can resolve past it.
  *
  * A bare hostname rather than a URL, because the two consumers want different shapes: a Vite
- * `server.host` takes the host alone, while everything else wants an origin from `loopbackUrl`.
- * Exported so neither has to write the literal, which is how the same four numbers came to sit
- * in this file twice and in a Vite config besides.
+ * `server.host` takes the host alone, while the Tauri dev URL wants an origin from `loopbackUrl`.
  */
 export const LOOPBACK_HOST = '127.0.0.1';
 
