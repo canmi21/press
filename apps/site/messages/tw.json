@@ -76,6 +76,7 @@
 	"newsletter.error": "這次沒有成功，請再試一次。",
 	"newsletter.heading": "電子報",
 	"newsletter.pitch": "新文章，還有偶爾冒出來的小驚喜，都會直接寄到你的信箱。電子報還在準備中，現在先留下信箱，第一期完成時就不會錯過。",
+	"newsletter.pitch.short": "新文章，還有偶爾冒出來的小驚喜，都會寄到你的信箱。現在留下信箱，第一期不會錯過。",
 	"newsletter.subscribe": "先加入",
 	"newsletter.subscribed": "已訂閱",
 	"newsletter.subscribers": "已有 {#cells}{count}{/cells} 人在等第一期。",

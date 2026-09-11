@@ -76,6 +76,7 @@
 	"newsletter.error": "등록하지 못했어요. 다시 시도해 주세요.",
 	"newsletter.heading": "뉴스레터",
 	"newsletter.pitch": "새 글과 가끔 찾아오는 작은 이야기를 메일로 보내드려요. 아직은 첫 호를 준비하는 중입니다. 지금 이름을 올려 두면 발행하는 날 가장 먼저 받아볼 수 있어요.",
+	"newsletter.pitch.short": "새 글과 가끔 찾아오는 작은 이야기를 메일로 보내드려요. 지금 등록하면 첫 호부터 받아볼 수 있어요.",
 	"newsletter.subscribe": "미리 구독하기",
 	"newsletter.subscribed": "구독 중",
 	"newsletter.subscribers": "지금 {#cells}{count}{/cells}명이 첫 호를 기다리고 있어요.",

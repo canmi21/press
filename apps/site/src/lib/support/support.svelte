@@ -9,6 +9,20 @@
 	import * as m from '$lib/paraglide/messages';
 	import { intlLocale } from '$lib/format';
 
+	/**
+	 * Expanding is a wide-screen affordance, and below `sm` the pills keep their short copy.
+	 *
+	 * A phone has neither hover nor keyboard focus, but a tap synthesises `mouseenter` -- so the
+	 * pill would grow under the finger that meant to press it, and then sit expanded with no
+	 * pointer to leave and take it back. Reading it costs a press either way; growing first only
+	 * moves the target.
+	 *
+	 * Queried live rather than once, so a tablet that turns finds the other answer. The width is
+	 * Tailwind's `sm` written a second time because this is a script and that is a stylesheet;
+	 * there is no third place to keep them from drifting apart. See spec/styling.md.
+	 */
+	const EXPANDABLE = '(min-width: 40rem)';
+
 	const WIDTH_SPRING = { type: 'spring' as const, stiffness: 420, damping: 28, mass: 0.85 };
 	type AnimationControl = { stop: () => void };
 	type CopyGeometry = {
@@ -91,6 +105,9 @@
 	}
 
 	function setExpanded(action: HTMLElement, expanded: boolean) {
+		// Collapsing is never refused: a viewport that narrows while a pill is open has to be able
+		// to put it back.
+		if (expanded && !window.matchMedia(EXPANDABLE).matches) return;
 		const geometry = measureCopy(action);
 		if (!geometry) return;
 

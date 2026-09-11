@@ -76,6 +76,7 @@
 	"newsletter.error": "That didn't go through. Please try again.",
 	"newsletter.heading": "Newsletter",
 	"newsletter.pitch": "New posts and the occasional fun detour, delivered straight to your inbox. I’m still putting the newsletter together, so you won’t hear from me just yet. Join the early list now and the first issue will head your way as soon as it leaves my desk.",
+	"newsletter.pitch.short": "New posts and the occasional fun detour, straight to your inbox. Join now and the first issue is yours.",
 	"newsletter.subscribe": "Join the list",
 	"newsletter.subscribed": "You're in",
 	"newsletter.subscribers": "Join {#cells}{count}{/cells} readers on the early list.",

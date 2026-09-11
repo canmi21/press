@@ -93,9 +93,10 @@
 </svelte:head>
 
 <main class="min-h-screen bg-page text-text">
-	<!-- Less air above the fold on a phone, where 6rem is most of what the reader can see before
-	     scrolling. Only the top: the space under the footer is not competing with anything. -->
-	<article class="mx-auto max-w-180 px-6 pt-12 pb-24 sm:pt-24">
+	<!-- Less air on a phone at both ends, where 6rem is most of what the reader can see before
+	     scrolling. The foot takes two thirds of what the head does: the space above opens the page
+	     and the space below only ends it. -->
+	<article class="mx-auto max-w-180 px-6 pt-12 pb-8 sm:py-24">
 		<header class="flex items-center gap-3">
 			<img
 				src={avatarSrc}
@@ -144,7 +145,9 @@
 		<!-- Left-aligned like everything above it: the page is one text column all the way down,
 		and a centred footer was the only thing arguing otherwise. The ICP badge shares the row
 		rather than taking one of its own. -->
-		<div class="mt-12 flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
+		<div
+			class="mt-12 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 max-sm:justify-center"
+		>
 			<nav aria-label="Find me elsewhere" class="flex flex-wrap items-center gap-3">
 				{#each links as link (link.label)}
 					<a
@@ -166,7 +169,7 @@
 				href="{URLS.external.icpmoe}/?keyword=20260000"
 				target="_blank"
 				rel="noopener"
-				class="focus-link inline-flex items-center gap-1.5 text-[0.9375rem] text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
+				class="focus-link inline-flex items-center gap-1.5 text-[0.9375rem] text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong max-sm:hidden"
 			>
 				<Lollipop class="h-4 w-4" aria-hidden="true" />
 				<span>ICP 20260000</span>

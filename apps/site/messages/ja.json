@@ -76,6 +76,7 @@
 	"newsletter.error": "うまく登録できませんでした。もう一度お試しください。",
 	"newsletter.heading": "ニュースレター",
 	"newsletter.pitch": "新しい記事や、ときどき届くちょっとした寄り道をメールでお送りします。配信はただいま準備中。今のうちに登録しておけば、創刊号からお届けします。",
+	"newsletter.pitch.short": "新しい記事と、ときどきの寄り道をメールでお届けします。今のうちに登録すれば、創刊号から。",
 	"newsletter.subscribe": "先行登録する",
 	"newsletter.subscribed": "登録済み",
 	"newsletter.subscribers": "現在 {#cells}{count}{/cells} 人が創刊号を待っています。",

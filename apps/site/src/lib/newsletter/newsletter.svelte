@@ -202,7 +202,20 @@ otherwise need. See spec/engagement.md. -->
 			{m['newsletter.heading']({}, { locale })}
 		</h2>
 
-		<p class="selectable text-pretty text-text-soft">{m['newsletter.pitch']({}, { locale })}</p>
+		<!-- Two readings of one pitch, chosen by width. A phone gets the shorter one, which is the
+		     same invitation in fewer sentences rather than a different offer -- the long version
+		     runs to six lines there in English and five in German, which is a paragraph to read
+		     before reaching the field it is asking you to fill in.
+
+		     Both are in the markup and one is `display: none`, so a screen reader is read exactly
+		     one of them. The bio does this with markers inside its markdown; a message has no
+		     markdown to mark, so the choice is made here. See spec/styling.md. -->
+		<p class="selectable hidden text-pretty text-text-soft sm:block">
+			{m['newsletter.pitch']({}, { locale })}
+		</p>
+		<p class="selectable text-pretty text-text-soft sm:hidden">
+			{m['newsletter.pitch.short']({}, { locale })}
+		</p>
 
 		<!-- One pill across both states. The box, its border and the button's place never move; only
 		what sits in them is replaced, which is what leaves the swap something to animate rather than

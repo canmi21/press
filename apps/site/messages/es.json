@@ -76,6 +76,7 @@
 	"newsletter.error": "No se ha podido completar. Inténtalo de nuevo.",
 	"newsletter.heading": "Boletín",
 	"newsletter.pitch": "Los artículos nuevos y alguna que otra sorpresa llegarán directamente a tu correo. El boletín todavía está tomando forma; si te apuntas ahora, estarás desde el principio y recibirás la primera entrega en cuanto salga.",
+	"newsletter.pitch.short": "Los artículos nuevos y alguna que otra sorpresa, directamente en tu correo. Apúntate y recibirás la primera entrega.",
 	"newsletter.subscribe": "Apuntarme",
 	"newsletter.subscribed": "En la lista",
 	"newsletter.subscribers": "Ya somos {#cells}{count}{/cells} en la lista.",
