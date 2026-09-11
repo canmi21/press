@@ -382,6 +382,11 @@ pub fn build_display(
 		 - The character limits are hard. Going over means the reader loses the end of the line to \
 		 an ellipsis, so a shorter phrase that says less is better than a longer one that is cut. \
 		 Count the characters of the line you are about to write, including spaces.\n\
+		 - They are a ceiling and not a target. A line well under its limit is not a fault, and \
+		 the shorter of two phrasings that say the same thing is the better one. What the limit \
+		 rules out is the opposite move: where a natural phrasing already lands near it, keep it \
+		 rather than cutting further, because a line trimmed to be short reads worse than one \
+		 that simply fits.\n\
 		 - Keep the author's voice. A title that is playful stays playful; one that is plain stays \
 		 plain. Translate idioms into the target language's own, never word for word.\n\
 		 - No dash in a short form -- no em dash, en dash or fullwidth dash -- unless the source \
