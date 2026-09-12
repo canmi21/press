@@ -675,6 +675,18 @@ pub async fn run(
 								outcome.audit.push((path.display().to_string(), found));
 							}
 						}
+						// Frontmatter never reaches `across_locales` below, and a field measured
+						// only against its own budget is how a translation that answered a wider
+						// question than the source asked got through. See spec/i18n.md.
+						let together: Vec<(&str, &str)> = locales
+							.iter()
+							.map(|(locale, translation)| (locale.as_str(), translation.text.as_str()))
+							.collect();
+						for found in
+							audit::lengths(id, &segment.source, segment.region, segment.display, &together)
+						{
+							outcome.audit.push((path.display().to_string(), found));
+						}
 					}
 					continue;
 				}
@@ -698,6 +710,10 @@ pub async fn run(
 					.map(|(locale, translation)| (locale.as_str(), translation.text.as_str()))
 					.collect();
 				for found in audit::across_locales(id, &segment.source, &together) {
+					outcome.audit.push((path.display().to_string(), found));
+				}
+				for found in audit::lengths(id, &segment.source, segment.region, segment.display, &together)
+				{
 					outcome.audit.push((path.display().to_string(), found));
 				}
 			}
