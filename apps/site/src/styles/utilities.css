@@ -134,9 +134,18 @@
 	--rail-region: calc((100% - var(--rail-column)) / 2 + var(--page-gutter));
 	/* Clearance the rail needs on each side of itself before it is shown at all. */
 	--rail-edge: 1.5rem;
-	/* Where the rail's centre line stops following the region's. Past this the rail holds still
-	   and the space on its right takes every further pixel. */
-	--rail-centre-max: 14rem;
+	/* Where the rail stops drifting inward. Past this its left margin holds still and the space on
+	   its right takes every further pixel, which is what keeps a rail read from the corner of the
+	   eye beside the window rather than halfway to the text.
+
+	   On the margin rather than on the centre line, which is where this cap used to sit. That was
+	   right while the box was `fit-content` and its width was the browser's answer; the box is
+	   `--rail-width` now, so the two say the same thing and the margin is the one the eye reads.
+
+	   6rem, the same length the article column's top padding stops at. Past the width where both
+	   are capped the page has one outer breathing room and spends it once, down the side and above
+	   the title. */
+	--rail-left-max: 6rem;
 	/* How far the return control's glyph hangs outside the rail's text. Its label aligns with the
 	   entries and only the glyph sits outside, so this is an ornament's overhang rather than part
 	   of the box -- but it is the leftmost ink on the page, so the margin below has to know it. */
@@ -154,9 +163,9 @@
 	   and a flat hold between the two. The branches meet where `2/3 s = hold` and again where
 	   `s/2 = hold`, so the margin is continuous at every width and nothing jumps on a resize. A
 	   media query switching between the ratios would have stepped 21px at the width it switched. */
-	--rail-left: max(
-		calc(var(--rail-spare) / 2),
-		min(calc(var(--rail-spare) * 2 / 3), var(--rail-hold))
+	--rail-left: min(
+		max(calc(var(--rail-spare) / 2), min(calc(var(--rail-spare) * 2 / 3), var(--rail-hold))),
+		var(--rail-left-max)
 	);
 	/* What the article column keeps between the window's edge and its text, which `px-6` spends
 	   on the sides and the rule below spends on the top. */
@@ -185,7 +194,7 @@
 	width: var(--rail-width);
 	/* Its centre line on the region's centre line, until the cap. `translate` rather than a
 	   computed `left`, because only the browser knows how wide `fit-content` made it. */
-	left: min(calc(var(--rail-left) + var(--rail-width) / 2), var(--rail-centre-max));
+	left: calc(var(--rail-left) + var(--rail-width) / 2);
 	translate: -50% 0;
 	/* A full-height strip down the page. Its children take their own events back. */
 	pointer-events: none;

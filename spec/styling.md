@@ -152,10 +152,31 @@ on the other. Three stages follow:
 3. Roomier: the margin holds flat at `--rail-hold` while the halves catch up.
 4. Wide: the even split, the rail's centre line on the region's centre line, so its margin from the
    window edge and its gap to the article are equal.
-5. Past `--rail-centre-max`: the rail's centre line holds still, and every further pixel goes
-   into the gap between rail and article. The cap is on the centre rather than on the left margin
-   because the box's width is the browser's answer, not a number this file holds -- and with that
-   width fixed for a given article the two say the same thing.
+5. Past `--rail-left-max`: the left margin holds still, and every further pixel goes into the gap
+   between rail and article.
+
+**Stage 5 caps the margin, and it used to cap the centre line.** That was right while the box was
+`fit-content` and its width was the browser's answer rather than a number this file held. The box
+is `--rail-width` now, so the two say the same thing and the margin is the one the eye reads --
+and reading it is what showed the cap was set too far in. At 14rem of centre the rail sat 156px
+from the window on a 1600px screen, which is a rail drifted halfway to the text rather than one
+beside the window, and a rail is read from the corner of the eye.
+
+It stops at 6rem, the same length the article column's top padding stops at. Past the width where
+both are capped the page has one outer breathing room and spends it twice, down the side and above
+the title. The whole sequence, in pixels:
+
+| window | region | left margin | gap to text | branch |
+| ------ | ------ | ----------- | ----------- | ------ |
+| 1088   | 208    | 48          | 24          | two-thirds |
+| 1120   | 224    | 59          | 29          | two-thirds |
+| 1200   | 264    | 64          | 64          | hold |
+| 1280   | 304    | 84          | 84          | even |
+| 1360   | 344    | 96          | 112         | capped |
+| 1600   | 464    | 96          | 232         | capped |
+| 2560   | 944    | 96          | 712         | capped |
+
+Monotonic and continuous throughout, and every branch of it is one CSS expression.
 
 **Stages 2 through 4 are one expression, and stage 3 is why.** Two thirds of the spare and half of
 it are two lines that meet only at zero, so switching between them at a width steps the rail
