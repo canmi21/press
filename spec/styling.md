@@ -1444,12 +1444,35 @@ not fit either shape, the sentence loses a clause rather than being allowed a th
 short `polished` no longer names the language the article is written in, because the reader of a
 source view already chose it.
 
-Measured in Safari on the phone, all thirty-two combinations that render land in shape: Chinese
-and Traditional Chinese take one line in every case, 85% to 98%; Japanese and Korean take one for
-the short notices and two for the long ones; the four European languages take two throughout,
-with second lines between 63% and 83%. Getting there took three rounds of candidates measured
-against the rendered box, which is the same method the pitch used and the only one that works --
-character counts do not survive nine languages.
+**The short copy is measured on the narrowest phone, not a convenient one.** The box is 316px on
+a 390pt iPhone and 328px on a 402pt one, and twelve pixels is the difference between a Chinese
+notice that fills its line and one that spills a single character onto a second. Tuned at 328px,
+four of the eight views broke at 316; tuned at 316, all thirty-two combinations land in shape and
+the wider phone is merely a little loose -- the German translated notice sits at 52% there rather
+than 65%. Loose is the harmless direction, so the narrow phone is the one the copy answers to.
+
+Chinese and Traditional Chinese take one line for all four messages, Japanese one for the short
+notice and two for the rest, Korean two for the middle pair, and the four European languages two
+throughout with second lines between 63% and 88%.
+
+**A short form ends without its final punctuation where the script allows it.** Chinese and
+Japanese do: a line of prose that stops at the edge of a tinted box has already been ended by the
+box, and the full stop is a mark the reader does not need twice. The long form keeps it, having
+room to be a sentence. Korean and the European languages keep theirs at both lengths, because a
+period is doing more work in a script whose sentences are not otherwise visually bounded.
+
+**The Chinese copy was rewritten to stop sounding like a system.** `你正在阅读的译本可能带有细微的措辞
+润色，推荐阅读原文。` is accurate and reads like a dialog box; `你看到的这一版措辞上动过一点，想读原样的
+话可以看原文。` says the same thing the way a person would. `已为你显示` and `以...为准` went with it.
+This is the one place on the site where the software addresses the reader directly about the
+reader's own situation, so the register matters more than it would in a label.
+
+Two facts survived the rewrite because tests hold them, and both had been lost in a first draft
+that read better without them. `notice.polished` has to keep its `主要`: frontmatter `lang` names
+an article's *primary* language, so copy saying it was written in that language full stop is
+false of a mixed original. `notice.script` has to keep `简体版本` and `繁體版本`, because the
+sentence's whole job is telling the reader which of the two they are on. Register is worth
+rewriting for; neither of these was.
 
 **`{language}` is inside the measured string, so the shape is exact for the corpus and
 approximate beyond it.** A notice naming Chinese (Simplified) is twenty-four characters longer in
@@ -1462,7 +1485,9 @@ the second line.
 `mw` takes the English wording, and that rule is about messages nobody has an opinion about yet.
 These four are not: the owner already wrote the long forms in Chinese, and a short form is the
 same sentence for a narrower box. Pairing an English short with a Chinese long would swap language
-at the breakpoint, which is the one thing the pair must not do.
+at the breakpoint, which is the one thing the pair must not do. The `mw` view renders no notice at
+all -- the component takes every code but that one -- so these strings are the catalogue staying
+whole rather than copy anybody reads.
 
 **Nothing sets `text-wrap: pretty` on copy tuned this way.** Chrome ignores the value on these
 paragraphs and lays them out exactly as `auto` does, while Safari 26 implements it by reflowing
