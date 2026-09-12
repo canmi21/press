@@ -262,7 +262,7 @@
 <div use:followToc={locale} class="home-slot pointer-events-none absolute flex w-full items-center">
 	<a
 		{href}
-		class="home-link focus-link pointer-events-auto inline-flex -translate-x-5 items-center gap-1.5 whitespace-nowrap text-sm text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
+		class="home-link focus-link pointer-events-auto inline-flex items-center gap-1.5 whitespace-nowrap text-sm text-text-soft transition-colors duration-200 hover:text-text-strong focus-visible:text-text-strong"
 	>
 		<Undo2 class="size-3.5 shrink-0 -translate-y-[0.03125rem]" aria-hidden="true" />
 		<span>{m['article.back']({}, { locale })}</span>
@@ -276,5 +276,12 @@
 		top: 6.75rem;
 		left: 0;
 		transform: translateY(calc(-50% + var(--home-offset, 0rem)));
+	}
+
+	/* Only the glyph hangs outside the rail's text; the label stays aligned with the entries. The
+	   overhang is a declared length because the rail's left margin is computed against it -- see
+	   `--rail-icon-overhang` in utilities.css. */
+	.home-link {
+		translate: calc(-1 * var(--rail-icon-overhang)) 0;
 	}
 </style>

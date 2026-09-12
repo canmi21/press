@@ -137,6 +137,27 @@
 	/* Where the rail's centre line stops following the region's. Past this the rail holds still
 	   and the space on its right takes every further pixel. */
 	--rail-centre-max: 14rem;
+	/* How far the return control's glyph hangs outside the rail's text. Its label aligns with the
+	   entries and only the glyph sits outside, so this is an ornament's overhang rather than part
+	   of the box -- but it is the leftmost ink on the page, so the margin below has to know it. */
+	--rail-icon-overhang: 1.25rem;
+	/* The rail's spare room: what the region has left once the box has taken its width. */
+	--rail-spare: calc(var(--rail-region) - var(--rail-width));
+	/* Where the left margin stops growing at two thirds and waits for the halves to catch up.
+	   Chosen against the two devices that sit either side of it: on an 11-inch iPad the even split
+	   already leaves the glyph 47px of window and looks settled, while on an iPad mini it leaves 27
+	   and the glyph reads as pressed against the edge. At 4rem the mini takes the two-thirds
+	   branch and the 11-inch does not. */
+	--rail-hold: 4rem;
+	/* The rail's left margin, and the reason it is written as one expression rather than a second
+	   breakpoint: two thirds of the spare while there is little of it, half once there is plenty,
+	   and a flat hold between the two. The branches meet where `2/3 s = hold` and again where
+	   `s/2 = hold`, so the margin is continuous at every width and nothing jumps on a resize. A
+	   media query switching between the ratios would have stepped 21px at the width it switched. */
+	--rail-left: max(
+		calc(var(--rail-spare) / 2),
+		min(calc(var(--rail-spare) * 2 / 3), var(--rail-hold))
+	);
 	/* What the article column keeps between the window's edge and its text, which `px-6` spends
 	   on the sides and the rule below spends on the top. */
 	--page-gutter: 1.5rem;
@@ -164,7 +185,7 @@
 	width: var(--rail-width);
 	/* Its centre line on the region's centre line, until the cap. `translate` rather than a
 	   computed `left`, because only the browser knows how wide `fit-content` made it. */
-	left: min(calc(var(--rail-region) / 2), var(--rail-centre-max));
+	left: min(calc(var(--rail-left) + var(--rail-width) / 2), var(--rail-centre-max));
 	translate: -50% 0;
 	/* A full-height strip down the page. Its children take their own events back. */
 	pointer-events: none;

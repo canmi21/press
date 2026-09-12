@@ -143,12 +143,33 @@ rail reads as pushed left. The page gutter belongs to the region on this side ex
 on the other. Three stages follow:
 
 1. Too narrow: no rail. The article alone, centred, as on any other page.
-2. Wide enough: the rail appears, its centre line on the region's centre line, so its margin from
-   the window edge and its gap to the article are equal.
-3. Past `--rail-centre-max`: the rail's centre line holds still, and every further pixel goes
+2. Just wide enough: the rail appears and the spare room is thin, so the left margin takes two
+   thirds of it and the gap to the article takes one. An even split here would be even between the
+   wrong two things: the rail's leftmost ink is not its text but the return control's glyph, which
+   hangs `--rail-icon-overhang` further out, and on an iPad mini an even split left that glyph 27px
+   from the window while the entries had 47. Two thirds gives it 43, which is what the next stage
+   gives it anyway.
+3. Roomier: the margin holds flat at `--rail-hold` while the halves catch up.
+4. Wide: the even split, the rail's centre line on the region's centre line, so its margin from the
+   window edge and its gap to the article are equal.
+5. Past `--rail-centre-max`: the rail's centre line holds still, and every further pixel goes
    into the gap between rail and article. The cap is on the centre rather than on the left margin
    because the box's width is the browser's answer, not a number this file holds -- and with that
    width fixed for a given article the two say the same thing.
+
+**Stages 2 through 4 are one expression, and stage 3 is why.** Two thirds of the spare and half of
+it are two lines that meet only at zero, so switching between them at a width steps the rail
+sideways -- 21px, at the width that switched. A flat hold between them joins the branches where
+`2/3 s` reaches the hold and again where `s/2` does, which makes the margin continuous at every
+width and puts no second breakpoint in a file that already warns about the one it has. Measured:
+
+| window | spare | left margin | gap to text | glyph from window |
+| ------ | ----- | ----------- | ----------- | ----------------- |
+| iPad mini, 1133px  | 95px  | 63px | 32px | 43px |
+| 11-inch iPad, 1210px | 133px | 67px | 66px | 47px |
+
+The mini takes the two-thirds branch and the 11-inch the even one, which is the pair `--rail-hold`
+was chosen against.
 
 Stage 3 exists because a rail is read from the corner of the eye. Left centred forever it drifts
 inward as the window grows, and on a wide monitor a rail halfway to the text is neither beside the
