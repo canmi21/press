@@ -216,6 +216,30 @@ nineteen characters above two, which reads as a mistake rather than as a wrapped
 built for exactly this shape of text, short and headline-like, and it evens out one label's own
 lines without looking at its neighbours. Where it is unsupported the text fills as before.
 
+**Balance evens the lines; it does not choose where the break may land, and for Han that is the
+part that matters.** The label also carries `overflow-wrap: anywhere`, which lets a break fall
+between any two characters. For a run of Han that is usually right, and next to a space the author
+wrote it is not: `不使用 JS 运行时的代价` came out as `不使用 JS 运` over `行时的代价`, splitting a
+word to fill three more characters when the boundary had already been written as a space. Balance
+left it there, because two lines of eleven and five characters are comparable -- the fault was in
+which breaks were allowed, not in how the lines were evened.
+
+So a script whose spaces are boundaries prefers them: `word-break: keep-all` for `:lang(zh)` and
+`:lang(ko)`, which turns that entry into `不使用 JS` over `运行时的代价`. `overflow-wrap: anywhere`
+stays underneath as the floor, so a Han run with no space in it still breaks wherever it must,
+exactly as it did before.
+
+**Japanese is excluded, and the measurement is the argument.** Its spaces are not boundaries in
+the same sense, so `keep-all` there only removes the opportunities the script does have:
+`Web フレームワークだけではない` came apart into four lines, one of them a single kana. Korean is
+included on the script's terms rather than on a case observed here -- no entry in the corpus wraps
+in Korean yet, and the first one that does would otherwise split mid-eojeol, which is the same fact
+the article prose takes `keep-all` on.
+
+Latin was measured too and left alone. `keep-all` moves two of its breaks, one for the better --
+French stops splitting `sans-runtime` -- and one for the worse, German stranding an opening quote
+at the end of a line. Nothing there was asking to be fixed.
+
 Collapsing changes nothing: the bars occupy less of the box, and the box, the centring and the hit
 area stay where they were.
 

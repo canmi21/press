@@ -810,4 +810,24 @@
 		-webkit-line-clamp: 2;
 		line-clamp: 2;
 	}
+
+	/* A script whose spaces mean something breaks at them first.
+
+	   `overflow-wrap: anywhere` above lets a break land between any two characters, which for Han
+	   is usually right and here is not: an entry like `不使用 JS 运行时的代价` came out as
+	   `不使用 JS 运` over `行时的代价`, splitting a word to fill three more characters, when the
+	   author had already written the boundary as a space. `keep-all` prefers that space, giving
+	   `不使用 JS` over `运行时的代价`. The rule above stays as the floor -- a Han run with no space
+	   in it still breaks wherever it must, which is what it did before. See spec/styling.md.
+
+	   Japanese is excluded and the measurement is why. Its spaces are not boundaries in the same
+	   sense, so `keep-all` only removes the break opportunities it has: `Web フレームワークだけで
+	   はない` came apart into four lines, one of them a single kana. Korean is included on the
+	   script's own terms rather than on a case seen here, the same terms the article prose takes
+	   `keep-all` on: no entry in the corpus wraps in Korean yet, and the first one that does would
+	   otherwise split mid-eojeol. */
+	[data-toc-text]:lang(zh),
+	[data-toc-text]:lang(ko) {
+		word-break: keep-all;
+	}
 </style>
