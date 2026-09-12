@@ -135,8 +135,12 @@ slides sideways as a window is dragged is a worse fault than any arrangement of 
 beside it. Below the width where the article can hold its own size, the article is what gives,
 which is a matter this rule stays out of.
 
-The region runs from the window edge to the article's left frame, and the rail's box is centred
-in it. Three stages follow:
+The region runs from the window edge to the article's **first letter**, and the rail's box is
+centred in it. To the letter rather than to the column's frame, because the frame is not something
+anybody sees: measured against it the rail sat 35px from the window and 60px from the text on an
+iPad, and the 25px of column padding in between has nothing the eye can weigh it against, so the
+rail reads as pushed left. The page gutter belongs to the region on this side exactly as it does
+on the other. Three stages follow:
 
 1. Too narrow: no rail. The article alone, centred, as on any other page.
 2. Wide enough: the rail appears, its centre line on the region's centre line, so its margin from
@@ -277,7 +281,7 @@ and the column reads as something that fell off the page. A control that cannot 
 is better not shown: the headings are still in the document, and the article is what the reader
 came for.
 
-The test is made against `--rail-width-max` rather than the measured box, because a media query
+The test is made against `--rail-width` rather than the measured box, because a media query
 can read neither. So it asks whether the widest rail this site can draw would fit, and an article
 with short headings is shown no earlier than one without -- the alternative is a breakpoint that
 moves per article, which is a worse thing to explain than a conservative one.
@@ -285,6 +289,13 @@ moves per article, which is a worse thing to explain than a conservative one.
 `--rail-edge` decides both when the rail appears and how much air it has when it does, and the two
 cannot be separated: centred in the region, its margin and its gap are the same length. Raising it
 buys a rail that never looks cramped at the cost of a band of window widths that show none.
+
+**The breakpoint is now three rem conservative, deliberately left so.** The region grew by the page
+gutter when it was redefined to reach the text, so the clearance test it encodes is met at 65rem
+rather than the 68rem the media query still holds. Moving it would make the rail appear on windows
+that have never shown one, which is a change to what the page is rather than to how it is spaced,
+and the spacing fix did not need it. The number stays where it is until somebody decides that
+question on its own terms.
 
 ### Rejected: centring the rail and the article together
 

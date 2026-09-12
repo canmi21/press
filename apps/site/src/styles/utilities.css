@@ -122,10 +122,16 @@
 	   its entries wrap. */
 	--rail-width: 8.5rem;
 	--rail-column: 45rem;
-	/* The blank region the rail lives in: window edge to the article's left frame. The article is
+	/* The blank region the rail lives in: window edge to the article's first letter. The article is
 	   centred on the window, so the region on the other side of it is the same width and is left
-	   empty. */
-	--rail-region: calc((100% - var(--rail-column)) / 2);
+	   empty.
+
+	   To the letter rather than to the column's frame, because the frame is not a thing anybody
+	   sees. Measured against the frame, the rail sat 35px from the window and 60px from the text
+	   on an iPad -- a gap that reads as lopsided because the eye has nothing to measure the 36px
+	   of column padding against. The page gutter belongs to the region on this side just as it
+	   does on the other. */
+	--rail-region: calc((100% - var(--rail-column)) / 2 + var(--page-gutter));
 	/* Clearance the rail needs on each side of itself before it is shown at all. */
 	--rail-edge: 1.5rem;
 	/* Where the rail's centre line stops following the region's. Past this the rail holds still
