@@ -1,0 +1,2267 @@
+{
+	"version": 1,
+	"diagrams": {
+		"0018d5ee4cc305269fb933bdf65253fb": {
+			"kind": "mermaid",
+			"fingerprint": "7e2383d8",
+			"description": {
+				"de-DE": {
+					"text": "Eine von links nach rechts verlaufende Entscheidungs-Pipeline beginnt mit “Svelte AST” und fragt “Structure visible?”. Ein “No”-Zweig führt zu “Escape”, während “Yes” zu “Value origin?” führt, die sich aufteilt in “Build” zu “Skeleton”, “Request” zu “Slot / protocol” und “Client” zu “Client",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:19:20.045202Z",
+					"seconds": 3.653424209,
+					"tokens": 11974,
+					"review": false
+				},
+				"en-US": {
+					"text": "A left-to-right decision pipeline starts with “Svelte AST” and asks “Structure visible?”. A “No” branch leads to “Escape”, while “Yes” leads to “Value origin?”, which splits into “Build” to “Skeleton”, “Request” to “Slot / protocol”, and “Client” to “Client runtime”.",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:58.579304Z",
+					"seconds": 5.661879792,
+					"tokens": 16183,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una tubería de decisiones de izquierda a derecha comienza con “Svelte AST” y pregunta “Structure visible?”. Una rama “No” conduce a “Escape”, mientras que “Yes” lleva a “Value origin?”, que se divide en “Build” a “Skeleton”, “Request” a “Slot / protocol” y “Client” a “Client",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:19:30.76137Z",
+					"seconds": 3.041073,
+					"tokens": 11848,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Un pipeline décisionnel de gauche à droite commence avec “Svelte AST” et pose “Structure visible ?”. Une branche “No” conduit à “Escape”, tandis que “Yes” mène à “Value origin ?”, qui se divise en “Build” vers “Skeleton”, “Request” vers “Slot / protocol”, et “Client” vers “Client",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:19:27.186649Z",
+					"seconds": 3.572496583,
+					"tokens": 11908,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "左から右への意思決定パイプラインは「Svelte AST」から始まり、「Structure visible?」と問い合わせます。「No」分岐は「Escape」に進み、「Yes」分岐は「Value origin?」へ進み、そこから「Build」は「Skeleton」へ、「Request」は「Slot / protocol」へ、そして「Client」は「Client runtime」へ分かれます。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:19:15.409523Z",
+					"seconds": 4.634088042,
+					"tokens": 11799,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "왼쪽에서 오른쪽으로 진행하는 의사결정 파이프라인이 “Svelte AST”로 시작해 “Structure visible?”를 묻습니다. “No” 분기는 “Escape”로 이어지고, “Yes” 분기는 “Value origin?”으로 이어진 다음, “Build”는 “Skeleton”로, “Request”는 “Slot / protocol”으로, “Client”는 “Client runtime”으로 분기됩니다.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:19:23.700737Z",
+					"seconds": 3.48367125,
+					"tokens": 11835,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "从左到右的决策流程从 “Svelte AST” 开始，并询问 “Structure visible?”。 “No” 分支指向 “Escape”，而 “Yes” 则进入 “Value origin?”，随后分为 “Build” 到 “Skeleton”、 “Request” 到 “Slot / protocol”、以及 “Client” 到 “Client runtime”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:19:12.009286Z",
+					"seconds": 3.397818084,
+					"tokens": 11829,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "一個從左至右的決策管線始於“Svelte AST”，並詢問“Structure visible?”。一個“No”分支導向“Escape”，而“Yes”分支導向“Value origin?”，其再分為“Build”到“Skeleton”、 “Request”到“Slot / protocol”、以及“Client”到“Client runtime”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:19:33.804805Z",
+					"seconds": 3.693032292,
+					"tokens": 12077,
+					"review": false
+				}
+			}
+		},
+		"099f8b527d48d3ba97592789df5540f4": {
+			"kind": "svg-canvas",
+			"fingerprint": "0a89da1d",
+			"description": {
+				"de-DE": {
+					"text": "Zwei parallele von links nach rechts verlaufende Pipelines kontrastieren Web- und Desktop-Transporte, während das gleiche Ausgangsprotokoll und ein ähnlich sofortiges Ergebnis beibehalten werden. Der obere Pfad führt “Seam protocol” → “HTTP” → “Browser” / “Serverless,CDN” → “Full SSR-like page” / “Data ready on arrival”; der untere führt “Seam protocol” → “IPC” → “Electron” / “Tauri” → “No loading screen” / “Instant render.” Eine Anmerkung darunter lautet “Same protocol,swap transport,” und betont, dass nur der Transport und die Plattform wechseln",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:19:45.073565Z",
+					"seconds": 3.50759275,
+					"tokens": 12135,
+					"review": false
+				},
+				"en-US": {
+					"text": "Two parallel left-to-right pipelines contrast web and desktop transports while keeping the same starting protocol and similarly immediate result. The upper path runs “Seam protocol” → “HTTP” → “Browser” / “Serverless,CDN” → “Full SSR-like page” / “Data ready on arrival”; the lower runs “Seam protocol” → “IPC” → “Electron” / “Tauri” → “No loading screen” / “Instant render.” A note beneath them reads “Same protocol,swap transport,” emphasizing that only the transport and platform change.",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:51.975691Z",
+					"seconds": 6.386151916,
+					"tokens": 17190,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Dos canalizaciones paralelas de izquierda a derecha contrastan los transportes web y de escritorio mientras mantienen el mismo protocolo inicial y un resultado igualmente inmediato. La ruta superior ejecuta “Seam protocol” → “HTTP” → “Browser” / “Serverless,CDN” → “Full SSR-like page” / “Data ready on arrival”; la inferior ejecuta “Seam protocol” → “IPC” → “Electron” / “Tauri” → “No loading screen” / “Instant render.” Una nota debajo de ellas dice “Same protocol,swap transport,” enfatizando que solo cambian el transporte y la plataforma.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:19:55.767501Z",
+					"seconds": 3.468678167,
+					"tokens": 12048,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Deux pipelines parallèles de gauche à droite contrastent les transports web et desktop tout en conservant le même protocole de départ et un résultat tout aussi immédiat. Le chemin supérieur exécute “Seam protocol” → “HTTP” → “Browser” / “Serverless,CDN” → “Full SSR-like page” / “Data ready on arrival” ; le chemin inférieur exécute “Seam protocol” → “IPC” → “Electron” / “Tauri” → “No loading screen” / “Instant render”. Une note en dessous indique “Same protocol,swap transport”, soulignant que seul le transport et la plateforme changent.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:19:52.536157Z",
+					"seconds": 3.228682084,
+					"tokens": 12141,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "二つの平行した左から右へのパイプラインは、ウェブとデスクトップのトランスポートを対比しながら、同じ開始プロトコルと同様に即時の結果を保持します。上段は「Seam protocol」 → 「HTTP」 → 「Browser」 / 「Serverless,CDN」 → 「Full SSR-like page」 / 「Data ready on arrival」; 下段は「Seam protocol」 → 「IPC」 → 「Electron」 / 「Tauri」 → 「No loading screen」 / 「Instant render」。その下の注釈は「Same protocol,swap transport」と記され、トランスポートとプラットフォームだけが変わることを強調しています",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:19:40.477694Z",
+					"seconds": 4.593759541,
+					"tokens": 12066,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "두 개의 평행한 좌‑우 파이프라인은 웹과 데스크톱 전송 방식을 대비시키면서 동일한 시작 프로토콜과 비슷하게 즉각적인 결과를 유지합니다. 상위 경로는 “Seam protocol” → “HTTP” → “Browser” / “Serverless,CDN” → “Full SSR-like page” / “Data ready on arrival”; 하위 경로는 “Seam protocol” → “IPC” → “Electron” / “Tauri” → “No loading screen” / “Instant render.” 아래 메모는 “Same protocol,swap transport,” 라고 적혀 있어 전송 방식과 플랫폼만 바뀐다는 것을 강조합니다",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:19:48.583654Z",
+					"seconds": 3.949952708,
+					"tokens": 12154,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "两个并行的从左到右的流水线对比网页和桌面传输，同时保持相同的起始协议和类似的即时结果。上面的路径是“Seam protocol” → “HTTP” → “Browser” / “Serverless,CDN” → “Full SSR-like page” / “Data ready on arrival”；下面的路径是“Seam protocol” → “IPC” → “Electron” / “Tauri” → “No loading screen” / “Instant render”。它们下方的注释为“Same protocol,swap transport”，强调仅传输方式和平台不同",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:19:37.500306Z",
+					"seconds": 2.975009958,
+					"tokens": 11928,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "兩條平行的從左到右的管線對比 Web 與桌面傳輸，同時保留相同的起始協議與類似的即時結果。上方路徑為 “Seam protocol” → “HTTP” → “Browser” / “Serverless,CDN” → “Full SSR‑like page” / “Data ready on arrival”；下方路徑為 “Seam protocol” → “IPC” → “Electron” / “Tauri” → “No loading screen” / “Instant render”。它們底下的說明寫著 “Same protocol,swap transport”，強調唯一改變的是傳輸方式與",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:19:59.238051Z",
+					"seconds": 3.875525416,
+					"tokens": 12387,
+					"review": false
+				}
+			}
+		},
+		"0ea28d6b0ba1a0c8f6c5a96203536823": {
+			"kind": "svg-canvas",
+			"fingerprint": "ee16016a",
+			"description": {
+				"de-DE": {
+					"text": "Eine von links nach rechts verlaufende Pipeline aus vier schrittweise gestrippten Binär‑Layouts beginnt mit “Full binary”, das “.text”, “.rodata / .data”, “.symtab”, “.debug_* (DWARF)” und “.eh_frame (unwind)” enthält. Pfeile führen durch “strip=debuginfo”, das “.debug_*” entfernt; dann “strip=symbols”, das außerdem “.symtab” entfernt; und schließlich “+ panic=\"abort\"”, das zusätzlich “.eh_frame” entfernt und nur “.text” und “.rodata / .data” zurücklässt.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:20:11.318316Z",
+					"seconds": 3.246937125,
+					"tokens": 12024,
+					"review": false
+				},
+				"en-US": {
+					"text": "A left-to-right pipeline of four progressively stripped binary layouts starts with “Full binary,” containing “.text,” “.rodata / .data,” “.symtab,” “.debug_* (DWARF),” and “.eh_frame (unwind).” Arrows lead through “strip=debuginfo,” which removes “.debug_*”; then “strip=symbols,” which also removes “.symtab”; and finally “+ panic=\"abort\",” which additionally removes “.eh_frame,” leaving only “.text” and “.rodata / .data.”",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:15:29.627736Z",
+					"seconds": 6.790903167,
+					"tokens": 18161,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una tubería de izquierda a derecha de cuatro diseños binarios progresivamente despojados comienza con “Full binary”, que contiene “.text”, “.rodata / .data”, “.symtab”, “.debug_* (DWARF)”, y “.eh_frame (unwind)”. Las flechas conducen a través de “strip=debuginfo”, que elimina “.debug_*”; luego “strip=symbols”, que también elimina “.symtab”; y finalmente “+ panic=\"abort\"”, que además elimina “.eh_frame”, dejando solo “.text” y “.rodata / .data”.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:20:22.398055Z",
+					"seconds": 4.173877666,
+					"tokens": 12187,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Un pipeline de gauche à droite composé de quatre dispositions binaires progressivement dépouillées commence avec “Full binary,” contenant “.text,” “.rodata / .data,” “.symtab,” “.debug_* (DWARF),” et “.eh_frame (unwind).” Les flèches passent par “strip=debuginfo,” qui supprime “.debug_*”; puis “strip=symbols,” qui supprime également “.symtab”; et enfin “+ panic=\"abort\",” qui supprime en plus “.eh_frame,” ne laissant que “.text” et “.rodata / .data.”",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:20:18.171634Z",
+					"seconds": 4.223520625,
+					"tokens": 12323,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "左から右へ流れる四段階の段階的にストリップされたバイナリレイアウトのパイプラインは、最初に “Full binary” があり、そこには “.text”、 “.rodata / .data”、 “.symtab”、 “.debug_* (DWARF)”、 そして “.eh_frame (unwind)” が含まれます。矢印は “strip=debuginfo” を通り、これが “.debug_*” を除去し、次に “strip=symbols” に続き、これが “.symtab” も除去し、最後に “+ panic=\"abort\",” が加わり、さらに “.eh_frame” を除去して、結果として “.text” と “.rodata / .data” のみが残ります",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:20:06.359672Z",
+					"seconds": 4.955834416,
+					"tokens": 12223,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "왼쪽에서 오른쪽으로 진행되는 네 단계의 점진적으로 스트립된 바이너리 레이아웃 파이프라인은 “Full binary”부터 시작하며, 여기에는 “.text”, “.rodata / .data”, “.symtab”, “.debug_* (DWARF)”, 그리고 “.eh_frame (unwind)”가 포함됩니다. 화살표는 “strip=debuginfo”를 지나가며 “.debug_*”를 제거하고, 이어서 “strip=symbols”를 지나가며 “.symtab”도 제거합니다. 마지막으로 “+ panic=\"abort\"”를 거치면서 “.eh_frame”을 추가로 제거하여 최종적으로 “.text”와 “.rodata / .data”만 남습니다",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:20:14.568306Z",
+					"seconds": 3.600526375,
+					"tokens": 12066,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "一个从左到右的四阶段逐步剥除的二进制布局管线，以 “Full binary” 开始，包含 “.text”、 “.rodata / .data”、 “.symtab”、 “.debug_* (DWARF)” 和 “.eh_frame (unwind)”。箭头依次通过 “strip=debuginfo”，去除 “.debug_*”；再通过 “strip=symbols”，同时去除 “.symtab”；最后通过 “+ panic=\\\"abort\\\"”，进一步去除 “.eh_frame”，仅保留 “.text” 和 “.rodata / .data”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:20:03.116164Z",
+					"seconds": 3.241546416,
+					"tokens": 12016,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "一個從左到右的管線，包含四個逐步剝除的二進位布局，從“Full binary”開始，包含“.text”、“.rodata / .data”、“.symtab”、“.debug_* (DWARF)”以及“.eh_frame (unwind)”。箭頭依次通過“strip=debuginfo”，它會移除“.debug_*”；接著是“strip=symbols”，它同時移除“.symtab”；最後是“+ panic=\"abort\"”，它還會移除“.eh_frame”，只剩下“.text”和“.rodata / .data”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:20:26.574984Z",
+					"seconds": 3.711493875,
+					"tokens": 12030,
+					"review": false
+				}
+			}
+		},
+		"18c7d6496081ffe04a348f20d2bb26c4": {
+			"kind": "svg-canvas",
+			"fingerprint": "a5463e06",
+			"description": {
+				"de-DE": {
+					"text": "Ein zweistufiger Vergleich stellt “Seam — protocol” gegenüber “SeamJS — framework” und beschreibt erstere als “Language agnostic”, letztere als “Concrete implementation”. Seam besteht aus Sentinel, Slot‑Markern, Diff‑Erkennung und AST‑Injection und ist mit “Any backend:Rust,Go,TypeScript,...” nutzbar; ein Pfeil führt zu SeamJS, das Vite, TanStack Router und TanStack Query zu “Existing tools stitched” kombiniert und Skeleton sowie CLI als “Custom built” bereit",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:20:37.525115Z",
+					"seconds": 3.454163417,
+					"tokens": 11966,
+					"review": false
+				},
+				"en-US": {
+					"text": "A two-tier comparison contrasts “Seam — protocol,” described as “Language agnostic,” with “SeamJS — framework,” a “Concrete implementation.” Seam consists of Sentinel, Slot markers, Diff detection, and AST injection, usable with “Any backend:Rust,Go,TypeScript,...”; an arrow leads down to SeamJS, which combines Vite, TanStack Router, and TanStack Query as “Existing tools stitched” with Skeleton and CLI as “Custom built.”",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:45.270215Z",
+					"seconds": 7.083161042,
+					"tokens": 17165,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una comparación de dos niveles contrasta “Seam — protocol,” descrito como “Language agnostic,” con “SeamJS — framework,” una “Concrete implementation.” Seam consiste en Sentinel, marcadores Slot, detección de Diff e inyección de AST, utilizable con “Any backend:Rust,Go,TypeScript,...”; una flecha lleva hacia abajo a SeamJS, que combina Vite, TanStack Router y TanStack Query como “Existing tools stitched” con Skeleton y CLI como “Custom built.”",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:20:48.134179Z",
+					"seconds": 3.51021975,
+					"tokens": 12005,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Une comparaison à deux niveaux oppose “Seam — protocol”, décrit comme “Language agnostic”, à “SeamJS — framework”, une “Concrete implementation”. Seam comprend Sentinel, marqueurs Slot, détection Diff et injection AST, utilisable avec “Any backend:Rust,Go,TypeScript,...”; une flèche pointe vers le bas vers SeamJS, qui combine Vite, TanStack Router et TanStack Query comme “Existing tools stitched” avec Skeleton et CLI comme “Custom built”.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:20:44.808034Z",
+					"seconds": 3.324655667,
+					"tokens": 12062,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "二層の比較は “Seam — protocol” を “Language agnostic” と説明し、 “SeamJS — framework” を “Concrete implementation” と対比させます。Seam は Sentinel、Slot markers、Diff detection、AST injection で構成され、 “Any backend:Rust,Go,TypeScript,...” で使用可能です。矢印が下向きに SeamJS に続き、Vite、TanStack Router、TanStack Query を “Existing tools stitched” と組み合わせ、Skeleton と CLI を “Custom built” としています。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:20:33.977211Z",
+					"seconds": 3.544871083,
+					"tokens": 11938,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "두 단계 비교에서는 “Seam — protocol”을 “Language agnostic”이라고 설명하고, “SeamJS — framework”을 “Concrete implementation”와 대비시킨다. Seam은 Sentinel, Slot markers, Diff detection, AST injection으로 구성되며 “Any backend:Rust,Go,TypeScript,...”와 함께 사용할 수 있다; 화살표가 아래쪽의 SeamJS로 이어지며, SeamJS는 Vite, TanStack Router, TanStack Query를 “Existing tools stitched”와 결합하고 Skeleton과 CLI를 “Custom built”로 만든다.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:20:40.980523Z",
+					"seconds": 3.824511667,
+					"tokens": 12225,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "一个两层比较将 “Seam — protocol” 描述为 “Language agnostic”，与 “SeamJS — framework” 的 “Concrete implementation” 进行对比。Seam 包括 Sentinel、Slot markers、Diff detection 和 AST injection，可与 “Any backend:Rust,Go,TypeScript,...” 一起使用；一条向下的箭头指向 SeamJS，后者将 Vite、TanStack Router 和 TanStack Query 组合为 “Existing tools stitched”，并使用 Skeleton 和 CLI 作为 “Custom built”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:20:30.289397Z",
+					"seconds": 3.684767834,
+					"tokens": 12022,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "一個兩層的比較對照「Seam — protocol」，其描述為「Language agnostic」，與「SeamJS — framework」，即「Concrete implementation」。Seam 包含 Sentinel、Slot markers、Diff detection 與 AST injection，可用於「Any backend:Rust,Go,TypeScript,...」；有一條箭頭指向下方的 SeamJS，SeamJS 結合 Vite、TanStack Router 與 TanStack Query，作為「Existing tools stitched」，並以 Skeleton 與 CLI 作為「Custom built」。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:20:51.647476Z",
+					"seconds": 3.801276917,
+					"tokens": 12188,
+					"review": false
+				}
+			}
+		},
+		"20015902cc7a1a002a5cdb9075b9e22a": {
+			"kind": "svg-canvas",
+			"fingerprint": "e7547e5f",
+			"description": {
+				"de-DE": {
+					"text": "Eine zweistufige von links nach rechts gerichtete Pipeline für CTR (Compile-Time Rendering), unterteilt in “Build time (once)” und “Request time.” Der einmalige Build‑Pfad führt “renderToString()” mit “Sentinel data” aus, dann “Diff & detect” für “if / each / match”, erzeugt ein “HTML skeleton” mit “Typed slot markers” und wird als “One-time build cost” gruppiert. Der Request‑Pfad führt von “Request” über “Slot injection” bei “~0.1-1ms” zu “HTML response” und schließlich zu “Client hydration”, wo “React takes over”, wobei der Teil von Injection bis Response als “Per-request cost” gruppiert wird",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:21:02.727064Z",
+					"seconds": 4.504596541,
+					"tokens": 12553,
+					"review": false
+				},
+				"en-US": {
+					"text": "A two-stage left-to-right pipeline for CTR (Compile-Time Rendering), divided into “Build time (once)” and “Request time.” The one-time build path runs “renderToString()” with “Sentinel data,” then “Diff & detect” for “if / each / match,” producing an “HTML skeleton” with “Typed slot markers,” grouped as “One-time build cost.” The request path moves from “Request” through “Slot injection” at “~0.1-1ms,” then “HTML response,” and finally “Client hydration” where “React takes over,” with the injection-to-response portion grouped as “Per-request cost.”",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:45.269321Z",
+					"seconds": 6.409162625,
+					"tokens": 17324,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una canalización de dos etapas de izquierda a derecha para CTR (Compile-Time Rendering), dividida en “Build time (once)” y “Request time”. La ruta de construcción única ejecuta “renderToString()” con “Sentinel data”, luego “Diff & detect” para “if / each / match”, produciendo un “HTML skeleton” con “Typed slot markers”, agrupado como “One-time build cost”. La ruta de solicitud avanza desde “Request” a través de “Slot injection” en “~0.1-1ms”, luego “HTML response”, y finalmente “Client hydration” donde “React takes over”, con la porción de inyección a respuesta agrupada como “Per-request cost”.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:21:15.62338Z",
+					"seconds": 4.119474625,
+					"tokens": 12355,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Un pipeline à deux étapes, de gauche à droite, pour CTR (Compile-Time Rendering), divisé en “Build time (once)” et “Request time.” Le chemin de construction unique exécute “renderToString()” avec “Sentinel data,” puis “Diff & detect” pour “if / each / match,” produisant un “HTML skeleton” avec “Typed slot markers,” regroupés sous “One-time build cost.” Le chemin de requête passe de “Request” à travers “Slot injection” à “~0.1-1ms,” puis “HTML response,” et enfin “Client hydration” où “React takes over,” avec la portion injection‑à‑réponse regroupée sous “Per-request cost.”",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:21:11.208107Z",
+					"seconds": 4.411873625,
+					"tokens": 12283,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "CTR（Compile-Time Rendering）の左から右への2段階パイプラインで、「Build time (once)」と「Request time」に分かれます。1回限りのビルド経路は「renderToString()」を「Sentinel data」とともに実行し、その後「if / each / match」の「Diff & detect」を行い、「HTML skeleton」と「Typed slot markers」を生成し、これらは「One-time build cost」としてまとめられます。リクエスト経路は「Request」から始まり、「Slot injection」（~0.1-1ms）を経て「HTML response」へ、最後に「React takes over」の「Client hydration」に至り、注入からレスポンスまでの部分は「Per-request cost」としてまとめられます",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:20:59.007944Z",
+					"seconds": 3.715829,
+					"tokens": 12182,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "CTR(Compile-Time Rendering)을 위한 두 단계의 좌측에서 우측으로 진행되는 파이프라인이며, “Build time (once)”과 “Request time”으로 구분됩니다. 일회성 빌드 경로에서는 “renderToString()”를 “Sentinel data”와 함께 실행하고, 이어서 “if / each / match”에 대한 “Diff & detect”를 수행하여 “Typed slot markers”가 포함된 “HTML skeleton”을 생성하며, 이를 “One-time build cost”로 그룹화합니다. 요청 경로는 “Request”에서 시작해 “~0.1-1ms”에 “Slot injection”을 거쳐 “HTML response”가 되고, 마지막으로 “React takes over”가 일어나는 “Client hydration”으로 이어지며, 주입에서 응답까지의 부분을 “Per-request cost”로 그룹화합니다",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:21:07.23474Z",
+					"seconds": 3.970354584,
+					"tokens": 12348,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "CTR（Compile-Time Rendering）的两阶段从左到右的流水线，分为 “Build time (once)” 和 “Request time”。一次性构建路径运行 “renderToString()” 并使用 “Sentinel data”，随后进行 “Diff & detect” 以处理 “if / each / match”，生成包含 “Typed slot markers” 的 “HTML skeleton”，这些归为 “One-time build cost”。请求路径从 “Request” 开始，经过约 “~0.1-1ms” 的 “Slot injection”，随后是 “HTML response”，最终进入 “Client hydration”，此时 “React takes over”，其中注入到响应的部分归为 “Per-request cost”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:20:55.451977Z",
+					"seconds": 3.552970334,
+					"tokens": 12163,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "一個由左至右的兩階段 CTR（Compile-Time Rendering）管線，分為“Build time (once)”與“Request time”。一次性建置路徑執行“renderToString()”搭配“Sentinel data”，接著進行“Diff & detect”以處理“if / each / match”，產生帶有“Typed slot markers”的“HTML skeleton”，並歸類為“One-time build cost”。請求路徑從“Request”經過約“~0.1-1ms”的“Slot injection”，再到“HTML response”，最後至“Client hydration”，此時“React takes over”，而注入到回應的部分被歸為“Per-request cost",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:21:19.746306Z",
+					"seconds": 4.107367042,
+					"tokens": 12091,
+					"review": false
+				}
+			}
+		},
+		"26b938377e559af908cb517ec13d9943": {
+			"kind": "svg-canvas",
+			"fingerprint": "bfed1516",
+			"description": {
+				"de-DE": {
+					"text": "Ein zweizeiliger Vergleich stellt „Worst case math“ der „Reality“ gegenüber. Die Worst‑Case‑Zeile berechnet „5 variables“ mit „x 10 values each“ = „10⁵=100,000“ × „~1ms each“ „renderToString()“ = „~100s build time“; die Reality‑Zeile fließt von „Most are nullable / bool“ „2 states,not 10“ zu „2⁵=32 combos“ „x ~1ms each,“ dann zu „~32ms — one-time build cost.“",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:21:30.460044Z",
+					"seconds": 3.350374667,
+					"tokens": 12115,
+					"review": false
+				},
+				"en-US": {
+					"text": "A two-row comparison contrasts “Worst case math” with “Reality.” The worst-case row calculates “5 variables” with “x 10 values each” = “10⁵=100,000” x “~1ms each” “renderToString()” = “~100s build time”; the reality row flows from “Most are nullable / bool” “2 states,not 10” to “2⁵=32 combos” “x ~1ms each,” then to “~32ms — one-time build cost.”",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:29.042994Z",
+					"seconds": 8.725360875,
+					"tokens": 17165,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una comparación de dos filas contrasta “Worst case math” con “Reality”. La fila de peor caso calcula “5 variables” con “x 10 values each” = “10⁵=100,000” x “~1ms each” “renderToString()” = “~100s build time”; la fila de realidad fluye desde “Most are nullable / bool” “2 states,not 10” a “2⁵=32 combos” “x ~1ms each,” luego a “~32ms — one-time",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:21:42.772824Z",
+					"seconds": 4.772909875,
+					"tokens": 12236,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Une comparaison en deux lignes oppose « Worst case math » à « Reality ». La ligne du pire cas calcule « 5 variables » avec « x 10 values each » = « 10⁵=100,000 » × « ~1ms each » « renderToString() » = « ~100s build time » ; la ligne de la réalité passe de « Most are nullable / bool » « 2 states,not 10 » à « 2⁵=32 combos » « x ~1ms each », puis à « ~32ms — one-time build cost ».",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:21:39.093003Z",
+					"seconds": 3.676335542,
+					"tokens": 12248,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "二行の比較は “Worst case math” と “Reality” を対比する。最悪ケースの行では “5 variables” に “x 10 values each” を掛けて “10⁵=100,000” × “~1ms each” “renderToString()” = “~100s build time” と計算する。Reality の行は “Most are nullable / bool” “2 states,not 10” から “2⁵=32 combos” “x ~1ms each” に流れ、最終的に “~32ms — one-time build cost.” になる",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:21:26.999348Z",
+					"seconds": 3.458901166,
+					"tokens": 12182,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "두 줄 비교는 “Worst case math”와 “Reality”를 대조한다. 최악의 경우 행은 “5 variables”를 “x 10 values each” = “10⁵=100,000” × “~1ms each” “renderToString()” = “~100s build time”으로 계산한다; 현실 행은 “Most are nullable / bool” “2 states,not 10”에서 “2⁵=32 combos” “x ~1ms each,” 로 흐른 다음 “~32ms — one-time build cost",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:21:33.814106Z",
+					"seconds": 5.275607417,
+					"tokens": 12146,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "一个两行的对比将“Worst case math”与“Reality”进行比较。最坏情况那一行计算“5 variables”乘以“x 10 values each”等于“10⁵=100,000”，再乘以“~1ms each”“renderToString()”，得到“~100s build time”；Reality那一行从“Most are nullable / bool”“2 states,not 10”流向“2⁵=32 combos”“x ~1ms each”，最后得到“~32ms — one-time build cost",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:21:23.85708Z",
+					"seconds": 3.140839125,
+					"tokens": 11939,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "一個兩行的比較對照「Worst case math」與「Reality」。最壞情況那一行計算「5 variables」與「x 10 values each」＝「10⁵=100,000」×「~1ms each」的「renderToString()」＝「~100s build time」；現實那一行從「Most are nullable / bool」與「2 states,not 10」流向「2⁵=32 combos」「x ~1ms each,」再到「~32ms — one-time build cost」。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:21:47.549376Z",
+					"seconds": 3.834255958,
+					"tokens": 12382,
+					"review": false
+				}
+			}
+		},
+		"34eedc6c64ed7ebf39d6786fa1cf243f": {
+			"kind": "svg-canvas",
+			"fingerprint": "58bbffd8",
+			"description": {
+				"de-DE": {
+					"text": "Ein von links nach rechts verlaufendes Spektrum vergleicht Rendering‑Ansätze von “Static” bis “Dynamic”: “SSG” (“No dynamic”), “ISR” (“Workaround”), “PPR” (“Workaround”), “SSR” (“~100-300ms”) und “RSC” (“Arbitrary”). Rechtsgerichtete Pfeile unterhalb des Fortschrittsrahmens positionieren die Mitte als “Runtime cost”, wobei SSGs statische Geschwindigkeit den zunehmend dynamischen Ansätzen gegenübergestellt wird; darunter führt “What if?” zu “SSG's speed + SSR's dynamic=???”",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:21:58.028298Z",
+					"seconds": 4.57190725,
+					"tokens": 12109,
+					"review": false
+				},
+				"en-US": {
+					"text": "A left-to-right spectrum compares rendering approaches from “Static” to “Dynamic”: “SSG” (“No dynamic”), “ISR” (“Workaround”), “PPR” (“Workaround”), “SSR” (“~100-300ms”), and “RSC” (“Arbitrary”). Right-pointing arrows beneath the progression frame the middle as “Runtime cost,” contrasting SSG’s static speed with increasingly dynamic approaches; below, “What if?” leads to “SSG's speed + SSR's dynamic=???”",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:05.87143Z",
+					"seconds": 7.003821916,
+					"tokens": 17021,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Un espectro de izquierda a derecha compara los enfoques de renderizado desde “Static” a “Dynamic”: “SSG” (“No dynamic”), “ISR” (“Workaround”), “PPR” (“Workaround”), “SSR” (“~100-300ms”) y “RSC” (“Arbitrary”). Flechas apuntando a la derecha bajo la progresión enmarcan el centro como “Runtime cost”, contrastando la velocidad estática de SSG con enfoques cada vez más dinámicos; abajo, “What if?” conduce a “SSG's speed + SSR's dynamic=???”",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:22:09.589565Z",
+					"seconds": 3.175130541,
+					"tokens": 11990,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Un spectre de gauche à droite compare les approches de rendu de “Static” à “Dynamic” : “SSG” (“No dynamic”), “ISR” (“Workaround”), “PPR” (“Workaround”), “SSR” (“~100-300ms”), et “RSC” (“Arbitrary”). Des flèches pointant vers la droite sous la progression encadrent le milieu comme “Runtime cost”, opposant la vitesse statique de “SSG” aux approches de plus en plus dynamiques ; en dessous, “What if?” mène à “SSG's speed + SSR's dynamic=??",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:22:06.050021Z",
+					"seconds": 3.536263625,
+					"tokens": 12172,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "左から右へのスペクトラムは「Static」から「Dynamic」までのレンダリングアプローチを比較する：「SSG」（「No dynamic」）、「ISR」（「Workaround」）、「PPR」（「Workaround」）、「SSR」（「~100-300ms」）、「RSC」（「Arbitrary」）。進行の下に右向き矢印があり、中央を「Runtime cost」と枠付けし、SSG の静的速度と徐々に動的になるアプローチを対照させる；下部では「What if?」が「SSG's speed + SSR's dynamic=???」へと導く。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:21:54.275611Z",
+					"seconds": 3.749095375,
+					"tokens": 12085,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "왼쪽에서 오른쪽으로 진행되는 스펙트럼은 렌더링 접근 방식을 “Static”에서 “Dynamic”으로 비교합니다: “SSG” (“No dynamic”), “ISR” (“Workaround”), “PPR” (“Workaround”), “SSR” (“~100-300ms”), 그리고 “RSC” (“Arbitrary”). 진행 아래에 있는 오른쪽 화살표는 중간을 “Runtime cost”로 표시하여 SSG의 정적 속도와 점점 더 동적인 접근 방식을 대비시킵니다; 아래에는 “What if?”가 “SSG's speed + SSR's dynamic=???”로 이어집니다.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:22:02.602137Z",
+					"seconds": 3.444138916,
+					"tokens": 12031,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "从左到右的光谱比较渲染方法从 “Static” 到 “Dynamic”： “SSG” (“No dynamic”), “ISR” (“Workaround”), “PPR” (“Workaround”), “SSR” (“~100-300ms”), 和 “RSC” (“Arbitrary”). 进度下面的右向箭头将中间框定为 “Runtime cost”，对比 SSG 的静态速度与日益动态的方法；下面， “What if?” 引向 “SSG's speed + SSR's dynamic=???”",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:21:51.386929Z",
+					"seconds": 2.886473625,
+					"tokens": 11979,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "從左到右的譜系比較渲染方法，從 “Static” 到 “Dynamic”： “SSG” (“No dynamic”), “ISR” (“Workaround”), “PPR” (“Workaround”), “SSR” (“~100-300ms”), 以及 “RSC” (“Arbitrary”). 在進度下方的向右箭頭將中間框定為 “Runtime cost”，對比 SSG 的靜態速度與日益動態的方式；在下方，“What if?” 引導至 “SSG's speed + SSR's dynamic=",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:22:12.766322Z",
+					"seconds": 3.451176167,
+					"tokens": 12072,
+					"review": false
+				}
+			}
+		},
+		"404df41aa4a00dc168c68561bc565317": {
+			"kind": "svg-canvas",
+			"fingerprint": "3331643c",
+			"description": {
+				"de-DE": {
+					"text": "Ein Nebeneinander‑Vergleich stellt Astro und Seam gegenüber. Unter “Astro” enthält ein “Single page” drei Laufzeiten — “React runtime”, “Vue runtime” und “Svelte runtime” — und die Anmerkungen lauten “Multiple runtimes hydrated”, “MPA — always MPA” und “No client routing”. Unter “Seam” präsentiert “Single page,one runtime” React als ausgewählte Option neben Vue, Svelte und Solid, mit “Pick one per page”; darunter führt ein Pfeil von “MPA before” zu “SPA after”, gefolgt von “Client routing + transitions ✓”.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:22:24.110277Z",
+					"seconds": 3.494134583,
+					"tokens": 12096,
+					"review": false
+				},
+				"en-US": {
+					"text": "A side-by-side comparison contrasts Astro and Seam. Under “Astro,” a “Single page” contains three runtimes—“React runtime,” “Vue runtime,” and “Svelte runtime”—and the notes say “Multiple runtimes hydrated,” “MPA — always MPA,” and “No client routing.” Under “Seam,” “Single page,one runtime” presents React as the selected option alongside Vue, Svelte, and Solid, with “Pick one per page”; below, an arrow leads from “MPA before” to “SPA after,” followed by “Client routing + transitions ✓.”",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:37.769395Z",
+					"seconds": 7.498040334,
+					"tokens": 17385,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una comparación lado a lado contrasta Astro y Seam. En “Astro”, una “Single page” contiene tres runtimes—“React runtime”, “Vue runtime” y “Svelte runtime”—y las notas dicen “Multiple runtimes hydrated”, “MPA — always MPA” y “No client routing”. En “Seam”, “Single page,one runtime” presenta React como la opción seleccionada junto a Vue, Svelte y Solid, con “Pick one per page”; abajo, una flecha lleva de “MPA before” a “SPA after”, seguida de “Client routing + transitions ✓”.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:22:34.495377Z",
+					"seconds": 3.555743166,
+					"tokens": 12226,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Un tableau côte à côte oppose “Astro” et “Seam”. Sous “Astro”, une “Single page” contient trois runtimes — “React runtime”, “Vue runtime” et “Svelte runtime” — et les notes indiquent “Multiple runtimes hydrated”, “MPA — always MPA” et “No client routing”. Sous “Seam”, “Single page,one runtime” présente React comme l’option sélectionnée aux côtés de Vue, Svelte et Solid, avec “Pick one per page” ; en dessous, une flèche va de “MPA before” à “SPA after”, suivie de “Client routing + transitions ✓",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:22:30.877083Z",
+					"seconds": 3.616543208,
+					"tokens": 12201,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "横並びの比較は Astro と Seam を対比します。Astro では、「Single page」に「React runtime」「Vue runtime」「Svelte runtime」の 3 つのランタイムが含まれ、注釈は「Multiple runtimes hydrated」「MPA — always MPA」「No client routing」となります。Seam では、「Single page,one runtime」に React が選択肢として表示され、Vue、Svelte、Solid と共に「Pick one per page」と示されます。その下で、矢印が「MPA before」から「SPA after」へと導き、続いて「Client routing + transitions ✓」が付いています。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:22:20.273293Z",
+					"seconds": 3.833384917,
+					"tokens": 12087,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "나란히 배치된 비교는 Astro와 Seam을 대비한다. “Astro” 아래에서는 “Single page”가 세 개의 런타임—“React runtime”, “Vue runtime”, “Svelte runtime”—을 포함하고, 메모에는 “Multiple runtimes hydrated”, “MPA — always MPA”, “No client routing”이라고 적혀 있다. “Seam” 아래에서는 “Single page,one runtime”가 React를 선택된 옵션으로 보여 주며 Vue, Svelte, Solid도 함께 표시되고, “Pick one per page”라고 적힌다; 아래쪽에 화살표가 “MPA before”에서 “SPA after”로 이어지고, 뒤에 “Client routing + transitions ✓”가 있다",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:22:27.606197Z",
+					"seconds": 3.269084708,
+					"tokens": 12132,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "并排比较 Astro 与 Seam。 在 “Astro” 下， “Single page” 包含三个运行时——“React runtime”， “Vue runtime”， 和 “Svelte runtime”——注释写着 “Multiple runtimes hydrated”， “MPA — always MPA”， 和 “No client routing”。 在 “Seam” 下， “Single page,one runtime” 将 React 作为选定选项与 Vue、Svelte 和 Solid 并列，标注为 “Pick one per page”；下方，一根箭头从 “MPA before” 指向 “SPA after”，随后显示 “Client routing + transitions ✓”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:22:16.220768Z",
+					"seconds": 4.049831125,
+					"tokens": 12400,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "一個並排的比較對照 “Astro” 與 “Seam”。 在 “Astro” 下，“Single page” 包含三個執行環境——“React runtime”、“Vue runtime” 與 “Svelte runtime”，註釋說 “Multiple runtimes hydrated”、 “MPA — always MPA”、以及 “No client routing”。 在 “Seam” 下，“Single page,one runtime” 呈現 React 為選取的選項，並與 Vue、Svelte、Solid 並列，並有 “Pick one per page”；其下方，一條箭頭從 “MPA before” 指向 “SPA after”，接著是 “Client routing + transitions ✓”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:22:38.05511Z",
+					"seconds": 3.835956375,
+					"tokens": 12188,
+					"review": false
+				}
+			}
+		},
+		"42b3132df5a3cfca25e33bd097b79d31": {
+			"kind": "svg-canvas",
+			"fingerprint": "1097a3e5",
+			"description": {
+				"de-DE": {
+					"text": "Ein zweizeiliger Vergleich stellt “Strict mode — no JS Runtime” gegen “With JS Runtime — derive mode” gegenüber. In der ersten von links nach rechts verlaufenden Pipeline fließt “Raw data” (“From DB / API”) zu “Must be ready-to-display” (“No compute,only conditions”) und dann zu “Component written 2x” (“Tedious DX”); in der zweiten fließt die gleichen Rohdaten durch “JS derive()” (“Compute logic”), dann zu “ready-to-display” (“Typed struct”), und schließlich zu “CTR inject” (“Write once ✓”).",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:22:50.279716Z",
+					"seconds": 4.450138208,
+					"tokens": 12486,
+					"review": false
+				},
+				"en-US": {
+					"text": "A two-row comparison contrasts “Strict mode — no JS Runtime” with “With JS Runtime — derive mode.” In the first left-to-right pipeline, “Raw data” (“From DB / API”) flows to “Must be ready-to-display” (“No compute,only conditions”) and then to “Component written 2x” (“Tedious DX”); in the second, the same raw data flows through “JS derive()” (“Compute logic”), then “ready-to-display” (“Typed struct”), and finally “CTR inject” (“Write once ✓”).",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:51.976579Z",
+					"seconds": 6.601867834,
+					"tokens": 17233,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una comparación de dos filas contrasta “Strict mode — no JS Runtime” con “With JS Runtime — derive mode”. En la primera canalización de izquierda a derecha, “Raw data” (“From DB / API”) fluye a “Must be ready-to-display” (“No compute,only conditions”) y luego a “Component written 2x” (“Tedious DX”); en la segunda, los mismos datos sin procesar pasan por “JS derive()” (“Compute logic”), luego “ready-to-display” (“Typed struct”) y finalmente “CTR inject” (“Write once ✓”).",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:23:02.678473Z",
+					"seconds": 2.920255291,
+					"tokens": 12014,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Une comparaison à deux lignes oppose “Strict mode — no JS Runtime” à “With JS Runtime — derive mode.” Dans le premier pipeline de gauche à droite, “Raw data” (“From DB / API”) passe à “Must be ready-to-display” (“No compute,only conditions”) puis à “Component written 2x” (“Tedious DX”) ; dans le second, les mêmes données brutes passent par “JS derive()” (“Compute logic”), puis “ready-to-display” (“Typed struct”), et enfin “CTR inject” (“Write once ✓”).",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:22:58.474009Z",
+					"seconds": 4.200357042,
+					"tokens": 12274,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "二行の比較は「Strict mode — no JS Runtime」と「With JS Runtime — derive mode。」を対比させる。最初の左から右へのパイプラインでは、「Raw data」（「From DB / API」）が「Must be ready-to-display」（「No compute,only conditions」）へ流れ、続いて「Component written 2x」（「Tedious DX」）へ進む。二番目では、同じ raw data が「JS derive()」（「Compute logic」）を通り、「ready-to-display」（「Typed struct」）へ、最後に「CTR inject」（「Write once ✓」）へ流れる",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:22:45.731306Z",
+					"seconds": 4.544567708,
+					"tokens": 12218,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "두 줄 비교는 “Strict mode — no JS Runtime”와 “With JS Runtime — derive mode.”를 대조합니다. 첫 번째 왼쪽에서 오른쪽으로 흐르는 파이프라인에서 “Raw data”(“From DB / API”)는 “Must be ready-to-display”(“No compute,only conditions”)로 흐르고 그다음 “Component written 2x”(“Tedious DX”)으로 이동합니다; 두 번째에서는 동일한 raw data가 “JS derive()”(“Compute logic”)를 거쳐 “ready-to-display”(“Typed struct”)로 흐른 뒤 마지막으로 “CTR inject”(“Write once ✓”)에 도달합니다.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:22:54.731736Z",
+					"seconds": 3.74039625,
+					"tokens": 12241,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "一个两行比较对比 “Strict mode — no JS Runtime” 与 “With JS Runtime — derive mode”。在第一条从左到右的流水线中，“Raw data”（“From DB / API”）流向“Must be ready-to-display”（“No compute,only conditions”），然后流向“Component written 2x”（“Tedious DX”）；在第二条中，同样的原始数据流经“JS derive()”（“Compute logic”），随后是“ready-to-display”（“Typed struct”），最后是“CTR inject”（“Write once ✓”",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:22:41.893649Z",
+					"seconds": 3.833591875,
+					"tokens": 12188,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "一個兩列的比較對照「Strict mode — no JS Runtime」與「With JS Runtime — derive mode」。在第一個從左至右的管線中，「Raw data」（「From DB / API」）流向「Must be ready-to-display」（「No compute,only conditions」），再到「Component written 2x」（「Tedious DX」）；在第二個管線中，同樣的原始資料經過「JS derive()」（「Compute logic」），接著是「ready-to-display」（「Typed struct」），最後是「CTR inject」（「Write once ✓」）。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:23:05.60286Z",
+					"seconds": 3.182864791,
+					"tokens": 12046,
+					"review": false
+				}
+			}
+		},
+		"43e0db1d16fec99575259c5670b3994d": {
+			"kind": "svg-canvas",
+			"fingerprint": "1e02436e",
+			"description": {
+				"de-DE": {
+					"text": "Eine zweizeilige Compiler-Pipeline beginnt mit “.rs source,” dann fließt nach rechts durch “Lexer + Parser → AST,” “Macro expansion Desugaring,” und “HIR lowering Name resolution.” Eine gepunktete horizontale Trennlinie trennt diese Frontend‑Zeile von einer unteren Zeile, die von einem Pfeil aus HIR lowering erreicht wird: “Type checking Trait solving” führt zu “Borrow checker Lifetime validation,” das zu “MIR generation CFG,const eval,inlining.”",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:23:15.604305Z",
+					"seconds": 3.231912792,
+					"tokens": 11864,
+					"review": false
+				},
+				"en-US": {
+					"text": "A two-row compiler pipeline starts with “.rs source,” then flows right through “Lexer + Parser → AST,” “Macro expansion Desugaring,” and “HIR lowering Name resolution.” A dashed horizontal divider separates this front-end row from a lower row reached by an arrow from HIR lowering: “Type checking Trait solving” leads to “Borrow checker Lifetime validation,” which leads to “MIR generation CFG,const eval,inlining.”",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:15:04.561801Z",
+					"seconds": 5.878234083,
+					"tokens": 17112,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una tubería de compilador de dos filas comienza con “.rs source,” luego fluye hacia la derecha a través de “Lexer + Parser → AST,” “Macro expansion Desugaring,” y “HIR lowering Name resolution.” Un divisor horizontal punteado separa esta fila de front‑end de una fila inferior alcanzada por una flecha desde la bajada de HIR: “Type checking Trait solving” conduce a “Borrow checker Lifetime validation,” que conduce a “MIR generation CFG,const eval,inlining.”",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:23:30.040001Z",
+					"seconds": 3.733911708,
+					"tokens": 12297,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Un pipeline de compilateur à deux rangées commence par “.rs source,” puis se déplace vers la droite à travers “Lexer + Parser → AST,” “Macro expansion Desugaring,” et “HIR lowering Name resolution.” Un séparateur horizontal en pointillés sépare cette rangée frontale d’une rangée inférieure atteinte par une flèche depuis HIR lowering : “Type checking Trait solving” mène à “Borrow checker Lifetime validation,” qui mène à “MIR generation CFG,const eval,inlining.”",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:23:27.148329Z",
+					"seconds": 2.889579125,
+					"tokens": 11879,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "二行のコンパイラパイプラインは「.rs source」から始まり、右へ「Lexer + Parser → AST」「Macro expansion Desugaring」「HIR lowering Name resolution」の順に流れます。破線の水平分割線がフロントエンド行と、HIR loweringから矢印でつながる下部行を分けます。「Type checking Trait solving」から「Borrow checker Lifetime validation」へ、さらに「MIR generation CFG,const eval,inlining」へと続きます",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:23:11.788712Z",
+					"seconds": 3.811795125,
+					"tokens": 11996,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "두 줄로 구성된 컴파일러 파이프라인은 “.rs source,”에서 시작하여 오른쪽으로 “Lexer + Parser → AST,” “Macro expansion Desugaring,” “HIR lowering Name resolution.” 점선 수평 구분선은 이 프런트엔드 행을 HIR lowering에서 화살표로 연결된 아래 행과 구분합니다: “Type checking Trait solving”은 “Borrow checker Lifetime validation,” 로 이어지고, 다시 “MIR generation CFG,const eval,inlining.” 로 이어집니다",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:23:18.840566Z",
+					"seconds": 8.305656917,
+					"tokens": 12144,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "一个两行的编译器流水线以“.rs source”开始，然后向右依次经过“Lexer + Parser → AST”“Macro expansion Desugaring”和“HIR lowering Name resolution”。一条虚线水平分隔线将此前端行与下方的行分开，下方的行由来自“HIR lowering”的箭头指向：“Type checking Trait solving”引出“Borrow checker Lifetime validation”，随后引出“MIR generation CFG,const eval,inlining”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:23:08.7897Z",
+					"seconds": 2.99500775,
+					"tokens": 11881,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "一個雙行編譯器管線從“.rs source”開始，然後向右流經“Lexer + Parser → AST”“Macro expansion Desugaring”和“HIR lowering Name resolution”。虛線水平分隔線將此前端行與下方行分開，從“HIR lowering”延伸出的箭頭指向“Type checking Trait solving”，再導向“Borrow checker Lifetime validation”，最後導向“MIR generation CFG,const eval,inlining”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:23:33.775895Z",
+					"seconds": 3.148613041,
+					"tokens": 12007,
+					"review": false
+				}
+			}
+		},
+		"483a6aeda42e9e8eaac5aecdfd1cfe90": {
+			"kind": "mermaid",
+			"fingerprint": "61bcd115",
+			"description": {
+				"de-DE": {
+					"text": "Eine von links nach rechts verlaufende Pipeline beginnt mit “Route”, führt zu “Reachable components” und dann zu “Reachable CSS”. Von “Reachable CSS” zweigen drei alternative Lieferwege nach rechts zu “Bundle”, “Inline” und “Preload”.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:28:44.138374Z",
+					"seconds": 2.7239834160000003,
+					"tokens": 11685,
+					"review": false
+				},
+				"en-US": {
+					"text": "A left-to-right pipeline begins with “Route,” leading to “Reachable components” and then “Reachable CSS.” From “Reachable CSS,” three alternative delivery paths branch rightward to “Bundle,” “Inline,” and “Preload.”",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:58.82945Z",
+					"seconds": 5.731505167,
+					"tokens": 16140,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una canalización de izquierda a derecha comienza con “Route”, sigue a “Reachable components” y luego a “Reachable CSS”. Desde “Reachable CSS”, tres rutas de entrega alternativas se ramifican hacia la derecha hacia “Bundle”, “Inline” y “Preload”.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:28:52.994962Z",
+					"seconds": 2.748297417,
+					"tokens": 11818,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Un pipeline de gauche à droite commence par “Route”, menant à “Reachable components” puis à “Reachable CSS”. À partir de “Reachable CSS”, trois chemins de livraison alternatifs se ramifient vers la droite vers “Bundle”, “Inline” et “Preload”.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:28:50.345052Z",
+					"seconds": 2.6452789169999997,
+					"tokens": 11703,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "左から右へ流れるパイプラインは「Route」から始まり、「Reachable components」へ、そして「Reachable CSS」へと進みます。「Reachable CSS」からは、右方向に「Bundle」「Inline」「Preload」の3つの代替配信パスが枝分かれします",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:23:39.97891Z",
+					"seconds": 2.626563792,
+					"tokens": 11726,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "왼쪽에서 오른쪽으로 흐르는 파이프라인은 “Route”으로 시작하여 “Reachable components”를 거쳐 “Reachable CSS”에 도달합니다. “Reachable CSS”에서 세 가지 대체 전달 경로가 오른쪽으로 갈라져 “Bundle”, “Inline”, “Preload”로 이어집니다",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:28:46.866605Z",
+					"seconds": 3.475578541,
+					"tokens": 11865,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "一个从左到右的流水线以 “Route” 开始，依次到 “Reachable components” 再到 “Reachable CSS”。从 “Reachable CSS” 向右分叉出三条交付路径，分别是 “Bundle”、 “Inline” 和 “Preload”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:23:36.926495Z",
+					"seconds": 3.050312917,
+					"tokens": 11834,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "一個從左到右的管線以 Route 開始，接著是 Reachable components 再是 Reachable CSS。從 Reachable CSS 向右分出三條替代的交付路徑，分別是 Bundle、Inline 以及 Preload。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:28:55.748035Z",
+					"seconds": 2.699721459,
+					"tokens": 11628,
+					"review": false
+				}
+			}
+		},
+		"4c719699fbaa6f878d2ad71de8190592": {
+			"kind": "svg-canvas",
+			"fingerprint": "8ea8215c",
+			"description": {
+				"de-DE": {
+					"text": "Ein geschachteltes Komponenten‑Layout verzweigt über zwei nach rechts zeigende Pfeile in zwei SSR‑Optionen. Ein großer “React component”‑Container sagt “Border,style,layout — interactive ✓” und umschließt “dangerouslySetInnerHTML,” mit “Markdown / Rich Text — dead HTML” und “No interaction after hydration”; daneben stellt “When you need SSR” “60% — raw HTML slot” gegenüber “~zero cost,static inject” und “40% — RSC” mit “Server execution,TODO",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:29:06.453277Z",
+					"seconds": 3.416153875,
+					"tokens": 12079,
+					"review": false
+				},
+				"en-US": {
+					"text": "A nested-component layout branches via two rightward arrows into two SSR choices. A large “React component” container says “Border,style,layout — interactive ✓” and encloses “dangerouslySetInnerHTML,” with “Markdown / Rich Text — dead HTML” and “No interaction after hydration”; alongside, “When you need SSR” contrasts “60% — raw HTML slot” with “~zero cost,static inject” against “40% — RSC” with “Server execution,TODO.”",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:36.260269Z",
+					"seconds": 7.076180625,
+					"tokens": 16849,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Un diseño de componentes anidados se ramifica mediante dos flechas hacia la derecha en dos opciones de SSR. Un gran contenedor “React component” dice “Border,style,layout — interactive ✓” y encierra “dangerouslySetInnerHTML,” con “Markdown / Rich Text — dead HTML” y “No interaction after hydration”; al lado, “When you need SSR” contrasta “60% — raw HTML slot” con “~zero cost,static inject” contra “40% — RSC” con “Server execution,TODO",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:29:16.882112Z",
+					"seconds": 3.042411542,
+					"tokens": 11938,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Une disposition à composants imbriqués se ramifie via deux flèches vers la droite en deux choix SSR. Un grand conteneur “React component” indique “Border,style,layout — interactive ✓” et englobe “dangerouslySetInnerHTML,” avec “Markdown / Rich Text — dead HTML” et “No interaction after hydration” ; parallèlement, “When you need SSR” oppose “60% — raw HTML slot” avec “~zero cost,static inject” contre “40% — RSC” avec “Server",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:29:13.41966Z",
+					"seconds": 3.4577125,
+					"tokens": 12160,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "ネストされたコンポーネントのレイアウトは、右向きの矢印2本で2つのSSR選択肢に分岐します。大きな“React component”コンテナは“Border,style,layout — interactive ✓”と表示し、“dangerouslySetInnerHTML,” を囲み、“Markdown / Rich Text — dead HTML” と “No interaction after hydration” を含みます；隣には、“When you need SSR” が“60% — raw HTML slot” と “~zero cost,static inject” を対比し、“40% — RSC” と “Server execution,TODO.” を示します",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:29:01.916122Z",
+					"seconds": 4.534896,
+					"tokens": 12404,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "중첩 컴포넌트 레이아웃은 두 개의 오른쪽 화살표를 통해 두 개의 SSR 선택지로 갈라진다. 큰 “React component” 컨테이너는 “Border,style,layout — interactive ✓”라고 표시하고 “dangerouslySetInnerHTML,”를 포함하며, “Markdown / Rich Text — dead HTML”와 “No interaction after hydration”이 있다; 옆에는 “When you need SSR”가 “60% — raw HTML slot”과 “~zero cost,static inject”를 대비시키고 “40% — RSC”와 “Server execution,TODO.”를",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:29:09.87402Z",
+					"seconds": 3.542145542,
+					"tokens": 12056,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "嵌套组件布局通过两个向右的箭头分支到两个 SSR 选项。一个大的 “React component” 容器显示 “Border,style,layout — interactive ✓”，并包含 “dangerouslySetInnerHTML”，以及 “Markdown / Rich Text — dead HTML” 和 “No interaction after hydration”；旁边，“When you need SSR” 对比 “60% — raw HTML slot” 与 “~zero cost,static inject” 以及 “40% — RSC” 与 “Server execution,TODO”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:28:58.451768Z",
+					"seconds": 3.459708083,
+					"tokens": 11997,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "一個嵌套元件布局透過兩個向右的箭頭分支到兩個 SSR 選項。大型“React component”容器說“Border,style,layout — interactive ✓”並包住“dangerouslySetInnerHTML”，其中包含“Markdown / Rich Text — dead HTML”以及“No interaction after hydration”；同時，“When you need SSR”對比“60% — raw HTML slot”與“~zero cost,static inject”對“40% — RSC”中的“Server execution,TODO”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:29:19.929433Z",
+					"seconds": 3.950449708,
+					"tokens": 12274,
+					"review": false
+				}
+			}
+		},
+		"5538c7de8efdf905efdf93c8bebd225e": {
+			"kind": "mermaid",
+			"fingerprint": "8c10ef81",
+			"description": {
+				"de-DE": {
+					"text": "Ein links‑nach‑rechts Vergleich von zwei parallelen Pfaden, die aus “Visible Svelte AST.” hervorgehen. Der obere Pfad führt von “{user.name}” zu “Value dynamic,” dann zu “Slot,” dann zu “Runtime injection,” während der untere Pfad von “{#if user}” zu “Structure dynamic,” dann zu “Control-flow node,” dann zu “Branch space,” und dabei die Wert‑dynamik mit der strukturellen Steuerungsfluss kontr",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:29:29.958581Z",
+					"seconds": 3.440869667,
+					"tokens": 11869,
+					"review": false
+				},
+				"en-US": {
+					"text": "A left-to-right comparison of two parallel paths emerging from “Visible Svelte AST.” The upper path runs from “{user.name}” to “Value dynamic,” then “Slot,” then “Runtime injection,” while the lower path runs from “{#if user}” to “Structure dynamic,” then “Control-flow node,” then “Branch space,” contrasting value-level dynamics with structural control flow.",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:58.363007Z",
+					"seconds": 5.695179083,
+					"tokens": 16186,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una comparación de izquierda a derecha de dos caminos paralelos que emergen de “Visible Svelte AST”. El camino superior va de “{user.name}” a “Value dynamic”, luego “Slot”, luego “Runtime injection”, mientras que el camino inferior va de “{#if user}” a “Structure dynamic”, luego “Control‑flow node”, luego “Branch space”, contrastando la dinámica a nivel de valor con el flujo de control estruct",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:29:39.70849Z",
+					"seconds": 2.5983772910000003,
+					"tokens": 11835,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Une comparaison de gauche à droite de deux chemins parallèles issus de « Visible Svelte AST ». Le chemin supérieur passe de « {user.name} » à « Value dynamic », puis « Slot », puis « Runtime injection », tandis que le chemin inférieur passe de « {#if user} » à « Structure dynamic », puis « Control‑flow node », puis « Branch space », contrastant la dynamique au niveau de la valeur avec le flux de contrôle structurel.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:29:36.738896Z",
+					"seconds": 2.964446459,
+					"tokens": 11943,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "「Visible Svelte AST」から分岐する2つの平行パスを左から右へ比較する。上位のパスは「{user.name}」から「Value dynamic」へ、次に「Slot」、そして「Runtime injection」へと進み、下位のパスは「{#if user}」から「Structure dynamic」へ、次に「Control-flow node」、そして「Branch space」へと進む。これは、値レベルの動的変化と構造的制御フローを対比して",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:29:26.551818Z",
+					"seconds": 3.402011417,
+					"tokens": 11949,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "“Visible Svelte AST.”에서 나뉘는 두 개의 평행 경로를 좌→우로 비교합니다. 위쪽 경로는 “{user.name}”에서 “Value dynamic”으로, 이어서 “Slot”, “Runtime injection” 순으로 진행하고, 아래쪽 경로는 “{#if user}”에서 “Structure dynamic”으로, 이어서 “Control-flow node”, “Branch space” 순으로 진행하여 값 수준의 동적성과 구조적 흐름 제어를 대비시킵니다",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:29:33.40305Z",
+					"seconds": 3.330983375,
+					"tokens": 11928,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "从左到右比较从“Visible Svelte AST”分出的两条平行路径。上层路径从“{user.name}”到“Value dynamic”，再到“Slot”，再到“Runtime injection”；下层路径从“{#if user}”到“Structure dynamic”，再到“Control-flow node”，再到“Branch space”，对比值层面的动态与结构化控制",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:29:23.884807Z",
+					"seconds": 2.6620005410000003,
+					"tokens": 11835,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "左到右比較兩條從「Visible Svelte AST」分岔的平行路徑。上方路徑從「{user.name}」到「Value dynamic」再到「Slot」再到「Runtime injection」；下方路徑從「{#if user}」到「Structure dynamic」再到「Control-flow node」再到「Branch space」，對比了值層面的動態與結構控制流程",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:29:42.311885Z",
+					"seconds": 3.124047041,
+					"tokens": 11938,
+					"review": false
+				}
+			}
+		},
+		"55cd32576fedb450d270cfecb202fdb0": {
+			"kind": "svg-canvas",
+			"fingerprint": "6d77777e",
+			"description": {
+				"de-DE": {
+					"text": "Ein zweireihiger Vergleich stellt Traditional SSR gegen “CTR — build-time equivalence check.” gegenüber. Traditional SSR stellt “Server HTML” (“Runtime generated”) gegen “Client DOM” (“React hydration”) gegenüber, was zu “Mismatch discovered” “At runtime — too late” führt; CTR vergleicht stattdessen ein “CTR skeleton” “+ mock data filled” mit “renderToReadableStream()” unter Verwendung von “Same mock data,” und sendet beide anschließend an einen “DOM-tree diff” “At build time — before deploy.” Der Vergleich kann zu “Match ✓ safe” oder “Mismatch → CLI warns” führen, mit dem Hinweis “Escape hatch:any — like TypeScript,you accept",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:29:54.087854Z",
+					"seconds": 4.415225084,
+					"tokens": 12447,
+					"review": false
+				},
+				"en-US": {
+					"text": "A two-row comparison contrasts Traditional SSR with “CTR — build-time equivalence check.” Traditional SSR puts “Server HTML” (“Runtime generated”) against “Client DOM” (“React hydration”), leading to “Mismatch discovered” “At runtime — too late”; CTR instead compares a “CTR skeleton” “+ mock data filled” with “renderToReadableStream()” using “Same mock data,” then sends both to a “DOM-tree diff” “At build time — before deploy.” The diff can result in “Match ✓ safe” or “Mismatch → CLI warns,” with the note “Escape hatch:any — like TypeScript,you accept the risk.”",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:43.998202Z",
+					"seconds": 7.976311208,
+					"tokens": 17405,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una comparación de dos filas contrasta Traditional SSR con “CTR — build-time equivalence check.” Traditional SSR coloca “Server HTML” (“Runtime generated”) frente a “Client DOM” (“React hydration”), lo que lleva a “Mismatch discovered” “At runtime — too late”; CTR, en cambio, compara un “CTR skeleton” “+ mock data filled” con “renderToReadableStream()” usando “Same mock data,” y luego envía ambos a un “DOM-tree diff” “At build time — before deploy.” La diferencia puede resultar en “Match ✓ safe” o “Mismatch → CLI warns,” con la nota “Escape hatch:any — like TypeScript,you accept",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:30:05.500707Z",
+					"seconds": 5.1339085,
+					"tokens": 12579,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Une comparaison en deux lignes oppose le SSR traditionnel à “CTR — build-time equivalence check”. Le SSR traditionnel place “Server HTML” (“Runtime generated”) contre “Client DOM” (“React hydration”), ce qui conduit à “Mismatch discovered” “At runtime — too late”; le CTR compare plutôt un “CTR skeleton” “+ mock data filled” avec “renderToReadableStream()” en utilisant “Same mock data”, puis envoie les deux à un “DOM-tree diff” “At build time — before deploy”. Le diff peut aboutir à “Match ✓ safe” ou “Mismatch → CLI warns”, avec la note “Escape hatch:any — like TypeScript,you accept the risk.”",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:30:02.215621Z",
+					"seconds": 3.281430833,
+					"tokens": 12132,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "二行の比較は、Traditional SSR と “CTR — build-time equivalence check” を対比します。Traditional SSR は “Server HTML” (“Runtime generated”) と “Client DOM” (“React hydration”) を対比させ、“Mismatch discovered” “At runtime — too late” につながります；CTR は代わりに “CTR skeleton” “+ mock data filled” と “renderToReadableStream()” を “Same mock data” を使用して比較し、両方を “DOM-tree diff” “At build time — before deploy” に送ります。その差分は “Match ✓ safe” または “Mismatch → CLI warns” になる可能性があり、注釈として “Escape hatch:any — like TypeScript,you accept the risk” が",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:29:49.551091Z",
+					"seconds": 4.531792417,
+					"tokens": 12474,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "두 줄의 비교는 Traditional SSR과 “CTR — build-time equivalence check.”를 대조한다. Traditional SSR은 “Server HTML”(“Runtime generated”)을 “Client DOM”(“React hydration”)과 비교하여 “Mismatch discovered” “At runtime — too late”가 발생한다; CTR은 대신 “CTR skeleton” “+ mock data filled”와 “renderToReadableStream()”를 “Same mock data”를 사용해 비교한 뒤 두 결과를 “DOM-tree diff” “At build time — before deploy.”에 보낸다. 이 diff는 “Match ✓ safe” 또는 “Mismatch → CLI warns”가 될 수 있으며, “Escape hatch:any — like TypeScript,you accept the risk.”라는 메모가",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:29:58.507584Z",
+					"seconds": 3.702441083,
+					"tokens": 12110,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "一个两行对比将传统 SSR 与 “CTR — build-time equivalence check.” 进行对照。传统 SSR 把 “Server HTML” （“Runtime generated”） 与 “Client DOM” （“React hydration”） 对立，导致 “Mismatch discovered” “At runtime — too late”；CTR 则比较 “CTR skeleton” “+ mock data filled” 与 “renderToReadableStream()”，使用 “Same mock data”，随后将两者发送至 “DOM-tree diff” “At build time — before deploy”。该差异检查可能产生 “Match ✓ safe” 或 “Mismatch → CLI warns”，并附注 “Escape hatch:any — like TypeScript,you accept the risk”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:29:45.439669Z",
+					"seconds": 4.107188625,
+					"tokens": 12393,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "兩行比較對照傳統 SSR 與 “CTR — build-time equivalence check”。傳統 SSR 把 “Server HTML” (“Runtime generated”) 與 “Client DOM” (“React hydration”) 放在一起，導致 “Mismatch discovered” “At runtime — too late”；CTR 則比較 “CTR skeleton” “+ mock data filled” 與 “renderToReadableStream()”，使用 “Same mock data”，然後把兩者送入 “DOM-tree diff” “At build time — before deploy”。此 diff 可以產生 “Match ✓ safe” 或 “Mismatch → CLI warns”，並附註 “Escape hatch:any — like TypeScript,you accept the risk”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:30:10.639123Z",
+					"seconds": 3.6731495,
+					"tokens": 12091,
+					"review": false
+				}
+			}
+		},
+		"6161a9b737ab4b210cf528081360c7a8": {
+			"kind": "svg-canvas",
+			"fingerprint": "c2e92c04",
+			"description": {
+				"de-DE": {
+					"text": "Ein zweireihiger Vergleich stellt die Request‑Zeit‑Pfade von SSG und CTR gegenüber. Bei SSG fließt “Request” zu “Static HTML” (“Built at deploy time”) und dann zu “Same page every time” (“Hello,Alice — always Alice”), mit der Anmerkung “Fast,but frozen — no per-request data.” Bei CTR fließt “Request” zu “HTML skeleton” (“Built once,reused”), das mit “Fresh data” (“Per request”) kombiniert wird, um “Dynamic page” (“Hello,Bob — ~0.1ms”) zu erzeugen; die Anmerkung lautet “Same speed as SSG + different data every request.”",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:30:21.556622Z",
+					"seconds": 3.945189917,
+					"tokens": 12156,
+					"review": false
+				},
+				"en-US": {
+					"text": "A two-row comparison contrasts SSG and CTR request-time paths. In SSG, “Request” flows to “Static HTML” (“Built at deploy time”) and then to “Same page every time” (“Hello,Alice — always Alice”), with the note “Fast,but frozen — no per-request data.” In CTR, “Request” flows to “HTML skeleton” (“Built once,reused”), which is combined with “Fresh data” (“Per request”) to produce “Dynamic page” (“Hello,Bob — ~0.1ms”); the note says “Same speed as SSG + different data every request.”",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:37.770025Z",
+					"seconds": 6.70090425,
+					"tokens": 17186,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una comparación de dos filas contrasta SSG y CTR en los caminos de tiempo de solicitud. En SSG, “Request” fluye a “Static HTML” (“Built at deploy time”) y luego a “Same page every time” (“Hello,Alice — always Alice”), con la nota “Fast,but frozen — no per-request data.” En CTR, “Request” fluye a “HTML skeleton” (“Built once,reused”), que se combina con “Fresh data” (“Per request”) para producir “Dynamic page” (“Hello,Bob — ~0.1ms”); la nota dice “Same speed as SSG + different data every request.”",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:30:33.433555Z",
+					"seconds": 3.234932333,
+					"tokens": 12007,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Une comparaison à deux lignes oppose les chemins de requête SSG et CTR. Dans SSG, “Request” passe à “Static HTML” (“Built at deploy time”) puis à “Same page every time” (“Hello,Alice — always Alice”), avec la note “Fast,but frozen — no per-request data.” Dans CTR, “Request” passe à “HTML skeleton” (“Built once,reused”), qui est combiné avec “Fresh data” (“Per request”) pour produire “Dynamic page” (“Hello,Bob — ~0.1ms”) ; la note indique “Same speed as SSG + different data every request.”",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:30:29.951153Z",
+					"seconds": 3.478816833,
+					"tokens": 12191,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "2 行の比較で SSG と CTR のリクエスト時パスを対比します。SSG では “Request” が “Static HTML”（“Built at deploy time”）へ流れ、次に “Same page every time”（“Hello,Alice — always Alice”）へ進み、注釈として “Fast,but frozen — no per-request data.” が付けられます。CTR では “Request” が “HTML skeleton”（“Built once,reused”）へ流れ、これが “Fresh data”（“Per request”）と組み合わされて “Dynamic page”（“Hello,Bob — ~0.1ms”）を生成し、注釈として “Same speed as SSG + different data every request.” と記",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:30:17.956624Z",
+					"seconds": 3.594887583,
+					"tokens": 12165,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "두 줄로 된 비교가 SSG와 CTR 요청 시간 경로를 대조합니다. SSG에서는 “Request”가 “Static HTML” (“Built at deploy time”)으로 흐르고 그다음 “Same page every time” (“Hello,Alice — always Alice”)으로 흐르며, 메모는 “Fast,but frozen — no per-request data.” 입니다. CTR에서는 “Request”가 “HTML skeleton” (“Built once,reused”)으로 흐르고, 이것이 “Fresh data” (“Per request”)와 결합되어 “Dynamic page” (“Hello,Bob — ~0.1ms”)를 생성합니다; 메모는 “Same speed as SSG + different data every request.” 라고 적혀",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:30:25.506988Z",
+					"seconds": 4.4412905,
+					"tokens": 12299,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "一个两行的比较对比了 SSG 和 CTR 的请求时路径。 在 SSG 中，“Request”流向“Static HTML”（“Built at deploy time”），然后流向“Same page every time”（“Hello,Alice — always Alice”），并带有注释“Fast,but frozen — no per-request data”。 在 CTR 中，“Request”流向“HTML skeleton”（“Built once,reused”），该结果与“Fresh data”（“Per request”）合并，生成“Dynamic page”（“Hello,Bob — ~0.1ms”）；注释为“Same speed as SSG + different data every request”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:30:14.317361Z",
+					"seconds": 3.636666542,
+					"tokens": 12149,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "兩行比較對照 SSG 與 CTR 的請求時路徑。 在 SSG 中，“Request” 流向 “Static HTML”（“Built at deploy time”），再流向 “Same page every time”（“Hello,Alice — always Alice”），並附註 “Fast,but frozen — no per-request data”。 在 CTR 中，“Request” 流向 “HTML skeleton”（“Built once,reused”），再與 “Fresh data”（“Per request”）結合產生 “Dynamic page”（“Hello,Bob — ~0.1ms”）；註記說 “Same speed as SSG + different data every request”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:30:36.673682Z",
+					"seconds": 3.344779458,
+					"tokens": 12182,
+					"review": false
+				}
+			}
+		},
+		"7f9b1a828b99583fa79ce74457b17bd9": {
+			"kind": "svg-canvas",
+			"fingerprint": "4671166c",
+			"description": {
+				"de-DE": {
+					"text": "Zwei parallele, von links nach rechts verlaufende Kompilierungspipelines setzen LLVM und CLIF nach einem gemeinsamen Ausgangspunkt, MIR, und vor einem gemeinsamen Endpunkt, Link, in Kontrast. Der obere Pfad führt MIR → “LLVM IR” (“Multi-layer IR”) → “100+ opt passes” (“O0 ~ O3,LTO”) → “Machine code” (“Complex reg alloc”) → Link, während der untere Pfad MIR → “CLIF IR” (“Single-layer IR”) → “Lightweight opts” (“Fewer passes”) → “Machine code” (“Simple reg alloc”) → Link durchläuft. Der Kontrast besteht in LLVMs mehrschichtiger, stark optimierter Route mit komplexer Registerallokation gegenüber CLIFs einstufiger, leichterer Route mit einfacherer Registerallok",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:30:47.701695Z",
+					"seconds": 4.514693166,
+					"tokens": 12496,
+					"review": false
+				},
+				"en-US": {
+					"text": "Two parallel left-to-right compilation pipelines contrast LLVM and CLIF after a shared starting point, MIR, and before a shared endpoint, Link. The upper path runs MIR → “LLVM IR” (“Multi-layer IR”) → “100+ opt passes” (“O0 ~ O3,LTO”) → “Machine code” (“Complex reg alloc”) → Link, while the lower path runs MIR → “CLIF IR” (“Single-layer IR”) → “Lightweight opts” (“Fewer passes”) → “Machine code” (“Simple reg alloc”) → Link. The contrast is LLVM’s multi-layer, heavily optimized route with complex register allocation versus CLIF’s single-layer, lighter route with simpler register allocation.",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:15:10.154875Z",
+					"seconds": 6.940323083,
+					"tokens": 17412,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Dos tuberías de compilación paralelas de izquierda a derecha contrastan LLVM y CLIF después de un punto de partida compartido, MIR, y antes de un punto final compartido, Link. La ruta superior ejecuta MIR → “LLVM IR” (“Multi-layer IR”) → “100+ opt passes” (“O0 ~ O3,LTO”) → “Machine code” (“Complex reg alloc”) → Link, mientras que la ruta inferior ejecuta MIR → “CLIF IR” (“Single-layer IR”) → “Lightweight opts” (“Fewer passes”) → “Machine code” (“Simple reg alloc”) → Link. El contraste es la ruta de LLVM de múltiples capas, fuertemente optimizada, con asignación de registros compleja, frente a la ruta de CLIF de una sola capa, más ligera, con asignación de registros más simple.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:30:59.942988Z",
+					"seconds": 3.480677167,
+					"tokens": 12315,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Deux pipelines de compilation parallèles de gauche à droite contrastent LLVM et CLIF après un point de départ partagé, MIR, et avant un point d'arrivée partagé, Link. Le chemin supérieur exécute MIR → “LLVM IR” (“Multi-layer IR”) → “100+ opt passes” (“O0 ~ O3,LTO”) → “Machine code” (“Complex reg alloc”) → Link, tandis que le chemin inférieur exécute MIR → “CLIF IR” (“Single-layer IR”) → “Lightweight opts” (“Fewer passes”) → “Machine code” (“Simple reg alloc”) → Link. Le contraste est la voie multi-couche, fortement optimisée de LLVM avec une allocation de registres complexe versus la voie mono-couche, plus légère de CLIF avec une allocation de registres plus simple.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:30:56.09708Z",
+					"seconds": 3.840755917,
+					"tokens": 12385,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "二つの平行な左から右へのコンパイルパイプラインが、共通の開始点であるMIRの後、共通の終了点であるLinkの前でLLVMとCLIFを対比する。上位のパスはMIR → “LLVM IR” (“Multi-layer IR”) → “100+ opt passes” (“O0 ~ O3,LTO”) → “Machine code” (“Complex reg alloc”) → Link を実行し、下位のパスはMIR → “CLIF IR” (“Single-layer IR”) → “Lightweight opts” (“Fewer passes”) → “Machine code” (“Simple reg alloc”) → Link を実行する。対比は、LLVMの多層で高度に最適化されたルートが複雑なレジスタ割り当てを伴うのに対し、CLIFの単層で軽量なルートがシンプルなレジスタ割り当てを伴うことである",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:30:43.485942Z",
+					"seconds": 4.210931833,
+					"tokens": 12299,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "두 개의 평행한 왼쪽에서 오른쪽으로 진행되는 컴파일 파이프라인이 MIR이라는 공통 시작점 뒤에서 LLVM과 CLIF를 대비하고, Link라는 공통 종료점 앞에서 구분됩니다. 위 경로는 MIR → “LLVM IR”(“Multi-layer IR”) → “100+ opt passes”(“O0 ~ O3,LTO”) → “Machine code”(“Complex reg alloc”) → Link 순으로 진행되는 반면, 아래 경로는 MIR → “CLIF IR”(“Single-layer IR”) → “Lightweight opts”(“Fewer passes”) → “Machine code”(“Simple reg alloc”) → Link 순으로 진행됩니다. 차이점은 LLVM의 다계층, 고도로 최적화된 경로가 복잡한 레지스터 할당을 갖는 반면, CLIF는 단일계층, 가벼운 경로가 더 단순한 레지스터 할당을 갖는다는 점입니다",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:30:52.222039Z",
+					"seconds": 3.869384792,
+					"tokens": 12237,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "两个平行的从左到右的编译流水线在共享的起点 MIR 和共享的终点 Link 之间，对比 LLVM 和 CLIF。上层路径是 MIR → “LLVM IR” (“Multi-layer IR”) → “100+ opt passes” (“O0 ~ O3,LTO”) → “Machine code” (“Complex reg alloc”) → Link，而下层路径是 MIR → “CLIF IR” (“Single-layer IR”) → “Lightweight opts” (“Fewer passes”) → “Machine code” (“Simple reg alloc”) → Link。对比点在于 LLVM 的多层、强优化路线伴随复杂的寄存器分配，而 CLIF 的单层、轻量路线伴随更简单的寄存器分配.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:30:40.021684Z",
+					"seconds": 3.459313667,
+					"tokens": 12206,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "兩條平行的從左到右的編譯管線在共用的起點 MIR 之後、共用的終點 Link 之前，對比 LLVM 與 CLIF。上層路徑依序為 MIR → “LLVM IR” (“Multi-layer IR”) → “100+ opt passes” (“O0 ~ O3,LTO”) → “Machine code” (“Complex reg alloc”) → Link， 下層路徑依序為 MIR → “CLIF IR” (“Single-layer IR”) → “Lightweight opts” (“Fewer passes”) → “Machine code” (“Simple reg alloc”) → Link。對比在於 LLVM 採用多層、優化程度高且具複雜暫存器配置的路徑，與 CLIF 採用單層、較輕量且暫存器配置較簡單的路徑",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:31:03.427088Z",
+					"seconds": 4.491859209,
+					"tokens": 12394,
+					"review": false
+				}
+			}
+		},
+		"8547444f33980b916757adcb97405d5b": {
+			"kind": "svg-canvas",
+			"fingerprint": "06a98b11",
+			"description": {
+				"de-DE": {
+					"text": "Ein nebeneinander stehender Vergleich stellt “Traditional” “Component + data coupled” der “Seam” “Component + data separated” gegenüber. Links enthält ein “Dashboard component” `fetch(\"/api/user\")` und `if (role===\"admin\") ...`, was zu “Value unknown until runtime” und “Infinite possibilities?” führt; rechts ist ein “Pure component” mit “UI only,no data fetching” vom “Data (typed)” unter einem “JTD schema contract” getrennt, das sich in “string”, “boolean”, “enum” und “int32” aufteilt. Die typisierten Optionen werden als “Finite,enumerable → compile-time rendering possible” gruppiert, was endliche Compile‑Zeit‑Möglichkeiten den unbekannten Laufzeitwerten gegenüber",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:31:16.917443Z",
+					"seconds": 3.408268167,
+					"tokens": 12224,
+					"review": false
+				},
+				"en-US": {
+					"text": "A side-by-side comparison contrasts “Traditional” “Component + data coupled” with “Seam” “Component + data separated.” On the left, a “Dashboard component” contains `fetch(\"/api/user\")` and `if (role===\"admin\") ...`, leading to “Value unknown until runtime” and “Infinite possibilities?”; on the right, a “Pure component” with “UI only,no data fetching” is separated from “Data (typed)” under a “JTD schema contract,” which divides into “string,” “boolean,” “enum,” and “int32.” The typed options are grouped as “Finite,enumerable → compile-time rendering possible,” contrasting finite compile-time possibilities with unknown runtime values.",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:29.042846Z",
+					"seconds": 7.216027917,
+					"tokens": 17227,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una comparación lado a lado contrasta “Traditional” “Component + data coupled” con “Seam” “Component + data separated”. En la izquierda, una “Dashboard component” contiene `fetch(\"/api/user\")` y `if (role===\"admin\") ...`, lo que lleva a “Value unknown until runtime” y “Infinite possibilities?”; en la derecha, una “Pure component” con “UI only,no data fetching” está separada de “Data (typed)” bajo un “JTD schema contract”, que se divide en “string”, “boolean”, “enum” y “int32”. Las opciones tipadas se agrupan como “Finite,enumerable → compile-time rendering possible”, contrastando posibilidades finitas en tiempo de compilación con valores desconocidos en tiempo de ejecución.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:31:28.610383Z",
+					"seconds": 3.851319625,
+					"tokens": 12406,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Une comparaison côte à côte oppose “Traditional” “Component + data coupled” à “Seam” “Component + data separated”. À gauche, un “Dashboard component” contient `fetch(\"/api/user\")` et `if (role===\"admin\") ...`, ce qui conduit à “Value unknown until runtime” et “Infinite possibilities?” ; à droite, un “Pure component” avec “UI only,no data fetching” est séparé de “Data (typed)” sous un “JTD schema contract”, qui se divise en “string”, “boolean”, “enum” et “int32”. Les options typées sont regroupées comme “Finite,enumerable → compile-time rendering possible”, contrastant les possibilités finies au moment de la compilation avec les valeurs inconnues à l’ex",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:31:25.046957Z",
+					"seconds": 3.557655833,
+					"tokens": 12270,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "サイドバイサイドの比較では「Traditional」 「Component + data coupled」と「Seam」 「Component + data separated」を対比させる。左側では「Dashboard component」が `fetch(\"/api/user\")` と `if (role===\"admin\") ...` を含み、「Value unknown until runtime」 と「Infinite possibilities?」 を導く。右側では「Pure component」が「UI only,no data fetching」と共に「Data (typed)」 が「JTD schema contract」の下で分離され、「string」「boolean」「enum」「int32」に分割される。型付けされたオプションは「Finite,enumerable → compile-time rendering possible」とまとめられ、コンパイル時の有限な可能性と実行時の未知の値を対比する",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:31:12.897084Z",
+					"seconds": 4.013179208,
+					"tokens": 12392,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "나란히 비교하면 “Traditional” “Component + data coupled”와 “Seam” “Component + data separated.”가 대조됩니다. 왼쪽에서는 “Dashboard component”가 `fetch(\"/api/user\")`와 `if (role===\"admin\") ...`를 포함하여 “Value unknown until runtime”와 “Infinite possibilities?”를 초래합니다; 오른쪽에서는 “Pure component”가 “UI only,no data fetching”와 함께 “Data (typed)”가 “JTD schema contract” 아래에서 분리되고, 이는 “string”, “boolean”, “enum”, “int32”로 나뉩니다. 타입이 지정된 옵션은 “Finite,enumerable → compile-time rendering possible.”로 그룹화되어, 제한된 컴파일 타임 가능성과 런타임에 알 수 없는 값을 대비합니다",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:31:20.331352Z",
+					"seconds": 4.710053542,
+					"tokens": 12547,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "并排比较对比“Traditional”“Component + data coupled”和“Seam”“Component + data separated”。左侧，一个“Dashboard component”包含 `fetch(\"/api/user\")` 和 `if (role===\"admin\") ...`，导致“Value unknown until runtime”和“Infinite possibilities?”；右侧，一个“Pure component”标注“UI only,no data fetching”与位于“JTD schema contract”下的“Data (typed)”分离，该数据划分为“string”“boolean”“enum”“int32”。这些已类型化的选项被归类为“Finite,enumerable → compile-time rendering possible”，对比有限的编译时可能性与运行时未知的值。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:31:07.924691Z",
+					"seconds": 4.966719084,
+					"tokens": 12217,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "在並排比較中，左側的“Traditional”“Component + data coupled”與右側的“Seam”“Component + data separated.”。左側，一個“Dashboard component”包含 fetch(\"/api/user\") 和 if (role===\"admin\") ...，導致“Value unknown until runtime”以及“Infinite possibilities?”；右側，一個“Pure component”僅有“UI only,no data fetching”，與位於“JTD schema contract”之下的“Data (typed)”分離，該資料分為“string”“boolean”“enum”“int32”。這些型別選項被歸類為“Finite,enumerable → compile-time rendering possible”，形成有限的編譯時可能性與運行時未知值的對",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:31:32.465895Z",
+					"seconds": 4.174774125,
+					"tokens": 12372,
+					"review": false
+				}
+			}
+		},
+		"93697d5a69e958211c2ba9ae8d175539": {
+			"kind": "svg-canvas",
+			"fingerprint": "55a68c19",
+			"description": {
+				"de-DE": {
+					"text": "Eine Pipeline beginnt mit “Svelte source”, die in “Svelte / Seam AST” (“visible + typed”) fließt und dann in drei parallele Pfade aufgeteilt wird. “Structure” (“markup AST”) führt zu “Static HTML”, während “Values” (“data + derives”) zu “CTR slots” (“lowered data”) führt, und “Behavior” (“state + effects”) führt zu “Client",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:31:42.522664Z",
+					"seconds": 2.9520582920000003,
+					"tokens": 11819,
+					"review": false
+				},
+				"en-US": {
+					"text": "A pipeline starts with “Svelte source,” which flows into “Svelte / Seam AST” (“visible + typed”) and then splits into three parallel paths. “Structure” (“markup AST”) leads to “Static HTML,” while “Values” (“data + derives”) leads to “CTR slots” (“lowered data”), and “Behavior” (“state + effects”) leads to “Client JS.”",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:15:04.059298Z",
+					"seconds": 6.093962958,
+					"tokens": 17218,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una canalización comienza con “Svelte source”, que fluye hacia “Svelte / Seam AST” (“visible + typed”) y luego se divide en tres rutas paralelas. “Structure” (“markup AST”) conduce a “Static HTML”, mientras que “Values” (“data + derives”) conduce a “CTR slots” (“lowered data”), y “Behavior” (“state + effects”) conduce a “Client",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:31:51.362602Z",
+					"seconds": 2.945328333,
+					"tokens": 11819,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Un pipeline commence avec “Svelte source”, qui s’écoule vers “Svelte / Seam AST” (“visible + typed”) puis se divise en trois voies parallèles. “Structure” (“markup AST”) conduit à “Static HTML”, tandis que “Values” (“data + derives”) conduit à “CTR slots” (“lowered data”), et “Behavior” (“state + effects”) conduit à “Client",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:31:48.582019Z",
+					"seconds": 2.7768310830000003,
+					"tokens": 11823,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "パイプラインは「Svelte source」から始まり、「Svelte / Seam AST」（「visible + typed」）に流れ、その後3つの平行パスに分岐します。「Structure」（「markup AST」）は「Static HTML」に導き、「Values」（「data + derives」）は「CTR slots」（「lowered data」）に導き、そして「Behavior」（「state + effects」）は「Client JS」に導きます",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:31:39.348628Z",
+					"seconds": 3.169785542,
+					"tokens": 11913,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "파이프라인은 “Svelte source”에서 시작되어 “Svelte / Seam AST” (“visible + typed”) 로 흐른 다음 세 개의 병렬 경로로 나뉩니다. “Structure” (“markup AST”)는 “Static HTML”로 연결되고, “Values” (“data + derives”)는 “CTR slots” (“lowered data”)로 연결되며, “Behavior” (“state + effects”)는 “Client JS”",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:31:45.479017Z",
+					"seconds": 3.097560667,
+					"tokens": 11816,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "一个管道从“Svelte source”开始，流入“Svelte / Seam AST”（“visible + typed”），随后分成三条并行路径。“Structure”（“markup AST”）指向“Static HTML”，而“Values”（“data + derives”）指向“CTR slots”（“lowered data”），并且“Behavior”（“state + effects”）指向“Client JS”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:31:36.64655Z",
+					"seconds": 2.696197625,
+					"tokens": 11839,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "一條管線從 “Svelte source” 開始，流入 “Svelte / Seam AST” （“visible + typed”），然後分成三條平行路徑。 “Structure” （“markup AST”）導向 “Static HTML”，而 “Values” （“data + derives”）導向 “CTR slots” （“lowered data”），以及 “Behavior” （“state + effects”）導向 “Client JS”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:31:54.314096Z",
+					"seconds": 4.354928541,
+					"tokens": 12395,
+					"review": false
+				}
+			}
+		},
+		"ac7132f3414b4c847d1c20c6707c1f4b": {
+			"kind": "mermaid",
+			"fingerprint": "1bd9b938",
+			"description": {
+				"de-DE": {
+					"text": "Eine Zweipfade-Pipeline stellt den Kontrast zwischen “React black box”, das zu “Render + diff” fließt, anschließend zu “Structure guess” und schließlich zu “Protocol nodes”, mit einem gestrichelten Nebenweg von “Render + diff” zu “Mocks / escape”. Im Gegensatz dazu fließt “Visible Svelte AST” durch “Direct lowering” direkt in dieselben “Protocol nodes” und betont sichtbare Struktur statt einer abgeleiteten Struktur",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:32:04.933223Z",
+					"seconds": 3.126093875,
+					"tokens": 11943,
+					"review": false
+				},
+				"en-US": {
+					"text": "A two-path pipeline contrasts “React black box” flowing to “Render + diff,” then “Structure guess,” and finally “Protocol nodes,” with a dashed side path from “Render + diff” to “Mocks / escape.” In contrast, “Visible Svelte AST” flows through “Direct lowering” directly into the same “Protocol nodes,” emphasizing visible structure rather than inferred structure.",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:52.354451Z",
+					"seconds": 6.046627584,
+					"tokens": 16202,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una canalización de dos rutas contrasta “React black box” que fluye a “Render + diff”, luego “Structure guess” y finalmente “Protocol nodes”, con una ruta lateral discontinua de “Render + diff” a “Mocks / escape”. En contraste, “Visible Svelte AST” pasa por “Direct lowering” directamente al mismo “Protocol nodes”, enfatizando la estructura visible en lugar de la estructura",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:32:15.10912Z",
+					"seconds": 2.945287375,
+					"tokens": 11849,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Un pipeline à deux chemins oppose “React black box” qui passe à “Render + diff”, puis “Structure guess”, et enfin “Protocol nodes”, avec un chemin secondaire en pointillés de “Render + diff” vers “Mocks / escape”. En revanche, “Visible Svelte AST” passe par “Direct lowering” directement dans les mêmes “Protocol nodes”, soulignant la structure visible plutôt que la structure inférée.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:32:11.459797Z",
+					"seconds": 3.645271042,
+					"tokens": 12088,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "2 本の経路からなるパイプラインは、「React black box」から「Render + diff」へ、続いて「Structure guess」そして最終的に「Protocol nodes」へと流れる様子を対比し、さらに「Render + diff」から「Mocks / escape」への点線のサイドパスがある。対照的に、「Visible Svelte AST」は「Direct lowering」を経て同じ「Protocol nodes」へ直接流れ、推測された構造ではなく可視的な構造を強調する。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:32:01.714971Z",
+					"seconds": 3.214793459,
+					"tokens": 11986,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "두 경로 파이프라인은 “React black box”가 “Render + diff”로 흐르고, 이어 “Structure guess”와 최종적으로 “Protocol nodes”로 이어지는 흐름과, “Render + diff”에서 “Mocks / escape”로 이어지는 점선 사이 경로를 대비합니다. 반면에, “Visible Svelte AST”는 “Direct lowering”를 거쳐 동일한 “Protocol nodes”에 직접 들어가며, 추론된 구조보다 가시적인 구조를 강조합니다",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:32:08.065386Z",
+					"seconds": 3.390594542,
+					"tokens": 11955,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "一个双路径管道对比“React black box”流向“Render + diff”，然后是“Structure guess”，最后是“Protocol nodes”，并且从“Render + diff”到“Mocks / escape”有一条虚线侧路径。相反，“Visible Svelte AST”直接通过“Direct lowering”进入相同的“Protocol nodes”，强调可见结构而非推断结构。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:31:58.674574Z",
+					"seconds": 3.037075917,
+					"tokens": 11855,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "一個雙路管線對比“React black box”流向“Render + diff”，再到“Structure guess”，最後到“Protocol nodes”，同時有一條虛線側路從“Render + diff”指向“Mocks / escape”。相對地，“Visible Svelte AST”透過“Direct lowering”直接進入相同的“Protocol nodes”，強調可見結構而非推斷結構。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:32:18.060615Z",
+					"seconds": 3.659260375,
+					"tokens": 11951,
+					"review": false
+				}
+			}
+		},
+		"b5569bb00bf40e65a170dd12f4d68b35": {
+			"kind": "svg-canvas",
+			"fingerprint": "516d6b87",
+			"description": {
+				"de-DE": {
+					"text": "Ein zweizeiliger Vergleich stellt die einzelne Pipeline von PPR dem geteilten Pfad von CTR gegenüber. PPR läuft von “Static parts” (mit “Cached ✓”) über “Any dynamic change” (“Even a simple string”) zu “renderToReadableStream()” (“Still heavy”); CTR beginnt mit “Static parts” (“Build-time ✓”) und verzweigt zu “string / number / bool” → “String replace (~0.1ms)” für “95% of cases”, oder zu “Markdown / Rich Text” → “Render (any language)” für “5% edge cases”. Die Zusammenfassung lautet: “95% string replacement — 5% actual render,in any language”.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:32:30.142859Z",
+					"seconds": 3.861770667,
+					"tokens": 12489,
+					"review": false
+				},
+				"en-US": {
+					"text": "A two-row comparison contrasts PPR’s single pipeline with CTR’s split path. PPR runs from “Static parts” (with “Cached ✓”) through “Any dynamic change” (“Even a simple string”) to “renderToReadableStream()” (“Still heavy”); CTR starts with “Static parts” (“Build-time ✓”) and branches to “string / number / bool” → “String replace (~0.1ms)” for “95% of cases”, or “Markdown / Rich Text” → “Render (any language)” for “5% edge cases”. The summary reads: “95% string replacement — 5% actual render,in any language”.",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:36.259864Z",
+					"seconds": 7.736444,
+					"tokens": 17356,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una comparación de dos filas contrasta la tubería única de PPR con la ruta dividida de CTR. PPR se ejecuta desde “Static parts” (con “Cached ✓”) pasando por “Any dynamic change” (“Even a simple string”) hasta “renderToReadableStream()” (“Still heavy”); CTR comienza con “Static parts” (“Build-time ✓”) y se ramifica a “string / number / bool” → “String replace (~0.1ms)” para “95% of cases”, o “Markdown / Rich Text” → “Render (any language)” para “5% edge cases”. El resumen dice: “95% string replacement — 5% actual render,in any language”.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:32:41.231567Z",
+					"seconds": 3.199556833,
+					"tokens": 12144,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Un tableau comparatif à deux lignes oppose le pipeline unique de PPR au chemin bifurqué de CTR. PPR passe de “Static parts” (avec “Cached ✓”) à travers “Any dynamic change” (“Even a simple string”) jusqu’à “renderToReadableStream()” (“Still heavy”) ; CTR commence avec “Static parts” (“Build-time ✓”) et se ramifie vers “string / number / bool” → “String replace (~0.1ms)” pour “95% of cases”, ou “Markdown / Rich Text” → “Render (any language)” pour “5% edge cases”. Le résumé indique : “95% string replacement — 5% actual render,in any language”.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:32:37.658208Z",
+					"seconds": 3.567285625,
+					"tokens": 12281,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "二行の比較は、PPR の単一パイプラインと CTR の分割パスを対照しています。PPR は「Static parts」（「Cached ✓」付き）から「Any dynamic change」（「Even a simple string」）を経て「renderToReadableStream()」（「Still heavy」）へ進みます。一方、CTR は「Static parts」（「Build-time ✓」）で始まり、「string / number / bool」→「String replace (~0.1ms)」が「95% of cases」の場合、または「Markdown / Rich Text」→「Render (any language)」が「5% edge cases」の場合に分岐します。概要は「95% string replacement — 5% actual render,in any language」となります",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:32:26.566106Z",
+					"seconds": 3.570383667,
+					"tokens": 12120,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "두 줄로 된 비교에서는 PPR의 단일 파이프라인과 CTR의 분할 경로를 대비합니다. PPR은 “Static parts”(“Cached ✓”)에서 시작하여 “Any dynamic change”(“Even a simple string”)를 거쳐 “renderToReadableStream()”(“Still heavy”)까지 실행합니다; CTR은 “Static parts”(“Build-time ✓”)에서 시작하여 “string / number / bool” → “String replace (~0.1ms)”를 “95% of cases”에 적용하거나, “Markdown / Rich Text” → “Render (any language)”를 “5% edge cases”에 적용하도록 분기합니다. 요약은 “95% string replacement — 5% actual render,in any language”.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:32:34.011033Z",
+					"seconds": 3.640991375,
+					"tokens": 12317,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "一个两行的对比展示了 PPR 的单一流水线与 CTR 的分支路径的区别。PPR 从 “Static parts” （带有 “Cached ✓”）通过 “Any dynamic change” （“Even a simple string”）到 “renderToReadableStream()”（“Still heavy”）；CTR 从 “Static parts”（“Build-time ✓”）开始，并分支到 “string / number / bool” → “String replace (~0.1ms)” 适用于 “95% of cases”，或 “Markdown / Rich Text” → “Render (any language)” 适用于 “5% edge cases”。摘要为：“95% string replacement — 5% actual render,in any language”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:32:21.726047Z",
+					"seconds": 4.834626292,
+					"tokens": 12294,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "一個兩列的比較對照了 PPR 的單一管線與 CTR 的分割路徑。PPR 從 “Static parts”（帶有 “Cached ✓”）經過 “Any dynamic change”（ “Even a simple string”）到 “renderToReadableStream()”（ “Still heavy”）；CTR 從 “Static parts”（ “Build-time ✓”）開始，分支至 “string / number / bool” → “String replace (~0.1ms)” 適用於 “95% of cases”，或 “Markdown / Rich Text” → “Render (any language)” 適用於 “5% edge cases”。總結為：“95% string replacement — 5% actual render,in any language”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:32:44.437486Z",
+					"seconds": 4.138104208,
+					"tokens": 12370,
+					"review": false
+				}
+			}
+		},
+		"b67330bcecf08a86bef45fea39eac982": {
+			"kind": "svg-canvas",
+			"fingerprint": "fb28ac7b",
+			"description": {
+				"de-DE": {
+					"text": "Eine von links nach rechts gerichtete Pipeline mit dem Titel “Traditional SSR” zeigt “Every request”, das von “Request” zu “Build tree” (“Component tree”), dann zu “renderToString()” (“~100-300ms”) und schließlich zu “HTML response” fließt. Eine Klammer gruppiert die Build‑Tree‑ und Render‑Schritte als “Per-request cost” und stellt die wiederholte Arbeit, die für jede Anforderung nötig ist, den Anfrage‑ und Antwort‑Endpunkten gegenüber.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:37:56.687764Z",
+					"seconds": 3.536006334,
+					"tokens": 11937,
+					"review": false
+				},
+				"en-US": {
+					"text": "A left-to-right pipeline titled “Traditional SSR” portrays “Every request” flowing from “Request” to “Build tree” (“Component tree”), then “renderToString()” (“~100-300ms”), and finally “HTML response.” A bracket groups the build-tree and render steps as “Per-request cost,” contrasting the repeated work required for each request with the request and response endpoints.",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:43.999017Z",
+					"seconds": 5.555862084,
+					"tokens": 16793,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una tubería de izquierda a derecha titulada “Traditional SSR” muestra “Every request” fluyendo desde “Request” a “Build tree” (“Component tree”), luego “renderToString()” (“~100-300ms”), y finalmente “HTML response”. Un corchete agrupa los pasos de build-tree y render como “Per-request cost”, contrastando el trabajo repetido requerido para cada solicitud con los extremos de solicitud y respuesta",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:38:07.780803Z",
+					"seconds": 3.097136292,
+					"tokens": 11910,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Un pipeline de gauche à droite intitulé “Traditional SSR” montre “Every request” circulant de “Request” à “Build tree” (“Component tree”), puis “renderToString()” (“~100-300ms”) et enfin “HTML response”. Un crochet regroupe les étapes de construction de l’arbre et de rendu comme “Per-request cost”, contrastant le travail répété nécessaire pour chaque requête avec les points d’entrée de la requête et de la réponse.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:38:04.094854Z",
+					"seconds": 3.679508666,
+					"tokens": 11928,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "左から右へ流れるパイプラインでタイトルは「Traditional SSR」となり、「Every request」が「Request」から「Build tree」（「Component tree」）へ、次に「renderToString()」（「~100-300ms」）へ、最後に「HTML response」へと流れる様子を描いています。括弧は「Build tree」と「render」ステップをまとめて「Per-request cost」とし、各リクエストごとに繰り返される作業と、リクエストとレスポンスのエンドポイントを対比しています",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:32:51.557536Z",
+					"seconds": 3.37027575,
+					"tokens": 11960,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "전통 SSR 라는 왼쪽에서 오른쪽으로 흐르는 파이프라인은 “Every request”가 “Request”에서 “Build tree”(“Component tree”)로, 이어서 “renderToString()”(“~100-300ms”), 그리고 마지막으로 “HTML response”로 흐르는 모습을 보여준다. 괄호는 빌드‑트리와 렌더 단계들을 “Per-request cost”라고 묶으며, 각 요청마다 반복되는 작업을 요청 및 응답 엔드포인트와 대비한다",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:38:00.230255Z",
+					"seconds": 3.858200333,
+					"tokens": 11890,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "一个从左到右的流水线标题为“Traditional SSR”，描绘“Every request”从“Request”流向“Build tree”（“Component tree”），然后是“renderToString()”（“~100-300ms”），最后是“HTML response”。一个括号将构建树和渲染步骤组合为“Per-request cost”，对比每个请求所需的重复工作与请求和",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:32:48.581005Z",
+					"seconds": 2.971730125,
+					"tokens": 11920,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "從左到右的管線標題為「Traditional SSR」，描繪「Every request」從「Request」流向「Build tree」（「Component tree」），接著是「renderToString()」（「~100-300ms」），最後是「HTML response」。一個括號將 build‑tree 和 render 步驟分組為「Per‑request cost」，對比每個請求都需要重複的工作與請求和回應端點。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:38:10.884444Z",
+					"seconds": 3.225008667,
+					"tokens": 11929,
+					"review": false
+				}
+			}
+		},
+		"bb7ebfee826c83ba9503bec9bcc07f1e": {
+			"kind": "svg-canvas",
+			"fingerprint": "5a3380fb",
+			"description": {
+				"de-DE": {
+					"text": "Ein dreispaltiger Größenvergleich mit dem Titel “JS Runtime size comparison” stellt QuickJS, Bun und Node.js gegenüber. QuickJS ist mit “~200-300KB” und “JS subset,derive only” gekennzeichnet, während Bun “~50MB” mit “Full runtime + OS APIs” aufweist und Node.js “~100MB” mit “Full runtime + OS APIs + npm”, wobei damit schrittweise größere, funktionsreichere Laufzeiten betont werden",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:38:21.508651Z",
+					"seconds": 3.050752541,
+					"tokens": 11983,
+					"review": false
+				},
+				"en-US": {
+					"text": "A three-column size comparison titled “JS Runtime size comparison” contrasts QuickJS, Bun, and Node.js. QuickJS is labelled “~200-300KB” and “JS subset,derive only,” while Bun is “~50MB” with “Full runtime + OS APIs,” and Node.js is “~100MB” with “Full runtime + OS APIs + npm,” emphasizing progressively larger, more full-featured runtimes.",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:51.977449Z",
+					"seconds": 6.851055708,
+					"tokens": 16610,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una comparación de tamaño de tres columnas titulada “JS Runtime size comparison” contrasta QuickJS, Bun y Node.js. QuickJS está etiquetado “~200-300KB” y “JS subset,derive only,”, mientras que Bun muestra “~50MB” con “Full runtime + OS APIs,”, y Node.js muestra “~100MB” con “Full runtime + OS APIs + npm,”, resaltando runtimes progresivamente más grandes y con más funciones",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:38:31.31686Z",
+					"seconds": 3.163250792,
+					"tokens": 12020,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Un comparatif de taille à trois colonnes intitulé “JS Runtime size comparison” oppose QuickJS, Bun et Node.js. QuickJS porte l’étiquette “~200-300KB” et “JS subset,derive only”, tandis que Bun affiche “~50MB” avec “Full runtime + OS APIs”, et Node.js montre “~100MB” avec “Full runtime + OS APIs + npm”, soulignant des runtimes de plus en plus grands et complets",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:38:28.230809Z",
+					"seconds": 3.082091791,
+					"tokens": 11935,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "「JS Runtime size comparison」というタイトルの3列のサイズ比較で、QuickJS、Bun、Node.js が対比されている。QuickJS は「~200-300KB」と「JS subset,derive only」とラベル付けされ、Bun は「~50MB」と「Full runtime + OS APIs」と、Node.js は「~100MB」と「Full runtime + OS APIs + npm」と表示され、ランタイムが徐々に大きく、機能が豊富になることが強調され",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:38:17.530483Z",
+					"seconds": 3.973886542,
+					"tokens": 11991,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "“JS Runtime size comparison”이라는 제목의 3열 크기 비교에서 QuickJS, Bun, Node.js를 대조합니다. QuickJS는 “~200-300KB”와 “JS subset,derive only”로 표시되고, Bun은 “~50MB”와 “Full runtime + OS APIs”로, Node.js는 “~100MB”와 “Full runtime + OS APIs + npm”으로 표시되어 점점 더 크고 기능이 풍부한 런타임임을 강조합니다",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:38:24.565822Z",
+					"seconds": 3.658226875,
+					"tokens": 12066,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "一个标题为“JS Runtime size comparison”的三列大小比较，对比了 QuickJS、Bun 和 Node.js。QuickJS 标记为 “~200-300KB” 和 “JS subset,derive only”，而 Bun 为 “~50MB”，并标注 “Full runtime + OS APIs”，Node.js 为 “~100MB”，并标注 “Full runtime + OS APIs + npm”，强调运行时规模逐渐增大且功能更完整。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:38:14.116089Z",
+					"seconds": 3.407983208,
+					"tokens": 12035,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "一個名為「JS Runtime size comparison」的三欄位大小比較，對比 QuickJS、Bun 與 Node.js。QuickJS 標示為「~200-300KB」以及「JS subset,derive only」；Bun 標示為「~50MB」並顯示「Full runtime + OS APIs」；Node.js 標示為「~100MB」並顯示「Full runtime + OS APIs + npm」，強調隨著容量逐漸增大且功能更完整的執行環境。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:38:34.485268Z",
+					"seconds": 3.919913583,
+					"tokens": 12034,
+					"review": false
+				}
+			}
+		},
+		"cca7f8275b85644b0fa6104cbe21fdab": {
+			"kind": "svg-canvas",
+			"fingerprint": "f4a821c9",
+			"description": {
+				"de-DE": {
+					"text": "Eine Kompilierungspipeline läuft von links nach rechts von “LLVM IR codegen” (“Translate MIR → IR”) über “LLVM optimizations” (“O0 ~ O3 passes”) zu “Machine code” (“Target-specific”). Eine gestrichelte horizontale Trennung trennt diese Phasen von einer unteren Verknüpfungsstufe, wobei Maschinencode nach unten in “Linker” (“System linker”) fließt und dann nach rechts in “Executable binary”.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:38:46.19869Z",
+					"seconds": 4.495088542,
+					"tokens": 12535,
+					"review": false
+				},
+				"en-US": {
+					"text": "A compilation pipeline runs left to right from “LLVM IR codegen” (“Translate MIR → IR”) through “LLVM optimizations” (“O0 ~ O3 passes”) to “Machine code” (“Target-specific”). A dashed horizontal division separates these stages from a lower linking stage, where machine code flows down into “Linker” (“System linker”) and then right into “Executable binary.”",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:15:04.562536Z",
+					"seconds": 5.920016,
+					"tokens": 16842,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una tubería de compilación se ejecuta de izquierda a derecha desde “LLVM IR codegen” (“Translate MIR → IR”) pasando por “LLVM optimizations” (“O0 ~ O3 passes”) hasta “Machine code” (“Target-specific”). Una división horizontal discontinua separa estas etapas de una fase de enlace inferior, donde el código máquina fluye hacia abajo a “Linker” (“System linker”) y luego a la derecha hacia “Executable binary.”",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:38:56.676677Z",
+					"seconds": 2.631504708,
+					"tokens": 11867,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Une chaîne de compilation s’exécute de gauche à droite depuis “LLVM IR codegen” (“Translate MIR → IR”) à travers “LLVM optimizations” (“O0 ~ O3 passes”) jusqu’à “Machine code” (“Target-specific”). Une division horizontale en pointillés sépare ces étapes d’une étape de liaison inférieure, où le code machine descend dans “Linker” (“System linker”) puis se déplace vers la droite jusqu’à “",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:38:53.726559Z",
+					"seconds": 2.943174458,
+					"tokens": 11935,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "コンパイルパイプラインは、左から右へ「LLVM IR codegen」（「Translate MIR → IR」）から「LLVM optimizations」（「O0 ~ O3 passes」）を通り「Machine code」（「Target-specific」）へ進みます。破線の水平区切りがこれらの段階と下部のリンク段階を分け、機械コードは下へ流れて「Linker」（「System linker」）に入り、右へ「Executable binary」へと続きます。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:38:41.543377Z",
+					"seconds": 4.648338208,
+					"tokens": 12092,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "컴파일 파이프라인은 “LLVM IR codegen” (“Translate MIR → IR”)에서 시작해 왼쪽에서 오른쪽으로 진행하여 “LLVM optimizations” (“O0 ~ O3 passes”)를 거쳐 “Machine code” (“Target-specific”)까지 흐릅니다. 점선 가로 구분선이 이 단계들을 하위 링크 단계와 구분되며, 여기서 머신 코드는 아래로 흐려 “Linker” (“System linker”)에 들어간 뒤 오른쪽으로 “Executable binary.” 로",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:38:50.700693Z",
+					"seconds": 3.018801625,
+					"tokens": 11891,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "编译流水线从左到右运行，起始于“LLVM IR codegen”（“Translate MIR → IR”），经过“LLVM optimizations”（“O0 ~ O3 passes”），到达“Machine code”（“Target-specific”）。一条水平虚线将这些阶段与下方的链接阶段分隔开，机器代码向下流入“Linker”（“System linker”），随后向右进入“Executable binary”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:38:38.409653Z",
+					"seconds": 3.130435958,
+					"tokens": 11839,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "編譯管線從「LLVM IR codegen」（「Translate MIR → IR」）左至右運行，經過「LLVM optimizations」（「O0 ~ O3 passes」）到「Machine code」（「Target-specific」）。一條虛線水平分隔將這些階段與下方的連結階段分開，機器碼向下流入「Linker」（「System linker」），然後向右流入「Executable binary」。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:38:59.314847Z",
+					"seconds": 3.35996625,
+					"tokens": 11903,
+					"review": false
+				}
+			}
+		},
+		"cebcccdc93780ced98da7cae68ef7879": {
+			"kind": "svg-canvas",
+			"fingerprint": "e41170ff",
+			"description": {
+				"de-DE": {
+					"text": "Eine Page‑Layout‑zu‑Backend‑Pipeline stellt vorwiegend clientseitiges Rendering dem einen servergerenderten Inhaltsbereich gegenüber: “Nav — CTR slot injection,” “Sidebar CTR,” “Footer — CTR slot injection,” und “User info — CTR slot injection” umgeben ein zentrales “Markdown” “raw HTML slot” “SSR” Panel. Eine Legende identifiziert CTR als “CTR (~0.1ms)” und den servergerenderten Pfad als “SSR (raw HTML slot)”, wobei das Markdown‑Panel auf “Raw HTML slot backend” zeigt. Dieses Backend kann “TypeScript — your existing SSR,” “Rust — pulldown‑cmark / comrak,” oder “Go — goldmark” verwenden, jeweils führend zu “→ HTML string → insert slot.”",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:39:10.28284Z",
+					"seconds": 3.780014875,
+					"tokens": 12305,
+					"review": false
+				},
+				"en-US": {
+					"text": "A page-layout-to-backend pipeline contrasts predominantly client-side rendering with one server-rendered content area: “Nav — CTR slot injection,” “Sidebar CTR,” “Footer — CTR slot injection,” and “User info — CTR slot injection” surround a central “Markdown” “raw HTML slot” “SSR” panel. A legend identifies CTR as “CTR (~0.1ms)” and the server-rendered path as “SSR (raw HTML slot),” with the Markdown panel pointing to “Raw HTML slot backend.” That backend can use “TypeScript — your existing SSR,” “Rust — pulldown-cmark / comrak,” or “Go — goldmark,” each leading to “→ HTML string → insert slot.”",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:29.043081Z",
+					"seconds": 7.772583208,
+					"tokens": 17403,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Un pipeline de página‑layout‑al‑backend contrasta la renderización predominantemente del lado del cliente con una zona de contenido renderizada por el servidor: “Nav — CTR slot injection,” “Sidebar CTR,” “Footer — CTR slot injection,” y “User info — CTR slot injection” rodean un panel central “Markdown” “raw HTML slot” “SSR”. Una leyenda identifica CTR como “CTR (~0.1ms)” y la ruta renderizada por el servidor como “SSR (raw HTML slot),” con el panel Markdown apuntando a “Raw HTML slot backend.” Ese backend puede usar “TypeScript — your existing SSR,” “Rust — pulldown-cmark / comrak,” o “Go — goldmark,” cada uno conduciendo a “→ HTML string → insert slot.”",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:39:22.35832Z",
+					"seconds": 3.600676542,
+					"tokens": 12181,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Un pipeline page‑layout‑to‑backend oppose principalement le rendu côté client à une zone de contenu rendue côté serveur : “Nav — CTR slot injection,” “Sidebar CTR,” “Footer — CTR slot injection,” et “User info — CTR slot injection” entourent un panneau central “Markdown” “raw HTML slot” “SSR”. Une légende indique CTR comme “CTR (~0.1ms)” et le chemin côté serveur comme “SSR (raw HTML slot),” le panneau Markdown pointant vers “Raw HTML slot backend.” Ce backend peut utiliser “TypeScript — your existing SSR,” “Rust — pulldown-cmark / comrak,” ou “Go — goldmark,” chacun menant à “→ HTML string → insert slot.”",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:39:17.626734Z",
+					"seconds": 4.725147458,
+					"tokens": 12689,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "ページレイアウトからバックエンドへのパイプラインは、主にクライアント側レンダリングとサーバー側でレンダリングされたコンテンツ領域を対比させます: “Nav — CTR slot injection,” “Sidebar CTR,” “Footer — CTR slot injection,” と “User info — CTR slot injection” が中心の “Markdown” “raw HTML slot” “SSR” パネルを囲みます。凡例は CTR を “CTR (~0.1ms)” として識別し、サーバー側レンダリング経路を “SSR (raw HTML slot)” と示し、Markdown パネルは “Raw HTML slot backend” を指し示します。そのバックエンドは “TypeScript — your existing SSR,” “Rust — pulldown-cmark / comrak,” または “Go — goldmark,” を使用でき、いずれも “→ HTML string → insert slot” につなが",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:39:06.046178Z",
+					"seconds": 4.229697333,
+					"tokens": 12474,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "페이지 레이아웃에서 백엔드로의 파이프라인은 주로 클라이언트 측 렌더링과 하나의 서버 렌더링된 콘텐츠 영역을 대조합니다: “Nav — CTR slot injection,” “Sidebar CTR,” “Footer — CTR slot injection,” “User info — CTR slot injection”가 중앙의 “Markdown” “raw HTML slot” “SSR” 패널을 둘러싸고 있습니다. 범례는 CTR을 “CTR (~0.1ms)”로, 서버 렌더링 경로를 “SSR (raw HTML slot)”으로 표시하며, Markdown 패널은 “Raw HTML slot backend.”를 가리킵니다. 그 백엔드는 “TypeScript — your existing SSR,” “Rust — pulldown-cmark / comrak,” 또는 “Go — goldmark,”를 사용할 수 있고, 각각 “→ HTML string → insert slot.”으로 이어집니다",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:39:14.069993Z",
+					"seconds": 3.549794458,
+					"tokens": 12207,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "页面布局到后端的流水线对比了主要的客户端渲染与一个服务器渲染的内容区域：“Nav — CTR slot injection”，“Sidebar CTR”，“Footer — CTR slot injection”，以及 “User info — CTR slot injection” 包围中心的 “Markdown” “raw HTML slot” “SSR” 面板。图例将 CTR 标识为 “CTR (~0.1ms)” 并将服务器渲染路径标记为 “SSR (raw HTML slot)”，其中 Markdown 面板指向 “Raw HTML slot backend”。该后端可以使用 “TypeScript — your existing SSR”， “Rust — pulldown-cmark / comrak”， 或 “Go — goldmark”，每个都导致 “→ HTML string → insert slot”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:39:02.681563Z",
+					"seconds": 3.357396667,
+					"tokens": 12129,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "一個 page‑layout‑to‑backend 流程圖以主要的 client‑side rendering 與單一的 server‑rendered 內容區域形成對比： “Nav — CTR slot injection”、 “Sidebar CTR”、 “Footer — CTR slot injection”、 “User info — CTR slot injection” 圍繞在中心的 “Markdown”“raw HTML slot”“SSR” 面板。圖例將 CTR 標示為 “CTR (~0.1ms)”，將 server‑rendered 路徑標示為 “SSR (raw HTML slot)”，且 Markdown 面板指向 “Raw HTML slot backend”。該後端可以使用 “TypeScript — your existing SSR”、 “Rust — pulldown‑cmark / comrak”、 “Go — goldmark”，每個都導向 “→ HTML string → insert slot”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:39:25.966237Z",
+					"seconds": 3.499464,
+					"tokens": 12141,
+					"review": false
+				}
+			}
+		},
+		"cf3aec5cc0cb3f24936c7052e4a3b8f9": {
+			"kind": "svg-canvas",
+			"fingerprint": "1c775311",
+			"description": {
+				"de-DE": {
+					"text": "Ein Fan-out- und Fan-in-Kompilierungspipeline beginnt mit “MIR,” das vier parallele Zweige speist, die mit “CGU 1,” “CGU 2,” “CGU 3,” und “CGU …N.” beschriftet sind. Jeder Zweig führt zu “LLVM opts + codegen,” dann zu seiner eigenen “.o”-Datei; alle vier Objektdateien laufen in “Link” zusammen",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:39:35.303678Z",
+					"seconds": 2.725762459,
+					"tokens": 11835,
+					"review": false
+				},
+				"en-US": {
+					"text": "A fan-out and fan-in compilation pipeline starts with “MIR,” which feeds four parallel branches labeled “CGU 1,” “CGU 2,” “CGU 3,” and “CGU …N.” Each branch proceeds to “LLVM opts + codegen,” then to its own “.o” file; all four object files converge into “Link.”",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:15:10.15617Z",
+					"seconds": 5.612283375,
+					"tokens": 17609,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una tubería de compilación fan‑out y fan‑in comienza con “MIR”, que alimenta cuatro ramas paralelas etiquetadas “CGU 1”, “CGU 2”, “CGU 3” y “CGU …N”. Cada rama procede a “LLVM opts + codegen”, luego a su propio archivo “.o”; los cuatro archivos objeto convergen en “Link",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:39:45.797232Z",
+					"seconds": 3.302404542,
+					"tokens": 11984,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Un pipeline de compilation fan‑out et fan‑in commence avec “MIR”, qui alimente quatre branches parallèles étiquetées “CGU 1”, “CGU 2”, “CGU 3” et “CGU …N”. Chaque branche passe à “LLVM opts + codegen”, puis à son propre fichier “.o” ; les quatre fichiers objet convergent tous vers “",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:39:42.37273Z",
+					"seconds": 3.417040959,
+					"tokens": 11910,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "MIR から始まるファンアウトかつファンインのコンパイルパイプラインは、4つの並列ブランチ「CGU 1」「CGU 2」「CGU 3」「CGU …N」に流れます。各ブランチは「LLVM opts + codegen」へ進み、次に各自の「.o」ファイルへ、そして4つのオブジェクトファイルがすべて「Link」に収束します",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:39:32.647761Z",
+					"seconds": 2.648452708,
+					"tokens": 11792,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "팬아웃 및 팬인 컴파일 파이프라인은 “MIR”로 시작하며, “CGU 1”, “CGU 2”, “CGU 3”, “CGU …N”이라고 표시된 네 개의 병렬 분기로 흐릅니다. 각 분기는 “LLVM opts + codegen”으로 진행한 뒤 각각의 “.o” 파일로 이어지고, 네 개의 오브젝트 파일 모두 “Link”로 수렴합니다",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:39:38.036847Z",
+					"seconds": 4.330346334,
+					"tokens": 11824,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "一个分叉再汇聚的编译流水线从“MIR”开始，向四个平行分支“CGU 1”“CGU 2”“CGU 3”和“CGU …N”供能。每个分支依次进入“LLVM opts + codegen”，生成各自的“.o”文件；所有四个目标文件在“Link”处汇",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:39:29.470305Z",
+					"seconds": 3.170107667,
+					"tokens": 11835,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "一個分散與聚合的編譯管線從“MIR”開始，該階段將資料輸送至四個平行分支，分別標記為“CGU 1”、“CGU 2”、“CGU 3”與“CGU …N”。每個分支接著前往“LLVM opts + codegen”，再產生各自的“.o”檔案；所有四個物件檔最終匯聚至“Link”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:39:49.106008Z",
+					"seconds": 2.925824375,
+					"tokens": 11862,
+					"review": false
+				}
+			}
+		},
+		"db5237de1d98593cb2f080e5fb178c93": {
+			"kind": "svg-canvas",
+			"fingerprint": "55c61d83",
+			"description": {
+				"de-DE": {
+					"text": "Eine horizontale Build‑Time‑Pipeline läuft von “Real data” zu “Sentinel” mit “%%SEAM:name%%”, dann über “renderToString()” / “React render” und endet als “HTML skeleton”, das “<!--seam:name-->” enthält. Darunter wandelt ein Vorher/Nachher‑Vergleich “%%SEAM:user.name%%” in “<!--seam:user.name-->” um; das Ergebnis wird als “Typed slots — any language can inject data via string replacement” beschrieben",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:39:58.296012Z",
+					"seconds": 3.181417542,
+					"tokens": 11948,
+					"review": false
+				},
+				"en-US": {
+					"text": "A horizontal build-time pipeline runs from “Real data” to “Sentinel” with “%%SEAM:name%%”, then through “renderToString()” / “React render”, ending as an “HTML skeleton” containing “<!--seam:name-->”. Below, a Before/After comparison turns “%%SEAM:user.name%%” into “<!--seam:user.name-->”; the result is described as “Typed slots — any language can inject data via string replacement”.",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:29.042898Z",
+					"seconds": 6.266108459,
+					"tokens": 17045,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Un pipeline horizontal de tiempo de compilación corre desde “Real data” a “Sentinel” con “%%SEAM:name%%”, luego a través de “renderToString()” / “React render”, terminando como un “HTML skeleton” que contiene “<!--seam:name-->”. Abajo, una comparación Antes/Después transforma “%%SEAM:user.name%%” en “<!--seam:user.name-->”; el resultado se describe como “Typed slots — any language can inject data via string replacement”.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:40:08.680634Z",
+					"seconds": 3.806633666,
+					"tokens": 12144,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Un pipeline de construction horizontal s'exécute de “Real data” à “Sentinel” avec “%%SEAM:name%%”, puis à travers “renderToString()” / “React render”, se terminant en un “HTML skeleton” contenant “<!--seam:name-->”. Ci-dessous, une comparaison Avant/Après transforme “%%SEAM:user.name%%” en “<!--seam:user.name-->”; le résultat est décrit comme “Typed slots — any language can inject data via string replacement”.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:40:05.188483Z",
+					"seconds": 3.484846625,
+					"tokens": 12136,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "水平のビルド時パイプラインは「Real data」から「Sentinel」へ「%%SEAM:name%%」と共に流れ、次に「renderToString()」／「React render」を経て「HTML skeleton」になり、内部に「<!--seam:name-->」を含みます。下部では、Before/After の比較で「%%SEAM:user.name%%」が「<!--seam:user.name-->」に変換され、その結果は「Typed slots — any language can inject data via string replacement」と表現されます。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:39:55.171824Z",
+					"seconds": 3.116978042,
+					"tokens": 12024,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "수평 빌드 타임 파이프라인이 “Real data”에서 “Sentinel”으로 “%%SEAM:name%%”와 함께 진행하고, 그 다음 “renderToString()” / “React render”를 거쳐 “HTML skeleton”에 “<!--seam:name-->”를 포함한 형태로 끝납니다. 아래에서는 Before/After 비교가 “%%SEAM:user.name%%”를 “<!--seam:user.name-->”로 변환합니다; 결과는 “Typed slots — any language can inject data via string replacement”이라고 설명",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:40:01.482864Z",
+					"seconds": 3.698385375,
+					"tokens": 11948,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "水平的构建时管道从“Real data”流向“Sentinel”，使用“%%SEAM:name%%”，随后经过“renderToString()” / “React render”，最终生成包含“<!--seam:name-->”的“HTML skeleton”。在下方，前后对比将“%%SEAM:user.name%%”转换为“<!--seam:user.name-->”；结果描述为“Typed slots — any language can inject data via string replacement”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:39:52.038751Z",
+					"seconds": 3.126322209,
+					"tokens": 11863,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "水平的建置時期管線從「Real data」到「Sentinel」，使用「%%SEAM:name%%」，接著經過「renderToString()」/「React render」，最終產生包含「<!--seam:name-->」的「HTML skeleton」。以下，以前後比較將「%%SEAM:user.name%%」轉換為「<!--seam:user.name-->」；結果描述為「Typed slots — any language can inject data via string replacement",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:40:12.493848Z",
+					"seconds": 3.851574625,
+					"tokens": 12243,
+					"review": false
+				}
+			}
+		},
+		"dd306e206a1473eaa835f978ab60f726": {
+			"kind": "mermaid",
+			"fingerprint": "8cda0d8b",
+			"description": {
+				"de-DE": {
+					"text": "Eine von links nach rechts verlaufende Pipeline verbindet “Above-fold components” mit “Critical CSS”, dann mit “Lazy islands” und schließlich mit “Deferred CSS”. Sie stellt demgegenüber CSS dar, das sofort für den Above‑Fold‑Inhalt erzeugt wird, versus CSS, das für lazy‑geladene Islands aufgeschoben wird",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:40:23.600474Z",
+					"seconds": 2.773059917,
+					"tokens": 11666,
+					"review": false
+				},
+				"en-US": {
+					"text": "A left-to-right pipeline connects “Above-fold components” to “Critical CSS”, then to “Lazy islands”, and finally to “Deferred CSS”. It contrasts CSS produced immediately for above-fold content with CSS deferred for lazy-loaded islands.",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:58.830208Z",
+					"seconds": 5.533898917,
+					"tokens": 16117,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una tubería de izquierda a derecha conecta “Above-fold components” con “Critical CSS”, luego con “Lazy islands” y finalmente con “Deferred CSS”. Contrasta el CSS producido inmediatamente para el contenido above-fold con el CSS diferido para los islands cargados perez",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:40:32.007144Z",
+					"seconds": 2.899315292,
+					"tokens": 11855,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Un pipeline de gauche à droite relie « Above-fold components » à « Critical CSS », puis à « Lazy islands », et enfin à « Deferred CSS ». Il oppose le CSS produit immédiatement pour le contenu au‑dessus du pli au CSS différé pour les îlots chargés paresseusement",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:40:29.461187Z",
+					"seconds": 2.53885525,
+					"tokens": 11720,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "左から右へのパイプラインは「Above-fold components」から「Critical CSS」へ、次に「Lazy islands」へ、最後に「Deferred CSS」へ接続します。これは、above-fold コンテンツ用に即座に生成される CSS と、lazy-loaded islands 用に遅延される CSS を対比しています",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:40:19.827684Z",
+					"seconds": 3.767332834,
+					"tokens": 12122,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "왼쪽에서 오른쪽으로 흐르는 파이프라인이 “Above-fold components”를 “Critical CSS”에 연결하고, 이어 “Lazy islands”, 마지막으로 “Deferred CSS”에 연결합니다. 이는 위‑폴드 콘텐츠에 대해 즉시 생성되는 CSS와 lazy‑loaded 섬에 대해 지연되는 CSS를 대비합니다",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:40:26.381142Z",
+					"seconds": 3.0724305,
+					"tokens": 11772,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "一个从左到右的管道将“Above-fold components”连接到“Critical CSS”，再连接到“Lazy islands”，最终连接到“Deferred CSS”。它对比了立即为 above-fold 内容生成的 CSS 与为懒加载的 islands 延迟生成的 CSS。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:40:16.351861Z",
+					"seconds": 3.468213958,
+					"tokens": 11904,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "左至右的管線將「Above-fold components」連接到「Critical CSS」，再到「Lazy islands」，最後到「Deferred CSS」。它對比了立即為首屏內容產生的 CSS 與為延遲載入的 islands 延後",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:40:34.912286Z",
+					"seconds": 2.818677291,
+					"tokens": 11758,
+					"review": false
+				}
+			}
+		},
+		"e80a3a3448ec382aa7f68b0bc275de72": {
+			"kind": "svg-canvas",
+			"fingerprint": "f6b7a5ff",
+			"description": {
+				"de-DE": {
+					"text": "Eine Seite‑zu‑Rendering‑Pipeline stellt ein geändertes Feld einem vollständigen traditionellen SSR‑Neuausbau gegenüber. Auf der linken Seite enthält eine Seite „Nav“, „Hero section“, „Username“, „Sidebar“, „Content block“ und „Footer“; „Username“ ist mit „Changed“ markiert, während die übrigen „Static (unchanged)“ sind, und ein Pfeil führt zu „Traditional SSR“. Auf der rechten Seite verarbeitet „renderToString()“ den „Entire component tree“, einschließlich „Nav“, „Hero“, „User“, „Side“, „Content“ und „Footer“, gruppiert als „All re-rendered (~100-300ms)“, trotz der Hinweis „Only 1 field changed“ und „but the entire page was rebuilt.“",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:40:45.570806Z",
+					"seconds": 4.609207625,
+					"tokens": 12521,
+					"review": false
+				},
+				"en-US": {
+					"text": "A page-to-rendering pipeline contrasts one changed field with a full traditional SSR rebuild. On the left, a page contains “Nav,” “Hero section,” “Username,” “Sidebar,” “Content block,” and “Footer”; “Username” is marked “Changed” while the others are “Static (unchanged),” and an arrow leads to “Traditional SSR.” On the right, “renderToString()” processes the “Entire component tree,” including “Nav,” “Hero,” “User,” “Side,” “Content,” and “Footer,” grouped as “All re-rendered (~100-300ms),” despite the note “Only 1 field changed” and “but the entire page was rebuilt.”",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:14:05.871351Z",
+					"seconds": 6.922376959,
+					"tokens": 17570,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una tubería de página a renderizado contrasta un campo cambiado con una reconstrucción completa de SSR tradicional. A la izquierda, una página contiene “Nav,” “Hero section,” “Username,” “Sidebar,” “Content block,” y “Footer”; “Username” está marcado “Changed” mientras que los demás son “Static (unchanged),” y una flecha lleva a “Traditional SSR.” A la derecha, “renderToString()” procesa el “Entire component tree,” incluyendo “Nav,” “Hero,” “User,” “Side,” “Content,” y “Footer,” agrupados como “All re-rendered (~100-300ms),” a pesar de la nota “Only 1 field changed” y “but the entire",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:40:59.456502Z",
+					"seconds": 3.026314667,
+					"tokens": 12134,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Un pipeline page‑vers‑rendu oppose un champ modifié à une reconstruction SSR traditionnelle complète. À gauche, une page contient “Nav”, “Hero section”, “Username”, “Sidebar”, “Content block” et “Footer” ; “Username” est marqué “Changed” tandis que les autres sont “Static (unchanged)”, et une flèche mène à “Traditional SSR”. À droite, “renderToString()” traite le “Entire component tree”, incluant “Nav”, “Hero”, “User”, “Side”, “Content” et “Footer”, regroupés sous “All re-rendered (~100-300ms)”, malgré la note “Only 1 field changed” et “but the entire page was rebuilt”.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:40:54.115177Z",
+					"seconds": 5.333238667,
+					"tokens": 12355,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "ページからレンダリングへのパイプラインは、1つの変更フィールドと完全な従来のSSR再構築を対比させます。左側では、ページに「Nav」「Hero section」「Username」「Sidebar」「Content block」「Footer」が含まれ、「Username」は「Changed」とマークされ、他は「Static (unchanged)」と表示され、矢印が「Traditional SSR」へつながります。右側では「renderToString()」が「Entire component tree」を処理し、「Nav」「Hero」「User」「Side」「Content」「Footer」を含み、これらは「All re-rendered (~100-300ms)」としてまとめられますが、メモには「Only 1 field changed」と「but the entire page was rebuilt」が記",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:40:41.20624Z",
+					"seconds": 4.360814917,
+					"tokens": 12450,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "페이지‑렌더링 파이프라인은 한 개의 변경된 필드와 전체 전통적인 SSR 재구성을 대비시킨다. 왼쪽에서는 페이지에 “Nav”, “Hero section”, “Username”, “Sidebar”, “Content block”, “Footer”가 포함되고, “Username”은 “Changed”로 표시되며 나머지는 “Static (unchanged)”로 표시된다. 그리고 화살표가 “Traditional SSR”로 이어진다. 오른쪽에서는 “renderToString()”가 “Entire component tree”를 처리하고, 여기에는 “Nav”, “Hero”, “User”, “Side”, “Content”, “Footer”가 포함되며 “All re-rendered (~100-300ms)”로 그룹화된다. 비록 “Only 1 field changed”라는 메모와 “but the entire page was rebuilt.”라는 메모가 있더라도.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:40:50.187405Z",
+					"seconds": 3.920007375,
+					"tokens": 12346,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "页面渲染管线 将单一字段的更改与完整的传统 SSR 重建进行对比。左侧，一个页面包含 “Nav”，“Hero section”，“Username”，“Sidebar”，“Content block”，以及 “Footer”；“Username” 被标记为 “Changed”，而其他则标记为 “Static (unchanged)”，并有一条指向 “Traditional SSR” 的箭头。右侧，“renderToString()” 处理 “Entire component tree”，包括 “Nav”，“Hero”，“User”，“Side”，“Content”，和 “Footer”，归纳为 “All re-rendered (~100-300ms)”，尽管有备注 “Only 1 field changed” 和 “but the entire page was rebuilt”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:40:37.738592Z",
+					"seconds": 3.45988625,
+					"tokens": 12108,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "頁面渲染管線將單一變更的欄位與完整的傳統 SSR 重建做對比。左側，一個頁面包含 “Nav”、 “Hero section”、 “Username”、 “Sidebar”、 “Content block” 與 “Footer”； “Username” 被標記為 “Changed”，而其他則為 “Static (unchanged)”，並有一個箭頭指向 “Traditional SSR”。右側，“renderToString()” 會處理 “Entire component tree”，包括 “Nav”、 “Hero”、 “User”、 “Side”、 “Content” 與 “Footer”，被歸類為 “All re-rendered (~100-300ms)”，即使註記寫著 “Only 1 field changed” 且 “but the entire page was rebuilt”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:41:02.490576Z",
+					"seconds": 3.508879791,
+					"tokens": 12271,
+					"review": false
+				}
+			}
+		},
+		"e9ac213a813d8286a4f49e6aecf31704": {
+			"kind": "svg-canvas",
+			"fingerprint": "01944899",
+			"description": {
+				"de-DE": {
+					"text": "Eine verzweigte Pipeline beginnt mit “CTR candidate” und “value / derive,” fließt in “Lowering decision,” das “origin · purity · visibility” berücksichtigt und “never syntax alone” betont. Von dort kontrastiert der obere Zweig einen “simple” Fall, der “pure + visible” ist, und führt zu “generated JS,” mit einem unteren “complex” Fall, der “opaque / hatch” ist, und führt zu “QuickJS / SSR” “",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:41:13.26213Z",
+					"seconds": 3.291963875,
+					"tokens": 12037,
+					"review": false
+				},
+				"en-US": {
+					"text": "A branching pipeline begins with “CTR candidate” and “value / derive,” flowing into “Lowering decision,” which considers “origin · purity · visibility” and emphasizes “never syntax alone.” From there, the upper branch contrasts a “simple” case that is “pure + visible,” leading to “generated JS,” with a lower “complex” case that is “opaque / hatch,” leading to “QuickJS / SSR” “fallback.”",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T06:15:04.242338Z",
+					"seconds": 5.669066333,
+					"tokens": 17060,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una canalización ramificada comienza con “CTR candidate” y “value / derive”, fluyendo hacia “Lowering decision”, que considera “origin · purity · visibility” y enfatiza “never syntax alone”. Desde allí, la rama superior contrasta un caso “simple” que es “pure + visible”, conduciendo a “generated JS”, con una rama inferior “complex” que es “opaque / hatch”, conduciendo a “QuickJS / SSR” “fallback”.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:41:24.605051Z",
+					"seconds": 3.904135375,
+					"tokens": 11918,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Un pipeline ramifié débute avec “CTR candidate” et “value / derive”, s'écoule vers “Lowering decision”, qui prend en compte “origin · purity · visibility” et souligne “never syntax alone”. De là, la branche supérieure oppose un cas “simple” qui est “pure + visible”, menant à “generated JS”, tandis que la branche inférieure “complex” est “opaque / hatch”, menant à “QuickJS / SSR” “",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:41:21.036841Z",
+					"seconds": 3.562913084,
+					"tokens": 12061,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "分岐パイプラインは“CTR candidate”と“value / derive”から始まり、“Lowering decision”へと流れます。“origin · purity · visibility”を考慮し、“never syntax alone”を強調します。そこから、上位ブランチは“simple”ケースで“pure + visible”になり“generated JS”へ、下位ブランチは“complex”ケースで“opaque / hatch”になり“QuickJS / SSR” “fallback”へと対照的に進みます",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:41:09.217508Z",
+					"seconds": 4.036438875,
+					"tokens": 12150,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "분기 파이프라인은 “CTR candidate”와 “value / derive”로 시작하여 “Lowering decision”으로 흐르고, 여기서는 “origin · purity · visibility”를 고려하고 “never syntax alone”을 강조한다. 그 다음, 상위 브랜치는 “pure + visible”인 “simple” 케이스를 대비하여 “generated JS”로 이어지고, 하위 브랜치는 “opaque / hatch”인 “complex” 케이스를 “QuickJS / SSR” “fallback”으로 이어진다.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:41:16.560758Z",
+					"seconds": 4.468072542,
+					"tokens": 12192,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "一个分支管道从“CTR candidate”和“value / derive”开始，流入“Lowering decision”，该阶段考虑“origin · purity · visibility”，并强调“never syntax alone”。随后，上分支对比一个“simple”案例，它是“pure + visible”，导致“generated JS”，而下分支是一个“complex”案例，它是“opaque / hatch”，导致“QuickJS / SSR”“fallback”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:41:06.003313Z",
+					"seconds": 3.2069375,
+					"tokens": 11938,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "分支管道從“CTR candidate”和“value / derive”開始，流入“Lowering decision”，該階段考慮“origin · purity· visibility”並強調“never syntax alone”。接著，上層分支對比“simple”案例，其為“pure + visible”，導向“generated JS”；下層分支則為“complex”案例，是“opaque / hatch”，導向“QuickJS / SSR”的“fallback”。",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T06:41:28.514819Z",
+					"seconds": 3.671360333,
+					"tokens": 11999,
+					"review": false
+				}
+			}
+		}
+	}
+}

@@ -42,6 +42,9 @@ data/**
 !data/metadata.json
 !data/media.yaml
 !data/tags.yaml
+# What each diagram an article draws in source says, bought one model call at a time and keyed
+# by the hash of the block. JSON where its neighbours are YAML: nothing edits it by hand.
+!data/diagram.json
 !data/fonts.json
 # Authored, not derived: the licence a person worked out for a package that declared none.
 !data/licenses.yaml

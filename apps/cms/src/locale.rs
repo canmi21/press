@@ -37,6 +37,8 @@ enum Destination {
 	Description(String),
 	/// An article's summary, addressed by the path of the article it belongs to.
 	Summary(std::path::PathBuf),
+	/// A diagram's description, addressed by the hash of the block that draws it.
+	Diagram(String),
 }
 
 #[derive(Debug, Clone)]
@@ -57,6 +59,7 @@ impl Item {
 			Destination::Tag(name) => format!("tag {name}/{locale}"),
 			Destination::Description(cid) => format!("description {cid}/{locale}"),
 			Destination::Summary(path) => format!("summary {}/{locale}", path.display()),
+			Destination::Diagram(id) => format!("diagram {id}/{locale}"),
 		}
 	}
 }
@@ -89,6 +92,7 @@ fn targets(
 fn pending(
 	registry: &tags::Registry,
 	described: &media::Media,
+	drawings: &crate::diagram::Store,
 	locales: &[&str],
 	force: bool,
 ) -> (Vec<Item>, usize) {
@@ -126,6 +130,25 @@ fn pending(
 			items.push(Item {
 				destination: Destination::Description(cid.clone()),
 				source_locale: SOURCE_LOCALE.to_owned(),
+				source: source.text.clone(),
+				meaning: None,
+				locales: wanted,
+				kind: Kind::Prose,
+			});
+		}
+	}
+
+	for (id, entry) in &drawings.diagrams {
+		let Some(source) = entry.description.get(crate::diagram::SOURCE_LOCALE) else {
+			continue;
+		};
+		let (wanted, already) =
+			targets(&entry.description, locales, crate::diagram::SOURCE_LOCALE, force);
+		skipped += already;
+		if !wanted.is_empty() {
+			items.push(Item {
+				destination: Destination::Diagram(id.clone()),
+				source_locale: crate::diagram::SOURCE_LOCALE.to_owned(),
 				source: source.text.clone(),
 				meaning: None,
 				locales: wanted,
@@ -200,7 +223,7 @@ fn pending_summaries(
 fn tag_request(item: &Item) -> String {
 	let name = match &item.destination {
 		Destination::Tag(name) => name,
-		Destination::Description(_) | Destination::Summary(_) => {
+		Destination::Description(_) | Destination::Summary(_) | Destination::Diagram(_) => {
 			unreachable!("a tag request needs a tag destination")
 		}
 	};
@@ -252,10 +275,19 @@ fn summary_request(item: &Item, locale: &str) -> crate::i18n::prompt::Request {
 }
 
 fn description_request(item: &Item, locale: &str) -> String {
+	// A diagram's description names the labels drawn inside it, and those labels stay in the
+	// drawing. Said explicitly because the sentence around them is being rewritten and the
+	// obvious thing to do with a quoted noun is to translate it too.
+	let subject = match &item.destination {
+		Destination::Diagram(_) => {
+			"diagram description. The labels it quotes are drawn inside the diagram and are not \
+			 translated with it: carry them across unchanged"
+		}
+		_ => "image description. Preserve its meaning and factual detail",
+	};
 	format!(
-		"Translate this short plain-text image description from {SOURCE_LOCALE} into {locale}. \
-		 Preserve its meaning and factual detail. Reply with the translation alone: no preamble, \
-		 quotes, explanation, or markdown.\n\n{}",
+		"Translate this short plain-text {subject}, from {SOURCE_LOCALE} into {locale}. Reply \
+		 with the translation alone: no preamble, quotes, explanation, or markdown.\n\n{}",
 		item.source
 	)
 }
@@ -479,7 +511,9 @@ where
 	// Read once to plan against. Every write below goes through a writer that re-reads inside its
 	// own lock, so this copy is never what gets saved.
 	let described = media::load(&described_path)?;
-	let (mut items, skipped) = pending(&registry, &described, locales, force);
+	let drawings_path = crate::diagram::store_path(repo);
+	let drawings = crate::diagram::load(&drawings_path)?;
+	let (mut items, skipped) = pending(&registry, &described, &drawings, locales, force);
 	// Summaries ride the same queue: the backoff, the exhausted-allowance stop and the
 	// save-per-answer rule are all already here, and a second loop would have to grow its own.
 	let (summaries, summaries_skipped) = pending_summaries(&repo.join("contents"), locales, force)?;
@@ -496,7 +530,9 @@ where
 		.iter()
 		.map(|item| match item.destination {
 			Destination::Tag(_) => 1,
-			Destination::Description(_) | Destination::Summary(_) => item.locales.len(),
+			Destination::Description(_) | Destination::Summary(_) | Destination::Diagram(_) => {
+				item.locales.len()
+			}
 		})
 		.sum();
 	let progress = crate::task::start(repo, "locale", shell, calls as u64, sink)?;
@@ -506,6 +542,7 @@ where
 	let tag_writer = writer::Writer::start(repo, Record::Tags)?;
 	let media_writer = writer::Writer::start(repo, Record::Media)?;
 	let summary_writer = writer::Writer::start(repo, Record::Summaries)?;
+	let diagram_writer = writer::Writer::start(repo, Record::Diagrams)?;
 
 	for item in items {
 		match &item.destination {
@@ -651,6 +688,50 @@ where
 					progress.inc(1);
 				}
 			}
+			Destination::Diagram(id) => {
+				for locale in &item.locales {
+					progress.set_message(format!("{id} {locale}"));
+					let claimed = match claim::take(repo, "locale", &item.id(locale)) {
+						Ok(claimed) => claimed,
+						Err(claim::Denied::Taken(_)) => {
+							outcome.claimed_elsewhere += 1;
+							progress.inc(1);
+							continue;
+						}
+						Err(claim::Denied::Io(error)) => return Err(error),
+					};
+					match translate_description(runner, model_override, &item, locale, &mut ask).await {
+						Ok((translation, tokens, usd)) => {
+							let reported = item.id(locale);
+							let path = drawings_path.clone();
+							let key = id.clone();
+							let locale = locale.clone();
+							let applied = diagram_writer.apply(move || {
+								let mut current = crate::diagram::load(&path)?;
+								current.version = crate::diagram::VERSION;
+								current.diagrams.entry(key).or_default().description.insert(locale, translation);
+								crate::diagram::save(&path, &current)
+							});
+							if let Err(error) = applied {
+								outcome.failed.push((reported, error.to_string()));
+								drop(claimed);
+								progress.inc(1);
+								continue;
+							}
+							outcome.translated += 1;
+							outcome.tokens += tokens;
+							outcome.usd += usd;
+						}
+						Err(Refusal::Exhausted(reason)) => {
+							outcome.exhausted = Some(reason);
+							progress.finish_and_clear();
+							return Ok(outcome);
+						}
+						Err(error) => outcome.failed.push((item.id(locale), error.to_string())),
+					}
+					progress.inc(1);
+				}
+			}
 		}
 	}
 	progress.finish_and_clear();
@@ -660,7 +741,7 @@ where
 #[cfg(test)]
 mod tests {
 	use super::*;
-	
+
 	/// A repository root that removes itself, with `data/` already in place.
 	///
 	/// This was a hand-rolled `Temp` with its own `Drop` and an atomic counter, because two tests
@@ -840,13 +921,19 @@ mod tests {
 		tags::save(&tags::path_for(&temp.path()), &registry).expect("tags");
 
 		let mut requests = 0;
-		let outcome =
-			run_with(&temp.path(), Runner::GptOss, true, None, &crate::i18n::prompt::LOCALES, |_, _, _| {
+		let outcome = run_with(
+			&temp.path(),
+			Runner::GptOss,
+			true,
+			None,
+			&crate::i18n::prompt::LOCALES,
+			|_, _, _| {
 				requests += 1;
 				std::future::ready(Ok(answer("unexpected")))
-			})
-			.await
-			.expect("run");
+			},
+		)
+		.await
+		.expect("run");
 
 		assert_eq!(requests, 0);
 		assert_eq!(outcome.sources, 0);

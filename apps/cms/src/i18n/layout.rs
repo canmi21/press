@@ -92,7 +92,10 @@ pub fn build(root: &Path) -> std::io::Result<Layout> {
 }
 
 /// FNV-1a over the exact source bytes. This detects stale offsets; it is not an address.
-fn fingerprint(bytes: &[u8]) -> String {
+///
+/// Shared with `diagram`, which needs the same few lines for the same reason: the site has to be
+/// able to recompute it, and the real hash is deliberately not reimplemented in TypeScript.
+pub(crate) fn fingerprint(bytes: &[u8]) -> String {
 	let mut checksum = 0x811c_9dc5_u32;
 	for byte in bytes {
 		checksum ^= u32::from(*byte);

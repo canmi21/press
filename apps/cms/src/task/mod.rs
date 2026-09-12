@@ -42,6 +42,8 @@ pub enum Record {
 	Media,
 	/// `data/tags.yaml`.
 	Tags,
+	/// `data/diagram.json`: descriptions of the drawings articles carry as source.
+	Diagrams,
 	/// `data/build/segments.json`.
 	Segments,
 	/// Crate and repository facts the articles embed.
@@ -189,14 +191,24 @@ pub const CATALOG: &[Spec] = &[
 		after: &[],
 	},
 	Spec {
+		id: "diagram",
+		name: "Describe diagrams",
+		detail: "Describe each drawing an article carries as source, in English.",
+		paid: true,
+		items: Items::Many("diagram"),
+		reads: &[Record::Articles],
+		writes: &[Record::Diagrams],
+		after: &[],
+	},
+	Spec {
 		id: "locale",
 		name: "Translate labels and descriptions",
-		detail: "Carry tag labels, image descriptions and summaries into every locale.",
+		detail: "Carry tag labels, image and diagram descriptions and summaries into every locale.",
 		paid: true,
 		items: Items::Many("record and locale"),
-		reads: &[Record::Media, Record::Tags, Record::Summaries],
-		writes: &[Record::Media, Record::Tags, Record::Summaries],
-		after: &["alt", "tag", "summary"],
+		reads: &[Record::Media, Record::Tags, Record::Summaries, Record::Diagrams],
+		writes: &[Record::Media, Record::Tags, Record::Summaries, Record::Diagrams],
+		after: &["alt", "tag", "summary", "diagram"],
 	},
 	Spec {
 		id: "embed",

@@ -29,9 +29,9 @@ also be a second, invisible way to reach the same bytes.
 ## What `data/` keeps out of git
 
 Not the directory -- the kind of thing. **Text that means something goes in; bytes and bulk
-stay out.** `data/metadata.json`, `data/media.yaml` and `data/tags.yaml` are records: a build
-resolves every image from the first without one image being present, and the other two hold
-descriptions that cost money and tags a person curates. Photographs, derived variants, fonts
+stay out.** `data/metadata.json`, `data/media.yaml`, `data/tags.yaml` and
+`data/diagram.json` are records: a build resolves every image from the first without one image
+being present, and the rest hold descriptions that cost money and tags a person curates. Photographs, derived variants, fonts
 and a geocoding database are bytes, and no diff of them says anything.
 
 ### Generated build inputs live under `data/build/`
@@ -143,8 +143,9 @@ a fact about this repository rather than a property of the command, so it waits 
 
 ## A CI build must be able to build from git alone
 
-The site builds from `data/metadata.json`, `data/media.yaml`, the records under `data/build/`,
-`contents/` and `site.config.yaml` -- all committed -- and never reads untracked asset bytes.
+The site builds from `data/metadata.json`, `data/media.yaml`, `data/diagram.json`, the records
+under `data/build/`, `contents/` and `site.config.yaml` -- all committed -- and never reads
+untracked asset bytes.
 The merged image manifest carries every dimension, srcset and placeholder, the article segment
 record carries the CMS-derived ids and byte ranges, `cms embed` writes repository and crate
 facts for author-written `::github` and `::cargo` directives, and `twitter.json` holds the tweet

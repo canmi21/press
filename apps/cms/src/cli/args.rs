@@ -166,6 +166,18 @@ pub enum Command {
 		limit: Option<usize>,
 	},
 
+	/// Describe each diagram an article carries as source
+	Diagram {
+		#[command(flatten)]
+		model: ModelArgs,
+		/// Redo what is already recorded rather than skipping it
+		#[arg(long)]
+		force: bool,
+		/// Stop after this many, so a prompt can be tried cheaply
+		#[arg(long, value_name = "N", value_parser = positive)]
+		limit: Option<usize>,
+	},
+
 	/// Write a reader-facing summary for each article
 	Summary {
 		#[command(flatten)]

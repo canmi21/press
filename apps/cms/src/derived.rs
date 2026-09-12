@@ -12,7 +12,7 @@
 use serde::Serialize;
 use std::path::Path;
 
-use crate::{alt, articles, favicon, image, media, paths, refs};
+use crate::{alt, articles, diagram, favicon, image, media, paths, refs};
 
 #[derive(Debug, Serialize, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
@@ -106,6 +106,21 @@ pub fn report_at(repository: &Path) -> std::io::Result<Report> {
 	let listing = articles::listing_at(repository)?;
 	let translated: usize = listing.articles.iter().map(|article| article.translated).sum();
 	let translatable: usize = listing.articles.iter().map(|article| article.wanted).sum();
+	// One description per drawing per locale, the same shape the summaries are counted in. A
+	// drawing carried by two articles is one drawing here, because one description serves both.
+	let drawings = diagram::collect(&repository.join("contents"))?;
+	let described_drawings = diagram::load(&diagram::store_path(repository))?;
+	let diagrams_wanted = drawings.len() * listing.locales.len();
+	let diagrams_have: usize = drawings
+		.iter()
+		.map(|drawing| {
+			described_drawings
+				.diagrams
+				.get(&drawing.id)
+				.map_or(0, |entry| entry.description.len().min(listing.locales.len()))
+		})
+		.sum();
+
 	let summaries_wanted = listing.articles.len() * listing.locales.len();
 	let summaries_missing: usize =
 		listing.articles.iter().map(|article| article.summary_gaps.len()).sum();
@@ -149,6 +164,15 @@ pub fn report_at(repository: &Path) -> std::io::Result<Report> {
 				translated,
 				translatable,
 				Some("i18n"),
+				true,
+			),
+			Class::new(
+				"diagrams",
+				"Diagram descriptions",
+				"What each drawing an article carries as source says, per locale.",
+				diagrams_have,
+				diagrams_wanted,
+				Some("diagram"),
 				true,
 			),
 			Class::new(

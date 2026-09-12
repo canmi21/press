@@ -4,6 +4,7 @@
 mod alt;
 mod check;
 mod classify;
+mod diagram;
 mod embed;
 mod extension;
 pub mod favicon;

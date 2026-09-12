@@ -58,6 +58,7 @@ fn name_of(record: Record) -> &'static str {
 		Record::Notes => "notes",
 		Record::Media => "media",
 		Record::Tags => "tags",
+		Record::Diagrams => "diagrams",
 		Record::Segments => "segments",
 		Record::Embeds => "embeds",
 		Record::PublicImage => "public-image",

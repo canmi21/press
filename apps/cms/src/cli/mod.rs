@@ -6,8 +6,8 @@
 mod args;
 
 use crate::{
-	alt, articles, check, classify, derived, embed, favicon, gc, i18n, image, licenses, locale,
-	opengraph, overview, paths, port, refs, summary, task, twitter,
+	alt, articles, check, classify, derived, diagram, embed, favicon, gc, i18n, image, licenses,
+	locale, opengraph, overview, paths, port, refs, summary, task, twitter,
 };
 use anyhow::Context as _;
 use args::{Cli, Command, ModelArgs, TwitterCommand};
@@ -60,6 +60,7 @@ fn dispatch(command: Command) -> anyhow::Result<ExitCode> {
 		Command::Og { force } => render_cards(force),
 		Command::Alt { model, force, limit } => describe_images(&model, force, limit),
 		Command::Tag { model, force, limit } => classify_images(&model, force, limit),
+		Command::Diagram { model, force, limit } => describe_diagrams(&model, force, limit),
 		Command::Summary { model, force, limit } => summarise_articles(&model, force, limit),
 		Command::I18n { model, force, check, frontmatter, limit, parallel, locale, articles } => {
 			translate_articles(I18nArgs {
@@ -356,6 +357,59 @@ fn summarise_articles(
 	}
 	if outcome.claimed_elsewhere > 0 {
 		eprintln!("note  {} left to a run already summarising them", outcome.claimed_elsewhere);
+	}
+	println!(
+		"{} written, {} already had one, {} reviewed, {} deferred, {} failed",
+		outcome.written,
+		outcome.skipped,
+		outcome.reviewed,
+		outcome.deferred,
+		outcome.failed.len()
+	);
+	if outcome.written > 0 {
+		let spent = outcome.spent;
+		println!("{} in, ${:.2}", spent.total_in(), spent.usd);
+		println!("run `cms locale` to translate the new values");
+	}
+	if outcome.failed.is_empty() { Ok(ExitCode::SUCCESS) } else { Ok(ExitCode::FAILURE) }
+}
+
+/// Describe every diagram that has no description yet.
+fn describe_diagrams(
+	model: &ModelArgs,
+	force: bool,
+	limit: Option<usize>,
+) -> anyhow::Result<ExitCode> {
+	// Not `DEFAULT_TEXT`, for the reason `summary` gives: this task carries a constraint the model
+	// has to hold against its own reading, and the open-weight default measurably does not. Asked
+	// to describe the picture and not the markup, it reported opacities, fill colours and the size
+	// of the legend squares -- which is what the source says and not what the drawing shows.
+	let runner = model.runner(i18n::runner::Runner::Codex);
+	let model_override = model.overrides(runner).map_err(anyhow::Error::msg)?;
+	let root = paths::repo_root()?;
+	// A runtime only for this command, as with the others that wait on somebody else.
+	let runtime = tokio::runtime::Runtime::new().context("could not start a runtime")?;
+	let outcome = match runtime.block_on(diagram::run(diagram::Options {
+		repository: &root,
+		runner,
+		model_override,
+		force,
+		limit,
+		shell: task::registry::Shell::Cli,
+		sink: Box::new(task::progress::Terminal::new()),
+	})) {
+		Ok(outcome) => outcome,
+		Err(error) => {
+			eprintln!("{error}");
+			return Ok(ExitCode::FAILURE);
+		}
+	};
+
+	for (name, error) in &outcome.failed {
+		eprintln!("fail  {name}: {error}");
+	}
+	if outcome.claimed_elsewhere > 0 {
+		eprintln!("note  {} left to a run already describing them", outcome.claimed_elsewhere);
 	}
 	println!(
 		"{} written, {} already had one, {} reviewed, {} deferred, {} failed",
