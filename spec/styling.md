@@ -297,6 +297,43 @@ The lengths this is computed from sit together on `:root` in
 is repeated by hand: the width at which the rail appears is written as a number in the media query
 and has to be kept in step with the ones it is derived from.
 
+## The space above the title is the space beside it
+
+The article column's top padding is not a number chosen per width. It is the distance from the
+window's edge to the first letter, measured on the side and applied to the top, so the text sits
+the same distance from the edge above it as from the edge beside it.
+
+Below the column's cap that distance is the page gutter and nothing else: a phone gets 1.5rem, the
+same length `px-6` spends on each side, and the heading sits an even margin from three edges. Past
+the cap the column stops growing and every further pixel of window becomes margin, so the distance
+grows and the heading is pushed down by exactly what has opened up beside it. One expression,
+continuous through every width, with no breakpoint and no script in it:
+
+```css
+padding-top: clamp(var(--page-gutter), var(--page-gutter) + (100% - var(--rail-column)) / 2, 6rem);
+```
+
+**The cap is what makes the two stages meet without a step.** 6rem is what the top was before any
+of this and what the bottom still is, and the growing gutter reaches it at 54rem -- fourteen rem
+before the rail appears at 68. So by the time the page grows a table of contents the heading has
+already settled where it used to be, and the rail's arrival moves nothing vertically. Reverse that
+ordering and the breakpoint becomes a jump. Measured:
+
+| window | side gutter | top padding | rail |
+| ------ | ----------- | ----------- | ---- |
+| 390px  | 24px        | 24px        | no   |
+| 744px  | 36px        | 36px        | no   |
+| 1133px | 231px       | 96px        | yes  |
+
+The bottom keeps 6rem at every width and is not part of this. The space under the footer competes
+with nothing, so there is nothing for it to yield to on a phone -- which is the asymmetry's whole
+justification: the top is expensive because it stands between the reader and the first word, and
+the bottom is not.
+
+`--page-gutter` exists so the length the sides spend and the length the top spends are one
+declaration. Changing it, or `--rail-column`, moves where the cap is reached; check it still lands
+below 68rem.
+
 ## A subsection is nearer, and for that reason unlisted
 
 An article may carry a second heading level. It renders at the same size, weight and colour as

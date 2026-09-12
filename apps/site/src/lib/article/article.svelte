@@ -252,10 +252,10 @@
 		<Toc {toc} />
 		<HomeLink locale={locale.code} />
 	</div>
-	<!-- Same halving as the homepage: 6rem is most of a phone screen before a word is read, and
-	     the space under the footer competes with nothing. The rail is absent at this width, so
-	     nothing measures against the space that goes. See spec/styling.md. -->
-	<div class="article-column px-6 pt-12 pb-24 sm:pt-24">
+	<!-- The top is computed from the column's own side gutter and lives in `.article-column`; see
+	     spec/styling.md. The bottom keeps its 6rem at every width, because the space under the
+	     footer competes with nothing. -->
+	<div class="article-column px-6 pb-24">
 		<article>
 			<header>
 				<!-- Inside the heading rather than beside it. A wrapper would exist on every article to

@@ -131,6 +131,9 @@
 	/* Where the rail's centre line stops following the region's. Past this the rail holds still
 	   and the space on its right takes every further pixel. */
 	--rail-centre-max: 14rem;
+	/* What the article column keeps between the window's edge and its text, which `px-6` spends
+	   on the sides and the rule below spends on the top. */
+	--page-gutter: 1.5rem;
 }
 
 /* The column running down the left of an article -- the table of contents and the return control
@@ -166,6 +169,25 @@
 .article-column {
 	margin-inline: auto;
 	max-width: var(--rail-column);
+	/* The space above the title is the space beside it: the distance from the window's edge to the
+	   first letter, measured on the side and applied to the top.
+
+	   Below the column's cap that distance is the page gutter and nothing else, so a phone gets
+	   1.5rem and the text sits the same distance from three edges. Past the cap the column stops
+	   growing and the window's extra width becomes margin, so the distance grows with it and the
+	   heading is pushed down by exactly what has opened up beside it. There is no breakpoint in
+	   this and no script: one expression, continuous through every width.
+
+	   It stops at 6rem, which is what the top was before any of this and what the bottom still is.
+	   The cap is reached at 54rem -- fourteen rem before the rail appears at 68 -- so by the time
+	   the page grows its table of contents the heading has already settled where it used to be,
+	   and the arrival of the rail moves nothing. That ordering is the whole reason the two stages
+	   meet without a step. Change `--rail-column` or the 6rem and check it still holds. */
+	padding-top: clamp(
+		var(--page-gutter),
+		var(--page-gutter) + (100% - var(--rail-column)) / 2,
+		6rem
+	);
 }
 
 /* Shown only where the region holds the rail at its cap with its clearance on both sides:
