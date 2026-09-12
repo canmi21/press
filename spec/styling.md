@@ -729,33 +729,61 @@ corpus wants rather than the one it happens to have, and the section below says 
 between a Latin word and a Han character is a real space somebody typed, so a browser inserting
 its own would be spacing that seam twice.
 
-Everything below was measured on `compile-time-rendering`, the longest article in the corpus, at
-the 672px column the article is drawn at, across the forty-odd multi-line paragraphs each view
-has.
+Everything below was measured on `compile-time-rendering`, the longest article in the corpus,
+across the forty-odd multi-line paragraphs each view has, at both widths the column is ever drawn
+at: 672px, which is where it stops growing, and 354px, which is an iPhone. The narrow half was
+measured in Safari on the simulator rather than a desktop browser narrowed to look like one --
+that distinction turned out to carry the whole result.
 
-**A language that breaks between words gets `text-wrap: pretty`.** It costs nothing: the line
-count came out identical to plain filling in all four -- 398 German, 329 English, 384 Spanish,
-398 French -- and only the short final lines moved. Paragraphs ending on under a sixth of the
-column:
+### Two rule sets, because the trade reverses with the column
 
-| view    | filled | `pretty` | `balance` |
-| ------- | ------ | -------- | --------- |
-| German  | 4      | 1        | 3         |
-| English | 6      | 4        | 5         |
-| Spanish | 3      | 0        | 1         |
-| French  | 8      | 6        | 6         |
+A language that breaks between words wants two things that fight each other: a tight right edge,
+and a final line that is not a stranded word. Which one is worth buying depends on how wide the
+column is, so the policy has a narrow half and a wide half and they choose differently.
 
-`balance` is not the answer for prose and the middle column is not why. It is capped by line
-count, so it passes over the long paragraphs entirely and evens out only the short ones, which
-leaves a page less consistent than it started: the median final line jumped from half the column
-to nearly three quarters in German and English while the worst endings stayed. It belongs on
-titles, which is where it already is -- the table of contents labels and the note list.
+**Narrow is the base case and it buys the right edge, with `hyphens: auto`.** At 354px an
+unhyphenated column is ragged on every screenful, and hyphenating collapses it. Mean gap between
+the end of a line and the right edge, as a share of the column, and the count of lines standing
+more than an eighth short:
 
-`hyphens: auto` is rejected on its own evidence. It does save lines, three to eight per view, but
-it manufactures break opportunities, and more places to break means the fill can run closer to
-the edge and leave less for the last line. In German it took the short endings the wrong way, 4
-up to 7. Paired with `pretty` it is the best of the five combinations tried, at 2 -- still worse
-than `pretty` alone, which is what settled it.
+| view    | gap, filled | gap, hyphenated | loose lines, filled | loose lines, hyphenated | of |
+| ------- | ----------- | --------------- | ------------------- | ----------------------- | --- |
+| German  | 9.7%        | 4.5%            | 215                 | 7                       | 776 |
+| English | 7.5%        | 4.7%            | 120                 | 23                      | 624 |
+| Spanish | 8.6%        | 4.3%            | 191                 | 10                      | 755 |
+| French  | 8.4%        | 5.0%            | 180                 | 37                      | 767 |
+
+The price is a handful of paragraphs whose last line comes out shorter -- English 6 to 10,
+Spanish 4 to 7, French 9 to 11, German unchanged at 8. That is paid once per paragraph against a
+gain paid once per line, and at this width there are seventeen lines per paragraph.
+
+**Wide buys the final line, with `text-wrap: pretty`, above `--rail-column`.** The breakpoint is
+the width at which the column stops growing, so the rule changes exactly when the column becomes
+the measure it was designed at rather than whatever the window left it. At 672px the right edge
+is already tight without help -- German sits at a 4.6% mean gap -- so hyphenation has little left
+to win, and `pretty` has little left to spend: no extra lines at all, and the stranded final
+lines go 10 to 2 in German and 9 to 0 in English.
+
+**`text-wrap: pretty` is absent from the narrow half, and finding out why is why the phone was
+used.** It was adopted on Chrome's implementation, where it is free. WebKit's is a different
+thing wearing the same name. At 354px it adds lines in every language, eleven in German and
+forty-two in Japanese, and it roughly doubles the right-hand gap everywhere: German 9.7% to
+12.8%, with loose lines going 215 to 400. It still does what it was bought for, but on a narrow
+column it charges every other line on the screen for it.
+
+That is also the caution this section exists to carry. A property measured in one engine has been
+measured in one engine. `pretty` looked free because Chrome's is; the number that mattered was
+only visible in WebKit, and only on a column narrow enough for the cost to show.
+
+**Neither property reaches Chinese, Japanese or Korean, at either width.** That scoping was
+written on Chrome evidence, where `pretty` is a no-op for CJK, and WebKit is the reason to keep
+it rather than relax it: there `pretty` took Japanese from a 1.6% mean gap to 7.9% and from one
+loose line to fifty-eight, in exchange for final lines those scripts barely strand.
+
+`balance` is rejected at both widths and for the same reason each time. It clears final lines
+about as well as `pretty` does, but it pays across the whole paragraph rather than at its end: at
+672px it took English from two loose lines to eighty-six. It stays on titles, where a block of
+even lines is the point -- the table of contents labels and the note list.
 
 **Japanese gets `line-break: strict`.** Japanese typography forbids certain characters at the
 head of a line, and `auto` does not enforce it: twelve lines in this article opened on one, eight
@@ -763,11 +791,18 @@ of them on the long vowel mark `ー` and the rest on small kana. `strict` remove
 cost no lines at all, 328 either way. This is the clearest case on the page -- a rule the script
 has always had, applied by a value that is free.
 
+It holds on a phone unchanged: at 354px the same article opened fifteen lines on a forbidden
+character and `strict` cleared all fifteen for one extra line out of 608.
+
 **Korean gets `word-break: keep-all`.** Korean is written with spaces, but the default treats it
 as breakable between any two syllables, so words split mid-eojeol: 110 times across 262 lines
 here. `keep-all` removes every one of them for eight extra lines, a three percent taller column.
 That is the trade this site takes, because the reader's word staying whole is worth more than
 three percent.
+
+On a phone the fault it fixes is worse, not better: at 354px the default split a word 238 times
+across 491 lines, nearly every other line, and `keep-all` again removed all of them -- for 15
+lines rather than 8, and with nothing overflowing at that width.
 
 The risk `keep-all` introduces is a long unbreakable run overflowing a narrow column, and it was
 measured rather than guarded against. Nothing overflows down to a 240px column; the first failure
@@ -780,6 +815,11 @@ against `auto` on both the Simplified and Traditional views: identical line coun
 and no line opening on punctuation under either. Chrome already applies the rule for Han, so
 there is nothing to buy. Both Chinese views take one configuration, which is also what the corpus
 wants -- the two scripts differ in their glyphs, not in where a line may end.
+
+What Chinese must not be given is Korean's rule, and the phone is where that would have been
+found out. `keep-all` on a 354px Chinese column overflows thirteen paragraphs outright and takes
+the mean right gap to 22.5%, because Han has no spaces for it to keep whole. The `:lang(ko)`
+selector is load-bearing rather than tidy.
 
 ## Latin inside CJK is spaced with a real space
 

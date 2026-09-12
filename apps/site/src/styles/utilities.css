@@ -319,22 +319,53 @@ html[data-focus-source='kbd'] .focus-input-shell:has(.focus-input:focus-visible)
 	text-autospace: no-autospace;
 }
 
-/* Languages that break between words get `pretty`, which spends nothing: measured over the 44
-   multi-line paragraphs of the longest article, it left the line count identical in all four and
-   only refused the short final lines. Paragraphs ending on under a sixth of the column went 4 to
-   1 in German, 6 to 4 in English, 3 to 0 in Spanish and 8 to 6 in French.
+/* A language that breaks between words is given a tight right edge first, and tidy final lines
+   only where the column is wide enough to afford them. The two are in tension, and which one
+   costs more depends entirely on how wide the column is.
 
-   `balance` was measured against the same paragraphs and is not the answer here. It is capped by
-   line count, so it passes over the long paragraphs entirely and evens out only the short ones,
-   which leaves the page less consistent than it started -- and it did not clear the worst endings
-   either. It stays where it belongs, on titles. `hyphens: auto` is rejected on its own evidence:
-   it saves a handful of lines but manufactures break opportunities, and in German it took the
-   short endings the other way, 4 up to 7. See spec/styling.md. */
+   Narrow is the base case, so hyphenation is the base rule. Measured in real WebKit on an iPhone,
+   where the column is 354px: hyphenating German took the mean right-hand gap from 9.7% of the
+   column to 4.5% and the lines standing more than an eighth short from 215 to 7, out of 776.
+   Spanish went 191 to 10, English 120 to 23, French 180 to 37. At that width an unhyphenated
+   column is visibly ragged on every screenful, and the price -- a handful of paragraphs whose
+   last line is shorter -- is paid once per paragraph rather than once per line.
+
+   `text-wrap: pretty` is deliberately absent here, and this is the correction the phone forced.
+   It was adopted on Chrome's implementation, where it is free. WebKit's is not: at 354px it adds
+   lines in every language, eleven in German and forty-two in Japanese, and it roughly doubles the
+   right-hand gap everywhere -- German 9.7% to 12.8%, with the loose lines going 215 to 400. What
+   it buys is real, the short final lines it was bought for, but on a narrow column it pays for
+   them with every other line on the screen. See spec/styling.md. */
 .article-content:lang(en),
 .article-content:lang(de),
 .article-content:lang(es),
 .article-content:lang(fr) {
-	text-wrap: pretty;
+	hyphens: auto;
+}
+
+/* Above the width at which the article column stops growing -- `--rail-column`, so the column is
+   the measure it was designed at rather than whatever the window left it -- the trade reverses.
+   The right edge is already tight at 672px, German sitting at a 4.6% mean gap unaided, so
+   hyphenation has little left to win and `pretty` has little left to spend: measured in the same
+   engine at that width it costs no lines at all and takes the short final lines from 10 to 2 in
+   German and 9 to 0 in English.
+
+   `balance` is rejected at both widths. It clears final lines as well as `pretty` does, but it
+   pays for them across the whole paragraph rather than at its end: at 672px it took English from
+   two loose lines to eighty-six. It stays on titles, where a balanced block is the point.
+
+   Neither property reaches Chinese, Japanese or Korean, and that is not an oversight. `pretty` in
+   WebKit is not the no-op for CJK that it is in Chrome -- on Japanese it took the mean gap from
+   1.6% to 7.9% and the loose lines from 1 to 58, for final lines those scripts barely have a
+   problem with. See spec/styling.md. */
+@media (min-width: 45rem) {
+	.article-content:lang(en),
+	.article-content:lang(de),
+	.article-content:lang(es),
+	.article-content:lang(fr) {
+		hyphens: manual;
+		text-wrap: pretty;
+	}
 }
 
 /* Japanese forbids certain characters at the head of a line -- small kana, the long vowel mark,
