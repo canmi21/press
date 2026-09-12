@@ -49,6 +49,14 @@
 		),
 	);
 
+	const unavailableShort = $derived(
+		fillSlot(
+			m['notice.unavailable.short']({ language: requestedLanguage, source: SLOT }, { locale: code }),
+			SLOT,
+			shown,
+		),
+	);
+
 	function showOriginal(event: MouseEvent) {
 		if (
 			event.defaultPrevented ||
@@ -71,12 +79,35 @@
 	 * Script sibling is tested first: a Simplified article read at `tw` is also not the same
 	 * code, and would otherwise be announced as a translation. See spec/locale.md.
 	 */
-	const message = $derived(
+	const kind = $derived(
 		(code === 'zh' && source === 'tw') || (code === 'tw' && source === 'zh')
-			? m['notice.script']
+			? 'script'
 			: source === code
+				? 'polished'
+				: 'translated',
+	);
+
+	const message = $derived(
+		kind === 'script'
+			? m['notice.script']
+			: kind === 'polished'
 				? m['notice.polished']
 				: m['notice.translated'],
+	);
+
+	/**
+	 * The same sentence written for a phone's column.
+	 *
+	 * Both readings are rendered and CSS picks one, the shape the newsletter pitch uses and for
+	 * the same reason: the choice has to survive the server render, and a media query is not
+	 * something the server can see. See spec/styling.md.
+	 */
+	const messageShort = $derived(
+		kind === 'script'
+			? m['notice.script.short']
+			: kind === 'polished'
+				? m['notice.polished.short']
+				: m['notice.translated.short'],
 	);
 </script>
 
@@ -89,7 +120,7 @@
 	class="notice mt-4 rounded-r-md border-l-2 border-blue-ink py-1.5 pr-3 pl-3 text-sm leading-snug text-text-soft"
 >
 	{#if available}
-		<p>
+		<p class="hidden sm:block">
 			<ParaglideMessage {message} inputs={{ language }} options={{ locale: code }}>
 				{#snippet link({ children })}
 					<a
@@ -101,8 +132,25 @@
 				{/snippet}
 			</ParaglideMessage>
 		</p>
+		<p class="sm:hidden">
+			<ParaglideMessage
+				message={messageShort}
+				inputs={{ language }}
+				options={{ locale: code }}
+			>
+				{#snippet link({ children })}
+					<a
+						href={originalHref}
+						data-sveltekit-reload
+						onclick={showOriginal}
+						class="focus-link spring-underline font-medium">{@render children?.()}</a
+					>
+				{/snippet}
+			</ParaglideMessage>
+		</p>
 	{:else}
-		<p>{unavailable}</p>
+		<p class="hidden sm:block">{unavailable}</p>
+		<p class="sm:hidden">{unavailableShort}</p>
 	{/if}
 </div>
 

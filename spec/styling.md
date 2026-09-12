@@ -1430,6 +1430,40 @@ short pitch is its own message key, and the component renders the long one above
 one below it. Both are always in the document and CSS chooses, so the choice survives the server
 render.
 
+**The translation notice is written to the same shape, and it is the harder case.** The pitch is
+one string; the notice is four -- a translation, a polished source view, a script conversion, and
+a language this article has no version of -- and each is written nine times. All thirty-six carry
+a `.short` sibling, and the component renders both readings with CSS choosing, which is the
+pitch's mechanism rather than a second one.
+
+The target is stated as a shape, not a length: one line filled to at least 85% of the box, or two
+lines whose first is at least 88% and whose second falls between 60% and 90% of it. A second line
+under half the first is the stub this rule exists to prevent -- the German notice used to end on
+one at 45% -- and a second line as long as the first is the ascending rag. Where the copy would
+not fit either shape, the sentence loses a clause rather than being allowed a third line: the
+short `polished` no longer names the language the article is written in, because the reader of a
+source view already chose it.
+
+Measured in Safari on the phone, all thirty-two combinations that render land in shape: Chinese
+and Traditional Chinese take one line in every case, 85% to 98%; Japanese and Korean take one for
+the short notices and two for the long ones; the four European languages take two throughout,
+with second lines between 63% and 83%. Getting there took three rounds of candidates measured
+against the rendered box, which is the same method the pitch used and the only one that works --
+character counts do not survive nine languages.
+
+**`{language}` is inside the measured string, so the shape is exact for the corpus and
+approximate beyond it.** A notice naming Chinese (Simplified) is twenty-four characters longer in
+German than one naming English, and every article today is written in Chinese but one. The copy is
+tuned against that, and an article written in a language with a much shorter or longer name will
+sit slightly off the shape rather than break it -- the sentence is written so the slack falls on
+the second line.
+
+**`mw` takes Chinese here, against the default.** [locale.md](locale.md) says a message added to
+`mw` takes the English wording, and that rule is about messages nobody has an opinion about yet.
+These four are not: the owner already wrote the long forms in Chinese, and a short form is the
+same sentence for a narrower box. Pairing an English short with a Chinese long would swap language
+at the breakpoint, which is the one thing the pair must not do.
+
 **Nothing sets `text-wrap: pretty` on copy tuned this way.** Chrome ignores the value on these
 paragraphs and lays them out exactly as `auto` does, while Safari 26 implements it by reflowing
 earlier lines to rescue the last one -- which empties the first line of a two-line block to avoid a
