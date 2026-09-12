@@ -183,15 +183,28 @@ export function languageName(code: TranslationCode): string {
 	return split ? `${split[2]}${split[1]}` : name;
 }
 
+/** Whether a label carries its region. Default everywhere; see `publishedLabel`. */
+export type LabelOptions = { region?: boolean };
+
 /**
  * A language named the way the closed switcher names it: its own name, and its region.
  *
  * Separate from `triggerLabel` because the notice above an article wants the same phrase without
  * the original view's special cases -- it is naming a language, not reporting where the reader
  * is standing.
+ *
+ * **`region: false` is for a caller that has measured its room and not found enough.** The region
+ * is a qualifier rather than the name, and among the eight published views it qualifies nothing:
+ * their endonyms already differ from one another, `简体中文` from `繁體中文` included. What it
+ * earns its place on is the original view's fallback, where there is no endonym to show and the
+ * region is the whole identifier -- so that case ignores this option, in `triggerLabel`. See
+ * spec/locale.md.
  */
-export function publishedLabel(code: TranslationCode): string {
-	return `${languageName(code)} (${regionFor(code)})`;
+export function publishedLabel(
+	code: TranslationCode,
+	{ region = true }: LabelOptions = {},
+): string {
+	return region ? `${languageName(code)} (${regionFor(code)})` : languageName(code);
 }
 
 /**
@@ -212,11 +225,17 @@ export function publishedLabel(code: TranslationCode): string {
  * and `<html lang>` already declares, so the caller hands that over and this reads it like any
  * other source language.
  */
-export function triggerLabel(currentCode: LocaleCode, sourceLanguage: string): string {
-	if (currentCode !== 'mw') return publishedLabel(currentCode);
+export function triggerLabel(
+	currentCode: LocaleCode,
+	sourceLanguage: string,
+	options: LabelOptions = {},
+): string {
+	if (currentCode !== 'mw') return publishedLabel(currentCode, options);
 
 	const source = sourceCode(sourceLanguage);
-	if (source) return publishedLabel(source);
+	if (source) return publishedLabel(source, options);
+	// Not subject to `region`: `Original` names no language on its own, so dropping the region
+	// here would leave the control saying nothing about what is being read.
 	return `${m['language.original']({}, { locale: currentCode })} (${sourceLabel(sourceLanguage, currentCode)})`;
 }
 

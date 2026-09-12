@@ -262,6 +262,34 @@ describe('the closed switcher', () => {
 		expect(triggerLabel('es', 'zh')).toBe('Español (ES)');
 	});
 
+	it('drops the region for a caller with no room, and keeps every endonym distinct without it', () => {
+		// The article's metadata row asks for this; nothing else does. It is safe to ask for
+		// because the region qualifies nothing among the published views -- the eight names below
+		// are already eight different strings. See spec/styling.md.
+		const labels = (['zh', 'tw', 'en', 'ja', 'ko', 'de', 'fr', 'es'] as const).map((code) =>
+			triggerLabel(code, 'zh', { region: false }),
+		);
+		expect(labels).toEqual([
+			'简体中文',
+			'繁體中文',
+			'English',
+			'日本語',
+			'한국어',
+			'Deutsch',
+			'Français',
+			'Español',
+		]);
+		expect(new Set(labels).size).toBe(labels.length);
+	});
+
+	it('keeps the region on the original view fallback, where it is the whole identifier', () => {
+		// `Original` names no language by itself, so the qualifier is not decoration there and the
+		// option does not reach it.
+		expect(triggerLabel('mw', 'pl', { region: false })).toContain('(');
+		// A source language the site publishes still folds to its endonym and loses the region.
+		expect(triggerLabel('mw', 'zh', { region: false })).toBe('简体中文');
+	});
+
 	it('folds the script into the Chinese name instead of leaving two brackets', () => {
 		// The menu row keeps the endonym as `@canmi/locales` writes it; only the trigger folds it,
 		// because only the trigger already ends in a bracket.

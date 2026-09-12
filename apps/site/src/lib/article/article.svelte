@@ -279,7 +279,7 @@
 							{m['article.draft']({}, { locale: locale.code })}
 						</span>{/if}
 				</h1>
-				<div class="meta mt-2 flex flex-wrap items-center gap-2 text-sm text-text-soft">
+				<div class="meta mt-2 flex flex-wrap items-center gap-2 max-sm:gap-x-1.5 text-sm text-text-soft">
 					<time class="selectable" datetime={meta.created}>{date}</time>
 					<span
 						class="inline-flex items-center gap-1"
@@ -332,7 +332,11 @@
 						</span>
 					</button>
 					<span class="max-sm:ml-auto">
-						<LanguageSwitcher code={locale.code} sourceLanguage={meta.lang} />
+						<LanguageSwitcher
+							code={locale.code}
+							sourceLanguage={meta.lang}
+							phoneRegion={false}
+						/>
 					</span>
 				</div>
 				{#if locale.code !== 'mw'}

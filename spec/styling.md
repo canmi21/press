@@ -1521,18 +1521,46 @@ frame, which does two things at once: where the row fits on one line it reads as
 rather than the last item in a list, and where it does not, it wraps to a line of its own and
 stays at the frame instead of sitting under the date.
 
-**One line is reached in the CJK views and not in the European ones, and that was measured rather
-than hoped for.** At 354px, with the read count gone, the row comes to 331px in Japanese, 326 in
-Korean, 346 in Simplified and 348 in Traditional Chinese -- all inside the column. German is 384,
-Spanish 383, English 378 and French 374, all outside it. The gap is twenty to thirty pixels and
-there is no label left to trim that would close it: the switcher is already the widest item at
-126px and its region qualifier is what tells `zh` from `tw` and carries `Original (XX)` where
-there is no endonym to show.
+**The switcher drops its region below `sm`, and that is what bought the last line.** Removing the
+read count was not enough: German still needed 388px of a 354px column and four of the nine views
+wrapped. `(DE)`, `(CN)`, `(ES)` qualify nothing among the eight published views, whose endonyms
+already differ from one another -- `简体中文` from `繁體中文` included -- so below `sm` the article's
+switcher asks for the name alone. It asks, rather than deciding for itself: `phoneRegion` is a prop
+and only the article's row passes it, because only the caller knows what else is in its row. The
+original view's `Original (XX)` fallback keeps its region at every width, since there is no endonym
+there and the region is the whole identifier.
 
-So those four take two lines deliberately -- three items and then the switcher alone at the right
-frame -- rather than one line bought by shortening the date or stripping the switcher. The
-difference from before is that the second line is now where the layout puts it every time, not
-where the words happened to run out.
+Both readings are rendered and CSS picks, not a width read in script. The reason is the one the
+title and the pitch already give: the choice has to survive the server render, and a control that
+corrects its own label on the first frame is worse than one a few pixels wider.
+
+**Then German, then the gap, and the phone that settled it was the narrow one.** A 402pt iPhone
+left German 3px, which is not a margin. `Zusammenfassung` becomes `Abriss` rather than `Resümee` --
+seven pixels, and a shade of meaning toward the outline it summarises, spent knowingly. That fixed
+German and promoted Spanish, whose `Resumen` has nothing shorter behind it, so the row's own gap
+goes from 8px to 6px below `sm`. Measured on a 390pt iPhone, where the column is 342px rather than
+354 and everything is 12px tighter than the first device suggested:
+
+| view       | slack at 342px | slack at 354px |
+| ---------- | -------------- | -------------- |
+| Spanish    | ~0             | 9              |
+| original   | ~0             | 12             |
+| English    | 2              | 14             |
+| French     | 6              | 18             |
+| German     | 13             | 25             |
+| Chinese    | 31             | 43             |
+| Japanese   | 46             | 58             |
+| Korean     | 54             | 66             |
+
+All nine views are one line on both, which is the shape this row now has everywhere rather than
+one it reaches in some languages. Spanish and the original view are the ones with nothing to
+spare: a character count that grows a sixth digit takes about eleven pixels and would wrap them
+again on the narrow phone. The next pixels available are the gap at 4px, and after that there is
+nothing left that is not information.
+
+**The narrow phone is the one to measure on.** The first pass was taken on a 402pt device, found
+every view fitting, and was wrong about four of them -- a 390pt iPhone is twelve pixels narrower
+and that is most of the margin this row has.
 
 ## The theme control is a button, not a menu
 

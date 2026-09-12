@@ -25,8 +25,15 @@
 
 	// The language of the thing being read. An article passes its own; a page passes nothing and
 	// takes the site's, which is what its `<html lang>` already declares. See languageChoices.
-	let { code, sourceLanguage = SITE_LANGUAGE }: { code: LocaleCode; sourceLanguage?: string } =
-		$props();
+	//
+	// `phoneRegion` is opt-out rather than a width this component measures for itself: only the
+	// caller knows what else is in its row. The article's metadata row is the one that has run
+	// out of room; every other place this control appears keeps the region at every width.
+	let {
+		code,
+		sourceLanguage = SITE_LANGUAGE,
+		phoneRegion = true,
+	}: { code: LocaleCode; sourceLanguage?: string; phoneRegion?: boolean } = $props();
 	let open = $state(false);
 
 	/**
@@ -92,6 +99,20 @@
 	const label = $derived(triggerLabel(code, sourceLanguage));
 
 	/**
+	 * The same answer for a row that has no space for the qualifier.
+	 *
+	 * Both readings are rendered and CSS picks one, rather than a media query read in script: the
+	 * choice has to survive the server render, and a control that corrects its own label on the
+	 * first frame is worse than one that is a few pixels wide. Equal to `label` unless the caller
+	 * opted out, in which case the markup carries one string twice and costs bytes rather than a
+	 * wrong first frame -- the shape the title and the newsletter pitch already take. See
+	 * spec/styling.md.
+	 */
+	const phoneLabel = $derived(
+		phoneRegion ? label : triggerLabel(code, sourceLanguage, { region: false }),
+	);
+
+	/**
 	 * The trigger says where the reader stands; the menu says what each language is.
 	 *
 	 * So when the view already matches what this browser asked for, the trigger carries the
@@ -142,7 +163,10 @@
 	>
 		<span class="focus-link-inner inline-flex items-center gap-1">
 			<CurrentMark class={markSize} aria-hidden="true" />
-			<span>{label}</span>
+			<span class={phoneRegion ? undefined : 'max-sm:hidden'}>{label}</span>
+			{#if !phoneRegion}
+				<span class="sm:hidden">{phoneLabel}</span>
+			{/if}
 			<!-- Pulled back into the gap: the glyph carries its own padding inside the viewBox, so
 			     the 0.25rem gap reads as noticeably more than it does beside the mark on the left. -->
 			<IconUpSmall
