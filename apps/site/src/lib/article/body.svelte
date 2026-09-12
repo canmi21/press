@@ -152,6 +152,7 @@
 			<Quadrant
 				title={block.title}
 				description={block.description}
+				reading={block.reading}
 				axes={block.axes}
 				items={block.items}
 			/>

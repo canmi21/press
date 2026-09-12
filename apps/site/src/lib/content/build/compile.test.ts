@@ -672,9 +672,14 @@ it('names ::linkcard, not ::image, when a card ratio is malformed', async () => 
 it('carries a diagram description into the block, the feed and the search text', async () => {
 	const svg = '<svg viewBox="0 0 10 10"></svg>';
 	const mermaid = 'graph TD\nA-->B';
+	// Keyed by the block's whole source, which is what the resolver is handed: a fence could have
+	// been found by its payload and a directive could not, so both are found the same way.
 	const described: Record<string, string> = {
-		[svg]: 'A pipeline from source to binary.',
-		[mermaid]: 'A goes to B.',
+		['```svg-canvas\n' + svg + '\n```']: 'A pipeline from source to binary.',
+		['```mermaid\n' + mermaid + '\n```']: 'A goes to B.',
+		[':::quadrant{title="Fit" left="Niche" right="Broad" top="Compiler" bottom="Runtime"}\n' +
+		'::quadrant-item{title="One" at="top-left"}\n' +
+		':::']: 'One sits in the niche compiler region.',
 	};
 	const compiled = await compile(
 		'---\ntitle: Test\nlang: en-US\n---\n\n' +
@@ -682,7 +687,10 @@ it('carries a diagram description into the block, the feed and the search text',
 			svg +
 			'\n```\n\n```mermaid\n' +
 			mermaid +
-			'\n```\n',
+			'\n```\n\n' +
+			':::quadrant{title="Fit" left="Niche" right="Broad" top="Compiler" bottom="Runtime"}\n' +
+			'::quadrant-item{title="One" at="top-left"}\n' +
+			':::\n',
 		'/article',
 		{
 			newTabNote: 'opens in new tab',
@@ -695,8 +703,12 @@ it('carries a diagram description into the block, the feed and the search text',
 
 	const canvas = compiled.blocks.find((block) => block.type === 'svgCanvas');
 	const graph = compiled.blocks.find((block) => block.type === 'mermaid');
+	const matrix = compiled.blocks.find((block) => block.type === 'quadrant');
 	expect(canvas?.description).toBe('A pipeline from source to binary.');
 	expect(graph?.description).toBe('A goes to B.');
+	// A quadrant keeps `description` for the author's own line and takes the derived one as its
+	// reading, which is the part a screen reader is given.
+	expect(matrix?.reading).toBe('One sits in the niche compiler region.');
 
 	expect(compiled.feed).toContain(
 		'[Diagram: A pipeline from source to binary. — view at /article]',

@@ -444,6 +444,20 @@ function headingParts(node: Heading): { slug: string; text: string } {
 }
 
 /**
+ * A block's source exactly as the article holds it, which is how a diagram is found.
+ *
+ * The offsets move between views -- everything before this block was translated to a different
+ * length -- but the bytes do not, because a fence and a directive are neither of them translated.
+ * So the same block yields the same string in all nine views, which is what lets one record serve
+ * them all. A node without a position is a node this compiler constructed, and there is none here.
+ */
+function blockSource(raw: string, node: RootContent): string {
+	const { start, end } = node.position ?? {};
+	if (start?.offset === undefined || end?.offset === undefined) return '';
+	return raw.slice(start.offset, end.offset);
+}
+
+/**
  * What a feed says about a drawing it cannot show.
  *
  * The title is the fence's own when it has one and the article's otherwise, which in this corpus
@@ -544,7 +558,8 @@ export type CompileContext = {
 	newTabNote: string;
 	resolveAsset: (reference: string) => Resolved | null;
 	/**
-	 * What a diagram says, by the source that draws it, in this view's language.
+	 * What a diagram says, by the exact source bytes of the block that draws it, in this view's
+	 * language.
 	 *
 	 * A diagram is a picture the corpus stores as text, so nothing downstream can read it until
 	 * the CMS has described it. Absent is the ordinary state for a drawing nobody has run
@@ -780,7 +795,7 @@ export async function compile(
 			// client-rendered diagram rather than highlighted code. See spec/styling.md.
 			if (lang.toLowerCase() === 'mermaid') {
 				const ratio = mermaidRatio(node.meta, sourceFile ?? url);
-				const description = describeDiagram?.(node.value);
+				const description = describeDiagram?.(blockSource(raw, node));
 				blocks.push({
 					type: 'mermaid',
 					source: node.value,
@@ -811,7 +826,7 @@ export async function compile(
 			}
 			if (lang === 'svg-canvas') {
 				const title = node.meta?.trim() || meta?.title || 'diagram';
-				const description = describeDiagram?.(node.value);
+				const description = describeDiagram?.(blockSource(raw, node));
 				blocks.push({ type: 'svgCanvas', svg: node.value, title, description });
 				feed.push(diagramFeed(title, description, url));
 				md.push(diagramMarkdown(title, description, url));
@@ -835,7 +850,8 @@ export async function compile(
 
 		if (node.type === 'containerDirective' && node.name === 'quadrant') {
 			const quadrant = quadrantBlock(node, sourceFile ?? url);
-			blocks.push(quadrant);
+			const reading = describeDiagram?.(blockSource(raw, node));
+			blocks.push(reading === undefined ? quadrant : { ...quadrant, reading });
 			const entries = quadrant.items.map((item) => {
 				const note = item.note ? ` — ${escapeHtml(item.note)}` : '';
 				return `<li><strong>${escapeHtml(item.title)}</strong>${note} <small>(${escapeHtml(quadrantRegion(item, quadrant.axes))})</small></li>`;

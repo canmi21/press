@@ -4,11 +4,14 @@
 	let {
 		title,
 		description,
+		reading,
 		axes,
 		items,
 	}: {
 		title: string;
 		description?: string;
+		/** What the figure reads as, from `cms diagram`, in this view's language. */
+		reading?: string;
 		axes: Record<QuadrantDirection, string>;
 		items: QuadrantItem[];
 	} = $props();
@@ -31,15 +34,25 @@
 		return value.replaceAll('-', '\u2011');
 	}
 
+	/**
+	 * What a reader who cannot see the figure is told.
+	 *
+	 * The derived reading when there is one, because it is prose and it is translated. The
+	 * assembly below is the fallback, and its sentences are written here in English: the labels
+	 * it joins are the author's and stay in the source language -- a directive is not translated
+	 * -- so a German view used to be read an English sentence with English nouns in it, which is
+	 * not a smaller version of a description. See spec/i18n.md.
+	 */
 	let accessibleDescription = $derived(
-		[
-			description,
-			`The horizontal axis runs from ${axes.left} to ${axes.right}; the vertical axis runs from ${axes.bottom} to ${axes.top}`,
-			...(items.length > 0 ? items.map(describeItem) : ['No items are plotted']),
-		]
-			.filter((part): part is string => Boolean(part))
-			.map((part) => sentence(part))
-			.join(' '),
+		reading ??
+			[
+				description,
+				`The horizontal axis runs from ${axes.left} to ${axes.right}; the vertical axis runs from ${axes.bottom} to ${axes.top}`,
+				...(items.length > 0 ? items.map(describeItem) : ['No items are plotted']),
+			]
+				.filter((part): part is string => Boolean(part))
+				.map((part) => sentence(part))
+				.join(' '),
 	);
 </script>
 

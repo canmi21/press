@@ -45,10 +45,12 @@ pub const SOURCE_LOCALE: &str = "en-US";
 pub enum Kind {
 	SvgCanvas,
 	Mermaid,
+	Quadrant,
 }
 
 impl Kind {
-	fn parse(language: &str) -> Option<Self> {
+	/// The fence language, for the two that are fences.
+	fn from_fence(language: &str) -> Option<Self> {
 		match language {
 			"svg-canvas" => Some(Self::SvgCanvas),
 			"mermaid" => Some(Self::Mermaid),
@@ -56,11 +58,23 @@ impl Kind {
 		}
 	}
 
+	/// The directive name, for the one that is a directive.
+	///
+	/// A quadrant is drawn from prose the author wrote rather than from coordinates, which makes
+	/// it look like it needs no description. It needs one for the same reason the other two do:
+	/// a directive is not translated either, so its labels stay in the source language in every
+	/// view, and the figure it draws reaches a reader of another language as English nouns in a
+	/// grid. The description is the part that can be translated.
+	fn from_directive(name: &str) -> Option<Self> {
+		(name == "quadrant").then_some(Self::Quadrant)
+	}
+
 	/// What the drawing is called when the model is told what it is about to read.
 	fn subject(self) -> &'static str {
 		match self {
 			Self::SvgCanvas => "hand-written SVG",
 			Self::Mermaid => "Mermaid diagram source",
+			Self::Quadrant => "a Markdown directive placing items in the four regions of a matrix",
 		}
 	}
 }
@@ -145,33 +159,30 @@ fn language_of(source: &str) -> Option<&str> {
 pub struct Drawing {
 	pub id: String,
 	pub kind: Kind,
-	/// The whole fence, which is what the id hashes and what the model is shown.
+	/// The whole block, which is what the id hashes, what the model is shown, and what the site
+	/// fingerprints to find this record.
 	pub source: String,
-	/// What the fence draws, without the two fence lines around it. What the site sees.
-	pub payload: String,
 	/// Where it was first found, for a report. The description belongs to the drawing, not here.
 	pub article: PathBuf,
 }
 
 impl Drawing {
+	/// The checksum the site finds this record by, over the block's exact source bytes.
+	///
+	/// The whole block rather than what is inside it, because the site reads the same bytes back
+	/// out of the article by the node's own source range. One rule for a fence and a directive,
+	/// where a fence's payload would have needed a second one.
 	pub fn fingerprint(&self) -> String {
-		crate::i18n::layout::fingerprint(self.payload.as_bytes())
+		crate::i18n::layout::fingerprint(self.source.as_bytes())
 	}
 }
 
-/// A fence without its two fence lines.
-///
-/// What remark hands the site as a code node's `value`, which is the string the site fingerprints
-/// to find this drawing's description. The two have to agree exactly, so this is the narrowest
-/// possible reading: drop the first line and the last, join the rest.
-fn payload_of(source: &str) -> String {
-	let mut lines: Vec<&str> = source.lines().collect();
-	if lines.len() < 2 {
-		return String::new();
-	}
-	lines.remove(0);
-	lines.pop();
-	lines.join("\n")
+/// The directive a block opens with, if it opens with one.
+fn directive_of(source: &str) -> Option<&str> {
+	let first = source.lines().next()?;
+	let rest = first.strip_prefix(":::")?;
+	let name = rest.split(['{', ' ']).next()?;
+	(!name.is_empty()).then_some(name)
 }
 
 /// Every distinct drawing in the corpus, in the order they would be read.
@@ -206,20 +217,20 @@ pub fn collect(contents: &Path) -> std::io::Result<Vec<Drawing>> {
 			continue;
 		};
 		for segment in segments {
-			if segment.kind != SegmentKind::Code {
-				continue;
-			}
-			let Some(kind) = language_of(&segment.source).and_then(Kind::parse) else {
+			let kind = match segment.kind {
+				SegmentKind::Code => language_of(&segment.source).and_then(Kind::from_fence),
+				SegmentKind::Directive => directive_of(&segment.source).and_then(Kind::from_directive),
+				_ => None,
+			};
+			let Some(kind) = kind else {
 				continue;
 			};
 			if !seen.insert(segment.id.clone()) {
 				continue;
 			}
-			let payload = payload_of(&segment.source);
 			found.push(Drawing {
 				id: segment.id,
 				kind,
-				payload,
 				source: segment.source,
 				article: article.clone(),
 			});
@@ -513,21 +524,24 @@ mod tests {
 	use super::*;
 
 	#[test]
-	fn only_a_fence_that_draws_something_is_a_diagram() {
-		assert_eq!(
-			language_of("```svg-canvas\n<svg/>\n```").and_then(Kind::parse),
-			Some(Kind::SvgCanvas)
-		);
-		assert_eq!(language_of("```mermaid\ngraph TD\n```").and_then(Kind::parse), Some(Kind::Mermaid));
+	fn only_a_block_that_draws_something_is_a_diagram() {
+		let fence = |source: &str| language_of(source).and_then(Kind::from_fence);
+		assert_eq!(fence("```svg-canvas\n<svg/>\n```"), Some(Kind::SvgCanvas));
+		assert_eq!(fence("```mermaid\ngraph TD\n```"), Some(Kind::Mermaid));
 		// A fence language is not a drawing just because it is a fence.
-		assert_eq!(language_of("```rust\nfn main() {}\n```").and_then(Kind::parse), None);
-		assert_eq!(language_of("```\nplain\n```").and_then(Kind::parse), None);
+		assert_eq!(fence("```rust\nfn main() {}\n```"), None);
+		assert_eq!(fence("```\nplain\n```"), None);
 		// The meta a fence may carry after its language is not part of the language.
-		assert_eq!(
-			language_of("```svg-canvas the pipeline\n<svg/>\n```").and_then(Kind::parse),
-			Some(Kind::SvgCanvas)
-		);
-		assert_eq!(language_of("Not a fence at all").and_then(Kind::parse), None);
+		assert_eq!(fence("```svg-canvas the pipeline\n<svg/>\n```"), Some(Kind::SvgCanvas));
+		assert_eq!(fence("Not a fence at all"), None);
+
+		let directive = |source: &str| directive_of(source).and_then(Kind::from_directive);
+		assert_eq!(directive(":::quadrant{title=\"A\"}\n:::"), Some(Kind::Quadrant));
+		assert_eq!(directive(":::quadrant\n:::"), Some(Kind::Quadrant));
+		// Every other directive is a card or an embed, which draws nothing of its own.
+		assert_eq!(directive("::linkcard{src=\"a\"}"), None);
+		assert_eq!(directive(":::note{title=\"A\"}\n:::"), None);
+		assert_eq!(directive("Not a directive at all"), None);
 	}
 
 	/// One drawing, one description, however many articles carry it.
@@ -586,14 +600,26 @@ mod tests {
 		assert_eq!(described("OUTPUT_MARK\n \nOUTPUT_MARK", out, src), None);
 	}
 
-	/// The site fingerprints what remark hands it, so this has to hand back exactly that.
+	/// A quadrant is a drawing, and it is collected like one.
 	#[test]
-	fn the_payload_is_the_fence_without_its_fence_lines() {
-		assert_eq!(payload_of("```mermaid\ngraph TD\nA-->B\n```"), "graph TD\nA-->B");
-		assert_eq!(payload_of("```svg-canvas\n<svg/>\n```"), "<svg/>");
-		// An empty fence has a payload, and it is empty rather than missing.
-		assert_eq!(payload_of("```svg-canvas\n```"), "");
-		assert_eq!(payload_of("```"), "");
+	fn a_quadrant_directive_is_collected_beside_the_fences() {
+		let temporary = tempfile::tempdir().expect("temp");
+		let contents = temporary.path().join("contents");
+		std::fs::create_dir_all(&contents).expect("contents");
+		std::fs::write(
+			contents.join("a.md"),
+			"---\nlang: en\n---\n\n:::quadrant{title=\"Fit\" left=\"Niche\" right=\"Broad\"}\n\
+			 ::quadrant-item{title=\"One\" at=\"top-left\"}\n:::\n\n\
+			 ::linkcard{src=\"a\" url=\"https://example.com\" title=\"A\"}\n",
+		)
+		.expect("article");
+
+		let found = collect(&contents).expect("collect");
+		assert_eq!(found.len(), 1, "the quadrant, and not the link card beside it");
+		assert_eq!(found[0].kind, Kind::Quadrant);
+		// The whole block, which is what the site reads back by the node's own source range.
+		assert!(found[0].source.starts_with(":::quadrant{"));
+		assert!(found[0].source.trim_end().ends_with(":::"));
 	}
 
 	#[test]

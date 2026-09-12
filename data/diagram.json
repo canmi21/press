@@ -3,7 +3,7 @@
 	"diagrams": {
 		"0018d5ee4cc305269fb933bdf65253fb": {
 			"kind": "mermaid",
-			"fingerprint": "7e2383d8",
+			"fingerprint": "c4af12c2",
 			"description": {
 				"de-DE": {
 					"text": "Eine von links nach rechts verlaufende Entscheidungs-Pipeline beginnt mit “Svelte AST” und fragt “Structure visible?”. Ein “No”-Zweig führt zu “Escape”, während “Yes” zu “Value origin?” führt, die sich aufteilt in “Build” zu “Skeleton”, “Request” zu “Slot / protocol” und “Client” zu “Client",
@@ -81,7 +81,7 @@
 		},
 		"099f8b527d48d3ba97592789df5540f4": {
 			"kind": "svg-canvas",
-			"fingerprint": "0a89da1d",
+			"fingerprint": "cf8fe390",
 			"description": {
 				"de-DE": {
 					"text": "Zwei parallele von links nach rechts verlaufende Pipelines kontrastieren Web- und Desktop-Transporte, während das gleiche Ausgangsprotokoll und ein ähnlich sofortiges Ergebnis beibehalten werden. Der obere Pfad führt “Seam protocol” → “HTTP” → “Browser” / “Serverless,CDN” → “Full SSR-like page” / “Data ready on arrival”; der untere führt “Seam protocol” → “IPC” → “Electron” / “Tauri” → “No loading screen” / “Instant render.” Eine Anmerkung darunter lautet “Same protocol,swap transport,” und betont, dass nur der Transport und die Plattform wechseln",
@@ -159,7 +159,7 @@
 		},
 		"0ea28d6b0ba1a0c8f6c5a96203536823": {
 			"kind": "svg-canvas",
-			"fingerprint": "ee16016a",
+			"fingerprint": "e9a18d47",
 			"description": {
 				"de-DE": {
 					"text": "Eine von links nach rechts verlaufende Pipeline aus vier schrittweise gestrippten Binär‑Layouts beginnt mit “Full binary”, das “.text”, “.rodata / .data”, “.symtab”, “.debug_* (DWARF)” und “.eh_frame (unwind)” enthält. Pfeile führen durch “strip=debuginfo”, das “.debug_*” entfernt; dann “strip=symbols”, das außerdem “.symtab” entfernt; und schließlich “+ panic=\"abort\"”, das zusätzlich “.eh_frame” entfernt und nur “.text” und “.rodata / .data” zurücklässt.",
@@ -237,7 +237,7 @@
 		},
 		"18c7d6496081ffe04a348f20d2bb26c4": {
 			"kind": "svg-canvas",
-			"fingerprint": "a5463e06",
+			"fingerprint": "369599a5",
 			"description": {
 				"de-DE": {
 					"text": "Ein zweistufiger Vergleich stellt “Seam — protocol” gegenüber “SeamJS — framework” und beschreibt erstere als “Language agnostic”, letztere als “Concrete implementation”. Seam besteht aus Sentinel, Slot‑Markern, Diff‑Erkennung und AST‑Injection und ist mit “Any backend:Rust,Go,TypeScript,...” nutzbar; ein Pfeil führt zu SeamJS, das Vite, TanStack Router und TanStack Query zu “Existing tools stitched” kombiniert und Skeleton sowie CLI als “Custom built” bereit",
@@ -315,7 +315,7 @@
 		},
 		"20015902cc7a1a002a5cdb9075b9e22a": {
 			"kind": "svg-canvas",
-			"fingerprint": "e7547e5f",
+			"fingerprint": "99a720d4",
 			"description": {
 				"de-DE": {
 					"text": "Eine zweistufige von links nach rechts gerichtete Pipeline für CTR (Compile-Time Rendering), unterteilt in “Build time (once)” und “Request time.” Der einmalige Build‑Pfad führt “renderToString()” mit “Sentinel data” aus, dann “Diff & detect” für “if / each / match”, erzeugt ein “HTML skeleton” mit “Typed slot markers” und wird als “One-time build cost” gruppiert. Der Request‑Pfad führt von “Request” über “Slot injection” bei “~0.1-1ms” zu “HTML response” und schließlich zu “Client hydration”, wo “React takes over”, wobei der Teil von Injection bis Response als “Per-request cost” gruppiert wird",
@@ -393,7 +393,7 @@
 		},
 		"26b938377e559af908cb517ec13d9943": {
 			"kind": "svg-canvas",
-			"fingerprint": "bfed1516",
+			"fingerprint": "fd603319",
 			"description": {
 				"de-DE": {
 					"text": "Ein zweizeiliger Vergleich stellt „Worst case math“ der „Reality“ gegenüber. Die Worst‑Case‑Zeile berechnet „5 variables“ mit „x 10 values each“ = „10⁵=100,000“ × „~1ms each“ „renderToString()“ = „~100s build time“; die Reality‑Zeile fließt von „Most are nullable / bool“ „2 states,not 10“ zu „2⁵=32 combos“ „x ~1ms each,“ dann zu „~32ms — one-time build cost.“",
@@ -471,7 +471,7 @@
 		},
 		"34eedc6c64ed7ebf39d6786fa1cf243f": {
 			"kind": "svg-canvas",
-			"fingerprint": "58bbffd8",
+			"fingerprint": "00c35245",
 			"description": {
 				"de-DE": {
 					"text": "Ein von links nach rechts verlaufendes Spektrum vergleicht Rendering‑Ansätze von “Static” bis “Dynamic”: “SSG” (“No dynamic”), “ISR” (“Workaround”), “PPR” (“Workaround”), “SSR” (“~100-300ms”) und “RSC” (“Arbitrary”). Rechtsgerichtete Pfeile unterhalb des Fortschrittsrahmens positionieren die Mitte als “Runtime cost”, wobei SSGs statische Geschwindigkeit den zunehmend dynamischen Ansätzen gegenübergestellt wird; darunter führt “What if?” zu “SSG's speed + SSR's dynamic=???”",
@@ -549,7 +549,7 @@
 		},
 		"404df41aa4a00dc168c68561bc565317": {
 			"kind": "svg-canvas",
-			"fingerprint": "3331643c",
+			"fingerprint": "468243e5",
 			"description": {
 				"de-DE": {
 					"text": "Ein Nebeneinander‑Vergleich stellt Astro und Seam gegenüber. Unter “Astro” enthält ein “Single page” drei Laufzeiten — “React runtime”, “Vue runtime” und “Svelte runtime” — und die Anmerkungen lauten “Multiple runtimes hydrated”, “MPA — always MPA” und “No client routing”. Unter “Seam” präsentiert “Single page,one runtime” React als ausgewählte Option neben Vue, Svelte und Solid, mit “Pick one per page”; darunter führt ein Pfeil von “MPA before” zu “SPA after”, gefolgt von “Client routing + transitions ✓”.",
@@ -627,7 +627,7 @@
 		},
 		"42b3132df5a3cfca25e33bd097b79d31": {
 			"kind": "svg-canvas",
-			"fingerprint": "1097a3e5",
+			"fingerprint": "0cb6f230",
 			"description": {
 				"de-DE": {
 					"text": "Ein zweizeiliger Vergleich stellt “Strict mode — no JS Runtime” gegen “With JS Runtime — derive mode” gegenüber. In der ersten von links nach rechts verlaufenden Pipeline fließt “Raw data” (“From DB / API”) zu “Must be ready-to-display” (“No compute,only conditions”) und dann zu “Component written 2x” (“Tedious DX”); in der zweiten fließt die gleichen Rohdaten durch “JS derive()” (“Compute logic”), dann zu “ready-to-display” (“Typed struct”), und schließlich zu “CTR inject” (“Write once ✓”).",
@@ -705,7 +705,7 @@
 		},
 		"43e0db1d16fec99575259c5670b3994d": {
 			"kind": "svg-canvas",
-			"fingerprint": "1e02436e",
+			"fingerprint": "f99059c3",
 			"description": {
 				"de-DE": {
 					"text": "Eine zweizeilige Compiler-Pipeline beginnt mit “.rs source,” dann fließt nach rechts durch “Lexer + Parser → AST,” “Macro expansion Desugaring,” und “HIR lowering Name resolution.” Eine gepunktete horizontale Trennlinie trennt diese Frontend‑Zeile von einer unteren Zeile, die von einem Pfeil aus HIR lowering erreicht wird: “Type checking Trait solving” führt zu “Borrow checker Lifetime validation,” das zu “MIR generation CFG,const eval,inlining.”",
@@ -783,7 +783,7 @@
 		},
 		"483a6aeda42e9e8eaac5aecdfd1cfe90": {
 			"kind": "mermaid",
-			"fingerprint": "61bcd115",
+			"fingerprint": "de09d341",
 			"description": {
 				"de-DE": {
 					"text": "Eine von links nach rechts verlaufende Pipeline beginnt mit “Route”, führt zu “Reachable components” und dann zu “Reachable CSS”. Von “Reachable CSS” zweigen drei alternative Lieferwege nach rechts zu “Bundle”, “Inline” und “Preload”.",
@@ -861,7 +861,7 @@
 		},
 		"4c719699fbaa6f878d2ad71de8190592": {
 			"kind": "svg-canvas",
-			"fingerprint": "8ea8215c",
+			"fingerprint": "497d53e1",
 			"description": {
 				"de-DE": {
 					"text": "Ein geschachteltes Komponenten‑Layout verzweigt über zwei nach rechts zeigende Pfeile in zwei SSR‑Optionen. Ein großer “React component”‑Container sagt “Border,style,layout — interactive ✓” und umschließt “dangerouslySetInnerHTML,” mit “Markdown / Rich Text — dead HTML” und “No interaction after hydration”; daneben stellt “When you need SSR” “60% — raw HTML slot” gegenüber “~zero cost,static inject” und “40% — RSC” mit “Server execution,TODO",
@@ -939,7 +939,7 @@
 		},
 		"5538c7de8efdf905efdf93c8bebd225e": {
 			"kind": "mermaid",
-			"fingerprint": "8c10ef81",
+			"fingerprint": "49bfb0cc",
 			"description": {
 				"de-DE": {
 					"text": "Ein links‑nach‑rechts Vergleich von zwei parallelen Pfaden, die aus “Visible Svelte AST.” hervorgehen. Der obere Pfad führt von “{user.name}” zu “Value dynamic,” dann zu “Slot,” dann zu “Runtime injection,” während der untere Pfad von “{#if user}” zu “Structure dynamic,” dann zu “Control-flow node,” dann zu “Branch space,” und dabei die Wert‑dynamik mit der strukturellen Steuerungsfluss kontr",
@@ -1017,7 +1017,7 @@
 		},
 		"55cd32576fedb450d270cfecb202fdb0": {
 			"kind": "svg-canvas",
-			"fingerprint": "6d77777e",
+			"fingerprint": "6769bf5d",
 			"description": {
 				"de-DE": {
 					"text": "Ein zweireihiger Vergleich stellt Traditional SSR gegen “CTR — build-time equivalence check.” gegenüber. Traditional SSR stellt “Server HTML” (“Runtime generated”) gegen “Client DOM” (“React hydration”) gegenüber, was zu “Mismatch discovered” “At runtime — too late” führt; CTR vergleicht stattdessen ein “CTR skeleton” “+ mock data filled” mit “renderToReadableStream()” unter Verwendung von “Same mock data,” und sendet beide anschließend an einen “DOM-tree diff” “At build time — before deploy.” Der Vergleich kann zu “Match ✓ safe” oder “Mismatch → CLI warns” führen, mit dem Hinweis “Escape hatch:any — like TypeScript,you accept",
@@ -1095,7 +1095,7 @@
 		},
 		"6161a9b737ab4b210cf528081360c7a8": {
 			"kind": "svg-canvas",
-			"fingerprint": "c2e92c04",
+			"fingerprint": "acaff77b",
 			"description": {
 				"de-DE": {
 					"text": "Ein zweireihiger Vergleich stellt die Request‑Zeit‑Pfade von SSG und CTR gegenüber. Bei SSG fließt “Request” zu “Static HTML” (“Built at deploy time”) und dann zu “Same page every time” (“Hello,Alice — always Alice”), mit der Anmerkung “Fast,but frozen — no per-request data.” Bei CTR fließt “Request” zu “HTML skeleton” (“Built once,reused”), das mit “Fresh data” (“Per request”) kombiniert wird, um “Dynamic page” (“Hello,Bob — ~0.1ms”) zu erzeugen; die Anmerkung lautet “Same speed as SSG + different data every request.”",
@@ -1171,9 +1171,87 @@
 				}
 			}
 		},
+		"6ca06c882279f07b5b06f53f7c777344": {
+			"kind": "quadrant",
+			"fingerprint": "906ca927",
+			"description": {
+				"de-DE": {
+					"text": "Eine vierteilige Matrix mit dem Titel “UI stack fit” kontrastiert Niche zu Mainstream von links nach rechts und Compiler zu Runtime von oben nach unten. Solid und Marko teilen die obere linke Niche/Compiler-Region, Svelte befindet sich in der oberen rechten Mainstream/Compiler-Region, und React und Vue teilen die untere rechte Mainstream/Runtime-Region; die untere linke Niche/Runtime-Region ist leer.",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T07:06:33.460803Z",
+					"seconds": 4.090369458,
+					"tokens": 12047,
+					"review": false
+				},
+				"en-US": {
+					"text": "A four-region matrix titled “UI stack fit” contrasts Niche to Mainstream from left to right and Compiler to Runtime from top to bottom. Solid and Marko share the upper-left niche/compiler region, Svelte sits in the upper-right mainstream/compiler region, and React and Vue share the lower-right mainstream/runtime region; the lower-left niche/runtime region is empty.",
+					"provider": "openai",
+					"model": "gpt-5-6-terra-medium",
+					"at": "2026-09-12T07:05:36.710352Z",
+					"seconds": 12.071160917,
+					"tokens": 16668,
+					"review": false
+				},
+				"es-ES": {
+					"text": "Una matriz de cuatro regiones titulada “UI stack fit” contrasta Niche a Mainstream de izquierda a derecha y Compiler a Runtime de arriba a abajo. Solid y Marko comparten la región superior‑izquierda niche/compiler, Svelte se sitúa en la región superior‑derecha mainstream/compiler, y React y Vue comparten la región inferior‑derecha mainstream/runtime; la región inferior‑izquierda niche/runtime está vac",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T07:06:46.406452Z",
+					"seconds": 3.240072833,
+					"tokens": 11879,
+					"review": false
+				},
+				"fr-FR": {
+					"text": "Une matrice à quatre régions intitulée “UI stack fit” oppose Niche à Mainstream de gauche à droite et Compiler à Runtime de haut en bas. Solid et Marko partagent la région supérieure gauche niche/compiler, Svelte se trouve dans la région supérieure droite mainstream/compiler, et React et Vue partagent la région inférieure droite mainstream/runtime ; la région inférieure gauche niche/runtime est",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T07:06:42.340295Z",
+					"seconds": 4.057912542,
+					"tokens": 11915,
+					"review": false
+				},
+				"ja-JP": {
+					"text": "「UI stack fit」というタイトルの四領域マトリックスは、左から右へ Niche から Mainstream へ、上から下へ Compiler から Runtime へ対比させています。Solid と Marko は左上の niche/Compiler 領域を共有し、Svelte は右上の mainstream/Compiler 領域に位置し、React と Vue は右下の mainstream/Runtime 領域を共有しています。左下の niche/Runtime 領域は空",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T07:06:29.019701Z",
+					"seconds": 4.433910792,
+					"tokens": 12053,
+					"review": false
+				},
+				"ko-KR": {
+					"text": "\"UI stack fit\"이라는 네 구역 매트릭스는 왼쪽에서 오른쪽으로 Niche와 Mainstream를, 위에서 아래로 Compiler와 Runtime을 대비한다. Solid와 Marko는 왼쪽 위의 niche/compiler 영역을 공유하고, Svelte는 오른쪽 위의 mainstream/compiler 영역에 위치하며, React와 Vue는 오른쪽 아래의 mainstream/runtime 영역을 공유한다; 왼쪽 아래의 niche/runtime 영역은 비어 있다",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T07:06:37.559475Z",
+					"seconds": 4.772519459,
+					"tokens": 12409,
+					"review": false
+				},
+				"zh-CN": {
+					"text": "一个四区矩阵，标题为 “UI stack fit”，从左到右对比 小众 与 主流，从上到下对比 编译器 与 运行时。Solid 和 Marko 共享左上角的小众/编译器 区域，Svelte 位于右上角的 主流/编译器 区域，React 和 Vue 共享右下角的 主流/运行时 区域；左下角的小众/运行时 区域",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T07:06:22.403648Z",
+					"seconds": 6.6080032079999995,
+					"tokens": 12609,
+					"review": false
+				},
+				"zh-TW": {
+					"text": "一個標題為「UI stack fit」的四區矩陣，從左至右對比 Niche 與 Mainstream，從上到下對比 Compiler 與 Runtime。Solid 和 Marko 共享左上角的 Niche/Compiler 區域，Svelte 位於右上角的 Mainstream/Compiler 區域，React 和 Vue 共享右下角的 Mainstream/Runtime 區域；左下角的 Niche/Runtime 區域為",
+					"provider": "openai",
+					"model": "gpt-oss-120b-medium",
+					"at": "2026-09-12T07:06:49.651251Z",
+					"seconds": 3.655581208,
+					"tokens": 11981,
+					"review": false
+				}
+			}
+		},
 		"7f9b1a828b99583fa79ce74457b17bd9": {
 			"kind": "svg-canvas",
-			"fingerprint": "4671166c",
+			"fingerprint": "a5503a4b",
 			"description": {
 				"de-DE": {
 					"text": "Zwei parallele, von links nach rechts verlaufende Kompilierungspipelines setzen LLVM und CLIF nach einem gemeinsamen Ausgangspunkt, MIR, und vor einem gemeinsamen Endpunkt, Link, in Kontrast. Der obere Pfad führt MIR → “LLVM IR” (“Multi-layer IR”) → “100+ opt passes” (“O0 ~ O3,LTO”) → “Machine code” (“Complex reg alloc”) → Link, während der untere Pfad MIR → “CLIF IR” (“Single-layer IR”) → “Lightweight opts” (“Fewer passes”) → “Machine code” (“Simple reg alloc”) → Link durchläuft. Der Kontrast besteht in LLVMs mehrschichtiger, stark optimierter Route mit komplexer Registerallokation gegenüber CLIFs einstufiger, leichterer Route mit einfacherer Registerallok",
@@ -1251,7 +1329,7 @@
 		},
 		"8547444f33980b916757adcb97405d5b": {
 			"kind": "svg-canvas",
-			"fingerprint": "06a98b11",
+			"fingerprint": "aeec8b74",
 			"description": {
 				"de-DE": {
 					"text": "Ein nebeneinander stehender Vergleich stellt “Traditional” “Component + data coupled” der “Seam” “Component + data separated” gegenüber. Links enthält ein “Dashboard component” `fetch(\"/api/user\")` und `if (role===\"admin\") ...`, was zu “Value unknown until runtime” und “Infinite possibilities?” führt; rechts ist ein “Pure component” mit “UI only,no data fetching” vom “Data (typed)” unter einem “JTD schema contract” getrennt, das sich in “string”, “boolean”, “enum” und “int32” aufteilt. Die typisierten Optionen werden als “Finite,enumerable → compile-time rendering possible” gruppiert, was endliche Compile‑Zeit‑Möglichkeiten den unbekannten Laufzeitwerten gegenüber",
@@ -1329,7 +1407,7 @@
 		},
 		"93697d5a69e958211c2ba9ae8d175539": {
 			"kind": "svg-canvas",
-			"fingerprint": "55a68c19",
+			"fingerprint": "4a0becf0",
 			"description": {
 				"de-DE": {
 					"text": "Eine Pipeline beginnt mit “Svelte source”, die in “Svelte / Seam AST” (“visible + typed”) fließt und dann in drei parallele Pfade aufgeteilt wird. “Structure” (“markup AST”) führt zu “Static HTML”, während “Values” (“data + derives”) zu “CTR slots” (“lowered data”) führt, und “Behavior” (“state + effects”) führt zu “Client",
@@ -1407,7 +1485,7 @@
 		},
 		"ac7132f3414b4c847d1c20c6707c1f4b": {
 			"kind": "mermaid",
-			"fingerprint": "1bd9b938",
+			"fingerprint": "fe66d9a4",
 			"description": {
 				"de-DE": {
 					"text": "Eine Zweipfade-Pipeline stellt den Kontrast zwischen “React black box”, das zu “Render + diff” fließt, anschließend zu “Structure guess” und schließlich zu “Protocol nodes”, mit einem gestrichelten Nebenweg von “Render + diff” zu “Mocks / escape”. Im Gegensatz dazu fließt “Visible Svelte AST” durch “Direct lowering” direkt in dieselben “Protocol nodes” und betont sichtbare Struktur statt einer abgeleiteten Struktur",
@@ -1485,7 +1563,7 @@
 		},
 		"b5569bb00bf40e65a170dd12f4d68b35": {
 			"kind": "svg-canvas",
-			"fingerprint": "516d6b87",
+			"fingerprint": "44f1a068",
 			"description": {
 				"de-DE": {
 					"text": "Ein zweizeiliger Vergleich stellt die einzelne Pipeline von PPR dem geteilten Pfad von CTR gegenüber. PPR läuft von “Static parts” (mit “Cached ✓”) über “Any dynamic change” (“Even a simple string”) zu “renderToReadableStream()” (“Still heavy”); CTR beginnt mit “Static parts” (“Build-time ✓”) und verzweigt zu “string / number / bool” → “String replace (~0.1ms)” für “95% of cases”, oder zu “Markdown / Rich Text” → “Render (any language)” für “5% edge cases”. Die Zusammenfassung lautet: “95% string replacement — 5% actual render,in any language”.",
@@ -1563,7 +1641,7 @@
 		},
 		"b67330bcecf08a86bef45fea39eac982": {
 			"kind": "svg-canvas",
-			"fingerprint": "fb28ac7b",
+			"fingerprint": "79f57bea",
 			"description": {
 				"de-DE": {
 					"text": "Eine von links nach rechts gerichtete Pipeline mit dem Titel “Traditional SSR” zeigt “Every request”, das von “Request” zu “Build tree” (“Component tree”), dann zu “renderToString()” (“~100-300ms”) und schließlich zu “HTML response” fließt. Eine Klammer gruppiert die Build‑Tree‑ und Render‑Schritte als “Per-request cost” und stellt die wiederholte Arbeit, die für jede Anforderung nötig ist, den Anfrage‑ und Antwort‑Endpunkten gegenüber.",
@@ -1641,7 +1719,7 @@
 		},
 		"bb7ebfee826c83ba9503bec9bcc07f1e": {
 			"kind": "svg-canvas",
-			"fingerprint": "5a3380fb",
+			"fingerprint": "a23b3bfe",
 			"description": {
 				"de-DE": {
 					"text": "Ein dreispaltiger Größenvergleich mit dem Titel “JS Runtime size comparison” stellt QuickJS, Bun und Node.js gegenüber. QuickJS ist mit “~200-300KB” und “JS subset,derive only” gekennzeichnet, während Bun “~50MB” mit “Full runtime + OS APIs” aufweist und Node.js “~100MB” mit “Full runtime + OS APIs + npm”, wobei damit schrittweise größere, funktionsreichere Laufzeiten betont werden",
@@ -1719,7 +1797,7 @@
 		},
 		"cca7f8275b85644b0fa6104cbe21fdab": {
 			"kind": "svg-canvas",
-			"fingerprint": "f4a821c9",
+			"fingerprint": "8a583718",
 			"description": {
 				"de-DE": {
 					"text": "Eine Kompilierungspipeline läuft von links nach rechts von “LLVM IR codegen” (“Translate MIR → IR”) über “LLVM optimizations” (“O0 ~ O3 passes”) zu “Machine code” (“Target-specific”). Eine gestrichelte horizontale Trennung trennt diese Phasen von einer unteren Verknüpfungsstufe, wobei Maschinencode nach unten in “Linker” (“System linker”) fließt und dann nach rechts in “Executable binary”.",
@@ -1797,7 +1875,7 @@
 		},
 		"cebcccdc93780ced98da7cae68ef7879": {
 			"kind": "svg-canvas",
-			"fingerprint": "e41170ff",
+			"fingerprint": "98e53cd8",
 			"description": {
 				"de-DE": {
 					"text": "Eine Page‑Layout‑zu‑Backend‑Pipeline stellt vorwiegend clientseitiges Rendering dem einen servergerenderten Inhaltsbereich gegenüber: “Nav — CTR slot injection,” “Sidebar CTR,” “Footer — CTR slot injection,” und “User info — CTR slot injection” umgeben ein zentrales “Markdown” “raw HTML slot” “SSR” Panel. Eine Legende identifiziert CTR als “CTR (~0.1ms)” und den servergerenderten Pfad als “SSR (raw HTML slot)”, wobei das Markdown‑Panel auf “Raw HTML slot backend” zeigt. Dieses Backend kann “TypeScript — your existing SSR,” “Rust — pulldown‑cmark / comrak,” oder “Go — goldmark” verwenden, jeweils führend zu “→ HTML string → insert slot.”",
@@ -1875,7 +1953,7 @@
 		},
 		"cf3aec5cc0cb3f24936c7052e4a3b8f9": {
 			"kind": "svg-canvas",
-			"fingerprint": "1c775311",
+			"fingerprint": "08e4a81e",
 			"description": {
 				"de-DE": {
 					"text": "Ein Fan-out- und Fan-in-Kompilierungspipeline beginnt mit “MIR,” das vier parallele Zweige speist, die mit “CGU 1,” “CGU 2,” “CGU 3,” und “CGU …N.” beschriftet sind. Jeder Zweig führt zu “LLVM opts + codegen,” dann zu seiner eigenen “.o”-Datei; alle vier Objektdateien laufen in “Link” zusammen",
@@ -1953,7 +2031,7 @@
 		},
 		"db5237de1d98593cb2f080e5fb178c93": {
 			"kind": "svg-canvas",
-			"fingerprint": "55c61d83",
+			"fingerprint": "7fab21d8",
 			"description": {
 				"de-DE": {
 					"text": "Eine horizontale Build‑Time‑Pipeline läuft von “Real data” zu “Sentinel” mit “%%SEAM:name%%”, dann über “renderToString()” / “React render” und endet als “HTML skeleton”, das “<!--seam:name-->” enthält. Darunter wandelt ein Vorher/Nachher‑Vergleich “%%SEAM:user.name%%” in “<!--seam:user.name-->” um; das Ergebnis wird als “Typed slots — any language can inject data via string replacement” beschrieben",
@@ -2031,7 +2109,7 @@
 		},
 		"dd306e206a1473eaa835f978ab60f726": {
 			"kind": "mermaid",
-			"fingerprint": "8cda0d8b",
+			"fingerprint": "36811e2d",
 			"description": {
 				"de-DE": {
 					"text": "Eine von links nach rechts verlaufende Pipeline verbindet “Above-fold components” mit “Critical CSS”, dann mit “Lazy islands” und schließlich mit “Deferred CSS”. Sie stellt demgegenüber CSS dar, das sofort für den Above‑Fold‑Inhalt erzeugt wird, versus CSS, das für lazy‑geladene Islands aufgeschoben wird",
@@ -2109,7 +2187,7 @@
 		},
 		"e80a3a3448ec382aa7f68b0bc275de72": {
 			"kind": "svg-canvas",
-			"fingerprint": "f6b7a5ff",
+			"fingerprint": "38ac8540",
 			"description": {
 				"de-DE": {
 					"text": "Eine Seite‑zu‑Rendering‑Pipeline stellt ein geändertes Feld einem vollständigen traditionellen SSR‑Neuausbau gegenüber. Auf der linken Seite enthält eine Seite „Nav“, „Hero section“, „Username“, „Sidebar“, „Content block“ und „Footer“; „Username“ ist mit „Changed“ markiert, während die übrigen „Static (unchanged)“ sind, und ein Pfeil führt zu „Traditional SSR“. Auf der rechten Seite verarbeitet „renderToString()“ den „Entire component tree“, einschließlich „Nav“, „Hero“, „User“, „Side“, „Content“ und „Footer“, gruppiert als „All re-rendered (~100-300ms)“, trotz der Hinweis „Only 1 field changed“ und „but the entire page was rebuilt.“",
@@ -2187,7 +2265,7 @@
 		},
 		"e9ac213a813d8286a4f49e6aecf31704": {
 			"kind": "svg-canvas",
-			"fingerprint": "01944899",
+			"fingerprint": "18fcad2c",
 			"description": {
 				"de-DE": {
 					"text": "Eine verzweigte Pipeline beginnt mit “CTR candidate” und “value / derive,” fließt in “Lowering decision,” das “origin · purity · visibility” berücksichtigt und “never syntax alone” betont. Von dort kontrastiert der obere Zweig einen “simple” Fall, der “pure + visible” ist, und führt zu “generated JS,” mit einem unteren “complex” Fall, der “opaque / hatch” ist, und führt zu “QuickJS / SSR” “",

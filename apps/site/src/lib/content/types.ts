@@ -48,6 +48,14 @@ export type Block =
 			type: 'quadrant';
 			title: string;
 			description?: string;
+			/**
+			 * What the figure reads as, from `cms diagram`. Absent until one has been run.
+			 *
+			 * Not `description`, which is one line the author wrote to sit under the title. This
+			 * is the whole figure said in prose, and it is translated, which is what the
+			 * assembled-from-labels fallback never was.
+			 */
+			reading?: string;
 			axes: Record<QuadrantDirection, string>;
 			items: QuadrantItem[];
 	  }

@@ -1158,6 +1158,11 @@ The same arrangement serves a photograph, where the picture names itself through
 button says `Enlarge image`. A Mermaid diagram takes `role="img"` and a label without any of this,
 because it has no button to sit beside and the same word-list problem to solve.
 
+A quadrant was already built this way and needed only the description: its figure is `role="img"`
+with the title as its name, its plotted regions are `aria-hidden`, and the reading beneath it is
+now the derived one. It keeps the sentences it used to assemble from its own labels as a
+fallback, for a figure nobody has described yet.
+
 Both labels are interface copy and resolve at the page's locale like every label around them, and
 so does the description -- it is translated into all eight, which is what makes a diagram
 described rather than described in English at a Korean reader.

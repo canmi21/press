@@ -91,7 +91,7 @@ function url(cdnUrl: string, cid: string, mime: string): string {
  * Not by the record's own key, which is a BLAKE3 content id: computing one here would put a
  * second implementation of the article hash back into TypeScript, which is the duplication the
  * segment layout exists to remove. The record carries the same cheap FNV-1a the layout uses, over
- * the fence's payload, and this side recomputes that in the four lines it already has.
+ * the block's exact source bytes, and this side recomputes that in the four lines it already has.
  */
 export type DiagramStore = {
 	diagrams: Record<
@@ -101,7 +101,12 @@ export type DiagramStore = {
 };
 
 /**
- * What a diagram says, in the view being compiled, by the source that draws it.
+ * What a diagram says, in the view being compiled, by the block that draws it.
+ *
+ * The argument is the block's source exactly as the article holds it, which is what the caller
+ * takes from the node's own position. A fence could have been found by its payload and a
+ * directive could not: a directive has no `value` to hand over, only children a parser has
+ * already taken apart. One rule for both, and it is the one the CMS writes.
  *
  * The locale is the same choice the asset resolver makes and for the same reason: a diagram on
  * the original view is described beside prose in the article's own language.
