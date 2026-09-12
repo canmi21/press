@@ -1,6 +1,6 @@
 ---
 title: Future of SeamJS
-subtitle: From React's black box to Svelte's visible AST
+subtitle: From magic to lowering.
 description: SeamJS 将组件语言从 React 转向 Svelte，不再靠执行与 diff 猜测页面结构，而是直接读取公开的 template AST，将静态 markup、动态值与控制流 lowering 为 skeleton、slot 与协议节点，同时为明确的 escape hatch 保留 SSR fallback。
 lang: zh
 created: 2026-08-22T22:17:34Z

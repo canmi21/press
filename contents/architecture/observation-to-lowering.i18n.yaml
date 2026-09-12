@@ -2551,71 +2551,6 @@ segments:
       seconds: 13.812478584
       tokens: 29279
       review: false
-  3b29a848f07331b00d4556c1d50251c5:
-    de-DE:
-      text: Von Reacts Blackbox zu Sveltes sichtbarem AST
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-30T06:25:54.977985Z
-      seconds: 4.478261666
-      tokens: 28124
-      review: false
-    en-US:
-      text: From React's black box to Svelte's visible AST
-      provider: anthropic
-      model: claude-fable-5
-      at: 2026-08-29T22:34:32.804208Z
-      seconds: 3.2709185
-      tokens: 28016
-      review: false
-    es-ES:
-      text: De la caja negra de React al AST visible de Svelte
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-30T06:25:54.977985Z
-      seconds: 4.478261666
-      tokens: 28124
-      review: false
-    fr-FR:
-      text: De la boîte noire de React à l'AST visible de Svelte
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-30T06:25:54.977985Z
-      seconds: 4.478261666
-      tokens: 28124
-      review: false
-    ja-JP:
-      text: React のブラックボックスから Svelte の見える AST へ
-      provider: anthropic
-      model: claude-fable-5
-      at: 2026-08-29T22:34:32.804208Z
-      seconds: 3.2709185
-      tokens: 28016
-      review: false
-    ko-KR:
-      text: React의 블랙박스에서 Svelte의 보이는 AST로
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-30T06:25:54.977985Z
-      seconds: 4.478261666
-      tokens: 28124
-      review: false
-    zh-CN:
-      text: 从 React 的黑箱到 Svelte 可见的 AST
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-30T06:25:54.977985Z
-      seconds: 4.478261666
-      tokens: 28124
-      review: false
-    zh-TW:
-      text: 從 React 的黑盒到 Svelte 看得見的 AST
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-30T06:25:54.977985Z
-      seconds: 4.478261666
-      tokens: 28124
-      review: false
   3b2e6480c2fbf41749f6165ecfa2b086:
     de-DE:
       text: Der gesamte oben beschriebene Ablauf kommt vollständig ohne Beteiligung einer JS-Laufzeitumgebung aus.
@@ -3331,6 +3266,71 @@ segments:
       seconds: 8.470347875
       tokens: 28857
       review: false
+  4ab7c4d960b44c4088bf95ec1f6dc5a2:
+    de-DE:
+      text: Von Magie zum Lowering.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T03:44:48.569264Z
+      seconds: 14.693176208
+      tokens: 16498
+      review: true
+    en-US:
+      text: From magic to lowering.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T03:44:48.569264Z
+      seconds: 14.693176208
+      tokens: 16498
+      review: true
+    es-ES:
+      text: De magia a lowering.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T03:44:48.569264Z
+      seconds: 14.693176208
+      tokens: 16498
+      review: true
+    fr-FR:
+      text: De la magie au lowering.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T03:44:48.569264Z
+      seconds: 14.693176208
+      tokens: 16498
+      review: true
+    ja-JP:
+      text: 魔法から lowering へ。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T03:44:48.569264Z
+      seconds: 14.693176208
+      tokens: 16498
+      review: true
+    ko-KR:
+      text: 마법에서 lowering으로.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T03:44:48.569264Z
+      seconds: 14.693176208
+      tokens: 16498
+      review: true
+    zh-CN:
+      text: 从魔法到 lowering。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T03:44:48.569264Z
+      seconds: 14.693176208
+      tokens: 16498
+      review: true
+    zh-TW:
+      text: 從魔法到 lowering。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T03:44:48.569264Z
+      seconds: 14.693176208
+      tokens: 16498
+      review: true
   53a659643a4d971d8216f8aee8c14b25:
     de-DE:
       text: 'Aber das kommt dem Idealzustand, den ich für Seam erreichen will, schon sehr nahe: Eine Svelte-Komponente entspricht nicht mehr „einem Renderer, der ausgeführt werden muss", sondern wird zu einer Ressource, die der Svelte-5-Compiler auseinandernehmen kann. Allein das umzusetzen ist für mich bereits eine sehr große konzeptionelle Verbesserung.'
@@ -9197,71 +9197,71 @@ segments:
       seconds: 5.084347291
       tokens: 28443
       review: false
-  fb35d0a95ec5d6bf0cb507fea6dedce1:
+  fd25bd104122d029133c0cb0a2dceeb4:
     de-DE:
-      text: Von Reacts Blackbox zum AST
-      provider: anthropic
-      model: claude-haiku-4-5
-      at: 2026-09-11T17:54:31.829851Z
-      seconds: 5.471730625
-      tokens: 35322
-      review: false
+      text: Von Magie zum Lowering.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T03:44:48.569264Z
+      seconds: 14.693176208
+      tokens: 16498
+      review: true
     en-US:
-      text: React's black box to a visible AST
-      provider: anthropic
-      model: claude-haiku-4-5
-      at: 2026-09-11T17:54:31.829851Z
-      seconds: 5.471730625
-      tokens: 35322
-      review: false
+      text: From magic to lowering.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T03:44:48.569264Z
+      seconds: 14.693176208
+      tokens: 16498
+      review: true
     es-ES:
-      text: De la caja negra al AST visible
-      provider: anthropic
-      model: claude-haiku-4-5
-      at: 2026-09-11T17:54:31.829851Z
-      seconds: 5.471730625
-      tokens: 35322
-      review: false
+      text: De magia a lowering.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T03:44:48.569264Z
+      seconds: 14.693176208
+      tokens: 16498
+      review: true
     fr-FR:
-      text: De la boîte noire à l'AST visible
-      provider: anthropic
-      model: claude-haiku-4-5
-      at: 2026-09-11T17:54:31.829851Z
-      seconds: 5.471730625
-      tokens: 35322
-      review: false
+      text: De la magie au lowering.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T03:44:48.569264Z
+      seconds: 14.693176208
+      tokens: 16498
+      review: true
     ja-JP:
-      text: 黒箱から見える AST へ
-      provider: anthropic
-      model: claude-haiku-4-5
-      at: 2026-09-11T17:54:31.829851Z
-      seconds: 5.471730625
-      tokens: 35322
-      review: false
+      text: 魔法から lowering へ。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T03:44:48.569264Z
+      seconds: 14.693176208
+      tokens: 16498
+      review: true
     ko-KR:
-      text: 블랙박스에서 보이는 AST로
-      provider: anthropic
-      model: claude-haiku-4-5
-      at: 2026-09-11T17:54:31.829851Z
-      seconds: 5.471730625
-      tokens: 35322
-      review: false
+      text: 마법에서 lowering으로.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T03:44:48.569264Z
+      seconds: 14.693176208
+      tokens: 16498
+      review: true
     zh-CN:
-      text: 从 React 黑箱到可见的 AST
-      provider: anthropic
-      model: claude-haiku-4-5
-      at: 2026-09-11T17:54:31.829851Z
-      seconds: 5.471730625
-      tokens: 35322
-      review: false
+      text: 从魔法到 lowering。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T03:44:48.569264Z
+      seconds: 14.693176208
+      tokens: 16498
+      review: true
     zh-TW:
-      text: 從 React 黑盒到看得見的 AST
-      provider: anthropic
-      model: claude-haiku-4-5
-      at: 2026-09-11T17:54:31.829851Z
-      seconds: 5.471730625
-      tokens: 35322
-      review: false
+      text: 從魔法到 lowering。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T03:44:48.569264Z
+      seconds: 14.693176208
+      tokens: 16498
+      review: true
   fdedce013cca0c5346d209739824388e:
     de-DE:
       text: Was sie dem Compiler übergibt, ist direkt
