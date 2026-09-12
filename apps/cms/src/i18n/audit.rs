@@ -6,10 +6,18 @@
 //! the translated words -- never the source script carried into the sentence -- and quotes the
 //! original span, verbatim, inside the note.
 //!
-//! Both are soft: a target grammar can force a restatement, and a same-script locale can carry
-//! the original legitimately. So nothing here rejects or re-asks; `cms i18n --check` prints the
-//! findings and a person judges them. A hard gate would fail exactly the defensible minority
-//! the policy allows for.
+//! A third is length: a translation that runs far longer or shorter than its source in a language
+//! where that is unusual. See spec/i18n.md.
+//!
+//! All of them are soft: a target grammar can force a restatement, a same-script locale can carry
+//! the original legitimately, and a dense source legitimately expands. So nothing here rejects or
+//! re-asks; `cms i18n --check` prints the findings and a person judges them. A hard gate would
+//! fail exactly the defensible minority the policies allow for.
+//!
+//! What this module is for is triage rather than judgement. A review that would otherwise read
+//! every string reads the handful named here, and the rest have been cleared by something that
+//! measures faster than a person looks. So a finding that turns out to be fine is the module
+//! working, and thresholds tuned until nothing is reported have turned it off.
 
 use super::segment::{Display, Kind, Region};
 use super::tn;
