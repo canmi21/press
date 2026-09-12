@@ -7,6 +7,7 @@
 	"article.notes.fold": "收合",
 	"article.notes.unfold": "展開其餘 {count} 條",
 	"article.summary": "總結",
+	"article.summary.short": "總結",
 	"article.translator-note": "來自譯者",
 	"article.translator-note.close": "關閉譯者註",
 	"card.by_registry": "依來源註冊中心分組",

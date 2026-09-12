@@ -7,6 +7,7 @@
 	"article.notes.fold": "Show less",
 	"article.notes.unfold": "Show {count} more",
 	"article.summary": "Summary",
+	"article.summary.short": "Summary",
 	"article.translator-note": "From the translator",
 	"article.translator-note.close": "Close translator's note",
 	"card.by_registry": "Grouped by the registry they came from",

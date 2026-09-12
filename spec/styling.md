@@ -1496,6 +1496,44 @@ would make that artifact depend on translation state with nothing to detect it g
 both are tested against the same ten strings measured in the rendered page, and a constant edited
 on one side turns the other side's tests red.
 
+## The metadata row sheds a control on a phone rather than wrapping raggedly
+
+The row under the title carries a date, a character count, a read count, the summary disclosure
+and the language switcher. On a laptop that is one line. On a phone's 354px column it was two,
+and which item fell to the second line depended on how long the words came out in that language,
+which is the shape a row takes just before it stops looking designed.
+
+**The read count is the one that goes.** It is the only item in the row a reader never acts on --
+the date and the count are what the article is, the other two are controls -- so dropping it costs
+the least. It is hidden below `sm` rather than removed, because the room exists above that and a
+number nobody asked to hide is still worth showing where it fits.
+
+**The summary label gets a short reading, on the mechanism the notice and the pitch already use.**
+`article.summary.short` exists in all nine catalogues and the button renders both with CSS
+choosing. Eight of them repeat their own word, because `Summary`, `总结`, `要約` and `Résumé` have
+nothing shorter to say. German does: `Zusammenfassung` is fifteen characters and the longest label
+in the row by half, and `Resümee` is the same word for the same thing at seven. Keeping this as a
+message rather than a condition in the component means the next language that finds a shorter word
+changes a catalogue, not a component.
+
+**The switcher takes the right edge below `sm`.** `ml-auto` puts it against the column's right
+frame, which does two things at once: where the row fits on one line it reads as a corner control
+rather than the last item in a list, and where it does not, it wraps to a line of its own and
+stays at the frame instead of sitting under the date.
+
+**One line is reached in the CJK views and not in the European ones, and that was measured rather
+than hoped for.** At 354px, with the read count gone, the row comes to 331px in Japanese, 326 in
+Korean, 346 in Simplified and 348 in Traditional Chinese -- all inside the column. German is 384,
+Spanish 383, English 378 and French 374, all outside it. The gap is twenty to thirty pixels and
+there is no label left to trim that would close it: the switcher is already the widest item at
+126px and its region qualifier is what tells `zh` from `tw` and carries `Original (XX)` where
+there is no endonym to show.
+
+So those four take two lines deliberately -- three items and then the switcher alone at the right
+frame -- rather than one line bought by shortening the date or stripping the switcher. The
+difference from before is that the second line is now where the layout puts it every time, not
+where the words happened to run out.
+
 ## The theme control is a button, not a menu
 
 It is built and has no home yet: nothing on the site renders it while its placement is being

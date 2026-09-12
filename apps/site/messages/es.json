@@ -7,6 +7,7 @@
 	"article.notes.fold": "Mostrar menos",
 	"article.notes.unfold": "Mostrar {count} más",
 	"article.summary": "Resumen",
+	"article.summary.short": "Resumen",
 	"article.translator-note": "Nota del traductor",
 	"article.translator-note.close": "Cerrar la nota del traductor",
 	"card.by_registry": "Agrupados por registro de origen",

@@ -295,8 +295,12 @@
 					     returning reader is served the previous count out of the persisted query
 					     cache and sees no movement at all. -->
 					{#if readCount != null}
+						<!-- Absent below `sm` as well, and that is a second decision. The row is four
+						     controls and a date, which is one line on a laptop and two on a phone; the
+						     read count is the only one a reader never acts on, so it is the one that
+						     goes. See spec/styling.md. -->
 						<span
-							class="inline-flex items-center gap-1"
+							class="inline-flex items-center gap-1 max-sm:hidden"
 							title="{readCount} reads"
 							aria-label="{readCount.toLocaleString('en-US')} reads"
 						>
@@ -321,10 +325,15 @@
 					>
 						<span class="focus-link-inner inline-flex items-center gap-1">
 							<Sparkles class="size-3.5" aria-hidden="true" />
-							<span>{m['article.summary']({}, { locale: locale.code })}</span>
+							<span class="max-sm:hidden">{m['article.summary']({}, { locale: locale.code })}</span>
+							<span class="sm:hidden"
+								>{m['article.summary.short']({}, { locale: locale.code })}</span
+							>
 						</span>
 					</button>
-					<LanguageSwitcher code={locale.code} sourceLanguage={meta.lang} />
+					<span class="max-sm:ml-auto">
+						<LanguageSwitcher code={locale.code} sourceLanguage={meta.lang} />
+					</span>
 				</div>
 				{#if locale.code !== 'mw'}
 					<TranslationNotice

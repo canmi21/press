@@ -7,6 +7,7 @@
 	"article.notes.fold": "Show less",
 	"article.notes.unfold": "Show {count} more",
 	"article.summary": "Summary",
+	"article.summary.short": "Summary",
 	"article.translator-note": "来自译者",
 	"article.translator-note.close": "关闭译者注",
 	"card.by_registry": "Grouped by the registry they came from",
