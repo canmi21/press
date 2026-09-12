@@ -4,9 +4,12 @@
 
 	let {
 		id,
+		align = 'start',
 		children,
 	}: {
 		id?: string;
+		/** Which of the trigger's edges the panel lines up with. */
+		align?: 'start' | 'end';
 		children: Snippet;
 	} = $props();
 
@@ -27,7 +30,7 @@
 <DropdownMenu.Portal>
 	<DropdownMenu.Content
 		{id}
-		align="start"
+		{align}
 		sideOffset={8}
 		collisionPadding={EDGE_PADDING}
 		loop

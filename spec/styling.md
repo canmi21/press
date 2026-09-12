@@ -1004,6 +1004,26 @@ accident.
 
 This is for names a reader knows as one thing. Ordinary prose wraps where it likes.
 
+## A menu opens from the edge its trigger is anchored to
+
+A control sitting in a row's flow opens its panel from its left edge, which is where the eye
+already is. A control the page has pushed to the article's right frame opens from its right, so the
+panel and the thing that summoned it share an edge rather than the panel hanging inward from a
+control that is itself against the frame.
+
+The condition is the rail's again, and it is read off whether the rail is rendered -- the computed
+`display` of `.article-rail` -- rather than from a width. That keeps the breakpoint the one number
+in `utilities.css`, which a script asking `matchMedia` for `68rem` would have quietly copied.
+
+**This one is decided in script, and the rule about CSS choosing does not apply to it.** A panel is
+not in the document until it is opened, so there is no server render for the choice to survive and
+no first frame to be wrong. What there is instead is a frame to be wrong *after*: the alignment is
+settled in the open handler, before the panel mounts, because an effect running after it has
+mounted would position it against one edge and then move it in view.
+
+Above the rail's width nothing changes, which is the point -- there the control sits in the row
+behind the summary and opening from its left is what it always did.
+
 ## A floating surface stops where the page's text stops
 
 A menu, a popover, anything the floating layer places: when a collision pushes it back from the

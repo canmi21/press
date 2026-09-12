@@ -336,6 +336,7 @@
 							code={locale.code}
 							sourceLanguage={meta.lang}
 							phoneRegion={false}
+							framed
 						/>
 					</span>
 				</div>

@@ -29,12 +29,42 @@
 	// `phoneRegion` is opt-out rather than a width this component measures for itself: only the
 	// caller knows what else is in its row. The article's metadata row is the one that has run
 	// out of room; every other place this control appears keeps the region at every width.
+	// `framed` says this control is one the page pushes to a frame rather than one sitting in a
+	// row's flow. Only the article's metadata row does that, and only where the rail is absent.
 	let {
 		code,
 		sourceLanguage = SITE_LANGUAGE,
 		phoneRegion = true,
-	}: { code: LocaleCode; sourceLanguage?: string; phoneRegion?: boolean } = $props();
+		framed = false,
+	}: {
+		code: LocaleCode;
+		sourceLanguage?: string;
+		phoneRegion?: boolean;
+		framed?: boolean;
+	} = $props();
 	let open = $state(false);
+
+	/**
+	 * Which of the trigger's edges the panel lines up with.
+	 *
+	 * A control sitting in a row's flow opens from its left edge, which is where the eye already
+	 * is. A control pushed to the article's right frame opens from its right, so the panel and the
+	 * thing that summoned it share an edge instead of the panel hanging inward from a control that
+	 * is itself against the frame.
+	 *
+	 * The condition is the rail's, read off whether the rail is rendered rather than from a width,
+	 * so the breakpoint stays the one number in `utilities.css`. Read when the menu opens rather
+	 * than up front: the panel does not exist until then, so unlike the title or the notice there
+	 * is no server render for this choice to survive and no first frame to correct.
+	 */
+	let align = $state<'start' | 'end'>('start');
+
+	function alignFor() {
+		if (!framed) return 'start' as const;
+		const rail = document.querySelector('.article-rail');
+		const railShown = Boolean(rail && getComputedStyle(rail).display !== 'none');
+		return railShown ? ('start' as const) : ('end' as const);
+	}
 
 	/**
 	 * The mark a language carries, assigned rather than derived.
@@ -156,7 +186,15 @@
 	}
 </script>
 
-<DropdownMenu.Root {open} onOpenChange={(next) => (open = next)}>
+<DropdownMenu.Root
+	{open}
+	onOpenChange={(next) => {
+		// Settled before the panel exists rather than after it has mounted, or the first frame is
+		// positioned against the other edge and corrects itself in view.
+		if (next) align = alignFor();
+		open = next;
+	}}
+>
 	<DropdownMenu.Trigger
 		aria-label={m['language.switcher']({ name: label }, { locale: code })}
 		class="quiet-control"
@@ -178,7 +216,7 @@
 		</span>
 	</DropdownMenu.Trigger>
 
-	<MenuContent id="article-language-menu">
+	<MenuContent id="article-language-menu" {align}>
 		<DropdownMenu.RadioGroup value={code} onValueChange={choose}>
 			{#each choices as choice (choice.code)}
 				{@const mark = markFor(choice)}
