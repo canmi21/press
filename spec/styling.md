@@ -1008,9 +1008,9 @@ This is for names a reader knows as one thing. Ordinary prose wraps where it lik
 
 A menu, a popover, anything the floating layer places: when a collision pushes it back from the
 window's edge, it stops at 1.5rem, which is the article column's own gutter. The library's default
-is 8px. That is invisible on a laptop, where nothing opens near an edge, and wrong on a phone,
-where the language switcher sits against the column's right frame and its menu is wide enough to
-be pushed back every time -- the panel ends up a hair from the glass while the paragraph beside it
+is 8px. That is invisible on a laptop, where nothing opens near an edge, and wrong on every width
+below the rail's, where the language switcher sits against the column's right frame and its menu is
+wide enough to be pushed back every time -- the panel ends up a hair from the glass while the paragraph beside it
 holds a clear margin, which reads as the menu having fallen off rather than opened.
 
 The value is written as a number in [menu-content.svelte](../apps/site/src/lib/components/menu-content.svelte)
@@ -1564,10 +1564,17 @@ in the row by half, and `Resümee` is the same word for the same thing at seven.
 message rather than a condition in the component means the next language that finds a shorter word
 changes a catalogue, not a component.
 
-**The switcher takes the right edge below `sm`.** `ml-auto` puts it against the column's right
-frame, which does two things at once: where the row fits on one line it reads as a corner control
-rather than the last item in a list, and where it does not, it wraps to a line of its own and
-stays at the frame instead of sitting under the date.
+**The switcher takes the article's right frame wherever the rail is absent.** The question is not
+how wide the window is but whether the table of contents is on screen, and those are different
+questions: whether the read count fits is a matter of pixels, where the language control belongs is
+a matter of what else the page is already anchoring. With the rail there is a column of navigation
+down one side, and a second right-aligned control opposite it is one anchor too many, so the
+control rejoins the row's flow behind the summary. Without the rail it is the only thing on the row
+a reader reaches for rather than reads, and the frame is where a reader looks for one.
+
+So the rule is paired with the rail's own, in the same `@media` block and against the same number,
+rather than given a breakpoint of its own to drift from. An iPad mini shows it both ways within one
+device: right-aligned in portrait at 744pt, back in the flow in landscape at 1133pt.
 
 **The switcher drops its region below `sm`, and that is what bought the last line.** Removing the
 read count was not enough: German still needed 388px of a 354px column and four of the nine views

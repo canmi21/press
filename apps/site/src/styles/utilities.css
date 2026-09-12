@@ -175,10 +175,27 @@
    its entries wrap to three lines is not a smaller version of itself, and pressed against the
    window edge it reads as something that fell off the page. A media query cannot ask a custom
    property, so this number agrees with the ones above by hand; change one and check this. */
+/* The language control takes the article's right frame wherever the rail is absent, and rejoins
+   the metadata row's flow wherever the rail is there. The question is not how wide the window is
+   but whether the table of contents is on screen: with the rail the page already has a column of
+   navigation down one side and a second right-aligned control opposite it is one anchor too many,
+   while without it this is the only control on the row a reader reaches for rather than reads, and
+   the frame is where a reader looks for one. See spec/styling.md. */
+.meta-language {
+	margin-inline-start: auto;
+}
+
 @media (min-width: 68rem) {
 	.article-rail {
 		display: flex;
 		align-items: center;
+	}
+
+	/* Paired with the rail above rather than given its own breakpoint: the number that decides
+	   whether the rail is drawn is the same number that decides this, so the two rules share the
+	   block and there is one of it to change. */
+	.meta-language {
+		margin-inline-start: 0;
 	}
 }
 

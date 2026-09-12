@@ -331,7 +331,7 @@
 							>
 						</span>
 					</button>
-					<span class="max-sm:ml-auto">
+					<span class="meta-language">
 						<LanguageSwitcher
 							code={locale.code}
 							sourceLanguage={meta.lang}
