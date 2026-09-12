@@ -1461,18 +1461,22 @@ box, and the full stop is a mark the reader does not need twice. The long form k
 room to be a sentence. Korean and the European languages keep theirs at both lengths, because a
 period is doing more work in a script whose sentences are not otherwise visually bounded.
 
-**The Chinese copy was rewritten to stop sounding like a system.** `你正在阅读的译本可能带有细微的措辞
-润色，推荐阅读原文。` is accurate and reads like a dialog box; `你看到的这一版措辞上动过一点，想读原样的
-话可以看原文。` says the same thing the way a person would. `已为你显示` and `以...为准` went with it.
-This is the one place on the site where the software addresses the reader directly about the
-reader's own situation, so the register matters more than it would in a label.
+**The register is written, concise and impersonal-leaning, and it is set in each language rather
+than translated into it.** The reference sentence is the Chinese one: `该版本的措辞经过细微修改，推荐
+阅读原文。` Formal enough to be the software speaking, short enough not to lecture, and carrying none
+of the scaffolding a translation leaves behind. Two failure modes sit either side of it. One is
+translationese -- `已为你显示`, `以...为准`, `你正在阅读的译本可能带有细微的措辞润色` -- which is
+accurate and reads like a dialog box. The other is the overcorrection: hearing "stiff" and writing
+`这一版措辞上动过一点，想读原样的话可以看原文`, which is plain speech where written Chinese was wanted
+and reads worse to a native reader than the stiffness it replaced.
 
-Two facts survived the rewrite because tests hold them, and both had been lost in a first draft
-that read better without them. `notice.polished` has to keep its `主要`: frontmatter `lang` names
-an article's *primary* language, so copy saying it was written in that language full stop is
-false of a mixed original. `notice.script` has to keep `简体版本` and `繁體版本`, because the
-sentence's whole job is telling the reader which of the two they are on. Register is worth
-rewriting for; neither of these was.
+**None of the nine is a rendering of another.** Each sentence is composed in its own language to
+the same register, which is not the same as saying the same words: German reaches for
+`Die Formulierung dieser Fassung wurde leicht überarbeitet`, Japanese for
+`この版は表現に細かな調整が入っています`, Korean for `이 판은 표현이 조금 다듬어진 것이며`. A
+sentence mapped clause-for-clause out of the Chinese would land somewhere between the two failure
+modes in every one of them, because what makes a sentence sound composed rather than converted is
+different in each language. The shape rule above is the only thing all nine share.
 
 **`{language}` is inside the measured string, so the shape is exact for the corpus and
 approximate beyond it.** A notice naming Chinese (Simplified) is twenty-four characters longer in
