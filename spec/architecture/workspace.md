@@ -68,6 +68,18 @@ visually unchanged. Two real consumers justify that boundary. A single speculati
 not, because opening a package per primitive turns reuse into directory ceremony rather than a
 coherent shared vocabulary.
 
+**Where a shared piece is filed is part of what it says.** The framed picture -- format
+fallbacks, `srcset`, the placeholder, the crop, the border -- was already shared by the article's
+`::image` block and the link card's cover, and it sat in `blocks/` beside both of them. Nothing
+was duplicated and the graph still read wrong: a reader opening `link-card.svelte` found it
+importing `image.svelte`, one block reaching sideways for another, and could not tell from the
+tree which of the two was the layer. It is `components/picture.svelte` now, and both blocks import
+downward.
+
+Nothing was extracted to do it, because there was nothing left to extract. The layer existed; it
+was the filing that hid it. The counterpart is the rule above: had it *not* already been shared,
+moving it first would have been the guess this threshold exists to prevent.
+
 Feature directories compose those primitives and keep their own state, copy and specialised
 styling. A locale picker, for example, imports the shared menu surface but owns language order,
 selection and navigation itself. A primitive is added for a real repeated interaction, not to

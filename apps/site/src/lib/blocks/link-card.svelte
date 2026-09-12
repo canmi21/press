@@ -1,52 +1,32 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
 	import { pageUrls } from '@canmi/urls';
-	import Image from './image.svelte';
+	import Picture, { type Source } from '$lib/components/picture.svelte';
 	import ArrowUpRight from '@lucide/svelte/icons/arrow-up-right';
 	import * as m from '$lib/paraglide/messages';
 	import type { LocaleCode } from '$lib/locale';
 
-	type Props = {
+	/**
+	 * What this card is, plus everything its cover is -- which it takes as `Source` rather than
+	 * listing again, and forwards untouched.
+	 *
+	 * `::linkcard{favicon=...}` is not here and never was reachable. That attribute is an
+	 * instruction to `cms favicon`, which resolves it into the domain's own slot under
+	 * `data/public/favicon`; the compiler drops it, so no block ever carried it and no prop could
+	 * receive it. By the time a page renders the answer is already at `/favicon/{domain}`, and
+	 * reading the attribute again would send the browser to somebody else's origin for a copy
+	 * this site holds.
+	 */
+	type Props = Source & {
 		/** The view being rendered. Passed rather than read: see spec/locale.md. */
 		locale: LocaleCode;
-		src: string;
 		url: string;
 		title: string;
 		tone?: 'light' | 'dark';
-		/**
-		 * Where `cms favicon` should take this site's icon from.
-		 *
-		 * Accepted and ignored here on purpose. It is an instruction to the collector, which
-		 * resolves it into the domain's own slot under `data/public/favicon`, so by the time a
-		 * page renders the answer is already at `/favicon/{domain}` and reading the attribute
-		 * again would send the browser to somebody else's origin for a copy we hold.
-		 */
-		favicon?: string;
-		width?: number;
-		height?: number;
-		preview?: string;
-		srcset?: string;
-		/** The cover's crop, resolved at compile time. See spec/architecture/media.md. */
-		crop?: string;
-		/** `object-position` within that crop. Absent means centred. */
-		align?: string;
 		/** What the cover shows, from the manifest. See the markup for where it goes. */
 		description?: string;
 	};
-	let {
-		locale,
-		src,
-		url,
-		title,
-		tone,
-		width,
-		height,
-		preview,
-		srcset,
-		crop,
-		align,
-		description,
-	}: Props = $props();
+	let { locale, url, title, tone, description, ...cover }: Props = $props();
 
 	const describedBy = $props.id();
 
@@ -146,7 +126,7 @@
 				? 'group-hover:brightness-110'
 				: ''}"
 	>
-		<Image {src} alt="" {width} {height} {preview} {srcset} {crop} {align} bind:el={imgEl} />
+		<Picture {...cover} alt="" bind:el={imgEl} />
 	</div>
 	<div class="absolute right-12 bottom-3 left-3 flex items-center gap-2">
 		<img src={faviconSrc} alt="" aria-hidden="true" loading="lazy" class="h-4 w-4 shrink-0" />

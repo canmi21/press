@@ -1,3 +1,30 @@
+<script module lang="ts">
+	/**
+	 * Everything the build resolved about one image: which bytes, how large they are, and how
+	 * this site frames them.
+	 *
+	 * Declared here because every caller forwards it verbatim and none of them reads it. Written
+	 * out a second time in a caller, it is a list that has to be kept in step with this one by
+	 * hand -- and it had already started to drift: two of these carried a comment here and a
+	 * different comment in the link card, for the same field.
+	 *
+	 * `alt` is not in it. What an image is called depends on where it is used: a cover inside a
+	 * link takes `alt=""`, because the anchor names itself and the picture would otherwise be
+	 * read out as part of that name. See the link card's own note.
+	 */
+	export type Source = {
+		src: string;
+		width?: number;
+		height?: number;
+		preview?: string;
+		srcset?: string;
+		/** A CSS aspect-ratio to crop to, e.g. `16 / 9`. Absent means show the whole image. */
+		crop?: string;
+		/** `object-position` within that crop. Absent means centred. */
+		align?: string;
+	};
+</script>
+
 <script lang="ts">
 	import { dev } from '$app/environment';
 	import { pageUrls } from '@canmi/urls';
@@ -12,19 +39,7 @@
 		crop,
 		align,
 		el = $bindable(),
-	}: {
-		src: string;
-		alt?: string;
-		width?: number;
-		height?: number;
-		preview?: string;
-		srcset?: string;
-		/** A CSS aspect-ratio to crop to, e.g. `16 / 9`. Absent means show the whole image. */
-		crop?: string;
-		/** `object-position` within that crop. Absent means centred. */
-		align?: string;
-		el?: HTMLImageElement;
-	} = $props();
+	}: Source & { alt?: string; el?: HTMLImageElement } = $props();
 
 	// Sized against the article column, which is what actually bounds these.
 	const SIZES = '(max-width: 48rem) 100vw, 48rem';

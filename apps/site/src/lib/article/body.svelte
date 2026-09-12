@@ -2,8 +2,8 @@
 	import Cargo from '$lib/blocks/cargo/cargo.svelte';
 	import CodeBlock from '$lib/blocks/code-block.svelte';
 	import GitHub from '$lib/blocks/github.svelte';
-	import Image from '$lib/blocks/image.svelte';
 	import LinkCard from '$lib/blocks/link-card.svelte';
+	import Picture from '$lib/components/picture.svelte';
 	import Mermaid from '$lib/blocks/mermaid/mermaid.svelte';
 	import Placeholder from '$lib/blocks/placeholder.svelte';
 	import Quadrant from '$lib/blocks/quadrant.svelte';
@@ -155,7 +155,7 @@
 				items={block.items}
 			/>
 		{:else if block.type === 'image'}
-			<Image
+			<Picture
 				src={block.src}
 				alt={block.alt}
 				width={block.width}
