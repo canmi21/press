@@ -67,7 +67,11 @@
 	const largestJpeg = $derived(jpeg?.split(', ').pop()?.split(' ')[0] ?? fallback);
 </script>
 
-<picture>
+<!-- `block`, because `picture` is inline in the browser's own stylesheet and a non-replaced
+     inline box discards its vertical margins. The article column spaces its blocks with a
+     `margin-block-end` on each of them, so an inline one silently kept the gap above it -- which
+     belongs to the paragraph before -- and lost the gap below. See spec/styling.md. -->
+<picture class="block">
 	{#if srcset}
 		<source type="image/avif" {srcset} sizes={SIZES} />
 		<source type="image/webp" srcset={webp} sizes={SIZES} />

@@ -1311,6 +1311,27 @@ Roving-focus menu items and SVG data marks keep their component-native highlight
 stroke. Those states already identify the current keyboard target and forcing a rectangular ring
 around them would describe the wrong shape.
 
+## An article block has to be a block to be spaced like one
+
+The article column spaces what it holds with `space-y-4`, which in this version of Tailwind is a
+`margin-block-end` on each child but the last. That works on every block and on nothing else: a
+non-replaced inline box discards its vertical margins, so an inline child takes the rhythm from
+whatever came before it and gives none to whatever comes after.
+
+An embedded picture was that child for as long as the block existed. `picture` is inline in the
+browser's own stylesheet, and the `img` inside it being `display: block` does not change what the
+wrapper is. So an image sat 16px below the paragraph above -- a gap that belonged to the paragraph
+-- and 0px above the paragraph below, while a link card, whose anchor carries `block`, had 16 on
+both sides. The asymmetry was visible without being measurable by eye: the two blocks look alike
+and only one of them was spaced.
+
+**The failure is silent, which is the part worth writing down.** Nothing is missing from the
+markup, nothing overlaps, and the margin is there in the computed style -- it simply has no effect
+on that box. A new block type is one `display` value away from the same bug, so the check is one
+line: every child of `.article-content` must compute to a block-level display. Measured after the
+fix, across every article: no inline children, and every picture sits 16px from its neighbours
+except where the next thing is a heading, which brings its own 48.
+
 ## An article rule is a pause, not a wall
 
 A Markdown thematic break inside article prose renders as five short strokes in the strong border
