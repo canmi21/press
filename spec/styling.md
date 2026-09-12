@@ -1362,13 +1362,17 @@ repository afterwards -- a different favour, in the same slot, rather than a sec
 would be permanent clutter for the readers who never do either.
 
 Which one is showing is decided from two stores, and each answers a different question about the
-same click. `localStorage["preferred"]` records that this reader was sent to Google at some point,
-which is what moves the slot on. `sessionStorage["preferred"]` records that it was this tab that
-did it, which is what stops the slot moving under them: a reader who clicks and then reloads, or
-navigates away and comes back, would otherwise find a different control where they just pressed
-one, and a page that changes its mind about what it is asking for reads as a page that lost track.
-Within the tab that did it, the pill stays where it was. Both keys are one lowercase noun, the way
-`trail` and `email` are.
+same click. `support.preferred` in the reader's state record -- see [engagement.md](engagement.md)
+-- says this reader was sent to Google at some point, which is what moves the slot on.
+`sessionStorage["support.preferred"]` says it was this tab that did it, which is what stops the
+slot moving under them: a reader who clicks and then reloads, or navigates away and comes back,
+would otherwise find a different control where they just pressed one, and a page that changes its
+mind about what it is asking for reads as a page that lost track. Within the tab that did it, the
+pill stays where it was.
+
+The two live apart on purpose. One is a fact about the reader and belongs in the record a later
+build will sync between their devices; the other is a fact about a visit and has no business
+outliving the tab.
 
 Neither store exists on the server, so the markup carries Google -- right for every first-time
 reader, which is everyone the server can see -- and a returning reader's pill changes after

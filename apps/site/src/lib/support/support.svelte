@@ -3,6 +3,7 @@
 	import Heart from '@lucide/svelte/icons/heart';
 	import Star from '@lucide/svelte/icons/star';
 	import { animate } from 'motion';
+	import { recall, remember } from '$lib/client/state';
 	import { remFromMeasuredPixels } from '$lib/client/units';
 	import { createEngagementQuery, createLikeMutation } from '$lib/engagement/engagement.svelte';
 	import { PUBLIC_LANGUAGE, type LocaleCode } from '$lib/locale';
@@ -52,26 +53,28 @@
 	 *
 	 * Asking the same reader for the same thing on every visit is asking nothing: once they have
 	 * set the source preference there is nothing left to set, and the pill goes on offering it.
-	 * So the slot moves on. `localStorage["preferred"]` records that this reader has been sent to
-	 * Google at some point, and from their next visit the slot asks for a star instead.
+	 * So the slot moves on. `support.preferred` in the reader's state record -- see
+	 * `client/state.ts` -- says this reader has been sent to Google at some point, and from their
+	 * next visit the slot asks for a star instead.
 	 *
 	 * `sessionStorage["preferred"]` is what keeps it from moving under them. A reader who clicks
 	 * and comes back to the tab -- or reloads, or navigates and returns -- would otherwise find a
 	 * different control where they just pressed one, which reads as the page having changed its
-	 * mind. Within the tab that did it, the pill stays where it was. The two keys are one
-	 * lowercase noun each, the way `trail` and `email` are; see spec/styling.md.
+	 * mind. Within the tab that did it, the pill stays where it was. That one is a bare
+	 * `sessionStorage` key and deliberately not part of the record: it describes the tab rather
+	 * than the reader, and the record is what a later build syncs between their devices.
 	 *
 	 * The server has neither store, so it renders Google -- right for every first-time reader,
 	 * which is everyone it can see -- and a returning reader's pill changes after hydration. Both
 	 * short forms are a six-letter brand name, so what moves is the label and not the row.
 	 */
-	const PREFERRED = 'preferred';
+	const PREFERRED = 'support.preferred';
 	let asksForStar = $state(false);
 
 	$effect(() => {
 		try {
 			const thisTab = sessionStorage.getItem(PREFERRED) !== null;
-			asksForStar = !thisTab && localStorage.getItem(PREFERRED) !== null;
+			asksForStar = !thisTab && recall(localStorage, PREFERRED, false);
 		} catch {
 			// Private browsing, or storage the reader has turned off. The default already stands.
 		}
@@ -88,8 +91,10 @@
 
 	/** Both stores, because each answers a different question about the same click. */
 	function recordPreferred() {
+		remember(localStorage, PREFERRED, true);
 		try {
-			localStorage.setItem(PREFERRED, '1');
+			// Not part of the record: this one is about the tab, not about the reader, and the
+			// record is what a later build will sync between their devices.
 			sessionStorage.setItem(PREFERRED, '1');
 		} catch {
 			// Nothing to record into. The slot simply goes on asking, which is the old behaviour.

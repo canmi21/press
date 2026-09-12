@@ -257,6 +257,44 @@ not reconstructible; they were seeded once as a data migration and the `views:` 
 removed from the markdown. That edit did not touch `lastmod`, because nothing about the articles
 changed.
 
+## What this site remembers about a reader is one record
+
+`localStorage["state"]` holds the site's own small facts about the reader. `cache` belongs to
+TanStack Query and `email` to the newsletter; each is somebody else's record with its own lifetime
+and eviction, and neither is this. What was left was facts like whether the Support slot's first
+favour has been done, and the first of those arrived as a loose key of its own. A second would
+have arrived the same way, and a tenth -- which is how a reader's storage becomes a scatter of
+names nothing owns and nothing can move together.
+
+The persisted query cache is where the shape comes from: one container, edited in place. What is
+deliberately not taken from it is the machinery. There is no eviction, no staleness and no
+serialisation beyond `JSON`, because none of these facts expire and all of them are small.
+
+**Keys are flat and dotted, like the message catalogue's.** `support.preferred`, not a `support`
+object with a `preferred` inside it. Nesting buys grouping the dot already expresses and costs
+every reader and writer a walk down a path that may not exist yet. A component simple enough to
+hold one fact names the key after the component and stops.
+
+**The version is an integer, and it is there from the first write.** `MIGRATIONS[0]` takes a
+record at version 1 to version 2, and a step edits in place and may assume every earlier one has
+run. The list is empty today, which is exactly when the mechanism is cheapest to introduce: a
+record written without a version cannot be migrated later, because the code that would migrate it
+has no way to know what it is looking at. Three hundred versions from now it is still an integer.
+
+**A record from a later version is left alone rather than reset.** That is a reader whose other
+device runs a newer build -- the case cloud sync exists to make ordinary -- and the keys this
+build understands are still readable inside it. Discarding it would throw away facts this build
+merely has no opinion about. A record that is not an object, or carries no usable version, is
+replaced, because nothing in it can be placed.
+
+**Per-tab facts stay out of it.** `sessionStorage["support.preferred"]` says this tab did the
+thing, not that the reader did; it describes a visit rather than a person, and the record is what
+a later build will sync between devices. `sessionStorage["trail"]` is the same kind of fact for
+the same reason -- see [styling.md](styling.md).
+
+The store is passed in rather than reached for, the way `readTrail` takes one, so the tests hand
+over a plain object and no global is installed to reach this.
+
 ## Engagement data is a persisted client query
 
 The site fetches engagement state in the browser from the standalone API origin. TanStack Query
