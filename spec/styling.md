@@ -1158,10 +1158,17 @@ The same arrangement serves a photograph, where the picture names itself through
 button says `Enlarge image`. A Mermaid diagram takes `role="img"` and a label without any of this,
 because it has no button to sit beside and the same word-list problem to solve.
 
-A quadrant was already built this way and needed only the description: its figure is `role="img"`
-with the title as its name, its plotted regions are `aria-hidden`, and the reading beneath it is
-now the derived one. It keeps the sentences it used to assemble from its own labels as a
-fallback, for a figure nobody has described yet.
+A quadrant was already built this way and needed only the reading. Its regions are `aria-hidden`
+and its figure is `role="img"`, so the visual labels stay exactly as they are drawn and the
+accessibility tree holds one image beside them.
+
+**The reading is its name, not a description hung off one.** The figure used to be named by its
+title and described by sentences assembled from its labels, and both of those are the author's
+words in the source language -- a directive is not translated. So a Chinese view announced an
+English name and then described it in Chinese, which is a worse reading than either language
+alone. The derived reading opens by saying what the figure is called, so naming the figure after
+it loses nothing and leaves one voice. The old pair stays as the fallback for a figure nobody has
+described yet, where the source language is all there is either way.
 
 Both labels are interface copy and resolve at the page's locale like every label around them, and
 so does the description -- it is translated into all eight, which is what makes a diagram

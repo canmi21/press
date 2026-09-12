@@ -35,37 +35,48 @@
 	}
 
 	/**
-	 * What a reader who cannot see the figure is told.
+	 * The figure said in sentences, for a figure nobody has described yet.
 	 *
-	 * The derived reading when there is one, because it is prose and it is translated. The
-	 * assembly below is the fallback, and its sentences are written here in English: the labels
-	 * it joins are the author's and stay in the source language -- a directive is not translated
-	 * -- so a German view used to be read an English sentence with English nouns in it, which is
-	 * not a smaller version of a description. See spec/i18n.md.
+	 * Only a fallback. Its joining words are written here in English while the labels it joins are
+	 * the author's and stay in the source language -- a directive is not translated -- so in a
+	 * German view this is an English sentence with English nouns in it, which is not a smaller
+	 * version of a description. What replaces it is `reading`: prose about the figure, derived
+	 * once and carried into every locale. See spec/i18n.md.
 	 */
-	let accessibleDescription = $derived(
-		reading ??
-			[
-				description,
-				`The horizontal axis runs from ${axes.left} to ${axes.right}; the vertical axis runs from ${axes.bottom} to ${axes.top}`,
-				...(items.length > 0 ? items.map(describeItem) : ['No items are plotted']),
-			]
-				.filter((part): part is string => Boolean(part))
-				.map((part) => sentence(part))
-				.join(' '),
+	let assembled = $derived(
+		[
+			description,
+			`The horizontal axis runs from ${axes.left} to ${axes.right}; the vertical axis runs from ${axes.bottom} to ${axes.top}`,
+			...(items.length > 0 ? items.map(describeItem) : ['No items are plotted']),
+		]
+			.filter((part): part is string => Boolean(part))
+			.map((part) => sentence(part))
+			.join(' '),
 	);
 </script>
 
+<!-- One picture with one name, and the name is the derived reading -- which is the only part of
+     this figure that exists in the reader's language. The title and the labels are the author's
+     and a directive is not translated, so naming the figure after its title would announce it in
+     the source language and then describe it in the reader's. The reading opens by saying what
+     the figure is called, so nothing is lost by not saying it twice.
+
+     Without a reading it falls back to the pair it always had: the title as the name and the
+     sentences assembled below as the description, both in the source language. See
+     spec/styling.md. -->
 <figure
 	class="quadrant-block overflow-hidden rounded-xl border border-border bg-paper"
 	role="img"
-	aria-labelledby={titleId}
-	aria-describedby={descriptionId}
+	aria-label={reading}
+	aria-labelledby={reading ? undefined : titleId}
+	aria-describedby={reading ? undefined : descriptionId}
 >
-	<figcaption class="sr-only">
-		<span id={titleId}>{title}</span>
-		<span id={descriptionId}>{accessibleDescription}</span>
-	</figcaption>
+	{#if !reading}
+		<figcaption class="sr-only">
+			<span id={titleId}>{title}</span>
+			<span id={descriptionId}>{assembled}</span>
+		</figcaption>
+	{/if}
 	<div class="quadrant-scroll overflow-x-auto">
 		<div class="quadrant-stage" aria-hidden="true">
 			<div class="quadrant-plot">
