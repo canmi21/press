@@ -156,6 +156,8 @@
 			/>
 		{:else if block.type === 'image'}
 			<Picture
+				{locale}
+				enlarges
 				src={block.src}
 				alt={block.alt}
 				width={block.width}
@@ -197,7 +199,7 @@
 		{:else if block.type === 'placeholder'}
 			<Placeholder kind={block.kind} meta={block.meta} />
 		{:else if block.type === 'svgCanvas'}
-			<SvgCanvas svg={block.svg} />
+			<SvgCanvas svg={block.svg} {locale} />
 		{:else if block.type === 'tokei'}
 			<Tokei source={block.source} title={block.title} view={block.view} />
 		{:else if block.type === 'cargo'}

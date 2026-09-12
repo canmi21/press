@@ -1049,6 +1049,106 @@ cannot replace the site's security, type, or palette decisions. The duplication 
 local: changing a shared colour may require changing its Mermaid mirror, while every other consumer
 continues to have one OKLCH source.
 
+## A picture in an article opens at the size of the window
+
+Two things in a body are pictures: an `svg-canvas` diagram and an `::image`. Both are bound by the
+article column, which is 48rem at its widest and 342px on a phone, and both carry detail the
+column cannot always afford -- a 600-unit diagram renders at 0.57 of the size it was drawn at on a
+phone, where the palette's `0.875rem` label, 14 of the diagram's own units, lands at eight pixels.
+Pressing either one opens it on a black ground at the size of the window. They go through one
+component, [preview.svelte](../apps/site/src/lib/components/preview.svelte), which owns the
+ground, the sizing, the close control and the dismissal; what a diagram and a photograph differ
+about is two numbers and a label, which they pass in.
+
+**The whole picture is the control, because there is nothing else in it to press.** For a diagram
+that is a fact about the corpus rather than a choice: any handler an authored diagram carried is
+stripped at compile time -- see the article that shipped nine nodes calling a global that does not
+exist -- so a node's hover has never done anything. One press with one meaning is what lets the
+cursor be `zoom-in` over all of it rather than `pointer` on the nodes and something else between
+them. The `svg` is given `display: block` so the control's box is the drawing's box and not the
+drawing plus an inline line box's descender.
+
+**A cover inside a link card is the exception, and it is off by default.** That picture is already
+inside an anchor, where a button would be invalid markup and a second answer to a press that has
+one. So the picture primitive does not open anything unless the caller asks, and only the article
+body asks.
+
+**The node hover is a CSS capability query, not the script one.** `(hover: hover)` is the same
+question the Support rail asks and the answer is the same answer, but the two are settled in
+different places because they are different kinds of thing: the rail changes what a press does and
+has to know before it renders, while this changes only a colour. A touch screen synthesises hover
+from a tap and leaves it applied, so without the query the node under the finger stays dimmed
+behind the view that tap opened, and is still dimmed when it closes. In CSS that costs a media
+block and is right in the first frame the server sends.
+
+### The ground is pure black, and the picture brings its own
+
+The ground behind an enlarged picture is `#000` in both themes. It is the one surface on this site
+that does not answer to the palette, and its colour is written as a literal rather than taken from
+a token for exactly that reason. The page's two grounds are a warm near-white and a warm near-black
+and neither of them is black; a picture read against either is being read against the site rather
+than on its own.
+
+What the picture keeps is its own ground, which is the page's and therefore the theme's. A diagram
+paints no background -- it is strokes and text over whatever is behind it -- so the enlarged view
+puts the page colour behind it as a plate: ink on light in the light theme, light on dark in the
+dark one, whichever the reader was already looking at. The plate sits on the black and the black
+does not move. An opaque photograph covers the plate and never knows it is there.
+
+Nothing else is on that layer. No gutter, no corner radius, no border, no blur behind: every one of
+those is the window's edge held away from the picture, and this view exists to close that distance.
+The close control is the single exception, and being on a layer that is always dark it is written
+for dark rather than themed -- a wash and a hairline, so it stays legible over a photograph as well
+as over the ground.
+
+### The picture reaches two opposite edges of the window
+
+A window has four edges and the picture touches two of them, always. Which pair is not a decision
+to make; it falls out of comparing the picture's proportions with the window's. The smaller of the
+two fits is the one that binds: a picture wider than the window fills its width and leaves black
+above and below, a picture taller than it fills its height and leaves black at the sides, and a
+square picture in a square window does both. That is one `min()` of two terms, and it is why
+nothing here asks what kind of device this is. A phone held upright and the same phone turned
+sideways are two different answers to the same expression.
+
+**There is no third term, and adding one is the mistake to not make twice.** Two have been tried
+and both were wrong in the same way. A gutter was the first: it left the picture a fixed distance
+off every edge, which is the view refusing to do the one thing it is for. A ceiling on how large a
+picture may be drawn was the second, and it is the subtler one -- it looked like restraint, it kept
+a small diagram from becoming a poster on a large monitor, and the price was that on any window
+wider than the ceiling the picture touched nothing at all and sat in the middle of the black with a
+margin it never asked for. Whatever the window has, the picture takes. A diagram enlarged past the
+size it was drawn at is coarse, and coarse at the size of the window is what was asked for.
+
+Because the picture is fitted rather than filled it never exceeds the window, so the view never
+scrolls and nothing in it can be reached only by panning. That is the whole of the first
+arrangement that was wrong: it held a diagram to the size it was drawn at and let the overflow be
+scrolled, which on a phone meant a picture cut off by the screen it had just been opened on.
+
+**A press anywhere dismisses, and a drag does not.** Eight pixels of slop between pointer down and
+up, on the primary pointer only: a pinch puts a second one down elsewhere and lifts it a few pixels
+from where it landed, which is a tap by every measure except intent.
+
+### What the button costs, and where it is given back
+
+A control's contents are presentational, so wrapping a picture in a button takes the diagram's own
+`text` out of the accessibility tree and leaves one label in its place. That is the price of the
+whole area being the control, and it is paid rather than worked around: the alternative that keeps
+both is a transparent button over the picture, and an element on top of the nodes is an element the
+pointer hits instead of them, which takes the hover away. No image in the corpus carries alt text,
+so on that side there is nothing to lose yet; when one does, it will be lost the same way.
+
+It is given back one press later. Inside the view the same picture is plain markup under a labelled
+dialog, so a reader who follows the button arrives at what the button was standing in front of.
+Both labels are interface copy and resolve at the page's locale like every label around them.
+
+An enlarged photograph also asks for a source sized to the window rather than to the column. The
+inline `sizes` names the article measure, and left in place it would have enlarged a source chosen
+for a sixth of the pixels -- the crop goes too, for the same reason: it is how the picture is shown
+in a column of prose, and this is the view that exists to get past the column. With no ceiling on
+the drawn size, `sizes: 100vw` is what keeps a photograph on a wide window sharp: the browser is
+being told the truth about how large it is about to be painted, and picks its source accordingly.
+
 ## A quadrant groups claims without inventing scores
 
 A categorical comparison uses a `:::quadrant` container with `::quadrant-item` children. The

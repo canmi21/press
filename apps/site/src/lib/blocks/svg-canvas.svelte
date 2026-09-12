@@ -1,7 +1,10 @@
 <script lang="ts">
 	import '@canmi/svg-canvas/style.css';
+	import Preview from '$lib/components/preview.svelte';
+	import type { LocaleCode } from '$lib/locale';
+	import * as m from '$lib/paraglide/messages';
 
-	let { svg }: { svg: string } = $props();
+	let { svg, locale }: { svg: string; locale: LocaleCode } = $props();
 
 	// Safe boundary. When the browser HTML-parses a string, certain HTML start tags
 	// inside SVG foreign content ("breakout" elements: span, div, p, b, comments…)
@@ -27,21 +30,20 @@
 	// it is translated into the literal text they typed. A handler is markup the author meant to
 	// RUN; there is no text in it to preserve, and leaving it visible would only publish the
 	// broken call. Styling stays untouched, so a `.node` keeps its hover and simply does nothing
-	// when clicked.
+	// of its own when clicked.
 	//
 	// Scoped to start tags rather than the whole string: a diagram is free to print `onclick=`
 	// as ordinary label text, and that is prose, not a handler.
 	const START_TAG = /<[a-z][^>]*>/gi;
 	const EVENT_HANDLER = /\s+on[a-z]+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi;
 
-	const escapeAngles = (m: string) => m.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+	const escapeAngles = (part: string) => part.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 	function translate(part: string): string {
 		return part.replace(COMMENT, escapeAngles).replace(BREAKOUT_TAG, escapeAngles);
 	}
 
-	const disarm = (raw: string) =>
-		raw.replace(START_TAG, (tag) => tag.replace(EVENT_HANDLER, ''));
+	const disarm = (raw: string) => raw.replace(START_TAG, (tag) => tag.replace(EVENT_HANDLER, ''));
 
 	function contain(raw: string): string {
 		// Before the split, so a handler is stripped inside <foreignObject> too -- that subtree is
@@ -49,16 +51,56 @@
 		const source = disarm(raw);
 		let out = '';
 		let last = 0;
-		for (const m of source.matchAll(FOREIGN_OBJECT)) {
-			out += translate(source.slice(last, m.index)) + m[0];
-			last = m.index + m[0].length;
+		for (const kept of source.matchAll(FOREIGN_OBJECT)) {
+			out += translate(source.slice(last, kept.index)) + kept[0];
+			last = kept.index + kept[0].length;
 		}
 		return out + translate(source.slice(last));
 	}
 
 	const safe = $derived(contain(svg));
+
+	/**
+	 * The size the author drew the diagram at, read off the root `viewBox`.
+	 *
+	 * Only its ratio is read, and only to decide which pair of window edges the enlarged diagram
+	 * reaches. The size itself is the window's to choose.
+	 *
+	 * The root tag, not the first `viewBox` in the string -- every one of these diagrams also
+	 * carries a `<marker>` with a `viewBox` of its own, and that one is 10 units square.
+	 */
+	const DRAWN =
+		/<svg\b[^>]*?\bviewBox\s*=\s*["']\s*[-\d.]+[\s,]+[-\d.]+[\s,]+([\d.]+)[\s,]+([\d.]+)/i;
+
+	const drawn = $derived.by(() => {
+		const found = DRAWN.exec(svg);
+		if (!found) return undefined;
+		const width = Number(found[1]);
+		const height = Number(found[2]);
+		return width > 0 && height > 0 ? { width, height } : undefined;
+	});
 </script>
 
-<!-- Authored SVG from the tracked corpus, wrapped by contain() above; not reader input.
-     Stated rather than suppressed; see spec/lint-format.md. -->
-<div class="svg-canvas">{@html safe}</div>
+<!-- The whole drawn area is the control, because there is nothing else in it to press: the
+     handlers a diagram may have carried are stripped above, so a node's hover is decoration and
+     the press belongs to the diagram as a whole. See spec/styling.md. -->
+<Preview
+	label={m['diagram.enlarge']({}, { locale })}
+	title={m['diagram.title']({}, { locale })}
+	closeLabel={m['diagram.close']({}, { locale })}
+	width={drawn?.width}
+	height={drawn?.height}
+>
+	<!-- Authored SVG from the tracked corpus, wrapped by contain() above; not reader input.
+	     Stated rather than suppressed; see spec/lint-format.md. -->
+	{#snippet inline()}
+		<div class="svg-canvas">{@html safe}</div>
+	{/snippet}
+	<!-- The same wrapped source, drawn a second time at size. Both copies carry the diagram's own
+	     `<marker id="arrow">`, and a duplicate id resolves to the first in the document: every one
+	     of these markers is the same arrowhead, which is what makes that harmless rather than
+	     lucky. -->
+	{#snippet enlarged()}
+		<div class="svg-canvas">{@html safe}</div>
+	{/snippet}
+</Preview>

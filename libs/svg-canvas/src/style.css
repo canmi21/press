@@ -102,12 +102,23 @@
 	stroke-width: 0.5;
 }
 
+/* Every diagram is one control -- pressing any part of it opens the enlarged view -- so the
+ * cursor is declared once by the host that owns that press, not per node. See spec/styling.md. */
+.svg-canvas svg {
+	display: block;
+}
+
 .svg-canvas svg .node {
-	cursor: pointer;
 	transition: opacity 0.15s;
 }
-.svg-canvas svg .node:hover {
-	opacity: 0.75;
+
+/* A touch screen synthesises hover from a tap and leaves it applied, so the node under the finger
+ * would stay dimmed behind the view that tap opened, and still be dimmed when it closes. The
+ * colour change is for a pointer that can leave again. */
+@media (hover: hover) {
+	.svg-canvas svg .node:hover {
+		opacity: 0.75;
+	}
 }
 
 .svg-canvas svg .arr {

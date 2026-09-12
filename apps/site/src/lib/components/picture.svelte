@@ -28,6 +28,9 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
 	import { pageUrls } from '@canmi/urls';
+	import Preview from '$lib/components/preview.svelte';
+	import type { LocaleCode } from '$lib/locale';
+	import * as m from '$lib/paraglide/messages';
 
 	let {
 		src,
@@ -38,11 +41,29 @@
 		srcset,
 		crop,
 		align,
+		locale,
+		enlarges = false,
 		el = $bindable(),
-	}: Source & { alt?: string; el?: HTMLImageElement } = $props();
+	}: Source & {
+		alt?: string;
+		/**
+		 * Whether pressing it opens the enlarged view.
+		 *
+		 * Off by default, and the default is the one that matters: a cover inside a link card is
+		 * already inside an anchor, and a button there would be both invalid markup and a second
+		 * answer to a press that already has one. A picture in an article body has no other
+		 * answer, so it takes this one. See spec/styling.md.
+		 */
+		enlarges?: boolean;
+		/** Needed only to name the control, so only a picture that has one asks for it. */
+		locale?: LocaleCode;
+		el?: HTMLImageElement;
+	} = $props();
 
 	// Sized against the article column, which is what actually bounds these.
 	const SIZES = '(max-width: 48rem) 100vw, 48rem';
+	// And against the window, in the view whose whole point is that the column is not the bound.
+	const FULL_SIZES = '100vw';
 
 	// Only AVIF is stored. Asking for any other extension is what tells the CDN to re-encode:
 	// the worker serves `.avif` straight from the bucket and decodes anything else itself,
@@ -86,23 +107,52 @@
      inline box discards its vertical margins. The article column spaces its blocks with a
      `margin-block-end` on each of them, so an inline one silently kept the gap above it -- which
      belongs to the paragraph before -- and lost the gap below. See spec/styling.md. -->
-<picture class="block">
-	{#if srcset}
-		<source type="image/avif" {srcset} sizes={SIZES} />
-		<source type="image/webp" srcset={webp} sizes={SIZES} />
-	{/if}
-	<img
-		bind:this={el}
-		src={largestJpeg}
-		srcset={jpeg}
-		sizes={srcset ? SIZES : undefined}
-		{alt}
+{#snippet frame(sizes: string, framing: string | undefined, shaped: boolean)}
+	<picture class="block">
+		{#if srcset}
+			<source type="image/avif" {srcset} {sizes} />
+			<source type="image/webp" srcset={webp} {sizes} />
+		{/if}
+		<img
+			bind:this={el}
+			src={largestJpeg}
+			srcset={jpeg}
+			sizes={srcset ? sizes : undefined}
+			{alt}
+			{width}
+			{height}
+			loading="lazy"
+			decoding="async"
+			crossorigin="anonymous"
+			class="block w-full object-cover"
+			class:rounded-2xl={shaped}
+			class:border-2={shaped}
+			class:border-border={shaped}
+			style={framing}
+		/>
+	</picture>
+{/snippet}
+
+{#if enlarges && locale}
+	<Preview
+		label={m['image.enlarge']({}, { locale })}
+		title={m['image.title']({}, { locale })}
+		closeLabel={m['image.close']({}, { locale })}
 		{width}
 		{height}
-		loading="lazy"
-		decoding="async"
-		crossorigin="anonymous"
-		class="block w-full rounded-2xl border-2 border-border object-cover"
-		{style}
-	/>
-</picture>
+		radius="1rem"
+	>
+		{#snippet inline()}
+			{@render frame(SIZES, style, true)}
+		{/snippet}
+		<!-- Whole, unframed, and asking for a source sized to the window. The crop is how this site
+		     shows the picture in a column of prose; the view that exists to get past the column has
+		     no business keeping it, and a `sizes` that still named the column would enlarge a
+		     source chosen for a sixth of the pixels. -->
+		{#snippet enlarged()}
+			{@render frame(FULL_SIZES, undefined, false)}
+		{/snippet}
+	</Preview>
+{:else}
+	{@render frame(SIZES, style, true)}
+{/if}
