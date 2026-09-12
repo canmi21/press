@@ -585,6 +585,71 @@ segments:
       seconds: 71.529933333
       tokens: 33509
       review: false
+  50906742c53887cc8f4cc8b21518455b:
+    de-DE:
+      text: 'Nach dem MIR wird die weitere Verarbeitung LLVM überlassen: MIR wird in LLVM‑IR übersetzt, danach führt LLVM eine Reihe von Optimierungspässen (von O0 bis O3) aus, erzeugt schließlich den Maschinencode für die Zielplattform und übergibt ihn dem Linker, der daraus eine ausführbare BIN-Datei erstellt.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T04:55:44.642073Z
+      seconds: 8.748034833
+      tokens: 13985
+      review: false
+    en-US:
+      text: 'The work after MIR is handed over to LLVM: it translates MIR into LLVM IR, then LLVM runs its series of optimization passes (ranging from O0 to O3), finally generating machine code for the target platform, which is then handed to the linker to assemble into a binary executable.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T04:55:44.642073Z
+      seconds: 8.748034833
+      tokens: 13985
+      review: false
+    es-ES:
+      text: Lo que sigue después del MIR se delega a LLVM, por ejemplo, traduce el MIR a LLVM IR, luego LLVM ejecuta su conjunto de pases de optimización (de O0 a O3). Finalmente genera el código máquina para la plataforma objetivo y lo pasa al enlazador para que lo combine en un archivo ejecutable BIN.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T04:55:44.642073Z
+      seconds: 8.748034833
+      tokens: 13985
+      review: false
+    fr-FR:
+      text: 'Après le MIR, le reste du traitement est confié à LLVM : le MIR est traduit en LLVM IR, puis LLVM exécute sa série de passes d’optimisation (de O0 à O3). Enfin, le code machine cible est généré et remis au linker qui le rassemble en un exécutable binaire.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T04:55:44.642073Z
+      seconds: 8.748034833
+      tokens: 13985
+      review: false
+    ja-JP:
+      text: MIR の後の処理は LLVM に任せます。たとえば MIR を LLVM IR に変換し、LLVM が O0 から O3 までの最適化パスを実行します。最後に対象プラットフォーム用の機械語を生成し、リンクャへ渡してバイナリ実行ファイルに組み立てます。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T04:55:44.642073Z
+      seconds: 8.748034833
+      tokens: 13985
+      review: false
+    ko-KR:
+      text: MIR 이후의 작업은 LLVM에 맡깁니다. 예를 들어 MIR을 LLVM IR로 변환하고, LLVM이 O0부터 O3까지의 최적화 패스를 수행합니다. 마지막으로 대상 플랫폼용 머신 코드를 생성한 뒤 링크러에게 전달하여 BIN 실행 파일로 결합합니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T04:55:44.642073Z
+      seconds: 8.748034833
+      tokens: 13985
+      review: false
+    zh-CN:
+      text: 至于 MIR 之后的处理，则交由 LLVM 完成，例如将 MIR 转换为 LLVM IR，随后 LLVM 运行其一系列优化 Pass（级别从 O0 到 O3 不等），最终生成目标平台的机器码，并交给链接器链接成可执行的二进制文件。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T04:55:44.642073Z
+      seconds: 8.748034833
+      tokens: 13985
+      review: false
+    zh-TW:
+      text: 至於 MIR 之後的處理，則交由 LLVM 完成，例如將 MIR 轉換為 LLVM IR，接著 LLVM 執行其一系列優化 Pass（等級從 O0 到 O3 不等），最終產生目標平台的機器碼，並交給鏈接器組合成可執行的二進位檔案
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T04:55:44.642073Z
+      seconds: 8.748034833
+      tokens: 13985
+      review: false
   54e05f42d060fa75becb4273b614c77f:
     de-DE:
       text: Wie alles andere werden auch die Debug-Informationen und Symbole von Rust hier gespeichert. Wird im Release-Modus `strip` aktiviert, lässt sich die Größe erheblich reduzieren (~~normalerweise 50 MB gegenüber 5 MB~~) – ein geradezu irrsinniger Unterschied. Das Entfernen der Symbole ist außerdem sicherer, denn Frontend-Quellcode gelangt meistens an die Öffentlichkeit, weil Quellzuordnungsdateien versehentlich auf npm veröffentlicht werden :(
@@ -1169,6 +1234,71 @@ segments:
       at: 2026-08-10T05:35:58.369312Z
       seconds: 43.964175625
       tokens: 17669
+      review: false
+  6f7d025008fcf5b58bf7d90d853870d0:
+    de-DE:
+      text: 'Im Design von Rust ist LLVM zwar etwas nachlässig, aber die Wahl ist zudem sehr gut. Im Gegensatz zu Go, das den gesamten Prozess der Umwandlung in Maschinencode selbst verwaltet, lässt Rust die große LLVM‑Ökosystem die ausgereiften Optimierungen übernehmen – das ist tatsächlich vorteilhaft. Der gesamte Rust‑Kompilierungsprozess lässt sich grob folgendermaßen beschreiben: Der Quellcode durchläuft zuerst die lexikalische Analyse und die syntaktische Analyse, wodurch ein abstrakter Syntaxbaum (AST) entsteht. Anschließend erfolgen die Makroexpansion und das Herabstufen (Flattening) des High‑Level‑Intermediate‑Representation (HIR). Danach folgen die reguläre Typprüfung und ein wenig Borrow‑Checking, schließlich wird die Mid‑Level‑Intermediate‑Representation (MIR) erzeugt. Bis zu diesem Punkt wird alles vom Frontend des Rust‑Compilers erledigt.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T04:55:44.64212Z
+      seconds: 16.883992458
+      tokens: 15889
+      review: false
+    en-US:
+      text: 'In Rust’s design, LLVM is a bit lazy, but it’s a very good choice. Unlike Go, which maintains its own whole process of converting code to machine code, Rust lets the massive LLVM ecosystem handle mature optimizations, which is actually beneficial. The overall Rust compilation pipeline can be roughly described as follows: source code first undergoes lexical analysis and syntax analysis to produce an abstract syntax tree (AST); then macro expansion and HIR lowering (flattening) are performed. After that, regular type checking and a small amount of borrow checking take place, finally generating the mid‑level intermediate representation (MIR). Up to this point, all work is done by the Rust compiler’s own front end.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T04:55:44.64212Z
+      seconds: 16.883992458
+      tokens: 15889
+      review: false
+    es-ES:
+      text: 'En el diseño de Rust, LLVM es algo perezoso, pero la elección es muy acertada. A diferencia de Go, que mantiene por sí mismo todo el proceso de conversión a código máquina, Rust delega en el gran ecosistema de LLVM las optimizaciones maduras, lo que resulta realmente beneficioso. El flujo completo de compilación de Rust se puede describir aproximadamente de la siguiente manera: el código fuente primero pasa por análisis léxico y sintáctico, generando un árbol de sintaxis abstracta (AST); después se realiza la expansión de macros y el “lowering” del HIR (aplanamiento). A continuación se lleva a cabo la comprobación de tipos habitual y una pequeña verificación de préstamos, y finalmente se genera la representación intermedia (MIR). Hasta aquí, todo el trabajo lo realiza el front‑end propio del compilador de Rust.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T04:55:44.64212Z
+      seconds: 16.883992458
+      tokens: 15889
+      review: false
+    fr-FR:
+      text: 'Dans la conception de Rust, LLVM peut paraître un peu négligent, mais c’est un très bon choix. Contrairement à Go qui gère lui‑même le processus complet de conversion en code machine, Rust confie à l’énorme écosystème LLVM les optimisations matures, ce qui est en réalité très avantageux. Le processus de compilation de Rust peut être décrit grossièrement ainsi : le code source passe d’abord par une analyse lexicale et syntaxique qui génère un arbre syntaxique abstrait (AST), puis on effectue l’expansion des macros et le « lowering » du HIR (déflattening). Ensuite, on réalise la vérification de type habituelle ainsi qu’une petite vérification d’emprunt, pour finalement produire la représentation intermédiaire (MIR). Jusqu’à ce point, tout le travail est effectué par le front‑end propre au compilateur Rust.'
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T04:55:44.64212Z
+      seconds: 16.883992458
+      tokens: 15889
+      review: false
+    ja-JP:
+      text: Rust の設計では、LLVM は多少手抜きな部分もありますが、選択としては非常に適切です。Go のように自前で機械語への変換プロセスを管理するのとは異なり、LLVM の大規模なエコシステムに成熟した最適化を任せることは実際に有益です。Rust のコンパイル全体の流れは大まかに次のように説明できます。ソースコードはまず字句解析と構文解析を経て抽象構文木（AST）を生成し、その後マクロ展開と HIR の降格（平坦化）を行います。続いて通常の型チェックと少量の借用チェックが行われ、最終的に中間表現（MIR）が生成されます。ここまでの工程はすべて Rust コンパイラのフロントエンドが担当します。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T04:55:44.64212Z
+      seconds: 16.883992458
+      tokens: 15889
+      review: false
+    ko-KR:
+      text: Rust 설계에서는 LLVM이 다소 게으른 면이 있지만 선택 자체는 매우 훌륭합니다. Go처럼 기계어로 변환하는 과정을 스스로 관리하는 것이 아니라, 큰 LLVM 생태계가 성숙한 최적화를 담당하게 하는 것은 실제로 좋은 접근입니다. 전체 Rust 컴파일 흐름은 대략 다음과 같이 설명할 수 있습니다. 소스 코드는 먼저 어휘 분석과 구문 분석을 거쳐 추상 구문 트리(AST)를 생성하고, 이어서 매크로 전개와 HIR 하향 평탄화를 수행합니다. 그 후 일반적인 타입 검사와 약간의 빌림 검사(borrow checking)를 거쳐 최종적으로 MIR을 생성합니다. 여기까지는 모두 Rust 컴파일러 자체 프런트엔드가 처리합니다.
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T04:55:44.64212Z
+      seconds: 16.883992458
+      tokens: 15889
+      review: false
+    zh-CN:
+      text: 在 Rust 的设计中，虽然 LLVM 在某些方面显得有点懒，但它的选型非常合适。不同于 Go 自己维护将代码转为机器码的全过程，Rust 让庞大的 LLVM 生态来完成成熟的优化，这实际上是很好的做法。Rust 的整体编译流程大致如下：源码首先经过词法分析和语法分析，生成抽象语法树（AST），随后进行宏展开和高层中间表示（HIR）的降级平坦化。接下来进入常规的类型检查以及少量的借用检查，最终生成中间表示（MIR）。在此之前，所有工作均由 Rust 编译器自己的前端完成。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T04:55:44.64212Z
+      seconds: 16.883992458
+      tokens: 15889
+      review: false
+    zh-TW:
+      text: 在 Rust 的設計中，雖然 LLVM 在某些地方顯得稍嫌懶散，但它的選擇相當恰當。不同於 Go 必須自行維護從程式碼到機器碼的整個過程，Rust 讓龐大的 LLVM 生態系統負責成熟的最佳化，這其實是很好的做法。Rust 的整體編譯流程大致可以說是：原始碼先經過詞法分析與語法分析，產生抽象語法樹（AST），接著進行巨集展開與 HIR 降級平坦化。之後進入一般的類型檢查以及少量的借用檢查，最終生成中間表示（MIR）。在此之前，所有工作皆由 Rust 編譯器自己的前端完成。
+      provider: openai
+      model: gpt-oss-120b-medium
+      at: 2026-09-12T04:55:44.64212Z
+      seconds: 16.883992458
+      tokens: 15889
       review: false
   753f60673f27ad08896f0f3c7eae02dc:
     de-DE:
@@ -2534,71 +2664,6 @@ segments:
       at: 2026-08-10T05:37:47.935471Z
       seconds: 60.970119875
       tokens: 19062
-      review: false
-  c26cd7334110d7d7418db67f768ed852:
-    de-DE:
-      text: 'Dass Rusts Design auf LLVM setzt, ist ein wenig bequem, aber auch sehr gut gewählt. Statt wie Go den Weg bis zum Maschinencode selbst zu pflegen, überlässt Rust die ausgereifte Optimierung dem großen Ökosystem von LLVM, und das ist wirklich eine gute Entscheidung. Der gesamte Übersetzungsablauf von Rust sieht ungefähr so aus: Der Quelltext durchläuft erst lexikalische und syntaktische Analyse zu einem AST, dann folgen Makroexpansion und die Absenkung auf HIR, die alles flach klopft! Danach kommen die üblichen Typprüfungen und :tn[ein Hundertmillionchen]{is="Im Original steht 亿点点: das 一 (eins) in 一点点, „ein kleines bisschen“, ist durch 亿, „hundert Millionen“, ersetzt. Das absurd große Zahlwort ist Spott – die Borrow-Prüfung ist alles andere als ein kleines bisschen Arbeit."} Borrow-Prüfung, und am Ende entsteht MIR. Bis hierher arbeitet ausschließlich das eigene Frontend des Rust-Compilers. Alles nach MIR übernimmt LLVM: MIR wird in LLVM IR übersetzt, LLVM lässt seine ganzen Optimierungs-Passes durchlaufen (von O0 bis O3), erzeugt schließlich Maschinencode für die Zielplattform, und der Linker fügt daraus die ausführbare BIN-Datei zusammen.'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:15:41.604637Z
-      seconds: 58.715140125
-      tokens: 32888
-      review: false
-    en-US:
-      text: 'Choosing LLVM in Rust''s design was a bit of a shortcut, but it was also a very good choice. Rather than maintaining its own path down to machine code the way Go does, Rust hands the mature optimization work to LLVM''s huge ecosystem, and that really is a good arrangement. Rust''s whole compilation flow goes roughly like this: the source runs through lexing and parsing to produce an AST, then macro expansion and lowering to HIR flattens it out! After that come the ordinary type checks, followed by :tn[a teeny hundred million bits of]{is="The original says 亿点点, which swaps the 一 (one) of 一点点, ‘a tiny bit,’ for 亿, ‘a hundred million.’ The absurdly huge measure word is sarcasm: borrow checking is nowhere near a tiny bit of work."} borrow checking, and finally MIR is generated. Up to this point, it is all Rust''s own compiler front end doing the work. Everything after MIR is handed to LLVM: MIR is translated into LLVM IR, LLVM runs its whole set of optimization passes (anywhere from O0 to O3), and at last it emits machine code for the target platform, which the linker stitches into a BIN executable.'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:15:41.604637Z
-      seconds: 58.715140125
-      tokens: 32888
-      review: false
-    es-ES:
-      text: 'Que Rust se apoyara en LLVM tiene algo de atajo, pero fue también una elección muy acertada. En lugar de mantener por su cuenta todo el camino hasta el código máquina, como hace Go, Rust deja la optimización madura en manos del enorme ecosistema de LLVM, y eso está francamente bien. El flujo de compilación de Rust es más o menos así: el código fuente pasa primero por el análisis léxico y sintáctico para generar un AST, luego por la expansión de macros y el descenso a HIR, que lo aplana todo. Después vienen las comprobaciones de tipos habituales y :tn[un cienmillonésimo poquito de]{is="El original dice 亿点点: sustituye el 一 (uno) de 一点点, «un poquito», por 亿, «cien millones». El cuantificador desmesurado es sarcasmo: la comprobación de préstamos no es en absoluto un poquito de trabajo."} comprobación de préstamos, y al final se genera el MIR. Hasta aquí todo lo hace el propio frontend del compilador de Rust. Lo que viene después del MIR queda para LLVM: el MIR se traduce a LLVM IR, LLVM recorre toda su tanda de pases de optimización (de O0 a O3, según el caso) y al final genera el código máquina de la plataforma de destino, que el enlazador une en un ejecutable BIN.'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:15:41.604637Z
-      seconds: 58.715140125
-      tokens: 32888
-      review: false
-    fr-FR:
-      text: 'Avoir choisi LLVM dans la conception de Rust tient un peu de la facilité, mais c''est aussi un excellent choix. Plutôt que d''entretenir lui-même tout le chemin jusqu''au code machine comme le fait Go, Rust confie l''optimisation mature au vaste écosystème de LLVM, et c''est vraiment une bonne chose. Le flux de compilation de Rust ressemble à peu près à ceci : le code source passe d''abord par l''analyse lexicale et syntaxique pour produire un AST, puis par l''expansion des macros et l''abaissement vers le HIR, qui aplatit tout ! Viennent ensuite les vérifications de types habituelles et :tn[un cent millionième petit peu de]{is="L''original écrit 亿点点 : le 一 (« un ») de 一点点, « un tout petit peu », est remplacé par 亿, « cent millions ». Ce quantificateur démesuré est ironique : la vérification d''emprunt n''a rien d''un tout petit peu de travail."} vérification d''emprunt, et enfin le MIR est produit. Jusqu''ici, c''est le frontend du compilateur Rust lui-même qui travaille. Tout ce qui suit le MIR revient à LLVM : le MIR est traduit en LLVM IR, LLVM déroule toute sa série de passes d''optimisation (de O0 à O3 selon les cas), et produit enfin le code machine de la plateforme cible, que l''éditeur de liens assemble en un exécutable BIN.'
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:15:41.604637Z
-      seconds: 58.715140125
-      tokens: 32888
-      review: false
-    ja-JP:
-      text: Rust の設計で LLVM を選んだのは少し手抜きとも言えますが、選択としては非常に良いものでした。Go のように機械語までの過程を自前で抱え込むのではなく、成熟した最適化を LLVM という巨大なエコシステムに任せる、これは実に良いやり方です。Rust のコンパイルの流れはおおよそこうです。ソースコードにまず字句解析と構文解析をかけて AST を作り、次にマクロ展開と HIR への降格で平坦化する！　それから通常の型検査、そして:tn[一億点ばかりの]{is="原文は「亿点点」。「ちょっとだけ」を意味する「一点点」の「一」を、一億を表す「亿」に入れ替えた言葉遊びです。とんでもなく大きな単位を持ち出す皮肉で、借用検査は「ちょっとだけ」の作業などでは到底ないと言っています。"}借用検査を経て、最終的に MIR が生成されます。ここまでは、すべて Rust コンパイラ自身のフロントエンドの仕事です。MIR より後は LLVM に引き渡され、MIR は LLVM IR に翻訳され、LLVM が例の最適化パス群を一通り走らせ（O0 から O3 までさまざま）、最後にターゲットプラットフォームの機械語を生成し、それをリンカが BIN 実行ファイルへとつなぎ合わせます。
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:15:41.604637Z
-      seconds: 58.715140125
-      tokens: 32888
-      review: false
-    ko-KR:
-      text: Rust 설계에서 LLVM을 고른 건 사실 좀 게으른 선택이지만, 동시에 아주 잘한 선택이기도 합니다. Go처럼 기계어까지 가는 과정을 직접 떠안지 않고, 성숙한 최적화를 LLVM이라는 거대한 생태계에 맡긴다는 건 정말 좋은 방식이죠. Rust의 전체 컴파일 흐름은 대략 이렇습니다. 소스 코드가 먼저 어휘 분석과 구문 분석을 거쳐 AST가 되고, 이어서 매크로 확장과 HIR로의 하향 변환을 거치며 평탄해집니다! 그다음 일반적인 타입 검사와 :tn[억 점만큼의]{is="원문은 “亿点点”으로, ‘아주 조금’을 뜻하는 “一点点”의 “一”(하나)을 “亿”(억)으로 바꿔 쓴 말장난입니다. 터무니없이 큰 단위를 붙여 빌림 검사가 결코 ‘조금’이 아니라는 걸 비꼽니다."} 빌림 검사를 지나 최종적으로 MIR이 만들어집니다. 여기까지는 전부 Rust 컴파일러 자신의 프런트엔드가 하는 일입니다. MIR 이후는 LLVM에게 넘어갑니다. MIR을 LLVM IR로 번역하고, LLVM이 그 최적화 pass들을 한 바퀴 돌린 다음(O0에서 O3까지 다양합니다), 마지막으로 대상 플랫폼의 기계어를 만들어 링커에게 넘겨 BIN 실행 파일로 이어 붙이는 거죠.
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:15:41.604637Z
-      seconds: 58.715140125
-      tokens: 32888
-      review: false
-    zh-CN:
-      text: Rust 的设计里选用 LLVM 其实有点偷懒，但也选得很好。它不像 Go 那样自己维护一整套到机器码的流程，而是把成熟的优化交给 LLVM 这个大生态来做，这其实很好。整个 Rust 的编译流程大致是这样：源码先跑一遍词法分析和语法分析生成 AST，再经过宏展开、降级到 HIR 拍平！然后进入常规的类型检查、:tn[亿点点]{is="原文写作“亿点点”，把“一点点”里的“一”换成了表示一亿的“亿”。用夸张的量词反讽：借用检查根本不是一点点的活儿。"}借用检查，最终生成 MIR。到这里为止，都是 Rust 编译器自己的前端在干活。而 MIR 之后的事情就交给了 LLVM：把 MIR 翻译成 LLVM IR，然后 LLVM 跑一遍它那套优化 pass（从 O0 到 O3 不等），最后生成目标平台的机器码，再交给链接器拼成 BIN 可执行文件。
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:15:41.604637Z
-      seconds: 58.715140125
-      tokens: 32888
-      review: false
-    zh-TW:
-      text: Rust 的設計裡選用 LLVM 其實有點偷懶，但也選得很好。它不像 Go 那樣自己維護一整套通往機器碼的流程，而是把成熟的最佳化交給 LLVM 這個龐大生態來做，這其實很好。整個 Rust 的編譯流程大致是這樣：原始碼先跑一遍詞法分析和語法分析生成 AST，再經過巨集展開、降級到 HIR 攤平！接著進入常規的型別檢查、:tn[億點點]{is="原文寫作「亿点点」，把「一点点」裡表示「一」的字換成了表示一億的「亿」。用誇張的量詞來反諷：借用檢查根本不是一點點的活兒。"}借用檢查，最終生成 MIR。到這裡為止，都是 Rust 編譯器自己的前端在幹活。而 MIR 之後的事情就交給了 LLVM：把 MIR 翻譯成 LLVM IR，然後 LLVM 跑一遍它那套最佳化 pass（從 O0 到 O3 不等），最後生成目標平台的機器碼，再交給連結器拼成 BIN 可執行檔。
-      provider: anthropic
-      model: claude-opus-5
-      at: 2026-08-29T22:15:41.604637Z
-      seconds: 58.715140125
-      tokens: 32888
       review: false
   daf36a3490b545034e4de52103d4b575:
     de-DE:
