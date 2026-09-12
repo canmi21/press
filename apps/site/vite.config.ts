@@ -22,6 +22,7 @@ const SITE_CONFIG = fileURLToPath(new URL('./site.config.yaml', import.meta.url)
 const CONTENTS = fileURLToPath(new URL('../../contents', import.meta.url));
 const ASSETS = fileURLToPath(new URL('../../data/metadata.json', import.meta.url));
 const MEDIA = fileURLToPath(new URL('../../data/media.yaml', import.meta.url));
+const DIAGRAMS = fileURLToPath(new URL('../../data/diagram.json', import.meta.url));
 const SEGMENTS = fileURLToPath(new URL('../../data/build/segments.json', import.meta.url));
 const MESSAGES = fileURLToPath(new URL('./messages', import.meta.url));
 const CRATES = fileURLToPath(new URL('../../data/build/crates.json', import.meta.url));
@@ -177,6 +178,7 @@ export default defineConfig(async ({ command, mode }) => {
 					messages: MESSAGES,
 					assets: ASSETS,
 					media: MEDIA,
+					diagrams: DIAGRAMS,
 					segments: SEGMENTS,
 					crates: CRATES,
 					repos: REPOS,
@@ -233,7 +235,17 @@ export default defineConfig(async ({ command, mode }) => {
 					// Watch inputs directly without registering them as dependencies of the virtual
 					// module. Vite invalidates dependencies before hotUpdate can replace the stable
 					// snapshot, which would retain another full SSR generation. See spec/i18n.md.
-					server.watcher.add([CONTENTS, MESSAGES, ASSETS, MEDIA, SEGMENTS, CRATES, REPOS, TWEETS]);
+					server.watcher.add([
+						CONTENTS,
+						MESSAGES,
+						ASSETS,
+						MEDIA,
+						DIAGRAMS,
+						SEGMENTS,
+						CRATES,
+						REPOS,
+						TWEETS,
+					]);
 				},
 				resolveId(id: string) {
 					return id === 'virtual:articles' ? '\0virtual:articles' : null;

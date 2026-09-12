@@ -10,6 +10,7 @@
 		width,
 		height,
 		radius,
+		description,
 		inline,
 		enlarged,
 	}: {
@@ -26,6 +27,16 @@
 		height?: number;
 		/** The trigger's corner, so the focus ring follows the shape of what it is around. */
 		radius?: string;
+		/**
+		 * What the picture shows, for a reader who cannot see it.
+		 *
+		 * Not used here -- it is the caller's to put on the picture, because only the caller knows
+		 * what the picture is. A photograph has `alt`; a diagram is a subtree of `text` nodes and
+		 * needs `role="img"` to become one thing with one reading. It is declared here so that a
+		 * caller with a description and a caller without are the same shape, and so this note has
+		 * somewhere to live. See spec/styling.md.
+		 */
+		description?: string;
 		inline: Snippet;
 		enlarged: Snippet;
 	} = $props();
@@ -57,15 +68,35 @@
 	}
 </script>
 
-<button
-	type="button"
-	class="preview-trigger focus-ring"
+<!-- The picture and the control that opens it are siblings, not one inside the other, and that
+     is the whole point of the arrangement. A button flattens what is inside it: put the drawing
+     in one and its own reading is gone, and the button's name becomes whatever the drawing's
+     labels happen to spell. Put the button over the drawing instead and the pointer hits the
+     button rather than the nodes, which takes their hover away.
+
+     So neither. The picture says what it is, the button says what pressing does, and the frame
+     around them takes the press. See spec/styling.md.
+
+     The two rules waived below are the same waiver twice: the keyboard path is the button inside
+     this element, and neither rule can see it from here. -->
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<div
+	class="preview-frame"
 	style:border-radius={radius}
-	aria-label={label}
 	onclick={() => (open = true)}
 >
 	{@render inline()}
-</button>
+	<!-- Reachable by Tab and by nothing else. It has no handler of its own: the click a keyboard
+	     makes here is a real click and reaches the frame by bubbling, so there is one way in and
+	     no chance of two. `pointer-events: none` is what keeps it off the drawing. -->
+	<button
+		type="button"
+		class="preview-open focus-ring"
+		style:border-radius={radius}
+		aria-label={label}
+	></button>
+</div>
 
 <Dialog.Root bind:open>
 	<Dialog.Portal>
@@ -92,15 +123,25 @@
 </Dialog.Root>
 
 <style>
-	.preview-trigger {
+	.preview-frame {
+		position: relative;
 		display: block;
-		width: 100%;
+		/* One cursor over the whole of it, because every part of it does the one thing. */
+		cursor: zoom-in;
+	}
+
+	/* Over the picture and out of the pointer's way. It exists to be reached by Tab, named, and
+	   given the focus ring; hit-testing it would put an element between the pointer and the
+	   drawing, and a node that cannot be hovered is the thing this arrangement was built to
+	   avoid. Focusable is unaffected by `pointer-events`. */
+	.preview-open {
+		position: absolute;
+		inset: 0;
 		margin: 0;
 		border: 0;
 		background: none;
 		padding: 0;
-		/* One cursor over the whole of it, because every part of it does the one thing. */
-		cursor: zoom-in;
+		pointer-events: none;
 	}
 
 	/* Pure black, in both themes, behind every picture. The page's two grounds are a warm

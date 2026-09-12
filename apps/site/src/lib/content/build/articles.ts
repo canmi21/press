@@ -2,7 +2,13 @@ import { readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { URLS } from '@canmi/urls';
 import { parse as parseYaml } from 'yaml';
-import { createAssetResolver, type AssetManifest, type MediaManifest } from './assets.ts';
+import {
+	createAssetResolver,
+	createDiagramResolver,
+	type AssetManifest,
+	type DiagramStore,
+	type MediaManifest,
+} from './assets.ts';
 import {
 	assemble,
 	type SegmentLayout,
@@ -109,6 +115,7 @@ type BuildPaths = {
 	messages: string;
 	assets: string;
 	media: string;
+	diagrams: string;
 	segments: string;
 	crates: string;
 	repos: string;
@@ -249,6 +256,11 @@ export async function buildArticles(
 	const notes = await newTabNotes(paths.messages);
 	const assets = JSON.parse(await readFile(paths.assets, 'utf8')) as AssetManifest;
 	const media = (parseYaml(await readFile(paths.media, 'utf8')) ?? { media: {} }) as MediaManifest;
+	// Absent until `cms diagram` has been run, which is a state the build has to survive: every
+	// consumer of a description falls back to what it said without one.
+	const drawings = JSON.parse(
+		await readFile(paths.diagrams, 'utf8').catch(() => '{"diagrams":{}}'),
+	) as DiagramStore;
 	const layout = JSON.parse(await readFile(paths.segments, 'utf8')) as SegmentLayout;
 	// Captured before the build. An absent record is a working state rather than an error: the
 	// article keeps the directive as a placeholder until its external facts have been fetched.
@@ -359,6 +371,7 @@ export async function buildArticles(
 			// eight is available in that one too. Reading the original meant hearing the pictures
 			// described in a language the article never used.
 			resolveAsset: createAssetResolver(assets, media, previews, paths.cdnUrl, originLocale),
+			describeDiagram: createDiagramResolver(drawings, originLocale),
 			articles: references.mw,
 			highlight,
 			sourceFile: file,
@@ -380,6 +393,7 @@ export async function buildArticles(
 										paths.cdnUrl,
 										PUBLIC_LANGUAGE[code],
 									),
+									describeDiagram: createDiagramResolver(drawings, PUBLIC_LANGUAGE[code]),
 									articles: references[code],
 									highlight,
 									sourceFile: file,
@@ -439,6 +453,7 @@ export async function buildArticles(
 			...files.map((file) => file.replace(/\.md$/, '.summary.yaml')),
 			paths.assets,
 			paths.media,
+			paths.diagrams,
 			paths.segments,
 			paths.crates,
 			paths.repos,

@@ -2,8 +2,18 @@
 	import './palette.css';
 	import { renderMermaid } from './mermaid';
 
-	let { source, ratio, loadingLabel }: { source: string; ratio?: number; loadingLabel: string } =
-		$props();
+	let {
+		source,
+		ratio,
+		loadingLabel,
+		description,
+	}: {
+		source: string;
+		ratio?: number;
+		loadingLabel: string;
+		/** What the diagram says, from `cms diagram`. Absent until one has been run. */
+		description?: string;
+	} = $props();
 	let root = $state<HTMLElement>();
 	let svg = $state('');
 	let failed = $state(false);
@@ -43,9 +53,20 @@
 		aria-busy={!svg && !failed}
 	>
 		{#if svg}
-			<!-- Mermaid sanitises tracked diagram source in strict mode before returning this SVG.
+			<!-- Labelled as one picture rather than left as loose text. Mermaid's output is a
+			     graph of `text` nodes in draw order, which reads as a word list; the description
+			     says what the graph shows. Without one the nodes stay readable, which is worse
+			     than a description and better than nothing.
+
+			     Mermaid sanitises tracked diagram source in strict mode before returning this SVG.
 			     Stated rather than suppressed; see spec/lint-format.md. -->
-			<div class="mermaid-result">{@html svg}</div>
+			<div
+				class="mermaid-result"
+				role={description ? 'img' : undefined}
+				aria-label={description}
+			>
+				{@html svg}
+			</div>
 		{:else if failed}
 			<!-- svelte-ignore a11y_no_noninteractive_tabindex (the source fallback can overflow
 			     horizontally and therefore needs to be reachable by a keyboard) -->

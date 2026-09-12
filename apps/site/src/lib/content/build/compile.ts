@@ -443,6 +443,21 @@ function headingParts(node: Heading): { slug: string; text: string } {
 	return { text: raw, slug };
 }
 
+/**
+ * What a feed says about a drawing it cannot show.
+ *
+ * The title is the fence's own when it has one and the article's otherwise, which in this corpus
+ * means the article's: no fence carries meta. So a described diagram says what it draws, and an
+ * undescribed one says only that it is there, which is all it ever said.
+ */
+function diagramFeed(title: string, description: string | undefined, url: string): string {
+	return `<p><em>[Diagram: ${escapeHtml(description ?? title)} — view at ${url}]</em></p>`;
+}
+
+function diagramMarkdown(title: string, description: string | undefined, url: string): string {
+	return `> [diagram: ${description ?? title} — ${url}]`;
+}
+
 function imageOf(node: RootContent): MdImage | null {
 	if (node.type !== 'paragraph' || node.children.length !== 1) return null;
 	const only = node.children[0];
@@ -528,6 +543,14 @@ export type CompileContext = {
 	 */
 	newTabNote: string;
 	resolveAsset: (reference: string) => Resolved | null;
+	/**
+	 * What a diagram says, by the source that draws it, in this view's language.
+	 *
+	 * A diagram is a picture the corpus stores as text, so nothing downstream can read it until
+	 * the CMS has described it. Absent is the ordinary state for a drawing nobody has run
+	 * `cms diagram` for yet, and every consumer here falls back to what it said before.
+	 */
+	describeDiagram?: (source: string) => string | undefined;
 	/**
 	 * What every article in the corpus is called, in the view being compiled, keyed by path.
 	 *
@@ -693,7 +716,15 @@ function assertFrontmatterHasNoTranslatorNotes(
 export async function compile(
 	raw: string,
 	url: string,
-	{ newTabNote, resolveAsset, articles, highlight, sourceFile, embeds }: CompileContext,
+	{
+		newTabNote,
+		resolveAsset,
+		describeDiagram,
+		articles,
+		highlight,
+		sourceFile,
+		embeds,
+	}: CompileContext,
 ): Promise<Compiled> {
 	const tree = parser.parse(raw) as Root;
 	let meta: ArticleMeta | undefined;
@@ -749,13 +780,22 @@ export async function compile(
 			// client-rendered diagram rather than highlighted code. See spec/styling.md.
 			if (lang.toLowerCase() === 'mermaid') {
 				const ratio = mermaidRatio(node.meta, sourceFile ?? url);
+				const description = describeDiagram?.(node.value);
 				blocks.push({
 					type: 'mermaid',
 					source: node.value,
 					...(ratio === undefined ? {} : { ratio }),
+					...(description === undefined ? {} : { description }),
 				});
-				feed.push(`<pre><code class="language-mermaid">${escapeHtml(node.value)}</code></pre>`);
+				// A feed reader gets what the diagram says, because it cannot run Mermaid; a
+				// Markdown reader keeps the fence, because that one it can.
+				feed.push(
+					description
+						? diagramFeed('diagram', description, url)
+						: `<pre><code class="language-mermaid">${escapeHtml(node.value)}</code></pre>`,
+				);
 				md.push('```mermaid\n' + node.value + '\n```');
+				if (description) text.push(description);
 				continue;
 			}
 			// Pasted straight from the tool, so the markdown keeps something a person can read
@@ -771,9 +811,13 @@ export async function compile(
 			}
 			if (lang === 'svg-canvas') {
 				const title = node.meta?.trim() || meta?.title || 'diagram';
-				blocks.push({ type: 'svgCanvas', svg: node.value, title });
-				feed.push(`<p><em>[Diagram: ${escapeHtml(title)} — view at ${url}]</em></p>`);
-				md.push(`> [diagram: ${title} — ${url}]`);
+				const description = describeDiagram?.(node.value);
+				blocks.push({ type: 'svgCanvas', svg: node.value, title, description });
+				feed.push(diagramFeed(title, description, url));
+				md.push(diagramMarkdown(title, description, url));
+				// The one place a diagram reaches the search index. Without a description the
+				// drawing is invisible to it, which is what the description is for.
+				if (description) text.push(description);
 				continue;
 			}
 			blocks.push({
@@ -1055,10 +1099,7 @@ function inlineSegments(node: Paragraph, newTabNote: string): InlineSegment[] {
 			// argue with; a link is `inline-flex` for its icon, and `hidden` is the same kind of
 			// declaration at the same level, so which one won would be decided by Tailwind's
 			// emission order rather than by this file. `max-sm:hidden` is not that argument.
-			const width = [
-				'wide' in attrs ? 'max-sm:hidden' : '',
-				'narrow' in attrs ? 'sm:hidden' : '',
-			]
+			const width = ['wide' in attrs ? 'max-sm:hidden' : '', 'narrow' in attrs ? 'sm:hidden' : '']
 				.filter(Boolean)
 				.join(' ');
 			segments.push({

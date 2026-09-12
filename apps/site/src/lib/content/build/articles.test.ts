@@ -14,6 +14,7 @@ function paths() {
 		cdnUrl: URLS.apps.production.cdn,
 		assets: fileURLToPath(new URL('data/metadata.json', ROOT)),
 		media: fileURLToPath(new URL('data/media.yaml', ROOT)),
+		diagrams: fileURLToPath(new URL('data/diagram.json', ROOT)),
 		segments: fileURLToPath(new URL('data/build/segments.json', ROOT)),
 		crates: fileURLToPath(new URL('data/build/crates.json', ROOT)),
 		repos: fileURLToPath(new URL('data/build/repos.json', ROOT)),

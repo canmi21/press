@@ -145,6 +145,7 @@
 			<Mermaid
 				source={block.source}
 				ratio={block.ratio}
+				description={block.description}
 				loadingLabel={m['mermaid.loading']({}, { locale })}
 			/>
 		{:else if block.type === 'quadrant'}
@@ -199,7 +200,7 @@
 		{:else if block.type === 'placeholder'}
 			<Placeholder kind={block.kind} meta={block.meta} />
 		{:else if block.type === 'svgCanvas'}
-			<SvgCanvas svg={block.svg} {locale} />
+			<SvgCanvas svg={block.svg} {locale} description={block.description} />
 		{:else if block.type === 'tokei'}
 			<Tokei source={block.source} title={block.title} view={block.view} />
 		{:else if block.type === 'cargo'}

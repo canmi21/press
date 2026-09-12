@@ -5,7 +5,13 @@
  * variants derived from it, so the page can carry an exact `srcset` and its own placeholder
  * without the images being present in the repository or a single request being made to
  * discover their dimensions.
+ *
+ * A diagram is resolved here too. It is not an asset -- an article carries its source inline --
+ * but it is the same shape of question, asked of the same kind of record: what does this picture
+ * say, in this view's language.
  */
+
+import { sourceFingerprint } from './assemble.ts';
 
 /**
  * What a published variant's file is called, keyed by what it holds.
@@ -79,6 +85,40 @@ function url(cdnUrl: string, cid: string, mime: string): string {
  * article written before its image was imported. The caller falls back to a plain `img` so
  * the page still renders rather than failing the build.
  */
+/**
+ * Every diagram the CMS has described, keyed by the checksum of the source that draws it.
+ *
+ * Not by the record's own key, which is a BLAKE3 content id: computing one here would put a
+ * second implementation of the article hash back into TypeScript, which is the duplication the
+ * segment layout exists to remove. The record carries the same cheap FNV-1a the layout uses, over
+ * the fence's payload, and this side recomputes that in the four lines it already has.
+ */
+export type DiagramStore = {
+	diagrams: Record<
+		string,
+		{ fingerprint?: string; description?: Record<string, { text: string }> }
+	>;
+};
+
+/**
+ * What a diagram says, in the view being compiled, by the source that draws it.
+ *
+ * The locale is the same choice the asset resolver makes and for the same reason: a diagram on
+ * the original view is described beside prose in the article's own language.
+ */
+export function createDiagramResolver(
+	store: DiagramStore,
+	descriptionLocale = 'en-US',
+): (source: string) => string | undefined {
+	const byFingerprint = new Map<string, string>();
+	for (const entry of Object.values(store.diagrams ?? {})) {
+		const text = entry.description?.[descriptionLocale]?.text?.trim();
+		if (entry.fingerprint && text) byFingerprint.set(entry.fingerprint, text);
+	}
+	const encoder = new TextEncoder();
+	return (source) => byFingerprint.get(sourceFingerprint(encoder.encode(source)));
+}
+
 export function createAssetResolver(
 	assets: AssetManifest,
 	media: MediaManifest,

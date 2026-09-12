@@ -4,7 +4,16 @@
 	import type { LocaleCode } from '$lib/locale';
 	import * as m from '$lib/paraglide/messages';
 
-	let { svg, locale }: { svg: string; locale: LocaleCode } = $props();
+	let {
+		svg,
+		locale,
+		description,
+	}: {
+		svg: string;
+		locale: LocaleCode;
+		/** What the drawing says, from `cms diagram`. Absent until one has been run. */
+		description?: string;
+	} = $props();
 
 	// Safe boundary. When the browser HTML-parses a string, certain HTML start tags
 	// inside SVG foreign content ("breakout" elements: span, div, p, b, comments…)
@@ -90,17 +99,22 @@
 	closeLabel={m['diagram.close']({}, { locale })}
 	width={drawn?.width}
 	height={drawn?.height}
+	{description}
 >
 	<!-- Authored SVG from the tracked corpus, wrapped by contain() above; not reader input.
 	     Stated rather than suppressed; see spec/lint-format.md. -->
 	{#snippet inline()}
-		<div class="svg-canvas">{@html safe}</div>
+		<div class="svg-canvas" role={description ? 'img' : undefined} aria-label={description}>
+			{@html safe}
+		</div>
 	{/snippet}
 	<!-- The same wrapped source, drawn a second time at size. Both copies carry the diagram's own
 	     `<marker id="arrow">`, and a duplicate id resolves to the first in the document: every one
 	     of these markers is the same arrowhead, which is what makes that harmless rather than
 	     lucky. -->
 	{#snippet enlarged()}
-		<div class="svg-canvas">{@html safe}</div>
+		<div class="svg-canvas" role={description ? 'img' : undefined} aria-label={description}>
+			{@html safe}
+		</div>
 	{/snippet}
 </Preview>

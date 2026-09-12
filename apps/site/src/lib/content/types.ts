@@ -43,7 +43,7 @@ export type Block =
 			html: string;
 			code: string;
 	  }
-	| { type: 'mermaid'; source: string; ratio?: number }
+	| { type: 'mermaid'; source: string; ratio?: number; description?: string }
 	| {
 			type: 'quadrant';
 			title: string;
@@ -51,7 +51,13 @@ export type Block =
 			axes: Record<QuadrantDirection, string>;
 			items: QuadrantItem[];
 	  }
-	| { type: 'svgCanvas'; svg: string; title: string }
+	| {
+			type: 'svgCanvas';
+			svg: string;
+			title: string;
+			/** What the drawing says, from `cms diagram`. Absent until one has been run. */
+			description?: string;
+	  }
 	| { type: 'tokei'; source: string; title: string; view: TokeiView }
 	| { type: 'cargo'; crate: CrateRecord; view: CargoView }
 	| { type: 'twitter'; tweet: TweetRecord }

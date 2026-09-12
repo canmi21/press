@@ -1,7 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { expect, it } from 'vitest';
-import { EXTENSION } from './assets';
+import { sourceFingerprint } from './assemble';
+import { createDiagramResolver, EXTENSION } from './assets';
 
 /**
  * The Rust function that names a published file, read out of its source.
@@ -32,4 +33,36 @@ it('names each format the way apps/cms names the file', () => {
 	for (const [mime, extension] of Object.entries(authoritative)) {
 		expect(EXTENSION[mime], `${mime} is spelled differently on each side`).toBe(extension);
 	}
+});
+
+/**
+ * The key both sides agree on, held to the Rust that writes it.
+ *
+ * The record's own key is a BLAKE3 content id this side cannot compute, so a diagram is found by
+ * the cheap checksum the segment layout already uses -- over the fence's payload, which is what
+ * remark hands the compiler as a code node's `value`. If either side changed which bytes it
+ * fingerprints, every description would go quietly missing and nothing else would break.
+ */
+it('finds a diagram by the checksum the CMS wrote, over the payload remark hands it', () => {
+	const payload = 'graph TD\nA-->B';
+	const store = {
+		diagrams: {
+			'0123456789abcdef0123456789abcdef': {
+				fingerprint: sourceFingerprint(new TextEncoder().encode(payload)),
+				description: {
+					'en-US': { text: 'A goes to B.' },
+					'zh-CN': { text: 'A 指向 B。' },
+				},
+			},
+		},
+	};
+
+	expect(createDiagramResolver(store, 'en-US')(payload)).toBe('A goes to B.');
+	expect(createDiagramResolver(store, 'zh-CN')(payload)).toBe('A 指向 B。');
+	// A locale nobody has translated into falls back to nothing rather than to English: the
+	// caller's fallback is what the block said without a description at all.
+	expect(createDiagramResolver(store, 'ko-KR')(payload)).toBeUndefined();
+	// The whole fence is not the payload. Getting this wrong is the failure this test exists for.
+	expect(createDiagramResolver(store, 'en-US')('```mermaid\n' + payload + '\n```')).toBeUndefined();
+	expect(createDiagramResolver({ diagrams: {} }, 'en-US')(payload)).toBeUndefined();
 });

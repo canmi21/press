@@ -660,3 +660,69 @@ it('names ::linkcard, not ::image, when a card ratio is malformed', async () => 
 		),
 	).rejects.toThrow('::linkcard ratio must be W:H with positive numbers');
 });
+
+/**
+ * A drawing is invisible to everything but a pair of eyes until it is described.
+ *
+ * Four consumers read the description and none of them can read the fence: the block hands it to
+ * the control as an accessible description, the feed says it in place of the article's own title,
+ * the plain text carries it into the search index, and the Markdown target takes it for an SVG
+ * canvas. A Mermaid fence keeps its source in Markdown, because that one a reader can render.
+ */
+it('carries a diagram description into the block, the feed and the search text', async () => {
+	const svg = '<svg viewBox="0 0 10 10"></svg>';
+	const mermaid = 'graph TD\nA-->B';
+	const described: Record<string, string> = {
+		[svg]: 'A pipeline from source to binary.',
+		[mermaid]: 'A goes to B.',
+	};
+	const compiled = await compile(
+		'---\ntitle: Test\nlang: en-US\n---\n\n' +
+			'```svg-canvas\n' +
+			svg +
+			'\n```\n\n```mermaid\n' +
+			mermaid +
+			'\n```\n',
+		'/article',
+		{
+			newTabNote: 'opens in new tab',
+			resolveAsset: () => null,
+			describeDiagram: (source) => described[source],
+			highlight: async () => '',
+			sourceFile: 'contents/example.md',
+		},
+	);
+
+	const canvas = compiled.blocks.find((block) => block.type === 'svgCanvas');
+	const graph = compiled.blocks.find((block) => block.type === 'mermaid');
+	expect(canvas?.description).toBe('A pipeline from source to binary.');
+	expect(graph?.description).toBe('A goes to B.');
+
+	expect(compiled.feed).toContain(
+		'[Diagram: A pipeline from source to binary. — view at /article]',
+	);
+	expect(compiled.feed).toContain('[Diagram: A goes to B. — view at /article]');
+	expect(compiled.feed).not.toContain('language-mermaid');
+	expect(compiled.markdown).toContain('> [diagram: A pipeline from source to binary. — /article]');
+	// The one target that keeps the source, because it is the one that can draw it.
+	expect(compiled.markdown).toContain('```mermaid\n' + mermaid + '\n```');
+	expect(compiled.text).toContain('A pipeline from source to binary.');
+	expect(compiled.text).toContain('A goes to B.');
+});
+
+/** Nothing described yet is the ordinary state, and every consumer falls back to what it said. */
+it('leaves an undescribed diagram saying exactly what it said before', async () => {
+	const compiled = await compile(
+		'---\ntitle: Test\nlang: en-US\n---\n\n```svg-canvas\n<svg viewBox="0 0 10 10"></svg>\n```\n',
+		'/article',
+		{
+			newTabNote: 'opens in new tab',
+			resolveAsset: () => null,
+			highlight: async () => '',
+			sourceFile: 'contents/example.md',
+		},
+	);
+	const canvas = compiled.blocks.find((block) => block.type === 'svgCanvas');
+	expect(canvas?.description).toBeUndefined();
+	expect(compiled.feed).toContain('[Diagram: Test — view at /article]');
+});

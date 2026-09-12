@@ -1129,18 +1129,38 @@ scrolled, which on a phone meant a picture cut off by the screen it had just bee
 up, on the primary pointer only: a pinch puts a second one down elsewhere and lifts it a few pixels
 from where it landed, which is a tap by every measure except intent.
 
-### What the button costs, and where it is given back
+### The picture and the control that opens it are siblings
 
-A control's contents are presentational, so wrapping a picture in a button takes the diagram's own
-`text` out of the accessibility tree and leaves one label in its place. That is the price of the
-whole area being the control, and it is paid rather than worked around: the alternative that keeps
-both is a transparent button over the picture, and an element on top of the nodes is an element the
-pointer hits instead of them, which takes the hover away. No image in the corpus carries alt text,
-so on that side there is nothing to lose yet; when one does, it will be lost the same way.
+A drawing arrives as a subtree of `text` nodes in the order a renderer emitted them, which is a
+word list and not a reading. It should reach a screen reader as one thing with one name, and the
+name should be what `cms diagram` derived -- see [i18n.md](i18n.md). So the canvas carries
+`role="img"` and the description as its label, and the whole subtree under it collapses to that
+one node. Measured on the accessibility tree of an article: where there were a dozen loose strings
+there is now one image, and one button beside it.
 
-It is given back one press later. Inside the view the same picture is plain markup under a labelled
-dialog, so a reader who follows the button arrives at what the button was standing in front of.
-Both labels are interface copy and resolve at the page's locale like every label around them.
+**Neither nesting works, which is why they are siblings.** Put the drawing inside the button and
+its reading is gone -- a control's contents are presentational -- and worse, the button's own name
+becomes whatever the labels happen to spell. Put the button on top of the drawing and the pointer
+hits the button instead of the nodes, and a node that cannot be hovered is the one thing this
+arrangement was built to preserve.
+
+So the drawing and the button sit side by side inside a frame, and the frame takes the press. The
+button is absolutely positioned over the drawing with `pointer-events: none`: it is there to be
+reached by Tab, to be named, and to carry the focus ring, and it is hit by nothing. It has no
+handler of its own either -- the click a keyboard makes on it is a real click and reaches the
+frame by bubbling, so there is one way in rather than two that have to agree.
+
+That leaves a `div` with a click handler and no keyboard handler, which is what the two waived
+a11y rules are about. The keyboard path is the button inside it, and neither rule can see that
+from where it is looking.
+
+The same arrangement serves a photograph, where the picture names itself through `alt` and the
+button says `Enlarge image`. A Mermaid diagram takes `role="img"` and a label without any of this,
+because it has no button to sit beside and the same word-list problem to solve.
+
+Both labels are interface copy and resolve at the page's locale like every label around them, and
+so does the description -- it is translated into all eight, which is what makes a diagram
+described rather than described in English at a Korean reader.
 
 An enlarged photograph also asks for a source sized to the window rather than to the column. The
 inline `sizes` names the article measure, and left in place it would have enlarged a source chosen
