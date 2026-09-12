@@ -1652,6 +1652,14 @@ earlier lines to rescue the last one -- which empties the first line of a two-li
 short second, producing the ascending rag this rule exists to prevent. Greedy filling is both what
 the measurements are taken against and what the two engines agree on.
 
+The bio carried it anyway until a 390pt phone showed what it cost. `something I made and` ended a
+line with room to spare while `thinks,` waited on the next one with the nowrapped clause -- Safari
+had pulled a word back to keep the last line from being short, which is the reflow above doing
+exactly what it says. Removing the class put `thinks,` back where filling puts it and left the
+closing clause alone on its line, which is the shape the copy was written for. A 402pt phone
+improved too, to two nearly full lines. The rule was right; it was the markup that had not caught
+up with it.
+
 ## A phone is shown the title that fits, not the title cut short
 
 The article column gives its title 85% of its width on a phone, which is 300px inside the page

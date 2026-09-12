@@ -115,7 +115,7 @@
 		<!-- Bio prose is compiled from contents/index.md (DLC directives), single-sourced
 		with /llms.txt. PageBody keeps styled text as dead HTML and renders each social
 		link live so its icon reuses the shared <Icon> component. -->
-		<div class="selectable mt-8 space-y-4 leading-relaxed text-pretty">
+		<div class="selectable mt-8 space-y-4 leading-relaxed">
 			<PageBody blocks={data.bio} locale={data.locale.code} />
 		</div>
 
