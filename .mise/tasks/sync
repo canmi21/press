@@ -39,8 +39,12 @@ if [ "${1:-}" = "--live" ]; then
 	MODE=()
 fi
 
+# `${MODE[@]+...}` rather than a bare `"${MODE[@]}"`: macOS ships bash 3.2, where expanding an
+# empty array under `set -u` is an unbound variable and aborts the script. Which meant `--live`
+# -- the one branch that empties the array -- had never run on this machine, while the dry run
+# it defaults to worked perfectly and hid it.
 rclone sync "$SOURCE" "$REMOTE" \
 	--filter-from "$(dirname "$0")/sync.filter" \
 	--track-renames \
 	--progress \
-	"${MODE[@]}"
+	${MODE[@]+"${MODE[@]}"}
