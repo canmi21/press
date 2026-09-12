@@ -37,13 +37,64 @@
 	let {
 		locale,
 		sourcePreferenceHref,
+		repositoryHref,
 		onsponsor,
 	}: {
 		locale: LocaleCode;
 		sourcePreferenceHref: string;
+		repositoryHref: string;
 		/** Becomes an `<a>` once there is somewhere to send people; see libs/urls. */
 		onsponsor?: () => void;
 	} = $props();
+
+	/**
+	 * Which favour this row asks for, in the one slot that asks for one.
+	 *
+	 * Asking the same reader for the same thing on every visit is asking nothing: once they have
+	 * set the source preference there is nothing left to set, and the pill goes on offering it.
+	 * So the slot moves on. `localStorage["preferred"]` records that this reader has been sent to
+	 * Google at some point, and from their next visit the slot asks for a star instead.
+	 *
+	 * `sessionStorage["preferred"]` is what keeps it from moving under them. A reader who clicks
+	 * and comes back to the tab -- or reloads, or navigates and returns -- would otherwise find a
+	 * different control where they just pressed one, which reads as the page having changed its
+	 * mind. Within the tab that did it, the pill stays where it was. The two keys are one
+	 * lowercase noun each, the way `trail` and `email` are; see spec/styling.md.
+	 *
+	 * The server has neither store, so it renders Google -- right for every first-time reader,
+	 * which is everyone it can see -- and a returning reader's pill changes after hydration. Both
+	 * short forms are a six-letter brand name, so what moves is the label and not the row.
+	 */
+	const PREFERRED = 'preferred';
+	let asksForStar = $state(false);
+
+	$effect(() => {
+		try {
+			const thisTab = sessionStorage.getItem(PREFERRED) !== null;
+			asksForStar = !thisTab && localStorage.getItem(PREFERRED) !== null;
+		} catch {
+			// Private browsing, or storage the reader has turned off. The default already stands.
+		}
+	});
+
+	const favourLabel = $derived(
+		asksForStar ? m['support.github']({}, { locale }) : m['support.google']({}, { locale }),
+	);
+	const favourShort = $derived(
+		asksForStar
+			? m['support.github-short']({}, { locale })
+			: m['support.google-short']({}, { locale }),
+	);
+
+	/** Both stores, because each answers a different question about the same click. */
+	function recordPreferred() {
+		try {
+			localStorage.setItem(PREFERRED, '1');
+			sessionStorage.setItem(PREFERRED, '1');
+		} catch {
+			// Nothing to record into. The slot simply goes on asking, which is the old behaviour.
+		}
+	}
 
 	const engagement = createEngagementQuery();
 	const like = createLikeMutation();
@@ -212,12 +263,18 @@
 			{@render copy(formattedCount, m['support.like']({ count: formattedCount }, { locale }))}
 		</button>
 
+		<!-- One slot, two favours. The star is right for either: it is the mark Google's preference
+		     list and GitHub's repositories both use, so the pill keeps its shape and only its
+		     words change. -->
 		<a
-			href={sourcePreferenceHref}
+			href={asksForStar ? repositoryHref : sourcePreferenceHref}
 			target="_blank"
 			rel="noopener"
-			aria-label={`${m['support.google']({}, { locale })} (${m['support.new-tab']({}, { locale })})`}
+			aria-label={`${favourLabel} (${m['support.new-tab']({}, { locale })})`}
 			data-expanded="false"
+			onclick={() => {
+				if (!asksForStar) recordPreferred();
+			}}
 			onmouseenter={expand}
 			onmouseleave={collapse}
 			onfocus={expandFromFocus}
@@ -225,7 +282,7 @@
 			class="action focus-ring"
 		>
 			<Star class="icon" aria-hidden="true" />
-			{@render copy(m['support.google-short']({}, { locale }), m['support.google']({}, { locale }))}
+			{@render copy(favourShort, favourLabel)}
 		</a>
 
 		<button

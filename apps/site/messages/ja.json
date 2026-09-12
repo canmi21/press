@@ -102,6 +102,8 @@
 	"sponsor.close": "お知らせを閉じる",
 	"sponsor.notice": "米国 F-1 ビザの制限により、現在スポンサーは受け付けていません。",
 	"sponsor.title": "スポンサーは受付停止中",
+	"support.github": "GitHub で Star をつける",
+	"support.github-short": "GitHub",
 	"support.google": "Googleの優先ソースに追加",
 	"support.google-short": "Google",
 	"support.heading": "応援",

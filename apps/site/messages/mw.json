@@ -102,6 +102,8 @@
 	"sponsor.close": "Close sponsor notice",
 	"sponsor.notice": "Sponsors are currently unavailable due to U.S. F-1 immigration restrictions.",
 	"sponsor.title": "Sponsor unavailable",
+	"support.github": "Star on GitHub",
+	"support.github-short": "GitHub",
 	"support.google": "Prefer on Google",
 	"support.google-short": "Google",
 	"support.heading": "Support",

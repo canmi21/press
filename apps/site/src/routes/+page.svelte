@@ -139,6 +139,7 @@
 		<Support
 			locale={data.locale.code}
 			sourcePreferenceHref={googleSourceUrl.href}
+			repositoryHref={URLS.source}
 			onsponsor={() => (sponsorOpen = true)}
 		/>
 

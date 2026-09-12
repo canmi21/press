@@ -1350,10 +1350,32 @@ subscription invitation instead.
 
 ## Compact action rails reveal detail on demand
 
-The homepage Support surface holds Like, Google source preference and Sponsor. These are reader
-actions and read as one small section; revision and Follow stay off the page until they have a
-quieter placement of their own. Visitor, uptime, word-count, update-age and license rows do not
-appear on the homepage.
+The homepage Support surface holds Like, one favour to ask, and Sponsor. These are reader actions
+and read as one small section; revision and Follow stay off the page until they have a quieter
+placement of their own. Visitor, uptime, word-count, update-age and license rows do not appear on
+the homepage.
+
+**The middle slot moves on once its favour has been done.** Asking the same reader to set the same
+source preference on every visit is asking nothing: once it is set there is nothing left to set,
+and a control that goes on offering it is furniture. So it offers Google first and a star on the
+repository afterwards -- a different favour, in the same slot, rather than a second pill that
+would be permanent clutter for the readers who never do either.
+
+Which one is showing is decided from two stores, and each answers a different question about the
+same click. `localStorage["preferred"]` records that this reader was sent to Google at some point,
+which is what moves the slot on. `sessionStorage["preferred"]` records that it was this tab that
+did it, which is what stops the slot moving under them: a reader who clicks and then reloads, or
+navigates away and comes back, would otherwise find a different control where they just pressed
+one, and a page that changes its mind about what it is asking for reads as a page that lost track.
+Within the tab that did it, the pill stays where it was. Both keys are one lowercase noun, the way
+`trail` and `email` are.
+
+Neither store exists on the server, so the markup carries Google -- right for every first-time
+reader, which is everyone the server can see -- and a returning reader's pill changes after
+hydration. This is the one place on the page where that is accepted rather than designed around,
+and what makes it acceptable is that both resting labels are a six-letter brand name: the row does
+not move, one word is replaced by another. Every storage read is wrapped, because a reader in a
+private window has no stores and the default is already the right answer for them.
 
 Each Support action presents an icon and its shortest useful identity at rest, while pointer hover
 and keyboard focus reveal the full localized instruction in place.
@@ -1365,7 +1387,8 @@ shared text stays as one DOM segment. Prefix and suffix segments sit in zero-wid
 the same spring as the pill: a suffix is uncovered after a stationary label, while a prefix pushes
 the shared label right as it is uncovered. This makes the copy read as material revealed by the
 pill rather than one string replacing another. Every shipped locale preserves that substring for
-all three Support actions, with a message contract test guarding the relationship. The component
+all four Support labels -- both of the middle slot's favours included -- with a message contract
+test guarding the relationship. The component
 keeps a crossfade only as a defensive fallback; these actions must not rely on it. Translations
 choose an idiomatic local short label first rather than forcing an English noun into every locale.
 
