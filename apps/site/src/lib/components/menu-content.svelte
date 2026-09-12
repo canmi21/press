@@ -9,6 +9,19 @@
 		id?: string;
 		children: Snippet;
 	} = $props();
+
+	/**
+	 * How close this surface may come to the window's edge, in pixels.
+	 *
+	 * The page's own gutter, so a menu pushed back by a collision stops where the article's text
+	 * stops rather than a hair from the glass. The library's default is 8px, which is invisible on
+	 * a laptop -- nothing there is near an edge -- and on a phone puts the whole panel against the
+	 * side of the screen while the column beside it holds a 1.5rem margin. See spec/styling.md.
+	 *
+	 * A number rather than the token, because the library measures in pixels and cannot read a
+	 * custom property. It agrees with the article column's `px-6` by hand.
+	 */
+	const EDGE_PADDING = 24;
 </script>
 
 <DropdownMenu.Portal>
@@ -16,6 +29,7 @@
 		{id}
 		align="start"
 		sideOffset={8}
+		collisionPadding={EDGE_PADDING}
 		loop
 		class="menu-content z-30 min-w-36 overflow-hidden rounded-md border border-border bg-paper shadow-sm"
 	>

@@ -1004,6 +1004,25 @@ accident.
 
 This is for names a reader knows as one thing. Ordinary prose wraps where it likes.
 
+## A floating surface stops where the page's text stops
+
+A menu, a popover, anything the floating layer places: when a collision pushes it back from the
+window's edge, it stops at 1.5rem, which is the article column's own gutter. The library's default
+is 8px. That is invisible on a laptop, where nothing opens near an edge, and wrong on a phone,
+where the language switcher sits against the column's right frame and its menu is wide enough to
+be pushed back every time -- the panel ends up a hair from the glass while the paragraph beside it
+holds a clear margin, which reads as the menu having fallen off rather than opened.
+
+The value is written as a number in [menu-content.svelte](../apps/site/src/lib/components/menu-content.svelte)
+because the library measures in pixels and cannot read a custom property, so it agrees with the
+column's `px-6` by hand rather than by reference. One number, in the one component every menu on
+the site renders through.
+
+It is not a phone rule with a breakpoint. Collision padding does nothing until something collides,
+so the same declaration is invisible at every width where there is room and correct at the one
+width where there is not -- which is a better shape than a media query that has to name where
+phones end.
+
 ## Keyboard focus follows the visible control
 
 Keyboard focus uses a real `0.125rem` outline in the accessibility accent colour. The outline is
